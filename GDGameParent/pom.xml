@@ -1,0 +1,195 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.allbinary.game.gd</groupId>
+    <artifactId>GDGameParent</artifactId>
+    <packaging>pom</packaging>
+    <!-- Game Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- Game Version End -->
+
+    <name>GDGameParent</name>
+    <url>http://www.allbinary.com/</url>
+    
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <buildLabel>${version}</buildLabel>
+        <allbinary.platform.version>1.0.0-SNAPSHOT</allbinary.platform.version>
+        <gd.version>1.0.0-SNAPSHOT</gd.version>
+    </properties>
+
+    <dependencyManagement>
+
+        <dependencies>
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameResourceJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameAIJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameWavSoundsJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+        
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameNoTouchJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameTouchJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+        
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGamePCClientInfoJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameJ2MEJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameJ2SEJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameAndroidJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameHTMLJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameBaseJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameAndroidResourcesTempJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameAndroidSoundsJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameAndroidBaseJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameAndroidClientInfoJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+        
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameAndroidResourceJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+        
+            <dependency>
+                <groupId>org.allbinary.game.gd</groupId>
+                <artifactId>GDGameAndroidActivityJavaLibrary</artifactId>
+                <!-- Game Version Start -->
+                <version>${gd.version}</version>
+                <!-- Game Version Start -->
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>

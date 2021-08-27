@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParent</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version Start -->
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>    
+    <artifactId>GDGameThreedAndroidApplication</artifactId>
+    <packaging>apk</packaging>
+
+    <name>GDGameThreedAndroidApplication</name>
+    <url>http://www.allbinary.com/</url>
+
+    <properties>
+        <android.sdk.version>4.1.1.4</android.sdk.version>
+        <!--
+        <android.sdk.path></android.sdk.path>
+        -->
+    </properties>
+
+    <dependencies>
+
+        <!--
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>MicroEmulatorCustomUIJavaLibrary</artifactId>        
+            <version>${allbinary.platform.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>GameConfigurationJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>MicroEmulatorCustomUIPreJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>FormJavaLibrary</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>        
+        -->
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>FormJSEJavaLibrary</artifactId>        
+            <version>${allbinary.platform.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>FormBaseJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>GameInputLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>GameSoundsJavaLibrary</artifactId>
+                </exclusion>
+
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AllBinaryJ2MELibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>EventJ2MELibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2MEJavaUtilLibrary</artifactId>                
+                </exclusion>
+
+            </exclusions>
+        </dependency>                
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>J2MEGameMidletAsActivityJavaLibrary</artifactId>        
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AndroidResourceLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>FileLicenseInitInfoJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2MEMidletAsActivityJavaLibrary</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>J2MEMidletAsActivityJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AndroidTransitionAnimationJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>VirtualKeyboardDynamicJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2MEMidletAsViewJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary.animation</groupId>
+                    <artifactId>AllBinaryImageAnimationJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>OpenGLESAndroidJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>GameInputPersistanceLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>ApplicationConfigurationJavaLibrary</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>J2MEMidletAsViewJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>MotionInputAndroidDynamicJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>GyroSensorAndroidJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AndroidToJ2MELibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AndroidAPI3AndUpJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>OpenGLESJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AllBinaryJ2MELibrary</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameInputAndroidMotionJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>TouchButtonJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>GyroSensorAndroidJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>MotionGestureJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>GameInputAndroidBaseJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AndroidSystemJavaLibrary</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameInputAndroidBaseJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>BasePreloaderFileJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>GameInputLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AndroidBaseJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>TouchScreenJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AndroidSystemJavaLibrary</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLESAndroidJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>GameJ2MELibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2MEMidletAsViewJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AndroidToJ2MELibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AllBinaryAndroidProgressJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AndroidBaseJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>OpenGLESJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>MotionInputAndroidDynamicJavaLibrary</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GyroSensorAndroidJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>GameJ2MELibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>GameNotificationJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AllBinaryGyroSensorJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>SensorAndroidJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AllBinaryMagneticFieldSensorJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AllBinaryAccelerometerSensorJavaLibrary</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>SensorAndroidJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AllBinaryGyroSensorJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AllBinaryAccelerometerSensorJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AllBinaryMagneticFieldSensorJavaLibrary</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>MotionInputAndroidDynamicJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AndroidBaseJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AndroidThroughAPI4JavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AndroidAPI5AndUpJavaLibrary</artifactId>
+                </exclusion>
+                <!--
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>MotionInputAPI5AndUpAndroidJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>MotionInputThroughAPI4AndroidJavaLibrary</artifactId>
+                </exclusion>
+                -->
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AllBinaryJ2MELibrary</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>AndroidTransitionAnimationJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary.animation.transition</groupId>
+                    <artifactId>TransitionAnimationJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>GameConfigurationJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2MEJavaUtilLibrary</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>MotionInputAndroidJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>MotionGestureJavaLibrary</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>XmlRpcJavaLibrary</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>SimpleCryptLibrary</artifactId>
+                    <groupId>org.allbinary</groupId>
+                </exclusion>
+            </exclusions>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>BouncyCastleDESJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->            
+        </dependency>
+
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-javase</artifactId>
+            <version>2.0.2-SPECIAL-SNAPSHOT</version>
+            <optional>true</optional>
+        </dependency>
+
+        <!--
+        <dependency>
+            <groupId>tv.ouya</groupId>
+            <artifactId>ouya</artifactId>
+            <version>2.0.1-SNAPSHOT</version>
+        </dependency>
+        -->
+
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <version>${android.sdk.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <version>${android.sdk.version}</version>
+            <scope>provided</scope>
+            <classifier>sources</classifier>
+        </dependency>
+                               
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <!-- Not working older: maven-android-plugin -->        
+                    <groupId>com.simpligility.maven.plugins</groupId>
+                    <artifactId>android-maven-plugin</artifactId>
+                    <version>4.6.0</version>
+                    <extensions>true</extensions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <!-- 
+                <version>2.5.1</version>
+                <version>2.3.2</version>
+                -->
+                <configuration> 
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <!-- 
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                3.5.1 worked with an older android sdk 
+                3.6.0 worked for a while as well 
+                3.8.2 works but you need to build in Eclipse first for NetBeans to work
+                since Eclipse has or gets the proper dependencies
+                <ignoreBuildWarnings>true</ignoreBuildWarnings>
+                4.4.2 worked
+                -->
+                <groupId>com.simpligility.maven.plugins</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <version>4.6.0</version>
+                <configuration>
+                    <!--
+                    <release>true</release>
+                    -->
+                    <!-- 
+                    mvn clean deploy -Dandroid.release=true
+                    -->
+                    <sdk>
+                        <!-- 5 is fine but is not installed by default -->
+                        <platform>5</platform>
+                    </sdk>
+                    <proguard>
+                        <skip>true</skip>
+                        <!--
+                        <skip>true</skip>
+                        <skip>false</skip>
+                        -->
+                        <config>G:/mnt/bc/mydev/work/j2me/games/All_Android.pro</config>
+                    </proguard>
+                </configuration>
+            </plugin>
+        
+            <!-- If proguard for the android-maven-plugin fails for work then use below -->
+            <!--
+            <plugin>
+                <groupId>org.allbinary</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <version>2.0.4</version>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>proguard</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <inJar>android-classes</inJar>
+                    <proguardInclude>G:/mnt/bc/mydev/work/j2me/games/All_Android.pro</proguardInclude>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sf.proguard</groupId>
+                        <artifactId>proguard</artifactId>
+                        <version>4.10</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                </dependencies>                
+            </plugin>
+            -->
+                        
+        </plugins>
+    </build>
+
+</project>

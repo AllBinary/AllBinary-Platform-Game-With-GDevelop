@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParent</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version Start -->
+    </parent>
+    
+    <artifactId>GDGameJ2MEApplication</artifactId>
+    <packaging>jar</packaging>
+
+    <name>GDGameJ2MEApplication</name>
+    <url>http://www.allbinary.com/</url>
+
+    <properties>
+        <buildLabel>${version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+        <!-- 
+        ${rootPath}
+        
+        \WTK\22\
+        \WTK\25\
+        \WTK\2.5.2_01\
+        \WTK\2_5_2_ML\
+        
+        Needs the newer Antenna:
+        \WTK\3.0.5\
+        \WTK\3.2\
+        \WTK\3_4\
+        
+        No lcdui so now what? Need LWUIT, lcdui emulation, or other.
+        \WTK\8_0
+        -->
+        <WTK_HOME>\WTK\3_4\</WTK_HOME>
+        <outputPath>.\target\classes\</outputPath>
+        <inputPath>..\..\..\Resources\images\release\</inputPath>
+        <inputPath2>..\..\..\Resources\sounds\release\</inputPath2>
+
+        <j2me.midlet.version>2.0.0</j2me.midlet.version>
+        <j2me.midlet.configuration>CLDC-1.1</j2me.midlet.configuration>
+        <j2me.midlet.profile>MIDP-2.0</j2me.midlet.profile>
+                
+        <!-- 
+        <wtk.midpapi>${WTK_HOME}/lib/mmapi.jar${path.separator}${WTK_HOME}/lib/cldcapi11.jar${path.separator}${WTK_HOME}/lib/midpapi20.jar</wtk.midpapi>
+        <wtk.midpapi>${WTK_HOME}/lib/jsr135_1.2.jar${path.separator}${WTK_HOME}/lib/cldc_1.1.jar${path.separator}${WTK_HOME}/lib/midp_2.0.jar</wtk.midpapi>
+        -->
+        <wtk.midpapi>${WTK_HOME}/lib/jsr135_1.2.jar${path.separator}${WTK_HOME}/lib/cldc_1.1.jar${path.separator}${WTK_HOME}/lib/midp_2.0.jar</wtk.midpapi>
+
+    </properties>
+
+    <dependencies>
+        
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>FormJMEJavaLibrary</artifactId>        
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.resources</groupId>
+            <artifactId>GameSoundsWavResourcesJavaLibrary</artifactId>        
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+        <!--
+        <dependency>
+            <groupId>com.sun.j2me</groupId>
+            <artifactId>BouncyCastleDESJavaLibrary</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        -->
+      
+    </dependencies>
+ 
+    <build>
+
+        <plugins>
+
+            <!-- Delete output directory
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-clean-plugin</artifactId>
+            <version>2.4.1</version>
+            <configuration>
+                <followSymLinks>false</followSymLinks>
+                <filesets>
+                    <fileset>
+                        <directory>.\tmp7624</directory>
+                    </fileset>
+                </filesets>
+            </configuration>
+            </plugin>
+            -->
+            
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath}</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath2}</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                </executions>
+            </plugin>
+      
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.3</source>
+                    <target>1.1</target>
+                    <excludes>
+                        
+                    </excludes>
+                    <compilerArguments>
+                        <bootclasspath>${wtk.midpapi}</bootclasspath>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+
+            <!-- Create application loadable on the phone -->
+            <plugin>
+                <groupId>com.pyx4me</groupId>
+                <artifactId>j2me-maven-plugin</artifactId>
+                <version>2.0.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <!--
+                    Note: Antenna is an issue from time to time during the verify process.
+                    The common error is Invalid Argument.
+                    <dependency>
+                    <groupId>net.sf.antenna</groupId>
+                    <artifactId>antenna</artifactId>
+                    <version>0.9.14</version>
+                    </dependency>
+                    1.0.1
+                    1.0.2
+                    1.2.1-beta for 3.0 on up
+                    -->
+                    <dependency>
+                        <groupId>net.sf.antenna</groupId>
+                        <artifactId>antenna</artifactId>
+                        <version>1.2.1-beta-SNAPSHOT</version>
+                    </dependency>                   
+                </dependencies>
+                <configuration>
+                    <midletVendor>AllBinary</midletVendor>
+                    <wtkHome>${WTK_HOME}</wtkHome>
+                    <proguard>false</proguard>
+                    <obfuscate>false</obfuscate>
+                    <jadAttributes>
+                        <Created-By>Travis Berthelot</Created-By>
+                    </jadAttributes>
+                    <archive>
+                        <manifestEntries>
+                            <url>${pom.url}</url>
+                        </manifestEntries>
+                    </archive>
+                    <midlets>
+                        <MIDlet>
+                            <name>GDGame</name>
+                            <icon>/gd_icon.png</icon>
+                            <class>GDGameMIDlet</class>
+                        </MIDlet>
+                    </midlets>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

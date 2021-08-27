@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParent</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version End -->
+    </parent>
+
+    <artifactId>GDGameP</artifactId>
+    <packaging>pom</packaging>
+    <name>GDGameP</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <buildLabel>${version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+    </properties>
+
+    <modules>
+
+        <!--
+        -->
+
+        <module>../resource/GDGameResourceJavaLibraryM</module>
+        <module>../platform/j2me/GDGameJ2MEJavaLibraryM</module>
+        <!--
+        <module>../platform/j2se/GDGameJ2SEJavaLibraryM</module>
+        <module>../platform/html/GDGameHTMLJavaLibraryM</module>
+        <module>../platform/android/GDGameAndroidJavaLibraryM</module>
+        -->
+        <module>../resource/GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
+        <module>../resource/GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
+        <module>../resource/GDGameOpenGLThreedAnimationResourceJavaLibraryM</module>
+        
+        <module>../platform/j2se/GDGamePCClientInfoJavaLibraryM</module>
+        <module>../GDGameBaseJavaLibraryM</module>
+        <module>../GDGameAIJavaLibraryM</module>
+        <module>../GDGameJavaLibraryM</module>
+        <module>../GDGameNoTouchJavaLibraryM</module>
+        <module>../GDGameThreedBaseJavaLibraryM</module>
+        <module>../GDGameTouchJavaLibraryM</module>
+        <module>../GDGameWavSoundsJavaLibraryM</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        
+    </dependencies>
+
+</project>
+

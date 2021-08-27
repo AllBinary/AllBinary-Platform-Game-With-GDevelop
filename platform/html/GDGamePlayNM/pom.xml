@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.allbinary.gwt.forplayn</groupId>
+        <artifactId>AllBinaryPlaynGWT</artifactId>
+        <!-- AllBinary Platform Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- AllBinary Platform Version End -->
+    </parent>
+  
+    <groupId>org.allbinary.game.gd</groupId>
+    <artifactId>GDGamePlayN</artifactId>
+    <!-- Game Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- Game Version Start -->
+    <name>GDGamePlayN</name>
+
+    <!-- 
+    playn.java.MiniSpaceWarVectorJ2SE
+    playn.core.MiniSpaceWarVectorGame
+    -->
+    <properties>
+        <exec.mainClass>playn.java.GDGameJ2SE</exec.mainClass>
+        
+        <buildLabel>${version}</buildLabel>
+        <gd.version>1.0.0-SNAPSHOT</gd.version>
+        <allbinary.platform.version>1.0.0-SNAPSHOT</allbinary.platform.version>
+        
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.googlecode.playn</groupId>
+            <artifactId>playn-java</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.playn</groupId>
+            <artifactId>playn-html</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <!-- was asm for 2.6.1 of gwt but gwt 2.7.0 needs org.ow2.asm -->
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <!-- was 3.1 for 2.6.1 of gwt -->
+            <version>5.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-playn</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <artifactId>J2MEColorJavaLibrary</artifactId>
+                    <groupId>org.allbinary</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameHTMLTemp</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${gd.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+    
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>ABDKPlaynJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>    
+    
+    </dependencies>
+        
+    <build>
+
+        <plugins>
+
+            <!--
+                  <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                  </plugin>
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+      
+             <!--
+            <plugin>
+                <groupId>com.pyx4me</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>proguard</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <proguardInclude>G:/mnt/bc/mydev/construct/j2me/games/HTML/All_HTML5.pro</proguardInclude>
+
+                    <exclusions>
+                        <exclusion>
+        <groupId>com.googlecode.playn</groupId>
+        <artifactId>playn-core</artifactId>
+                        </exclusion>
+                        <exclusion>
+        <groupId>org.microemu</groupId>
+        <artifactId>microemu-playn</artifactId>
+                        </exclusion>
+                        <exclusion>
+  <groupId>org.allbinary</groupId>
+  <artifactId>ABDKPlaynJavaLibrary</artifactId>
+                        </exclusion>
+                    </exclusions>
+
+                     </configuration>
+                 </plugin>
+                 <plugin>
+                     <groupId>org.apache.maven.plugins</groupId>
+                     <artifactId>maven-jar-plugin</artifactId>
+                     <configuration>
+                         <archive>
+                             <manifest>
+                                 <mainClass>${project.build.mainClass}</mainClass>
+                             </manifest>
+                         </archive>
+                     </configuration>
+                 </plugin>
+                 <plugin>
+                     <groupId>org.codehaus.mojo</groupId>
+                     <artifactId>exec-maven-plugin</artifactId>
+                     <version>1.1</version>
+                     <executions>
+                         <execution>
+                             <goals>
+                                 <goal>java</goal>
+                             </goals>
+                         </execution>
+                     </executions>
+                     <configuration>
+                         <mainClass>${project.build.mainClass}</mainClass>
+                     </configuration>
+                 </plugin>
+            -->
+
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>${basedir}/src</directory>
+            </resource>
+        </resources>
+                    
+    </build>
+</project>

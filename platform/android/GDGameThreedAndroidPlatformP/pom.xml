@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.allbinary.game.gd</groupId>
+  <artifactId>GDGameThreedAndroidPlatformP</artifactId>
+  <packaging>pom</packaging>
+  <!-- AllBinary Platform Version Start -->
+  <version>1.0.0-SNAPSHOT</version>
+  <!-- AllBinary Platform Version End -->
+
+  <name>GDGameThreedAndroidPlatformP</name>
+  <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+    <modules>
+
+        <!--
+        <module>../GDGameThreedAndroidRawResourcesJavaLibraryM</module>
+        -->
+        <module>../GDGameThreedAndroidResourcesTempJavaLibraryM</module>
+        <module>../GDGameThreedAndroidResourceJavaLibraryM</module>
+        
+        <module>../GDGameThreedAndroidBaseJavaLibraryM</module>
+        <module>../GDGameThreedAndroidJavaLibraryM</module>
+        <module>../GDGameThreedAndroidActivityJavaLibraryM</module>
+        
+        <!--
+        <module>../GDGameAndroidClientInfoJavaLibraryM</module>        
+        -->
+        
+        <module>../GDGameThreedAndroidM</module>
+        <module>../GDGameThreedAndroidApplicationM</module>
+        
+    </modules>
+
+</project>

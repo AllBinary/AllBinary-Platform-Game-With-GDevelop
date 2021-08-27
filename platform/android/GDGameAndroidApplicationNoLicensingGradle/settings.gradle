@@ -1,0 +1,2 @@
+rootProject.name = "GDGame"
+include ':app'

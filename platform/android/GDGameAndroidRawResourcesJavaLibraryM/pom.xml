@@ -1,0 +1,162 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParent</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version Start -->
+    </parent>
+
+    <artifactId>GDGameAndroidRawResourcesJavaLibrary</artifactId>
+    <packaging>jar</packaging>
+
+    <name>GDGameAndroidRawResourcesJavaLibrary</name>
+    <url>http://www.allbinary.com/</url>
+
+    <properties>
+
+        <outputPath>../GDGameAndroidApplicationM\src\main\res\raw</outputPath>
+        <outputPath2>../GDGameAndroidApplicationM\src\main\res\drawable</outputPath2>
+        <inputPath>..\..\..\Resources\images\release\</inputPath>
+        <inputPath2>..\..\..\Resources\images\wait\</inputPath2>
+        <inputPath3>..\..\..\Resources\sounds\ogg\</inputPath3>
+        <inputPath4>..\..\..\Resources\partner\</inputPath4>
+        
+    </properties>
+
+    <dependencies>         
+
+        <dependency>
+            <groupId>org.allbinary.game.resources</groupId>
+            <artifactId>GameSoundsOggResourcesJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.resources</groupId>
+            <artifactId>GameImageLowResourcesJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.resources</groupId>
+            <artifactId>GameImageMediumResourcesJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.resources</groupId>
+            <artifactId>GameOuyaImageResourcesJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+    </dependencies>
+
+    <build>
+        
+        <plugins>
+
+            <!-- Delete output directory -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.4.1</version>
+                <configuration>
+                    <followSymLinks>false</followSymLinks>
+                    <filesets>
+                        <fileset>
+                            <directory>${outputPath}</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${outputPath2}</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+      
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath2}</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath3}</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath4}</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>              
+                        </configuration>     
+                    </execution>
+                    <execution>
+                        <id>copy-resources-2</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath2}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath}</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath2}</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>              
+                        </configuration>     
+                    </execution>                    
+                </executions>
+            </plugin>            
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includes>**\/*.wav, **\/*.ogg, **\/*.png</includes>
+                            <outputDirectory>../GDGameAndroidApplicationM\src\main\res\raw\</outputDirectory>
+                            <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+                        
+        </plugins>
+
+    </build>
+
+</project>
