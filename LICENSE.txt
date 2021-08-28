@@ -85,3 +85,5 @@ THE PAST, PRESENT, OR FUTURE.
 
 Third-Party and Third-Party Integration projects for the AllBinary Platform is 
 in the AllBinary Platform Integration repository with different licensing.
+
+The GDevelop to AllBinary code is under the MIT license.
