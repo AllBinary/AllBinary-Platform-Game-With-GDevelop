@@ -1,16 +1,9 @@
 /*
-* AllBinary Open License Version 1
-* Copyright (c) 2011 AllBinary
-* 
-* By agreeing to this license you and any business entity you represent are
-* legally bound to the AllBinary Open License Version 1 legal agreement.
-* 
-* You may obtain the AllBinary Open License Version 1 legal agreement from
-* AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-* 
-* Created By: Travis Berthelot
-* 
+ * GDevelop to AllBinary Core
+ * Copyright 2021 Travis Berthelot (travisberthelot@allbinary.com). All rights
+ * reserved. This project is released under the MIT License.
  */
+
 package org.allbinary.gdevelop.json;
 
 import org.allbinary.graphics.PointFactory;
@@ -24,6 +17,7 @@ import org.json.JSONException;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;
+import org.json.XML;
 
 /**
  *
@@ -59,16 +53,6 @@ public class GDProject
     public final BasicArrayList layoutList = new BasicArrayList();
     public final BasicArrayList externalLayoutList = new BasicArrayList();
     
-    public void load(final String gameAsConfiguration) {
-        try {
-            final JSONTokener jsonTokener = new JSONTokener(gameAsConfiguration);
-            final JSONObject gameAsConfigurationJSONObject = (JSONObject) jsonTokener.nextValue();
-            this.load(gameAsConfigurationJSONObject);
-        } catch(JSONException e) {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, e));
-        }
-    }
-
     public void load(final JSONObject gameAsConfiguration) throws JSONException {
  
         final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
