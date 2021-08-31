@@ -80,7 +80,7 @@ public class GDIde
         this.objectsGroups = gameAsConfiguration.getJSONArray(gdProjectStrings.OBJECT_GROUPS);
         this.externalEvents = gameAsConfiguration.getJSONArray(gdProjectStrings.EXTERNAL_EVENTS);
     //gd::ExternalEvents& externalEvents = InsertNewExternalEvents(
-        //externalEventElement.GetStringAttribute("name", "", "Name"),
+        //externalEventElement.GetStringAttribute("name", this.stringUtil.EMPTY_STRING, "Name"),
         //GetExternalEventsCount());
 
         this.eventsFunctionsExtensions = gameAsConfiguration.getJSONArray(gdProjectStrings.EVENTS_FUNCTIONS_EXTENSIONS);
