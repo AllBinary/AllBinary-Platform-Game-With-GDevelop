@@ -16,7 +16,8 @@ package org.allbinary.game.gd;
 import org.allbinary.game.gd.canvas.GDGameGameCanvas;
 import org.allbinary.game.gd.canvas.GDGameInputMappingHelpPaintable;
 import org.allbinary.game.gd.canvas.GDGameSoftwareInfo;
-import org.allbinary.game.gd.canvas.GDGameStartCanvas;
+//import org.allbinary.game.gd.canvas.GDGameStartCanvas;
+import org.allbinary.game.gd.canvas.GDGameStartMenuCanvas;
 import org.allbinary.game.gd.layer.GDGameLayerManager;
 import org.allbinary.media.audio.GDGameSoundsFactoryFactory;
 
@@ -62,7 +63,8 @@ public class GDGameMIDlet extends
    
    protected GameCanvasRunnableInterface createDemoGameCanvasRunnableInterface() throws Exception
    {
-      return new GDGameStartCanvas(this);
+       return new GDGameStartMenuCanvas(this);
+      //return new GDGameStartCanvas(this);
    }
 
    protected GameCanvasRunnableInterface createGameCanvasRunnableInterface(
