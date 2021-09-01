@@ -50,11 +50,11 @@ public class GDGameStartCanvas extends DemoCanvas
     public void initPostPaint() throws Exception
     {
         this.setBasicGameDemoPaintable(
-                new TestDemoPaintable(new FormPaintable(this.getMenuForm()))
+                new GDGameMenuPaintable(new FormPaintable(this.getMenuForm()))
                 );
 
         this.setSpecialAnimationInterface(
-                GDGameTitleAnimationFactory.getInstance());
+                GD0SpecialAnimation.getInstance());
 
         this.setDefaultPaintableInterface(
                 ColorFillPaintableFactory.getInstance(BasicColorFactory.getInstance().RED));

@@ -43,6 +43,7 @@ public class GDToAllBinaryGenerationTool
     private final GDToAllBinaryResourcesGenerator allBinaryResourcesGenerator = new GDToAllBinaryResourcesGenerator();
     private final GDToAllBinarySoundsGenerator soundsGenerator = new GDToAllBinarySoundsGenerator();
     private final GDToAllBinaryEarlyResourceInitializationGenerator earlyResourceInitializationGenerator = new GDToAllBinaryEarlyResourceInitializationGenerator();
+    private final GDToAllBinaryMIDletGenerator midletGenerator = new GDToAllBinaryMIDletGenerator();
 
     private final String PLAY_SOUND = "PlaySound";
 
@@ -79,6 +80,7 @@ public class GDToAllBinaryGenerationTool
         this.allBinaryResourcesGenerator.process();
         this.soundsGenerator.process();
         this.earlyResourceInitializationGenerator.process(soundsGenerator, allBinaryResourcesGenerator);
+        this.midletGenerator.process();
 
         //"GDGameAndroidEarlyResourceInitialization"
     }
@@ -99,7 +101,7 @@ public class GDToAllBinaryGenerationTool
         for (int index = 0; index < size; index++)
         {
             layout = (GDLayout) layoutList.get(index);
-            this.loadEvents(layout.eventList);
+            this.loadLayout(layout);
         }
 
         //final GDResourceFactory resourceFactory = GDResourceFactory.getInstance();
@@ -134,15 +136,11 @@ public class GDToAllBinaryGenerationTool
             //}                
         }
 
-        /*
-        final BasicArrayList layoutList = gdProject.layoutList;
-        final int size = layoutList.size();
-        GDLayout layout;
-        for(int index = 0; index < size; index++) {
-            layout = (GDLayout) layoutList.get(index);
-            this.load(layout.layerList);
-        }
-         */
+    }
+
+    public void loadLayout(final GDLayout layout){
+        this.midletGenerator.loadLayout(layout);
+        this.loadEvents(layout.eventList);
     }
 
     private void loadEvents(final BasicArrayList eventList)

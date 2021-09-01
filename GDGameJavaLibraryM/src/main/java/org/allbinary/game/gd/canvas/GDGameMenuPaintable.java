@@ -24,12 +24,12 @@ import org.allbinary.graphics.paint.Paintable;
  * @author Berthelot, Travis
  * @version 1.0
  */
-public class TestDemoPaintable extends
+public class GDGameMenuPaintable extends
 GameScrollMenuPaintable
 //BasicGameDemoPaintable
 {
 
-    public TestDemoPaintable(Paintable paintable)
+    public GDGameMenuPaintable(Paintable paintable)
         throws Exception
     {
         super(new MainGameDemoStatePaintable(OwnershipPaintable.getInstance(),

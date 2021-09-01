@@ -19,6 +19,8 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDToAllBinarySoundsGenerator
 {
+    private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
+
     public final BasicArrayList playSoundAndroidResourceNameList = new BasicArrayList();
     private final BasicArrayList playSoundResourcePathList = new BasicArrayList();
     
@@ -32,8 +34,6 @@ public class GDToAllBinarySoundsGenerator
     private final String GD = "GD";
     private final String SOUND = "Sound";
     private final String _JAVA = ".java";
-
-    private final String FORMAT = "[\\W_]+";
     
     public void processExpressionParam(final String param, final String resourceString) {
         this.playSoundAndroidResourceNameList.add(param);
@@ -52,7 +52,7 @@ public class GDToAllBinarySoundsGenerator
         final StringBuilder stringBuilder = new StringBuilder();
         
         for(int index = 0; index < size; index++) {
-            final String name = this.getAsCamelCase((String) playSoundAndroidResourceNameList.get(index), stringBuilder);
+            final String name = this.camelCaseUtil.getAsCamelCase((String) playSoundAndroidResourceNameList.get(index), stringBuilder);
             final Replace replace = new Replace(GD_NAME, name);
             final String newFileAsString = replace.all(androidRFileAsString);
 
@@ -76,24 +76,4 @@ public class GDToAllBinarySoundsGenerator
                 
     }
 
-    public String getAsCamelCase(final String string, final StringBuilder stringBuilder) {
-
-        stringBuilder.delete(0, stringBuilder.length());
-        
-        final String[] words = string.split(FORMAT);
-        
-        for (int i = 0; i < words.length; i++)
-        {
-            String word = words[i];
-            //if (i == 0)
-            //{
-                //word = word.isEmpty() ? word : word.toLowerCase();
-            //} else
-            //{
-                word = word.isEmpty() ? word : Character.toUpperCase(word.charAt(0)) + word.substring(1).toLowerCase();
-            //}
-            stringBuilder.append(word);
-        }
-        return stringBuilder.toString();
-    }
 }
