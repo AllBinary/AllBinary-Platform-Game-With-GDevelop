@@ -19,13 +19,15 @@ import org.allbinary.game.gd.init.GDGameStaticInitializerFactory;
 
 import org.allbinary.game.configuration.GameSpeed;
 import org.allbinary.game.displayable.canvas.StartCanvas;
+import org.allbinary.game.identification.GroupFactory;
 import org.allbinary.game.paint.ColorFillPaintableFactory;
 import org.allbinary.game.score.BasicHighScoresFactory;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.form.FormPaintable;
 import org.allbinary.graphics.paint.NullInitUpdatePaintable;
 import org.allbinary.graphics.paint.NullPaintable;
-
+import org.allbinary.logic.basic.string.StringUtil;
+            
 public class <GDLayout> extends StartCanvas
 {
     private final String GD_LAYOUT_COLOR = "GDLayoutColor";
@@ -39,6 +41,8 @@ public class <GDLayout> extends StartCanvas
                 new GDGameStaticInitializerFactory(), false);
 
         this.setWait(WAIT);
+
+        GroupFactory.getInstance().init((short) 10, StringUtil.getInstance().getArrayInstance());
     }
 
     public void initPostPaint() throws Exception
