@@ -11,7 +11,7 @@ import org.allbinary.logic.basic.string.StringUtil;
 import org.json.JSONObject;
 
 /**
- *
+ * Looks like the child events are what the ForEach type is for.
  * @author User
  */
 public class GDForEachEvent extends GDStandardEvent

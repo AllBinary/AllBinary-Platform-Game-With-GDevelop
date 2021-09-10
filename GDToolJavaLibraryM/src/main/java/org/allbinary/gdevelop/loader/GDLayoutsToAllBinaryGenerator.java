@@ -52,7 +52,7 @@ public class GDLayoutsToAllBinaryGenerator
             
             final StreamUtil streamUtil = StreamUtil.getInstance();
 
-            final InputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\canvas\\GDTitleSpecialAnimation.xsl");
+            final InputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\canvas\\GDLayout.xsl");
             final String xslDocumentStr = streamUtil.getAsString(inputStream);
             final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
             String xmlDocumentStr = streamUtil.getAsString(gameInputStream);;

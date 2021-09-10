@@ -38,13 +38,13 @@ public class GDInstruction
         int size = expressionJSONArray.length();
         for(int index = 0; index < size; index++) {
             this.parametersExpressionList.add(new GDExpression(expressionJSONArray.getString(index)));
-        }        
+        }
 
         final JSONArray subInstructionJSONArray = jsonObject.getJSONArray(gdProjectStrings.SUB_INSTRUCTIONS);
         size = subInstructionJSONArray.length();
         for(int index = 0; index < size; index++) {
             this.subInstructionList.add(new GDInstruction(subInstructionJSONArray.getJSONObject(index)));
-        }        
+        }
     }
     
 }
