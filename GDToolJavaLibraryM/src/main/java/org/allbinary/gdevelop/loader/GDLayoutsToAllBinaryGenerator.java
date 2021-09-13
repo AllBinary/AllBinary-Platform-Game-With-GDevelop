@@ -58,6 +58,8 @@ public class GDLayoutsToAllBinaryGenerator
             String xmlDocumentStr = streamUtil.getAsString(gameInputStream);;
             final Replace replace2 = new Replace(".Width()", ".Width(graphics)");
             xmlDocumentStr = replace2.all(xmlDocumentStr);
+            final Replace replace3 = new Replace(".Height()", ".Height(graphics)");
+            xmlDocumentStr = replace3.all(xmlDocumentStr);
 
             final String START = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\canvas\\GD";
             final String END = "SpecialAnimation.java";

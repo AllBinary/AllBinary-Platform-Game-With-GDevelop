@@ -11,7 +11,7 @@
 <xsl:stylesheet version="1.0" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:template name="eventsCreate" >
+    <xsl:template name="eventsCreateAssign" >
         <xsl:param name="totalRecursions" />
         <xsl:for-each select="events" >
             //Event <xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
@@ -58,6 +58,7 @@
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition type=<xsl:value-of select="$typeValue" />
+                //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             </xsl:for-each>                        
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
@@ -67,7 +68,7 @@
                     <xsl:for-each select="parameters" >
                         <xsl:variable name="index" select="position() - 1" />
                         <xsl:if test="number($index) = 1" >
-                            GDObject <xsl:value-of select="text()" />GDObject = new GDObject(
+                            this.<xsl:value-of select="text()" /> = new GDObject(
                         </xsl:if>
                     </xsl:for-each>
                     <xsl:for-each select="parameters" >
@@ -94,7 +95,7 @@
                 </xsl:if>
             </xsl:for-each>
             
-            <xsl:call-template name="eventsCreate" >
+            <xsl:call-template name="eventsCreateAssign" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
                 </xsl:with-param>

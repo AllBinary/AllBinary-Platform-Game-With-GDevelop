@@ -201,4 +201,24 @@ public class GDProjectStrings
     
     public final String ALWAYS_LOADED = "alwaysLoaded";
     public final String SMOOTHED = "smoothed";
+    
+    public final String ANIMATIONS = "animations";
+    public final String USE_MULTIPLE_DIRECTIONS = "useMultipleDirections";
+    
+    public final String DIRECTIONS = "directions";
+    
+    public final String LOOPING = "looping";
+    public final String TIME_BETWEEN_FRAMES = "timeBetweenFrames";
+    public final String HAS_CUSTOM_COLLISION_MASK = "hasCustomCollisionMask";
+    public final String IMAGE = "image";
+
+    public final String POINTS = "points";
+    public final String ORIGIN_POINTS = "originPoint";
+    public final String CENTER_POINTS = "centerPoint";
+    public final String CUSTOM_COLLISION_MASK = "customCollisionMask";
+
+    public final String SPRITE = "sprite";
+    
+    public final String AUTOMATIC = "automatic";
+    
 }

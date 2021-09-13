@@ -25,11 +25,11 @@ public class GDObject
     public final BasicArrayList effectsList = new BasicArrayList();
     public final BasicArrayList behaviorContentList = new BasicArrayList();
     
-    public GDObject(final JSONObject jsonObject) {
+    public GDObject(final String type, final JSONObject jsonObject) {
         
         final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
-        
-        this.type = jsonObject.getString(gdProjectStrings.TYPE);
+
+        this.type = type;
         this.name = jsonObject.getString(gdProjectStrings.NAME);
         this.tags = jsonObject.getString(gdProjectStrings.TAGS);
         

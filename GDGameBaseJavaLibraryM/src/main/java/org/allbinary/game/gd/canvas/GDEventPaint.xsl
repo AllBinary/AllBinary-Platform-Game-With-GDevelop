@@ -59,6 +59,7 @@
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition type=<xsl:value-of select="$typeValue" />
+                //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>                
             </xsl:for-each>
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
@@ -80,7 +81,7 @@
                 </xsl:if>
             </xsl:for-each>
                         
-            <xsl:call-template name="eventsCreate" >
+            <xsl:call-template name="eventsPaint" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
                 </xsl:with-param>

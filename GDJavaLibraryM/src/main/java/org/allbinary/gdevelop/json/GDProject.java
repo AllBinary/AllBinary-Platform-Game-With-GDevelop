@@ -83,12 +83,14 @@ public class GDProject
         final JSONObject resourceJSONObject = gameAsConfiguration.getJSONObject(gdProjectStrings.RESOURCES);
         this.resourcesManager = new GDResourcesManager(resourceJSONObject);
         
+        final GDObjectFactory objectFactory = GDObjectFactory.getInstance();
+        
         final JSONArray objectJSONArray = gameAsConfiguration.getJSONArray(gdProjectStrings.OBJECTS);
         int size = objectJSONArray.length();
         JSONObject objectJSONObject;
         for(int index = 0; index < size; index++) {
             objectJSONObject = objectJSONArray.getJSONObject(index);
-            this.objectList.add(new GDObject(objectJSONObject));
+            this.objectList.add(objectFactory.create(objectJSONObject));
         }
         
         LogUtil.put(LogFactory.getInstance(OBJECTS + this.objectList.size(), this, LOAD));

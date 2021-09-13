@@ -72,13 +72,15 @@ public class GDLayout
         this.standardSortMethod = jsonObject.getBoolean(gdProjectStrings.STANDARD_SORT_METHOD);
         this.stopSoundsOnStartup = jsonObject.getBoolean(gdProjectStrings.STOP_SOUNDS_ON_STARTUP);
         this.disableInputWhenNotFocused = jsonObject.getBoolean(gdProjectStrings.DISABLE_INPUT_WHEN_NOT_FOCUSED);
-            
+        
+        final GDObjectFactory objectFactory = GDObjectFactory.getInstance();
+        
         final JSONArray objectJSONArray = jsonObject.getJSONArray(gdProjectStrings.OBJECTS);
         int size = objectJSONArray.length();
         JSONObject nextJSONObject;
         for(int index = 0; index < size; index++) {
             nextJSONObject = objectJSONArray.getJSONObject(index);
-            this.objectList.add(new GDObject(nextJSONObject));
+            this.objectList.add(objectFactory.create(nextJSONObject));
         }
         
         final JSONArray initialInstancesJSONArray = jsonObject.getJSONArray(gdProjectStrings.INSTANCES);
