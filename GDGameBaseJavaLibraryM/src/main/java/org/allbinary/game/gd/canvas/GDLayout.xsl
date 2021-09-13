@@ -18,6 +18,7 @@ Created By: Travis Berthelot
 
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventCreateAssign.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventPaint.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventMouseButtonReleased.xsl" />
 
     <xsl:template match="/game">
         <xsl:for-each select="layouts" >
@@ -45,9 +46,12 @@ Created By: Travis Berthelot
                     import org.allbinary.game.gd.layout.GDObject;
                     import org.allbinary.game.identification.Group;
                     import org.allbinary.game.rand.MyRandomFactory;
+                    import org.allbinary.graphics.PointFactory;
                     import org.allbinary.graphics.Rectangle;
                     
+                    import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
                     import org.allbinary.logic.basic.string.CommonStrings;
+                    import org.allbinary.logic.basic.util.event.EventListenerInterface;
                     import org.allbinary.logic.communication.log.LogFactory;
                     import org.allbinary.logic.communication.log.LogUtil;
 
@@ -85,13 +89,15 @@ Created By: Travis Berthelot
                                 }   
 
                                 public int Height(final Graphics graphics) {
-                                    return <xsl:value-of select="characterSize" />;
+                                    return 12;
+                                    //return <xsl:value-of select="characterSize" />;
                                 }   
                             }
             
                             private GDObject<xsl:text> </xsl:text><xsl:value-of select="name" /> = new <xsl:value-of select="name" />();
                             
                         </xsl:if>
+                        private Rectangle <xsl:value-of select="name" />Rectangle = null;
                         private int <xsl:value-of select="name" />X = 0;
                         private int <xsl:value-of select="name" />Y = 0;
 
@@ -201,7 +207,13 @@ Created By: Travis Berthelot
                             this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayer;
                         </xsl:if>
                     </xsl:for-each>
-                
+
+                    <xsl:call-template name="eventsMouseButtonReleased" >
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                                
                     }
 
                     public void paint(Graphics graphics, int x, int y)
@@ -215,6 +227,12 @@ Created By: Travis Berthelot
                     <xsl:for-each select="instances" >
                         <xsl:value-of select="name" />X = x + this.<xsl:value-of select="name" />X;
                         <xsl:value-of select="name" />Y = y + this.<xsl:value-of select="name" />Y;
+                        
+                        if(this.<xsl:value-of select="name" />Rectangle == null) {
+                            this.<xsl:value-of select="name" />Rectangle = new Rectangle(
+                                PointFactory.getInstance().getInstance(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y), 
+                                <xsl:value-of select="name" />.Width(graphics), <xsl:value-of select="name" />.Height(graphics));
+                        }
                     </xsl:for-each>    
 
                     <xsl:for-each select="objects" >

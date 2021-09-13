@@ -1,13 +1,14 @@
-                             AllBinary Platform Game
+                    AllBinary Platform Game with GDevelop
 
 What is it?
 
-This Repository contains the main TestGame for the AllBinary Platform.
+This Repository contains the main TestGame for the AllBinary Platform with 
+GDevelop json integration.
 
 What is the goal?
 
-The goal of the AllBinary Platform Game is to help games developers understand how 
-to make games with the AllBinary Platform.
+The goal of the AllBinary Platform Game with GDevelop is to help games developers 
+generate games from GDevelop game json and resources.
 
 What is the Current Version?
 
@@ -19,7 +20,7 @@ Please see the LICENSE file in the root of the repository.
 
 Where is the other code?
 
-It depends on the AllBinary Platform and it thirdparty libraries.
+It depends on the AllBinary Platform and thirdparty libraries.
 
 Who is responsible for all this shit?
 
@@ -27,7 +28,8 @@ Travis Berthelot travisberthelot@hotmail.com
 
 What is the AllBinary Plaform Game?
 
-The AllBinary Platform Game is the simplest game for the AllBinary Platform.
+The AllBinary Platform Game is the simplest game state management example for the 
+AllBinary Platform.
 
 It has builds for Android, J2ME, HTML5, and J2SE.
 (Allowing it to run on BlackBerry, Tizen, Android, Moblin, IPhone, Linux, Windows, 
