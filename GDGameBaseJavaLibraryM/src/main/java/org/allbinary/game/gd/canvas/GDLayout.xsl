@@ -43,6 +43,7 @@ Created By: Travis Berthelot
                     import org.allbinary.animation.text.TextAnimation;
                     import org.allbinary.data.resource.ResourceUtil;
                     import org.allbinary.game.gd.layer.GDGameLayer;
+                    import org.allbinary.game.gd.layout.GDAction;
                     import org.allbinary.graphics.color.BasicColor;
                     import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 
@@ -62,6 +63,9 @@ Created By: Travis Berthelot
                     //Layout name=<xsl:value-of select="$nameValue" />
                     public class GD<xsl:value-of select="$index" />SpecialAnimation extends SpecialAnimation
                     {<xsl:text>&#10;</xsl:text>
+
+                        private final GDAction[] actionArrayOfArrays = new GDAction[100];                        
+                    
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
@@ -116,6 +120,16 @@ Created By: Travis Berthelot
 
                     public GD<xsl:value-of select="$index" />SpecialAnimation() {
 
+                        final int size = actionArrayOfArrays.length;
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes">&lt;</xsl:text> size; index++) {
+                            final int currentIndex = index;
+                            actionArrayOfArrays[index] = new GDAction() {
+                                public void process() {
+                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, Integer.toString(currentIndex), new Exception()));
+                                }
+                            };
+                        }
+                    
                     <xsl:for-each select="instances" >
                         <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
                         <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
@@ -268,7 +282,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     }
-                                        
+
                     public int SceneWindowWidth() {
                         return DisplayInfoSingleton.getInstance().getLastWidth();
                     }

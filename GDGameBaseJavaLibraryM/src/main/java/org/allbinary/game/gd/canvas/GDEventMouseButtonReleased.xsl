@@ -14,10 +14,10 @@
     <xsl:template name="eventsMouseButtonReleased" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="conditionEventPosition" />
-
+        
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
-
+            
             <xsl:call-template name="eventsMouseButtonReleased" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
@@ -75,31 +75,33 @@
                 //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'Scene'" >
                     <xsl:if test="not($conditionEventPosition)" >
-                    final class MouseAction {
-                        public void MouseButtonReleased_<xsl:value-of select="number($totalRecursions) + 1" />_<xsl:value-of select="$eventPosition" />() {
+                        //Action for Condition <xsl:value-of select="number($totalRecursions)" />
+                    this.actionArrayOfArrays[<xsl:value-of select="$eventPosition" />] = new GDAction() {
+                        public void process() {
                             //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                         }
                     };
-                    </xsl:if>
+                    </xsl:if>                    
                     <xsl:if test="$conditionEventPosition" >
-                    final class MouseAction {
-                        public void MouseButtonReleased_<xsl:value-of select="$totalRecursions" />_<xsl:value-of select="$conditionEventPosition" />() {
+                        //Action for Parent Condition <xsl:value-of select="number($totalRecursions)" />
+                    this.actionArrayOfArrays[<xsl:value-of select="$conditionEventPosition" />] = new GDAction() {
+                        public void process() {
                             //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                         }
                     };
                     </xsl:if>
                 </xsl:if>
             </xsl:for-each>
-
+    
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition type=<xsl:value-of select="$typeValue" />
                 //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
-                    this.eventListenerInterface_<xsl:value-of select="number($totalRecursions) + 1" />_<xsl:value-of select="$eventPosition" /> = new EventListenerInterface() {
+                    this.eventListenerInterface_<xsl:value-of select="number($totalRecursions)" />_<xsl:value-of select="$eventPosition" /> = new EventListenerInterface() {
                         public void onEvent(AllBinaryEventObject eventObject)
                         {
-                             new MouseAction().MouseButtonReleased_<xsl:value-of select="number($totalRecursions) + 1" />_<xsl:value-of select="$eventPosition" />();
+                             actionArrayOfArrays[<xsl:value-of select="$eventPosition" />].process();
                         }
                     };
                 </xsl:if>

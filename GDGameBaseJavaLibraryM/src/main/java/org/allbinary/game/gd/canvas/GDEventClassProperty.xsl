@@ -80,7 +80,7 @@
                 //Condition type=<xsl:value-of select="$typeValue" />
                 //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
-                    private EventListenerInterface eventListenerInterface_<xsl:value-of select="number($totalRecursions) + 1" />_<xsl:value-of select="$eventPosition" /> = null;
+                    private EventListenerInterface eventListenerInterface_<xsl:value-of select="number($totalRecursions)" />_<xsl:value-of select="$eventPosition" /> = null;
                 </xsl:if>
                 <xsl:if test="$typeValue = 'DepartScene'" >
                 </xsl:if>                
