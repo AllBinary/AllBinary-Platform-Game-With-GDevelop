@@ -16,14 +16,17 @@ Created By: Travis Berthelot
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output method="html" indent="yes" />
 
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventClassProperty.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventCreateAssign.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventPaint.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventMouseButtonReleased.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventOpen.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventClose.xsl" />
 
     <xsl:template match="/game">
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />
-            <xsl:if test="number($index) = 
+            <xsl:if test="number($index) =
                 <GD_CURRENT_INDEX>" >
                     <xsl:variable name="nameValue" select="name" />
                     package org.allbinary.game.gd.canvas;
@@ -35,7 +38,7 @@ Created By: Travis Berthelot
                     import org.allbinary.animation.AnimationInterfaceFactoryInterface;
                     import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
                     import org.allbinary.animation.image.AllBinaryAndroidImageRotationAnimationFactory;
-                    
+
                     import org.allbinary.animation.special.SpecialAnimation;
                     import org.allbinary.animation.text.TextAnimation;
                     import org.allbinary.data.resource.ResourceUtil;
@@ -48,15 +51,16 @@ Created By: Travis Berthelot
                     import org.allbinary.game.rand.MyRandomFactory;
                     import org.allbinary.graphics.PointFactory;
                     import org.allbinary.graphics.Rectangle;
-                    
+
                     import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
                     import org.allbinary.logic.basic.string.CommonStrings;
+                    import org.allbinary.logic.basic.util.event.AllBinaryEventObject;
                     import org.allbinary.logic.basic.util.event.EventListenerInterface;
                     import org.allbinary.logic.communication.log.LogFactory;
                     import org.allbinary.logic.communication.log.LogUtil;
 
-                    //Layout name=<xsl:value-of select="$nameValue" disable-output-escaping="yes" />
-                    public class GD<xsl:value-of select="$index" disable-output-escaping="yes" />SpecialAnimation extends SpecialAnimation
+                    //Layout name=<xsl:value-of select="$nameValue" />
+                    public class GD<xsl:value-of select="$index" />SpecialAnimation extends SpecialAnimation
                     {<xsl:text>&#10;</xsl:text>
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
@@ -74,28 +78,28 @@ Created By: Travis Berthelot
                             private final GDGameLayer <xsl:value-of select="name" />GDGameLayer;
                             private GDObject <xsl:value-of select="name" /> = new GDObject(null, 0, 0, null);
                         </xsl:if>
-                        <xsl:if test="$typeValue = 'TextObject::Text'" >        
+                        <xsl:if test="$typeValue = 'TextObject::Text'" >
                             <xsl:variable name="stringValue" select="string" />
                             private final TextAnimation <xsl:value-of select="name" />TextAnimation = new TextAnimation("<xsl:value-of select="$stringValue" />");
-                            
+
                             private final class <xsl:value-of select="name" /> extends GDObject {
-                                
+
                                 public <xsl:value-of select="name" />() {
                                     super(null, 0, 0, null);
-                                }                            
+                                }
 
                                 public int Width(final Graphics graphics) {
                                     return graphics.getFont().stringWidth(<xsl:value-of select="name" />TextAnimation.getText());
-                                }   
+                                }
 
                                 public int Height(final Graphics graphics) {
                                     return 12;
                                     //return <xsl:value-of select="characterSize" />;
-                                }   
+                                }
                             }
-            
+
                             private GDObject<xsl:text> </xsl:text><xsl:value-of select="name" /> = new <xsl:value-of select="name" />();
-                            
+
                         </xsl:if>
                         private Rectangle <xsl:value-of select="name" />Rectangle = null;
                         private int <xsl:value-of select="name" />X = 0;
@@ -103,14 +107,20 @@ Created By: Travis Berthelot
 
                     </xsl:for-each>
                     <xsl:text>&#10;</xsl:text>
-                
-                    public GD<xsl:value-of select="$index" disable-output-escaping="yes" />SpecialAnimation() {
+
+                    <xsl:call-template name="eventsClassProperty" >
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                    public GD<xsl:value-of select="$index" />SpecialAnimation() {
 
                     <xsl:for-each select="instances" >
                         <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
                         <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
                     </xsl:for-each>
-                    
+
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:if test="$typeValue = 'Sprite'" >
@@ -118,9 +128,9 @@ Created By: Travis Berthelot
                             GDGameLayer <xsl:value-of select="name" />GDGameLayer = null;
                         </xsl:if>
                     </xsl:for-each>
-                    
+
                         try {
-                                        
+
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
@@ -139,7 +149,7 @@ Created By: Travis Berthelot
                             final ResourceUtil <xsl:value-of select="name" />ResourceUtil = ResourceUtil.getInstance();
                             final InputStream <xsl:value-of select="name" />InputStream = <xsl:value-of select="name" />ResourceUtil.getResourceAsStream(<xsl:value-of select="name" />Resource);
                             final Image <xsl:value-of select="name" />Image = Image.createImage(<xsl:value-of select="name" />InputStream);
-                            
+
                             final Group <xsl:value-of select="name" />GroupInterface = null;
                             final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                             <xsl:for-each select="animations" >
@@ -161,11 +171,11 @@ Created By: Travis Berthelot
                             )<xsl:if test="position() != last()" >,</xsl:if>
                             </xsl:for-each>
                             };
-                            
+
                             final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
                             final Rectangle <xsl:value-of select="name" />LayerInfo = null;
                             <xsl:value-of select="name" />GDGameLayer = new GDGameLayer(
-                                <xsl:value-of select="name" />GroupInterface, 
+                                <xsl:value-of select="name" />GroupInterface,
                                 <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
                                 <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
                                 <xsl:value-of select="name" />LayerInfo);
@@ -178,11 +188,11 @@ Created By: Travis Berthelot
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
-                                        
+
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:if test="$typeValue = 'TextObject::Text'" >
-                            this.<xsl:value-of select="name" />TextAnimation.setBasicColor(new BasicColor(255, <xsl:for-each select="color" > 
+                            this.<xsl:value-of select="name" />TextAnimation.setBasicColor(new BasicColor(255, <xsl:for-each select="color" >
                                 <xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />, </xsl:for-each>"name=<xsl:value-of select="name" />;type=<xsl:value-of select="$typeValue" />"));
                         </xsl:if>
                     </xsl:for-each>
@@ -213,7 +223,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
-                                
+
                     }
 
                     public void paint(Graphics graphics, int x, int y)
@@ -223,26 +233,42 @@ Created By: Travis Berthelot
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    
+
                     <xsl:for-each select="instances" >
                         <xsl:value-of select="name" />X = x + this.<xsl:value-of select="name" />X;
                         <xsl:value-of select="name" />Y = y + this.<xsl:value-of select="name" />Y;
-                        
+
                         if(this.<xsl:value-of select="name" />Rectangle == null) {
                             this.<xsl:value-of select="name" />Rectangle = new Rectangle(
-                                PointFactory.getInstance().getInstance(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y), 
+                                PointFactory.getInstance().getInstance(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
                                 <xsl:value-of select="name" />.Width(graphics), <xsl:value-of select="name" />.Height(graphics));
                         }
-                    </xsl:for-each>    
+                    </xsl:for-each>
 
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:if test="$typeValue = 'TextObject::Text'" >
                             this.<xsl:value-of select="name" />TextAnimation.paint(graphics, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y);
                         </xsl:if>
-                    </xsl:for-each>    
+                    </xsl:for-each>
                     }
 
+                    public void open() {
+                    <xsl:call-template name="eventsOpen" >
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    }
+
+                    public void close() {
+                    <xsl:call-template name="eventsClose" >
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    }
+                                        
                     public int SceneWindowWidth() {
                         return DisplayInfoSingleton.getInstance().getLastWidth();
                     }
@@ -255,7 +281,7 @@ Created By: Travis Berthelot
                         return MyRandomFactory.getInstance().getAbsoluteNextInt(range);
                     }
 
-                    }                
+                    }
             </xsl:if>
         </xsl:for-each>
     </xsl:template>

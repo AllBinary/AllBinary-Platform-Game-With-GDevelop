@@ -52,13 +52,25 @@ public class <GDLayout> extends StartCanvas
                 );
 
         this.setSpecialAnimationInterface(
-                GD0SpecialAnimation.getInstance()
+                GD<GDLayoutName>SpecialAnimation.getInstance()
                 );
 
         this.setDefaultPaintableInterface(
                 //ColorFillPaintableFactory.getInstance(BasicColorFactory.getInstance().RED)
                 ColorFillPaintableFactory.getInstance(new BasicColor(255, <r>, <g>, <b>, GD_LAYOUT_COLOR))
                 );
+    }
+
+    public void open()
+    {
+        super.open();
+        GD<GDLayoutName>SpecialAnimation.getInstance().open();
+    }
+
+    public void close()
+    {
+        super.close();
+        GD<GDLayoutName>SpecialAnimation.getInstance().close();
     }
 
 //    protected int getNextRandom()

@@ -3,7 +3,6 @@
  * Copyright 2021 Travis Berthelot (travisberthelot@allbinary.com). All rights
  * reserved. This project is released under the MIT License.
  */
-
 package org.allbinary.gdevelop.loader;
 
 import java.io.FileInputStream;
@@ -44,6 +43,7 @@ public class GDToAllBinaryGenerationTool
     private final GDToAllBinarySoundsGenerator soundsGenerator = new GDToAllBinarySoundsGenerator();
     private final GDToAllBinaryEarlyResourceInitializationGenerator earlyResourceInitializationGenerator = new GDToAllBinaryEarlyResourceInitializationGenerator();
     private final GDToAllBinaryMIDletGenerator midletGenerator = new GDToAllBinaryMIDletGenerator();
+    private final BasicArrayList layoutList = new BasicArrayList();
 
     private final String PLAY_SOUND = "PlaySound";
 
@@ -62,7 +62,7 @@ public class GDToAllBinaryGenerationTool
         final JSONTokener jsonTokener = new JSONTokener(gameAsConfiguration);
         final JSONObject gameAsConfigurationJSONObject = (JSONObject) jsonTokener.nextValue();
 
-        String xml = "<game>" + XML.toString(gameAsConfigurationJSONObject) + "</game>";
+        final String xml = "<game>" + XML.toString(gameAsConfigurationJSONObject) + "</game>";
 
         final AbFile abFile = new AbFile("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
         if (abFile.exists())
@@ -81,6 +81,12 @@ public class GDToAllBinaryGenerationTool
         this.soundsGenerator.process();
         this.earlyResourceInitializationGenerator.process(soundsGenerator, allBinaryResourcesGenerator);
         this.midletGenerator.process();
+
+        final int size = this.layoutList.size();
+        for (int index = 0; index < size; index++)
+        {
+            ((GDToAllBinaryCanvasGenerator) this.layoutList.get(index)).process();
+        }
 
         //"GDGameAndroidEarlyResourceInitialization"
     }
@@ -101,7 +107,7 @@ public class GDToAllBinaryGenerationTool
         for (int index = 0; index < size; index++)
         {
             layout = (GDLayout) layoutList.get(index);
-            this.loadLayout(layout);
+            this.loadLayout(layout, index);
         }
 
         //final GDResourceFactory resourceFactory = GDResourceFactory.getInstance();
@@ -138,8 +144,14 @@ public class GDToAllBinaryGenerationTool
 
     }
 
-    public void loadLayout(final GDLayout layout){
-        this.midletGenerator.loadLayout(layout);
+    public void loadLayout(final GDLayout layout, final int index)
+    {
+        this.midletGenerator.loadLayout(layout, index);
+
+        final GDToAllBinaryCanvasGenerator canvasGenerator = new GDToAllBinaryCanvasGenerator();
+        canvasGenerator.loadLayout(layout, index);
+        this.layoutList.add(canvasGenerator);
+
         this.loadEvents(layout.eventList);
     }
 

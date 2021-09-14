@@ -11,14 +11,14 @@
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:template name="eventsMouseButtonReleased" >
+    <xsl:template name="eventsClassProperty" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="conditionEventPosition" />
 
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
-
-            <xsl:call-template name="eventsMouseButtonReleased" >
+            
+            <xsl:call-template name="eventsClassProperty" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
                 </xsl:with-param>
@@ -26,7 +26,7 @@
                     <xsl:value-of select="$eventPosition" />
                 </xsl:with-param>
             </xsl:call-template>
-
+            
             //Event <xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
             <xsl:for-each select="comment" >
                 //Comment: <xsl:value-of select="text()" />
@@ -73,38 +73,17 @@
                 <xsl:variable name="typeValue" select="type/value" />
                 //Action type=<xsl:value-of select="$typeValue" />
                 //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
-                <xsl:if test="$typeValue = 'Scene'" >
-                    <xsl:if test="not($conditionEventPosition)" >
-                    final class MouseAction {
-                        public void MouseButtonReleased_<xsl:value-of select="number($totalRecursions) + 1" />_<xsl:value-of select="$eventPosition" />() {
-                            //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
-                        }
-                    };
-                    </xsl:if>
-                    <xsl:if test="$conditionEventPosition" >
-                    final class MouseAction {
-                        public void MouseButtonReleased_<xsl:value-of select="$totalRecursions" />_<xsl:value-of select="$conditionEventPosition" />() {
-                            //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
-                        }
-                    };
-                    </xsl:if>
-                </xsl:if>
             </xsl:for-each>
-
+            
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition type=<xsl:value-of select="$typeValue" />
                 //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
-                    this.eventListenerInterface_<xsl:value-of select="number($totalRecursions) + 1" />_<xsl:value-of select="$eventPosition" /> = new EventListenerInterface() {
-                        public void onEvent(AllBinaryEventObject eventObject)
-                        {
-                             new MouseAction().MouseButtonReleased_<xsl:value-of select="number($totalRecursions) + 1" />_<xsl:value-of select="$eventPosition" />();
-                        }
-                    };
+                    private EventListenerInterface eventListenerInterface_<xsl:value-of select="number($totalRecursions) + 1" />_<xsl:value-of select="$eventPosition" /> = null;
                 </xsl:if>
                 <xsl:if test="$typeValue = 'DepartScene'" >
-                </xsl:if>
+                </xsl:if>                
             </xsl:for-each>
 
         </xsl:for-each>
