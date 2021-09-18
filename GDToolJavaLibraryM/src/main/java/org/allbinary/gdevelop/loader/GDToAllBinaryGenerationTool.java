@@ -43,6 +43,7 @@ public class GDToAllBinaryGenerationTool
     private final GDToAllBinarySoundsGenerator soundsGenerator = new GDToAllBinarySoundsGenerator();
     private final GDToAllBinaryEarlyResourceInitializationGenerator earlyResourceInitializationGenerator = new GDToAllBinaryEarlyResourceInitializationGenerator();
     private final GDToAllBinaryMIDletGenerator midletGenerator = new GDToAllBinaryMIDletGenerator();
+    private final GDLayoutsToAllBinaryRunnableGenerator runnableGenerator = new GDLayoutsToAllBinaryRunnableGenerator();
     private final BasicArrayList layoutList = new BasicArrayList();
 
     private final String PLAY_SOUND = "PlaySound";
@@ -81,6 +82,7 @@ public class GDToAllBinaryGenerationTool
         this.soundsGenerator.process();
         this.earlyResourceInitializationGenerator.process(soundsGenerator, allBinaryResourcesGenerator);
         this.midletGenerator.process();
+        this.runnableGenerator.process();
 
         final int size = this.layoutList.size();
         for (int index = 0; index < size; index++)
@@ -147,6 +149,7 @@ public class GDToAllBinaryGenerationTool
     public void loadLayout(final GDLayout layout, final int index)
     {
         this.midletGenerator.loadLayout(layout, index);
+        this.runnableGenerator.loadLayout(layout, index);
 
         final GDToAllBinaryCanvasGenerator canvasGenerator = new GDToAllBinaryCanvasGenerator();
         canvasGenerator.loadLayout(layout, index);

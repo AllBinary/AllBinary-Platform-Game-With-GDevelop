@@ -41,26 +41,32 @@ public class GDToAllBinaryCanvasGenerator
     private String name;
     private String className;
     private BasicColor layoutBasicColor;
+    private String orig;
 
     public void loadLayout(final GDLayout layout, final int index)
     {
         this.index = index;
         name = this.camelCaseUtil.getAsCamelCase(layout.name, stringBuilder);
         stringBuilder.delete(0, stringBuilder.length());
-        className = stringBuilder.append("GDGameStart").append(name).append("Canvas").toString();
+        if(index == 1) {
+            className = stringBuilder.append("GDGame").append(name).append("Canvas").toString();
+            this.orig = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\canvas\\GDGameGDLayoutCanvas.orig";
+        } else {
+            className = stringBuilder.append("GDGameStart").append(name).append("Canvas").toString();
+            this.orig = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\canvas\\GDGameStartGDLayoutCanvas.orig";
+        }
         layoutBasicColor = layout.basicColor;
     }
 
     public void process() throws Exception
     {
-
-        final String START_CANVAS_ORIGINAL = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\canvas\\GDGameStartGDLayoutCanvas.orig";
+    
         stringBuilder.delete(0, stringBuilder.length());
         final String START_CANVAS = stringBuilder.append("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\canvas\\").append(this.className).append(".java").toString();
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
 
-        final FileInputStream fileInputStream = new FileInputStream(START_CANVAS_ORIGINAL);
+        final FileInputStream fileInputStream = new FileInputStream(this.orig);
         final String androidRFileAsString = streamUtil.getAsString(fileInputStream);
         final Replace replace = new Replace(GD_LAYOUT, this.className);
         final Replace replace2 = new Replace(GD_LAYOUT_NAME, Integer.toString(this.index));

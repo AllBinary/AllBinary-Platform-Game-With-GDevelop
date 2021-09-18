@@ -79,6 +79,11 @@
                     this.actionArrayOfArrays[<xsl:value-of select="$eventPosition" />] = new GDAction() {
                         public void process() {
                             //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                            <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 2" >
+                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="text()" />));    
+                            </xsl:if>
+                            </xsl:for-each>                            
                         }
                     };
                     </xsl:if>                    
@@ -87,6 +92,11 @@
                     this.actionArrayOfArrays[<xsl:value-of select="$conditionEventPosition" />] = new GDAction() {
                         public void process() {
                             //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                            <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 2" >
+                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="text()" />));    
+                            </xsl:if>
+                            </xsl:for-each>
                         }
                     };
                     </xsl:if>

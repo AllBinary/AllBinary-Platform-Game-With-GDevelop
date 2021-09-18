@@ -13,11 +13,16 @@
 */
 package org.allbinary.game.gd;
 
-import org.allbinary.game.gd.canvas.GDGameGameCanvas;
+//import org.allbinary.game.gd.canvas.GDGameStartCanvas;
+import org.allbinary.game.gd.canvas.<GDLayout0>;
+import org.allbinary.game.gd.canvas.<GDLayout1>;
+import org.allbinary.game.gd.canvas.<GDLayout2>;
 import org.allbinary.game.gd.canvas.GDGameInputMappingHelpPaintable;
 import org.allbinary.game.gd.canvas.GDGameSoftwareInfo;
 //import org.allbinary.game.gd.canvas.GDGameStartCanvas;
-import org.allbinary.game.gd.canvas.<GDLayout>;
+import org.allbinary.game.gd.canvas.GDGameStartMenuCanvas;
+import org.allbinary.game.gd.canvas.GDGameAsteroidsCanvas;
+import org.allbinary.game.gd.canvas.GDGameStartGameOverCanvas;
 import org.allbinary.game.gd.layer.GDGameLayerManager;
 import org.allbinary.media.audio.GDGameSoundsFactoryFactory;
 
@@ -38,8 +43,10 @@ import org.allbinary.game.paint.help.HelpPaintable;
 import org.allbinary.game.score.BasicHighScoresFactory;
 import org.allbinary.game.score.HighScoresPaintable;
 import org.allbinary.game.score.displayable.HighScoresCanvas;
+import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.media.audio.AllBinaryMediaManagerShutdown;
 import org.allbinary.media.audio.EarlySoundsFactoryFactory;
+import org.allbinary.thread.PrimaryThreadPool;
 
 /**
  * @author user
@@ -63,16 +70,34 @@ public class GDGameMIDlet extends
    
    protected GameCanvasRunnableInterface createDemoGameCanvasRunnableInterface() throws Exception
    {
-       return new <GDLayout>(this);
+       return new <GDLayout0>(this);
       //return new GDGameStartCanvas(this);
    }
 
    protected GameCanvasRunnableInterface createGameCanvasRunnableInterface(
 		   AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
    {
-	   return new GDGameGameCanvas(this, allBinaryGameLayerManager);
+       return new <GDLayout1>(this, allBinaryGameLayerManager);
+       //return new GDGameGameCanvas(this, allBinaryGameLayerManager);
    }
-   
+
+   protected GameCanvasRunnableInterface create<GDLayout2>RunnableInterface() throws Exception
+   {
+       return new <GDLayout2>(this);
+      //return new GDGameStartCanvas(this);
+   }
+
+    public synchronized void start<GDLayout2>RunnableInterface() throws Exception
+    {
+        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "set<GDLayout2>"));
+
+        ////TWB - Loading Feature Change - Can remove remark after testing
+        ProgressCanvasFactory.getInstance().start();
+
+        PrimaryThreadPool.getInstance().runTask(new <GDLayout2>Runnable(this));
+        //this.postDemoSetup();
+    }
+
    protected HighScoresCanvas createHighScoresCanvas() throws Exception
    {
        return new HighScoresCanvas(this,
