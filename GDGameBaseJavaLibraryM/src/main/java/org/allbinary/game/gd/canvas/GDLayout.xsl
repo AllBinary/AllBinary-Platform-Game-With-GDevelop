@@ -35,6 +35,7 @@ Created By: Travis Berthelot
 
                     import javax.microedition.lcdui.Graphics;
                     import javax.microedition.lcdui.Image;
+
                     import org.allbinary.animation.AnimationInterfaceFactoryInterface;
                     import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
                     import org.allbinary.animation.image.AllBinaryAndroidImageRotationAnimationFactory;
@@ -42,6 +43,7 @@ Created By: Travis Berthelot
                     import org.allbinary.animation.special.SpecialAnimation;
                     import org.allbinary.animation.text.TextAnimation;
                     import org.allbinary.data.resource.ResourceUtil;
+                    import org.allbinary.game.gd.GDGameMIDlet;
                     import org.allbinary.game.gd.layer.GDGameLayer;
                     import org.allbinary.game.gd.layout.GDAction;
                     import org.allbinary.graphics.color.BasicColor;
@@ -59,6 +61,7 @@ Created By: Travis Berthelot
                     import org.allbinary.logic.basic.util.event.EventListenerInterface;
                     import org.allbinary.logic.communication.log.LogFactory;
                     import org.allbinary.logic.communication.log.LogUtil;
+                    import org.microemu.MIDletBridge;
 
                     //Layout name=<xsl:value-of select="$nameValue" />
                     public class GD<xsl:value-of select="$index" />SpecialAnimation extends SpecialAnimation
@@ -295,7 +298,10 @@ Created By: Travis Berthelot
                         return MyRandomFactory.getInstance().getAbsoluteNextInt(range);
                     }
 
+                    public int Variable(final int value) {
+                        return value;
                     }
+                }
             </xsl:if>
         </xsl:for-each>
     </xsl:template>

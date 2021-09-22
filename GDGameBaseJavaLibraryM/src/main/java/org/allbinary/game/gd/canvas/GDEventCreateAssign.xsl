@@ -13,6 +13,8 @@
 
     <xsl:template name="eventsCreateAssign" >
         <xsl:param name="totalRecursions" />
+
+        //eventsCreateAssign
         <xsl:for-each select="events" >
             //Event <xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
             <xsl:for-each select="comment" >
