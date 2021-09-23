@@ -55,6 +55,8 @@ public class StartRunnable implements Runnable
 
             // mediaInit();
             
+            //this.demoGameMidlet.setGameCanvasRunnableInterface(
+                    //this.demoGameMidlet.createDemoGameCanvasRunnableInterface());
             this.demoGameMidlet.setGameCanvasRunnableInterface(
                     this.demoGameMidlet.createDemoGameCanvasRunnableInterface());
 
@@ -66,7 +68,7 @@ public class StartRunnable implements Runnable
             DemoGameMidletEventHandler.getInstance().fireEvent(
                     this.startDemoGameMidletEvent);
 
-            //this.demoGameMidlet.startGameCanvasRunnableInterface();
+            this.demoGameMidlet.startGameCanvasRunnableInterface();
             
             this.demoGameMidlet.postDemoSetup();
 

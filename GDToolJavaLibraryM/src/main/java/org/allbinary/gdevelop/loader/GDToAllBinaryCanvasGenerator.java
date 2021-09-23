@@ -70,9 +70,9 @@ public class GDToAllBinaryCanvasGenerator
         final String androidRFileAsString = streamUtil.getAsString(fileInputStream);
         final Replace replace = new Replace(GD_LAYOUT, this.className);
         final Replace replace2 = new Replace(GD_LAYOUT_NAME, Integer.toString(this.index));
-        final Replace rReplace = new Replace(R, Integer.toString(layoutBasicColor.red));
-        final Replace gReplace = new Replace(G, Integer.toString(layoutBasicColor.green));
-        final Replace bReplace = new Replace(B, Integer.toString(layoutBasicColor.blue));
+        final Replace rReplace = new Replace(R, Integer.toString(255-layoutBasicColor.red));
+        final Replace gReplace = new Replace(G, Integer.toString(255-layoutBasicColor.green));
+        final Replace bReplace = new Replace(B, Integer.toString(255-layoutBasicColor.blue));
 
         String newFileAsString = replace.all(androidRFileAsString);
         newFileAsString = replace2.all(newFileAsString);

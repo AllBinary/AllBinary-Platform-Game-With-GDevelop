@@ -87,7 +87,7 @@ public class GDGameMIDlet extends
       //return new GDGameStartCanvas(this);
    }
 
-    public synchronized void start<GDLayout2>RunnableInterface() throws Exception
+    public synchronized void set<GDLayout2>RunnableInterface() throws Exception
     {
         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "set<GDLayout2>"));
 
@@ -166,9 +166,9 @@ public class GDGameMIDlet extends
        if(layoutName.equals(GDLAYOUT0)) {
            this.setDemo();
        } else if(layoutName.equals(GDLAYOUT1)) {
-           this.startGameCanvasRunnableInterface();
+           this.createGame();
        } else if(layoutName.equals(GDLAYOUT2)) {
-           this.start<GDLayout2>RunnableInterface();
+           this.set<GDLayout2>RunnableInterface();
        }
    }
 }
