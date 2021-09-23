@@ -68,20 +68,20 @@ public class GDGameMIDlet extends
        return GDGameInputMappingHelpPaintable.getInstance();
    }
    
-   protected GameCanvasRunnableInterface createDemoGameCanvasRunnableInterface() throws Exception
+   public GameCanvasRunnableInterface createDemoGameCanvasRunnableInterface() throws Exception
    {
        return new <GDLayout0>(this);
       //return new GDGameStartCanvas(this);
    }
 
-   protected GameCanvasRunnableInterface createGameCanvasRunnableInterface(
+   public GameCanvasRunnableInterface createGameCanvasRunnableInterface(
 		   AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
    {
        return new <GDLayout1>(this, allBinaryGameLayerManager);
        //return new GDGameGameCanvas(this, allBinaryGameLayerManager);
    }
 
-   protected GameCanvasRunnableInterface create<GDLayout2>RunnableInterface() throws Exception
+   public GameCanvasRunnableInterface create<GDLayout2>RunnableInterface() throws Exception
    {
        return new <GDLayout2>(this);
       //return new GDGameStartCanvas(this);
@@ -144,8 +144,21 @@ public class GDGameMIDlet extends
                 "mediaShutdown - postStopGameCanvasRunnableInterface"));
    }
 
+    public synchronized void setDemo() throws Exception
+    {
+        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "setDemo"));
+
+        ////TWB - Loading Feature Change - Can remove remark after testing
+        ProgressCanvasFactory.getInstance().start();
+
+        PrimaryThreadPool.getInstance().runTask(new StartRunnable(this));
+        //this.postDemoSetup();
+    }
+
    public void setGDLayout(final String layoutName) throws Exception {
       
+       PreLogUtil.put(layoutName, this, "setGDLayout");
+
        final String GDLAYOUT0 = "<GDLayout0>";
        final String GDLAYOUT1 = "<GDLayout1>";
        final String GDLAYOUT2 = "<GDLayout2>";
