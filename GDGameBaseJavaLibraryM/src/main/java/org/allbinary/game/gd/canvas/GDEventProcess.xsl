@@ -8,14 +8,26 @@
         Purpose of transformation follows.
 -->
 
-<xsl:stylesheet version="1.0" 
+<xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:template name="eventsCreateAssign" >
+    <xsl:template name="eventsProcess" >
         <xsl:param name="totalRecursions" />
-
-        //eventsCreateAssign
+        <xsl:param name="conditionEventPosition" />
+        
+        //eventsMouseButtonReleased
         <xsl:for-each select="events" >
+            <xsl:variable name="eventPosition" select="position()" />
+            
+            <xsl:call-template name="eventsProcess" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="conditionEventPosition" >
+                    <xsl:value-of select="$eventPosition" />
+                </xsl:with-param>
+            </xsl:call-template>
+
             //Event <xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
             <xsl:for-each select="comment" >
                 //Comment: <xsl:value-of select="text()" />
@@ -25,14 +37,14 @@
                     //Comment 2: <xsl:value-of select="text()" />
                 </xsl:if>
             </xsl:for-each>
-            <xsl:for-each select="infiniteLoopWarning" >
-                //infiniteLoopWarning <xsl:value-of select="text()" />
-            </xsl:for-each>
             <xsl:for-each select="iterableVariableName" >
                 //iterableVariableName: <xsl:value-of select="text()" />
             </xsl:for-each>
             <xsl:for-each select="valueIteratorVariableName" >
                 //valueIteratorVariableName: <xsl:value-of select="text()" />
+            </xsl:for-each>
+            <xsl:for-each select="keyIteratorVariableName" >
+                //keyIteratorVariableName <xsl:value-of select="text()" />
             </xsl:for-each>
             <xsl:for-each select="name" >
                 //name <xsl:value-of select="text()" />
@@ -57,50 +69,24 @@
             <xsl:for-each select="repeatExpression" >
                 //repeatExpression <xsl:value-of select="text()" />
             </xsl:for-each>
-            <xsl:for-each select="conditions" >
-                <xsl:variable name="typeValue" select="type/value" />
-                //Condition type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
-            </xsl:for-each>                        
+
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Action type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each><xsl:text>&#10;</xsl:text>
-                <xsl:if test="$typeValue = 'Create'" >
-                    <xsl:for-each select="parameters" >
-                        <xsl:variable name="index" select="position() - 1" />
-                        <xsl:if test="number($index) = 1" >
-                            this.<xsl:value-of select="text()" /> = new GDObject(
-                        </xsl:if>
-                    </xsl:for-each>
-                    <xsl:for-each select="parameters" >
-                        <xsl:variable name="index" select="position() - 1" />
-                        <xsl:if test="number($index) != 1" >
-                            <xsl:if test="position() != last()" >
-                                <xsl:if test="string-length(text()) = 0" >
-                                    null
-                                </xsl:if>
-                                <xsl:if test="string-length(text()) > 0" >
-                                    <xsl:value-of select="text()" />
-                                </xsl:if>,
-                            </xsl:if>
-                            <xsl:if test="position() = last()" >
-                                <xsl:if test="string-length(text()) = 0" >
-                                    null
-                                </xsl:if>
-                                <xsl:if test="string-length(text()) > 0" >
-                                    <xsl:value-of select="text()" />
-                                </xsl:if>
-                            </xsl:if>
-                        </xsl:if>
-                    </xsl:for-each>);
+                
+            </xsl:for-each>
+    
+            <xsl:for-each select="conditions" >
+                <xsl:variable name="typeValue" select="type/value" />
+                //Condition type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                <xsl:if test="$typeValue = 'VarScene'" >
+                    if(<xsl:for-each select="parameters" ><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
+                    
+                    }
                 </xsl:if>
             </xsl:for-each>
-            
-            <xsl:call-template name="eventsCreateAssign" >
-                <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="number($totalRecursions) + 1" />
-                </xsl:with-param>
-            </xsl:call-template>
-        </xsl:for-each>       
+
+        </xsl:for-each>
     </xsl:template>
 
 </xsl:stylesheet>

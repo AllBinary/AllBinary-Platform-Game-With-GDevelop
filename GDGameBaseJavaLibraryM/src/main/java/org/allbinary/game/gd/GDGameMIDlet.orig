@@ -143,4 +143,19 @@ public class GDGameMIDlet extends
         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().END, this,
                 "mediaShutdown - postStopGameCanvasRunnableInterface"));
    }
+
+   public void setGDLayout(final String layoutName) throws Exception {
+      
+       final String GDLAYOUT0 = "<GDLayout0>";
+       final String GDLAYOUT1 = "<GDLayout1>";
+       final String GDLAYOUT2 = "<GDLayout2>";
+
+       if(layoutName.equals(GDLAYOUT0)) {
+           this.setDemo();
+       } else if(layoutName.equals(GDLAYOUT1)) {
+           this.startGameCanvasRunnableInterface();
+       } else if(layoutName.equals(GDLAYOUT2)) {
+           this.start<GDLayout2>RunnableInterface();
+       }
+   }
 }

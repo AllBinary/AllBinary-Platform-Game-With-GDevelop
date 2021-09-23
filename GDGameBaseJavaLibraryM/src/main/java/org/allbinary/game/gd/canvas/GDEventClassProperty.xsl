@@ -15,6 +15,7 @@
         <xsl:param name="totalRecursions" />
         <xsl:param name="conditionEventPosition" />
 
+        //eventsClassProperty
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
             
@@ -24,9 +25,9 @@
                 </xsl:with-param>
                 <xsl:with-param name="conditionEventPosition" >
                     <xsl:value-of select="$eventPosition" />
-                </xsl:with-param>
-            </xsl:call-template>
-            
+                </xsl:with-param>                
+            </xsl:call-template>                
+                        
             //Event <xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
             <xsl:for-each select="comment" >
                 //Comment: <xsl:value-of select="text()" />
@@ -71,14 +72,12 @@
 
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //Action type=<xsl:value-of select="$typeValue" />
-                //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                //Action type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each><xsl:text>&#10;</xsl:text>
             </xsl:for-each>
-            
+
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //Condition type=<xsl:value-of select="$typeValue" />
-                //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                //Condition type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
                     private EventListenerInterface eventListenerInterface_<xsl:value-of select="number($totalRecursions)" />_<xsl:value-of select="$eventPosition" /> = null;
                 </xsl:if>

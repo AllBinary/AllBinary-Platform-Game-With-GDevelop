@@ -16,12 +16,14 @@ Created By: Travis Berthelot
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output method="html" indent="yes" />
 
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventClassPropertyDepartScene.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventClassProperty.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventCreateAssign.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventPaint.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventMouseButtonReleased.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventOpen.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventClose.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventProcess.xsl" />
 
     <xsl:template match="/game">
         <xsl:for-each select="layouts" >
@@ -66,6 +68,13 @@ Created By: Travis Berthelot
                     //Layout name=<xsl:value-of select="$nameValue" />
                     public class GD<xsl:value-of select="$index" />SpecialAnimation extends SpecialAnimation
                     {<xsl:text>&#10;</xsl:text>
+
+                        private static final SpecialAnimation instance = new GD0SpecialAnimation();
+                        
+                        public static SpecialAnimation getInstance()
+                        {
+                            return instance;
+                        }
 
                         private final GDAction[] actionArrayOfArrays = new GDAction[100];                        
                     
@@ -115,6 +124,12 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     <xsl:text>&#10;</xsl:text>
 
+                    <xsl:call-template name="eventsClassPropertyDepartScene" >
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
                     <xsl:call-template name="eventsClassProperty" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
@@ -123,6 +138,8 @@ Created By: Travis Berthelot
 
                     public GD<xsl:value-of select="$index" />SpecialAnimation() {
 
+                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));
+                    
                         final int size = actionArrayOfArrays.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes">&lt;</xsl:text> size; index++) {
                             final int currentIndex = index;
@@ -243,6 +260,14 @@ Created By: Travis Berthelot
 
                     }
 
+                    public void process() {
+                    <xsl:call-template name="eventsProcess" >
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                    </xsl:call-template>                        
+                    }
+                    
                     public void paint(Graphics graphics, int x, int y)
                     {
                     <xsl:call-template name="eventsPaint" >

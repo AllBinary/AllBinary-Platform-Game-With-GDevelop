@@ -72,14 +72,12 @@
 
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //Action type=<xsl:value-of select="$typeValue" />
-                //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                //Action type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each><xsl:text>&#10;</xsl:text>
             </xsl:for-each>
 
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //Condition type=<xsl:value-of select="$typeValue" />
-                //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                //Condition type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
                     BasicMotionGesturesHandler.getInstance().removeListener(this.eventListenerInterface_<xsl:value-of select="number($totalRecursions)" />_<xsl:value-of select="$eventPosition" />);
                 </xsl:if>

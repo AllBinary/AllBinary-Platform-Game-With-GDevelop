@@ -15,6 +15,7 @@
         <xsl:param name="totalRecursions" />
         <xsl:param name="conditionEventPosition" />
         
+        //eventsMouseButtonReleased
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
             
@@ -69,10 +70,30 @@
                 //repeatExpression <xsl:value-of select="text()" />
             </xsl:for-each>
 
+            <xsl:choose>
+            <xsl:when test ="not(preceding::events/actions[parameters = current()/actions/parameters])">
+                <xsl:for-each select="actions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    //Action type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each><xsl:text>&#10;</xsl:text>
+                    <xsl:if test="$typeValue = 'ModVarScene'" >
+                        //eventsMouseButtonReleased - No Preceding text=<xsl:value-of select="parameters" /><xsl:text>&#10;</xsl:text>
+                        <xsl:if test="current()/parameters[2]/text() = '+'" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 2" ><xsl:if test="text() = '+'" >=</xsl:if></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each></xsl:if>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:for-each select="actions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    //Action type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each><xsl:text>&#10;</xsl:text>
+                    //eventsMouseButtonReleased - Already Preceded text=<xsl:value-of select="current()/parameters" /><xsl:text>&#10;</xsl:text>
+                </xsl:for-each>
+            </xsl:otherwise>
+            </xsl:choose>
+
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //Action type=<xsl:value-of select="$typeValue" />
-                //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                //Action type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each><xsl:text>&#10;</xsl:text>
+                
                 <xsl:if test="$typeValue = 'Scene'" >
                     <xsl:if test="not($conditionEventPosition)" >
                         //Action for Condition <xsl:value-of select="number($totalRecursions)" />
@@ -81,7 +102,13 @@
                             //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                             <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 2" >
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="text()" />));    
+                            final String TEXT = <xsl:value-of select="text()" />;
+                            try {
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, TEXT));
+                                ((GDGameMIDlet) MIDletBridge.getCurrentMIDlet()).setGDLayout(TEXT);
+                            } catch(Exception e) {
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                            }
                             </xsl:if>
                             </xsl:for-each>                            
                         }
@@ -94,7 +121,13 @@
                             //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                             <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 2" >
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="text()" />));    
+                            final String TEXT = <xsl:value-of select="text()" />;
+                            try {
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, TEXT));
+                                ((GDGameMIDlet) MIDletBridge.getCurrentMIDlet()).setGDLayout(TEXT);
+                            } catch(Exception e) {
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                            }
                             </xsl:if>
                             </xsl:for-each>
                         }
@@ -105,8 +138,7 @@
     
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //Condition type=<xsl:value-of select="$typeValue" />
-                //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                //Condition type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
                     this.eventListenerInterface_<xsl:value-of select="number($totalRecursions)" />_<xsl:value-of select="$eventPosition" /> = new EventListenerInterface() {
                         public void onEvent(AllBinaryEventObject eventObject)
