@@ -90,14 +90,16 @@
             </xsl:otherwise>
             </xsl:choose>
 
+            <xsl:variable name="hasAssociatedSiblingCondition" select="conditions/type/value = 'MouseButtonReleased' or conditions/type/value = 'VarScene' or conditions/type/value = 'Timer'" />
+
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Action type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each><xsl:text>&#10;</xsl:text>
                 
                 <xsl:if test="$typeValue = 'Scene'" >
-                    <xsl:if test="not($conditionEventPosition)" >
-                        //Action for Condition <xsl:value-of select="number($totalRecursions)" />
-                    this.actionArrayOfArrays[<xsl:value-of select="$eventPosition" />] = new GDAction() {
+                    <xsl:if test="$hasAssociatedSiblingCondition" >
+                        //Action for Condition totalRecursions=<xsl:value-of select="number($totalRecursions)" /> eventPosition=<xsl:value-of select="$eventPosition" /> hasAssociatedSiblingCondition=<xsl:value-of select="$hasAssociatedSiblingCondition" />
+                        this.actionArrayOfArrays[<xsl:value-of select="$eventPosition" />] = new GDAction() {
                         public void process() {
                             //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                             <xsl:for-each select="parameters" >
@@ -114,8 +116,8 @@
                         }
                     };
                     </xsl:if>                    
-                    <xsl:if test="$conditionEventPosition" >
-                        //Action for Parent Condition <xsl:value-of select="number($totalRecursions)" />
+                    <xsl:if test="not($hasAssociatedSiblingCondition)" >
+                        //Action for Parent Condition totalRecursions=<xsl:value-of select="number($totalRecursions)" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" /> hasAssociatedSiblingCondition=<xsl:value-of select="$hasAssociatedSiblingCondition" />
                     this.actionArrayOfArrays[<xsl:value-of select="$conditionEventPosition" />] = new GDAction() {
                         public void process() {
                             //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
@@ -143,7 +145,7 @@
                     this.eventListenerInterface_<xsl:value-of select="number($totalRecursions)" />_<xsl:value-of select="$eventPosition" /> = new EventListenerInterface() {
                         public void onEvent(AllBinaryEventObject eventObject)
                         {
-                             actionArrayOfArrays[<xsl:value-of select="$eventPosition" />].process();
+                             actionArrayOfArrays[<xsl:if test="number($totalRecursions) > 0" ><xsl:value-of select="number($totalRecursions)" /></xsl:if><xsl:value-of select="$eventPosition" />].process();
                         }
                     };
                 </xsl:if>

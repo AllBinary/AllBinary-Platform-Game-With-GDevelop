@@ -63,6 +63,7 @@ Created By: Travis Berthelot
                     import org.allbinary.logic.basic.util.event.EventListenerInterface;
                     import org.allbinary.logic.communication.log.LogFactory;
                     import org.allbinary.logic.communication.log.LogUtil;
+                    import org.allbinary.util.BasicArrayList;
                     import org.microemu.MIDletBridge;
 
                     //Layout name=<xsl:value-of select="$nameValue" />
@@ -76,8 +77,19 @@ Created By: Travis Berthelot
                             return instance;
                         }
 
+                        private final Object graphics = new Object();
                         private final GDAction[] actionArrayOfArrays = new GDAction[100];                        
+
+                    //objectsGroups - START
+                    <xsl:for-each select="objectsGroups" >
+                        private final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList();
+                        <xsl:for-each select="objects" >
+                            //<xsl:value-of select="name" />
+                        </xsl:for-each>
+                    </xsl:for-each>
+                    //objectsGroups - END
                     
+                    //objects
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
@@ -91,6 +103,7 @@ Created By: Travis Berthelot
                         <xsl:if test="$typeValue = 'Sprite'" >
                             <xsl:variable name="stringValue" select="string" />
                             <xsl:variable name="name" select="name" />
+                            private final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList();
                             private final GDGameLayer <xsl:value-of select="name" />GDGameLayer;
                             private GDObject <xsl:value-of select="name" /> = new GDObject(null, 0, 0, null);
                         </xsl:if>
