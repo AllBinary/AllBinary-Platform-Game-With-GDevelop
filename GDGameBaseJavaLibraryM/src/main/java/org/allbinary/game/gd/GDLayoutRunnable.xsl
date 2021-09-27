@@ -89,7 +89,7 @@ public class GDGameStart<GD_CURRENT_INDEX>CanvasRunnable implements Runnable
             DemoGameMidletEventHandler.getInstance().fireEvent(
                     this.startDemoGameMidletEvent);
 
-            this.demoGameMidlet.setGDGameStart<GD_CURRENT_INDEX>CanvasRunnableInterface();
+            this.demoGameMidlet.startGameCanvasRunnableInterface();
             
             this.demoGameMidlet.postDemoSetup();
 

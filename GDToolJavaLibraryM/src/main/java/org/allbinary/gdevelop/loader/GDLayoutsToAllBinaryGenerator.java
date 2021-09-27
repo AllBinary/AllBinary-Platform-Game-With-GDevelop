@@ -10,7 +10,7 @@
 * 
 * Created By: Travis Berthelot
 * 
- */
+*/
 package org.allbinary.gdevelop.loader;
 
 import java.io.FileInputStream;
@@ -55,7 +55,7 @@ public class GDLayoutsToAllBinaryGenerator
             final InputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\canvas\\GDLayout.xsl");
             final String xslDocumentStr = streamUtil.getAsString(inputStream);
             final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
-            String xmlDocumentStr = streamUtil.getAsString(gameInputStream);;
+            String xmlDocumentStr = streamUtil.getAsString(gameInputStream);
             final Replace replace2 = new Replace(".Width()", ".Width(graphics)");
             xmlDocumentStr = replace2.all(xmlDocumentStr);
             final Replace replace3 = new Replace(".Height()", ".Height(graphics)");

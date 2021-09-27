@@ -72,7 +72,7 @@ public class GDGameStartCanvas extends DemoCanvas
         GameInfo gameInfo = new GameInfo(GameTypeFactory.getInstance().BOT, GameMode.SERVER, PlayerTypesFactory
                 .getInstance().PLAYER_TYPE_ONE, GDGameLayerManager.MAX_LEVEL, randomValue);
 
-        return new GDGameLayerManager(gameInfo);
+        return new GDGameLayerManager(null, null, gameInfo);
     }
 
     public GameCanvasRunnableInterface createRunnable(int randomValue) throws Exception

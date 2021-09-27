@@ -11,10 +11,10 @@ extends BaseSoundsFactory
     
     public void init() 
     {
-        soundInterfaceArray = new Sound[1];
+        //soundInterfaceArray = new Sound[1];
         int index = 0;
 
-        soundInterfaceArray[index++] = new CompositeSound("resource:/wav/test.wav");
+        //soundInterfaceArray[index++] = new CompositeSound("resource:/wav/test.wav");
     }
     
     public Sound[] getSoundInterfaceArray() throws Exception

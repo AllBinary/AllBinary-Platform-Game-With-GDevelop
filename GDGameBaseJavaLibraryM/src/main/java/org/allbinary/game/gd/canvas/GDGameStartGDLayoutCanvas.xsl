@@ -1,3 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    <xsl:output method="html" indent="yes" />
+
+    <xsl:template match="/game">
+
 /*
 * AllBinary Open License Version 1
 * Copyright (c) 2011 AllBinary
@@ -27,12 +34,16 @@ import org.allbinary.graphics.form.FormPaintable;
 import org.allbinary.graphics.paint.NullInitUpdatePaintable;
 import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.logic.basic.string.StringUtil;
-            
+        
+        <xsl:for-each select="layouts" >
+            <xsl:variable name="index" select="position() - 1" />
+            <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
+                
 public class <GDLayout> extends StartCanvas
 {
-    private final String GD_LAYOUT_COLOR = "GDLayoutColor";
+    private final String GD_LAYOUT_COLOR = "GDLayout<GD_CURRENT_INDEX>Color";
 
-    private final int WAIT = ((GameSpeed.getInstance().getDelay() * 3) >> 1);
+    private final int WAIT = ((GameSpeed.getInstance().getDelay() * 3) <xsl:text disable-output-escaping="yes" >&gt;&gt;</xsl:text> 1);
 
     public <GDLayout>(final CommandListener commandListener) throws Exception
     {
@@ -41,8 +52,6 @@ public class <GDLayout> extends StartCanvas
                 new GDGameStaticInitializerFactory(), false);
 
         this.setWait(WAIT);
-
-        GroupFactory.getInstance().init((short) 10, StringUtil.getInstance().getArrayInstance());
     }
 
     public void initPostPaint() throws Exception
@@ -54,12 +63,21 @@ public class <GDLayout> extends StartCanvas
                 //);
 
         this.setSpecialAnimationInterface(
-                GD<GDLayoutName>SpecialAnimation.getInstance()
+                GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance()
                 );
 
         this.setDefaultPaintableInterface(
                 //ColorFillPaintableFactory.getInstance(BasicColorFactory.getInstance().RED)
-                ColorFillPaintableFactory.getInstance(new BasicColor(255, <r>, <g>, <b>, GD_LAYOUT_COLOR))
+                ColorFillPaintableFactory.getInstance(new BasicColor(255, 
+                    <xsl:for-each select="events" >
+                        <xsl:for-each select="actions" >
+                            <xsl:variable name="typeValue" select="type/value" />
+                            <xsl:if test="$typeValue = 'SceneBackground'" >
+                            <xsl:for-each select="parameters" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:for-each>,
+                            </xsl:if>
+                        </xsl:for-each>
+                    </xsl:for-each>
+                    GD_LAYOUT_COLOR))
                 );
         this.setPaintableInterface(this.getDefaultPaintableInterface());
     }
@@ -67,13 +85,13 @@ public class <GDLayout> extends StartCanvas
     public void open()
     {
         super.open();
-        GD<GDLayoutName>SpecialAnimation.getInstance().open();
+        GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance().open();
     }
 
     public void close()
     {
         super.close();
-        GD<GDLayoutName>SpecialAnimation.getInstance().close();
+        GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance().close();
     }
 
 //    protected int getNextRandom()
@@ -97,3 +115,8 @@ public class <GDLayout> extends StartCanvas
 //    }
 
 }
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
+
+</xsl:stylesheet>

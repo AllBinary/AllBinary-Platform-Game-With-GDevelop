@@ -1,3 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    <xsl:output method="html" indent="yes" />
+
+    <xsl:template match="/game">
+
 /*
 * AllBinary Open License Version 1
 * Copyright (c) 2011 AllBinary
@@ -11,6 +18,7 @@
 * Created By: Travis Berthelot
 * 
 */
+
 package org.allbinary.game.gd.canvas;
 
 import javax.microedition.lcdui.CommandListener;
@@ -29,6 +37,7 @@ import org.allbinary.logic.basic.string.StringUtil;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.ai.OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer;
+import org.allbinary.animation.special.SpecialAnimation;
 import org.allbinary.game.GameInfo;
 import org.allbinary.game.GameTypeFactory;
 import org.allbinary.game.IntermissionFactory;
@@ -38,10 +47,10 @@ import org.allbinary.game.configuration.event.ChangedGameFeatureListener;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GameFeature;
 import org.allbinary.game.configuration.feature.GameFeatureFactory;
-import org.allbinary.game.configuration.feature.TouchFeatureFactory;
 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
 import org.allbinary.game.displayable.canvas.GamePerformanceInitUpdatePaintable;
 import org.allbinary.game.displayable.canvas.StartIntermissionPaintable;
+import org.allbinary.game.identification.GroupFactory;
 import org.allbinary.game.input.OptimizedGameInputLayerProcessorForCollidableLayer;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.game.layer.PlayerGameInputGameLayer;
@@ -54,21 +63,26 @@ import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
-import org.allbinary.input.motion.button.BaseTouchInput;
-import org.allbinary.input.motion.button.GDGameNeededTouchButtonsBuilder;
-import org.allbinary.input.motion.button.GDGameTouchButtonsBuilder;
+import org.allbinary.graphics.paint.NullPaintable;
+import org.allbinary.graphics.paint.Paintable;
+import org.allbinary.layer.event.LayerManagerEventHandler;
 import org.allbinary.media.AllBinaryVibration;
 import org.allbinary.media.audio.AllBinaryMediaManager;
 import org.allbinary.media.audio.PlayerQueue;
 import org.allbinary.media.audio.PrimaryPlayerQueueFactory;
 import org.allbinary.media.audio.SecondaryPlayerQueueFactory;
-import org.allbinary.time.TimeDelayHelper;
-
+import org.allbinary.time.TimeDelayHelper;        
+                
+        <xsl:for-each select="layouts" >
+            <xsl:variable name="index" select="position() - 1" />
+            <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
 public class <GDLayout> extends AllBinaryGameCanvas
 {
     private final int WAIT = GameSpeed.getInstance().getDelay();
 
     private final int portion = 4;
+
+    private SpecialAnimation specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance();
     
     public <GDLayout>(CommandListener commandListener,
             AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
@@ -78,6 +92,37 @@ public class <GDLayout> extends AllBinaryGameCanvas
                 new GDGameStaticInitializerFactory(),
            //new BasicBuildGameInitializerFactory(),
            false);
+
+        this.setPlayingGameState();
+        
+        GroupFactory.getInstance().init((short) 20, StringUtil.getInstance().getArrayInstance());
+        LayerManagerEventHandler.getInstance().addListener(GroupLayerManagerListener.getInstance());
+    }
+
+    public void setPlayingGameState()
+    {
+        this.setWait(WAIT);
+        
+        //super.setPlayingGameState();
+
+        this.setGameSpecificPaintable(
+                new Paintable()
+        {
+            final SpecialAnimation specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance();
+            
+            public void paint(Graphics graphics)
+            {
+                specialAnimation.paint(graphics, 0, 0);
+            }
+
+            public void paintThreed(Graphics graphics)
+            {
+                specialAnimation.paintThreed(graphics, 0, 0, 0);
+            }
+
+        }
+        );
+
     }
 
     public <GDLayout>(AllBinaryGameLayerManager allBinaryGameLayerManager)
@@ -89,13 +134,13 @@ public class <GDLayout> extends AllBinaryGameCanvas
     public void open()
     {
         super.open();
-        GD<GDLayoutName>SpecialAnimation.getInstance().open();
+        GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance().open();
     }
 
     public void close()
     {
         super.close();
-        GD<GDLayoutName>SpecialAnimation.getInstance().close();
+        GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance().close();
     }
     
     protected void initSpecialPaint()
@@ -118,24 +163,24 @@ public class <GDLayout> extends AllBinaryGameCanvas
     {
         GameInfo gameInfo = this.gameLayerManager.getGameInfo();
         
-        if(gameInfo.getGameType() != GameTypeFactory.getInstance().BOT)
-        {
-            BaseTouchInput nextTouchInputFactory =
-                GDGameTouchButtonsBuilder.getInstance(
-                        this.getSensorGameUpdateProcessor());
-
-            if(Features.getInstance().isFeature(
-                    TouchFeatureFactory.getInstance().AUTO_HIDE_SHOW_SCREEN_BUTTONS))
-            {
-                if(gameInfo.getCurrentLevel() - getStartLevel() >= 1)
-                {
-                    nextTouchInputFactory = 
-                        GDGameNeededTouchButtonsBuilder.getInstance(
-                                this.getSensorGameUpdateProcessor());
-                }
-            }
-            this.updateCurrentTouchInputFactory(nextTouchInputFactory);
-        }
+//        if(gameInfo.getGameType() != GameTypeFactory.getInstance().BOT)
+//        {
+//            BaseTouchInput nextTouchInputFactory =
+//                GDGameTouchButtonsBuilder.getInstance(
+//                        this.getSensorGameUpdateProcessor());
+//
+//            if(Features.getInstance().isFeature(
+//                    TouchFeatureFactory.getInstance().AUTO_HIDE_SHOW_SCREEN_BUTTONS))
+//            {
+//                if(gameInfo.getCurrentLevel() - getStartLevel() >= 1)
+//                {
+//                    nextTouchInputFactory = 
+//                        GDGameNeededTouchButtonsBuilder.getInstance(
+//                                this.getSensorGameUpdateProcessor());
+//                }
+//            }
+//            this.updateCurrentTouchInputFactory(nextTouchInputFactory);
+//        }
     }
 
     protected synchronized void initConfigurable()
@@ -246,7 +291,7 @@ public class <GDLayout> extends AllBinaryGameCanvas
         ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
         
         int portion = 30;
-        if (isProgress && this.isMainCanvas())
+        if (isProgress <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.isMainCanvas())
         {            
             progressCanvas.start();
 
@@ -429,7 +474,20 @@ public class <GDLayout> extends AllBinaryGameCanvas
     }
 
     protected void processPlayingGame() throws Exception {
-        GD1SpecialAnimation.getInstance().process();
+        this.specialAnimation.process();
     }
 
+     //Hack for GD
+    public void stop() {
+        final String STOP = "stop";
+        LogUtil.put(LogFactory.getInstance(STOP, this, STOP));
+        this.specialAnimation = SpecialAnimation.getInstance();
+        this.setGameSpecificPaintable(NullPaintable.getInstance());
+    }
+   
 }
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
+
+</xsl:stylesheet>

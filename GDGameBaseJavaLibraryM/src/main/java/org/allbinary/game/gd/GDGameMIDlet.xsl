@@ -1,3 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    <xsl:output method="html" indent="yes" />
+
+    <xsl:template match="/game">
+
 /*
 * AllBinary Open License Version 1
 * Copyright (c) 2011 AllBinary
@@ -17,6 +24,8 @@ package org.allbinary.game.gd;
 import org.allbinary.game.gd.canvas.<GDLayout0>;
 import org.allbinary.game.gd.canvas.<GDLayout1>;
 import org.allbinary.game.gd.canvas.<GDLayout2>;
+import javax.microedition.lcdui.Displayable;
+import org.allbinary.canvas.RunnableCanvas;
 import org.allbinary.game.gd.canvas.GDGameInputMappingHelpPaintable;
 import org.allbinary.game.gd.canvas.GDGameSoftwareInfo;
 //import org.allbinary.game.gd.canvas.GDGameStartCanvas;
@@ -44,6 +53,7 @@ import org.allbinary.game.score.BasicHighScoresFactory;
 import org.allbinary.game.score.HighScoresPaintable;
 import org.allbinary.game.score.displayable.HighScoresCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
+import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.media.audio.AllBinaryMediaManagerShutdown;
 import org.allbinary.media.audio.EarlySoundsFactoryFactory;
 import org.allbinary.thread.PrimaryThreadPool;
@@ -55,6 +65,8 @@ public class GDGameMIDlet extends
    SpecialDemoGameMidlet
    //DemoGameMidlet
 {
+    private final String GD_LAYOUT_COLOR = "GDLayout2Color";
+    
    public GDGameMIDlet()
    {
        super(LicenseLoadingTypeFactory.getIntance().OTHER);
@@ -114,12 +126,32 @@ public class GDGameMIDlet extends
 
    protected AllBinaryGameLayerManager createGameLayerManager()
    {
-       GameInfo gameInfo = new GameInfo(
+       final GameInfo gameInfo = new GameInfo(
                GameTypeFactory.getInstance().SINGLE_PLAYER, GameMode.SERVER,
                PlayerTypesFactory.getInstance().PLAYER_TYPE_ONE,
                this.getHighestLevel(), 1);
 
-       return new GDGameLayerManager(gameInfo);
+       <xsl:for-each select="layouts" >
+           <xsl:if test="position() = 2" >
+               <xsl:for-each select="events" >
+                   <xsl:for-each select="events" >
+                       <xsl:for-each select="events" >
+                           <xsl:for-each select="actions" >
+                               <xsl:variable name="typeValue" select="type/value" />
+                               <xsl:if test="$typeValue = 'SceneBackground'" >                               
+       final BasicColor backgroundBasicColor = new BasicColor(255, 
+                               <xsl:for-each select="parameters" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:for-each>,
+                               GD_LAYOUT_COLOR);
+       final BasicColor foregroundBasicColor = new BasicColor(255, 255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue,
+                               GD_LAYOUT_COLOR);
+       return new GDGameLayerManager(backgroundBasicColor, foregroundBasicColor, gameInfo);
+                               </xsl:if>
+                           </xsl:for-each>
+                       </xsl:for-each>
+                   </xsl:for-each>
+               </xsl:for-each>
+           </xsl:if>
+       </xsl:for-each>
    }
 
    /*
@@ -159,9 +191,14 @@ public class GDGameMIDlet extends
       
        PreLogUtil.put(layoutName, this, "setGDLayout");
 
-       final String GDLAYOUT0 = "<GDLayout0>";
-       final String GDLAYOUT1 = "<GDLayout1>";
-       final String GDLAYOUT2 = "<GDLayout2>";
+       final String GDLAYOUT0 = "<GDLayoutName0>";
+       final String GDLAYOUT1 = "<GDLayoutName1>";
+       final String GDLAYOUT2 = "<GDLayoutName2>";
+
+       final Displayable displayable = this.getCurrentDisplayable();
+       if(displayable instanceof RunnableCanvas) {
+           ((RunnableCanvas) displayable).stop();
+       }
 
        if(layoutName.equals(GDLAYOUT0)) {
            this.setDemo();
@@ -172,3 +209,6 @@ public class GDGameMIDlet extends
        }
    }
 }
+    </xsl:template>
+
+</xsl:stylesheet>

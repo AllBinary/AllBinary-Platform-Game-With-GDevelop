@@ -98,12 +98,13 @@
                 
                 <xsl:if test="$typeValue = 'Scene'" >
                     <xsl:if test="$hasAssociatedSiblingCondition" >
-                        //Action for Condition totalRecursions=<xsl:value-of select="number($totalRecursions)" /> eventPosition=<xsl:value-of select="$eventPosition" /> hasAssociatedSiblingCondition=<xsl:value-of select="$hasAssociatedSiblingCondition" />
-                        this.actionArrayOfArrays[<xsl:value-of select="$eventPosition" />] = new GDAction() {
-                        public void process() {
-                            //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                    //Action for Condition totalRecursions=<xsl:value-of select="number($totalRecursions)" /> eventPosition=<xsl:value-of select="$eventPosition" /> hasAssociatedSiblingCondition=<xsl:value-of select="$hasAssociatedSiblingCondition" />
+                    this.actionArrayOfArrays[<xsl:value-of select="$eventPosition" />] = new GDAction() {
+                        //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                        public void process() {    
                             <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 2" >
+                            //<xsl:value-of select="translate(text(), '\&quot;', '')" />
                             final String TEXT = <xsl:value-of select="text()" />;
                             try {
                                 LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, TEXT));
@@ -112,17 +113,39 @@
                                 LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
                             }
                             </xsl:if>
-                            </xsl:for-each>                            
+                            </xsl:for-each>
+                        }
+                        
+                        public void process(final MotionGestureEvent motionGestureEvent) {
+                            <xsl:for-each select="../conditions" >
+                                <xsl:variable name="typeValue" select="type/value" />
+                                <xsl:if test="$typeValue = 'SourisSurObjet'" >
+                                <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 1" >
+                            if(<xsl:value-of select="text()" />Rectangle != null) {
+                                final GPoint point = motionGestureEvent.getCurrentPoint();
+                                final GPoint rectangePoint = <xsl:value-of select="text()" />Rectangle.getPoint();
+                                if (RectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY(), <xsl:value-of select="text()" />Rectangle.getMaxX(), <xsl:value-of select="text()" />Rectangle.getMaxY(),
+                                    point.getX(), point.getY()))
+                                {
+                                    this.process();
+                                }
+                            }
+                            </xsl:if>
+                                </xsl:for-each>
+                                </xsl:if>
+                            </xsl:for-each>
                         }
                     };
                     </xsl:if>                    
                     <xsl:if test="not($hasAssociatedSiblingCondition)" >
                         //Action for Parent Condition totalRecursions=<xsl:value-of select="number($totalRecursions)" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" /> hasAssociatedSiblingCondition=<xsl:value-of select="$hasAssociatedSiblingCondition" />
                     this.actionArrayOfArrays[<xsl:value-of select="$conditionEventPosition" />] = new GDAction() {
-                        public void process() {
-                            //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                        //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                        public void process() {    
                             <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 2" >
+                            //<xsl:value-of select="translate(text(), '\&quot;', '')" />
                             final String TEXT = <xsl:value-of select="text()" />;
                             try {
                                 LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, TEXT));
@@ -131,6 +154,27 @@
                                 LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
                             }
                             </xsl:if>
+                            </xsl:for-each>
+                        }
+                        
+                        public void process(final MotionGestureEvent motionGestureEvent) {
+                            <xsl:for-each select="../conditions" >
+                                <xsl:variable name="typeValue" select="type/value" />
+                                <xsl:if test="$typeValue = 'SourisSurObjet'" >
+                                <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 1" >
+                            if(<xsl:value-of select="text()" />Rectangle != null) {
+                                final GPoint point = motionGestureEvent.getCurrentPoint();
+                                final GPoint rectangePoint = <xsl:value-of select="text()" />Rectangle.getPoint();
+                                if (RectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY(), <xsl:value-of select="text()" />Rectangle.getMaxX(), <xsl:value-of select="text()" />Rectangle.getMaxY(),
+                                    point.getX(), point.getY()))
+                                {
+                                    this.process();
+                                }
+                            }
+                            </xsl:if>
+                                </xsl:for-each>
+                                </xsl:if>
                             </xsl:for-each>
                         }
                     };
@@ -142,11 +186,16 @@
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
-                    this.eventListenerInterface_<xsl:value-of select="number($totalRecursions)" />_<xsl:value-of select="$eventPosition" /> = new EventListenerInterface() {
-                        public void onEvent(AllBinaryEventObject eventObject)
+                    this.eventListenerInterface_<xsl:value-of select="number($totalRecursions)" />_<xsl:value-of select="$eventPosition" /> = new BaseMotionGestureEventListener() {
+
+                        public void onEvent(final AllBinaryEventObject eventObject)
                         {
-                             actionArrayOfArrays[<xsl:if test="number($totalRecursions) > 0" ><xsl:value-of select="number($totalRecursions)" /></xsl:if><xsl:value-of select="$eventPosition" />].process();
                         }
+                             
+                        public void onMotionGestureEvent(final MotionGestureEvent motionGestureEvent) {
+                             actionArrayOfArrays[<xsl:if test="number($totalRecursions) > 0" ><xsl:value-of select="number($totalRecursions)" /></xsl:if><xsl:value-of select="$eventPosition" />].process(motionGestureEvent);
+                        }
+                             
                     };
                 </xsl:if>
                 <xsl:if test="$typeValue = 'DepartScene'" >

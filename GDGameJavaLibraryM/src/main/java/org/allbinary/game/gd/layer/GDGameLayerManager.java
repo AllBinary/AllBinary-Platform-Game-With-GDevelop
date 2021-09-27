@@ -15,7 +15,7 @@ package org.allbinary.game.gd.layer;
 
 import org.allbinary.game.GameInfo;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
-import org.allbinary.graphics.color.BasicColorFactory;
+import org.allbinary.graphics.color.BasicColor;
 
 public class GDGameLayerManager extends AllBinaryGameLayerManager
 {
@@ -23,9 +23,10 @@ public class GDGameLayerManager extends AllBinaryGameLayerManager
    
    public static int MAX_LEVEL = 1; //Integer.MAX_VALUE;
    
-   public GDGameLayerManager(GameInfo gameInfo)
+   public GDGameLayerManager(final BasicColor backgroundBasicColor,
+            final BasicColor foregroundBasicColor, final GameInfo gameInfo)
    {
-      super(BasicColorFactory.getInstance().AQUA, BasicColorFactory.getInstance().YELLOW, gameInfo);
+      super(backgroundBasicColor, foregroundBasicColor, gameInfo);
    }
 
    /*

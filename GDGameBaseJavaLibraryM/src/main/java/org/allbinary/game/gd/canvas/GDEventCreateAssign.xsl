@@ -54,9 +54,17 @@
             <xsl:for-each select="target" >
                 //target <xsl:value-of select="text()" />
             </xsl:for-each>
-            <xsl:for-each select="repeatExpression" >
+            <xsl:if test="not(repeatExpression)" >
+                size = 1;
+                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+            </xsl:if>
+            <xsl:if test="repeatExpression" >
+                <xsl:for-each select="repeatExpression" >
                 //repeatExpression <xsl:value-of select="text()" />
-            </xsl:for-each>
+                size = <xsl:value-of select="text()" />;
+                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                </xsl:for-each>
+            </xsl:if>
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
@@ -68,7 +76,7 @@
                     <xsl:for-each select="parameters" >
                         <xsl:variable name="index" select="position() - 1" />
                         <xsl:if test="number($index) = 1" >
-                            this.<xsl:value-of select="text()" /> = new GDObject(
+                            final GDGameLayer <xsl:value-of select="text()" />GDGameLayer = <xsl:value-of select="text()" />GDGameLayerFactory.create(new GDObject(
                         </xsl:if>
                     </xsl:for-each>
                     <xsl:for-each select="parameters" >
@@ -91,9 +99,10 @@
                                 </xsl:if>
                             </xsl:if>
                         </xsl:if>
-                    </xsl:for-each>);
+                    </xsl:for-each>));
                 </xsl:if>
             </xsl:for-each>
+                }
             
             <xsl:call-template name="eventsCreateAssign" >
                 <xsl:with-param name="totalRecursions" >

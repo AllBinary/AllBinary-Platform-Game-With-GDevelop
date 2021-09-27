@@ -90,7 +90,7 @@
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'NbObjet'" >
-                    if(<xsl:for-each select="parameters" ><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="position() = 1" >GDGameLayerList.size()</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
+                    if(<xsl:for-each select="parameters" ><xsl:text><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(this.</xsl:if><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="position() = 1" >GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
                         this.actionArrayOfArrays[<xsl:value-of select="$eventPosition" />].process();
                     }
                 </xsl:if>
