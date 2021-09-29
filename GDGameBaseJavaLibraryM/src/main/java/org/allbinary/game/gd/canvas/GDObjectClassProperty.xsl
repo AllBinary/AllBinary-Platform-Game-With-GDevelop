@@ -31,7 +31,6 @@
                 private final String <xsl:value-of select="$NAME" /> = "<xsl:value-of select="name" />";
                 private final GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory;
                 private GDObject <xsl:value-of select="name" />;
-                private GDGameLayer <xsl:value-of select="name" />GDGameLayer;
             </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />

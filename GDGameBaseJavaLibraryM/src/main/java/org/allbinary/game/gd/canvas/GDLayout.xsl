@@ -119,6 +119,15 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //objectsGroups - END
 
+                    //instances class properties - START
+                    <xsl:for-each select="instances" >
+                        //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" /><xsl:text>&#10;</xsl:text>
+                        <xsl:if test="layer != ''" >
+                            private GDGameLayer <xsl:value-of select="name" />GDGameLayer;
+                        </xsl:if>
+                    </xsl:for-each>
+                    //instances class properties - END
+
                     <xsl:call-template name="objectsClassProperty" >
                         <xsl:with-param name="windowWidth" >
                             <xsl:value-of select="$windowWidth" />
@@ -161,19 +170,6 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroupsSet - END
-
-                    //instances - START
-                    <xsl:for-each select="instances" >
-                        //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" /><xsl:text>&#10;</xsl:text>
-                        <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
-                        <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
-                        <xsl:if test="layer != ''" >
-                        this.<xsl:value-of select="name" /> = new GDObject(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
-                        this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(this.<xsl:value-of select="name" />);
-                        allBinaryGameLayerManager.append(this.<xsl:value-of select="name" />GDGameLayer);
-                        </xsl:if>
-                    </xsl:for-each>
-                    //instances - END
 
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
@@ -233,6 +229,25 @@ Created By: Travis Berthelot
                             this.<xsl:value-of select="name" />GDGameLayerFactory = <xsl:value-of select="name" />GDGameLayerFactory;
                         </xsl:if>
                     </xsl:for-each>
+
+                        try {
+
+                    //instances create - START
+                    <xsl:for-each select="instances" >
+                        //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" />
+                        <xsl:text>&#10;</xsl:text><xsl:value-of select="name" />X = <xsl:value-of select="x" />;
+                        <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
+                        <xsl:if test="layer != ''" >
+                        this.<xsl:value-of select="name" /> = new GDObject(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
+                        this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(this.<xsl:value-of select="name" />);
+                        allBinaryGameLayerManager.append(this.<xsl:value-of select="name" />GDGameLayer);
+                        </xsl:if>
+                    </xsl:for-each>
+                    //instances create - END
+
+                        } catch(Exception e) {
+                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+                        }
 
                     <xsl:call-template name="eventsLogicConstruction" >
                         <xsl:with-param name="totalRecursions" >
