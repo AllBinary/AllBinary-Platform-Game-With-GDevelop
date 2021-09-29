@@ -27,8 +27,9 @@
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                private final String <xsl:value-of select="$NAME" /> = "<xsl:value-of select="name" />";
                 private final GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory;
-                private Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup();
                 private GDObject <xsl:value-of select="name" />;
                 private GDGameLayer <xsl:value-of select="name" />GDGameLayer;
             </xsl:if>

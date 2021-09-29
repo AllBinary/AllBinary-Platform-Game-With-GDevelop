@@ -81,22 +81,35 @@ public class <GDLayout> extends AllBinaryGameCanvas
     private final int WAIT = GameSpeed.getInstance().getDelay();
 
     private final int portion = 4;
+    private final short SIZE = 50;
 
-    private SpecialAnimation specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance();
+    private SpecialAnimation specialAnimation;
     
-    public <GDLayout>(CommandListener commandListener,
-            AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
+    public <GDLayout>(final CommandListener commandListener,
+            final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
     {
         super(commandListener, allBinaryGameLayerManager, 
                 new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()),
                 new GDGameStaticInitializerFactory(),
            //new BasicBuildGameInitializerFactory(),
            false);
-
-        this.setPlayingGameState();
         
-        GroupFactory.getInstance().init((short) 20, StringUtil.getInstance().getArrayInstance());
+        final String[] groupNames = new String[SIZE];
+        final String GROUP_ = "Group ";
+        final StringBuilder stringBuilder = new StringBuilder();
+        for(short index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> SIZE; index++) {
+            stringBuilder.delete(0, stringBuilder.length());
+            groupNames[index] = stringBuilder.append(GROUP_).append(index).toString();
+        }
+        GroupFactory.getInstance().init(SIZE, groupNames);
+
         LayerManagerEventHandler.getInstance().addListener(GroupLayerManagerListener.getInstance());
+
+        GroupLayerManagerListener.getInstance().init(SIZE);
+                
+        this.specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(allBinaryGameLayerManager);
+            
+        this.setPlayingGameState();
     }
 
     public void setPlayingGameState()
@@ -134,13 +147,13 @@ public class <GDLayout> extends AllBinaryGameCanvas
     public void open()
     {
         super.open();
-        GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance().open();
+        this.specialAnimation.open();
     }
 
     public void close()
     {
         super.close();
-        GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance().close();
+        this.specialAnimation.close();
     }
     
     protected void initSpecialPaint()
@@ -188,14 +201,14 @@ public class <GDLayout> extends AllBinaryGameCanvas
         try
         {
 
-        	ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
+            final ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
 
             if (ChangedGameFeatureListener.getInstance().isChanged())
             {
                 super.initConfigurable();
 
-                progressCanvas.addPortion(portion, "Group Manager");
-                GroupLayerManagerListener.getInstance().init(3);
+                //progressCanvas.addPortion(portion, "Group Manager");
+                //GroupLayerManagerListener.getInstance().init(SIZE);
 
                 AllBinaryVibration.init();
 
@@ -336,7 +349,7 @@ public class <GDLayout> extends AllBinaryGameCanvas
             return;
         }
 
-        gameLayerManager.append(new PlayerGameInputGameLayer(0));
+        //gameLayerManager.append(new PlayerGameInputGameLayer(0));
 
         progressCanvas.addPortion(portion, "Ending Custom Build");
 

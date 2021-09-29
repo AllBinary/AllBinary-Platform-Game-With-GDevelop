@@ -17,13 +17,14 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/case.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDActionId.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDObjectClassProperty.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDObjectAssign.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventClassPropertyDepartScene.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventClassProperty.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventCreateAssign.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventPaint.xsl" />
-    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventMouseButtonReleased.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventLogicConstruction.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventOpen.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventClose.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventProcess.xsl" />
@@ -54,7 +55,9 @@ Created By: Travis Berthelot
                     import org.allbinary.game.gd.GDGameMIDlet;
                     import org.allbinary.game.gd.layer.GDGameLayer;
                     import org.allbinary.game.gd.layer.GDGameLayerFactory;
+                    import org.allbinary.game.gd.layer.NullGDGameLayerFactory;
                     import org.allbinary.game.gd.layout.GDAction;
+                    import org.allbinary.game.gd.layout.GDGroupHelper;
                     import org.allbinary.graphics.color.BasicColor;
                     import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 
@@ -62,6 +65,7 @@ Created By: Travis Berthelot
                     import org.allbinary.game.gd.resource.GDResources;
                     import org.allbinary.game.identification.Group;
                     import org.allbinary.game.identification.GroupFactory;
+                    import org.allbinary.game.layer.AllBinaryGameLayerManager;
                     import org.allbinary.game.layer.identification.GroupLayerManagerListener;
                     import org.allbinary.game.rand.MyRandomFactory;
                     import org.allbinary.graphics.GPoint;
@@ -82,23 +86,32 @@ Created By: Travis Berthelot
 
                     //Layout name=<xsl:value-of select="$nameValue" />
                     public class GD<xsl:value-of select="$index" />SpecialAnimation extends SpecialAnimation
-                    {<xsl:text>&#10;</xsl:text>
+                    {
 
-                        private static final SpecialAnimation instance = new GD<xsl:value-of select="$index" />SpecialAnimation();
-                        
-                        public static SpecialAnimation getInstance()
+                        private static GD<xsl:value-of select="$index" />SpecialAnimation instance;
+
+                        public static GD<xsl:value-of select="$index" />SpecialAnimation getInstance(final AllBinaryGameLayerManager allBinaryGameLayerManager)
                         {
+                            instance = new GD<xsl:value-of select="$index" />SpecialAnimation(allBinaryGameLayerManager);
                             return instance;
                         }
 
+                        public static GD<xsl:value-of select="$index" />SpecialAnimation getInstance()
+                        {
+                            return instance;
+                        }
+                        
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
                         
                         private final Object graphics = new Object();
-                        private final GDAction[] actionArrayOfArrays = new GDAction[100];                        
+                        private final GDAction[] actionArrayOfArrays = new GDAction[10000];
+                        
+                        private final GDGroupHelper gdGroupHelper = new GDGroupHelper();
 
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
+                        private final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="name" />";
                         private final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup();
                         <xsl:for-each select="objects" >
                             //<xsl:value-of select="name" />
@@ -125,20 +138,30 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                    public GD<xsl:value-of select="$index" />SpecialAnimation() {
+                    public GD<xsl:value-of select="$index" />SpecialAnimation(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));
-                    
+
                         int size = actionArrayOfArrays.length;
-                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            final int currentIndex = index;
-                            actionArrayOfArrays[index] = new GDAction() {
-                                public void process() {
-                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, Integer.toString(currentIndex), new Exception()));
-                                }
-                            };
-                        }
-                    
+//                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+//                            final int currentIndex = index;
+//                            actionArrayOfArrays[index2][index] = new GDAction() {
+//                            public void process() {
+//                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, Integer.toString(currentIndex), new Exception()));
+//                                }
+//                            };
+//                        }
+
+                    //objectsGroupsSet - START
+                    <xsl:for-each select="objectsGroups" >
+                        <xsl:variable name="groupName" select="name" />
+                        gdGroupHelper.map.put(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$groupName" /></xsl:with-param></xsl:call-template>, this.<xsl:value-of select="$groupName" />GroupInterface);
+                        <xsl:for-each select="objects" >
+                        gdGroupHelper.map.put(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, this.<xsl:value-of select="$groupName" />GroupInterface);
+                        </xsl:for-each>
+                    </xsl:for-each>
+                    //objectsGroupsSet - END
+                                        
                     <xsl:for-each select="instances" >
                         <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
                         <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
@@ -159,6 +182,9 @@ Created By: Travis Berthelot
                         try {
 
                     <xsl:call-template name="objectsAssign" >
+                        <xsl:with-param name="index" >
+                            <xsl:value-of select="$index" />
+                        </xsl:with-param>                        
                         <xsl:with-param name="windowWidth" >
                             <xsl:value-of select="$windowWidth" />
                         </xsl:with-param>                        
@@ -200,12 +226,13 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
-                    <xsl:call-template name="eventsMouseButtonReleased" >
+                    <xsl:call-template name="eventsLogicConstruction" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
 
+                        groupLayerManagerListener.log();
                     }
 
                     public void process() {

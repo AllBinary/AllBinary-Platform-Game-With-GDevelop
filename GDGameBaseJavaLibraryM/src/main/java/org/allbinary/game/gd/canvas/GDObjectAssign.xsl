@@ -11,6 +11,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:template name="objectsAssign" >
+        <xsl:param name="index" />
         <xsl:param name="windowWidth" />
         
         //objectsAssign - START
@@ -56,34 +57,44 @@
                 </xsl:for-each>
                 };
 
+                final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup();
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 PointFactory.getInstance().getInstance(0, 0),
                                 <xsl:value-of select="animations/directions/sprites/originPoint/x" />, <xsl:value-of select="animations/directions/sprites/originPoint/y" />
                                 );
                 <xsl:value-of select="name" />GDGameLayerFactory = new GDGameLayerFactory(
-                    <xsl:value-of select="name" />GroupInterface,
+                    new Group[] {this.gdGroupHelper.get(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>), <xsl:value-of select="name" />GroupInterface},
                     <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />LayerInfo);
                 
                 this.<xsl:value-of select="name" /> = new GDObject(null, 0, 0, null);
                 this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(this.<xsl:value-of select="name" />);
+                allBinaryGameLayerManager.append(this.<xsl:value-of select="name" />GDGameLayer);
+                
             </xsl:if>
+            <xsl:if test="$index = 1" >
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
                 
-                final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup();
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[0];
-                final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
-                final Rectangle <xsl:value-of select="name" />LayerInfo = null;
+                //final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup();
+                //final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[0];
+                //final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
+                //final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
+                                //PointFactory.getInstance().getInstance(0, 0),
+                                //0, 0
+                                //);
 
-                <xsl:value-of select="name" />GDGameLayerFactory = new GDGameLayerFactory(
-                    <xsl:value-of select="name" />GroupInterface,
-                    <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
-                    <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
-                    <xsl:value-of select="name" />LayerInfo);
-
+                //<xsl:value-of select="name" />GDGameLayerFactory = new GDGameLayerFactory(
+                    //<xsl:value-of select="name" />GroupInterface,
+                    //<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
+                    //<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
+                    //<xsl:value-of select="name" />LayerInfo);
+                    
+                <xsl:value-of select="name" />GDGameLayerFactory = new NullGDGameLayerFactory();
+                
+            </xsl:if>
             </xsl:if>
             
         </xsl:for-each>        

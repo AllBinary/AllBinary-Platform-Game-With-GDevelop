@@ -73,35 +73,55 @@
             //totalRecursions=<xsl:value-of select="number($totalRecursions)" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" />
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //Action type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each><xsl:text>&#10;</xsl:text>
+                //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each><xsl:text>&#10;</xsl:text>
             </xsl:for-each>
     
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //Condition type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                //Condition nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'PosX'" >
                     if(<xsl:for-each select="parameters" ><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="position() = 1" >.x</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
-                        this.actionArrayOfArrays[<xsl:value-of select="$eventPosition" />].process();
+                        <xsl:for-each select=".." >
+                            <xsl:call-template name="actionIds" >
+                                <xsl:with-param name="totalRecursions" >0</xsl:with-param>                                
+                            </xsl:call-template>
+                        </xsl:for-each>
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosY'" >
                     if(<xsl:for-each select="parameters" ><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="position() = 1" >.y</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
-                        this.actionArrayOfArrays[<xsl:value-of select="$eventPosition" />].process();
+                        <xsl:for-each select=".." >
+                            <xsl:call-template name="actionIds" >
+                                <xsl:with-param name="totalRecursions" >0</xsl:with-param>                                
+                            </xsl:call-template>
+                        </xsl:for-each>
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'NbObjet'" >
-                    if(<xsl:for-each select="parameters" ><xsl:text><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(this.</xsl:if><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="position() = 1" >GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
-                        this.actionArrayOfArrays[<xsl:value-of select="$eventPosition" />].process();
+                    if(<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(this.gdGroupHelper.get(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:with-param></xsl:call-template>))</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
+                        <xsl:for-each select=".." >
+                            <xsl:call-template name="actionIds" >
+                                <xsl:with-param name="totalRecursions" >0</xsl:with-param>                                
+                            </xsl:call-template>
+                        </xsl:for-each>
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarObjet'" >
                     if(<xsl:for-each select="parameters" ><xsl:if test="text() = 'rotation'" >.</xsl:if><xsl:if test="position() != 1 and  text() != 'rotation'" ><xsl:text> </xsl:text></xsl:if><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="text() = '='" >=</xsl:if></xsl:for-each>) {
-                        this.actionArrayOfArrays[<xsl:value-of select="$eventPosition" />].process();
+                        <xsl:for-each select=".." >
+                            <xsl:call-template name="actionIds" >
+                                <xsl:with-param name="totalRecursions" >0</xsl:with-param>                                
+                            </xsl:call-template>
+                        </xsl:for-each>
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarScene'" >
                     if(<xsl:for-each select="parameters" ><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
-                        this.actionArrayOfArrays[<xsl:value-of select="$eventPosition" />].process();
+                        <xsl:for-each select=".." >
+                            <xsl:call-template name="actionIds" >
+                                <xsl:with-param name="totalRecursions" >0</xsl:with-param>                                
+                            </xsl:call-template>
+                        </xsl:for-each>
                     }
                 </xsl:if>
             </xsl:for-each>

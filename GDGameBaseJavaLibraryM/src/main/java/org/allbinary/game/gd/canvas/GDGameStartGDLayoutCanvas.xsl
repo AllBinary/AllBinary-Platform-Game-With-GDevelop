@@ -52,6 +52,8 @@ public class <GDLayout> extends StartCanvas
                 new GDGameStaticInitializerFactory(), false);
 
         this.setWait(WAIT);
+        
+        GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(null);
     }
 
     public void initPostPaint() throws Exception

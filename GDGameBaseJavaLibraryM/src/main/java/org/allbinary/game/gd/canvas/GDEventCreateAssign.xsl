@@ -67,11 +67,11 @@
             </xsl:if>
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //Condition type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                //Condition nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             </xsl:for-each>                        
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //Action type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each><xsl:text>&#10;</xsl:text>
+                //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each><xsl:text>&#10;</xsl:text>
                 <xsl:if test="$typeValue = 'Create'" >
                     <xsl:for-each select="parameters" >
                         <xsl:variable name="index" select="position() - 1" />
@@ -100,6 +100,16 @@
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>));
+
+                    <xsl:for-each select="parameters" >
+                        <xsl:variable name="index" select="position() - 1" />
+                        <xsl:if test="number($index) = 1" >
+                            if(<xsl:value-of select="text()" />GDGameLayer != null) {
+                                allBinaryGameLayerManager.append(<xsl:value-of select="text()" />GDGameLayer);
+                            }
+                        </xsl:if>
+                    </xsl:for-each>
+                    
                 </xsl:if>
             </xsl:for-each>
                 }
