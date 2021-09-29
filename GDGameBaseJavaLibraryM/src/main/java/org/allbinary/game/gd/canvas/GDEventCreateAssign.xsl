@@ -76,7 +76,7 @@
                     <xsl:for-each select="parameters" >
                         <xsl:variable name="index" select="position() - 1" />
                         <xsl:if test="number($index) = 1" >
-                            final GDGameLayer <xsl:value-of select="text()" />GDGameLayer = <xsl:value-of select="text()" />GDGameLayerFactory.create(new GDObject(
+                            this.<xsl:value-of select="text()" /> = new <xsl:value-of select="text()" />(
                         </xsl:if>
                     </xsl:for-each>
                     <xsl:for-each select="parameters" >
@@ -99,7 +99,14 @@
                                 </xsl:if>
                             </xsl:if>
                         </xsl:if>
-                    </xsl:for-each>));
+                    </xsl:for-each>);
+                    <xsl:for-each select="parameters" ><xsl:variable name="index" select="position() - 1" />
+                        <xsl:if test="number($index) = 1" >
+                            final GDGameLayer <xsl:value-of select="text()" />GDGameLayer = <xsl:value-of select="text()" />GDGameLayerFactory.create(
+                                this.<xsl:value-of select="text()" />
+                            );                                                                                                                
+                        </xsl:if>
+                    </xsl:for-each>
 
                     <xsl:for-each select="parameters" >
                         <xsl:variable name="index" select="position() - 1" />

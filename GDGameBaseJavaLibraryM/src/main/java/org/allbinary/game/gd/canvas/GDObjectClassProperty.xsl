@@ -30,6 +30,15 @@
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                 private final String <xsl:value-of select="$NAME" /> = "<xsl:value-of select="name" />";
                 private final GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory;
+                
+                final class <xsl:value-of select="name" /> extends GDObject {
+                
+                    public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
+                        super(unknown, x, y, name);
+                    }
+                    
+                };
+
                 private GDObject <xsl:value-of select="name" />;
             </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
@@ -40,20 +49,20 @@
                 
                 final class <xsl:value-of select="name" /> extends GDObject {
 
-                public <xsl:value-of select="name" />() {
-                super(null, 0, 0, null);
-                }
+                    public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
+                        super(unknown, x, y, name);
+                    }
 
-                public int Width(final Graphics graphics) {
-                return <xsl:value-of select="name" />TextAnimation.getWidth();
-                }
+                    public int Width(final Graphics graphics) {
+                        return <xsl:value-of select="name" />TextAnimation.getWidth();
+                    }
 
-                public int Height(final Graphics graphics) {
-                return <xsl:value-of select="name" />TextAnimationSize;
-                }
-                }
+                    public int Height(final Graphics graphics) {
+                        return <xsl:value-of select="name" />TextAnimationSize;
+                    }
+                };
 
-                final GDObject<xsl:text> </xsl:text><xsl:value-of select="name" /> = new <xsl:value-of select="name" />();
+                private GDObject<xsl:text> </xsl:text><xsl:value-of select="name" />;
                 
             </xsl:if>
             private Rectangle <xsl:value-of select="name" />Rectangle = null;

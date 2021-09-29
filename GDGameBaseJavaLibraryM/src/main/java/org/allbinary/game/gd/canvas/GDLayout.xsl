@@ -18,6 +18,7 @@ Created By: Travis Berthelot
 
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/case.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDActionId.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDObjectClassProperty.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDObjectAssign.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventClassPropertyDepartScene.xsl" />
@@ -35,7 +36,7 @@ Created By: Travis Berthelot
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />
             <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
-                    <xsl:variable name="nameValue" select="name" />
+                    <xsl:variable name="layoutName" select="name" />
                     package org.allbinary.game.gd.canvas;
 
                     import java.io.InputStream;
@@ -84,7 +85,7 @@ Created By: Travis Berthelot
                     import org.allbinary.math.RectangleCollisionUtil;
                     import org.microemu.MIDletBridge;
 
-                    //Layout name=<xsl:value-of select="$nameValue" />
+                    //Layout name=<xsl:value-of select="$layoutName" />
                     public class GD<xsl:value-of select="$index" />SpecialAnimation extends SpecialAnimation
                     {
 
@@ -237,13 +238,19 @@ Created By: Travis Berthelot
                         //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" />
                         <xsl:text>&#10;</xsl:text><xsl:value-of select="name" />X = <xsl:value-of select="x" />;
                         <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
+                        this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         <xsl:if test="layer != ''" >
-                        this.<xsl:value-of select="name" /> = new GDObject(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(this.<xsl:value-of select="name" />);
                         allBinaryGameLayerManager.append(this.<xsl:value-of select="name" />GDGameLayer);
                         </xsl:if>
                     </xsl:for-each>
                     //instances create - END
+
+                    <xsl:call-template name="externalEvents" >
+                        <xsl:with-param name="layoutName" >
+                            <xsl:value-of select="$layoutName" />
+                        </xsl:with-param>                        
+                    </xsl:call-template>
 
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
