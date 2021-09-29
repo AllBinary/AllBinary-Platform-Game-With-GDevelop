@@ -69,10 +69,6 @@
                     <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />LayerInfo);
                 
-                this.<xsl:value-of select="name" /> = new GDObject(null, 0, 0, null);
-                this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(this.<xsl:value-of select="name" />);
-                allBinaryGameLayerManager.append(this.<xsl:value-of select="name" />GDGameLayer);
-                
             </xsl:if>
             <xsl:if test="$index = 1" >
             <xsl:if test="$typeValue = 'TextObject::Text'" >

@@ -161,11 +161,19 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroupsSet - END
-                                        
+
+                    //instances - START
                     <xsl:for-each select="instances" >
+                        //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" /><xsl:text>&#10;</xsl:text>
                         <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
                         <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
+                        <xsl:if test="layer != ''" >
+                        this.<xsl:value-of select="name" /> = new GDObject(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
+                        this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(this.<xsl:value-of select="name" />);
+                        allBinaryGameLayerManager.append(this.<xsl:value-of select="name" />GDGameLayer);
+                        </xsl:if>
                     </xsl:for-each>
+                    //instances - END
 
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
@@ -251,6 +259,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
+                    //instances - START
                     <xsl:for-each select="instances" >
                         <xsl:value-of select="name" />X = x + this.<xsl:value-of select="name" />X;
                         <xsl:value-of select="name" />Y = y + this.<xsl:value-of select="name" />Y;
@@ -261,6 +270,7 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="name" />.Width(graphics), <xsl:value-of select="name" />.Height(graphics));
                         }
                     </xsl:for-each>
+                    //instances - END
 
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
