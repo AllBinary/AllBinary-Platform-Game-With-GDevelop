@@ -11,7 +11,7 @@
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:template name="eventsClassProperty" >
+    <xsl:template name="eventsClassPropertyConditions" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="conditionEventPosition" />
 
@@ -19,7 +19,7 @@
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
             
-            <xsl:call-template name="eventsClassProperty" >
+            <xsl:call-template name="eventsClassPropertyConditions" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
                 </xsl:with-param>
@@ -72,17 +72,21 @@
 
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each><xsl:text>&#10;</xsl:text>
+                //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                <xsl:text>&#10;</xsl:text>
             </xsl:for-each>
 
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                <xsl:if test="$typeValue = 'Timer'" >
+                    <xsl:if test ="not(preceding::conditions[parameters[3]/text() = current()/parameters[3]/text()] and preceding::conditions[type/value = current()/type/value])">
+                    private TimeDelayHelper <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper = new TimeDelayHelper(<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >(int) (1000 * <xsl:value-of select="text()" />)</xsl:if></xsl:for-each>);
+                    </xsl:if>
+                </xsl:if>                                
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
-                    private EventListenerInterface eventListenerInterface_<xsl:value-of select="number($totalRecursions)" />_<xsl:value-of select="$eventPosition" /> = null;
+                    private EventListenerInterface eventListenerInterface_<xsl:value-of select="generate-id()" /> = null;
                 </xsl:if>
-                <xsl:if test="$typeValue = 'DepartScene'" >
-                </xsl:if>                
             </xsl:for-each>
 
         </xsl:for-each>

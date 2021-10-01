@@ -21,8 +21,8 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDObjectClassProperty.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDObjectAssign.xsl" />
-    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventClassPropertyDepartScene.xsl" />
-    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventClassProperty.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventClassPropertyActions.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventClassPropertyConditions.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventCreateAssign.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventPaint.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventLogicConstruction.xsl" />
@@ -83,6 +83,8 @@ Created By: Travis Berthelot
                     import org.allbinary.logic.communication.log.LogUtil;
                     import org.allbinary.util.BasicArrayList;
                     import org.allbinary.math.RectangleCollisionUtil;
+                    import org.allbinary.time.GameTickTimeDelayHelperFactory;
+                    import org.allbinary.time.TimeDelayHelper;
                     import org.microemu.MIDletBridge;
 
                     //Layout name=<xsl:value-of select="$layoutName" />
@@ -129,6 +131,12 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //instances class properties - END
 
+                    <xsl:call-template name="externalEventsClassProperty" >
+                        <xsl:with-param name="layoutName" >
+                            <xsl:value-of select="$layoutName" />
+                        </xsl:with-param>                        
+                    </xsl:call-template>
+
                     <xsl:call-template name="objectsClassProperty" >
                         <xsl:with-param name="windowWidth" >
                             <xsl:value-of select="$windowWidth" />
@@ -136,13 +144,13 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
 
-                    <xsl:call-template name="eventsClassPropertyDepartScene" >
+                    <xsl:call-template name="eventsClassPropertyConditions" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
 
-                    <xsl:call-template name="eventsClassProperty" >
+                    <xsl:call-template name="eventsClassPropertyActions" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
@@ -246,7 +254,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //instances create - END
 
-                    <xsl:call-template name="externalEvents" >
+                    <xsl:call-template name="externalEventsCreateAssign" >
                         <xsl:with-param name="layoutName" >
                             <xsl:value-of select="$layoutName" />
                         </xsl:with-param>                        
@@ -266,6 +274,7 @@ Created By: Travis Berthelot
                     }
 
                     public void process() {
+                    
                     <xsl:call-template name="eventsProcess" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
@@ -333,7 +342,11 @@ Created By: Travis Berthelot
                     public int Variable(final int value) {
                         return value;
                     }
-                    
+
+                    public double Variable(final double value) {
+                        return value;
+                    }
+                                        
                     public int GlobalVariable(final int value) {
                         return value;
                     }

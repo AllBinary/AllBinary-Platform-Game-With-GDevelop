@@ -7,7 +7,9 @@
         <xsl:param name="totalRecursions" />
             //Actions totalRecursions=<xsl:value-of select="$totalRecursions" />
         <xsl:for-each select="actions" >
-            //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each><xsl:text>&#10;</xsl:text>
+            //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+            <xsl:text>&#10;</xsl:text>
+            
             this.actionArrayOfArrays[<xsl:value-of select="number(substring(generate-id(), 3))" />].process();
         </xsl:for-each>
         
@@ -26,7 +28,8 @@
         <xsl:param name="totalRecursions" />
                             //Actions totalRecursions=<xsl:value-of select="$totalRecursions" />
         <xsl:for-each select="actions" >
-                            //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each><xsl:text>&#10;</xsl:text>
+                            //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                            <xsl:text>&#10;</xsl:text>
                             actionArrayOfArrays[<xsl:value-of select="number(substring(generate-id(), 3))" />].process(motionGestureEvent);
         </xsl:for-each>
         
