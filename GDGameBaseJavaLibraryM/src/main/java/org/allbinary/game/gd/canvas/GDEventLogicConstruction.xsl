@@ -71,7 +71,7 @@
             </xsl:for-each>
 
             <xsl:choose>
-            <xsl:when test ="not(preceding::events/actions[parameters = current()/actions/parameters])">
+            <xsl:when test="not(preceding::events/actions[parameters = current()/actions/parameters])">
                 <xsl:for-each select="actions" >
                     <xsl:variable name="typeValue" select="type/value" />
                     //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>

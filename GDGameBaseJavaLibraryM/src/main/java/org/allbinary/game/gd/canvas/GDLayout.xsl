@@ -21,9 +21,11 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDObjectClassProperty.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDObjectAssign.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDObjectAtIndex.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventClassPropertyActions.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventClassPropertyConditions.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventCreateAssign.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventCreateAssignGDObject.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventPaint.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventLogicConstruction.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/gd/canvas/GDEventOpen.xsl" />
@@ -34,8 +36,8 @@ Created By: Travis Berthelot
         <xsl:variable name="windowWidth" select="properties/windowWidth" />
 
         <xsl:for-each select="layouts" >
-            <xsl:variable name="index" select="position() - 1" />
-            <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+            <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
                     <xsl:variable name="layoutName" select="name" />
                     package org.allbinary.game.gd.canvas;
 
@@ -88,18 +90,18 @@ Created By: Travis Berthelot
                     import org.microemu.MIDletBridge;
 
                     //Layout name=<xsl:value-of select="$layoutName" />
-                    public class GD<xsl:value-of select="$index" />SpecialAnimation extends SpecialAnimation
+                    public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimation extends SpecialAnimation
                     {
 
-                        private static GD<xsl:value-of select="$index" />SpecialAnimation instance;
+                        private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation instance;
 
-                        public static GD<xsl:value-of select="$index" />SpecialAnimation getInstance(final AllBinaryGameLayerManager allBinaryGameLayerManager)
+                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation getInstance(final AllBinaryGameLayerManager allBinaryGameLayerManager)
                         {
-                            instance = new GD<xsl:value-of select="$index" />SpecialAnimation(allBinaryGameLayerManager);
+                            instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(allBinaryGameLayerManager);
                             return instance;
                         }
 
-                        public static GD<xsl:value-of select="$index" />SpecialAnimation getInstance()
+                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation getInstance()
                         {
                             return instance;
                         }
@@ -156,7 +158,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                    public GD<xsl:value-of select="$index" />SpecialAnimation(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));
 
@@ -195,14 +197,23 @@ Created By: Travis Berthelot
                         try {
 
                     <xsl:call-template name="objectsAssign" >
-                        <xsl:with-param name="index" >
-                            <xsl:value-of select="$index" />
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>                        
                         <xsl:with-param name="windowWidth" >
                             <xsl:value-of select="$windowWidth" />
                         </xsl:with-param>                        
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
+
+                    <xsl:call-template name="eventsCreateAssignGDObject" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                     <xsl:call-template name="eventsCreateAssign" >
                         <xsl:with-param name="totalRecursions" >

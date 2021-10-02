@@ -11,7 +11,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:template name="objectsAssign" >
-        <xsl:param name="index" />
+        <xsl:param name="layoutIndex" />
         <xsl:param name="windowWidth" />
         
         //objectsAssign - START
@@ -70,7 +70,7 @@
                     <xsl:value-of select="name" />LayerInfo);
                 
             </xsl:if>
-            <xsl:if test="$index = 1" >
+            <xsl:if test="$layoutIndex = 1" >
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
                 

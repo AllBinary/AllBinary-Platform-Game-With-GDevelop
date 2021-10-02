@@ -80,7 +80,7 @@
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'Timer'" >
-                    <xsl:if test ="not(preceding::conditions[parameters[3]/text() = current()/parameters[3]/text()] and preceding::conditions[type/value = current()/type/value])">
+                    <xsl:if test="not(preceding::conditions[parameters[3]/text() = current()/parameters[3]/text()] and preceding::conditions[type/value = current()/type/value])" >
                     private TimeDelayHelper <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper = new TimeDelayHelper(<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >(int) (1000 * <xsl:value-of select="text()" />)</xsl:if></xsl:for-each>);
                     </xsl:if>
                 </xsl:if>                                
