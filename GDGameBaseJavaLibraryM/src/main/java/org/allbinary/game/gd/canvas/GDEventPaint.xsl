@@ -54,9 +54,8 @@
             <xsl:for-each select="target" >
                 //target <xsl:value-of select="text()" />
             </xsl:for-each>
-            <xsl:for-each select="repeatExpression" >
-                //repeatExpression <xsl:value-of select="text()" />
-            </xsl:for-each>
+            //repeatExpression <xsl:value-of select="repeatExpression" />
+
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>

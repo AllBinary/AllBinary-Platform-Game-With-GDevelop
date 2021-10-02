@@ -54,13 +54,15 @@
             <xsl:for-each select="target" >
                 //target <xsl:value-of select="text()" />
             </xsl:for-each>
-                //repeatExpression <xsl:value-of select="text()" />
-                size = <xsl:if test="not(repeatExpression)" >1</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
-                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             </xsl:for-each>                        
+            <xsl:if test="actions" >
+                //repeatExpression <xsl:value-of select="repeatExpression" />
+                size = <xsl:if test="not(repeatExpression)" >1</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
+                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+            </xsl:if>
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
@@ -89,7 +91,9 @@
                     
                 </xsl:if>
             </xsl:for-each>
+            <xsl:if test="actions" >
                 }
+            </xsl:if>
             
             <xsl:call-template name="eventsCreateAssign" >
                 <xsl:with-param name="totalRecursions" >

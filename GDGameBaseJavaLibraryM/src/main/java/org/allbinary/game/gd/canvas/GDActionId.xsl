@@ -5,6 +5,7 @@
 
     <xsl:template name="actionIds">
         <xsl:param name="totalRecursions" />
+        //actionIds
             //Actions totalRecursions=<xsl:value-of select="$totalRecursions" />
         <xsl:for-each select="actions" >
             //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
@@ -24,8 +25,32 @@
         
     </xsl:template>
 
+    <xsl:template name="actionIdsGDObject">
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="gdObjectName" />
+        //actionIdsGDObject <xsl:value-of select="$gdObjectName" />
+            //Actions totalRecursions=<xsl:value-of select="$totalRecursions" />
+        <xsl:for-each select="actions" >
+            //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+            <xsl:text>&#10;</xsl:text>
+            
+            this.actionArrayOfArrays[<xsl:value-of select="number(substring(generate-id(), 3))" />].process(<xsl:value-of select="$gdObjectName" />);
+        </xsl:for-each>
+        
+        <xsl:for-each select="events" >
+            //Events totalRecursions=<xsl:value-of select="$totalRecursions" />
+            <xsl:call-template name="actionIds" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>                
+            </xsl:call-template>
+        </xsl:for-each>
+        
+    </xsl:template>
+
     <xsl:template name="actionIdsMotionGestureEvent">
         <xsl:param name="totalRecursions" />
+        //actionIdsMotionGestureEvent
                             //Actions totalRecursions=<xsl:value-of select="$totalRecursions" />
         <xsl:for-each select="actions" >
                             //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>

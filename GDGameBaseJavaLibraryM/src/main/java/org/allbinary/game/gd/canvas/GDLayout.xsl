@@ -257,9 +257,9 @@ Created By: Travis Berthelot
                         //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" />
                         <xsl:text>&#10;</xsl:text><xsl:value-of select="name" />X = <xsl:value-of select="x" />;
                         <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
-                        this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
+                        this.<xsl:value-of select="name" />Array[0] = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         <xsl:if test="layer != ''" >
-                        this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(this.<xsl:value-of select="name" />);
+                        this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(this.<xsl:value-of select="name" />Array[0]);
                         allBinaryGameLayerManager.append(this.<xsl:value-of select="name" />GDGameLayer);
                         </xsl:if>
                     </xsl:for-each>
@@ -285,7 +285,7 @@ Created By: Travis Berthelot
                     }
 
                     public void process() {
-                    
+                    int size = 0;
                     <xsl:call-template name="eventsProcess" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />

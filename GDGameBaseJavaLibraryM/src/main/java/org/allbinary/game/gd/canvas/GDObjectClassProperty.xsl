@@ -37,7 +37,6 @@
                     
                 };
 
-                private GDObject <xsl:value-of select="name" />;
                 private GDObject[] <xsl:value-of select="name" />Array;
             </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >

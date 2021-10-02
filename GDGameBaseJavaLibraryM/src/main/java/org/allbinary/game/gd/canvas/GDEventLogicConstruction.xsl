@@ -66,9 +66,7 @@
             <xsl:for-each select="target" >
                 //target <xsl:value-of select="text()" />
             </xsl:for-each>
-            <xsl:for-each select="repeatExpression" >
-                //repeatExpression <xsl:value-of select="text()" />
-            </xsl:for-each>
+            //repeatExpression <xsl:value-of select="repeatExpression" />
 
             <xsl:choose>
             <xsl:when test="not(preceding::events/actions[parameters = current()/actions/parameters])">
@@ -102,7 +100,7 @@
 
                     //Action for Condition totalRecursions=<xsl:value-of select="$totalRecursions" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" /> hasAssociatedSiblingCondition=<xsl:value-of select="$hasAssociatedSiblingCondition" />
                     this.actionArrayOfArrays[<xsl:value-of select="number(substring(generate-id(), 3))" />] = new GDAction() {
-                        public void process() {                    
+                        public void process() {
                             <xsl:if test="$typeValue = 'Scene'" >            
                             <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 2" >
@@ -120,10 +118,6 @@
                                 <xsl:if test="$typeValue = 'Scene'" >
                                 ((GDGameMIDlet) MIDletBridge.getCurrentMIDlet()).setGDLayout(TEXT);
                                 </xsl:if>
-
-                                <xsl:if test="$typeValue = 'Rotate'" >
-                                    <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotation =<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>
-                                </xsl:if>
                                 
                                 <xsl:if test="$typeValue != 'Scene' and $typeValue != 'MettreX' and $typeValue != 'MettreY' and $typeValue != 'SceneBackground' and $typeValue != 'Rotate'" >
                                     
@@ -134,6 +128,12 @@
                             
                         }
                         
+                        <xsl:if test="$typeValue = 'Rotate'" >
+                        public void process(GDObject <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>) {
+                                <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotation =<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>
+                        }
+                        </xsl:if>
+                                
                         public void process(final MotionGestureEvent motionGestureEvent) {
                             <xsl:for-each select="../conditions" >
                                 <xsl:variable name="typeValue" select="type/value" />
