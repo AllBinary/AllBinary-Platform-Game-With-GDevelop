@@ -13,6 +13,7 @@
 
     <xsl:template name="eventsPaint" >
         <xsl:param name="totalRecursions" />
+        <xsl:param name="instancesAsString" />
         
         //eventsPaint
         <xsl:for-each select="events" >
@@ -54,7 +55,9 @@
             <xsl:for-each select="target" >
                 //target <xsl:value-of select="text()" />
             </xsl:for-each>
-            //repeatExpression <xsl:value-of select="repeatExpression" />
+            <xsl:if test="repeatExpression" >
+                //repeatExpression <xsl:value-of select="repeatExpression" />
+            </xsl:if>
 
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
@@ -65,18 +68,31 @@
                 //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:if test="$typeValue = 'MettreX'" >
-                    <xsl:for-each select="parameters" >
-                        <xsl:variable name="index" select="position() - 1" />
-                        <xsl:value-of select="text()" />
-                        <xsl:if test="number($index) = 0" >X</xsl:if>
-                    </xsl:for-each>;
+                    
+                    <xsl:variable name="name" >,<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>,</xsl:variable>
+                    
+                    <xsl:if test="contains($instancesAsString, $name)" >
+                        <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 1" >
+                            final GDObject <xsl:value-of select="text()" /> = <xsl:value-of select="text()" />Array[0];
+                            </xsl:if>
+                            <xsl:value-of select="text()" /><xsl:if test="position() = 1" >X</xsl:if>
+                        </xsl:for-each>;
+                    </xsl:if>
+                    
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MettreY'" >
-                    <xsl:for-each select="parameters" >
-                        <xsl:variable name="index" select="position() - 1" />
-                        <xsl:value-of select="text()" />
-                        <xsl:if test="number($index) = 0" >Y</xsl:if>
-                    </xsl:for-each>;
+                    
+                    <xsl:variable name="name" >,<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>,</xsl:variable>
+                    
+                    <xsl:if test="contains($instancesAsString, $name)" >
+                        <xsl:for-each select="parameters" >
+                            <xsl:variable name="index" select="position() - 1" />
+                            <xsl:value-of select="text()" />
+                            <xsl:if test="number($index) = 0" >Y</xsl:if>
+                        </xsl:for-each>;
+                    </xsl:if>
+
                 </xsl:if>
             </xsl:for-each>
                         

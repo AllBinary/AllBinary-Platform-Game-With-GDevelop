@@ -60,19 +60,29 @@
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             </xsl:for-each>                        
             <xsl:if test="actions" >
-                //repeatExpression <xsl:value-of select="repeatExpression" />
+                //repeatExpression <xsl:value-of select="repeatExpression" />                
                 size = <xsl:if test="not(repeatExpression)" >1</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
+                <xsl:for-each select="actions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    <xsl:if test="$typeValue = 'Create'" >
+                        <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 2" >
+                this.<xsl:value-of select="text()" />Array = new GDObject[size];
+                            </xsl:if>
+                        </xsl:for-each>
+                    </xsl:if>
+                </xsl:for-each>
                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             </xsl:if>
             <xsl:for-each select="actions" >
-                <xsl:variable name="typeValue" select="type/value" />                
+                <xsl:variable name="typeValue" select="type/value" />
                 //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:text>&#10;</xsl:text>
                 
                 <xsl:if test="$typeValue = 'UnPauseTimer'" >
                     <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.unPause();</xsl:if></xsl:for-each>
                 </xsl:if>
-                <xsl:if test="$typeValue = 'Create'" >                    
+                <xsl:if test="$typeValue = 'Create'" >
                     <xsl:if test="not(preceding-sibling::actions[type/value/text() = 'Create'])">
                         //No preceding action with Create
                         <xsl:call-template name="objectGDObjectAtIndex" >

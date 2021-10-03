@@ -66,7 +66,9 @@
             <xsl:for-each select="target" >
                 //target <xsl:value-of select="text()" />
             </xsl:for-each>
-            //repeatExpression <xsl:value-of select="repeatExpression" />
+            <xsl:if test="repeatExpression" >
+                //repeatExpression <xsl:value-of select="repeatExpression" />
+            </xsl:if>
 
             <xsl:choose>
             <xsl:when test="not(preceding::events/actions[parameters = current()/actions/parameters])">

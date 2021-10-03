@@ -66,7 +66,9 @@
             <xsl:for-each select="target" >
                 //target <xsl:value-of select="text()" />
             </xsl:for-each>
-            //repeatExpression <xsl:value-of select="repeatExpression" />
+            <xsl:if test="repeatExpression" >
+                //repeatExpression <xsl:value-of select="repeatExpression" />
+            </xsl:if>
 
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />

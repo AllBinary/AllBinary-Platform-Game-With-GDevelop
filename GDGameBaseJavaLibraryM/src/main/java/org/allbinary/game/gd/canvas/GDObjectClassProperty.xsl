@@ -12,6 +12,7 @@
 
     <xsl:template name="objectsClassProperty" >
         <xsl:param name="windowWidth" />
+        <xsl:param name="instancesAsString" />
 
         //objectsClassProperty - START
         <xsl:for-each select="objects" >
@@ -57,7 +58,7 @@
                     }
                 };
 
-                private GDObject<xsl:text> </xsl:text><xsl:value-of select="name" />;
+                //private GDObject<xsl:text> </xsl:text><xsl:value-of select="name" />;
                 private GDObject[]<xsl:text> </xsl:text><xsl:value-of select="name" />Array;
                 
             </xsl:if>
@@ -80,18 +81,21 @@
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                 private final String <xsl:value-of select="$NAME" /> = "<xsl:value-of select="name" />";
                 private final GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory;
-                
             </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
                 private final int <xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="characterSize" /> * DisplayInfoSingleton.getInstance().getLastWidth()) / <xsl:value-of select="$windowWidth" />;
                 private final CustomTextAnimation <xsl:value-of select="name" />TextAnimation = 
                 new CustomTextAnimation("<xsl:value-of select="$stringValue" />", Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, <xsl:value-of select="name" />TextAnimationSize));
-                                
+
+                <xsl:variable name="name2" >,<xsl:value-of select="name" />,</xsl:variable>
+                
+                <xsl:if test="not(contains($instancesAsString, $name2))" >
+                private int <xsl:value-of select="name" />X = 0;
+                private int <xsl:value-of select="name" />Y = 0;
+                </xsl:if>
             </xsl:if>
-            private Rectangle <xsl:value-of select="name" />Rectangle = null;
-            private int <xsl:value-of select="name" />X = 0;
-            private int <xsl:value-of select="name" />Y = 0;
+            //private Rectangle <xsl:value-of select="name" />Rectangle = null;
 
         </xsl:for-each>
         //objectsClassProperty - END

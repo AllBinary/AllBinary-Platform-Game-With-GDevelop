@@ -37,69 +37,73 @@ Created By: Travis Berthelot
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
-            <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
-                    <xsl:variable name="layoutName" select="name" />
-                    package org.allbinary.game.gd.canvas;
+            
+            <xsl:if test="number($layoutIndex) = 
+                <GD_CURRENT_INDEX>" >
+                <xsl:variable name="layoutName" select="name" />
+                <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
+                    
+                package org.allbinary.game.gd.canvas;
 
-                    import java.io.InputStream;
+                import java.io.InputStream;
 
-                    import javax.microedition.lcdui.Font;
-                    import javax.microedition.lcdui.Graphics;
-                    import javax.microedition.lcdui.Image;
+                import javax.microedition.lcdui.Font;
+                import javax.microedition.lcdui.Graphics;
+                import javax.microedition.lcdui.Image;
 
-                    import org.allbinary.animation.AnimationInterfaceFactoryInterface;
-                    import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
-                    import org.allbinary.animation.image.AllBinaryAndroidImageRotationAnimationFactory;
+                import org.allbinary.animation.AnimationInterfaceFactoryInterface;
+                import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
+                import org.allbinary.animation.image.AllBinaryAndroidImageRotationAnimationFactory;
 
-                    import org.allbinary.animation.special.SpecialAnimation;
-                    import org.allbinary.animation.text.TextAnimation;
-                    import org.allbinary.animation.text.CustomTextAnimation;
-                    import org.allbinary.data.resource.ResourceUtil;
-                    import org.allbinary.game.gd.GDGameMIDlet;
-                    import org.allbinary.game.gd.layer.GDGameLayer;
-                    import org.allbinary.game.gd.layer.GDGameLayerFactory;
-                    import org.allbinary.game.gd.layer.NullGDGameLayerFactory;
-                    import org.allbinary.game.gd.layout.GDAction;
-                    import org.allbinary.game.gd.layout.GDGroupHelper;
-                    import org.allbinary.graphics.color.BasicColor;
-                    import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+                import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.animation.text.TextAnimation;
+                import org.allbinary.animation.text.CustomTextAnimation;
+                import org.allbinary.data.resource.ResourceUtil;
+                import org.allbinary.game.gd.GDGameMIDlet;
+                import org.allbinary.game.gd.layer.GDGameLayer;
+                import org.allbinary.game.gd.layer.GDGameLayerFactory;
+                import org.allbinary.game.gd.layer.NullGDGameLayerFactory;
+                import org.allbinary.game.gd.layout.GDAction;
+                import org.allbinary.game.gd.layout.GDGroupHelper;
+                import org.allbinary.graphics.color.BasicColor;
+                import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 
-                    import org.allbinary.game.gd.layout.GDObject;
-                    import org.allbinary.game.gd.resource.GDResources;
-                    import org.allbinary.game.identification.Group;
-                    import org.allbinary.game.identification.GroupFactory;
-                    import org.allbinary.game.layer.AllBinaryGameLayerManager;
-                    import org.allbinary.game.layer.identification.GroupLayerManagerListener;
-                    import org.allbinary.game.rand.MyRandomFactory;
-                    import org.allbinary.graphics.GPoint;
-                    import org.allbinary.graphics.PointFactory;
-                    import org.allbinary.graphics.Rectangle;
-                    import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
+                import org.allbinary.game.gd.layout.GDObject;
+                import org.allbinary.game.gd.resource.GDResources;
+                import org.allbinary.game.identification.Group;
+                import org.allbinary.game.identification.GroupFactory;
+                import org.allbinary.game.layer.AllBinaryGameLayerManager;
+                import org.allbinary.game.layer.identification.GroupLayerManagerListener;
+                import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.graphics.GPoint;
+                import org.allbinary.graphics.PointFactory;
+                import org.allbinary.graphics.Rectangle;
+                import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
 
-                    import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
-                    import org.allbinary.logic.basic.string.CommonStrings;
-                    import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
-                    import org.allbinary.logic.basic.util.event.AllBinaryEventObject;
-                    import org.allbinary.logic.basic.util.event.EventListenerInterface;
-                    import org.allbinary.logic.communication.log.LogFactory;
-                    import org.allbinary.logic.communication.log.LogUtil;
-                    import org.allbinary.util.BasicArrayList;
-                    import org.allbinary.math.RectangleCollisionUtil;
-                    import org.allbinary.time.GameTickTimeDelayHelperFactory;
-                    import org.allbinary.time.TimeDelayHelper;
-                    import org.microemu.MIDletBridge;
+                import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
+                import org.allbinary.logic.basic.string.CommonStrings;
+                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
+                import org.allbinary.logic.basic.util.event.AllBinaryEventObject;
+                import org.allbinary.logic.basic.util.event.EventListenerInterface;
+                import org.allbinary.logic.communication.log.LogFactory;
+                import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.util.BasicArrayList;
+                import org.allbinary.math.RectangleCollisionUtil;
+                import org.allbinary.time.GameTickTimeDelayHelperFactory;
+                import org.allbinary.time.TimeDelayHelper;
+                import org.microemu.MIDletBridge;
 
-                    //Layout name=<xsl:value-of select="$layoutName" />
-                    public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimation extends SpecialAnimation
+                //Layout name=<xsl:value-of select="$layoutName" />
+                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimation extends SpecialAnimation
+                {
+
+                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation instance;
+
+                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation getInstance(final AllBinaryGameLayerManager allBinaryGameLayerManager)
                     {
-
-                        private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation instance;
-
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation getInstance(final AllBinaryGameLayerManager allBinaryGameLayerManager)
-                        {
-                            instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(allBinaryGameLayerManager);
-                            return instance;
-                        }
+                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(allBinaryGameLayerManager);
+                        return instance;
+                    }
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation getInstance()
                         {
@@ -128,8 +132,12 @@ Created By: Travis Berthelot
                     <xsl:for-each select="instances" >
                         //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" /><xsl:text>&#10;</xsl:text>
                         <xsl:if test="layer != ''" >
-                            private GDGameLayer <xsl:value-of select="name" />GDGameLayer;
+                            private GDGameLayer <xsl:value-of select="name" />GDGameLayer;                            
                         </xsl:if>
+                            private Rectangle <xsl:value-of select="name" />Rectangle = null;
+                            private int <xsl:value-of select="name" />X = 0;
+                            private int <xsl:value-of select="name" />Y = 0;
+                        
                     </xsl:for-each>
                     //instances class properties - END
 
@@ -143,6 +151,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="windowWidth" >
                             <xsl:value-of select="$windowWidth" />
                         </xsl:with-param>                        
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
 
@@ -257,7 +268,9 @@ Created By: Travis Berthelot
                         //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" />
                         <xsl:text>&#10;</xsl:text><xsl:value-of select="name" />X = <xsl:value-of select="x" />;
                         <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
+                        this.<xsl:value-of select="name" />Array = new GDObject[1];
                         this.<xsl:value-of select="name" />Array[0] = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
+                        //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         <xsl:if test="layer != ''" >
                         this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(this.<xsl:value-of select="name" />Array[0]);
                         allBinaryGameLayerManager.append(this.<xsl:value-of select="name" />GDGameLayer);
@@ -295,9 +308,13 @@ Created By: Travis Berthelot
                     
                     public void paint(Graphics graphics, int x, int y)
                     {
+                    
                     <xsl:call-template name="eventsPaint" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
 
@@ -309,7 +326,9 @@ Created By: Travis Berthelot
                         if(this.<xsl:value-of select="name" />Rectangle == null) {
                             this.<xsl:value-of select="name" />Rectangle = new Rectangle(
                                 PointFactory.getInstance().getInstance(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
-                                <xsl:value-of select="name" />.Width(graphics), <xsl:value-of select="name" />.Height(graphics));
+                                <xsl:value-of select="name" />Array[0].Width(graphics), <xsl:value-of select="name" />Array[0].Height(graphics));
+                                //<xsl:value-of select="name" />.Width(graphics), <xsl:value-of select="name" />.Height(graphics));
+                                
                         }
                     </xsl:for-each>
                     //instances - END

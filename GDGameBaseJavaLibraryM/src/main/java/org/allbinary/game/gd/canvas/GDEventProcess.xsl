@@ -66,7 +66,9 @@
             <xsl:for-each select="target" >
                 //target <xsl:value-of select="text()" />
             </xsl:for-each>
-            //repeatExpression <xsl:value-of select="repeatExpression" />
+            <xsl:if test="repeatExpression" >
+                //repeatExpression <xsl:value-of select="repeatExpression" />
+            </xsl:if>
 
             //totalRecursions=<xsl:value-of select="number($totalRecursions)" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" />
             <xsl:for-each select="actions" >
