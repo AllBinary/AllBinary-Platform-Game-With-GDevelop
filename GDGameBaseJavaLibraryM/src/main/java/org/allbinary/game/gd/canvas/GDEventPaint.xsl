@@ -87,9 +87,8 @@
                     
                     <xsl:if test="contains($instancesAsString, $name)" >
                         <xsl:for-each select="parameters" >
-                            <xsl:variable name="index" select="position() - 1" />
                             <xsl:value-of select="text()" />
-                            <xsl:if test="number($index) = 0" >Y</xsl:if>
+                            <xsl:if test="position() = 1" >Y</xsl:if>
                         </xsl:for-each>;
                     </xsl:if>
 

@@ -15,7 +15,7 @@
         <xsl:param name="totalRecursions" />
         <xsl:param name="conditionEventPosition" />
 
-        //eventsClose
+        //eventsClose - START
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
 
@@ -85,6 +85,8 @@
             </xsl:for-each>
 
         </xsl:for-each>
+        //eventsClose - END
+
     </xsl:template>
 
 </xsl:stylesheet>

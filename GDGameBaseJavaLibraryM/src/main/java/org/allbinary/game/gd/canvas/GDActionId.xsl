@@ -3,6 +3,11 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output indent="yes"/>
 
+    <xsl:template name="createActions">
+        <xsl:param name="totalRecursions" />
+        <xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" />,</xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="number($totalRecursions) + 1" /></xsl:with-param></xsl:call-template></xsl:for-each>
+    </xsl:template>
+    
     <xsl:template name="actionIds">
         <xsl:param name="totalRecursions" />
         //actionIds

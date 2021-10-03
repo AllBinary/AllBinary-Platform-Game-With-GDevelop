@@ -42,6 +42,8 @@ Created By: Travis Berthelot
                 <GD_CURRENT_INDEX>" >
                 <xsl:variable name="layoutName" select="name" />
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
+                //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                     
                 package org.allbinary.game.gd.canvas;
 
@@ -217,18 +219,39 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
 
-                    <xsl:call-template name="eventsCreateAssignGDObject" >
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
+                    <xsl:call-template name="externalEventsCreateAssignGDObject" >
+                        <xsl:with-param name="layoutName" >
+                            <xsl:value-of select="$layoutName" />
+                        </xsl:with-param>                        
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>                        
+                    </xsl:call-template>
+                    
+                    <xsl:call-template name="eventsCreateAssignGDObject" >
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>                        
                     </xsl:call-template>
 
                     <xsl:call-template name="eventsCreateAssign" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
 

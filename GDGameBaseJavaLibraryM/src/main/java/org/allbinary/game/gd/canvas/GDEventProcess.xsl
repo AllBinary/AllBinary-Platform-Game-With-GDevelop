@@ -88,7 +88,7 @@
                         this.actionArrayOfArrays[<xsl:value-of select="number(substring(generate-id(), 3))" />].process();
                     </xsl:for-each>
                     }                    
-                </xsl:if>                
+                </xsl:if>
                 <xsl:if test="$typeValue = 'PosX'" >
                     <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     size = <xsl:value-of select="$gdObjectName" />Array.length;
