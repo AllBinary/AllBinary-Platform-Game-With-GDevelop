@@ -10,6 +10,20 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <!--
+                    <xsl:if test="not(preceding-sibling::actions[type/value/text() = 'Create'])">
+                        //No preceding action with Create
+                        <xsl:call-template name="objectGDObjectAtIndex" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="parametersAsString" >
+                                <xsl:for-each select="parameters" ><xsl:if test="position() > 2" ><xsl:value-of select="text()" />,</xsl:if></xsl:for-each>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:if>                        
+    -->
+
     <xsl:template name="objectGDObjectAtIndex" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />

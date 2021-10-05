@@ -14,6 +14,7 @@
     <xsl:template name="eventsClassPropertyConditions" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="conditionEventPosition" />
+        <xsl:param name="externalEventActionModVarSceneAsString" />
 
         //eventsClassProperty
         <xsl:for-each select="events" >
@@ -25,7 +26,10 @@
                 </xsl:with-param>
                 <xsl:with-param name="conditionEventPosition" >
                     <xsl:value-of select="$eventPosition" />
-                </xsl:with-param>                
+                </xsl:with-param>
+                <xsl:with-param name="externalEventActionModVarSceneAsString" >
+                    <xsl:value-of select="$externalEventActionModVarSceneAsString" />
+                </xsl:with-param>
             </xsl:call-template>                
                         
             //Event <xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
@@ -81,7 +85,15 @@
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'Timer'" >
                     <xsl:if test="not(preceding::conditions[parameters[3]/text() = current()/parameters[3]/text()] and preceding::conditions[type/value = current()/type/value])" >
-                    private TimeDelayHelper <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper = new TimeDelayHelper(<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >(int) (1000 * <xsl:value-of select="text()" />)</xsl:if></xsl:for-each>);
+                    <xsl:for-each select="../actions" >
+                        <xsl:variable name="typeValue" select="type/value" />
+                        <xsl:variable name="name" >,<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>,</xsl:variable>
+                        <xsl:if test="$typeValue = 'ModVarScene' and not(contains($externalEventActionModVarSceneAsString, $name))" >
+                    private int <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
+                        </xsl:if>
+                    </xsl:for-each>
+                        
+                    private TimeDelayHelper <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper = new TimeDelayHelper(<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >(int) (1000 * <xsl:value-of select="text()" />)</xsl:if></xsl:for-each>);                    
                     </xsl:if>
                 </xsl:if>                                
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >

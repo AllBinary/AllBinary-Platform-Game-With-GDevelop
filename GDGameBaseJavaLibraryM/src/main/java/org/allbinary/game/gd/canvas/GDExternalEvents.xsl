@@ -11,7 +11,19 @@
             </xsl:if>
         </xsl:for-each>
     </xsl:template>
-    
+    //externalEventsCreateActions - END
+
+    //externalEventActionModVarSceneAsString - START
+    <xsl:template name="externalEventActionModVarScene" >
+        <xsl:param name="layoutName" />
+        <xsl:for-each select="../externalEvents" >
+            <xsl:if test="$layoutName = associatedLayout" >
+                <xsl:call-template name="modVarSceneActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
+    //externalEventActionModVarSceneAsString - END
+        
     <xsl:template name="externalEventsCreateAssignGDObject" >
         <xsl:param name="layoutName" />
         <xsl:param name="totalRecursions" />

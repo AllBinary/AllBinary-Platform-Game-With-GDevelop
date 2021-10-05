@@ -43,7 +43,10 @@ Created By: Travis Berthelot
                 <xsl:variable name="layoutName" select="name" />
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
+                <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
+                //instancesAsString=<xsl:value-of select="$instancesAsString" />
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
+                //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
                     
                 package org.allbinary.game.gd.canvas;
 
@@ -162,6 +165,9 @@ Created By: Travis Berthelot
                     <xsl:call-template name="eventsClassPropertyConditions" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="externalEventActionModVarSceneAsString" >
+                            <xsl:value-of select="$externalEventActionModVarSceneAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
 
@@ -403,6 +409,11 @@ Created By: Travis Berthelot
                     public int GlobalVariable(final int value) {
                         return value;
                     }
+                    
+                    public long TimeDelta() {
+                        return System.currentTimeMillis() - GameTickTimeDelayHelperFactory.getInstance().getStartTime();
+                    }
+
                 }
             </xsl:if>
         </xsl:for-each>
