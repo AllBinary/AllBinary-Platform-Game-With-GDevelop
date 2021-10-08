@@ -130,6 +130,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="objectsGroups" >
                         private final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="name" />";
                         private final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup();
+                        private final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList();
                         <xsl:for-each select="objects" >
                             //<xsl:value-of select="name" />
                         </xsl:for-each>
@@ -140,11 +141,13 @@ Created By: Travis Berthelot
                     <xsl:for-each select="instances" >
                         //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" /><xsl:text>&#10;</xsl:text>
                         <xsl:if test="layer != ''" >
-                            private GDGameLayer <xsl:value-of select="name" />GDGameLayer;                            
+                            private GDGameLayer <xsl:value-of select="name" />GDGameLayer;                   
                         </xsl:if>
                             private Rectangle <xsl:value-of select="name" />Rectangle = null;
                             private int <xsl:value-of select="name" />X = 0;
                             private int <xsl:value-of select="name" />Y = 0;
+                            //private BasicArrayList <xsl:value-of select="name" />List;
+                            //private GDGameLayer[] <xsl:value-of select="name" />GDGameLayerArray;
                         
                     </xsl:for-each>
                     //instances class properties - END
@@ -259,6 +262,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
@@ -301,8 +307,8 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                         <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
                         <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
-                        this.<xsl:value-of select="name" />Array = new GDObject[1];
-                        this.<xsl:value-of select="name" />GDGameLayerArray = new GDGameLayer[1];
+                        //this.<xsl:value-of select="name" />List = new BasicArrayList(1);
+                        //this.<xsl:value-of select="name" />GDGameLayerArray = new GDGameLayer[1];
                         this.<xsl:value-of select="name" />Array[0] = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         <xsl:if test="layer != ''" >

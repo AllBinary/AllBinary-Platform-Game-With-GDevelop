@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="windows-1252"?>
 
 <!--
-    Document   : GDObjectClassProperty.xsl
-    Created on : September 26, 2021, 10:02 PM
-    Author     : User
-    Description:
-        Purpose of transformation follows.
+AllBinary Open License Version 1
+Copyright (c) 2011 AllBinary
+
+By agreeing to this license you and any business entity you represent are
+legally bound to the AllBinary Open License Version 1 legal agreement.
+
+You may obtain the AllBinary Open License Version 1 legal agreement from
+AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+
+Created By: Travis Berthelot
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
@@ -39,7 +44,7 @@
                 };
 
                 private GDObject[] <xsl:value-of select="name" />Array;
-                private GDGameLayer[] <xsl:value-of select="name" />GDGameLayerArray;
+                private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
             </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
@@ -60,8 +65,7 @@
                 };
 
                 private GDObject[]<xsl:text> </xsl:text><xsl:value-of select="name" />Array;
-                private GDGameLayer[] <xsl:value-of select="name" />GDGameLayerArray;
-                
+                private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
             </xsl:if>
 
         </xsl:for-each>

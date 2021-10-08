@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="windows-1252"?>
 
 <!--
-    Document   : GDEvent.xsl
-    Created on : September 10, 2021, 4:07 PM
-    Author     : User
-    Description:
-        Purpose of transformation follows.
+AllBinary Open License Version 1
+Copyright (c) 2011 AllBinary
+
+By agreeing to this license you and any business entity you represent are
+legally bound to the AllBinary Open License Version 1 legal agreement.
+
+You may obtain the AllBinary Open License Version 1 legal agreement from
+AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+
+Created By: Travis Berthelot
 -->
 
 <xsl:stylesheet version="1.0" 
@@ -13,6 +18,7 @@
 
     <xsl:template name="eventsCreateAssign" >
         <xsl:param name="totalRecursions" />
+        <xsl:param name="layoutIndex" />
         <xsl:param name="createdObjectsAsString" />
         
         //eventsCreateAssign - START
@@ -76,16 +82,41 @@
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             final GDObject <xsl:value-of select="text()" /> = <xsl:value-of select="text()" />Array[index];
-                            this.<xsl:value-of select="text()" />GDGameLayerArray[index] = <xsl:value-of select="text()" />GDGameLayerFactory.create(
-                                <xsl:value-of select="text()" />
-                            );                                                                                                                
+                            final GDGameLayer <xsl:value-of select="text()" />GDGameLayer = <xsl:value-of select="text()" />GDGameLayerFactory.create(<xsl:value-of select="text()" />);
+                            this.<xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer);
                         </xsl:if>
                     </xsl:for-each>
 
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
-                            if(<xsl:value-of select="text()" />GDGameLayer != null) {
-                                allBinaryGameLayerManager.append(<xsl:value-of select="text()" />GDGameLayer);
+                            <xsl:variable name="layerName" ><xsl:value-of select="text()" /></xsl:variable>
+                            <xsl:variable name="gameLayer" ><xsl:value-of select="text()" />GDGameLayer</xsl:variable>
+
+                            if(<xsl:value-of select="$gameLayer" /> != null) {
+                                allBinaryGameLayerManager.append(<xsl:value-of select="$gameLayer" />);
+                                
+                                //objectsGroupsGDGameLayer - START
+                                <xsl:for-each select="/game">
+                                    <xsl:for-each select="layouts" >
+                                        <xsl:variable name="layoutIndex2" select="position() - 1" />
+                                        <xsl:if test="number($layoutIndex2) = $layoutIndex" >
+
+                                            <xsl:for-each select="objectsGroups" >
+                                                <xsl:variable name="groupName">
+                                                    <xsl:value-of select="name" />
+                                                </xsl:variable>
+                                                <xsl:for-each select="objects" >
+                                                    <xsl:if test="name = $layerName" >
+                                                        <xsl:value-of select="$groupName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />);
+                                                    </xsl:if>
+                                                </xsl:for-each>
+                                            </xsl:for-each>
+
+                                        </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                                //objectsGroupsGDGameLayer - END
+    
                             }
                         </xsl:if>
                     </xsl:for-each>
@@ -129,6 +160,9 @@
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
                 </xsl:with-param>
+                <xsl:with-param name="layoutIndex" >
+                    <xsl:value-of select="$layoutIndex" />
+                </xsl:with-param>                
                 <xsl:with-param name="createdObjectsAsString" >
                     <xsl:value-of select="$createdObjectsAsString" />
                 </xsl:with-param>

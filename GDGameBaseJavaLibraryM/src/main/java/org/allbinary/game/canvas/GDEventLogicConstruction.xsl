@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="windows-1252"?>
 
 <!--
-    Document   : GDEvent.xsl
-    Created on : September 10, 2021, 4:07 PM
-    Author     : User
-    Description:
-        Purpose of transformation follows.
+AllBinary Open License Version 1
+Copyright (c) 2011 AllBinary
+
+By agreeing to this license you and any business entity you represent are
+legally bound to the AllBinary Open License Version 1 legal agreement.
+
+You may obtain the AllBinary Open License Version 1 legal agreement from
+AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+
+Created By: Travis Berthelot
 -->
 
 <xsl:stylesheet version="1.0"
@@ -183,11 +188,11 @@
                 </xsl:if>
                 
                 <xsl:if test="$typeValue = 'CollisionNP'" >
-                    size = this.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayerArray.length;
+                    size = this.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayerList.size();
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 
-                        collidableBehavior = ((GDCollidableBehavior) this.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayerArray[index].getCollidableInferface());
-                        final GroupInterface groupInterface = this.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayerArray[0].getGroupInterface()[0];
+                        collidableBehavior = ((GDCollidableBehavior) ((GDGameLayer) this.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayerList.get(index)).getCollidableInferface());
+                        final GroupInterface groupInterface = ((GDGameLayer) this.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayerList.get(0)).getGroupInterface()[0];
                         //Child VarScene conditions with actions
                         <xsl:for-each select="../events" >
                             <xsl:if test="actions" >
