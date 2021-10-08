@@ -1,4 +1,4 @@
-package org.allbinary.game.gd.canvas;
+package org.allbinary.game.canvas;
 
 import org.allbinary.logic.system.SoftwareInformation;
 

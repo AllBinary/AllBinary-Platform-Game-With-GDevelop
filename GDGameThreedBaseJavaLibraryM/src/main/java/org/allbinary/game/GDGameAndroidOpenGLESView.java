@@ -1,4 +1,4 @@
-package org.allbinary.game.gd;
+package org.allbinary.game;
 
 import org.allbinary.android.view.AllBinaryMidletOpenGLSurfaceView;
 import android.content.Context;

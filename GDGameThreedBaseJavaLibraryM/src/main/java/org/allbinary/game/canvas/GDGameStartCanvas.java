@@ -11,14 +11,14 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd.canvas;
+package org.allbinary.game.canvas;
 
 import javax.microedition.lcdui.CommandListener;
 import org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.animation.special.SpecialAnimation;
 
-import org.allbinary.game.gd.init.GDGameStaticInitializerFactory;
-import org.allbinary.game.gd.layer.GDGameLayerManager;
+import org.allbinary.game.init.GDGameStaticInitializerFactory;
+import org.allbinary.game.layer.GDGameLayerManager;
 
 import org.allbinary.logic.communication.log.PreLogUtil;
 import org.allbinary.game.GameInfo;

@@ -11,13 +11,13 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd;
+package org.allbinary.game;
 
-import org.allbinary.game.gd.canvas.GDGameGameCanvas;
-import org.allbinary.game.gd.canvas.GDGameInputMappingHelpPaintable;
-import org.allbinary.game.gd.canvas.GDGameSoftwareInfo;
-import org.allbinary.game.gd.canvas.GDGameStartCanvas;
-import org.allbinary.game.gd.layer.GDGameLayerManager;
+import org.allbinary.game.canvas.GDGameGameCanvas;
+import org.allbinary.game.canvas.GDGameInputMappingHelpPaintable;
+import org.allbinary.game.canvas.GDGameSoftwareInfo;
+import org.allbinary.game.canvas.GDGameStartCanvas;
+import org.allbinary.game.layer.GDGameLayerManager;
 import org.allbinary.media.audio.GDGameSoundsFactoryFactory;
 
 import org.allbinary.logic.basic.string.CommonStrings;
@@ -60,7 +60,7 @@ public class GDGameMIDlet extends
        return GDGameInputMappingHelpPaintable.getInstance();
    }
    
-   protected GameCanvasRunnableInterface createDemoGameCanvasRunnableInterface() throws Exception
+   public GameCanvasRunnableInterface createDemoGameCanvasRunnableInterface() throws Exception
    {
       return new GDGameStartCanvas(this);
    }

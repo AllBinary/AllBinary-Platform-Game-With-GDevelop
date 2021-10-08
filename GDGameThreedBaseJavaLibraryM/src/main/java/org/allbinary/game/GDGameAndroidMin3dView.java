@@ -1,4 +1,4 @@
-package org.allbinary.game.gd;
+package org.allbinary.game;
 
 import min3d.core.SceneController;
 

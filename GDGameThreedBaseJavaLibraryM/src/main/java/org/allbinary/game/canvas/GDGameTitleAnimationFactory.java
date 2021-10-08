@@ -11,13 +11,13 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd.canvas;
+package org.allbinary.game.canvas;
 
 import org.allbinary.animation.ColorLessVectorAnimation;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.VectorExplosionGenerator;
 import org.allbinary.animation.special.TitleAnimation;
-import org.allbinary.game.gd.canvas.TitleVectorData;
+import org.allbinary.game.canvas.TitleVectorData;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
 

@@ -24,7 +24,7 @@ import org.allbinary.animation.ThreedAnimationSingletonFactory;
 import org.allbinary.game.identification.BasicGroupFactory;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.SimpleGameLayer;
-import org.allbinary.game.gd.layer.GDGameLayerManager;
+import org.allbinary.game.layer.GDGameLayerManager;
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.opengles.OpenGLCapabilities;

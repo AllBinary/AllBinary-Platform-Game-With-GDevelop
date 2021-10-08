@@ -1,4 +1,4 @@
-package org.allbinary.game.gd;
+package org.allbinary.game;
 
 import org.allbinary.graphics.threed.min3d.AllBinarySceneController;
 import org.allbinary.graphics.threed.min3d.GDGameSceneController;

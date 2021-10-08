@@ -11,13 +11,13 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd.canvas;
+package org.allbinary.game.canvas;
 
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Graphics;
 
-import org.allbinary.game.gd.init.GDGameStaticInitializerFactory;
-import org.allbinary.game.gd.level.GDGameLevelBuilder;
+import org.allbinary.game.init.GDGameStaticInitializerFactory;
+import org.allbinary.game.level.GDGameLevelBuilder;
 import org.allbinary.input.accelerometer.AccelerometerSensorFactory;
 import org.allbinary.input.gyro.AllBinaryOrientationSensor;
 import org.allbinary.input.gyro.GyroSensorFactory;
@@ -47,7 +47,7 @@ import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
 import org.allbinary.game.score.BasicHighScoresFactory;
 import org.allbinary.game.state.GameState;
-import org.allbinary.game.gd.GDGameAllBinarySceneControllerFactory;
+import org.allbinary.game.GDGameAllBinarySceneControllerFactory;
 import org.allbinary.game.tick.OptimizedTickableLayerProcessor;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
