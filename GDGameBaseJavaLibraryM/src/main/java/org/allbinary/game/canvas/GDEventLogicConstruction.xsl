@@ -181,6 +181,38 @@
                              
                     };
                 </xsl:if>
+                
+                <xsl:if test="$typeValue = 'CollisionNP'" >
+                    size = this.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayerArray.length;
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+
+                        collidableBehavior = ((GDCollidableBehavior) this.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayerArray[index].getCollidableInferface());
+                        final GroupInterface groupInterface = this.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayerArray[0].getGroupInterface()[0];
+                        //Child VarScene conditions with actions
+                        <xsl:for-each select="../events" >
+                            <xsl:if test="actions" >
+                                //1
+                                collidableBehavior.groupCollisionList.add(groupInterface);
+                                collidableBehavior.actionCollisionList.add(this.actionArrayOfArrays[<xsl:value-of select="number(substring(generate-id(), 3))" />]);
+                            </xsl:if>
+                        </xsl:for-each>
+                        <xsl:for-each select="../events/events" >
+                            <xsl:if test="actions" >
+                                //2
+                                collidableBehavior.groupCollisionList.add(groupInterface);
+                                collidableBehavior.actionCollisionList.add(this.actionArrayOfArrays[<xsl:value-of select="number(substring(generate-id(), 3))" />]);
+                            </xsl:if>
+                        </xsl:for-each>
+                        <xsl:for-each select="../events/events/events" >
+                            <xsl:if test="actions" >
+                                //3
+                                collidableBehavior.groupCollisionList.add(groupInterface);
+                                collidableBehavior.actionCollisionList.add(this.actionArrayOfArrays[<xsl:value-of select="number(substring(generate-id(), 3))" />]);
+                            </xsl:if>
+                        </xsl:for-each>
+                    }
+                </xsl:if>
+                
             </xsl:for-each>
 
         </xsl:for-each>

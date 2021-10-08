@@ -11,8 +11,9 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd.canvas;
+package org.allbinary.game.canvas;
 
+import org.allbinary.game.gd.canvas.GDGameHelpPaintable;
 import org.allbinary.game.paint.GameScrollMenuPaintable;
 import org.allbinary.game.paint.MainGameDemoStatePaintable;
 import org.allbinary.game.paint.OwnershipPaintable;

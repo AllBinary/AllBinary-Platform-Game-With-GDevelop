@@ -9,7 +9,7 @@ package org.allbinary.game.gd.resource;
  */
 
 import org.allbinary.android.input.motion.button.TouchButtonAndroidResources;
-import org.allbinary.game.gd.init.GDGameResourceInitialization;
+import org.allbinary.game.init.GDGameResourceInitialization;
 
 public class GDGameAndroidResourceInitialization 
 extends GDGameResourceInitialization

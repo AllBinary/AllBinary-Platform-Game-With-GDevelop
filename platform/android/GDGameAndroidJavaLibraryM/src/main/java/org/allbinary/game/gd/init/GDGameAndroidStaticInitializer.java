@@ -1,5 +1,6 @@
 package org.allbinary.game.gd.init;
 
+import org.allbinary.game.init.GDGameStaticInitializer;
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import javax.microedition.lcdui.CommandListener;

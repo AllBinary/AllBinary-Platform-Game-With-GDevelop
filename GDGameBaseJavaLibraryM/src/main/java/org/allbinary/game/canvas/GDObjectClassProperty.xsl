@@ -39,6 +39,7 @@
                 };
 
                 private GDObject[] <xsl:value-of select="name" />Array;
+                private GDGameLayer[] <xsl:value-of select="name" />GDGameLayerArray;
             </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
@@ -58,8 +59,8 @@
                     }
                 };
 
-                //private GDObject<xsl:text> </xsl:text><xsl:value-of select="name" />;
                 private GDObject[]<xsl:text> </xsl:text><xsl:value-of select="name" />Array;
+                private GDGameLayer[] <xsl:value-of select="name" />GDGameLayerArray;
                 
             </xsl:if>
 

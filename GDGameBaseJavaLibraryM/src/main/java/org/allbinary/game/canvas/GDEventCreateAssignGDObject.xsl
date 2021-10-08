@@ -66,14 +66,19 @@
                 <xsl:text>&#10;</xsl:text>
             </xsl:for-each>
             <xsl:if test="actions" >
+                this.actionArrayOfArrays[<xsl:value-of select="number(substring(generate-id(), 3))" />] = new GDAction() {
+
+                    public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2) {
+
                 //repeatExpression <xsl:value-of select="repeatExpression" />                
-                size = <xsl:if test="not(repeatExpression)" >1</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
+                final int size = <xsl:if test="not(repeatExpression)" >1</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
                 <xsl:for-each select="actions" >
                     <xsl:variable name="typeValue" select="type/value" />
                     <xsl:if test="$typeValue = 'Create'" >
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 2" >
-                this.<xsl:value-of select="text()" />Array = new GDObject[size];
+                <xsl:value-of select="text()" />Array = new GDObject[size];
+                <xsl:value-of select="text()" />GDGameLayerArray = new GDGameLayer[size];
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:if>
@@ -89,7 +94,7 @@
                 <xsl:if test="$typeValue = 'Create'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
-                            this.<xsl:value-of select="text()" />Array[index] = new <xsl:value-of select="text()" />(
+                            <xsl:value-of select="text()" />Array[index] = new <xsl:value-of select="text()" />(
                         </xsl:if>
                     </xsl:for-each>
                     <xsl:for-each select="parameters" >
@@ -145,8 +150,10 @@
             </xsl:for-each>
             <xsl:if test="actions" >
                 }
+                }
+                };
             </xsl:if>
-            
+                        
             <xsl:call-template name="eventsCreateAssignGDObject" >
                 <xsl:with-param name="layoutIndex" >
                     <xsl:value-of select="$layoutIndex" />

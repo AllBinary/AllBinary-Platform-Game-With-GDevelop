@@ -11,20 +11,24 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd.init;
+package org.allbinary.game.resource;
 
-import org.allbinary.game.resource.ResourceInitialization;
+import org.allbinary.media.audio.Sound;
+import org.allbinary.media.audio.CompositeSound;
 
-public class GDGameResourceInitialization 
-    extends ResourceInitialization
+
+public class GDThrusterSound extends CompositeSound
 {
-    public GDGameResourceInitialization()
-    {
-    }
-
-    public void init()
-    throws Exception
-    {
-        super.init();
-    }
+   private static Sound soundInterface = new GDThrusterSound();
+   
+   private GDThrusterSound()
+   {
+       super("resource:/wav/Thruster.wav");
+   }
+   
+   public static Sound getInstance()
+   {
+      return soundInterface;
+   }
 }
+

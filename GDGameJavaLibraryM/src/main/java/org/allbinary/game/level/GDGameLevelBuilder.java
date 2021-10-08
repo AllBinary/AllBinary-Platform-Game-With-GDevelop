@@ -11,7 +11,7 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd.level;
+package org.allbinary.game.level;
 
 import org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;

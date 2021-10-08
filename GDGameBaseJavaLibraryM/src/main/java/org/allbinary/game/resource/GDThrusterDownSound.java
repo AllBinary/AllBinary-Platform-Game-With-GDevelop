@@ -11,19 +11,19 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd.resource;
+package org.allbinary.game.resource;
 
 import org.allbinary.media.audio.Sound;
 import org.allbinary.media.audio.CompositeSound;
 
 
-public class GDExplosionSound extends CompositeSound
+public class GDThrusterDownSound extends CompositeSound
 {
-   private static Sound soundInterface = new GDExplosionSound();
+   private static Sound soundInterface = new GDThrusterDownSound();
    
-   private GDExplosionSound()
+   private GDThrusterDownSound()
    {
-       super("resource:/wav/Explosion.wav");
+       super("resource:/wav/ThrusterDown.wav");
    }
    
    public static Sound getInstance()

@@ -11,7 +11,7 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd.layer;
+package org.allbinary.game.layer;
 
 import org.allbinary.game.GameInfo;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;

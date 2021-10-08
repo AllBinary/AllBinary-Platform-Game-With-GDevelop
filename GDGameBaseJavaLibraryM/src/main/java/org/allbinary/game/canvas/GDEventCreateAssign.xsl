@@ -76,7 +76,7 @@
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             final GDObject <xsl:value-of select="text()" /> = <xsl:value-of select="text()" />Array[index];
-                            final GDGameLayer <xsl:value-of select="text()" />GDGameLayer = <xsl:value-of select="text()" />GDGameLayerFactory.create(
+                            this.<xsl:value-of select="text()" />GDGameLayerArray[index] = <xsl:value-of select="text()" />GDGameLayerFactory.create(
                                 <xsl:value-of select="text()" />
                             );                                                                                                                
                         </xsl:if>

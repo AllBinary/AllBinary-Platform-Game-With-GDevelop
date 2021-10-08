@@ -11,19 +11,19 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd.resource;
+package org.allbinary.game.resource;
 
 import org.allbinary.media.audio.Sound;
 import org.allbinary.media.audio.CompositeSound;
 
 
-public class GDLaserShootSound extends CompositeSound
+public class GDExplosionSound extends CompositeSound
 {
-   private static Sound soundInterface = new GDLaserShootSound();
+   private static Sound soundInterface = new GDExplosionSound();
    
-   private GDLaserShootSound()
+   private GDExplosionSound()
    {
-       super("resource:/wav/LaserShoot.wav");
+       super("resource:/wav/Explosion.wav");
    }
    
    public static Sound getInstance()
