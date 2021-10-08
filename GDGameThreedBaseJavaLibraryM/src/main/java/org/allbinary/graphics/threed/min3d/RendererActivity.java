@@ -10,7 +10,7 @@ import org.allbinary.android.AndroidStrings;
 import org.allbinary.android.device.OpenGLESGraphicsFactory;
 import org.allbinary.android.view.OptimizedGLSurfaceView;
 import org.allbinary.game.configuration.feature.Features;
-import org.allbinary.game.R;
+import org.allbinary.game.gd.R;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
