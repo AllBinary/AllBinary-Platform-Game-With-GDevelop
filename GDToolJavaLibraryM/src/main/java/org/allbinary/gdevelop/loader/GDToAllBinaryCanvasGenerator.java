@@ -52,11 +52,11 @@ public class GDToAllBinaryCanvasGenerator
         if (index == 1)
         {
             className = stringBuilder.append("GDGame").append(name).append("Canvas").toString();
-            this.orig = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\canvas\\GDGameGDLayoutCanvas.xsl";
+            this.orig = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameGDLayoutCanvas.xsl";
         } else
         {
             className = stringBuilder.append("GDGameStart").append(name).append("Canvas").toString();
-            this.orig = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\canvas\\GDGameStartGDLayoutCanvas.xsl";
+            this.orig = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameStartGDLayoutCanvas.xsl";
         }
     }
 
@@ -64,7 +64,7 @@ public class GDToAllBinaryCanvasGenerator
     {
 
         stringBuilder.delete(0, stringBuilder.length());
-        final String CANVAS = stringBuilder.append("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\canvas\\").append(this.className).append(".java").toString();
+        final String CANVAS = stringBuilder.append("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\").append(this.className).append(".java").toString();
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
 

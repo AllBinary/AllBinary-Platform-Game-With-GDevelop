@@ -52,7 +52,7 @@ public class GDLayoutsToAllBinaryGenerator
             
             final StreamUtil streamUtil = StreamUtil.getInstance();
 
-            final InputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\canvas\\GDLayout.xsl");
+            final InputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayout.xsl");
             final String xslDocumentStr = streamUtil.getAsString(inputStream);
             final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
             String xmlDocumentStr = streamUtil.getAsString(gameInputStream);
@@ -61,7 +61,7 @@ public class GDLayoutsToAllBinaryGenerator
             final Replace replace3 = new Replace(".Height()", ".Height(graphics)");
             xmlDocumentStr = replace3.all(xmlDocumentStr);
 
-            final String START = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\canvas\\GD";
+            final String START = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD";
             final String END = "SpecialAnimation.java";
             
             String indexAsString;
