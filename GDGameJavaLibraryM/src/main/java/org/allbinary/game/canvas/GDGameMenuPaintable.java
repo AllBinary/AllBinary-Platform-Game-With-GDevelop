@@ -13,7 +13,7 @@
 */
 package org.allbinary.game.canvas;
 
-import org.allbinary.game.gd.canvas.GDGameHelpPaintable;
+import org.allbinary.game.canvas.GDGameHelpPaintable;
 import org.allbinary.game.paint.GameScrollMenuPaintable;
 import org.allbinary.game.paint.MainGameDemoStatePaintable;
 import org.allbinary.game.paint.OwnershipPaintable;

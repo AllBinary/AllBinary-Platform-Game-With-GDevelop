@@ -48,7 +48,7 @@ Created By: Travis Berthelot
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
                     
-                package org.allbinary.game.gd.canvas;
+                package org.allbinary.game.canvas;
 
                 import java.io.InputStream;
 
@@ -64,7 +64,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.text.TextAnimation;
                 import org.allbinary.animation.text.CustomTextAnimation;
                 import org.allbinary.data.resource.ResourceUtil;
-                import org.allbinary.game.gd.GDGameMIDlet;
+                import org.allbinary.game.GDGameMIDlet;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.layer.NullGDGameLayerFactory;
@@ -74,7 +74,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 
                 import org.allbinary.game.layout.GDObject;
-                import org.allbinary.game.gd.resource.GDResources;
+                import org.allbinary.game.resource.GDResources;
                 import org.allbinary.game.identification.Group;
                 import org.allbinary.game.identification.GroupFactory;
                 import org.allbinary.game.identification.GroupInterface;

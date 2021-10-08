@@ -18,11 +18,11 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd.canvas;
+package org.allbinary.game.canvas;
 
 import javax.microedition.lcdui.CommandListener;
 
-import org.allbinary.game.gd.init.GDGameStaticInitializerFactory;
+import org.allbinary.game.init.GDGameStaticInitializerFactory;
 
 import org.allbinary.game.configuration.GameSpeed;
 import org.allbinary.game.displayable.canvas.StartCanvas;

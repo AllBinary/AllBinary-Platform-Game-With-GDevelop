@@ -11,7 +11,7 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd.canvas;
+package org.allbinary.game.canvas;
 
 import javax.microedition.lcdui.Graphics;
 

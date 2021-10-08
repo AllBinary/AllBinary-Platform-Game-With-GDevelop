@@ -17,7 +17,7 @@ import org.allbinary.game.canvas.GDGameSoftwareInfo;
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Graphics;
 
-import org.allbinary.game.gd.init.GDGameStaticInitializerFactory;
+import org.allbinary.game.init.GDGameStaticInitializerFactory;
 import org.allbinary.game.level.GDGameLevelBuilder;
 import org.allbinary.input.accelerometer.AccelerometerSensorFactory;
 import org.allbinary.input.gyro.AllBinaryOrientationSensor;

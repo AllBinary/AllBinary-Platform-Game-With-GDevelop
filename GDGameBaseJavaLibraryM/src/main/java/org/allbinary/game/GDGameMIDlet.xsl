@@ -20,19 +20,19 @@
 */
 package org.allbinary.game.gd;
 
-//import org.allbinary.game.gd.canvas.GDGameStartCanvas;
-import org.allbinary.game.gd.canvas.<GDLayout0>;
-import org.allbinary.game.gd.canvas.<GDLayout1>;
-import org.allbinary.game.gd.canvas.<GDLayout2>;
+//import org.allbinary.game.canvas.GDGameStartCanvas;
+import org.allbinary.game.canvas.<GDLayout0>;
+import org.allbinary.game.canvas.<GDLayout1>;
+import org.allbinary.game.canvas.<GDLayout2>;
 import javax.microedition.lcdui.Displayable;
 import org.allbinary.canvas.RunnableCanvas;
-import org.allbinary.game.gd.canvas.GDGameInputMappingHelpPaintable;
-import org.allbinary.game.gd.canvas.GDGameSoftwareInfo;
-//import org.allbinary.game.gd.canvas.GDGameStartCanvas;
-import org.allbinary.game.gd.canvas.GDGameStartMenuCanvas;
-import org.allbinary.game.gd.canvas.GDGameAsteroidsCanvas;
-import org.allbinary.game.gd.canvas.GDGameStartGameOverCanvas;
-import org.allbinary.game.gd.layer.GDGameLayerManager;
+import org.allbinary.game.canvas.GDGameInputMappingHelpPaintable;
+import org.allbinary.game.canvas.GDGameSoftwareInfo;
+//import org.allbinary.game.canvas.GDGameStartCanvas;
+import org.allbinary.game.canvas.GDGameStartMenuCanvas;
+import org.allbinary.game.canvas.GDGameAsteroidsCanvas;
+import org.allbinary.game.canvas.GDGameStartGameOverCanvas;
+import org.allbinary.game.layer.GDGameLayerManager;
 import org.allbinary.media.audio.GDGameSoundsFactoryFactory;
 
 import org.allbinary.logic.basic.string.CommonStrings;

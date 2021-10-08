@@ -11,7 +11,7 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd.canvas;
+package org.allbinary.game.canvas;
 
 import org.allbinary.game.paint.help.HelpPaintable;
 import org.allbinary.graphics.color.BasicColorFactory;

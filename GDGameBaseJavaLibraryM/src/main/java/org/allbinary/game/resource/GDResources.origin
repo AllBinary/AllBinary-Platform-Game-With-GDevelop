@@ -11,7 +11,7 @@
 * Created By: Travis Berthelot
 * 
  */
-package org.allbinary.game.gd.resource;
+package org.allbinary.game.resource;
 
 /**
  *

@@ -17,7 +17,7 @@ import org.allbinary.game.canvas.GDGameSoftwareInfo;
 import org.allbinary.game.canvas.GDGameMenuPaintable;
 import javax.microedition.lcdui.CommandListener;
 
-import org.allbinary.game.gd.init.GDGameStaticInitializerFactory;
+import org.allbinary.game.init.GDGameStaticInitializerFactory;
 import org.allbinary.game.layer.GDGameLayerManager;
 
 import org.allbinary.logic.communication.log.PreLogUtil;
