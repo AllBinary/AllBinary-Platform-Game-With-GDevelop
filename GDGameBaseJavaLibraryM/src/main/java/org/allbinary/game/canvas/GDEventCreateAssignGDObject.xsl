@@ -69,7 +69,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:text>&#10;</xsl:text>
-            </xsl:for-each>
+            </xsl:for-each>            
             <xsl:if test="actions" >
                 this.actionArrayOfArrays[<xsl:value-of select="number(substring(generate-id(), 3))" />] = new GDAction() {
 
@@ -78,6 +78,19 @@ Created By: Travis Berthelot
                 //repeatExpression <xsl:value-of select="repeatExpression" />                
                 final int size = <xsl:if test="not(repeatExpression)" >1</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
                 <xsl:for-each select="actions" >
+                    
+                    <xsl:if test="not(preceding-sibling::actions[type/value/text() = 'Create'])">
+                        //No preceding action with Create
+                        <xsl:call-template name="objectGDObjectAtIndex" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="parametersAsString" >
+                                <xsl:for-each select="parameters" ><xsl:if test="position() > 2" ><xsl:value-of select="text()" />,</xsl:if></xsl:for-each>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:if>                        
+                                                            
                     <xsl:variable name="typeValue" select="type/value" />
                     <xsl:if test="$typeValue = 'Create'" >
                         <xsl:for-each select="parameters" >

@@ -34,7 +34,7 @@ Created By: Travis Berthelot
         <xsl:param name="parametersAsString" />
 
         //objectGDObjectAtIndex - START
-        //layoutIndex=<xsl:value-of select="$layoutIndex" /> parameters=<xsl:value-of select="$parametersAsString" />
+        //layoutIndex=<xsl:value-of select="$layoutIndex" /> parametersAsString=<xsl:value-of select="$parametersAsString" />
         <xsl:for-each select="/game">
             <xsl:for-each select="layouts" >
                 <xsl:variable name="index" select="position() - 1" />
@@ -42,13 +42,14 @@ Created By: Travis Berthelot
 
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
+                        <xsl:variable name="name" ><xsl:value-of select="name" />.</xsl:variable>
 
-                        <xsl:if test="contains($parametersAsString, name) = text()" >
+                        <xsl:if test="contains($parametersAsString, $name) = text()" >
                             <xsl:if test="$typeValue = 'Sprite'" >
-                                final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />Array[index];
+                                    final GDObject <xsl:value-of select="name" /> = ((GDGameLayer) gameLayer).gdObject;
                             </xsl:if>
                             <xsl:if test="$typeValue = 'TextObject::Text'" >
-                                final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />Array[index];
+                                    final GDObject <xsl:value-of select="name" /> = ((GDGameLayer) gameLayer).gdObject;
                             </xsl:if>
                         </xsl:if>
 
