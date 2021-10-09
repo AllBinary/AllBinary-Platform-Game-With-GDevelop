@@ -49,7 +49,7 @@ Created By: Travis Berthelot
                                     final GDObject <xsl:value-of select="name" /> = ((GDGameLayer) gameLayer).gdObject;
                             </xsl:if>
                             <xsl:if test="$typeValue = 'TextObject::Text'" >
-                                    final GDObject <xsl:value-of select="name" /> = ((GDGameLayer) gameLayer).gdObject;
+                                final GDObject <xsl:value-of select="name" /> = ((GDGameLayer) gameLayer).gdObject;
                             </xsl:if>
                         </xsl:if>
 

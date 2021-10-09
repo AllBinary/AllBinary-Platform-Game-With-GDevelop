@@ -70,13 +70,21 @@ Created By: Travis Berthelot
                 //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:text>&#10;</xsl:text>
             </xsl:for-each>            
-            <xsl:if test="actions" >
+            <xsl:variable name="actionWithUsedType" >
+                <xsl:for-each select="actions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    <xsl:if test="$typeValue = 'UnPauseTimer' or $typeValue = 'SetAngle' or $typeValue = 'ChangePlan' or $typeValue = 'ChangeAnimation' or $typeValue = 'ModVarObjet'" >found</xsl:if>
+                </xsl:for-each>
+            </xsl:variable>
+
+            <xsl:if test="contains($actionWithUsedType, 'found')" >
+
                 this.actionArrayOfArrays[<xsl:value-of select="number(substring(generate-id(), 3))" />] = new GDAction() {
 
                     public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2) {
 
-                //repeatExpression <xsl:value-of select="repeatExpression" />                
-                final int size = <xsl:if test="not(repeatExpression)" >1</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
+                        //repeatExpression <xsl:value-of select="repeatExpression" />                
+                        final int size = <xsl:if test="not(repeatExpression)" >1</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
                 <xsl:for-each select="actions" >
                     
                     <xsl:if test="not(preceding-sibling::actions[type/value/text() = 'Create'])">
@@ -101,11 +109,11 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:if>
                 </xsl:for-each>
-                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-            </xsl:if>
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+            
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                
+
                 <xsl:if test="$typeValue = 'UnPauseTimer'" >
                     <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.unPause();</xsl:if></xsl:for-each>
                 </xsl:if>
@@ -166,10 +174,9 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
             </xsl:for-each>
-            <xsl:if test="actions" >
+                    }
                 }
-                }
-                };
+            };
             </xsl:if>
                         
             <xsl:call-template name="eventsCreateAssignGDObject" >
