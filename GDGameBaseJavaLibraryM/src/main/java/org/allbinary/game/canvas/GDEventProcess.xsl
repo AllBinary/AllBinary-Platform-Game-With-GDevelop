@@ -33,7 +33,7 @@ Created By: Travis Berthelot
                 </xsl:with-param>
             </xsl:call-template>
 
-            //Event <xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
+            //Event nodeId=<xsl:value-of select="generate-id()" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
             <xsl:for-each select="comment" >
                 //Comment: <xsl:value-of select="text()" />
             </xsl:for-each>
@@ -90,7 +90,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="actions" >
                         //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                         <xsl:text>&#10;</xsl:text>
-                        this.actionArrayOfArrays[<xsl:value-of select="number(substring(generate-id(), 3))" />].process();
+                        this.actionArray[<xsl:value-of select="number(substring(generate-id(), 3))" />].process();
                     </xsl:for-each>
                     }                    
                 </xsl:if>

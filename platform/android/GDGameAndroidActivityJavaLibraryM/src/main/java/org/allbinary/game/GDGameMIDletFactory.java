@@ -1,4 +1,4 @@
-package org.allbinary.game.gd;
+package org.allbinary.game;
 
 import javax.microedition.midlet.MIDlet;
 import org.allbinary.midlet.MidletFactoryInterface;

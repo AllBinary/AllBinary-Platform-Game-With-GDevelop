@@ -49,7 +49,7 @@ Created By: Travis Berthelot
                                     final GDObject <xsl:value-of select="name" /> = ((GDGameLayer) gameLayer).gdObject;
                             </xsl:if>
                             <xsl:if test="$typeValue = 'TextObject::Text'" >
-                                final GDObject <xsl:value-of select="name" /> = ((GDGameLayer) gameLayer).gdObject;
+                                    final GDObject <xsl:value-of select="name" /> = ((GDGameLayer) gameLayer).gdObject;
                             </xsl:if>
                         </xsl:if>
 
@@ -59,6 +59,38 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:for-each>
         //objectGDObjectAtIndex - END
+
+    </xsl:template>
+
+    <xsl:template name="objectGDObjectAtIndex2" >
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="parametersAsString" />
+
+        <xsl:for-each select="/game">
+            <xsl:for-each select="layouts" >
+                <xsl:variable name="index" select="position() - 1" />
+                <xsl:if test="number($index) = $layoutIndex" >
+
+                    <xsl:for-each select="objects" >
+                        <xsl:variable name="typeValue" select="type" />
+                        <xsl:variable name="name" ><xsl:value-of select="name" />.</xsl:variable>
+
+                        <xsl:if test="contains($parametersAsString, $name) = text()" >
+                            <xsl:if test="$typeValue = 'Sprite'" >
+                        //final GDObject <xsl:value-of select="name" /> = ((GDGameLayer) <xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject;
+                        this.process(((GDGameLayer) <xsl:value-of select="name" />GDGameLayerList.get(0)), null);
+                            </xsl:if>
+                            <xsl:if test="$typeValue = 'TextObject::Text'" >
+                        //final GDObject <xsl:value-of select="name" /> = ((GDGameLayer) <xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject;
+                        this.process(((GDGameLayer) <xsl:value-of select="name" />GDGameLayerList.get(0)), null);
+                            </xsl:if>
+                        </xsl:if>
+
+                    </xsl:for-each>
+
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>
 
     </xsl:template>
 

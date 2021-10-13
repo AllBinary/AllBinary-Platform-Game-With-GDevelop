@@ -76,7 +76,7 @@
 
     <application android:label="@string/gd_app_name" android:icon="@drawable/gd_icon" >
         <activity android:label="@string/gd_app_name" android:icon="@drawable/gd_icon"
-                  android:name="org.allbinary.game.gd.GDGameAndroidActivity"
+                  android:name="org.allbinary.game.GDGameAndroidActivity"
                   android:configChanges="keyboardHidden|orientation" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

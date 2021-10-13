@@ -33,7 +33,7 @@ Created By: Travis Berthelot
                 </xsl:with-param>
             </xsl:call-template>
 
-            //Event <xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
+            //Event nodeId=<xsl:value-of select="generate-id()" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
             <xsl:for-each select="comment" >
                 //Comment: <xsl:value-of select="text()" />
             </xsl:for-each>

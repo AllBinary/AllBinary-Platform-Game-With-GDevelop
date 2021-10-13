@@ -24,8 +24,8 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
-    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventCreateAssign.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventPaint.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventOpen.xsl" />
@@ -122,7 +122,7 @@ Created By: Travis Berthelot
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
                         
                         private final Object graphics = new Object();
-                        private final GDAction[] actionArrayOfArrays = new GDAction[10000];
+                        private final GDAction[] actionArray = new GDAction[10000];
                         
                         private final GDGroupHelper gdGroupHelper = new GDGroupHelper();
 
@@ -183,14 +183,26 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
+                    <xsl:for-each select="objects" >
+                        <xsl:variable name="typeValue" select="type" />
+                        <xsl:if test="$typeValue = 'Sprite'" >
+                            <xsl:variable name="name" select="name" />
+                            private GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
+                        </xsl:if>
+                        <xsl:if test="$typeValue = 'TextObject::Text'" >
+                            <xsl:variable name="name" select="name" />
+                            private GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
+                        </xsl:if>
+                    </xsl:for-each>
+
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));
 
-                        int size = actionArrayOfArrays.length;
+                        int size = actionArray.length;
 //                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 //                            final int currentIndex = index;
-//                            actionArrayOfArrays[index2][index] = new GDAction() {
+//                            actionArray[index2][index] = new GDAction() {
 //                            public void process() {
 //                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, Integer.toString(currentIndex), new Exception()));
 //                                }
@@ -206,18 +218,6 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroupsSet - END
-
-                    <xsl:for-each select="objects" >
-                        <xsl:variable name="typeValue" select="type" />
-                        <xsl:if test="$typeValue = 'Sprite'" >
-                            <xsl:variable name="name" select="name" />
-                            GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
-                        </xsl:if>
-                        <xsl:if test="$typeValue = 'TextObject::Text'" >
-                            <xsl:variable name="name" select="name" />
-                            GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
-                        </xsl:if>
-                    </xsl:for-each>
 
                         try {
 
@@ -257,18 +257,14 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>                        
                     </xsl:call-template>
-
-                    <xsl:call-template name="eventsCreateAssign" >
+                    
+                    //BuiltinCommonInstructions::Once - START
+                    <xsl:call-template name="eventsOnceConditionProcessActions" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="createdObjectsAsString" >
-                            <xsl:value-of select="$createdObjectsAsString" />
-                        </xsl:with-param>
                     </xsl:call-template>
+                    //BuiltinCommonInstructions::Once - END
 
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
@@ -307,7 +303,8 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                         <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
                         <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
-                        //this.<xsl:value-of select="name" />List = new BasicArrayList(1);
+                        this.<xsl:value-of select="name" />Array = new GDObject[1];
+                        //this.<xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(1);
                         //this.<xsl:value-of select="name" />GDGameLayerArray = new GDGameLayer[1];
                         this.<xsl:value-of select="name" />Array[0] = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);

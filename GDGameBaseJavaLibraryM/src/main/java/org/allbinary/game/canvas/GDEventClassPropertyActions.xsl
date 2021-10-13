@@ -26,7 +26,7 @@ Created By: Travis Berthelot
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
                                     
-            //Event position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
+            //Event nodeId=<xsl:value-of select="generate-id()" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
             <xsl:for-each select="comment" >
                 //Comment: <xsl:value-of select="text()" />
             </xsl:for-each>
@@ -75,8 +75,7 @@ Created By: Travis Berthelot
 
                     <xsl:for-each select="conditions" >
                         <xsl:variable name="typeValue" select="type/value" />
-                        //Condition nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
-                            <xsl:value-of select="text()" />,</xsl:for-each>
+                        //Condition nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                         <xsl:if test="$typeValue = 'Timer'" >
                             <xsl:for-each select="../actions" >
                                 <xsl:variable name="typeValue" select="type/value" />

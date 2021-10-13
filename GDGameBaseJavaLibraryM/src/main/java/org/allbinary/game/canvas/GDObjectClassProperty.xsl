@@ -64,8 +64,8 @@ Created By: Travis Berthelot
                     }
                 };
 
-                private GDObject[]<xsl:text> </xsl:text><xsl:value-of select="name" />Array;
-                private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
+                private GDObject[]<xsl:text> </xsl:text><xsl:value-of select="name" />Array = new GDObject[1];
+                private BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(1);
             </xsl:if>
 
         </xsl:for-each>
@@ -85,7 +85,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                 private final String <xsl:value-of select="$NAME" /> = "<xsl:value-of select="name" />";
-                private final GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory;
+                //private final GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory;
             </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />

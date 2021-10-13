@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.allbinary.game.gd.GDGameAndroidOpenGLESView
+<org.allbinary.game.GDGameAndroidOpenGLESView
     xmlns:android="http://schemas.android.com/apk/res/android" 
     android:id="@+id/gd_gl"
     android:layout_width="fill_parent" 

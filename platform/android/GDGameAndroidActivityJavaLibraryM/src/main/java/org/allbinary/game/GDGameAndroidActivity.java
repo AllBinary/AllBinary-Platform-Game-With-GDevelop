@@ -1,4 +1,4 @@
-package org.allbinary.game.gd;
+package org.allbinary.game;
 
 import java.util.Hashtable;
 
@@ -12,7 +12,7 @@ import org.allbinary.android.activity.game.GameMidletActivity;
 import org.allbinary.business.advertisement.GameAdStateFactory;
 import org.allbinary.configuration.ApplicationConfiguration;
 import org.allbinary.game.GameAdState;
-import org.allbinary.game.gd.canvas.GDGameSoftwareInfo;
+import org.allbinary.game.canvas.GDGameSoftwareInfo;
 
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;

@@ -1,7 +1,7 @@
 package org.allbinary.logic.system.security.licensing;
 
 import org.allbinary.logic.system.security.licensing.MobileClientInformation;
-import org.allbinary.game.gd.canvas.GDGameSoftwareInfo;
+import org.allbinary.game.canvas.GDGameSoftwareInfo;
 
 import org.allbinary.logic.basic.string.CommonSeps;
 
