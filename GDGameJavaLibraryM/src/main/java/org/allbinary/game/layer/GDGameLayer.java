@@ -51,11 +51,10 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             final GDObject gdObject) throws Exception {
         super(groupInterface, layerInfo, new ViewPosition());
 
-        this.setVisible(true);
-
         this.gdObject = gdObject;
         
         this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.z);
+        this.initPosition();
 
         this.SIZE = animationInterfaceFactoryInterfaceArray.length;
         final IndexedAnimation[] initIndexedAnimationInterface = new IndexedAnimation[SIZE];

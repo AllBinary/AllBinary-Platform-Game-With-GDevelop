@@ -319,7 +319,7 @@ public class <GDLayout> extends AllBinaryGameCanvas
         //this.cleanupGame();
         PrimaryPlayerQueueFactory.getInstance().clear();
         SecondaryPlayerQueueFactory.getInstance().clear();
-        gameLayerManager.cleanup();
+        //gameLayerManager.cleanup();
 
         if (!this.isRunning())
         {
