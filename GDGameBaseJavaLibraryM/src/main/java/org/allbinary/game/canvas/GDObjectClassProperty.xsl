@@ -43,8 +43,9 @@ Created By: Travis Berthelot
                     
                 };
 
-                private GDObject[] <xsl:value-of select="name" />Array;
+                private GDObject[] <xsl:value-of select="name" />Array = ZERO_GD_OBJECT;
                 private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
+                private final GDActionsCollidableBehavior <xsl:value-of select="name" />GDActionsCollidableBehavior = new GDActionsCollidableBehavior();
             </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />

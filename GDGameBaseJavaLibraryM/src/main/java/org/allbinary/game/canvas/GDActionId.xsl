@@ -29,16 +29,6 @@
         </xsl:for-each>
         
     </xsl:template>
-        
-    <!--
-        <xsl:for-each select="events" >
-            <xsl:call-template name="eventIds" >
-                <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="number($totalRecursions) + 1" />
-                </xsl:with-param>                
-            </xsl:call-template>
-        </xsl:for-each>
-    -->
             
     <xsl:template name="actionIds">
         <xsl:param name="totalRecursions" />

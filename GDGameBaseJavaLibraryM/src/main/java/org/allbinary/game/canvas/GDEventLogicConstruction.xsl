@@ -82,34 +82,35 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
                 <xsl:if test="$typeValue = 'CollisionNP'" >
-                    size = this.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayerList.size();
-                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 
-                        collidableBehavior = ((GDCollidableBehavior) ((GDGameLayer) this.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayerList.get(index)).getCollidableInferface());
-                        final GroupInterface groupInterface = ((GDGameLayer) this.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayerList.get(0)).getGroupInterface()[0];
+                    //<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
+                    //<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
+                    <xsl:variable name="name1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="name" >this.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDActionsCollidableBehavior</xsl:variable>
+
                         //Child VarScene conditions with actions
                         <xsl:for-each select="../events" >
                             <xsl:if test="actions" >
-                                //1
-                                collidableBehavior.groupCollisionList.add(groupInterface);
-                                collidableBehavior.actionCollisionList.add(this.actionArray[<xsl:value-of select="number(substring(generate-id(), 3))" />]);
+                    //1
+                    <xsl:value-of select="$name" />.groupCollisionList.add(<xsl:value-of select="$name1" />GroupInterface);
+                    <xsl:value-of select="$name" />.actionCollisionList.add(this.actionArray[<xsl:value-of select="number(substring(generate-id(), 3))" />]);
                             </xsl:if>
                         </xsl:for-each>
                         <xsl:for-each select="../events/events" >
                             <xsl:if test="actions" >
-                                //2
-                                collidableBehavior.groupCollisionList.add(groupInterface);
-                                collidableBehavior.actionCollisionList.add(this.actionArray[<xsl:value-of select="number(substring(generate-id(), 3))" />]);
+                    //2
+                    <xsl:value-of select="$name" />.groupCollisionList.add(<xsl:value-of select="$name1" />GroupInterface);
+                    <xsl:value-of select="$name" />.actionCollisionList.add(this.actionArray[<xsl:value-of select="number(substring(generate-id(), 3))" />]);
                             </xsl:if>
                         </xsl:for-each>
                         <xsl:for-each select="../events/events/events" >
                             <xsl:if test="actions" >
-                                //3
-                                collidableBehavior.groupCollisionList.add(groupInterface);
-                                collidableBehavior.actionCollisionList.add(this.actionArray[<xsl:value-of select="number(substring(generate-id(), 3))" />]);
+                    //3
+                    <xsl:value-of select="$name" />.groupCollisionList.add(<xsl:value-of select="$name1" />GroupInterface);
+                    <xsl:value-of select="$name" />.actionCollisionList.add(this.actionArray[<xsl:value-of select="number(substring(generate-id(), 3))" />]);
                             </xsl:if>
                         </xsl:for-each>
-                    }
+
                 </xsl:if>
                 
             </xsl:for-each>

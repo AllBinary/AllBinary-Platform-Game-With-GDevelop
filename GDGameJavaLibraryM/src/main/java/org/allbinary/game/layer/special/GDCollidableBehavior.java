@@ -19,7 +19,6 @@ import org.allbinary.game.identification.GroupInterface;
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layout.GDAction;
 import org.allbinary.logic.communication.log.ForcedLogUtil;
-import org.allbinary.util.BasicArrayList;
 
 /**
  *
@@ -28,12 +27,13 @@ import org.allbinary.util.BasicArrayList;
 public class GDCollidableBehavior extends CollidableBaseBehavior 
 {
     
-    public final BasicArrayList groupCollisionList = new BasicArrayList();
-    public final BasicArrayList actionCollisionList = new BasicArrayList();
+    public final GDActionsCollidableBehavior collidableBehavior;
     
-    public GDCollidableBehavior(final CollidableCompositeLayer ownerLayer, final boolean collidable)
+    public GDCollidableBehavior(final CollidableCompositeLayer ownerLayer, final GDActionsCollidableBehavior collidableBehavior, final boolean collidable)
     {
         super(ownerLayer, collidable);
+        
+        this.collidableBehavior = collidableBehavior;
     }
     
     // TODO TWB Special Super Efficient Collision Processing
@@ -56,9 +56,9 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
         final int size = groupInterfaceArray.length;
         for(int index = 0; index < size; index++) {
             
-            int indexOfGroup = this.groupCollisionList.indexOf(groupInterfaceArray[index]);
+            int indexOfGroup = this.collidableBehavior.groupCollisionList.indexOf(groupInterfaceArray[index]);
             if(indexOfGroup < 0) {
-                ((GDAction) this.actionCollisionList.get(indexOfGroup)).process(this.ownerLayer, collidableInterfaceCompositeInterface);
+                ((GDAction) this.collidableBehavior.actionCollisionList.get(indexOfGroup)).process(this.ownerLayer, collidableInterfaceCompositeInterface);
             }
         }
 

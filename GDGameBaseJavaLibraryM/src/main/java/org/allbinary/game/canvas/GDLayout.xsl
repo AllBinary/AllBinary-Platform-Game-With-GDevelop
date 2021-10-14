@@ -81,6 +81,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.CollidableCompositeLayer;
                 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
+                import org.allbinary.game.layer.special.GDActionsCollidableBehavior;
                 import org.allbinary.game.layer.special.GDCollidableBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.GPoint;
@@ -122,6 +123,7 @@ Created By: Travis Berthelot
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
                         
                         private final Object graphics = new Object();
+                        private final GDOBject[] ZERO_GD_OBJECT = new GDOBject[0]
                         private final GDAction[] actionArray = new GDAction[10000];
                         
                         private final GDGroupHelper gdGroupHelper = new GDGroupHelper();
@@ -274,10 +276,6 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
-                        } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
-                        }
-
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
@@ -295,8 +293,6 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
-                        try {
-
                     //instances create - START
                     <xsl:for-each select="instances" >
                         //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" />
@@ -309,7 +305,7 @@ Created By: Travis Berthelot
                         this.<xsl:value-of select="name" />Array[0] = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         <xsl:if test="layer != ''" >
-                        this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(this.<xsl:value-of select="name" />Array[0]);
+                        this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(this.<xsl:value-of select="name" />Array[0], <xsl:value-of select="name" />GDActionsCollidableBehavior);
                         allBinaryGameLayerManager.append(this.<xsl:value-of select="name" />GDGameLayer);
                         </xsl:if>
                     </xsl:for-each>
@@ -321,16 +317,15 @@ Created By: Travis Berthelot
                         </xsl:with-param>                        
                     </xsl:call-template>
 
-                        } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
-                        }
-
-                        GDCollidableBehavior collidableBehavior;
                     <xsl:call-template name="eventsLogicConstruction" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
+
+                        } catch(Exception e) {
+                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+                        }
 
                         groupLayerManagerListener.log();
                     }
