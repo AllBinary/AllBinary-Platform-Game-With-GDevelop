@@ -6,6 +6,8 @@
 package org.allbinary.gdevelop.extensions.builtin.sprite;
 
 import org.allbinary.gdevelop.json.GDProjectStrings;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,7 +30,9 @@ public class GDDirection
         this.looping = jsonObject.getBoolean(projectStrings.LOOPING);
         this.timeBetweenFrames = jsonObject.getInt(projectStrings.TIME_BETWEEN_FRAMES);
         
-        final JSONArray jsonArray = jsonObject.getJSONArray(projectStrings.SPRITE);
+        //LogUtil.put(LogFactory.getInstance(jsonObject.toString(3), this, "GDirection"));
+        
+        final JSONArray jsonArray = jsonObject.getJSONArray(projectStrings.SPRITES);
         final int size = jsonArray.length();
         for(int index = 0; index < size; index++) {
             this.spriteList.add(new GDSprite(jsonArray.getJSONObject(index)));

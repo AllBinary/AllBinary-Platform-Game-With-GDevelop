@@ -218,6 +218,7 @@ public class GDProjectStrings
     public final String CUSTOM_COLLISION_MASK = "customCollisionMask";
 
     public final String SPRITE = "sprite";
+    public final String SPRITES = "sprites";
     
     public final String AUTOMATIC = "automatic";
     

@@ -342,11 +342,8 @@ Created By: Travis Berthelot
                     <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.unPause();</xsl:if></xsl:for-each>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'Create'" >
-                    <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 2" >
-                            <xsl:value-of select="text()" />Array[index] = new <xsl:value-of select="text()" />(
-                        </xsl:if>
-                    </xsl:for-each>
+                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:value-of select="$name" />Array[index] = new <xsl:value-of select="$name" />(
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() != 2" >
                             <xsl:if test="position() != last()" >
@@ -359,7 +356,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                             <xsl:if test="position() = last()" >
                                 <xsl:if test="string-length(text()) = 0" >
-                                    null
+                                    "<xsl:value-of select="$name" />"
                                 </xsl:if>
                                 <xsl:if test="string-length(text()) > 0" >
                                     <xsl:value-of select="text()" />

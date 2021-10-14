@@ -18,7 +18,7 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd;
+package org.allbinary.game;
 
 //import org.allbinary.game.canvas.GDGameStartCanvas;
 import org.allbinary.game.canvas.<GDLayout0>;

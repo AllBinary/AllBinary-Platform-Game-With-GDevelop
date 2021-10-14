@@ -302,7 +302,7 @@ Created By: Travis Berthelot
                         this.<xsl:value-of select="name" />Array = new GDObject[1];
                         //this.<xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(1);
                         //this.<xsl:value-of select="name" />GDGameLayerArray = new GDGameLayer[1];
-                        this.<xsl:value-of select="name" />Array[0] = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
+                        this.<xsl:value-of select="name" />Array[0] = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, "<xsl:value-of select="name" />");
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         <xsl:if test="layer != ''" >
                         this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(this.<xsl:value-of select="name" />Array[0], <xsl:value-of select="name" />GDActionsCollidableBehavior);
@@ -327,7 +327,8 @@ Created By: Travis Berthelot
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
                         }
 
-                        groupLayerManagerListener.log();
+                        //allBinaryGameLayerManager.log();
+                        //groupLayerManagerListener.log();
                     }
 
                     public void process() {

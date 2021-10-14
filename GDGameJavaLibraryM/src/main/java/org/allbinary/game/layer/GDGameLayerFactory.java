@@ -43,7 +43,7 @@ public class GDGameLayerFactory
         this.layerInfo = layerInfo;
     }
     
-    public GDGameLayer create(final GDObject gdObject, final GDActionsCollidableBehavior collidableBehavior) {
+    public GDGameLayer create(final GDObject gdObject, final GDActionsCollidableBehavior collidableBehavior) throws Exception {
         
         final GDGameLayer gameLayer = new GDGameLayer(this.groupInterface,
             this.animationInterfaceFactoryInterfaceArray,

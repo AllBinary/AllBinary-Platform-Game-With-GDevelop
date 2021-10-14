@@ -21,6 +21,8 @@ import javax.microedition.lcdui.Graphics;
  */
 public class GDObject
 {
+    public final String name;
+    
     public final int x;
     public final int y;
     public int z;
@@ -37,6 +39,8 @@ public class GDObject
     public GDObject(final String unknown, final int x, final int y, final String name) {
         this.x = x;
         this.y = y;
+        
+        this.name = name;
     }
 
     public int Width(final Object nullObject) {

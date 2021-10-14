@@ -34,7 +34,7 @@ Created By: Travis Berthelot
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd;
+package org.allbinary.game;
 
 import org.allbinary.game.midlet.DemoGameMidlet;
 import org.allbinary.game.midlet.DemoGameMidletEvent;

@@ -404,9 +404,17 @@ public class <GDLayout> extends AllBinaryGameCanvas
 
     //private String soundQueue = PrimaryPlayerQueueFactory.getInstance().toString();
     
+    //private boolean isFirst = true;
+    //private final String DRAW = "draw";
+    
     public void draw(Graphics graphics)
     {
-        //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "draw"));
+        
+        //if (this.isFirst)
+        //{
+            //this.isFirst = false;
+            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, DRAW));
+        //}
         
         this.clear(graphics);
 

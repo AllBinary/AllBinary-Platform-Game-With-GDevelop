@@ -6,6 +6,8 @@
 package org.allbinary.gdevelop.extensions.builtin.sprite;
 
 import org.allbinary.gdevelop.json.GDProjectStrings;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 import org.json.JSONObject;
 
 /**
@@ -26,7 +28,14 @@ public class GDPoint
         
         this.name = jsonObject.getString(projectStrings.NAME);
         
-        this.automatic = jsonObject.getBoolean(projectStrings.AUTOMATIC);
+        //LogUtil.put(LogFactory.getInstance(jsonObject.toString(3), this, "GDPoint"));
+        
+        if(jsonObject.has(projectStrings.AUTOMATIC)) {
+            this.automatic = jsonObject.getBoolean(projectStrings.AUTOMATIC);
+        } else {
+            this.automatic = false;
+        }
+        
         
         this.x = jsonObject.getInt(projectStrings.X);
         this.y = jsonObject.getInt(projectStrings.Y);

@@ -1,4 +1,4 @@
-package org.allbinary.game.resource;
+package org.allbinary.game.gd.resource;
 
 /*
  *  Note that errors may occur even though your importing R correctly
@@ -8,11 +8,6 @@ package org.allbinary.game.resource;
  *  Remark out for independent Activities
  */
 
-import org.allbinary.game.resource.GDThrusterSound;
-import org.allbinary.game.resource.GDExplosionSound;
-import org.allbinary.game.resource.GDLaserShootSound;
-import org.allbinary.game.resource.GDThrusterDownSound;
-import org.allbinary.game.resource.GDResources;
 import java.io.InputStream;
 import org.allbinary.AndroidResources;
 
