@@ -123,7 +123,7 @@ Created By: Travis Berthelot
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
                         
                         private final Object graphics = new Object();
-                        private final GDOBject[] ZERO_GD_OBJECT = new GDOBject[0]
+                        private final GDObject[] ZERO_GD_OBJECT = new GDObject[0];
                         private final GDAction[] actionArray = new GDAction[10000];
                         
                         private final GDGroupHelper gdGroupHelper = new GDGroupHelper();
