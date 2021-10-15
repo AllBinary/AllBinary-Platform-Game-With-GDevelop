@@ -23,8 +23,8 @@ public class GDObject
 {
     public final String name;
     
-    public final int x;
-    public final int y;
+    public int x;
+    public int y;
     public int zOrder;
     
     public int rotation;

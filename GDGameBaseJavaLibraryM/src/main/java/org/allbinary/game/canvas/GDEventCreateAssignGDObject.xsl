@@ -75,7 +75,7 @@ Created By: Travis Berthelot
             <xsl:variable name="actionWithUsedType" >
                 <xsl:for-each select="actions" >
                     <xsl:variable name="typeValue" select="type/value" />
-                    <xsl:if test="$typeValue = 'UnPauseTimer' or $typeValue = 'SetAngle' or $typeValue = 'ChangePlan' or $typeValue = 'ChangeAnimation' or $typeValue = 'ModVarObjet' or $typeValue = 'TextObject::ChangeColor' or $typeValue = 'ModVarGlobal' or $typeValue = 'ModVarScene'" >found</xsl:if>
+                    <xsl:if test="$typeValue = 'UnPauseTimer' or $typeValue = 'MettreX' or $typeValue = 'MettreY' or $typeValue = 'SetAngle' or $typeValue = 'ChangePlan' or $typeValue = 'ChangeAnimation' or $typeValue = 'ModVarObjet' or $typeValue = 'TextObject::ChangeColor' or $typeValue = 'ModVarGlobal' or $typeValue = 'ModVarScene'" >found</xsl:if>
                 </xsl:for-each>
             </xsl:variable>
 
@@ -226,6 +226,22 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'MettreX'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" >final GDObject <xsl:value-of select="text()" /> = <xsl:value-of select="text()" />Array[index];<xsl:text>&#10;</xsl:text></xsl:if>
+                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.x</xsl:if><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                    </xsl:for-each>
+                    <xsl:text>&#10;</xsl:text>
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'MettreY'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" >final GDObject <xsl:value-of select="text()" /> = <xsl:value-of select="text()" />Array[index];<xsl:text>&#10;</xsl:text></xsl:if>
+                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.x</xsl:if><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                    </xsl:for-each>
+                    <xsl:text>&#10;</xsl:text>
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'SetAngle'" >
