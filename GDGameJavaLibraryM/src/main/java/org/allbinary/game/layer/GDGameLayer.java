@@ -53,7 +53,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
         this.gdObject = gdObject;
         
-        this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.z);
+        this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
         this.initPosition();
 
         this.SIZE = animationInterfaceFactoryInterfaceArray.length;
@@ -131,4 +131,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         }
     }
 
+    public void updateGDObject()
+    {
+
+    }
 }

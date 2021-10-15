@@ -25,7 +25,7 @@ public class GDObject
     
     public final int x;
     public final int y;
-    public int z;
+    public int zOrder;
     
     public int rotation;
 

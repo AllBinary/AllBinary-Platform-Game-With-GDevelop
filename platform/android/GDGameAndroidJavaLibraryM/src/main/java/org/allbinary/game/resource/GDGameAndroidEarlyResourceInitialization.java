@@ -1,4 +1,4 @@
-package org.allbinary.game.gd.resource;
+package org.allbinary.game.resource;
 
 /*
  *  Note that errors may occur even though your importing R correctly

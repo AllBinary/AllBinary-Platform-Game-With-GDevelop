@@ -226,13 +226,51 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'SetAngle'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].angle</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>Array[index].<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                    </xsl:for-each>
+                    <xsl:text>&#10;</xsl:text>
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'ChangePlan'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].zOrder</xsl:if><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                    </xsl:for-each>
+                    <xsl:text>&#10;</xsl:text>
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'ChangeAnimation'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].animation</xsl:if><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                    </xsl:for-each>
+                    <xsl:text>&#10;</xsl:text>
+                </xsl:if>
+
+
+                <xsl:if test="$typeValue = 'ModVarObjet'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if></xsl:if><xsl:if test="position() = 4" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>Array[index].<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                    </xsl:for-each>
+                    <xsl:text>&#10;</xsl:text>
+                </xsl:if>
+
+            </xsl:for-each>
+            
+            <xsl:for-each select="actions" >
+                <xsl:variable name="typeValue" select="type/value" />
+                <xsl:if test="$typeValue = 'Create'" >
+
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             <xsl:variable name="layerName" ><xsl:value-of select="text()" /></xsl:variable>
                             <xsl:variable name="gameLayer" ><xsl:value-of select="text()" />GDGameLayer</xsl:variable>
 
                             if(<xsl:value-of select="$gameLayer" /> != null) {
-                                allBinaryGameLayerManager.append(<xsl:value-of select="$gameLayer" />);
+                                <xsl:value-of select="$gameLayer" />.updateGDObject();
+                                allBinaryGameLayerManager.insert(<xsl:value-of select="$gameLayer" />);
 
                                 //objectsGroupsGDGameLayer - START
                                 <xsl:for-each select="/game">
@@ -261,36 +299,8 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'SetAngle'" >
-                    <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].angle</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>Array[index].<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
-                    </xsl:for-each>
-                    <xsl:text>&#10;</xsl:text>
-                </xsl:if>
-
-                <xsl:if test="$typeValue = 'ChangePlan'" >
-                    <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].z</xsl:if><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
-                    </xsl:for-each>
-                    <xsl:text>&#10;</xsl:text>
-                </xsl:if>
-
-                <xsl:if test="$typeValue = 'ChangeAnimation'" >
-                    <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].animation</xsl:if><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
-                    </xsl:for-each>
-                    <xsl:text>&#10;</xsl:text>
-                </xsl:if>
-
-
-                <xsl:if test="$typeValue = 'ModVarObjet'" >
-                    <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if></xsl:if><xsl:if test="position() = 4" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>Array[index].<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
-                    </xsl:for-each>
-                    <xsl:text>&#10;</xsl:text>
-                </xsl:if>
-
             </xsl:for-each>
+            
             <xsl:if test="actions" >
                         }
             </xsl:if>
@@ -375,7 +385,7 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'ChangePlan'" >
                     <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].z</xsl:if><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].zOrder</xsl:if><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                     </xsl:for-each>
                     <xsl:text>&#10;</xsl:text>
                 </xsl:if>

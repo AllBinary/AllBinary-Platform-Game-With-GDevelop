@@ -306,7 +306,8 @@ Created By: Travis Berthelot
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         <xsl:if test="layer != ''" >
                         this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(this.<xsl:value-of select="name" />Array[0], <xsl:value-of select="name" />GDActionsCollidableBehavior);
-                        allBinaryGameLayerManager.append(this.<xsl:value-of select="name" />GDGameLayer);
+                        this.<xsl:value-of select="name" />GDGameLayer.updateGDObject();
+                        allBinaryGameLayerManager.insert(this.<xsl:value-of select="name" />GDGameLayer);
                         </xsl:if>
                     </xsl:for-each>
                     //instances create - END
