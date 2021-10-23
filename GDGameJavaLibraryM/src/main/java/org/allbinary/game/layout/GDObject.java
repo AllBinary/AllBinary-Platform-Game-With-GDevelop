@@ -78,4 +78,16 @@ public class GDObject
     public int Angle() {
         return this.angle;
     }
+    
+    public String toString() {
+        final GDObjectStrings gdObjectStrings = GDObjectStrings.getInstance();
+
+        final StringBuilder stringBuilder = new StringBuilder();
+        return stringBuilder.append(gdObjectStrings.NAME).append(this.name)
+                .append(gdObjectStrings.ANIMATION).append(this.animation)
+                .append(gdObjectStrings.ANGLE).append(this.angle)
+                .append(gdObjectStrings.MOVEMENT_ANGLE).append(this.movement_angle)
+                .append(gdObjectStrings.ROTATION).append(this.rotation)
+                .toString();
+    }
 }

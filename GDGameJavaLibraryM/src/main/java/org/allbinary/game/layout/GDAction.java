@@ -34,6 +34,10 @@ public class GDAction
         
     }
 
+    public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final CollidableCompositeLayer gameLayer3) {
+        this.process(gameLayer, gameLayer2);
+    }
+
     public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2) {
         
     }

@@ -75,7 +75,7 @@ Created By: Travis Berthelot
             <xsl:variable name="actionWithUsedType" >
                 <xsl:for-each select="actions" >
                     <xsl:variable name="typeValue" select="type/value" />
-                    <xsl:if test="$typeValue = 'UnPauseTimer' or $typeValue = 'MettreX' or $typeValue = 'MettreY' or $typeValue = 'SetAngle' or $typeValue = 'ChangePlan' or $typeValue = 'ChangeAnimation' or $typeValue = 'ModVarObjet' or $typeValue = 'TextObject::ChangeColor' or $typeValue = 'ModVarGlobal' or $typeValue = 'ModVarScene'" >found</xsl:if>
+                    <xsl:if test="$typeValue = 'Delete' or $typeValue = 'UnPauseTimer' or $typeValue = 'MettreX' or $typeValue = 'MettreY'  or $typeValue = 'MettreXY' or $typeValue = 'SetAngle' or $typeValue = 'ChangePlan' or $typeValue = 'ChangeAnimation' or $typeValue = 'ModVarObjet' or $typeValue = 'TextObject::ChangeColor' or $typeValue = 'ModVarGlobal' or $typeValue = 'ModVarScene'" >found</xsl:if>
                 </xsl:for-each>
             </xsl:variable>
 
@@ -88,7 +88,7 @@ Created By: Travis Berthelot
                 //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:text>&#10;</xsl:text>
 
-                    //Action for Condition totalRecursions=<xsl:value-of select="$totalRecursions" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" /> hasAssociatedSiblingCondition=<xsl:value-of select="$hasAssociatedSiblingCondition" />
+                    //Action - process - for Condition totalRecursions=<xsl:value-of select="$totalRecursions" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" /> hasAssociatedSiblingCondition=<xsl:value-of select="$hasAssociatedSiblingCondition" />
                     this.actionArray[<xsl:value-of select="number(substring(generate-id(), 3))" />] = new GDAction() {
 
                         <xsl:variable name="quote" >"</xsl:variable>
@@ -153,7 +153,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
 
             <xsl:if test="contains($actionWithUsedType, 'found')" >
-
+                //Action - process - used
                 this.actionArray[<xsl:value-of select="number(substring(generate-id(), 3))" />] = new GDAction() {
 
             <xsl:for-each select="actions" >
@@ -179,23 +179,25 @@ Created By: Travis Berthelot
 
                     //objectGDObjectAtIndex2 - START
                     <xsl:variable name="process" >
-                <xsl:for-each select="actions" >
-                    <xsl:variable name="typeValue" select="type/value" />
-
-                    <xsl:if test="not(preceding-sibling::actions[type/value/text() = 'Create'])">
+                        <xsl:variable name="parametersAsString" ><xsl:for-each select="actions" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:for-each></xsl:variable>
                         <xsl:call-template name="objectGDObjectAtIndex2" >
                             <xsl:with-param name="layoutIndex" >
                                 <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
                             <xsl:with-param name="parametersAsString" >
-                                <xsl:for-each select="parameters" ><xsl:if test="position() > 2" ><xsl:value-of select="text()" />,</xsl:if></xsl:for-each>
+                                <xsl:value-of select="$parametersAsString" />
                             </xsl:with-param>
-                        </xsl:call-template>
+                        </xsl:call-template>                    
+                    <!--
+                <xsl:for-each select="actions" >
+                    <xsl:variable name="typeValue" select="type/value" />                        
+                    <xsl:if test="not(preceding-sibling::actions[type/value/text() = 'Create'])">        
                     </xsl:if>
                 </xsl:for-each>
+                    -->
                     </xsl:variable>
                     //objectGDObjectAtIndex2 - END
-
+                    
                     <xsl:if test="string-length($process) > 0" >
                         <xsl:value-of select="$process" />
                     </xsl:if>
@@ -240,6 +242,17 @@ Created By: Travis Berthelot
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >final GDObject <xsl:value-of select="text()" /> = <xsl:value-of select="text()" />Array[index];<xsl:text>&#10;</xsl:text></xsl:if>
                         <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.x</xsl:if><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                    </xsl:for-each>
+                    <xsl:text>&#10;</xsl:text>
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'MettreXY'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" >final GDObject <xsl:value-of select="text()" /> = <xsl:value-of select="text()" />Array[index];<xsl:text>&#10;</xsl:text></xsl:if>
+                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.x</xsl:if><xsl:if test="position() = 2 or position() = 3" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;<xsl:text>&#10;</xsl:text></xsl:if>
+                    </xsl:for-each>
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.y</xsl:if><xsl:if test="position() > 3" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                     </xsl:for-each>
                     <xsl:text>&#10;</xsl:text>
                 </xsl:if>
@@ -326,25 +339,36 @@ Created By: Travis Berthelot
                     }
 
                     }
-
+                    
                     public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2) {
+                        
+                        try {
 
                         //repeatExpression <xsl:value-of select="repeatExpression" />
                         final int size = <xsl:if test="not(repeatExpression)" >1</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
+
+            <xsl:variable name="create" >
                 <xsl:for-each select="actions" >
                     <xsl:variable name="typeValue" select="type/value" />
-
-                    <xsl:if test="not(preceding-sibling::actions[type/value/text() = 'Create'])">
-                        //No preceding action with Create
-                        <xsl:call-template name="objectGDObjectAtIndex" >
-                            <xsl:with-param name="layoutIndex" >
-                                <xsl:value-of select="$layoutIndex" />
-                            </xsl:with-param>
-                            <xsl:with-param name="parametersAsString" >
-                                <xsl:for-each select="parameters" ><xsl:if test="position() > 2" ><xsl:value-of select="text()" />,</xsl:if></xsl:for-each>
-                            </xsl:with-param>
-                        </xsl:call-template>
+                    <xsl:if test="$typeValue != 'Create'" >
+                        <xsl:value-of select="text()" />,
                     </xsl:if>
+                </xsl:for-each>                
+            </xsl:variable>
+
+                <xsl:variable name="parametersAsString" ><xsl:for-each select="actions" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:for-each></xsl:variable>
+
+                <xsl:call-template name="objectGDObjectAtIndex" >
+                    <xsl:with-param name="layoutIndex" >
+                        <xsl:value-of select="$layoutIndex" />
+                    </xsl:with-param>
+                    <xsl:with-param name="parametersAsString" >
+                        <xsl:value-of select="$parametersAsString" />
+                    </xsl:with-param>
+                </xsl:call-template>
+                                                
+                <xsl:for-each select="actions" >
+                    <xsl:variable name="typeValue" select="type/value" />
 
                     <xsl:if test="$typeValue = 'Create'" >
                         <xsl:for-each select="parameters" >
@@ -439,13 +463,47 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>
                 </xsl:if>
 
+                <xsl:if test="$typeValue = 'Delete'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" >
+                        //<xsl:value-of select="text()" />
+                        allBinaryGameLayerManager.remove(<xsl:value-of select="text()" />GDGameLayer);
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:text>&#10;</xsl:text>
+                </xsl:if>
+
             </xsl:for-each>
+            
+            <xsl:variable name="firstAction" >
+                <xsl:for-each select="actions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    <xsl:if test="$typeValue = 'SetAngle' or $typeValue = 'ChangePlan' or $typeValue = 'ChangeAnimation' or $typeValue = 'ModVarObjet'" >
+                        <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 1" >
+                                <xsl:value-of select="text()" />,</xsl:if>
+                        </xsl:for-each>
+                    </xsl:if>
+                </xsl:for-each>                
+            </xsl:variable>
+
+            <xsl:if test="string-length($firstAction) and string-length($create) = 0" >
+                <xsl:value-of select="substring-before($firstAction, ',')" />GDGameLayer.updateGDObject();
+                <xsl:text>&#10;</xsl:text>
+            </xsl:if>
+            
                     }
+                    
+                    } catch(Exception e) {
+                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().START, e));
+                    }
+
                 }
             };
             </xsl:if>
 
             <xsl:if test="not(contains($actionWithUsedType, 'found'))" >
+                //Action - process - skipped
             this.actionArray[<xsl:value-of select="number(substring(generate-id(), 3))" />] = new GDAction() {
                 public void process() {
                 <xsl:call-template name="actionIds" >

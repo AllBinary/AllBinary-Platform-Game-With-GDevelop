@@ -17,6 +17,7 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/case.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/split.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDActionId.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
@@ -259,7 +260,26 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>                        
                     </xsl:call-template>
-                    
+
+                    //instances create - START
+                    <xsl:for-each select="instances" >
+                        //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" />
+                        <xsl:text>&#10;</xsl:text>
+                        <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
+                        <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
+                        this.<xsl:value-of select="name" />Array = new GDObject[1];
+                        //this.<xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(1);
+                        //this.<xsl:value-of select="name" />GDGameLayerArray = new GDGameLayer[1];
+                        this.<xsl:value-of select="name" />Array[0] = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, "<xsl:value-of select="name" />");
+                        //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
+                        <xsl:if test="layer != ''" >
+                        this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(this.<xsl:value-of select="name" />Array[0], <xsl:value-of select="name" />GDActionsCollidableBehavior);
+                        this.<xsl:value-of select="name" />GDGameLayer.updateGDObject();
+                        allBinaryGameLayerManager.insert(this.<xsl:value-of select="name" />GDGameLayer);
+                        </xsl:if>
+                    </xsl:for-each>
+                    //instances create - END
+                                        
                     //BuiltinCommonInstructions::Once - START
                     <xsl:call-template name="eventsOnceConditionProcessActions" >
                         <xsl:with-param name="totalRecursions" >
@@ -293,29 +313,13 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
-                    //instances create - START
-                    <xsl:for-each select="instances" >
-                        //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" />
-                        <xsl:text>&#10;</xsl:text>
-                        <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
-                        <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
-                        this.<xsl:value-of select="name" />Array = new GDObject[1];
-                        //this.<xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(1);
-                        //this.<xsl:value-of select="name" />GDGameLayerArray = new GDGameLayer[1];
-                        this.<xsl:value-of select="name" />Array[0] = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, "<xsl:value-of select="name" />");
-                        //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
-                        <xsl:if test="layer != ''" >
-                        this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(this.<xsl:value-of select="name" />Array[0], <xsl:value-of select="name" />GDActionsCollidableBehavior);
-                        this.<xsl:value-of select="name" />GDGameLayer.updateGDObject();
-                        allBinaryGameLayerManager.insert(this.<xsl:value-of select="name" />GDGameLayer);
-                        </xsl:if>
-                    </xsl:for-each>
-                    //instances create - END
-
                     <xsl:call-template name="externalEventsCreateAssign" >
                         <xsl:with-param name="layoutName" >
                             <xsl:value-of select="$layoutName" />
-                        </xsl:with-param>                        
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
                     </xsl:call-template>
 
                     <xsl:call-template name="eventsLogicConstruction" >
