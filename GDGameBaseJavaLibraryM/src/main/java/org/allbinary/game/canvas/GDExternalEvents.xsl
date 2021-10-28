@@ -34,6 +34,7 @@
         <xsl:for-each select="../externalEvents" >
             <xsl:if test="$layoutName = associatedLayout" >
                 <xsl:call-template name="eventsCreateAssignGDObject" >
+                    <xsl:with-param name="caller" >externalEventsCreateAssignGDObject</xsl:with-param>
                     <xsl:with-param name="totalRecursions" >
                         <xsl:value-of select="0" />
                     </xsl:with-param> 
@@ -59,6 +60,7 @@
         <xsl:for-each select="../externalEvents" >
             <xsl:if test="$layoutName = associatedLayout" >
                 <xsl:call-template name="eventsCreateAssignGDObject" >
+                    <xsl:with-param name="caller" >externalEventsCreateAssign</xsl:with-param>
                     <xsl:with-param name="totalRecursions" >
                         <xsl:value-of select="0" />
                     </xsl:with-param>

@@ -18,6 +18,7 @@ Created By: Travis Berthelot
 
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/case.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/split.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/replace.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDActionId.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
@@ -250,6 +251,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     
                     <xsl:call-template name="eventsCreateAssignGDObject" >
+                        <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>

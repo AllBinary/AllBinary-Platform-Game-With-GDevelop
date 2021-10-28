@@ -17,12 +17,13 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="eventsCreateAssignGDObject" >
+        <xsl:param name="caller" />
         <xsl:param name="totalRecursions" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="createdObjectsAsString" />
         <xsl:param name="conditionEventPosition" />
 
-        //eventsCreateAssignGDObject - START
+        //<xsl:value-of select="$caller" /> - eventsCreateAssignGDObject - START
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
             //Event nodeId=<xsl:value-of select="generate-id()" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
@@ -75,11 +76,12 @@ Created By: Travis Berthelot
             <xsl:variable name="actionWithUsedType" >
                 <xsl:for-each select="actions" >
                     <xsl:variable name="typeValue" select="type/value" />
-                    <xsl:if test="$typeValue = 'Delete' or $typeValue = 'UnPauseTimer' or $typeValue = 'MettreX' or $typeValue = 'MettreY'  or $typeValue = 'MettreXY' or $typeValue = 'SetAngle' or $typeValue = 'ChangePlan' or $typeValue = 'ChangeAnimation' or $typeValue = 'ModVarObjet' or $typeValue = 'TextObject::ChangeColor' or $typeValue = 'ModVarGlobal' or $typeValue = 'ModVarScene'" >found</xsl:if>
+                    <xsl:if test="$typeValue = 'Delete' or $typeValue = 'UnPauseTimer' or $typeValue = 'MettreX' or $typeValue = 'MettreY'  or $typeValue = 'MettreXY' or $typeValue = 'SetAngle' or $typeValue = 'ChangePlan' or $typeValue = 'ChangeAnimation' or $typeValue = 'ModVarObjet' or $typeValue = 'TextObject::ChangeColor' or $typeValue = 'ModVarGlobal' or $typeValue = 'ModVarScene' or $typeValue = 'AddForceAL'" >found</xsl:if>
                 </xsl:for-each>
             </xsl:variable>
 
             <xsl:variable name="hasAssociatedSiblingCondition" select="conditions/type/value = 'MouseButtonReleased' or conditions/type/value = 'VarScene' or conditions/type/value = 'Timer'" />
+            <xsl:variable name="parametersAsString" ><xsl:for-each select="actions" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:for-each></xsl:variable>
 
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
@@ -178,16 +180,14 @@ Created By: Travis Berthelot
                     public void process() {
 
                     //objectGDObjectAtIndex2 - START
-                    <xsl:variable name="process" >
-                        <xsl:variable name="parametersAsString" ><xsl:for-each select="actions" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:for-each></xsl:variable>
-                        <xsl:call-template name="objectGDObjectAtIndex2" >
-                            <xsl:with-param name="layoutIndex" >
-                                <xsl:value-of select="$layoutIndex" />
-                            </xsl:with-param>
-                            <xsl:with-param name="parametersAsString" >
-                                <xsl:value-of select="$parametersAsString" />
-                            </xsl:with-param>
-                        </xsl:call-template>                    
+                    <xsl:call-template name="objectGDObjectAtIndex2" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="parametersAsString" >
+                            <xsl:value-of select="$parametersAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>                    
                     <!--
                 <xsl:for-each select="actions" >
                     <xsl:variable name="typeValue" select="type/value" />                        
@@ -195,20 +195,26 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
                     -->
-                    </xsl:variable>
                     //objectGDObjectAtIndex2 - END
                     
-                    <xsl:if test="string-length($process) > 0" >
-                        <xsl:value-of select="$process" />
-                    </xsl:if>
-                    <xsl:if test="string-length($process) = 0" >
-                        this.process(null, null);
-                    </xsl:if>
-
                     try {
             <xsl:if test="actions" >
                         //repeatExpression <xsl:value-of select="repeatExpression" />
                         final int size = <xsl:if test="not(repeatExpression)" >1</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
+                        
+                        <xsl:for-each select="actions" >
+                            <xsl:variable name="typeValue" select="type/value" />
+                            <xsl:if test="$typeValue = 'Create'" >
+                                <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> </xsl:variable>
+                                <xsl:for-each select="parameters" >
+                                    <xsl:if test="position() = 2" >
+                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeId" /><xsl:value-of select="text()" />GDGameLayerList = new BasicArrayList(size);"));
+                        <xsl:value-of select="text()" />GDGameLayerList = new BasicArrayList(size);
+                                    </xsl:if>
+                                </xsl:for-each>
+                            </xsl:if>
+                        </xsl:for-each>
+
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             </xsl:if>
 
@@ -220,10 +226,12 @@ Created By: Travis Berthelot
                     <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.unPause();</xsl:if></xsl:for-each>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'Create'" >
+                    <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> </xsl:variable>
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             final GDObject <xsl:value-of select="text()" /> = <xsl:value-of select="text()" />Array[index];
                             final GDGameLayer <xsl:value-of select="text()" />GDGameLayer = <xsl:value-of select="text()" />GDGameLayerFactory.create(<xsl:value-of select="text()" />, <xsl:value-of select="text()" />GDActionsCollidableBehavior);
+                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeId" /><xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer); at: " + index));
                             <xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer);
                         </xsl:if>
                     </xsl:for-each>
@@ -259,7 +267,7 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'SetAngle'" >
                     <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].angle</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>Array[index].<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].angle</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /> (short)</xsl:if><xsl:if test="position() = 3" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>Array[index].<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                     </xsl:for-each>
                     <xsl:text>&#10;</xsl:text>
                 </xsl:if>
@@ -278,7 +286,6 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>
                 </xsl:if>
 
-
                 <xsl:if test="$typeValue = 'ModVarObjet'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if></xsl:if><xsl:if test="position() = 4" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>Array[index].<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
@@ -289,6 +296,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
             
             <xsl:for-each select="actions" >
+                <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> </xsl:variable>
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:if test="$typeValue = 'Create'" >
 
@@ -313,6 +321,7 @@ Created By: Travis Berthelot
                                                 </xsl:variable>
                                                 <xsl:for-each select="objects" >
                                                     <xsl:if test="name = $layerName" >
+                                                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeId" /><xsl:value-of select="$groupName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />); at: " + index));
                                                         <xsl:value-of select="$groupName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />);
                                                     </xsl:if>
                                                 </xsl:for-each>
@@ -356,8 +365,6 @@ Created By: Travis Berthelot
                 </xsl:for-each>                
             </xsl:variable>
 
-                <xsl:variable name="parametersAsString" ><xsl:for-each select="actions" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:for-each></xsl:variable>
-
                 <xsl:call-template name="objectGDObjectAtIndex" >
                     <xsl:with-param name="layoutIndex" >
                         <xsl:value-of select="$layoutIndex" />
@@ -371,14 +378,16 @@ Created By: Travis Berthelot
                     <xsl:variable name="typeValue" select="type/value" />
 
                     <xsl:if test="$typeValue = 'Create'" >
+                        <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> </xsl:variable>
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 2" >
+                //<xsl:value-of select="$caller" /> - eventsCreateAssignGDObject - caller
                 <xsl:value-of select="text()" />Array = new GDObject[size];
-                <xsl:value-of select="text()" />GDGameLayerList = new BasicArrayList(size);
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:if>
                 </xsl:for-each>
+                                
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 
             <xsl:for-each select="actions" >
@@ -418,7 +427,7 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'SetAngle'" >
                     <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].angle</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>Array[index].<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].angle</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /> (short)</xsl:if><xsl:if test="position() = 3" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>Array[index].<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                     </xsl:for-each>
                     <xsl:text>&#10;</xsl:text>
                 </xsl:if>
@@ -473,6 +482,52 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>
                 </xsl:if>
 
+                <xsl:if test="$typeValue = 'AddForceAL'" >
+                    <xsl:variable name="name" >
+                        <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 1" >
+                                <xsl:value-of select="text()" />
+                            </xsl:if>
+                        </xsl:for-each>
+                    </xsl:variable>
+
+                    //name=<xsl:value-of select="$name" />
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" >
+                        //AddForceAL
+                        <xsl:value-of select="text()" />GDGameLayer.AddForceUsingPolarCoordinates(</xsl:if>
+                        <xsl:if test="position() != 1 and position() != last()" >
+                            <xsl:variable name="paramText" select="text()" />
+                            
+                            <xsl:variable name="key" >
+                                <xsl:for-each select="/game/variables/value" >
+                                    <xsl:variable name="variable" >Variable(<xsl:value-of select="text()" />)</xsl:variable>
+                                    <xsl:if test="contains($paramText, $variable)" >
+                                        <xsl:value-of select="text()" />
+                                    </xsl:if>
+                                </xsl:for-each>
+                            </xsl:variable>
+                            
+                            <xsl:if test="string-length($key) > 0" >
+                                <xsl:call-template name="string-replace-all" >
+                                    <xsl:with-param name="text" >
+                                        <xsl:value-of select="$paramText" />
+                                    </xsl:with-param>
+                                    <xsl:with-param name="find" >Variable(<xsl:value-of select="$key" />)</xsl:with-param>
+                                    <xsl:with-param name="replacementText" >Variable(<xsl:value-of select="$name" />.<xsl:value-of select="$key" />)</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:if>
+                            <xsl:if test="string-length($key) = 0" >
+                                <xsl:value-of select="$paramText" />
+                            </xsl:if>,<xsl:text> </xsl:text>
+                        </xsl:if>
+                        <xsl:if test="position() = last()" >
+                            <xsl:value-of select="text()" />);
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:text>&#10;</xsl:text>
+                </xsl:if>
+
             </xsl:for-each>
             
             <xsl:variable name="firstAction" >
@@ -514,6 +569,9 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:call-template name="eventsCreateAssignGDObject" >
+                <xsl:with-param name="caller" >
+                    <xsl:value-of select="$caller" />
+                </xsl:with-param>
                 <xsl:with-param name="layoutIndex" >
                     <xsl:value-of select="$layoutIndex" />
                 </xsl:with-param>
@@ -529,7 +587,7 @@ Created By: Travis Berthelot
 
             </xsl:call-template>
         </xsl:for-each>
-        //eventsCreateAssignGDObject - END
+        //<xsl:value-of select="$caller" /> - eventsCreateAssignGDObject - END
 
     </xsl:template>
 

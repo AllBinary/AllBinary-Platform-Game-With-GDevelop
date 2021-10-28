@@ -15,7 +15,25 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:template name="gameLayer" >
+        <xsl:param name="name" />
+        <xsl:param name="iteration" />
+        
+                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) gameLayer);
+                                    GDObject <xsl:value-of select="$name" /> = null;
+                                    if(<xsl:value-of select="$name" />GDGameLayer != null) {
+                                        <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject;
+                                    } else {
+                                        final String message = "<xsl:value-of select="$name" /> warning: not initialized";
+                                        LogUtil.put(LogFactory.getInstance(message, this, message));
+                                    }
+        
+    </xsl:template>
+    
     <!--
+        <xsl:if test="$iteration = 0" >
+        </xsl:if>
+    
                     <xsl:if test="not(preceding-sibling::actions[type/value/text() = 'Create'])">
                         //No preceding action with Create
                         <xsl:call-template name="objectGDObjectAtIndex" >
@@ -28,34 +46,6 @@ Created By: Travis Berthelot
                         </xsl:call-template>
                     </xsl:if>                        
     -->
-
-    <xsl:template name="gameLayer" >
-        <xsl:param name="name" />
-        <xsl:param name="iteration" />
-        
-        <xsl:if test="$iteration = 0" >
-                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) gameLayer);
-                                    GDObject <xsl:value-of select="$name" /> = null;
-                                    if(<xsl:value-of select="$name" />GDGameLayer != null) {
-                                        <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject;
-                                    } else {
-                                        final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" /> warning: not initialized";
-                                        LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
-                                    }
-
-        </xsl:if>
-        <xsl:if test="$iteration = 1" >
-                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) gameLayer2);
-                                    GDObject <xsl:value-of select="$name" /> = null;
-                                    if(<xsl:value-of select="$name" />GDGameLayer != null) {
-                                        <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject;
-                                    } else {
-                                        final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" /> not initialized";
-                                        LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
-                                    }
-        </xsl:if>
-
-    </xsl:template>
 
     <xsl:template name="objectGDObjectAtIndex" >
         <xsl:param name="layoutIndex" />
@@ -100,7 +90,7 @@ Created By: Travis Berthelot
         </xsl:for-each>
         //objectGDObjectAtIndex - END
 
-    </xsl:template>
+    </xsl:template>    
 
     <xsl:template name="objectGDObjectAtIndex2" >
         <xsl:param name="layoutIndex" />
@@ -111,47 +101,6 @@ Created By: Travis Berthelot
             <xsl:for-each select="layouts" >
                 <xsl:variable name="index" select="position() - 1" />
                 <xsl:if test="number($index) = $layoutIndex" >
-
-                    <xsl:for-each select="objects" >
-                        <xsl:variable name="typeValue" select="type" />
-                        <xsl:variable name="name" ><xsl:value-of select="name" />.</xsl:variable>
-
-                        <xsl:if test="contains($parametersAsString, $name) = text()" >
-                            <xsl:if test="$typeValue = 'Sprite'" >
-                        //objectGDObjectAtIndex2 - collide - Sprite
-                        GDGameLayer <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" /> = null;
-                        if(<xsl:value-of select="name" />GDGameLayerList != null) {
-                            if(<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
-                                <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" /> = ((GDGameLayer) <xsl:value-of select="name" />GDGameLayerList.get(0));
-                            } else {
-                                final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" /> warning: list size was 0";
-                                LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
-                            }
-                        } else {
-                            final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" /> warning: was null";
-                            LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
-                        }
-                        //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />.gdObject;
-                            </xsl:if>
-                            <xsl:if test="$typeValue = 'TextObject::Text'" >
-                        //objectGDObjectAtIndex2 - collide - TextObject::Text
-                        GDGameLayer <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" /> = null;
-                        if(<xsl:value-of select="name" />GDGameLayerList != null) {
-                            if(<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
-                                <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" /> = ((GDGameLayer) <xsl:value-of select="name" />GDGameLayerList.get(0));
-                            } else {
-                                final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" /> warning: list size was 0";
-                                LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
-                            }
-                        } else {
-                            final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" /> warning: was null";
-                            LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
-                        }
-                        //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />.gdObject;
-                            </xsl:if>
-                        </xsl:if>
-
-                    </xsl:for-each>
 
                     <xsl:variable name="params" >
                     <xsl:for-each select="objects" >
@@ -168,10 +117,117 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                     </xsl:variable>
-                    
-                    <xsl:if test="string-length($params) > 0" >
-                    this.process(<xsl:value-of select="$params" /> null);
-                    </xsl:if>
+
+                        final GDAction gdAction = this;
+                        final BasicArrayList gdActionList = new BasicArrayList();
+
+                    <xsl:for-each select="objects" >
+                        <xsl:variable name="typeValue" select="type" />
+                        <xsl:variable name="name" ><xsl:value-of select="name" />.</xsl:variable>
+
+                        <xsl:if test="contains($parametersAsString, $name) = text()" >
+                            <xsl:if test="$typeValue = 'Sprite'" >
+                        //objectGDObjectAtIndex2 - collide - Sprite
+                        
+                        gdActionList.add(new GDAction() {
+                                
+                            public void process() {
+                                this.process(null, null);
+                            }
+
+                            public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2) {
+
+                        if(<xsl:value-of select="name" />GDGameLayerList != null) {
+                            if(<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
+                                final int size = <xsl:value-of select="name" />GDGameLayerList.size();
+                                GDGameLayer gdGameLayer = null;
+                                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                                    //<xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />
+                                    gdGameLayer = ((GDGameLayer) <xsl:value-of select="name" />GDGameLayerList.get(index));
+                                    <xsl:if test="string-length($params) > 0" >
+                                    /*<xsl:value-of select="$params" />*/
+                                    final int indexOfGDAction = gdActionList.indexOf(this) + 1;
+                                    if(indexOfGDAction == 1) {
+                                        ((GDAction) gdActionList.get(indexOfGDAction)).process(gdGameLayer, null, null);
+                                    } else if(indexOfGDAction == 2) {
+                                        ((GDAction) gdActionList.get(indexOfGDAction)).process(gameLayer, gdGameLayer, null); 
+                                    }
+                                    </xsl:if>                                    
+                                }
+                            } else {
+                                final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" /> warning: list size was 0";
+                                LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
+                            }
+                        } else {
+                            final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" /> warning: was null";
+                            LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
+                            final int indexOfGDAction = gdActionList.indexOf(this) + 1;
+                            if(indexOfGDAction == 1) {
+                                ((GDAction) gdActionList.get(indexOfGDAction)).process(null, null, null);
+                            } else if(indexOfGDAction == 2) {
+                                ((GDAction) gdActionList.get(indexOfGDAction)).process(gameLayer, null, null); 
+                            }
+                        }
+                        //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />.gdObject;
+                            }
+                        });
+                            </xsl:if>
+                            <xsl:if test="$typeValue = 'TextObject::Text'" >
+                        //objectGDObjectAtIndex2 - collide - TextObject::Text
+                        gdActionList.add(new GDAction() {
+
+                            public void process() {
+                                this.process(null, null);
+                            }
+
+                            public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2) {
+
+                        if(<xsl:value-of select="name" />GDGameLayerList != null) {
+                            if(<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
+                                final int size = <xsl:value-of select="name" />GDGameLayerList.size();
+                                GDGameLayer gdGameLayer = null;
+                                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                                    //<xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />
+                                    gdGameLayer = ((GDGameLayer) <xsl:value-of select="name" />GDGameLayerList.get(index));
+                                    <xsl:if test="string-length($params) > 0" >
+                                    /*<xsl:value-of select="$params" />*/
+                                    final int indexOfGDAction = gdActionList.indexOf(this) + 1;
+                                    if(indexOfGDAction == 1) {
+                                        ((GDAction) gdActionList.get(indexOfGDAction)).process(gdGameLayer, null, null);
+                                    } else if(indexOfGDAction == 2) {
+                                        ((GDAction) gdActionList.get(indexOfGDAction)).process(gameLayer, gdGameLayer, null); 
+                                    }
+                                    </xsl:if>                                    
+                                }
+                            } else {
+                                final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" /> warning: list size was 0";
+                                LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
+                            }
+                        } else {
+                            final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" /> warning: was null";
+                            LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
+                            final int indexOfGDAction = gdActionList.indexOf(this) + 1;
+                            if(indexOfGDAction == 1) {
+                                ((GDAction) gdActionList.get(indexOfGDAction)).process(null, null, null);
+                            } else if(indexOfGDAction == 2) {
+                                ((GDAction) gdActionList.get(indexOfGDAction + 1)).process(gameLayer, null, null); 
+                            }
+                        }
+                        //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />.gdObject;
+                            }
+                        });
+                            </xsl:if>
+                        </xsl:if>
+
+                    </xsl:for-each>
+
+                        gdActionList.add(new GDAction() {
+                            public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2) {
+                                gdAction.process(gameLayer, gameLayer2, null);
+                            }
+                        });
+
+                        ((GDAction) gdActionList.get(0)).process();
 
                 </xsl:if>
             </xsl:for-each>

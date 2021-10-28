@@ -63,7 +63,7 @@ public class GDToAllBinaryGenerationTool
         final JSONTokener jsonTokener = new JSONTokener(gameAsConfiguration);
         final JSONObject gameAsConfigurationJSONObject = (JSONObject) jsonTokener.nextValue();
 
-        final String xml = "<game>" + XML.toString(gameAsConfigurationJSONObject) + "</game>";
+        final String xml = "<game>" + XML.toString(gameAsConfigurationJSONObject) + "<variables><value>movement_angle</value><value>angle</value></variables></game>";
 
         final AbFile abFile = new AbFile("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
         if (abFile.exists())

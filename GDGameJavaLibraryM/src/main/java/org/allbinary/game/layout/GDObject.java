@@ -29,7 +29,7 @@ public class GDObject
     
     public int rotation;
 
-    public int angle;
+    public short angle;
     public int movement_angle;
     
     public int animation;
@@ -75,8 +75,13 @@ public class GDObject
         return 0;
     }
     
-    public int Angle() {
+    public short Angle() {
         return this.angle;
+    }
+
+    public int Variable(final int value)
+    {
+        return value;
     }
     
     public String toString() {

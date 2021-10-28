@@ -25,6 +25,7 @@ import org.allbinary.graphics.Rectangle;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.math.NoDecimalTrigTable;
 import org.allbinary.view.ViewPosition;
 
 /**
@@ -33,6 +34,8 @@ import org.allbinary.view.ViewPosition;
  */
 public class GDGameLayer extends CollidableDestroyableDamageableLayer
 {
+    private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
+    
     public final GDObject gdObject;
 
     private final int quarterWidth = (this.getHalfWidth() >> 1) - 1;
@@ -40,10 +43,14 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
     private final IndexedAnimation[] initIndexedAnimationInterface;
     private IndexedAnimation[] indexedAnimationInterface;
-    //private RotationAnimation[] rotationAnimationInterface;
+    private RotationAnimation[] rotationAnimationInterface;
 
     private final int SIZE;
-            
+
+    //private final VelocityProperties velocityInterface;
+    // private AccelerationInterface accelerationInterface;
+    //protected final BasicAccelerationProperties acceleration;
+    
     public GDGameLayer(final Group[] groupInterface,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
@@ -52,19 +59,31 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         super(groupInterface, layerInfo, new ViewPosition());
 
         this.gdObject = gdObject;
+
+        /*
+        this.velocityInterface = 
+                new VelocityProperties(
+                        (1700 * MathUtil.getInstance().sqrt((DisplayInfoSingleton.getInstance().getLastWidth() + DisplayInfoSingleton.getInstance().getLastHeight()))) * GameSpeed.getInstance().getSpeed() / 20, 
+                        (1322 * MathUtil.getInstance().sqrt((DisplayInfoSingleton.getInstance().getLastWidth() + DisplayInfoSingleton.getInstance().getLastHeight()))) * GameSpeed.getInstance().getSpeed() / 20);
+        
+        this.acceleration = new BasicAccelerationProperties(
+                this.velocityInterface.getMaxForwardVelocity() / 12,
+                -this.velocityInterface.getMaxReverseVelocity() / 12
+                );
+        */
         
         this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
         this.initPosition();
 
         this.SIZE = animationInterfaceFactoryInterfaceArray.length;
-        final IndexedAnimation[] initIndexedAnimationInterface = new IndexedAnimation[SIZE];
+        final RotationAnimation[] initIndexedAnimationInterface = new RotationAnimation[SIZE];
         
         LogUtil.put(LogFactory.getInstance(this.gdObject.name, this, CommonStrings.getInstance().CONSTRUCTOR));
         
         try {
             for (int index = 0; index < SIZE; index++)
             {
-                initIndexedAnimationInterface[index] = (IndexedAnimation) animationInterfaceFactoryInterfaceArray[index].getInstance();
+                initIndexedAnimationInterface[index] = (RotationAnimation) animationInterfaceFactoryInterfaceArray[index].getInstance();
             }
         } catch(Exception e) {
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR, e));
@@ -72,9 +91,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
         this.initIndexedAnimationInterface = initIndexedAnimationInterface;
         
-        //this.setRotationAnimationInterface((RotationAnimation[])
-                //his.getInitIndexedAnimationInterface());
-        this.setIndexedAnimationInterface(this.initIndexedAnimationInterface);
+        this.setRotationAnimationInterface(initIndexedAnimationInterface);
+        //this.setIndexedAnimationInterface(this.initIndexedAnimationInterface);
     }
 
     protected IndexedAnimation[] getInitIndexedAnimationInterface()
@@ -82,7 +100,6 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         return initIndexedAnimationInterface;
     }
 
-    /*
     public void setRotationAnimationInterface(
             RotationAnimation[] rotationAnimationInterface)
     {
@@ -94,7 +111,6 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     {
         return this.rotationAnimationInterface;
     }
-    */
 
     protected void setIndexedAnimationInterface(
             IndexedAnimation[] animationInterface)
@@ -107,6 +123,15 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         return indexedAnimationInterface;
     }
 
+    /*
+    public void move()
+    {
+        int dx = velocityInterface.getVelocityXBasicDecimal().getScaled();
+        int dy = velocityInterface.getVelocityYBasicDecimal().getScaled();
+        super.move(dx, dy);
+    }
+    */
+    
     private boolean isFirst = true;
     private final String PAINT = "paint";
     public void paint(Graphics graphics)
@@ -131,8 +156,30 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         }
     }
 
+    //RuntimeObject.cpp
+    public void AddForceUsingPolarCoordinates(final float angle, final float length, final float clearing) {
+        //angle *= Math.PI / 180.0;
+        this.Force((int) (noDecimalTrigTable.cos((short) angle) * length) / noDecimalTrigTable.SCALE, (int) (noDecimalTrigTable.sin((short) angle) * length) / noDecimalTrigTable.SCALE, clearing);
+    }
+
+    //Force.cpp
+    public void Force(final int x_, final int y_, final float clearing_) {
+        this.move(x_, y_);
+    }
+    
     public void updateGDObject()
     {
+        //this.setPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
+        
+        final short angle = (short) this.gdObject.rotation;
 
+        final RotationAnimation[] rotationAnimation = this.getRotationAnimationInterface();
+        for (int index = 0; index < SIZE; index++)
+        {
+            rotationAnimation[index].adjustFrame(angle);
+        }
+                
+        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().UPDATE, this, this.gdObject.toString()));
     }
+    
 }
