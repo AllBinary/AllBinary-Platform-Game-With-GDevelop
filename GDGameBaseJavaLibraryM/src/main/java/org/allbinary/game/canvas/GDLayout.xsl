@@ -251,7 +251,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     
                     <xsl:call-template name="eventsCreateAssignGDObject" >
-                        <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
+                        <xsl:with-param name="caller" >externalEventsCreateAssignGDObject</xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
