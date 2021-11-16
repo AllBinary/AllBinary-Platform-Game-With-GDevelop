@@ -14,6 +14,7 @@
 package org.allbinary.game.layout;
 
 import org.allbinary.game.layer.CollidableCompositeLayer;
+import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
 
 /**
@@ -41,5 +42,9 @@ public class GDAction
     public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2) {
         
     }
-            
+
+    public void processGD(final GDGameLayer gameLayer, final GDObject gdObject) {
+        
+    }
+    
 }

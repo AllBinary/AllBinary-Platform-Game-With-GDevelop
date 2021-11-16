@@ -21,7 +21,7 @@ Created By: Travis Berthelot
             <xsl:when test="not(preceding::events/actions[parameters = current()/actions/parameters])">
                 <xsl:for-each select="actions" >
                     <xsl:variable name="typeValue" select="type/value" />
-                    //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                    //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                     <xsl:text>&#10;</xsl:text>
                     <xsl:if test="$typeValue = 'ModVarScene'" >
                         // - No Preceding text=<xsl:value-of select="parameters" /><xsl:text>&#10;</xsl:text>
@@ -32,7 +32,7 @@ Created By: Travis Berthelot
             <xsl:otherwise>
                 <xsl:for-each select="actions" >
                     <xsl:variable name="typeValue" select="type/value" />
-                    //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                    //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                     <xsl:text>&#10;</xsl:text>
                     // - Already Preceded text=<xsl:value-of select="current()/parameters" /><xsl:text>&#10;</xsl:text>
                 </xsl:for-each>
@@ -53,14 +53,14 @@ Created By: Travis Berthelot
                 </xsl:with-param>
             </xsl:call-template>
 
-            //Event nodeId=<xsl:value-of select="generate-id()" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
+            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
             <xsl:if test="repeatExpression" >
                 //repeatExpression <xsl:value-of select="repeatExpression" />
             </xsl:if>
     
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //Condition nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
                     this.eventListenerInterface_<xsl:value-of select="generate-id()" /> = new BaseMotionGestureEventListener() {
 
@@ -93,21 +93,21 @@ Created By: Travis Berthelot
                             <xsl:if test="actions" >
                     //1
                     <xsl:value-of select="$name" />.groupCollisionList.add(<xsl:value-of select="$name1" />GroupInterface);
-                    <xsl:value-of select="$name" />.actionCollisionList.add(this.actionArray[<xsl:value-of select="number(substring(generate-id(), 3))" />]);
+                    <xsl:value-of select="$name" />.actionCollisionList.add(this.actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                             </xsl:if>
                         </xsl:for-each>
                         <xsl:for-each select="../events/events" >
                             <xsl:if test="actions" >
                     //2
                     <xsl:value-of select="$name" />.groupCollisionList.add(<xsl:value-of select="$name1" />GroupInterface);
-                    <xsl:value-of select="$name" />.actionCollisionList.add(this.actionArray[<xsl:value-of select="number(substring(generate-id(), 3))" />]);
+                    <xsl:value-of select="$name" />.actionCollisionList.add(this.actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                             </xsl:if>
                         </xsl:for-each>
                         <xsl:for-each select="../events/events/events" >
                             <xsl:if test="actions" >
                     //3
                     <xsl:value-of select="$name" />.groupCollisionList.add(<xsl:value-of select="$name1" />GroupInterface);
-                    <xsl:value-of select="$name" />.actionCollisionList.add(this.actionArray[<xsl:value-of select="number(substring(generate-id(), 3))" />]);
+                    <xsl:value-of select="$name" />.actionCollisionList.add(this.actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                             </xsl:if>
                         </xsl:for-each>
 

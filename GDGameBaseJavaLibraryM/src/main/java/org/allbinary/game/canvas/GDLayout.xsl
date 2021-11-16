@@ -126,7 +126,7 @@ Created By: Travis Berthelot
                         
                         private final Object graphics = new Object();
                         private final GDObject[] ZERO_GD_OBJECT = new GDObject[0];
-                        private final GDAction[] actionArray = new GDAction[10000];
+                        private final GDAction[] actionArray = new GDAction[15000];
                         
                         private final GDGroupHelper gdGroupHelper = new GDGroupHelper();
 
@@ -315,6 +315,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
+<!--
                     <xsl:call-template name="externalEventsCreateAssign" >
                         <xsl:with-param name="layoutName" >
                             <xsl:value-of select="$layoutName" />
@@ -323,6 +324,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
                     </xsl:call-template>
+-->
 
                     <xsl:call-template name="eventsLogicConstruction" >
                         <xsl:with-param name="totalRecursions" >

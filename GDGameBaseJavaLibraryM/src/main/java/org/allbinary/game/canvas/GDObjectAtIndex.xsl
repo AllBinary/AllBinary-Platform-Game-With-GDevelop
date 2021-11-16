@@ -29,6 +29,14 @@ Created By: Travis Berthelot
                                     }
         
     </xsl:template>
+
+    <xsl:template name="gameLayerList" >
+        <xsl:param name="name" />
+        
+                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) <xsl:value-of select="$name" />GDGameLayerList.get(index));
+                                    final GDObject <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject;
+        
+    </xsl:template>
     
     <!--
         <xsl:if test="$iteration = 0" >
@@ -227,6 +235,7 @@ Created By: Travis Berthelot
                             }
                         });
 
+                        //When gdActionList size is 1 with only the 1 object above then nothing occurs
                         ((GDAction) gdActionList.get(0)).process();
 
                 </xsl:if>

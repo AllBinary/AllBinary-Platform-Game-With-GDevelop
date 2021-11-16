@@ -26,7 +26,7 @@ Created By: Travis Berthelot
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
                                     
-            //Event nodeId=<xsl:value-of select="generate-id()" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
+            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
             <xsl:for-each select="comment" >
                 //Comment: <xsl:value-of select="text()" />
             </xsl:for-each>
@@ -75,11 +75,11 @@ Created By: Travis Berthelot
 
                     <xsl:for-each select="conditions" >
                         <xsl:variable name="typeValue" select="type/value" />
-                        //Condition nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                         <xsl:if test="$typeValue = 'Timer'" >
                             <xsl:for-each select="../actions" >
                                 <xsl:variable name="typeValue" select="type/value" />
-                                //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                 <xsl:text>&#10;</xsl:text>
                                 <xsl:if test="$typeValue = 'ModVarScene'" >
                                     //eventsClassPropertyActions - ModVarScene - 1
@@ -92,12 +92,12 @@ Created By: Travis Berthelot
                 <xsl:otherwise>
                     <xsl:for-each select="conditions" >
                         <xsl:variable name="typeValue" select="type/value" />
-                        //eventsClassPropertyActions - Had preceding text Condition nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
+                        //eventsClassPropertyActions - Had preceding text Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
                             <xsl:value-of select="text()" />,</xsl:for-each>
                         <xsl:if test="$typeValue = 'Timer'" >
                             <xsl:for-each select="../actions" >
                                 <xsl:variable name="typeValue" select="type/value" />
-                                //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                 <xsl:text>&#10;</xsl:text>
                             </xsl:for-each>                    
                         </xsl:if>                
@@ -110,7 +110,7 @@ Created By: Travis Berthelot
                     <!-- DepartScene sibling/parent condition -->
                     <xsl:for-each select="actions" >
                         <xsl:variable name="typeValue" select="type/value" />
-                            //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                            //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                             <xsl:text>&#10;</xsl:text>
                         <xsl:if test="$typeValue = 'ModVarScene'" >
                             //eventsClassPropertyActions - ModVarScene - 2
@@ -165,7 +165,7 @@ Created By: Travis Berthelot
                             <xsl:text>&#10;</xsl:text>
                             <xsl:for-each select="actions" >
                                 <xsl:variable name="typeValue" select="type/value" />
-                                //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                 <xsl:text>&#10;</xsl:text>
                                 <xsl:if test="$typeValue = 'ModVarScene'" >
                                     //eventsClassPropertyActions - ModVarScene - 3
@@ -215,7 +215,7 @@ Created By: Travis Berthelot
                         <xsl:otherwise>
                             <xsl:for-each select="actions" >
                                 <xsl:variable name="typeValue" select="type/value" />
-                                //eventsClassPropertyActions - Had Preceding Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
+                                //eventsClassPropertyActions - Had Preceding Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />,</xsl:for-each>
                                 <xsl:text>&#10;</xsl:text>
                             </xsl:for-each>                
@@ -226,7 +226,7 @@ Created By: Travis Berthelot
                 <xsl:otherwise>
                     <xsl:for-each select="actions" >
                         <xsl:variable name="typeValue" select="type/value" />
-                        //No Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
+                        //No Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
                             <xsl:value-of select="text()" />,</xsl:for-each>
                         <xsl:text>&#10;</xsl:text>
                     </xsl:for-each>
@@ -301,7 +301,7 @@ Created By: Travis Berthelot
             <xsl:variable name="eventPosition" select="position()" />
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //Action nodeId=<xsl:value-of select="generate-id()" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:if test="$typeValue = 'ModVarScene'" >
                     //externalEventsClassPropertyActions - ModVarScene
