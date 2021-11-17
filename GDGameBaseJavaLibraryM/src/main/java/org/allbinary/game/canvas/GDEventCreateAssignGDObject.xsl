@@ -140,8 +140,7 @@ Created By: Travis Berthelot
                                 LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="position()" />));
                                     
                                     <xsl:for-each select="parameters" >
-                                        <xsl:if test="position() = 2" >
-                                            <xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.unPause();</xsl:if>
+                                        <xsl:if test="position() = 2" ><xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.unPause();</xsl:if>
                                     </xsl:for-each>
                                 
                             } catch(Exception e) {
@@ -150,6 +149,64 @@ Created By: Travis Berthelot
 
                         }
                                 </xsl:if>
+
+                <xsl:if test="$typeValue = 'SetAngle'" >
+                    //SetAngle
+                        public void process() {
+
+                            try {
+
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="position()" />));
+                                    
+                    <xsl:for-each select="parameters" >
+                        //<xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].angle</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /> (short)</xsl:if><xsl:if test="position() = 3" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>Array[index].<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                    </xsl:for-each>
+                                
+                            } catch(Exception e) {
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                            }
+
+                        }
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'ChangePlan'" >
+                    //ChangePlan
+                        public void process() {
+
+                            try {
+
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="position()" />));
+                                    
+                    <xsl:for-each select="parameters" >
+                        //<xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].zOrder</xsl:if><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                    </xsl:for-each>
+                                
+                            } catch(Exception e) {
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                            }
+
+                        }
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'ModVarScene'" >
+                    //ModVarScene
+                        public void process() {
+
+                            try {
+
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="position()" />));
+                                    
+                    <xsl:for-each select="parameters" >
+                        //<xsl:value-of select="text()" /><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                    </xsl:for-each>
+                                
+                            } catch(Exception e) {
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                            }
+
+                        }
+
+                </xsl:if>
 
                                 <xsl:if test="$typeValue = 'TextObject::ChangeColor'" >
                         //TextObject::ChangeColor
@@ -707,6 +764,7 @@ Created By: Travis Berthelot
                 public void process() {
                 <xsl:call-template name="actionIds" >
                     <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                    <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
                 </xsl:call-template>
                 }
             };

@@ -281,7 +281,18 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                     //instances create - END
-                                        
+
+                    <xsl:for-each select="../externalEvents" >
+                    <xsl:if test="$layoutName = associatedLayout" >
+                    //externalEventsProcess - START
+                        <xsl:call-template name="eventIds" >
+                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                            <xsl:with-param name="caller" >externalEventsProcess</xsl:with-param>
+                        </xsl:call-template>
+                    //externalEventsProcess - END
+                    </xsl:if>
+                    </xsl:for-each>
+
                     //BuiltinCommonInstructions::Once - START
                     <xsl:call-template name="eventsOnceConditionProcessActions" >
                         <xsl:with-param name="totalRecursions" >
@@ -342,11 +353,22 @@ Created By: Travis Berthelot
 
                     public void process() {
                     int size = 0;
+                    <xsl:for-each select="../externalEvents" >
+                        //externalEvents - START
+                        <!--
+                        <xsl:call-template name="actionIds" >
+                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                            <xsl:with-param name="caller" >externalEvents</xsl:with-param>
+                        </xsl:call-template>
+                        -->
+                        //externalEvents - END                    
+                    </xsl:for-each>
+
                     <xsl:call-template name="eventsProcess" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
-                    </xsl:call-template>                        
+                    </xsl:call-template>    
                     }
                     
                     public void paint(Graphics graphics, int x, int y)
