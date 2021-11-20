@@ -451,7 +451,7 @@ Created By: Travis Berthelot
                         <xsl:if test="position() = 2" >
                             //Create
                             final GDObject <xsl:value-of select="text()" /> = <xsl:value-of select="text()" />Array[index];
-                            final GDGameLayer <xsl:value-of select="text()" />GDGameLayer = <xsl:value-of select="text()" />GDGameLayerFactory.create(<xsl:value-of select="text()" />, <xsl:value-of select="text()" />GDActionsCollidableBehavior);
+                            final GDGameLayer <xsl:value-of select="text()" />GDGameLayer = <xsl:value-of select="text()" />GDGameLayerFactory.create(<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="text()" />, <xsl:value-of select="text()" />GDActionsCollidableBehavior);
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeId" /><xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer); at: " + index));
                             <xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer);
                         </xsl:if>

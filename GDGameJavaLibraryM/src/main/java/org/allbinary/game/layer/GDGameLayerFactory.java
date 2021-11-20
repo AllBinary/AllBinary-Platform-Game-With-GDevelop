@@ -43,12 +43,13 @@ public class GDGameLayerFactory
         this.layerInfo = layerInfo;
     }
     
-    public GDGameLayer create(final GDObject gdObject, final GDActionsCollidableBehavior collidableBehavior) throws Exception {
+    public GDGameLayer create(final String name, final GDObject gdObject, final GDActionsCollidableBehavior collidableBehavior) throws Exception {
         
-        final GDGameLayer gameLayer = new GDGameLayer(this.groupInterface,
-            this.animationInterfaceFactoryInterfaceArray,
-            this.proceduralAnimationInterfaceFactoryInterfaceArray,
-            this.layerInfo, gdObject);
+        final GDGameLayer gameLayer = new GDGameLayer(name,
+                this.groupInterface,
+                this.animationInterfaceFactoryInterfaceArray,
+                this.proceduralAnimationInterfaceFactoryInterfaceArray,
+                this.layerInfo, gdObject);
         
         gameLayer.setCollidableInferface(new GDCollidableBehavior(gameLayer, collidableBehavior, true));
 

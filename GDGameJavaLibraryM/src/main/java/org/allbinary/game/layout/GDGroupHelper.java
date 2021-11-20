@@ -17,7 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.identification.GroupFactory;
+import org.allbinary.logic.basic.string.CommonSeps;
 import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 
@@ -31,18 +33,22 @@ public class GDGroupHelper
     
     public final Map<String, Group> map = new HashMap();
     
+    private final String OBJECT_GROUP = "objectGroup: ";
+    private final String NEW_GROUP = "newGroup: ";
+    
     public Group get(final String name) {
         
         Group group = map.get(name);
         
         if(group != null) {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().GET, this, "objectGroup"));
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().GET, this, new StringMaker().append(OBJECT_GROUP).append(name).toString()));
             return group;
         }
-        
-        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().GET, this, "newGroup"));
-        
+
         group = this.groupFactory.getNextGroup();
+        
+        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().GET, this, new StringMaker().append(NEW_GROUP).append(name).append(CommonSeps.getInstance().EQUALS).append(group).toString()));
+        
         map.put(name, group);
         
         return group;

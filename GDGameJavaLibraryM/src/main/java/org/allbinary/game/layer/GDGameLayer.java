@@ -21,8 +21,11 @@ import org.allbinary.animation.RotationAnimation;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
+import org.allbinary.game.layout.GDObjectStrings;
 import org.allbinary.graphics.Rectangle;
+import org.allbinary.logic.basic.string.CommonSeps;
 import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.math.NoDecimalTrigTable;
@@ -35,7 +38,8 @@ import org.allbinary.view.ViewPosition;
 public class GDGameLayer extends CollidableDestroyableDamageableLayer
 {
     private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
-    
+
+    public final String name;    
     public final GDObject gdObject;
 
     private final int quarterWidth = (this.getHalfWidth() >> 1) - 1;
@@ -51,13 +55,14 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     // private AccelerationInterface accelerationInterface;
     //protected final BasicAccelerationProperties acceleration;
     
-    public GDGameLayer(final Group[] groupInterface,
+    public GDGameLayer(final String name, final Group[] groupInterface,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo,
             final GDObject gdObject) throws Exception {
         super(groupInterface, layerInfo, new ViewPosition());
 
+        this.name = name;
         this.gdObject = gdObject;
 
         /*
@@ -159,7 +164,11 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     //RuntimeObject.cpp
     public void AddForceUsingPolarCoordinates(final float angle, final float length, final float clearing) {
         //angle *= Math.PI / 180.0;
-        this.Force((int) (noDecimalTrigTable.cos((short) angle) * length) / noDecimalTrigTable.SCALE, (int) (noDecimalTrigTable.sin((short) angle) * length) / noDecimalTrigTable.SCALE, clearing);
+        float adjustedAngle = angle;
+        while(adjustedAngle > 360) { adjustedAngle -= 360; }
+        final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
+        //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(GDObjectStrings.getInstance().ANGLE).append(angle).append(gameLayerStrings.LENGTH).append(length).toString(), this, gameLayerStrings.ADD_FORCE_AL));
+        this.Force((int) (noDecimalTrigTable.cos((short) adjustedAngle) * length) / noDecimalTrigTable.SCALE, (int) (noDecimalTrigTable.sin((short) adjustedAngle) * length) / noDecimalTrigTable.SCALE, clearing);
     }
 
     //Force.cpp
@@ -180,6 +189,24 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         }
                 
         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().UPDATE, this, this.gdObject.toString()));
+    }
+
+    public String toString(final StringMaker stringBuffer) {
+        
+        final CommonSeps commonSeps = CommonSeps.getInstance();
+
+        stringBuffer.append(this.name);
+        stringBuffer.append(commonSeps.NEW_LINE);
+        stringBuffer.append(super.toString(stringBuffer));        
+        
+        return stringBuffer.toString();
+    }    
+    
+    public String toString()
+    {
+        final StringMaker stringBuffer = new StringMaker();
+
+        return this.toString(stringBuffer);
     }
     
 }
