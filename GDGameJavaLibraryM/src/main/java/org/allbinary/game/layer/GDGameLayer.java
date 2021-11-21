@@ -35,8 +35,7 @@ import org.allbinary.view.ViewPosition;
  *
  * @author User
  */
-public class GDGameLayer extends CollidableDestroyableDamageableLayer
-{
+public class GDGameLayer extends CollidableDestroyableDamageableLayer{
     private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
 
     public final String name;    
@@ -191,22 +190,19 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().UPDATE, this, this.gdObject.toString()));
     }
 
-    public String toString(final StringMaker stringBuffer) {
+    public void toString(final StringMaker stringBuffer) {
         
-        final CommonSeps commonSeps = CommonSeps.getInstance();
-
         stringBuffer.append(this.name);
-        stringBuffer.append(commonSeps.NEW_LINE);
-        stringBuffer.append(super.toString(stringBuffer));        
-        
-        return stringBuffer.toString();
+        super.toString(stringBuffer);
     }    
     
     public String toString()
     {
         final StringMaker stringBuffer = new StringMaker();
 
-        return this.toString(stringBuffer);
+        this.toString(stringBuffer);
+
+        return stringBuffer.toString();
     }
     
 }
