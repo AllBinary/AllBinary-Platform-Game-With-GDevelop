@@ -79,19 +79,26 @@ Created By: Travis Berthelot
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
                 
-                //final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup();
-                //final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[0];
-                //final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
-                //final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                //PointFactory.getInstance().getInstance(0, 0),
-                                //0, 0
-                                //);
+                /*
+                final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup();
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[0];
+                final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
+                final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
+                                PointFactory.getInstance().getInstance(0, 0),
+                                0, 0
+                                );
 
-                //<xsl:value-of select="name" />GDGameLayerFactory = new GDGameLayerFactory(
-                    //<xsl:value-of select="name" />GroupInterface,
-                    //<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
-                    //<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
-                    //<xsl:value-of select="name" />LayerInfo);
+                <xsl:value-of select="name" />GDGameLayerFactory = new GDGameLayerFactory(
+                    new Group[] {<xsl:value-of select="name" />GroupInterface},
+                    <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
+                    <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
+                    <xsl:value-of select="name" />LayerInfo);
+
+                final GDActionsCollidableBehavior <xsl:value-of select="name" />GDActionsCollidableBehavior = new GDActionsCollidableBehavior();
+                final GDGameLayer <xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, this.<xsl:value-of select="name" />Array[0], <xsl:value-of select="name" />GDActionsCollidableBehavior);
+
+                this.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
+                */
                     
                 <xsl:value-of select="name" />GDGameLayerFactory = new NullGDGameLayerFactory();
                 

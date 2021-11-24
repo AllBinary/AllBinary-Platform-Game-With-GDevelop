@@ -81,7 +81,7 @@ Created By: Travis Berthelot
                             <xsl:if test="position() = 1" >
                             final GDObject <xsl:value-of select="text()" /> = <xsl:value-of select="text()" />Array[0];
                             </xsl:if>
-                            <xsl:value-of select="text()" /><xsl:if test="position() = 1" >X</xsl:if>
+                            <xsl:value-of select="text()" /><xsl:if test="position() = 1" >.x</xsl:if>
                         </xsl:for-each>;
                     </xsl:if>
                     

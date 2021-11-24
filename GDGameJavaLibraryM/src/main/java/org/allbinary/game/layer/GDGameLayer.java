@@ -35,7 +35,7 @@ import org.allbinary.view.ViewPosition;
  *
  * @author User
  */
-public class GDGameLayer extends CollidableDestroyableDamageableLayer{
+public class GDGameLayer extends CollidableDestroyableDamageableLayer {
     private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
 
     public final String name;    
@@ -177,7 +177,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer{
     
     public void updateGDObject()
     {
-        //this.setPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
+        this.setPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
         
         final short angle = (short) this.gdObject.rotation;
 

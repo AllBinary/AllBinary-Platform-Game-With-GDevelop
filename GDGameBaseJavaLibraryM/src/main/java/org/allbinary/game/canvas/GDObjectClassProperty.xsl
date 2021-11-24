@@ -40,7 +40,15 @@ Created By: Travis Berthelot
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
                         super(unknown, x, y, name);
                     }
-                    
+
+                    public int Width(final Graphics graphics) {
+                        return <xsl:value-of select="animations/directions/sprites/originPoint/x" />;
+                    }
+
+                    public int Height(final Graphics graphics) {
+                        return <xsl:value-of select="animations/directions/sprites/originPoint/y" />;
+                    }
+
                 };
 
                 private GDObject[] <xsl:value-of select="name" />Array = ZERO_GD_OBJECT;
@@ -65,7 +73,8 @@ Created By: Travis Berthelot
                     }
                 };
 
-                private GDObject[]<xsl:text> </xsl:text><xsl:value-of select="name" />Array = new GDObject[1];
+                private final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="name" />";
+                private GDObject[]<xsl:text> </xsl:text><xsl:value-of select="name" />Array = {new GDObject(null, 0, 0, null)}; //new GDObject[1];
                 private BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(1);
             </xsl:if>
 
@@ -96,10 +105,6 @@ Created By: Travis Berthelot
 
                 <xsl:variable name="name2" >,<xsl:value-of select="name" />,</xsl:variable>
                 
-                <xsl:if test="not(contains($instancesAsString, $name2))" >
-                private int <xsl:value-of select="name" />X = 0;
-                private int <xsl:value-of select="name" />Y = 0;
-                </xsl:if>
             </xsl:if>
             //private Rectangle <xsl:value-of select="name" />Rectangle = null;
 
