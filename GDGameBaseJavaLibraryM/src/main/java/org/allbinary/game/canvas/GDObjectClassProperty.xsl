@@ -34,19 +34,13 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-                
+
+                //animations/directions/sprites/originPoint/x <xsl:value-of select="animations/directions/sprites/originPoint/x" />
+                //animations/directions/sprites/originPoint/y <xsl:value-of select="animations/directions/sprites/originPoint/y" />
                 final class <xsl:value-of select="name" /> extends GDObject {
                 
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
                         super(unknown, x, y, name);
-                    }
-
-                    public int Width(final Graphics graphics) {
-                        return <xsl:value-of select="animations/directions/sprites/originPoint/x" />;
-                    }
-
-                    public int Height(final Graphics graphics) {
-                        return <xsl:value-of select="animations/directions/sprites/originPoint/y" />;
                     }
 
                 };

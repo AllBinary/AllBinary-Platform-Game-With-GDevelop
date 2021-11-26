@@ -95,6 +95,7 @@ Created By: Travis Berthelot
                     }                    
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosX'" >
+                    //PosX
                     <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     size = <xsl:value-of select="$gdObjectName" />Array.length;
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -112,6 +113,7 @@ Created By: Travis Berthelot
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosY'" >
+                    //PosY
                     <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     size = <xsl:value-of select="$gdObjectName" />Array.length;
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {

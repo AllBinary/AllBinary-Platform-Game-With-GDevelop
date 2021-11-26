@@ -164,8 +164,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
     public void AddForceUsingPolarCoordinates(final float angle, final float length, final float clearing) {
         //angle *= Math.PI / 180.0;
         float adjustedAngle = angle;
-        while(adjustedAngle > 360) { adjustedAngle -= 360; }
-        final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
+        while(adjustedAngle > 359) { adjustedAngle -= 360; }
+        //final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
         //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(GDObjectStrings.getInstance().ANGLE).append(angle).append(gameLayerStrings.LENGTH).append(length).toString(), this, gameLayerStrings.ADD_FORCE_AL));
         this.Force((int) (noDecimalTrigTable.cos((short) adjustedAngle) * length) / noDecimalTrigTable.SCALE, (int) (noDecimalTrigTable.sin((short) adjustedAngle) * length) / noDecimalTrigTable.SCALE, clearing);
     }

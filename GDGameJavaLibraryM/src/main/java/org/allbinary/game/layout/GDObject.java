@@ -14,6 +14,7 @@
 package org.allbinary.game.layout;
 
 import javax.microedition.lcdui.Graphics;
+import org.allbinary.math.PositionStrings;
 
 /**
  *
@@ -36,6 +37,9 @@ public class GDObject
     
     public int opacity;
     
+    public int width;
+    public int height;
+    
     public GDObject(final String unknown, final int x, final int y, final String name) {
         this.x = x;
         this.y = y;
@@ -44,19 +48,19 @@ public class GDObject
     }
 
     public int Width(final Object nullObject) {
-        return 0;
+        return width;
     }
     
     public int Width(final Graphics graphics) {
-        return 0;
+        return width;
     }
 
     public int Height(final Object nullObject) {
-        return 0;
+        return height;
     }
     
     public int Height(final Graphics graphics) {
-        return 0;
+        return height;
     }
     
     public int X() {
@@ -86,9 +90,13 @@ public class GDObject
     
     public String toString() {
         final GDObjectStrings gdObjectStrings = GDObjectStrings.getInstance();
+        final PositionStrings positionStrings = PositionStrings.getInstance();
 
         final StringBuilder stringBuilder = new StringBuilder();
         return stringBuilder.append(gdObjectStrings.NAME).append(this.name)
+                .append(positionStrings.X_LABEL).append(this.x)
+                .append(positionStrings.Y_LABEL).append(this.y)
+                .append(positionStrings.Z_LABEL).append(this.zOrder)
                 .append(gdObjectStrings.ANIMATION).append(this.animation)
                 .append(gdObjectStrings.ANGLE).append(this.angle)
                 .append(gdObjectStrings.MOVEMENT_ANGLE).append(this.movement_angle)

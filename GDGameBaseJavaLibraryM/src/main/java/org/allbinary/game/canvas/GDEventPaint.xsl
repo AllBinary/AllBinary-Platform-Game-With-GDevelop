@@ -68,35 +68,34 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             </xsl:for-each>
+            
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:if test="$typeValue = 'MettreX'" >
-                    
-                    <xsl:variable name="name" >,<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>,</xsl:variable>
+                    <xsl:variable name="name2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="name" >,<xsl:value-of select="$name2" />,</xsl:variable>
                     
                     <xsl:if test="contains($instancesAsString, $name)" >
-                        <xsl:for-each select="parameters" >
-                            <xsl:if test="position() = 1" >
-                            final GDObject <xsl:value-of select="text()" /> = <xsl:value-of select="text()" />Array[0];
-                            </xsl:if>
-                            <xsl:value-of select="text()" /><xsl:if test="position() = 1" >.x</xsl:if>
-                        </xsl:for-each>;
+                    final GDObject <xsl:value-of select="$name2" /> = <xsl:value-of select="$name2" />Array[0];
+                    actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
                     </xsl:if>
-                    
+                    <xsl:if test="not(contains($instancesAsString, $name))" >
+                    //actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
+                    </xsl:if>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MettreY'" >
-                    
-                    <xsl:variable name="name" >,<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>,</xsl:variable>
+                    <xsl:variable name="name2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="name" >,<xsl:value-of select="$name2" />,</xsl:variable>
                     
                     <xsl:if test="contains($instancesAsString, $name)" >
-                        <xsl:for-each select="parameters" >
-                            <xsl:value-of select="text()" />
-                            <xsl:if test="position() = 1" >Y</xsl:if>
-                        </xsl:for-each>;
+                    final GDObject <xsl:value-of select="$name2" /> = <xsl:value-of select="$name2" />Array[0];
+                    actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
                     </xsl:if>
-
+                    <xsl:if test="not(contains($instancesAsString, $name))" >
+                    //actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
+                    </xsl:if>
                 </xsl:if>
             </xsl:for-each>
                         

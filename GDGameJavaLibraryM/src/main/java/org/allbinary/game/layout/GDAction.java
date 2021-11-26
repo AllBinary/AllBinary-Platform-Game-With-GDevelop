@@ -13,6 +13,7 @@
  */
 package org.allbinary.game.layout;
 
+import javax.microedition.lcdui.Graphics;
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
@@ -27,7 +28,11 @@ public class GDAction
         
     }
 
-    public void process(GDObject name) {
+    public void process(final GDObject gdObject) {
+        
+    }
+
+    public void processG(final GDObject gdObject, final Graphics graphics) {
         
     }
 

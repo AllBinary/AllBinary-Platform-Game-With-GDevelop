@@ -45,6 +45,7 @@ Created By: Travis Berthelot
                 <GD_CURRENT_INDEX>" >
                 <xsl:variable name="layoutName" select="name" />
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="objectsAsString" ><xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 //instancesAsString=<xsl:value-of select="$instancesAsString" />
@@ -125,7 +126,7 @@ Created By: Travis Berthelot
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
                         
-                        private final Object graphics = new Object();
+                        private final Graphics graphics = new Graphics();
                         private final GDObject[] ZERO_GD_OBJECT = new GDObject[0];
                         private final GDAction[] actionArray = new GDAction[15000];
                         
@@ -275,13 +276,19 @@ Created By: Travis Berthelot
                         this.<xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(1);
                         
                         //this.<xsl:value-of select="name" />GDGameLayerArray = new GDGameLayer[1];
-                        this.<xsl:value-of select="name" />Array[0] = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
-                                                
+                        this.<xsl:value-of select="name" />Array[0] = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);                    
+                        <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
+                        <xsl:if test="contains($objectsAsString, $spriteName)" >
+                        this.<xsl:value-of select="name" />Array[0].width = <xsl:value-of select="name" />Image.getWidth();
+                        this.<xsl:value-of select="name" />Array[0].height = <xsl:value-of select="name" />Image.getHeight();
+                        </xsl:if>
+                    
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         <xsl:if test="layer != ''" >
                         this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, this.<xsl:value-of select="name" />Array[0], <xsl:value-of select="name" />GDActionsCollidableBehavior);
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeId" /> for <xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0"));
                         this.<xsl:value-of select="name" />GDGameLayerList.add(this.<xsl:value-of select="name" />GDGameLayer);
+
                         this.<xsl:value-of select="name" />GDGameLayer.updateGDObject();
                         allBinaryGameLayerManager.insert(this.<xsl:value-of select="name" />GDGameLayer);
                         </xsl:if>

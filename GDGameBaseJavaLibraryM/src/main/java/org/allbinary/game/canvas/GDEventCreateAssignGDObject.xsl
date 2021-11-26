@@ -131,6 +131,55 @@ Created By: Travis Berthelot
 
                                 </xsl:if>
                                 
+                                <xsl:if test="$typeValue = 'MettreX'" >
+                        //MettreX
+                        public void process(final GDObject gdObject) {
+                            this.processG(gdObject, graphics);
+                        }
+
+                        public void processG(final GDObject gdObject, final Graphics graphics) {
+
+                            try {
+
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="position()" />));
+                                <xsl:for-each select="parameters" >
+                                <xsl:if test="position() = 1" >
+                                final GDObject <xsl:value-of select="text()" /> = gdObject;
+                                </xsl:if>
+                                <xsl:value-of select="text()" /><xsl:if test="position() = 1" >.x</xsl:if>
+                                </xsl:for-each>;
+                            } catch(Exception e) {
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                            }
+
+                        }
+                                </xsl:if>
+                                <xsl:if test="$typeValue = 'MettreY'" >
+                        //MettreY
+                        public void process(final GDObject gdObject) {
+                            this.processG(gdObject, graphics);
+                        }
+
+                        public void processG(final GDObject gdObject, final Graphics graphics) {
+
+
+                            try {
+
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="position()" />));
+                                <xsl:for-each select="parameters" >
+                                <xsl:if test="position() = 1" >
+                                final GDObject <xsl:value-of select="text()" /> = gdObject;
+                                </xsl:if>
+                                <xsl:value-of select="text()" /><xsl:if test="position() = 1" >.y</xsl:if>
+                                </xsl:for-each>;
+
+                            } catch(Exception e) {
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                            }
+
+                        }
+                                </xsl:if>
+                                
                                 <xsl:if test="$typeValue = 'UnPauseTimer'" >
                         //UnPauseTimer
                         public void process() {
