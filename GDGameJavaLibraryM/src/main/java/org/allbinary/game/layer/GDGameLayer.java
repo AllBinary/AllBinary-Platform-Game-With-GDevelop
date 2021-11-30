@@ -21,14 +21,13 @@ import org.allbinary.animation.RotationAnimation;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
-import org.allbinary.game.layout.GDObjectStrings;
 import org.allbinary.graphics.Rectangle;
-import org.allbinary.logic.basic.string.CommonSeps;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.math.NoDecimalTrigTable;
+import org.allbinary.math.PositionStrings;
 import org.allbinary.view.ViewPosition;
 
 /**
@@ -38,7 +37,7 @@ import org.allbinary.view.ViewPosition;
 public class GDGameLayer extends CollidableDestroyableDamageableLayer {
     private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
 
-    public final String name;    
+    public final String gdName;    
     public final GDObject gdObject;
 
     private final int quarterWidth = (this.getHalfWidth() >> 1) - 1;
@@ -54,14 +53,14 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
     // private AccelerationInterface accelerationInterface;
     //protected final BasicAccelerationProperties acceleration;
     
-    public GDGameLayer(final String name, final Group[] groupInterface,
+    public GDGameLayer(final String gdName, final Group[] groupInterface,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo,
             final GDObject gdObject) throws Exception {
         super(groupInterface, layerInfo, new ViewPosition());
 
-        this.name = name;
+        this.gdName = gdName;
         this.gdObject = gdObject;
 
         /*
@@ -136,16 +135,16 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
     }
     */
     
-    private boolean isFirst = true;
-    private final String PAINT = "paint";
+    //private boolean isFirst = true;
+    //private final String PAINT = "paint";
     public void paint(Graphics graphics)
     {
         try
         {
-            if(this.isFirst) {
-                this.isFirst = false;
-                LogUtil.put(LogFactory.getInstance(this.gdObject.name, this, PAINT));
-            }
+            //if(this.isFirst) {
+                //this.isFirst = false;
+                //LogUtil.put(LogFactory.getInstance(this.gdObject.name, this, PAINT));
+            //}
             
             int x = this.x - quarterWidth;
             int y = this.y - quarterHeight;
@@ -170,9 +169,26 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
         this.Force((int) (noDecimalTrigTable.cos((short) adjustedAngle) * length) / noDecimalTrigTable.SCALE, (int) (noDecimalTrigTable.sin((short) adjustedAngle) * length) / noDecimalTrigTable.SCALE, clearing);
     }
 
+    //private static final String FORCE = "force";
     //Force.cpp
     public void Force(final int x_, final int y_, final float clearing_) {
+
+        //final PositionStrings positionStrings = PositionStrings.getInstance();
+        //final StringMaker stringMaker = new StringMaker();
+        //LogUtil.put(LogFactory.getInstance(stringMaker
+                //.append(positionStrings.DX_LABEL).append(x_)
+                //.append(positionStrings.DY_LABEL).append(y_)
+                ////.append(positionStrings.DZ_LABEL).append(dz)
+                //.toString(), this, FORCE));
+
         this.move(x_, y_);
+
+        this.gdObject.x = this.x;
+        this.gdObject.y = this.y;
+        
+        //stringMaker.delete(0, stringMaker.length());
+        //this.toString(stringMaker);
+        //LogUtil.put(LogFactory.getInstance(stringMaker.toString(), this, FORCE));
     }
     
     public void updateGDObject()
@@ -187,13 +203,14 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
             rotationAnimation[index].adjustFrame(angle);
         }
                 
-        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().UPDATE, this, this.gdObject.toString()));
+        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().UPDATE, this, this.toString()));
     }
 
     public void toString(final StringMaker stringBuffer) {
         
-        stringBuffer.append(this.name);
+        stringBuffer.append(this.gdName);
         super.toString(stringBuffer);
+        stringBuffer.append(this.gdObject.toString());
     }    
     
     public String toString()
@@ -201,7 +218,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
         final StringMaker stringBuffer = new StringMaker();
 
         this.toString(stringBuffer);
-
+ 
         return stringBuffer.toString();
     }
     

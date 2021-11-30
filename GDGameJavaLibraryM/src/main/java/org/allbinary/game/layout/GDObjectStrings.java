@@ -29,6 +29,7 @@ public class GDObjectStrings
         return instance;
     }
     
+    public final String GDOBJECT = "GDObject";
     public final String NAME = "name";
     public final String ANIMATION = "animation";
     public final String ANGLE = "angle";

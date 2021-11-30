@@ -41,7 +41,7 @@ public class GDGroupHelper
         Group group = map.get(name);
         
         if(group != null) {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().GET, this, new StringMaker().append(OBJECT_GROUP).append(name).toString()));
+            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().GET, this, new StringMaker().append(OBJECT_GROUP).append(name).toString()));
             return group;
         }
 

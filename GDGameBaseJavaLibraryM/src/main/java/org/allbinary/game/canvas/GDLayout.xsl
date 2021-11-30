@@ -50,6 +50,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 //instancesAsString=<xsl:value-of select="$instancesAsString" />
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
+                //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
                     
                 package org.allbinary.game.canvas;
@@ -96,6 +97,7 @@ Created By: Travis Berthelot
                 import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
                 import org.allbinary.logic.basic.string.CommonStrings;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
+                import org.allbinary.logic.basic.string.CommonSeps;
                 import org.allbinary.logic.basic.util.event.AllBinaryEventObject;
                 import org.allbinary.logic.basic.util.event.EventListenerInterface;
                 import org.allbinary.logic.communication.log.LogFactory;
@@ -256,6 +258,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>                        
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>                        
@@ -281,6 +286,7 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
                         this.<xsl:value-of select="name" />Array[0].width = <xsl:value-of select="name" />Image.getWidth();
                         this.<xsl:value-of select="name" />Array[0].height = <xsl:value-of select="name" />Image.getHeight();
+                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="name" />Array[0].toString()));
                         </xsl:if>
                     
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
@@ -373,7 +379,6 @@ Created By: Travis Berthelot
                     }
 
                     public void process() {
-                    int size = 0;
                     <xsl:for-each select="../externalEvents" >
                         //externalEvents - START
                         <!--
@@ -406,6 +411,9 @@ Created By: Travis Berthelot
 
                     //instances - START
                     <xsl:for-each select="instances" >
+                        <xsl:variable name="textObjectTextName" >TextObject::Text:<xsl:value-of select="name" /></xsl:variable>
+                        <xsl:if test="contains($objectsAsString, $textObjectTextName)" >
+                        //TextObject::Text instance
                         if(this.<xsl:value-of select="name" />Rectangle == null) {
                             final int <xsl:value-of select="name" />X = x + this.<xsl:value-of select="name" />Array[0].x;
                             final int <xsl:value-of select="name" />Y = y + this.<xsl:value-of select="name" />Array[0].y;
@@ -416,6 +424,7 @@ Created By: Travis Berthelot
                                 //<xsl:value-of select="name" />.Width(graphics), <xsl:value-of select="name" />.Height(graphics));
                                 
                         }
+                        </xsl:if>
                     </xsl:for-each>
                     //instances - END
 

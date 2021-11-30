@@ -14,6 +14,8 @@
 package org.allbinary.game.layout;
 
 import javax.microedition.lcdui.Graphics;
+import org.allbinary.graphics.SpacialStrings;
+import org.allbinary.logic.basic.string.CommonSeps;
 import org.allbinary.math.PositionStrings;
 
 /**
@@ -88,15 +90,20 @@ public class GDObject
         return value;
     }
     
+
     public String toString() {
         final GDObjectStrings gdObjectStrings = GDObjectStrings.getInstance();
         final PositionStrings positionStrings = PositionStrings.getInstance();
+        final SpacialStrings spacialStrings = SpacialStrings.getInstance();
 
         final StringBuilder stringBuilder = new StringBuilder();
-        return stringBuilder.append(gdObjectStrings.NAME).append(this.name)
+        return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON)
+                .append(gdObjectStrings.NAME).append(this.name)
                 .append(positionStrings.X_LABEL).append(this.x)
                 .append(positionStrings.Y_LABEL).append(this.y)
                 .append(positionStrings.Z_LABEL).append(this.zOrder)
+                .append(spacialStrings.WIDTH_LABEL).append(this.width)
+                .append(spacialStrings.HEIGHT_LABEL).append(this.height)
                 .append(gdObjectStrings.ANIMATION).append(this.animation)
                 .append(gdObjectStrings.ANGLE).append(this.angle)
                 .append(gdObjectStrings.MOVEMENT_ANGLE).append(this.movement_angle)
