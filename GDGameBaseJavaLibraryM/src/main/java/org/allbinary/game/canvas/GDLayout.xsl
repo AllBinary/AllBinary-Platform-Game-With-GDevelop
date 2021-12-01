@@ -44,7 +44,7 @@ Created By: Travis Berthelot
             <xsl:if test="number($layoutIndex) = 
                 <GD_CURRENT_INDEX>" >
                 <xsl:variable name="layoutName" select="name" />
-                <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="objectsAsString" ><xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
@@ -166,9 +166,6 @@ Created By: Travis Berthelot
                         <xsl:with-param name="windowWidth" >
                             <xsl:value-of select="$windowWidth" />
                         </xsl:with-param>                        
-                        <xsl:with-param name="instancesAsString" >
-                            <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
 
@@ -258,6 +255,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>                        
                         <xsl:with-param name="objectsAsString" >
                             <xsl:value-of select="$objectsAsString" />
                         </xsl:with-param>                        
@@ -288,7 +288,14 @@ Created By: Travis Berthelot
                         this.<xsl:value-of select="name" />Array[0].height = <xsl:value-of select="name" />Image.getHeight();
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="name" />Array[0].toString()));
                         </xsl:if>
-                    
+                        
+                        <xsl:if test="layer = 'touch'" >
+                        this.<xsl:value-of select="name" />Rectangle = new Rectangle(
+                            PointFactory.getInstance().getInstance(this.<xsl:value-of select="name" />Array[0].x, this.<xsl:value-of select="name" />Array[0].y),
+                            <xsl:value-of select="name" />Array[0].Width(graphics), <xsl:value-of select="name" />Array[0].Height(graphics));
+                            //<xsl:value-of select="name" />.Width(graphics), <xsl:value-of select="name" />.Height(graphics));
+                        </xsl:if>
+
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         <xsl:if test="layer != ''" >
                         this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, this.<xsl:value-of select="name" />Array[0], <xsl:value-of select="name" />GDActionsCollidableBehavior);
@@ -326,7 +333,7 @@ Created By: Travis Berthelot
                             this.<xsl:value-of select="name" />TextAnimation.setBasicColor(new BasicColor(255, <xsl:for-each select="color" >
                                 <xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />, </xsl:for-each>"name=<xsl:value-of select="name" />;type=<xsl:value-of select="$typeValue" />"));
 
-                            <xsl:variable name="name2" >,<xsl:value-of select="name" />,</xsl:variable>
+                            <xsl:variable name="name2" >:<xsl:value-of select="name" />,</xsl:variable>
                 
                             //test="not(contains($instancesAsString, $name2))"
                             //<xsl:value-of select="name" />Array[0].x = 0;

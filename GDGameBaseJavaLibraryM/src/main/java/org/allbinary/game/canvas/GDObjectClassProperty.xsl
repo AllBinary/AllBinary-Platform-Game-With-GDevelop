@@ -17,7 +17,6 @@ Created By: Travis Berthelot
 
     <xsl:template name="objectsClassProperty" >
         <xsl:param name="windowWidth" />
-        <xsl:param name="instancesAsString" />
 
         //objectsClassProperty - START
         <xsl:for-each select="objects" >

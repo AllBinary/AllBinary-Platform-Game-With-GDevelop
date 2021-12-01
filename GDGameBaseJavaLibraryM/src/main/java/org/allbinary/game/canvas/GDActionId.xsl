@@ -17,7 +17,7 @@
         <xsl:param name="totalRecursions" />
         <xsl:param name="caller" />
         
-        //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> caller=<xsl:value-of select="$caller" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
+        //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> caller=<xsl:value-of select="$caller" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
         <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
         <xsl:text>&#10;</xsl:text>
         <xsl:if test="$caller = 'externalEventsProcess'" >

@@ -62,8 +62,10 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
-                    this.eventListenerInterface_<xsl:value-of select="generate-id()" /> = new BaseMotionGestureEventListener() {
+                    this.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new BaseMotionGestureEventListener() {
 
+                        //private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=?";
+                    
                         public void onEvent(final AllBinaryEventObject eventObject)
                         {
                         }
@@ -71,6 +73,8 @@ Created By: Travis Berthelot
                         public void onMotionGestureEvent(final MotionGestureEvent motionGestureEvent) {
                     
                             //Event for Condition
+                            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+
                     <xsl:for-each select=".." >
                             <xsl:call-template name="actionIdsMotionGestureEvent" >
                                 <xsl:with-param name="totalRecursions" >0</xsl:with-param>                                

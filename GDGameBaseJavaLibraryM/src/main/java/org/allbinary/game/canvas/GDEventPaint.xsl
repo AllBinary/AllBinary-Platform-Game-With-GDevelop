@@ -75,7 +75,7 @@ Created By: Travis Berthelot
                 <xsl:text>&#10;</xsl:text>
                 <xsl:if test="$typeValue = 'MettreX'" >
                     <xsl:variable name="name2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="name" >,<xsl:value-of select="$name2" />,</xsl:variable>
+                    <xsl:variable name="name" >:<xsl:value-of select="$name2" />,</xsl:variable>
                     
                     <xsl:if test="contains($instancesAsString, $name)" >
                     final GDObject <xsl:value-of select="$name2" /> = <xsl:value-of select="$name2" />Array[0];
@@ -87,7 +87,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MettreY'" >
                     <xsl:variable name="name2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="name" >,<xsl:value-of select="$name2" />,</xsl:variable>
+                    <xsl:variable name="name" >:<xsl:value-of select="$name2" />,</xsl:variable>
                     
                     <xsl:if test="contains($instancesAsString, $name)" >
                     final GDObject <xsl:value-of select="$name2" /> = <xsl:value-of select="$name2" />Array[0];
