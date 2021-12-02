@@ -35,17 +35,35 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
-                <xsl:variable name="imageWithExtension" select="animations/directions/sprites/image" />
-                <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
-                final String <xsl:value-of select="name" />Resource = GDResources.getInstance().<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>;
-                final InputStream <xsl:value-of select="name" />InputStream = resourceUtil.getResourceAsStream(<xsl:value-of select="name" />Resource);
-                final Image <xsl:value-of select="name" />Image = Image.createImage(<xsl:value-of select="name" />InputStream);
+                final String[] <xsl:value-of select="name" />ResourceArray = {
+                <xsl:for-each select="animations" >
+                    <xsl:variable name="imageWithExtension" select="directions/sprites/image" />
+                    <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
+                    GDResources.getInstance().<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                </xsl:for-each>
+                };
+
+                final InputStream[] <xsl:value-of select="name" />InputStreamArray = 
+                {
+                <xsl:for-each select="animations" >
+                    resourceUtil.getResourceAsStream(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]),
+                </xsl:for-each>
+                };
+
+                final Image[] <xsl:value-of select="name" />ImageArray = 
+                {
+                <xsl:for-each select="animations" >
+                    Image.createImage(<xsl:value-of select="$name" />InputStreamArray[<xsl:value-of select="position() - 1" />]),
+                </xsl:for-each>
+                };
                 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                 <xsl:for-each select="animations" >
-                    //<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray[<xsl:value-of select="position()" />] = ;
+                    //<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray[<xsl:value-of select="position()" /> - 1] = ;
                     new AllBinaryAndroidImageRotationAnimationFactory(
-                    <xsl:value-of select="$name" />Image, <xsl:value-of select="$name" />Image.getWidth(), <xsl:value-of select="$name" />Image.getHeight()
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />], 
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth(), 
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight()
                     <xsl:for-each select="directions" >
                         //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
                         <xsl:for-each select="sprites" >

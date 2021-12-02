@@ -151,9 +151,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
             int x = this.x - quarterWidth;
             int y = this.y - quarterHeight;
 
-            for (int index = 0; index < SIZE; index++) {
-                indexedAnimationInterface[index].paint(graphics, x, y);
-            }
+            //for (int index = 0; index < SIZE; index++) {
+            indexedAnimationInterface[this.gdObject.animation].paint(graphics, x, y);
+            //}
         }
         catch (Exception e)
         {

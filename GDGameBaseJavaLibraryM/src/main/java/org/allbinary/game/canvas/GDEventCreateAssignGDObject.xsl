@@ -643,6 +643,7 @@ Created By: Travis Berthelot
                                 LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                                     
                                     //name=<xsl:value-of select="$name" />
+                                    <xsl:text>&#10;</xsl:text>
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
                                             <xsl:value-of select="text()" />GDGameLayer.AddForceUsingPolarCoordinates(</xsl:if>
@@ -675,7 +676,7 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="text()" />);
                                         </xsl:if>
                                     </xsl:for-each>
-                                    <xsl:text>&#10;</xsl:text>                                
+                                    <xsl:text>&#10;</xsl:text>
                                 
                             } catch(Exception e) {
                                 LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
@@ -1146,8 +1147,9 @@ Created By: Travis Berthelot
                     
                     <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="$name" /></xsl:variable>
                     <xsl:if test="contains($objectsAsString, $spriteName)" >
-                    <xsl:value-of select="$name" />Array[index].width = <xsl:value-of select="$name" />Image.getWidth();
-                    <xsl:value-of select="$name" />Array[index].height = <xsl:value-of select="$name" />Image.getHeight();
+                    //We may need to set a dimension for each image/animation.
+                    <xsl:value-of select="$name" />Array[index].width = <xsl:value-of select="$name" />ImageArray[0].getWidth();
+                    <xsl:value-of select="$name" />Array[index].height = <xsl:value-of select="$name" />ImageArray[0].getHeight();
                     LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="$name" />Array[index].toString()));
                     </xsl:if>
                     

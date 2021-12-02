@@ -284,8 +284,9 @@ Created By: Travis Berthelot
                         this.<xsl:value-of select="name" />Array[0] = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);                    
                         <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
-                        this.<xsl:value-of select="name" />Array[0].width = <xsl:value-of select="name" />Image.getWidth();
-                        this.<xsl:value-of select="name" />Array[0].height = <xsl:value-of select="name" />Image.getHeight();
+                        //We may need to set a dimension for each image/animation.
+                        this.<xsl:value-of select="name" />Array[0].width = <xsl:value-of select="name" />ImageArray[0].getWidth();
+                        this.<xsl:value-of select="name" />Array[0].height = <xsl:value-of select="name" />ImageArray[0].getHeight();
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="name" />Array[0].toString()));
                         </xsl:if>
                         
@@ -468,7 +469,7 @@ Created By: Travis Berthelot
                     }
 
                     public int Random(final int range) {
-                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range);
+                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
                     }
 
                     public int Variable(final int value) {
