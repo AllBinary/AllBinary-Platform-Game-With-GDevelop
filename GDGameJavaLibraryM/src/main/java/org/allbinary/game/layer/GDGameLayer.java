@@ -18,6 +18,7 @@ import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.RotationAnimation;
+import org.allbinary.game.configuration.GameSpeed;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
@@ -36,6 +37,7 @@ import org.allbinary.view.ViewPosition;
  */
 public class GDGameLayer extends CollidableDestroyableDamageableLayer {
     private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
+    private final int SCALE = noDecimalTrigTable.SCALE * 10; //* GameSpeed.getInstance().getSpeed();
 
     public final String gdName;    
     public final GDObject gdObject;
@@ -166,7 +168,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
         while(adjustedAngle > 359) { adjustedAngle -= 360; }
         //final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
         //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(GDObjectStrings.getInstance().ANGLE).append(angle).append(gameLayerStrings.LENGTH).append(length).toString(), this, gameLayerStrings.ADD_FORCE_AL));
-        this.Force((int) (noDecimalTrigTable.cos((short) adjustedAngle) * length) / noDecimalTrigTable.SCALE, (int) (noDecimalTrigTable.sin((short) adjustedAngle) * length) / noDecimalTrigTable.SCALE, clearing);
+        this.Force((int) (noDecimalTrigTable.cos((short) adjustedAngle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) adjustedAngle) * length) / SCALE, clearing);
     }
 
     //private static final String FORCE = "force";
