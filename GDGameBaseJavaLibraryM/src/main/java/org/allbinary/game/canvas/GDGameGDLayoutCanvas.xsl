@@ -496,7 +496,7 @@ public class <GDLayout> extends AllBinaryGameCanvas
         this.specialAnimation.process();
     }
 
-     //Hack for GD
+     //Hack for GDevelop
     public void stop() {
         final String STOP = "stop";
         LogUtil.put(LogFactory.getInstance(STOP, this, STOP));

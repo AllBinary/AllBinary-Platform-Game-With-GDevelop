@@ -226,6 +226,27 @@ Created By: Travis Berthelot
                         });
                             </xsl:if>
                         </xsl:if>
+                        <xsl:variable name="name2" ><xsl:value-of select="name" />,</xsl:variable>
+                        <xsl:if test="contains($parametersAsString, $name2)" >
+                            <xsl:if test="not(contains($parametersAsString, $name) = text()) and name = 'player'" >
+                        //Hack for GDevelop player with GDAction
+                        gdActionList.add(new GDAction() {
+
+                            public void process() {
+                                if(<xsl:value-of select="name" />GDGameLayerList != null) {
+                                    if(<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
+                                        this.process((CollidableCompositeLayer) <xsl:value-of select="name" />GDGameLayerList.get(0), null);
+                                    }
+                                }
+                            }
+                                                            
+                            public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2) {
+                                gdAction.process(gameLayer, gameLayer2, null);
+                            }
+                        });
+                                
+                            </xsl:if>
+                        </xsl:if>
 
                     </xsl:for-each>
 
