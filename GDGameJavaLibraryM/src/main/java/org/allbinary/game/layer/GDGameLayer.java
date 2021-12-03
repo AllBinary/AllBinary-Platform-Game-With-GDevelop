@@ -54,6 +54,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
     //private final VelocityProperties velocityInterface;
     // private AccelerationInterface accelerationInterface;
     //protected final BasicAccelerationProperties acceleration;
+
+    private float rotationRemainder;
     
     public GDGameLayer(final String gdName, final Group[] groupInterface,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
@@ -203,20 +205,52 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
     }
 
     public void updateRotation(final long timeDelta) {
-        final short angle = (short) (this.gdObject.rotation * timeDelta / 1000);
-        this.setRotation(angle);
+        final StringBuilder stringBuilder = new StringBuilder();
+        //LogUtil.put(LogFactory.getInstance(stringBuilder.append("timeDelta: ").append(timeDelta).toString(), this, "updateRotation"));
+        //stringBuilder.delete(0, stringBuilder.length());
+        //LogUtil.put(LogFactory.getInstance(stringBuilder.append("prior rotationRemainder: ").append(rotationRemainder).toString(), this, "updateRotation"));
+        float newPortion = (this.gdObject.rotation * timeDelta / 1000f);
+        //stringBuilder.delete(0, stringBuilder.length());
+        //LogUtil.put(LogFactory.getInstance(stringBuilder.append("newPortion : ").append(newPortion).toString(), this, "updateRotation"));
+        rotationRemainder = rotationRemainder + newPortion;
+        //stringBuilder.delete(0, stringBuilder.length());
+        //LogUtil.put(LogFactory.getInstance(stringBuilder.append("rotationRemainder: ").append(rotationRemainder).toString(), this, "updateRotation"));
+        final short angleAdjustment = (short) (rotationRemainder);
+        if(angleAdjustment != 0) {
+            stringBuilder.delete(0, stringBuilder.length());
+            //LogUtil.put(LogFactory.getInstance(stringBuilder.append("angleAdjustment: ").append(angleAdjustment).toString(), this, "updateRotation"));
+            this.setRotation(angleAdjustment);
+            rotationRemainder -= angleAdjustment;
+            //LogUtil.put(LogFactory.getInstance("reset", this, "updateRotation"));
+        } else {
+            //LogUtil.put(LogFactory.getInstance("skip", this, "updateRotation"));
+        }
     }
     
-    public void setRotation(final short angle) {
+    public void setRotation(final short angleAdjustment) {
         RotationAnimation rotationAnimation;
-        short nextAngle;
+        //short nextAngle;
         //for (int index = 0; index < SIZE; index++)
         //{
             rotationAnimation = this.rotationAnimationInterface[this.gdObject.animation];
             //LogUtil.put(LogFactory.getInstance(new StringBuilder().append("angle: ").append(rotationAnimation.getAngleInfo().getAngle()).toString(), this, "setRotation"));
-            nextAngle = (short) (rotationAnimation.getAngleInfo().getAngle() + angle);
+            //nextAngle = (short) (rotationAnimation.getAngleInfo().getAngle() + angleAdjustment);
             //LogUtil.put(LogFactory.getInstance(new StringBuilder().append("nextAngle: ").append(nextAngle).toString(), this, "setRotation"));
-            rotationAnimation.adjustFrame(nextAngle);
+            if(angleAdjustment > 0) {
+                short value = angleAdjustment;
+                while(value > 0) {
+                    rotationAnimation.nextRotation();
+                    value--;
+                }
+                
+            } else {
+                short value = angleAdjustment;
+                while(value < 0) {
+                    rotationAnimation.previousRotation();
+                    value++;
+                }
+            }
+            //rotationAnimation.adjustFrame(nextAngle);
         //}
     }
 
