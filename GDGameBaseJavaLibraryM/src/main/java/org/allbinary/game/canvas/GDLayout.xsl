@@ -196,6 +196,9 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
+                            private long timeDelta;
+                            private long lastStartTime = Long.MIN_VALUE;
+
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));
@@ -303,7 +306,7 @@ Created By: Travis Berthelot
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeId" /> for <xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0"));
                         this.<xsl:value-of select="name" />GDGameLayerList.add(this.<xsl:value-of select="name" />GDGameLayer);
 
-                        this.<xsl:value-of select="name" />GDGameLayer.updateGDObject();
+                        this.<xsl:value-of select="name" />GDGameLayer.updateGDObject(timeDelta);
                         allBinaryGameLayerManager.insert(this.<xsl:value-of select="name" />GDGameLayer);
                         </xsl:if>
                     </xsl:for-each>
@@ -387,6 +390,12 @@ Created By: Travis Berthelot
                     }
 
                     public void process() {
+                        if(lastStartTime == Long.MIN_VALUE) {
+                            timeDelta = 0;
+                        } else {
+                            timeDelta = System.currentTimeMillis() - lastStartTime;
+                        }
+
                     <xsl:for-each select="../externalEvents" >
                         //externalEvents - START
                         <!--
@@ -402,7 +411,8 @@ Created By: Travis Berthelot
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
-                    </xsl:call-template>    
+                    </xsl:call-template>
+                        lastStartTime = GameTickTimeDelayHelperFactory.getInstance().getStartTime();
                     }
                     
                     public void paint(Graphics graphics, int x, int y)
@@ -485,7 +495,7 @@ Created By: Travis Berthelot
                     }
                     
                     public long TimeDelta() {
-                        return System.currentTimeMillis() - GameTickTimeDelayHelperFactory.getInstance().getStartTime();
+                        return timeDelta;
                     }
 
                 }

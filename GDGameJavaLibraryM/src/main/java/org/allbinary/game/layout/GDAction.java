@@ -28,8 +28,8 @@ public class GDAction
         
     }
 
-    public void process(final GDObject gdObject) {
-        
+    public boolean process(final GDObject gdObject) {
+        return true;
     }
 
     public void processG(final GDObject gdObject, final Graphics graphics) {

@@ -75,7 +75,9 @@ Created By: Travis Berthelot
                             //CenterPoint name=<xsl:value-of select="centerPoint/name" /> x=<xsl:value-of select="centerPoint/x" /> y=<xsl:value-of select="centerPoint/y" /> automatic=<xsl:value-of select="centerPoint/automatic" />
                             //customCollisionMask, array, x, y
                         </xsl:for-each>
-                    </xsl:for-each>
+                    </xsl:for-each>,
+                    1
+                    //angleIncrement
                     )<xsl:if test="position() != last()" >,</xsl:if>
                 </xsl:for-each>
                 };

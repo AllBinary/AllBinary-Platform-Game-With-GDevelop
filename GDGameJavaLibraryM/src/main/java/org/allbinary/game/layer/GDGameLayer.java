@@ -193,19 +193,31 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
         //LogUtil.put(LogFactory.getInstance(stringMaker.toString(), this, FORCE));
     }
     
-    public void updateGDObject()
+    public void updateGDObject(final long timeDelta)
     {
         this.setPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
         
-        final short angle = (short) this.gdObject.rotation;
-
-        final RotationAnimation[] rotationAnimation = this.getRotationAnimationInterface();
-        for (int index = 0; index < SIZE; index++)
-        {
-            rotationAnimation[index].adjustFrame(angle);
-        }
+        this.updateRotation(timeDelta);
                 
         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().UPDATE, this, this.toString()));
+    }
+
+    public void updateRotation(final long timeDelta) {
+        final short angle = (short) (this.gdObject.rotation * timeDelta / 1000);
+        this.setRotation(angle);
+    }
+    
+    public void setRotation(final short angle) {
+        RotationAnimation rotationAnimation;
+        short nextAngle;
+        //for (int index = 0; index < SIZE; index++)
+        //{
+            rotationAnimation = this.rotationAnimationInterface[this.gdObject.animation];
+            //LogUtil.put(LogFactory.getInstance(new StringBuilder().append("angle: ").append(rotationAnimation.getAngleInfo().getAngle()).toString(), this, "setRotation"));
+            nextAngle = (short) (rotationAnimation.getAngleInfo().getAngle() + angle);
+            //LogUtil.put(LogFactory.getInstance(new StringBuilder().append("nextAngle: ").append(nextAngle).toString(), this, "setRotation"));
+            rotationAnimation.adjustFrame(nextAngle);
+        //}
     }
 
     public void toString(final StringMaker stringBuffer) {
