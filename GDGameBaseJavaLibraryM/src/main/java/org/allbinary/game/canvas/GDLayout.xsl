@@ -43,6 +43,8 @@ Created By: Travis Berthelot
             
             <xsl:if test="number($layoutIndex) = 
                 <GD_CURRENT_INDEX>" >
+                <!-- Android images assets need to be enlarged if they are not setup to be inside the cirle area needed -->
+                    <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
                 <xsl:variable name="layoutName" select="name" />
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="objectsAsString" ><xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
@@ -104,6 +106,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.math.RectangleCollisionUtil;
+                import org.allbinary.media.image.ImageCopyUtil;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.time.TimeDelayHelper;
                 import org.microemu.MIDletBridge;
@@ -226,11 +229,17 @@ Created By: Travis Berthelot
                         try {
 
                     <xsl:call-template name="objectsAssign" >
+                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
+                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
+                        </xsl:with-param>                        
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>                        
                         <xsl:with-param name="windowWidth" >
                             <xsl:value-of select="$windowWidth" />
+                        </xsl:with-param>                        
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>                        
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>

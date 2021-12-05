@@ -16,8 +16,10 @@ Created By: Travis Berthelot
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:template name="objectsAssign" >
+        <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="windowWidth" />
+        <xsl:param name="instancesAsString" />
         
         //objectsAssign - START
         final ResourceUtil resourceUtil = ResourceUtil.getInstance();
@@ -53,7 +55,13 @@ Created By: Travis Berthelot
                 final Image[] <xsl:value-of select="name" />ImageArray = 
                 {
                 <xsl:for-each select="animations" >
+                    <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
+                    <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
                     Image.createImage(<xsl:value-of select="$name" />InputStreamArray[<xsl:value-of select="position() - 1" />]),
+                    </xsl:if>
+                    <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
+                    ImageCopyUtil.getInstance().createImage(Image.createImage(<xsl:value-of select="$name" />InputStreamArray[<xsl:value-of select="position() - 1" />]), 1.44f),
+                    </xsl:if>
                 </xsl:for-each>
                 };
                 
@@ -76,7 +84,7 @@ Created By: Travis Berthelot
                             //customCollisionMask, array, x, y
                         </xsl:for-each>
                     </xsl:for-each>,
-                    1
+                    (short) 1
                     //angleIncrement
                     )<xsl:if test="position() != last()" >,</xsl:if>
                 </xsl:for-each>
