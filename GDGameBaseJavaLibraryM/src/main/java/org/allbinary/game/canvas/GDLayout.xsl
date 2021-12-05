@@ -18,7 +18,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/case.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/split.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/replace.xsl" />
-    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDActionId.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
@@ -75,7 +75,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.layer.NullGDGameLayerFactory;
-                import org.allbinary.game.layout.GDAction;
+                import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layout.GDGroupHelper;
                 import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
@@ -88,7 +88,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.CollidableCompositeLayer;
                 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
-                import org.allbinary.game.layer.special.GDActionsCollidableBehavior;
+                import org.allbinary.game.layer.special.GDConditionCollidableBehavior;
                 import org.allbinary.game.layer.special.GDCollidableBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.GPoint;
@@ -133,7 +133,7 @@ Created By: Travis Berthelot
                         
                         private final Graphics graphics = new Graphics();
                         private final GDObject[] ZERO_GD_OBJECT = new GDObject[0];
-                        private final GDAction[] actionArray = new GDAction[15000];
+                        private final GDNode[] nodeArray = new GDNode[15000];
                         
                         private final GDGroupHelper gdGroupHelper = new GDGroupHelper();
 
@@ -206,10 +206,10 @@ Created By: Travis Berthelot
 
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));
 
-                        int size = actionArray.length;
+                        int size = nodeArray.length;
 //                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 //                            final int currentIndex = index;
-//                            actionArray[index2][index] = new GDAction() {
+//                            nodeArray[index2][index] = new GDNode() {
 //                            public void process() {
 //                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, Integer.toString(currentIndex), new Exception()));
 //                                }
@@ -311,7 +311,7 @@ Created By: Travis Berthelot
 
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         <xsl:if test="layer != ''" >
-                        this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, this.<xsl:value-of select="name" />Array[0], <xsl:value-of select="name" />GDActionsCollidableBehavior);
+                        this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, this.<xsl:value-of select="name" />Array[0], <xsl:value-of select="name" />GDConditionCollidableBehavior);
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeId" /> for <xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0"));
                         this.<xsl:value-of select="name" />GDGameLayerList.add(this.<xsl:value-of select="name" />GDGameLayer);
 

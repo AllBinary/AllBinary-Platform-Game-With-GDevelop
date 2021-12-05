@@ -79,7 +79,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="type = 'BuiltinCommonInstructions::Group'" >
                 //BuiltinCommonInstructions::Group
-                this.actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
             
             <xsl:for-each select="actions" >
@@ -93,27 +93,27 @@ Created By: Travis Berthelot
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'Timer'" >
                     //Timer
-                    this.actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosX'" >
                     //PosX
-                    this.actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosY'" >
                     //PosY
-                    this.actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'NbObjet'" >
                     //NbObjet
-                    this.actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarObjet'" >
                     //VarObjet
-                    this.actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarScene'" >
                     //VarScene
-                    this.actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
             </xsl:for-each>
 

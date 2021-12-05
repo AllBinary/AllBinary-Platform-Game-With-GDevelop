@@ -17,7 +17,7 @@ import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
-import org.allbinary.game.layer.special.GDActionsCollidableBehavior;
+import org.allbinary.game.layer.special.GDConditionCollidableBehavior;
 import org.allbinary.game.layer.special.GDCollidableBehavior;
 import org.allbinary.graphics.Rectangle;
 
@@ -43,7 +43,7 @@ public class GDGameLayerFactory
         this.layerInfo = layerInfo;
     }
     
-    public GDGameLayer create(final String name, final GDObject gdObject, final GDActionsCollidableBehavior collidableBehavior) throws Exception {
+    public GDGameLayer create(final String name, final GDObject gdObject, final GDConditionCollidableBehavior collidableBehavior) throws Exception {
         
         final GDGameLayer gameLayer = new GDGameLayer(name,
                 this.groupInterface,

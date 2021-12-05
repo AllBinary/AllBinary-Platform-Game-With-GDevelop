@@ -22,7 +22,7 @@ import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
  *
  * @author User
  */
-public class GDAction
+public class GDNode
 {
     public void process() {
         

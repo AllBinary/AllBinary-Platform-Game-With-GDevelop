@@ -17,7 +17,7 @@ import org.allbinary.game.collision.CollidableBaseBehavior;
 import org.allbinary.game.collision.CollidableInterfaceCompositeInterface;
 import org.allbinary.game.identification.GroupInterface;
 import org.allbinary.game.layer.CollidableCompositeLayer;
-import org.allbinary.game.layout.GDAction;
+import org.allbinary.game.layout.GDNode;
 import org.allbinary.logic.communication.log.ForcedLogUtil;
 
 /**
@@ -27,9 +27,9 @@ import org.allbinary.logic.communication.log.ForcedLogUtil;
 public class GDCollidableBehavior extends CollidableBaseBehavior 
 {
     
-    public final GDActionsCollidableBehavior collidableBehavior;
+    public final GDConditionCollidableBehavior collidableBehavior;
     
-    public GDCollidableBehavior(final CollidableCompositeLayer ownerLayer, final GDActionsCollidableBehavior collidableBehavior, final boolean collidable)
+    public GDCollidableBehavior(final CollidableCompositeLayer ownerLayer, final GDConditionCollidableBehavior collidableBehavior, final boolean collidable)
     {
         super(ownerLayer, collidable);
         
@@ -58,7 +58,7 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
             
             int indexOfGroup = this.collidableBehavior.groupCollisionList.indexOf(groupInterfaceArray[index]);
             if(indexOfGroup < 0) {
-                ((GDAction) this.collidableBehavior.actionCollisionList.get(indexOfGroup)).process(this.ownerLayer, collidableInterfaceCompositeInterface);
+                ((GDNode) this.collidableBehavior.actionCollisionList.get(indexOfGroup)).process(this.ownerLayer, collidableInterfaceCompositeInterface);
             }
         }
 

@@ -21,11 +21,16 @@ Created By: Travis Berthelot
 
         //eventsOnceConditionProcessActions totalRecursions=<xsl:value-of select="$totalRecursions" /> 
         <xsl:for-each select="events" >
+            <xsl:variable name="eventId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
+            //boolean conditions<xsl:value-of select="$eventId" /> = true;
             <xsl:for-each select="conditions" >
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                <xsl:if test="type/value = 'CollisionNP'" >
+                    
+                </xsl:if>
                 <xsl:if test="type/value = 'BuiltinCommonInstructions::Once'" >
-                //Found - <xsl:value-of select="type/value" />
+                //<xsl:value-of select="type/value" /> - Found
                     <xsl:for-each select=".." >
                         <xsl:call-template name="eventIds" >
                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>                                
@@ -33,7 +38,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                 </xsl:if>
                 <xsl:if test="type/value = 'DepartScene'" >
-                //Found - <xsl:value-of select="type/value" />
+                //<xsl:value-of select="type/value" /> - Found
                     <xsl:for-each select=".." >
                         <xsl:call-template name="eventIds" >
                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>                                

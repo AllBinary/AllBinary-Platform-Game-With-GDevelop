@@ -19,12 +19,12 @@ import org.allbinary.util.BasicArrayList;
  *
  * @author User
  */
-public class GDActionsCollidableBehavior 
+public class GDConditionCollidableBehavior 
 {
     public final BasicArrayList groupCollisionList = new BasicArrayList();
     public final BasicArrayList actionCollisionList = new BasicArrayList();
     
-    public GDActionsCollidableBehavior()
+    public GDConditionCollidableBehavior()
     {
     }
     

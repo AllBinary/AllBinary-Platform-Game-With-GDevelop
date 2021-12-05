@@ -126,8 +126,8 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     </xsl:variable>
 
-                        final GDAction gdAction = this;
-                        final BasicArrayList gdActionList = new BasicArrayList();
+                        final GDNode gdNode = this;
+                        final BasicArrayList gdNodeList = new BasicArrayList();
 
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
@@ -137,7 +137,7 @@ Created By: Travis Berthelot
                             <xsl:if test="$typeValue = 'Sprite'" >
                         //objectGDObjectAtIndex2 - collide - Sprite
                         
-                        gdActionList.add(new GDAction() {
+                        gdNodeList.add(new GDNode() {
                                 
                             public void process() {
                                 this.process(null, null);
@@ -154,11 +154,11 @@ Created By: Travis Berthelot
                                     gdGameLayer = ((GDGameLayer) <xsl:value-of select="name" />GDGameLayerList.get(index));
                                     <xsl:if test="string-length($params) > 0" >
                                     /*<xsl:value-of select="$params" />*/
-                                    final int indexOfGDAction = gdActionList.indexOf(this) + 1;
-                                    if(indexOfGDAction == 1) {
-                                        ((GDAction) gdActionList.get(indexOfGDAction)).process(gdGameLayer, null, null);
-                                    } else if(indexOfGDAction == 2) {
-                                        ((GDAction) gdActionList.get(indexOfGDAction)).process(gameLayer, gdGameLayer, null); 
+                                    final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
+                                    if(indexOfGDNode == 1) {
+                                        ((GDNode) gdNodeList.get(indexOfGDNode)).process(gdGameLayer, null, null);
+                                    } else if(indexOfGDNode == 2) {
+                                        ((GDNode) gdNodeList.get(indexOfGDNode)).process(gameLayer, gdGameLayer, null); 
                                     }
                                     </xsl:if>                                    
                                 }
@@ -169,11 +169,11 @@ Created By: Travis Berthelot
                         } else {
                             final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" /> warning: was null";
                             LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
-                            final int indexOfGDAction = gdActionList.indexOf(this) + 1;
-                            if(indexOfGDAction == 1) {
-                                ((GDAction) gdActionList.get(indexOfGDAction)).process(null, null, null);
-                            } else if(indexOfGDAction == 2) {
-                                ((GDAction) gdActionList.get(indexOfGDAction)).process(gameLayer, null, null); 
+                            final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
+                            if(indexOfGDNode == 1) {
+                                ((GDNode) gdNodeList.get(indexOfGDNode)).process(null, null, null);
+                            } else if(indexOfGDNode == 2) {
+                                ((GDNode) gdNodeList.get(indexOfGDNode)).process(gameLayer, null, null); 
                             }
                         }
                         //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />.gdObject;
@@ -182,7 +182,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                             <xsl:if test="$typeValue = 'TextObject::Text'" >
                         //objectGDObjectAtIndex2 - collide - TextObject::Text
-                        gdActionList.add(new GDAction() {
+                        gdNodeList.add(new GDNode() {
 
                             public void process() {
                                 this.process(null, null);
@@ -199,11 +199,11 @@ Created By: Travis Berthelot
                                     gdGameLayer = ((GDGameLayer) <xsl:value-of select="name" />GDGameLayerList.get(index));
                                     <xsl:if test="string-length($params) > 0" >
                                     /*<xsl:value-of select="$params" />*/
-                                    final int indexOfGDAction = gdActionList.indexOf(this) + 1;
-                                    if(indexOfGDAction == 1) {
-                                        ((GDAction) gdActionList.get(indexOfGDAction)).process(gdGameLayer, null, null);
-                                    } else if(indexOfGDAction == 2) {
-                                        ((GDAction) gdActionList.get(indexOfGDAction)).process(gameLayer, gdGameLayer, null); 
+                                    final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
+                                    if(indexOfGDNode == 1) {
+                                        ((GDNode) gdNodeList.get(indexOfGDNode)).process(gdGameLayer, null, null);
+                                    } else if(indexOfGDNode == 2) {
+                                        ((GDNode) gdNodeList.get(indexOfGDNode)).process(gameLayer, gdGameLayer, null); 
                                     }
                                     </xsl:if>                                    
                                 }
@@ -214,11 +214,11 @@ Created By: Travis Berthelot
                         } else {
                             final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" /> warning: was null";
                             LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
-                            final int indexOfGDAction = gdActionList.indexOf(this) + 1;
-                            if(indexOfGDAction == 1) {
-                                ((GDAction) gdActionList.get(indexOfGDAction)).process(null, null, null);
-                            } else if(indexOfGDAction == 2) {
-                                ((GDAction) gdActionList.get(indexOfGDAction + 1)).process(gameLayer, null, null); 
+                            final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
+                            if(indexOfGDNode == 1) {
+                                ((GDNode) gdNodeList.get(indexOfGDNode)).process(null, null, null);
+                            } else if(indexOfGDNode == 2) {
+                                ((GDNode) gdNodeList.get(indexOfGDNode + 1)).process(gameLayer, null, null); 
                             }
                         }
                         //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />.gdObject;
@@ -229,8 +229,8 @@ Created By: Travis Berthelot
                         <xsl:variable name="name2" ><xsl:value-of select="name" />,</xsl:variable>
                         <xsl:if test="contains($parametersAsString, $name2)" >
                             <xsl:if test="not(contains($parametersAsString, $name) = text()) and name = 'player'" >
-                        //Hack for GDevelop player with GDAction
-                        gdActionList.add(new GDAction() {
+                        //Hack for GDevelop player with GDNode
+                        gdNodeList.add(new GDNode() {
 
                             public void process() {
                                 if(<xsl:value-of select="name" />GDGameLayerList != null) {
@@ -241,7 +241,7 @@ Created By: Travis Berthelot
                             }
                                                             
                             public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2) {
-                                gdAction.process(gameLayer, gameLayer2, null);
+                                gdNode.process(gameLayer, gameLayer2, null);
                             }
                         });
                                 
@@ -250,14 +250,14 @@ Created By: Travis Berthelot
 
                     </xsl:for-each>
 
-                        gdActionList.add(new GDAction() {
+                        gdNodeList.add(new GDNode() {
                             public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2) {
-                                gdAction.process(gameLayer, gameLayer2, null);
+                                gdNode.process(gameLayer, gameLayer2, null);
                             }
                         });
 
-                        //When gdActionList size is 1 with only the 1 object above then nothing occurs
-                        ((GDAction) gdActionList.get(0)).process();
+                        //When gdNodeList size is 1 with only the 1 object above then nothing occurs
+                        ((GDNode) gdNodeList.get(0)).process();
 
                 </xsl:if>
             </xsl:for-each>

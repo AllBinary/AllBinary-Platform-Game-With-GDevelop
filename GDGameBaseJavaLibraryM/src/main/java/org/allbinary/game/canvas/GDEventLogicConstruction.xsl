@@ -90,28 +90,28 @@ Created By: Travis Berthelot
                     //<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
                     //<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
                     <xsl:variable name="name1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="name" >this.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDActionsCollidableBehavior</xsl:variable>
+                    <xsl:variable name="name" >this.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDConditionCollidableBehavior</xsl:variable>
 
                         //Child VarScene conditions with actions
                         <xsl:for-each select="../events" >
                             <xsl:if test="actions" >
                     //1
                     <xsl:value-of select="$name" />.groupCollisionList.add(<xsl:value-of select="$name1" />GroupInterface);
-                    <xsl:value-of select="$name" />.actionCollisionList.add(this.actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    <xsl:value-of select="$name" />.actionCollisionList.add(this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                             </xsl:if>
                         </xsl:for-each>
                         <xsl:for-each select="../events/events" >
                             <xsl:if test="actions" >
                     //2
                     <xsl:value-of select="$name" />.groupCollisionList.add(<xsl:value-of select="$name1" />GroupInterface);
-                    <xsl:value-of select="$name" />.actionCollisionList.add(this.actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    <xsl:value-of select="$name" />.actionCollisionList.add(this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                             </xsl:if>
                         </xsl:for-each>
                         <xsl:for-each select="../events/events/events" >
                             <xsl:if test="actions" >
                     //3
                     <xsl:value-of select="$name" />.groupCollisionList.add(<xsl:value-of select="$name1" />GroupInterface);
-                    <xsl:value-of select="$name" />.actionCollisionList.add(this.actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    <xsl:value-of select="$name" />.actionCollisionList.add(this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                             </xsl:if>
                         </xsl:for-each>
 

@@ -21,9 +21,9 @@
         <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
         <xsl:text>&#10;</xsl:text>
         <xsl:if test="$caller = 'externalEventsProcess'" >
-        this.actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(null, null);
+        this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(null, null);
         </xsl:if>
-        this.actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+        this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:if>
         <xsl:if test="type = 'BuiltinCommonInstructions::Comment'" >
         //BuiltinCommonInstructions::Comment
@@ -51,7 +51,7 @@
         <xsl:for-each select="actions" >
             //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:text>&#10;</xsl:text>    
-            actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+            nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:for-each>
         
         <xsl:for-each select="events" >
@@ -77,7 +77,7 @@
         <xsl:for-each select="actions" >
             //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:text>&#10;</xsl:text>
-            actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$gdObjectName" />);
+            nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$gdObjectName" />);
             ((GDGameLayer) <xsl:value-of select="$gdGameLayer" />).updateGDObject(timeDelta);
         </xsl:for-each>
         
@@ -104,7 +104,7 @@
         <xsl:for-each select="actions" >
                             //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                             <xsl:text>&#10;</xsl:text>
-                            actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
+                            nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
         </xsl:for-each>
         
         <xsl:for-each select="events" >

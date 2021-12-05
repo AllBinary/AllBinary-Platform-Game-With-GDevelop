@@ -79,10 +79,10 @@ Created By: Travis Berthelot
                     
                     <xsl:if test="contains($instancesAsString, $name)" >
                     final GDObject <xsl:value-of select="$name2" /> = <xsl:value-of select="$name2" />Array[0];
-                    actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
+                    nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name))" >
-                    //actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
+                    //nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
                     </xsl:if>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MettreY'" >
@@ -91,10 +91,10 @@ Created By: Travis Berthelot
                     
                     <xsl:if test="contains($instancesAsString, $name)" >
                     final GDObject <xsl:value-of select="$name2" /> = <xsl:value-of select="$name2" />Array[0];
-                    actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
+                    nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name))" >
-                    //actionArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
+                    //nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
                     </xsl:if>
                 </xsl:if>
             </xsl:for-each>
