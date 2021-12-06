@@ -58,7 +58,7 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
             
             int indexOfGroup = this.collidableBehavior.groupCollisionList.indexOf(groupInterfaceArray[index]);
             if(indexOfGroup < 0) {
-                ((GDNode) this.collidableBehavior.actionCollisionList.get(indexOfGroup)).process(this.ownerLayer, collidableInterfaceCompositeInterface);
+                ((GDNode) this.collidableBehavior.actionCollisionList.get(indexOfGroup)).process(this.ownerLayer, collidableInterfaceCompositeInterface, null, null);
             }
         }
 

@@ -21,7 +21,7 @@
         <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
         <xsl:text>&#10;</xsl:text>
         <xsl:if test="$caller = 'externalEventsProcess'" >
-        this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(null, null);
+        this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(null, null, null, null);
         </xsl:if>
         this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:if>
@@ -41,15 +41,39 @@
         </xsl:for-each>
         
     </xsl:template>
-            
+
+    <xsl:template name="conditionIds">
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="caller" />
+        
+        <xsl:for-each select="conditions" >
+            <xsl:variable name="typeValue" select="type" />
+            //Condition - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+            <xsl:text>&#10;</xsl:text>
+            this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+        </xsl:for-each>
+
+        <xsl:for-each select="events" >
+            <xsl:call-template name="conditionIds" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>                
+                <xsl:with-param name="caller" >
+                    <xsl:value-of select="$caller" />
+                </xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+        
+    </xsl:template>
+
     <xsl:template name="actionIds">
         <xsl:param name="totalRecursions" />
         <xsl:param name="caller" />
         
         //actionIds
-        //Actions totalRecursions=<xsl:value-of select="$totalRecursions" /> caller=<xsl:value-of select="$caller" />
+        //Actions - GDNode - totalRecursions=<xsl:value-of select="$totalRecursions" /> caller=<xsl:value-of select="$caller" />
         <xsl:for-each select="actions" >
-            //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+            //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:text>&#10;</xsl:text>    
             nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:for-each>
@@ -73,9 +97,9 @@
         <xsl:param name="gdGameLayer" />
         
         //actionIdsGDObject <xsl:value-of select="$gdObjectName" />
-            //Actions totalRecursions=<xsl:value-of select="$totalRecursions" />
+            //Actions - GDNode - totalRecursions=<xsl:value-of select="$totalRecursions" />
         <xsl:for-each select="actions" >
-            //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+            //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:text>&#10;</xsl:text>
             nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$gdObjectName" />);
             ((GDGameLayer) <xsl:value-of select="$gdGameLayer" />).updateGDObject(timeDelta);
@@ -100,9 +124,9 @@
     <xsl:template name="actionIdsMotionGestureEvent">
         <xsl:param name="totalRecursions" />
         //actionIdsMotionGestureEvent
-                            //Actions totalRecursions=<xsl:value-of select="$totalRecursions" />
+                            //Actions - GDNode - totalRecursions=<xsl:value-of select="$totalRecursions" />
         <xsl:for-each select="actions" >
-                            //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                            //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                             <xsl:text>&#10;</xsl:text>
                             nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
         </xsl:for-each>

@@ -17,6 +17,7 @@ import javax.microedition.lcdui.Graphics;
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
+import org.allbinary.util.BasicArrayList;
 
 /**
  *
@@ -25,6 +26,10 @@ import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
 public class GDNode
 {
     public void process() {
+        
+    }
+
+    public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
         
     }
 
@@ -40,14 +45,14 @@ public class GDNode
         
     }
 
-    public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final CollidableCompositeLayer gameLayer3) {
-        this.process(gameLayer, gameLayer2);
+    public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final CollidableCompositeLayer gameLayer3, final GDNode gdNode, final BasicArrayList gdNodeList) {
+        this.process(gameLayer, gameLayer2, gdNode, gdNodeList);
     }
-
-    public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2) {
+    
+    public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final GDNode gdNode, final BasicArrayList gdNodeList) {
         
     }
-
+    
     public void processGD(final GDGameLayer gameLayer, final GDObject gdObject) {
         
     }

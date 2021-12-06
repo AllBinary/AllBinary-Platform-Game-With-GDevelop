@@ -16,8 +16,10 @@ Created By: Travis Berthelot
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/case.xsl" />
-    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/split.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/indexof.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/replace.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/reverse.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/split.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
@@ -44,7 +46,7 @@ Created By: Travis Berthelot
             <xsl:if test="number($layoutIndex) = 
                 <GD_CURRENT_INDEX>" >
                 <!-- Android images assets need to be enlarged if they are not setup to be inside the cirle area needed -->
-                    <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
+                <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
                 <xsl:variable name="layoutName" select="name" />
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="objectsAsString" ><xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
@@ -134,6 +136,7 @@ Created By: Travis Berthelot
                         private final Graphics graphics = new Graphics();
                         private final GDObject[] ZERO_GD_OBJECT = new GDObject[0];
                         private final GDNode[] nodeArray = new GDNode[15000];
+                        private final int FAKE_COLLISION_NODE_ID = 14999;
                         
                         private final GDGroupHelper gdGroupHelper = new GDGroupHelper();
 
@@ -215,6 +218,12 @@ Created By: Travis Berthelot
 //                                }
 //                            };
 //                        }
+
+                        this.nodeArray[FAKE_COLLISION_NODE_ID] = new GDNode() {
+                            public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final GDNode gdNode, final BasicArrayList gdNodeList) {
+                                gdNode.process(gameLayer, gameLayer2, (CollidableCompositeLayer) null, gdNode, gdNodeList);
+                            }
+                        };
 
                     //objectsGroupsSet - START
                     <xsl:for-each select="objectsGroups" >
