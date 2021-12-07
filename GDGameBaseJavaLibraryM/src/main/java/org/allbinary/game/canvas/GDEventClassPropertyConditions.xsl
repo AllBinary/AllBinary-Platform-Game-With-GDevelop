@@ -24,7 +24,7 @@ Created By: Travis Berthelot
         //eventsClassProperty
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
-            
+
             <xsl:call-template name="eventsClassPropertyConditions" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
@@ -35,8 +35,8 @@ Created By: Travis Berthelot
                 <xsl:with-param name="externalEventActionModVarSceneAsString" >
                     <xsl:value-of select="$externalEventActionModVarSceneAsString" />
                 </xsl:with-param>
-            </xsl:call-template>                
-                        
+            </xsl:call-template>
+
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
             <xsl:for-each select="comment" >
                 //Comment: <xsl:value-of select="text()" />
@@ -97,10 +97,10 @@ Created By: Travis Berthelot
                     private int <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
                         </xsl:if>
                     </xsl:for-each>
-                        
-                    private TimeDelayHelper <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper = new TimeDelayHelper(<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >(int) (1000 * <xsl:value-of select="text()" />)</xsl:if></xsl:for-each>);                    
+
+                    private TimeDelayHelper <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper = new TimeDelayHelper(<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >(int) (1000 * <xsl:value-of select="text()" />)</xsl:if></xsl:for-each>);
                     </xsl:if>
-                </xsl:if>                                
+                </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
                     private EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
                 </xsl:if>

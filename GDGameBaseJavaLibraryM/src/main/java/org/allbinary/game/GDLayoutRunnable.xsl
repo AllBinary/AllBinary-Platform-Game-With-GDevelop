@@ -24,15 +24,15 @@ Created By: Travis Berthelot
 /*
 * AllBinary Open License Version 1
 * Copyright (c) 2011 AllBinary
-* 
+*
 * By agreeing to this license you and any business entity you represent are
 * legally bound to the AllBinary Open License Version 1 legal agreement.
-* 
+*
 * You may obtain the AllBinary Open License Version 1 legal agreement from
 * AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-* 
+*
 * Created By: Travis Berthelot
-* 
+*
 */
 package org.allbinary.game;
 
@@ -55,12 +55,12 @@ public class GDGameStart<GD_CURRENT_INDEX>CanvasRunnable implements Runnable
     public GDGameStart<GD_CURRENT_INDEX>CanvasRunnable(DemoGameMidlet demoGameMidlet)
     {
         this.demoGameMidlet = (GDGameMIDlet) demoGameMidlet;
-        
+
         this.startDemoGameMidletEvent =
             new DemoGameMidletEvent(this.demoGameMidlet,
                 DemoGameMidletStateFactory.getInstance().START_DEMO);
     }
-    
+
     public void run()
     {
         try
@@ -77,12 +77,12 @@ public class GDGameStart<GD_CURRENT_INDEX>CanvasRunnable implements Runnable
             //ProgressCanvasFactory.getInstance().waitUntilDisplayed();
 
             // mediaInit();
-            
+
             this.demoGameMidlet.setGameCanvasRunnableInterface(
                     this.demoGameMidlet.createGDGameStart<GD_CURRENT_INDEX>CanvasRunnableInterface());
 
             this.demoGameMidlet.demoSetup();
-            
+
             // this.setDisplay((Displayable)
             // this.getGameCanvasRunnableInterface());
 
@@ -90,7 +90,7 @@ public class GDGameStart<GD_CURRENT_INDEX>CanvasRunnable implements Runnable
                     this.startDemoGameMidletEvent);
 
             this.demoGameMidlet.startGameCanvasRunnableInterface();
-            
+
             this.demoGameMidlet.postDemoSetup();
 
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().END_RUNNABLE, this, CommonStrings.getInstance().RUN));
@@ -101,7 +101,7 @@ public class GDGameStart<GD_CURRENT_INDEX>CanvasRunnable implements Runnable
         }
 
     }
-}                    
+}
             </xsl:if>
         </xsl:for-each>
     </xsl:template>

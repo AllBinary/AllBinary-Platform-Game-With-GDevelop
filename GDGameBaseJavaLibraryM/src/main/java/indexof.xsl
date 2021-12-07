@@ -5,7 +5,7 @@
     <xsl:template name="after-lastIndexOf">
         <xsl:param name="string" />
         <xsl:param name="char" />
-        
+
         <xsl:choose>
             <xsl:when test="contains($string, $char)">
                 <xsl:call-template name="after-lastIndexOf">
@@ -13,7 +13,7 @@
                     <xsl:with-param name="char" select="$char" />
                 </xsl:call-template>
             </xsl:when>
-            
+
             <xsl:otherwise>
                 <xsl:value-of select="$string" />
             </xsl:otherwise>

@@ -42,8 +42,8 @@ Created By: Travis Berthelot
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
-            
-            <xsl:if test="number($layoutIndex) = 
+
+            <xsl:if test="number($layoutIndex) =
                 <GD_CURRENT_INDEX>" >
                 <!-- Android images assets need to be enlarged if they are not setup to be inside the cirle area needed -->
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
@@ -56,7 +56,7 @@ Created By: Travis Berthelot
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
-                    
+
                 package org.allbinary.game.canvas;
 
                 import java.io.InputStream;
@@ -129,15 +129,15 @@ Created By: Travis Berthelot
                         {
                             return instance;
                         }
-                        
+
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
-                        
+
                         private final Graphics graphics = new Graphics();
                         private final GDObject[] ZERO_GD_OBJECT = new GDObject[0];
                         private final GDNode[] nodeArray = new GDNode[15000];
                         private final int FAKE_COLLISION_NODE_ID = 14999;
-                        
+
                         private final GDGroupHelper gdGroupHelper = new GDGroupHelper();
 
                     //objectsGroups - START
@@ -155,23 +155,23 @@ Created By: Travis Berthelot
                     <xsl:for-each select="instances" >
                         //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" /><xsl:text>&#10;</xsl:text>
                         <xsl:if test="layer != ''" >
-                            private GDGameLayer <xsl:value-of select="name" />GDGameLayer;                   
+                            private GDGameLayer <xsl:value-of select="name" />GDGameLayer;
                         </xsl:if>
                             private Rectangle <xsl:value-of select="name" />Rectangle = null;
-                        
+
                     </xsl:for-each>
                     //instances class properties - END
 
                     <xsl:call-template name="externalEventsClassProperty" >
                         <xsl:with-param name="layoutName" >
                             <xsl:value-of select="$layoutName" />
-                        </xsl:with-param>                        
+                        </xsl:with-param>
                     </xsl:call-template>
 
                     <xsl:call-template name="objectsClassProperty" >
                         <xsl:with-param name="windowWidth" >
                             <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>                        
+                        </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
 
@@ -240,23 +240,23 @@ Created By: Travis Berthelot
                     <xsl:call-template name="objectsAssign" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
-                        </xsl:with-param>                        
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>                        
+                        </xsl:with-param>
                         <xsl:with-param name="windowWidth" >
                             <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>                        
+                        </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>                        
+                        </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
 
                     <xsl:call-template name="externalEventsCreateAssignGDObject" >
                         <xsl:with-param name="layoutName" >
                             <xsl:value-of select="$layoutName" />
-                        </xsl:with-param>                        
+                        </xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
@@ -265,9 +265,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
-                        </xsl:with-param>                        
+                        </xsl:with-param>
                     </xsl:call-template>
-                    
+
                     <xsl:call-template name="eventsCreateAssignGDObject" >
                         <xsl:with-param name="caller" >externalEventsCreateAssignGDObject</xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
@@ -278,13 +278,13 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>                        
+                        </xsl:with-param>
                         <xsl:with-param name="objectsAsString" >
                             <xsl:value-of select="$objectsAsString" />
-                        </xsl:with-param>                        
+                        </xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
-                        </xsl:with-param>                        
+                        </xsl:with-param>
                     </xsl:call-template>
 
                     //instances create - START
@@ -294,15 +294,15 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                         final int <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
                         final int <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
-                        
+
                         if(this.<xsl:value-of select="name" />Array.length == 0) {
-                          this.<xsl:value-of select="name" />Array = new GDObject[1];  
+                          this.<xsl:value-of select="name" />Array = new GDObject[1];
                         }
 
                         this.<xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(1);
-                        
+
                         //this.<xsl:value-of select="name" />GDGameLayerArray = new GDGameLayer[1];
-                        this.<xsl:value-of select="name" />Array[0] = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);                    
+                        this.<xsl:value-of select="name" />Array[0] = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
                         <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
                         //We may need to set a dimension for each image/animation.
@@ -310,7 +310,7 @@ Created By: Travis Berthelot
                         this.<xsl:value-of select="name" />Array[0].height = <xsl:value-of select="name" />ImageArray[0].getHeight();
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="name" />Array[0].toString()));
                         </xsl:if>
-                        
+
                         <xsl:if test="layer = 'touch'" >
                         this.<xsl:value-of select="name" />Rectangle = new Rectangle(
                             PointFactory.getInstance().getInstance(this.<xsl:value-of select="name" />Array[0].x, this.<xsl:value-of select="name" />Array[0].y),
@@ -356,13 +356,13 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />, </xsl:for-each>"name=<xsl:value-of select="name" />;type=<xsl:value-of select="$typeValue" />"));
 
                             <xsl:variable name="name2" >:<xsl:value-of select="name" />,</xsl:variable>
-                
+
                             //test="not(contains($instancesAsString, $name2))"
                             //<xsl:value-of select="name" />Array[0].x = 0;
                             //<xsl:value-of select="name" />Array[0].y = 0;
-                                
+
                         </xsl:if>
-                                                
+
                     </xsl:for-each>
 
                     <xsl:for-each select="objects" >
@@ -422,7 +422,7 @@ Created By: Travis Berthelot
                             <xsl:with-param name="caller" >externalEvents</xsl:with-param>
                         </xsl:call-template>
                         -->
-                        //externalEvents - END                    
+                        //externalEvents - END
                     </xsl:for-each>
 
                     <xsl:call-template name="eventsProcess" >
@@ -432,10 +432,10 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                         lastStartTime = GameTickTimeDelayHelperFactory.getInstance().getStartTime();
                     }
-                    
+
                     public void paint(Graphics graphics, int x, int y)
                     {
-                    
+
                     <xsl:call-template name="eventsPaint" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
@@ -458,7 +458,7 @@ Created By: Travis Berthelot
                                 PointFactory.getInstance().getInstance(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
                                 <xsl:value-of select="name" />Array[0].Width(graphics), <xsl:value-of select="name" />Array[0].Height(graphics));
                                 //<xsl:value-of select="name" />.Width(graphics), <xsl:value-of select="name" />.Height(graphics));
-                                
+
                         }
                         </xsl:if>
                     </xsl:for-each>
@@ -507,11 +507,11 @@ Created By: Travis Berthelot
                     public double Variable(final double value) {
                         return value;
                     }
-                                        
+
                     public int GlobalVariable(final int value) {
                         return value;
                     }
-                    
+
                     public long TimeDelta() {
                         return timeDelta;
                     }

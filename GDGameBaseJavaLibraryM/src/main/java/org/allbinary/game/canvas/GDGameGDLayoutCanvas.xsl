@@ -6,15 +6,15 @@
 /*
 * AllBinary Open License Version 1
 * Copyright (c) 2011 AllBinary
-* 
+*
 * By agreeing to this license you and any business entity you represent are
 * legally bound to the AllBinary Open License Version 1 legal agreement.
-* 
+*
 * You may obtain the AllBinary Open License Version 1 legal agreement from
 * AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-* 
+*
 * Created By: Travis Berthelot
-* 
+*
 */
 
 package org.allbinary.game.canvas;
@@ -69,8 +69,8 @@ import org.allbinary.media.audio.AllBinaryMediaManager;
 import org.allbinary.media.audio.PlayerQueue;
 import org.allbinary.media.audio.PrimaryPlayerQueueFactory;
 import org.allbinary.media.audio.SecondaryPlayerQueueFactory;
-import org.allbinary.time.TimeDelayHelper;        
-                
+import org.allbinary.time.TimeDelayHelper;
+
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />
             <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
@@ -82,16 +82,16 @@ public class <GDLayout> extends AllBinaryGameCanvas
     private final short SIZE = 50;
 
     private SpecialAnimation specialAnimation;
-    
+
     public <GDLayout>(final CommandListener commandListener,
             final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
     {
-        super(commandListener, allBinaryGameLayerManager, 
+        super(commandListener, allBinaryGameLayerManager,
                 new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()),
                 new GDGameStaticInitializerFactory(),
            //new BasicBuildGameInitializerFactory(),
            false);
-        
+
         final String[] groupNames = new String[SIZE];
         final String GROUP_ = "Group ";
         final StringBuilder stringBuilder = new StringBuilder();
@@ -104,23 +104,23 @@ public class <GDLayout> extends AllBinaryGameCanvas
         LayerManagerEventHandler.getInstance().addListener(GroupLayerManagerListener.getInstance());
 
         GroupLayerManagerListener.getInstance().init(SIZE);
-                
+
         this.specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(allBinaryGameLayerManager);
-            
+
         this.setPlayingGameState();
     }
 
     public void setPlayingGameState()
     {
         this.setWait(WAIT);
-        
+
         //super.setPlayingGameState();
 
         this.setGameSpecificPaintable(
                 new Paintable()
         {
             final SpecialAnimation specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance();
-            
+
             public void paint(Graphics graphics)
             {
                 specialAnimation.paint(graphics, 0, 0);
@@ -153,7 +153,7 @@ public class <GDLayout> extends AllBinaryGameCanvas
         super.close();
         this.specialAnimation.close();
     }
-    
+
     protected void initSpecialPaint()
     {
         super.initSpecialPaint();
@@ -173,7 +173,7 @@ public class <GDLayout> extends AllBinaryGameCanvas
     throws Exception
     {
         GameInfo gameInfo = this.gameLayerManager.getGameInfo();
-        
+
 //        if(gameInfo.getGameType() != GameTypeFactory.getInstance().BOT)
 //        {
 //            BaseTouchInput nextTouchInputFactory =
@@ -185,7 +185,7 @@ public class <GDLayout> extends AllBinaryGameCanvas
 //            {
 //                if(gameInfo.getCurrentLevel() - getStartLevel() >= 1)
 //                {
-//                    nextTouchInputFactory = 
+//                    nextTouchInputFactory =
 //                        GDGameNeededTouchButtonsBuilder.getInstance(
 //                                this.getSensorGameUpdateProcessor());
 //                }
@@ -222,7 +222,7 @@ public class <GDLayout> extends AllBinaryGameCanvas
             {
             	progressCanvas.addPortion(4, "Skipping Configurable");
             }
-            
+
         } catch (Exception e)
         {
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "initConfigurable", e));
@@ -248,9 +248,9 @@ public class <GDLayout> extends AllBinaryGameCanvas
                     return;
                 }
 
-                ProgressCanvas progressCanvas = 
+                ProgressCanvas progressCanvas =
                     ProgressCanvasFactory.getInstance();
-                
+
                 progressCanvas.addPortion(portion, "Main Processors");
 
                 this.setWait(WAIT);
@@ -259,9 +259,9 @@ public class <GDLayout> extends AllBinaryGameCanvas
                 BasicArrayList list = new BasicArrayList();
 
                 Features features = Features.getInstance();
-                
+
                 GameFeatureFactory gameFeatureFactory = GameFeatureFactory.getInstance();
-                
+
                 if (features.isFeature(gameFeatureFactory.ARTIFICIAL_INTELLEGENCE_PROCESSOR))
                 {
                     list.add(new OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer());
@@ -298,12 +298,12 @@ public class <GDLayout> extends AllBinaryGameCanvas
     public void buildGame(boolean isProgress) throws Exception
     {
         this.loadResources(gameLayerManager.getGameInfo().getCurrentLevel());
-        
+
         ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
-        
+
         int portion = 30;
         if (isProgress <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.isMainCanvas())
-        {            
+        {
             progressCanvas.start();
 
             this.getCustomCommandListener().commandAction(
@@ -361,7 +361,7 @@ public class <GDLayout> extends AllBinaryGameCanvas
 
         this.getStartIntermissionInterface().setEnabled(true);
         this.getEndLevelIntermissionInterface().setEnabled(false);
-        
+
         // A canvas not in GameState.PLAYING_GAME_STATE will not appear in
         // democanvas
         this.setGameState(GameState.PLAYING_GAME_STATE);
@@ -372,7 +372,7 @@ public class <GDLayout> extends AllBinaryGameCanvas
         super.setGameState(gameState);
 
         IntermissionFactory intermissionFactory = IntermissionFactory.getInstance();
-        
+
         if (this.getGameState() == GameState.PLAYING_GAME_STATE)
         {
             this.setMainStateProcessor(this.getProcessGameProcessor());
@@ -382,7 +382,7 @@ public class <GDLayout> extends AllBinaryGameCanvas
                 || this.getGameState() == intermissionFactory.SHOW_HIGH_SCORE_LEVEL_INTERMISSION_GAME_STATE)
         {
             //GameKeyEventHandler.getInstance().addListener(this.getIntermissionPlayerGameInput());
-            
+
             //this.setMainStateProcessor(this.processEndIntermissionProcessor);
         }
         else
@@ -391,29 +391,29 @@ public class <GDLayout> extends AllBinaryGameCanvas
             this.setMainStateProcessor(this.getProcessGameProcessor());
         }
     }
-    
-    private final GamePerformanceInitUpdatePaintable gamePerformanceInitUpdatePaintable = 
+
+    private final GamePerformanceInitUpdatePaintable gamePerformanceInitUpdatePaintable =
         new GamePerformanceInitUpdatePaintable();
 
     private final AllBinaryOrientationSensor gyroOrientationSensor = GyroSensorFactory.getInstance();
     private final AllBinaryOrientationSensor accelerometerOrientationSensor = AccelerometerSensorFactory.getInstance();
-    
+
     private final int halfHeight = DisplayInfoSingleton.getInstance().getLastHalfHeight();
 
     //private String soundQueue = PrimaryPlayerQueueFactory.getInstance().toString();
-    
+
     //private boolean isFirst = true;
     //private final String DRAW = "draw";
-    
+
     public void draw(Graphics graphics)
     {
-        
+
         //if (this.isFirst)
         //{
             //this.isFirst = false;
             //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, DRAW));
         //}
-        
+
         this.clear(graphics);
 
         this.getBasicColorUtil().setBasicColor(graphics, gameLayerManager.getForegroundBasicColor());
@@ -428,12 +428,12 @@ public class <GDLayout> extends AllBinaryGameCanvas
 
     	nonBotPaintable.paint(graphics);
 
-        gameSpecificPaintable.paint(graphics);    	
+        gameSpecificPaintable.paint(graphics);
 
     	gamePerformanceInitUpdatePaintable.paint(graphics);
-        
+
         touchPaintable.paint(graphics);
-        
+
         screenCapture.saveFrame();
 
         graphics.drawString(this.gyroOrientationSensor.toString(), 0, halfHeight + 30 + 60, 0);
@@ -447,11 +447,11 @@ public class <GDLayout> extends AllBinaryGameCanvas
 
     private final PlayerQueue primaryPlayerQueue = PrimaryPlayerQueueFactory.getInstance();
     private final PlayerQueue secondaryPlayerQueue = SecondaryPlayerQueueFactory.getInstance();
-    
+
     private final Features features = Features.getInstance();
-    
+
     private final GameFeature soundGameFeature = GameFeatureFactory.getInstance().SOUND;
-    
+
     protected void processGame() throws Exception
     {
         if (playerTimeDelayHelper.isTime())
@@ -461,9 +461,9 @@ public class <GDLayout> extends AllBinaryGameCanvas
                 //this.primaryPlayerQueue.add(TestSound.getInstance());
             }
         }
-    	
+
         super.processGame();
-        
+
         /*
         if (playerTimeDelayHelper.isTime())
         {
@@ -479,16 +479,16 @@ public class <GDLayout> extends AllBinaryGameCanvas
             }
         }
 
-        
+
         if (!this.primaryPlayerQueue.process())
         {
             this.secondaryPlayerQueue.process();
         }
-        
+
         */
-        
+
         //soundQueue = this.primaryPlayerQueue.toString();
-        
+
         this.gamePerformanceInitUpdatePaintable.update();
     }
 
@@ -503,7 +503,7 @@ public class <GDLayout> extends AllBinaryGameCanvas
         this.specialAnimation = SpecialAnimation.getInstance();
         this.setGameSpecificPaintable(NullPaintable.getInstance());
     }
-   
+
 }
             </xsl:if>
         </xsl:for-each>

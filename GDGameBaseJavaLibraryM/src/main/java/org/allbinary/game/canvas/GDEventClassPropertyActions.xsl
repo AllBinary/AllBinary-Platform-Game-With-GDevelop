@@ -25,7 +25,7 @@ Created By: Travis Berthelot
         //eventsClassPropertyActions - START
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
-                                    
+
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
             <xsl:for-each select="comment" >
                 //Comment: <xsl:value-of select="text()" />
@@ -67,7 +67,7 @@ Created By: Travis Berthelot
             <xsl:if test="repeatExpression" >
                 //repeatExpression <xsl:value-of select="repeatExpression" />
             </xsl:if>
-                    
+
             <xsl:choose>
                 <xsl:when test ="preceding::events/actions[parameters[1]/text() = current()/actions/parameters/text()]">
                     //eventsClassPropertyActions - No Preceding text=<xsl:value-of select="parameters[1]/text()" />
@@ -83,11 +83,11 @@ Created By: Travis Berthelot
                                 <xsl:text>&#10;</xsl:text>
                                 <xsl:if test="$typeValue = 'ModVarScene'" >
                                     //eventsClassPropertyActions - ModVarScene - 1
-                                </xsl:if>                    
-                            </xsl:for-each>                    
+                                </xsl:if>
+                            </xsl:for-each>
                         </xsl:if>
                     </xsl:for-each>
-                                                                                                                        
+
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:for-each select="conditions" >
@@ -99,8 +99,8 @@ Created By: Travis Berthelot
                                 <xsl:variable name="typeValue" select="type/value" />
                                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                 <xsl:text>&#10;</xsl:text>
-                            </xsl:for-each>                    
-                        </xsl:if>                
+                            </xsl:for-each>
+                        </xsl:if>
                     </xsl:for-each>
                 </xsl:otherwise>
             </xsl:choose>
@@ -123,7 +123,7 @@ Created By: Travis Berthelot
                                     <xsl:if test="position() = last()" >;</xsl:if>
                                 </xsl:for-each>
                             </xsl:if>
-                        </xsl:if>                    
+                        </xsl:if>
                         <xsl:if test="$typeValue = 'ModVarGlobal'" >
                             <xsl:if test="parameters[2]/text() = '='" >private int <xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />
@@ -178,7 +178,7 @@ Created By: Travis Berthelot
                                             <xsl:if test="position() = last()" >;</xsl:if>
                                         </xsl:for-each>
                                     </xsl:if>
-                                </xsl:if>                    
+                                </xsl:if>
                                 <xsl:if test="$typeValue = 'ModVarGlobal'" >
                                     <xsl:if test="parameters[2]/text() = '='" >private int <xsl:for-each select="parameters" >
                                             <xsl:value-of select="text()" />
@@ -210,7 +210,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 </xsl:if>
                             </xsl:for-each>
-                    
+
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:for-each select="actions" >
@@ -218,10 +218,10 @@ Created By: Travis Berthelot
                                 //eventsClassPropertyActions - Had Preceding Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />,</xsl:for-each>
                                 <xsl:text>&#10;</xsl:text>
-                            </xsl:for-each>                
+                            </xsl:for-each>
                         </xsl:otherwise>
                     </xsl:choose>
-                
+
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:for-each select="actions" >
@@ -242,7 +242,7 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                     <xsl:with-param name="conditionEventPosition" >
                         <xsl:value-of select="$eventPosition" />
-                    </xsl:with-param>                
+                    </xsl:with-param>
                     <xsl:with-param name="hasParentDepartSceneCondition" >
                         <xsl:if test="$hasParentDepartSceneCondition = 'true'" >true</xsl:if>
                         <xsl:if test="$hasParentDepartSceneCondition != 'true'" >false</xsl:if>
@@ -259,12 +259,12 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                     <xsl:with-param name="conditionEventPosition" >
                         <xsl:value-of select="$eventPosition" />
-                    </xsl:with-param>                
+                    </xsl:with-param>
                     <xsl:with-param name="hasParentDepartSceneCondition" >true</xsl:with-param>
                     <xsl:with-param name="hasParentOnceCondition" >
                         <xsl:if test="$hasParentOnceCondition = 'true'" >true</xsl:if>
                         <xsl:if test="$hasParentOnceCondition != 'true'" >false</xsl:if>
-                    </xsl:with-param>                
+                    </xsl:with-param>
                 </xsl:call-template>
             </xsl:if>
 
@@ -277,7 +277,7 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                     <xsl:with-param name="conditionEventPosition" >
                         <xsl:value-of select="$eventPosition" />
-                    </xsl:with-param>                
+                    </xsl:with-param>
                     <xsl:with-param name="hasParentDepartSceneCondition" >
                         <xsl:if test="$hasParentDepartSceneCondition = 'true'" >true</xsl:if>
                         <xsl:if test="$hasParentDepartSceneCondition != 'true'" >false</xsl:if>
@@ -335,9 +335,9 @@ Created By: Travis Berthelot
                     <xsl:value-of select="number($totalRecursions) + 1" />
                 </xsl:with-param>
             </xsl:call-template>
-            
+
         </xsl:for-each>
-        
+
         //externalEventsClassPropertyActions - END
     </xsl:template>
 

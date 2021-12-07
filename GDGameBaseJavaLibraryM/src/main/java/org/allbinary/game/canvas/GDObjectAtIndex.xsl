@@ -18,7 +18,7 @@ Created By: Travis Berthelot
     <xsl:template name="gameLayer" >
         <xsl:param name="name" />
         <xsl:param name="iteration" />
-        
+
                                     final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) gameLayer);
                                     GDObject <xsl:value-of select="$name" /> = null;
                                     if(<xsl:value-of select="$name" />GDGameLayer != null) {
@@ -27,21 +27,21 @@ Created By: Travis Berthelot
                                         final String message = "<xsl:value-of select="$name" /> warning: not initialized";
                                         LogUtil.put(LogFactory.getInstance(message, this, message));
                                     }
-        
+
     </xsl:template>
 
     <xsl:template name="gameLayerList" >
         <xsl:param name="name" />
-        
+
                                     final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) <xsl:value-of select="$name" />GDGameLayerList.get(index));
                                     final GDObject <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject;
-        
+
     </xsl:template>
-    
+
     <!--
         <xsl:if test="$iteration = 0" >
         </xsl:if>
-    
+
                     <xsl:if test="not(preceding-sibling::actions[type/value/text() = 'Create'])">
                         //No preceding action with Create
                         <xsl:call-template name="objectGDObjectAtIndex" >
@@ -52,7 +52,7 @@ Created By: Travis Berthelot
                                 <xsl:for-each select="parameters" ><xsl:if test="position() > 2" ><xsl:value-of select="text()" />,</xsl:if></xsl:for-each>
                             </xsl:with-param>
                         </xsl:call-template>
-                    </xsl:if>                        
+                    </xsl:if>
     -->
 
     <xsl:template name="objectGDObjectAtIndex" >
@@ -84,19 +84,19 @@ Created By: Travis Berthelot
                     <xsl:call-template name="split" >
                         <xsl:with-param name="names" >
                             <xsl:value-of select="$names" />
-                        </xsl:with-param>                      
+                        </xsl:with-param>
                         <xsl:with-param name="iteration" >
                             <xsl:value-of select="0" />
-                        </xsl:with-param>                      
+                        </xsl:with-param>
                         <xsl:with-param name="templateName" >gameLayer</xsl:with-param>
                     </xsl:call-template>
-                    
+
                 </xsl:if>
             </xsl:for-each>
         </xsl:for-each>
         //objectGDObjectAtIndex - END
 
-    </xsl:template>    
+    </xsl:template>
 
     <xsl:template name="objectGDObjectAtIndex2" >
         <xsl:param name="layoutIndex" />
@@ -107,7 +107,7 @@ Created By: Travis Berthelot
             <xsl:for-each select="layouts" >
                 <xsl:variable name="index" select="position() - 1" />
                 <xsl:if test="number($index) = $layoutIndex" >
-                    
+
                     <xsl:variable name="params" >
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
@@ -157,11 +157,11 @@ Created By: Travis Berthelot
                         gdNodeList.add(nodeArray[<xsl:value-of select="$actionNodeId" />]);
                             </xsl:if>
                         </xsl:if>
-                                                
+
                     </xsl:for-each>
 
                         gdNodeList.add(nodeArray[FAKE_COLLISION_NODE_ID]);
-                        
+
                         //When gdNodeList size is 1 with only the 1 object above then nothing occurs
                         ((GDNode) gdNodeList.get(0)).processN(gdNode, gdNodeList);
 

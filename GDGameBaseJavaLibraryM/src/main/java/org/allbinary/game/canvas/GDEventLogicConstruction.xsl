@@ -42,11 +42,11 @@ Created By: Travis Berthelot
 
     <xsl:template name="eventsLogicConstruction" >
         <xsl:param name="totalRecursions" />
-        
+
         //eventsLogicConstruction - START
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
-            
+
             <xsl:call-template name="eventsLogicConstruction" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
@@ -57,7 +57,7 @@ Created By: Travis Berthelot
             <xsl:if test="repeatExpression" >
                 //repeatExpression <xsl:value-of select="repeatExpression" />
             </xsl:if>
-    
+
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
@@ -65,26 +65,26 @@ Created By: Travis Berthelot
                     this.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new BaseMotionGestureEventListener() {
 
                         //private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=?";
-                    
+
                         public void onEvent(final AllBinaryEventObject eventObject)
                         {
                         }
 
                         public void onMotionGestureEvent(final MotionGestureEvent motionGestureEvent) {
-                    
+
                             //Event for Condition
                             //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
 
                     <xsl:for-each select=".." >
                             <xsl:call-template name="actionIdsMotionGestureEvent" >
-                                <xsl:with-param name="totalRecursions" >0</xsl:with-param>                                
+                                <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                             </xsl:call-template>
-                    </xsl:for-each>                            
+                    </xsl:for-each>
                         }
-                             
+
                     };
                 </xsl:if>
-                
+
                 <xsl:if test="$typeValue = 'CollisionNP'" >
                     //CollisionNP
                     //<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
@@ -116,12 +116,12 @@ Created By: Travis Berthelot
                         </xsl:for-each>
 
                 </xsl:if>
-                
+
             </xsl:for-each>
 
         </xsl:for-each>
         //eventsLogicConstruction - END
-        
+
     </xsl:template>
 
 </xsl:stylesheet>

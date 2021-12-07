@@ -8,15 +8,15 @@
 /*
 * AllBinary Open License Version 1
 * Copyright (c) 2011 AllBinary
-* 
+*
 * By agreeing to this license you and any business entity you represent are
 * legally bound to the AllBinary Open License Version 1 legal agreement.
-* 
+*
 * You may obtain the AllBinary Open License Version 1 legal agreement from
 * AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-* 
+*
 * Created By: Travis Berthelot
-* 
+*
 */
 package org.allbinary.game;
 
@@ -66,20 +66,20 @@ public class GDGameMIDlet extends
    //DemoGameMidlet
 {
     private final String GD_LAYOUT_COLOR = "GDLayout2Color";
-    
+
    public GDGameMIDlet()
    {
        super(LicenseLoadingTypeFactory.getIntance().OTHER);
        //this.setSaveGameForm(SaveGameForm.getInstance(this, "Save Game"));
    }
-   
+
    protected HelpPaintable getHelpPaintable()
    throws Exception
    {
        //return GDGameHelpPaintable.getInstance();
        return GDGameInputMappingHelpPaintable.getInstance();
    }
-   
+
    public GameCanvasRunnableInterface createDemoGameCanvasRunnableInterface() throws Exception
    {
        return new <GDLayout0>(this);
@@ -138,8 +138,8 @@ public class GDGameMIDlet extends
                        <xsl:for-each select="events" >
                            <xsl:for-each select="actions" >
                                <xsl:variable name="typeValue" select="type/value" />
-                               <xsl:if test="$typeValue = 'SceneBackground'" >                               
-       final BasicColor backgroundBasicColor = new BasicColor(255, 
+                               <xsl:if test="$typeValue = 'SceneBackground'" >
+       final BasicColor backgroundBasicColor = new BasicColor(255,
                                <xsl:for-each select="parameters" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:for-each>,
                                GD_LAYOUT_COLOR);
        final BasicColor foregroundBasicColor = new BasicColor(255, 255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue,
@@ -188,7 +188,7 @@ public class GDGameMIDlet extends
     }
 
    public void setGDLayout(final String layoutName) throws Exception {
-      
+
        PreLogUtil.put(layoutName, this, "setGDLayout");
 
        final String GDLAYOUT0 = "<GDLayoutName0>";

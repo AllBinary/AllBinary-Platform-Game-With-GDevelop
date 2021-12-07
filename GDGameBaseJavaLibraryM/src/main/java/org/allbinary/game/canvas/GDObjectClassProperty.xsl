@@ -37,7 +37,7 @@ Created By: Travis Berthelot
                 //animations/directions/sprites/originPoint/x <xsl:value-of select="animations/directions/sprites/originPoint/x" />
                 //animations/directions/sprites/originPoint/y <xsl:value-of select="animations/directions/sprites/originPoint/y" />
                 final class <xsl:value-of select="name" /> extends GDObject {
-                
+
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
                         super(unknown, x, y, name);
                     }
@@ -50,7 +50,7 @@ Created By: Travis Berthelot
             </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
-                
+
                 final class <xsl:value-of select="name" /> extends GDObject {
 
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
@@ -93,17 +93,17 @@ Created By: Travis Berthelot
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
                 private final int <xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="characterSize" /> * DisplayInfoSingleton.getInstance().getLastWidth()) / <xsl:value-of select="$windowWidth" />;
-                private final CustomTextAnimation <xsl:value-of select="name" />TextAnimation = 
+                private final CustomTextAnimation <xsl:value-of select="name" />TextAnimation =
                 new CustomTextAnimation("<xsl:value-of select="$stringValue" />", Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, <xsl:value-of select="name" />TextAnimationSize));
 
                 <xsl:variable name="name2" >,<xsl:value-of select="name" />,</xsl:variable>
-                
+
             </xsl:if>
             //private Rectangle <xsl:value-of select="name" />Rectangle = null;
 
         </xsl:for-each>
         //objectsClassProperty - END
-        
+
     </xsl:template>
 
 </xsl:stylesheet>

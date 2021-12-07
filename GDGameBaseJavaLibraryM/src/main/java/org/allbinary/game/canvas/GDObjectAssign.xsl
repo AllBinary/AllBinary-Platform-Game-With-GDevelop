@@ -20,7 +20,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="windowWidth" />
         <xsl:param name="instancesAsString" />
-        
+
         //objectsAssign - START
         final ResourceUtil resourceUtil = ResourceUtil.getInstance();
         <xsl:for-each select="objects" >
@@ -45,14 +45,14 @@ Created By: Travis Berthelot
                 </xsl:for-each>
                 };
 
-                final InputStream[] <xsl:value-of select="name" />InputStreamArray = 
+                final InputStream[] <xsl:value-of select="name" />InputStreamArray =
                 {
                 <xsl:for-each select="animations" >
                     resourceUtil.getResourceAsStream(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]),
                 </xsl:for-each>
                 };
 
-                final Image[] <xsl:value-of select="name" />ImageArray = 
+                final Image[] <xsl:value-of select="name" />ImageArray =
                 {
                 <xsl:for-each select="animations" >
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
@@ -64,13 +64,13 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
                 };
-                
+
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                 <xsl:for-each select="animations" >
                     //<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray[<xsl:value-of select="position()" /> - 1] = ;
                     new AllBinaryAndroidImageRotationAnimationFactory(
-                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />], 
-                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth(), 
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth(),
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight()
                     <xsl:for-each select="directions" >
                         //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
@@ -101,12 +101,12 @@ Created By: Travis Berthelot
                     <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />LayerInfo);
-                
+
             </xsl:if>
             <xsl:if test="$layoutIndex = 1" >
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
-                
+
                 /*
                 final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup();
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[0];
@@ -127,13 +127,13 @@ Created By: Travis Berthelot
 
                 this.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
                 */
-                    
+
                 <xsl:value-of select="name" />GDGameLayerFactory = new NullGDGameLayerFactory();
-                
+
             </xsl:if>
             </xsl:if>
-            
-        </xsl:for-each>        
+
+        </xsl:for-each>
         //objectsAssign - END
     </xsl:template>
 

@@ -8,15 +8,15 @@
 /*
 * AllBinary Open License Version 1
 * Copyright (c) 2011 AllBinary
-* 
+*
 * By agreeing to this license you and any business entity you represent are
 * legally bound to the AllBinary Open License Version 1 legal agreement.
-* 
+*
 * You may obtain the AllBinary Open License Version 1 legal agreement from
 * AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-* 
+*
 * Created By: Travis Berthelot
-* 
+*
 */
 package org.allbinary.game.canvas;
 
@@ -34,11 +34,11 @@ import org.allbinary.graphics.form.FormPaintable;
 import org.allbinary.graphics.paint.NullInitUpdatePaintable;
 import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.logic.basic.string.StringUtil;
-        
+
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />
             <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
-                
+
 public class <GDLayout> extends StartCanvas
 {
     private final String GD_LAYOUT_COLOR = "GDLayout<GD_CURRENT_INDEX>Color";
@@ -52,7 +52,7 @@ public class <GDLayout> extends StartCanvas
                 new GDGameStaticInitializerFactory(), false);
 
         this.setWait(WAIT);
-        
+
         GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(null);
     }
 
@@ -70,7 +70,7 @@ public class <GDLayout> extends StartCanvas
 
         this.setDefaultPaintableInterface(
                 //ColorFillPaintableFactory.getInstance(BasicColorFactory.getInstance().RED)
-                ColorFillPaintableFactory.getInstance(new BasicColor(255, 
+                ColorFillPaintableFactory.getInstance(new BasicColor(255,
                     <xsl:for-each select="events" >
                         <xsl:for-each select="actions" >
                             <xsl:variable name="typeValue" select="type/value" />

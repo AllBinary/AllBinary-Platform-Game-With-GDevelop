@@ -19,11 +19,11 @@ Created By: Travis Berthelot
     <xsl:template name="eventsProcess" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="conditionEventPosition" />
-        
+
         //eventsProcess
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
-            
+
             <xsl:call-template name="eventsProcess" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
@@ -81,13 +81,13 @@ Created By: Travis Berthelot
                 //BuiltinCommonInstructions::Group
                 this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
-            
+
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:text>&#10;</xsl:text>
             </xsl:for-each>
-    
+
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
