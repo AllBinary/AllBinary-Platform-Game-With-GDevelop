@@ -397,6 +397,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
                     </xsl:call-template>
 
                         } catch(Exception e) {

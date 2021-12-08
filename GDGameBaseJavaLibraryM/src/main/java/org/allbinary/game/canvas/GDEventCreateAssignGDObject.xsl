@@ -484,7 +484,16 @@ Created By: Travis Berthelot
                                 LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
 
                     <xsl:for-each select="parameters" >
-                        //<xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].angle</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /> (short)</xsl:if><xsl:if test="position() = 3" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>Array[index].<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                            <xsl:if test="position() = 1" >
+                                final int size = <xsl:value-of select="text()" />Array.length;
+                            </xsl:if>
+                    </xsl:for-each>
+                    <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 1" >
+                                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                                    <xsl:value-of select="text()" />Array[index].angle</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /> (short)</xsl:if><xsl:if test="position() = 3" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>Array[index].<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;<xsl:text>&#10;</xsl:text>
+                                }
+                            </xsl:if>
                     </xsl:for-each>
 
                             } catch(Exception e) {
@@ -538,10 +547,12 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                     <xsl:for-each select="parameters" >
-                                //Hack for GDevelop player_life
+                        <xsl:if test="position() = 1" >
+                            //Hack for GDevelop player_life<xsl:text>&#10;</xsl:text>
+                        </xsl:if>
                     </xsl:for-each>
                     <xsl:for-each select="parameters" >
-                                <xsl:if test="text() = 'player_life'" >//</xsl:if><xsl:value-of select="text()" /><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                            <xsl:if test="text() = 'player_life'" >//</xsl:if><xsl:value-of select="text()" /><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                     </xsl:for-each>
 
                             } catch(Exception e) {
@@ -693,6 +704,7 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="text()" />);
                                         </xsl:if>
                                     </xsl:for-each>
+                                    <xsl:value-of select="$name" />GDGameLayer.updateGDObject(timeDelta);
                                     <xsl:text>&#10;</xsl:text>
 
                             } catch(Exception e) {
@@ -778,16 +790,18 @@ Created By: Travis Berthelot
         <xsl:if test="not(../conditions)" >
                                 this.process(<xsl:value-of select="$gdObjectName" />Array[index]);
         </xsl:if>
-
                                 gameLayer.updateGDObject(timeDelta);
                                 }
+                            } else {
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$gdObjectName" />GDGameLayerList was null"));
                             }
-                        } else {
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$gdObjectName" />GDGameLayerList was null"));
                         }
 
                         //Rotate
                         public boolean process(final GDObject <xsl:value-of select="$name" />) {
+                        <xsl:if test="$name = 'player'" >
+                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                        </xsl:if>
                             //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                             <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotation =<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
                             return true;
@@ -1386,12 +1400,12 @@ Created By: Travis Berthelot
                 <xsl:for-each select="actions" >
                     LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, new Exception()));
                 </xsl:for-each>
-                /*
+
                 <xsl:call-template name="actionIds" >
                     <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                     <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
                 </xsl:call-template>
-                */
+
                 </xsl:if>
                 }
             };

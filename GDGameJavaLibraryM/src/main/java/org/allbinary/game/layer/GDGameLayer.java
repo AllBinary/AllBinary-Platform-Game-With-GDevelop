@@ -18,17 +18,16 @@ import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.RotationAnimation;
-import org.allbinary.game.configuration.GameSpeed;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
+import org.allbinary.game.layout.GDObjectStrings;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.math.NoDecimalTrigTable;
-import org.allbinary.math.PositionStrings;
 import org.allbinary.view.ViewPosition;
 
 /**
@@ -167,9 +166,11 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
     public void AddForceUsingPolarCoordinates(final float angle, final float length, final float clearing) {
         //angle *= Math.PI / 180.0;
         float adjustedAngle = angle;
+        //float adjustedAngle = angle + this.gdObject.angle;
         while(adjustedAngle > 359) { adjustedAngle -= 360; }
         //final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
-        //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(GDObjectStrings.getInstance().ANGLE).append(angle).append(gameLayerStrings.LENGTH).append(length).toString(), this, gameLayerStrings.ADD_FORCE_AL));
+        //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
+        //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(objectStrings.ANGLE).append(angle).append(objectStrings.ANGLE).append(this.gdObject.angle).append(gameLayerStrings.LENGTH).append(length).toString(), this, gameLayerStrings.ADD_FORCE_AL));
         this.Force((int) (noDecimalTrigTable.cos((short) adjustedAngle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) adjustedAngle) * length) / SCALE, clearing);
     }
 

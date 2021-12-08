@@ -92,8 +92,7 @@ Created By: Travis Berthelot
                 <xsl:otherwise>
                     <xsl:for-each select="conditions" >
                         <xsl:variable name="typeValue" select="type/value" />
-                        //eventsClassPropertyActions - Had preceding text Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
-                            <xsl:value-of select="text()" />,</xsl:for-each>
+                        //eventsClassPropertyActions - Had preceding text Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                         <xsl:if test="$typeValue = 'Timer'" >
                             <xsl:for-each select="../actions" >
                                 <xsl:variable name="typeValue" select="type/value" />
@@ -215,8 +214,7 @@ Created By: Travis Berthelot
                         <xsl:otherwise>
                             <xsl:for-each select="actions" >
                                 <xsl:variable name="typeValue" select="type/value" />
-                                //eventsClassPropertyActions - Had Preceding Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
-                                    <xsl:value-of select="text()" />,</xsl:for-each>
+                                //eventsClassPropertyActions - Had Preceding Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                 <xsl:text>&#10;</xsl:text>
                             </xsl:for-each>
                         </xsl:otherwise>
@@ -226,8 +224,7 @@ Created By: Travis Berthelot
                 <xsl:otherwise>
                     <xsl:for-each select="actions" >
                         <xsl:variable name="typeValue" select="type/value" />
-                        //No Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
-                            <xsl:value-of select="text()" />,</xsl:for-each>
+                        //No Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                         <xsl:text>&#10;</xsl:text>
                     </xsl:for-each>
                 </xsl:otherwise>

@@ -42,6 +42,7 @@ Created By: Travis Berthelot
 
     <xsl:template name="eventsLogicConstruction" >
         <xsl:param name="totalRecursions" />
+        <xsl:param name="layoutIndex" />
 
         //eventsLogicConstruction - START
         <xsl:for-each select="events" >
@@ -50,6 +51,9 @@ Created By: Travis Berthelot
             <xsl:call-template name="eventsLogicConstruction" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="layoutIndex" >
+                    <xsl:value-of select="$layoutIndex" />
                 </xsl:with-param>
             </xsl:call-template>
 
@@ -74,12 +78,12 @@ Created By: Travis Berthelot
 
                             //Event for Condition
                             //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
-
-                    <xsl:for-each select=".." >
+                            
                             <xsl:call-template name="actionIdsMotionGestureEvent" >
                                 <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                             </xsl:call-template>
-                    </xsl:for-each>
+
                         }
 
                     };
