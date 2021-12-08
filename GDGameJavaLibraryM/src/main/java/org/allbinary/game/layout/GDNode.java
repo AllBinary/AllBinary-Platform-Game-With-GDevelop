@@ -29,6 +29,10 @@ public class GDNode
         
     }
 
+    public void processReleased() {
+        
+    }
+    
     public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
         
     }
@@ -37,6 +41,10 @@ public class GDNode
         return true;
     }
 
+    public boolean processReleased(final GDObject gdObject) {
+        return true;
+    }
+    
     public void processG(final GDObject gdObject, final Graphics graphics) {
         
     }
