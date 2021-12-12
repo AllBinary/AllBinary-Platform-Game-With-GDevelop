@@ -148,6 +148,36 @@
 
     </xsl:template>
 
+    <xsl:template name="actionIdsGDObjectPos">
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="gdObjectName" />
+        <xsl:param name="gdGameLayer" />
+
+        //actionIdsGDObject <xsl:value-of select="$gdObjectName" />
+        //Actions - GDNode - totalRecursions=<xsl:value-of select="$totalRecursions" />
+        <xsl:for-each select="actions" >
+            //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+            <xsl:text>&#10;</xsl:text>
+            nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$gdObjectName" />);
+            ((GDGameLayer) <xsl:value-of select="$gdGameLayer" />).updatePosition();
+        </xsl:for-each>
+
+        <xsl:for-each select="events" >
+            <xsl:call-template name="actionIdsGDObject" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="gdObjectName" >
+                    <xsl:value-of select="$gdObjectName" />
+                </xsl:with-param>
+                <xsl:with-param name="gdGameLayer" >
+                    <xsl:value-of select="$gdGameLayer" />
+                </xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+
+    </xsl:template>
+
     <xsl:template name="actionIdsMotionGestureEvent">
         <xsl:param name="totalRecursions" />
         <xsl:param name="layoutIndex" />

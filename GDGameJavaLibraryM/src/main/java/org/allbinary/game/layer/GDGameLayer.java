@@ -22,21 +22,28 @@ import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.game.layout.GDObjectStrings;
+import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.math.NoDecimalTrigTable;
+import org.allbinary.logic.math.ScaleFactorFactory;
 import org.allbinary.view.ViewPosition;
 
 /**
  *
  * @author User
  */
-public class GDGameLayer extends CollidableDestroyableDamageableLayer {
-    private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
-    private final int SCALE = noDecimalTrigTable.SCALE * 10; //* GameSpeed.getInstance().getSpeed();
+public class GDGameLayer extends CollidableDestroyableDamageableLayer 
+        //implements //RotationAnimationInterfaceCompositeInterface, DirectionalCompositeInterface,
+        //ArtificialIntelligenceCompositeInterface, GameInputInterface,
+        //VelocityInterfaceCompositeInterface 
+        {
+
+    //private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
+    //private final int SCALE = noDecimalTrigTable.SCALE * 10; //* GameSpeed.getInstance().getSpeed();
+    private final int SCALE_FACTOR_VALUE = (ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE / ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR) * 2 / 3;
 
     public final String gdName;    
     public final GDObject gdObject;
@@ -50,7 +57,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
 
     private final int SIZE;
 
-    //private final VelocityProperties velocityInterface;
+    private final VelocityProperties velocityInterface;
     // private AccelerationInterface accelerationInterface;
     //protected final BasicAccelerationProperties acceleration;
 
@@ -66,12 +73,15 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
         this.gdName = gdName;
         this.gdObject = gdObject;
 
-        /*
-        this.velocityInterface = 
-                new VelocityProperties(
-                        (1700 * MathUtil.getInstance().sqrt((DisplayInfoSingleton.getInstance().getLastWidth() + DisplayInfoSingleton.getInstance().getLastHeight()))) * GameSpeed.getInstance().getSpeed() / 20, 
-                        (1322 * MathUtil.getInstance().sqrt((DisplayInfoSingleton.getInstance().getLastWidth() + DisplayInfoSingleton.getInstance().getLastHeight()))) * GameSpeed.getInstance().getSpeed() / 20);
+        //final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
+        //final MathUtil mathUtil = MathUtil.getInstance();
+        //final GameSpeed gameSpeed = GameSpeed.getInstance();
         
+        this.velocityInterface = new VelocityProperties(1200, 1200);
+                        //(1700 * mathUtil.sqrt((displayInfoSingleton.getLastWidth() + displayInfoSingleton.getLastHeight()))) * gameSpeed.getSpeed() / 20, 
+                        //(1322 * mathUtil.sqrt((displayInfoSingleton.getLastWidth() + displayInfoSingleton.getLastHeight()))) * gameSpeed.getSpeed() / 20);
+        
+        /*        
         this.acceleration = new BasicAccelerationProperties(
                 this.velocityInterface.getMaxForwardVelocity() / 12,
                 -this.velocityInterface.getMaxReverseVelocity() / 12
@@ -97,7 +107,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
 
         this.initIndexedAnimationInterface = initIndexedAnimationInterface;
         
-        this.setRotationAnimationInterface(initIndexedAnimationInterface);
+        this.setRotationAnimationInterfaceArray(initIndexedAnimationInterface);
         //this.setIndexedAnimationInterface(this.initIndexedAnimationInterface);
     }
 
@@ -106,20 +116,20 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
         return initIndexedAnimationInterface;
     }
 
-    public void setRotationAnimationInterface(
-            RotationAnimation[] rotationAnimationInterface)
+    public void setRotationAnimationInterfaceArray(
+            final RotationAnimation[] rotationAnimationInterface)
     {
         this.rotationAnimationInterface = rotationAnimationInterface;
         this.setIndexedAnimationInterface(this.rotationAnimationInterface);
     }
 
-    public RotationAnimation[] getRotationAnimationInterface()
+    public RotationAnimation[] getRotationAnimationInterfaceArray()
     {
         return this.rotationAnimationInterface;
     }
 
     protected void setIndexedAnimationInterface(
-            IndexedAnimation[] animationInterface)
+            final IndexedAnimation[] animationInterface)
     {
         this.indexedAnimationInterface = animationInterface;
     }
@@ -129,49 +139,32 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
         return indexedAnimationInterface;
     }
 
-    /*
     public void move()
     {
-        int dx = velocityInterface.getVelocityXBasicDecimal().getScaled();
-        int dy = velocityInterface.getVelocityYBasicDecimal().getScaled();
+        final int dx = velocityInterface.getVelocityXBasicDecimal().getScaled();
+        final int dy = velocityInterface.getVelocityYBasicDecimal().getScaled();
         super.move(dx, dy);
     }
-    */
-    
-    //private boolean isFirst = true;
-    //private final String PAINT = "paint";
-    public void paint(Graphics graphics)
-    {
-        try
-        {
-            //if(this.isFirst) {
-                //this.isFirst = false;
-                //LogUtil.put(LogFactory.getInstance(this.gdObject.name, this, PAINT));
-            //}
-            
-            int x = this.x - quarterWidth;
-            int y = this.y - quarterHeight;
 
-            //for (int index = 0; index < SIZE; index++) {
-            indexedAnimationInterface[this.gdObject.animation].paint(graphics, x, y);
-            //}
-        }
-        catch (Exception e)
-        {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "paint", e));
-        }
-    }
-
-    //RuntimeObject.cpp
+        //RuntimeObject.cpp
     public void AddForceUsingPolarCoordinates(final float angle, final float length, final float clearing) {
+        
         //angle *= Math.PI / 180.0;
         float adjustedAngle = angle;
+        //this.gdObject.angle = rotationAnimation.getAngleInfo().getAngle();
         //float adjustedAngle = angle + this.gdObject.angle;
         while(adjustedAngle > 359) { adjustedAngle -= 360; }
         //final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
         //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-        //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(objectStrings.ANGLE).append(angle).append(objectStrings.ANGLE).append(this.gdObject.angle).append(gameLayerStrings.LENGTH).append(length).toString(), this, gameLayerStrings.ADD_FORCE_AL));
-        this.Force((int) (noDecimalTrigTable.cos((short) adjustedAngle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) adjustedAngle) * length) / SCALE, clearing);
+        //LogUtil.put(LogFactory.getInstance(new StringBuilder()
+                //.append(this.velocityInterface.toString())
+                ////.append(this.rotationAnimationInterface[this.gdObject.animation].getAngleInfo().toString())
+                ////.append(objectStrings.ROTATION).append(this.gdObject.rotation)
+                //.append(objectStrings.ANGLE).append(this.gdObject.angle)
+                //.append(objectStrings.ANGLE).append(angle)
+                //.append(gameLayerStrings.LENGTH).append(length).toString(), this, gameLayerStrings.ADD_FORCE_AL));
+        this.velocityInterface.addVelocity((long) length * SCALE_FACTOR_VALUE, (short) adjustedAngle, (short) 0);
+        //this.Force((int) (noDecimalTrigTable.cos((short) adjustedAngle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) adjustedAngle) * length) / SCALE, clearing);
     }
 
     //private static final String FORCE = "force";
@@ -196,9 +189,16 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
         //LogUtil.put(LogFactory.getInstance(stringMaker.toString(), this, FORCE));
     }
     
+    public void updatePosition() {
+        this.setPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
+    }
+    
     public void updateGDObject(final long timeDelta)
     {
-        this.setPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
+        this.move();
+     
+        this.gdObject.x = this.x;
+        this.gdObject.y = this.y;
         
         this.updateRotation(timeDelta);
                 
@@ -210,7 +210,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("timeDelta: ").append(timeDelta).toString(), this, "updateRotation"));
         //stringBuilder.delete(0, stringBuilder.length());
         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("prior rotationRemainder: ").append(rotationRemainder).toString(), this, "updateRotation"));
-        float newPortion = (this.gdObject.rotation * timeDelta / 1000f);
+        final float newPortion = (this.gdObject.rotation * timeDelta / 1000f);
         //stringBuilder.delete(0, stringBuilder.length());
         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("newPortion : ").append(newPortion).toString(), this, "updateRotation"));
         rotationRemainder = rotationRemainder + newPortion;
@@ -252,7 +252,32 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer {
                 }
             }
             //rotationAnimation.adjustFrame(nextAngle);
+            
         //}
+    }
+
+    //private boolean isFirst = true;
+    //private final String PAINT = "paint";
+    public void paint(Graphics graphics)
+    {
+        try
+        {
+            //if(this.isFirst) {
+                //this.isFirst = false;
+                //LogUtil.put(LogFactory.getInstance(this.gdObject.name, this, PAINT));
+            //}
+            
+            int x = this.x - quarterWidth;
+            int y = this.y - quarterHeight;
+
+            //for (int index = 0; index < SIZE; index++) {
+            indexedAnimationInterface[this.gdObject.animation].paint(graphics, x, y);
+            //}
+        }
+        catch (Exception e)
+        {
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "paint", e));
+        }
     }
 
     public void toString(final StringMaker stringBuffer) {
