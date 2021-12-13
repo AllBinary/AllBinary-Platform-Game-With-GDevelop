@@ -42,7 +42,7 @@ Created By: Travis Berthelot
                         super(unknown, x, y, name);
                     }
 
-                        <xsl:if test="contains(name, 'player')" >
+                        <xsl:if test="name = 'player'" >
                     //Hack FIX ME for GDevelop player
                     public short Angle() {
 
