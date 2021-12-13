@@ -42,6 +42,19 @@ Created By: Travis Berthelot
                         super(unknown, x, y, name);
                     }
 
+                        <xsl:if test="contains(name, 'player')" >
+                    //Hack FIX ME for GDevelop player
+                    public short Angle() {
+
+                        int adjustedAngle = angle;
+                        while(adjustedAngle <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 359) { adjustedAngle -= 360; }
+                        while(adjustedAngle <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0) { adjustedAngle += 360; }
+                        this.angle = (short) adjustedAngle;
+
+                        return this.angle;
+                    }
+                        </xsl:if>
+                    
                 };
 
                 private GDObject[] <xsl:value-of select="name" />Array = ZERO_GD_OBJECT;

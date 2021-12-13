@@ -29,6 +29,7 @@ import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.ScaleFactorFactory;
+import org.allbinary.math.PositionStrings;
 import org.allbinary.view.ViewPosition;
 
 /**
@@ -43,7 +44,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
     //private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
     //private final int SCALE = noDecimalTrigTable.SCALE * 10; //* GameSpeed.getInstance().getSpeed();
-    private final int SCALE_FACTOR_VALUE = (ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE / ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR) * 2 / 3;
+    //private final int SCALE_FACTOR_VALUE = (ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE / ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR) * 2 / 3;
+    private static final int SCALE_FACTOR = ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR * 2;
 
     public final String gdName;    
     public final GDObject gdObject;
@@ -61,6 +63,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     // private AccelerationInterface accelerationInterface;
     //protected final BasicAccelerationProperties acceleration;
 
+    protected long realX;
+    protected long realY;
+    
     private float rotationRemainder;
     
     public GDGameLayer(final String gdName, final Group[] groupInterface,
@@ -139,31 +144,66 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         return indexedAnimationInterface;
     }
 
+    private static final String MOVE = "move";
+    
     public void move()
     {
-        final int dx = velocityInterface.getVelocityXBasicDecimal().getScaled();
-        final int dy = velocityInterface.getVelocityYBasicDecimal().getScaled();
-        super.move(dx, dy);
+        //final int dx = velocityInterface.getVelocityXBasicDecimal().getScaled();
+        //final int dy = velocityInterface.getVelocityYBasicDecimal().getScaled();
+        //super.move(dx, dy);
+
+        final long velocityX = velocityInterface.getVelocityXBasicDecimal().getUnscaled();
+        final long velocityY = velocityInterface.getVelocityYBasicDecimal().getUnscaled();
+
+        //final long priorRealX = this.realX;
+        //final long priorRealY = this.realY;
+        this.realX = this.realX + velocityX;
+        this.realY = this.realY + velocityY;
+
+        final int x = (int) (this.realX / ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE);
+        final int y = (int) (this.realY / ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE);
+
+        //final PositionStrings positionStrings = PositionStrings.getInstance();
+        //final StringMaker stringMaker = new StringMaker();
+        //LogUtil.put(LogFactory.getInstance(stringMaker
+                //.append(positionStrings.X_LABEL).append(velocityX)
+                //.append(positionStrings.Y_LABEL).append(velocityY)
+                ////.append(positionStrings.X_LABEL).append(priorRealX)
+                ////.append(positionStrings.Y_LABEL).append(priorRealY)
+                //.append(positionStrings.X_LABEL).append(this.realX)
+                //.append(positionStrings.Y_LABEL).append(this.realY)
+                //.append(positionStrings.X_LABEL).append(x)
+                //.append(positionStrings.Y_LABEL).append(y)
+                ////.append(positionStrings.DZ_LABEL).append(dz)
+                //.toString(), this, MOVE));
+        
+        super.setPosition(x, y, this.z);
     }
 
-        //RuntimeObject.cpp
+    public void setPosition(int x, int y, int z)
+    {
+        super.setPosition(x, y, z);
+
+        final int scaleFactorValue = ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE;
+        this.realX = x * scaleFactorValue;
+        this.realY = y * scaleFactorValue;
+    }
+
+    //RuntimeObject.cpp
     public void AddForceUsingPolarCoordinates(final float angle, final float length, final float clearing) {
         
         //angle *= Math.PI / 180.0;
         float adjustedAngle = angle;
-        //this.gdObject.angle = rotationAnimation.getAngleInfo().getAngle();
-        //float adjustedAngle = angle + this.gdObject.angle;
-        while(adjustedAngle > 359) { adjustedAngle -= 360; }
         //final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
         //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
         //LogUtil.put(LogFactory.getInstance(new StringBuilder()
                 //.append(this.velocityInterface.toString())
                 ////.append(this.rotationAnimationInterface[this.gdObject.animation].getAngleInfo().toString())
                 ////.append(objectStrings.ROTATION).append(this.gdObject.rotation)
-                //.append(objectStrings.ANGLE).append(this.gdObject.angle)
+                ////.append(objectStrings.ANGLE).append(this.gdObject.angle)
                 //.append(objectStrings.ANGLE).append(angle)
                 //.append(gameLayerStrings.LENGTH).append(length).toString(), this, gameLayerStrings.ADD_FORCE_AL));
-        this.velocityInterface.addVelocity((long) length * SCALE_FACTOR_VALUE, (short) adjustedAngle, (short) 0);
+        this.velocityInterface.setVelocity((long) length * SCALE_FACTOR, (short) adjustedAngle, (short) 0);
         //this.Force((int) (noDecimalTrigTable.cos((short) adjustedAngle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) adjustedAngle) * length) / SCALE, clearing);
     }
 
