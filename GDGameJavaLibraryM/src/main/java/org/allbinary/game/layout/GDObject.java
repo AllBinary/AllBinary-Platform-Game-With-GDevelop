@@ -82,6 +82,18 @@ public class GDObject
         return 0;
     }
     
+    public void setAngle(final short angle) {
+        int adjustedAngle = angle - 270;
+        while (adjustedAngle > 359) {
+            adjustedAngle -= 360;
+        }
+        while (adjustedAngle < 0) {
+            adjustedAngle += 360;
+        }
+
+        this.angle = (short) adjustedAngle;
+    }
+    
     public short Angle(final GDGameLayer gameLayer) {
         return this.angle;
     }

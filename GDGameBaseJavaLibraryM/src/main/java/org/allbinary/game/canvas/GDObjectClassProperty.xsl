@@ -49,10 +49,10 @@ Created By: Travis Berthelot
                         //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
                         //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(objectStrings.ANGLE).append(angle).toString(), this, "before"));
                         
-                        final int adjustedAngle = gameLayer.getRotationAnimationInterface().getAngleInfo().getAngle();
+                        int adjustedAngle = gameLayer.getRotationAnimationInterface().getAngleInfo().getAngle() - 270;
                         //int adjustedAngle = angle;
-                        //while(adjustedAngle <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 359) { adjustedAngle -= 360; }
-                        //while(adjustedAngle <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0) { adjustedAngle += 360; }
+                        while(adjustedAngle <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 359) { adjustedAngle -= 360; }
+                        while(adjustedAngle <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0) { adjustedAngle += 360; }
                         this.angle = (short) adjustedAngle;
 
                         //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(objectStrings.ANGLE).append(angle).toString(), this, "after"));
