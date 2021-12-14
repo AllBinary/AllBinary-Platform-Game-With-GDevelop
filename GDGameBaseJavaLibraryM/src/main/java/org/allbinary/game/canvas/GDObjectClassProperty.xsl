@@ -44,12 +44,18 @@ Created By: Travis Berthelot
 
                         <xsl:if test="name = 'player'" >
                     //Hack FIX ME for GDevelop player
-                    public short Angle() {
+                    public short Angle(final GDGameLayer gameLayer) {
 
-                        int adjustedAngle = angle;
-                        while(adjustedAngle <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 359) { adjustedAngle -= 360; }
-                        while(adjustedAngle <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0) { adjustedAngle += 360; }
+                        //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
+                        //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(objectStrings.ANGLE).append(angle).toString(), this, "before"));
+                        
+                        final int adjustedAngle = gameLayer.getRotationAnimationInterface().getAngleInfo().getAngle();
+                        //int adjustedAngle = angle;
+                        //while(adjustedAngle <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 359) { adjustedAngle -= 360; }
+                        //while(adjustedAngle <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0) { adjustedAngle += 360; }
                         this.angle = (short) adjustedAngle;
+
+                        //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(objectStrings.ANGLE).append(angle).toString(), this, "after"));
 
                         return this.angle;
                     }

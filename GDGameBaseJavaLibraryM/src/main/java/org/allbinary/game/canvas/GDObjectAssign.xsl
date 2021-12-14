@@ -93,8 +93,10 @@ Created By: Travis Berthelot
                 final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup();
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                PointFactory.getInstance().getInstance(0, 0),
-                                <xsl:value-of select="animations/directions/sprites/originPoint/x" />, <xsl:value-of select="animations/directions/sprites/originPoint/y" />
+                                PointFactory.getInstance().getInstance(
+                                (<xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/x" />), 
+                                (<xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/y" />)),
+                                <xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 2, <xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 2
                                 );
                 <xsl:value-of select="name" />GDGameLayerFactory = new GDGameLayerFactory(
                     new Group[] {this.gdGroupHelper.get(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>), <xsl:value-of select="name" />GroupInterface},

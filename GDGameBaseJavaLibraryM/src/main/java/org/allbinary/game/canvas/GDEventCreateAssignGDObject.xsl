@@ -535,7 +535,11 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
 
                     //ModVarScene
-                    //Update angle with rotation
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="contains(text(), 'angle')" >
+                        //Update angle with rotation
+                        </xsl:if>
+                    </xsl:for-each>                    
                         public void process() {
 
                             try {
@@ -546,15 +550,16 @@ Created By: Travis Berthelot
                         <xsl:if test="contains(text(), 'player.')" >
                                 //Hack FIX ME for GDevelop player
                                 final GDObject player = playerArray[0];
+                                final GDGameLayer playerGDGameLayer = ((GDGameLayer) playerGDGameLayerList.get(0));
                         </xsl:if>
                     </xsl:for-each>
                     <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" >
-                            //Hack FIX ME for GDevelop player_life<xsl:text>&#10;</xsl:text>
+                        <xsl:if test="text() = 'player_life'" >
+                                //Hack GDevelop - Remark out player_life<xsl:text>&#10;</xsl:text>
                         </xsl:if>
                     </xsl:for-each>
                     <xsl:for-each select="parameters" >
-                            <xsl:if test="text() = 'player_life'" >//</xsl:if><xsl:value-of select="text()" /><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                            <xsl:if test="text() = 'player_life'" >//</xsl:if><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" >Angle()</xsl:with-param><xsl:with-param name="replacementText" >Angle(playerGDGameLayer)</xsl:with-param></xsl:call-template><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                     </xsl:for-each>
 
                             } catch(Exception e) {
@@ -1301,7 +1306,11 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'ModVarScene'" >
                     //ModVarScene
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="contains(text(), 'angle')" >
                     //Update angle with rotation
+                        </xsl:if>
+                    </xsl:for-each>                    
                     //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                     <xsl:for-each select="parameters" >
                         <xsl:value-of select="text()" />

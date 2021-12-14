@@ -92,6 +92,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
                 import org.allbinary.game.layer.special.GDConditionCollidableBehavior;
                 import org.allbinary.game.layer.special.GDCollidableBehavior;
+                import org.allbinary.game.layout.GDObjectStrings;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;

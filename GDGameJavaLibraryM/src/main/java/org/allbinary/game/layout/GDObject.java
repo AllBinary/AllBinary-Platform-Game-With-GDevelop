@@ -14,6 +14,7 @@
 package org.allbinary.game.layout;
 
 import javax.microedition.lcdui.Graphics;
+import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.graphics.SpacialStrings;
 import org.allbinary.logic.basic.string.CommonSeps;
 import org.allbinary.math.PositionStrings;
@@ -81,6 +82,10 @@ public class GDObject
         return 0;
     }
     
+    public short Angle(final GDGameLayer gameLayer) {
+        return this.angle;
+    }
+
     public short Angle() {
         return this.angle;
     }
