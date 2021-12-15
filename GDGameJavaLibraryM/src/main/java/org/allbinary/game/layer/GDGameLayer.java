@@ -18,7 +18,6 @@ import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.RotationAnimation;
-import org.allbinary.direction.DirectionFactory;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
@@ -31,6 +30,8 @@ import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.ScaleFactorFactory;
+import org.allbinary.math.AngleFactory;
+import org.allbinary.math.FrameUtil;
 import org.allbinary.math.PositionStrings;
 import org.allbinary.view.ViewPosition;
 
@@ -308,7 +309,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
                 
             }
             //rotationAnimation.adjustFrame(nextAngle);
-            //rotationAnimation.setFrame(nextAngle);
+            //rotationAnimation.setFrame(rotationAnimation.getFrame() + angleAdjustment);
             
             if(this.getName().equals(PLAYER)) {
                 LogUtil.put(LogFactory.getInstance(rotationAnimation.toString(), this, "setRotation"));
@@ -316,6 +317,44 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //}
     }
 
+    public void setAngle(final short angle) {
+        RotationAnimation rotationAnimation;
+        //short nextAngle;
+        //for (int index = 0; index < SIZE; index++)
+        //{
+            rotationAnimation = this.rotationAnimationInterface[this.gdObject.animation];
+            if(this.getName().equals(PLAYER)) {
+                LogUtil.put(LogFactory.getInstance(new StringBuilder().append(GDObjectStrings.getInstance().ANGLE).append(rotationAnimation.getAngleInfo().getAngle()).append(" angleAdjustment: ").append(angle).toString(), this, "setAngle"));
+            }
+            //nextAngle = (short) (rotationAnimation.getAngleInfo().getAngle() + angleAdjustment);
+            //LogUtil.put(LogFactory.getInstance(new StringBuilder().append("nextAngle: ").append(nextAngle).toString(), this, "setRotation"));
+
+            short angleAdjustment = angle;
+            if(angleAdjustment > 0) {
+                short value = angleAdjustment;
+                while(value > 0) {
+                    rotationAnimation.nextRotation();
+                    value--;
+                }
+                
+            } else {
+                short value = angleAdjustment;
+                while(value < 0) {
+                    rotationAnimation.previousRotation();
+                    value++;
+                }
+                
+            }
+            
+            //setFrame(FrameUtil.getInstance().getFrameForAngle(angle, 1));
+            //rotationAnimation.setFrame(AngleFactory.getInstance().getInstance(angle));
+            
+            if(this.getName().equals(PLAYER)) {
+                LogUtil.put(LogFactory.getInstance(rotationAnimation.toString(), this, "setAngle"));
+            }
+        //}
+    }
+    
     //private boolean isFirst = true;
     //private final String PAINT = "paint";
     public void paint(Graphics graphics)
@@ -334,21 +373,26 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             indexedAnimationInterface[this.gdObject.animation].paint(graphics, x, y);
             //}
 
-            //final int endX = (int) (this.x + (this.velocityInterface.getVelocityXBasicDecimal().getUnscaled() / 10));
-            //final int endY = (int) (this.y + (this.velocityInterface.getVelocityYBasicDecimal().getUnscaled() / 10));
-            //this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().AQUA);
-            //graphics.drawLine(this.x + this.getHalfWidth(), this.y + this.getHalfHeight(), endX + this.getHalfWidth(), endY + this.getHalfHeight());
-            
-            //graphics.drawString(Integer.toString(this.getRotationAnimationInterface().getAngleInfo().getAngle()), this.x, this.y, 0);
-
-            //super.paint(graphics);
+            //this.paintDebug(graphics);
         }
         catch (Exception e)
         {
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "paint", e));
         }
+        
     }
 
+    public void paintDebug(Graphics graphics) {
+        
+        final int endX = (int) (this.x + (this.velocityInterface.getVelocityXBasicDecimal().getUnscaled() / 10));
+        final int endY = (int) (this.y + (this.velocityInterface.getVelocityYBasicDecimal().getUnscaled() / 10));
+        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().AQUA);
+        graphics.drawLine(this.x + this.getHalfWidth(), this.y + this.getHalfHeight(), endX + this.getHalfWidth(), endY + this.getHalfHeight());
+
+        graphics.drawString(Integer.toString(this.getRotationAnimationInterface().getAngleInfo().getAngle()), this.x, this.y, 0);
+        super.paint(graphics);
+        
+    }
     
     public void toString(final StringMaker stringBuffer) {
 

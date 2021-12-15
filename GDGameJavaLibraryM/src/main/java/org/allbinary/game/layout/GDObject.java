@@ -17,6 +17,9 @@ import javax.microedition.lcdui.Graphics;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.graphics.SpacialStrings;
 import org.allbinary.logic.basic.string.CommonSeps;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.math.FrameUtil;
 import org.allbinary.math.PositionStrings;
 
 /**
@@ -82,8 +85,10 @@ public class GDObject
         return 0;
     }
     
-    public void setAngle(final short angle) {
-        int adjustedAngle = angle - 270;
+    public void setAngle(final short angle, final GDGameLayer gameLayer) {
+        
+        //int adjustedAngle = angle - 270;
+        int adjustedAngle = angle;
         while (adjustedAngle > 359) {
             adjustedAngle -= 360;
         }
@@ -91,7 +96,14 @@ public class GDObject
             adjustedAngle += 360;
         }
 
+        //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
+        //LogUtil.put(LogFactory.getInstance(new StringBuilder()
+                //.append(objectStrings.ANGLE).append(angle)
+                //.append(objectStrings.ANGLE).append(adjustedAngle).toString(), this, objectStrings.ANGLE));
+
         this.angle = (short) adjustedAngle;
+     
+        gameLayer.setAngle(angle);
     }
     
     public short Angle(final GDGameLayer gameLayer) {
@@ -99,6 +111,11 @@ public class GDObject
     }
 
     public short Angle() {
+        
+        //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
+        //LogUtil.put(LogFactory.getInstance(new StringBuilder()
+                //.append(objectStrings.ANGLE).append(angle).toString(), this, objectStrings.ANGLE));
+        
         return this.angle;
     }
 
