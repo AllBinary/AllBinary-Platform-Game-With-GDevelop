@@ -16,6 +16,28 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
+    <xsl:template name="actionWithUsedTypeRecursion" >
+        <xsl:for-each select="actions" >
+            <xsl:variable name="typeValue" select="type/value" />
+            <xsl:if test="$typeValue = 'Delete' or $typeValue = 'UnPauseTimer' or $typeValue = 'MettreX' or $typeValue = 'MettreY'  or $typeValue = 'MettreXY' or $typeValue = 'SetAngle' or $typeValue = 'ChangePlan' or $typeValue = 'ChangeAnimation' or $typeValue = 'ModVarObjet' or $typeValue = 'TextObject::ChangeColor' or $typeValue = 'ModVarGlobal' or $typeValue = 'ModVarScene' or $typeValue = 'AddForceAL'" >found</xsl:if>
+        </xsl:for-each>
+        
+        <xsl:for-each select="events" >
+            <xsl:call-template name="actionWithUsedTypeRecursion" ></xsl:call-template>
+        </xsl:for-each>
+
+    </xsl:template>
+
+    <xsl:template name="conditionsWithUsedTypeRecursion" >
+        <xsl:for-each select="conditions" ><xsl:if test="type/value = 'SourisSurObjet'" >found</xsl:if>
+        </xsl:for-each>
+        
+        <xsl:for-each select="events" >
+            <xsl:call-template name="conditionsWithUsedTypeRecursion" ></xsl:call-template>
+        </xsl:for-each>
+
+    </xsl:template>
+        
     <xsl:template name="eventsCreateAssignGDObject" >
         <xsl:param name="caller" />
         <xsl:param name="totalRecursions" />
@@ -71,6 +93,12 @@ Created By: Travis Berthelot
                     <xsl:variable name="typeValue" select="type/value" />
                     <xsl:if test="$typeValue = 'Delete' or $typeValue = 'UnPauseTimer' or $typeValue = 'MettreX' or $typeValue = 'MettreY'  or $typeValue = 'MettreXY' or $typeValue = 'SetAngle' or $typeValue = 'ChangePlan' or $typeValue = 'ChangeAnimation' or $typeValue = 'ModVarObjet' or $typeValue = 'TextObject::ChangeColor' or $typeValue = 'ModVarGlobal' or $typeValue = 'ModVarScene' or $typeValue = 'AddForceAL'" >found</xsl:if>
                 </xsl:for-each>
+            </xsl:variable>
+            <xsl:variable name="actionWithUsedTypeRecursion" >
+                <xsl:call-template name="actionWithUsedTypeRecursion" ></xsl:call-template>
+            </xsl:variable>
+            <xsl:variable name="conditionsWithUsedTypeRecursion" >
+                <xsl:call-template name="conditionsWithUsedTypeRecursion" ></xsl:call-template>
             </xsl:variable>
 
             <xsl:variable name="hasAssociatedSiblingCondition" select="conditions/type/value = 'MouseButtonReleased' or conditions/type/value = 'VarScene' or conditions/type/value = 'Timer'" />
@@ -255,7 +283,54 @@ Created By: Travis Berthelot
                         }
 
                     };
+                </xsl:if>                
+                <xsl:if test="$typeValue = 'SourisSurObjet'" >
+                                    
+                    if(this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
+                        throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
+                    }
+                    this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+                                    
+                        private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>";
+
+                        //SourisSurObjet
+                        public void process(final MotionGestureEvent motionGestureEvent) {
+                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                                <xsl:for-each select="parameters" >
+                                    <xsl:if test="position() = 1" >
+                            if(<xsl:value-of select="text()" />Rectangle != null) {
+                            
+                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="text()" />Rectangle - Not Null"));
+                                final GPoint point = motionGestureEvent.getCurrentPoint();
+                                final GPoint rectangePoint = <xsl:value-of select="text()" />Rectangle.getPoint();
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="text()" />Rectangle - motionGestureEvent: " + motionGestureEvent.toString()));
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="text()" />Rectangle: " + <xsl:value-of select="text()" />Rectangle.toString()));
+                                if (RectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY(), <xsl:value-of select="text()" />Rectangle.getMaxX(), <xsl:value-of select="text()" />Rectangle.getMaxY(),
+                                    point.getX(), point.getY()))
+                                {
+                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "Inside"));
+                                    final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
+                                    if (motionGestureInput == TouchMotionGestureFactory.getInstance().PRESSED) {
+                                        <xsl:for-each select="../../actions" >
+                                        nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                        </xsl:for-each> 
+                                        //this.process();
+                                    } else {
+                                        <xsl:for-each select="../../actions" >
+                                        nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                                        </xsl:for-each>    
+                                        //this.processReleased();
+                                    }
+                                }
+                            } else {
+                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="text()" />Rectangle - Null"));
+                            }
+                                    </xsl:if>
+                                </xsl:for-each>
+                        }                                
+                    };
                 </xsl:if>
+                
             </xsl:for-each>
 
             <xsl:for-each select="actions" >
@@ -935,39 +1010,17 @@ Created By: Travis Berthelot
 
                                 <xsl:variable name="typeValue" select="type/value" />
                                 <xsl:if test="$typeValue = 'SourisSurObjet'" >
+
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>";
 
                         //SourisSurObjet
                         public void process(final MotionGestureEvent motionGestureEvent) {
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
-                                <xsl:for-each select="parameters" >
-                                    <xsl:if test="position() = 1" >
-                            if(<xsl:value-of select="text()" />Rectangle != null) {
-                            
-                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="text()" />Rectangle - Not Null"));
-                                final GPoint point = motionGestureEvent.getCurrentPoint();
-                                final GPoint rectangePoint = <xsl:value-of select="text()" />Rectangle.getPoint();
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="text()" />Rectangle - motionGestureEvent: " + motionGestureEvent.toString()));
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="text()" />Rectangle: " + <xsl:value-of select="text()" />Rectangle.toString()));
-                                if (RectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY(), <xsl:value-of select="text()" />Rectangle.getMaxX(), <xsl:value-of select="text()" />Rectangle.getMaxY(),
-                                    point.getX(), point.getY()))
-                                {
-                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "Inside"));
-                                    final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
-                                    if (motionGestureInput == TouchMotionGestureFactory.getInstance().PRESSED) {
-                                        this.process();
-                                    } else {
-                                        this.processReleased();
-                                    }
-                                }
-                            } else {
-                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="text()" />Rectangle - Null"));
-                            }
-                                    </xsl:if>
-                                </xsl:for-each>
+                            nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
                         }
                                 </xsl:if>
                             </xsl:for-each>
+
                     };
             </xsl:for-each>
 
@@ -1487,7 +1540,70 @@ Created By: Travis Berthelot
             };
             </xsl:if>
 
-            <xsl:if test="not(contains($actionWithUsedType, 'found'))" >
+            <xsl:if test="contains($actionWithUsedTypeRecursion, 'found') and contains($conditionsWithUsedTypeRecursion, 'found') and not(contains($actionWithUsedType, 'found'))" >
+
+            //Event - With child Events that have actions - process - used
+            if(this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
+                throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
+            }
+            this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+
+                <xsl:if test="actions" >
+                <xsl:for-each select="actions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    <xsl:variable name="quote" >"</xsl:variable>
+                    <xsl:variable name="actionAsString" >Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                    private final String ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Skipped - <xsl:value-of select="translate($actionAsString, $quote, ' ')" />";
+                    <xsl:text>&#10;</xsl:text>
+                </xsl:for-each>
+                </xsl:if>
+
+                public void process() {
+                <xsl:for-each select="events" >
+                    //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" />
+                    <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
+                        <!-- Event nodeId=N75237 - 9701 position=12 totalRecursions=1 type=BuiltinCommonInstructions::Standard disable=false -->
+                        <xsl:if test="generate-id()= 'N75237'">
+                    //BuiltinCommonInstructions::Standard
+                    nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                        </xsl:if>
+                        <!-- Event nodeId=N77640 - 12104 position=16 totalRecursions=2 type=BuiltinCommonInstructions::Standard disable=false
+                             Action nodeId=N77651 - 12115 type=AddForceAL inverted=false parameters=player,Variable(player_movement_angle),Variable(player_speed),0, -->
+                        <xsl:if test="generate-id()= 'N77640'">
+                    //BuiltinCommonInstructions::Standard
+                    nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                        </xsl:if>
+                    </xsl:if>
+                    <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+                    //BuiltinCommonInstructions::ForEach
+                    </xsl:if>
+                </xsl:for-each>
+
+                <xsl:for-each select="conditions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                    //nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                </xsl:for-each>
+
+                <xsl:if test="actions" >
+                <xsl:for-each select="actions" >
+                    //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, new Exception()));
+                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                    //nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                </xsl:for-each>
+
+                <xsl:call-template name="actionIds" >
+                    <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                    <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
+                </xsl:call-template>
+
+                </xsl:if>
+                }
+            };
+            </xsl:if>
+
+            //and not(contains($actionWithUsedTypeRecursion, 'found') and contains($conditionsWithUsedTypeRecursion, 'found'))
+            <xsl:if test="not(contains($actionWithUsedType, 'found'))and not(contains($actionWithUsedTypeRecursion, 'found') and contains($conditionsWithUsedTypeRecursion, 'found'))" >
 
             //Event - Actions - process - skipped
             if(this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
