@@ -102,8 +102,13 @@ public class GDObject
                 //.append(objectStrings.ANGLE).append(adjustedAngle).toString(), this, objectStrings.ANGLE));
 
         this.angle = (short) adjustedAngle;
-     
-        gameLayer.setAngle(angle);
+        
+        if(gameLayer != null) {
+            gameLayer.setAngle(angle);
+        } else {
+            final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
+            LogUtil.put(LogFactory.getInstance(objectStrings.GD_GAME_LAYER_WAS_NULL, this, objectStrings.ANGLE));
+        }
     }
     
     public short Angle(final GDGameLayer gameLayer) {

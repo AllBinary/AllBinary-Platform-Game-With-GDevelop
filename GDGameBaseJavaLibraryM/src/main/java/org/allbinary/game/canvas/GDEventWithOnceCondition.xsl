@@ -59,4 +59,33 @@ Created By: Travis Berthelot
         </xsl:for-each>
     </xsl:template>
 
+    <xsl:template name="showAll" >
+        <xsl:param name="totalRecursions" />
+        <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>showAll totalRecursions="<xsl:value-of select="$totalRecursions" />" /<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
+        <xsl:for-each select="events" >
+            
+            <xsl:variable name="eventId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>event nodeId="<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />" position="<xsl:value-of select="position()" />" type="<xsl:value-of select="type" />" disable="<xsl:value-of select="disabled" />" <xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
+            <xsl:text>&#10;</xsl:text>
+            <xsl:for-each select="actions" >
+                <xsl:variable name="typeValue" select="type/value" />
+                <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>action nodeId="<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />" type="<xsl:value-of select="$typeValue" />" inverted="<xsl:value-of select="type/inverted" />" /<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
+                <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>parameters<xsl:text disable-output-escaping="yes" >&gt;</xsl:text><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each><xsl:text disable-output-escaping="yes" >&lt;</xsl:text>/parameters<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
+                <xsl:text>&#10;</xsl:text>
+            </xsl:for-each>
+            <xsl:for-each select="conditions" >
+                <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>condition nodeId="<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />" type="<xsl:value-of select="type/value" />" /<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
+                <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>parameters<xsl:text disable-output-escaping="yes" >&gt;</xsl:text><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each><xsl:text disable-output-escaping="yes" >&lt;</xsl:text>/parameters<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
+                <xsl:text>&#10;</xsl:text>
+            </xsl:for-each>
+            <xsl:call-template name="showAll" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>
+            </xsl:call-template>
+            <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>/event<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
+        </xsl:for-each>
+
+    </xsl:template>
+
 </xsl:stylesheet>

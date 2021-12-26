@@ -57,6 +57,19 @@ Created By: Travis Berthelot
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
 
+                //showAll - START
+                <!--
+                    <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>root<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
+                    <xsl:call-template name="showAll" >
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>/root<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
+                -->            
+                    
+                //showAll - END
+                
                 package org.allbinary.game.canvas;
 
                 import java.io.InputStream;
@@ -136,6 +149,8 @@ Created By: Travis Berthelot
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
 
+                        private final String PROCESS_RELEASE = "processReleased";
+                        
                         private final Graphics graphics = new Graphics();
                         private final GDObject[] ZERO_GD_OBJECT = new GDObject[0];
                         private final GDNode[] nodeArray = new GDNode[15000];
