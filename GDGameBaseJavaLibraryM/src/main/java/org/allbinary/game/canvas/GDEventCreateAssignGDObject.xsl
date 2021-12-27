@@ -1209,6 +1209,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //SetAngle
                     <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].setAngle(</xsl:if><xsl:if test="position() = 2" > (short)</xsl:if><xsl:if test="position() = 3" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>Array[index].<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >, (GDGameLayer) <xsl:value-of select="$gameLayerName" />GDGameLayerList.get(index));</xsl:if>
                     </xsl:for-each>
@@ -1480,9 +1481,18 @@ Created By: Travis Berthelot
                     //SetAngle
                     <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
+                    GDGameLayer gameLayerAtIndex = null;
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" >
+                    if(<xsl:value-of select="text()" />GDGameLayerList != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> <xsl:value-of select="text()" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
+                        gameLayerAtIndex = (GDGameLayer) <xsl:value-of select="text()" />GDGameLayerList.get(index);
+                    }
+                        </xsl:if>
+                    </xsl:for-each>
+
                     //method 1st param or list
                     <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].setAngle(</xsl:if><xsl:if test="position() = 2" > (short)</xsl:if><xsl:if test="position() = 3" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>Array[index].<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >, (GDGameLayer) <xsl:value-of select="$gameLayerName" />GDGameLayerList.get(index));</xsl:if>
+                        <xsl:if test="position() = 1" ><xsl:value-of select="text()" />Array[index].setAngle(</xsl:if><xsl:if test="position() = 2" > (short)</xsl:if><xsl:if test="position() = 3" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>Array[index].<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >, gameLayerAtIndex);</xsl:if>
                     </xsl:for-each>
                     <xsl:text>&#10;</xsl:text>
                 </xsl:if>
@@ -1590,8 +1600,10 @@ Created By: Travis Berthelot
                     //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" />
                     <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                         <!-- Event nodeId=N75237 - 9701 position=12 totalRecursions=1 type=BuiltinCommonInstructions::Standard disable=false -->
+                        <!-- //childEventWithUsedEvent - START -->
                         <xsl:variable name="childEventWithUsedEvent" ><xsl:call-template name="childEventWithUsedEvent" ><xsl:with-param name="totalRecursions" >0</xsl:with-param></xsl:call-template></xsl:variable>
-                        //<xsl:value-of select="$childEventWithUsedEvent" />
+                        <xsl:value-of select="$childEventWithUsedEvent" />
+                        <!-- //childEventWithUsedEvent - END -->
                         <xsl:if test="contains($childEventWithUsedEvent, 'found')" >
                     //BuiltinCommonInstructions::Standard - Used condition in children - 1
                     nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
@@ -1687,7 +1699,12 @@ Created By: Travis Berthelot
                 <xsl:for-each select="events" >
                     //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" />
                     <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
-                    //BuiltinCommonInstructions::Standard - Skipped
+                        <xsl:variable name="childEventWithUsedEvent" ><xsl:call-template name="childEventWithUsedEvent" ><xsl:with-param name="totalRecursions" >0</xsl:with-param></xsl:call-template></xsl:variable>
+                        //<xsl:value-of select="$childEventWithUsedEvent" />
+                        <xsl:if test="contains($childEventWithUsedEvent, 'found')" >
+                    //BuiltinCommonInstructions::Standard - Used condition in children - 3
+                    nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                        </xsl:if>
                     </xsl:if>
                     <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
                     //BuiltinCommonInstructions::ForEach
