@@ -201,8 +201,8 @@
                         <xsl:for-each select="events" >
                     //Found - condition in children - <xsl:value-of select="$childEventWithUsedEvent" />
                     <xsl:variable name="typeValue" select="type/value" />
-                    final String EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Events nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>";
-                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                    //final String EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Events nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>";
+                    //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                     //nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
                         </xsl:for-each>
                     //Events - END
