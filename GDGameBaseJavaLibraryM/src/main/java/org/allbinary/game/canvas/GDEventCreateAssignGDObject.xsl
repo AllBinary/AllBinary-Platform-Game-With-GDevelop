@@ -742,7 +742,7 @@ Created By: Travis Berthelot
             <xsl:if test="../actions" >
                         }
                         } else {
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$name" />GDGameLayerList was null"));
+                            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$name" />GDGameLayerList was null"));
                         }                
             </xsl:if>
 
@@ -912,7 +912,7 @@ Created By: Travis Berthelot
                                 gameLayer.updateGDObject(timeDelta);
                                 }
                             } else {
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$gdObjectName" />GDGameLayerList was null"));
+                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$gdObjectName" />GDGameLayerList was null"));
                             }
                         }
 
@@ -985,7 +985,7 @@ Created By: Travis Berthelot
                                 gameLayer.updateGDObject(timeDelta);
                                 }
                             } else {
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$gdObjectName" />GDGameLayerList was null"));
+                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$gdObjectName" />GDGameLayerList was null"));
                             }
                         }
 
@@ -1703,7 +1703,7 @@ Created By: Travis Berthelot
                         //<xsl:value-of select="$childEventWithUsedEvent" />
                         <xsl:if test="contains($childEventWithUsedEvent, 'found')" >
                     //BuiltinCommonInstructions::Standard - Used condition in children - 3
-                    nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    //nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                         </xsl:if>
                     </xsl:if>
                     <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >

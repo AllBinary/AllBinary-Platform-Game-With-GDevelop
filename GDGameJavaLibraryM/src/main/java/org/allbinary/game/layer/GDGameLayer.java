@@ -169,21 +169,21 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         final int x = (int) (this.realX / ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE);
         final int y = (int) (this.realY / ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE);
 
-        if(this.getName().equals(PLAYER)) {
-        final PositionStrings positionStrings = PositionStrings.getInstance();
-        final StringMaker stringMaker = new StringMaker();
-        LogUtil.put(LogFactory.getInstance(stringMaker
-                .append(positionStrings.X_LABEL).append(velocityX)
-                .append(positionStrings.Y_LABEL).append(velocityY)
+        //if(this.getName().equals(PLAYER)) {
+        //final PositionStrings positionStrings = PositionStrings.getInstance();
+        //final StringMaker stringMaker = new StringMaker();
+        //LogUtil.put(LogFactory.getInstance(stringMaker
+                //.append(positionStrings.X_LABEL).append(velocityX)
+                //.append(positionStrings.Y_LABEL).append(velocityY)
                 ////.append(positionStrings.X_LABEL).append(priorRealX)
                 ////.append(positionStrings.Y_LABEL).append(priorRealY)
-                .append(positionStrings.X_LABEL).append(this.realX)
-                .append(positionStrings.Y_LABEL).append(this.realY)
-                .append(positionStrings.X_LABEL).append(x)
-                .append(positionStrings.Y_LABEL).append(y)
+                //.append(positionStrings.X_LABEL).append(this.realX)
+                //.append(positionStrings.Y_LABEL).append(this.realY)
+                //.append(positionStrings.X_LABEL).append(x)
+                //.append(positionStrings.Y_LABEL).append(y)
                 ////.append(positionStrings.DZ_LABEL).append(dz)
-                .toString(), this, MOVE));            
-        }
+                //.toString(), this, MOVE));            
+        //}
         
         super.setPosition(x, y, this.z);
     }
@@ -202,17 +202,17 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
         //angle *= Math.PI / 180.0;
         
-        if(this.getName().equals(PLAYER)) {
-        final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
-        final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-        LogUtil.put(LogFactory.getInstance(new StringBuilder()
-                .append(this.velocityInterface.toString())
+        //if(this.getName().equals(PLAYER)) {
+        //final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
+        //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
+        //LogUtil.put(LogFactory.getInstance(new StringBuilder()
+                //.append(this.velocityInterface.toString())
                 ////.append(this.rotationAnimationInterface[this.gdObject.animation].getAngleInfo().toString())
                 ////.append(objectStrings.ROTATION).append(this.gdObject.rotation)
                 ////.append(objectStrings.ANGLE).append(this.gdObject.angle)
-                .append(objectStrings.ANGLE).append(angle)
-                .append(gameLayerStrings.LENGTH).append(length).toString(), this, gameLayerStrings.ADD_FORCE_AL));
-        }
+                //.append(objectStrings.ANGLE).append(angle)
+                //.append(gameLayerStrings.LENGTH).append(length).toString(), this, gameLayerStrings.ADD_FORCE_AL));
+        //}
 
         this.velocityInterface.setVelocity((long) length * SCALE_FACTOR, (short) angle, (short) 0);
         //this.Force((int) (noDecimalTrigTable.cos((short) angle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) angle) * length) / SCALE, clearing);
@@ -253,9 +253,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
         this.updateRotation(timeDelta);
 
-        if(this.getName().equals(PLAYER)) {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().UPDATE, this, this.toString()));
-        }
+        //if(this.getName().equals(PLAYER)) {
+            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().UPDATE, this, this.toString()));
+        //}
     }
 
     public void updateRotation(final long timeDelta) {
@@ -288,7 +288,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //{
             rotationAnimation = this.rotationAnimationInterface[this.gdObject.animation];
             if(this.getName().equals(PLAYER)) {
-                LogUtil.put(LogFactory.getInstance(new StringBuilder().append(GDObjectStrings.getInstance().ANGLE).append(rotationAnimation.getAngleInfo().getAngle()).append(" angleAdjustment: ").append(angleAdjustment).toString(), this, "setRotation"));
+                LogUtil.put(LogFactory.getInstance(new StringBuilder().append(this.getName()).append(GDObjectStrings.getInstance().ANGLE).append(rotationAnimation.getAngleInfo().getAngle()).append(" angleAdjustment: ").append(angleAdjustment).toString(), this, "setRotation"));
             }
             //nextAngle = (short) (rotationAnimation.getAngleInfo().getAngle() + angleAdjustment);
             //LogUtil.put(LogFactory.getInstance(new StringBuilder().append("nextAngle: ").append(nextAngle).toString(), this, "setRotation"));
@@ -324,7 +324,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //{
             rotationAnimation = this.rotationAnimationInterface[this.gdObject.animation];
             if(this.getName().equals(PLAYER)) {
-                LogUtil.put(LogFactory.getInstance(new StringBuilder().append(GDObjectStrings.getInstance().ANGLE).append(rotationAnimation.getAngleInfo().getAngle()).append(" angleAdjustment: ").append(angle).toString(), this, "setAngle"));
+                LogUtil.put(LogFactory.getInstance(new StringBuilder().append(this.getName()).append(GDObjectStrings.getInstance().ANGLE).append(rotationAnimation.getAngleInfo().getAngle()).append(" angleAdjustment: ").append(angle).toString(), this, "setAngle"));
             }
             //nextAngle = (short) (rotationAnimation.getAngleInfo().getAngle() + angleAdjustment);
             //LogUtil.put(LogFactory.getInstance(new StringBuilder().append("nextAngle: ").append(nextAngle).toString(), this, "setRotation"));
