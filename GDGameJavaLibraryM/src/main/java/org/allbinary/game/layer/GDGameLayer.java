@@ -18,6 +18,9 @@ import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.RotationAnimation;
+import org.allbinary.game.combat.CombatBaseBehavior;
+import org.allbinary.game.combat.damage.DamageableBaseBehavior;
+import org.allbinary.game.combat.destroy.DestroyableSimpleBehavior;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
@@ -55,6 +58,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     private final int quarterWidth = (this.getHalfWidth() >> 1) - 1;
     private final int quarterHeight = (this.getHalfHeight() >> 1) - 1;
 
+    private final CombatBaseBehavior combatBaseBehavior;
+    
     private final IndexedAnimation[] initIndexedAnimationInterface;
     private IndexedAnimation[] indexedAnimationInterface;
     private RotationAnimation[] rotationAnimationInterface;
@@ -115,6 +120,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
         this.setRotationAnimationInterfaceArray(initIndexedAnimationInterface);
         //this.setIndexedAnimationInterface(this.initIndexedAnimationInterface);
+        
+        this.combatBaseBehavior = new CombatBaseBehavior(
+                DamageableBaseBehavior.getInstance(), new DestroyableSimpleBehavior(this));
     }
 
     protected IndexedAnimation[] getInitIndexedAnimationInterface()
@@ -148,8 +156,41 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     public RotationAnimation getRotationAnimationInterface() {
         return this.rotationAnimationInterface[this.gdObject.animation];
     }
+    
+//    public void setCombatBaseBehavior(CombatBaseBehavior combatBaseBehavior)
+//    {
+//        this.combatBaseBehavior = combatBaseBehavior;
+//    }
 
-    private static final String MOVE = "move";
+    public CombatBaseBehavior getCombatBaseBehavior()
+    {
+        return combatBaseBehavior;
+    }
+
+    public void damage(int damage,int damageType)
+    throws Exception
+    {
+        this.combatBaseBehavior.getDamageableBaseBehavior().damage(damage, damageType);
+    }
+
+    public int getDamage(int damageType)
+    throws Exception
+    {
+        return this.combatBaseBehavior.getDamageableBaseBehavior().getDamage(damageType);
+    }
+
+    public boolean isDestroyed() 
+    throws Exception
+    {
+        return this.combatBaseBehavior.getDestroyableBaseBehavior().isDestroyed();
+    }
+
+    protected void setDestroyed(boolean destroyed)
+    {
+        this.combatBaseBehavior.getDestroyableBaseBehavior().setDestroyed(destroyed);
+    }
+    
+    //private static final String MOVE = "move";
     private static final String PLAYER = "player_0";
     
     public void move()

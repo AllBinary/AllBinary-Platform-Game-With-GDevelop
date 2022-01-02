@@ -29,9 +29,6 @@ Created By: Travis Berthelot
             //With tags <xsl:for-each select="tags" >?</xsl:for-each>
             //With variables <xsl:for-each select="variables" >?</xsl:for-each>
             //With effects <xsl:for-each select="effects" >?</xsl:for-each>
-            <xsl:for-each select="behaviors" >
-                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
-            </xsl:for-each>
 
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />

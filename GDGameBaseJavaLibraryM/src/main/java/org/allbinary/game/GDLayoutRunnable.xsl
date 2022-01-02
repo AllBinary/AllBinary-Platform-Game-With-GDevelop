@@ -40,6 +40,7 @@ import org.allbinary.game.midlet.DemoGameMidlet;
 import org.allbinary.game.midlet.DemoGameMidletEvent;
 import org.allbinary.game.midlet.DemoGameMidletEventHandler;
 import org.allbinary.game.midlet.DemoGameMidletStateFactory;
+import org.allbinary.logic.basic.string.CommonLabels;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -66,7 +67,7 @@ public class GDGameStart<GD_CURRENT_INDEX>CanvasRunnable implements Runnable
         try
         {
             LogUtil.put(LogFactory.getInstance(
-                    CommonStrings.getInstance().START_LABEL +
+                    CommonLabels.getInstance().START_LABEL +
                     "GDGameStart<GD_CURRENT_INDEX>CanvasRunnableInterface",
                     this, CommonStrings.getInstance().RUN));
 

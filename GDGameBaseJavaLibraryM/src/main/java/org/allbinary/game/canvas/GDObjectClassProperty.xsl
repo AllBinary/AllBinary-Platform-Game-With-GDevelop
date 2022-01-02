@@ -18,6 +18,13 @@ Created By: Travis Berthelot
     <xsl:template name="objectsClassProperty" >
         <xsl:param name="windowWidth" />
 
+        <xsl:variable name="behaviorsAsString" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:value-of select="type" />,</xsl:for-each></xsl:for-each></xsl:variable>
+
+        //behaviorsAsString=<xsl:value-of select="$behaviorsAsString" />
+        <xsl:if test="contains($behaviorsAsString, 'DestroyOutsideBehavior::DestroyOutside,')" >
+            private final GDBehavior destroyOutsideBehavior = new DestroyOutsideBehavior();
+        </xsl:if>
+            
         //objectsClassProperty - START
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
@@ -99,9 +106,6 @@ Created By: Travis Berthelot
             //With tags <xsl:for-each select="tags" >?</xsl:for-each>
             //With variables <xsl:for-each select="variables" >?</xsl:for-each>
             //With effects <xsl:for-each select="effects" >?</xsl:for-each>
-            <xsl:for-each select="behaviors" >
-                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
-            </xsl:for-each>
 
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />

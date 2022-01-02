@@ -77,12 +77,12 @@ public class GDObject
         return this.y;
     }
     
-    public int PointX(String name) {
-        return 0;
+    public int PointX(final String name) {
+        return this.x;
     }
 
-    public int PointY(String name) {
-        return 0;
+    public int PointY(final String name) {
+        return this.y;
     }
     
     public void setAngle(final short angle, final GDGameLayer gameLayer) {

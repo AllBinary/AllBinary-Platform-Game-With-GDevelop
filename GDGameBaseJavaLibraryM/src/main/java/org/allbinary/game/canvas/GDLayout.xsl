@@ -105,6 +105,8 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
                 import org.allbinary.game.layer.special.GDConditionCollidableBehavior;
                 import org.allbinary.game.layer.special.GDCollidableBehavior;
+                import org.allbinary.game.layout.behavior.DestroyOutsideBehavior;
+                import org.allbinary.game.layout.behavior.GDBehavior;
                 import org.allbinary.game.layout.GDObjectStrings;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.GPoint;
@@ -127,6 +129,7 @@ Created By: Travis Berthelot
                 import org.allbinary.media.image.ImageCopyUtil;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.time.TimeDelayHelper;
+                import org.allbinary.util.ArrayUtil;
                 import org.microemu.MIDletBridge;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
@@ -146,6 +149,7 @@ Created By: Travis Berthelot
                             return instance;
                         }
 
+                        private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
 
@@ -389,9 +393,6 @@ Created By: Travis Berthelot
                         //With tags <xsl:for-each select="tags" >?</xsl:for-each>
                         //With variables <xsl:for-each select="variables" >?</xsl:for-each>
                         //With effects <xsl:for-each select="effects" >?</xsl:for-each>
-                        <xsl:for-each select="behaviors" >
-                            //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
-                        </xsl:for-each>
 
                         <xsl:if test="$typeValue = 'Sprite'" >
                             <xsl:variable name="stringValue" select="string" />
@@ -451,6 +452,28 @@ Created By: Travis Berthelot
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
+                    
+                    int size;
+                    <xsl:for-each select="objects" >
+                        <xsl:variable name="typeValue" select="type" />
+                        <xsl:variable name="objectName" select="name" />
+
+                        <xsl:if test="behaviors" >
+                        //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
+                        if(<xsl:value-of select="name" />GDGameLayerList != null) {
+                           size = <xsl:value-of select="name" />GDGameLayerList.size();
+                           for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                           <xsl:for-each select="behaviors" >
+                               //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
+                               <xsl:if test="type = 'DestroyOutsideBehavior::DestroyOutside'" >
+                               this.destroyOutsideBehavior.process((GDGameLayer) <xsl:value-of select="$objectName" />GDGameLayerList.get(index), <xsl:value-of select="$objectName" />Array[index], graphics);
+                               </xsl:if>
+                           </xsl:for-each>
+                           }
+                        }
+                        </xsl:if>
+                    </xsl:for-each>
+                    
                         lastStartTime = GameTickTimeDelayHelperFactory.getInstance().getStartTime();
                     }
 

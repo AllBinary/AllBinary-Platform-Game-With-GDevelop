@@ -46,6 +46,7 @@ import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GameFeature;
 import org.allbinary.game.configuration.feature.GameFeatureFactory;
 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
+import org.allbinary.game.combat.canvas.CombatGameCanvas;
 import org.allbinary.game.displayable.canvas.GamePerformanceInitUpdatePaintable;
 import org.allbinary.game.displayable.canvas.StartIntermissionPaintable;
 import org.allbinary.game.identification.GroupFactory;
@@ -74,7 +75,7 @@ import org.allbinary.time.TimeDelayHelper;
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />
             <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
-public class <GDLayout> extends AllBinaryGameCanvas
+public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBinaryGameCanvas
 {
     private final int WAIT = GameSpeed.getInstance().getDelay();
 
@@ -210,7 +211,7 @@ public class <GDLayout> extends AllBinaryGameCanvas
 
                 AllBinaryVibration.init();
 
-                //super.initConfigurable(portion);
+                super.initConfigurable(portion);
 
                 ChangedGameFeatureListener.getInstance().setChanged(false);
 

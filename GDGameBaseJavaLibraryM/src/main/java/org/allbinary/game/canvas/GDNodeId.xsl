@@ -93,8 +93,7 @@
 
     </xsl:template>
 
-    <xsl:template name="actionIds">
-        <xsl:param name="totalRecursions" />
+    <xsl:template name="actionIds">        <xsl:param name="totalRecursions" />
         <xsl:param name="caller" />
 
         //actionIds
@@ -257,19 +256,13 @@
     
         <xsl:variable name="hasKeyFromTextPressed" ><xsl:for-each select="conditions" ><xsl:if test = "type/value = 'KeyFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
 
-        <xsl:variable name="foundConditions" >
-            <xsl:for-each select="conditions" >
-                <xsl:if test="type/value = 'SourisSurObjet'" >//foundConditions</xsl:if>
-            </xsl:for-each>
-        </xsl:variable>
-        <xsl:variable name="foundActions" >
-            <xsl:for-each select="actions" >
-                <xsl:if test="type/value = 'AddForceAL'" >//foundActions</xsl:if>
-            </xsl:for-each>
-        </xsl:variable>
-
-        <xsl:if test="contains($foundConditions, 'foundConditions')" >//found</xsl:if>
-        <xsl:if test="contains($foundActions, 'foundActions')" >//found</xsl:if>
+        <xsl:for-each select="conditions" >
+            <xsl:if test="type/value = 'SourisSurObjet'" >//foundCondition:<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:</xsl:if>
+        </xsl:for-each>
+        <xsl:for-each select="actions" >
+            <xsl:if test="type/value = 'AddForceAL'" >//foundAction:<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:</xsl:if>
+            <xsl:if test="type/value = 'Create'" >//foundCreateAction:<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:</xsl:if>
+        </xsl:for-each>
 
         <xsl:for-each select="events" >
             <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
@@ -281,6 +274,44 @@
                         </xsl:with-param>
                     </xsl:call-template>
                 </xsl:if>
+            </xsl:if>
+        </xsl:for-each>
+
+    </xsl:template>
+
+<!--
+                        //childEventWithUsedEvent2 - START
+                        //childEventWithUsedEvent2 - END
+//Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
+//Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+-->
+    <xsl:template name="childEventWithUsedEvent2">
+        <xsl:param name="totalRecursions" />
+
+        <xsl:variable name="foundCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >found</xsl:if></xsl:for-each></xsl:variable>
+
+        <xsl:for-each select="conditions" >
+            <xsl:variable name="typeValue" select="type/value" />
+        </xsl:for-each>
+
+        <xsl:if test="$foundCondition = 'found'" >
+        
+        <xsl:for-each select="actions" >
+            <xsl:if test="type/value = 'AddForceAL'" >
+                //BuiltinCommonInstructions::Standard - Used action in children - 4
+                nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+            </xsl:if>
+        </xsl:for-each>
+        
+        </xsl:if>
+    
+        <xsl:for-each select="events" >
+            <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
+                    <xsl:call-template name="childEventWithUsedEvent2" >
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="number($totalRecursions) + 1" />
+                        </xsl:with-param>
+                    </xsl:call-template>
             </xsl:if>
         </xsl:for-each>
 
