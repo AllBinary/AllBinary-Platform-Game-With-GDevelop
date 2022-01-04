@@ -71,8 +71,9 @@ Created By: Travis Berthelot
                     
                 };
 
-                private GDObject[] <xsl:value-of select="name" />Array = ZERO_GD_OBJECT;
-                private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
+                private BasicArrayList <xsl:value-of select="name" />List = ZERO_GD_OBJECT;
+                //private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
+                private BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(null);
                 private final GDConditionCollidableBehavior <xsl:value-of select="name" />GDConditionCollidableBehavior = new GDConditionCollidableBehavior();
             </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
@@ -94,7 +95,7 @@ Created By: Travis Berthelot
                 };
 
                 private final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="name" />";
-                private GDObject[]<xsl:text> </xsl:text><xsl:value-of select="name" />Array = {new GDObject(null, 0, 0, null)}; //new GDObject[1];
+                private BasicArrayList<xsl:text> </xsl:text><xsl:value-of select="name" />List = new BasicArrayList(new Object[] {new GDObject(null, 0, 0, null)});
                 private BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(1);
             </xsl:if>
 

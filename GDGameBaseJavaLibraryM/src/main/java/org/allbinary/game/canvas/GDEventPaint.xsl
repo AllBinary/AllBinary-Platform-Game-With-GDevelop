@@ -78,11 +78,14 @@ Created By: Travis Berthelot
                     <xsl:variable name="name" >:<xsl:value-of select="$name2" />,</xsl:variable>
 
                     <xsl:if test="contains($instancesAsString, $name)" >
-                    final GDObject <xsl:value-of select="$name2" /> = <xsl:value-of select="$name2" />Array[0];
-                    nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
+                    final int size<xsl:value-of select="$name2" /> = <xsl:value-of select="$name2" />List.size();
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size<xsl:value-of select="$name2" />; index++) {
+                        final GDObject <xsl:value-of select="$name2" /> = (GDObject) <xsl:value-of select="$name2" />List.get(index);
+                        nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
+                    }
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name))" >
-                    //nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
+                        //nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
                     </xsl:if>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MettreY'" >
@@ -90,11 +93,14 @@ Created By: Travis Berthelot
                     <xsl:variable name="name" >:<xsl:value-of select="$name2" />,</xsl:variable>
 
                     <xsl:if test="contains($instancesAsString, $name)" >
-                    final GDObject <xsl:value-of select="$name2" /> = <xsl:value-of select="$name2" />Array[0];
-                    nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
+                    final int size<xsl:value-of select="$name2" /> = <xsl:value-of select="$name2" />List.size();
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size<xsl:value-of select="$name2" />; index++) {
+                        final GDObject <xsl:value-of select="$name2" /> = (GDObject) <xsl:value-of select="$name2" />List.get(index);
+                        nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
+                    }
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name))" >
-                    //nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
+                        //nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
                     </xsl:if>
                 </xsl:if>
             </xsl:for-each>

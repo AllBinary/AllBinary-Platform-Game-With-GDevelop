@@ -122,7 +122,7 @@ Created By: Travis Berthelot
                     <xsl:value-of select="name" />LayerInfo);
 
                 final GDConditionCollidableBehavior <xsl:value-of select="name" />GDConditionCollidableBehavior = new GDConditionCollidableBehavior();
-                final GDGameLayer <xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, this.<xsl:value-of select="name" />Array[0], <xsl:value-of select="name" />GDConditionCollidableBehavior);
+                final GDGameLayer <xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />, <xsl:value-of select="name" />GDConditionCollidableBehavior);
 
                 this.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
                 */
