@@ -127,8 +127,13 @@
         <xsl:for-each select="actions" >
             //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:text>&#10;</xsl:text>
-            nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process((GDObject) <xsl:value-of select="$gdObjectName" />);
-            ((GDGameLayer) <xsl:value-of select="$gdGameLayer" />).updateGDObject(timeDelta);
+            nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process((GDObject) <xsl:value-of select="$gdObjectName" />.get(index));
+            //if(<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
+                ((GDGameLayer) <xsl:value-of select="$gdGameLayer" />.get(index)).updateGDObject(timeDelta);
+            //} else {
+                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdObjectName" /> at index: " + index));
+            //}
+            
         </xsl:for-each>
 
         <xsl:for-each select="events" >
@@ -157,12 +162,16 @@
         <xsl:for-each select="actions" >
             //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:text>&#10;</xsl:text>
-            nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process((GDObject) <xsl:value-of select="$gdObjectName" />);
-            ((GDGameLayer) <xsl:value-of select="$gdGameLayer" />).updatePosition();
+            nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process((GDObject) <xsl:value-of select="$gdObjectName" />.get(index));
+            //if(<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
+                ((GDGameLayer) <xsl:value-of select="$gdGameLayer" />.get(index)).updatePosition();
+            //} else {
+                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdObjectName" /> at index: " + index));
+            //}
         </xsl:for-each>
 
         <xsl:for-each select="events" >
-            <xsl:call-template name="actionIdsGDObject" >
+            <xsl:call-template name="actionIdsGDObjectPos" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
                 </xsl:with-param>

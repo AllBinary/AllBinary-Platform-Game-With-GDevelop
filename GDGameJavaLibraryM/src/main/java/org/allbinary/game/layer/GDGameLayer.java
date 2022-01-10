@@ -327,6 +327,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //short nextAngle;
         //for (int index = 0; index < SIZE; index++)
         //{
+            //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(this.getName()).append(" GDObject name: ").append(this.gdObject.name).toString(), this, "setRotation"));
             rotationAnimation = this.rotationAnimationInterface[this.gdObject.animation];
             if(this.getName().equals(PLAYER)) {
                 LogUtil.put(LogFactory.getInstance(new StringBuilder().append(this.getName()).append(GDObjectStrings.getInstance().ANGLE).append(rotationAnimation.getAngleInfo().getAngle()).append(" angleAdjustment: ").append(angleAdjustment).toString(), this, "setRotation"));
@@ -418,6 +419,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         }
         catch (Exception e)
         {
+            //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(this.getName()).append(" GDObject name: ").append(this.gdObject.name).toString(), this, "paint"));
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "paint", e));
         }
         

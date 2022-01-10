@@ -20,6 +20,8 @@ import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.GDConditionCollidableBehavior;
 import org.allbinary.game.layer.special.GDCollidableBehavior;
 import org.allbinary.graphics.Rectangle;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 
 /**
  *
@@ -44,6 +46,10 @@ public class GDGameLayerFactory
     }
     
     public GDGameLayer create(final String name, final GDObject gdObject, final GDConditionCollidableBehavior collidableBehavior) throws Exception {
+        
+        if(!name.startsWith(gdObject.name)) {
+            LogUtil.put(LogFactory.getInstance(new StringBuilder().append(name).append(" GDObject name: ").append(gdObject.name).toString(), this, "create", new Exception()));
+        }
         
         final GDGameLayer gameLayer = new GDGameLayer(name,
                 this.groupInterface,

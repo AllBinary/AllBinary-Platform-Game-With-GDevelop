@@ -149,8 +149,8 @@ Created By: Travis Berthelot
                                     <xsl:for-each select=".." >
                                         <xsl:call-template name="actionIdsGDObjectPos" >
                                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                                            <xsl:with-param name="gdObjectName" ><xsl:value-of select="$gdObjectName" />List.get(index)</xsl:with-param>
-                                            <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)</xsl:with-param>
+                                            <xsl:with-param name="gdObjectName" ><xsl:value-of select="$gdObjectName" />List</xsl:with-param>
+                                            <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$gdObjectName" />GDGameLayerList</xsl:with-param>
                                         </xsl:call-template>
                                     </xsl:for-each>
                                 } //else {
@@ -185,8 +185,8 @@ Created By: Travis Berthelot
                                     <xsl:for-each select=".." >
                                         <xsl:call-template name="actionIdsGDObjectPos" >
                                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                                            <xsl:with-param name="gdObjectName" ><xsl:value-of select="$gdObjectName" />List.get(index)</xsl:with-param>
-                                            <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)</xsl:with-param>
+                                            <xsl:with-param name="gdObjectName" ><xsl:value-of select="$gdObjectName" />List</xsl:with-param>
+                                            <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$gdObjectName" />GDGameLayerList</xsl:with-param>
                                         </xsl:call-template>
                                     </xsl:for-each>
                                 } //else {
@@ -244,8 +244,8 @@ Created By: Travis Berthelot
                                     <xsl:for-each select=".." >
                                         <xsl:call-template name="actionIdsGDObject" >
                                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                                            <xsl:with-param name="gdObjectName" ><xsl:value-of select="$gdObjectName" />List.get(index)</xsl:with-param>
-                                            <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)</xsl:with-param>
+                                            <xsl:with-param name="gdObjectName" ><xsl:value-of select="$gdObjectName" />List</xsl:with-param>
+                                            <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$gdObjectName" />GDGameLayerList</xsl:with-param>
                                         </xsl:call-template>
                                     </xsl:for-each>
                                 }
@@ -700,6 +700,7 @@ Created By: Travis Berthelot
                                         <xsl:if test="position() = 1" >
                                             //<xsl:value-of select="text()" /><xsl:text>&#10;</xsl:text>
                                             
+                                            <xsl:value-of select="text()" />List.remove(<xsl:value-of select="text()" />GDGameLayer.gdObject);
                                             <xsl:value-of select="text()" />GDGameLayerList.remove(<xsl:value-of select="text()" />GDGameLayer);
                                             allBinaryGameLayerManager.remove(<xsl:value-of select="text()" />GDGameLayer);
                                         </xsl:if>
@@ -726,7 +727,8 @@ Created By: Travis Berthelot
 
                     try {
             <xsl:if test="../actions" >
-                        if(<xsl:value-of select="$name" />GDGameLayerList != null) {                
+                        //if(<xsl:value-of select="$name" />GDGameLayerList != null) {
+                        if(<xsl:value-of select="$name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                         final int size = <xsl:value-of select="$name" />GDGameLayerList.size();
 
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -875,7 +877,8 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:if>
 
-                        if(<xsl:value-of select="$gdObjectName" />GDGameLayerList != null) {
+                        //if(<xsl:value-of select="$gdObjectName" />GDGameLayerList != null) {
+                        if(<xsl:value-of select="$gdObjectName" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                             GDGameLayer gameLayer;
                             final int size = <xsl:value-of select="$gdObjectName" />GDGameLayerList.size();
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -948,7 +951,8 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:if>
 
-                        if(<xsl:value-of select="$gdObjectName" />GDGameLayerList != null) {
+                        //if(<xsl:value-of select="$gdObjectName" />GDGameLayerList != null) {
+                        if(<xsl:value-of select="$gdObjectName" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                             GDGameLayer gameLayer;
                             final int size = <xsl:value-of select="$gdObjectName" />GDGameLayerList.size();
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -1432,7 +1436,9 @@ Created By: Travis Berthelot
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 2" >
                 //<xsl:value-of select="$caller" /> - eventsCreateAssignGDObject - caller
-                <xsl:value-of select="text()" />List = new BasicArrayList(size);
+                if(<xsl:value-of select="text()" />List.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
+                    <xsl:value-of select="text()" />List = new BasicArrayList(size);
+                }
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:if>
@@ -1840,7 +1846,8 @@ Created By: Travis Berthelot
                             //objectGDObjectAtIndex2 - collide - Sprite - <xsl:value-of select="$name" />
                             public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final GDNode gdNode, final BasicArrayList gdNodeList) {
 
-                        if(<xsl:value-of select="name" />GDGameLayerList != null) {
+                        //if(<xsl:value-of select="name" />GDGameLayerList != null) {
+                        if(<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                             if(<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
                                 final int size = <xsl:value-of select="name" />GDGameLayerList.size();
                                 GDGameLayer gdGameLayer;
@@ -1894,7 +1901,8 @@ Created By: Travis Berthelot
                             //objectGDObjectAtIndex2 - collide - TextObject::Text - <xsl:value-of select="$name" />
                             public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final GDNode gdNode, final BasicArrayList gdNodeList) {
 
-                        if(<xsl:value-of select="name" />GDGameLayerList != null) {
+                        //if(<xsl:value-of select="name" />GDGameLayerList != null) {
+                        if(<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                             if(<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
                                 final int size = <xsl:value-of select="name" />GDGameLayerList.size();
                                 GDGameLayer gdGameLayer;
@@ -1941,7 +1949,8 @@ Created By: Travis Berthelot
                         this.nodeArray[<xsl:value-of select="$actionNodeId" />] = new GDNode() {
 
                             public void process() {
-                                if(<xsl:value-of select="name" />GDGameLayerList != null) {
+                                //if(<xsl:value-of select="name" />GDGameLayerList != null) {
+                                if(<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                                     if(<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
                                         this.process((CollidableCompositeLayer) <xsl:value-of select="name" />GDGameLayerList.get(0), null, null, null);
                                     }
@@ -1949,7 +1958,8 @@ Created By: Travis Berthelot
                             }
 
                             public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
-                                if(<xsl:value-of select="name" />GDGameLayerList != null) {
+                                //if(<xsl:value-of select="name" />GDGameLayerList != null) {
+                                if(<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                                     if(<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
                                         this.process((CollidableCompositeLayer) <xsl:value-of select="name" />GDGameLayerList.get(0), null, gdNode, gdNodeList);
                                     }

@@ -156,7 +156,7 @@ Created By: Travis Berthelot
                         private final String PROCESS_RELEASE = "processReleased";
                         
                         private final Graphics graphics = new Graphics();
-                        private final BasicArrayList ZERO_GD_OBJECT = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+                        //private final BasicArrayList ZERO_GD_OBJECT = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                         private final GDNode[] nodeArray = new GDNode[15000];
                         private final int FAKE_COLLISION_NODE_ID = 14999;
 
@@ -317,11 +317,13 @@ Created By: Travis Berthelot
                         final int <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
                         final int <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
 
-                        if(this.<xsl:value-of select="name" />List.objectArray.length == 0) {
-                          this.<xsl:value-of select="name" />List = new BasicArrayList(1);
+                        if(this.<xsl:value-of select="name" />List.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
+                            this.<xsl:value-of select="name" />List.ensureCapacity(1);
                         }
 
-                        this.<xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(1);
+                        if(this.<xsl:value-of select="name" />GDGameLayerList.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
+                            this.<xsl:value-of select="name" />GDGameLayerList.ensureCapacity(1);
+                        }
 
                         //this.<xsl:value-of select="name" />GDGameLayerArray = new GDGameLayer[1];
                         final GDObject <xsl:value-of select="name" />2 = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
@@ -461,13 +463,14 @@ Created By: Travis Berthelot
 
                         <xsl:if test="behaviors" >
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
-                        if(<xsl:value-of select="name" />GDGameLayerList != null) {
+                        //if(<xsl:value-of select="name" />GDGameLayerList != null) {
+                        if(<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                            size = <xsl:value-of select="name" />GDGameLayerList.size();
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                            <xsl:for-each select="behaviors" >
                                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
                                <xsl:if test="type = 'DestroyOutsideBehavior::DestroyOutside'" >
-                               this.destroyOutsideBehavior.process((GDGameLayer) <xsl:value-of select="$objectName" />GDGameLayerList.get(index), (GDObject) (GDObject) <xsl:value-of select="$objectName" />List.get(index), graphics);
+                               this.destroyOutsideBehavior.process((GDGameLayer) <xsl:value-of select="$objectName" />GDGameLayerList.get(index), (GDObject) <xsl:value-of select="$objectName" />List.get(index), graphics);
                                </xsl:if>
                            </xsl:for-each>
                            }
