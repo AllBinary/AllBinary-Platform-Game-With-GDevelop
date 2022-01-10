@@ -1437,7 +1437,7 @@ Created By: Travis Berthelot
                             <xsl:if test="position() = 2" >
                 //<xsl:value-of select="$caller" /> - eventsCreateAssignGDObject - caller
                 if(<xsl:value-of select="text()" />List.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
-                    <xsl:value-of select="text()" />List = new BasicArrayList(size);
+                    <xsl:value-of select="text()" />List.ensureCapacity(size);
                 }
                             </xsl:if>
                         </xsl:for-each>

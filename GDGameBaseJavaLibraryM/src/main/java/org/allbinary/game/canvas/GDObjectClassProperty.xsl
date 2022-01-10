@@ -72,7 +72,7 @@ Created By: Travis Berthelot
                 };
 
                 //private BasicArrayList <xsl:value-of select="name" />List = ZERO_GD_OBJECT;
-                private BasicArrayList <xsl:value-of select="name" />List = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+                private final BasicArrayList <xsl:value-of select="name" />List = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                 //private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
                 private final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                 private final GDConditionCollidableBehavior <xsl:value-of select="name" />GDConditionCollidableBehavior = new GDConditionCollidableBehavior();
