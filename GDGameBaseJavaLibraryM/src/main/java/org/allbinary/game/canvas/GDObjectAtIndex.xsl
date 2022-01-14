@@ -101,6 +101,7 @@ Created By: Travis Berthelot
     <xsl:template name="objectGDObjectAtIndex2" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
+        <xsl:param name="thisNodeArray" />
 
         //objectGDObjectAtIndex2 - layoutIndex=<xsl:value-of select="$layoutIndex" /> parametersAsString=<xsl:value-of select="$parametersAsString" />
         <xsl:for-each select="/game">
@@ -124,7 +125,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     </xsl:variable>
 
-                        final GDNode gdNode = this;
+                        final GDNode gdNode = <xsl:value-of select="$thisNodeArray" />;
                         final BasicArrayList gdNodeList = new BasicArrayList();
 
                     <xsl:for-each select="objects" >

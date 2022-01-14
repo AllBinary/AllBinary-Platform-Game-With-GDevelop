@@ -66,8 +66,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>/root<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
-                -->            
-                    
+                -->                                
                 //showAll - END
                 
                 package org.allbinary.game.canvas;
@@ -154,6 +153,8 @@ Created By: Travis Berthelot
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
 
                         private final String PROCESS_RELEASE = "processReleased";
+                        
+                        private final BasicArrayList gdRunnableList = new BasicArrayList();
                         
                         private final Graphics graphics = new Graphics();
                         //private final BasicArrayList ZERO_GD_OBJECT = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
@@ -437,6 +438,13 @@ Created By: Travis Berthelot
                             timeDelta = 0;
                         } else {
                             timeDelta = System.currentTimeMillis() - lastStartTime;
+                        }
+
+                        final int size2 = gdRunnableList.size();
+                        Runnable runnable;
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index++) {
+                            runnable = (Runnable) gdRunnableList.get(index);
+                            runnable.run();
                         }
 
                     <xsl:for-each select="../externalEvents" >
