@@ -107,9 +107,11 @@ Created By: Travis Berthelot
                         //repeatExpression <xsl:value-of select="repeatExpression" />
                         final int size = <xsl:if test="not(repeatExpression)" >1</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
 
+                        final BasicArrayList gameLayerList = new BasicArrayList();
+                        //final StringBuilder stringBuilder = new StringBuilder();
+
                         <xsl:for-each select="actions" >
-                            <xsl:variable name="typeValue" select="type/value" />
-                            <xsl:if test="$typeValue = 'Create'" >
+                            <xsl:if test="type/value = 'Create'" >
                                 <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
                                 <xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 2" >
@@ -117,17 +119,27 @@ Created By: Travis Berthelot
                         if(<xsl:value-of select="text()" />GDGameLayerList.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
                             <xsl:value-of select="text()" />GDGameLayerList.ensureCapacity(size);
                         }
-                        //<xsl:value-of select="text()" />GDGameLayerList = new BasicArrayList(size);
+                        //<xsl:value-of select="text()" />GDGameLayerList = new BasicArrayList(size);                        
                                     </xsl:if>
                                 </xsl:for-each>
                             </xsl:if>
                         </xsl:for-each>
 
-                        final BasicArrayList gameLayerList = new BasicArrayList();
+                        <xsl:variable name="createParamsAsString" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" />,</xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
+                        
+                        <xsl:if test="string-length($createParamsAsString) > 0" >
+                            <xsl:variable name="text" select="substring-before($createParamsAsString, ',')" />
+                        final int startIndex = <xsl:value-of select="$text" />GDGameLayerList.size();
+                        final int endIndex = <xsl:value-of select="$text" />List.size();
+                        
+                        //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append("startIndex: ").append(startIndex).append("endIndex: ").append(endIndex).toString()));
+                        for(int index = startIndex; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> endIndex; index++) {
+                        </xsl:if>
 
-                        final StringBuilder stringBuilder = new StringBuilder();
+                        <xsl:if test="string-length($createParamsAsString) = 0" >
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-
+                        </xsl:if>
+                        
             gameLayerList.clear();
             boolean actionWithUpdate = false;
             </xsl:if>
@@ -606,11 +618,7 @@ Created By: Travis Berthelot
             </xsl:variable>
 
             <xsl:variable name="thisNodeArray" >
-                <xsl:for-each select="conditions" >
-                    <xsl:if test="type/value = 'Timer'" >
-                        nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]
-                    </xsl:if>
-                </xsl:for-each>
+                <xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:if></xsl:for-each>
             </xsl:variable>
 
             <xsl:variable name="actionsWithIndexes" >                
