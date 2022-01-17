@@ -98,6 +98,7 @@ public class GDObject
 
         //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
         //LogUtil.put(LogFactory.getInstance(new StringBuilder()
+                //.append(this.name)
                 //.append(objectStrings.ANGLE).append(angle)
                 //.append(objectStrings.ANGLE).append(adjustedAngle).toString(), this, objectStrings.ANGLE));
 

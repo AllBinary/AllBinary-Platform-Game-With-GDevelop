@@ -55,7 +55,7 @@ Created By: Travis Berthelot
                     public short Angle(final GDGameLayer gameLayer) {
 
                         //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-                        //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(objectStrings.ANGLE).append(angle).toString(), this, "before"));
+                        //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(this.name).append(objectStrings.ANGLE).append(angle).toString(), this, "before"));
                         
                         int adjustedAngle = gameLayer.getRotationAnimationInterface().getAngleInfo().getAngle() - 270;
                         //int adjustedAngle = angle;
@@ -63,7 +63,7 @@ Created By: Travis Berthelot
                         while(adjustedAngle <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0) { adjustedAngle += 360; }
                         this.angle = (short) adjustedAngle;
 
-                        //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(objectStrings.ANGLE).append(angle).toString(), this, "after"));
+                        //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(this.name).append(objectStrings.ANGLE).append(angle).toString(), this, "after"));
 
                         return this.angle;
                     }
