@@ -319,7 +319,7 @@ Created By: Travis Berthelot
                         <xsl:if test="position() = 2" >
                             //Hack to keep from creating again before last time
                             if(<xsl:value-of select="text()" />List.size() != <xsl:value-of select="text()" />GDGameLayerList.size()) {
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "TWB - Hack to keep from creating again before last time: <xsl:value-of select="text()" />"));
+                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "TWB - Hack to keep from creating again before last time: <xsl:value-of select="text()" />"));
                                 return;
                             }
                         </xsl:if>
