@@ -27,6 +27,24 @@ Created By: Travis Berthelot
             
         //objectsClassProperty - START
         <xsl:for-each select="objects" >
+            
+            <xsl:for-each select="animations" >
+                <xsl:for-each select="directions" >
+                //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
+                    <xsl:for-each select="sprites" >
+                    //image=<xsl:value-of select="image" /> hasCustomCollisionMask=<xsl:value-of select="hasCustomCollisionMask" />
+                    //OriginPoint name=<xsl:value-of select="originPoint/name" /> x=<xsl:value-of select="originPoint/x" /> y=<xsl:value-of select="originPoint/y" />
+                    //CenterPoint name=<xsl:value-of select="centerPoint/name" /> x=<xsl:value-of select="centerPoint/x" /> y=<xsl:value-of select="centerPoint/y" /> automatic=<xsl:value-of select="centerPoint/automatic" />
+                    //customCollisionMask, array, x, y                            
+                            <xsl:for-each select="points" >
+                        //Point name=<xsl:value-of select="name" /> x=<xsl:value-of select="x" /> y=<xsl:value-of select="y" />
+            //private final GPoint <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_POINT = PointFactory.getInstance().getInstance(<xsl:value-of select="x" />, <xsl:value-of select="y" />, 0);
+            private final GPoint <xsl:value-of select="name" /> = PointFactory.getInstance().getInstance(<xsl:value-of select="x" />, <xsl:value-of select="y" />, 0);
+                            </xsl:for-each>
+                        </xsl:for-each>
+                    </xsl:for-each>
+                </xsl:for-each>
+            
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
             //With tags <xsl:for-each select="tags" >?</xsl:for-each>

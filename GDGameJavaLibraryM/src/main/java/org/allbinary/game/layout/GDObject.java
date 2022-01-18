@@ -15,11 +15,11 @@ package org.allbinary.game.layout;
 
 import javax.microedition.lcdui.Graphics;
 import org.allbinary.game.layer.GDGameLayer;
+import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.SpacialStrings;
 import org.allbinary.logic.basic.string.CommonSeps;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.math.FrameUtil;
 import org.allbinary.math.PositionStrings;
 
 /**
@@ -77,11 +77,11 @@ public class GDObject
         return this.y;
     }
     
-    public int PointX(final String name) {
+    public int PointX(final GPoint point) {
         return this.x;
     }
 
-    public int PointY(final String name) {
+    public int PointY(final GPoint point) {
         return this.y;
     }
     
@@ -105,7 +105,7 @@ public class GDObject
         this.angle = (short) adjustedAngle;
         
         if(gameLayer != null) {
-            gameLayer.setAngle(angle);
+            gameLayer.setRotation(this.angle);
         } else {
             final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
             LogUtil.put(LogFactory.getInstance(objectStrings.GD_GAME_LAYER_WAS_NULL, this, objectStrings.ANGLE));

@@ -57,7 +57,7 @@ Created By: Travis Berthelot
                     Image.createImage(<xsl:value-of select="$name" />InputStreamArray[<xsl:value-of select="position() - 1" />]),
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
-                    ImageCopyUtil.getInstance().createImage(Image.createImage(<xsl:value-of select="$name" />InputStreamArray[<xsl:value-of select="position() - 1" />]), 1.44f),
+                    ImageCopyUtil.getInstance().createImage(Image.createImage(<xsl:value-of select="$name" />InputStreamArray[<xsl:value-of select="position() - 1" />]), 1.44f, true),
                     </xsl:if>
                 </xsl:for-each>
                 };
@@ -68,19 +68,7 @@ Created By: Travis Berthelot
                     new AllBinaryAndroidImageRotationAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth(),
-                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight()
-                    <xsl:for-each select="directions" >
-                        //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
-                        <xsl:for-each select="sprites" >
-                            //image=<xsl:value-of select="image" /> hasCustomCollisionMask=<xsl:value-of select="hasCustomCollisionMask" />
-                            <xsl:for-each select="points" >
-                                //Point name=<xsl:value-of select="name" /> x=<xsl:value-of select="x" /> y=<xsl:value-of select="y" />
-                            </xsl:for-each>
-                            //OriginPoint name=<xsl:value-of select="originPoint/name" /> x=<xsl:value-of select="originPoint/x" /> y=<xsl:value-of select="originPoint/y" />
-                            //CenterPoint name=<xsl:value-of select="centerPoint/name" /> x=<xsl:value-of select="centerPoint/x" /> y=<xsl:value-of select="centerPoint/y" /> automatic=<xsl:value-of select="centerPoint/automatic" />
-                            //customCollisionMask, array, x, y
-                        </xsl:for-each>
-                    </xsl:for-each>,
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight(),
                     (short) 1
                     //angleIncrement
                     )<xsl:if test="position() != last()" >,</xsl:if>

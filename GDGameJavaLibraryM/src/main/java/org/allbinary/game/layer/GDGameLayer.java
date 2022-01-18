@@ -88,7 +88,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //final MathUtil mathUtil = MathUtil.getInstance();
         //final GameSpeed gameSpeed = GameSpeed.getInstance();
         
-        this.velocityInterface = new VelocityProperties(1200, 1200);
+        this.velocityInterface = new VelocityProperties(2400, 2400);
                         //(1700 * mathUtil.sqrt((displayInfoSingleton.getLastWidth() + displayInfoSingleton.getLastHeight()))) * gameSpeed.getSpeed() / 20, 
                         //(1322 * mathUtil.sqrt((displayInfoSingleton.getLastWidth() + displayInfoSingleton.getLastHeight()))) * gameSpeed.getSpeed() / 20);
         
@@ -314,6 +314,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         if(angleAdjustment != 0) {
             stringBuilder.delete(0, stringBuilder.length());
             //LogUtil.put(LogFactory.getInstance(stringBuilder.append("angleAdjustment: ").append(angleAdjustment).toString(), this, "updateRotation"));
+            this.gdObject.angle += angleAdjustment;
             this.setRotation(angleAdjustment);
             rotationRemainder -= angleAdjustment;
             //LogUtil.put(LogFactory.getInstance("reset", this, "updateRotation"));
@@ -350,56 +351,23 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
                 }
                 
             }
+            
+            //setFrame(FrameUtil.getInstance().getFrameForAngle(angle, 1));
+            //rotationAnimation.setFrame(AngleFactory.getInstance().getInstance(angle));            
             //rotationAnimation.adjustFrame(nextAngle);
             //rotationAnimation.setFrame(rotationAnimation.getFrame() + angleAdjustment);
             
             //if(this.getName().equals(PLAYER)) {
                 //LogUtil.put(LogFactory.getInstance(rotationAnimation.toString(), this, "setRotation"));
             //}
-        //}
-    }
-
-    public void setAngle(final short angle) {
-        RotationAnimation rotationAnimation;
-        //short nextAngle;
-        //for (int index = 0; index < SIZE; index++)
-        //{
-            rotationAnimation = this.rotationAnimationInterface[this.gdObject.animation];
-            //if(this.getName().equals(PLAYER)) {
-                //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(this.getName()).append(GDObjectStrings.getInstance().ANGLE).append(rotationAnimation.getAngleInfo().getAngle()).append(" angleAdjustment: ").append(angle).toString(), this, "setAngle"));
-            //}
-            //nextAngle = (short) (rotationAnimation.getAngleInfo().getAngle() + angleAdjustment);
-            //LogUtil.put(LogFactory.getInstance(new StringBuilder().append("nextAngle: ").append(nextAngle).toString(), this, "setRotation"));
-
-            short angleAdjustment = angle;
-            if(angleAdjustment > 0) {
-                short value = angleAdjustment;
-                while(value > 0) {
-                    rotationAnimation.nextRotation();
-                    value--;
-                }
-                
-            } else {
-                short value = angleAdjustment;
-                while(value < 0) {
-                    rotationAnimation.previousRotation();
-                    value++;
-                }
-                
-            }
             
-            //setFrame(FrameUtil.getInstance().getFrameForAngle(angle, 1));
-            //rotationAnimation.setFrame(AngleFactory.getInstance().getInstance(angle));
-            
-            //if(this.getName().equals(PLAYER)) {
-                //LogUtil.put(LogFactory.getInstance(rotationAnimation.toString(), this, "setAngle"));
-            //}
         //}
     }
     
-    public short Angle() {
-        return this.getRotationAnimationInterface().getAngleInfo().getAngle();
-    }
+    //public short Angle() {
+        //return this.gdObject.angle;
+        //return (short) (this.getRotationAnimationInterface().getAngleInfo().getAngle() + 90);
+    //}
     
     //private boolean isFirst = true;
     //private final String PAINT = "paint";
