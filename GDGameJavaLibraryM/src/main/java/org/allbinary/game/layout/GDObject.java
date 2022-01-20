@@ -86,7 +86,7 @@ public class GDObject
         return this.y;
     }
     
-    private final StringBuilder stringBuilder = new StringBuilder();
+    //private final StringBuilder stringBuilder = new StringBuilder();
     public int PointX(final GPoint point) {
         
         final short angle = this.angle;
@@ -98,9 +98,13 @@ public class GDObject
         while (adjustedAngle < 0) {
             adjustedAngle += 360;
         }
+        
+        final int x = (int) (noDecimalTrigTable.cos((short) adjustedAngle) * (point.getX() - this.halfWidth)) / noDecimalTrigTable.SCALE;
 
-        final int x = (int) (noDecimalTrigTable.cos((short) adjustedAngle) * 16) / noDecimalTrigTable.SCALE;
-
+        //F <x>32</x>, <y>16</y>
+        //E <x>0</x>, <y>16</y>        
+        //final int y = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * 16) / noDecimalTrigTable.SCALE;
+        //final int x = (int) (noDecimalTrigTable.cos((short) adjustedAngle) * 16) / noDecimalTrigTable.SCALE;
         //final int x2 = (int) (noDecimalTrigTable.cos((short) adjustedAngle) * -16) / noDecimalTrigTable.SCALE;
         //final int y2 = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * -16) / noDecimalTrigTable.SCALE;
 
@@ -124,9 +128,14 @@ public class GDObject
             adjustedAngle += 360;
         }
 
-        final int y = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * 16) / noDecimalTrigTable.SCALE;
-        
-        return this.y + y + this.halfHeight;
+        if(point.getX() > this.halfWidth) {
+            final int y = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * point.getY()) / noDecimalTrigTable.SCALE;
+            return this.y + y + this.halfHeight;
+        } else {
+            final int y = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * -point.getY()) / noDecimalTrigTable.SCALE;
+            return this.y + y + this.halfHeight;
+        }
+
         //return this.y;
     }
 
