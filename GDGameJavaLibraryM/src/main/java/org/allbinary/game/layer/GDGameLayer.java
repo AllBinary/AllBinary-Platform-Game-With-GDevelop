@@ -33,9 +33,7 @@ import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.ScaleFactorFactory;
-import org.allbinary.math.AngleFactory;
-import org.allbinary.math.FrameUtil;
-import org.allbinary.math.PositionStrings;
+import org.allbinary.math.NoDecimalTrigTable;
 import org.allbinary.view.ViewPosition;
 
 /**
@@ -88,7 +86,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //final MathUtil mathUtil = MathUtil.getInstance();
         //final GameSpeed gameSpeed = GameSpeed.getInstance();
         
-        this.velocityInterface = new VelocityProperties(2400, 2400);
+        this.velocityInterface = new VelocityProperties(3200, 3200);
                         //(1700 * mathUtil.sqrt((displayInfoSingleton.getLastWidth() + displayInfoSingleton.getLastHeight()))) * gameSpeed.getSpeed() / 20, 
                         //(1322 * mathUtil.sqrt((displayInfoSingleton.getLastWidth() + displayInfoSingleton.getLastHeight()))) * gameSpeed.getSpeed() / 20);
         
@@ -191,7 +189,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     }
     
     //private static final String MOVE = "move";
-    private static final String PLAYER = "player_0";
+    //private static final String PLAYER_0 = "player_0";
+    //private static final String PLAYER = "player";
     
     public void move()
     {
@@ -324,6 +323,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     }
     
     public void setRotation(final short angleAdjustment) {
+                
         RotationAnimation rotationAnimation;
         //short nextAngle;
         //for (int index = 0; index < SIZE; index++)
@@ -351,6 +351,12 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
                 }
                 
             }
+        
+            //short angle = (short) (this.gdObject.angle + angleAdjustment);
+            //while(angle > 359) { angle -= 360; }
+            //while(angle < 0) { angle += 360; }
+            //this.gdObject.angle = angle;
+            //this.gdObject.angle = rotationAnimation.getAngleInfo().getAngle();
             
             //setFrame(FrameUtil.getInstance().getFrameForAngle(angle, 1));
             //rotationAnimation.setFrame(AngleFactory.getInstance().getInstance(angle));            
@@ -363,12 +369,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             
         //}
     }
-    
-    //public short Angle() {
-        //return this.gdObject.angle;
-        //return (short) (this.getRotationAnimationInterface().getAngleInfo().getAngle() + 90);
-    //}
-    
+        
     //private boolean isFirst = true;
     //private final String PAINT = "paint";
     public void paint(Graphics graphics)
@@ -387,6 +388,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             indexedAnimationInterface[this.gdObject.animation].paint(graphics, x, y);
             //}
 
+            //this.paintPoints(graphics);
             //this.paintDebug(graphics);
         }
         catch (Exception e)
@@ -397,6 +399,86 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
     }
 
+    //private final StringBuilder stringBuilder = new StringBuilder();
+    //private final String F = "F";
+    //private final String E = "E";
+    public void paintPoints(Graphics graphics) {
+
+        //if(this.getName().startsWith(PLAYER_0)) {
+
+            //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
+            
+            //this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().AQUA);
+        
+//        for(int index = 0; index < 360; index+=30) {
+//
+//        final int x = (int) (noDecimalTrigTable.cos((short) index) * 16) / noDecimalTrigTable.SCALE;
+//        final int y = (int) (noDecimalTrigTable.sin((short) index) * 16) / noDecimalTrigTable.SCALE;
+//        //final int x = 0;
+//        //final int y = 0;
+//        final int startX = x - 5;
+//        final int startY = y - 5;
+//        final int endX = x + 5;
+//        final int endY = y + 5;
+//
+//        final int halfWidth = this.getHalfWidth();
+//        final int halfHeight = this.getHalfHeight();
+//        graphics.drawLine(this.x + startX + halfWidth, this.y + y + halfHeight, this.x + endX + halfWidth, this.y + y + halfHeight);
+//        graphics.drawLine(this.x + x + halfWidth, this.y + startY + halfHeight, this.x + x + halfWidth, this.y + endY + halfHeight);
+//
+//        stringBuilder.delete(0, stringBuilder.length());
+//        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append(CommonStrings.getInstance().EXCEPTION_LABEL).append(objectStrings.ANGLE).append(index).append(':').append(this.x).append(':').append(x).append(':').append(halfWidth).toString()));
+//        
+//        }
+        
+            //final short angle = this.getRotationAnimationInterface().getAngleInfo().getAngle() - 90;
+//            final short angle = this.gdObject.angle;
+//
+//            int adjustedAngle = angle;
+//            while (adjustedAngle > 359) {
+//                adjustedAngle -= 360;
+//            }
+//            while (adjustedAngle < 0) {
+//                adjustedAngle += 360;
+//            }
+//
+//            if (angle != this.gdObject.angle) {
+//                stringBuilder.delete(0, stringBuilder.length());
+//                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append(CommonStrings.getInstance().EXCEPTION_LABEL).append(angle).append(':').append(this.gdObject.angle).toString()));
+//            } else {
+//                stringBuilder.delete(0, stringBuilder.length());
+//                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append(CommonStrings.getInstance().EXCEPTION_LABEL).append(angle).toString()));
+//            }
+//
+//            final int x = (int) (noDecimalTrigTable.cos((short) adjustedAngle) * 16) / noDecimalTrigTable.SCALE;
+//            final int y = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * 16) / noDecimalTrigTable.SCALE;
+//            graphics.drawString(F, this.x + x + this.getHalfWidth(), this.y + y + this.getHalfHeight(), 0);
+//            final int x2 = (int) (noDecimalTrigTable.cos((short) adjustedAngle) * -16) / noDecimalTrigTable.SCALE;
+//            final int y2 = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * -16) / noDecimalTrigTable.SCALE;
+//            graphics.drawString(E, this.x + x2 + this.getHalfWidth(), this.y + y2 + this.getHalfHeight(), 0);
+
+        //stringBuilder.delete(0, stringBuilder.length());
+        //graphics.drawString(stringBuilder.append(Integer.toString(x)).append(',').append(Integer.toString(y)).toString(), this.x, this.y, 0);
+
+//            this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().GREEN);
+//
+//            final int x = this.gdObject.PointX(null);
+//            final int y = this.gdObject.PointY(null);
+//            //final int x = 0;
+//            //final int y = 0;
+//            final int startX = x - 5;
+//            final int startY = y - 5;
+//            final int endX = x + 5;
+//            final int endY = y + 5;
+//
+//            //final int halfWidth = this.getHalfWidth();
+//            //final int halfHeight = this.getHalfHeight();
+//            graphics.drawLine(startX, y, endX, y);
+//            graphics.drawLine(x, startY, x, endY);
+        
+        //}
+    }
+    
     public void paintDebug(Graphics graphics) {
         
         final int endX = (int) (this.x + (this.velocityInterface.getVelocityXBasicDecimal().getUnscaled() / 10));
@@ -406,7 +488,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
         graphics.drawString(Integer.toString(this.getRotationAnimationInterface().getAngleInfo().getAngle()), this.x, this.y, 0);
         super.paint(graphics);
-        
+
     }
     
     public void toString(final StringMaker stringBuffer) {

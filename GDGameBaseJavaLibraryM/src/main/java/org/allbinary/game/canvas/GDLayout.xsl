@@ -49,7 +49,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
                 <xsl:variable name="layoutName" select="name" />
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
-                <xsl:variable name="objectsAsString" ><xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="objectsAsString" >,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 //instancesAsString=<xsl:value-of select="$instancesAsString" />
@@ -289,6 +289,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
                     </xsl:call-template>
 
                     <xsl:call-template name="eventsCreateAssignGDObject" >
@@ -333,8 +336,12 @@ Created By: Travis Berthelot
                         <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
                         //We may need to set a dimension for each image/animation.
-                        <xsl:value-of select="name" />2.width = <xsl:value-of select="name" />ImageArray[0].getWidth();
-                        <xsl:value-of select="name" />2.height = <xsl:value-of select="name" />ImageArray[0].getHeight();
+                        <xsl:value-of select="name" />2.canvasWidth = <xsl:value-of select="name" />ImageArray[0].getWidth();
+                        <xsl:value-of select="name" />2.canvasHeight = <xsl:value-of select="name" />ImageArray[0].getHeight();
+                        <xsl:value-of select="name" />2.width = (int) (<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
+                        <xsl:value-of select="name" />2.height = (int) (<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
+                        <xsl:value-of select="name" />2.halfWidth = (int) (<xsl:value-of select="name" />2.width / 2);
+                        <xsl:value-of select="name" />2.halfHeight = (int) (<xsl:value-of select="name" />2.height / 2);
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="name" />2.toString()));
                         </xsl:if>
 
@@ -413,6 +420,10 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
+                                            
                     </xsl:call-template>
 -->
 

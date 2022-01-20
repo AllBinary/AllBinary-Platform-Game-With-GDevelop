@@ -447,7 +447,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>);
-                    
+
                     <xsl:if test="$name = 'player_bullet'" >
                     LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, new StringBuilder().append(<xsl:value-of select="$name" />2.name)<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:if test="position() != last()" ><xsl:if test="string-length(text()) > 0" >.append("<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" >'</xsl:with-param></xsl:call-template>: ").append(<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template>)</xsl:if></xsl:if><xsl:if test="position() = last()" ><xsl:if test="string-length(text()) = 0" >.toString()</xsl:if><xsl:if test="string-length(text()) > 0" >.append("<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" >'</xsl:with-param></xsl:call-template>: ").append(<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template>).toString()</xsl:if></xsl:if></xsl:if></xsl:for-each>));
                     final int size2 = player_bulletGDGameLayerList.size();
@@ -458,12 +458,20 @@ Created By: Travis Berthelot
                     
                     <xsl:value-of select="$name" />List.add(<xsl:value-of select="$name" />2);
 
-                    <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="$name" /></xsl:variable>
+                    <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:if test="contains($objectsAsString, $spriteName)" >
                     //We may need to set a dimension for each image/animation.
-                    <xsl:value-of select="$name" />2.width = <xsl:value-of select="$name" />ImageArray[0].getWidth();
-                    <xsl:value-of select="$name" />2.height = <xsl:value-of select="$name" />ImageArray[0].getHeight();
+                    <xsl:value-of select="$name" />2.canvasWidth = <xsl:value-of select="$name" />ImageArray[0].getWidth();
+                    <xsl:value-of select="$name" />2.canvasHeight = <xsl:value-of select="$name" />ImageArray[0].getHeight();
+                    <xsl:value-of select="$name" />2.width = (int) (<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f);
+                    <xsl:value-of select="$name" />2.height = (int) (<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f);
+                    <xsl:value-of select="$name" />2.halfWidth = (int) (<xsl:value-of select="$name" />2.width / 2);
+                    <xsl:value-of select="$name" />2.halfHeight = (int) (<xsl:value-of select="$name" />2.height / 2);
                     LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="$name" />2.toString()));
+                    </xsl:if>
+                    <xsl:if test="not(contains($objectsAsString, $spriteName))" >
+                        //objectsAsString=<xsl:value-of select="$objectsAsString" />
+                        //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "GDObject:<xsl:value-of select="$name" /> != <xsl:value-of select="$spriteName" />"));
                     </xsl:if>
 
                 </xsl:if>

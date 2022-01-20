@@ -18,8 +18,10 @@ import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.SpacialStrings;
 import org.allbinary.logic.basic.string.CommonSeps;
+import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.math.NoDecimalTrigTable;
 import org.allbinary.math.PositionStrings;
 
 /**
@@ -28,6 +30,8 @@ import org.allbinary.math.PositionStrings;
  */
 public class GDObject
 {
+    private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
+    
     public final String name;
     
     public int x;
@@ -43,9 +47,14 @@ public class GDObject
     
     public int opacity;
     
+    public int canvasWidth;
+    public int canvasHeight;
+    
     public int width;
     public int height;
-    
+    public int halfWidth;
+    public int halfHeight;
+        
     public GDObject(final String unknown, final int x, final int y, final String name) {
         this.x = x;
         this.y = y;
@@ -54,19 +63,19 @@ public class GDObject
     }
 
     public int Width(final Object nullObject) {
-        return width;
+        return canvasWidth;
     }
     
     public int Width(final Graphics graphics) {
-        return width;
+        return canvasWidth;
     }
 
     public int Height(final Object nullObject) {
-        return height;
+        return canvasHeight;
     }
     
     public int Height(final Graphics graphics) {
-        return height;
+        return canvasHeight;
     }
     
     public int X() {
@@ -77,17 +86,11 @@ public class GDObject
         return this.y;
     }
     
+    private final StringBuilder stringBuilder = new StringBuilder();
     public int PointX(final GPoint point) {
-        return this.x;
-    }
-
-    public int PointY(final GPoint point) {
-        return this.y;
-    }
-    
-    public void setAngle(final short angle, final GDGameLayer gameLayer) {
         
-        //int adjustedAngle = angle - 270;
+        final short angle = this.angle;
+
         int adjustedAngle = angle;
         while (adjustedAngle > 359) {
             adjustedAngle -= 360;
@@ -96,22 +99,64 @@ public class GDObject
             adjustedAngle += 360;
         }
 
+        final int x = (int) (noDecimalTrigTable.cos((short) adjustedAngle) * 16) / noDecimalTrigTable.SCALE;
+
+        //final int x2 = (int) (noDecimalTrigTable.cos((short) adjustedAngle) * -16) / noDecimalTrigTable.SCALE;
+        //final int y2 = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * -16) / noDecimalTrigTable.SCALE;
+
+        //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
+        //stringBuilder.delete(0, stringBuilder.length());
+        //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append(CommonStrings.getInstance().EXCEPTION_LABEL).append('g').append(objectStrings.ANGLE).append(adjustedAngle).append(':').append(this.x).append(':').append(x).append(':').append(halfWidth).toString()));
+        
+        return this.x + x + this.halfWidth;
+        //return this.x;
+    }
+
+    public int PointY(final GPoint point) {
+        
+        final short angle = this.angle;
+
+        int adjustedAngle = angle;
+        while (adjustedAngle > 359) {
+            adjustedAngle -= 360;
+        }
+        while (adjustedAngle < 0) {
+            adjustedAngle += 360;
+        }
+
+        final int y = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * 16) / noDecimalTrigTable.SCALE;
+        
+        return this.y + y + this.halfHeight;
+        //return this.y;
+    }
+
+    public void setAngle(final short angle, final GDGameLayer gameLayer) {
+
+        //int adjustedAngle = angle - 270;
+        short adjustedAngle = angle;
+        while (adjustedAngle > 359) {
+            adjustedAngle -= 360;
+        }
+        while (adjustedAngle < 0) {
+            adjustedAngle += 360;
+        }
+        
         //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
         //LogUtil.put(LogFactory.getInstance(new StringBuilder()
-                //.append(this.name)
-                //.append(objectStrings.ANGLE).append(angle)
-                //.append(objectStrings.ANGLE).append(adjustedAngle).toString(), this, objectStrings.ANGLE));
+            //.append(this.name)
+            //.append(objectStrings.ANGLE).append(angle)
+            //.append(objectStrings.ANGLE).append(adjustedAngle).toString(), this, objectStrings.ANGLE));
 
-        this.angle = (short) adjustedAngle;
-        
-        if(gameLayer != null) {
-            gameLayer.setRotation(this.angle);
+        this.angle = adjustedAngle;
+
+        if (gameLayer != null) {
+            gameLayer.setRotation(adjustedAngle);
         } else {
             final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
             LogUtil.put(LogFactory.getInstance(objectStrings.GD_GAME_LAYER_WAS_NULL, this, objectStrings.ANGLE));
         }
     }
-    
+         
     public short Angle(final GDGameLayer gameLayer) {
         return this.angle;
     }
@@ -142,8 +187,12 @@ public class GDObject
                 .append(positionStrings.X_LABEL).append(this.x)
                 .append(positionStrings.Y_LABEL).append(this.y)
                 .append(positionStrings.Z_LABEL).append(this.zOrder)
+                .append(spacialStrings.WIDTH_LABEL).append(this.canvasWidth)
+                .append(spacialStrings.HEIGHT_LABEL).append(this.canvasHeight)
                 .append(spacialStrings.WIDTH_LABEL).append(this.width)
                 .append(spacialStrings.HEIGHT_LABEL).append(this.height)
+                .append(spacialStrings.WIDTH_LABEL).append(this.halfWidth)
+                .append(spacialStrings.HEIGHT_LABEL).append(this.halfHeight)
                 .append(gdObjectStrings.ANIMATION).append(this.animation)
                 .append(gdObjectStrings.ANGLE).append(this.angle)
                 .append(gdObjectStrings.MOVEMENT_ANGLE).append(this.movement_angle)
