@@ -95,30 +95,47 @@ Created By: Travis Berthelot
                     //<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
                     <xsl:variable name="name1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="name" >this.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDConditionCollidableBehavior</xsl:variable>
+                    <xsl:variable name="nodeList" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
                         //Child VarScene conditions with actions
+                        final BasicArrayList nodeList<xsl:value-of select="$nodeList" /> = new BasicArrayList();
                         <xsl:for-each select="../events" >
                             <xsl:if test="actions" >
-                    //1
-                    <xsl:value-of select="$name" />.groupCollisionList.add(<xsl:value-of select="$name1" />GroupInterface);
-                    <xsl:value-of select="$name" />.actionCollisionList.add(this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                        //1
+                        nodeList<xsl:value-of select="$nodeList" />.add(nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]); 
                             </xsl:if>
                         </xsl:for-each>
+                                                
                         <xsl:for-each select="../events/events" >
                             <xsl:if test="actions" >
-                    //2
-                    <xsl:value-of select="$name" />.groupCollisionList.add(<xsl:value-of select="$name1" />GroupInterface);
-                    <xsl:value-of select="$name" />.actionCollisionList.add(this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                        //2
+                        nodeList<xsl:value-of select="$nodeList" />.add(nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                             </xsl:if>
                         </xsl:for-each>
                         <xsl:for-each select="../events/events/events" >
                             <xsl:if test="actions" >
-                    //3
-                    <xsl:value-of select="$name" />.groupCollisionList.add(<xsl:value-of select="$name1" />GroupInterface);
-                    <xsl:value-of select="$name" />.actionCollisionList.add(this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                        //3
+                        nodeList<xsl:value-of select="$nodeList" />.add(nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                             </xsl:if>
                         </xsl:for-each>
-
+                        <xsl:for-each select="../events/events/events/events" >
+                            <xsl:if test="actions" >
+                        //4
+                        nodeList<xsl:value-of select="$nodeList" />.add(nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                            </xsl:if>
+                        </xsl:for-each>
+                        
+                        <xsl:value-of select="$name" />.groupCollisionList.add(<xsl:value-of select="$name1" />GroupInterface);
+                        <xsl:value-of select="$name" />.actionCollisionList.add(new GDNode() {
+                            public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final GDNode gdNode, final BasicArrayList gdNodeList) {
+                                final int size = nodeList<xsl:value-of select="$nodeList" />.size();
+                                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeList" /> index: " + index));
+                                    ((GDNode) nodeList<xsl:value-of select="$nodeList" />.get(index)).process(gameLayer, gameLayer2, gdNode, gdNodeList);
+                                }
+                            }
+                        });
+                        
                 </xsl:if>
 
             </xsl:for-each>

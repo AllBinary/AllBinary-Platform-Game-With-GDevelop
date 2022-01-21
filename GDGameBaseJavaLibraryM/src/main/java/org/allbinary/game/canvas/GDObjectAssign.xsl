@@ -75,7 +75,7 @@ Created By: Travis Berthelot
                 </xsl:for-each>
                 };
 
-                final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup();
+                final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 PointFactory.getInstance().getInstance(
@@ -83,8 +83,58 @@ Created By: Travis Berthelot
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/y" />)),
                                 <xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 2, <xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 2
                                 );
+
+                                <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
+
+                                <xsl:variable name="parentGroupIfAny" >
+                                <xsl:for-each select="/game">
+                                    <xsl:for-each select="layouts" >
+                                        <xsl:variable name="layoutIndex2" select="position() - 1" />
+                                        <xsl:if test="number($layoutIndex2) = $layoutIndex" >
+                                            <xsl:for-each select="objectsGroups" >
+                                                <xsl:variable name="groupName">
+                                                    <xsl:value-of select="name" />
+                                                </xsl:variable>
+                                                <xsl:for-each select="objects" >
+                                                    <xsl:if test="name = $layerName" >
+                                                        <xsl:value-of select="$groupName" />
+                                                    </xsl:if>
+                                                </xsl:for-each>
+                                            </xsl:for-each>
+                                        </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                                </xsl:variable>
+                                
+                <xsl:variable name="groupInterfaceArray" >
+                    <xsl:if test="string-length($parentGroupIfAny) > 0" >new Group[] {<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:value-of select="name" />GroupInterface}</xsl:if>
+                    <xsl:if test="string-length($parentGroupIfAny) = 0" >new Group[] {<xsl:value-of select="name" />GroupInterface}</xsl:if>
+                </xsl:variable>
+                
+                //objectsGroupsGDGameLayer - START
+                <xsl:for-each select="/game">
+                    <xsl:for-each select="layouts" >
+                        <xsl:variable name="layoutIndex2" select="position() - 1" />
+                        <xsl:if test="number($layoutIndex2) = $layoutIndex" >
+                            
+                            <xsl:for-each select="objectsGroups" >
+                                <xsl:variable name="groupName">
+                                    <xsl:value-of select="name" />
+                                </xsl:variable>
+                                <xsl:for-each select="objects" >
+                                    <xsl:if test="name = $layerName" >
+                //this.<xsl:value-of select="$layerName" />GroupInterface = <xsl:value-of select="$layerName" />GroupInterface;
+                                    </xsl:if>
+                                </xsl:for-each>
+                            </xsl:for-each>
+
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:for-each>
+                //objectsGroupsGDGameLayer - END
+                
                 <xsl:value-of select="name" />GDGameLayerFactory = new GDGameLayerFactory(
-                    new Group[] {this.gdGroupHelper.get(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>), <xsl:value-of select="name" />GroupInterface},
+                    <xsl:value-of select="$groupInterfaceArray" />,
                     <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />LayerInfo);
@@ -95,7 +145,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
 
                 /*
-                final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup();
+                final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[0];
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(

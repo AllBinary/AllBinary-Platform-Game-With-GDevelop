@@ -90,7 +90,6 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.layer.NullGDGameLayerFactory;
                 import org.allbinary.game.layout.GDNode;
-                import org.allbinary.game.layout.GDGroupHelper;
                 import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 
@@ -161,15 +160,13 @@ Created By: Travis Berthelot
                         private final GDNode[] nodeArray = new GDNode[15000];
                         private final int FAKE_COLLISION_NODE_ID = 14999;
 
-                        private final GDGroupHelper gdGroupHelper = new GDGroupHelper();
-
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
                         private final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="name" />";
-                        private final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup();
+                        private final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
                         private final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList();
                         <xsl:for-each select="objects" >
-                            //<xsl:value-of select="name" />
+                        //private final Group <xsl:value-of select="name" />GroupInterface;
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroups - END
@@ -247,16 +244,6 @@ Created By: Travis Berthelot
                                 gdNode.process(gameLayer, gameLayer2, (CollidableCompositeLayer) null, gdNode, gdNodeList);
                             }
                         };
-
-                    //objectsGroupsSet - START
-                    <xsl:for-each select="objectsGroups" >
-                        <xsl:variable name="groupName" select="name" />
-                        gdGroupHelper.map.put(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$groupName" /></xsl:with-param></xsl:call-template>, this.<xsl:value-of select="$groupName" />GroupInterface);
-                        <xsl:for-each select="objects" >
-                        gdGroupHelper.map.put(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, this.<xsl:value-of select="$groupName" />GroupInterface);
-                        </xsl:for-each>
-                    </xsl:for-each>
-                    //objectsGroupsSet - END
 
                         try {
 

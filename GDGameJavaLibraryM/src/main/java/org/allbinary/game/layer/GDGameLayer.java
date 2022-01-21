@@ -240,21 +240,30 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     //RuntimeObject.cpp
     public void AddForceUsingPolarCoordinates(final float angle, final float length, final float clearing) {
         
+        short adjustedAngle = (short) angle;
+        while (adjustedAngle > 359) {
+            adjustedAngle -= 360;
+        }
+        while (adjustedAngle < 0) {
+            adjustedAngle += 360;
+        }
+        
         //angle *= Math.PI / 180.0;
         
         //if(this.getName().equals(PLAYER)) {
-        //final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
-        //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-        //LogUtil.put(LogFactory.getInstance(new StringBuilder()
-                //.append(this.velocityInterface.toString())
+        final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
+        final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
+        LogUtil.put(LogFactory.getInstance(new StringBuilder()
+                .append(this.velocityInterface.toString())
                 ////.append(this.rotationAnimationInterface[this.gdObject.animation].getAngleInfo().toString())
                 ////.append(objectStrings.ROTATION).append(this.gdObject.rotation)
                 ////.append(objectStrings.ANGLE).append(this.gdObject.angle)
-                //.append(objectStrings.ANGLE).append(angle)
-                //.append(gameLayerStrings.LENGTH).append(length).toString(), this, gameLayerStrings.ADD_FORCE_AL));
+                .append(objectStrings.ANGLE).append(angle)
+                .append(objectStrings.ANGLE).append(adjustedAngle)
+                .append(gameLayerStrings.LENGTH).append(length).toString(), this, gameLayerStrings.ADD_FORCE_AL));
         //}
 
-        this.velocityInterface.setVelocity((long) length * SCALE_FACTOR, (short) angle, (short) 0);
+        this.velocityInterface.setVelocity((long) length * SCALE_FACTOR, (short) adjustedAngle, (short) 0);
         //this.Force((int) (noDecimalTrigTable.cos((short) angle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) angle) * length) / SCALE, clearing);
     }
 

@@ -28,4 +28,16 @@ public class GDConditionCollidableBehavior
     {
     }
     
+    public void append(final StringBuilder stringBuilder) {
+        
+        stringBuilder.append("GDConditionCollidableBehavior: ");
+        
+        int size = groupCollisionList.size();
+        stringBuilder.append(size);
+        stringBuilder.append(' ');
+        for(int index = 0; index < size; index++) {
+            stringBuilder.append(groupCollisionList.get(index).toString());
+        }
+
+    }
 }

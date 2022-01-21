@@ -82,7 +82,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
     private final int portion = 4;
     private final short SIZE = 50;
 
-    private SpecialAnimation specialAnimation;
+    private SpecialAnimation specialAnimation = SpecialAnimation.getInstance();
 
     public <GDLayout>(final CommandListener commandListener,
             final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
@@ -106,9 +106,9 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
         GroupLayerManagerListener.getInstance().init(SIZE);
 
-        this.specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(allBinaryGameLayerManager);
+        //this.specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(allBinaryGameLayerManager);
 
-        this.setPlayingGameState();
+        //this.setPlayingGameState();
     }
 
     public void setPlayingGameState()
@@ -298,6 +298,9 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
     public void buildGame(boolean isProgress) throws Exception
     {
+        this.specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(gameLayerManager);
+        this.setPlayingGameState();
+        
         this.loadResources(gameLayerManager.getGameInfo().getCurrentLevel());
 
         ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
@@ -494,6 +497,9 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
     }
 
     protected void processPlayingGame() throws Exception {
+    
+        super.processPlayingGame();
+
         this.specialAnimation.process();
     }
 
