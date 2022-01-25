@@ -102,6 +102,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
+                    //MouseButtonReleased - eventListener
                     private EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
                 </xsl:if>
             </xsl:for-each>

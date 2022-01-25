@@ -574,7 +574,11 @@ Created By: Travis Berthelot
                     public long TimeDelta() {
                         return timeDelta;
                     }
-
+                    
+                    public String ToString(final int value) {
+                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
+                        return Integer.toString(value);
+                    }
                 }
             </xsl:if>
         </xsl:for-each>

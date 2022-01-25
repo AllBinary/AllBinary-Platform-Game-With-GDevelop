@@ -45,15 +45,15 @@
         <xsl:param name="caller" />
 
         //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> caller=<xsl:value-of select="$caller" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
+        <xsl:if test="type = 'BuiltinCommonInstructions::Comment'" >
+            //BuiltinCommonInstructions::Comment
+        </xsl:if>
         <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
             <xsl:text>&#10;</xsl:text>
             <xsl:if test="$caller = 'externalEventsProcess'" >
                 this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(null, null, null, null);
             </xsl:if>
             this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-        </xsl:if>
-        <xsl:if test="type = 'BuiltinCommonInstructions::Comment'" >
-            //BuiltinCommonInstructions::Comment
         </xsl:if>
 
         <xsl:for-each select="events" >
@@ -208,8 +208,7 @@
                     //Events - START
                         <xsl:for-each select="events" >
                     //Found - condition in children - <xsl:value-of select="$childEventWithUsedEvent" />
-                    <xsl:variable name="typeValue" select="type/value" />
-                    //final String EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Events nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>";
+                    //final String EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Events nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>";
                     //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                     //nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
                         </xsl:for-each>

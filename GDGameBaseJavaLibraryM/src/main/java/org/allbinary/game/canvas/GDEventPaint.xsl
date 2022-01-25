@@ -23,46 +23,6 @@ Created By: Travis Berthelot
         //eventsPaint
         <xsl:for-each select="events" >
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
-            <xsl:for-each select="comment" >
-                //Comment: <xsl:value-of select="text()" />
-            </xsl:for-each>
-            <xsl:for-each select="comment2" >
-                <xsl:if test="string-length(text()) > 0" >
-                    //Comment 2: <xsl:value-of select="text()" />
-                </xsl:if>
-            </xsl:for-each>
-            <xsl:for-each select="iterableVariableName" >
-                //iterableVariableName: <xsl:value-of select="text()" />
-            </xsl:for-each>
-            <xsl:for-each select="valueIteratorVariableName" >
-                //valueIteratorVariableName: <xsl:value-of select="text()" />
-            </xsl:for-each>
-            <xsl:for-each select="keyIteratorVariableName" >
-                //keyIteratorVariableName <xsl:value-of select="text()" />
-            </xsl:for-each>
-            <xsl:for-each select="name" >
-                //name <xsl:value-of select="text()" />
-            </xsl:for-each>
-            <xsl:for-each select="source" >
-                <xsl:if test="string-length(text()) > 0" >
-                    //source <xsl:value-of select="text()" />
-                </xsl:if>
-            </xsl:for-each>
-            <xsl:for-each select="colorR" >
-                //colorR <xsl:value-of select="text()" />
-            </xsl:for-each>
-            <xsl:for-each select="colorG" >
-                //colorG <xsl:value-of select="text()" />
-            </xsl:for-each>
-            <xsl:for-each select="colorB" >
-                //colorB <xsl:value-of select="text()" />
-            </xsl:for-each>
-            <xsl:for-each select="target" >
-                //target <xsl:value-of select="text()" />
-            </xsl:for-each>
-            <xsl:if test="repeatExpression" >
-                //repeatExpression <xsl:value-of select="repeatExpression" />
-            </xsl:if>
 
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
