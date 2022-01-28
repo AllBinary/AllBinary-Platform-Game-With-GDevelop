@@ -643,7 +643,7 @@ Created By: Travis Berthelot
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
-                <xsl:if test="$typeValue = 'VarObjet'" >
+                <xsl:if test="$typeValue = 'CollisionNP'" >
                     //CollisionNP - condition is processed by collision processor
                 </xsl:if>                
                 <xsl:if test="$typeValue = 'VarObjet'" >
@@ -1910,7 +1910,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="conditions" >
                     <xsl:variable name="typeValue" select="type/value" />
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
+                //private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
                 </xsl:for-each>
 
                 <xsl:for-each select="actions" >
@@ -1926,8 +1926,50 @@ Created By: Travis Berthelot
                 </xsl:for-each>
             </xsl:variable>
 
-                <xsl:if test="actions" >
+            <xsl:variable name="foundOtherCondition" >
+                <xsl:for-each select="conditions" >
+                    <xsl:if test="type/value != 'Timer' and type/value != 'CollisionNP' and type/value != 'VarObjet' and type/value = 'NbObjet' and type/value = 'DepartScene' and type/value = 'SourisSurObjet' and type/value = 'MouseButtonReleased'" >found</xsl:if>
+                </xsl:for-each>
+            </xsl:variable>
+                                
+                <xsl:if test="contains($foundTimerCondition, 'found')" >
+                //Found used conditions so calling them before actions.
+                public void process() {
+                    
+                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+
+                    <xsl:for-each select="conditions" >
+                    nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    </xsl:for-each>
+                }
+
+                public void processReleased() {
+                
+                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+
+                    <xsl:for-each select="conditions" >
+                    nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                    </xsl:for-each>
+                }
+                
+                </xsl:if>
+
+                <xsl:if test="contains($foundOtherCondition, 'found')" >
+                //Found conditions that need processing.
+                public void process() {
+                    
+                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+
+                    <xsl:for-each select="conditions" >
+                    nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    </xsl:for-each>
+                }
+                </xsl:if>
+
+                <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
                 <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
+
+                <xsl:if test="actions" >
                 //No used conditions so calling actions from event directly.
                 <xsl:call-template name="actionsWithIndexesProcess" >
                     <xsl:with-param name="layoutIndex" >
@@ -1959,33 +2001,10 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                 </xsl:call-template>
                 </xsl:if>
-                </xsl:if>
-                
-                <xsl:if test="contains($foundTimerCondition, 'found')" >
-                //Found used conditions so calling them before actions.
-                public void process() {
-                    
-                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().NOT_IMPLEMENTED, this, EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
-
-                    <xsl:for-each select="conditions" >
-                    //Condition
-                    nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                    </xsl:for-each>
-                }
-                
-                public void processReleased() {
-                
-                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().NOT_IMPLEMENTED, this, EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
-
-                    <xsl:for-each select="conditions" >
-                    nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
-                    </xsl:for-each>
-                }
-                
-                </xsl:if>
-
+                                
+                <xsl:if test="not(conditions)" >
                 <xsl:if test="not(actions)" >
-                <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
+                //Events only - No actions or conditions
                 public void process() {
                 
                     LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
@@ -2073,6 +2092,9 @@ Created By: Travis Berthelot
 
                 </xsl:if>
                 }
+                </xsl:if>
+                </xsl:if>
+                
                 </xsl:if>
                 </xsl:if>
 
