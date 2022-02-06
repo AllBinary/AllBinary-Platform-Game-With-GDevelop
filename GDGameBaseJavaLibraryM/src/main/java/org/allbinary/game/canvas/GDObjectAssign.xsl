@@ -168,7 +168,7 @@ Created By: Travis Berthelot
                 this.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
                 */
 
-                <xsl:value-of select="name" />GDGameLayerFactory = new NullGDGameLayerFactory();
+                //<xsl:value-of select="name" />GDGameLayerFactory = new NullGDGameLayerFactory();
 
             </xsl:if>
             </xsl:if>

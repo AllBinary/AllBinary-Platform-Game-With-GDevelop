@@ -224,6 +224,7 @@ Created By: Travis Berthelot
 
                             private long timeDelta;
                             private long lastStartTime = Long.MIN_VALUE;
+                            //private final String FAKE_COLLISION_NODE_STRING = "FAKE_COLLISION_NODE_ID";
 
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
@@ -241,6 +242,7 @@ Created By: Travis Berthelot
 
                         this.nodeArray[FAKE_COLLISION_NODE_ID] = new GDNode() {
                             public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final GDNode gdNode, final BasicArrayList gdNodeList) {
+                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, FAKE_COLLISION_NODE_STRING));
                                 gdNode.process(gameLayer, gameLayer2, (CollidableCompositeLayer) null, gdNode, gdNodeList);
                             }
                         };
@@ -318,7 +320,7 @@ Created By: Travis Berthelot
 
                         //this.<xsl:value-of select="name" />GDGameLayerArray = new GDGameLayer[1];
                         final GDObject <xsl:value-of select="name" />2 = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
-                        //1 GDObject at index 0
+                        //Add GDObject 1 at index 0
                         this.<xsl:value-of select="name" />List.add(<xsl:value-of select="name" />2);
                         <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
@@ -523,8 +525,9 @@ Created By: Travis Berthelot
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:if test="$typeValue = 'TextObject::Text'" >
                             final int size<xsl:value-of select="name" />2 = <xsl:value-of select="name" />List.size();
+                            GDObject <xsl:value-of select="name" />2;
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size<xsl:value-of select="name" />2; index++) {
-                                final GDObject <xsl:value-of select="name" />2 = (GDObject) this.<xsl:value-of select="name" />List.get(index);
+                                <xsl:value-of select="name" />2 = (GDObject) this.<xsl:value-of select="name" />List.get(index);
                                 this.<xsl:value-of select="name" />TextAnimation.paint(graphics, <xsl:value-of select="name" />2.x, <xsl:value-of select="name" />2.y);
                             }
                         </xsl:if>

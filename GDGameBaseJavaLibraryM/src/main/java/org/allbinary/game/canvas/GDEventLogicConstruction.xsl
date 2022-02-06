@@ -128,13 +128,16 @@ Created By: Travis Berthelot
                         nodeList<xsl:value-of select="$nodeList" />.add(nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                             </xsl:if>
                         </xsl:for-each>
-                        
+                                                
                         <xsl:value-of select="$name" />.groupCollisionList.add(<xsl:value-of select="$name1" />GroupInterface);
                         <xsl:value-of select="$name" />.actionCollisionList.add(new GDNode() {
+                        
+                            private final String COLLISION_AT = "<xsl:value-of select="$nodeList" /> index: ";
+                        
                             public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final GDNode gdNode, final BasicArrayList gdNodeList) {
                                 final int size = nodeList<xsl:value-of select="$nodeList" />.size();
                                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeList" /> index: " + index));
+                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, COLLISION_AT + index));
                                     ((GDNode) nodeList<xsl:value-of select="$nodeList" />.get(index)).process(gameLayer, gameLayer2, gdNode, gdNodeList);
                                 }
                             }
