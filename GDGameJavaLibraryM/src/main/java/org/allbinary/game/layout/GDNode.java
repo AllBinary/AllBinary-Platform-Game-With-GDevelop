@@ -37,9 +37,13 @@ public class GDNode
         return false;
     }
 
-    public void processEnd(final BasicArrayList gameLayerList, final int index) throws Exception {
+    public boolean process(final int index) throws Exception {
+        return false;
     }
-
+    
+    public void processEnd(final int index) throws Exception {
+    }
+    
     public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
         
     }

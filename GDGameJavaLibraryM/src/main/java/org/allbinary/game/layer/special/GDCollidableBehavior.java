@@ -18,7 +18,10 @@ import org.allbinary.game.collision.CollidableInterfaceCompositeInterface;
 import org.allbinary.game.identification.GroupInterface;
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layout.GDNode;
+import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.ForcedLogUtil;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 
 /**
  *
@@ -39,27 +42,57 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
     // TODO TWB Special Super Efficient Collision Processing
     public boolean isCollision(final CollidableCompositeLayer collisionLayer)
     {
-        if (this.ownerLayer.getGroupInterface() != collisionLayer.getGroupInterface())
-        {
-            return super.isCollision(collisionLayer);
-        }
+//        if(!this.ownerLayer.getName().startsWith("player_bullet") || !collisionLayer.getName().startsWith("player_bullet")) {
+//            final StringBuilder stringBuilder = new StringBuilder();
+//            final String string = this.toString(stringBuilder);
+//            LogUtil.put(LogFactory.getInstance(stringBuilder.toString(), this, "isCollision"));
+//        } else {
+//            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "isCollision - with self"));
+//        }
+
+        if(this.collidableBehavior.groupCollisionList.size() > 0) {
+            if (this.ownerLayer.getGroupInterface()[0] != collisionLayer.getGroupInterface()[0]) {
+                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "isCollision - super"));
+                return super.isCollision(collisionLayer);
+            }
+        } //else {
+            //LogUtil.put(LogFactory.getInstance("isCollision: No Groups", this, "collide"));
+        //}
+        
         return false;
     }
     
+    private static final String COLLIDE = "collide";
+    
     // TODO TWB Special Super Efficient Collision Processing
     //public void collide(CollidableDestroyableDamageableTeamLayer collisionLayer)
-    public void collide(final CollidableCompositeLayer collidableInterfaceCompositeInterface)
+    public void collide(final CollidableCompositeLayer collisionLayer)
             throws Exception
     {
-        final GroupInterface[] groupInterfaceArray = collidableInterfaceCompositeInterface.getGroupInterface();
-        
-        final int size = groupInterfaceArray.length;
-        for(int index = 0; index < size; index++) {
-            
-            int indexOfGroup = this.collidableBehavior.groupCollisionList.indexOf(groupInterfaceArray[index]);
-            if(indexOfGroup < 0) {
-                ((GDNode) this.collidableBehavior.actionCollisionList.get(indexOfGroup)).process(this.ownerLayer, collidableInterfaceCompositeInterface, null, null);
+        if(this.collidableBehavior.groupCollisionList.size() > 0) {
+            LogUtil.put(LogFactory.getInstance("collide: " + collisionLayer.toString(), this, COLLIDE));
+            final StringBuilder stringBuilder = new StringBuilder();
+
+            final GroupInterface[] groupInterfaceArray = collisionLayer.getGroupInterface();
+            //final GroupInterface[] groupInterfaceArray = this.ownerLayer.getGroupInterface();
+
+            final int size = groupInterfaceArray.length;
+            int indexOfGroup;
+            for (int index = 0; index < size; index++) {
+
+                indexOfGroup = this.collidableBehavior.groupCollisionList.indexOf(groupInterfaceArray[index]);
+                stringBuilder.delete(0, stringBuilder.length());
+                stringBuilder.append("collide: ");
+                this.collidableBehavior.append(stringBuilder);
+                stringBuilder.append(" groups: ");
+                LogUtil.put(LogFactory.getInstance(this.toString(collisionLayer, stringBuilder), this, COLLIDE));
+                if (indexOfGroup >= 0) {
+                    LogUtil.put(LogFactory.getInstance("groupIndex: " + indexOfGroup, this, COLLIDE));
+                    ((GDNode) this.collidableBehavior.actionCollisionList.get(indexOfGroup)).process(this.ownerLayer, collisionLayer, null, null);
+                }
             }
+        } else {
+            LogUtil.put(LogFactory.getInstance("collide: No Groups", this, COLLIDE));
         }
 
         //((CollidableDestroyableDamageableLayer) this.ownerLayer).damage(
@@ -76,5 +109,18 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
             throws Exception
     {
         ForcedLogUtil.log("No Longer Used", this);
-    }    
+    }
+    
+    public String toString(final CollidableCompositeLayer collisionLayer, final StringBuilder stringBuilder) {
+        int size = this.ownerLayer.getGroupInterface().length;
+        for (int index = 0; index < size; index++) {
+            stringBuilder.append(this.ownerLayer.getGroupInterface()[index]);
+        }
+        stringBuilder.append(" != ");
+        size = collisionLayer.getGroupInterface().length;
+        for (int index = 0; index < size; index++) {
+            stringBuilder.append(collisionLayer.getGroupInterface()[index]);
+        }
+        return stringBuilder.toString();
+    }
 }
