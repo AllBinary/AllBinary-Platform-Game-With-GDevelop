@@ -15,8 +15,7 @@
 package org.allbinary.game.layout.behavior;
 
 import javax.microedition.lcdui.Graphics;
-import org.allbinary.game.layer.GDGameLayer;
-import org.allbinary.game.layout.GDObject;
+import org.allbinary.util.BasicArrayList;
 
 /**
  *
@@ -24,7 +23,7 @@ import org.allbinary.game.layout.GDObject;
  */
 public class GDBehavior {
 
-    public void process(final GDGameLayer gameLayer, final GDObject gdObject, final Graphics graphics) {
+    public void process(final BasicArrayList gameLayerList, final BasicArrayList gdObjectList, final int index, final Graphics graphics) {
         
     }
 }

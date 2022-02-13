@@ -66,7 +66,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>/root<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
-                -->                                
+                -->                
                 //showAll - END
                 
                 package org.allbinary.game.canvas;
@@ -115,8 +115,9 @@ Created By: Travis Berthelot
                 import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
 
                 import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
-                import org.allbinary.logic.basic.string.CommonStrings;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
+                import org.allbinary.layer.event.LayerManagerEventHandler;
+                import org.allbinary.logic.basic.string.CommonStrings;
                 import org.allbinary.logic.basic.string.CommonSeps;
                 import org.allbinary.logic.basic.util.event.AllBinaryEventObject;
                 import org.allbinary.logic.basic.util.event.EventListenerInterface;
@@ -478,7 +479,7 @@ Created By: Travis Berthelot
                            <xsl:for-each select="behaviors" >
                                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
                                <xsl:if test="type = 'DestroyOutsideBehavior::DestroyOutside'" >
-                               this.destroyOutsideBehavior.process((GDGameLayer) <xsl:value-of select="$objectName" />GDGameLayerList.get(index), (GDObject) <xsl:value-of select="$objectName" />List.get(index), graphics);
+                               this.destroyOutsideBehavior.process(<xsl:value-of select="$objectName" />GDGameLayerList, <xsl:value-of select="$objectName" />List, index, graphics);
                                </xsl:if>
                            </xsl:for-each>
                            }
