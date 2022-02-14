@@ -103,8 +103,6 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.SIZE = animationInterfaceFactoryInterfaceArray.length;
         final RotationAnimation[] initIndexedAnimationInterface = new RotationAnimation[SIZE];
         
-        LogUtil.put(LogFactory.getInstance(this.gdObject.name, this, CommonStrings.getInstance().CONSTRUCTOR));
-        
         try {
             for (int index = 0; index < SIZE; index++)
             {
@@ -121,6 +119,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
         this.combatBaseBehavior = new CombatBaseBehavior(
                 DamageableBaseBehavior.getInstance(), new DestroyableSimpleBehavior(this));
+        
+        LogUtil.put(LogFactory.getInstance(this.toString(), this, CommonStrings.getInstance().CONSTRUCTOR));
     }
 
     protected IndexedAnimation[] getInitIndexedAnimationInterface()
