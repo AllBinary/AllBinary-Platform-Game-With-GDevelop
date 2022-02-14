@@ -23,7 +23,7 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDBehavior {
 
-    public void process(final BasicArrayList gameLayerList, final BasicArrayList gdObjectList, final int index, final Graphics graphics) {
-        
+    public boolean process(final BasicArrayList gameLayerList, final BasicArrayList gdObjectList, final int index, final Graphics graphics) {
+        return false;
     }
 }

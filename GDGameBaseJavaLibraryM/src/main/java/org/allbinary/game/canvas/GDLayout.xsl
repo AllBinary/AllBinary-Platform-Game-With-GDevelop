@@ -474,15 +474,31 @@ Created By: Travis Berthelot
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
                         //if(<xsl:value-of select="name" />GDGameLayerList != null) {
                         if(<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
+                           final BasicArrayList removeList = new BasicArrayList();
+                           final BasicArrayList removeList2 = new BasicArrayList();
                            size = <xsl:value-of select="name" />GDGameLayerList.size();
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                            <xsl:for-each select="behaviors" >
                                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
                                <xsl:if test="type = 'DestroyOutsideBehavior::DestroyOutside'" >
-                               this.destroyOutsideBehavior.process(<xsl:value-of select="$objectName" />GDGameLayerList, <xsl:value-of select="$objectName" />List, index, graphics);
+                               if(this.destroyOutsideBehavior.process(<xsl:value-of select="$objectName" />GDGameLayerList, <xsl:value-of select="$objectName" />List, index, graphics)) {
+                                   removeList.add(<xsl:value-of select="$objectName" />GDGameLayerList.get(index));
+                                   removeList2.add(<xsl:value-of select="$objectName" />List.get(index));
+                               }
                                </xsl:if>
                            </xsl:for-each>
                            }
+                           
+                           size = removeList.size();
+                           for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                               <xsl:value-of select="name" />GDGameLayerList.remove(removeList.get(index));
+                           }
+                               
+                           size = removeList2.size();
+                           for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                               <xsl:value-of select="name" />List.remove(removeList2.get(index));
+                           }
+                               
                         }
                         </xsl:if>
                     </xsl:for-each>

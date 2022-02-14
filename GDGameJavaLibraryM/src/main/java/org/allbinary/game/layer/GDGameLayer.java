@@ -240,6 +240,12 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     //RuntimeObject.cpp
     public void AddForceUsingPolarCoordinates(final float angle, final float length, final float clearing) {
         
+        //if(this.gdObject.updateSinceSetAngle) {
+            //return;
+        //}
+        
+        //this.gdObject.updateSinceSetAngle = true;
+        
         short adjustedAngle = (short) angle;
         while (adjustedAngle > 359) {
             adjustedAngle -= 360;

@@ -27,42 +27,36 @@ public class DestroyOutsideBehavior extends GDBehavior {
 
     private final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
 
-    public void process(final BasicArrayList gameLayerList, final BasicArrayList gdObjectList, final int index, final Graphics graphics) {
+    public boolean process(final BasicArrayList gameLayerList, final BasicArrayList gdObjectList, final int index, final Graphics graphics) {
 
         final GDGameLayer gameLayer = (GDGameLayer) gameLayerList.get(index);
         final GDObject gdObject = (GDObject) gdObjectList.get(index);
 
         if(gdObject == null) {
-            return;
+            return false;
         }
 
         if(gdObject.x > SceneWindowWidth() + gdObject.Width(graphics)) {
-            gdObjectList.remove(index);
-            gameLayerList.remove(index);
             gameLayer.getCombatBaseBehavior().getDestroyableBaseBehavior().setDestroyed(true);
-            return;
+            return true;
         }
 
         if(gdObject.y > SceneWindowHeight() + gdObject.Width(graphics)) {
-            gdObjectList.remove(index);
-            gameLayerList.remove(index);
             gameLayer.getCombatBaseBehavior().getDestroyableBaseBehavior().setDestroyed(true);
-            return;
+            return true;
         }
 
         if(gdObject.y < -gdObject.Width(graphics)) {
-            gdObjectList.remove(index);
-            gameLayerList.remove(index);
             gameLayer.getCombatBaseBehavior().getDestroyableBaseBehavior().setDestroyed(true);
-            return;
+            return true;
         }
 
         if(gdObject.x < -gdObject.Height(graphics)) {
-            gdObjectList.remove(index);
-            gameLayerList.remove(index);
             gameLayer.getCombatBaseBehavior().getDestroyableBaseBehavior().setDestroyed(true);
-            return;
+            return true;
         }
+        
+        return false;
     }
 
     public int SceneWindowWidth() {

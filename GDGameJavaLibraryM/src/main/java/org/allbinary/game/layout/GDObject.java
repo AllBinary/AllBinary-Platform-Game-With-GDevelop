@@ -55,6 +55,8 @@ public class GDObject
     public int halfWidth;
     public int halfHeight;
         
+    public boolean updateSinceSetAngle;
+    
     public GDObject(final String unknown, final int x, final int y, final String name) {
         this.x = x;
         this.y = y;
@@ -141,6 +143,8 @@ public class GDObject
 
     public void setAngle(final short angle, final GDGameLayer gameLayer) {
 
+        this.updateSinceSetAngle = false;
+        
         //int adjustedAngle = angle - 270;
         short adjustedAngle = angle;
         while (adjustedAngle > 359) {
