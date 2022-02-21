@@ -235,13 +235,17 @@ Created By: Travis Berthelot
 //                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 //                            final int currentIndex = index;
 //                            nodeArray[index2][index] = new GDNode() {
-//                            public void process() {
+//
+//                                @Override
+//                                public void process() {
 //                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, Integer.toString(currentIndex), new Exception()));
 //                                }
 //                            };
 //                        }
 
                         this.nodeArray[FAKE_COLLISION_NODE_ID] = new GDNode() {
+
+                            @Override
                             public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final GDNode gdNode, final BasicArrayList gdNodeList) {
                                 //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, FAKE_COLLISION_NODE_STRING));
                                 gdNode.process(gameLayer, gameLayer2, (CollidableCompositeLayer) null, gdNode, gdNodeList);
