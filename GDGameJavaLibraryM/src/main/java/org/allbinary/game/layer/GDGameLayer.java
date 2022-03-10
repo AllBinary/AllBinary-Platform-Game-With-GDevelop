@@ -49,7 +49,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     //private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
     //private final int SCALE = noDecimalTrigTable.SCALE * 10; //* GameSpeed.getInstance().getSpeed();
     //private final int SCALE_FACTOR_VALUE = (ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE / ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR) * 2 / 3;
-    private static final int SCALE_FACTOR = ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR * 2;
+    private static final int SCALE_FACTOR = ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR;
 
     public final GDObject gdObject;
 

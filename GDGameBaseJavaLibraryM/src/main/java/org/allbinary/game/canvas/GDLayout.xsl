@@ -334,8 +334,8 @@ Created By: Travis Berthelot
                         <xsl:value-of select="name" />2.canvasHeight = <xsl:value-of select="name" />ImageArray[0].getHeight();
                         <xsl:value-of select="name" />2.width = (int) (<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
                         <xsl:value-of select="name" />2.height = (int) (<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
-                        <xsl:value-of select="name" />2.halfWidth = (int) (<xsl:value-of select="name" />2.width / 2);
-                        <xsl:value-of select="name" />2.halfHeight = (int) (<xsl:value-of select="name" />2.height / 2);
+                        <xsl:value-of select="name" />2.halfWidth = (<xsl:value-of select="name" />2.width / 2);
+                        <xsl:value-of select="name" />2.halfHeight = (<xsl:value-of select="name" />2.height / 2);
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="name" />2.toString()));
                         </xsl:if>
 
