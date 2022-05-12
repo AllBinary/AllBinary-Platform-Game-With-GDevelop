@@ -26,15 +26,17 @@
         -->
 
         <module>../resource/GDGameResourceJavaLibraryM</module>
-        <module>../platform/j2me/GDGameJ2MEJavaLibraryM</module>
         <!--
+        <module>../platform/j2me/GDGameJ2MEJavaLibraryM</module>
         <module>../platform/j2se/GDGameJ2SEJavaLibraryM</module>
         <module>../platform/html/GDGameHTMLJavaLibraryM</module>
         <module>../platform/android/GDGameAndroidJavaLibraryM</module>
         -->
         <module>../resource/GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
         <module>../resource/GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
+        <!--
         <module>../resource/GDGameOpenGLThreedAnimationResourceJavaLibraryM</module>
+        -->
         
         <module>../platform/j2se/GDGamePCClientInfoJavaLibraryM</module>
         <module>../GDGameBaseJavaLibraryM</module>

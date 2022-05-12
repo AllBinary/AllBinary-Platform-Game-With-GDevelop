@@ -22,7 +22,7 @@ import org.allbinary.game.init.DefaultGameInitializationListener;
 import org.allbinary.media.audio.GDGameSoundsFactory;
 
 public class GDGameMIDlet
-        extends org.allbinary.game.gd.GDGameMIDlet
+        extends org.allbinary.game.GDGameMIDlet
 {
     private final int DEVICE_ID = 0;
     private AllMotionRecognizer motionRecognizer = new AllMotionRecognizer();

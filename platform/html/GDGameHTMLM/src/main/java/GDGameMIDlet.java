@@ -12,7 +12,7 @@ import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.game.init.DefaultGameInitializationListener;
 
 public class GDGameMIDlet
-        extends org.allbinary.game.gd.GDGameMIDlet
+        extends org.allbinary.game.GDGameMIDlet
 {
     public GDGameMIDlet()
     {

@@ -12,7 +12,7 @@ import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 
 public class GDGameMIDlet
-        extends org.allbinary.game.gd.GDGameMIDlet
+        extends org.allbinary.game.GDGameMIDlet
 {
     public GDGameMIDlet()
     {

@@ -30,7 +30,9 @@
         <module>../GDGameAndroidResourceJavaLibraryM</module>
         <module>../GDGameAndroidResourcesTempJavaLibraryM</module>
         <module>../GDGameAndroidSoundsJavaLibraryM</module>
+        <!--
         <module>../GDGameThreedAndroidPlatformP</module>
+        -->
     </modules>
 
 </project>
