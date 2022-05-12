@@ -92,7 +92,7 @@ public class GDGameMIDlet extends
                PlayerTypesFactory.getInstance().PLAYER_TYPE_ONE,
                this.getHighestLevel(), 1);
 
-       return new GDGameLayerManager(gameInfo);
+       return new GDGameLayerManager(null, null, gameInfo);
    }
 
    /*

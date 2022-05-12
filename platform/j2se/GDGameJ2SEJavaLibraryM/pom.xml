@@ -57,6 +57,11 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameJavaLibrary</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameTouchJavaLibrary</artifactId>
             <!--
             <artifactId>GDGameTouchJavaLibrary</artifactId>

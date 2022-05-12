@@ -15,7 +15,6 @@ package org.allbinary.game.gd.init;
 
 import org.allbinary.game.init.BasicBuildGameInitializerFactory;
 import org.allbinary.game.init.GameInitializationInterface;
-import org.allbinary.game.init.GameInitializationInterfaceFactoryInterface;
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.game.gd.resource.GDGameJ2MEEarlyResourceInitialization;
 

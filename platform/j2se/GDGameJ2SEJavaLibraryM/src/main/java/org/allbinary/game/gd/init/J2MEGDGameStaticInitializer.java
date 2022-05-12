@@ -17,7 +17,7 @@ import org.allbinary.animation.image.GDGameImageBasedAnimationInterfaceFactoryIn
 
 import org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.resource.ResourceInitialization;
-import org.allbinary.game.gd.init.GDGameStaticInitializer;
+import org.allbinary.game.init.GDGameStaticInitializer;
 
 public class J2MEGDGameStaticInitializer
     extends GDGameStaticInitializer

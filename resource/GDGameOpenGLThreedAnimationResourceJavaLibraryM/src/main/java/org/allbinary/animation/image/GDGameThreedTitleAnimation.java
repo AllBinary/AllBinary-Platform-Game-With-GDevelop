@@ -19,7 +19,6 @@ package org.allbinary.animation.image;
 import javax.microedition.lcdui.Graphics;
 
 import org.allbinary.animation.ThreedAnimation;
-import org.allbinary.game.layer.CameraLayer;
 import org.allbinary.game.gd.GDGameAllBinarySceneControllerFactory;
 import org.allbinary.graphics.threed.min3d.GDGameSceneController;
 
