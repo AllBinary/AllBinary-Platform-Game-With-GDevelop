@@ -11,7 +11,7 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd.init;
+package org.allbinary.game.init;
 
 import org.allbinary.animation.image.GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.animation.image.GDGameOpenGLESImageBasedAnimationInterfaceFactoryInterfaceFactory;
