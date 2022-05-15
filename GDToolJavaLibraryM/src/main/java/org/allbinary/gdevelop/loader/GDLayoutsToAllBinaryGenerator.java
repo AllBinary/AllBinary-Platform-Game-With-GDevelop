@@ -86,6 +86,30 @@ public class GDLayoutsToAllBinaryGenerator
                 LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
             }
 
+            final InputStream inputStream2 = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl");
+            final String xslDocumentStr2 = streamUtil.getAsString(inputStream2);
+            final String FILE = "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java";
+            for (int index = 1; index < size - 1; index++)
+            {
+                indexAsString = Integer.toString(index);
+                final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, indexAsString);
+                final String updatedXslDocumentStr = replace.all(xslDocumentStr2);
+
+                final String result = this.xslHelper.translate(new BasicUriResolver(),
+                        new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
+                        new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
+
+                stringBuilder.delete(0, stringBuilder.length());
+                final AbFile abFile = new AbFile(FILE);
+                if (abFile.exists())
+                {
+                    abFile.delete();
+                }
+                BufferedWriterUtil.write(abFile, result);
+
+                LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
+            }
+
         } catch (Exception e)
         {
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));

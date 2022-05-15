@@ -66,8 +66,8 @@ Created By: Travis Berthelot
                     <xsl:value-of select="$name" />2.canvasHeight = <xsl:value-of select="$name" />ImageArray[0].getHeight();
                     <xsl:value-of select="$name" />2.width = (int) (<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f);
                     <xsl:value-of select="$name" />2.height = (int) (<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f);
-                    <xsl:value-of select="$name" />2.halfWidth = (int) (<xsl:value-of select="$name" />2.width / 2);
-                    <xsl:value-of select="$name" />2.halfHeight = (int) (<xsl:value-of select="$name" />2.height / 2);
+                    <xsl:value-of select="$name" />2.halfWidth = (<xsl:value-of select="$name" />2.width / 2);
+                    <xsl:value-of select="$name" />2.halfHeight = (<xsl:value-of select="$name" />2.height / 2);
                     LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="$name" />2.toString()));
                     </xsl:if>
                     <xsl:if test="not(contains($objectsAsString, $spriteName))" >
@@ -102,6 +102,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="thisNodeArray" >this</xsl:variable>
 
                 <xsl:call-template name="actionsWithIndexes" >                    
+                    <xsl:with-param name="caller" >actionsWithIndexesProcess</xsl:with-param>
                     <xsl:with-param name="thisNodeArray" >
                         <xsl:value-of select="$thisNodeArray" />
                     </xsl:with-param>                    
@@ -123,6 +124,7 @@ Created By: Travis Berthelot
     </xsl:template>
 
     <xsl:template name="actionsWithIndexes" >
+        <xsl:param name="caller" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
         <xsl:param name="createdObjectsAsString" />
@@ -155,7 +157,7 @@ Created By: Travis Berthelot
                         final int size = <xsl:if test="not(repeatExpression)" >1</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
 
                         final BasicArrayList gameLayerList = new BasicArrayList();
-                        //final StringBuilder stringBuilder = new StringBuilder();
+                        final StringBuilder stringBuilder = new StringBuilder();
 
                        <xsl:variable name="actionWithTextObjectString" >
                            <xsl:for-each select="actions" >
@@ -197,13 +199,18 @@ Created By: Travis Berthelot
                         </xsl:for-each>
 
                         <xsl:variable name="createParamsAsString" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" />,</xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="timerActions" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" ><xsl:value-of select="type/value" />,</xsl:if></xsl:for-each></xsl:variable>
                         
                         <xsl:if test="string-length($createParamsAsString) > 0" >
                             <xsl:variable name="text" select="substring-before($createParamsAsString, ',')" />
+                        //Create Loop - <xsl:value-of select="$caller" /><xsl:if test="$caller = 'eventsCreateAssignGDObject'" > - add one</xsl:if>
                         final int startIndex = <xsl:value-of select="$text" />GDGameLayerList.size();
+                        //final int endIndex = <xsl:value-of select="$text" />List.size()<xsl:if test="$caller = 'eventsCreateAssignGDObject'" > + 1</xsl:if>;
                         final int endIndex = <xsl:value-of select="$text" />List.size();
                         
-                        //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append("startIndex: ").append(startIndex).append("endIndex: ").append(endIndex).toString()));
+                        <xsl:if test="contains($timerActions, 'Timer,')" >
+                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append("startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), new Exception()));
+                        </xsl:if>
                         for(int index = startIndex; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> endIndex; index++) {
                         </xsl:if>
 
@@ -485,7 +492,44 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
             
+                <xsl:variable name="createParamsAsString" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" />,</xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
+                <xsl:variable name="timerActions" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" ><xsl:value-of select="type/value" />,</xsl:if></xsl:for-each></xsl:variable>
+
+                    <xsl:if test="string-length($createParamsAsString) > 0" >
+                    //createParamsAsString=<xsl:value-of select="$createParamsAsString" />
+                    //timerActions=<xsl:value-of select="$timerActions" />
+                    </xsl:if>
+                    <xsl:if test="string-length($createParamsAsString) > 0 and contains($timerActions, 'Timer,')" >
+                        <xsl:variable name="text" select="substring-before($createParamsAsString, ',')" />
+                    //Create Loop - eventsCreateProcessUsed - Timer
+                    final StringBuilder stringBuilder = new StringBuilder();
+                    int startIndex;
+                    int endIndex;
+                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append("size: ").append(size).append(" <xsl:value-of select="$text" />List.size(): ").append(<xsl:value-of select="$text" />List.size()).append(" <xsl:value-of select="$text" />GDGameLayerList.size(): ").append(<xsl:value-of select="$text" />GDGameLayerList.size()).toString()));
+                    //if(<xsl:value-of select="$text" />List.size() - size <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                    if(<xsl:value-of select="$text" />List.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                        //startIndex = <xsl:value-of select="$text" />List.size() - size;
+                        startIndex = <xsl:value-of select="$text" />List.size();
+                        endIndex = <xsl:value-of select="$text" />List.size() + size;
+                        stringBuilder.delete(0, stringBuilder.length());
+                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append("size <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), new Exception()));
+                    } else {
+                        startIndex = 0; //<xsl:value-of select="$text" />GDGameLayerList.size();
+                        endIndex = size; //<xsl:value-of select="$text" />List.size();
+                        stringBuilder.delete(0, stringBuilder.length());
+                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append("layer <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), new Exception()));
+                    }
+
+                    for(int index = startIndex; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> endIndex; index++) {
+                    </xsl:if>
+            
+                    <xsl:if test="string-length($createParamsAsString) > 0 and not(contains($timerActions, 'Timer,'))" >
+                    //Create Loop - eventsCreateProcessUsed
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                    </xsl:if>
+                    <xsl:if test="string-length($createParamsAsString) = 0" >
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                    </xsl:if>
 
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
@@ -665,6 +709,7 @@ Created By: Travis Berthelot
 
             <xsl:variable name="actionsWithIndexes" >
                 <xsl:call-template name="actionsWithIndexes" >
+                    <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
                     <xsl:with-param name="thisNodeArray" >
                         <xsl:value-of select="$thisNodeArray" />
                     </xsl:with-param>                    
@@ -859,20 +904,20 @@ Created By: Travis Berthelot
                         
                         @Override
                         public void process() {
-                            //if(!gdRunnableList.contains(this.runnable)) {
+                            if(!gdRunnableList.contains(this.runnable)) {
                                 gdRunnableList.add(this.runnable);
-                            //} else {
-                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "", new Exception()));
-                            //}
+                            } else {
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "", new Exception()));
+                            }
                         }
 
                         @Override
                         public void processReleased() {
-                            //if(gdRunnableList.contains(this.runnable)) {
+                            if(gdRunnableList.contains(this.runnable)) {
                                 gdRunnableList.remove(this.runnable);
-                            //} else {
-                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "", new Exception()));
-                            //}
+                            } else {
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "", new Exception()));
+                            }
                         }
 
                         <xsl:value-of select="$eventsCreateProcessUsed" disable-output-escaping="yes" />
@@ -1058,6 +1103,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="thisNodeArray" >this</xsl:variable>
 
                 <xsl:call-template name="actionsWithIndexes" >
+                    <xsl:with-param name="caller" >VarScene</xsl:with-param>
                     <xsl:with-param name="thisNodeArray" >
                         <xsl:value-of select="$thisNodeArray" />
                     </xsl:with-param>                    
@@ -1252,7 +1298,7 @@ Created By: Travis Berthelot
                     }
 
                     public boolean process(final int index) throws Exception {
-                    
+
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index));
                         
                     <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>

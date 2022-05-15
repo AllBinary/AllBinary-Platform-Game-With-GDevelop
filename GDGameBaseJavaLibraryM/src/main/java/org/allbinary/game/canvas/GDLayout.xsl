@@ -148,6 +148,7 @@ Created By: Travis Berthelot
                             return instance;
                         }
 
+                        private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();

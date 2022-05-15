@@ -100,12 +100,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>J2MEMidletAsActivityJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
             <exclusions>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
@@ -137,6 +136,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        -->
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>J2MEMidletAsViewJavaLibrary</artifactId>
@@ -443,10 +443,12 @@
     </dependencies>
 
     <build>
+        
         <pluginManagement>
             <plugins>
+                
+                <!-- Not working older: maven-android-plugin -->        
                 <plugin>
-                    <!-- Not working older: maven-android-plugin -->        
                     <groupId>com.simpligility.maven.plugins</groupId>
                     <artifactId>android-maven-plugin</artifactId>
                     <version>4.6.0</version>
@@ -456,7 +458,7 @@
         </pluginManagement>
         
         <plugins>
-
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
