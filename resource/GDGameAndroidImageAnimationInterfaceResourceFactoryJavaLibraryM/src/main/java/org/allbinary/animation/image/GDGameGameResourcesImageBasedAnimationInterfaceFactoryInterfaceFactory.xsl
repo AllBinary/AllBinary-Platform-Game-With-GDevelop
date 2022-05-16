@@ -84,20 +84,18 @@ Created By: Travis Berthelot
 */
 package org.allbinary.animation.image;
 
-import java.io.InputStream;
 import javax.microedition.lcdui.Image;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
+import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
+import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 
-import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
-import org.allbinary.data.resource.ResourceUtil;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
 import org.allbinary.game.layer.special.GDConditionCollidableBehavior;
-import org.allbinary.game.resource.GDResources;
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.image.ImageCache;
@@ -105,14 +103,9 @@ import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.media.image.ImageCopyUtil;
 
 public class GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
-        extends BaseResourceAnimationInterfaceFactoryInterfaceFactory
-{
-
-    private final GDResources gdResources = GDResources.getInstance();
-    private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
+    extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
                     <xsl:call-template name="animationNames" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >

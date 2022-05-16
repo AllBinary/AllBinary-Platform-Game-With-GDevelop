@@ -78,8 +78,12 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Image;
 
                 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
+                import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
+                import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
+                import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface;
                 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
                 import org.allbinary.animation.image.AllBinaryAndroidImageRotationAnimationFactory;
+                import org.allbinary.animation.image.GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
 
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.animation.text.TextAnimation;
@@ -110,6 +114,8 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
+                import org.allbinary.image.ImageCache;
+                import org.allbinary.image.ImageCacheFactory;
                 import org.allbinary.input.motion.gesture.MotionGestureInput;
                 import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
                 import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
@@ -148,11 +154,16 @@ Created By: Travis Berthelot
                             return instance;
                         }
 
+                        private final GDResources gdResources = GDResources.getInstance();
                         private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
+                        private final ImageCache imageCache = ImageCacheFactory.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
-
+                        private final ResourceUtil resourceUtil = ResourceUtil.getInstance();
+       
+                        private final GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
+                        
                         private final String PROCESS_RELEASE = "processReleased";
                         
                         private final BasicArrayList gdRunnableList = new BasicArrayList();
@@ -254,6 +265,23 @@ Created By: Travis Berthelot
                         };
 
                         try {
+
+                    <xsl:call-template name="imageCache" >
+                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
+                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="windowWidth" >
+                            <xsl:value-of select="$windowWidth" />
+                        </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                    animationInterfaceFactoryInterfaceFactory.init(-1);
 
                     <xsl:call-template name="objectsAssign" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
