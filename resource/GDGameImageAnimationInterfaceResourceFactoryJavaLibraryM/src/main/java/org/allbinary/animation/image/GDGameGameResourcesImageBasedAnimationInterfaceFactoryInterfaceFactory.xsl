@@ -156,7 +156,7 @@ public class GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFact
 
                         try {
 
-                    <xsl:call-template name="androidAnimationFactory" >
+                    <xsl:call-template name="animationFactory" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
