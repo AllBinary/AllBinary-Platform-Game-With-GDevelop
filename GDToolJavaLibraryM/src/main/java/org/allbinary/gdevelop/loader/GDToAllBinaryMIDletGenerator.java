@@ -13,6 +13,7 @@
  */
 package org.allbinary.gdevelop.loader;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.StringBufferInputStream;
 import javax.xml.transform.stream.StreamSource;
@@ -22,7 +23,11 @@ import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
 import org.allbinary.logic.basic.io.file.AbFile;
+import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.basic.string.StringUtil;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -32,12 +37,12 @@ import org.allbinary.util.BasicArrayList;
 public class GDToAllBinaryMIDletGenerator
 {
     private final XslHelper xslHelper = XslHelper.getInstance();
+    private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
+    private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
     private final String GD_LAYOUT = "<GDLayout";
     private final String GD_LAYOUT_NAME = "<GDLayoutName";
     private final String END = ">";
-
-    private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
 
     private final StringBuilder stringBuilder = new StringBuilder();
     
@@ -47,6 +52,9 @@ public class GDToAllBinaryMIDletGenerator
     
     public void loadLayout(final GDLayout layout, final int index) {
         final String name = this.camelCaseUtil.getAsCamelCase(layout.name, stringBuilder);
+        
+        //LogUtil.put(LogFactory.getInstance(name, this, "loadLayout"));
+        
         stringBuilder.delete(0, stringBuilder.length());
         
         String className;
@@ -55,6 +63,8 @@ public class GDToAllBinaryMIDletGenerator
         } else {
             className = stringBuilder.append("GDGameStart").append(name).append("Canvas").toString();
         }
+        
+        LogUtil.put(LogFactory.getInstance(className, this, "loadLayout"));
         
         this.layoutNameList.add(layout.name);
         this.nameList.add(name);
@@ -66,11 +76,13 @@ public class GDToAllBinaryMIDletGenerator
         final String MIDLET = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.java";
         
         final StreamUtil streamUtil = StreamUtil.getInstance();
-                        
-        final FileInputStream fileInputStream = new FileInputStream(MIDLET_ORIGINAL);
-        final String androidRFileAsString = streamUtil.getAsString(fileInputStream);
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
+        final byte[] byteArray = new byte[16384];
+
+        final FileInputStream fileInputStream = new FileInputStream(MIDLET_ORIGINAL);        
+        final String midletXslFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
         
-        String newFileAsString = androidRFileAsString;
+        String newFileAsString = midletXslFileAsString;
 
         final int size = this.classNameList.size();
         String indexAsString;
@@ -85,11 +97,14 @@ public class GDToAllBinaryMIDletGenerator
         final String updatedXslDocumentStr = newFileAsString;
 
         final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
-        String xmlDocumentStr = streamUtil.getAsString(gameInputStream);
+        
+        final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
 
         final String result = this.xslHelper.translate(new BasicUriResolver(),
                 new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
                 new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
+        
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + MIDLET, this, CommonStrings.getInstance().CONSTRUCTOR));
         
         final AbFile abFile = new AbFile(MIDLET);
         if(abFile.exists()) {

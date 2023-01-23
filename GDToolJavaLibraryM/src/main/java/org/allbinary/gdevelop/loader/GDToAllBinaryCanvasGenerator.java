@@ -13,6 +13,7 @@
  */
 package org.allbinary.gdevelop.loader;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.StringBufferInputStream;
 import javax.xml.transform.stream.StreamSource;
@@ -22,7 +23,10 @@ import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
 import org.allbinary.logic.basic.io.file.AbFile;
+import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 
 /**
  *
@@ -33,6 +37,7 @@ public class GDToAllBinaryCanvasGenerator
 
     private final XslHelper xslHelper = XslHelper.getInstance();
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
+    private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
     private final String GD_LAYOUT = "<GDLayout>";
     private final String GD_CURRENT_LAYOUT_INDEX = "<GD_CURRENT_INDEX>";
@@ -67,22 +72,27 @@ public class GDToAllBinaryCanvasGenerator
         final String CANVAS = stringBuilder.append("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\").append(this.className).append(".java").toString();
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
+        final byte[] byteArray = new byte[16384];
 
-        final FileInputStream fileInputStream = new FileInputStream(this.orig);
-        final String androidRFileAsString = streamUtil.getAsString(fileInputStream);
+        final FileInputStream fileInputStream = new FileInputStream(this.orig);        
+        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
+        
         final Replace replace = new Replace(GD_LAYOUT, this.className);
         final Replace replace2 = new Replace(GD_CURRENT_LAYOUT_INDEX, Integer.toString(this.index));
 
         String updatedXslDocumentStr = replace.all(androidRFileAsString);
         updatedXslDocumentStr = replace2.all(updatedXslDocumentStr);
 
-        final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
-        String xmlDocumentStr = streamUtil.getAsString(gameInputStream);
+        final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");        
+        final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
 
         final String result = this.xslHelper.translate(new BasicUriResolver(),
                 new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
                 new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
 
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + CANVAS, this, CommonStrings.getInstance().CONSTRUCTOR));
+        
         final AbFile abFile = new AbFile(CANVAS);
         if (abFile.exists())
         {

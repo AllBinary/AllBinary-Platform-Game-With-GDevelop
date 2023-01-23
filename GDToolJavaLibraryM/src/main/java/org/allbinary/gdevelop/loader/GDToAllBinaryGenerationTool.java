@@ -5,6 +5,7 @@
  */
 package org.allbinary.gdevelop.loader;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.gdevelop.json.GDProject;
@@ -24,7 +25,6 @@ import org.allbinary.logic.basic.string.StringUtil;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.json.XML;
@@ -35,7 +35,8 @@ import org.json.XML;
  */
 public class GDToAllBinaryGenerationTool
 {
-
+    private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
+    
     private final BasicArrayList duplicateCheckList = new BasicArrayList();
 
     private final GDToAndroidRClassGenerator androidRClassGenerator = new GDToAndroidRClassGenerator();
@@ -56,16 +57,21 @@ public class GDToAllBinaryGenerationTool
     {
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
+        final byte[] byteArray = new byte[16384];
 
-        final FileInputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidApplicationM\\src\\main\\res\\raw\\game.json");
-        final String gameAsConfiguration = streamUtil.getAsString(inputStream);
+        final FileInputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidApplicationM\\src\\main\\res\\raw\\game.json");        
+        final String gameAsConfiguration = new String(streamUtil.getByteArray(inputStream, outputStream, byteArray));
 
         final JSONTokener jsonTokener = new JSONTokener(gameAsConfiguration);
         final JSONObject gameAsConfigurationJSONObject = (JSONObject) jsonTokener.nextValue();
 
         final String xml = "<game>" + XML.toString(gameAsConfigurationJSONObject) + "<variables><value>movement_angle</value><value>angle</value></variables></game>";
 
-        final AbFile abFile = new AbFile("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
+        final String fileName = "G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml";
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
+        
+        final AbFile abFile = new AbFile(fileName);
         if (abFile.exists())
         {
             abFile.delete();
@@ -186,7 +192,7 @@ public class GDToAllBinaryGenerationTool
     private void loadStandardEvent(final GDStandardEvent standardEvent)
     {
         LogUtil.put(LogFactory.getInstance(StringUtil.getInstance().EMPTY_STRING, this, "loadStandardEvent"));
-        this.loadEvents(standardEvent.eventList);
+        //this.loadEvents(standardEvent.eventList);
         this.loadActions(standardEvent.actionList);
     }
 

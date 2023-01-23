@@ -6,11 +6,15 @@
 
 package org.allbinary.gdevelop.loader;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
 import org.allbinary.logic.basic.io.file.AbFile;
+import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -19,6 +23,8 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDToAllBinaryResourcesGenerator
 {
+    private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
+    
     public final BasicArrayList androidResourceList = new BasicArrayList();
     public final BasicArrayList resourceList = new BasicArrayList();
     
@@ -48,16 +54,20 @@ public class GDToAllBinaryResourcesGenerator
 
     public void process() throws Exception {
 
-        final String RESOURCE_ORIGINAL = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.origin";
-        final String RESOURCE = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.java";
+        final String RESOURCE_ORIGINAL = "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.origin";
+        final String RESOURCE = "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.java";
         
         final StreamUtil streamUtil = StreamUtil.getInstance();
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
+        final byte[] byteArray = new byte[16384];
         
-        final FileInputStream fileInputStream = new FileInputStream(RESOURCE_ORIGINAL);
-        final String androidRFileAsString = streamUtil.getAsString(fileInputStream);
+        final FileInputStream fileInputStream = new FileInputStream(RESOURCE_ORIGINAL);        
+        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
         final Replace replace = new Replace(GD_KEY, this.resourceStringBuilder.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE, this, CommonStrings.getInstance().CONSTRUCTOR));
+        
         final AbFile abFile = new AbFile(RESOURCE);
         if(abFile.exists()) {
             abFile.delete();

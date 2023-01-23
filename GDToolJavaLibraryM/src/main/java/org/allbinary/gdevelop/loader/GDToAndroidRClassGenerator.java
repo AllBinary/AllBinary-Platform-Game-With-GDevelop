@@ -6,11 +6,15 @@
 
 package org.allbinary.gdevelop.loader;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
 import org.allbinary.logic.basic.io.file.AbFile;
+import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 
 /**
  *
@@ -18,6 +22,8 @@ import org.allbinary.logic.basic.string.regex.replace.Replace;
  */
 public class GDToAndroidRClassGenerator
 {
+    private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
+    
     private final StringBuilder androidRFileStringBuilder = new StringBuilder();
 
     final String GD_KEY = "//GD";
@@ -48,12 +54,16 @@ public class GDToAndroidRClassGenerator
         final String R = "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.java";
         
         final StreamUtil streamUtil = StreamUtil.getInstance();
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
+        final byte[] byteArray = new byte[16384];
 
-        final FileInputStream fileInputStream = new FileInputStream(R_ORIGINAL);
-        final String androidRFileAsString = streamUtil.getAsString(fileInputStream);
+        final FileInputStream fileInputStream = new FileInputStream(R_ORIGINAL);        
+        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
         final Replace replace = new Replace(GD_KEY, androidRFileStringBuilder.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + R, this, CommonStrings.getInstance().CONSTRUCTOR));
+        
         final AbFile abFile = new AbFile(R);
         if(abFile.exists()) {
             abFile.delete();

@@ -6,11 +6,15 @@
 
 package org.allbinary.gdevelop.loader;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
 import org.allbinary.logic.basic.io.file.AbFile;
+import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -19,6 +23,8 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDToAllBinaryEarlyResourceInitializationGenerator
 {
+    private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
+    
     private final String RESOURCE_0 = "\n        resourceUtil.addResource(";
     
     private final String SOUND_RESOURCE = ".getInstance().getResource(), ";
@@ -47,12 +53,18 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
         this.appendMedia(allBinaryResourcesGenerator, stringBuilder);
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
+        final byte[] byteArray = new byte[16384];
 
         final FileInputStream fileInputStream = new FileInputStream(RESOURCE_INITIALIZATION_ORIGINAL);
-        final String androidRFileAsString = streamUtil.getAsString(fileInputStream);
+        
+        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
+
         final Replace replace = new Replace(GD_KEY, stringBuilder.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE_INITIALIZATION, this, CommonStrings.getInstance().CONSTRUCTOR));
+        
         final AbFile abFile = new AbFile(RESOURCE_INITIALIZATION);
         if (abFile.exists())
         {

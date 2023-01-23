@@ -13,6 +13,7 @@
  */
 package org.allbinary.gdevelop.loader;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.StringBufferInputStream;
@@ -36,12 +37,12 @@ import org.allbinary.util.BasicArrayList;
 public class GDLayoutsToAllBinaryRunnableGenerator
 {
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
+    private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
     private final StringBuilder stringBuilder = new StringBuilder();
         
     private final XslHelper xslHelper = XslHelper.getInstance();
 
-    private final String FILENAME = "fileName: ";
     private final String GD_CURRENT_LAYOUT_INDEX = "<GD_CURRENT_INDEX>";
 
     public GDLayoutsToAllBinaryRunnableGenerator()
@@ -67,11 +68,16 @@ public class GDLayoutsToAllBinaryRunnableGenerator
             final StringBuilder stringBuilder = new StringBuilder();
             
             final StreamUtil streamUtil = StreamUtil.getInstance();
+            final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
+            final byte[] byteArray = new byte[16384];
 
-            final InputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDLayoutRunnable.xsl");
-            final String xslDocumentStr = streamUtil.getAsString(inputStream);
+            final InputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDLayoutRunnable.xsl");            
+            final String xslDocumentStr = new String(streamUtil.getByteArray(inputStream, outputStream, byteArray));
+            
             final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
-            String xmlDocumentStr = streamUtil.getAsString(gameInputStream);
+            
+            final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
+
             //final Replace replace2 = new Replace(".Width()", ".Width(graphics)");
             //xmlDocumentStr = replace2.all(xmlDocumentStr);
             //final Replace replace3 = new Replace(".Height()", ".Height(graphics)");
@@ -92,15 +98,16 @@ public class GDLayoutsToAllBinaryRunnableGenerator
 
                 stringBuilder.delete(0, stringBuilder.length());
                 final String fileName = stringBuilder.append(START).append(this.nameList.get(index)).append(END).toString();
-                
-                LogUtil.put(LogFactory.getInstance(FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
-                
+
+                LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
+
                 final AbFile abFile = new AbFile(fileName);
 
                 if (abFile.exists())
                 {
                     abFile.delete();
                 }
+                
                 BufferedWriterUtil.write(abFile, result);
 
                 LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));

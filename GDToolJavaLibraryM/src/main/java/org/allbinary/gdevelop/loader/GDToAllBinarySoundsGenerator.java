@@ -6,11 +6,15 @@
 
 package org.allbinary.gdevelop.loader;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
 import org.allbinary.logic.basic.io.file.AbFile;
+import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -20,6 +24,7 @@ import org.allbinary.util.BasicArrayList;
 public class GDToAllBinarySoundsGenerator
 {
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
+    private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
     public final BasicArrayList playSoundAndroidResourceNameList = new BasicArrayList();
     private final BasicArrayList playSoundResourcePathList = new BasicArrayList();
@@ -28,8 +33,8 @@ public class GDToAllBinarySoundsGenerator
     
     private final String GD_NAME = "<GDNAME>";
     
-    private final String SOUND_ORIGINAL = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDSound.origin";
-    private final String SOUND_PATH = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\";
+    private final String SOUND_ORIGINAL = "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDSound.origin";
+    private final String SOUND_PATH = "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\";
     
     private final String GD = "GD";
     private final String SOUND = "Sound";
@@ -43,9 +48,11 @@ public class GDToAllBinarySoundsGenerator
     public void process() throws Exception {
                 
         final StreamUtil streamUtil = StreamUtil.getInstance();
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
+        final byte[] byteArray = new byte[16384];        
 
         final FileInputStream fileInputStream = new FileInputStream(SOUND_ORIGINAL);
-        final String androidRFileAsString = streamUtil.getAsString(fileInputStream);
+        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
         
         final int size = playSoundAndroidResourceNameList.size();
         
@@ -66,7 +73,11 @@ public class GDToAllBinarySoundsGenerator
             final String fileName = stringBuilder.toString();
             
             stringBuilder.delete(0, stringBuilder.length());
-            final AbFile abFile = new AbFile(stringBuilder.append(SOUND_PATH).append(fileName).toString());
+            
+            final String fileName2 = stringBuilder.append(SOUND_PATH).append(fileName).toString();
+            LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName2, this, CommonStrings.getInstance().CONSTRUCTOR));
+            
+            final AbFile abFile = new AbFile(fileName2);
             if (abFile.exists())
             {
                 abFile.delete();
