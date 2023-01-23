@@ -28,9 +28,9 @@ public class GDLayout
     public final BasicColor basicColor;
     public final String title;
 
-    public final double oglFOV;
-    public final double oglZNear;
-    public final double oglZFar;
+    //public final double oglFOV;
+    //public final double oglZNear;
+    //public final double oglZFar;
 
     public final boolean standardSortMethod;
     public final boolean stopSoundsOnStartup;
@@ -65,9 +65,9 @@ public class GDLayout
         }
         
         
-        this.oglFOV = jsonObject.getDouble(gdProjectStrings.OGL_FOV);
-        this.oglZFar = jsonObject.getDouble(gdProjectStrings.OGL_Z_FAR);
-        this.oglZNear = jsonObject.getDouble(gdProjectStrings.OGL_Z_NEAR);
+        //this.oglFOV = jsonObject.getDouble(gdProjectStrings.OGL_FOV);
+        //this.oglZFar = jsonObject.getDouble(gdProjectStrings.OGL_Z_FAR);
+        //this.oglZNear = jsonObject.getDouble(gdProjectStrings.OGL_Z_NEAR);
 
         this.standardSortMethod = jsonObject.getBoolean(gdProjectStrings.STANDARD_SORT_METHOD);
         this.stopSoundsOnStartup = jsonObject.getBoolean(gdProjectStrings.STOP_SOUNDS_ON_STARTUP);

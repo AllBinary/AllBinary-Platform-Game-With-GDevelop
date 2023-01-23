@@ -32,7 +32,7 @@ public class GDInitialInstance
     public final double height;
 
     public final BasicArrayList initialVariableList = new BasicArrayList();
-    public final boolean locked;
+    //public final boolean locked;
     public final String persistentUuid;
 
     public GDInitialInstance(final JSONObject jsonObject)
@@ -55,7 +55,7 @@ public class GDInitialInstance
         this.width = jsonObject.getDouble(gdProjectStrings.WIDTH);
         this.height = jsonObject.getDouble(gdProjectStrings.HEIGHT);
         
-        this.locked = jsonObject.getBoolean(gdProjectStrings.LOCKED);
+        //this.locked = jsonObject.getBoolean(gdProjectStrings.LOCKED);
         
         this.persistentUuid = jsonObject.getString(gdProjectStrings.PERSISTED_UUID);
         

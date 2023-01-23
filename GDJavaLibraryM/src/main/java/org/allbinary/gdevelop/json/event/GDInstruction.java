@@ -18,10 +18,10 @@ import org.json.JSONObject;
 public class GDInstruction
 {
     public final String typeValue;
-    public final boolean inverted;
+    //public final boolean inverted;
     
     public final BasicArrayList parametersExpressionList = new BasicArrayList();
-    public final BasicArrayList subInstructionList = new BasicArrayList();
+    //public final BasicArrayList subInstructionList = new BasicArrayList();
     
     //originalInstruction?
     
@@ -32,7 +32,7 @@ public class GDInstruction
         final JSONObject typeJSONObject = jsonObject.getJSONObject(gdProjectStrings.TYPE);
         
         this.typeValue = typeJSONObject.getString(gdProjectStrings.VALUE);
-        this.inverted = typeJSONObject.getBoolean(gdProjectStrings.INVERTED);
+        //this.inverted = typeJSONObject.getBoolean(gdProjectStrings.INVERTED);
 
         final JSONArray expressionJSONArray = jsonObject.getJSONArray(gdProjectStrings.PARAMETERS);
         int size = expressionJSONArray.length();
@@ -40,11 +40,11 @@ public class GDInstruction
             this.parametersExpressionList.add(new GDExpression(expressionJSONArray.getString(index)));
         }
 
-        final JSONArray subInstructionJSONArray = jsonObject.getJSONArray(gdProjectStrings.SUB_INSTRUCTIONS);
-        size = subInstructionJSONArray.length();
-        for(int index = 0; index < size; index++) {
-            this.subInstructionList.add(new GDInstruction(subInstructionJSONArray.getJSONObject(index)));
-        }
+//        final JSONArray subInstructionJSONArray = jsonObject.getJSONArray(gdProjectStrings.SUB_INSTRUCTIONS);
+//        size = subInstructionJSONArray.length();
+//        for(int index = 0; index < size; index++) {
+//            this.subInstructionList.add(new GDInstruction(subInstructionJSONArray.getJSONObject(index)));
+//        }
     }
     
 }

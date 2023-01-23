@@ -70,7 +70,7 @@ public class GDProjectStrings
     
     public final String ACTIONS = "actions";
     public final String TYPE = "type";
-    public final String INVERTED = "inverted";
+    //public final String INVERTED = "inverted";
     public final String VALUE = "value";    
     public final String PARAMETERS = "parameters";
     
@@ -103,21 +103,23 @@ public class GDProjectStrings
     public final String MANGLED_NAME = "mangledName";
     
     public final String GRID = "grid";
-    public final String GRID_B = "gridB";
-    public final String GRID_G = "gridG";
+    public final String GRID_ALPHA = "gridAlpha";
+    public final String GRID_COLOR = "gridColor";
+    //public final String GRID_B = "gridB";
+    //public final String GRID_G = "gridG";
+    //public final String GRID_R = "gridR";    
     public final String GRID_HEIGHT = "gridHeight";
     public final String GRID_OFFSET_X = "gridOffsetX";
     public final String GRID_OFFSET_Y = "gridOffsetY";
-    public final String GRID_R = "gridR";
     public final String GRID_TYPE = "gridType";
     public final String GRID_WIDTH = "gridWidth";
     public final String SNAP = "snap";
     public final String WINDOW_MASK = "windowMask";
     public final String ZOOM_FACTOR = "zoomFactor";
 
-    public final String OGL_FOV = "oglFOV";
-    public final String OGL_Z_NEAR = "oglZNear";
-    public final String OGL_Z_FAR = "oglZFar";
+    //public final String OGL_FOV = "oglFOV";
+    //public final String OGL_Z_NEAR = "oglZNear";
+    //public final String OGL_Z_FAR = "oglZFar";
     public final String STANDARD_SORT_METHOD = "standardSortMethod";
     public final String STOP_SOUNDS_ON_STARTUP = "stopSoundsOnStartup";
     public final String DISABLE_INPUT_WHEN_NOT_FOCUSED = "disableInputWhenNotFocused";
@@ -147,8 +149,8 @@ public class GDProjectStrings
     public final String VIEWPORT_BOTTOM = "viewportBottom";
     
     public final String BEHAVIORS_SHARED_DATA = "behaviorsSharedData";
-    public final String DISABLED = "disabled";
-    public final String FOLDED = "folded";
+    //public final String DISABLED = "disabled";
+    //public final String FOLDED = "folded";
     
     public final String X = "x";
     public final String Y = "y";
@@ -157,7 +159,7 @@ public class GDProjectStrings
     public final String LAYER = "layer";
     
     public final String CUSTOM_SIZE = "customSize";
-    public final String LOCKED = "locked";
+    //public final String LOCKED = "locked";
     public final String PERSISTED_UUID = "persistentUuid";
     public final String INITIAL_VARIABLE = "initialVariables";
     public final String NUMBER_PROPERTIES = "numberProperties";
@@ -169,7 +171,7 @@ public class GDProjectStrings
     public final String KEY_ITERATOR_VARIABLE_NAME = "keyIteratorVariableName";
 
     public final String CONDITIIONS = "conditions";
-    public final String SUB_INSTRUCTIONS = "subInstructions";
+    //public final String SUB_INSTRUCTIONS = "subInstructions";
     
     public final String SOURCE = "source";
     public final String CREATION_TIME = "creationTime";
