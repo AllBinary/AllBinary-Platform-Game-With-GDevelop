@@ -9,6 +9,9 @@ package org.allbinary.gdevelop.json.event.builtin;
 import org.allbinary.gdevelop.json.GDProjectStrings;
 import org.allbinary.gdevelop.json.event.GDEvent;
 import org.allbinary.gdevelop.json.event.GDInstruction;
+import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -45,11 +48,16 @@ public class GDStandardEvent extends GDEvent
         }
 
         final JSONArray eventJSONArray = jsonObject.getJSONArray(gdProjectStrings.EVENTS);
-        size = eventJSONArray.length();
-        for(int index = 0; index < size; index++) {
-            nextJSONObject = eventJSONArray.getJSONObject(index);
-            this.eventList.add(eventFactory.create(nextJSONObject));
-        }        
+        
+        if(eventJSONArray != null) {
+            //Newer GDevelop may not use this.
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, new Exception()));
+            size = eventJSONArray.length();
+            for (int index = 0; index < size; index++) {
+                nextJSONObject = eventJSONArray.getJSONObject(index);
+                this.eventList.add(eventFactory.create(nextJSONObject));
+            }
+        }
         
     }
 }
