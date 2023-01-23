@@ -47,11 +47,11 @@ public class GDStandardEvent extends GDEvent
             this.actionList.add(new GDInstruction(nextJSONObject));
         }
 
-        final JSONArray eventJSONArray = jsonObject.getJSONArray(gdProjectStrings.EVENTS);
-        
-        if(eventJSONArray != null) {
+        if(jsonObject.has(gdProjectStrings.EVENTS)) {
             //Newer GDevelop may not use this.
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, new Exception()));
+            
+            final JSONArray eventJSONArray = jsonObject.getJSONArray(gdProjectStrings.EVENTS);
             size = eventJSONArray.length();
             for (int index = 0; index < size; index++) {
                 nextJSONObject = eventJSONArray.getJSONObject(index);
