@@ -22,7 +22,6 @@ import org.allbinary.data.tree.dom.BasicUriResolver;
 import org.allbinary.data.tree.dom.XslHelper;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
-import org.allbinary.logic.basic.io.file.AbFile;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -34,7 +33,7 @@ import org.allbinary.logic.communication.log.LogUtil;
  */
 public class GDLayoutsToAllBinaryGenerator
 {
-
+    private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final XslHelper xslHelper = XslHelper.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
@@ -59,6 +58,7 @@ public class GDLayoutsToAllBinaryGenerator
             final InputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayout.xsl");
             final String xslDocumentStr = new String(streamUtil.getByteArray(inputStream, outputStream, byteArray));
             final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
+            outputStream.reset();
             String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
             final Replace replace2 = new Replace(".Width()", ".Width(graphics)");
             xmlDocumentStr = replace2.all(xmlDocumentStr);
@@ -83,18 +83,14 @@ public class GDLayoutsToAllBinaryGenerator
                 final String fileName = stringBuilder.append(START).append(indexAsString).append(END).toString();
                 
                 LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
-                
-                final AbFile abFile = new AbFile(fileName);
-                if (abFile.exists())
-                {
-                    abFile.delete();
-                }
-                BufferedWriterUtil.write(abFile, result);
+
+                this.bufferedWriterUtil.overwrite(fileName, result);
 
                 LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
             }
 
             final InputStream inputStream2 = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl");
+            outputStream.reset();
             final String xslDocumentStr2 = new String(streamUtil.getByteArray(inputStream2, outputStream, byteArray));
             final String FILE = "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java";
             for (int index = 1; index < size - 1; index++)
@@ -110,13 +106,7 @@ public class GDLayoutsToAllBinaryGenerator
                 stringBuilder.delete(0, stringBuilder.length());
                 LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + FILE, this, CommonStrings.getInstance().CONSTRUCTOR));
                 
-                final AbFile abFile = new AbFile(FILE);
-                if (abFile.exists())
-                {
-                    abFile.delete();
-                }
-                
-                BufferedWriterUtil.write(abFile, result);
+                this.bufferedWriterUtil.overwrite(FILE, result);
 
                 LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
             }

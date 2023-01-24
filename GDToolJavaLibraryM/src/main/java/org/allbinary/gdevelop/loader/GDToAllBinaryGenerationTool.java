@@ -19,7 +19,6 @@ import org.allbinary.gdevelop.json.event.builtin.GDStandardEvent;
 import org.allbinary.gdevelop.json.resource.GDResource;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
-import org.allbinary.logic.basic.io.file.AbFile;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringUtil;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -35,6 +34,7 @@ import org.json.XML;
  */
 public class GDToAllBinaryGenerationTool
 {
+    private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
     private final BasicArrayList duplicateCheckList = new BasicArrayList();
@@ -70,13 +70,8 @@ public class GDToAllBinaryGenerationTool
 
         final String fileName = "G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml";
         LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
-        
-        final AbFile abFile = new AbFile(fileName);
-        if (abFile.exists())
-        {
-            abFile.delete();
-        }
-        BufferedWriterUtil.write(abFile, xml);
+
+        this.bufferedWriterUtil.overwrite(fileName, xml);
 
         final GDProject gdProject = new GDProject();
         gdProject.load(gameAsConfigurationJSONObject);

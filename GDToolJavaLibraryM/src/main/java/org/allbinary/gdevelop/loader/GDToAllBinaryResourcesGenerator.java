@@ -10,7 +10,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
-import org.allbinary.logic.basic.io.file.AbFile;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -23,6 +22,7 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDToAllBinaryResourcesGenerator
 {
+    private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
     public final BasicArrayList androidResourceList = new BasicArrayList();
@@ -68,11 +68,7 @@ public class GDToAllBinaryResourcesGenerator
 
         LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE, this, CommonStrings.getInstance().CONSTRUCTOR));
         
-        final AbFile abFile = new AbFile(RESOURCE);
-        if(abFile.exists()) {
-            abFile.delete();
-        }
-        BufferedWriterUtil.write(abFile, newFileAsString);        
+        this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
     }
     
 }

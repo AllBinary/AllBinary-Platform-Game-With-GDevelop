@@ -10,7 +10,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
-import org.allbinary.logic.basic.io.file.AbFile;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -24,6 +23,7 @@ import org.allbinary.util.BasicArrayList;
 public class GDToAllBinarySoundsGenerator
 {
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
+    private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
     public final BasicArrayList playSoundAndroidResourceNameList = new BasicArrayList();
@@ -77,12 +77,7 @@ public class GDToAllBinarySoundsGenerator
             final String fileName2 = stringBuilder.append(SOUND_PATH).append(fileName).toString();
             LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName2, this, CommonStrings.getInstance().CONSTRUCTOR));
             
-            final AbFile abFile = new AbFile(fileName2);
-            if (abFile.exists())
-            {
-                abFile.delete();
-            }
-            BufferedWriterUtil.write(abFile, newFileAsString);
+            this.bufferedWriterUtil.overwrite(fileName2, newFileAsString);
         }
                 
     }

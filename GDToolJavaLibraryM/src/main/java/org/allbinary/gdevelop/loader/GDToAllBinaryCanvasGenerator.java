@@ -22,7 +22,6 @@ import org.allbinary.data.tree.dom.XslHelper;
 import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
-import org.allbinary.logic.basic.io.file.AbFile;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -34,7 +33,7 @@ import org.allbinary.logic.communication.log.LogUtil;
  */
 public class GDToAllBinaryCanvasGenerator
 {
-
+    private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final XslHelper xslHelper = XslHelper.getInstance();
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
@@ -84,7 +83,8 @@ public class GDToAllBinaryCanvasGenerator
         String updatedXslDocumentStr = replace.all(androidRFileAsString);
         updatedXslDocumentStr = replace2.all(updatedXslDocumentStr);
 
-        final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");        
+        final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
+        outputStream.reset();
         final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
 
         final String result = this.xslHelper.translate(new BasicUriResolver(),
@@ -93,12 +93,7 @@ public class GDToAllBinaryCanvasGenerator
 
         LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + CANVAS, this, CommonStrings.getInstance().CONSTRUCTOR));
         
-        final AbFile abFile = new AbFile(CANVAS);
-        if (abFile.exists())
-        {
-            abFile.delete();
-        }
-        BufferedWriterUtil.write(abFile, result);
+        this.bufferedWriterUtil.overwrite(CANVAS, result);
     }
 
 }

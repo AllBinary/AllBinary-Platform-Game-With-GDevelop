@@ -36,6 +36,7 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDLayoutsToAllBinaryRunnableGenerator
 {
+    private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
@@ -76,6 +77,7 @@ public class GDLayoutsToAllBinaryRunnableGenerator
             
             final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
             
+            outputStream.reset();
             final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
 
             //final Replace replace2 = new Replace(".Width()", ".Width(graphics)");
@@ -101,14 +103,7 @@ public class GDLayoutsToAllBinaryRunnableGenerator
 
                 LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
 
-                final AbFile abFile = new AbFile(fileName);
-
-                if (abFile.exists())
-                {
-                    abFile.delete();
-                }
-                
-                BufferedWriterUtil.write(abFile, result);
+                this.bufferedWriterUtil.overwrite(fileName, result);
 
                 LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
             }
