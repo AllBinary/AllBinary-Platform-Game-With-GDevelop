@@ -125,6 +125,7 @@ Created By: Travis Berthelot
                 import org.allbinary.layer.event.LayerManagerEventHandler;
                 import org.allbinary.logic.basic.string.CommonStrings;
                 import org.allbinary.logic.basic.string.CommonSeps;
+                import org.allbinary.logic.basic.string.StringUtil;
                 import org.allbinary.logic.basic.util.event.AllBinaryEventObject;
                 import org.allbinary.logic.basic.util.event.EventListenerInterface;
                 import org.allbinary.logic.communication.log.LogFactory;

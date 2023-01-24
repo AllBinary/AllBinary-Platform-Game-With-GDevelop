@@ -34,7 +34,7 @@
     -->
 
     <uses-sdk android:minSdkVersion="4" />
-    <uses-sdk android:targetSdkVersion="29" />
+    <uses-sdk android:targetSdkVersion="33" />
 
     <!-- @integer/google_play_services_version -->
     <!--

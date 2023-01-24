@@ -56,7 +56,10 @@ public class GDLayoutsToAllBinaryGenerator
             final byte[] byteArray = new byte[16384];
             
             final InputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayout.xsl");
+            final InputStream inputStream3 = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutAsXml.xsl");
             final String xslDocumentStr = new String(streamUtil.getByteArray(inputStream, outputStream, byteArray));
+            outputStream.reset();
+            final String xslDocumentStr3 = new String(streamUtil.getByteArray(inputStream3, outputStream, byteArray));
             final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
             outputStream.reset();
             String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
@@ -67,6 +70,7 @@ public class GDLayoutsToAllBinaryGenerator
 
             final String START = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD";
             final String END = "SpecialAnimation.java";
+            final String END2 = "SpecialAnimation.xml";
             
             String indexAsString;
             for (int index = 0; index < size; index++)
@@ -74,19 +78,27 @@ public class GDLayoutsToAllBinaryGenerator
                 indexAsString = Integer.toString(index);
                 final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, indexAsString);
                 final String updatedXslDocumentStr = replace.all(xslDocumentStr);
+                final String updatedXslDocumentStr3 = replace.all(xslDocumentStr3);
 
                 final String result = this.xslHelper.translate(new BasicUriResolver(),
                         new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
                         new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
 
+                final String result2 = this.xslHelper.translate(new BasicUriResolver(),
+                        new StreamSource(new StringBufferInputStream(updatedXslDocumentStr3)),
+                        new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
+                        
                 stringBuilder.delete(0, stringBuilder.length());
                 final String fileName = stringBuilder.append(START).append(indexAsString).append(END).toString();
+                stringBuilder.delete(0, stringBuilder.length());
+                final String fileName2 = stringBuilder.append(START).append(indexAsString).append(END2).toString();
                 
                 LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
 
                 this.bufferedWriterUtil.overwrite(fileName, result);
+                this.bufferedWriterUtil.overwrite(fileName2, result2);
 
-                LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
+                //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
             }
 
             final InputStream inputStream2 = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl");

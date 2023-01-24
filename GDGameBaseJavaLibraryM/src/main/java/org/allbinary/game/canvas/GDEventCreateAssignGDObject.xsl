@@ -907,7 +907,7 @@ Created By: Travis Berthelot
                             if(!gdRunnableList.contains(this.runnable)) {
                                 gdRunnableList.add(this.runnable);
                             } else {
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "", new Exception()));
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, StringUtil.getInstance().EMPTY_STRING, new Exception()));
                             }
                         }
 
@@ -916,7 +916,7 @@ Created By: Travis Berthelot
                             if(gdRunnableList.contains(this.runnable)) {
                                 gdRunnableList.remove(this.runnable);
                             } else {
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "", new Exception()));
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, StringUtil.getInstance().EMPTY_STRING, new Exception()));
                             }
                         }
 

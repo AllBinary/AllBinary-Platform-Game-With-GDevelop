@@ -485,6 +485,7 @@
                 since Eclipse has or gets the proper dependencies
                 <ignoreBuildWarnings>true</ignoreBuildWarnings>
                 4.4.2 worked
+                4.6.0 worked
                 -->
                 <groupId>com.simpligility.maven.plugins</groupId>
                 <artifactId>android-maven-plugin</artifactId>
@@ -498,7 +499,7 @@
                     -->
                     <sdk>
                         <!-- 5 is fine but is not installed by default -->
-                        <platform>29</platform>
+                        <platform>33</platform>
                     </sdk>
                     <proguard>
                         <skip>true</skip>
