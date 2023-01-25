@@ -69,7 +69,7 @@ Created By: Travis Berthelot
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
                     //MouseButtonReleased - create Listener
-                    this.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new BaseMotionGestureEventListener() {
+                    globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new BaseMotionGestureEventListener() {
 
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                         //private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
@@ -98,7 +98,7 @@ Created By: Travis Berthelot
                     //<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
                     //<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
                     <xsl:variable name="name1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="name" >this.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDConditionCollidableBehavior</xsl:variable>
+                    <xsl:variable name="name" >globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDConditionCollidableBehavior</xsl:variable>
                     <xsl:variable name="nodeList" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
                         //Child VarScene conditions with actions
@@ -106,30 +106,30 @@ Created By: Travis Berthelot
                         <xsl:for-each select="../events" >
                             <xsl:if test="actions" >
                         //1
-                        nodeList<xsl:value-of select="$nodeList" />.add(nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]); 
+                        nodeList<xsl:value-of select="$nodeList" />.add(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]); 
                             </xsl:if>
                         </xsl:for-each>
                                                 
                         <xsl:for-each select="../events/events" >
                             <xsl:if test="actions" >
                         //2
-                        nodeList<xsl:value-of select="$nodeList" />.add(nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                        nodeList<xsl:value-of select="$nodeList" />.add(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                             </xsl:if>
                         </xsl:for-each>
                         <xsl:for-each select="../events/events/events" >
                             <xsl:if test="actions" >
                         //3
-                        nodeList<xsl:value-of select="$nodeList" />.add(nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                        nodeList<xsl:value-of select="$nodeList" />.add(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                             </xsl:if>
                         </xsl:for-each>
                         <xsl:for-each select="../events/events/events/events" >
                             <xsl:if test="actions" >
                         //4
-                        nodeList<xsl:value-of select="$nodeList" />.add(nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                        nodeList<xsl:value-of select="$nodeList" />.add(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                             </xsl:if>
                         </xsl:for-each>
                                                 
-                        <xsl:value-of select="$name" />.groupCollisionList.add(<xsl:value-of select="$name1" />GroupInterface);
+                        <xsl:value-of select="$name" />.groupCollisionList.add(globals.<xsl:value-of select="$name1" />GroupInterface);
                         <xsl:value-of select="$name" />.actionCollisionList.add(new GDNode() {
                         
                             private final String COLLISION_AT = "<xsl:value-of select="$nodeList" /> index: ";

@@ -23,7 +23,9 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAnimations.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
@@ -155,6 +157,9 @@ Created By: Travis Berthelot
                             return instance;
                         }
 
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+                        private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
+                        
                         private final GDResources gdResources = GDResources.getInstance();
                         private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
                         private final ImageCache imageCache = ImageCacheFactory.getInstance();
@@ -164,90 +169,15 @@ Created By: Travis Berthelot
                         private final ResourceUtil resourceUtil = ResourceUtil.getInstance();
        
                         private final GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
-                        
-                        private final String PROCESS_RELEASE = "processReleased";
-                        
-                        private final BasicArrayList gdRunnableList = new BasicArrayList();
-                        
-                        private final Graphics graphics = new Graphics();
-                        //private final BasicArrayList ZERO_GD_OBJECT = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
-                        private final GDNode[] nodeArray = new GDNode[15000];
-                        private final int FAKE_COLLISION_NODE_ID = 14999;
-
-                    //objectsGroups - START
-                    <xsl:for-each select="objectsGroups" >
-                        private final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="name" />";
-                        private final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
-                        private final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList();
-                        <xsl:for-each select="objects" >
-                        //private final Group <xsl:value-of select="name" />GroupInterface;
-                        </xsl:for-each>
-                    </xsl:for-each>
-                    //objectsGroups - END
-
-                    //instances class properties - START
-                    <xsl:for-each select="instances" >
-                        //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" /><xsl:text>&#10;</xsl:text>
-                        <xsl:if test="layer != ''" >
-                            private GDGameLayer <xsl:value-of select="name" />GDGameLayer;
-                        </xsl:if>
-                            private Rectangle <xsl:value-of select="name" />Rectangle = null;
-
-                    </xsl:for-each>
-                    //instances class properties - END
-
-                    <xsl:call-template name="externalEventsClassProperty" >
-                        <xsl:with-param name="layoutName" >
-                            <xsl:value-of select="$layoutName" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-
-                    <xsl:call-template name="objectsClassProperty" >
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-                    <xsl:text>&#10;</xsl:text>
-
-                    <xsl:call-template name="eventsClassPropertyConditions" >
-                        <xsl:with-param name="totalRecursions" >
-                            <xsl:value-of select="0" />
-                        </xsl:with-param>
-                        <xsl:with-param name="externalEventActionModVarSceneAsString" >
-                            <xsl:value-of select="$externalEventActionModVarSceneAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-
-                    <xsl:call-template name="eventsClassPropertyActions" >
-                        <xsl:with-param name="totalRecursions" >
-                            <xsl:value-of select="0" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-
-                    <xsl:for-each select="objects" >
-                        <xsl:variable name="typeValue" select="type" />
-                        <xsl:if test="$typeValue = 'Sprite'" >
-                            <xsl:variable name="name" select="name" />
-                            private GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
-                        </xsl:if>
-                        <xsl:if test="$typeValue = 'TextObject::Text'" >
-                            <xsl:variable name="name" select="name" />
-                            private GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
-                        </xsl:if>
-                    </xsl:for-each>
-
-                            private long timeDelta;
-                            private long lastStartTime = Long.MIN_VALUE;
-                            //private final String FAKE_COLLISION_NODE_STRING = "FAKE_COLLISION_NODE_ID";
 
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));
 
-                        int size = nodeArray.length;
+                        int size = globals.nodeArray.length;
 //                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 //                            final int currentIndex = index;
-//                            nodeArray[index2][index] = new GDNode() {
+//                            globals.nodeArray[index2][index] = new GDNode() {
 //
 //                                @Override
 //                                public void process() {
@@ -256,7 +186,7 @@ Created By: Travis Berthelot
 //                            };
 //                        }
 
-                        this.nodeArray[FAKE_COLLISION_NODE_ID] = new GDNode() {
+                        globals.nodeArray[globals.FAKE_COLLISION_NODE_ID] = new GDNode() {
 
                             @Override
                             public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final GDNode gdNode, final BasicArrayList gdNodeList) {
@@ -345,18 +275,18 @@ Created By: Travis Berthelot
                         final int <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
                         final int <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
 
-                        if(this.<xsl:value-of select="name" />List.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
-                            this.<xsl:value-of select="name" />List.ensureCapacity(1);
+                        if(globals.<xsl:value-of select="name" />List.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
+                            globals.<xsl:value-of select="name" />List.ensureCapacity(1);
                         }
 
-                        if(this.<xsl:value-of select="name" />GDGameLayerList.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
-                            this.<xsl:value-of select="name" />GDGameLayerList.ensureCapacity(1);
+                        if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
+                            globals.<xsl:value-of select="name" />GDGameLayerList.ensureCapacity(1);
                         }
 
                         //this.<xsl:value-of select="name" />GDGameLayerArray = new GDGameLayer[1];
-                        final GDObject <xsl:value-of select="name" />2 = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                        final GDObject <xsl:value-of select="name" />2 = gdObjectsFactory.get<xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
                         //Add GDObject 1 at index 0
-                        this.<xsl:value-of select="name" />List.add(<xsl:value-of select="name" />2);
+                        globals.<xsl:value-of select="name" />List.add(<xsl:value-of select="name" />2);
                         <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
                         //We may need to set a dimension for each image/animation.
@@ -370,19 +300,19 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                         <xsl:if test="layer = 'touch'" >
-                        this.<xsl:value-of select="name" />Rectangle = new Rectangle(
+                        globals.<xsl:value-of select="name" />Rectangle = new Rectangle(
                             PointFactory.getInstance().getInstance(<xsl:value-of select="name" />2.x, <xsl:value-of select="name" />2.y),
-                            <xsl:value-of select="name" />2.Width(graphics), <xsl:value-of select="name" />2.Height(graphics));
+                            <xsl:value-of select="name" />2.Width(globals.graphics), <xsl:value-of select="name" />2.Height(globals.graphics));
                         </xsl:if>
 
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         <xsl:if test="layer != ''" >
-                        this.<xsl:value-of select="name" />GDGameLayer = <xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />2, <xsl:value-of select="name" />GDConditionCollidableBehavior);
-                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeId" /> for <xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0"));
-                        this.<xsl:value-of select="name" />GDGameLayerList.add(this.<xsl:value-of select="name" />GDGameLayer);
+                        globals.<xsl:value-of select="name" />GDGameLayer = globals.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />2, globals.<xsl:value-of select="name" />GDConditionCollidableBehavior);
+                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0"));
+                        globals.<xsl:value-of select="name" />GDGameLayerList.add(globals.<xsl:value-of select="name" />GDGameLayer);
 
-                        this.<xsl:value-of select="name" />GDGameLayer.updateGDObject(timeDelta);
-                        allBinaryGameLayerManager.insert(this.<xsl:value-of select="name" />GDGameLayer);
+                        globals.<xsl:value-of select="name" />GDGameLayer.updateGDObject(globals.timeDelta);
+                        allBinaryGameLayerManager.insert(globals.<xsl:value-of select="name" />GDGameLayer);
                         </xsl:if>
                     </xsl:for-each>
                     //instances create - END
@@ -409,7 +339,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:if test="$typeValue = 'TextObject::Text'" >
-                            this.<xsl:value-of select="name" />TextAnimation.setBasicColor(new BasicColor(255, <xsl:for-each select="color" >
+                            globals.<xsl:value-of select="name" />TextAnimation.setBasicColor(new BasicColor(255, <xsl:for-each select="color" >
                                 <xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />, </xsl:for-each>"name=<xsl:value-of select="name" />;type=<xsl:value-of select="$typeValue" />"));
 
                             <xsl:variable name="name2" >:<xsl:value-of select="name" />,</xsl:variable>
@@ -432,7 +362,7 @@ Created By: Travis Berthelot
                         <xsl:if test="$typeValue = 'Sprite'" >
                             <xsl:variable name="stringValue" select="string" />
                             <xsl:variable name="name" select="name" />
-                            this.<xsl:value-of select="name" />GDGameLayerFactory = <xsl:value-of select="name" />GDGameLayerFactory;
+                            //globals.<xsl:value-of select="name" />GDGameLayerFactory = <xsl:value-of select="name" />GDGameLayerFactory;
                         </xsl:if>
                     </xsl:for-each>
 
@@ -469,16 +399,16 @@ Created By: Travis Berthelot
                     }
 
                     public void process() {
-                        if(lastStartTime == Long.MIN_VALUE) {
-                            timeDelta = 0;
+                        if(globals.lastStartTime == Long.MIN_VALUE) {
+                            globals.timeDelta = 0;
                         } else {
-                            timeDelta = System.currentTimeMillis() - lastStartTime;
+                            globals.timeDelta = System.currentTimeMillis() - globals.lastStartTime;
                         }
 
-                        final int size2 = gdRunnableList.size();
+                        final int size2 = globals.gdRunnableList.size();
                         Runnable runnable;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index++) {
-                            runnable = (Runnable) gdRunnableList.get(index);
+                            runnable = (Runnable) globals.gdRunnableList.get(index);
                             runnable.run();
                         }
 
@@ -506,18 +436,18 @@ Created By: Travis Berthelot
 
                         <xsl:if test="behaviors" >
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
-                        //if(<xsl:value-of select="name" />GDGameLayerList != null) {
-                        if(<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
+                        //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
+                        if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                            final BasicArrayList removeList = new BasicArrayList();
                            final BasicArrayList removeList2 = new BasicArrayList();
-                           size = <xsl:value-of select="name" />GDGameLayerList.size();
+                           size = globals.<xsl:value-of select="name" />GDGameLayerList.size();
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                            <xsl:for-each select="behaviors" >
                                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
                                <xsl:if test="type = 'DestroyOutsideBehavior::DestroyOutside'" >
-                               if(this.destroyOutsideBehavior.process(<xsl:value-of select="$objectName" />GDGameLayerList, <xsl:value-of select="$objectName" />List, index, graphics)) {
-                                   removeList.add(<xsl:value-of select="$objectName" />GDGameLayerList.get(index));
-                                   removeList2.add(<xsl:value-of select="$objectName" />List.get(index));
+                               if(globals.destroyOutsideBehavior.process(globals.<xsl:value-of select="$objectName" />GDGameLayerList, globals.<xsl:value-of select="$objectName" />List, index, globals.graphics)) {
+                                   removeList.add(globals.<xsl:value-of select="$objectName" />GDGameLayerList.get(index));
+                                   removeList2.add(globals.<xsl:value-of select="$objectName" />List.get(index));
                                }
                                </xsl:if>
                            </xsl:for-each>
@@ -525,19 +455,19 @@ Created By: Travis Berthelot
                            
                            size = removeList.size();
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                               <xsl:value-of select="name" />GDGameLayerList.remove(removeList.get(index));
+                               globals.<xsl:value-of select="name" />GDGameLayerList.remove(removeList.get(index));
                            }
                                
                            size = removeList2.size();
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                               <xsl:value-of select="name" />List.remove(removeList2.get(index));
+                               globals.<xsl:value-of select="name" />List.remove(removeList2.get(index));
                            }
                                
                         }
                         </xsl:if>
                     </xsl:for-each>
                     
-                        lastStartTime = GameTickTimeDelayHelperFactory.getInstance().getStartTime();
+                        globals.lastStartTime = GameTickTimeDelayHelperFactory.getInstance().getStartTime();
                     }
 
                     public void paint(Graphics graphics, int x, int y)
@@ -557,15 +487,15 @@ Created By: Travis Berthelot
                         <xsl:variable name="textObjectTextName" >TextObject::Text:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $textObjectTextName)" >
                         //TextObject::Text instance
-                        if(this.<xsl:value-of select="name" />Rectangle == null) {
+                        if(globals.<xsl:value-of select="name" />Rectangle == null) {
 
-                            final GDObject <xsl:value-of select="name" />2 = (GDObject) this.<xsl:value-of select="name" />List.get(0);
+                            final GDObject <xsl:value-of select="name" />2 = (GDObject) globals.<xsl:value-of select="name" />List.get(0);
                             final int <xsl:value-of select="name" />X = x + <xsl:value-of select="name" />2.x;
                             final int <xsl:value-of select="name" />Y = y + <xsl:value-of select="name" />2.y;
 
-                            this.<xsl:value-of select="name" />Rectangle = new Rectangle(
+                            globals.<xsl:value-of select="name" />Rectangle = new Rectangle(
                                 PointFactory.getInstance().getInstance(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
-                                <xsl:value-of select="name" />2.Width(graphics), <xsl:value-of select="name" />2.Height(graphics));
+                                <xsl:value-of select="name" />2.Width(globals.graphics), <xsl:value-of select="name" />2.Height(globals.graphics));
 
                         }
                         </xsl:if>
@@ -575,11 +505,11 @@ Created By: Travis Berthelot
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:if test="$typeValue = 'TextObject::Text'" >
-                            final int size<xsl:value-of select="name" />2 = <xsl:value-of select="name" />List.size();
+                            final int size<xsl:value-of select="name" />2 = globals.<xsl:value-of select="name" />List.size();
                             GDObject <xsl:value-of select="name" />2;
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size<xsl:value-of select="name" />2; index++) {
-                                <xsl:value-of select="name" />2 = (GDObject) this.<xsl:value-of select="name" />List.get(index);
-                                this.<xsl:value-of select="name" />TextAnimation.paint(graphics, <xsl:value-of select="name" />2.x, <xsl:value-of select="name" />2.y);
+                                <xsl:value-of select="name" />2 = (GDObject) globals.<xsl:value-of select="name" />List.get(index);
+                                globals.<xsl:value-of select="name" />TextAnimation.paint(graphics, <xsl:value-of select="name" />2.x, <xsl:value-of select="name" />2.y);
                             }
                         </xsl:if>
                     </xsl:for-each>
@@ -599,6 +529,10 @@ Created By: Travis Berthelot
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
+                    }
+
+                    public long TimeDelta() {
+                        return globals.timeDelta;
                     }
 
                     public int SceneWindowWidth() {
@@ -624,15 +558,12 @@ Created By: Travis Berthelot
                     public int GlobalVariable(final int value) {
                         return value;
                     }
-
-                    public long TimeDelta() {
-                        return timeDelta;
-                    }
                     
                     public String ToString(final int value) {
                         //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
                         return Integer.toString(value);
                     }
+
                 }
             </xsl:if>
         </xsl:for-each>

@@ -94,16 +94,16 @@ Created By: Travis Berthelot
                         <xsl:variable name="typeValue" select="type/value" />
                         <xsl:variable name="name" >,<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>,</xsl:variable>
                         <xsl:if test="$typeValue = 'ModVarScene' and not(contains($externalEventActionModVarSceneAsString, $name))" >
-                    private int <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
+                    public int <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
                         </xsl:if>
                     </xsl:for-each>
 
-                    private TimeDelayHelper <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper = new TimeDelayHelper(<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >(int) (1000 * <xsl:value-of select="text()" />)</xsl:if></xsl:for-each>);
+                    public TimeDelayHelper <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper = new TimeDelayHelper(<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >(int) (1000 * <xsl:value-of select="text()" />)</xsl:if></xsl:for-each>);
                     </xsl:if>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
                     //MouseButtonReleased - eventListener
-                    private EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
                 </xsl:if>
             </xsl:for-each>
 

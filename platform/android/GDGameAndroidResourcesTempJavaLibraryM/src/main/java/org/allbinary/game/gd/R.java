@@ -63,10 +63,6 @@ public final class R {
         public static final int game = 0x7f040017;
         
         //GD
-        public static final int explosion = 0x7f060007;
-        public static final int laser_shoot = 0x7f060007;
-        public static final int thruster = 0x7f060007;
-        public static final int thruster_down = 0x7f060007;
         public static final int debrish = 0x7f060007;
         public static final int larg_asteroid_1 = 0x7f060007;
         public static final int larg_asteroid_2 = 0x7f060007;

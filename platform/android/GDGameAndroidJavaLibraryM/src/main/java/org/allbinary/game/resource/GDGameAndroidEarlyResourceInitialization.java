@@ -37,8 +37,8 @@ extends ResourceInitialization
 
         final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
                 
-        //resourceUtil.addResource(gdProjectStrings.GAME, Integer
-                //.valueOf(androidResources.raw.game));
+        resourceUtil.addResource(gdProjectStrings.GAME, Integer
+                .valueOf(androidResources.raw.game));
         
         //final GDProject gdProject = new GDProject();
 
@@ -58,14 +58,6 @@ extends ResourceInitialization
                 .valueOf(androidResources.raw.error));
         
         
-        resourceUtil.addResource(GDExplosionSound.getInstance().getResource(), Integer.valueOf(androidResources.raw.explosion));
-
-        resourceUtil.addResource(GDLaserShootSound.getInstance().getResource(), Integer.valueOf(androidResources.raw.laser_shoot));
-
-        resourceUtil.addResource(GDThrusterSound.getInstance().getResource(), Integer.valueOf(androidResources.raw.thruster));
-
-        resourceUtil.addResource(GDThrusterDownSound.getInstance().getResource(), Integer.valueOf(androidResources.raw.thruster_down));
-
         resourceUtil.addResource(GDResources.getInstance().DEBRISH, Integer.valueOf(androidResources.raw.debrish));
 
         resourceUtil.addResource(GDResources.getInstance().LARG_ASTEROID_1, Integer.valueOf(androidResources.raw.larg_asteroid_1));

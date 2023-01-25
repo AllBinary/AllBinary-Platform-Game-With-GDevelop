@@ -33,7 +33,7 @@ Created By: Travis Berthelot
     <xsl:template name="gameLayerList" >
         <xsl:param name="name" />
 
-                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) <xsl:value-of select="$name" />GDGameLayerList.get(index));
+                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) globals.<xsl:value-of select="$name" />GDGameLayerList.get(index));
                                     final GDObject <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject;
 
     </xsl:template>
@@ -144,24 +144,24 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($parametersAsString, $name) = text()" >
                             <xsl:if test="$typeValue = 'Sprite'" >
                         //objectGDObjectAtIndex2 - collide - Sprite
-                        gdNodeList.add(nodeArray[<xsl:value-of select="$actionNodeId" />]);
+                        gdNodeList.add(globals.nodeArray[<xsl:value-of select="$actionNodeId" />]);
                             </xsl:if>
                             <xsl:if test="$typeValue = 'TextObject::Text'" >
                         //objectGDObjectAtIndex2 - collide - TextObject::Text
-                        gdNodeList.add(nodeArray[<xsl:value-of select="$actionNodeId" />]);
+                        gdNodeList.add(globals.nodeArray[<xsl:value-of select="$actionNodeId" />]);
                             </xsl:if>
                         </xsl:if>
                         <xsl:variable name="name2" ><xsl:value-of select="name" />,</xsl:variable>
                         <xsl:if test="contains($parametersAsString, $name2)" >
                             <xsl:if test="not(contains($parametersAsString, $name) = text()) and name = 'player'" >
                         //Hack for GDevelop player with GDNode - <xsl:value-of select="$name" />
-                        gdNodeList.add(nodeArray[<xsl:value-of select="$actionNodeId" />]);
+                        gdNodeList.add(globals.nodeArray[<xsl:value-of select="$actionNodeId" />]);
                             </xsl:if>
                         </xsl:if>
 
                     </xsl:for-each>
 
-                        gdNodeList.add(nodeArray[FAKE_COLLISION_NODE_ID]);
+                        gdNodeList.add(globals.nodeArray[globals.FAKE_COLLISION_NODE_ID]);
 
                         //When gdNodeList size is 1 with only the 1 object above then nothing occurs
                         ((GDNode) gdNodeList.get(0)).processN(gdNode, gdNodeList);

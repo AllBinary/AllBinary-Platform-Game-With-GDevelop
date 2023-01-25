@@ -50,53 +50,95 @@ public class GDLayoutsToAllBinaryGenerator
             final String RESULT = "result: ";
 
             final StringBuilder stringBuilder = new StringBuilder();
-            
+
             final StreamUtil streamUtil = StreamUtil.getInstance();
             final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
             final byte[] byteArray = new byte[16384];
             
-            final InputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayout.xsl");
-            final InputStream inputStream3 = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutAsXml.xsl");
-            final String xslDocumentStr = new String(streamUtil.getByteArray(inputStream, outputStream, byteArray));
-            outputStream.reset();
-            final String xslDocumentStr3 = new String(streamUtil.getByteArray(inputStream3, outputStream, byteArray));
             final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
-            outputStream.reset();
-            String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
-            final Replace replace2 = new Replace(".Width()", ".Width(graphics)");
-            xmlDocumentStr = replace2.all(xmlDocumentStr);
-            final Replace replace3 = new Replace(".Height()", ".Height(graphics)");
-            xmlDocumentStr = replace3.all(xmlDocumentStr);
+            String gameXmlAsString = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
+            final Replace replace2 = new Replace(".Width()", ".Width(globals.graphics)");
+            gameXmlAsString = replace2.all(gameXmlAsString);
+            final Replace replace3 = new Replace(".Height()", ".Height(globals.graphics)");
+            gameXmlAsString = replace3.all(gameXmlAsString);
+            final Replace replace4 = new Replace("GlobalVariable(", "GlobalVariable(globals.");
+            gameXmlAsString = replace4.all(gameXmlAsString);
+            
+            String layoutGameXmlAsString = new String(gameXmlAsString);
+            final String VARIABLE = "Variable(";
+            for(int index = 0; index >= 0;) {
+                index = layoutGameXmlAsString.indexOf(VARIABLE, index + VARIABLE.length());
+                if(Character.isDigit(layoutGameXmlAsString.charAt(index + VARIABLE.length()))) {
+                    
+                    //skip graphics
+                } else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'g') {
+                    //skip angle
+                } else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'a') {
+                    //skip movement_angle
+                } else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'm' && layoutGameXmlAsString.charAt(index + VARIABLE.length() + 1) == 'o') {
+                } else {
+                    layoutGameXmlAsString = layoutGameXmlAsString.substring(0, index + VARIABLE.length()) + "globals." + layoutGameXmlAsString.substring(index + VARIABLE.length());
+                }
+            }
 
-            final String START = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD";
-            final String END = "SpecialAnimation.java";
-            final String END2 = "SpecialAnimation.xml";
+            final Replace replace5 = new Replace("PointX(&quot;", "PointX(&quot;globals.");
+            layoutGameXmlAsString = replace5.all(layoutGameXmlAsString);
+
+            final Replace replace6 = new Replace("PointY(&quot;", "PointY(&quot;globals.");
+            layoutGameXmlAsString = replace6.all(layoutGameXmlAsString);
+            
+            final String[] xmlStringArray = {
+                layoutGameXmlAsString,
+                layoutGameXmlAsString,
+                gameXmlAsString,
+                gameXmlAsString,
+            };
+            
+            final InputStream[] inputStreamArray = 
+            {
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutAsXml.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayout.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGlobals.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDObjects.xsl")
+            };
+
+            final int xslTotal = inputStreamArray.length;
+            final String[] xslDocumentAsString = new String[xslTotal];
+            
+            for(int index = 0; index < xslTotal; index++) {
+                outputStream.reset();
+                xslDocumentAsString[index] = new String(streamUtil.getByteArray(inputStreamArray[index], outputStream, byteArray));
+            }
+            
+            final String START_WITH_PATH = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD";
+            final String[] END = {
+                "SpecialAnimation.xml",
+                "SpecialAnimation.java",
+                "SpecialAnimationGlobals.java",
+                "GDObjectsFactory.java"
+            };
             
             String indexAsString;
             for (int index = 0; index < size; index++)
             {
                 indexAsString = Integer.toString(index);
                 final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, indexAsString);
-                final String updatedXslDocumentStr = replace.all(xslDocumentStr);
-                final String updatedXslDocumentStr3 = replace.all(xslDocumentStr3);
-
-                final String result = this.xslHelper.translate(new BasicUriResolver(),
-                        new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
-                        new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
-
-                final String result2 = this.xslHelper.translate(new BasicUriResolver(),
-                        new StreamSource(new StringBufferInputStream(updatedXslDocumentStr3)),
-                        new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
-                        
-                stringBuilder.delete(0, stringBuilder.length());
-                final String fileName = stringBuilder.append(START).append(indexAsString).append(END).toString();
-                stringBuilder.delete(0, stringBuilder.length());
-                final String fileName2 = stringBuilder.append(START).append(indexAsString).append(END2).toString();
                 
-                LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
+                for(int index2 = 0; index2 < xslTotal; index2++) {
 
-                this.bufferedWriterUtil.overwrite(fileName, result);
-                this.bufferedWriterUtil.overwrite(fileName2, result2);
+                    final String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
+
+                    final String result = this.xslHelper.translate(new BasicUriResolver(),
+                            new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
+                            new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
+
+                    stringBuilder.delete(0, stringBuilder.length());
+                    final String fileName = stringBuilder.append(START_WITH_PATH).append(indexAsString).append(END[index2]).toString();
+
+                    LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
+
+                    this.bufferedWriterUtil.overwrite(fileName, result);
+                }
 
                 //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
             }
@@ -113,7 +155,7 @@ public class GDLayoutsToAllBinaryGenerator
 
                 final String result = this.xslHelper.translate(new BasicUriResolver(),
                         new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
-                        new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
+                        new StreamSource(new StringBufferInputStream(gameXmlAsString)));
 
                 stringBuilder.delete(0, stringBuilder.length());
                 LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + FILE, this, CommonStrings.getInstance().CONSTRUCTOR));

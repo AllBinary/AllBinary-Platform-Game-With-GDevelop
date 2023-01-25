@@ -74,7 +74,7 @@ Created By: Travis Berthelot
                         <xsl:if test="$typeValue = 'ModVarScene'" >
                             //eventsClassPropertyActions - ModVarScene - 2
                             <xsl:if test="parameters[2]/text() = '='" >
-                                private int <xsl:for-each select="parameters" >
+                                public int <xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />
                                     <xsl:if test="position() != last()" >
                                         <xsl:text> </xsl:text>
@@ -84,7 +84,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="$typeValue = 'ModVarGlobal'" >
-                            <xsl:if test="parameters[2]/text() = '='" >private int <xsl:for-each select="parameters" >
+                            <xsl:if test="parameters[2]/text() = '='" >public int <xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />
                                     <xsl:if test="position() != last()" >
                                         <xsl:text> </xsl:text>
@@ -104,7 +104,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="$typeValue = 'UnPauseTimer'" >
-                            <xsl:if test="parameters[2]/text() = '='" >private int <xsl:for-each select="parameters" >
+                            <xsl:if test="parameters[2]/text() = '='" >public int <xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />
                                     <xsl:if test="position() != last()" >
                                         <xsl:text> </xsl:text>
@@ -129,7 +129,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="$typeValue = 'ModVarScene'" >
                                     //eventsClassPropertyActions - ModVarScene - 3
                                     <xsl:if test="parameters[2]/text() = '='" >
-                                        private int <xsl:for-each select="parameters" >
+                                        public int <xsl:for-each select="parameters" >
                                             <xsl:value-of select="text()" />
                                             <xsl:if test="position() != last()" >
                                                 <xsl:text> </xsl:text>
@@ -139,7 +139,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="$typeValue = 'ModVarGlobal'" >
-                                    <xsl:if test="parameters[2]/text() = '='" >private int <xsl:for-each select="parameters" >
+                                    <xsl:if test="parameters[2]/text() = '='" >public int <xsl:for-each select="parameters" >
                                             <xsl:value-of select="text()" />
                                             <xsl:if test="position() != last()" >
                                                 <xsl:text> </xsl:text>
@@ -159,7 +159,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="$typeValue = 'UnPauseTimer'" >
-                                    <xsl:if test="parameters[2]/text() = '='" >private int <xsl:for-each select="parameters" >
+                                    <xsl:if test="parameters[2]/text() = '='" >public int <xsl:for-each select="parameters" >
                                             <xsl:value-of select="text()" />
                                             <xsl:if test="position() != last()" >
                                                 <xsl:text> </xsl:text>
@@ -264,7 +264,7 @@ Created By: Travis Berthelot
                     //externalEventsClassPropertyActions - ModVarScene
                     <xsl:if test="substring-after(parameters[3]/text(), '.') != ''" >
                     <xsl:if test="parameters[2]/text() = '='" >
-                        private double <xsl:for-each select="parameters" >
+                        public double <xsl:for-each select="parameters" >
                             <xsl:value-of select="text()" />
                             <xsl:if test="position() != last()" >
                                 <xsl:text> </xsl:text>
@@ -275,7 +275,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                     <xsl:if test="substring-after(parameters[3]/text(), '.') = ''" >
                     <xsl:if test="parameters[2]/text() = '='" >
-                        private int <xsl:for-each select="parameters" >
+                        public int <xsl:for-each select="parameters" >
                             <xsl:value-of select="text()" />
                             <xsl:if test="position() != last()" >
                                 <xsl:text> </xsl:text>

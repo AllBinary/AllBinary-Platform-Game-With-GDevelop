@@ -23,6 +23,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAnimations.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
@@ -70,154 +71,34 @@ Created By: Travis Berthelot
                 -->                
                 //showAll - END
                 
-/*
-* AllBinary Open License Version 1
-* Copyright (c) 2011 AllBinary
-* 
-* By agreeing to this license you and any business entity you represent are
-* legally bound to the AllBinary Open License Version 1 legal agreement.
-* 
-* You may obtain the AllBinary Open License Version 1 legal agreement from
-* AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-* 
-* Created By: Travis Berthelot
-* 
-*/
-package org.allbinary.animation.image;
+                package org.allbinary.game.canvas;
 
-import javax.microedition.lcdui.Image;
-import org.allbinary.animation.AnimationInterfaceFactoryInterface;
-import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
-import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
-import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
-import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
-import org.allbinary.game.resource.ResourceLoadingLevelFactory;
-import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
+                import javax.microedition.lcdui.Graphics;
 
-import org.allbinary.game.configuration.feature.Features;
-import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
-import org.allbinary.game.layer.special.GDConditionCollidableBehavior;
-import org.allbinary.graphics.PointFactory;
-import org.allbinary.graphics.Rectangle;
-import org.allbinary.image.ImageCache;
-import org.allbinary.image.ImageCacheFactory;
-import org.allbinary.logic.basic.string.CommonStrings;
-import org.allbinary.logic.communication.log.LogFactory;
-import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.game.layer.GDGameLayer;
+                import org.allbinary.game.layout.GDObject;
 
-public class GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
-    extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
+                //Layout name=<xsl:value-of select="$layoutName" />
+                public class GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory
+                {
 
-                    <xsl:call-template name="animationNames" >
-                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
-                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
+                    private static GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory instance = new GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory();
+
+                    public static GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory getInstance()
+                    {
+                        return instance;
+                    }
+
+                    private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+                    
+                    <xsl:call-template name="objectsClassPropertyGDObjects" >
                         <xsl:with-param name="windowWidth" >
                             <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
-                        <xsl:with-param name="instancesAsString" >
-                            <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-        
-    public GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
-    {
-        super("Game Image Animations");
-    }
-
-    public GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
-    {
-        super(name);
-    }
-    
-    public void init(int level)
-    throws Exception
-    {
-        this.init(ImageCacheFactory.getInstance(), level);
-    }
-
-    protected void init(ImageCache imageCache, int level)
-    throws Exception
-    {
-        if(this.isInitialized())
-        {
-            return;
-        }
-
-        //final int portion = 120;
-        //final String loadingString = this.toString() + " Loading: ";
-        
-        //int index = 0;
-
-        //ProgressCanvas progressCanvas = 
-          //  ProgressCanvasFactory.getInstance();
-
-                        try {
-
-                    <xsl:call-template name="androidAnimationFactory" >
-                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
-                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
-                        <xsl:with-param name="instancesAsString" >
-                            <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
-
-                        } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
-                        }
-
-        super.init(level);
-    }
-    
-    public boolean isLoadingLevel(int level)
-    {
-        if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
-        {
-            return true;
-        }
-        else
-        {
-            return super.isLoadingLevel(level);
-        }
-    }
-    
-    public boolean isFeature()
-    {
-        Features features = Features.getInstance();
-        
-        if (features.isFeature(
-                GraphicsFeatureFactory.getInstance().IMAGE_GRAPHICS) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
-            features.isFeature(
-                GraphicsFeatureFactory.getInstance().IMAGE_TO_ARRAY_GRAPHICS) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
-            !features.isDefault(
-                OpenGLFeatureFactory.getInstance().OPENGL))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private void addRectangles() throws Exception
-    {
-       //this.addRectangle(BossOneShipResources.getInstance().RESOURCE, new Rectangle(PointFactory
-         //       .ZERO_ZERO, 52, 52));
-    }
-}
-
+                    
+                }
             </xsl:if>
         </xsl:for-each>
     </xsl:template>

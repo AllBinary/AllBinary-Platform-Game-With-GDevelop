@@ -51,9 +51,9 @@
         <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
             <xsl:text>&#10;</xsl:text>
             <xsl:if test="$caller = 'externalEventsProcess'" >
-                this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(null, null, null, null);
+                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(null, null, null, null);
             </xsl:if>
-            this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:if>
 
         <xsl:for-each select="events" >
@@ -77,7 +77,7 @@
             <xsl:variable name="typeValue" select="type" />
             //Condition - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:text>&#10;</xsl:text>
-            this.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:for-each>
 
         <xsl:for-each select="events" >
@@ -101,7 +101,7 @@
         <xsl:for-each select="actions" >
             //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:text>&#10;</xsl:text>
-            nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:for-each>
 
         <xsl:for-each select="events" >
@@ -127,9 +127,9 @@
         <xsl:for-each select="actions" >
             //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:text>&#10;</xsl:text>
-            nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process((GDObject) <xsl:value-of select="$gdObjectName" />.get(index));
-            //if(<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
-                ((GDGameLayer) <xsl:value-of select="$gdGameLayer" />.get(index)).updateGDObject(timeDelta);
+            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process((GDObject) globals.<xsl:value-of select="$gdObjectName" />.get(index));
+            //if(globals.<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
+                ((GDGameLayer) globals.<xsl:value-of select="$gdGameLayer" />.get(index)).updateGDObject(globals.timeDelta);
             //} else {
                 //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdObjectName" /> at index: " + index));
             //}
@@ -162,9 +162,9 @@
         <xsl:for-each select="actions" >
             //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:text>&#10;</xsl:text>
-            nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process((GDObject) <xsl:value-of select="$gdObjectName" />.get(index));
-            //if(<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
-                ((GDGameLayer) <xsl:value-of select="$gdGameLayer" />.get(index)).updatePosition();
+            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process((GDObject) globals.<xsl:value-of select="$gdObjectName" />.get(index));
+            //if(globals.<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
+                ((GDGameLayer) globals.<xsl:value-of select="$gdGameLayer" />.get(index)).updatePosition();
             //} else {
                 //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdObjectName" /> at index: " + index));
             //}
@@ -210,7 +210,7 @@
                     //Found - condition in children - <xsl:value-of select="$childEventWithUsedEvent" />
                     //final String EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Events nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>";
                     //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
-                    //nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
+                    //globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
                         </xsl:for-each>
                     //Events - END
                     </xsl:if>
@@ -231,7 +231,7 @@
                 <xsl:if test="type/value = 'SourisSurObjet'" >
             //SourisSurObjet
             //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
-            nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
+            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
                 </xsl:if>
             </xsl:for-each>
 
@@ -307,7 +307,7 @@
         <xsl:for-each select="actions" >
             <xsl:if test="type/value = 'AddForceAL'" >
                 //BuiltinCommonInstructions::Standard - Used action in children - 4
-                nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
         </xsl:for-each>
         
