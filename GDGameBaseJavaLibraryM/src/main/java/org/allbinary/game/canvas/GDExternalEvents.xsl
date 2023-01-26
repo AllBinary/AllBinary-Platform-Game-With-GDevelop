@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="windows-1252"?>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    
+    <xsl:import href="./GDEventCreateAssignGDObjectGDNode.xsl" />
 
     //externalEventsCreateActions - START
     <xsl:template name="externalEventsCreateActions" >
@@ -34,7 +36,7 @@
         //externalEventsCreateAssignGDObject - START
         <xsl:for-each select="../externalEvents" >
             <xsl:if test="$layoutName = associatedLayout" >
-                <xsl:call-template name="eventsCreateAssignGDObject" >
+                <xsl:call-template name="eventsCreateAssignGDObjectGDNodes" >
                     <xsl:with-param name="caller" >externalEventsCreateAssignGDObject</xsl:with-param>
                     <xsl:with-param name="totalRecursions" >
                         <xsl:value-of select="0" />
@@ -64,7 +66,7 @@
         //externalEventsCreateAssign - START
         <xsl:for-each select="../externalEvents" >
             <xsl:if test="$layoutName = associatedLayout" >
-                <xsl:call-template name="eventsCreateAssignGDObject" >
+                <xsl:call-template name="eventsCreateAssignGDObjectGDNodes" >
                     <xsl:with-param name="caller" >externalEventsCreateAssign</xsl:with-param>
                     <xsl:with-param name="totalRecursions" >
                         <xsl:value-of select="0" />
