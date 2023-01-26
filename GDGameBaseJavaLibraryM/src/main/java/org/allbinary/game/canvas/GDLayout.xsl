@@ -73,71 +73,29 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.game.canvas;
 
-                import java.io.InputStream;
-
-                import javax.microedition.lcdui.Font;
                 import javax.microedition.lcdui.Graphics;
-                import javax.microedition.lcdui.Image;
 
-                import org.allbinary.animation.AnimationInterfaceFactoryInterface;
-                import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
-                import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
-                import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface;
-                import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
-                import org.allbinary.animation.image.AllBinaryAndroidImageRotationAnimationFactory;
                 import org.allbinary.animation.image.GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
-
                 import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.animation.text.TextAnimation;
-                import org.allbinary.animation.text.CustomTextAnimation;
                 import org.allbinary.data.resource.ResourceUtil;
-                import org.allbinary.game.GDGameMIDlet;
-                import org.allbinary.game.layer.GDGameLayer;
-                import org.allbinary.game.layer.GDGameLayerFactory;
-                import org.allbinary.game.layer.NullGDGameLayerFactory;
-                import org.allbinary.game.layout.GDNode;
-                import org.allbinary.graphics.color.BasicColor;
-                import org.allbinary.graphics.displayable.DisplayInfoSingleton;
-
-                import org.allbinary.game.layout.GDObject;
-                import org.allbinary.game.resource.GDResources;
-                import org.allbinary.game.identification.Group;
-                import org.allbinary.game.identification.GroupInterface;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
-                import org.allbinary.game.layer.CollidableCompositeLayer;
                 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
-                import org.allbinary.game.layer.special.GDConditionCollidableBehavior;
-                import org.allbinary.game.layer.special.GDCollidableBehavior;
-                import org.allbinary.game.layout.behavior.DestroyOutsideBehavior;
-                import org.allbinary.game.layout.behavior.GDBehavior;
-                import org.allbinary.game.layout.GDObjectStrings;
+                import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.graphics.GPoint;
+                import org.allbinary.game.resource.GDResources;
+                import org.allbinary.graphics.displayable.DisplayInfoSingleton;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.image.ImageCache;
                 import org.allbinary.image.ImageCacheFactory;
-                import org.allbinary.input.motion.gesture.MotionGestureInput;
-                import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
-                import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
-
                 import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
-                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
-                import org.allbinary.layer.event.LayerManagerEventHandler;
                 import org.allbinary.logic.basic.string.CommonStrings;
-                import org.allbinary.logic.basic.string.CommonSeps;
-                import org.allbinary.logic.basic.string.StringUtil;
-                import org.allbinary.logic.basic.util.event.AllBinaryEventObject;
-                import org.allbinary.logic.basic.util.event.EventListenerInterface;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.util.BasicArrayList;
-                import org.allbinary.math.RectangleCollisionUtil;
                 import org.allbinary.media.image.ImageCopyUtil;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
-                import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.ArrayUtil;
-                import org.microemu.MIDletBridge;
+                import org.allbinary.util.BasicArrayList;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimation extends SpecialAnimation
@@ -158,6 +116,7 @@ Created By: Travis Berthelot
 
                         //private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals;
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder builder;
                         //private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory;
                         
@@ -172,226 +131,13 @@ Created By: Travis Berthelot
 
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
-                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));
-
                         globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.create();
                         gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
-
-                        int size = globals.nodeArray.length;
-//                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-//                            final int currentIndex = index;
-//                            globals.nodeArray[index2][index] = new GDNode() {
-//
-//                                @Override
-//                                public void process() {
-//                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, Integer.toString(currentIndex), new Exception()));
-//                                }
-//                            };
-//                        }
-
-                        globals.nodeArray[globals.FAKE_COLLISION_NODE_ID] = new GDNode() {
-
-                            @Override
-                            public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final GDNode gdNode, final BasicArrayList gdNodeList) {
-                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, FAKE_COLLISION_NODE_STRING));
-                                gdNode.process(gameLayer, gameLayer2, (CollidableCompositeLayer) null, gdNode, gdNodeList);
-                            }
-                        };
-
+                        builder = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(allBinaryGameLayerManager);
+                    
                         try {
-
-                    <xsl:call-template name="imageCache" >
-                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
-                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
-                        <xsl:with-param name="instancesAsString" >
-                            <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-
-                    animationInterfaceFactoryInterfaceFactory.init(-1);
-
-                    <xsl:call-template name="objectsAssign" >
-                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
-                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
-                        <xsl:with-param name="instancesAsString" >
-                            <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-                    <xsl:text>&#10;</xsl:text>
-
-                    <xsl:call-template name="externalEventsCreateAssignGDObject" >
-                        <xsl:with-param name="layoutName" >
-                            <xsl:value-of select="$layoutName" />
-                        </xsl:with-param>
-                        <xsl:with-param name="totalRecursions" >
-                            <xsl:value-of select="0" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="createdObjectsAsString" >
-                            <xsl:value-of select="$createdObjectsAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="objectsAsString" >
-                            <xsl:value-of select="$objectsAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-
-                    <xsl:call-template name="eventsCreateAssignGDObject" >
-                        <xsl:with-param name="caller" >externalEventsCreateAssignGDObject</xsl:with-param>
-                        <xsl:with-param name="totalRecursions" >
-                            <xsl:value-of select="0" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="instancesAsString" >
-                            <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="objectsAsString" >
-                            <xsl:value-of select="$objectsAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="createdObjectsAsString" >
-                            <xsl:value-of select="$createdObjectsAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-
-                    //instances create - START
-                    <xsl:for-each select="instances" >
-                        <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
-                        //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" />
-                        <xsl:text>&#10;</xsl:text>
-                        final int <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
-                        final int <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
-
-                        if(globals.<xsl:value-of select="name" />List.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
-                            globals.<xsl:value-of select="name" />List.ensureCapacity(1);
-                        }
-
-                        if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
-                            globals.<xsl:value-of select="name" />GDGameLayerList.ensureCapacity(1);
-                        }
-
-                        //this.<xsl:value-of select="name" />GDGameLayerArray = new GDGameLayer[1];
-                        final GDObject <xsl:value-of select="name" />2 = gdObjectsFactory.get<xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
-                        //Add GDObject 1 at index 0
-                        globals.<xsl:value-of select="name" />List.add(<xsl:value-of select="name" />2);
-                        <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
-                        <xsl:if test="contains($objectsAsString, $spriteName)" >
-                        //We may need to set a dimension for each image/animation.
-                        <xsl:value-of select="name" />2.canvasWidth = <xsl:value-of select="name" />ImageArray[0].getWidth();
-                        <xsl:value-of select="name" />2.canvasHeight = <xsl:value-of select="name" />ImageArray[0].getHeight();
-                        <xsl:value-of select="name" />2.width = (int) (<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
-                        <xsl:value-of select="name" />2.height = (int) (<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
-                        <xsl:value-of select="name" />2.halfWidth = (<xsl:value-of select="name" />2.width / 2);
-                        <xsl:value-of select="name" />2.halfHeight = (<xsl:value-of select="name" />2.height / 2);
-                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="name" />2.toString()));
-                        </xsl:if>
-
-                        <xsl:if test="layer = 'touch'" >
-                        globals.<xsl:value-of select="name" />Rectangle = new Rectangle(
-                            PointFactory.getInstance().getInstance(<xsl:value-of select="name" />2.x, <xsl:value-of select="name" />2.y),
-                            <xsl:value-of select="name" />2.Width(globals.graphics), <xsl:value-of select="name" />2.Height(globals.graphics));
-                        </xsl:if>
-
-                        //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
-                        <xsl:if test="layer != ''" >
-                        globals.<xsl:value-of select="name" />GDGameLayer = globals.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />2, globals.<xsl:value-of select="name" />GDConditionCollidableBehavior);
-                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0"));
-                        globals.<xsl:value-of select="name" />GDGameLayerList.add(globals.<xsl:value-of select="name" />GDGameLayer);
-
-                        globals.<xsl:value-of select="name" />GDGameLayer.updateGDObject(globals.timeDelta);
-                        allBinaryGameLayerManager.insert(globals.<xsl:value-of select="name" />GDGameLayer);
-                        </xsl:if>
-                    </xsl:for-each>
-                    //instances create - END
-
-                    <xsl:for-each select="../externalEvents" >
-                    <xsl:if test="$layoutName = associatedLayout" >
-                    //externalEventsProcess - START
-                        <xsl:call-template name="eventIds" >
-                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                            <xsl:with-param name="caller" >externalEventsProcess</xsl:with-param>
-                        </xsl:call-template>
-                    //externalEventsProcess - END
-                    </xsl:if>
-                    </xsl:for-each>
-
-                    //BuiltinCommonInstructions::Once - START
-                    <xsl:call-template name="eventsOnceConditionProcessActions" >
-                        <xsl:with-param name="totalRecursions" >
-                            <xsl:value-of select="0" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-                    //BuiltinCommonInstructions::Once - END
-
-                    <xsl:for-each select="objects" >
-                        <xsl:variable name="typeValue" select="type" />
-                        <xsl:if test="$typeValue = 'TextObject::Text'" >
-                            globals.<xsl:value-of select="name" />TextAnimation.setBasicColor(new BasicColor(255, <xsl:for-each select="color" >
-                                <xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />, </xsl:for-each>"name=<xsl:value-of select="name" />;type=<xsl:value-of select="$typeValue" />"));
-
-                            <xsl:variable name="name2" >:<xsl:value-of select="name" />,</xsl:variable>
-
-                            //test="not(contains($instancesAsString, $name2))"
-                            //<xsl:value-of select="name" />.x = 0;
-                            //<xsl:value-of select="name" />.y = 0;
-
-                        </xsl:if>
-
-                    </xsl:for-each>
-
-                    <xsl:for-each select="objects" >
-                        <xsl:variable name="typeValue" select="type" />
-                        //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
-                        //With tags <xsl:for-each select="tags" >?</xsl:for-each>
-                        //With variables <xsl:for-each select="variables" >?</xsl:for-each>
-                        //With effects <xsl:for-each select="effects" >?</xsl:for-each>
-
-                        <xsl:if test="$typeValue = 'Sprite'" >
-                            <xsl:variable name="stringValue" select="string" />
-                            <xsl:variable name="name" select="name" />
-                            //globals.<xsl:value-of select="name" />GDGameLayerFactory = <xsl:value-of select="name" />GDGameLayerFactory;
-                        </xsl:if>
-                    </xsl:for-each>
-
-<!--
-                    <xsl:call-template name="externalEventsCreateAssign" >
-                        <xsl:with-param name="layoutName" >
-                            <xsl:value-of select="$layoutName" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="objectsAsString" >
-                            <xsl:value-of select="$objectsAsString" />
-                        </xsl:with-param>
-                                            
-                    </xsl:call-template>
--->
-
-                    <xsl:call-template name="eventsLogicConstruction" >
-                        <xsl:with-param name="totalRecursions" >
-                            <xsl:value-of select="0" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                    </xsl:call-template>
+                    
+                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));                            
 
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
@@ -532,39 +278,6 @@ Created By: Travis Berthelot
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    }
-
-                    public long TimeDelta() {
-                        return globals.timeDelta;
-                    }
-
-                    public int SceneWindowWidth() {
-                        return DisplayInfoSingleton.getInstance().getLastWidth();
-                    }
-
-                    public int SceneWindowHeight() {
-                        return DisplayInfoSingleton.getInstance().getLastHeight();
-                    }
-
-                    public int Random(final int range) {
-                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
-                    }
-
-                    public int Variable(final int value) {
-                        return value;
-                    }
-
-                    public double Variable(final double value) {
-                        return value;
-                    }
-
-                    public int GlobalVariable(final int value) {
-                        return value;
-                    }
-                    
-                    public String ToString(final int value) {
-                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
-                        return Integer.toString(value);
                     }
 
                 }
