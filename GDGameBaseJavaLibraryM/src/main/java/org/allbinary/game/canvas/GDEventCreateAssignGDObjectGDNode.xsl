@@ -1731,7 +1731,7 @@ Created By: Travis Berthelot
             };
             </xsl:if>
 
-            <xsl:call-template name="objectGDObjectGNodes" >
+            <xsl:call-template name="objectGDObjectGDNodes" >
                 <xsl:with-param name="layoutIndex" >
                     <xsl:value-of select="$layoutIndex" />
                 </xsl:with-param>
@@ -1769,7 +1769,7 @@ Created By: Travis Berthelot
 
     </xsl:template>
 
-    <xsl:template name="objectGDObjectGNodes" >
+    <xsl:template name="objectGDObjectGDNodes" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
 
