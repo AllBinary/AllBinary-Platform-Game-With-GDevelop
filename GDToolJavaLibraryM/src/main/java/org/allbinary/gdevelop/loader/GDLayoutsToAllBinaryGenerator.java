@@ -162,7 +162,7 @@ public class GDLayoutsToAllBinaryGenerator
                 
                 this.bufferedWriterUtil.overwrite(FILE, result);
 
-                LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
+                //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
             }
 
         } catch (Exception e)

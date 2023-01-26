@@ -102,7 +102,6 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.resource.GDResources;
                 import org.allbinary.game.identification.Group;
-                import org.allbinary.game.identification.GroupFactory;
                 import org.allbinary.game.identification.GroupInterface;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.CollidableCompositeLayer;

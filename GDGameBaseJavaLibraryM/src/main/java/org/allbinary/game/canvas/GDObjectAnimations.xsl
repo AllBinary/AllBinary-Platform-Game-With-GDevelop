@@ -91,7 +91,9 @@ Created By: Travis Berthelot
 
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null");
-                }
+                } else {
+                    LogUtil.put(LogFactory.getInstance("<xsl:value-of select="name" />ImageArray found", this, CommonStrings.getInstance().INIT));
+                }    
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                 <xsl:for-each select="animations" >
@@ -215,6 +217,8 @@ Created By: Travis Berthelot
 
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null");
+                } else {
+                    LogUtil.put(LogFactory.getInstance("<xsl:value-of select="name" />ImageArray found", this, CommonStrings.getInstance().INIT));
                 }
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
