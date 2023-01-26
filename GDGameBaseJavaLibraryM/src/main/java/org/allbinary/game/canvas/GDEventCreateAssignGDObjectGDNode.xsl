@@ -104,6 +104,7 @@ Created By: Travis Berthelot
                 </xsl:call-template>
             </xsl:variable>
 
+            <!-- conditions - START -->
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
@@ -551,7 +552,9 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
             </xsl:for-each>
+            <!-- conditions - END -->
 
+            <!-- actions - START -->
             <xsl:for-each select="actions" >
                 <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
                 <xsl:variable name="typeValue" select="type/value" />
@@ -1513,7 +1516,9 @@ Created By: Travis Berthelot
 
                     };
             </xsl:for-each>
+            <!-- actions - END -->
 
+            <!-- other events - START -->
             <xsl:if test="type = 'BuiltinCommonInstructions::Comment'" >
             //Do not create GDNode for comment event type
             </xsl:if>
@@ -1762,9 +1767,11 @@ Created By: Travis Berthelot
                 <xsl:with-param name="conditionEventPosition" >
                     <xsl:value-of select="$eventPosition" />
                 </xsl:with-param>
-
             </xsl:call-template>
+            <!-- other events - END -->
+
         </xsl:for-each>
+    
         //<xsl:value-of select="$caller" /> - eventsCreateAssignGDObject - END
 
     </xsl:template>
