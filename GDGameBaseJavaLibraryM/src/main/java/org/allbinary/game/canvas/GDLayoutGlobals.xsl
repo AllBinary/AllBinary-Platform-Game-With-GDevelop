@@ -106,7 +106,13 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals();
+                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals instance;
+
+                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals create()
+                    {
+                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals();
+                        return instance;
+                    }
 
                     public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals getInstance()
                     {

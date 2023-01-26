@@ -66,10 +66,11 @@ public class GDLayoutsToAllBinaryGenerator
             
             String layoutGameXmlAsString = new String(gameXmlAsString);
             final String VARIABLE = "Variable(";
+            final String GLOBALS = "globals.";
             for(int index = 0; index >= 0;) {
                 index = layoutGameXmlAsString.indexOf(VARIABLE, index + VARIABLE.length());
+                    //skip digits
                 if(Character.isDigit(layoutGameXmlAsString.charAt(index + VARIABLE.length()))) {
-                    
                     //skip graphics
                 } else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'g') {
                     //skip angle
@@ -77,7 +78,8 @@ public class GDLayoutsToAllBinaryGenerator
                     //skip movement_angle
                 } else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'm' && layoutGameXmlAsString.charAt(index + VARIABLE.length() + 1) == 'o') {
                 } else {
-                    layoutGameXmlAsString = layoutGameXmlAsString.substring(0, index + VARIABLE.length()) + "globals." + layoutGameXmlAsString.substring(index + VARIABLE.length());
+                    stringBuilder.delete(0, stringBuilder.length());
+                    layoutGameXmlAsString = stringBuilder.append(layoutGameXmlAsString.substring(0, index + VARIABLE.length())).append(GLOBALS).append(layoutGameXmlAsString.substring(index + VARIABLE.length())).toString();
                 }
             }
 
