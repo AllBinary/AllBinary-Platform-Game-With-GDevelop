@@ -74,71 +74,34 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.game.canvas;
 
-                import java.io.InputStream;
-
-                import javax.microedition.lcdui.Font;
-                import javax.microedition.lcdui.Graphics;
-                import javax.microedition.lcdui.Image;
-
-                import org.allbinary.animation.AnimationInterfaceFactoryInterface;
-                import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
-                import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
-                import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface;
-                import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
-                import org.allbinary.animation.image.AllBinaryAndroidImageRotationAnimationFactory;
                 import org.allbinary.animation.image.GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
 
                 import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.animation.text.TextAnimation;
-                import org.allbinary.animation.text.CustomTextAnimation;
                 import org.allbinary.data.resource.ResourceUtil;
-                import org.allbinary.game.GDGameMIDlet;
-                import org.allbinary.game.layer.GDGameLayer;
-                import org.allbinary.game.layer.GDGameLayerFactory;
-                import org.allbinary.game.layer.NullGDGameLayerFactory;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.resource.GDResources;
-                import org.allbinary.game.identification.Group;
-                import org.allbinary.game.identification.GroupInterface;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.CollidableCompositeLayer;
                 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
-                import org.allbinary.game.layer.special.GDConditionCollidableBehavior;
-                import org.allbinary.game.layer.special.GDCollidableBehavior;
-                import org.allbinary.game.layout.behavior.DestroyOutsideBehavior;
-                import org.allbinary.game.layout.behavior.GDBehavior;
-                import org.allbinary.game.layout.GDObjectStrings;
                 import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.image.ImageCache;
                 import org.allbinary.image.ImageCacheFactory;
-                import org.allbinary.input.motion.gesture.MotionGestureInput;
-                import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
                 import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
 
-                import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
-                import org.allbinary.layer.event.LayerManagerEventHandler;
                 import org.allbinary.logic.basic.string.CommonStrings;
-                import org.allbinary.logic.basic.string.CommonSeps;
-                import org.allbinary.logic.basic.string.StringUtil;
                 import org.allbinary.logic.basic.util.event.AllBinaryEventObject;
-                import org.allbinary.logic.basic.util.event.EventListenerInterface;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.util.BasicArrayList;
-                import org.allbinary.math.RectangleCollisionUtil;
                 import org.allbinary.media.image.ImageCopyUtil;
-                import org.allbinary.time.GameTickTimeDelayHelperFactory;
-                import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.ArrayUtil;
-                import org.microemu.MIDletBridge;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder extends SpecialAnimation
