@@ -15,13 +15,13 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <xsl:template name="imageCache" >
+    <xsl:template name="imageProperties" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="windowWidth" />
         <xsl:param name="instancesAsString" />
 
-        //objectsAssign - START
+        //objects - SPRITES - START
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
@@ -33,7 +33,40 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
-                final String[] <xsl:value-of select="name" />ResourceArray = {
+                public final String[] <xsl:value-of select="name" />ResourceArray;
+
+                public final InputStream[] <xsl:value-of select="name" />InputStreamArray;
+
+                public final Image[] <xsl:value-of select="name" />ImageArray;
+
+            </xsl:if>
+
+        </xsl:for-each>
+        //objects - SPRITES - END
+    </xsl:template>
+
+    <xsl:template name="imageCache" >
+        <xsl:param name="enlargeTheImageBackgroundForRotation" />
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="windowWidth" />
+        <xsl:param name="instancesAsString" />
+
+        //objects - SPRITES - cache - START
+                final Hashtable hashTable = imageCache.getHashtable();
+
+        <xsl:for-each select="objects" >
+            <xsl:variable name="typeValue" select="type" />
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
+            //With tags <xsl:for-each select="tags" >?</xsl:for-each>
+            //With variables <xsl:for-each select="variables" >?</xsl:for-each>
+            //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+
+            <xsl:if test="$typeValue = 'Sprite'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                //Animation Total: <xsl:value-of select="count(animations)" />
+
+                this.<xsl:value-of select="name" />ResourceArray = new String[] {
                 <xsl:for-each select="animations" >
                     <xsl:variable name="imageWithExtension" select="directions/sprites/image" />
                     <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
@@ -41,15 +74,13 @@ Created By: Travis Berthelot
                 </xsl:for-each>
                 };
 
-                final InputStream[] <xsl:value-of select="name" />InputStreamArray =
-                {
+                this.<xsl:value-of select="name" />InputStreamArray = new InputStream[] {
                 <xsl:for-each select="animations" >
                     resourceUtil.getResourceAsStream(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]),
                 </xsl:for-each>
                 };
 
-                final Image[] <xsl:value-of select="name" />ImageArray =
-                {
+                this.<xsl:value-of select="name" />ImageArray = new Image[] {
                 <xsl:for-each select="animations" >
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
@@ -61,11 +92,11 @@ Created By: Travis Berthelot
                 </xsl:for-each>
                 };
 
-                imageCache.getHashtable().put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
+                hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
             </xsl:if>
 
         </xsl:for-each>
-        //objectsAssign - END
+        //objects - SPRITES - cache - END
     </xsl:template>
 
     <xsl:template name="animationFactory" >

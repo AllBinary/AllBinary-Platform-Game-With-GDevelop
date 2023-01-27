@@ -24,7 +24,11 @@ Created By: Travis Berthelot
         <xsl:param name="objectsAsString" />
         <xsl:param name="createdObjectsAsString" />
         <xsl:param name="conditionEventPosition" />
-        
+        <xsl:param name="conditionToProcess" />
+        <xsl:param name="actionToProcess" />
+        <xsl:param name="otherEventToProcess" />
+        <xsl:param name="objectEventToProcess" />
+         
         <xsl:variable name="quote" >"</xsl:variable>
 
         //<xsl:value-of select="$caller" /> - eventsCreateAssignGDObject - START
@@ -105,6 +109,7 @@ Created By: Travis Berthelot
             </xsl:variable>
 
             <!-- conditions - START -->
+            <xsl:if test="$conditionToProcess = ''" >
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
@@ -237,7 +242,7 @@ Created By: Travis Berthelot
                 <xsl:if test="type/value = 'Create'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
-                        final GDGameLayerFactory <xsl:value-of select="text()" />GDGameLayerFactory = globals.<xsl:value-of select="text()" />GDGameLayerFactory;
+                        final GDGameLayerFactory <xsl:value-of select="text()" />GDGameLayerFactory = resources.<xsl:value-of select="text()" />GDGameLayerFactory;
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
@@ -552,9 +557,11 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
             </xsl:for-each>
+            </xsl:if>
             <!-- conditions - END -->
 
             <!-- actions - START -->
+            <xsl:if test="$actionToProcess = ''" >
             <xsl:for-each select="actions" >
                 <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
                 <xsl:variable name="typeValue" select="type/value" />
@@ -670,7 +677,7 @@ Created By: Travis Berthelot
                             final StringBuilder stringBuilder = new StringBuilder();
                             final GDObject <xsl:value-of select="text()" /> = (GDObject) globals.<xsl:value-of select="text()" />List.get(index);
                             stringBuilder.delete(0, stringBuilder.length());
-                            final GDGameLayer <xsl:value-of select="text()" />GDGameLayer = globals.<xsl:value-of select="text()" />GDGameLayerFactory.create(stringBuilder.append(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>).append(CommonSeps.getInstance().UNDERSCORE).append(index).toString(), <xsl:value-of select="text()" />, globals.<xsl:value-of select="text()" />GDConditionCollidableBehavior);
+                            final GDGameLayer <xsl:value-of select="text()" />GDGameLayer = resources.<xsl:value-of select="text()" />GDGameLayerFactory.create(stringBuilder.append(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>).append(CommonSeps.getInstance().UNDERSCORE).append(index).toString(), <xsl:value-of select="text()" />, globals.<xsl:value-of select="text()" />GDConditionCollidableBehavior);
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer); at: " + index));
                             globals.<xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer);
                         </xsl:if>
@@ -1516,9 +1523,11 @@ Created By: Travis Berthelot
 
                     };
             </xsl:for-each>
+            </xsl:if>
             <!-- actions - END -->
 
             <!-- other events - START -->
+            <xsl:if test="$otherEventToProcess = ''" >
             <xsl:if test="type = 'BuiltinCommonInstructions::Comment'" >
             //Do not create GDNode for comment event type
             </xsl:if>
@@ -1735,7 +1744,10 @@ Created By: Travis Berthelot
 
             };
             </xsl:if>
+            </xsl:if>
+            <!-- other events - END -->
 
+            <xsl:if test="$objectEventToProcess = ''" >
             <xsl:call-template name="objectGDObjectGDNodes" >
                 <xsl:with-param name="layoutIndex" >
                     <xsl:value-of select="$layoutIndex" />
@@ -1744,6 +1756,7 @@ Created By: Travis Berthelot
                     <xsl:value-of select="$parametersAsString" />
                 </xsl:with-param>
             </xsl:call-template>
+            </xsl:if>
 
             <xsl:call-template name="eventsCreateAssignGDObjectGDNodes" >
                 <xsl:with-param name="caller" >
@@ -1767,8 +1780,20 @@ Created By: Travis Berthelot
                 <xsl:with-param name="conditionEventPosition" >
                     <xsl:value-of select="$eventPosition" />
                 </xsl:with-param>
+                <xsl:with-param name="conditionToProcess" >
+                    <xsl:value-of select="$conditionToProcess" />
+                </xsl:with-param>
+                <xsl:with-param name="actionToProcess" >
+                    <xsl:value-of select="$actionToProcess" />
+                </xsl:with-param>
+                <xsl:with-param name="otherEventToProcess" >
+                    <xsl:value-of select="$otherEventToProcess" />
+                </xsl:with-param>
+                <xsl:with-param name="objectEventToProcess" >
+                    <xsl:value-of select="$objectEventToProcess" />
+                </xsl:with-param>
+
             </xsl:call-template>
-            <!-- other events - END -->
 
         </xsl:for-each>
     

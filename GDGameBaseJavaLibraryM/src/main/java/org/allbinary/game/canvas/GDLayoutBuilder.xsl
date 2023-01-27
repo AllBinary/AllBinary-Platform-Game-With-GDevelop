@@ -159,6 +159,9 @@ Created By: Travis Berthelot
 
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
+                        //private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources;
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDNodes nodes;
                         
                         private final GDResources gdResources = GDResources.getInstance();
                         private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
@@ -194,78 +197,20 @@ Created By: Travis Berthelot
                             }
                         };
 
+                    GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = null;
                         try {
+                    resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance(allBinaryGameLayerManager);
+                        } catch(Exception e) {
+                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+                        }
+                    this.resources = resources;
 
-                    <xsl:call-template name="imageCache" >
-                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
-                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
-                        <xsl:with-param name="instancesAsString" >
-                            <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
+                    //GDNode - START
+                    nodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDNodes.getInstance(allBinaryGameLayerManager);
+                    //GDNode - END
 
-                    animationInterfaceFactoryInterfaceFactory.init(-1);
-
-                    <xsl:call-template name="objectsAssign" >
-                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
-                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
-                        <xsl:with-param name="instancesAsString" >
-                            <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-                    <xsl:text>&#10;</xsl:text>
-
-                    <xsl:call-template name="externalEventsCreateAssignGDObject" >
-                        <xsl:with-param name="layoutName" >
-                            <xsl:value-of select="$layoutName" />
-                        </xsl:with-param>
-                        <xsl:with-param name="totalRecursions" >
-                            <xsl:value-of select="0" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="createdObjectsAsString" >
-                            <xsl:value-of select="$createdObjectsAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="objectsAsString" >
-                            <xsl:value-of select="$objectsAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-
-                    <xsl:call-template name="eventsCreateAssignGDObjectGDNodes" >
-                        <xsl:with-param name="caller" >externalEventsCreateAssignGDObject</xsl:with-param>
-                        <xsl:with-param name="totalRecursions" >
-                            <xsl:value-of select="0" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="instancesAsString" >
-                            <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="objectsAsString" >
-                            <xsl:value-of select="$objectsAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="createdObjectsAsString" >
-                            <xsl:value-of select="$createdObjectsAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-
+                        try {
+                    
                     //instances create - START
                     <xsl:for-each select="instances" >
                         <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
@@ -286,13 +231,14 @@ Created By: Travis Berthelot
                         final GDObject <xsl:value-of select="name" />2 = gdObjectsFactory.get<xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
                         //Add GDObject 1 at index 0
                         globals.<xsl:value-of select="name" />List.add(<xsl:value-of select="name" />2);
+                        
                         <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
                         //We may need to set a dimension for each image/animation.
-                        <xsl:value-of select="name" />2.canvasWidth = <xsl:value-of select="name" />ImageArray[0].getWidth();
-                        <xsl:value-of select="name" />2.canvasHeight = <xsl:value-of select="name" />ImageArray[0].getHeight();
-                        <xsl:value-of select="name" />2.width = (int) (<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
-                        <xsl:value-of select="name" />2.height = (int) (<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
+                        <xsl:value-of select="name" />2.canvasWidth = resources.<xsl:value-of select="name" />ImageArray[0].getWidth();
+                        <xsl:value-of select="name" />2.canvasHeight = resources.<xsl:value-of select="name" />ImageArray[0].getHeight();
+                        <xsl:value-of select="name" />2.width = (int) (resources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
+                        <xsl:value-of select="name" />2.height = (int) (resources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
                         <xsl:value-of select="name" />2.halfWidth = (<xsl:value-of select="name" />2.width / 2);
                         <xsl:value-of select="name" />2.halfHeight = (<xsl:value-of select="name" />2.height / 2);
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="name" />2.toString()));
@@ -306,7 +252,7 @@ Created By: Travis Berthelot
 
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         <xsl:if test="layer != ''" >
-                        globals.<xsl:value-of select="name" />GDGameLayer = globals.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />2, globals.<xsl:value-of select="name" />GDConditionCollidableBehavior);
+                        globals.<xsl:value-of select="name" />GDGameLayer = resources.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />2, globals.<xsl:value-of select="name" />GDConditionCollidableBehavior);
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0"));
                         globals.<xsl:value-of select="name" />GDGameLayerList.add(globals.<xsl:value-of select="name" />GDGameLayer);
 
@@ -376,6 +322,15 @@ Created By: Travis Berthelot
                         <xsl:with-param name="objectsAsString" >
                             <xsl:value-of select="$objectsAsString" />
                         </xsl:with-param>
+                    <xsl:with-param name="conditionToProcess" >
+                        <xsl:value-of select="''" />
+                    </xsl:with-param>
+                    <xsl:with-param name="actionToProcess" >
+                        <xsl:value-of select="''" />
+                    </xsl:with-param>
+                    <xsl:with-param name="otherEventToProcess" >
+                        <xsl:value-of select="''" />
+                    </xsl:with-param>
                                             
                     </xsl:call-template>
 -->

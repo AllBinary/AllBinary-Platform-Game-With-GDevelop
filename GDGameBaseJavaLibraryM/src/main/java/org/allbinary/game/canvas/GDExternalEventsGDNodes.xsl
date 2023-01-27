@@ -10,6 +10,10 @@
         <xsl:param name="layoutIndex" />
         <xsl:param name="createdObjectsAsString" />
         <xsl:param name="objectsAsString" />
+        <xsl:param name="conditionToProcess" />
+        <xsl:param name="actionToProcess" />
+        <xsl:param name="otherEventToProcess" />
+        <xsl:param name="objectEventToProcess" />
 
         //externalEventsCreateAssignGDObject - START
         <xsl:for-each select="../externalEvents" >
@@ -28,6 +32,18 @@
                     <xsl:with-param name="objectsAsString" >
                         <xsl:value-of select="$objectsAsString" />
                     </xsl:with-param>
+                    <xsl:with-param name="conditionToProcess" >
+                        <xsl:value-of select="$conditionToProcess" />
+                    </xsl:with-param>
+                    <xsl:with-param name="actionToProcess" >
+                        <xsl:value-of select="$actionToProcess" />
+                    </xsl:with-param>
+                    <xsl:with-param name="otherEventToProcess" >
+                        <xsl:value-of select="$otherEventToProcess" />
+                    </xsl:with-param>
+                    <xsl:with-param name="objectEventToProcess" >
+                        <xsl:value-of select="$objectEventToProcess" />
+                    </xsl:with-param>
 
                 </xsl:call-template>
             </xsl:if>
@@ -40,6 +56,10 @@
         <xsl:param name="layoutName" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="objectsAsString" />
+        <xsl:param name="conditionToProcess" />
+        <xsl:param name="actionToProcess" />
+        <xsl:param name="otherEventToProcess" />
+        <xsl:param name="objectEventToProcess" />
 
         //externalEventsCreateAssign - START
         <xsl:for-each select="../externalEvents" >
@@ -54,6 +74,18 @@
                     </xsl:with-param>
                     <xsl:with-param name="objectsAsString" >
                         <xsl:value-of select="$objectsAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="conditionToProcess" >
+                        <xsl:value-of select="$conditionToProcess" />
+                    </xsl:with-param>
+                    <xsl:with-param name="actionToProcess" >
+                        <xsl:value-of select="$actionToProcess" />
+                    </xsl:with-param>
+                    <xsl:with-param name="otherEventToProcess" >
+                        <xsl:value-of select="$otherEventToProcess" />
+                    </xsl:with-param>
+                    <xsl:with-param name="objectEventToProcess" >
+                        <xsl:value-of select="$objectEventToProcess" />
                     </xsl:with-param>
 
                 </xsl:call-template>

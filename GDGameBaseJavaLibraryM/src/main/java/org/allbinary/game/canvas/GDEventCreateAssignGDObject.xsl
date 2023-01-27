@@ -62,10 +62,10 @@ Created By: Travis Berthelot
                     <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:if test="contains($objectsAsString, $spriteName)" >
                     //We may need to set a dimension for each image/animation.
-                    <xsl:value-of select="$name" />2.canvasWidth = <xsl:value-of select="$name" />ImageArray[0].getWidth();
-                    <xsl:value-of select="$name" />2.canvasHeight = <xsl:value-of select="$name" />ImageArray[0].getHeight();
-                    <xsl:value-of select="$name" />2.width = (int) (<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f);
-                    <xsl:value-of select="$name" />2.height = (int) (<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f);
+                    <xsl:value-of select="$name" />2.canvasWidth = resources.<xsl:value-of select="$name" />ImageArray[0].getWidth();
+                    <xsl:value-of select="$name" />2.canvasHeight = resources.<xsl:value-of select="$name" />ImageArray[0].getHeight();
+                    <xsl:value-of select="$name" />2.width = (int) (resources.<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f);
+                    <xsl:value-of select="$name" />2.height = (int) (resources.<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f);
                     <xsl:value-of select="$name" />2.halfWidth = (<xsl:value-of select="$name" />2.width / 2);
                     <xsl:value-of select="$name" />2.halfHeight = (<xsl:value-of select="$name" />2.height / 2);
                     LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="$name" />2.toString()));
@@ -86,7 +86,7 @@ Created By: Travis Berthelot
                 <xsl:if test="type/value = 'Create'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
-                final GDGameLayerFactory <xsl:value-of select="text()" />GDGameLayerFactory = globals.<xsl:value-of select="text()" />GDGameLayerFactory;
+                final GDGameLayerFactory <xsl:value-of select="text()" />GDGameLayerFactory = resources.<xsl:value-of select="text()" />GDGameLayerFactory;
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
