@@ -161,7 +161,14 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
                         //private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources;
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDNodes nodes;
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes externalActionNodes;
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes externalConditionNodes;
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes externalOtherEventNodes;
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes externalObjectEventNodes;
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes actionNodes;
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes conditionNodes;
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes otherEventNodes;
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes objectEventNodes;
                         
                         private final GDResources gdResources = GDResources.getInstance();
                         private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
@@ -206,7 +213,14 @@ Created By: Travis Berthelot
                     this.resources = resources;
 
                     //GDNode - START
-                    nodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDNodes.getInstance(allBinaryGameLayerManager);
+                    externalActionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes.getInstance(allBinaryGameLayerManager);
+                    externalConditionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes.getInstance(allBinaryGameLayerManager);
+                    externalOtherEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes.getInstance(allBinaryGameLayerManager);
+                    externalObjectEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes.getInstance(allBinaryGameLayerManager);
+                    actionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes.getInstance(allBinaryGameLayerManager);
+                    conditionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes.getInstance(allBinaryGameLayerManager);
+                    otherEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes.getInstance(allBinaryGameLayerManager);
+                    objectEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes.getInstance(allBinaryGameLayerManager);
                     //GDNode - END
 
                         try {

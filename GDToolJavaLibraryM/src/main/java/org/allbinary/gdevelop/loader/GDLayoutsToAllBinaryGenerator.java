@@ -88,23 +88,43 @@ public class GDLayoutsToAllBinaryGenerator
 
             final Replace replace6 = new Replace("PointY(&quot;", "PointY(&quot;globals.");
             layoutGameXmlAsString = replace6.all(layoutGameXmlAsString);
-            
+
             final String[] xmlStringArray = {
                 layoutGameXmlAsString,
                 layoutGameXmlAsString,
                 layoutGameXmlAsString,
+                
                 layoutGameXmlAsString,
                 layoutGameXmlAsString,
+                layoutGameXmlAsString,
+                layoutGameXmlAsString,
+                layoutGameXmlAsString,
+                layoutGameXmlAsString,
+                layoutGameXmlAsString,
+                layoutGameXmlAsString,
+                
+                layoutGameXmlAsString,
+                
                 gameXmlAsString,
                 gameXmlAsString,
             };
-            
+
             final InputStream[] inputStreamArray = 
             {
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutAsXml.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayout.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutBuilder.xsl"),
-                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDNodes.xsl"),
+
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalActionGDNodes.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalConditionGDNodes.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalObjectEventGDNodes.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalOtherEventGDNodes.xsl"),
+
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutActionGDNodes.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutConditionGDNodes.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutObjectEventGDNodes.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutOtherEventGDNodes.xsl"),
+
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDResources.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGlobals.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDObjects.xsl")
@@ -123,7 +143,17 @@ public class GDLayoutsToAllBinaryGenerator
                 "SpecialAnimation.xml",
                 "SpecialAnimation.java",
                 "SpecialAnimationBuilder.java",
-                "SpecialAnimationGDNodes.java",
+
+                "SpecialAnimationExternalActionGDNodes.java",
+                "SpecialAnimationExternalConditionGDNodes.java",
+                "SpecialAnimationExternalObjectEventGDNodes.java",
+                "SpecialAnimationExternalOtherEventGDNodes.java",
+
+                "SpecialAnimationActionGDNodes.java",
+                "SpecialAnimationConditionGDNodes.java",
+                "SpecialAnimationObjectEventGDNodes.java",
+                "SpecialAnimationOtherEventGDNodes.java",
+
                 "SpecialAnimationGDResources.java",
                 "SpecialAnimationGlobals.java",
                 "GDObjectsFactory.java"
