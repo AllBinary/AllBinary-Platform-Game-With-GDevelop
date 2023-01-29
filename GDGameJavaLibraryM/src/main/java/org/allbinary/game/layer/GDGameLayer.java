@@ -494,14 +494,48 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //}
     }
     
-    public void paintDebug(Graphics graphics) {
+    public void paintAngle(final short angle, final Graphics graphics) {
+
+            int adjustedAngle = angle;
+//            while (adjustedAngle > 359) {
+//                adjustedAngle -= 360;
+//            }
+//            while (adjustedAngle < 0) {
+//                adjustedAngle += 360;
+//            }
+
+//            if (angle != this.gdObject.angle) {
+//                stringBuilder.delete(0, stringBuilder.length());
+//                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append(CommonStrings.getInstance().EXCEPTION_LABEL).append(angle).append(':').append(this.gdObject.angle).toString()));
+//            } else {
+//                stringBuilder.delete(0, stringBuilder.length());
+//                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append(CommonStrings.getInstance().EXCEPTION_LABEL).append(angle).toString()));
+//            }
+
+//            final int x = (int) (noDecimalTrigTable.cos((short) adjustedAngle) * 48) / noDecimalTrigTable.SCALE;
+//            final int y = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * 48) / noDecimalTrigTable.SCALE;
+////            //graphics.drawString(F, this.x + x + this.getHalfWidth(), this.y + y + this.getHalfHeight(), 0);
+//            final int x2 = (int) (noDecimalTrigTable.cos((short) adjustedAngle) * -48) / noDecimalTrigTable.SCALE;
+//            final int y2 = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * -48) / noDecimalTrigTable.SCALE;
+////            //graphics.drawString(E, this.x + x2 + this.getHalfWidth(), this.y + y2 + this.getHalfHeight(), 0);
+//            graphics.drawLine(this.x + this.getHalfWidth(), this.y + this.getHalfHeight(), this.x + this.getHalfWidth() + x, this.y + this.getHalfHeight() + y);
+//            graphics.drawLine(this.x + this.getHalfWidth(), this.y + this.getHalfHeight(), this.x + this.getHalfWidth() + x2, this.y + this.getHalfHeight() + y2);
+    }
+
+    public void paintDebug(final Graphics graphics) {
         
         final int endX = (int) (this.x + (this.velocityInterface.getVelocityXBasicDecimal().getUnscaled() / 10));
         final int endY = (int) (this.y + (this.velocityInterface.getVelocityYBasicDecimal().getUnscaled() / 10));
         this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().AQUA);
         graphics.drawLine(this.x + this.getHalfWidth(), this.y + this.getHalfHeight(), endX + this.getHalfWidth(), endY + this.getHalfHeight());
 
-        graphics.drawString(Integer.toString(this.getRotationAnimationInterface().getAngleInfo().getAngle()), this.x, this.y, 0);
+        //graphics.drawString(Integer.toString(this.getRotationAnimationInterface().getAngleInfo().getAngle()), this.x, this.y, 0);
+        
+        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().LIGHT_GREEN);
+        this.paintAngle(this.getRotationAnimationInterface().getAngleInfo().getAngle(), graphics);
+        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().LIGHT_RED);
+        this.paintAngle((short) this.getRotationAnimationInterface().getFrame(), graphics);
+        
         super.paint(graphics);
 
     }
