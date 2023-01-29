@@ -1158,7 +1158,7 @@ Created By: Travis Berthelot
 
                     try {
                 
-                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));    
+                        //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));    
 
             <xsl:if test="../actions" >
                         //if(globals.<xsl:value-of select="$name" />GDGameLayerList != null) {

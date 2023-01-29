@@ -190,26 +190,39 @@ public class GDObject
     
 
     public String toString() {
+        final CommonSeps commonSeps = CommonSeps.getInstance();
         final GDObjectStrings gdObjectStrings = GDObjectStrings.getInstance();
         final PositionStrings positionStrings = PositionStrings.getInstance();
         final SpacialStrings spacialStrings = SpacialStrings.getInstance();
 
         final StringBuilder stringBuilder = new StringBuilder();
         return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON)
-                .append(gdObjectStrings.NAME).append(this.name)
+                .append(this.name)
+                .append(commonSeps.SPACE)
                 .append(positionStrings.X_LABEL).append(this.x)
                 .append(positionStrings.Y_LABEL).append(this.y)
+                .append(commonSeps.SPACE)
                 .append(positionStrings.Z_LABEL).append(this.zOrder)
+                .append(commonSeps.SPACE)
                 .append(spacialStrings.WIDTH_LABEL).append(this.canvasWidth)
+                .append(commonSeps.SPACE)
                 .append(spacialStrings.HEIGHT_LABEL).append(this.canvasHeight)
+                .append(commonSeps.SPACE)
                 .append(spacialStrings.WIDTH_LABEL).append(this.width)
+                .append(commonSeps.SPACE)
                 .append(spacialStrings.HEIGHT_LABEL).append(this.height)
+                .append(commonSeps.SPACE)
                 .append(spacialStrings.WIDTH_LABEL).append(this.halfWidth)
+                .append(commonSeps.SPACE)
                 .append(spacialStrings.HEIGHT_LABEL).append(this.halfHeight)
+                .append(commonSeps.SPACE)
                 .append(gdObjectStrings.ANIMATION).append(this.animation)
-                .append(gdObjectStrings.ANGLE).append(this.angle)
-                .append(gdObjectStrings.MOVEMENT_ANGLE).append(this.movement_angle)
-                .append(gdObjectStrings.ROTATION).append(this.rotation)
+                .append(commonSeps.SPACE)
+                .append(gdObjectStrings.ANGLE).append(commonSeps.COLON).append(this.angle)
+                .append(commonSeps.SPACE)
+                .append(gdObjectStrings.MOVEMENT_ANGLE).append(commonSeps.COLON).append(this.movement_angle)
+                .append(commonSeps.SPACE)
+                .append(gdObjectStrings.ROTATION).append(commonSeps.COLON).append(this.rotation)
                 .toString();
     }
 }
