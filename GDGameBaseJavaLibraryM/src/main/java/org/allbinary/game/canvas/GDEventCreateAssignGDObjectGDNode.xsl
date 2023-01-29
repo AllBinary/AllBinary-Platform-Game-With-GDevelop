@@ -1193,7 +1193,7 @@ Created By: Travis Berthelot
                     @Override
                     public boolean process(final int index) throws Exception {
                 
-                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));    
+                        //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));    
 
             <xsl:if test="../actions" >
                         //if(globals.<xsl:value-of select="$name" />GDGameLayerList != null) {
@@ -1225,7 +1225,7 @@ Created By: Travis Berthelot
 
                             try {
 
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
 
                                     //name=<xsl:value-of select="$name" />
                                     <xsl:text>&#10;</xsl:text>
