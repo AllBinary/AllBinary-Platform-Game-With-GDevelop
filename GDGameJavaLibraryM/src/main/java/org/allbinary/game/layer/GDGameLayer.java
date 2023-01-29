@@ -28,12 +28,12 @@ import org.allbinary.game.layout.GDObjectStrings;
 import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.color.BasicColorFactory;
+import org.allbinary.logic.basic.string.CommonSeps;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.ScaleFactorFactory;
-import org.allbinary.math.NoDecimalTrigTable;
 import org.allbinary.view.ViewPosition;
 
 /**
@@ -109,7 +109,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
                 initIndexedAnimationInterface[index] = (RotationAnimation) animationInterfaceFactoryInterfaceArray[index].getInstance();
             }
         } catch(Exception e) {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+            LogUtil.put(LogFactory.getInstance(this.toString(), this, CommonStrings.getInstance().CONSTRUCTOR, e));
         }
 
         this.initIndexedAnimationInterface = initIndexedAnimationInterface;
@@ -260,6 +260,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
         final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
         LogUtil.put(LogFactory.getInstance(new StringBuilder()
+                .append(this.gdObject.name)
+                .append(CommonSeps.getInstance().COLON)
                 .append(this.velocityInterface.toString())
                 ////.append(this.rotationAnimationInterface[this.gdObject.animation].getAngleInfo().toString())
                 ////.append(objectStrings.ROTATION).append(this.gdObject.rotation)
