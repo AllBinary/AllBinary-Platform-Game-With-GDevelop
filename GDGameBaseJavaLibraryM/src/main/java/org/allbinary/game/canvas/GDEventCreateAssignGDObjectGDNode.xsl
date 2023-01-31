@@ -788,7 +788,7 @@ Created By: Travis Berthelot
                                 //objectsGroupsGDGameLayer - END
 
                             } else {
-                                final String message = "<xsl:value-of select="$gameLayer" /> warning: not initialized";
+                                final String message = "<xsl:value-of select="$nodeId" /> <xsl:value-of select="$gameLayer" /> warning: not initialized";
                                 LogUtil.put(LogFactory.getInstance(message, this, message));
                             }
 
@@ -1897,11 +1897,11 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 }
                             } else {
-                                final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" /> warning: list size was 0";
+                                final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: list size was 0";
                                 LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
                             }
                         } else {
-                            final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" /> warning: was null";
+                            final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: was null";
                             LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
                             final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
                             if(indexOfGDNode == 1) {
@@ -1966,11 +1966,11 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 }
                             } else {
-                                final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" /> warning: list size was 0";
+                                final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: list size was 0";
                                 LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
                             }
                         } else {
-                            final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" /> warning: was null";
+                            final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: was null";
                             LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
                             final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
                             if(indexOfGDNode == 1) {
