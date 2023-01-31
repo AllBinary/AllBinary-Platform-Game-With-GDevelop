@@ -171,16 +171,19 @@ Created By: Travis Berthelot
                            </xsl:for-each>
                         </xsl:variable>
 
+                        <xsl:variable name="nodeId" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" ><xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
+
                         <xsl:for-each select="actions" >
                             <xsl:if test="type/value = 'Create'" >
-                                <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
                                 <xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 2" >
-                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeId" /><xsl:value-of select="text()" />GDGameLayerList = new BasicArrayList(size);"));
+
                         if(globals.<xsl:value-of select="text()" />GDGameLayerList.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
+                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeId" /><xsl:value-of select="text()" />GDGameLayerList = new BasicArrayList(size);"));
                             globals.<xsl:value-of select="text()" />GDGameLayerList.ensureCapacity(size);
                         }
                         //<xsl:value-of select="text()" />GDGameLayerList = new BasicArrayList(size);                        
+
                                     </xsl:if>
                                 </xsl:for-each>
                             </xsl:if>
@@ -214,7 +217,6 @@ Created By: Travis Berthelot
                         final int endIndex = globals.<xsl:value-of select="$text" />List.size();
                         
                         <xsl:if test="contains($timerActions, 'Timer,')" >
-                        <xsl:variable name="nodeId" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" ><xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" Timer - size <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), new Exception()));
                         </xsl:if>
                         for(int index = startIndex; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> endIndex; index++) {

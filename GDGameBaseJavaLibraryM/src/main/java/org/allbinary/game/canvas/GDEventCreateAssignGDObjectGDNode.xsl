@@ -1888,7 +1888,11 @@ Created By: Travis Berthelot
                                     if(indexOfGDNode == 1) {
                                         ((GDNode) gdNodeList.get(indexOfGDNode)).process(gdGameLayer, null, gdNode, gdNodeList);
                                     } else if(indexOfGDNode == 2) {
-                                        ((GDNode) gdNodeList.get(indexOfGDNode)).process(gameLayer, gdGameLayer, gdNode, gdNodeList);
+                                        if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
+                                            ((GDNode) gdNodeList.get(indexOfGDNode)).process(gameLayer, gdGameLayer, gdNode, gdNodeList);
+                                        } else {
+                                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "Do not collide when the same group"));
+                                        }
                                     }
                                     </xsl:if>
                                 }
@@ -1953,7 +1957,11 @@ Created By: Travis Berthelot
                                     if(indexOfGDNode == 1) {
                                         ((GDNode) gdNodeList.get(indexOfGDNode)).process(gdGameLayer, null, gdNode, gdNodeList);
                                     } else if(indexOfGDNode == 2) {
-                                        ((GDNode) gdNodeList.get(indexOfGDNode)).process(gameLayer, gdGameLayer, gdNode, gdNodeList);
+                                        if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
+                                            ((GDNode) gdNodeList.get(indexOfGDNode)).process(gameLayer, gdGameLayer, gdNode, gdNodeList);
+                                        } else {
+                                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "Do not collide when the same group"));
+                                        }
                                     }
                                     </xsl:if>
                                 }
