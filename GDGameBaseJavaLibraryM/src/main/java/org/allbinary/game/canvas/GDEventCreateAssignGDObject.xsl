@@ -395,7 +395,7 @@ Created By: Travis Berthelot
 
         <xsl:variable name="quote" >"</xsl:variable>
 
-                    private final String EVENT_AS_STRING_COLLISION_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Collision: " + EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
+                    private final String EVENT_AS_STRING_COLLISION_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "PossibleCollision: " + EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
                     //eventsCreateProcessUsed
                     @Override
@@ -407,7 +407,7 @@ Created By: Travis Berthelot
 
                             if(gameLayer != null) {
                                 if( gameLayer2 != null) {
-                                    LogUtil.put(LogFactory.getInstance(new StringBuilder().append("Collision between gameLayer: ").append(gameLayer.getName()).append(" and gameLayer2: ").append(gameLayer2.getName()).toString(), this, EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                                    LogUtil.put(LogFactory.getInstance(new StringBuilder().append("Collision: between gameLayer: ").append(gameLayer.getName()).append(" and gameLayer2: ").append(gameLayer2.getName()).toString(), this, EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                                 }
                             }
             <xsl:for-each select="actions" >
