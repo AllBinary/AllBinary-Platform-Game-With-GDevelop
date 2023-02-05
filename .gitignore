@@ -6,6 +6,15 @@ target/
 bin/
 gen/
 
+Resources/**
+
+GDGame*Canvas.java
+GDGameMIDlet.java
+GDGameStartGameOverCanvasRunnable.java
+*GDObjectsFactory*.java
+*SpecialAnimation*.java
+*SpecialAnimation*.xml
+
 /platform/j2se/GDGameJ2SEApplicationM/src/
 /platform/j2me/GDGameJ2MEApplicationM/src/
 /platform/android/GDGameAndroidApplicationM/src/main/java/
