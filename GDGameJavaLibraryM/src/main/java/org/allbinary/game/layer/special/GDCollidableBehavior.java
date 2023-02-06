@@ -44,10 +44,10 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
     {
 //        if(!this.ownerLayer.getName().startsWith("player_bullet") || !collisionLayer.getName().startsWith("player_bullet")) {
 //            final StringBuilder stringBuilder = new StringBuilder();
-//            final String string = this.toString(stringBuilder);
-//            LogUtil.put(LogFactory.getInstance(stringBuilder.toString(), this, "isCollision"));
+//            final String string = this.toString(collisionLayer, stringBuilder);
+//            LogUtil.put(LogFactory.getInstance(string, this, "isCollision"));
 //        } else {
-//            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "isCollision - with self"));
+//            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "isCollision - with self"));
 //        }
 
         if(this.collidableBehavior.groupCollisionList.size() > 0) {
@@ -55,9 +55,9 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
                 //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "isCollision - super"));
                 return super.isCollision(collisionLayer);
             }
-        } //else {
+        } else {
             //LogUtil.put(LogFactory.getInstance("isCollision: No Groups", this, "collide"));
-        //}
+        }
         
         return false;
     }
