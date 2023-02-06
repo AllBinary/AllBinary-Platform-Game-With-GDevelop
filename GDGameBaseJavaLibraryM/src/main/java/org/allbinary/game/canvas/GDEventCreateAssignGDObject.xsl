@@ -217,7 +217,7 @@ Created By: Travis Berthelot
                         final int endIndex = globals.<xsl:value-of select="$text" />List.size();
                         
                         <xsl:if test="contains($timerActions, 'Timer,')" >
-                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" Timer - size <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), new Exception()));
+                        //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" Timer - size <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), new Exception()));
                         </xsl:if>
                         for(int index = startIndex; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> endIndex; index++) {
                         </xsl:if>
@@ -520,12 +520,12 @@ Created By: Travis Berthelot
                         startIndex = globals.<xsl:value-of select="$text" />List.size();
                         endIndex = globals.<xsl:value-of select="$text" />List.size() + size;
                         stringBuilder.delete(0, stringBuilder.length());
-                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" size <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), new Exception()));
+                        //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" size <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), new Exception()));
                     } else {
                         startIndex = 0; //globals.<xsl:value-of select="$text" />GDGameLayerList.size();
                         endIndex = size; //globals.<xsl:value-of select="$text" />List.size();
                         stringBuilder.delete(0, stringBuilder.length());
-                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" layer <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), new Exception()));
+                        //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" layer <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), new Exception()));
                     }
 
                     for(int index = startIndex; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> endIndex; index++) {

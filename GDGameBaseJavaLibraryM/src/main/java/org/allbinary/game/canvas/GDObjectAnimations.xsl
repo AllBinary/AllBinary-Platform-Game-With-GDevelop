@@ -122,7 +122,7 @@ Created By: Travis Berthelot
                 final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtable().get(<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
 
                 if(<xsl:value-of select="name" />ImageArray == null) {
-                    throw new Exception("<xsl:value-of select="name" />ImageArray was null");
+                    throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
                     LogUtil.put(LogFactory.getInstance("<xsl:value-of select="name" />ImageArray found", this, CommonStrings.getInstance().INIT));
                 }    
@@ -248,7 +248,7 @@ Created By: Travis Berthelot
                 final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtable().get(<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
 
                 if(<xsl:value-of select="name" />ImageArray == null) {
-                    throw new Exception("<xsl:value-of select="name" />ImageArray was null");
+                    throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
                     LogUtil.put(LogFactory.getInstance("<xsl:value-of select="name" />ImageArray found", this, CommonStrings.getInstance().INIT));
                 }
