@@ -1897,13 +1897,19 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 }
                             } else {
-                                final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: list size was 0";
+                                final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
+                                final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: list size was 0: " + indexOfGDNode;
                                 LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
+                                if(indexOfGDNode == 1) {
+                                    ((GDNode) gdNodeList.get(indexOfGDNode)).process(null, null, gdNode, gdNodeList);
+                                } else if(indexOfGDNode == 2) {
+                                    ((GDNode) gdNodeList.get(indexOfGDNode)).process(gameLayer, null, gdNode, gdNodeList);
+                                }
                             }
                         } else {
-                            final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: was null";
-                            LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
                             final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
+                            final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: was null: " + indexOfGDNode;
+                            LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
                             if(indexOfGDNode == 1) {
                                 ((GDNode) gdNodeList.get(indexOfGDNode)).process(null, null, gdNode, gdNodeList);
                             } else if(indexOfGDNode == 2) {
@@ -1966,13 +1972,14 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 }
                             } else {
-                                final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: list size was 0";
+                                final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
+                                final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: list size was 0: " + indexOfGDNode;
                                 LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
                             }
                         } else {
-                            final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: was null";
-                            LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
                             final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
+                            final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: was null: " + indexOfGDNode;
+                            LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
                             if(indexOfGDNode == 1) {
                                 ((GDNode) gdNodeList.get(indexOfGDNode)).process(null, null, gdNode, gdNodeList);
                             } else if(indexOfGDNode == 2) {
