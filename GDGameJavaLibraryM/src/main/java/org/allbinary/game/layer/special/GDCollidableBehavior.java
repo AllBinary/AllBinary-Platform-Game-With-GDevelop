@@ -50,9 +50,11 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
 //            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "isCollision - with self"));
 //        }
 
-        if(this.collidableBehavior.groupCollisionList.size() > 0) {
+        //if(this.collidableBehavior.groupCollisionList.size() > 0) {
+        if(((GDCollidableBehavior) collisionLayer.getCollidableInferface()).collidableBehavior.groupCollisionList.size() > 0) {
             if (this.ownerLayer.getGroupInterface()[0] != collisionLayer.getGroupInterface()[0]) {
-                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "isCollision - super"));
+                final StringBuilder stringBuilder = new StringBuilder();
+                LogUtil.put(LogFactory.getInstance(this.toString(collisionLayer, stringBuilder), this, "isCollision - super"));
                 return super.isCollision(collisionLayer);
             }
         } else {
