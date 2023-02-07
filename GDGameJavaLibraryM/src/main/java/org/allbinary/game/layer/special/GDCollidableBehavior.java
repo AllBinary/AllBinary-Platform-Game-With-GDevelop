@@ -30,13 +30,13 @@ import org.allbinary.logic.communication.log.LogUtil;
 public class GDCollidableBehavior extends CollidableBaseBehavior 
 {
     
-    public final GDConditionCollidableBehavior collidableBehavior;
+    public final GDConditionWithGroupActions conditionWIthGroupActions;
     
-    public GDCollidableBehavior(final CollidableCompositeLayer ownerLayer, final GDConditionCollidableBehavior collidableBehavior, final boolean collidable)
+    public GDCollidableBehavior(final CollidableCompositeLayer ownerLayer, final GDConditionWithGroupActions collidableBehavior, final boolean collidable)
     {
         super(ownerLayer, collidable);
         
-        this.collidableBehavior = collidableBehavior;
+        this.conditionWIthGroupActions = collidableBehavior;
     }
     
     // TODO TWB Special Super Efficient Collision Processing
@@ -51,7 +51,7 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
 //        }
 
         //if(this.collidableBehavior.groupCollisionList.size() > 0) {
-        if(((GDCollidableBehavior) collisionLayer.getCollidableInferface()).collidableBehavior.groupCollisionList.size() > 0) {
+        if(((GDCollidableBehavior) collisionLayer.getCollidableInferface()).conditionWIthGroupActions.groupWithActionsList.size() > 0) {
             if (this.ownerLayer.getGroupInterface()[0] != collisionLayer.getGroupInterface()[0]) {
                 final StringBuilder stringBuilder = new StringBuilder();
                 LogUtil.put(LogFactory.getInstance(this.toString(collisionLayer, stringBuilder), this, "isCollision - super"));
@@ -71,7 +71,7 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
     public void collide(final CollidableCompositeLayer collisionLayer)
             throws Exception
     {
-        if(this.collidableBehavior.groupCollisionList.size() > 0) {
+        if(this.conditionWIthGroupActions.groupWithActionsList.size() > 0) {
             LogUtil.put(LogFactory.getInstance("collide: " + collisionLayer.toString(), this, COLLIDE));
             final StringBuilder stringBuilder = new StringBuilder();
 
@@ -83,18 +83,20 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
             GDNode node;
             for (int index = 0; index < size; index++) {
 
-                indexOfGroup = this.collidableBehavior.groupCollisionList.indexOf(groupInterfaceArray[index]);
+                indexOfGroup = this.conditionWIthGroupActions.groupWithActionsList.indexOf(groupInterfaceArray[index]);
                 stringBuilder.delete(0, stringBuilder.length());
                 stringBuilder.append("collide: ");
-                this.collidableBehavior.append(stringBuilder);
+                this.conditionWIthGroupActions.append(stringBuilder);
                 stringBuilder.append(" groups: ");
                 LogUtil.put(LogFactory.getInstance(this.toString(collisionLayer, stringBuilder), this, COLLIDE));
                 if (indexOfGroup >= 0) {
                     LogUtil.put(LogFactory.getInstance("groupIndex: " + indexOfGroup, this, COLLIDE));
-                    node = ((GDNode) this.collidableBehavior.actionCollisionList.get(indexOfGroup));
+                    node = ((GDNode) this.conditionWIthGroupActions.actionForGroupsList.get(indexOfGroup));
+                    node.clear();
                     node.gameLayerArray[0] = this.ownerLayer;
                     node.gameLayerArray[1] = collisionLayer;
                     node.processM(node.gameLayerArray, null, null);
+                    node.clear2();
                 }
             }
         } else {

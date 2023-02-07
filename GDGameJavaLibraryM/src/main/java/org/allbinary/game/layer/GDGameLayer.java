@@ -183,8 +183,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         return this.combatBaseBehavior.getDestroyableBaseBehavior().isDestroyed();
     }
 
-    protected void setDestroyed(boolean destroyed)
+    public void setDestroyed(boolean destroyed)
     {
+        //LogUtil.put(LogFactory.getInstance("DestroyedLayerProcessor Adding: " + this, this, "add", new Exception()));
         this.combatBaseBehavior.getDestroyableBaseBehavior().setDestroyed(destroyed);
     }
     

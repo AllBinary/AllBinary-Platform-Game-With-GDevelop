@@ -19,24 +19,24 @@ import org.allbinary.util.BasicArrayList;
  *
  * @author User
  */
-public class GDConditionCollidableBehavior 
+public class GDConditionWithGroupActions 
 {
-    public final BasicArrayList groupCollisionList = new BasicArrayList();
-    public final BasicArrayList actionCollisionList = new BasicArrayList();
+    public final BasicArrayList groupWithActionsList = new BasicArrayList();
+    public final BasicArrayList actionForGroupsList = new BasicArrayList();
     
-    public GDConditionCollidableBehavior()
+    public GDConditionWithGroupActions()
     {
     }
     
     public void append(final StringBuilder stringBuilder) {
         
-        stringBuilder.append("GDConditionCollidableBehavior: ");
+        stringBuilder.append("GDConditionWithGroupActions: ");
         
-        int size = groupCollisionList.size();
+        final int size = this.groupWithActionsList.size();
         stringBuilder.append(size);
         stringBuilder.append(' ');
         for(int index = 0; index < size; index++) {
-            stringBuilder.append(groupCollisionList.get(index).toString());
+            stringBuilder.append(this.groupWithActionsList.get(index).toString());
         }
 
     }

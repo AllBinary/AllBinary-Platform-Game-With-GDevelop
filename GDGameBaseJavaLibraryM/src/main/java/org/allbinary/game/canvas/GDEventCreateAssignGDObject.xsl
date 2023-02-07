@@ -407,12 +407,9 @@ Created By: Travis Berthelot
 
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, EVENT_AS_STRING_COLLISION_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
 
-                            final CollidableCompositeLayer gameLayer = gameLayerArray[0];
-                            final CollidableCompositeLayer gameLayer2 = gameLayerArray[1];
-                            
-                            if(gameLayer != null) {
-                                if( gameLayer2 != null) {
-                                    LogUtil.put(LogFactory.getInstance(new StringBuilder().append("Collision: between gameLayer: ").append(gameLayer.getName()).append(" and gameLayer2: ").append(gameLayer2.getName()).toString(), this, EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                            if(gameLayerArray[0] != null) {
+                                if(gameLayerArray[1] != null) {
+                                    LogUtil.put(LogFactory.getInstance(new StringBuilder().append("Collision: between gameLayer: ").append(gameLayerArray[0].getName()).append(" and gameLayer2: ").append(gameLayerArray[1].getName()).toString(), this, EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                                 }
                             }
             <xsl:for-each select="actions" >

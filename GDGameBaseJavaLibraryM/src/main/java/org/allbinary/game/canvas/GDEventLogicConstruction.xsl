@@ -94,11 +94,11 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'CollisionNP'" >
-                    //CollisionNP
+                    //CollisionNP - condition
                     //<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
                     //<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
                     <xsl:variable name="name1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="name" >globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDConditionCollidableBehavior</xsl:variable>
+                    <xsl:variable name="name" >globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDConditionWithGroupActions</xsl:variable>
                     <xsl:variable name="nodeList" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
                         //Child VarScene conditions with actions
@@ -129,25 +129,25 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:for-each>
                                                 
-                        <xsl:value-of select="$name" />.groupCollisionList.add(globals.<xsl:value-of select="$name1" />GroupInterface);
-                        <xsl:value-of select="$name" />.actionCollisionList.add(new GDNode() {
+                        <xsl:value-of select="$name" />.groupWithActionsList.add(globals.<xsl:value-of select="$name1" />GroupInterface);
+                        <xsl:value-of select="$name" />.actionForGroupsList.add(new GDNode() {
                         
-                            private final String COLLISION_AT = "<xsl:value-of select="$nodeList" /> index: ";
-                        
+                            private final String NODE_AT = "Process GDNode <xsl:value-of select="$nodeList" /> at index: ";
+
+                            //Possibly more than 2 GameLayers.  So not all actions on group list are collisions but some are.
                             @Override
                             public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
                                 
-                                final CollidableCompositeLayer gameLayer = gameLayerArray[0];
-                                final CollidableCompositeLayer gameLayer2 = gameLayerArray[1];
-
                                 final int size = nodeList<xsl:value-of select="$nodeList" />.size();
                                 GDNode node;
+                                final int size2 = gameLayerArray.length;
                                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, COLLISION_AT + index));
+                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, NODE_AT + index));
                                     node = ((GDNode) nodeList<xsl:value-of select="$nodeList" />.get(index));
                                     node.clear();
-                                    node.gameLayerArray[0] = gameLayer;
-                                    node.gameLayerArray[1] = gameLayer2;
+                                    for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
+                                        node.gameLayerArray[index2] = gameLayerArray[index2];
+                                    }
                                     node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                     node.clear2();
                                 }

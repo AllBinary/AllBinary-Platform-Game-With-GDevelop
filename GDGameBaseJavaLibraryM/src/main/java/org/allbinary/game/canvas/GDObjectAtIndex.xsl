@@ -20,7 +20,9 @@ Created By: Travis Berthelot
         <xsl:param name="iteration" />
 
                                     <xsl:if test="$iteration > 1" >//iteration=<xsl:value-of select="$iteration" /> - More than 2 game layers</xsl:if>
-                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) gameLayer<xsl:if test="$iteration >= 1" ><xsl:value-of select="$iteration + 1" /></xsl:if>);
+                                    <xsl:if test="2 > $iteration" ></xsl:if>
+                                    <xsl:if test="$iteration >= 1" ></xsl:if>
+                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) gameLayerArray[<xsl:value-of select="$iteration" />]);
                                     GDObject <xsl:value-of select="$name" /> = null;
                                     if(<xsl:value-of select="$name" />GDGameLayer != null) {
                                         <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject;

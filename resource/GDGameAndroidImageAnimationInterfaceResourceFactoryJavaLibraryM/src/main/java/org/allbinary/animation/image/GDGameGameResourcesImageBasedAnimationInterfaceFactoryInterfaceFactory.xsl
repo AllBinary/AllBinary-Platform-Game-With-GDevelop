@@ -96,7 +96,7 @@ import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
-import org.allbinary.game.layer.special.GDConditionCollidableBehavior;
+import org.allbinary.game.layer.special.GDConditionWithGroupActions;
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.image.ImageCache;
