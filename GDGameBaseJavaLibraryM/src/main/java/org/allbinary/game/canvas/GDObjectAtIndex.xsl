@@ -27,7 +27,7 @@ Created By: Travis Berthelot
                                     if(<xsl:value-of select="$name" />GDGameLayer != null) {
                                         <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject;
                                     } else {
-                                        final String message = "<xsl:value-of select="$name" /> warning: not initialized";
+                                        final String message = "eventsCreateProcessUsed <xsl:value-of select="$name" /> warning: not initialized";
                                         LogUtil.put(LogFactory.getInstance(message, this, message));
                                     }
 

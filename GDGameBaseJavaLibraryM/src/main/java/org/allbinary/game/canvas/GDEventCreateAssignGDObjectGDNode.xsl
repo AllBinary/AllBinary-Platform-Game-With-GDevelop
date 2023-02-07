@@ -1164,7 +1164,7 @@ Created By: Travis Berthelot
 
                     try {
                 
-                        //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));    
+                        //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
 
             <xsl:if test="../actions" >
                         //if(globals.<xsl:value-of select="$name" />GDGameLayerList != null) {
@@ -1186,7 +1186,7 @@ Created By: Travis Berthelot
             <xsl:if test="../actions" >
                         }
                         } else {
-                            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$name" />GDGameLayerList was null"));
+                            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> <xsl:value-of select="$name" />GDGameLayerList was null"));
                         }                
             </xsl:if>
 
@@ -1204,6 +1204,7 @@ Created By: Travis Berthelot
             <xsl:if test="../actions" >
                         //if(globals.<xsl:value-of select="$name" />GDGameLayerList != null) {
                         if(globals.<xsl:value-of select="$name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
+                            if(globals.<xsl:value-of select="$name" />GDGameLayerList.size() != 0) {
 
                             //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().INDEX_LABEL + index));
             </xsl:if>
@@ -1217,8 +1218,11 @@ Created By: Travis Berthelot
                             return true;
 
             <xsl:if test="../actions" >
+                            } else {
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> <xsl:value-of select="$name" />GDGameLayerList was empty"));
+                            }                
                         } else {
-                            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$name" />GDGameLayerList was null"));
+                            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> <xsl:value-of select="$name" />GDGameLayerList was null"));
                         }                
             </xsl:if>
                         return false;
@@ -1389,7 +1393,7 @@ Created By: Travis Berthelot
                                 gameLayer.updateGDObject(globals.timeDelta);
                                 }
                             } else {
-                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$gdObjectName" />GDGameLayerList was null"));
+                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> <xsl:value-of select="$gdObjectName" />GDGameLayerList was null"));
                             }
                         }
 
@@ -1464,7 +1468,7 @@ Created By: Travis Berthelot
                                 gameLayer.updateGDObject(globals.timeDelta);
                                 }
                             } else {
-                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$gdObjectName" />GDGameLayerList was null"));
+                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> <xsl:value-of select="$gdObjectName" />GDGameLayerList was null"));
                             }
                         }
 
@@ -1874,7 +1878,7 @@ Created By: Travis Berthelot
 
                             private final String ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> = "Collision: " + ACTION_ID_AS_STRING_<xsl:value-of select="$actionNodeId" />;
 
-                            //objectGDObjectAtIndex2 - collide - Sprite - <xsl:value-of select="$name" />
+                            //objectGDObjectAtIndex2 - collide - Sprite - <xsl:value-of select="$name" /> - processM
                             @Override
                             public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
                                 
