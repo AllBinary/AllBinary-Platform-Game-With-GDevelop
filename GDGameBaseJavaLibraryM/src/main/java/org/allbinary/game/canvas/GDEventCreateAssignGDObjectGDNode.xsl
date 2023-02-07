@@ -1880,10 +1880,6 @@ Created By: Travis Berthelot
                                 
                                 LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />));
                                 
-                                final CollidableCompositeLayer gameLayer = gameLayerArray[0];
-                                final CollidableCompositeLayer gameLayer2 = gameLayerArray[1];
-                                
-                                
                         //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
                         if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                             if(globals.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
@@ -1903,16 +1899,16 @@ Created By: Travis Berthelot
                                         node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                         node.clear2();
                                     } else if(indexOfGDNode == 2) {
-                                        if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
+                                        //if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
                                             node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                             node.clear();
-                                            node.gameLayerArray[0] = gameLayer;
+                                            node.gameLayerArray[0] = gameLayerArray[0];
                                             node.gameLayerArray[1] = gdGameLayer;
                                             node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                             node.clear2();
-                                        } else {
-                                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "Do not collide when the same group"));
-                                        }
+                                        //} else {
+                                            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "Do not collide when the same group"));
+                                        //}
                                     }
                                     </xsl:if>
                                 }
@@ -1928,7 +1924,8 @@ Created By: Travis Berthelot
                                 } else if(indexOfGDNode == 2) {
                                     final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                     node.clear();
-                                    node.gameLayerArray[0] = gameLayer;
+                                    node.gameLayerArray[0] = gameLayerArray[0];
+                                    node.gameLayerArray[1] = gameLayerArray[1];
                                     node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                     node.clear2();
                                 }
@@ -1945,7 +1942,8 @@ Created By: Travis Berthelot
                             } else if(indexOfGDNode == 2) {
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                 node.clear();
-                                node.gameLayerArray[0] = gameLayer;
+                                node.gameLayerArray[0] = gameLayerArray[0];
+                                node.gameLayerArray[1] = gameLayerArray[1];
                                 node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                 node.clear2();
                             }
@@ -2009,16 +2007,16 @@ Created By: Travis Berthelot
                                         node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                         node.clear2();
                                     } else if(indexOfGDNode == 2) {
-                                        if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
+                                        //if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
                                             node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                             node.clear();
-                                            node.gameLayerArray[0] = gameLayer;
+                                            node.gameLayerArray[0] = gameLayerArray[0];
                                             node.gameLayerArray[1] = gdGameLayer;
                                             node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                             node.clear2();
-                                        } else {
+                                        //} else {
                                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "Do not collide when the same group"));
-                                        }
+                                        //}
                                     }
                                     </xsl:if>
                                 }
@@ -2039,7 +2037,8 @@ Created By: Travis Berthelot
                             } else if(indexOfGDNode == 2) {
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode + 1));
                                 node.clear();
-                                node.gameLayerArray[0] = gameLayer;
+                                node.gameLayerArray[0] = gameLayerArray[0];
+                                node.gameLayerArray[1] = gameLayerArray[1];
                                 node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                 node.clear2();
                             }
