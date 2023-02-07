@@ -1140,7 +1140,9 @@ Created By: Travis Berthelot
                                             
                                             globals.<xsl:value-of select="text()" />List.remove(<xsl:value-of select="text()" />GDGameLayer.gdObject);
                                             globals.<xsl:value-of select="text()" />GDGameLayerList.remove(<xsl:value-of select="text()" />GDGameLayer);
-                                            allBinaryGameLayerManager.remove(<xsl:value-of select="text()" />GDGameLayer);
+                                            //allBinaryGameLayerManager.remove(<xsl:value-of select="text()" />GDGameLayer);
+                                            <xsl:value-of select="text()" />GDGameLayer.setDestroyed(true);
+                                            
                                         </xsl:if>
                                     </xsl:for-each>
                                     <xsl:text>&#10;</xsl:text>
