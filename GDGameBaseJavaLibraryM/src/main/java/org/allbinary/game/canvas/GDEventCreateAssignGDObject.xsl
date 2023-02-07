@@ -401,12 +401,15 @@ Created By: Travis Berthelot
 
                     //eventsCreateProcessUsed
                     @Override
-                    public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final GDNode gdNode, final BasicArrayList gdNodeList) {
+                    public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
 
                         try {
 
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, EVENT_AS_STRING_COLLISION_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
 
+                            final CollidableCompositeLayer gameLayer = gameLayerArray[0];
+                            final CollidableCompositeLayer gameLayer2 = gameLayerArray[1];
+                            
                             if(gameLayer != null) {
                                 if( gameLayer2 != null) {
                                     LogUtil.put(LogFactory.getInstance(new StringBuilder().append("Collision: between gameLayer: ").append(gameLayer.getName()).append(" and gameLayer2: ").append(gameLayer2.getName()).toString(), this, EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));

@@ -80,6 +80,7 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
 
             final int size = groupInterfaceArray.length;
             int indexOfGroup;
+            GDNode node;
             for (int index = 0; index < size; index++) {
 
                 indexOfGroup = this.collidableBehavior.groupCollisionList.indexOf(groupInterfaceArray[index]);
@@ -90,7 +91,10 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
                 LogUtil.put(LogFactory.getInstance(this.toString(collisionLayer, stringBuilder), this, COLLIDE));
                 if (indexOfGroup >= 0) {
                     LogUtil.put(LogFactory.getInstance("groupIndex: " + indexOfGroup, this, COLLIDE));
-                    ((GDNode) this.collidableBehavior.actionCollisionList.get(indexOfGroup)).process(this.ownerLayer, collisionLayer, null, null);
+                    node = ((GDNode) this.collidableBehavior.actionCollisionList.get(indexOfGroup));
+                    node.gameLayerArray[0] = this.ownerLayer;
+                    node.gameLayerArray[1] = collisionLayer;
+                    node.processM(node.gameLayerArray, null, null);
                 }
             }
         } else {

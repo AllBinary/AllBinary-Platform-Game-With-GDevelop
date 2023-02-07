@@ -135,11 +135,21 @@ Created By: Travis Berthelot
                             private final String COLLISION_AT = "<xsl:value-of select="$nodeList" /> index: ";
                         
                             @Override
-                            public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final GDNode gdNode, final BasicArrayList gdNodeList) {
+                            public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
+                                
+                                final CollidableCompositeLayer gameLayer = gameLayerArray[0];
+                                final CollidableCompositeLayer gameLayer2 = gameLayerArray[1];
+
                                 final int size = nodeList<xsl:value-of select="$nodeList" />.size();
+                                GDNode node;
                                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                     LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, COLLISION_AT + index));
-                                    ((GDNode) nodeList<xsl:value-of select="$nodeList" />.get(index)).process(gameLayer, gameLayer2, gdNode, gdNodeList);
+                                    node = ((GDNode) nodeList<xsl:value-of select="$nodeList" />.get(index));
+                                    node.clear();
+                                    node.gameLayerArray[0] = gameLayer;
+                                    node.gameLayerArray[1] = gameLayer2;
+                                    node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                    node.clear2();
                                 }
                             }
                         });

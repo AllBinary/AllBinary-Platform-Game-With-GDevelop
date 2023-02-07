@@ -51,7 +51,9 @@
         <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
             <xsl:text>&#10;</xsl:text>
             <xsl:if test="$caller = 'externalEventsProcess'" >
-                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(null, null, null, null);
+                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].clear();
+                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processM(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].gameLayerArray, null, null);
+                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].clear2();
             </xsl:if>
             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:if>

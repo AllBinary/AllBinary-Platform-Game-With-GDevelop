@@ -161,9 +161,13 @@ Created By: Travis Berthelot
                         globals.nodeArray[globals.FAKE_COLLISION_NODE_ID] = new GDNode() {
 
                             @Override
-                            public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final GDNode gdNode, final BasicArrayList gdNodeList) {
+                            public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
+                                
+                                gdNode.gameLayerArray[0] = gameLayerArray[0];
+                                gdNode.gameLayerArray[1] = gameLayerArray[1];
+
                                 //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, FAKE_COLLISION_NODE_STRING));
-                                gdNode.process(gameLayer, gameLayer2, (CollidableCompositeLayer) null, gdNode, gdNodeList);
+                                gdNode.processM(gdNode.gameLayerArray, gdNode, gdNodeList);
                             }
                         };
 

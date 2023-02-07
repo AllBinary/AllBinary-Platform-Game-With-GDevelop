@@ -25,6 +25,18 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDNode
 {
+    public final CollidableCompositeLayer[] gameLayerArray = new CollidableCompositeLayer[5];
+
+    public void clear() {
+        for(int index = 0; index < 5; index++) {
+            gameLayerArray[index] = null;
+        }
+    }
+    
+    public void clear2() {
+        this.clear();
+    }
+    
     public void process() {
         
     }
@@ -64,11 +76,7 @@ public class GDNode
         
     }
 
-    public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final CollidableCompositeLayer gameLayer3, final GDNode gdNode, final BasicArrayList gdNodeList) {
-        this.process(gameLayer, gameLayer2, gdNode, gdNodeList);
-    }
-    
-    public void process(final CollidableCompositeLayer gameLayer, final CollidableCompositeLayer gameLayer2, final GDNode gdNode, final BasicArrayList gdNodeList) {
+    public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
         
     }
     
