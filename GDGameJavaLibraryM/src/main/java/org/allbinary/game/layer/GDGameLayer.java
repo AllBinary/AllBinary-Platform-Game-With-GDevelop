@@ -527,18 +527,25 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
     public void paintDebug(final Graphics graphics) {
         
-        final int endX = (int) (this.x + (this.velocityInterface.getVelocityXBasicDecimal().getUnscaled() / 10));
-        final int endY = (int) (this.y + (this.velocityInterface.getVelocityYBasicDecimal().getUnscaled() / 10));
-        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().AQUA);
-        graphics.drawLine(this.x + this.getHalfWidth(), this.y + this.getHalfHeight(), endX + this.getHalfWidth(), endY + this.getHalfHeight());
+//        final int endX = (int) (this.x + (this.velocityInterface.getVelocityXBasicDecimal().getUnscaled() / 10));
+//        final int endY = (int) (this.y + (this.velocityInterface.getVelocityYBasicDecimal().getUnscaled() / 10));
+//        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().AQUA);
+//        graphics.drawLine(this.x + this.getHalfWidth(), this.y + this.getHalfHeight(), endX + this.getHalfWidth(), endY + this.getHalfHeight());
+//
+//        //graphics.drawString(Integer.toString(this.getRotationAnimationInterface().getAngleInfo().getAngle()), this.x, this.y, 0);
+//        
+//        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().LIGHT_GREEN);
+//        this.paintAngle(this.getRotationAnimationInterface().getAngleInfo().getAngle(), graphics);
+//        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().LIGHT_RED);
+//        this.paintAngle((short) this.getRotationAnimationInterface().getFrame(), graphics);
+        
+        final ViewPosition viewPosition = this.getViewPosition();
+        final int viewX = viewPosition.getX();
+        final int viewY = viewPosition.getY();
+        //LogUtil.put(LogFactory.getInstance("viewX: " + viewX + " viewY: " + viewY, this, "paint"));
+        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().PINK);
+        graphics.drawRect(viewX - this.getHalfWidth(), viewY - this.getHalfHeight(), this.getWidth() * 2, this.getHeight() * 2);
 
-        //graphics.drawString(Integer.toString(this.getRotationAnimationInterface().getAngleInfo().getAngle()), this.x, this.y, 0);
-        
-        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().LIGHT_GREEN);
-        this.paintAngle(this.getRotationAnimationInterface().getAngleInfo().getAngle(), graphics);
-        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().LIGHT_RED);
-        this.paintAngle((short) this.getRotationAnimationInterface().getFrame(), graphics);
-        
         super.paint(graphics);
 
     }
