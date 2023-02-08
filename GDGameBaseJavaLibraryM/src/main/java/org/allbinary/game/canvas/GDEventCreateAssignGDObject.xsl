@@ -621,13 +621,15 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'Delete'" >
                     //Delete - process
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$name" />GDGameLayer, <xsl:value-of select="$name" />);
+                    final GDGameLayer global<xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) globals.<xsl:value-of select="$name" />GDGameLayerList.get(index);
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(global<xsl:value-of select="$name" />GDGameLayer, <xsl:value-of select="$name" />GDGameLayer.gdObject);
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'AddForceAL'" >
                     //AddForceAL - process
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$name" />GDGameLayer, <xsl:value-of select="$name" />);
+                    final GDGameLayer global<xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) globals.<xsl:value-of select="$name" />GDGameLayerList.get(index);
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(global<xsl:value-of select="$name" />GDGameLayer, <xsl:value-of select="$name" />GDGameLayer.gdObject);
                 </xsl:if>
 
             </xsl:for-each>
