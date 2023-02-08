@@ -64,16 +64,8 @@ public class GDObject
         this.name = name;
     }
 
-    public int Width(final Object nullObject) {
-        return canvasWidth;
-    }
-    
     public int Width(final Graphics graphics) {
         return canvasWidth;
-    }
-
-    public int Height(final Object nullObject) {
-        return canvasHeight;
     }
     
     public int Height(final Graphics graphics) {
