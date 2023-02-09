@@ -83,6 +83,7 @@ Created By: Travis Berthelot
             //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="$typeValue = 'Sprite'" >
+                //Sprite - create properties
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
@@ -90,6 +91,7 @@ Created By: Travis Berthelot
                 //public final GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory;
             </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
+                //TextObject::Text - create properties
                 <xsl:variable name="stringValue" select="string" />
                 public final int <xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="characterSize" /> * DisplayInfoSingleton.getInstance().getLastWidth()) / <xsl:value-of select="$windowWidth" />;
                 public final CustomTextAnimation <xsl:value-of select="name" />TextAnimation =
