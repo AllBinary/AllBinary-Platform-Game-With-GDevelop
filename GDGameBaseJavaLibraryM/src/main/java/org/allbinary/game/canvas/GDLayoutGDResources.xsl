@@ -84,7 +84,6 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
                 import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface;
                 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
-                import org.allbinary.animation.image.AllBinaryAndroidImageRotationAnimationFactory;
                 import org.allbinary.animation.image.GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.data.resource.ResourceUtil;
