@@ -45,7 +45,7 @@ public class GDGameMIDlet
         {
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, CommonStrings.getInstance().INIT));
 
-            ResourceUtil.setClassLoader(this.getClass().getClassLoader());
+            ResourceUtil.getInstance().setClassLoader(this.getClass().getClassLoader());
 
             Features features = Features.getInstance();
 
