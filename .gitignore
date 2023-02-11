@@ -12,6 +12,7 @@ GDGame*Canvas.java
 *GDObjectsFactory*.java
 *SpecialAnimation*.java
 *SpecialAnimation*.xml
+GD*Sound.java
 
 GDGameMIDlet.java
 GDResources.java
