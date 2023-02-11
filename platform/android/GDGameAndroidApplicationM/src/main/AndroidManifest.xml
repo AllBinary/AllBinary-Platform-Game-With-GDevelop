@@ -77,13 +77,20 @@
     <application android:label="@string/gd_app_name" android:icon="@drawable/gd_icon" >
         <activity android:label="@string/gd_app_name" android:icon="@drawable/gd_icon"
                   android:name="org.allbinary.game.GDGameAndroidActivity"
-                  android:configChanges="keyboardHidden|orientation" >
+                  android:configChanges="keyboardHidden|orientation" 
+                  android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="tv.ouya.intent.category.APP"/>
             </intent-filter>
         </activity>
+        
+        <activity
+            android:name="org.allbinary.android.activity.WebViewActivity"
+            android:exported="true" >
+        </activity>
+        
     </application>
     
 </manifest> 
