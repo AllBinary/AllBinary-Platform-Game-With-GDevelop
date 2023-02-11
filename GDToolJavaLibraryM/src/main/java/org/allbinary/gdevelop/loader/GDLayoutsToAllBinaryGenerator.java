@@ -176,14 +176,24 @@ public class GDLayoutsToAllBinaryGenerator
                 //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
             }
 
-            final InputStream inputStream2 = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl");
-            outputStream.reset();
-            final String xslDocumentStr2 = new String(streamUtil.getByteArray(inputStream2, outputStream, byteArray));
-            final String FILE = "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java";
-            for (int index = 1; index < size - 1; index++)
+            final InputStream[] inputStreamArray2 = 
+            {
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl")
+            };
+
+            final String[] OUTPUT_FILE_PATHS = {
+                "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+                "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java"
+            };
+
+            final int size2 = OUTPUT_FILE_PATHS.length;
+            for (int index = 0; index < size2; index++)
             {
                 indexAsString = Integer.toString(index);
                 final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, indexAsString);
+                outputStream.reset();
+                final String xslDocumentStr2 = new String(streamUtil.getByteArray(inputStreamArray2[index], outputStream, byteArray));
                 final String updatedXslDocumentStr = replace.all(xslDocumentStr2);
 
                 final String result = this.xslHelper.translate(new BasicUriResolver(),
@@ -191,16 +201,16 @@ public class GDLayoutsToAllBinaryGenerator
                         new StreamSource(new StringBufferInputStream(gameXmlAsString)));
 
                 stringBuilder.delete(0, stringBuilder.length());
-                LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + FILE, this, CommonStrings.getInstance().CONSTRUCTOR));
+                LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + OUTPUT_FILE_PATHS[index], this, CommonStrings.getInstance().CONSTRUCTOR));
                 
-                this.bufferedWriterUtil.overwrite(FILE, result);
+                this.bufferedWriterUtil.overwrite(OUTPUT_FILE_PATHS[index], result);
 
                 //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
             }
 
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+            LogUtil.put(LogFactory.getInstance("Is the game xml formatted when it is not we get an error from: gglobals.dVersion", this, CommonStrings.getInstance().CONSTRUCTOR, e));
         }
 
     }

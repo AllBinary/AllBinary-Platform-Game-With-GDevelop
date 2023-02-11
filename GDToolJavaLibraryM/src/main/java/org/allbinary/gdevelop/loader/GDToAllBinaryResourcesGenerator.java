@@ -48,7 +48,7 @@ public class GDToAllBinaryResourcesGenerator
         resourceStringBuilder.append(this.PUBLIC_FINAL_STRING);
         resourceStringBuilder.append(name);
         resourceStringBuilder.append(this.VALUE_RESOURCE_START);
-        resourceStringBuilder.append(resourceString);
+        resourceStringBuilder.append(resourceString.toLowerCase());
         resourceStringBuilder.append(this.VALUE_RESOURCE_END);
     }
 
