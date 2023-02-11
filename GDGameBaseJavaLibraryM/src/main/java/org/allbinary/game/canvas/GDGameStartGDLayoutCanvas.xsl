@@ -53,7 +53,7 @@ public class <GDLayout> extends StartCanvas
 
         this.setWait(WAIT);
 
-        GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(null);
+        GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(this, null);
     }
 
     public void initPostPaint() throws Exception

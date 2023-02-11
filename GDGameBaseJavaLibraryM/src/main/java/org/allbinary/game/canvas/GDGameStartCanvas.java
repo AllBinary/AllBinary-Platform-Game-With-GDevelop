@@ -47,6 +47,8 @@ public class GDGameStartCanvas extends DemoCanvas
                 new GDGameStaticInitializerFactory(), false);
 
         this.setWait(WAIT);
+        
+        GD0SpecialAnimation.getInstance(this, null);
     }
 
     public void initPostPaint() throws Exception

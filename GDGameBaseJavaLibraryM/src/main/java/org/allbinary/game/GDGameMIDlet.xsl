@@ -20,11 +20,13 @@
 */
 package org.allbinary.game;
 
+import javax.microedition.lcdui.Command;
+import javax.microedition.lcdui.Displayable;
+
 //import org.allbinary.game.canvas.GDGameStartCanvas;
 import org.allbinary.game.canvas.<GDLayout0>;
 import org.allbinary.game.canvas.<GDLayout1>;
 import org.allbinary.game.canvas.<GDLayout2>;
-import javax.microedition.lcdui.Displayable;
 import org.allbinary.canvas.RunnableCanvas;
 import org.allbinary.game.canvas.GDGameInputMappingHelpPaintable;
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
@@ -32,6 +34,7 @@ import org.allbinary.game.canvas.GDGameSoftwareInfo;
 import org.allbinary.game.canvas.GDGameStartMenuCanvas;
 import org.allbinary.game.canvas.GDGameAsteroidsCanvas;
 import org.allbinary.game.canvas.GDGameStartGameOverCanvas;
+import org.allbinary.game.commands.GameCommandsFactory;
 import org.allbinary.game.layer.GDGameLayerManager;
 import org.allbinary.media.audio.GDGameSoundsFactoryFactory;
 
@@ -56,6 +59,7 @@ import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.media.audio.AllBinaryMediaManagerShutdown;
 import org.allbinary.media.audio.EarlySoundsFactoryFactory;
+import org.allbinary.midlet.MidletStrings;
 import org.allbinary.thread.PrimaryThreadPool;
 
 /**
@@ -187,27 +191,39 @@ public class GDGameMIDlet extends
         //this.postDemoSetup();
     }
 
-   public void setGDLayout(final String layoutName) throws Exception {
+    public synchronized void commandAction(final Command command, final Displayable displayable2) {
 
-       PreLogUtil.put(layoutName, this, "setGDLayout");
+        try {
 
-       final String GDLAYOUT0 = "<GDLayoutName0>";
-       final String GDLAYOUT1 = "<GDLayoutName1>";
-       final String GDLAYOUT2 = "<GDLayoutName2>";
+            //PreLogUtil.put(layoutName, this, "setGDLayout");
 
-       final Displayable displayable = this.getCurrentDisplayable();
-       if(displayable instanceof RunnableCanvas) {
-           ((RunnableCanvas) displayable).stop();
-       }
+            final GDGameCommandFactory gdGameCommandFactory = GDGameCommandFactory.getInstance();
 
-       if(layoutName.equals(GDLAYOUT0)) {
-           this.setDemo();
-       } else if(layoutName.equals(GDLAYOUT1)) {
-           this.createGame();
-       } else if(layoutName.equals(GDLAYOUT2)) {
-           this.set<GDLayout2>RunnableInterface();
-       }
-   }
+            final Displayable displayable = this.getCurrentDisplayable();
+            if(displayable instanceof RunnableCanvas) {
+                ((RunnableCanvas) displayable).stop();
+            }
+
+            if(command.equals(gdGameCommandFactory.<GDLayoutName0>_GD_LAYOUT)) {
+                this.setDemo();
+            } else if(command.equals(gdGameCommandFactory.<GDLayoutName1>_GD_LAYOUT)) {
+                this.createGame();
+            } else if(command.equals(gdGameCommandFactory.<GDLayoutName2>_GD_LAYOUT)) {
+                this.set<GDLayout2>RunnableInterface();
+            } else {
+                super.commandAction(command, displayable2);
+            }
+
+        }
+        catch (Exception e)
+        {
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, MidletStrings.getInstance().COMMAND_ACTION, e));
+            if (command != GameCommandsFactory.getInstance().EXIT_COMMAND)
+            {
+                this.exit(false);
+            }
+        }
+    }
 }
     </xsl:template>
 

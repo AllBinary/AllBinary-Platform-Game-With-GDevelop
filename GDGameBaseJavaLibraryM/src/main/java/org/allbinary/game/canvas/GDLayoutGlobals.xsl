@@ -119,13 +119,8 @@ Created By: Travis Berthelot
                         return instance;
                     }
 
-                        private final GDResources gdResources = GDResources.getInstance();
-                        private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
-                        private final ImageCache imageCache = ImageCacheFactory.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
-                        private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
-                        private final ResourceUtil resourceUtil = ResourceUtil.getInstance();
        
                         private final GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
                         

@@ -36,6 +36,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventOpen.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClose.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/PaintDebugButtons.xsl" />
 
     <xsl:output method="html" indent="yes" />
 
@@ -81,11 +82,14 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
                 import org.allbinary.game.layout.GDObject;
-                import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.game.resource.GDResources;
-                import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+                import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
+                import org.allbinary.graphics.color.BasicColor;
+                import org.allbinary.graphics.color.BasicColorFactory;
+                import org.allbinary.graphics.color.BasicColorSetUtil;
+                import org.allbinary.graphics.displayable.MyCanvas;
                 import org.allbinary.image.ImageCache;
                 import org.allbinary.image.ImageCacheFactory;
                 import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
@@ -103,9 +107,9 @@ Created By: Travis Berthelot
 
                     private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation instance;
 
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation getInstance(final AllBinaryGameLayerManager allBinaryGameLayerManager)
+                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation getInstance(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager)
                     {
-                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(allBinaryGameLayerManager);
+                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(canvas, allBinaryGameLayerManager);
                         return instance;
                     }
 
@@ -128,12 +132,12 @@ Created By: Travis Berthelot
                         private final ResourceUtil resourceUtil = ResourceUtil.getInstance();
        
                         private final GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
-
-                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+                        
+                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
                         globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.create();
                         gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
-                        builder = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(allBinaryGameLayerManager);
+                        builder = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(canvas, allBinaryGameLayerManager);
                     
                         try {
                     
@@ -221,6 +225,26 @@ Created By: Travis Berthelot
 
                     public void paint(Graphics graphics, int x, int y)
                     {
+
+                    <xsl:call-template name="paintDebugButtons" >
+                        <xsl:with-param name="caller" >paint</xsl:with-param>
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+
+                    </xsl:call-template>
 
                     <xsl:call-template name="eventsPaint" >
                         <xsl:with-param name="totalRecursions" >

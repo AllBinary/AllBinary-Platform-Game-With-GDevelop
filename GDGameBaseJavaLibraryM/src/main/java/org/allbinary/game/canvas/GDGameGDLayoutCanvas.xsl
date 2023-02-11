@@ -106,7 +106,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
         GroupLayerManagerListener.getInstance().init(SIZE);
 
-        //this.specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(allBinaryGameLayerManager);
+        //this.specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(this, allBinaryGameLayerManager);
 
         //this.setPlayingGameState();
     }
@@ -298,7 +298,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
     public void buildGame(boolean isProgress) throws Exception
     {
-        this.specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(gameLayerManager);
+        this.specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(this, gameLayerManager);
         this.setPlayingGameState();
         
         this.loadResources(gameLayerManager.getGameInfo().getCurrentLevel());

@@ -74,39 +74,18 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.game.canvas;
 
-                import javax.microedition.lcdui.Graphics;
-                
-                import org.allbinary.animation.image.GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
-
                 import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.game.GDGameMIDlet;
-                import org.allbinary.game.layer.GDGameLayer;
-                import org.allbinary.game.layer.GDGameLayerFactory;
-                import org.allbinary.game.layout.GDNode;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 
-                import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
-                import org.allbinary.game.layer.CollidableCompositeLayer;
                 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
                 import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.graphics.GPoint;
-                import org.allbinary.graphics.color.BasicColor;
-                import org.allbinary.graphics.PointFactory;
-                import org.allbinary.graphics.Rectangle;
-                import org.allbinary.input.motion.gesture.MotionGestureInput;
-                import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
-                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.logic.basic.string.CommonStrings;
                 import org.allbinary.logic.basic.string.CommonSeps;
                 import org.allbinary.logic.basic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.util.BasicArrayList;
-                import org.allbinary.math.RectangleCollisionUtil;
-                import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.util.ArrayUtil;
-                import org.microemu.MIDletBridge;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes extends SpecialAnimation
@@ -126,11 +105,8 @@ Created By: Travis Berthelot
                         }
 
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-                        private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
                         
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
-                        private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
 
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 

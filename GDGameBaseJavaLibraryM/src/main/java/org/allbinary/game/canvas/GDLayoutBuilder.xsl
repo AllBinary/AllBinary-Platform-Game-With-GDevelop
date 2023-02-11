@@ -90,6 +90,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
+                import org.allbinary.graphics.displayable.MyCanvas;
                 import org.allbinary.image.ImageCache;
                 import org.allbinary.image.ImageCacheFactory;
                 import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
@@ -109,9 +110,9 @@ Created By: Travis Berthelot
 
                     private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder instance;
 
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder getInstance(final AllBinaryGameLayerManager allBinaryGameLayerManager)
+                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder getInstance(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager)
                     {
-                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(allBinaryGameLayerManager);
+                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(canvas, allBinaryGameLayerManager);
                         return instance;
                     }
 
@@ -133,16 +134,9 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes otherEventNodes;
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes objectEventNodes;
                         
-                        private final GDResources gdResources = GDResources.getInstance();
-                        private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
-                        private final ImageCache imageCache = ImageCacheFactory.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
-                        private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
-                        private final ResourceUtil resourceUtil = ResourceUtil.getInstance();
-       
-                        private final GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
 
-                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));
 
@@ -184,7 +178,7 @@ Created By: Travis Berthelot
                     externalConditionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes.getInstance(allBinaryGameLayerManager);
                     externalOtherEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes.getInstance(allBinaryGameLayerManager);
                     externalObjectEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes.getInstance(allBinaryGameLayerManager);
-                    actionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes.getInstance(allBinaryGameLayerManager);
+                    actionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes.getInstance(canvas, allBinaryGameLayerManager);
                     conditionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes.getInstance(allBinaryGameLayerManager);
                     otherEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes.getInstance(allBinaryGameLayerManager);
                     objectEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes.getInstance(allBinaryGameLayerManager);

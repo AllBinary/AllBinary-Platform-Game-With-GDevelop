@@ -9,11 +9,13 @@ gen/
 Resources/**
 
 GDGame*Canvas.java
-GDGameMIDlet.java
-GDGameStartGameOverCanvasRunnable.java
 *GDObjectsFactory*.java
 *SpecialAnimation*.java
 *SpecialAnimation*.xml
+
+GDGameMIDlet.java
+GDGameCommandFactory.java
+GDGameStartGameOverCanvasRunnable.java
 GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
 
 /platform/j2se/GDGameJ2SEApplicationM/src/

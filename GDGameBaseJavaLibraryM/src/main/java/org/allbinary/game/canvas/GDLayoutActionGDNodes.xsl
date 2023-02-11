@@ -77,7 +77,7 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Graphics;
 
                 import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.game.GDGameMIDlet;
+                import org.allbinary.game.GDGameCommandFactory;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
@@ -89,6 +89,8 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
+                import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
+                import org.allbinary.graphics.displayable.MyCanvas;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.logic.basic.string.CommonStrings;
                 import org.allbinary.logic.basic.string.CommonSeps;
@@ -97,7 +99,6 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.ArrayUtil;
-                import org.microemu.MIDletBridge;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes extends SpecialAnimation
@@ -105,9 +106,9 @@ Created By: Travis Berthelot
 
                     private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes instance;
 
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes getInstance(final AllBinaryGameLayerManager allBinaryGameLayerManager)
+                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes getInstance(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager)
                     {
-                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes(allBinaryGameLayerManager);
+                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes(canvas, allBinaryGameLayerManager);
                         return instance;
                     }
 
@@ -123,7 +124,11 @@ Created By: Travis Berthelot
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
 
-                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+                        private final MyCanvas canvas;
+                        
+                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+
+                        this.canvas = canvas;
 
                         try {
                         

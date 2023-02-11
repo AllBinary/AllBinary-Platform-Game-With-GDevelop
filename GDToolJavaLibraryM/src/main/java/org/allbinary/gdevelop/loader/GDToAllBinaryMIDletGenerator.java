@@ -1,20 +1,13 @@
 /*
-* AllBinary Open License Version 1
-* Copyright (c) 2011 AllBinary
-* 
-* By agreeing to this license you and any business entity you represent are
-* legally bound to the AllBinary Open License Version 1 legal agreement.
-* 
-* You may obtain the AllBinary Open License Version 1 legal agreement from
-* AllBinary or the root directory of AllBinary's AllBinary Platform repository.
-* 
-* Created By: Travis Berthelot
-* 
+ * GDevelop to AllBinary Core
+ * Copyright 2021 Travis Berthelot (travisberthelot@allbinary.com). All rights
+ * reserved. This project is released under the MIT License.
  */
 package org.allbinary.gdevelop.loader;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.StringBufferInputStream;
 import javax.xml.transform.stream.StreamSource;
 import org.allbinary.data.tree.dom.BasicUriResolver;
@@ -66,56 +59,66 @@ public class GDToAllBinaryMIDletGenerator
         
         LogUtil.put(LogFactory.getInstance(className, this, "loadLayout"));
         
-        this.layoutNameList.add(layout.name);
+        this.layoutNameList.add(layout.name.toUpperCase());
         this.nameList.add(name);
         this.classNameList.add(className);
     }
 
     public void process() throws Exception {
-        final String MIDLET_ORIGINAL = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.xsl";
-        final String MIDLET_REPLACED = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet_replaced.xsl";
-        final String MIDLET_XML = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.xml";
-        final String MIDLET = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.java";
+        
+        //final String MIDLET_REPLACED = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet_replaced.xsl";
+        //final String MIDLET_XML = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.xml";
         
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
         final byte[] byteArray = new byte[16384];
 
-        final FileInputStream fileInputStream = new FileInputStream(MIDLET_ORIGINAL);        
-        final String midletXslFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
-        
-        String newFileAsString = midletXslFileAsString;
-
-        final int size = this.classNameList.size();
-        String indexAsString;
-        for(int index = 0; index < size; index++) { 
-            indexAsString = Integer.toString(index);
-            Replace replace = new Replace(GD_LAYOUT + index + END, (String) this.classNameList.get(index));
-            Replace replace2 = new Replace(GD_LAYOUT_NAME + index + END, (String) this.layoutNameList.get(index));
-            newFileAsString = replace.all(newFileAsString);
-            newFileAsString = replace2.all(newFileAsString);
-        }
-
-        final String updatedXslDocumentStr = newFileAsString;
-
-        //LogUtil.put(LogFactory.getInstance(updatedXslDocumentStr, this, CommonStrings.getInstance().CONSTRUCTOR));
-        //this.bufferedWriterUtil.overwrite(MIDLET_REPLACED, updatedXslDocumentStr);
-        
         final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
-        
-        outputStream.reset();
         final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
-
-        //LogUtil.put(LogFactory.getInstance(xmlDocumentStr, this, CommonStrings.getInstance().CONSTRUCTOR));
-
-        //this.bufferedWriterUtil.overwrite(MIDLET_XML, xmlDocumentStr);
         
-        final String result = this.xslHelper.translate(new BasicUriResolver(),
-                new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
-                new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
-        
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + MIDLET, this, this.commonStrings.CONSTRUCTOR));
-        this.bufferedWriterUtil.overwrite(MIDLET, result);
+        final InputStream[] inputStreamArray = {
+            new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.xsl"),
+            new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameCommandFactory.xsl")
+        };
+
+        final String[] outputArray = {
+            "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.java",
+            "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameCommandFactory.java"
+        };
+
+        final int size2 = inputStreamArray.length;
+        for (int index2 = 0; index2 < size2; index2++)
+        {
+            final InputStream fileInputStream = inputStreamArray[index2];
+            outputStream.reset();
+            final String xslFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
+
+            String newFileAsString = xslFileAsString;
+
+            final int size = this.classNameList.size();
+            String indexAsString;
+            for (int index = 0; index < size; index++) {
+                indexAsString = Integer.toString(index);
+                Replace replace = new Replace(GD_LAYOUT + index + END, (String) this.classNameList.get(index));
+                Replace replace2 = new Replace(GD_LAYOUT_NAME + index + END, (String) this.layoutNameList.get(index));
+                newFileAsString = replace.all(newFileAsString);
+                newFileAsString = replace2.all(newFileAsString);
+            }
+
+            final String updatedXslDocumentStr = newFileAsString;
+
+            LogUtil.put(LogFactory.getInstance(updatedXslDocumentStr, this, CommonStrings.getInstance().CONSTRUCTOR));
+            //this.bufferedWriterUtil.overwrite(MIDLET_REPLACED, updatedXslDocumentStr);
+
+            //LogUtil.put(LogFactory.getInstance(xmlDocumentStr, this, CommonStrings.getInstance().CONSTRUCTOR));
+            //this.bufferedWriterUtil.overwrite(MIDLET_XML, xmlDocumentStr);
+            final String result = this.xslHelper.translate(new BasicUriResolver(),
+                    new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
+                    new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
+
+            LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + outputArray[index2], this, this.commonStrings.CONSTRUCTOR));
+            this.bufferedWriterUtil.overwrite(outputArray[index2], result);
+        }
     }
     
 }
