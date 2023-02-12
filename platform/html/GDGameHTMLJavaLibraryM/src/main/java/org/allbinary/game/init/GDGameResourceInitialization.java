@@ -11,7 +11,7 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd.init;
+package org.allbinary.game.init;
 
 import org.allbinary.game.resource.ResourceInitialization;
 

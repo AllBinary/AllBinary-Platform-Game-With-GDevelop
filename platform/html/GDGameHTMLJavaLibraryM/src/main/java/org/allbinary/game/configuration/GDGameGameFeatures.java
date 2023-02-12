@@ -11,7 +11,7 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd.configuration;
+package org.allbinary.game.configuration;
 
 import org.allbinary.util.BasicArrayList;
 

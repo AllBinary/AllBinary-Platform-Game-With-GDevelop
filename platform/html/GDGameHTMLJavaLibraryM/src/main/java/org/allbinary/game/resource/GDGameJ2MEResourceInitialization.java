@@ -11,9 +11,9 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.gd.resource;
+package org.allbinary.game.resource;
 
-import org.allbinary.game.gd.init.GDGameResourceInitialization;
+import org.allbinary.game.init.GDGameResourceInitialization;
 
 /*
  *  Note that errors may occur even though your importing R correctly
