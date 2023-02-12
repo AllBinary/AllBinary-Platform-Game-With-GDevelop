@@ -119,7 +119,7 @@ public class GDLayout
             if(event != null) {
                 this.eventList.add(event);
             } else {
-                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, new Exception()));
+                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, new Exception()));
             }
         }        
         
