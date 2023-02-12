@@ -25,10 +25,5 @@
     <!-- Exclude non-GWT-compatible classes -->
     <exclude name='**/*Test.java' />
   </source>
-  
-  <source path='thread'>
-    <!-- Exclude non-GWT-compatible classes -->
-    <exclude name='**/*Test.java' />
-  </source>
 
 </module>
