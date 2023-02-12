@@ -49,9 +49,11 @@ public class GDLayoutsToAllBinaryGenerator
             
             final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
             String gameXmlAsString = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
-            final Replace replace2 = new Replace(".Width()", ".Width(globals.graphics)");
+            //final Replace replace2 = new Replace(".Width()", ".Width(globals.graphics)");
+            final Replace replace2 = new Replace(".Width()", ".Width(null)");
             gameXmlAsString = replace2.all(gameXmlAsString);
-            final Replace replace3 = new Replace(".Height()", ".Height(globals.graphics)");
+            //final Replace replace3 = new Replace(".Height()", ".Height(globals.graphics)");
+            final Replace replace3 = new Replace(".Height()", ".Height(null)");
             gameXmlAsString = replace3.all(gameXmlAsString);
             final Replace replace4 = new Replace("GlobalVariable(", "GlobalVariable(globals.");
             gameXmlAsString = replace4.all(gameXmlAsString);

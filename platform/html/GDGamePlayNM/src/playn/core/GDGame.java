@@ -21,7 +21,7 @@ import org.allbinary.game.init.DefaultGameInitializationListener;
 import org.allbinary.media.audio.GDGameSoundsFactoryFactory;
 
 public class GDGame
-    extends org.allbinary.game.gd.GDGameMIDlet
+    extends org.allbinary.game.GDGameMIDlet
 implements Keyboard.Listener, 
 //Mouse.Listener, 
 Pointer.Listener
