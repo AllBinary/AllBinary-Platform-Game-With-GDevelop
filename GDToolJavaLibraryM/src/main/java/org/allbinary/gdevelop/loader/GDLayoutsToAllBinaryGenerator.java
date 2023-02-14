@@ -199,7 +199,7 @@ public class GDLayoutsToAllBinaryGenerator
             }
 
             //TWB - need to update to allow loading for every layout.
-            for (int index = size - 1; index < size; index++)
+            for (int index = size - 2; index < size - 1; index++)
             {
                 indexAsString = Integer.toString(index);
                 final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, indexAsString);
