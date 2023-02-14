@@ -125,13 +125,12 @@ public class GDLayoutsToAllBinaryGenerator
             };
 
             final int xslTotal = inputStreamArray.length;
-            final String[] xslDocumentAsString = new String[xslTotal];
-            
+            final String[] xslDocumentAsString = new String[xslTotal];            
             for(int index = 0; index < xslTotal; index++) {
                 outputStream.reset();
                 xslDocumentAsString[index] = new String(streamUtil.getByteArray(inputStreamArray[index], outputStream, byteArray));
             }
-            
+
             final String START_WITH_PATH = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD";
             final String[] END = {
                 "SpecialAnimation.xml",
@@ -161,6 +160,8 @@ public class GDLayoutsToAllBinaryGenerator
                 
                 for(int index2 = 0; index2 < xslTotal; index2++) {
 
+                    //LogUtil.put(LogFactory.getInstance("xsl index: " + index2, this, CommonStrings.getInstance().CONSTRUCTOR));
+                    
                     final String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
 
                     final String result = this.xslHelper.translate(new BasicUriResolver(),
@@ -173,9 +174,10 @@ public class GDLayoutsToAllBinaryGenerator
                     LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
 
                     this.bufferedWriterUtil.overwrite(fileName, result);
+                    
+                    //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
                 }
 
-                //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
             }
 
             final InputStream[] inputStreamArray2 = 
@@ -189,25 +191,36 @@ public class GDLayoutsToAllBinaryGenerator
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java"
             };
 
-            final int size2 = OUTPUT_FILE_PATHS.length;
-            for (int index = 0; index < size2; index++)
+            final int xslTotal2 = OUTPUT_FILE_PATHS.length;
+            final String[] xslDocumentAsString2 = new String[xslTotal2];
+            for(int index = 0; index < xslTotal2; index++) {
+                outputStream.reset();
+                xslDocumentAsString2[index] = new String(streamUtil.getByteArray(inputStreamArray2[index], outputStream, byteArray));
+            }
+
+            //TWB - need to update to allow loading for every layout.
+            for (int index = size - 1; index < size; index++)
             {
                 indexAsString = Integer.toString(index);
                 final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, indexAsString);
-                outputStream.reset();
-                final String xslDocumentStr2 = new String(streamUtil.getByteArray(inputStreamArray2[index], outputStream, byteArray));
-                final String updatedXslDocumentStr = replace.all(xslDocumentStr2);
-
-                final String result = this.xslHelper.translate(new BasicUriResolver(),
-                        new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
-                        new StreamSource(new StringBufferInputStream(gameXmlAsString)));
-
-                stringBuilder.delete(0, stringBuilder.length());
-                LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + OUTPUT_FILE_PATHS[index], this, CommonStrings.getInstance().CONSTRUCTOR));
                 
-                this.bufferedWriterUtil.overwrite(OUTPUT_FILE_PATHS[index], result);
+                for(int index2 = 0; index2 < xslTotal2; index2++) {
+                    
+                    //LogUtil.put(LogFactory.getInstance("xsl2 index: " + index2, this, CommonStrings.getInstance().CONSTRUCTOR));
+                    
+                    final String updatedXslDocumentStr = replace.all(xslDocumentAsString2[index2]);
 
-                //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
+                    final String result = this.xslHelper.translate(new BasicUriResolver(),
+                            new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
+                            new StreamSource(new StringBufferInputStream(gameXmlAsString)));
+
+                    stringBuilder.delete(0, stringBuilder.length());
+                    LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + OUTPUT_FILE_PATHS[index], this, CommonStrings.getInstance().CONSTRUCTOR));
+
+                    this.bufferedWriterUtil.overwrite(OUTPUT_FILE_PATHS[index], result);
+                    
+                    //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
+                }
             }
 
         } catch (Exception e)
