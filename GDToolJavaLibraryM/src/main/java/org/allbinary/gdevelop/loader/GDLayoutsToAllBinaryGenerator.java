@@ -215,9 +215,9 @@ public class GDLayoutsToAllBinaryGenerator
                             new StreamSource(new StringBufferInputStream(gameXmlAsString)));
 
                     stringBuilder.delete(0, stringBuilder.length());
-                    LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + OUTPUT_FILE_PATHS[index], this, CommonStrings.getInstance().CONSTRUCTOR));
+                    LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + OUTPUT_FILE_PATHS[index2], this, CommonStrings.getInstance().CONSTRUCTOR));
 
-                    this.bufferedWriterUtil.overwrite(OUTPUT_FILE_PATHS[index], result);
+                    this.bufferedWriterUtil.overwrite(OUTPUT_FILE_PATHS[index2], result);
                     
                     //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
                 }
