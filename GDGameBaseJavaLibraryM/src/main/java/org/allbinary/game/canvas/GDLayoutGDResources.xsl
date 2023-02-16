@@ -103,6 +103,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.basic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.media.image.ImageCompleteUtil;
                 import org.allbinary.media.image.ImageCopyUtil;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
@@ -126,6 +127,7 @@ Created By: Travis Berthelot
                         
                         private final GDResources gdResources = GDResources.getInstance();
                         private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
+                        private final ImageCompleteUtil imageCompleteUtil = ImageCompleteUtil.getInstance();
                         private final ImageCache imageCache = ImageCacheFactory.getInstance();
                         private final ResourceUtil resourceUtil = ResourceUtil.getInstance();
        

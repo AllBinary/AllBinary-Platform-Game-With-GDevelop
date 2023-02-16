@@ -80,14 +80,26 @@ Created By: Travis Berthelot
                 </xsl:for-each>
                 };
 
+                <xsl:for-each select="animations" >
+                    <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
+                    <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
+                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = Image.createImage(<xsl:value-of select="$name" />InputStreamArray[<xsl:value-of select="position() - 1" />]);
+                    imageCompleteUtil.waitFor(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, <xsl:value-of select="$name" />ResourceArray[0]);
+                    </xsl:if>
+                    <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
+                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = Image.createImage(<xsl:value-of select="$name" />InputStreamArray[<xsl:value-of select="position() - 1" />]);
+                    imageCompleteUtil.waitFor(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, <xsl:value-of select="$name" />ResourceArray[0]);
+                    </xsl:if>
+                </xsl:for-each>
+
                 this.<xsl:value-of select="name" />ImageArray = new Image[] {
                 <xsl:for-each select="animations" >
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
-                    Image.createImage(<xsl:value-of select="$name" />InputStreamArray[<xsl:value-of select="position() - 1" />]),
+                    <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />,
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
-                    imageCopyUtil.createImage(Image.createImage(<xsl:value-of select="$name" />InputStreamArray[<xsl:value-of select="position() - 1" />]), 1.44f, true),
+                    imageCopyUtil.createImage(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, 1.44f, true),
                     </xsl:if>
                 </xsl:for-each>
                 };
