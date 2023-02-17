@@ -94,12 +94,6 @@ Created By: Travis Berthelot
                 {
 
                     private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources instance;
-
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources getInstance(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
-                        {
-                            instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources(allBinaryGameLayerManager);
-                            return instance;
-                        }
                         
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources getInstance()
                         {
@@ -131,7 +125,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
+                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources() throws Exception {
 
                         //try {
                         

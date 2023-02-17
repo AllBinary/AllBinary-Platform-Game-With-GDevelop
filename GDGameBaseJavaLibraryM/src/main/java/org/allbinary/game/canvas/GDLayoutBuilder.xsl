@@ -123,7 +123,7 @@ Created By: Travis Berthelot
 
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources;
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources;
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes externalActionNodes;
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes externalConditionNodes;
@@ -164,14 +164,6 @@ Created By: Travis Berthelot
                                 gdNode.processM(gdNode.gameLayerArray, gdNode, gdNodeList);
                             }
                         };
-
-                    GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = null;
-                        try {
-                    imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance(allBinaryGameLayerManager);
-                        } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
-                        }
-                    this.imageResources = imageResources;
 
                     GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = null;
                         try {
