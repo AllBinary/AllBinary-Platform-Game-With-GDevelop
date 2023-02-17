@@ -152,8 +152,6 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                    animationInterfaceFactoryInterfaceFactory.init(-1);
-
                     <xsl:text>&#10;</xsl:text>                    
 
                         //} catch(Exception e) {
