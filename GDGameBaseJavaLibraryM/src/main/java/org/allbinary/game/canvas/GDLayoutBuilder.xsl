@@ -123,7 +123,7 @@ Created By: Travis Berthelot
 
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
-                        //private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources;
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources;
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes externalActionNodes;
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes externalConditionNodes;
@@ -164,6 +164,14 @@ Created By: Travis Berthelot
                                 gdNode.processM(gdNode.gameLayerArray, gdNode, gdNodeList);
                             }
                         };
+
+                    GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = null;
+                        try {
+                    imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance(allBinaryGameLayerManager);
+                        } catch(Exception e) {
+                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+                        }
+                    this.imageResources = imageResources;
 
                     GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = null;
                         try {
@@ -210,10 +218,10 @@ Created By: Travis Berthelot
                         <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
                         //We may need to set a dimension for each image/animation.
-                        <xsl:value-of select="name" />2.canvasWidth = resources.<xsl:value-of select="name" />ImageArray[0].getWidth();
-                        <xsl:value-of select="name" />2.canvasHeight = resources.<xsl:value-of select="name" />ImageArray[0].getHeight();
-                        <xsl:value-of select="name" />2.width = (int) (resources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
-                        <xsl:value-of select="name" />2.height = (int) (resources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
+                        <xsl:value-of select="name" />2.canvasWidth = imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
+                        <xsl:value-of select="name" />2.canvasHeight = imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();
+                        <xsl:value-of select="name" />2.width = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
+                        <xsl:value-of select="name" />2.height = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
                         <xsl:value-of select="name" />2.halfWidth = (<xsl:value-of select="name" />2.width / 2);
                         <xsl:value-of select="name" />2.halfHeight = (<xsl:value-of select="name" />2.height / 2);
                         LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="name" />2.toString()));

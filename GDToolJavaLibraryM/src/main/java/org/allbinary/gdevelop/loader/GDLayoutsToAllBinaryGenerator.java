@@ -98,6 +98,7 @@ public class GDLayoutsToAllBinaryGenerator
                 layoutGameXmlAsString,
                 
                 layoutGameXmlAsString,
+                layoutGameXmlAsString,
                 
                 gameXmlAsString,
                 gameXmlAsString,
@@ -120,6 +121,8 @@ public class GDLayoutsToAllBinaryGenerator
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutOtherEventGDNodes.xsl"),
 
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDResources.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutImageResources.xsl"),
+                
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGlobals.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDObjects.xsl")
             };
@@ -148,6 +151,7 @@ public class GDLayoutsToAllBinaryGenerator
                 "SpecialAnimationOtherEventGDNodes.java",
 
                 "SpecialAnimationGDResources.java",
+                "SpecialAnimationImageResources.java",
                 "SpecialAnimationGlobals.java",
                 "GDObjectsFactory.java"
             };

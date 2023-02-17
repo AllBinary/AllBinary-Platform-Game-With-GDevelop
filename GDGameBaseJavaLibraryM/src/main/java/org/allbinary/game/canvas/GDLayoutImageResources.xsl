@@ -26,18 +26,13 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
-    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAnimations.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectResources.xsl" />    
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
-    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventPaint.xsl" />
-    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
-    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventOpen.xsl" />
-    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClose.xsl" />
-    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
-
+    
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -74,125 +69,97 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.game.canvas;
 
-                import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.game.layer.GDGameLayer;
-                import org.allbinary.game.layer.GDGameLayerFactory;
-                import org.allbinary.game.layout.GDNode;
-                import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+                import java.io.InputStream;
+                import java.util.Hashtable;
 
-                import org.allbinary.game.layout.GDObject;
+                import javax.microedition.lcdui.Image;
+
+                import org.allbinary.animation.image.GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
+                import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.data.resource.ResourceUtil;
+                import org.allbinary.game.resource.GDResources;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
-                import org.allbinary.game.layer.CollidableCompositeLayer;
-                import org.allbinary.game.layer.identification.GroupLayerManagerListener;
-                import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
+                import org.allbinary.image.ImageCache;
+                import org.allbinary.image.ImageCacheFactory;
                 import org.allbinary.logic.basic.string.CommonStrings;
                 import org.allbinary.logic.basic.string.CommonSeps;
                 import org.allbinary.logic.basic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.util.BasicArrayList;
-                import org.allbinary.util.ArrayUtil;
+                import org.allbinary.media.image.ImageCompleteUtil;
+                import org.allbinary.media.image.ImageCopyUtil;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes extends SpecialAnimation
+                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources extends SpecialAnimation
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes instance;
+                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources instance;
 
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes getInstance(final AllBinaryGameLayerManager allBinaryGameLayerManager)
-                    {
-                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes(allBinaryGameLayerManager);
-                        return instance;
-                    }
-
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes getInstance()
+                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources getInstance(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
+                        {
+                            instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources(allBinaryGameLayerManager);
+                            return instance;
+                        }
+                        
+                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources getInstance()
                         {
                             return instance;
                         }
 
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-                        private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
                         
-                        private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        private final GDResources gdResources = GDResources.getInstance();
+                        private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
+                        private final ImageCompleteUtil imageCompleteUtil = ImageCompleteUtil.getInstance();
+                        private final ImageCache imageCache = ImageCacheFactory.getInstance();
+                        private final ResourceUtil resourceUtil = ResourceUtil.getInstance();
+       
+                        private final GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
 
-                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
-
-                        try {
-                        
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));
-
-                    <xsl:call-template name="eventsCreateAssignGDObjectGDNodes" >
-                        <xsl:with-param name="caller" >externalEventsCreateAssignGDObject</xsl:with-param>
-                        <xsl:with-param name="totalRecursions" >
-                            <xsl:value-of select="0" />
+                    <xsl:call-template name="imageProperties" >
+                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
+                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
+                        <xsl:with-param name="windowWidth" >
+                            <xsl:value-of select="$windowWidth" />
+                        </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
-                        <xsl:with-param name="objectsAsString" >
-                            <xsl:value-of select="$objectsAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="createdObjectsAsString" >
-                            <xsl:value-of select="$createdObjectsAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="conditionToProcess" >
-                            <xsl:value-of select="' '" />
-                        </xsl:with-param>
-                        <xsl:with-param name="actionToProcess" >
-                            <xsl:value-of select="' '" />
-                        </xsl:with-param>
-                        <xsl:with-param name="otherEventToProcess" >
-                            <xsl:value-of select="''" />
-                        </xsl:with-param>
-                        <xsl:with-param name="objectEventToProcess" >
-                            <xsl:value-of select="' '" />
-                        </xsl:with-param>
-
                     </xsl:call-template>
 
-                        } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
-                        }
+                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
 
-                    }
+                        //try {
+                        
+                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));
 
-                    public long TimeDelta() {
-                        return globals.timeDelta;
-                    }
+                    <xsl:call-template name="imageCache" >
+                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
+                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="windowWidth" >
+                            <xsl:value-of select="$windowWidth" />
+                        </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
-                    public int SceneWindowWidth() {
-                        return DisplayInfoSingleton.getInstance().getLastWidth();
-                    }
+                    animationInterfaceFactoryInterfaceFactory.init(-1);
 
-                    public int SceneWindowHeight() {
-                        return DisplayInfoSingleton.getInstance().getLastHeight();
-                    }
+                    <xsl:text>&#10;</xsl:text>                    
 
-                    public int Random(final int range) {
-                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
-                    }
+                        //} catch(Exception e) {
+                            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+                        //}
 
-                    public int Variable(final int value) {
-                        return value;
-                    }
-
-                    public double Variable(final double value) {
-                        return value;
-                    }
-
-                    public int GlobalVariable(final int value) {
-                        return value;
-                    }
-                    
-                    public String ToString(final int value) {
-                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
-                        return Integer.toString(value);
                     }
 
                 }
