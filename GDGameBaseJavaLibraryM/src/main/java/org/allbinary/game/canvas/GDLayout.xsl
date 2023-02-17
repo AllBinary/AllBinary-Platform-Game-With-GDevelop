@@ -118,25 +118,14 @@ Created By: Travis Berthelot
                             return instance;
                         }
 
-                        //private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals;
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder builder;
-                        //private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
-                        private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory;
                         
-                        private final GDResources gdResources = GDResources.getInstance();
-                        private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
-                        private final ImageCache imageCache = ImageCacheFactory.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
-                        private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
-                        private final ResourceUtil resourceUtil = ResourceUtil.getInstance();
-       
-                        private final GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
-                        
+
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
                         globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.create();
-                        gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
                         builder = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(canvas, allBinaryGameLayerManager);
                     
                         try {

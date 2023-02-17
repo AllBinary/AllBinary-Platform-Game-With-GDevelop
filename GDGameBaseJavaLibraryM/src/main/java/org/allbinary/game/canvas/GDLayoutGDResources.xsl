@@ -81,25 +81,19 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
                 import org.allbinary.animation.image.GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.data.resource.ResourceUtil;
                 import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.resource.GDResources;
                 import org.allbinary.game.identification.Group;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
-                import org.allbinary.game.layer.identification.GroupLayerManagerListener;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
-                import org.allbinary.image.ImageCache;
-                import org.allbinary.image.ImageCacheFactory;
                 import org.allbinary.logic.basic.string.CommonStrings;
                 import org.allbinary.logic.basic.string.CommonSeps;
                 import org.allbinary.logic.basic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.media.image.ImageCompleteUtil;
-                import org.allbinary.media.image.ImageCopyUtil;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources extends SpecialAnimation
@@ -119,12 +113,6 @@ Created By: Travis Berthelot
                         }
 
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-                        
-                        private final GDResources gdResources = GDResources.getInstance();
-                        private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
-                        private final ImageCompleteUtil imageCompleteUtil = ImageCompleteUtil.getInstance();
-                        private final ImageCache imageCache = ImageCacheFactory.getInstance();
-                        private final ResourceUtil resourceUtil = ResourceUtil.getInstance();
        
                         private final GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
 

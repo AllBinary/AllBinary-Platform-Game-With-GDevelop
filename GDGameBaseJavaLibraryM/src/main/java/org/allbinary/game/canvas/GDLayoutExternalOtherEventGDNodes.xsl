@@ -93,7 +93,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.ArrayUtil;
 
-                //Layout name=<xsl:value-of select="$layoutName" />
+                //Layout name=<xsl:value-of select="$layoutName" /> - GDNode processM calls in this class can load resources
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes extends SpecialAnimation
                 {
 

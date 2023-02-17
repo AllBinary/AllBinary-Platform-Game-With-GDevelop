@@ -184,11 +184,11 @@ Created By: Travis Berthelot
                     //GDNode - START
                     externalActionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes.getInstance(allBinaryGameLayerManager);
                     externalConditionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes.getInstance(allBinaryGameLayerManager);
-                    externalOtherEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes.getInstance(allBinaryGameLayerManager);
+                    externalOtherEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes.getInstance(allBinaryGameLayerManager); //GDNode processM calls in this class can load resources
                     externalObjectEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes.getInstance(allBinaryGameLayerManager);
                     actionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes.getInstance(canvas, allBinaryGameLayerManager);
-                    conditionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes.getInstance(allBinaryGameLayerManager);
-                    otherEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes.getInstance(allBinaryGameLayerManager);
+                    conditionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes.getInstance(allBinaryGameLayerManager); //GDNode processM calls in this class can load resources
+                    otherEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes.getInstance(allBinaryGameLayerManager); //GDNode processM calls in this class can load resources
                     objectEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes.getInstance(allBinaryGameLayerManager);
                     //GDNode - END
 
