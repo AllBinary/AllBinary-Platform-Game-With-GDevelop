@@ -94,7 +94,13 @@ Created By: Travis Berthelot
                 {
 
                     private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources instance;
-                        
+
+                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources create() throws Exception
+                        {
+                            instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources();
+                            return instance;
+                        }
+
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources getInstance()
                         {
                             return instance;
