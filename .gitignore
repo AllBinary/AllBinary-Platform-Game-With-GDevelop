@@ -18,7 +18,7 @@ GDGameMIDlet.java
 GDResources.java
 GDGameCommandFactory.java
 GDGameStartGameOverCanvasRunnable.java
-GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
+GD*GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
 
 /platform/j2se/GDGameJ2SEApplicationM/src/
 /platform/j2me/GDGameJ2MEApplicationM/src/
