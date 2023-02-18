@@ -99,6 +99,7 @@ public class GDLayoutsToAllBinaryGenerator
                 
                 layoutGameXmlAsString,
                 layoutGameXmlAsString,
+                layoutGameXmlAsString,
                 
                 gameXmlAsString,
                 gameXmlAsString,
@@ -122,6 +123,7 @@ public class GDLayoutsToAllBinaryGenerator
 
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDResources.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutImageResources.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutWaitOnImageResources.xsl"),
                 
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGlobals.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDObjects.xsl")
@@ -152,6 +154,8 @@ public class GDLayoutsToAllBinaryGenerator
 
                 "SpecialAnimationGDResources.java",
                 "SpecialAnimationImageResources.java",
+                "SpecialAnimationWaitForImageResources.java",
+                
                 "SpecialAnimationGlobals.java",
                 "GDObjectsFactory.java"
             };
@@ -191,8 +195,13 @@ public class GDLayoutsToAllBinaryGenerator
             };
 
             final String[] OUTPUT_FILE_PATHS = {
-                "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
-                "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java"
+                "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+                "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD"
+            };
+            
+            final String[] OUTPUT_FILE_PATH_END_ARRAY = {
+                "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+                "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java"
             };
 
             final int xslTotal2 = OUTPUT_FILE_PATHS.length;
@@ -203,7 +212,7 @@ public class GDLayoutsToAllBinaryGenerator
             }
 
             //TWB - need to update to allow loading for every layout.
-            for (int index = size - 2; index < size - 1; index++)
+            for (int index = 0; index < size; index++)
             {
                 indexAsString = Integer.toString(index);
                 final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, indexAsString);
@@ -219,9 +228,11 @@ public class GDLayoutsToAllBinaryGenerator
                             new StreamSource(new StringBufferInputStream(gameXmlAsString)));
 
                     stringBuilder.delete(0, stringBuilder.length());
-                    LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + OUTPUT_FILE_PATHS[index2], this, CommonStrings.getInstance().CONSTRUCTOR));
+                    final String outputFilePath = stringBuilder.append(OUTPUT_FILE_PATHS[index2]).append(index).append(OUTPUT_FILE_PATH_END_ARRAY[index2]).toString();
 
-                    this.bufferedWriterUtil.overwrite(OUTPUT_FILE_PATHS[index2], result);
+                    LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + outputFilePath, this, CommonStrings.getInstance().CONSTRUCTOR));
+
+                    this.bufferedWriterUtil.overwrite(outputFilePath, result);
                     
                     //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
                 }
