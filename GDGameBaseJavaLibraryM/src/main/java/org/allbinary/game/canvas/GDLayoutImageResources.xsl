@@ -71,12 +71,11 @@ Created By: Travis Berthelot
 
                 import java.io.InputStream;
                 import java.util.Hashtable;
+                import java.util.HashMap;
 
                 import javax.microedition.lcdui.Image;
 
-                import org.allbinary.animation.image.GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.data.resource.ResourceUtil;
                 import org.allbinary.game.resource.GDResources;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.image.ImageCache;
@@ -86,8 +85,6 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.basic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.media.image.ImageCompleteUtil;
-                import org.allbinary.media.image.ImageCopyUtil;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources extends SpecialAnimation
@@ -106,15 +103,10 @@ Created By: Travis Berthelot
                             return instance;
                         }
 
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-                        
                         private final GDResources gdResources = GDResources.getInstance();
-                        private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
-                        private final ImageCompleteUtil imageCompleteUtil = ImageCompleteUtil.getInstance();
                         private final ImageCache imageCache = ImageCacheFactory.getInstance();
-                        private final ResourceUtil resourceUtil = ResourceUtil.getInstance();
-       
-                        private final GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
+
+                        public final HashMap imageHashMap = new HashMap();
 
                     <xsl:call-template name="imageProperties" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >

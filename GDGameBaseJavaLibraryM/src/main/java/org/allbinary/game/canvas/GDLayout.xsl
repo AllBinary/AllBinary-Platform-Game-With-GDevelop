@@ -76,7 +76,6 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Graphics;
 
-                import org.allbinary.animation.image.GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.data.resource.ResourceUtil;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;

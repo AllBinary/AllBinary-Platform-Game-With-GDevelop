@@ -105,7 +105,7 @@ import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 
-public class GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
+public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
                     <xsl:call-template name="animationNames" >
@@ -123,12 +123,12 @@ public class GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFact
                         </xsl:with-param>
                     </xsl:call-template>
         
-    public GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
+    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
         super("Game Image Animations");
     }
 
-    public GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
+    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
         super(name);
     }

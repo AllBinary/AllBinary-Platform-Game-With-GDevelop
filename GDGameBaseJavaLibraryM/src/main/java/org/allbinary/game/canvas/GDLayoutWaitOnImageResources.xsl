@@ -26,7 +26,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
-    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectResources.xsl" />    
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectWaitOnResources.xsl" />    
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
@@ -71,91 +71,46 @@ Created By: Travis Berthelot
 
                 import java.io.InputStream;
                 import java.util.Hashtable;
+                import java.util.HashMap;
 
                 import javax.microedition.lcdui.Image;
 
-                import org.allbinary.animation.AnimationInterfaceFactoryInterface;
-                import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
-                import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
-                import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface;
-                import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
                 import org.allbinary.animation.image.GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.game.layer.GDGameLayerFactory;
+                import org.allbinary.data.resource.ResourceUtil;
                 import org.allbinary.game.resource.GDResources;
-                import org.allbinary.game.identification.Group;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
-                import org.allbinary.game.layer.special.GDConditionWithGroupActions;
-                import org.allbinary.graphics.GPoint;
-                import org.allbinary.graphics.PointFactory;
-                import org.allbinary.graphics.Rectangle;
+                import org.allbinary.image.ImageCache;
+                import org.allbinary.image.ImageCacheFactory;
                 import org.allbinary.logic.basic.string.CommonStrings;
                 import org.allbinary.logic.basic.string.CommonSeps;
                 import org.allbinary.logic.basic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.media.image.ImageCompleteUtil;
+                import org.allbinary.media.image.ImageCopyUtil;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources extends SpecialAnimation
+                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationWaitForImageResources extends SpecialAnimation
                 {
-
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources instance;
-
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources getInstance(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
-                        {
-                            instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources(allBinaryGameLayerManager);
-                            return instance;
-                        }
-                        
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources getInstance()
-                        {
-                            return instance;
-                        }
-
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+                        private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
+                        private final ImageCompleteUtil imageCompleteUtil = ImageCompleteUtil.getInstance();
+                        private final ImageCache imageCache = ImageCacheFactory.getInstance();
        
                         private final GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
 
-                    <xsl:call-template name="objectsProperties" >
-                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
-                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
-                        <xsl:with-param name="instancesAsString" >
-                            <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-                        
-                    <xsl:for-each select="objects" >
-                        <xsl:variable name="typeValue" select="type" />
-                        <xsl:if test="$typeValue = 'Sprite'" >
-                            <xsl:variable name="name" select="name" />
-                            public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
-                        </xsl:if>
-                        <xsl:if test="$typeValue = 'TextObject::Text'" >
-                            <xsl:variable name="name" select="name" />
-                            public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
-                        </xsl:if>
-                    </xsl:for-each>
+                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationWaitForImageResources() {
+                    }
 
-                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
+                    public void process(final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources, final HashMap imageHashMap) throws Exception {
 
                         //try {
                         
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));
 
-                    new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationWaitForImageResources().process(
-                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance(), 
-                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance().imageHashMap);
+                    final Hashtable hashTable = imageCache.getHashtable();
 
-                    animationInterfaceFactoryInterfaceFactory.init(-1);
-
-                    <xsl:call-template name="objectsAssign" >
+                    <xsl:call-template name="waitOnImageCache" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
@@ -169,6 +124,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
+
                     <xsl:text>&#10;</xsl:text>                    
 
                         //} catch(Exception e) {

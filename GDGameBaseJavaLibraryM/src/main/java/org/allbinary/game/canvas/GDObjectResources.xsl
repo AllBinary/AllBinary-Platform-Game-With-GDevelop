@@ -35,9 +35,7 @@ Created By: Travis Berthelot
                 //Animation Total: <xsl:value-of select="count(animations)" />
                 public final String[] <xsl:value-of select="name" />ResourceArray;
 
-                public final InputStream[] <xsl:value-of select="name" />InputStreamArray;
-
-                public final Image[] <xsl:value-of select="name" />ImageArray;
+                public Image[] <xsl:value-of select="name" />ImageArray;
 
             </xsl:if>
 
@@ -52,7 +50,6 @@ Created By: Travis Berthelot
         <xsl:param name="instancesAsString" />
 
         //objects - SPRITES - cache - START
-                final Hashtable hashTable = imageCache.getHashtable();
 
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
@@ -74,37 +71,18 @@ Created By: Travis Berthelot
                 </xsl:for-each>
                 };
 
-                this.<xsl:value-of select="name" />InputStreamArray = new InputStream[] {
-                <xsl:for-each select="animations" >
-                    resourceUtil.getResourceAsStream(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]),
-                </xsl:for-each>
-                };
-
                 <xsl:for-each select="animations" >
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
-                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = Image.createImage(<xsl:value-of select="$name" />InputStreamArray[<xsl:value-of select="position() - 1" />]);
-                    imageCompleteUtil.waitFor(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, <xsl:value-of select="$name" />ResourceArray[0]);
+                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+                    imageHashMap.put(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />], <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />);
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
-                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = Image.createImage(<xsl:value-of select="$name" />InputStreamArray[<xsl:value-of select="position() - 1" />]);
-                    imageCompleteUtil.waitFor(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, <xsl:value-of select="$name" />ResourceArray[0]);
+                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+                    imageHashMap.put(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />], <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />);
                     </xsl:if>
                 </xsl:for-each>
 
-                this.<xsl:value-of select="name" />ImageArray = new Image[] {
-                <xsl:for-each select="animations" >
-                    <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
-                    <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
-                    <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />,
-                    </xsl:if>
-                    <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
-                    imageCopyUtil.createImage(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, 1.44f, true),
-                    </xsl:if>
-                </xsl:for-each>
-                };
-
-                hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
             </xsl:if>
 
         </xsl:for-each>

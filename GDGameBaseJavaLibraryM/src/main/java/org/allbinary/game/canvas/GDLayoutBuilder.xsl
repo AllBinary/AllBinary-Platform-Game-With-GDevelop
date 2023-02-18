@@ -74,8 +74,6 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.game.canvas;
 
-                import org.allbinary.animation.image.GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
-
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.data.resource.ResourceUtil;
                 import org.allbinary.game.layout.GDNode;
