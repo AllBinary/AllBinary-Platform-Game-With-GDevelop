@@ -75,11 +75,9 @@ Created By: Travis Berthelot
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
                     final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
-                    imageHashMap.put(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />], <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />);
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
                     final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
-                    imageHashMap.put(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />], <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />);
                     </xsl:if>
                 </xsl:for-each>
 
@@ -87,10 +85,10 @@ Created By: Travis Berthelot
                 <xsl:for-each select="animations" >
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
-                    (Image) imageHashMap.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]),
+                    <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />,
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
-                    imageCopyUtil.createImage((Image) imageHashMap.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]), 1.44f, true),
+                    imageCopyUtil.createImage(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, 1.44f, true),
                     </xsl:if>
                 </xsl:for-each>
                 };

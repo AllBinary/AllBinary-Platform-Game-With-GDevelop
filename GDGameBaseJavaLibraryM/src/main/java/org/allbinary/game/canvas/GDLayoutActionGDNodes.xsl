@@ -122,7 +122,6 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
                         
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
-                        private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
 
                         private final MyCanvas canvas;
                         

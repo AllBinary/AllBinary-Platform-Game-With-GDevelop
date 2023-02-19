@@ -73,30 +73,22 @@ Created By: Travis Berthelot
                 package org.allbinary.game.canvas;
 
                 import javax.microedition.lcdui.Font;
-                
                 import javax.microedition.lcdui.Graphics;
                 
                 import org.allbinary.animation.text.CustomTextAnimation;
-                import org.allbinary.data.resource.ResourceUtil;
                 import org.allbinary.game.identification.Group;
                 import org.allbinary.game.identification.GroupFactory;
                 import org.allbinary.game.layer.GDGameLayer;
-                import org.allbinary.game.layer.GDGameLayerFactory;
-                import org.allbinary.game.layer.identification.GroupLayerManagerListener;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layout.behavior.DestroyOutsideBehavior;
                 import org.allbinary.game.layout.behavior.GDBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.game.resource.GDResources;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
-                import org.allbinary.image.ImageCache;
-                import org.allbinary.image.ImageCacheFactory;
                 import org.allbinary.logic.basic.util.event.EventListenerInterface;
-                import org.allbinary.media.image.ImageCopyUtil;
                 import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;

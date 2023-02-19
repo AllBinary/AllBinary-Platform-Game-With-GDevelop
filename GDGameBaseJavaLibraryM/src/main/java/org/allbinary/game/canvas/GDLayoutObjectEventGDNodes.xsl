@@ -81,7 +81,6 @@ Created By: Travis Berthelot
 
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.CollidableCompositeLayer;
-                import org.allbinary.game.layer.identification.GroupLayerManagerListener;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.logic.basic.string.CommonStrings;
                 import org.allbinary.logic.basic.string.CommonSeps;

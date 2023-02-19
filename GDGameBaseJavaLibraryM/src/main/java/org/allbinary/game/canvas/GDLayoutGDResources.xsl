@@ -69,11 +69,6 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.game.canvas;
 
-                import java.io.InputStream;
-                import java.util.Hashtable;
-
-                import javax.microedition.lcdui.Image;
-
                 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
                 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
                 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
@@ -82,7 +77,6 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.image.GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.layer.GDGameLayerFactory;
-                import org.allbinary.game.resource.GDResources;
                 import org.allbinary.game.identification.Group;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
