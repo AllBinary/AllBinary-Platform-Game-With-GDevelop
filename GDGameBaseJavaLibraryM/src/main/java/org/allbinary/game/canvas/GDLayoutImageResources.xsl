@@ -75,6 +75,7 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Image;
 
+                import org.allbinary.animation.image.GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.resource.GDResources;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
@@ -85,6 +86,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.basic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.media.image.ImageCopyUtil;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources extends SpecialAnimation
@@ -103,8 +105,11 @@ Created By: Travis Berthelot
                             return instance;
                         }
 
-                        private final GDResources gdResources = GDResources.getInstance();
+                        private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
                         private final ImageCache imageCache = ImageCacheFactory.getInstance();
+                        private final GDResources gdResources = GDResources.getInstance();
+
+                        private final GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
 
                         public final HashMap imageHashMap = new HashMap();
 
@@ -128,6 +133,8 @@ Created By: Travis Berthelot
                         //try {
                         
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));
+
+                            final Hashtable hashTable = imageCache.getHashtable();
 
                     <xsl:call-template name="imageCache" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >

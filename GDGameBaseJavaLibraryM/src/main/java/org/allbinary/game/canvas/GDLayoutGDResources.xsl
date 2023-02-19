@@ -149,12 +149,8 @@ Created By: Travis Berthelot
                         
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));
 
-                    new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationWaitForImageResources().process(
-                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance(), 
-                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance().imageHashMap);
-
                     animationInterfaceFactoryInterfaceFactory.init(-1);
-
+                    
                     <xsl:call-template name="objectsAssign" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />

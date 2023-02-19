@@ -83,6 +83,20 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
 
+                <xsl:value-of select="name" />ImageArray = new Image[] {
+                <xsl:for-each select="animations" >
+                    <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
+                    <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
+                    (Image) imageHashMap.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]),
+                    </xsl:if>
+                    <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
+                    imageCopyUtil.createImage((Image) imageHashMap.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]), 1.44f, true),
+                    </xsl:if>
+                </xsl:for-each>
+                };
+
+                hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
+
             </xsl:if>
 
         </xsl:for-each>
