@@ -112,16 +112,17 @@ Created By: Travis Berthelot
                             return instance;
                         }
 
+                        private final CommonStrings commonStrings = CommonStrings.getInstance();
+                        private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
-                        
-                        private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
 
                         public boolean initialized = false;
                         
                         public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
                         
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR + ":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder", this, CommonStrings.getInstance().CONSTRUCTOR));
+                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR + ":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder", this, commonStrings.CONSTRUCTOR));
                         
                     <xsl:call-template name="eventsLogicConstructionMouseButtonReleased" >
                         <xsl:with-param name="totalRecursions" >
@@ -148,7 +149,7 @@ Created By: Travis Berthelot
 //
 //                                @Override
 //                                public void process() {
-//                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, Integer.toString(currentIndex), new Exception()));
+//                                    LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, Integer.toString(currentIndex), new Exception()));
 //                                }
 //                            };
 //                        }
@@ -161,7 +162,7 @@ Created By: Travis Berthelot
                                 gdNode.gameLayerArray[0] = gameLayerArray[0];
                                 gdNode.gameLayerArray[1] = gameLayerArray[1];
 
-                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, FAKE_COLLISION_NODE_STRING));
+                                //LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, FAKE_COLLISION_NODE_STRING));
                                 gdNode.processM(gdNode.gameLayerArray, gdNode, gdNodeList);
                             }
                         };
@@ -170,7 +171,7 @@ Created By: Travis Berthelot
                         try {
                     imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.create();
                         } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources", this, CommonStrings.getInstance().CONSTRUCTOR, e));
+                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources", this, commonStrings.CONSTRUCTOR, e));
                         }
 
                     //GDNode processM calls in this class can load resources
@@ -178,7 +179,7 @@ Created By: Travis Berthelot
                         try {
                     resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance(allBinaryGameLayerManager);
                         } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                         }
 
                     //GDNode - START
@@ -224,7 +225,7 @@ Created By: Travis Berthelot
                         <xsl:value-of select="name" />2.height = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
                         <xsl:value-of select="name" />2.halfWidth = (<xsl:value-of select="name" />2.width / 2);
                         <xsl:value-of select="name" />2.halfHeight = (<xsl:value-of select="name" />2.height / 2);
-                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="name" />2.toString()));
+                        LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />2.toString(), this, commonStrings.PROCESS));
                         </xsl:if>
 
                         <xsl:if test="layer = 'touch'" >
@@ -236,7 +237,7 @@ Created By: Travis Berthelot
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         <xsl:if test="layer != ''" >
                         globals.<xsl:value-of select="name" />GDGameLayer = resources.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />2, globals.<xsl:value-of select="name" />GDConditionWithGroupActions);
-                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0"));
+                        LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0", this, commonStrings.PROCESS));
                         globals.<xsl:value-of select="name" />GDGameLayerList.add(globals.<xsl:value-of select="name" />GDGameLayer);
 
                         globals.<xsl:value-of select="name" />GDGameLayer.updateGDObject(globals.timeDelta);
@@ -328,7 +329,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                         } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                         }
 
                         //allBinaryGameLayerManager.log();

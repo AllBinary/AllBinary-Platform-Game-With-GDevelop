@@ -26,6 +26,8 @@ import org.allbinary.logic.basic.string.CommonLabels;
 
 public class StartRunnable implements Runnable
 {
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
+    
     private final DemoGameMidlet demoGameMidlet;
 
     private final DemoGameMidletEvent startDemoGameMidletEvent;
@@ -46,7 +48,7 @@ public class StartRunnable implements Runnable
             LogUtil.put(LogFactory.getInstance(
                     CommonLabels.getInstance().START_LABEL +
                     "GameCanvasRunnableInterface",
-                    this, CommonStrings.getInstance().RUN));
+                    this, commonStrings.RUN));
 
             this.demoGameMidlet.commandAction(
                     MyCommandsFactory.getInstance().SET_DISPLAYABLE,
@@ -73,11 +75,11 @@ public class StartRunnable implements Runnable
             
             this.demoGameMidlet.postDemoSetup();
 
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().END_RUNNABLE, this, CommonStrings.getInstance().RUN));
+            LogUtil.put(LogFactory.getInstance(commonStrings.END_RUNNABLE, this, commonStrings.RUN));
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().RUN, e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.RUN, e));
         }
 
     }

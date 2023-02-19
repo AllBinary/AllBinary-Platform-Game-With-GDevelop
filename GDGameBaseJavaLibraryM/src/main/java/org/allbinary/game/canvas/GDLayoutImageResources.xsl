@@ -102,6 +102,7 @@ Created By: Travis Berthelot
                             return instance;
                         }
 
+                        private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
                         private final ImageCache imageCache = ImageCacheFactory.getInstance();
                         private final GDResources gdResources = GDResources.getInstance();
@@ -127,7 +128,7 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));
+                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
 
                             final Hashtable hashTable = imageCache.getHashtable();
 
@@ -149,7 +150,7 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>                    
 
                         //} catch(Exception e) {
-                            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+                            //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                         //}
 
                     }

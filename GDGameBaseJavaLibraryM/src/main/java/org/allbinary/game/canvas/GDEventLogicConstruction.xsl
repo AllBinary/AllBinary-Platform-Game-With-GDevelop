@@ -85,7 +85,7 @@ Created By: Travis Berthelot
                             }
                         
                             //Event for Condition
-                            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             
                             <xsl:call-template name="actionIdsMotionGestureEvent" >
                                 <xsl:with-param name="totalRecursions" >0</xsl:with-param>
@@ -181,7 +181,7 @@ Created By: Travis Berthelot
                                 GDNode node;
                                 final int size2 = gameLayerArray.length;
                                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, NODE_AT + index));
+                                    LogUtil.put(LogFactory.getInstance(NODE_AT + index, this, commonStrings.PROCESS));
                                     node = ((GDNode) nodeList<xsl:value-of select="$nodeList" />.get(index));
                                     node.clear();
                                     for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {

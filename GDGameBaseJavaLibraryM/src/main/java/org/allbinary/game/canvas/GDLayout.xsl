@@ -111,10 +111,11 @@ Created By: Travis Berthelot
                             return instance;
                         }
 
+                        private final CommonStrings commonStrings = CommonStrings.getInstance();
+                        private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals;
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder builder;
-                        
-                        private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
@@ -123,10 +124,10 @@ Created By: Travis Berthelot
                     
                         try {
                     
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));                            
+                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));                            
 
                         } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                         }
 
                         //allBinaryGameLayerManager.log();

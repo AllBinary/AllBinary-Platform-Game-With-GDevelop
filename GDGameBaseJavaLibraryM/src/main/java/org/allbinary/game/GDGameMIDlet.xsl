@@ -69,6 +69,8 @@ public class GDGameMIDlet extends
    SpecialDemoGameMidlet
    //DemoGameMidlet
 {
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
+    
     private final String GD_LAYOUT_COLOR = "GDLayout2Color";
 
    public GDGameMIDlet()
@@ -105,7 +107,7 @@ public class GDGameMIDlet extends
 
     public synchronized void set<GDLayout2>RunnableInterface() throws Exception
     {
-        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "set<GDLayout2>"));
+        LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "set<GDLayout2>"));
 
         ////TWB - Loading Feature Change - Can remove remark after testing
         ProgressCanvasFactory.getInstance().start();
@@ -166,9 +168,9 @@ public class GDGameMIDlet extends
 
    protected void mediaShutdown() throws Exception
    {
-        //PreLogUtil.put(CommonStrings.getInstance().START, this, "mediaShutdown - postStopGameCanvasRunnableInterface");
+        //PreLogUtil.put(commonStrings.START, this, "mediaShutdown - postStopGameCanvasRunnableInterface");
 
-        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this,
+        LogUtil.put(LogFactory.getInstance(commonStrings.START, this,
                 "mediaShutdown - postStopGameCanvasRunnableInterface"));
 
         AllBinaryMediaManagerShutdown.shutdown(
@@ -176,13 +178,13 @@ public class GDGameMIDlet extends
         AllBinaryMediaManagerShutdown.shutdown(
            GDGameSoundsFactoryFactory.getInstance());
 
-        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().END, this,
+        LogUtil.put(LogFactory.getInstance(commonStrings.END, this,
                 "mediaShutdown - postStopGameCanvasRunnableInterface"));
    }
 
     public synchronized void setDemo() throws Exception
     {
-        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "setDemo"));
+        LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "setDemo"));
 
         ////TWB - Loading Feature Change - Can remove remark after testing
         ProgressCanvasFactory.getInstance().start();
@@ -217,7 +219,7 @@ public class GDGameMIDlet extends
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, MidletStrings.getInstance().COMMAND_ACTION, e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, MidletStrings.getInstance().COMMAND_ACTION, e));
             if (command != GameCommandsFactory.getInstance().EXIT_COMMAND)
             {
                 this.exit(false);
