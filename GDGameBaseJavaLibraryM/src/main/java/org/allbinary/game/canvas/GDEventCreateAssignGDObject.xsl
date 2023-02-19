@@ -663,7 +663,7 @@ Created By: Travis Berthelot
                     }
 
                     } catch(Exception e) {
-                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().START, e));
+                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().PROCESS, e));
                     }
 
                 }

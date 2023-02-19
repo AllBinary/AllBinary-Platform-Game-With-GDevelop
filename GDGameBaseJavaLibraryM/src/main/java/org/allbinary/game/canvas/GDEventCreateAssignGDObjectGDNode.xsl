@@ -262,7 +262,7 @@ Created By: Travis Berthelot
                                     }
                 
                                 } catch(Exception e) {
-                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().EXCEPTION, e));
+                                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().RUN, e));
                                 }
                             }
                         };
@@ -837,7 +837,7 @@ Created By: Travis Berthelot
                                 canvas.getCustomCommandListener().commandAction(GDGameCommandFactory.getInstance().<xsl:value-of select="$command" />, ProgressCanvasFactory.getInstance());
 
                             } catch(Exception e) {
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().PROCESS, e));
                             }
 
                         }
@@ -884,6 +884,11 @@ Created By: Travis Berthelot
                                 <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
                                 //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                                
+                                //if(gdObject == null) {
+                                //    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "gdObject was null"));
+                                //    return;
+                                //}
 
                                 final GDObject <xsl:value-of select="$name" /> = gdObject;
                                 //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="$name" />.toString()));
@@ -901,7 +906,7 @@ Created By: Travis Berthelot
                                 </xsl:if>
 
                             } catch(Exception e) {
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().PROCESS, e));
                             }
 
                         }
@@ -925,8 +930,13 @@ Created By: Travis Berthelot
 
                                 <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
 
+                                //if(gdObject == null) {
+                                //    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "gdObject was null"));
+                                //    return;
+                                //}
+                                
                                 final GDObject <xsl:value-of select="$name" /> = gdObject;
                                 //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="$name" />.toString()));
 
@@ -943,7 +953,7 @@ Created By: Travis Berthelot
                                 </xsl:if>
 
                             } catch(Exception e) {
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().PROCESS, e));
                             }
 
                         }
@@ -967,8 +977,13 @@ Created By: Travis Berthelot
 
                                 <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                                //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
 
+                                //if(gdObject == null) {
+                                //    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "gdObject was null"));
+                                //    return;
+                                //}
+                                
                                 final GDObject <xsl:value-of select="$name" /> = gdObject;
                                 //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, <xsl:value-of select="$name" />.toString()));
 
@@ -988,7 +1003,7 @@ Created By: Travis Berthelot
                                 </xsl:if>
 
                             } catch(Exception e) {
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().PROCESS, e));
                             }
 
                         }
@@ -1009,7 +1024,7 @@ Created By: Travis Berthelot
                                     </xsl:for-each>
 
                             } catch(Exception e) {
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().PROCESS, e));
                             }
 
                         }
@@ -1036,7 +1051,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                             } catch(Exception e) {
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().PROCESS, e));
                             }
 
                         }
@@ -1057,7 +1072,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                             } catch(Exception e) {
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().PROCESS, e));
                             }
 
                         }
@@ -1104,7 +1119,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                             } catch(Exception e) {
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().PROCESS, e));
                             }
 
                         }
@@ -1132,7 +1147,7 @@ Created By: Travis Berthelot
                                     <xsl:text>&#10;</xsl:text>
 
                             } catch(Exception e) {
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().PROCESS, e));
                             }
 
                         }
@@ -1166,7 +1181,7 @@ Created By: Travis Berthelot
                                     <xsl:text>&#10;</xsl:text>
 
                             } catch(Exception e) {
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().PROCESS, e));
                             }
 
                         }
@@ -1329,7 +1344,7 @@ Created By: Travis Berthelot
                                     <xsl:text>&#10;</xsl:text>
 
                             } catch(Exception e) {
-                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CommonStrings.getInstance().EXCEPTION, e));
+                                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().PROCESS, e));
                             }
 
                         }
