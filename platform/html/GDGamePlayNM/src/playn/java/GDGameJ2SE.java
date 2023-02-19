@@ -32,6 +32,6 @@ public class GDGameJ2SE {
     list.add(new MidletStartupProcessor(list));
     final AllBinaryPlayNGameRunnable gameRunnable = 
             new AllBinaryPlayNGameRunnable(list);
-    PlayN.run(new AllBinaryPlayNGame(new GDGameMidletFactory(), gameRunnable));
+    PlayN.run(new AllBinaryPlayNGame(new GDGameMidletFactory(), gameRunnable, 960, 600));
   }
 }

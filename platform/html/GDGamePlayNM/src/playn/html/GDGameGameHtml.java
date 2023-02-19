@@ -38,6 +38,6 @@ public class GDGameGameHtml extends HtmlGame {
             new AllBinaryPlayNGameRunnable(list);
     PlayN.run(
             //new GraphicsTestGame()
-            new AllBinaryPlayNGame(new GDGameMidletFactory(), gameRunnable));
+            new AllBinaryPlayNGame(new GDGameMidletFactory(), gameRunnable, 960, 600));
   }
 }
