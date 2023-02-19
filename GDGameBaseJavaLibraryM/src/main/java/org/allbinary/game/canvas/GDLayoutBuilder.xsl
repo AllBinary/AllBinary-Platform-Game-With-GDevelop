@@ -75,31 +75,24 @@ Created By: Travis Berthelot
                 package org.allbinary.game.canvas;
 
                 import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.data.resource.ResourceUtil;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 
                 import org.allbinary.game.layout.GDObject;
-                import org.allbinary.game.resource.GDResources;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.CollidableCompositeLayer;
-                import org.allbinary.game.layer.identification.GroupLayerManagerListener;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.displayable.MyCanvas;
-                import org.allbinary.image.ImageCache;
-                import org.allbinary.image.ImageCacheFactory;
                 import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
-
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.logic.basic.string.CommonStrings;
                 import org.allbinary.logic.basic.util.event.AllBinaryEventObject;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.util.BasicArrayList;
-                import org.allbinary.media.image.ImageCopyUtil;
                 import org.allbinary.util.ArrayUtil;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
@@ -121,23 +114,33 @@ Created By: Travis Berthelot
 
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources;
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources;
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes externalActionNodes;
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes externalConditionNodes;
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes externalOtherEventNodes;
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes externalObjectEventNodes;
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes actionNodes;
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes conditionNodes;
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes otherEventNodes;
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes objectEventNodes;
                         
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
 
-                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+                        public boolean initialized = false;
+                        
+                        public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+                        
+                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR + ":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder", this, CommonStrings.getInstance().CONSTRUCTOR));
+                        
+                    <xsl:call-template name="eventsLogicConstructionMouseButtonReleased" >
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
-                        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().CONSTRUCTOR, this, CommonStrings.getInstance().CONSTRUCTOR));
-
+                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes externalActionNodes;
+                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes externalConditionNodes;
+                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes externalOtherEventNodes;
+                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes externalObjectEventNodes;
+                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes actionNodes;
+                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes conditionNodes;
+                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes otherEventNodes;
+                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes objectEventNodes;
+                        
                         int size = globals.nodeArray.length;
 //                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 //                            final int currentIndex = index;
@@ -169,15 +172,14 @@ Created By: Travis Berthelot
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources", this, CommonStrings.getInstance().CONSTRUCTOR, e));
                         }
-                    this.imageResources = imageResources;
 
+                    //GDNode processM calls in this class can load resources
                     GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = null;
                         try {
                     resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance(allBinaryGameLayerManager);
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
                         }
-                    this.resources = resources;
 
                     //GDNode - START
                     externalActionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes.getInstance(allBinaryGameLayerManager);
@@ -316,7 +318,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 -->
 
-                    <xsl:call-template name="eventsLogicConstruction" >
+                    <xsl:call-template name="eventsLogicConstructionCollisionNP" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
@@ -331,6 +333,8 @@ Created By: Travis Berthelot
 
                         //allBinaryGameLayerManager.log();
                         //groupLayerManagerListener.log();
+                        
+                        initialized = true;
                     }
 
                     public long TimeDelta() {

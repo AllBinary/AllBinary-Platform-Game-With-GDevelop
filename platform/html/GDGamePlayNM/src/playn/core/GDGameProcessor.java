@@ -5,6 +5,8 @@
 package playn.core;
 
 import org.allbinary.canvas.Processor;
+import org.allbinary.game.layer.resources.OnDemandResources;
+import org.allbinary.game.resource.GDResources;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.input.motion.button.TouchButtonBlankResource;
 import org.allbinary.input.motion.button.TouchButtonDownResource;
@@ -18,6 +20,7 @@ import org.allbinary.input.motion.button.TouchButtonUpResource;
 import org.allbinary.input.motion.button.TouchScreenFactory;
 import org.allbinary.playn.processors.GameHtmlHasLoadedResourcesProcessor;
 import org.allbinary.playn.processors.GameHtmlLoadResourcesProcessor;
+import org.allbinary.playn.processors.HtmlLoadOnDemandResourcesProcessor;
 import org.allbinary.playn.processors.MidletStartupProcessor;
 import org.allbinary.util.BasicArrayList;
 
@@ -40,27 +43,38 @@ public class GDGameProcessor
     {
         this.list.remove(0);
 
-        //ExplosionResources explosionResources = ExplosionResources.getInstance();
-        //PlayerShipResources basicShipResources = PlayerShipResources.getInstance();
         if (TouchScreenFactory.getInstance().isTouch())
         {
-            String[] resourceStringArray =
-            {
-                TouchButtonBlankResource.getInstance().RESOURCE,
-                TouchButtonGenericActionResource.getInstance().RESOURCE,
-                TouchButtonStartResource.getInstance().RESOURCE,
-                TouchButtonUpResource.getInstance().RESOURCE,
-                TouchButtonDownResource.getInstance().RESOURCE,
-                TouchButtonTurnLeftResource.getInstance().RESOURCE,
-                TouchButtonTurnRightResource.getInstance().RESOURCE,
-                TouchButtonStrafeLeftResource.getInstance().RESOURCE,
-                TouchButtonStrafeRightResource.getInstance().RESOURCE,
-            };
+//            String[] resourceStringArray =
+//            {
+//                TouchButtonBlankResource.getInstance().RESOURCE,
+//                TouchButtonGenericActionResource.getInstance().RESOURCE,
+//                TouchButtonStartResource.getInstance().RESOURCE,
+//                TouchButtonUpResource.getInstance().RESOURCE,
+//                TouchButtonDownResource.getInstance().RESOURCE,
+//                TouchButtonTurnLeftResource.getInstance().RESOURCE,
+//                TouchButtonTurnRightResource.getInstance().RESOURCE,
+//                TouchButtonStrafeLeftResource.getInstance().RESOURCE,
+//                TouchButtonStrafeRightResource.getInstance().RESOURCE,
+//            };
+//
 
-            list.add(new GameHtmlLoadResourcesProcessor(list, resourceStringArray));
+            final GDResources gdResources = GDResources.getInstance();
+            list.add(new GameHtmlLoadResourcesProcessor(list, gdResources.resourceStringArray));
 
-            Processor gameHtmlHasLoadedResourcesProcessor
-                    = new GameHtmlHasLoadedResourcesProcessor(list, resourceStringArray);
+//        OnDemandResources[] onDemandResourcesArray =
+//                MiniSpaceWarImageOnDemandResourcesFactory.getInstance().getOnDemandResourcesArray();
+//
+//        Processor htmlLoadResourcesProcessor = new HtmlLoadOnDemandResourcesProcessor(
+//                list, onDemandResourcesArray);
+//
+//        for (int index = onDemandResourcesArray.length; --index >= 0;)
+//        {
+//            list.add(htmlLoadResourcesProcessor);
+//        }
+            
+            final Processor gameHtmlHasLoadedResourcesProcessor
+                    = new GameHtmlHasLoadedResourcesProcessor(list, gdResources.resourceStringArray);
 
             list.add(gameHtmlHasLoadedResourcesProcessor);
         }

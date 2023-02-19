@@ -77,11 +77,8 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Graphics;
 
                 import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.data.resource.ResourceUtil;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
-                import org.allbinary.game.layer.identification.GroupLayerManagerListener;
                 import org.allbinary.game.layout.GDObject;
-                import org.allbinary.game.resource.GDResources;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
@@ -89,13 +86,10 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.color.BasicColorFactory;
                 import org.allbinary.graphics.color.BasicColorSetUtil;
                 import org.allbinary.graphics.displayable.MyCanvas;
-                import org.allbinary.image.ImageCache;
-                import org.allbinary.image.ImageCacheFactory;
                 import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
                 import org.allbinary.logic.basic.string.CommonStrings;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.media.image.ImageCopyUtil;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
@@ -121,7 +115,7 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder builder;
                         
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
-
+                        
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
                         globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.create();
@@ -140,6 +134,7 @@ Created By: Travis Berthelot
                     }
 
                     public void process() {
+                                                
                         if(globals.lastStartTime == Long.MIN_VALUE) {
                             globals.timeDelta = 0;
                         } else {

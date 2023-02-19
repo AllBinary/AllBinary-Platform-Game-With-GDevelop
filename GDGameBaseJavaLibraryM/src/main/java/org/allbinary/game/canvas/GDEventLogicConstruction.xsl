@@ -40,17 +40,17 @@ Created By: Travis Berthelot
             </xsl:choose>
     -->
 
-    <xsl:template name="eventsLogicConstruction" >
+    <xsl:template name="eventsLogicConstructionMouseButtonReleased" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="layoutIndex" />
 
         <xsl:variable name="quote" >"</xsl:variable>
     
-        //eventsLogicConstruction - START
+        //eventsLogicConstruction - <xsl:value-of select="$totalRecursions" /> - START
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
 
-            <xsl:call-template name="eventsLogicConstruction" >
+            <xsl:call-template name="eventsLogicConstructionMouseButtonReleased" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
                 </xsl:with-param>
@@ -80,6 +80,10 @@ Created By: Travis Berthelot
 
                         public void onMotionGestureEvent(final MotionGestureEvent motionGestureEvent) {
 
+                            if(!initialized) {
+                                return;
+                            }
+                        
                             //Event for Condition
                             //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                             
@@ -92,6 +96,41 @@ Created By: Travis Berthelot
 
                     };
                 </xsl:if>
+
+            </xsl:for-each>
+
+        </xsl:for-each>
+        //eventsLogicConstruction - <xsl:value-of select="$totalRecursions" /> - END
+
+    </xsl:template>
+
+    <xsl:template name="eventsLogicConstructionCollisionNP" >
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="layoutIndex" />
+
+        <xsl:variable name="quote" >"</xsl:variable>
+    
+        //eventsLogicConstruction - <xsl:value-of select="$totalRecursions" /> - START
+        <xsl:for-each select="events" >
+            <xsl:variable name="eventPosition" select="position()" />
+
+            <xsl:call-template name="eventsLogicConstructionCollisionNP" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="layoutIndex" >
+                    <xsl:value-of select="$layoutIndex" />
+                </xsl:with-param>
+            </xsl:call-template>
+
+            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
+            <xsl:if test="repeatExpression" >
+                //repeatExpression <xsl:value-of select="repeatExpression" />
+            </xsl:if>
+
+            <xsl:for-each select="conditions" >
+                <xsl:variable name="typeValue" select="type/value" />
+                //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
 
                 <xsl:if test="$typeValue = 'CollisionNP'" >
                     //CollisionNP - condition
@@ -159,7 +198,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
 
         </xsl:for-each>
-        //eventsLogicConstruction - END
+        //eventsLogicConstruction - <xsl:value-of select="$totalRecursions" /> - END
 
     </xsl:template>
 

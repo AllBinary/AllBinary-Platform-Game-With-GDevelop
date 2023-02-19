@@ -51,7 +51,7 @@ public class GDToAllBinaryResourcesGenerator
         resourceStringBuilder.append(resourceString.toLowerCase());
         resourceStringBuilder.append(this.VALUE_RESOURCE_END);
     }
-
+    
     public void process() throws Exception {
 
         final String RESOURCE_ORIGINAL = "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.origin";
@@ -63,6 +63,25 @@ public class GDToAllBinaryResourcesGenerator
         
         final FileInputStream fileInputStream = new FileInputStream(RESOURCE_ORIGINAL);        
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
+        
+        final String INDENT = "        ";
+        resourceStringBuilder.append('\n');
+        resourceStringBuilder.append("    public final String[] resourceStringArray = {\n");
+        final int size = this.resourceList.size();
+        String name;
+        for(int index = 0; index < size; index++) {
+            name = (String) this.resourceList.get(index);
+            resourceStringBuilder.append(INDENT);
+            resourceStringBuilder.append(name);
+            resourceStringBuilder.append(',');
+            resourceStringBuilder.append('\n');
+        }
+        
+        resourceStringBuilder.append("    ");
+        resourceStringBuilder.append('}');
+        resourceStringBuilder.append(';');
+        resourceStringBuilder.append('\n');
+        
         final Replace replace = new Replace(GD_KEY, this.resourceStringBuilder.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
