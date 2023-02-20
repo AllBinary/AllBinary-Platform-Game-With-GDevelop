@@ -46,6 +46,14 @@
             <!-- AllBinary Platform Version End -->
         </dependency>
 
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameResourceJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
     </dependencies>
 
     <build>
