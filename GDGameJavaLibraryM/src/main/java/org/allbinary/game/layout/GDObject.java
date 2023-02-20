@@ -36,6 +36,7 @@ public class GDObject
     
     public int x;
     public int y;
+
     public int zOrder;
     
     public int rotation;
@@ -65,11 +66,13 @@ public class GDObject
     }
 
     public int Width(final Graphics graphics) {
-        return canvasWidth;
+        //return canvasWidth;
+        return width;
     }
     
     public int Height(final Graphics graphics) {
-        return canvasHeight;
+        //return canvasHeight;
+        return height;
     }
     
     public int X() {
@@ -78,6 +81,14 @@ public class GDObject
 
     public int Y() {
         return this.y;
+    }
+
+    public int X2() {
+        return this.x + this.width;
+    }
+
+    public int Y2() {
+        return this.y + this.height;
     }
     
     //private final StringBuilder stringBuilder = new StringBuilder();
