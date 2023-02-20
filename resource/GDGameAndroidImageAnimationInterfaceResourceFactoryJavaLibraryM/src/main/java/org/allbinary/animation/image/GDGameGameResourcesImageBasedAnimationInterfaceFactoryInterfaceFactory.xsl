@@ -108,6 +108,8 @@ import org.allbinary.logic.communication.log.LogUtil;
 public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
+
                     <xsl:call-template name="animationNames" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
