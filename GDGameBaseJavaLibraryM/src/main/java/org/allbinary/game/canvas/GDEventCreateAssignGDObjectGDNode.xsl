@@ -1371,6 +1371,8 @@ Created By: Travis Berthelot
                         @Override
                         public void process() {
 
+                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
         <xsl:if test="../conditions" >
             //Sibling Conditions
             boolean siblingConditions = true;
