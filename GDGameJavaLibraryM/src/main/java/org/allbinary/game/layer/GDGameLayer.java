@@ -477,8 +477,16 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 //            final int y2 = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * -16) / noDecimalTrigTable.SCALE;
 //            graphics.drawString(E, this.x + x2 + this.getHalfWidth(), this.y + y2 + this.getHalfHeight(), 0);
 
-        //stringBuilder.delete(0, stringBuilder.length());
-        //graphics.drawString(stringBuilder.append(Integer.toString(x)).append(',').append(Integer.toString(y)).toString(), this.x, this.y, 0);
+//        stringBuilder.delete(0, stringBuilder.length());
+//        final String location = stringBuilder.append(Integer.toString(x)).append(',').append(Integer.toString(y)).toString();
+//        
+//        final ViewPosition viewPosition = this.getViewPosition();
+//        final int viewX = viewPosition.getX();
+//        final int viewY = viewPosition.getY();
+//        graphics.drawString(location, viewX - this.getHalfWidth(), viewY - this.getHalfHeight(), 0);
+//        graphics.drawString(location, viewX - this.getHalfWidth(), viewY - this.getHalfHeight() + this.getHeight() * 2, 0);
+//        graphics.drawString(location, viewX - this.getHalfWidth() + this.getWidth() * 2, viewY - this.getHalfHeight(), 0);
+//        graphics.drawString(location, viewX - this.getHalfWidth() + this.getWidth() * 2, viewY - this.getHalfHeight() + this.getHeight() * 2, 0);
 
 //            this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().GREEN);
 //
