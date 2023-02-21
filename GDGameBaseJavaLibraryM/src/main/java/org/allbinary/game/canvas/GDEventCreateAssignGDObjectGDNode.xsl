@@ -132,6 +132,7 @@ Created By: Travis Berthelot
                     //MouseButtonReleased - Handled by AllBinary Event Listeners
                 </xsl:if>
                 <xsl:if test="$typeValue = 'SoundPlaying'" >
+                    //SoundPlaying - GDNode
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -148,6 +149,7 @@ Created By: Travis Berthelot
                     };
                 </xsl:if>
                 <xsl:if test="$typeValue = 'SourisBouton'" >
+                    //SourisBouton - GDNode
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -164,6 +166,7 @@ Created By: Travis Berthelot
                     };
                 </xsl:if>
                 <xsl:if test="$typeValue = 'LayerVisible'" >
+                    //LayerVisible - GDNode
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -180,6 +183,7 @@ Created By: Travis Berthelot
                     };
                 </xsl:if>
                 <xsl:if test="$typeValue = 'KeyFromTextPressed'" >
+                    //KeyFromTextPressed - GDNode
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -196,6 +200,7 @@ Created By: Travis Berthelot
                     };
                 </xsl:if>
                 <xsl:if test="$typeValue = 'SystemInfo::IsMobile'" >
+                    //SystemInfo::IsMobile - GDNode
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -213,6 +218,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
                 <xsl:if test="$typeValue = 'Timer'" >
+                    //Timer - GDNode
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -290,6 +296,7 @@ Created By: Travis Berthelot
                     };
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosX'" >
+                    //PosX - GDNode
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -336,6 +343,7 @@ Created By: Travis Berthelot
                     };
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosY'" >
+                    //PosY - GDNode
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -383,6 +391,7 @@ Created By: Travis Berthelot
                     };
                 </xsl:if>
                 <xsl:if test="$typeValue = 'NbObjet'" >
+                    //NbObjet - GDNode
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -417,6 +426,7 @@ Created By: Travis Berthelot
                     };
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarObjet'" >
+                    //VarObjet - GDNode
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -457,6 +467,7 @@ Created By: Travis Berthelot
                     };
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarScene'" >
+                    //VarScene - GDNode
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -510,6 +521,7 @@ Created By: Travis Berthelot
                     };
                 </xsl:if>                
                 <xsl:if test="$typeValue = 'SourisSurObjet'" >
+                    //SourisSurObjet - GDNode
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -583,7 +595,7 @@ Created By: Travis Berthelot
                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:text>&#10;</xsl:text>
 
-                    //Action - process - for Condition totalRecursions=<xsl:value-of select="$totalRecursions" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" /> hasAssociatedSiblingCondition=<xsl:value-of select="$hasAssociatedSiblingCondition" />
+                    //Action - GDNode - for Condition totalRecursions=<xsl:value-of select="$totalRecursions" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" /> hasAssociatedSiblingCondition=<xsl:value-of select="$hasAssociatedSiblingCondition" />
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -1602,7 +1614,7 @@ Created By: Travis Berthelot
             //Do not create GDNode for comment event type
             </xsl:if>
             <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
-            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
+            //Event - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
             if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                 throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
             }
@@ -1913,7 +1925,7 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($parametersAsString, $name) = text()" >
                             <xsl:if test="$typeValue = 'Sprite'" >
-                        //objectGDObjectAtIndex2 - collide - Sprite - <xsl:value-of select="$name" />
+                        //objectGDObjectAtIndex2 - GDNode - collide - Sprite - <xsl:value-of select="$name" />
                         if(globals.nodeArray[<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
@@ -2018,7 +2030,7 @@ Created By: Travis Berthelot
 
                             </xsl:if>
                             <xsl:if test="$typeValue = 'TextObject::Text'" >
-                        //objectGDObjectAtIndex2 - collide - TextObject::Text - <xsl:value-of select="$name" />
+                        //objectGDObjectAtIndex2 - GDNode - collide - TextObject::Text - <xsl:value-of select="$name" />
                         if(globals.nodeArray[<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
@@ -2116,7 +2128,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="name2" ><xsl:value-of select="name" />,</xsl:variable>
                         <xsl:if test="contains($parametersAsString, $name2)" >
                             <xsl:if test="not(contains($parametersAsString, $name) = text()) and name = 'player'" >
-                        //Hack FIX ME for GDevelop player with GDNode - <xsl:value-of select="$name" />
+                        //Hack FIX ME for GDevelop player with - GDNode - <xsl:value-of select="$name" />
                         if(globals.nodeArray[<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
