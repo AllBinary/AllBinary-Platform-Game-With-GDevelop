@@ -171,7 +171,7 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$name" />.groupWithActionsList.add(globals.<xsl:value-of select="$name1" />GroupInterface);
                         <xsl:value-of select="$name" />.actionForGroupsList.add(new GDNode() {
                         
-                            private final String NODE_AT = "Process GDNode <xsl:value-of select="$nodeList" /> at index: ";
+                            private final String NODE_AT = "Process GDNode nodeArray[<xsl:value-of select="$nodeList" />] at index: ";
 
                             //Possibly more than 2 GameLayers.  So not all actions on group list are collisions but some are.
                             @Override
