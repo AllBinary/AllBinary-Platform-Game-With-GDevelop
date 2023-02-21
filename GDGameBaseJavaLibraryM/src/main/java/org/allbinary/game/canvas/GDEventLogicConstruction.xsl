@@ -168,7 +168,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:for-each>
                                                 
-                    <xsl:value-of select="$name" />.groupWithActionsList.add(globals.<xsl:value-of select="$name1" />GroupInterface);
+                        <xsl:value-of select="$name" />.groupWithActionsList.add(globals.<xsl:value-of select="$name1" />GroupInterface);
                         globals.nodeArray[<xsl:value-of select="$nodeList" />] = new GDNode() {
                         
                             private final String NODE_AT = "Process GDNode <xsl:value-of select="$nodeList" /> at index: ";
