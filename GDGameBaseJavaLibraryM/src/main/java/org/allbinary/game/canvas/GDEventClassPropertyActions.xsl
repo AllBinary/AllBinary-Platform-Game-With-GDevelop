@@ -84,6 +84,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="$typeValue = 'ModVarGlobal'" >
+                            //eventsClassPropertyActions - ModVarGlobal
                             <xsl:if test="parameters[2]/text() = '='" >public int <xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />
                                     <xsl:if test="position() != last()" >
@@ -94,6 +95,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="$typeValue = 'ModVarGlobalTxt'" >
+                            //eventsClassPropertyActions - ModVarGlobalTxt
                             <xsl:if test="parameters[2]/text() = '='" >private String <xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />
                                     <xsl:if test="position() != last()" >
@@ -139,6 +141,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="$typeValue = 'ModVarGlobal'" >
+                                    //eventsClassPropertyActions - ModVarGlobal - 2
                                     <xsl:if test="parameters[2]/text() = '='" >public int <xsl:for-each select="parameters" >
                                             <xsl:value-of select="text()" />
                                             <xsl:if test="position() != last()" >
@@ -149,6 +152,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="$typeValue = 'ModVarGlobalTxt'" >
+                                    //eventsClassPropertyActions - ModVarGlobalTxt - 2
                                     <xsl:if test="parameters[2]/text() = '='" >private String <xsl:for-each select="parameters" >
                                             <xsl:value-of select="text()" />
                                             <xsl:if test="position() != last()" >

@@ -608,7 +608,7 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'ModVarGlobal'" >
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
-                    //ModVarGlobal not implemented
+                    //ModVarGlobal not implemented - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]
                     <xsl:text>&#10;</xsl:text>
                 </xsl:if>
 
