@@ -114,7 +114,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'CollisionNP'" >
-                    //CollisionNP - condition is processed by collision processor
+                    //CollisionNP - condition is processed by the AllBinary collision processor
                 </xsl:if>                
                 <xsl:if test="$typeValue = 'VarObjet'" >
                     //VarObjet - condition is processed from eventsProcess
@@ -417,6 +417,7 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="caller" >NbObjet</xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:for-each>
+                                
                             } else {
                                 //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "Else: <xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>"));
                             }
