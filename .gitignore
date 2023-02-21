@@ -8,6 +8,7 @@ gen/
 
 Resources/**
 
+GD*GameSoundsFactory.java
 GDGame*Canvas.java
 *GDObjectsFactory*.java
 *SpecialAnimation*.java

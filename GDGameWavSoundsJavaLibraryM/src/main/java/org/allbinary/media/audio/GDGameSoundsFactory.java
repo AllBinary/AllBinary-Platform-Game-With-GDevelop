@@ -1,8 +1,6 @@
 package org.allbinary.media.audio;
 
-
-import org.allbinary.media.audio.BaseSoundsFactory;
-import org.allbinary.media.audio.Sound;
+import org.allbinary.game.resource.GDExplosionSound;
 
 public class GDGameSoundsFactory
 extends BaseSoundsFactory
@@ -15,6 +13,8 @@ extends BaseSoundsFactory
         int index = 0;
 
         //soundInterfaceArray[index++] = new CompositeSound("resource:/wav/test.wav");
+        final GD1GameSoundsFactory gd1GameSoundsFactory = GD1GameSoundsFactory.getInstance();
+        soundInterfaceArray = (Sound[]) gd1GameSoundsFactory.soundList.toArray(new Sound[gd1GameSoundsFactory.soundList.size()]);
     }
     
     public Sound[] getSoundInterfaceArray() throws Exception
