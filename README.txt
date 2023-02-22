@@ -34,10 +34,8 @@ The AllBinary Platform Game is the simplest game state management example for th
 AllBinary Platform.
 
 The platform can create builds for Android, J2ME, HTML5, and J2SE.
-(Allowing it to run on Android, Linux/Solaris, Windows, Mac, and More)
+(Allowing it to run on Android, Linux/Solaris, Windows, Mac, iOS, Chrome, and More)
 
 Future Impl:
 
-Add Avian and other build targets as I release them to the AllBinary Platform.
-
-Add 3D for platforms other than Android and Multiplayer builds for HTML5.
+Cleaner code generation.  Better GDevelop support.  Extensions specific to the AllBinary Platform.
