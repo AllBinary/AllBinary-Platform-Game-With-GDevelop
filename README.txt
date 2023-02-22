@@ -1,5 +1,11 @@
                     AllBinary Platform Game with GDevelop
 
+Generates AllBinary Platform game code using JSON from the GDevelop editor.  The 
+generated code in turn builds out to Android, HTML5, J2SE, J2ME, and the like given 
+the feature used in the game from GDevelop has support in the AllBinary Platform.  
+So if you want to use GDevelop, but want a single code base that builds to each 
+major platform with a faster runtime.  Then this is for you.
+
 What is it?
 
 This Repository contains the main TestGame for the AllBinary Platform with 
