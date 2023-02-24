@@ -8,6 +8,8 @@ gen/
 
 Resources/**
 
+R.java
+GDGameAndroidEarlyResourceInitialization.java
 GD*GameSoundsFactory.java
 GDGame*Canvas.java
 *GDObjectsFactory*.java
