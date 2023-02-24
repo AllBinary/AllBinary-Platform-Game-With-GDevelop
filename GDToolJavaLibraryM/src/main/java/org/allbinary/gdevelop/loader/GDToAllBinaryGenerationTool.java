@@ -187,20 +187,22 @@ public class GDToAllBinaryGenerationTool
     private void loadStandardEvent(final GDStandardEvent standardEvent)
     {
         LogUtil.put(LogFactory.getInstance(StringUtil.getInstance().EMPTY_STRING, this, "loadStandardEvent"));
-        //this.loadEvents(standardEvent.eventList);
+        this.loadEvents(standardEvent.eventList);
         this.loadActions(standardEvent.actionList);
     }
 
     private void loadActions(final BasicArrayList actionList)
     {
-
-        LogUtil.put(LogFactory.getInstance(StringUtil.getInstance().EMPTY_STRING, this, "loadActions"));
-
         final int size = actionList.size();
+        
+        LogUtil.put(LogFactory.getInstance("actionList size: " + size, this, "loadActions"));
+        
         GDInstruction instruction;
         for (int index = 0; index < size; index++)
         {
             instruction = (GDInstruction) actionList.get(index);
+
+            LogUtil.put(LogFactory.getInstance("instruction.typeValue: " + instruction.typeValue, this, "loadActions"));
 
             if (instruction.typeValue.indexOf(this.PLAY_SOUND) >= 0)
             {
@@ -211,10 +213,10 @@ public class GDToAllBinaryGenerationTool
 
     private void loadExpressions(final BasicArrayList parametersExpressionList)
     {
-
-        LogUtil.put(LogFactory.getInstance(StringUtil.getInstance().EMPTY_STRING, this, "loadExpressions"));
-
         final int size = parametersExpressionList.size();
+        
+        LogUtil.put(LogFactory.getInstance("parametersExpressionList size: ", this, "loadExpressions"));
+        
         GDExpression expression;
         String param;
         String resourceString;

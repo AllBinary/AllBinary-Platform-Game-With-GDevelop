@@ -23,7 +23,7 @@ public class GD<GDNAME>Sound extends CompositeSound
    
    private GD<GDNAME>Sound()
    {
-       super("resource:/wav/<GDNAME>.wav".toLowerCase());
+       super("resource:/wav/<GD_FILE_NAME>.wav");
    }
    
    public static Sound getInstance()
