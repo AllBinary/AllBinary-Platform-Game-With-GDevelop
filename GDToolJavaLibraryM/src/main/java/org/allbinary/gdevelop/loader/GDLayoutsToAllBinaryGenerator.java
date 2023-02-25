@@ -11,7 +11,9 @@ import java.io.InputStream;
 import java.io.StringBufferInputStream;
 import javax.xml.transform.stream.StreamSource;
 import org.allbinary.data.tree.dom.BasicUriResolver;
+import org.allbinary.data.tree.dom.DomData;
 import org.allbinary.data.tree.dom.XslHelper;
+import org.allbinary.data.tree.dom.document.XmlDocumentHelper;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
 import org.allbinary.logic.basic.string.CommonStrings;
@@ -30,6 +32,8 @@ public class GDLayoutsToAllBinaryGenerator
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
     private final String GD_CURRENT_LAYOUT_INDEX = "<GD_CURRENT_INDEX>";
+    private final String GAME_START = "<game>";
+    private final String GAME_END = "</game>";
 
     public GDLayoutsToAllBinaryGenerator()
     {
@@ -85,15 +89,16 @@ public class GDLayoutsToAllBinaryGenerator
 
             final String[] xmlStringArray = {
                 gameXmlAsString,
+                layoutGameXmlAsString,
+
+                layoutGameXmlAsString,
+                layoutGameXmlAsString,
                 
                 layoutGameXmlAsString,
                 layoutGameXmlAsString,
                 layoutGameXmlAsString,
+                layoutGameXmlAsString,
                 
-                layoutGameXmlAsString,
-                layoutGameXmlAsString,
-                layoutGameXmlAsString,
-                layoutGameXmlAsString,
                 layoutGameXmlAsString,
                 layoutGameXmlAsString,
                 layoutGameXmlAsString,
@@ -103,14 +108,14 @@ public class GDLayoutsToAllBinaryGenerator
                 layoutGameXmlAsString,
                 
                 gameXmlAsString,
-                gameXmlAsString,
+                layoutGameXmlAsString,
             };
 
             final InputStream[] inputStreamArray = 
             {
-                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDExternalEventsAsXml.xsl"),
-                
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDExternalEventsAsXml.xsl"),                
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutAsXml.xsl"),
+
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayout.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutBuilder.xsl"),
 
@@ -141,8 +146,8 @@ public class GDLayoutsToAllBinaryGenerator
             final String START_WITH_PATH = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD";
             final String[] END = {
                 "ExternalEvents.xml",
-                
                 "SpecialAnimation.xml",
+                
                 "SpecialAnimation.java",
                 "SpecialAnimationBuilder.java",
 
@@ -188,11 +193,18 @@ public class GDLayoutsToAllBinaryGenerator
                         fileName = stringBuilder.append(START_WITH_PATH).append(END[index2]).toString();
                     }
 
+                    //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
+                    
                     LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
 
-                    this.bufferedWriterUtil.overwrite(fileName, result);
-                    
-                    //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
+                    if(index2 == 0 || index2 == 1) {
+                        LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
+                        stringBuilder.delete(0, stringBuilder.length());
+                        final String formattedXml = XmlDocumentHelper.getInstance().format(stringBuilder.append(GAME_START).append(result).append(GAME_END).toString());
+                        this.bufferedWriterUtil.overwrite(fileName, formattedXml);
+                    } else {
+                        this.bufferedWriterUtil.overwrite(fileName, result);
+                    }
                 }
 
                 if(startIndex == 0) {
@@ -246,7 +258,7 @@ public class GDLayoutsToAllBinaryGenerator
                     final String outputFilePath = stringBuilder.append(OUTPUT_FILE_PATHS[index2]).append(index).append(OUTPUT_FILE_PATH_END_ARRAY[index2]).toString();
 
                     LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + outputFilePath, this, CommonStrings.getInstance().CONSTRUCTOR));
-
+                    
                     this.bufferedWriterUtil.overwrite(outputFilePath, result);
                     
                     //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));

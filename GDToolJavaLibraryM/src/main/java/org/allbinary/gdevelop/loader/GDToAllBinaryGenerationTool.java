@@ -7,6 +7,7 @@ package org.allbinary.gdevelop.loader;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import org.allbinary.data.tree.dom.document.XmlDocumentHelper;
 import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.gdevelop.json.GDProject;
 import org.allbinary.gdevelop.json.GDResourcesManager;
@@ -21,6 +22,7 @@ import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringUtil;
+import org.allbinary.logic.basic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
@@ -66,12 +68,18 @@ public class GDToAllBinaryGenerationTool
         final JSONTokener jsonTokener = new JSONTokener(gameAsConfiguration);
         final JSONObject gameAsConfigurationJSONObject = (JSONObject) jsonTokener.nextValue();
 
-        final String xml = "<game>" + XML.toString(gameAsConfigurationJSONObject) + "<variables><value>movement_angle</value><value>angle</value></variables></game>";
+        final String xml = "<game>" + XML.toString(gameAsConfigurationJSONObject) + "<variables><value>movement_angle</value><value>angle</value></variables></game>\n";
+        final String formattedXml = XmlDocumentHelper.getInstance().format(xml);
+        final Replace replace = new Replace("\"", "&quot;");
+        final Replace replace2 = new Replace("'", "&apos;");
+        String fixQuotes = replace.all(formattedXml);
+        fixQuotes = replace2.all(fixQuotes);
 
         final String fileName = "G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml";
         LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
 
-        this.bufferedWriterUtil.overwrite(fileName, xml);
+        this.bufferedWriterUtil.overwrite(fileName, fixQuotes);
+        //this.bufferedWriterUtil.overwrite(fileName, xml);
 
         final GDProject gdProject = new GDProject();
         gdProject.load(gameAsConfigurationJSONObject);
