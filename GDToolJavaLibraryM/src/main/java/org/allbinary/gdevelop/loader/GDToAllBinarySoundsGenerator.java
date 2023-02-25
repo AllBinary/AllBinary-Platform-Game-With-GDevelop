@@ -6,6 +6,7 @@
 
 package org.allbinary.gdevelop.loader;
 
+import org.allbinary.data.CamelCaseUtil;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
