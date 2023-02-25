@@ -24,6 +24,8 @@
 
         <!--
         -->
+ 
+        <module>../GDJavaLibraryM</module>
 
         <module>../resource/GDGameResourceJavaLibraryM</module>
         <!--
@@ -40,6 +42,7 @@
         -->
         
         <module>../platform/j2se/GDGamePCClientInfoJavaLibraryM</module>
+        <module>../platform/j2me/GDGameJ2MEJavaLibraryM</module>
         <module>../GDGameBaseJavaLibraryM</module>
         <module>../GDGameAIJavaLibraryM</module>
         <module>../GDGameJavaLibraryM</module>
