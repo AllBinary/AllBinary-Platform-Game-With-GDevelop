@@ -64,7 +64,7 @@ public class GDLayoutsToAllBinaryRunnableGenerator
             final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
             final byte[] byteArray = new byte[16384];
 
-            final InputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDLayoutRunnable.xsl");            
+            final InputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDLayoutRunnable.xsl");
             final String xslDocumentStr = new String(streamUtil.getByteArray(inputStream, outputStream, byteArray));
             
             final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
