@@ -171,7 +171,7 @@ Created By: Travis Berthelot
                         try {
                     imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.create();
                         } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources", this, commonStrings.CONSTRUCTOR, e));
+                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources", this, commonStrings.CONSTRUCTOR, e));
                         }
 
                     //GDNode processM calls in this class can load resources
