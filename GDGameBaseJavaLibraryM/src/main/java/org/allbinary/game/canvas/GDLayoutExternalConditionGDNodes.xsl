@@ -151,10 +151,6 @@ Created By: Travis Berthelot
 
                     }
 
-                    public long TimeDelta() {
-                        return globals.timeDelta;
-                    }
-
                     public int SceneWindowWidth() {
                         return DisplayInfoSingleton.getInstance().getLastWidth();
                     }

@@ -191,10 +191,6 @@ Created By: Travis Berthelot
                     public long timeDelta;
                     public long lastStartTime = Long.MIN_VALUE;
                     //public final String FAKE_COLLISION_NODE_STRING = "FAKE_COLLISION_NODE_ID";
-
-                    public long TimeDelta() {
-                        return timeDelta;
-                    }
                  
                     public int SceneWindowWidth() {
                         return DisplayInfoSingleton.getInstance().getLastWidth();
