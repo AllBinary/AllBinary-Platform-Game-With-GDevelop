@@ -40,7 +40,7 @@
         </xsl:for-each>
     </xsl:template>
 
-    <xsl:template name="eventIds">
+    <xsl:template name="eventIds" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="caller" />
 
@@ -51,6 +51,7 @@
         <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
             <xsl:text>&#10;</xsl:text>
             <xsl:if test="$caller = 'externalEventsProcess'" >
+                //Apparently the process below already calls this.
                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].clear();
                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processM(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].gameLayerArray, null, null);
                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].clear2();
@@ -60,30 +61,6 @@
 
         <xsl:for-each select="events" >
             <xsl:call-template name="eventIds" >
-                <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="number($totalRecursions) + 1" />
-                </xsl:with-param>
-                <xsl:with-param name="caller" >
-                    <xsl:value-of select="$caller" />
-                </xsl:with-param>
-            </xsl:call-template>
-        </xsl:for-each>
-
-    </xsl:template>
-
-    <xsl:template name="conditionIds">
-        <xsl:param name="totalRecursions" />
-        <xsl:param name="caller" />
-
-        <xsl:for-each select="conditions" >
-            <xsl:variable name="typeValue" select="type" />
-            //Condition - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
-            <xsl:text>&#10;</xsl:text>
-            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-        </xsl:for-each>
-
-        <xsl:for-each select="events" >
-            <xsl:call-template name="conditionIds" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
                 </xsl:with-param>
@@ -107,6 +84,7 @@
             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:for-each>
 
+        <!--
         <xsl:for-each select="events" >
             <xsl:call-template name="actionIds" >
                 <xsl:with-param name="totalRecursions" >
@@ -117,6 +95,7 @@
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
+        -->
 
     </xsl:template>
 
@@ -264,10 +243,12 @@
 -->
     <xsl:template name="childEventWithUsedEvent">
         <xsl:param name="totalRecursions" />
+        <xsl:param name="motionGestureEvent" />
     
         <xsl:variable name="hasKeyFromTextPressed" ><xsl:for-each select="conditions" ><xsl:if test = "type/value = 'KeyFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
 
         <xsl:for-each select="conditions" >
+            <xsl:if test="$motionGestureEvent != 'true'" ><xsl:if test="type/value = 'NbObjet'" >//foundCondition:<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:</xsl:if></xsl:if>
             <xsl:if test="type/value = 'SourisSurObjet'" >//foundCondition:<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:</xsl:if>
         </xsl:for-each>
         <xsl:for-each select="actions" >
@@ -282,6 +263,9 @@
                     <xsl:call-template name="childEventWithUsedEvent" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="number($totalRecursions) + 1" />
+                        </xsl:with-param>
+                        <xsl:with-param name="motionGestureEvent" >
+                            <xsl:value-of select="$motionGestureEvent" />
                         </xsl:with-param>
                     </xsl:call-template>
                 </xsl:if>

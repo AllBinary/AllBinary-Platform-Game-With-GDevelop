@@ -120,6 +120,8 @@ Created By: Travis Berthelot
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
                         
+                        private final String INDEX = "index: ";
+
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
@@ -138,6 +140,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="thisNodeIndex" >
+                            <xsl:value-of select="-2" />
                         </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
@@ -167,10 +172,6 @@ Created By: Travis Berthelot
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                         }
 
-                    }
-
-                    public long TimeDelta() {
-                        return globals.timeDelta;
                     }
 
                     public int SceneWindowWidth() {

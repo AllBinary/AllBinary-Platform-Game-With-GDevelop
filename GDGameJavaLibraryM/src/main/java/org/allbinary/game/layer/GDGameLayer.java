@@ -18,6 +18,7 @@ import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.RotationAnimation;
+import org.allbinary.canvas.Processor;
 import org.allbinary.game.combat.CombatBaseBehavior;
 import org.allbinary.game.combat.damage.DamageableBaseBehavior;
 import org.allbinary.game.combat.destroy.DestroyableSimpleBehavior;
@@ -28,7 +29,6 @@ import org.allbinary.game.layout.GDObjectStrings;
 import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.color.BasicColorFactory;
-import org.allbinary.logic.basic.string.CommonSeps;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -72,6 +72,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     protected long realY;
     
     private float rotationRemainder;
+    
+    private Processor processor = Processor.getInstance();
     
     public GDGameLayer(final String gdName, final Group[] groupInterface,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
@@ -207,8 +209,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.realX = this.realX + velocityX;
         this.realY = this.realY + velocityY;
 
-        final int x = (int) (this.realX / ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE);
-        final int y = (int) (this.realY / ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE);
+        final int scaleFactorValue = ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE;
+        final int x = (int) (this.realX / scaleFactorValue);
+        final int y = (int) (this.realY / scaleFactorValue);
 
         //if(this.getName().equals(PLAYER)) {
         //final PositionStrings positionStrings = PositionStrings.getInstance();
@@ -274,6 +277,13 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
         this.velocityInterface.setVelocity((long) length * SCALE_FACTOR, (short) adjustedAngle, (short) 0);
         //this.Force((int) (noDecimalTrigTable.cos((short) angle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) angle) * length) / SCALE, clearing);
+        
+        //TWB - The ChangePlan might cause this logic instead.
+        if(clearing == 1) {
+            if(this.processor == Processor.getInstance()) {
+                this.processor = new GDProcessor(this);
+            }
+        }
     }
 
     //private static final String FORCE = "force";
@@ -300,6 +310,10 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     
     public void updatePosition() {
         this.setPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
+    }
+
+    public void process(final long timeDelta) throws Exception {
+        this.processor.process(timeDelta);
     }
     
     public void updateGDObject(final long timeDelta)

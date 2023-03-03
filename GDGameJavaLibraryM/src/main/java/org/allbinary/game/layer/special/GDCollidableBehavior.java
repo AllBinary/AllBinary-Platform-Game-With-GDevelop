@@ -73,7 +73,7 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
     {
         if(this.conditionWIthGroupActions.groupWithActionsList.size() > 0) {
             LogUtil.put(LogFactory.getInstance("collide: " + collisionLayer.toString(), this, COLLIDE));
-            final StringBuilder stringBuilder = new StringBuilder();
+            //final StringBuilder stringBuilder = new StringBuilder();
 
             final GroupInterface[] groupInterfaceArray = collisionLayer.getGroupInterface();
             //final GroupInterface[] groupInterfaceArray = this.ownerLayer.getGroupInterface();
@@ -84,13 +84,13 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
             for (int index = 0; index < size; index++) {
 
                 indexOfGroup = this.conditionWIthGroupActions.groupWithActionsList.indexOf(groupInterfaceArray[index]);
-                stringBuilder.delete(0, stringBuilder.length());
-                stringBuilder.append("collide: ");
-                this.conditionWIthGroupActions.append(stringBuilder);
-                stringBuilder.append(" groups: ");
-                LogUtil.put(LogFactory.getInstance(this.toString(collisionLayer, stringBuilder), this, COLLIDE));
+                //stringBuilder.delete(0, stringBuilder.length());
+                //stringBuilder.append("collide: ");
+                //this.conditionWIthGroupActions.append(stringBuilder);
+                //stringBuilder.append(" groups: ");
+                //LogUtil.put(LogFactory.getInstance(this.toString(collisionLayer, stringBuilder), this, COLLIDE));
                 if (indexOfGroup >= 0) {
-                    LogUtil.put(LogFactory.getInstance("groupIndex: " + indexOfGroup, this, COLLIDE));
+                    //LogUtil.put(LogFactory.getInstance("groupIndex: " + indexOfGroup, this, COLLIDE));
                     node = ((GDNode) this.conditionWIthGroupActions.actionForGroupsList.get(indexOfGroup));
                     node.clear();
                     node.gameLayerArray[0] = this.ownerLayer;

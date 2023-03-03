@@ -78,6 +78,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
+                import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
@@ -117,8 +118,11 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals;
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder builder;
                         
+                        //private final AllBinaryGameLayerManager allBinaryGameLayerManager;
+
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
+                        //this.allBinaryGameLayerManager = allBinaryGameLayerManager;
                         globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.create();
                         builder = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(canvas, allBinaryGameLayerManager);
                     
@@ -135,7 +139,8 @@ Created By: Travis Berthelot
                     }
 
                     public void process() {
-                                                
+                        try {
+
                         if(globals.lastStartTime == Long.MIN_VALUE) {
                             globals.timeDelta = 0;
                         } else {
@@ -194,17 +199,26 @@ Created By: Travis Berthelot
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                globals.<xsl:value-of select="name" />GDGameLayerList.remove(removeList.get(index));
                            }
-                               
+
                            size = removeList2.size();
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                globals.<xsl:value-of select="name" />List.remove(removeList2.get(index));
                            }
-                               
+
+                           //TWB - Not all layers have this behavior so other games may not work with this.
+                           size = globals.<xsl:value-of select="name" />GDGameLayerList.size();
+                           for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                               ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(index)).process(globals.timeDelta);
+                           }
+
                         }
                         </xsl:if>
                     </xsl:for-each>
-                    
+
                         globals.lastStartTime = GameTickTimeDelayHelperFactory.getInstance().getStartTime();
+                        } catch(Exception e) {
+                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
+                        }
                     }
 
                     public void paint(Graphics graphics, int x, int y)

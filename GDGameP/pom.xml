@@ -47,7 +47,9 @@
         <module>../GDGameAIJavaLibraryM</module>
         <module>../GDGameJavaLibraryM</module>
         <module>../GDGameNoTouchJavaLibraryM</module>
+        <!--
         <module>../GDGameThreedBaseJavaLibraryM</module>
+        -->
         <module>../GDGameTouchJavaLibraryM</module>
         <module>../GDGameWavSoundsJavaLibraryM</module>
     </modules>

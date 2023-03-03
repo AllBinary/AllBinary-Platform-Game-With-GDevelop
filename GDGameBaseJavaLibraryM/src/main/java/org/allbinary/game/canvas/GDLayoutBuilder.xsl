@@ -218,7 +218,7 @@ Created By: Travis Berthelot
                         
                         <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
-                        //We may need to set a dimension for each image/animation.
+                        //instances //We may need to set a dimension for each image/animation.
                         <xsl:value-of select="name" />2.canvasWidth = imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
                         <xsl:value-of select="name" />2.canvasHeight = imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();
                         <xsl:value-of select="name" />2.width = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
@@ -336,10 +336,6 @@ Created By: Travis Berthelot
                         //groupLayerManagerListener.log();
                         
                         initialized = true;
-                    }
-
-                    public long TimeDelta() {
-                        return globals.timeDelta;
                     }
 
                     public int SceneWindowWidth() {

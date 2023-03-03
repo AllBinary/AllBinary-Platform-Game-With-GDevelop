@@ -28,6 +28,7 @@ Created By: Travis Berthelot
         <xsl:param name="actionToProcess" />
         <xsl:param name="otherEventToProcess" />
         <xsl:param name="objectEventToProcess" />
+        <xsl:param name="thisNodeIndex" />
          
         <xsl:variable name="quote" >"</xsl:variable>
 
@@ -41,7 +42,7 @@ Created By: Travis Berthelot
             <xsl:text>&#10;</xsl:text>
             </xsl:variable>
             
-            //Hack - actionWithTextObjectString is probably bad idea
+            <!-- //Hack - actionWithTextObjectString is probably bad idea -->
             <xsl:variable name="actionWithTextObjectString" >
                 <xsl:for-each select="actions" >
                     <xsl:variable name="typeValue" select="type/value" />
@@ -73,6 +74,9 @@ Created By: Travis Berthelot
             <xsl:variable name="actionsWithIndexes" >
                 <xsl:call-template name="actionsWithIndexes" >
                     <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
+                    <xsl:with-param name="thisNodeIndex" >
+                        <xsl:value-of select="$thisNodeIndex" />
+                    </xsl:with-param>
                     <xsl:with-param name="thisNodeArray" >
                         <xsl:value-of select="$thisNodeArray" />
                     </xsl:with-param>                    
@@ -92,6 +96,9 @@ Created By: Travis Berthelot
                 <xsl:call-template name="eventsCreateProcessUsed" >
                     <xsl:with-param name="caller" >
                         <xsl:value-of select="$caller" />
+                    </xsl:with-param>
+                    <xsl:with-param name="thisNodeIndex" >
+                        <xsl:value-of select="$thisNodeIndex" />
                     </xsl:with-param>
                     <xsl:with-param name="objectsAsString" >
                         <xsl:value-of select="$objectsAsString" />
@@ -138,6 +145,8 @@ Created By: Travis Berthelot
                     }
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
 
+                    <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
 
@@ -154,6 +163,8 @@ Created By: Travis Berthelot
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+
+                    <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
@@ -172,6 +183,8 @@ Created By: Travis Berthelot
                     }
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
 
+                    <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+                    
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
                                         
@@ -189,6 +202,8 @@ Created By: Travis Berthelot
                     }
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
 
+                    <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+                    
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
                                         
@@ -206,6 +221,8 @@ Created By: Travis Berthelot
                     }
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
 
+                    <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+                    
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
                                         
@@ -224,6 +241,8 @@ Created By: Travis Berthelot
                     }
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
 
+                    <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+                    
                     <xsl:value-of select="$eventAsString" disable-output-escaping="yes" />
                     
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -268,7 +287,7 @@ Created By: Travis Berthelot
                                     }
                 
                                 } catch(Exception e) {
-                                    LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.RUN, e));
+                                    LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable", this, commonStrings.RUN, e));
                                 }
                             }
                         };
@@ -278,7 +297,7 @@ Created By: Travis Berthelot
                             if(!globals.gdRunnableList.contains(this.runnable)) {
                                 globals.gdRunnableList.add(this.runnable);
                             } else {
-                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, StringUtil.getInstance().EMPTY_STRING, new Exception()));
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable was not in the List: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
                             }
                         }
 
@@ -287,7 +306,7 @@ Created By: Travis Berthelot
                             if(globals.gdRunnableList.contains(this.runnable)) {
                                 globals.gdRunnableList.remove(this.runnable);
                             } else {
-                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, StringUtil.getInstance().EMPTY_STRING, new Exception()));
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable already in the List: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
                             }
                         }
 
@@ -302,11 +321,13 @@ Created By: Travis Berthelot
                     }
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
 
+                    <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+                    
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                        private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
-                        private final String ELSE_CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Else: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
+                        //private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
+                        //private final String ELSE_CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Else: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
-                        private final StringBuilder stringBuilder = new StringBuilder();
+                        //private final StringBuilder stringBuilder = new StringBuilder();
 
                         //PosX - condition
                         @Override
@@ -321,10 +342,10 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$gdObjectName" /><xsl:text> = (GDObject) globals.</xsl:text><xsl:value-of select="$gdObjectName" />List.get(index);
                                 <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;'" >.x</xsl:if><xsl:if test="text() = '&gt;'" >.X2()</xsl:if></xsl:if></xsl:for-each></xsl:variable>
                                 
-                                stringBuilder.delete(0, stringBuilder.length());
-                                LogUtil.put(LogFactory.getInstance(stringBuilder.append(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" >).append(</xsl:if><xsl:if test="position() != 2" >"<xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if><xsl:if test="position() != 2" >").append(</xsl:if><xsl:if test="position() != 2" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if></xsl:for-each>).toString(), this, commonStrings.PROCESS));
+                                //stringBuilder.delete(0, stringBuilder.length());
+                                //LogUtil.put(LogFactory.getInstance(stringBuilder.append(INDEX).append(index).append(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" >).append(</xsl:if><xsl:if test="position() != 2" >" <xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if><xsl:if test="position() != 2" >").append(</xsl:if><xsl:if test="position() != 2" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if></xsl:for-each>).toString(), this, commonStrings.PROCESS));
                                 if(<xsl:for-each select="parameters" ><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
-                                    LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                    //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                     <xsl:for-each select=".." >
                                         <xsl:call-template name="actionIdsGDObjectPos" >
                                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
@@ -349,11 +370,13 @@ Created By: Travis Berthelot
                     }
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
 
+                    <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+                    
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                        private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
-                        private final String ELSE_CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Else: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
+                        //private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
+                        //private final String ELSE_CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Else: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
-                        private final StringBuilder stringBuilder = new StringBuilder();
+                        //private final StringBuilder stringBuilder = new StringBuilder();
                         
                         //PosY - condition
                         @Override
@@ -369,10 +392,10 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$gdObjectName" /><xsl:text> = (GDObject) globals.</xsl:text><xsl:value-of select="$gdObjectName" />List.get(index);
                                 <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;'" >.y</xsl:if><xsl:if test="text() = '&gt;'" >.Y2()</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
-                                stringBuilder.delete(0, stringBuilder.length());
-                                LogUtil.put(LogFactory.getInstance(stringBuilder.append(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" >).append(</xsl:if><xsl:if test="position() != 2" >"<xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if><xsl:if test="position() != 2" >").append(</xsl:if><xsl:if test="position() != 2" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if></xsl:for-each>).toString(), this, commonStrings.PROCESS));
+                                //stringBuilder.delete(0, stringBuilder.length());
+                                //LogUtil.put(LogFactory.getInstance(stringBuilder.append(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" >).append(</xsl:if><xsl:if test="position() != 2" >"<xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if><xsl:if test="position() != 2" >").append(</xsl:if><xsl:if test="position() != 2" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if></xsl:for-each>).toString(), this, commonStrings.PROCESS));
                                 if(<xsl:for-each select="parameters" ><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
-                                    LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                    //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                     <xsl:for-each select=".." >
                                         <xsl:call-template name="actionIdsGDObjectPos" >
                                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
@@ -397,6 +420,8 @@ Created By: Travis Berthelot
                     }
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
 
+                    <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+                    
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
                     
@@ -404,12 +429,21 @@ Created By: Travis Berthelot
                         public void process() {
 
                             final StringBuilder stringBuilder = new StringBuilder();
-                            LogUtil.put(LogFactory.getInstance(commonStrings.START, this, stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>: ").append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>).toString()));
+                            //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>: ").append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>).toString()));
 
                             if(<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
 
                                 stringBuilder.delete(0, stringBuilder.length());
-                                LogUtil.put(LogFactory.getInstance(commonStrings.START, this, stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>").toString()));
+                                //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>").toString()));
+                                
+                                <xsl:for-each select="../events" >
+                                    <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
+                                        //Events - process - under NbObjet nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                        globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                    </xsl:if>
+                                </xsl:for-each>
+                                                                
+                                <!--
                                 //NbObjet - condition - 2
                                 <xsl:for-each select=".." >
                                     <xsl:call-template name="actionIds" >
@@ -417,9 +451,47 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="caller" >NbObjet</xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:for-each>
+                                -->
                                 
                             } else {
                                 //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "Else: <xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>"));
+                            }
+
+                        }
+
+                    };
+                </xsl:if>
+                <xsl:if test="$typeValue = 'Opacity'" >
+                    //Opacity - GDNode
+                    if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
+                        throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
+                    }
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+
+                    <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+                    
+                    <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
+                    
+                        @Override
+                        public void process() {
+
+                            final StringBuilder stringBuilder = new StringBuilder();
+                            //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>: ").append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>).toString()));
+
+                            <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                            final int size = globals.<xsl:value-of select="$gdObjectName" />List.size();
+                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            
+                                if(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >((GDObject) globals.<xsl:value-of select="text()" disable-output-escaping="yes" />List.get(index)).opacity</xsl:if><xsl:if test="position() != 1" ><xsl:text> </xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>) {
+                                    <xsl:for-each select=".." >
+                                        <xsl:call-template name="actionIdsGDObject" >
+                                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                                            <xsl:with-param name="gdObjectName" ><xsl:value-of select="$gdObjectName" />List</xsl:with-param>
+                                            <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$gdObjectName" />GDGameLayerList</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                }
                             }
 
                         }
@@ -433,12 +505,14 @@ Created By: Travis Berthelot
                     }
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
 
+                    <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+                    
                         //VarObjet - condition
                         @Override
                         public void process() {
 
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                            LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>"));
+                            //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>"));
 
                             <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             final int size = globals.<xsl:value-of select="$gdObjectName" />List.size();
@@ -460,7 +534,7 @@ Created By: Travis Berthelot
                         public boolean process(final GDObject <xsl:value-of select="$gdObjectName" />) {
                             //VarObjet
                             if(<xsl:for-each select="parameters" ><xsl:if test="text() = 'rotation'" >.</xsl:if><xsl:if test="position() != 1 and  text() != 'rotation'" ><xsl:text> </xsl:text></xsl:if><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="text() = '='" >=</xsl:if></xsl:for-each>) {
-                                LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "VarObjet processing"));
+                                //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "VarObjet processing"));
                                 return true;
                             }
                             return false;
@@ -474,6 +548,8 @@ Created By: Travis Berthelot
                     }
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
                     
+                    <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+                    
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />: ";
                         <xsl:text>&#10;</xsl:text>
@@ -485,15 +561,18 @@ Created By: Travis Berthelot
                         @Override
                         public void process() {
 
-                            LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>, this, commonStrings.PROCESS));
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>, this, commonStrings.PROCESS));
                             if(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >globals.</xsl:if><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
-                                LogUtil.put(LogFactory.getInstance("VarScene processing", this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance("VarScene processing", this, commonStrings.PROCESS));
                                 <xsl:for-each select=".." >
                                     
                 <xsl:variable name="thisNodeArray" >this</xsl:variable>
 
                 <xsl:call-template name="actionsWithIndexes" >
                     <xsl:with-param name="caller" >VarScene</xsl:with-param>
+                    <xsl:with-param name="thisNodeIndex" >
+                        <xsl:value-of select="$thisNodeIndex" />
+                    </xsl:with-param>
                     <xsl:with-param name="thisNodeArray" >
                         <xsl:value-of select="$thisNodeArray" />
                     </xsl:with-param>                    
@@ -527,14 +606,16 @@ Created By: Travis Berthelot
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
-                                    
+                    
+                    <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
 
-                        //SourisSurObjet - condition
+                        //SourisSurObjet - process
                         @Override
                         public void process(final MotionGestureEvent motionGestureEvent) {
-                            LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 <xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 1" >
                             if(globals.<xsl:value-of select="text()" />Rectangle != null) {
@@ -547,16 +628,18 @@ Created By: Travis Berthelot
                                 if (RectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY(), globals.<xsl:value-of select="text()" />Rectangle.getMaxX(), globals.<xsl:value-of select="text()" />Rectangle.getMaxY(),
                                     point.getX(), point.getY()))
                                 {
-                                    LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, "Inside"));
+                                    //LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, "Inside"));
                                     final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
                                     if (motionGestureInput == TouchMotionGestureFactory.getInstance().PRESSED) {
+
                                         <xsl:for-each select="../../actions" >
                                         //Action - process - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                                        </xsl:for-each> 
+                                        </xsl:for-each>
+
                                         <xsl:for-each select="../../events" >
                                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
-                                        //Events - process - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                        //Events - process - under SourisSurObjet press nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                         </xsl:if>
                                         </xsl:for-each> 
@@ -567,7 +650,7 @@ Created By: Travis Berthelot
                                         </xsl:for-each>    
                                         <xsl:for-each select="../../events" >
                                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
-                                        //Events - process - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                        //Events - process - under SourisSurObjet release nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                                         </xsl:if>
                                         </xsl:for-each> 
@@ -593,7 +676,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
-                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:text>&#10;</xsl:text>
 
                     //Action - GDNode - for Condition totalRecursions=<xsl:value-of select="$totalRecursions" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" /> hasAssociatedSiblingCondition=<xsl:value-of select="$hasAssociatedSiblingCondition" />
@@ -601,6 +684,8 @@ Created By: Travis Berthelot
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+                    
+                    <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                     
                     <xsl:variable name="nodeAsString" ><xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                     <xsl:variable name="actionAsString" >Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -617,7 +702,7 @@ Created By: Travis Berthelot
                         //TextObject::String - START
                         @Override
                         public void process() {
-                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             //Parameters - 2
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" />TextAnimation</xsl:if>
@@ -645,7 +730,7 @@ Created By: Travis Berthelot
                     //PlaySound
                     @Override
                     public void process() {
-                       LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                       //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                        <xsl:variable name="fileName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:call-template name="after-lastIndexOf"><xsl:with-param name="string" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="char" >/</xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
                        <xsl:variable name="fileName2" ><xsl:value-of select="translate(substring-before($fileName, '.'), '_', ' ')" /></xsl:variable>
@@ -687,7 +772,7 @@ Created By: Travis Berthelot
                     //Create - GDObject with TextObject::String - START
                     @Override
                     public void process() {
-                        LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                     <xsl:call-template name="createGDObject" >
                         <xsl:with-param name="objectsAsString" >
                             <xsl:value-of select="$objectsAsString" />
@@ -704,7 +789,7 @@ Created By: Travis Berthelot
                     //Create
                     @Override
                     public boolean process(final BasicArrayList gameLayerList, final int index) throws Exception {
-                        LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "Not Null", this, commonStrings.PROCESS));
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "Not Null", this, commonStrings.PROCESS));
                         return this.process(index);
                     }
 
@@ -719,7 +804,10 @@ Created By: Travis Berthelot
                             final GDObject <xsl:value-of select="text()" /> = (GDObject) globals.<xsl:value-of select="text()" />List.get(index);
                             stringBuilder.delete(0, stringBuilder.length());
                             final GDGameLayer <xsl:value-of select="text()" />GDGameLayer = resources.<xsl:value-of select="text()" />GDGameLayerFactory.create(stringBuilder.append(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>).append(CommonSeps.getInstance().UNDERSCORE).append(index).toString(), <xsl:value-of select="text()" />, globals.<xsl:value-of select="text()" />GDConditionWithGroupActions);
-                            LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer); at: " + index, this, commonStrings.PROCESS));
+                            //stringBuilder.delete(0, stringBuilder.length());
+                            //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer); at: ").append(index).toString(), this, commonStrings.PROCESS));
+                            //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="text()" />GDGameLayer.toString(), this, commonStrings.PROCESS));
+
                             globals.<xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer);
                         </xsl:if>
                     </xsl:for-each>
@@ -733,7 +821,7 @@ Created By: Travis Berthelot
                     @Override
                     public boolean process(final BasicArrayList gameLayerList, final int index) throws Exception {
 
-                        LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                         if(globals.<xsl:value-of select="text()" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
@@ -762,7 +850,7 @@ Created By: Travis Berthelot
                     @Override
                     public boolean process(final BasicArrayList gameLayerList, final int index) throws Exception {
                         
-                        LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                         if(globals.<xsl:value-of select="text()" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
@@ -788,7 +876,7 @@ Created By: Travis Berthelot
                     @Override
                     public void processEnd(final int index) throws Exception {
 
-                        LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, commonStrings.INSERT));
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.END));
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             <xsl:variable name="layerName" ><xsl:value-of select="text()" /></xsl:variable>
@@ -813,7 +901,7 @@ Created By: Travis Berthelot
                                                 </xsl:variable>
                                                 <xsl:for-each select="objects" >
                                                     <xsl:if test="name = $layerName" >
-                                                        LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="$groupName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />); at: " + index, this, commonStrings.PROCESS));
+                                                        //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="$groupName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />); at: " + index, this, commonStrings.PROCESS));
                                                         globals.<xsl:value-of select="$groupName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />);
                                                     </xsl:if>
                                                 </xsl:for-each>
@@ -858,7 +946,7 @@ Created By: Travis Berthelot
 
                             try {
 
-                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                                 canvas.getCustomCommandListener().commandAction(GDGameCommandFactory.getInstance().<xsl:value-of select="$command" />, ProgressCanvasFactory.getInstance());
 
@@ -881,7 +969,7 @@ Created By: Travis Berthelot
                         /*
                         @Override
                         public void process() {
-                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                             <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
@@ -921,8 +1009,11 @@ Created By: Travis Berthelot
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS));
 
                                 <xsl:for-each select="parameters" >
-                                <xsl:value-of select="text()" /><xsl:if test="position() = 1" >.x</xsl:if>
-                                </xsl:for-each>;
+                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setX(</xsl:if>
+                                <xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if>
+                                </xsl:for-each>);
+
+                                //<xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.x</xsl:if></xsl:for-each>;
 
                                 <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                                 <xsl:if test="contains($instancesAsString, $name2)" >
@@ -966,11 +1057,17 @@ Created By: Travis Berthelot
                                 //}
                                 
                                 final GDObject <xsl:value-of select="$name" /> = gdObject;
+                                
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS));
 
                                 <xsl:for-each select="parameters" >
-                                <xsl:value-of select="text()" /><xsl:if test="position() = 1" >.y</xsl:if>
-                                </xsl:for-each>;
+                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setY(</xsl:if>
+                                <xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if>
+                                </xsl:for-each>);
+                                
+                                //<xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.y</xsl:if></xsl:for-each>;
+
+                                //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS));
 
                                 <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                                 <xsl:if test="contains($instancesAsString, $name2)" >
@@ -1047,7 +1144,7 @@ Created By: Travis Berthelot
 
                             try {
 
-                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 2" >globals.<xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.unPause();</xsl:if>
@@ -1068,7 +1165,7 @@ Created By: Travis Berthelot
 
                             try {
 
-                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                     <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                                 final int size = globals.<xsl:value-of select="$gameLayerName" />List.size();
@@ -1097,7 +1194,7 @@ Created By: Travis Berthelot
 
                             try {
 
-                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                     <xsl:for-each select="parameters" >
                         //<xsl:if test="position() = 1" >((GDObject) globals.<xsl:value-of select="text()" />List.get(index)).zOrder</xsl:if><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
@@ -1113,7 +1210,7 @@ Created By: Travis Berthelot
 
                                 <xsl:if test="$typeValue = 'ModVarScene'" >
 
-                        //ModVarScene
+                        //ModVarScene - action
                     <xsl:for-each select="parameters" >
                         <xsl:if test="contains(text(), 'angle')" >
                         //Update angle with rotation
@@ -1124,13 +1221,8 @@ Created By: Travis Berthelot
 
                             try {
 
-                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                     <xsl:variable name="player" ><xsl:for-each select="parameters" ><xsl:if test="contains(text(), 'player')" >player</xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:if test="contains($player, 'player')" >
-                    //Hack player player logging
-                    //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                    </xsl:if>
-
                     <xsl:for-each select="parameters" >
                         <xsl:if test="contains(text(), 'player.')" >
                                 //Hack FIX ME for GDevelop player
@@ -1150,6 +1242,12 @@ Created By: Travis Berthelot
                         <xsl:variable name="textValue2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:if test="position() = 1" >globals.</xsl:if><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" >(</xsl:with-param><xsl:with-param name="replacementText" >(globals.</xsl:with-param></xsl:call-template></xsl:variable>
                         <xsl:if test="position() = 1" >globals.</xsl:if><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$textValue" /></xsl:with-param><xsl:with-param name="find" >Angle()</xsl:with-param><xsl:with-param name="replacementText" >Angle(playerGDGameLayer)</xsl:with-param></xsl:call-template><xsl:if test="$textValue = '+'" >=</xsl:if><xsl:if test="$textValue = '-'" >=</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                     </xsl:for-each>
+                    <xsl:text>&#10;</xsl:text>
+                    <xsl:if test="((number(parameters[3]) = 0 or number(parameters[3])) and substring-after(parameters[3]/text(), '.') = '') or not(number(parameters[3]))" >
+                    <xsl:for-each select="parameters" >
+                        //<xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" />_updated = true;</xsl:if>
+                    </xsl:for-each>
+                    </xsl:if>
 
                             } catch(Exception e) {
                             //9
@@ -1168,7 +1266,7 @@ Created By: Travis Berthelot
 
                             try {
 
-                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
@@ -1190,7 +1288,7 @@ Created By: Travis Berthelot
                                 </xsl:if>
 
                                 <xsl:if test="$typeValue = 'Delete'" >
-                        private final String ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "GD:" + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
+                        private final String ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "processGD - " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
                                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         //Delete
@@ -1199,7 +1297,7 @@ Created By: Travis Berthelot
 
                             try {
 
-                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                                     //Parameters - 5
                                     <xsl:for-each select="parameters" >
@@ -1298,7 +1396,7 @@ Created By: Travis Berthelot
                         return false;
                     }
 
-                        private final String ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "GD:" + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
+                        private final String ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "processGD - " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
                         @Override
                         public void processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final GDObject <xsl:value-of select="$name" />) {
@@ -1310,6 +1408,13 @@ Created By: Travis Berthelot
                                     //name=<xsl:value-of select="$name" />
                                     <xsl:text>&#10;</xsl:text>
 
+                                    <!--
+                                    <xsl:variable name="length" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="substring-before(substring-after(text(), 'Variable('), ')')" /></xsl:if></xsl:for-each></xsl:variable>
+                                    <xsl:if test="string-length($length) > 0" >
+                                    if(<xsl:value-of select="$length" />_updated) {
+                                        <xsl:value-of select="$length" />_updated = false;
+                                    </xsl:if>
+                                    -->
                                     //Parameters - 6
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
@@ -1346,7 +1451,12 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="text()" />);
                                         </xsl:if>
                                     </xsl:for-each>
-                                    
+                                    <!--
+                                    <xsl:if test="string-length($length) > 0" >
+                                    }
+                                    </xsl:if>
+                                    -->
+                                
                                     <!--
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 3" >
@@ -1397,7 +1507,7 @@ Created By: Travis Berthelot
                         @Override
                         public void process() {
 
-                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
         <xsl:if test="../conditions" >
             //Sibling Conditions
@@ -1472,7 +1582,7 @@ Created By: Travis Berthelot
 
                         @Override
                         public void processReleased() {
-                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
+                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
 
         <xsl:if test="../conditions" >
             //Sibling Conditions
@@ -1549,7 +1659,7 @@ Created By: Travis Berthelot
                         @Override
                         public boolean process(final GDObject <xsl:value-of select="$name" />) {
                         <xsl:if test="$name = 'player'" >
-                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                         </xsl:if>
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             //Parameters - 3
@@ -1561,7 +1671,7 @@ Created By: Travis Berthelot
                         @Override
                         public boolean processReleased(final GDObject <xsl:value-of select="$name" />) {
                         <xsl:if test="$name = 'player'" >
-                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
+                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
                         </xsl:if>
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.rotation = 0;</xsl:if></xsl:for-each>
@@ -1584,9 +1694,9 @@ Created By: Travis Berthelot
                         <!--
                         ../events
                         -->
-                        <xsl:variable name="childEventWithUsedEvent" ><xsl:for-each select="../events" ><xsl:call-template name="childEventWithUsedEvent" ><xsl:with-param name="totalRecursions" >0</xsl:with-param></xsl:call-template></xsl:for-each></xsl:variable>
+                        <xsl:variable name="childEventWithUsedEvent" ><xsl:for-each select="../events" ><xsl:call-template name="childEventWithUsedEvent" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="motionGestureEvent" >true</xsl:with-param></xsl:call-template></xsl:for-each></xsl:variable>
                         <xsl:if test="contains($childEventWithUsedEvent, 'found')" >
-                        //SourisSurObjet
+                        //SourisSurObjet - motionGestureEvent
                         @Override
                         public void process(final MotionGestureEvent motionGestureEvent) {
                         
@@ -1594,8 +1704,8 @@ Created By: Travis Berthelot
                             <xsl:for-each select="../conditions" >
                                 <xsl:variable name="typeValue" select="type/value" />
                                 <xsl:if test="$typeValue = 'SourisSurObjet'" >
-                            //SourisSurObjet
-                            LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            //SourisSurObjet - condition
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
                                 </xsl:if>
                             </xsl:for-each>
@@ -1621,6 +1731,8 @@ Created By: Travis Berthelot
             }
             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
 
+                <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+                
                 private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />";
                 <xsl:text>&#10;</xsl:text>
 
@@ -1648,45 +1760,65 @@ Created By: Travis Berthelot
                 </xsl:for-each>
             </xsl:variable>
 
+            <!-- <xsl:if test="type/value != 'Timer' and type/value != 'CollisionNP' and type/value != 'VarObjet' and type/value = 'NbObjet' and type/value = 'DepartScene' and type/value = 'SourisSurObjet' and type/value = 'MouseButtonReleased'" >found</xsl:if> -->
             <xsl:variable name="foundOtherCondition" >
                 <xsl:for-each select="conditions" >
-                    <xsl:if test="type/value != 'Timer' and type/value != 'CollisionNP' and type/value != 'VarObjet' and type/value = 'NbObjet' and type/value = 'DepartScene' and type/value = 'SourisSurObjet' and type/value = 'MouseButtonReleased'" >found</xsl:if>
+                    <xsl:if test="type/value = 'NbObjet'" >found</xsl:if>
                 </xsl:for-each>
             </xsl:variable>
+            <!-- //foundOtherCondition=<xsl:value-of select="$foundOtherCondition" /> -->
                                 
                 <xsl:if test="contains($foundTimerCondition, 'found')" >
                 //Found used conditions so calling them before actions.
                 @Override
                 public void process() {
                     
-                    LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                     <xsl:for-each select="conditions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                    <xsl:if test="position() = 1" >
+                    //Condition - process - press
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    </xsl:if>
                     </xsl:for-each>
                 }
 
                 @Override
                 public void processReleased() {
                 
-                    LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                     <xsl:for-each select="conditions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                    <xsl:if test="position() = 1" >
+                    //Condition - process - release
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                    </xsl:if>
                     </xsl:for-each>
                 }
                 
                 </xsl:if>
 
-                <xsl:if test="contains($foundOtherCondition, 'found')" >
+                <xsl:if test="contains($foundOtherCondition, 'found') and not(contains($foundTimerCondition, 'found'))" >
                 //Found conditions that need processing.
                 @Override
                 public void process() {
                     
-                    LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                     <xsl:for-each select="conditions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                        <xsl:if test="position() = 1" >
+                    //Condition - process - eventsCreateAssignGDObjectGDNodes
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                        </xsl:if>
+                        <xsl:if test="position() = 2" >
+                    //Condition - process - eventsCreateAssignGDObjectGDNodes - more ifs
+                        </xsl:if>
                     </xsl:for-each>
                 }
                 </xsl:if>
@@ -1706,11 +1838,17 @@ Created By: Travis Berthelot
                     <xsl:with-param name="createdObjectsAsString" >
                         <xsl:value-of select="$createdObjectsAsString" />
                     </xsl:with-param>
+                    <xsl:with-param name="thisNodeIndex" >
+                        <xsl:value-of select="$thisNodeIndex" />
+                    </xsl:with-param>                    
                 </xsl:call-template>
 
                 <xsl:call-template name="eventsCreateProcessUsed" >
                     <xsl:with-param name="caller" >
                         <xsl:value-of select="$caller" />
+                    </xsl:with-param>
+                    <xsl:with-param name="thisNodeIndex" >
+                        <xsl:value-of select="$thisNodeIndex" />
                     </xsl:with-param>
                     <xsl:with-param name="objectsAsString" >
                         <xsl:value-of select="$objectsAsString" />
@@ -1733,33 +1871,19 @@ Created By: Travis Berthelot
                 @Override
                 public void process() {
                 
-                    LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                 <xsl:for-each select="events" >
-                    //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" />
-                    <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
-                        <!-- Event nodeId=N75237 - 9701 position=12 totalRecursions=1 type=BuiltinCommonInstructions::Standard disable=false -->
-                        <!-- //childEventWithUsedEvent - START -->
-                        <xsl:variable name="childEventWithUsedEvent" ><xsl:call-template name="childEventWithUsedEvent" ><xsl:with-param name="totalRecursions" >0</xsl:with-param></xsl:call-template></xsl:variable>
-                        <xsl:if test="string-length($childEventWithUsedEvent) > 0" >
-                        //childEventWithUsedEvent=<xsl:value-of select="$childEventWithUsedEvent" />
-                        </xsl:if>
-                        <!-- //childEventWithUsedEvent - END -->
-                        <xsl:if test="contains($childEventWithUsedEvent, 'found')" >
-                    //BuiltinCommonInstructions::Standard - Used condition in children - 1
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                        </xsl:if>                        
-                        <xsl:if test="contains($childEventWithUsedEvent, 'foundCreateAction')" >
-                            //N78034 - 12498
-                    //BuiltinCommonInstructions::Standard - Used condition in children - 3
-                    //globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                        </xsl:if>
-                        <xsl:call-template name="childEventWithUsedEvent2" ><xsl:with-param name="totalRecursions" >0</xsl:with-param></xsl:call-template>
+                    <!-- CollisionNP is already handled. -->
+                    <xsl:variable name="eventWithBuilderCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
+                        //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" />
+                    <xsl:if test="not(contains($eventWithBuilderCondition, 'found'))" >
+                        globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                     </xsl:if>
-                    <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
-                    //BuiltinCommonInstructions::ForEach
                     </xsl:if>
                 </xsl:for-each>
 
+                <!--
                 <xsl:for-each select="conditions" >
                     <xsl:variable name="typeValue" select="type/value" />
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
@@ -1779,7 +1903,7 @@ Created By: Travis Berthelot
                 </xsl:call-template>
 
                 </xsl:if>
-                                
+                -->
                 }
                 
                 @Override
@@ -1787,7 +1911,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="events" >
                     //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" />
                     <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
-                        <xsl:variable name="childEventWithUsedEvent" ><xsl:call-template name="childEventWithUsedEvent" ><xsl:with-param name="totalRecursions" >0</xsl:with-param></xsl:call-template></xsl:variable>
+                        <xsl:variable name="childEventWithUsedEvent" ><xsl:call-template name="childEventWithUsedEvent" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="motionGestureEvent" >true</xsl:with-param></xsl:call-template></xsl:variable>
                         //<xsl:value-of select="$childEventWithUsedEvent" />
                         <xsl:if test="contains($childEventWithUsedEvent, 'found')" >
                     //BuiltinCommonInstructions::Standard - Used condition in children - 2
@@ -1847,6 +1971,9 @@ Created By: Travis Berthelot
                 </xsl:with-param>
                 <xsl:with-param name="layoutIndex" >
                     <xsl:value-of select="$layoutIndex" />
+                </xsl:with-param>
+                <xsl:with-param name="thisNodeIndex" >
+                    <xsl:value-of select="$thisNodeIndex" />
                 </xsl:with-param>
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
@@ -1916,10 +2043,11 @@ Created By: Travis Berthelot
                         <xsl:variable name="colonName" >:<xsl:value-of select="name" />,</xsl:variable>
                         <xsl:variable name="before" select="substring-before(substring-before($parametersAsString, $name), $colonName)" />
                         <xsl:variable name="actionNodeIdFromRelatedParams" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" select="$before" /><xsl:with-param name="char" select="','" /></xsl:call-template></xsl:variable>
+                        <xsl:if test="string-length($parametersAsString) > 0" >
                         //name=<xsl:value-of select="name" />
-                        //parametersAsString=<xsl:value-of select="$parametersAsString" />
                         //before=<xsl:value-of select="$before" />
                         //actionNodeIdFromRelatedParams=<xsl:value-of select="$actionNodeIdFromRelatedParams" />
+                        </xsl:if>
                         <xsl:variable name="beforeColon" select="substring-before($parametersAsString, ':')" />
                         <xsl:variable name="actionNodeId" ><xsl:if test="$actionNodeIdFromRelatedParams != ''" ><xsl:value-of select="$actionNodeIdFromRelatedParams" /></xsl:if><xsl:if test="$actionNodeIdFromRelatedParams = ''" ><xsl:value-of select="$beforeColon" /></xsl:if></xsl:variable>
                         //actionNodeId=<xsl:value-of select="$actionNodeId" />
@@ -1931,6 +2059,8 @@ Created By: Travis Berthelot
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
                         globals.nodeArray[<xsl:value-of select="$actionNodeId" />] = new GDNode() {
+
+                            <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
                             private final String ACTION_ID_AS_STRING_<xsl:value-of select="$actionNodeId" /> = "Action - <xsl:value-of select="$actionNodeId" />";
                             <xsl:text>&#10;</xsl:text>
@@ -1955,7 +2085,7 @@ Created By: Travis Berthelot
                             @Override
                             public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
                                 
-                                LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
                                 
                         //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
                         if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
@@ -2037,6 +2167,8 @@ Created By: Travis Berthelot
                         }
                         globals.nodeArray[<xsl:value-of select="$actionNodeId" />] = new GDNode() {
 
+                            <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+
                             private final String ACTION_ID_AS_STRING_<xsl:value-of select="$actionNodeId" /> = "Action - <xsl:value-of select="$actionNodeId" />";
                             <xsl:text>&#10;</xsl:text>
                         
@@ -2060,7 +2192,7 @@ Created By: Travis Berthelot
                             @Override
                             public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
                                 
-                                LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
                                 
                                 final CollidableCompositeLayer gameLayer = gameLayerArray[0];
                                 final CollidableCompositeLayer gameLayer2 = gameLayerArray[1];
@@ -2135,6 +2267,8 @@ Created By: Travis Berthelot
                         }
                         globals.nodeArray[<xsl:value-of select="$actionNodeId" />] = new GDNode() {
 
+                            <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+
                             @Override
                             public void process() {
                                 //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
@@ -2161,6 +2295,7 @@ Created By: Travis Berthelot
                                 }
                             }
 
+                            <!--
                             //Hack FIX ME for GDevelop player with GDNode - <xsl:value-of select="$name" />
                             @Override
                             public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
@@ -2172,6 +2307,7 @@ Created By: Travis Berthelot
                                 gdNode.clear2();
 
                             }
+                            -->
                         };
 
                             </xsl:if>

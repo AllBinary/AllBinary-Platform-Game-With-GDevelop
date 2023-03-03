@@ -137,9 +137,11 @@ Created By: Travis Berthelot
                         <xsl:variable name="colonName" >:<xsl:value-of select="name" />,</xsl:variable>
                         <xsl:variable name="before" select="substring-before(substring-before($parametersAsString, $name), $colonName)" />
                         <xsl:variable name="actionNodeIdFromRelatedParams" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" select="$before" /><xsl:with-param name="char" select="','" /></xsl:call-template></xsl:variable>
+                        <xsl:if test="string-length($parametersAsString) > 0" >
                         //name=<xsl:value-of select="name" />
                         //before=<xsl:value-of select="$before" />
                         //actionNodeIdFromRelatedParams=<xsl:value-of select="$actionNodeIdFromRelatedParams" />
+                        </xsl:if>
                         <xsl:variable name="beforeColon" select="substring-before($parametersAsString, ':')" />
                         <xsl:variable name="actionNodeId" ><xsl:if test="$actionNodeIdFromRelatedParams != ''" ><xsl:value-of select="$actionNodeIdFromRelatedParams" /></xsl:if><xsl:if test="$actionNodeIdFromRelatedParams = ''" ><xsl:value-of select="$beforeColon" /></xsl:if></xsl:variable>
                         //actionNodeId=<xsl:value-of select="$actionNodeId" />

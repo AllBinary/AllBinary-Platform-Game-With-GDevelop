@@ -142,6 +142,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
+                        <xsl:with-param name="thisNodeIndex" >
+                            <xsl:value-of select="-1" />
+                        </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
@@ -170,10 +173,6 @@ Created By: Travis Berthelot
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                         }
 
-                    }
-
-                    public long TimeDelta() {
-                        return globals.timeDelta;
                     }
 
                     public int SceneWindowWidth() {

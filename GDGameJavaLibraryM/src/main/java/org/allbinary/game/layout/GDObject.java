@@ -17,8 +17,8 @@ import javax.microedition.lcdui.Graphics;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.SpacialStrings;
+import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.logic.basic.string.CommonSeps;
-import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.math.NoDecimalTrigTable;
@@ -73,6 +73,24 @@ public class GDObject
     public int Height(final Graphics graphics) {
         //return canvasHeight;
         return height;
+    }
+   
+    public void setX(final int x) {
+        final int width = DisplayInfoSingleton.getInstance().getLastWidth();
+        if(x > width) {
+            this.x = width;
+        } else {
+           this.x = x;
+        }
+    }
+    
+    public void setY(final int y) {
+        final int height = DisplayInfoSingleton.getInstance().getLastHeight();
+        if(y > height) {
+            this.y = height;
+        } else {
+           this.y = y;
+        }
     }
     
     public int X() {

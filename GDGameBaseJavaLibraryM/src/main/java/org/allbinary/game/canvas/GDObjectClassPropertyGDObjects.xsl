@@ -37,6 +37,16 @@ Created By: Travis Berthelot
                         super(unknown, x, y, name);
                     }
 
+                    <xsl:if test="animations/directions/sprites/originPoint/x = 0 and animations/directions/sprites/originPoint/y = 0" >
+                    public int Width(final Graphics graphics) {
+                        return canvasWidth;
+                    }
+    
+                    public int Height(final Graphics graphics) {
+                        return canvasHeight;
+                    }
+                    </xsl:if>
+                    
                         <xsl:if test="name = 'player'" >
                         //Hack FIX ME for GDevelop player
 

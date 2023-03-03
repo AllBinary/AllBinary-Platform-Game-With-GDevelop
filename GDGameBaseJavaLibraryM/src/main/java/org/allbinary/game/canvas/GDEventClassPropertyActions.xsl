@@ -42,7 +42,7 @@ Created By: Travis Berthelot
                                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                 <xsl:text>&#10;</xsl:text>
                                 <xsl:if test="$typeValue = 'ModVarScene'" >
-                                    //eventsClassPropertyActions - ModVarScene - 1
+                                    //eventsClassPropertyActions - //ModVarScene - 1
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:if>
@@ -72,7 +72,7 @@ Created By: Travis Berthelot
                             //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                             <xsl:text>&#10;</xsl:text>
                         <xsl:if test="$typeValue = 'ModVarScene'" >
-                            //eventsClassPropertyActions - ModVarScene - 2
+                            //eventsClassPropertyActions - //ModVarScene - 2
                             <xsl:if test="parameters[2]/text() = '='" >
                                 public int <xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />
@@ -81,10 +81,11 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                     <xsl:if test="position() = last()" >;</xsl:if>
                                 </xsl:for-each>
+                                //public boolean <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />_updated<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > = true;</xsl:if></xsl:for-each>
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="$typeValue = 'ModVarGlobal'" >
-                            //eventsClassPropertyActions - ModVarGlobal
+                            //eventsClassPropertyActions - //ModVarGlobal
                             <xsl:if test="parameters[2]/text() = '='" >public int <xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />
                                     <xsl:if test="position() != last()" >
@@ -95,7 +96,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="$typeValue = 'ModVarGlobalTxt'" >
-                            //eventsClassPropertyActions - ModVarGlobalTxt
+                            //eventsClassPropertyActions - //ModVarGlobalTxt
                             <xsl:if test="parameters[2]/text() = '='" >private String <xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />
                                     <xsl:if test="position() != last()" >
@@ -129,7 +130,7 @@ Created By: Travis Berthelot
                                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                 <xsl:text>&#10;</xsl:text>
                                 <xsl:if test="$typeValue = 'ModVarScene'" >
-                                    //eventsClassPropertyActions - ModVarScene - 3
+                                    //eventsClassPropertyActions - //ModVarScene - 3
                                     <xsl:if test="parameters[2]/text() = '='" >
                                         public int <xsl:for-each select="parameters" >
                                             <xsl:value-of select="text()" />
@@ -138,10 +139,11 @@ Created By: Travis Berthelot
                                             </xsl:if>
                                             <xsl:if test="position() = last()" >;</xsl:if>
                                         </xsl:for-each>
+                                        //public boolean <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />_updated<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > = true;</xsl:if></xsl:for-each>
                                     </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="$typeValue = 'ModVarGlobal'" >
-                                    //eventsClassPropertyActions - ModVarGlobal - 2
+                                    //eventsClassPropertyActions - //ModVarGlobal - 2
                                     <xsl:if test="parameters[2]/text() = '='" >public int <xsl:for-each select="parameters" >
                                             <xsl:value-of select="text()" />
                                             <xsl:if test="position() != last()" >
@@ -152,7 +154,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="$typeValue = 'ModVarGlobalTxt'" >
-                                    //eventsClassPropertyActions - ModVarGlobalTxt - 2
+                                    //eventsClassPropertyActions - //ModVarGlobalTxt - 2
                                     <xsl:if test="parameters[2]/text() = '='" >private String <xsl:for-each select="parameters" >
                                             <xsl:value-of select="text()" />
                                             <xsl:if test="position() != last()" >
@@ -265,7 +267,7 @@ Created By: Travis Berthelot
                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:text>&#10;</xsl:text>
                 <xsl:if test="$typeValue = 'ModVarScene'" >
-                    //externalEventsClassPropertyActions - ModVarScene
+                    //externalEventsClassPropertyActions - //ModVarScene
                     <xsl:if test="substring-after(parameters[3]/text(), '.') != ''" >
                     <xsl:if test="parameters[2]/text() = '='" >
                         public double <xsl:for-each select="parameters" >
@@ -286,6 +288,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                             <xsl:if test="position() = last()" >;</xsl:if>
                         </xsl:for-each>
+                        //public boolean <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />_updated<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > = true;</xsl:if></xsl:for-each>
                     </xsl:if>
                     </xsl:if>
                 </xsl:if>

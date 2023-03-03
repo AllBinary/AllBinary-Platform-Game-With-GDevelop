@@ -14,6 +14,7 @@
         <xsl:param name="actionToProcess" />
         <xsl:param name="otherEventToProcess" />
         <xsl:param name="objectEventToProcess" />
+        <xsl:param name="thisNodeIndex" />        
 
         //externalEventsCreateAssignGDObject - START
         <xsl:for-each select="../externalEvents" >
@@ -25,6 +26,9 @@
                     </xsl:with-param>
                     <xsl:with-param name="layoutIndex" >
                         <xsl:value-of select="$layoutIndex" />
+                    </xsl:with-param>
+                    <xsl:with-param name="thisNodeIndex" >
+                        <xsl:value-of select="$thisNodeIndex" />
                     </xsl:with-param>
                     <xsl:with-param name="createdObjectsAsString" >
                         <xsl:value-of select="$createdObjectsAsString" />
@@ -60,6 +64,7 @@
         <xsl:param name="actionToProcess" />
         <xsl:param name="otherEventToProcess" />
         <xsl:param name="objectEventToProcess" />
+        <xsl:param name="thisNodeIndex" />
 
         //externalEventsCreateAssign - START
         <xsl:for-each select="../externalEvents" >
@@ -71,6 +76,9 @@
                     </xsl:with-param>
                     <xsl:with-param name="layoutIndex" >
                         <xsl:value-of select="$layoutIndex" />
+                    </xsl:with-param>
+                    <xsl:with-param name="thisNodeIndex" >
+                        <xsl:value-of select="$thisNodeIndex" />
                     </xsl:with-param>
                     <xsl:with-param name="objectsAsString" >
                         <xsl:value-of select="$objectsAsString" />
