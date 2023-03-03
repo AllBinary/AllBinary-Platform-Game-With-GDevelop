@@ -72,7 +72,7 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
             throws Exception
     {
         if(this.conditionWIthGroupActions.groupWithActionsList.size() > 0) {
-            LogUtil.put(LogFactory.getInstance("collide: " + collisionLayer.toString(), this, COLLIDE));
+            //LogUtil.put(LogFactory.getInstance("collide: " + collisionLayer.toString(), this, COLLIDE));
             //final StringBuilder stringBuilder = new StringBuilder();
 
             final GroupInterface[] groupInterfaceArray = collisionLayer.getGroupInterface();
