@@ -149,12 +149,13 @@ Created By: Travis Berthelot
 //
 //                                @Override
 //                                public void process() {
+//                                    super.process();
 //                                    LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, Integer.toString(currentIndex), new Exception()));
 //                                }
 //                            };
 //                        }
 
-                        globals.nodeArray[globals.FAKE_COLLISION_NODE_ID] = new GDNode() {
+                        globals.nodeArray[globals.FAKE_COLLISION_NODE_ID] = new GDNode(globals.FAKE_COLLISION_NODE_ID) {
 
                             @Override
                             public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {

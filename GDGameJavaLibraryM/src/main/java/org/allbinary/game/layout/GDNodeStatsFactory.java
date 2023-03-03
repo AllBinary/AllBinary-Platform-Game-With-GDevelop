@@ -1,0 +1,83 @@
+/*
+ * AllBinary Open License Version 1
+ * Copyright (c) 2022 AllBinary
+ * 
+ * By agreeing to this license you and any business entity you represent are
+ * legally bound to the AllBinary Open License Version 1 legal agreement.
+ * 
+ * You may obtain the AllBinary Open License Version 1 legal agreement from
+ * AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+ * 
+ * Created By: Travis Berthelot
+ * 
+ */
+package org.allbinary.game.layout;
+
+/**
+ *
+ * @author User
+ */
+public class GDNodeStatsFactory {
+    
+    private static final GDNodeStatsFactory instance = new GDNodeStatsFactory();
+
+    /**
+     * @return the instance
+     */
+    public static GDNodeStatsFactory getInstance() {
+        return instance;
+    }
+    
+    //public final long[][] totalCalls = new long[12][15000];
+    private final int[][] callStack = new int[12][5000];
+    private int total = 0;
+    
+    public void reset() {
+        for(int index2 = 0; index2 < 12; index2++) {
+            for (int index = 0; index < total; index++) {
+                callStack[index2][index] = 0;
+            }
+        }
+        total = 0;
+    }
+
+    public void push(int index, int name) {
+        callStack[index][total++] = name;
+    }
+
+    public String toString(final StringBuilder stringBuilder) {
+        stringBuilder.delete(0, stringBuilder.length());
+        
+        stringBuilder.append(this.getClass().getName());
+        stringBuilder.append(':');
+
+        for(int index2 = 0; index2 < total; index2++) {
+            for(int index = 0; index < 12; index++) {
+                if(callStack[index][index2] != 0) {
+                    stringBuilder.append(index2);
+                    stringBuilder.append(':');
+                    stringBuilder.append(index);
+                    stringBuilder.append(':');
+                    stringBuilder.append(callStack[index][index2]);
+                    stringBuilder.append(';');
+                }
+            }
+        }
+        
+//        for(int index = 0; index < 12; index++) {
+//            for(int index2 = 0; index2 < 14999; index2++) {
+//                if(totalCalls[index][index2] > 1000) {
+//                    stringBuilder.append(index);
+//                    stringBuilder.append(':');
+//                    stringBuilder.append(index2);
+//                    stringBuilder.append(':');
+//                    stringBuilder.append(totalCalls[index][index2]);
+//                    stringBuilder.append('\n');
+//                }
+//            }
+//        }
+
+        return stringBuilder.toString();
+    }
+
+}

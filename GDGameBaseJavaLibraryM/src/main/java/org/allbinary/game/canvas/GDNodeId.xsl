@@ -110,11 +110,17 @@
             //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:text>&#10;</xsl:text>
             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process((GDObject) globals.<xsl:value-of select="$gdObjectName" />.get(index));
-            //if(globals.<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
-                ((GDGameLayer) globals.<xsl:value-of select="$gdGameLayer" />.get(index)).updateGDObject(globals.timeDelta);
-            //} else {
+            <!-- 
+            if(globals.<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) { 
+            -->
+            <xsl:if test="type/value != 'Delete'" >
+            ((GDGameLayer) globals.<xsl:value-of select="$gdGameLayer" />.get(index)).updateGDObject(globals.timeDelta);
+            </xsl:if>
+            <!-- 
+            } else {
                 //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdObjectName" /> at index: " + index, this, commonStrings.PROCESS));
-            //}
+            }
+            -->
             
         </xsl:for-each>
 

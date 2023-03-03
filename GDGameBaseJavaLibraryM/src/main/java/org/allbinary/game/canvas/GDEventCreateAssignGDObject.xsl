@@ -99,7 +99,7 @@ Created By: Travis Berthelot
 
                     //actionsWithIndexesProcess - process
                     public void process() {
-
+                        super.process();
                         //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                         
             <xsl:for-each select="conditions" >

@@ -79,6 +79,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.GDGameLayer;
+                import org.allbinary.game.layout.GDNodeStatsFactory;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
@@ -139,6 +140,8 @@ Created By: Travis Berthelot
                     }
 
                     public void process() {
+                        GDNodeStatsFactory.getInstance().reset();
+                        
                         try {
 
                         if(globals.lastStartTime == Long.MIN_VALUE) {
@@ -219,6 +222,8 @@ Created By: Travis Berthelot
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
                         }
+                        
+                        LogUtil.put(LogFactory.getInstance(GDNodeStatsFactory.getInstance().toString(new StringBuilder()), this, commonStrings.PROCESS));
                     }
 
                     public void paint(Graphics graphics, int x, int y)

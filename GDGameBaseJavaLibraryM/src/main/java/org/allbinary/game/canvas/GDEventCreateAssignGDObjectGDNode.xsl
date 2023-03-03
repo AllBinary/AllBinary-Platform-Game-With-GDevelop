@@ -143,7 +143,7 @@ Created By: Travis Berthelot
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
@@ -153,6 +153,7 @@ Created By: Travis Berthelot
                         //SoundPlaying - condition
                         @Override
                         public void process() {
+                            super.process();
                             LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                         }
                     };
@@ -162,7 +163,7 @@ Created By: Travis Berthelot
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
@@ -172,6 +173,7 @@ Created By: Travis Berthelot
                         //SourisBouton - condition
                         @Override
                         public void process() {
+                            super.process();
                             LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                         }
                     };
@@ -181,7 +183,7 @@ Created By: Travis Berthelot
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                     
@@ -191,6 +193,7 @@ Created By: Travis Berthelot
                         //LayerVisible - condition
                         @Override
                         public void process() {
+                            super.process();
                             LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                         }
                     };
@@ -200,7 +203,7 @@ Created By: Travis Berthelot
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                     
@@ -210,6 +213,7 @@ Created By: Travis Berthelot
                         //KeyFromTextPressed - condition
                         @Override
                         public void process() {
+                            super.process();
                             LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                         }
                     };
@@ -219,7 +223,7 @@ Created By: Travis Berthelot
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                     
@@ -229,6 +233,7 @@ Created By: Travis Berthelot
                         //SystemInfo::IsMobile - condition
                         @Override
                         public void process() {
+                            super.process();
                             LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                         }
                     };
@@ -239,7 +244,7 @@ Created By: Travis Berthelot
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                     
@@ -294,6 +299,8 @@ Created By: Travis Berthelot
                         
                         @Override
                         public void process() {
+                            super.process();
+
                             if(!globals.gdRunnableList.contains(this.runnable)) {
                                 globals.gdRunnableList.add(this.runnable);
                             } else {
@@ -319,7 +326,7 @@ Created By: Travis Berthelot
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                     
@@ -332,6 +339,8 @@ Created By: Travis Berthelot
                         //PosX - condition
                         @Override
                         public void process() {
+                            super.process();
+                        
                             <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             final int size = globals.<xsl:value-of select="$gdObjectName" />List.size();
                             GDGameLayer <xsl:value-of select="$gdObjectName" />GDGameLayer;
@@ -368,7 +377,7 @@ Created By: Travis Berthelot
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                     
@@ -381,7 +390,8 @@ Created By: Travis Berthelot
                         //PosY - condition
                         @Override
                         public void process() {
-
+                            super.process();
+                        
                             <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             final int size = globals.<xsl:value-of select="$gdObjectName" />List.size();
                             GDGameLayer <xsl:value-of select="$gdObjectName" />GDGameLayer;
@@ -418,7 +428,7 @@ Created By: Travis Berthelot
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                     
@@ -427,13 +437,14 @@ Created By: Travis Berthelot
                     
                         @Override
                         public void process() {
-
-                            final StringBuilder stringBuilder = new StringBuilder();
+                            super.process();
+                        
+                            //final StringBuilder stringBuilder = new StringBuilder();
                             //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>: ").append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>).toString()));
 
                             if(<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
 
-                                stringBuilder.delete(0, stringBuilder.length());
+                                //stringBuilder.delete(0, stringBuilder.length());
                                 //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>").toString()));
                                 
                                 <xsl:for-each select="../events" >
@@ -466,7 +477,7 @@ Created By: Travis Berthelot
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                     
@@ -476,7 +487,7 @@ Created By: Travis Berthelot
                         @Override
                         public void process() {
 
-                            final StringBuilder stringBuilder = new StringBuilder();
+                            //final StringBuilder stringBuilder = new StringBuilder();
                             //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>: ").append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>).toString()));
 
                             <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
@@ -503,14 +514,15 @@ Created By: Travis Berthelot
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                     
                         //VarObjet - condition
                         @Override
                         public void process() {
-
+                            super.process();
+                    
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>"));
 
@@ -546,7 +558,7 @@ Created By: Travis Berthelot
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     
                     <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                     
@@ -560,7 +572,8 @@ Created By: Travis Berthelot
                         //VarScene - condition
                         @Override
                         public void process() {
-
+                            super.process();
+                        
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>, this, commonStrings.PROCESS));
                             if(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >globals.</xsl:if><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
                                 //LogUtil.put(LogFactory.getInstance("VarScene processing", this, commonStrings.PROCESS));
@@ -605,7 +618,7 @@ Created By: Travis Berthelot
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     
                     <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
@@ -683,7 +696,7 @@ Created By: Travis Berthelot
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     
                     <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                     
@@ -702,6 +715,8 @@ Created By: Travis Berthelot
                         //TextObject::String - START
                         @Override
                         public void process() {
+                            super.process();
+                        
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             //Parameters - 2
                             <xsl:for-each select="parameters" >
@@ -723,24 +738,28 @@ Created By: Travis Berthelot
                     //HideLayer
                     @Override
                     public void process() {
-                       LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                        super.process();
+
+                        LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PlaySound'" >
                     //PlaySound
                     @Override
                     public void process() {
-                       //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                        super.process();
+                    
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
-                       <xsl:variable name="fileName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:call-template name="after-lastIndexOf"><xsl:with-param name="string" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="char" >/</xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
-                       <xsl:variable name="fileName2" ><xsl:value-of select="translate(substring-before($fileName, '.'), '_', ' ')" /></xsl:variable>
-                       <xsl:variable name="fileName3" ><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$fileName2" /></xsl:with-param></xsl:call-template></xsl:variable>
+                        <xsl:variable name="fileName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:call-template name="after-lastIndexOf"><xsl:with-param name="string" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="char" >/</xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="fileName2" ><xsl:value-of select="translate(substring-before($fileName, '.'), '_', ' ')" /></xsl:variable>
+                        <xsl:variable name="fileName3" ><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$fileName2" /></xsl:with-param></xsl:call-template></xsl:variable>
                                             
-                       try {
-                           org.allbinary.game.resource.GD<xsl:value-of select="translate($fileName3, ' ', '')" />Sound.getInstance().getPlayer().start();
-                       } catch(Exception e) {
-                           LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
-                       }
+                        try {
+                            org.allbinary.game.resource.GD<xsl:value-of select="translate($fileName3, ' ', '')" />Sound.getInstance().getPlayer().start();
+                        } catch(Exception e) {
+                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                        }
 
                     }
                 </xsl:if>
@@ -748,21 +767,27 @@ Created By: Travis Berthelot
                     //StopSoundCanal
                     @Override
                     public void process() {
-                       LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                        super.process();
+                    
+                        LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ResetTimer'" >
                     //ResetTimer
                     @Override
                     public void process() {
-                       LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                        super.process();
+                    
+                        LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'Opacity'" >
                     //Opacity
                     @Override
                     public void process() {
-                       LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                        super.process();
+                        
+                        LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                     }
                 </xsl:if>                
                 <xsl:if test="$typeValue = 'Create'" >
@@ -772,6 +797,8 @@ Created By: Travis Berthelot
                     //Create - GDObject with TextObject::String - START
                     @Override
                     public void process() {
+                        super.process();
+                            
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                     <xsl:call-template name="createGDObject" >
                         <xsl:with-param name="objectsAsString" >
@@ -928,6 +955,8 @@ Created By: Travis Berthelot
                         //Scene
                         @Override
                         public void process() {
+                            super.process();
+
                             <xsl:if test="$typeValue = 'Scene'" >
                             <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 2" >
@@ -969,6 +998,8 @@ Created By: Travis Berthelot
                         /*
                         @Override
                         public void process() {
+                            super.process();
+
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                             <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
@@ -1141,7 +1172,8 @@ Created By: Travis Berthelot
                         //UnPauseTimer - process
                         @Override
                         public void process() {
-
+                            super.process();
+                            
                             try {
 
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
@@ -1162,6 +1194,7 @@ Created By: Travis Berthelot
                         //SetAngle
                         @Override
                         public void process() {
+                            super.process();
 
                             try {
 
@@ -1191,6 +1224,7 @@ Created By: Travis Berthelot
                         //ChangePlan
                         @Override
                         public void process() {
+                            super.process();
 
                             try {
 
@@ -1218,7 +1252,8 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                         @Override
                         public void process() {
-
+                            super.process();
+                            
                             try {
 
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
@@ -1263,6 +1298,7 @@ Created By: Travis Berthelot
                         //TextObject::ChangeColor
                         @Override
                         public void process() {
+                            super.process();
 
                             try {
 
@@ -1328,19 +1364,20 @@ Created By: Travis Berthelot
                     //AddForceAL
                     @Override
                     public void process() {
+                        super.process();
 
-                    try {
+                        try {
                 
-                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
             <xsl:if test="../actions" >
-                        //if(globals.<xsl:value-of select="$name" />GDGameLayerList != null) {
-                        if(globals.<xsl:value-of select="$name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
-                        final int size = globals.<xsl:value-of select="$name" />GDGameLayerList.size();
+                            //if(globals.<xsl:value-of select="$name" />GDGameLayerList != null) {
+                            if(globals.<xsl:value-of select="$name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
+                            final int size = globals.<xsl:value-of select="$name" />GDGameLayerList.size();
 
-                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 
-                            //LogUtil.put(LogFactory.getInstance(commonStrings.INDEX_LABEL + index, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance(commonStrings.INDEX_LABEL + index, this, commonStrings.PROCESS));
             </xsl:if>
                 <xsl:call-template name="gameLayerList" >
                     <xsl:with-param name="name" >
@@ -1348,19 +1385,19 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                 </xsl:call-template>
 
-                            this.processGD(<xsl:value-of select="$name" />GDGameLayer, <xsl:value-of select="$name" />);
+                                this.processGD(<xsl:value-of select="$name" />GDGameLayer, <xsl:value-of select="$name" />);
 
             <xsl:if test="../actions" >
-                        }
-                        } else {
-                            //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> <xsl:value-of select="$name" />GDGameLayerList was null", this, commonStrings.PROCESS));
-                        }                
+                                }
+                            } else {
+                                //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> <xsl:value-of select="$name" />GDGameLayerList was null", this, commonStrings.PROCESS));
+                            }
             </xsl:if>
 
-                    } catch(Exception e) {
-                    //12
-                        LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
-                    }
+                        } catch(Exception e) {
+                        //12
+                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                        }
 
                     }
 
@@ -1506,7 +1543,8 @@ Created By: Travis Berthelot
 
                         @Override
                         public void process() {
-
+                            super.process();
+                            
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
         <xsl:if test="../conditions" >
@@ -1729,7 +1767,7 @@ Created By: Travis Berthelot
             if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                 throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
             }
-            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode() {
+            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                 <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                 
@@ -1772,7 +1810,8 @@ Created By: Travis Berthelot
                 //Found used conditions so calling them before actions.
                 @Override
                 public void process() {
-                    
+                    super.process();
+
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                     <xsl:for-each select="conditions" >
@@ -1806,6 +1845,7 @@ Created By: Travis Berthelot
                 //Found conditions that need processing.
                 @Override
                 public void process() {
+                    super.process();
                     
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
@@ -1870,7 +1910,8 @@ Created By: Travis Berthelot
                 //Events only - No actions or conditions
                 @Override
                 public void process() {
-                
+                    super.process();
+
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                 <xsl:for-each select="events" >
                     <!-- CollisionNP is already handled. -->
@@ -2058,7 +2099,7 @@ Created By: Travis Berthelot
                         if(globals.nodeArray[<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
-                        globals.nodeArray[<xsl:value-of select="$actionNodeId" />] = new GDNode() {
+                        globals.nodeArray[<xsl:value-of select="$actionNodeId" />] = new GDNode(<xsl:value-of select="$actionNodeId" />) {
 
                             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
@@ -2067,6 +2108,8 @@ Created By: Travis Berthelot
                             
                             @Override
                             public void process() {
+                                super.process();
+
                                 this.clear();
                                 this.processM(this.gameLayerArray, null, null);
                                 this.clear2();
@@ -2165,7 +2208,7 @@ Created By: Travis Berthelot
                         if(globals.nodeArray[<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
-                        globals.nodeArray[<xsl:value-of select="$actionNodeId" />] = new GDNode() {
+                        globals.nodeArray[<xsl:value-of select="$actionNodeId" />] = new GDNode(<xsl:value-of select="$actionNodeId" />) {
 
                             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
@@ -2174,6 +2217,8 @@ Created By: Travis Berthelot
                         
                             @Override
                             public void process() {
+                                super.process();
+
                                 this.clear();
                                 this.processM(this.gameLayerArray, null, null);
                                 this.clear2();
@@ -2265,12 +2310,14 @@ Created By: Travis Berthelot
                         if(globals.nodeArray[<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
-                        globals.nodeArray[<xsl:value-of select="$actionNodeId" />] = new GDNode() {
+                        globals.nodeArray[<xsl:value-of select="$actionNodeId" />] = new GDNode(<xsl:value-of select="$actionNodeId" />) {
 
                             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
                             @Override
                             public void process() {
+                                super.process();
+
                                 //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
                                 if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                                     if(globals.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
