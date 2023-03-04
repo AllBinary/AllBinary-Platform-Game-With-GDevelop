@@ -223,7 +223,7 @@ Created By: Travis Berthelot
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
                         }
                         
-                        LogUtil.put(LogFactory.getInstance(GDNodeStatsFactory.getInstance().toString(new StringBuilder()), this, commonStrings.PROCESS));
+                        GDNodeStatsFactory.getInstance().log(new StringBuilder());
                     }
 
                     public void paint(Graphics graphics, int x, int y)

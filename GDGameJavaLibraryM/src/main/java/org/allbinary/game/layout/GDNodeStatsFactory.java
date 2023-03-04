@@ -13,6 +13,10 @@
  */
 package org.allbinary.game.layout;
 
+import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
+
 /**
  *
  * @author User
@@ -45,7 +49,10 @@ public class GDNodeStatsFactory {
         callStack[index][total++] = name;
     }
 
-    public String toString(final StringBuilder stringBuilder) {
+    public String log(final StringBuilder stringBuilder) {
+        
+        final CommonStrings commonStrings = CommonStrings.getInstance();
+        
         stringBuilder.delete(0, stringBuilder.length());
         
         stringBuilder.append(this.getClass().getName());
@@ -60,6 +67,11 @@ public class GDNodeStatsFactory {
                     stringBuilder.append(':');
                     stringBuilder.append(callStack[index][index2]);
                     stringBuilder.append(';');
+                    if(stringBuilder.length() > 1000) {
+                        
+                        LogUtil.put(LogFactory.getInstance(stringBuilder.toString(), this, commonStrings.PROCESS));
+                        stringBuilder.delete(0, stringBuilder.length());
+                    }
                 }
             }
         }

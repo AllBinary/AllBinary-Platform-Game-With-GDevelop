@@ -153,7 +153,7 @@ Created By: Travis Berthelot
                         //SoundPlaying - condition
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
                             LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                         }
                     };
@@ -173,7 +173,7 @@ Created By: Travis Berthelot
                         //SourisBouton - condition
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
                             LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                         }
                     };
@@ -193,7 +193,7 @@ Created By: Travis Berthelot
                         //LayerVisible - condition
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
                             LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                         }
                     };
@@ -213,7 +213,7 @@ Created By: Travis Berthelot
                         //KeyFromTextPressed - condition
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
                             LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                         }
                     };
@@ -233,7 +233,7 @@ Created By: Travis Berthelot
                         //SystemInfo::IsMobile - condition
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
                             LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                         }
                     };
@@ -299,7 +299,7 @@ Created By: Travis Berthelot
                         
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
 
                             if(!globals.gdRunnableList.contains(this.runnable)) {
                                 globals.gdRunnableList.add(this.runnable);
@@ -310,6 +310,7 @@ Created By: Travis Berthelot
 
                         @Override
                         public void processReleased() {
+                            super.processReleasedStats();
                             if(globals.gdRunnableList.contains(this.runnable)) {
                                 globals.gdRunnableList.remove(this.runnable);
                             } else {
@@ -339,7 +340,7 @@ Created By: Travis Berthelot
                         //PosX - condition
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
                         
                             <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             final int size = globals.<xsl:value-of select="$gdObjectName" />List.size();
@@ -390,7 +391,7 @@ Created By: Travis Berthelot
                         //PosY - condition
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
                         
                             <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             final int size = globals.<xsl:value-of select="$gdObjectName" />List.size();
@@ -437,7 +438,7 @@ Created By: Travis Berthelot
                     
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
                         
                             //final StringBuilder stringBuilder = new StringBuilder();
                             //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>: ").append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>).toString()));
@@ -521,7 +522,7 @@ Created By: Travis Berthelot
                         //VarObjet - condition
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
                     
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>"));
@@ -572,7 +573,7 @@ Created By: Travis Berthelot
                         //VarScene - condition
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
                         
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>, this, commonStrings.PROCESS));
                             if(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >globals.</xsl:if><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
@@ -628,6 +629,8 @@ Created By: Travis Berthelot
                         //SourisSurObjet - process
                         @Override
                         public void process(final MotionGestureEvent motionGestureEvent) {
+                            super.processStats(motionGestureEvent);
+
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 <xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 1" >
@@ -715,7 +718,7 @@ Created By: Travis Berthelot
                         //TextObject::String - START
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
                         
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             //Parameters - 2
@@ -738,7 +741,7 @@ Created By: Travis Berthelot
                     //HideLayer
                     @Override
                     public void process() {
-                        super.process();
+                        super.processStats();
 
                         LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                     }
@@ -747,7 +750,7 @@ Created By: Travis Berthelot
                     //PlaySound
                     @Override
                     public void process() {
-                        super.process();
+                        super.processStats();
                     
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
@@ -767,7 +770,7 @@ Created By: Travis Berthelot
                     //StopSoundCanal
                     @Override
                     public void process() {
-                        super.process();
+                        super.processStats();
                     
                         LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                     }
@@ -776,7 +779,7 @@ Created By: Travis Berthelot
                     //ResetTimer
                     @Override
                     public void process() {
-                        super.process();
+                        super.processStats();
                     
                         LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                     }
@@ -785,7 +788,7 @@ Created By: Travis Berthelot
                     //Opacity
                     @Override
                     public void process() {
-                        super.process();
+                        super.processStats();
                         
                         LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
                     }
@@ -797,7 +800,7 @@ Created By: Travis Berthelot
                     //Create - GDObject with TextObject::String - START
                     @Override
                     public void process() {
-                        super.process();
+                        super.processStats();
                             
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                     <xsl:call-template name="createGDObject" >
@@ -816,11 +819,14 @@ Created By: Travis Berthelot
                     //Create
                     @Override
                     public boolean process(final BasicArrayList gameLayerList, final int index) throws Exception {
+                        super.processStats(gameLayerList, index);
+
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "Not Null", this, commonStrings.PROCESS));
                         return this.process(index);
                     }
 
                     public boolean process(final int index) throws Exception {
+                        super.processStats(index);
 
                         LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                         
@@ -847,6 +853,7 @@ Created By: Travis Berthelot
                     //SetAngle
                     @Override
                     public boolean process(final BasicArrayList gameLayerList, final int index) throws Exception {
+                        super.processStats(gameLayerList, index);
 
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                     <xsl:for-each select="parameters" >
@@ -876,7 +883,8 @@ Created By: Travis Berthelot
                     //ChangePlan
                     @Override
                     public boolean process(final BasicArrayList gameLayerList, final int index) throws Exception {
-                        
+                        super.processStats(gameLayerList, index);
+
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
@@ -902,6 +910,7 @@ Created By: Travis Berthelot
                     //Create End
                     @Override
                     public void processEnd(final int index) throws Exception {
+                        super.processEndStats(index);
 
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.END));
                     <xsl:for-each select="parameters" >
@@ -955,7 +964,7 @@ Created By: Travis Berthelot
                         //Scene
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
 
                             <xsl:if test="$typeValue = 'Scene'" >
                             <xsl:for-each select="parameters" >
@@ -998,7 +1007,7 @@ Created By: Travis Berthelot
                         /*
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
 
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
@@ -1016,6 +1025,8 @@ Created By: Travis Berthelot
 
                         @Override
                         public boolean process(final GDObject gdObject) {
+                            super.processStats(gdObject);
+
                             this.processG(gdObject, globals.graphics);
                             return true;
                         }
@@ -1066,6 +1077,8 @@ Created By: Travis Berthelot
                         //MettreY
                         @Override
                         public boolean process(final GDObject gdObject) {
+                            super.processStats(gdObject);
+
                             this.processG(gdObject, globals.graphics);
                             return true;
                         }
@@ -1120,6 +1133,8 @@ Created By: Travis Berthelot
                         //MettreXY
                         @Override
                         public boolean process(final GDObject gdObject) {
+                            super.processStats(gdObject);
+
                             this.processG(gdObject, globals.graphics);
                             return true;
                         }
@@ -1172,7 +1187,7 @@ Created By: Travis Berthelot
                         //UnPauseTimer - process
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
                             
                             try {
 
@@ -1194,7 +1209,7 @@ Created By: Travis Berthelot
                         //SetAngle
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
 
                             try {
 
@@ -1224,7 +1239,7 @@ Created By: Travis Berthelot
                         //ChangePlan
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
 
                             try {
 
@@ -1252,7 +1267,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
                             
                             try {
 
@@ -1298,7 +1313,7 @@ Created By: Travis Berthelot
                         //TextObject::ChangeColor
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
 
                             try {
 
@@ -1330,10 +1345,11 @@ Created By: Travis Berthelot
                         //Delete
                         @Override
                         public void processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final GDObject <xsl:value-of select="$name" />) {
-
+                            super.processGDStats(<xsl:value-of select="$name" />GDGameLayer, <xsl:value-of select="$name" />);
+                        
                             try {
 
-                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                                     //Parameters - 5
                                     <xsl:for-each select="parameters" >
@@ -1362,9 +1378,10 @@ Created By: Travis Berthelot
 
                                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //AddForceAL
+                    /*
                     @Override
                     public void process() {
-                        super.process();
+                        super.processStats();
 
                         try {
                 
@@ -1400,9 +1417,11 @@ Created By: Travis Berthelot
                         }
 
                     }
+                    */
 
                     @Override
                     public boolean process(final int index) throws Exception {
+                        super.processStats(index);
                 
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
@@ -1437,6 +1456,7 @@ Created By: Travis Berthelot
 
                         @Override
                         public void processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final GDObject <xsl:value-of select="$name" />) {
+                            super.processGDStats(<xsl:value-of select="$name" />GDGameLayer, <xsl:value-of select="$name" />);
 
                             try {
 
@@ -1543,7 +1563,7 @@ Created By: Travis Berthelot
 
                         @Override
                         public void process() {
-                            super.process();
+                            super.processStats();
                             
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
@@ -1620,6 +1640,7 @@ Created By: Travis Berthelot
 
                         @Override
                         public void processReleased() {
+                            super.processReleasedStats();
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
 
         <xsl:if test="../conditions" >
@@ -1737,7 +1758,8 @@ Created By: Travis Berthelot
                         //SourisSurObjet - motionGestureEvent
                         @Override
                         public void process(final MotionGestureEvent motionGestureEvent) {
-                        
+                            super.processStats(motionGestureEvent);
+                            
                             //Conditions - START
                             <xsl:for-each select="../conditions" >
                                 <xsl:variable name="typeValue" select="type/value" />
@@ -1810,7 +1832,7 @@ Created By: Travis Berthelot
                 //Found used conditions so calling them before actions.
                 @Override
                 public void process() {
-                    super.process();
+                    super.processStats();
 
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
@@ -1826,6 +1848,7 @@ Created By: Travis Berthelot
 
                 @Override
                 public void processReleased() {
+                    super.processReleasedStats();
                 
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
@@ -1845,7 +1868,7 @@ Created By: Travis Berthelot
                 //Found conditions that need processing.
                 @Override
                 public void process() {
-                    super.process();
+                    super.processStats();
                     
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
@@ -1910,7 +1933,7 @@ Created By: Travis Berthelot
                 //Events only - No actions or conditions
                 @Override
                 public void process() {
-                    super.process();
+                    super.processStats();
 
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                 <xsl:for-each select="events" >
@@ -1949,6 +1972,8 @@ Created By: Travis Berthelot
                 
                 @Override
                 public void process(final MotionGestureEvent motionGestureEvent) {
+                    super.processStats(motionGestureEvent);
+
                 <xsl:for-each select="events" >
                     //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" />
                     <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
@@ -2108,7 +2133,7 @@ Created By: Travis Berthelot
                             
                             @Override
                             public void process() {
-                                super.process();
+                                super.processStats();
 
                                 this.clear();
                                 this.processM(this.gameLayerArray, null, null);
@@ -2117,6 +2142,8 @@ Created By: Travis Berthelot
 
                             @Override
                             public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
+                                super.processNStats(gdNode, gdNodeList);
+
                                 this.clear();
                                 this.processM(this.gameLayerArray, gdNode, gdNodeList);
                                 this.clear2();
@@ -2127,7 +2154,8 @@ Created By: Travis Berthelot
                             //objectGDObjectAtIndex2 - collide - Sprite - <xsl:value-of select="$name" /> - processM
                             @Override
                             public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
-                                
+                                super.processMStats(gameLayerArray, gdNode, gdNodeList);
+
                                 //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
                                 
                         //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
@@ -2217,7 +2245,7 @@ Created By: Travis Berthelot
                         
                             @Override
                             public void process() {
-                                super.process();
+                                super.processStats();
 
                                 this.clear();
                                 this.processM(this.gameLayerArray, null, null);
@@ -2226,6 +2254,8 @@ Created By: Travis Berthelot
 
                             @Override
                             public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
+                                super.processNStats(gdNode, gdNodeList);
+
                                 this.clear();
                                 this.processM(this.gameLayerArray, gdNode, gdNodeList);
                                 this.clear2();
@@ -2236,7 +2266,8 @@ Created By: Travis Berthelot
                             //objectGDObjectAtIndex2 - collide - TextObject::Text - <xsl:value-of select="$name" />
                             @Override
                             public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
-                                
+                                super.processMStats(gameLayerArray, gdNode, gdNodeList);
+
                                 //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
                                 
                                 final CollidableCompositeLayer gameLayer = gameLayerArray[0];
@@ -2316,7 +2347,7 @@ Created By: Travis Berthelot
 
                             @Override
                             public void process() {
-                                super.process();
+                                super.processStats();
 
                                 //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
                                 if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
@@ -2331,6 +2362,8 @@ Created By: Travis Berthelot
 
                             @Override
                             public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
+                                super.processNStats(gdNode, gdNodeList);
+
                                 //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
                                 if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                                     if(globals.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
@@ -2342,19 +2375,6 @@ Created By: Travis Berthelot
                                 }
                             }
 
-                            <!--
-                            //Hack FIX ME for GDevelop player with GDNode - <xsl:value-of select="$name" />
-                            @Override
-                            public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
-
-                                gdNode.clear();
-                                gdNode.gameLayerArray[0] = gameLayerArray[0];
-                                gdNode.gameLayerArray[1] = gameLayerArray[1];
-                                gdNode.processM(gdNode.gameLayerArray, gdNode, gdNodeList);
-                                gdNode.clear2();
-
-                            }
-                            -->
                         };
 
                             </xsl:if>

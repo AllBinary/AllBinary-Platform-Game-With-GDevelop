@@ -176,7 +176,8 @@ Created By: Travis Berthelot
                             //Possibly more than 2 GameLayers.  So not all actions on group list are collisions but some are.
                             @Override
                             public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
-                                
+                                super.processMStats(gameLayerArray, gdNode, gdNodeList);
+
                                 final int size = nodeList<xsl:value-of select="$nodeList" />.size();
                                 GDNode node;
                                 final int size2 = gameLayerArray.length;

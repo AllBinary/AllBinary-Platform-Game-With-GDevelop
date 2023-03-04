@@ -149,7 +149,7 @@ Created By: Travis Berthelot
 //
 //                                @Override
 //                                public void process() {
-//                                    super.process();
+//                                    super.processStats();
 //                                    LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, Integer.toString(currentIndex), new Exception()));
 //                                }
 //                            };
@@ -159,7 +159,8 @@ Created By: Travis Berthelot
 
                             @Override
                             public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
-                                
+                                super.processMStats(gameLayerArray, gdNode, gdNodeList);
+
                                 gdNode.gameLayerArray[0] = gameLayerArray[0];
                                 gdNode.gameLayerArray[1] = gameLayerArray[1];
 

@@ -99,7 +99,7 @@ Created By: Travis Berthelot
 
                     //actionsWithIndexesProcess - process
                     public void process() {
-                        super.process();
+                        super.processStats();
                         //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                         
             <xsl:for-each select="conditions" >
@@ -468,6 +468,7 @@ Created By: Travis Berthelot
                     //eventsCreateProcessUsed - <xsl:value-of select="$caller" />
                     @Override
                     public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
+                        super.processMStats(gameLayerArray, gdNode, gdNodeList);
 
                         try {
 
