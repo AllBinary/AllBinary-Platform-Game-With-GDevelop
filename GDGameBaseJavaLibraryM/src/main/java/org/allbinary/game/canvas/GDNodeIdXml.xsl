@@ -70,13 +70,13 @@ Created By: Travis Berthelot
         <xsl:for-each select="disableInputWhenNotFocused" ><disableInputWhenNotFocused><xsl:value-of select="text()" /></disableInputWhenNotFocused></xsl:for-each>
         <xsl:for-each select="instances" ><xsl:text disable-output-escaping="yes" >&lt;</xsl:text>instances nodeId="<xsl:value-of select="generate-id()" /> - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]" position="<xsl:value-of select="position()" />" /<xsl:text disable-output-escaping="yes" >&gt;</xsl:text></xsl:for-each>
         <xsl:for-each select="objects" ><xsl:text disable-output-escaping="yes" >&lt;</xsl:text>objects nodeId="<xsl:value-of select="generate-id()" /> - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]" position="<xsl:value-of select="position()" />" /<xsl:text disable-output-escaping="yes" >&gt;</xsl:text></xsl:for-each>
-        <uiSettings></uiSettings>
-        <title/>
+        <xsl:for-each select="uiSettings" ><uiSettings><xsl:value-of select="text()" /></uiSettings></xsl:for-each>
+        <xsl:for-each select="title" ><title><xsl:value-of select="text()" /></title></xsl:for-each>
         <xsl:for-each select="r" ><r><xsl:value-of select="text()" /></r></xsl:for-each>
         <xsl:for-each select="v" ><v><xsl:value-of select="text()" /></v></xsl:for-each>
         <xsl:for-each select="name" ><name><xsl:value-of select="text()" /></name></xsl:for-each>
         <xsl:for-each select="layers" ><xsl:text disable-output-escaping="yes" >&lt;</xsl:text>layers nodeId="<xsl:value-of select="generate-id()" /> - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]" position="<xsl:value-of select="position()" />" /<xsl:text disable-output-escaping="yes" >&gt;</xsl:text></xsl:for-each>
-        <standardSortMethod>true</standardSortMethod>
+        <xsl:for-each select="standardSortMethod" ><standardSortMethod><xsl:value-of select="text()" /></standardSortMethod></xsl:for-each>
         <xsl:for-each select="mangledName" ><mangledName><xsl:value-of select="text()" /></mangledName></xsl:for-each>
                 
         <xsl:for-each select="events" >
