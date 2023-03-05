@@ -58,18 +58,6 @@ Created By: Travis Berthelot
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
 
-                //showAll - START
-                <!--
-                    <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>root<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
-                    <xsl:call-template name="showAll" >
-                        <xsl:with-param name="totalRecursions" >
-                            <xsl:value-of select="0" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-                    <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>/root<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
-                -->                
-                //showAll - END
-                
                 package org.allbinary.game.canvas;
 
                 import javax.microedition.lcdui.Font;

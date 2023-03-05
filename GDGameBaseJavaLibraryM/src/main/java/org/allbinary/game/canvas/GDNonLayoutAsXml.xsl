@@ -29,7 +29,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
-    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDNodeIdXml.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventPaint.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventOpen.xsl" />
@@ -41,6 +41,13 @@ Created By: Travis Berthelot
     <xsl:template match="/game">
         <xsl:variable name="windowWidth" select="properties/windowWidth" />
 
+        <gdVersion>
+        <xsl:for-each select="gdVersion" >
+        <xsl:value-of select="text()" />
+        </xsl:for-each>
+        </gdVersion>
+
+        <externalEvents>
         <xsl:for-each select="externalEvents" >
             <xsl:call-template name="showAll" >
                 <xsl:with-param name="totalRecursions" >
@@ -48,7 +55,26 @@ Created By: Travis Berthelot
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
+        </externalEvents>
+
+        <resources>
+        <xsl:for-each select="resources" >
+        <xsl:value-of select="text()" />
+        </xsl:for-each>
+        </resources>
         
+        <properties>
+        <xsl:for-each select="properties" >
+        <xsl:value-of select="text()" />
+        </xsl:for-each>
+        </properties>
+        
+        <variables>
+        <xsl:for-each select="variables" >
+        <xsl:value-of select="text()" />
+        </xsl:for-each>
+        </variables>
+
     </xsl:template>
 
 </xsl:stylesheet>
