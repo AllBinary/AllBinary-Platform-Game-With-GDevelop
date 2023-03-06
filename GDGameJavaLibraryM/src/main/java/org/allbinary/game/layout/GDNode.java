@@ -148,5 +148,8 @@ public class GDNode
         this.nodeStatsFactory.push(11, name);
         //this.nodeStatsFactory.totalCalls[11][name]++;
     }
-    
+
+    public long getName() {
+        return this.name;
+    }    
 }
