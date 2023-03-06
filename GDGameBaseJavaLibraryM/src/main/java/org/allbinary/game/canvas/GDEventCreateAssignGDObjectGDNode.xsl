@@ -2110,7 +2110,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="before" select="substring-before(substring-before($parametersAsString, $name), $colonName)" />
                         <xsl:variable name="actionNodeIdFromRelatedParams" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" select="$before" /><xsl:with-param name="char" select="','" /></xsl:call-template></xsl:variable>
                         <xsl:if test="string-length($parametersAsString) > 0" >
-                        //name=<xsl:value-of select="name" />
+                        //name=<xsl:value-of select="name" /> //typeValue=<xsl:value-of select="$typeValue" />
                         //before=<xsl:value-of select="$before" />
                         //actionNodeIdFromRelatedParams=<xsl:value-of select="$actionNodeIdFromRelatedParams" />
                         </xsl:if>
@@ -2128,7 +2128,7 @@ Created By: Travis Berthelot
 
                             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
-                            private final String ACTION_ID_AS_STRING_<xsl:value-of select="$actionNodeId" /> = "Action - <xsl:value-of select="$actionNodeId" />";
+                            private final String ACTION_ID_AS_STRING_<xsl:value-of select="$actionNodeId" /> = "Parameter - <xsl:value-of select="$actionNodeId" />";
                             <xsl:text>&#10;</xsl:text>
                             
                             @Override
@@ -2168,14 +2168,19 @@ Created By: Travis Berthelot
                                     //<xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />
                                     gdGameLayer = ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(index));
                                     <xsl:if test="string-length($params) > 0" >
-                                    /*<xsl:value-of select="$params" />*/
+                                    /*
+                                        <xsl:value-of select="$params" />
+                                    */
                                     final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
                                     if(indexOfGDNode == 1) {
                                         node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                        node.clear();
-                                        node.gameLayerArray[0] = gdGameLayer;
-                                        node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                        node.clear2();
+                                        //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + " calling GDNode: " + node.getName(), this, commonStrings.PROCESS, new Exception()));
+                                        //if(node.getName() != 7843) {
+                                            node.clear();
+                                            node.gameLayerArray[0] = gdGameLayer;
+                                            node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                            node.clear2();
+                                        //}
                                     } else if(indexOfGDNode == 2) {
                                         //if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
                                             node = ((GDNode) gdNodeList.get(indexOfGDNode));
@@ -2240,7 +2245,7 @@ Created By: Travis Berthelot
 
                             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
-                            private final String ACTION_ID_AS_STRING_<xsl:value-of select="$actionNodeId" /> = "Action - <xsl:value-of select="$actionNodeId" />";
+                            private final String ACTION_ID_AS_STRING_<xsl:value-of select="$actionNodeId" /> = "Parameter - <xsl:value-of select="$actionNodeId" />";
                             <xsl:text>&#10;</xsl:text>
                         
                             @Override
@@ -2283,7 +2288,9 @@ Created By: Travis Berthelot
                                     //globals.<xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />
                                     gdGameLayer = ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(index));
                                     <xsl:if test="string-length($params) > 0" >
-                                    /*<xsl:value-of select="$params" />*/
+                                    /*
+                                        <xsl:value-of select="$params" />
+                                    */
                                     final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
                                     if(indexOfGDNode == 1) {
                                         node = ((GDNode) gdNodeList.get(indexOfGDNode));
