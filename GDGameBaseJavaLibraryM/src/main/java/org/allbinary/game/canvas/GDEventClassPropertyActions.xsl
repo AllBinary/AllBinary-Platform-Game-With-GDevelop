@@ -81,7 +81,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                     <xsl:if test="position() = last()" >;</xsl:if>
                                 </xsl:for-each>
-                                //public boolean <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />_updated<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > = true;</xsl:if></xsl:for-each>
+                                <!-- //public boolean <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />_updated<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > = true;</xsl:if></xsl:for-each> -->
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="$typeValue = 'ModVarGlobal'" >
@@ -139,7 +139,7 @@ Created By: Travis Berthelot
                                             </xsl:if>
                                             <xsl:if test="position() = last()" >;</xsl:if>
                                         </xsl:for-each>
-                                        //public boolean <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />_updated<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > = true;</xsl:if></xsl:for-each>
+                                        <!-- public boolean <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />_updated<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > = true;</xsl:if></xsl:for-each> -->
                                     </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="$typeValue = 'ModVarGlobal'" >
@@ -288,7 +288,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                             <xsl:if test="position() = last()" >;</xsl:if>
                         </xsl:for-each>
-                        //public boolean <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />_updated<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > = true;</xsl:if></xsl:for-each>
+                        <!-- //public boolean <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />_updated<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > = true;</xsl:if></xsl:for-each> -->
                     </xsl:if>
                     </xsl:if>
                 </xsl:if>

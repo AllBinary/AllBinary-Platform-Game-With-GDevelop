@@ -1293,11 +1293,13 @@ Created By: Travis Berthelot
                         <xsl:if test="position() = 1" >globals.</xsl:if><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$textValue" /></xsl:with-param><xsl:with-param name="find" >Angle()</xsl:with-param><xsl:with-param name="replacementText" >Angle(playerGDGameLayer)</xsl:with-param></xsl:call-template><xsl:if test="$textValue = '+'" >=</xsl:if><xsl:if test="$textValue = '-'" >=</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                     </xsl:for-each>
                     <xsl:text>&#10;</xsl:text>
+                    <!--
                     <xsl:if test="((number(parameters[3]) = 0 or number(parameters[3])) and substring-after(parameters[3]/text(), '.') = '') or not(number(parameters[3]))" >
                     <xsl:for-each select="parameters" >
                         //<xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" />_updated = true;</xsl:if>
                     </xsl:for-each>
                     </xsl:if>
+                    -->
 
                             } catch(Exception e) {
                             //9
