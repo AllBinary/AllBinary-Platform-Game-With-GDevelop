@@ -113,7 +113,7 @@ public class GDLayoutsToAllBinaryGenerator
 
             final InputStream[] inputStreamArray = 
             {
-                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDExternalEventsAsXml.xsl"),                
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDNonLayoutAsXml.xsl"),                
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutAsXml.xsl"),
 
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayout.xsl"),
@@ -145,7 +145,7 @@ public class GDLayoutsToAllBinaryGenerator
 
             final String START_WITH_PATH = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD";
             final String[] END = {
-                "ExternalEvents.xml",
+                "NonLayout.xml",
                 "SpecialAnimation.xml",
                 
                 "SpecialAnimation.java",

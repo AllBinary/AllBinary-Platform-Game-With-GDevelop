@@ -2128,7 +2128,7 @@ Created By: Travis Berthelot
 
                             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
-                            private final String ACTION_ID_AS_STRING_<xsl:value-of select="$actionNodeId" /> = "Parameter - <xsl:value-of select="$actionNodeId" />";
+                            private final String ACTION_PARAMETER_ID_AS_STRING_<xsl:value-of select="$actionNodeId" /> = "Parameter - <xsl:value-of select="$actionNodeId" />";
                             <xsl:text>&#10;</xsl:text>
                             
                             @Override
@@ -2149,14 +2149,14 @@ Created By: Travis Berthelot
                                 this.clear2();
                             }
 
-                            private final String ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> = "Collision: " + ACTION_ID_AS_STRING_<xsl:value-of select="$actionNodeId" />;
+                            private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> = "Collision: " + ACTION_PARAMETER_ID_AS_STRING_<xsl:value-of select="$actionNodeId" />;
 
                             //objectGDObjectAtIndex2 - collide - Sprite - <xsl:value-of select="$name" /> - processM
                             @Override
                             public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
                                 super.processMStats(gameLayerArray, gdNode, gdNodeList);
 
-                                //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
                                 
                         //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
                         if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
@@ -2173,14 +2173,15 @@ Created By: Travis Berthelot
                                     */
                                     final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
                                     if(indexOfGDNode == 1) {
+                                        //Temp hack for 7856
+                                        <xsl:if test="$actionNodeId != 7856" >
                                         node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                        //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + " calling GDNode: " + node.getName(), this, commonStrings.PROCESS, new Exception()));
-                                        //if(node.getName() != 7843) {
-                                            node.clear();
-                                            node.gameLayerArray[0] = gdGameLayer;
-                                            node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                            node.clear2();
-                                        //}
+                                        //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + " calling GDNode: " + node.getName(), this, commonStrings.PROCESS, new Exception()));
+                                        node.clear();
+                                        node.gameLayerArray[0] = gdGameLayer;
+                                        node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                        node.clear2();
+                                        </xsl:if>
                                     } else if(indexOfGDNode == 2) {
                                         //if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
                                             node = ((GDNode) gdNodeList.get(indexOfGDNode));
