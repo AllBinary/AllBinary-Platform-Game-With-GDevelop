@@ -548,17 +548,6 @@ Created By: Travis Berthelot
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'ModVarScene'" >
-                    //eventsCreateProcessUsed - <xsl:value-of select="$caller" /> - //ModVarScene - call
-                    <xsl:for-each select="parameters" >
-                    </xsl:for-each>       
-                    //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));                    
-                    <xsl:variable name="typeValue" select="type/value" />
-                    //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>                    
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                    <xsl:text>&#10;</xsl:text>
-                </xsl:if>
-
                 <xsl:if test="$typeValue = 'TextObject::ChangeColor'" >
                     //eventsCreateProcessUsed - <xsl:value-of select="$caller" /> - //TextObject::ChangeColor - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
@@ -633,6 +622,7 @@ Created By: Travis Berthelot
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                     </xsl:if>
 
+            <xsl:if test="(string-length($createParamsAsString) > 0 and contains($timerActions, 'Timer,')) or not(contains($hasCondition, 'found'))" >
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:variable name="actionAsString" >Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -656,7 +646,6 @@ Created By: Travis Berthelot
                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
                 </xsl:if>
 
-
                 <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
                 <xsl:if test="$typeValue = 'SetAngle' or $typeValue = 'Delete' or $typeValue = 'AddForceAL'" >
@@ -669,6 +658,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
+
 
                 <xsl:if test="$typeValue = 'SetAngle'" >
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
@@ -706,13 +696,22 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'ModVarObjet'" >
-                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
+                    //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                     <xsl:text>&#10;</xsl:text>
                     //eventsCreateProcessUsed - <xsl:value-of select="$caller" /> - //ModVarObjet - process - <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
                     <xsl:text>&#10;</xsl:text>
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >((GDObject) globals.<xsl:value-of select="text()" />List.get(index)).</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if></xsl:if><xsl:if test="position() = 4" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" >((GDObject) globals.<xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>List.get(index)).<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                     </xsl:for-each>
+                    <xsl:text>&#10;</xsl:text>
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'ModVarScene'" >
+                    //eventsCreateProcessUsed - <xsl:value-of select="$caller" /> - //ModVarScene - process
+                    //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));                    
+                    <xsl:variable name="typeValue" select="type/value" />
+                    //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>                    
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                     <xsl:text>&#10;</xsl:text>
                 </xsl:if>
 
@@ -764,6 +763,7 @@ Created By: Travis Berthelot
             <xsl:if test="string-length($firstAction) and string-length($create) = 0" >
                 <xsl:value-of select="substring-before($firstAction, ',')" />GDGameLayer.updateGDObject(globals.timeDelta);
                 <xsl:text>&#10;</xsl:text>
+            </xsl:if>
             </xsl:if>
 
                     }
