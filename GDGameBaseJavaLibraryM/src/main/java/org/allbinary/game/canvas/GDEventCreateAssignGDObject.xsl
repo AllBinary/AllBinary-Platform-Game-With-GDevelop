@@ -200,8 +200,9 @@ Created By: Travis Berthelot
 
             <xsl:if test="not(contains($hasCondition, 'found'))" >
             <xsl:if test="actions" >
-                        //actionsWithIndexes - //repeatExpression <xsl:value-of select="repeatExpression" />
-                        final int size = <xsl:if test="not(repeatExpression)" >1</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
+                
+                        //actionsWithIndexes - //repeatExpression <xsl:value-of select="repeatExpression" /> //<xsl:value-of select="../../events/type" />
+                        final int size = <xsl:if test="not(repeatExpression or ../../events/type = 'BuiltinCommonInstructions::ForEach')" >1</xsl:if><xsl:if test="../../events/type = 'BuiltinCommonInstructions::ForEach'" >globals.<xsl:value-of select="substring-before(substring-after($parametersAsString, ':'), ',')" />GDGameLayerList.size()</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
 
                         final BasicArrayList gameLayerList = new BasicArrayList();
                         //final StringBuilder stringBuilder = new StringBuilder();
