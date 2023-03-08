@@ -51,6 +51,8 @@ Created By: Travis Berthelot
             </xsl:variable>
 
             <xsl:variable name="hasAssociatedSiblingCondition" select="conditions/type/value = 'MouseButtonReleased' or conditions/type/value = 'VarScene' or conditions/type/value = 'Timer'" />
+            <xsl:variable name="parentEventType" ><xsl:for-each select="../../events" ><xsl:value-of select="type" /></xsl:for-each></xsl:variable>
+            <xsl:variable name="actionTypesAsString" ><xsl:for-each select="actions" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="type/value" />,</xsl:for-each></xsl:variable>
             <xsl:variable name="parametersAsString" ><xsl:for-each select="actions" ><xsl:for-each select="parameters" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="text()" />,</xsl:for-each></xsl:for-each></xsl:variable>
 
             <xsl:variable name="actionAsStringsStrings" >
@@ -349,7 +351,7 @@ Created By: Travis Berthelot
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 
                                 <xsl:value-of select="$gdObjectName" /><xsl:text>GDGameLayer = (GDGameLayer) globals.</xsl:text><xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
-                                <xsl:value-of select="$gdObjectName" /><xsl:text> = (GDObject) globals.</xsl:text><xsl:value-of select="$gdObjectName" />List.get(index);
+                                <xsl:value-of select="$gdObjectName" /><xsl:text> = </xsl:text><xsl:value-of select="$gdObjectName" />GDGameLayer.gdObject;
                                 <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;'" >.x</xsl:if><xsl:if test="text() = '&gt;'" >.X2()</xsl:if></xsl:if></xsl:for-each></xsl:variable>
                                 
                                 //stringBuilder.delete(0, stringBuilder.length());
@@ -400,7 +402,7 @@ Created By: Travis Berthelot
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 
                                 <xsl:value-of select="$gdObjectName" /><xsl:text>GDGameLayer = (GDGameLayer) globals.</xsl:text><xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
-                                <xsl:value-of select="$gdObjectName" /><xsl:text> = (GDObject) globals.</xsl:text><xsl:value-of select="$gdObjectName" />List.get(index);
+                                <xsl:value-of select="$gdObjectName" /><xsl:text> = </xsl:text><xsl:value-of select="$gdObjectName" />GDGameLayer.gdObject;
                                 <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;'" >.y</xsl:if><xsl:if test="text() = '&gt;'" >.Y2()</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
                                 //stringBuilder.delete(0, stringBuilder.length());
@@ -2030,6 +2032,12 @@ Created By: Travis Berthelot
                 <xsl:with-param name="parametersAsString" >
                     <xsl:value-of select="$parametersAsString" />
                 </xsl:with-param>
+                <xsl:with-param name="actionTypesAsString" >
+                    <xsl:value-of select="$actionTypesAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="parentEventType" >
+                    <xsl:value-of select="$parentEventType" />
+                </xsl:with-param>
             </xsl:call-template>
             </xsl:if>
 
@@ -2082,6 +2090,8 @@ Created By: Travis Berthelot
     <xsl:template name="objectGDObjectGDNodes" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
+        <xsl:param name="actionTypesAsString" />
+        <xsl:param name="parentEventType" />
 
         //objectGDObjectGNodes - layoutIndex=<xsl:value-of select="$layoutIndex" /> parametersAsString=<xsl:value-of select="$parametersAsString" />
         <xsl:for-each select="/game">
@@ -2175,8 +2185,11 @@ Created By: Travis Berthelot
                                     */
                                     final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
                                     if(indexOfGDNode == 1) {
-                                        //Temp hack for 7856
-                                        <xsl:if test="$actionNodeId != 7856" >
+                                        <!-- 5179, 6129, 7079, 7856, 8256  contains($actionTypesAsString, 'AddForceAL') and not(contains($hasConditions, 'found')) and not(contains($hasParentConditions, 'found')) -->
+                                        <xsl:if test="$parentEventType = 'BuiltinCommonInstructions::ForEach' and contains($actionTypesAsString, 'AddForceAL')" >
+                                        //TWB Skipping <xsl:value-of select="$actionNodeId" /><xsl:text> </xsl:text><xsl:value-of select="$actionTypesAsString" />
+                                        </xsl:if>
+                                        <xsl:if test="not($parentEventType = 'BuiltinCommonInstructions::ForEach' and contains($actionTypesAsString, 'AddForceAL'))" >
                                         node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                         //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + " calling GDNode: " + node.getName(), this, commonStrings.PROCESS, new Exception()));
                                         node.clear();
