@@ -230,6 +230,7 @@ Created By: Travis Berthelot
                         LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0", this, commonStrings.PROCESS));
                         globals.<xsl:value-of select="name" />GDGameLayerList.add(globals.<xsl:value-of select="name" />GDGameLayer);
 
+                        //updateGDObject - 7
                         globals.<xsl:value-of select="name" />GDGameLayer.updateGDObject(globals.timeDelta);
                         allBinaryGameLayerManager.insert(globals.<xsl:value-of select="name" />GDGameLayer);
                         </xsl:if>

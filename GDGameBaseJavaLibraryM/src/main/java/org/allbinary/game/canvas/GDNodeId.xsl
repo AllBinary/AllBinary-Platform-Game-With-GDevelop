@@ -114,6 +114,7 @@
             if(globals.<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) { 
             -->
             <xsl:if test="type/value != 'Delete'" >
+            //updateGDObject - 8
             ((GDGameLayer) globals.<xsl:value-of select="$gdGameLayer" />.get(index)).updateGDObject(globals.timeDelta);
             </xsl:if>
             <!-- 

@@ -846,13 +846,6 @@ Created By: Travis Berthelot
                         <xsl:if test="not(contains($actionWithTextObjectString, $param))" >
                     //Create
                     @Override
-                    public boolean process(final BasicArrayList gameLayerList, final int index) throws Exception {
-                        super.processStats(gameLayerList, index);
-
-                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "Not Null", this, commonStrings.PROCESS));
-                        return this.process(index);
-                    }
-
                     public boolean process(final int index) throws Exception {
                         super.processStats(index);
 
@@ -880,21 +873,10 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'SetAngle'" >
                     //SetAngle
                     @Override
-                    public boolean process(final BasicArrayList gameLayerList, final int index) throws Exception {
-                        super.processStats(gameLayerList, index);
+                    public boolean process(final int index) throws Exception {
+                        super.processStats(index);
 
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
-                    <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" >
-                        if(globals.<xsl:value-of select="text()" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
-                            final GDGameLayer gameLayer = (GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index);
-                            if(!gameLayerList.contains(gameLayer)) {
-                                gameLayerList.add(gameLayer);
-                            }
-                        }
-                        <xsl:text>&#10;</xsl:text>
-                        </xsl:if>
-                    </xsl:for-each>
 
                     <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
@@ -910,21 +892,10 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'ChangePlan'" >
                     //ChangePlan
                     @Override
-                    public boolean process(final BasicArrayList gameLayerList, final int index) throws Exception {
-                        super.processStats(gameLayerList, index);
+                    public boolean process(final int index) throws Exception {
+                        super.processStats(index);
 
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
-                    <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" >
-                        if(globals.<xsl:value-of select="text()" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
-                            final GDGameLayer gameLayer = (GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index);
-                            if(!gameLayerList.contains(gameLayer)) {
-                                gameLayerList.add(gameLayer);
-                            }
-                        }
-                        <xsl:text>&#10;</xsl:text>
-                        </xsl:if>
-                    </xsl:for-each>
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >((GDObject) globals.<xsl:value-of select="text()" />List.get(index)).zOrder</xsl:if><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                     </xsl:for-each>
@@ -949,6 +920,7 @@ Created By: Travis Berthelot
                             final GDGameLayer <xsl:value-of select="$gameLayer" /> = (GDGameLayer) globals.<xsl:value-of select="$gameLayer" />List.get(index);
                             
                             if(<xsl:value-of select="$gameLayer" /> != null) {
+                                //updateGDObject - 3
                                 <xsl:value-of select="$gameLayer" />.updateGDObject(globals.timeDelta);
                                 
                                 allBinaryGameLayerManager.insert(<xsl:value-of select="$gameLayer" />);
@@ -1574,6 +1546,7 @@ Created By: Travis Berthelot
                                     -->
                                     
                                     <xsl:text>&#10;</xsl:text>
+                                    //updateGDObject - 4
                                     <xsl:value-of select="$name" />GDGameLayer.updateGDObject(globals.timeDelta);
                                     <xsl:text>&#10;</xsl:text>
 
@@ -1661,6 +1634,7 @@ Created By: Travis Berthelot
         <xsl:if test="not(../conditions)" >
                                 this.process((GDObject) globals.<xsl:value-of select="$gdObjectName" />List.get(index));
         </xsl:if>
+                                //updateGDObject - 5
                                 gameLayer.updateGDObject(globals.timeDelta);
                                 }
                             } else {
@@ -1737,6 +1711,7 @@ Created By: Travis Berthelot
         <xsl:if test="not(../conditions)" >
                                 this.processReleased((GDObject) globals.<xsl:value-of select="$gdObjectName" />List.get(index));
         </xsl:if>
+                                //updateGDObject - 6
                                 gameLayer.updateGDObject(globals.timeDelta);
                                 }
                             } else {
