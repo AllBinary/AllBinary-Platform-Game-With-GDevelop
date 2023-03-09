@@ -27,10 +27,10 @@ public class DestroyOutsideBehavior extends GDBehavior {
 
     private final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
 
-    public boolean process(final BasicArrayList gameLayerList, final BasicArrayList gdObjectList, final int index, final Graphics graphics) {
+    public boolean process(final BasicArrayList gameLayerList, final int index, final Graphics graphics) {
 
         final GDGameLayer gameLayer = (GDGameLayer) gameLayerList.get(index);
-        final GDObject gdObject = (GDObject) gdObjectList.get(index);
+        final GDObject gdObject = gameLayer.gdObject;
 
         if(gdObject == null) {
             return false;

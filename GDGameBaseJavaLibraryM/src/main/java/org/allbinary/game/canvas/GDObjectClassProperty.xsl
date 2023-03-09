@@ -60,7 +60,6 @@ Created By: Travis Berthelot
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
 
                 //private BasicArrayList <xsl:value-of select="name" />List = ZERO_GD_OBJECT;
-                public final BasicArrayList <xsl:value-of select="name" />List = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                 //private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
                 public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                 public final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();

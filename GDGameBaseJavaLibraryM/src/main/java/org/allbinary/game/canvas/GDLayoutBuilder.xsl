@@ -136,7 +136,7 @@ Created By: Travis Berthelot
 //                            globals.nodeArray[index2][index] = new GDNode() {
 //
 //                                @Override
-//                                public void process() {
+//                                public void process() throws Exception {
 //                                    super.processStats();
 //                                    LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, Integer.toString(currentIndex), new Exception()));
 //                                }
@@ -193,18 +193,15 @@ Created By: Travis Berthelot
                         final int <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
                         final int <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
 
-                        if(globals.<xsl:value-of select="name" />List.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
-                            globals.<xsl:value-of select="name" />List.ensureCapacity(1);
-                        }
-
                         if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
                             globals.<xsl:value-of select="name" />GDGameLayerList.ensureCapacity(1);
                         }
 
                         //this.<xsl:value-of select="name" />GDGameLayerArray = new GDGameLayer[1];
-                        final GDObject <xsl:value-of select="name" />2 = gdObjectsFactory.get<xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
-                        //Add GDObject 1 at index 0
-                        globals.<xsl:value-of select="name" />List.add(<xsl:value-of select="name" />2);
+                        final GDObject <xsl:value-of select="name" />2 = gdObjectsFactory.get<xsl:value-of select="name" />(
+                        null, <xsl:value-of select="name" />X, 
+                        <xsl:value-of select="name" />Y, 
+                        globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
                         
                         <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $spriteName)" >

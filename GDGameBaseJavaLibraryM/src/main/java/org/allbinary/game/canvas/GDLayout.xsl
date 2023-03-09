@@ -172,15 +172,13 @@ Created By: Travis Berthelot
                         //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
                         if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                            final BasicArrayList removeList = new BasicArrayList();
-                           final BasicArrayList removeList2 = new BasicArrayList();
                            size = globals.<xsl:value-of select="name" />GDGameLayerList.size();
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                            <xsl:for-each select="behaviors" >
                                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
                                <xsl:if test="type = 'DestroyOutsideBehavior::DestroyOutside'" >
-                               if(globals.destroyOutsideBehavior.process(globals.<xsl:value-of select="$objectName" />GDGameLayerList, globals.<xsl:value-of select="$objectName" />List, index, globals.graphics)) {
+                               if(globals.destroyOutsideBehavior.process(globals.<xsl:value-of select="$objectName" />GDGameLayerList, index, globals.graphics)) {
                                    removeList.add(globals.<xsl:value-of select="$objectName" />GDGameLayerList.get(index));
-                                   removeList2.add(globals.<xsl:value-of select="$objectName" />List.get(index));
                                }
                                </xsl:if>
                            </xsl:for-each>
@@ -189,11 +187,6 @@ Created By: Travis Berthelot
                            size = removeList.size();
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                globals.<xsl:value-of select="name" />GDGameLayerList.remove(removeList.get(index));
-                           }
-
-                           size = removeList2.size();
-                           for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                               globals.<xsl:value-of select="name" />List.remove(removeList2.get(index));
                            }
 
                            //TWB - Not all layers have this behavior so other games may not work with this.

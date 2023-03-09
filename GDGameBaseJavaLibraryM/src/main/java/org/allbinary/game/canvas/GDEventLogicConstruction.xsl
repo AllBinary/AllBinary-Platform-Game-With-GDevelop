@@ -80,6 +80,8 @@ Created By: Travis Berthelot
 
                         public void onMotionGestureEvent(final MotionGestureEvent motionGestureEvent) {
 
+                            try {
+
                             if(!initialized) {
                                 return;
                             }
@@ -92,6 +94,9 @@ Created By: Travis Berthelot
                                 <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                             </xsl:call-template>
 
+                            } catch(Exception e) {
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
+                            }
                         }
 
                     };

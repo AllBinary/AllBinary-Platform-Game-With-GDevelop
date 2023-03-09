@@ -45,7 +45,7 @@ public class GDNode
         this.clear();
     }
     
-    public void process() {
+    public void process() throws Exception {
     }
 
     public void processStats() {
@@ -53,7 +53,7 @@ public class GDNode
         //this.nodeStatsFactory.totalCalls[0][name]++;
     }
     
-    public void processReleased() {
+    public void processReleased() throws Exception {
     }
 
     public void processReleasedStats() {
@@ -87,7 +87,7 @@ public class GDNode
         //this.nodeStatsFactory.totalCalls[4][name]++;
     }
 
-    public boolean process(final GDObject gdObject) {
+    public boolean process(final GDObject gdObject) throws Exception {
         return true;
     }
 
@@ -115,7 +115,7 @@ public class GDNode
         //this.nodeStatsFactory.totalCalls[7][name]++;
     }
 
-    public void process(final MotionGestureEvent motionGestureEvent) {
+    public void process(final MotionGestureEvent motionGestureEvent) throws Exception {
     }
 
     public void processStats(final MotionGestureEvent motionGestureEvent) {
