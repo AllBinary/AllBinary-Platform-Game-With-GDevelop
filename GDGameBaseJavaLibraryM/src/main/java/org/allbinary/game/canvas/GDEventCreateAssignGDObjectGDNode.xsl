@@ -1003,36 +1003,9 @@ Created By: Travis Berthelot
 
                                 <xsl:if test="$typeValue = 'MettreX'" >
 
-                        //MettreX
-                        /*
-                        @Override
-                        public void process() {
-                            super.processStats();
-
-                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-
-                            <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-
-                            GDGameLayer gameLayer;
-                            final int size = globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.size();
-                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                gameLayer = (GDGameLayer) globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
-                                this.process((GDObject) globals.<xsl:value-of select="$gdObjectName" />List.get(index));
-                                gameLayer.updateGDObject(globals.timeDelta);
-                            }
-                        }
-                        */
-
-                        @Override
-                        public boolean process(final GDObject gdObject) {
-                            super.processStats(gdObject);
-
-                            this.processG(gdObject, globals.graphics);
-                            return true;
-                        }
-
                         private final String ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "G: " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
+                        //MettreX
                         @Override
                         public void processG(final GDObject gdObject, final Graphics graphics) {
 
@@ -1074,17 +1047,9 @@ Created By: Travis Berthelot
                                 </xsl:if>
                                 <xsl:if test="$typeValue = 'MettreY'" >
 
-                        //MettreY
-                        @Override
-                        public boolean process(final GDObject gdObject) {
-                            super.processStats(gdObject);
-
-                            this.processG(gdObject, globals.graphics);
-                            return true;
-                        }
-
                         private final String ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "G: " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
+                        //MettreY
                         @Override
                         public void processG(final GDObject gdObject, final Graphics graphics) {
 
@@ -1130,17 +1095,9 @@ Created By: Travis Berthelot
                                 </xsl:if>
                                 <xsl:if test="$typeValue = 'MettreXY'" >
 
-                        //MettreXY
-                        @Override
-                        public boolean process(final GDObject gdObject) {
-                            super.processStats(gdObject);
-
-                            this.processG(gdObject, globals.graphics);
-                            return true;
-                        }
-
                         private final String ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "G: " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
+                        //MettreXY
                         @Override
                         public void processG(final GDObject gdObject, final Graphics graphics) {
 
