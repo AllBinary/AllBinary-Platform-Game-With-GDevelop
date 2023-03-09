@@ -739,6 +739,32 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'SceneBackground'" >
                     //SceneBackground - Handled in Midlet
                 </xsl:if>
+                <xsl:if test="$typeValue = 'ChangeAnimation'" >
+                    //ChangeAnimation
+                    @Override
+                    public boolean process(final int index) throws Exception {
+                        super.processStats(index);
+
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                        <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" >((GDObject) globals.<xsl:value-of select="text()" />List.get(index)).animation</xsl:if><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                        </xsl:for-each>
+                        return true;
+                    }
+                </xsl:if>
+                <xsl:if test="$typeValue = 'ModVarObjet'" >
+                    //ChangeAnimation
+                    @Override
+                    public boolean process(final int index) throws Exception {
+                        super.processStats(index);
+
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                        <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" >((GDObject) globals.<xsl:value-of select="text()" />List.get(index)).</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if></xsl:if><xsl:if test="position() = 4" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" >((GDObject) globals.<xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>List.get(index)).<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                        </xsl:for-each>
+                        return true;
+                    }
+                </xsl:if>                
                 <xsl:if test="$typeValue = 'HideLayer'" >
                     //HideLayer
                     @Override
