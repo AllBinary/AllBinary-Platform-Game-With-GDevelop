@@ -22,6 +22,7 @@ Created By: Travis Berthelot
 
         <xsl:variable name="quote" >"</xsl:variable>
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
                         final GDObject <xsl:value-of select="$name" />2 = gdObjectsFactory.get<xsl:value-of select="$name" />(
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() != 2" >
@@ -654,8 +655,9 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$nodeId" />
                         </xsl:with-param>
                     </xsl:call-template>
+                    
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    gdObjectList.add(<xsl:value-of select="$name" />);
+                    gdObjectList.add(<xsl:value-of select="$name" />2);                    
                     //Create - GDObject - END
 
                                                                                 

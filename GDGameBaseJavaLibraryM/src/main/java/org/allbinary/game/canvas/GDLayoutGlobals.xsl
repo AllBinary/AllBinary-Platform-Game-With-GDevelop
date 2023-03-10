@@ -121,13 +121,14 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //objectsGroups - END
 
-                    //instances class properties - START
+                    //instances class properties - START                    
                     <xsl:for-each select="instances" >
                         //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" /><xsl:text>&#10;</xsl:text>
+                        public final BasicArrayList <xsl:value-of select="name" />GDObjectList = new BasicArrayList();
                         <xsl:if test="layer != ''" >
-                            public GDGameLayer <xsl:value-of select="name" />GDGameLayer;
+                        public GDGameLayer <xsl:value-of select="name" />GDGameLayer;
                         </xsl:if>
-                            public Rectangle <xsl:value-of select="name" />Rectangle = null;
+                        public Rectangle <xsl:value-of select="name" />Rectangle = null;
 
                     </xsl:for-each>
                     //instances class properties - END
@@ -145,6 +146,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
 
+                    //eventsClassProperty - START
                     <xsl:call-template name="eventsClassPropertyConditions" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
@@ -153,6 +155,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$externalEventActionModVarSceneAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
+                    //eventsClassProperty - END
 
                     <xsl:call-template name="eventsClassPropertyActions" >
                         <xsl:with-param name="totalRecursions" >

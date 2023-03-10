@@ -21,7 +21,6 @@ Created By: Travis Berthelot
         <xsl:param name="conditionEventPosition" />
         <xsl:param name="externalEventActionModVarSceneAsString" />
 
-        //eventsClassProperty
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
 
@@ -82,6 +81,12 @@ Created By: Travis Berthelot
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                <xsl:if test="$typeValue = 'TextObject::String'" >
+                    <xsl:if test="preceding-sibling::actions[type/value/text() = 'Create']/parameters[2]/text() = parameters[1]/text()">
+                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    public final BasicArrayList <xsl:value-of select="$name" />GDObjectList = new BasicArrayList();
+                    </xsl:if>
+                </xsl:if>
                 <xsl:text>&#10;</xsl:text>
             </xsl:for-each>
 

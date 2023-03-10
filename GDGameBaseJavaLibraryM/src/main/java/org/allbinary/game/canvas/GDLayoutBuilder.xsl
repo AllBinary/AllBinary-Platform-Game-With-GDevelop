@@ -197,7 +197,6 @@ Created By: Travis Berthelot
                             globals.<xsl:value-of select="name" />GDGameLayerList.ensureCapacity(1);
                         }
 
-                        //this.<xsl:value-of select="name" />GDGameLayerArray = new GDGameLayer[1];
                         final GDObject <xsl:value-of select="name" />2 = gdObjectsFactory.get<xsl:value-of select="name" />(
                         null, <xsl:value-of select="name" />X, 
                         <xsl:value-of select="name" />Y, 
@@ -214,6 +213,8 @@ Created By: Travis Berthelot
                         <xsl:value-of select="name" />2.halfHeight = (<xsl:value-of select="name" />2.height / 2);
                         LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />2.toString(), this, commonStrings.PROCESS));
                         </xsl:if>
+                        
+                        globals.<xsl:value-of select="name" />GDObjectList.add(<xsl:value-of select="name" />2);
 
                         <xsl:if test="layer = 'touch'" >
                         globals.<xsl:value-of select="name" />Rectangle = new Rectangle(

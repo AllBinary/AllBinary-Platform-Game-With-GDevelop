@@ -68,7 +68,6 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
 
                 public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="name" />";
-                public final BasicArrayList<xsl:text> </xsl:text><xsl:value-of select="name" />List = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                 public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
             </xsl:if>
 

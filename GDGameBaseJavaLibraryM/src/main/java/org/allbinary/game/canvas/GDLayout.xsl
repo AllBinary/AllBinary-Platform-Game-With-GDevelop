@@ -246,7 +246,7 @@ Created By: Travis Berthelot
                         //TextObject::Text instance
                         if(globals.<xsl:value-of select="name" />Rectangle == null) {
 
-                            final GDObject <xsl:value-of select="name" />2 = (GDObject) globals.<xsl:value-of select="name" />List.get(0);
+                            final GDObject <xsl:value-of select="name" />2 = (GDObject) globals.<xsl:value-of select="name" />GDObjectList.get(0);
                             final int <xsl:value-of select="name" />X = x + <xsl:value-of select="name" />2.x;
                             final int <xsl:value-of select="name" />Y = y + <xsl:value-of select="name" />2.y;
 
@@ -262,10 +262,10 @@ Created By: Travis Berthelot
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:if test="$typeValue = 'TextObject::Text'" >
-                            final int size<xsl:value-of select="name" />2 = globals.<xsl:value-of select="name" />List.size();
+                            final int size<xsl:value-of select="name" />2 = globals.<xsl:value-of select="name" />GDObjectList.size();
                             GDObject <xsl:value-of select="name" />2;
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size<xsl:value-of select="name" />2; index++) {
-                                <xsl:value-of select="name" />2 = (GDObject) globals.<xsl:value-of select="name" />List.get(index);
+                                <xsl:value-of select="name" />2 = (GDObject) globals.<xsl:value-of select="name" />GDObjectList.get(index);
                                 globals.<xsl:value-of select="name" />TextAnimation.paint(graphics, <xsl:value-of select="name" />2.x, <xsl:value-of select="name" />2.y);
                             }
                         </xsl:if>

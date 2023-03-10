@@ -820,7 +820,7 @@ Created By: Travis Berthelot
                     }
                 </xsl:if>                
                 <xsl:if test="$typeValue = 'Create'" >
-                    
+
                     //param1=<xsl:value-of select="$param" />
                         <xsl:if test="contains($actionWithTextObjectString, $param)" >
                     //Create - GDObject with TextObject::String - START
@@ -837,6 +837,10 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$nodeAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
+                    
+                        <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        globals.<xsl:value-of select="$name" />GDObjectList.add(<xsl:value-of select="$name" />2);
+                    
                     }
                     //Create - GDObject with TextObject::String - END
                         </xsl:if>
