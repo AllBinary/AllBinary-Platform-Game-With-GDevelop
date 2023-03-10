@@ -33,6 +33,7 @@ Created By: Travis Berthelot
         <xsl:variable name="quote" >"</xsl:variable>
 
         //<xsl:value-of select="$caller" /> - eventsCreateAssignGDObject - START
+        
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
@@ -87,6 +88,9 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                     <xsl:with-param name="parametersAsString" >
                         <xsl:value-of select="$parametersAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="objectsAsString" >
+                        <xsl:value-of select="$objectsAsString" />
                     </xsl:with-param>
                     <xsl:with-param name="createdObjectsAsString" >
                         <xsl:value-of select="$createdObjectsAsString" />
@@ -582,6 +586,7 @@ Created By: Travis Berthelot
                                     
                 <xsl:variable name="thisNodeArray" >this</xsl:variable>
 
+
                 <xsl:call-template name="actionsWithIndexes" >
                     <xsl:with-param name="caller" >VarScene</xsl:with-param>
                     <xsl:with-param name="thisNodeIndex" >
@@ -595,6 +600,9 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                     <xsl:with-param name="parametersAsString" >
                         <xsl:value-of select="$parametersAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="objectsAsString" >
+                        <xsl:value-of select="$objectsAsString" />
                     </xsl:with-param>
                     <xsl:with-param name="createdObjectsAsString" >
                         <xsl:value-of select="$createdObjectsAsString" />
@@ -1863,6 +1871,9 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                     <xsl:with-param name="createdObjectsAsString" >
                         <xsl:value-of select="$createdObjectsAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="objectsAsString" >
+                        <xsl:value-of select="$objectsAsString" />
                     </xsl:with-param>
                     <xsl:with-param name="thisNodeIndex" >
                         <xsl:value-of select="$thisNodeIndex" />

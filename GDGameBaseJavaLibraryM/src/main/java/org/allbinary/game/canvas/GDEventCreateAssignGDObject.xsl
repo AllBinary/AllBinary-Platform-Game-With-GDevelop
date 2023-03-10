@@ -83,8 +83,9 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
         <xsl:param name="createdObjectsAsString" />
+        <xsl:param name="objectsAsString" />
         <xsl:param name="thisNodeIndex" />
-            
+                    
         <!--
             <xsl:for-each select="actions" >
                 <xsl:if test="type/value = 'Create'" >
@@ -128,6 +129,9 @@ Created By: Travis Berthelot
                     <xsl:with-param name="parametersAsString" >
                         <xsl:value-of select="$parametersAsString" />
                     </xsl:with-param>
+                    <xsl:with-param name="objectsAsString" >
+                        <xsl:value-of select="$objectsAsString" />
+                    </xsl:with-param>
                     <xsl:with-param name="createdObjectsAsString" >
                         <xsl:value-of select="$createdObjectsAsString" />
                     </xsl:with-param>
@@ -161,6 +165,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
         <xsl:param name="createdObjectsAsString" />
+        <xsl:param name="objectsAsString" />
         <xsl:param name="thisNodeArray" />
         <xsl:param name="thisNodeIndex" />
         
@@ -217,9 +222,6 @@ Created By: Travis Berthelot
 
             <xsl:if test="not(contains($hasCondition, 'found'))" >
             <xsl:if test="actions" >
-                
-                        //actionsWithIndexes - //repeatExpression <xsl:value-of select="repeatExpression" /> //<xsl:value-of select="../../events/type" />
-                        final int size = <xsl:if test="not(repeatExpression or ../../events/type = 'BuiltinCommonInstructions::ForEach')" >1</xsl:if><xsl:if test="../../events/type = 'BuiltinCommonInstructions::ForEach'" >globals.<xsl:value-of select="substring-before(substring-after($parametersAsString, ':'), ',')" />GDGameLayerList.size()</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
 
             <xsl:variable name="alreadyUsedParentCondition" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="hasCondition" ><xsl:for-each select="conditions" >found</xsl:for-each></xsl:variable>
@@ -227,6 +229,17 @@ Created By: Travis Berthelot
 
             <xsl:variable name="hasNoConditionsButDoesHaveUsedAction" ><xsl:if test="not(contains($hasCondition, 'found'))" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'SetAngle' or type/value = 'ChangePlan' or type/value = 'AddForceAL' or type/value = 'ChangeAnimation' or type/value = 'ModVarObjet'" >found</xsl:if></xsl:for-each></xsl:if></xsl:variable>
             <xsl:variable name="hasCreate" ><xsl:for-each select="actions" ><xsl:variable name="typeValue" select="type/value" /><xsl:if test="$typeValue = 'Create'" >Create</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="hasCollisionCondition" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
+                        
+                        <xsl:if test="contains($hasCreate, 'Create')" >
+                            <xsl:if test="contains($hasCollisionCondition, 'found')" >
+                            //Skipping actions with create since they are associated with a CollisionNP condition
+                            </xsl:if>
+                        </xsl:if>
+                        <xsl:if test="not(contains($hasCreate, 'Create')) or not(contains($hasCollisionCondition, 'found'))" >
+
+                        //actionsWithIndexes - //repeatExpression <xsl:value-of select="repeatExpression" /> //<xsl:value-of select="../../events/type" />
+                        final int size = <xsl:if test="not(repeatExpression or ../../events/type = 'BuiltinCommonInstructions::ForEach')" >1</xsl:if><xsl:if test="../../events/type = 'BuiltinCommonInstructions::ForEach'" >globals.<xsl:value-of select="substring-before(substring-after($parametersAsString, ':'), ',')" />GDGameLayerList.size()</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
             
             <xsl:if test="contains($hasNoConditionsButDoesHaveUsedAction, 'found')" >
             <xsl:if test="not(contains($hasCreate, 'Create'))" >
@@ -283,7 +296,8 @@ Created By: Travis Berthelot
                             <xsl:variable name="text" select="substring-before($createParamsAsString, ',')" />
                         //Create Loop - <xsl:value-of select="$caller" /><xsl:if test="$caller = 'eventsCreateAssignGDObject'" > - add one</xsl:if>
                         final int startIndex = globals.<xsl:value-of select="$text" />GDGameLayerList.size();
-                        final int endIndex = startIndex + gdObjectList.size();
+                        //final int endIndex = startIndex + gdObjectList.size();
+                        final int endIndex = startIndex + size;
                         
                         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />").append(" Timer - size <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), this, commonStrings.PROCESS, new Exception()));
                         <xsl:if test="contains($timerActions, 'Timer,')" >
@@ -328,9 +342,26 @@ Created By: Travis Berthelot
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'Create'" >
+                    //Hack FIX ME for engine_particle s
+                    final GDObject player = ((GDGameLayer) globals.playerGDGameLayerList.get(0)).gdObject;
                     //Create - process - <xsl:value-of select="$caller" />
-                    final GDObject gdObject = (GDObject) gdObjectList.get(index - startIndex);
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(gdObject);
+                    //Create - GDObject - createGDObject
+                    //Create - GDObject - START                    
+                    <xsl:call-template name="createGDObject" >
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="nodeAsString" >
+                            <xsl:value-of select="$nodeId" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    
+                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    //Create - GDObject - END
+                    
+                    //final GDObject gdObject = (GDObject) gdObjectList.get(index - startIndex);
+                    //globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(gdObject);
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$name" />2);
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'MettreX'" >
@@ -468,11 +499,13 @@ Created By: Travis Berthelot
 
                         }
                         
+                        </xsl:if>
+
             <xsl:for-each select="actions" >
                 <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:if test="$typeValue = 'Create'" >
-                    gdObjectList.clear();
+                    //gdObjectList.clear();
                 </xsl:if>
             </xsl:for-each>
                         
@@ -498,7 +531,7 @@ Created By: Travis Berthelot
 
                     private final String EVENT_AS_STRING_COLLISION_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "PossibleCollision: " + EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
-                    public final BasicArrayList gdObjectList = new BasicArrayList();
+                    //public final BasicArrayList gdObjectList = new BasicArrayList();
                     
                     //eventsCreateProcessUsed - <xsl:value-of select="$caller" />
                     @Override
@@ -518,10 +551,10 @@ Created By: Travis Berthelot
                 <xsl:if test="type/value = 'Create'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
-                            if(gdObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                                LogUtil.put(LogFactory.getInstance("TWB - Hack to keep from creating again before last time: <xsl:value-of select="text()" />", this, commonStrings.PROCESS));
-                                return;
-                            }
+                            //if(gdObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                //LogUtil.put(LogFactory.getInstance("TWB - Hack to keep from creating again before last time: <xsl:value-of select="text()" />", this, commonStrings.PROCESS));
+                                //return;
+                            //}
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
@@ -615,17 +648,17 @@ Created By: Travis Berthelot
                     int startIndex;
                     int endIndex;
                     //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" size: ").append(size).append(" globals.<xsl:value-of select="$text" />List.size(): ").append(globals.<xsl:value-of select="$text" />List.size()).append(" globals.<xsl:value-of select="$text" />GDGameLayerList.size(): ").append(globals.<xsl:value-of select="$text" />GDGameLayerList.size()).toString(), this, commonStrings.PROCESS));
-                    if(gdObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                        startIndex = gdObjectList.size();
-                        endIndex = gdObjectList.size() + size;
+                    //if(gdObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                        //startIndex = gdObjectList.size();
+                        //endIndex = gdObjectList.size() + size;
                         //stringBuilder.delete(0, stringBuilder.length());
                         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" size <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), this, commonStrings.PROCESS, new Exception()));
-                    } else {
+                    //} else {
                         startIndex = 0; //globals.<xsl:value-of select="$text" />GDGameLayerList.size();
                         endIndex = size; //globals.<xsl:value-of select="$text" />List.size();
                         //stringBuilder.delete(0, stringBuilder.length());
                         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" layer <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), this, commonStrings.PROCESS, new Exception()));
-                    }
+                    //}
 
                     for(int index = startIndex; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> endIndex; index++) {
                     </xsl:if>
@@ -639,6 +672,7 @@ Created By: Travis Berthelot
                     </xsl:if>
 
             <xsl:if test="(string-length($createParamsAsString) > 0 and contains($timerActions, 'Timer,')) or not(contains($hasCondition, 'found'))" >
+                
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:variable name="actionAsString" >Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -657,12 +691,13 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    gdObjectList.add(<xsl:value-of select="$name" />2);                    
                     //Create - GDObject - END
-
+                    <!--
+                    gdObjectList.add(<xsl:value-of select="$name" />2);
+                    -->
                                                                                 
                 //Create - GDObject at - process
-                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
+                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$name" />2);
                 </xsl:if>
 
                 <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
