@@ -29,11 +29,13 @@ import org.allbinary.game.layout.GDObjectStrings;
 import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.color.BasicColorFactory;
+import org.allbinary.logic.basic.string.CommonSeps;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.ScaleFactorFactory;
+import org.allbinary.math.PositionStrings;
 import org.allbinary.view.ViewPosition;
 
 /**
@@ -122,7 +124,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.combatBaseBehavior = new CombatBaseBehavior(
                 DamageableBaseBehavior.getInstance(), new DestroyableSimpleBehavior(this));
         
-        LogUtil.put(LogFactory.getInstance(this.toString(), this, CommonStrings.getInstance().CONSTRUCTOR));
+        //LogUtil.put(LogFactory.getInstance(this.toString(), this, CommonStrings.getInstance().CONSTRUCTOR));
     }
 
     protected IndexedAnimation[] getInitIndexedAnimationInterface()
@@ -191,9 +193,10 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.combatBaseBehavior.getDestroyableBaseBehavior().setDestroyed(destroyed);
     }
     
-    //private static final String MOVE = "move";
+    private static final String MOVE = "move";
     //private static final String PLAYER_0 = "player_0";
     //private static final String PLAYER = "player";
+    //private static final String MEDIUM_ASTEROID = "medium_asteroid";
     
     public void move()
     {
@@ -214,20 +217,22 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         final int y = (int) (this.realY / scaleFactorValue);
 
         //if(this.getName().equals(PLAYER)) {
-        //final PositionStrings positionStrings = PositionStrings.getInstance();
-        //final StringMaker stringMaker = new StringMaker();
-        //LogUtil.put(LogFactory.getInstance(stringMaker
-                //.append(positionStrings.X_LABEL).append(velocityX)
-                //.append(positionStrings.Y_LABEL).append(velocityY)
-                ////.append(positionStrings.X_LABEL).append(priorRealX)
-                ////.append(positionStrings.Y_LABEL).append(priorRealY)
-                //.append(positionStrings.X_LABEL).append(this.realX)
-                //.append(positionStrings.Y_LABEL).append(this.realY)
-                //.append(positionStrings.X_LABEL).append(x)
-                //.append(positionStrings.Y_LABEL).append(y)
-                ////.append(positionStrings.DZ_LABEL).append(dz)
-                //.toString(), this, MOVE));            
-        //}
+//        if(this.getName().startsWith(MEDIUM_ASTEROID)) {
+//            final PositionStrings positionStrings = PositionStrings.getInstance();
+//            final StringMaker stringMaker = new StringMaker();
+//            LogUtil.put(LogFactory.getInstance(stringMaker
+//                .append(this.getName())
+//                .append(positionStrings.X_LABEL).append(velocityX)
+//                .append(positionStrings.Y_LABEL).append(velocityY)
+//                //.append(positionStrings.X_LABEL).append(priorRealX)
+//                //.append(positionStrings.Y_LABEL).append(priorRealY)
+//                .append(positionStrings.X_LABEL).append(this.realX)
+//                .append(positionStrings.Y_LABEL).append(this.realY)
+//                .append(positionStrings.X_LABEL).append(x)
+//                .append(positionStrings.Y_LABEL).append(y)
+//                //.append(positionStrings.DZ_LABEL).append(dz)
+//                .toString(), this, MOVE));            
+//        }
         
         super.setPosition(x, y, this.z);
     }
@@ -261,9 +266,10 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //angle *= Math.PI / 180.0;
         
         //if(this.getName().equals(PLAYER)) {
-//        final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
-//        final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-//        LogUtil.put(LogFactory.getInstance(new StringBuilder()
+//        if(this.getName().startsWith(MEDIUM_ASTEROID)) {
+//            final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
+//            final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
+//            LogUtil.put(LogFactory.getInstance(new StringBuilder()
 //                .append(this.getName())
 //                .append(CommonSeps.getInstance().COLON)
 //                .append(this.velocityInterface.toString())
@@ -273,7 +279,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 //                .append(objectStrings.ANGLE).append(angle)
 //                .append(objectStrings.ANGLE).append(adjustedAngle)
 //                .append(gameLayerStrings.LENGTH).append(length).toString(), this, gameLayerStrings.ADD_FORCE_AL));
-//        //}
+//        }
 
         this.velocityInterface.setVelocity((long) length * SCALE_FACTOR, (short) adjustedAngle, (short) 0);
         //this.Force((int) (noDecimalTrigTable.cos((short) angle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) angle) * length) / SCALE, clearing);
