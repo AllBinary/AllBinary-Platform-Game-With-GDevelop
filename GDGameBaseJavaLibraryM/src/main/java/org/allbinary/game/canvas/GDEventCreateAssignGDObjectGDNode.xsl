@@ -2195,7 +2195,7 @@ Created By: Travis Berthelot
                             } else {
                                 final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
                                 final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: list size was 0: " + indexOfGDNode;
-                                LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
+                                LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
                                 if(indexOfGDNode == 1) {
                                     final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                     //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
@@ -2215,7 +2215,7 @@ Created By: Travis Berthelot
                         } else {
                             final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
                             final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: was null: " + indexOfGDNode;
-                            LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
+                            LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
                             if(indexOfGDNode == 1) {
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
@@ -2319,12 +2319,12 @@ Created By: Travis Berthelot
                             } else {
                                 final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
                                 final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: list size was 0: " + indexOfGDNode;
-                                LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
+                                LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
                             }
                         } else {
                             final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
                             final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: was null: " + indexOfGDNode;
-                            LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, <xsl:value-of select="name" />));
+                            LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
                             if(indexOfGDNode == 1) {
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
