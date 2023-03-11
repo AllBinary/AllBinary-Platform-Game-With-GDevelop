@@ -236,21 +236,47 @@ Created By: Travis Berthelot
             <xsl:variable name="alreadyUsedCondition" ><xsl:for-each select="conditions" ><xsl:if test="position() = 1 and (type/value = 'SourisSurObjet' or type/value = 'CollisionNP' or type/value = 'Timer' or type/value = 'MouseButtonReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased')" >found</xsl:if></xsl:for-each></xsl:variable>
 
             <xsl:variable name="hasNoConditionsButDoesHaveUsedAction" ><xsl:if test="not(contains($hasCondition, 'found'))" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'SetAngle' or type/value = 'ChangePlan' or type/value = 'AddForceAL' or type/value = 'ChangeAnimation' or type/value = 'ModVarObjet'" >found</xsl:if></xsl:for-each></xsl:if></xsl:variable>
-            <xsl:variable name="hasCreate" ><xsl:for-each select="actions" ><xsl:variable name="typeValue" select="type/value" /><xsl:if test="$typeValue = 'Create'" >Create</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="hasCreate" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="hasCollisionCondition" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
                         
-                        <xsl:if test="contains($hasCreate, 'Create')" >
+                        <!--
+                        //hasCreate=<xsl:value-of select="$hasCreate" /> //hasCollisionCondition=<xsl:value-of select="$hasCollisionCondition" />
+                        <xsl:for-each select="conditions" >
+                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                        </xsl:for-each>
+                        <xsl:for-each select="actions" >
+                        //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                        </xsl:for-each>
+                        -->
+                        
+                        <xsl:if test="contains($hasCreate, 'found')" >
                             <xsl:if test="contains($hasCollisionCondition, 'found')" >
-                            //Skipping actions with create since they are associated with a CollisionNP condition
+                            //Skipping actions with create since they are associated with a CollisionNP condition - <xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each>
                             </xsl:if>
                         </xsl:if>
-                        <xsl:if test="not(contains($hasCreate, 'Create')) or not(contains($hasCollisionCondition, 'found'))" >
 
                         //actionsWithIndexes - //repeatExpression <xsl:value-of select="repeatExpression" /> //<xsl:value-of select="../../events/type" />
+                        <xsl:if test="not(contains($hasCreate, 'found')) or not(contains($hasCollisionCondition, 'found'))" >
+
                         final int size = <xsl:if test="not(repeatExpression or ../../events/type = 'BuiltinCommonInstructions::ForEach')" >1</xsl:if><xsl:if test="../../events/type = 'BuiltinCommonInstructions::ForEach'" >globals.<xsl:value-of select="substring-before(substring-after($parametersAsString, ':'), ',')" />GDGameLayerList.size()</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
             
+            <xsl:for-each select="actions" >
+                <xsl:if test="type/value = 'Create'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 2" >
+                            //LogUtil.put(LogFactory.getInstance("2TWB - globals.<xsl:value-of select="text()" />GDGameLayerList.size() " + globals.<xsl:value-of select="text()" />GDGameLayerList.size() +  " size " + size, this, commonStrings.PROCESS));
+                            if(globals.<xsl:value-of select="text()" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> size) {
+                                LogUtil.put(LogFactory.getInstance("2TWB - Hack to keep from creating again before last time: <xsl:value-of select="text()" />", this, commonStrings.PROCESS));
+                                return;
+                            }
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>
+            
+            
             <xsl:if test="contains($hasNoConditionsButDoesHaveUsedAction, 'found')" >
-            <xsl:if test="not(contains($hasCreate, 'Create'))" >
+            <xsl:if test="not(contains($hasCreate, 'found'))" >
                         final BasicArrayList gameLayerList = new BasicArrayList();
             </xsl:if>
             </xsl:if>
@@ -318,7 +344,7 @@ Created By: Travis Berthelot
                         </xsl:if>
             
             <xsl:if test="contains($hasNoConditionsButDoesHaveUsedAction, 'found')" >
-            <xsl:if test="not(contains($hasCreate, 'Create'))" >
+            <xsl:if test="not(contains($hasCreate, 'found'))" >
             gameLayerList.clear();
             </xsl:if>
             //updateGDObject - -1
@@ -350,8 +376,16 @@ Created By: Travis Berthelot
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'Create'" >
+
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 2" >
+                            <xsl:if test="text() = 'engine_particle'" >
                     //Hack FIX ME for engine_particle s
                     final GDObject player = ((GDGameLayer) globals.playerGDGameLayerList.get(0)).gdObject;
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
+
                     //Create - process - <xsl:value-of select="$caller" />
                     //Create - GDObject - createGDObject
                     //Create - GDObject - START                    
@@ -422,7 +456,7 @@ Created By: Travis Berthelot
                     //SetAngle - process - <xsl:value-of select="$caller" />
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index)) {
                         <xsl:if test="contains($hasNoConditionsButDoesHaveUsedAction, 'found')" >
-                        <xsl:if test="not(contains($hasCreate, 'Create'))" >
+                        <xsl:if test="not(contains($hasCreate, 'found'))" >
                         <xsl:call-template name="addGameLayerToList" />
                         </xsl:if>
                         </xsl:if>
@@ -433,7 +467,7 @@ Created By: Travis Berthelot
                     //ChangePlan - process - <xsl:value-of select="$caller" />
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index)) {
                         <xsl:if test="contains($hasNoConditionsButDoesHaveUsedAction, 'found')" >
-                        <xsl:if test="not(contains($hasCreate, 'Create'))" >
+                        <xsl:if test="not(contains($hasCreate, 'found'))" >
                         <xsl:call-template name="addGameLayerToList" />
                         </xsl:if>
                         </xsl:if>
@@ -444,7 +478,7 @@ Created By: Travis Berthelot
                     //AddForceAL - process - <xsl:value-of select="$caller" />
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index)) {
                         <xsl:if test="contains($hasNoConditionsButDoesHaveUsedAction, 'found')" >
-                        <xsl:if test="not(contains($hasCreate, 'Create'))" >
+                        <xsl:if test="not(contains($hasCreate, 'found'))" >
                         <xsl:call-template name="addGameLayerToList" />
                         </xsl:if>
                         </xsl:if>
@@ -455,7 +489,7 @@ Created By: Travis Berthelot
                     //ChangeAnimation - process - <xsl:value-of select="$caller" />
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index)) {
                         <xsl:if test="contains($hasNoConditionsButDoesHaveUsedAction, 'found')" >
-                        <xsl:if test="not(contains($hasCreate, 'Create'))" >
+                        <xsl:if test="not(contains($hasCreate, 'found'))" >
                         <xsl:call-template name="addGameLayerToList" />
                         </xsl:if>
                         </xsl:if>
@@ -466,7 +500,7 @@ Created By: Travis Berthelot
                     //ModVarObjet - process - <xsl:value-of select="$caller" />    
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index)) {
                         <xsl:if test="contains($hasNoConditionsButDoesHaveUsedAction, 'found')" >
-                        <xsl:if test="not(contains($hasCreate, 'Create'))" >
+                        <xsl:if test="not(contains($hasCreate, 'found'))" >
                         <xsl:call-template name="addGameLayerToList" />
                         </xsl:if>
                         </xsl:if>
@@ -486,7 +520,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
 
             <xsl:if test="contains($hasNoConditionsButDoesHaveUsedAction, 'found')" >
-            <xsl:if test="not(contains($hasCreate, 'Create'))" >
+            <xsl:if test="not(contains($hasCreate, 'found'))" >
                                 if(actionWithUpdate) {
 
                                     final int size2 = gameLayerList.size();
@@ -555,18 +589,6 @@ Created By: Travis Berthelot
                                     //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Collision: between gameLayer: ").append(gameLayerArray[0].getName()).append(" and gameLayer2: ").append(gameLayerArray[1].getName()).toString(), this, commonStrings.PROCESS));
                                 }
                             }
-            <xsl:for-each select="actions" >
-                <xsl:if test="type/value = 'Create'" >
-                    <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 2" >
-                            //if(gdObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                                //LogUtil.put(LogFactory.getInstance("TWB - Hack to keep from creating again before last time: <xsl:value-of select="text()" />", this, commonStrings.PROCESS));
-                                //return;
-                            //}
-                        </xsl:if>
-                    </xsl:for-each>
-                </xsl:if>
-            </xsl:for-each>
         
             <xsl:variable name="create" >
                 <xsl:for-each select="actions" >
@@ -636,8 +658,8 @@ Created By: Travis Berthelot
             </xsl:if>
 
                 <xsl:variable name="nodeId" ><xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                <xsl:variable name="hasDelete" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Delete'" >found</xsl:if></xsl:for-each></xsl:variable>
-                <xsl:variable name="hasCreate" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" >found</xsl:if></xsl:for-each></xsl:variable>
+                <xsl:variable name="hasDelete" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'found'" >found</xsl:if></xsl:for-each></xsl:variable>
+                <xsl:variable name="hasCreate" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'found'" >found</xsl:if></xsl:for-each></xsl:variable>
                 <xsl:variable name="listSize" ><xsl:for-each select="actions" ><xsl:variable name="typeValue" select="type/value" /><xsl:if test="$typeValue = 'SetAngle' or $typeValue = 'Delete' or $typeValue = 'AddForceAL'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" />GDGameLayerList.size();</xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
                         //eventsCreateProcessUsed - //repeatExpression <xsl:value-of select="repeatExpression" /> //listSize <xsl:value-of select="$listSize" />
                                                 
@@ -691,16 +713,52 @@ Created By: Travis Berthelot
 
                 <xsl:if test="not(contains($hasDelete, 'found')) and not(contains($hasAddForceAL, 'foundfound'))" >
 
+            <xsl:variable name="hasCreate" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="hasCollisionCondition" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="timerActions" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" ><xsl:value-of select="type/value" />,</xsl:if></xsl:for-each></xsl:variable>
+
+                        <!--
+                        //hasCreate=<xsl:value-of select="$hasCreate" /> //hasCollisionCondition=<xsl:value-of select="$hasCollisionCondition" />
+                        <xsl:for-each select="conditions" >
+                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                        </xsl:for-each>
+                        <xsl:for-each select="actions" >
+                        //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                        </xsl:for-each>
+                        -->
+
+                        <xsl:if test="contains($hasCreate, 'found')" >
+                            <xsl:if test="not(contains($hasCollisionCondition, 'found'))" >
+                            //Skipping actions with create since they are not associated with a CollisionNP condition - <xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each>
+                            </xsl:if>
+                        </xsl:if>
+
+                        <xsl:if test="(contains($hasCreate, 'found') and contains($timerActions, 'Timer,')) or not(contains($hasCondition, 'found'))" >
                         final int size = <xsl:if test="not(repeatExpression)" ><xsl:if test="$listSize = '' or contains($hasCreate, 'found')" >1;</xsl:if><xsl:if test="$listSize and not(contains($hasCreate, 'found'))" ><xsl:value-of select="$listSize" /></xsl:if></xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" />;</xsl:if>
+
+            <xsl:if test="not(contains($timerActions, 'Timer,')) and not(contains($hasCollisionCondition, 'found'))" >
+            <xsl:for-each select="actions" >
+                <xsl:if test="type/value = 'Create'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 2" >
+                            //LogUtil.put(LogFactory.getInstance("TWB - globals.<xsl:value-of select="text()" />GDGameLayerList.size() " + globals.<xsl:value-of select="text()" />GDGameLayerList.size() +  " size " + size, this, commonStrings.PROCESS));
+                            if(globals.<xsl:value-of select="text()" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> size) {
+                                LogUtil.put(LogFactory.getInstance("TWB - Hack to keep from creating again before last time: <xsl:value-of select="text()" />", this, commonStrings.PROCESS));
+                                return;
+                            }
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>
+            </xsl:if>
             
                 <xsl:variable name="createParamsAsString" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" />,</xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
-                <xsl:variable name="timerActions" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" ><xsl:value-of select="type/value" />,</xsl:if></xsl:for-each></xsl:variable>
 
                     <xsl:if test="string-length($createParamsAsString) > 0" >
                         //createParamsAsString=<xsl:value-of select="$createParamsAsString" />
                         //timerActions=<xsl:value-of select="$timerActions" />
                     </xsl:if>
-                    <xsl:if test="string-length($createParamsAsString) > 0 and contains($timerActions, 'Timer,')" >
+                    <xsl:if test="contains($hasCreate, 'found') and contains($timerActions, 'Timer,')" >
                         <xsl:variable name="text" select="substring-before($createParamsAsString, ',')" />
                         //Create Loop - eventsCreateProcessUsed - Timer
                         //final StringBuilder stringBuilder = new StringBuilder();
@@ -722,15 +780,10 @@ Created By: Travis Berthelot
                         for(int index = startIndex; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> endIndex; index++) {
                     </xsl:if>
             
-                    <xsl:if test="string-length($createParamsAsString) > 0 and not(contains($timerActions, 'Timer,'))" >
+                    <xsl:if test="not(contains($timerActions, 'Timer,'))" >
                         //Create Loop - eventsCreateProcessUsed
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                     </xsl:if>
-                    <xsl:if test="string-length($createParamsAsString) = 0" >
-                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                    </xsl:if>
-
-            <xsl:if test="(string-length($createParamsAsString) > 0 and contains($timerActions, 'Timer,')) or not(contains($hasCondition, 'found'))" >
                 
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
@@ -849,8 +902,8 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="substring-before($firstAction, ',')" />GDGameLayer.updateGDObject(globals.timeDelta);
                                 <xsl:text>&#10;</xsl:text>
             </xsl:if>
+                        }            
             </xsl:if>
-                        }
             </xsl:if>
 
                         } catch(Exception e) {
