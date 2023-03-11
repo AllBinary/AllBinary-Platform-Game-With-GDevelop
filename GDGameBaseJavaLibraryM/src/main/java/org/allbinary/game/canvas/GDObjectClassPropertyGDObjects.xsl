@@ -52,7 +52,6 @@ Created By: Travis Berthelot
 
                     public short Angle(final GDGameLayer gameLayer) {
 
-                        //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
                         //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(globals.name).append(objectStrings.ANGLE).append(angle).toString(), this, "before"));
                         
                         int adjustedAngle = gameLayer.getRotationAnimationInterface().getAngleInfo().getAngle() - 270;

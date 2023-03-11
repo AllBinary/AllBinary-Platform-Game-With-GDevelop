@@ -88,6 +88,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
         <xsl:param name="thisNodeArray" />
+        <xsl:param name="logString" />
 
         //objectGDObjectAtIndex2 - layoutIndex=<xsl:value-of select="$layoutIndex" /> parametersAsString=<xsl:value-of select="$parametersAsString" />
         <xsl:for-each select="/game">
@@ -152,7 +153,9 @@ Created By: Travis Berthelot
                         gdNodeList.add(globals.nodeArray[globals.FAKE_COLLISION_NODE_ID]);
 
                         //When gdNodeList size is 1 with only the 1 object above then nothing occurs
-                        ((GDNode) gdNodeList.get(0)).processN(gdNode, gdNodeList);
+                        final GDNode node = ((GDNode) gdNodeList.get(0));
+                        //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$logString" /> + objectStrings.CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                        node.processN(gdNode, gdNodeList);
 
                 </xsl:if>
             </xsl:for-each>
