@@ -635,9 +635,9 @@ Created By: Travis Berthelot
                                     </xsl:call-template>
                                     -->
                                 </xsl:for-each>
+                                
+                                super.processStateE();
                             }
-
-                            super.processStateE();
                         }
 
                     };
