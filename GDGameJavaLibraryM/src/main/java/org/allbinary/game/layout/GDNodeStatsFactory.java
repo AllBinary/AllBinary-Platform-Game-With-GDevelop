@@ -55,8 +55,8 @@ public class GDNodeStatsFactory {
         
         stringBuilder.delete(0, stringBuilder.length());
         
-        stringBuilder.append(this.getClass().getName());
-        stringBuilder.append(':');
+        //stringBuilder.append(this.getClass().getName());
+        //stringBuilder.append(':');
 
         for(int index2 = 0; index2 < total; index2++) {
             for(int index = 0; index < 11; index++) {
