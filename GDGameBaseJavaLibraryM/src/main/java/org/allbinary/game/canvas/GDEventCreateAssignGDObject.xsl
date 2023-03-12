@@ -570,11 +570,11 @@ Created By: Travis Berthelot
 
                             //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_COLLISION_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
-                            if(gameLayerArray[0] != null) {
-                                if(gameLayerArray[1] != null) {
+                            //if(gameLayerArray[0] != null) {
+                                //if(gameLayerArray[1] != null) {
                                     //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Collision: between gameLayer: ").append(gameLayerArray[0].getName()).append(" and gameLayer2: ").append(gameLayerArray[1].getName()).toString(), this, commonStrings.PROCESS));
-                                }
-                            }
+                                //}
+                            //}
         
             <xsl:variable name="create" >
                 <xsl:for-each select="actions" >

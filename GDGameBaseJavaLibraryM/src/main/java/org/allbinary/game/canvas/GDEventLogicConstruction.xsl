@@ -187,8 +187,9 @@ Created By: Travis Berthelot
                                 GDNode node;
                                 final int size2 = gameLayerArray.length;
                                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                    LogUtil.put(LogFactory.getInstance(NODE_AT + index, this, commonStrings.PROCESS));
+                                    //LogUtil.put(LogFactory.getInstance(NODE_AT + index, this, commonStrings.PROCESS));
                                     node = ((GDNode) nodeList<xsl:value-of select="$nodeList" />.get(index));
+                                    //LogUtil.put(LogFactory.getInstance(objectStrings.CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
                                     node.clear();
                                     for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
                                         node.gameLayerArray[index2] = gameLayerArray[index2];
