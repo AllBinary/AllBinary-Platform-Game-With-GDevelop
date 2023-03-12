@@ -868,7 +868,7 @@ Created By: Travis Berthelot
                     public boolean processCreate(final GDObject gdObject) throws Exception {
                         super.processCreateStats(gdObject);
 
-                        LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                        LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 2" >globals.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if></xsl:for-each>, this, commonStrings.PROCESS));
                         
                     <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
                     <xsl:for-each select="parameters" >
@@ -1325,12 +1325,12 @@ Created By: Travis Berthelot
                                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         //Delete
                         @Override
-                        public void processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final GDObject <xsl:value-of select="$name" />) {
-                            super.processGDStats(<xsl:value-of select="$name" />GDGameLayer, <xsl:value-of select="$name" />);
+                        public void processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer) {
+                            super.processGDStats(<xsl:value-of select="$name" />GDGameLayer);
                         
                             try {
 
-                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if></xsl:for-each>, this, commonStrings.PROCESS));
 
                                     //Parameters - 5
                                     <xsl:for-each select="parameters" >
@@ -1382,7 +1382,7 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                 </xsl:call-template>
 
-                                this.processGD(<xsl:value-of select="$name" />GDGameLayer, <xsl:value-of select="$name" />);
+                                this.processGD(<xsl:value-of select="$name" />GDGameLayer);
 
             <xsl:if test="../actions" >
                                 }
@@ -1418,7 +1418,7 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                 </xsl:call-template>
 
-                            this.processGD(<xsl:value-of select="$name" />GDGameLayer, <xsl:value-of select="$name" />);
+                            this.processGD(<xsl:value-of select="$name" />GDGameLayer);
                             return true;
 
             <xsl:if test="../actions" >
@@ -1435,14 +1435,15 @@ Created By: Travis Berthelot
                         private final String ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "processGD - " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
                         @Override
-                        public void processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final GDObject <xsl:value-of select="$name" />) {
-                            super.processGDStats(<xsl:value-of select="$name" />GDGameLayer, <xsl:value-of select="$name" />);
+                        public void processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer) {
+                            super.processGDStats(<xsl:value-of select="$name" />GDGameLayer);
 
                             try {
 
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                                     //name=<xsl:value-of select="$name" />
+                                    final GDObject <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject;
                                     <xsl:text>&#10;</xsl:text>
 
                                     <!--
@@ -1453,6 +1454,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                     -->
                                     //Parameters - 6
+                                    
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
                                             <xsl:value-of select="text()" />GDGameLayer.AddForceUsingPolarCoordinates(</xsl:if>

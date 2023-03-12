@@ -37,7 +37,6 @@ Created By: Travis Berthelot
         <xsl:param name="name" />
 
                                     final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) globals.<xsl:value-of select="$name" />GDGameLayerList.get(index));
-                                    final GDObject <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject;
 
     </xsl:template>
 

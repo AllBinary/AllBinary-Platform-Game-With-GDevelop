@@ -129,10 +129,10 @@ public class GDNode
         //this.nodeStatsFactory.totalCalls[9][name]++;
     }
     
-    public void processGD(final GDGameLayer gameLayer, final GDObject gdObject) {
+    public void processGD(final GDGameLayer gameLayer) {
     }
     
-    public void processGDStats(final GDGameLayer gameLayer, final GDObject gdObject) {
+    public void processGDStats(final GDGameLayer gameLayer) {
         this.nodeStatsFactory.push(10, name);
         //this.nodeStatsFactory.totalCalls[10][name]++;
     }

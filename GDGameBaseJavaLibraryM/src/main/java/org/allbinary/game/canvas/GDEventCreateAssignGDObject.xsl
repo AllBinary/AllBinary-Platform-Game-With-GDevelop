@@ -330,7 +330,6 @@ Created By: Travis Berthelot
                             <xsl:variable name="text" select="substring-before($createParamsAsString, ',')" />
                         //Create Loop - <xsl:value-of select="$caller" /><xsl:if test="$caller = 'eventsCreateAssignGDObject'" > - add one</xsl:if>
                         final int startIndex = globals.<xsl:value-of select="$text" />GDGameLayerList.size();
-                        //final int endIndex = startIndex + gdObjectList.size();
                         final int endIndex = startIndex + size;
                         
                         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />").append(" Timer - size <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), this, commonStrings.PROCESS, new Exception()));
@@ -399,11 +398,8 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    //Create - GDObject - END
-                    
-                    //final GDObject gdObject = (GDObject) gdObjectList.get(index - startIndex);
-                    //globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate(gdObject);
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate(<xsl:value-of select="$name" />2);
+                    //Create - GDObject - END                    
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'MettreX'" >
@@ -543,14 +539,6 @@ Created By: Travis Berthelot
                         
                         </xsl:if>
 
-            <xsl:for-each select="actions" >
-                <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
-                <xsl:variable name="typeValue" select="type/value" />
-                <xsl:if test="$typeValue = 'Create'" >
-                    //gdObjectList.clear();
-                </xsl:if>
-            </xsl:for-each>
-                        
             </xsl:if>
             </xsl:if>
 
@@ -573,8 +561,6 @@ Created By: Travis Berthelot
 
                     private final String EVENT_AS_STRING_COLLISION_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "PossibleCollision: " + EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
-                    //public final BasicArrayList gdObjectList = new BasicArrayList();
-                    
                     //eventsCreateProcessUsed - <xsl:value-of select="$caller" />
                     @Override
                     public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
@@ -671,7 +657,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         //eventsCreateProcessUsed - <xsl:value-of select="$caller" /> - //Delete - processGD
                         if(<xsl:value-of select="$gameLayerName" />GDGameLayer != null) {
-                            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gameLayerName" />GDGameLayer, <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject);
+                            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gameLayerName" />GDGameLayer);
                         } else {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "<xsl:value-of select="$gameLayerName" />GDGameLayer was null", this, commonStrings.PROCESS));
                         }
@@ -701,7 +687,7 @@ Created By: Travis Berthelot
                     
                             //eventsCreateProcessUsed - <xsl:value-of select="$caller" /> - //AddForceAL - processGD
                             if(<xsl:value-of select="$gameLayerName" />GDGameLayer != null) {
-                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gameLayerName" /><xsl:value-of select="$typeValue" />GameLayerAtIndex, <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject);
+                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gameLayerName" /><xsl:value-of select="$typeValue" />GameLayerAtIndex);
                             }
 
                             <xsl:value-of select="$gameLayerName" /><xsl:value-of select="$typeValue" />GameLayerAtIndex.updateGDObject(globals.timeDelta);
@@ -762,20 +748,12 @@ Created By: Travis Berthelot
                         <xsl:variable name="text" select="substring-before($createParamsAsString, ',')" />
                         //Create Loop - eventsCreateProcessUsed - Timer
                         //final StringBuilder stringBuilder = new StringBuilder();
-                        int startIndex;
-                        int endIndex;
                         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" size: ").append(size).append(" globals.<xsl:value-of select="$text" />List.size(): ").append(globals.<xsl:value-of select="$text" />List.size()).append(" globals.<xsl:value-of select="$text" />GDGameLayerList.size(): ").append(globals.<xsl:value-of select="$text" />GDGameLayerList.size()).toString(), this, commonStrings.PROCESS));
-                        //if(gdObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                            //startIndex = gdObjectList.size();
-                            //endIndex = gdObjectList.size() + size;
-                            //stringBuilder.delete(0, stringBuilder.length());
-                            //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" size <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), this, commonStrings.PROCESS, new Exception()));
-                        //} else {
-                            startIndex = 0; //globals.<xsl:value-of select="$text" />GDGameLayerList.size();
-                            endIndex = size; //globals.<xsl:value-of select="$text" />List.size();
-                            //stringBuilder.delete(0, stringBuilder.length());
-                            //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" layer <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), this, commonStrings.PROCESS, new Exception()));
-                        //}
+                        final int startIndex = globals.<xsl:value-of select="$text" />GDGameLayerList.size();
+                        final int endIndex = globals.<xsl:value-of select="$text" />GDGameLayerList.size() + size;
+                        //stringBuilder.delete(0, stringBuilder.length());
+                        //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" layer <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), this, commonStrings.PROCESS, new Exception()));
+
 
                         for(int index = startIndex; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> endIndex; index++) {
                     </xsl:if>
@@ -869,7 +847,7 @@ Created By: Travis Berthelot
 
                             //eventsCreateProcessUsed - <xsl:value-of select="$caller" /> - //AddForceAL - processGD
                             if(<xsl:value-of select="$gameLayerName" />GDGameLayer != null) {
-                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gameLayerName" /><xsl:value-of select="$typeValue" />GameLayerAtIndex, <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject);
+                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gameLayerName" /><xsl:value-of select="$typeValue" />GameLayerAtIndex);
                             }
                 </xsl:if>
 
