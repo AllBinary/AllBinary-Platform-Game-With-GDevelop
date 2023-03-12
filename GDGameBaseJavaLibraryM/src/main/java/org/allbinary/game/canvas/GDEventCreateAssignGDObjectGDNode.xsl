@@ -2199,7 +2199,7 @@ Created By: Travis Berthelot
                                         node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                         node.clear2();
                                         </xsl:if>
-                                    } else if(indexOfGDNode == 2) {
+                                    } else if(indexOfGDNode == 2) { //1
                                         //if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
                                             node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                             //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
@@ -2224,7 +2224,7 @@ Created By: Travis Berthelot
                                     node.clear();
                                     node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                     node.clear2();
-                                } else if(indexOfGDNode == 2) {
+                                } else if(indexOfGDNode == 2) { //2
                                     final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                     //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
                                     node.clear();
@@ -2244,7 +2244,7 @@ Created By: Travis Berthelot
                                 node.clear();
                                 node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                 node.clear2();
-                            } else if(indexOfGDNode == 2) {
+                            } else if(indexOfGDNode == 2) { //3
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
                                 node.clear();
@@ -2327,7 +2327,7 @@ Created By: Travis Berthelot
                                         node.gameLayerArray[0] = gdGameLayer;
                                         node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                         node.clear2();
-                                    } else if(indexOfGDNode == 2) {
+                                    } else if(indexOfGDNode == 2) { //4
                                         //if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
                                             node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                             //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
@@ -2357,7 +2357,7 @@ Created By: Travis Berthelot
                                 node.clear();
                                 node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                 node.clear2();
-                            } else if(indexOfGDNode == 2) {
+                            } else if(indexOfGDNode == 2) { //5
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode + 1));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
                                 node.clear();
