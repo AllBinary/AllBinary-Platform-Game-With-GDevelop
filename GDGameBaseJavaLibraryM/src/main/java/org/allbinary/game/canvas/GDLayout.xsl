@@ -230,6 +230,7 @@ Created By: Travis Berthelot
 
                     </xsl:call-template>
 
+                    //eventsPaint - START
                     <xsl:call-template name="eventsPaint" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
@@ -238,6 +239,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
+                    //eventsPaint - END
 
                     //instances - START
                     <xsl:for-each select="instances" >
