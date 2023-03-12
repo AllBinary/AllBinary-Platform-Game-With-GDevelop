@@ -67,7 +67,7 @@ public class GDNodeStatsFactory {
                     stringBuilder.append(':');
                     stringBuilder.append(callStack[index][index2]);
                     stringBuilder.append(';');
-                    if(stringBuilder.length() > 1000) {
+                    if(stringBuilder.length() > 256) {
                         
                         LogUtil.put(LogFactory.getInstance(stringBuilder.toString(), this, commonStrings.PROCESS));
                         stringBuilder.delete(0, stringBuilder.length());

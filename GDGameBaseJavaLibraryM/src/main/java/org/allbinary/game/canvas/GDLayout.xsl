@@ -200,11 +200,13 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                         globals.lastStartTime = GameTickTimeDelayHelperFactory.getInstance().getStartTime();
+                        
+                        GDNodeStatsFactory.getInstance().log(new StringBuilder());
+                    
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
                         }
                         
-                        GDNodeStatsFactory.getInstance().log(new StringBuilder());
                     }
 
                     public void paint(Graphics graphics, int x, int y)
