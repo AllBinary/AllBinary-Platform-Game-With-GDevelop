@@ -103,6 +103,7 @@ Created By: Travis Berthelot
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        private final GDNodeStatsFactory gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                         
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals;
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder builder;
@@ -128,7 +129,7 @@ Created By: Travis Berthelot
                     }
 
                     public void process() {
-                        GDNodeStatsFactory.getInstance().reset();
+                        gdNodeStatsFactory.reset();
                         
                         try {
 
@@ -201,7 +202,7 @@ Created By: Travis Berthelot
 
                         globals.lastStartTime = GameTickTimeDelayHelperFactory.getInstance().getStartTime();
                         
-                        GDNodeStatsFactory.getInstance().log(new StringBuilder());
+                        gdNodeStatsFactory.log(new StringBuilder());
                     
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));

@@ -32,12 +32,13 @@ public class GDNodeStatsFactory {
         return instance;
     }
     
-    //public final long[][] totalCalls = new long[12][15000];
-    private final int[][] callStack = new int[11][5000];
+    private final int SIZE = 12;
+    //public final long[][] totalCalls = new long[SIZE][15000];
+    private final int[][] callStack = new int[SIZE][5000];
     private int total = 0;
     
     public void reset() {
-        for(int index2 = 0; index2 < 11; index2++) {
+        for(int index2 = 0; index2 < SIZE; index2++) {
             for (int index = 0; index < total; index++) {
                 callStack[index2][index] = 0;
             }
@@ -59,7 +60,7 @@ public class GDNodeStatsFactory {
         //stringBuilder.append(':');
 
         for(int index2 = 0; index2 < total; index2++) {
-            for(int index = 0; index < 11; index++) {
+            for(int index = 0; index < SIZE; index++) {
                 if(callStack[index][index2] != 0) {
                     stringBuilder.append(index2);
                     stringBuilder.append(':');

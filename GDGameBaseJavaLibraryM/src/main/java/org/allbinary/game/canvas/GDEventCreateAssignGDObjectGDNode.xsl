@@ -296,6 +296,8 @@ Created By: Travis Berthelot
                         
                             public void run() {
                                 try {
+                                    gdNodeStatsFactory.push(11, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+
                                     //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                     if(globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.isTime(GameTickTimeDelayHelperFactory.getInstance().getStartTime())) {
                                         LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
@@ -2169,6 +2171,8 @@ Created By: Travis Berthelot
                                         <xsl:value-of select="$params" />
                                     */
                                     final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
+                                    //final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" />; indexOfGDNode: " + indexOfGDNode;
+                                    //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
                                     if(indexOfGDNode == 1) {
                                         <!-- 5179, 6129, 7079, 7856, 8256  contains($actionTypesAsString, 'AddForceAL') and not(contains($hasConditions, 'found')) and not(contains($hasParentConditions, 'found')) -->
                                         <xsl:if test="$parentEventType = 'BuiltinCommonInstructions::ForEach' and contains($actionTypesAsString, 'AddForceAL')" >
@@ -2199,7 +2203,7 @@ Created By: Travis Berthelot
                                 }
                             } else {
                                 final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
-                                final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: list size was 0: " + indexOfGDNode;
+                                final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: list size was 0; indexOfGDNode: " + indexOfGDNode;
                                 LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
                                 if(indexOfGDNode == 1) {
                                     final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
@@ -2219,7 +2223,7 @@ Created By: Travis Berthelot
                             }
                         } else {
                             final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
-                            final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: was null: " + indexOfGDNode;
+                            final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: was null; indexOfGDNode: " + indexOfGDNode;
                             LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
                             if(indexOfGDNode == 1) {
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
