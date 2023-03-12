@@ -197,6 +197,8 @@ Created By: Travis Berthelot
                                     node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                     node.clear2();
                                 }
+                                
+                                super.processMStats(gameLayerArray, gdNode, gdNodeList);
                             }
                         };
                         

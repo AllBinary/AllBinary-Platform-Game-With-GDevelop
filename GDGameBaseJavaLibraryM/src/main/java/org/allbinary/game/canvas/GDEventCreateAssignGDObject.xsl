@@ -880,6 +880,7 @@ Created By: Travis Berthelot
             </xsl:if>
             </xsl:if>
 
+                            super.processMStats(gameLayerArray, gdNode, gdNodeList);
                         } catch(Exception e) {
                         //2
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + EVENT_AS_STRING_COLLISION_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));

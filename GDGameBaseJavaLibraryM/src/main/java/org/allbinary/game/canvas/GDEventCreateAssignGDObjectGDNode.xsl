@@ -296,13 +296,15 @@ Created By: Travis Berthelot
                         
                             public void run() {
                                 try {
-                                    gdNodeStatsFactory.push(11, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+                                    gdNodeStatsFactory.push(0, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
 
                                     //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                     if(globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.isTime(GameTickTimeDelayHelperFactory.getInstance().getStartTime())) {
                                         LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                         <xsl:value-of select="$actionsWithIndexes" disable-output-escaping="yes" />
                                     }
+                                        
+                                    gdNodeStatsFactory.push(1, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
                 
                                 } catch(Exception e) {
                                     LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable", this, commonStrings.RUN, e));
@@ -380,6 +382,8 @@ Created By: Travis Berthelot
                                 //}
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index).toString(), this, commonStrings.PROCESS));
                             }
+                                
+                            super.processStatsE();
 
                         }
 
@@ -432,6 +436,7 @@ Created By: Travis Berthelot
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index).toString(), this, commonStrings.PROCESS));
                             }
 
+                            super.processStatsE();
                         }
 
                     };
@@ -480,7 +485,8 @@ Created By: Travis Berthelot
                             } else {
                                 //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "Else: <xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>"));
                             }
-
+                            
+                            super.processStatsE();
                         }
 
                     };
@@ -552,10 +558,12 @@ Created By: Travis Berthelot
                                 }
                             }
                            
+                            super.processStatsE();
                         }
 
                         @Override
                         public boolean processG(final GDObject <xsl:value-of select="$gdObjectName" />, final Graphics graphics) {
+                            super.processGStats(<xsl:value-of select="$gdObjectName" />, graphics);
                             //VarObjet
                             if(<xsl:for-each select="parameters" ><xsl:if test="text() = 'rotation'" >.</xsl:if><xsl:if test="position() != 1 and  text() != 'rotation'" ><xsl:text> </xsl:text></xsl:if><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="text() = '='" >=</xsl:if></xsl:for-each>) {
                                 //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "VarObjet processing"));
@@ -629,6 +637,7 @@ Created By: Travis Berthelot
                                 </xsl:for-each>
                             }
 
+                            super.processStateE();
                         }
 
                     };
@@ -696,7 +705,8 @@ Created By: Travis Berthelot
                             }
                                     </xsl:if>
                                 </xsl:for-each>
-                        }                                
+                            super.processStatsE(motionGestureEvent);
+                        }
                     };
                 </xsl:if>
                 
@@ -859,7 +869,7 @@ Created By: Travis Berthelot
                     
                         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         globals.<xsl:value-of select="$name" />GDObjectList.add(<xsl:value-of select="$name" />2);
-                    
+
                     }
                     //Create - GDObject with TextObject::String - END
                         </xsl:if>
@@ -1031,6 +1041,7 @@ Created By: Travis Berthelot
                         public boolean processG(final GDObject gdObject, final Graphics graphics) {
 
                             try {
+                                super.processGStats(gdObject, graphics);
 
                                 <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
@@ -1077,6 +1088,7 @@ Created By: Travis Berthelot
 
 
                             try {
+                                super.processGStats(gdObject, graphics);
 
                                 <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
@@ -1126,6 +1138,7 @@ Created By: Travis Berthelot
 
 
                             try {
+                                super.processGStats(gdObject, graphics);
 
                                 <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
@@ -1704,6 +1717,7 @@ Created By: Travis Berthelot
                         //Rotate
                         @Override
                         public boolean processG(final GDObject <xsl:value-of select="$name" />, final Graphics graphics) {
+                            super.processGStats(<xsl:value-of select="$name" />, graphics);
                         <xsl:if test="$name = 'player'" >
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                         </xsl:if>
@@ -2242,6 +2256,8 @@ Created By: Travis Berthelot
                             }
                         }
                         //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />.gdObject;
+
+                                super.processMStats(gameLayerArray, gdNode, gdNodeList);
                             }
                         };
 
@@ -2351,6 +2367,8 @@ Created By: Travis Berthelot
                             }
                         }
                         //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />.gdObject;
+
+                                super.processMStats(gameLayerArray, gdNode, gdNodeList);
                             }
                         };
 

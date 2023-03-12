@@ -32,9 +32,9 @@ public class GDNodeStatsFactory {
         return instance;
     }
     
-    private final int SIZE = 12;
+    private final int SIZE = 16;
     //public final long[][] totalCalls = new long[SIZE][15000];
-    private final int[][] callStack = new int[SIZE][5000];
+    private final int[][] callStack = new int[SIZE][6000];
     private int total = 0;
     
     public void reset() {
