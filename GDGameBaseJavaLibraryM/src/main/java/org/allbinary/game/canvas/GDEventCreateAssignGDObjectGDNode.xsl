@@ -636,7 +636,7 @@ Created By: Travis Berthelot
                                     -->
                                 </xsl:for-each>
                                 
-                                super.processStateE();
+                                super.processStatsE();
                             }
                         }
 
