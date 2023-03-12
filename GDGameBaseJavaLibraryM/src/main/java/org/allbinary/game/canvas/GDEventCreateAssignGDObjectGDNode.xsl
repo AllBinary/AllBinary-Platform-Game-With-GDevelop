@@ -705,7 +705,6 @@ Created By: Travis Berthelot
                             }
                                     </xsl:if>
                                 </xsl:for-each>
-                            super.processStatsE(motionGestureEvent);
                         }
                     };
                 </xsl:if>
