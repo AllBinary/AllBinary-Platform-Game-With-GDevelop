@@ -680,6 +680,7 @@ Created By: Travis Berthelot
             
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> <xsl:value-of select="$gameLayerName" />Size; index++) {
                     
+                            <!--
                             GDGameLayer <xsl:value-of select="$gameLayerName" /><xsl:value-of select="$typeValue" />GameLayerAtIndex = null;
                             if(globals.<xsl:value-of select="$gameLayerName" />GDGameLayerList != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> globals.<xsl:value-of select="$gameLayerName" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
                                 <xsl:value-of select="$gameLayerName" /><xsl:value-of select="$typeValue" />GameLayerAtIndex = (GDGameLayer) globals.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(index);
@@ -689,8 +690,13 @@ Created By: Travis Berthelot
                             if(<xsl:value-of select="$gameLayerName" />GDGameLayer != null) {
                                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gameLayerName" /><xsl:value-of select="$typeValue" />GameLayerAtIndex);
                             }
-
+                        
                             <xsl:value-of select="$gameLayerName" /><xsl:value-of select="$typeValue" />GameLayerAtIndex.updateGDObject(globals.timeDelta);
+                            -->
+
+                            final GDGameLayer gameLayer = (GDGameLayer) globals.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(index);
+                            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer);
+                            gameLayer.updateGDObject(globals.timeDelta);
                         }
                 </xsl:if>
             </xsl:for-each>
@@ -831,6 +837,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'AddForceAL'" >
+                    <!--
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             GDGameLayer <xsl:value-of select="text()" /><xsl:value-of select="$typeValue" />GameLayerAtIndex = null;
@@ -839,11 +846,14 @@ Created By: Travis Berthelot
                             }
                         </xsl:if>
                     </xsl:for-each>
-
+                    
                             //eventsCreateProcessUsed - <xsl:value-of select="$caller" /> - //AddForceAL - processGD
                             if(<xsl:value-of select="$gameLayerName" />GDGameLayer != null) {
                                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gameLayerName" /><xsl:value-of select="$typeValue" />GameLayerAtIndex);
                             }
+                    -->
+
+                            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD((GDGameLayer) globals.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(index));
                 </xsl:if>
 
             </xsl:for-each>
