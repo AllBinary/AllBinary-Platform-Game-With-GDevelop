@@ -879,6 +879,11 @@ Created By: Travis Berthelot
             </xsl:if>
             </xsl:if>
 
+            <xsl:if test="contains($timerActions, 'Timer,')" >
+                            //TWB - Hack stop repeat action
+                            gdNodeList.clear();
+            </xsl:if>
+
                             super.processMStatsE(gameLayerArray, gdNode, gdNodeList);
                         } catch(Exception e) {
                         //2
