@@ -155,7 +155,7 @@ Created By: Travis Berthelot
                                 //LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, FAKE_COLLISION_NODE_STRING));
                                 gdNode.processM(gdNode.gameLayerArray, gdNode, gdNodeList);
                                 
-                                super.processMStats(gameLayerArray, gdNode, gdNodeList);
+                                super.processMStatsE(gameLayerArray, gdNode, gdNodeList);
                             }
                         };
 

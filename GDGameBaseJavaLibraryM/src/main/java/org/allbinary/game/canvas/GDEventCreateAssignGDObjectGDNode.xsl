@@ -2256,7 +2256,7 @@ Created By: Travis Berthelot
                         }
                         //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />.gdObject;
 
-                                super.processMStats(gameLayerArray, gdNode, gdNodeList);
+                                super.processMStatsE(gameLayerArray, gdNode, gdNodeList);
                             }
                         };
 
@@ -2367,7 +2367,7 @@ Created By: Travis Berthelot
                         }
                         //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />.gdObject;
 
-                                super.processMStats(gameLayerArray, gdNode, gdNodeList);
+                                super.processMStatsE(gameLayerArray, gdNode, gdNodeList);
                             }
                         };
 
