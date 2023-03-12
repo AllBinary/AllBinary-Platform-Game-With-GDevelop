@@ -781,11 +781,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                                //Create - GDObject - END
-                                <!--
-                                gdObjectList.add(<xsl:value-of select="$name" />2);
-                                -->
-                                                                                
+                                //Create - GDObject - END                                                                                
                                 //Create - GDObject at - process
                                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate(<xsl:value-of select="$name" />2);
                 </xsl:if>
