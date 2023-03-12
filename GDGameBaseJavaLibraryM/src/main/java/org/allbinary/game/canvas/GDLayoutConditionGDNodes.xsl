@@ -62,12 +62,12 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.game.canvas;
 
+                import javax.microedition.lcdui.Graphics;
+                
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.layout.GDNode;
-                import org.allbinary.graphics.displayable.DisplayInfoSingleton;
-
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.CollidableCompositeLayer;
@@ -75,6 +75,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDObjectStrings;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.GPoint;
+                import org.allbinary.graphics.displayable.DisplayInfoSingleton;
                 import org.allbinary.input.motion.gesture.MotionGestureInput;
                 import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;

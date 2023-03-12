@@ -65,10 +65,9 @@ public class GDNode
         return false;
     }
     
-    public boolean processStats(final int index) throws Exception {
+    public void processStats(final int index) throws Exception {
         this.nodeStatsFactory.push(2, name);
         //this.nodeStatsFactory.totalCalls[2][name]++;
-        return false;
     }
     
     public void processEnd(final int index) throws Exception {
@@ -87,27 +86,26 @@ public class GDNode
         //this.nodeStatsFactory.totalCalls[4][name]++;
     }
 
-    public boolean process(final GDObject gdObject) throws Exception {
+    public boolean processCreate(final GDObject gdObject) throws Exception {
         return true;
     }
 
-    public boolean processStats(final GDObject gdObject) {
+    public void processCreateStats(final GDObject gdObject) {
         this.nodeStatsFactory.push(5, name);
         //this.nodeStatsFactory.totalCalls[5][name]++;
-        return true;
     }
 
     public boolean processReleased(final GDObject gdObject) {
         return true;
     }
 
-    public boolean processReleasedStats(final GDObject gdObject) {
+    public void processReleasedStats(final GDObject gdObject) {
         this.nodeStatsFactory.push(6, name);
         //this.nodeStatsFactory.totalCalls[6][name]++;
-        return true;
     }
 
-    public void processG(final GDObject gdObject, final Graphics graphics) {
+    public boolean processG(final GDObject gdObject, final Graphics graphics) {
+        return false;
     }
 
     public void processGStats(final GDObject gdObject, final Graphics graphics) {

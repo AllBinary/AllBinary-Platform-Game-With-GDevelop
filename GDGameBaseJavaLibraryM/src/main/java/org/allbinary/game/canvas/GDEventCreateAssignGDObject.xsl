@@ -402,8 +402,8 @@ Created By: Travis Berthelot
                     //Create - GDObject - END
                     
                     //final GDObject gdObject = (GDObject) gdObjectList.get(index - startIndex);
-                    //globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(gdObject);
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$name" />2);
+                    //globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate(gdObject);
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate(<xsl:value-of select="$name" />2);
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'MettreX'" >
@@ -809,7 +809,7 @@ Created By: Travis Berthelot
                                 -->
                                                                                 
                                 //Create - GDObject at - process
-                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$name" />2);
+                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate(<xsl:value-of select="$name" />2);
                 </xsl:if>
 
                 <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>

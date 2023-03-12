@@ -540,7 +540,7 @@ Created By: Travis Berthelot
                             final int size = globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.size();
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             
-                                if(this.process(((GDGameLayer) globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)).gdObject)) {
+                                if(this.processG(((GDGameLayer) globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)).gdObject, globals.graphics)) {
                                     <xsl:for-each select=".." >
                                         <xsl:call-template name="actionIdsGDObject" >
                                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
@@ -553,7 +553,7 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public boolean process(final GDObject <xsl:value-of select="$gdObjectName" />) {
+                        public boolean processG(final GDObject <xsl:value-of select="$gdObjectName" />, final Graphics graphics) {
                             //VarObjet
                             if(<xsl:for-each select="parameters" ><xsl:if test="text() = 'rotation'" >.</xsl:if><xsl:if test="position() != 1 and  text() != 'rotation'" ><xsl:text> </xsl:text></xsl:if><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="text() = '='" >=</xsl:if></xsl:for-each>) {
                                 //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "VarObjet processing"));
@@ -865,8 +865,8 @@ Created By: Travis Berthelot
                         <xsl:if test="not(contains($actionWithTextObjectString, $param))" >
                     //Create
                     @Override
-                    public boolean process(final GDObject gdObject) throws Exception {
-                        super.processStats(gdObject);
+                    public boolean processCreate(final GDObject gdObject) throws Exception {
+                        super.processCreateStats(gdObject);
 
                         LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                         
@@ -1026,7 +1026,7 @@ Created By: Travis Berthelot
 
                         //MettreX
                         @Override
-                        public void processG(final GDObject gdObject, final Graphics graphics) {
+                        public boolean processG(final GDObject gdObject, final Graphics graphics) {
 
                             try {
 
@@ -1062,6 +1062,7 @@ Created By: Travis Berthelot
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
 
+                            return true;
                         }
                                 </xsl:if>
                                 <xsl:if test="$typeValue = 'MettreY'" >
@@ -1070,7 +1071,7 @@ Created By: Travis Berthelot
 
                         //MettreY
                         @Override
-                        public void processG(final GDObject gdObject, final Graphics graphics) {
+                        public boolean processG(final GDObject gdObject, final Graphics graphics) {
 
 
                             try {
@@ -1109,7 +1110,8 @@ Created By: Travis Berthelot
                                 //5
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
-
+                                
+                            return true;
                         }
                                 </xsl:if>
                                 <xsl:if test="$typeValue = 'MettreXY'" >
@@ -1118,7 +1120,7 @@ Created By: Travis Berthelot
 
                         //MettreXY
                         @Override
-                        public void processG(final GDObject gdObject, final Graphics graphics) {
+                        public boolean processG(final GDObject gdObject, final Graphics graphics) {
 
 
                             try {
@@ -1155,6 +1157,7 @@ Created By: Travis Berthelot
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
 
+                            return true;
                         }
                                 </xsl:if>
 
@@ -1584,30 +1587,30 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:if test="$typeValue = 'PosX'" >
                     //PosX
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(gameLayer.gdObject)) {
+                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosY'" >
                     //PosY
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(gameLayer.gdObject)) {
+                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarObjet'" >
                     //VarObjet
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(gameLayer.gdObject)) {
+                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
                         siblingConditions = false;
                     }
                 </xsl:if>
             </xsl:for-each>
                 if(siblingConditions) {
-                    this.process(((GDGameLayer) globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)).gdObject);
+                    this.processG(((GDGameLayer) globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)).gdObject, globals.graphics);
                 }
         </xsl:if>
 
         <xsl:if test="not(../conditions)" >
-                                this.process(((GDGameLayer) globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)).gdObject);
+                                this.processG(((GDGameLayer) globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)).gdObject, globals.graphics);
         </xsl:if>
                                 //updateGDObject - 5
                                 gameLayer.updateGDObject(globals.timeDelta);
@@ -1661,19 +1664,19 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:if test="$typeValue = 'PosX'" >
                     //PosX
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(gameLayer.gdObject)) {
+                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosY'" >
                     //PosY
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(gameLayer.gdObject)) {
+                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarObjet'" >
                     //VarObjet
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(gameLayer.gdObject)) {
+                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
                         siblingConditions = false;
                     }
                 </xsl:if>
@@ -1696,7 +1699,7 @@ Created By: Travis Berthelot
 
                         //Rotate
                         @Override
-                        public boolean process(final GDObject <xsl:value-of select="$name" />) {
+                        public boolean processG(final GDObject <xsl:value-of select="$name" />, final Graphics graphics) {
                         <xsl:if test="$name = 'player'" >
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                         </xsl:if>
