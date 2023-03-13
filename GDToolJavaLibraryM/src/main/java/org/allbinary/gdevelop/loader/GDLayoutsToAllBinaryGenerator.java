@@ -75,6 +75,8 @@ public class GDLayoutsToAllBinaryGenerator
                 } else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'a') {
                     //skip movement_angle
                 } else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'm' && layoutGameXmlAsString.charAt(index + VARIABLE.length() + 1) == 'o') {
+                    //opacity
+                } else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'o') {
                 } else {
                     stringBuilder.delete(0, stringBuilder.length());
                     layoutGameXmlAsString = stringBuilder.append(layoutGameXmlAsString.substring(0, index + VARIABLE.length())).append(GLOBALS).append(layoutGameXmlAsString.substring(index + VARIABLE.length())).toString();
