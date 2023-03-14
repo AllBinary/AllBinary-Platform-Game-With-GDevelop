@@ -163,8 +163,8 @@ Created By: Travis Berthelot
 
                     }
 
-                    public long TimeDelta() {
-                        return globals.timeDelta;
+                    public double TimeDelta() {
+                        return globals.timeDelta * .001;
                     }
 
                     public int SceneWindowWidth() {

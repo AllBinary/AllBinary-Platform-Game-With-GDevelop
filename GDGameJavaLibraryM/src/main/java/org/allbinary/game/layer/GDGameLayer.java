@@ -331,6 +331,15 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
         this.updateRotation(timeDelta);
 
+        int opacity = this.gdObject.opacity;
+        if(opacity < 0) {
+            opacity = 0;
+        }
+        final int size = this.initIndexedAnimationInterface.length;
+        for(int index = 0; index < size; index++) {
+            this.initIndexedAnimationInterface[index].setAlpha((byte) opacity);
+        }
+        
         //if(this.getName().startsWith(PLAYER)) {
             //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().UPDATE, this, this.toString()));
         //}

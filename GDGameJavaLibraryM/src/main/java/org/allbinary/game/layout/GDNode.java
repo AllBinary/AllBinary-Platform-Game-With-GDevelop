@@ -144,7 +144,9 @@ public class GDNode
         //this.nodeStatsFactory.totalCalls[9][name]++;
     }
     
-    public void processGD(final GDGameLayer gameLayer) {
+    public void processGD(final GDGameLayer gameLayer, final Graphics graphics) {
+        this.processGDStats(gameLayer);
+        this.processG(gameLayer.gdObject, graphics);
     }
     
     public void processGDStats(final GDGameLayer gameLayer) {
