@@ -99,7 +99,7 @@
 
     </xsl:template>
 
-    <xsl:template name="actionIdsGDObject">
+    <xsl:template name="actionIdsGDObject" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="gdGameLayer" />
 
@@ -108,13 +108,17 @@
         <xsl:for-each select="actions" >
             //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:text>&#10;</xsl:text>
-            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(((GDGameLayer) globals.<xsl:value-of select="$gdGameLayer" />.get(index)), globals.graphics);
+            //actionIdsGDObject //<xsl:value-of select="type/value" />
+            <xsl:if test="type/value = 'Delete'" >
+            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].addForDelete(<xsl:value-of select="$gdGameLayer" />);
+            </xsl:if>
+            <xsl:if test="type/value != 'Delete'" >
+            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdGameLayer" />, globals.graphics);
             <!-- 
             if(globals.<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) { 
             -->
-            <xsl:if test="type/value != 'Delete'" >
             //updateGDObject - 8
-            ((GDGameLayer) globals.<xsl:value-of select="$gdGameLayer" />.get(index)).updateGDObject(globals.timeDelta);
+            <xsl:value-of select="$gdGameLayer" />.updateGDObject(globals.timeDelta);
             </xsl:if>
             <!-- 
             } else {
@@ -122,6 +126,34 @@
             }
             -->
             
+        </xsl:for-each>
+
+        <xsl:for-each select="events" >
+            <xsl:call-template name="actionIdsGDObject" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="gdGameLayer" >
+                    <xsl:value-of select="$gdGameLayer" />
+                </xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+
+    </xsl:template>
+
+    <xsl:template name="delete">
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="gdGameLayer" />
+
+        //actionIdsGDObject <xsl:value-of select="$gdGameLayer" />
+        //Actions - GDNode - totalRecursions=<xsl:value-of select="$totalRecursions" />
+        <xsl:for-each select="actions" >
+            <xsl:text>&#10;</xsl:text>
+            <xsl:if test="type/value = 'Delete'" >
+            //RemoveList //<xsl:value-of select="type/value" />
+            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+            </xsl:if>
+
         </xsl:for-each>
 
         <xsl:for-each select="events" >

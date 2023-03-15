@@ -154,6 +154,10 @@ public class GDNode
         //this.nodeStatsFactory.totalCalls[10][name]++;
     }
 
+    public void addForDelete(final GDGameLayer gameLayer) {
+        
+    }
+
     public long getName() {
         return this.name;
     }    
