@@ -46,7 +46,7 @@ public class GDObject
     
     public int animation;
     
-    public int opacity;
+    public int opacity = 255;
     
     public int canvasWidth;
     public int canvasHeight;
