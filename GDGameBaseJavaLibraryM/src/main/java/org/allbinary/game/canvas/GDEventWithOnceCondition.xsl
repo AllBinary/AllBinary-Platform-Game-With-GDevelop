@@ -33,8 +33,7 @@ Created By: Travis Berthelot
                         //Condition nodeId=<xsl:value-of select="generate-id()" /> - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="not(contains($conditionsAsString, 'CollisionNP'))" >
                     <xsl:if test="type/value = 'BuiltinCommonInstructions::Once'" >
-                        //Condition - process - Once - builder
-                        //BuiltinCommonInstructions::Once - Found
+                        //eventsOnceConditionProcessActions - //Condition - //BuiltinCommonInstructions::Once - builder
                         <xsl:for-each select=".." >
                             <xsl:call-template name="eventIds" >
                                 <xsl:with-param name="totalRecursions" >0</xsl:with-param>
@@ -43,8 +42,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:if>
                 <xsl:if test="type/value = 'DepartScene'" >
-                       //Condition - process - DepartScene - builder
-                       //DepartScene - Found
+                    //eventsOnceConditionProcessActions - //Condition - //DepartScene - builder
                     <xsl:for-each select=".." >
                         <xsl:call-template name="eventIds" >
                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>

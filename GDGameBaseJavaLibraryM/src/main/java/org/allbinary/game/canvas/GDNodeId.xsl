@@ -5,7 +5,8 @@
 
     <xsl:template name="createActions">
         <xsl:param name="totalRecursions" />
-        <xsl:for-each select="events" ><xsl:for-each select="actions" >
+        <xsl:for-each select="events" >
+            <xsl:for-each select="actions" >
                 <xsl:if test="type/value = 'Create'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
@@ -56,6 +57,7 @@
                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processM(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].gameLayerArray, null, null);
                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].clear2();
             </xsl:if>
+            //eventIds - //Events - //<xsl:value-of select="type" /> - call
             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:if>
 
@@ -81,6 +83,7 @@
         <xsl:for-each select="actions" >
             //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:text>&#10;</xsl:text>
+            //actionIds - //Action - //<xsl:value-of select="$caller" /> - <xsl:value-of select="type/value" /> - call
             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:for-each>
 
@@ -150,7 +153,7 @@
         <xsl:for-each select="actions" >
             <xsl:text>&#10;</xsl:text>
             <xsl:if test="type/value = 'Delete'" >
-            //RemoveList //<xsl:value-of select="type/value" />
+            //Action - //RemoveList - //<xsl:value-of select="type/value" /> - call
             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
 
@@ -208,8 +211,7 @@
 
                 <xsl:if test="number($layoutIndex2) = $layoutIndex" >
 
-                    //Actions - GDNode - totalRecursions=<xsl:value-of select="$totalRecursions" />
-                    //actionIdsMotionGestureEvent
+                    //actionIdsMotionGestureEvent - //Actions - GDNode - totalRecursions=<xsl:value-of select="$totalRecursions" />
                     <xsl:call-template name="actionIdsMotionGestureEvent2" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="number($totalRecursions) + 1" />
@@ -223,6 +225,7 @@
                     //Found - condition in children - <xsl:value-of select="$childEventWithUsedEvent" />
                     //final String EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Events nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>";
                     //LogUtil.put(LogFactory.getInstance(EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                    //actionIdsMotionGestureEvent - //Event - //<xsl:value-of select="type" /> - call
                     //globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
                         </xsl:for-each>
                     //Events - END
@@ -242,8 +245,8 @@
 
             <xsl:for-each select="conditions" >
                 <xsl:if test="type/value = 'SourisSurObjet'" >
-            //SourisSurObjet
             //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+            //Condition - //SourisSurObjet - call
             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
                 </xsl:if>
             </xsl:for-each>
@@ -324,7 +327,7 @@
         
         <xsl:for-each select="actions" >
             <xsl:if test="type/value = 'AddForceAL'" >
-                //BuiltinCommonInstructions::Standard - Used action in children - 4
+                //Action - //AddForceAL - call - Used action in children - 4
                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
         </xsl:for-each>

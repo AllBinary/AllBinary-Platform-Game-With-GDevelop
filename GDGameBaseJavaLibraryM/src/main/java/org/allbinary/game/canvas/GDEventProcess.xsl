@@ -40,7 +40,7 @@ Created By: Travis Berthelot
             //totalRecursions=<xsl:value-of select="number($totalRecursions)" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" />
 
             <xsl:if test="type = 'BuiltinCommonInstructions::Group'" >
-                //BuiltinCommonInstructions::Group
+                //Event - //BuiltinCommonInstructions::Group - call
                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
 
@@ -57,23 +57,23 @@ Created By: Travis Berthelot
                     //
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosX'" >
-                    //PosX
+                    //Action - //PosX - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosY'" >
-                    //PosY
+                    //Action - //PosY - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'NbObjet'" >
-                    //NbObjet
+                    //Action - //NbObjet - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarObjet'" >
-                    //VarObjet
+                    //Action - //VarObjet - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarScene'" >
-                    //VarScene
+                    //Action - //VarScene - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
             </xsl:for-each>

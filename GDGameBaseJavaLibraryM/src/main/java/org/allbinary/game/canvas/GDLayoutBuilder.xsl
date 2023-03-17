@@ -138,9 +138,11 @@ Created By: Travis Berthelot
 //                            globals.nodeArray[index2][index] = new GDNode() {
 //
 //                                @Override
-//                                public void process() throws Exception {
+//                                public boolean process() throws Exception {
 //                                    super.processStats();
 //                                    LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, Integer.toString(currentIndex), new Exception()));
+//
+//                                    return true;
 //                                }
 //                            };
 //                        }

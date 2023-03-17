@@ -76,6 +76,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:if></xsl:for-each>
             </xsl:variable>
 
+            //eventsCreateAssignGDObject - actionsWithIndexes - START
             <xsl:variable name="actionsWithIndexes" >
                 <xsl:call-template name="actionsWithIndexes" >
                     <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
@@ -102,6 +103,7 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                 </xsl:call-template>
             </xsl:variable>
+            //eventsCreateAssignGDObject - actionsWithIndexes - END
 
             <xsl:variable name="eventsCreateProcessUsed" >
                 <xsl:call-template name="eventsCreateProcessUsed" >
@@ -128,6 +130,7 @@ Created By: Travis Berthelot
 
             <!-- conditions - START -->
             <xsl:if test="$conditionToProcess = ''" >
+            <xsl:variable name="alreadyUsedCondition" ><xsl:for-each select="conditions" ><xsl:if test="(type/value = 'SourisSurObjet' or type/value = 'CollisionNP' or type/value = 'MouseButtonReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased')" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
@@ -149,6 +152,43 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
                     //MouseButtonReleased - Handled by AllBinary Event Listeners
                 </xsl:if>
+                <xsl:if test="$typeValue = 'BuiltinCommonInstructions::Once' and not(contains($alreadyUsedCondition, 'found'))" >
+                    //Condition - //BuiltinCommonInstructions::Once - GDNode
+                    if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
+                        throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
+                    }
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+
+                    <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+
+                    <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
+
+                        private boolean firstTime = true;
+                        //BuiltinCommonInstructions::Once - condition
+                        @Override
+                        public boolean process() throws Exception {
+                            super.processStats();
+                        
+                            if(!firstTime) {
+                                return false;
+                            }
+
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
+                            <xsl:for-each select="preceding-sibling::conditions" >
+                            //Preceding-Sibling - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                            //Preceding-Sibling - //Condition - //<xsl:value-of select="type/value" /> - call
+                            if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                                firstTime = false;
+                                return true;
+                            }
+                            </xsl:for-each>
+
+                            return false;
+                        }
+                    };
+                </xsl:if>
                 <xsl:if test="$typeValue = 'SoundPlaying'" >
                     //Condition - //SoundPlaying - GDNode
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
@@ -163,9 +203,11 @@ Created By: Travis Berthelot
 
                         //SoundPlaying - condition
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
                             LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                            
+                            return true;
                         }
                     };
                 </xsl:if>
@@ -183,9 +225,10 @@ Created By: Travis Berthelot
                                         
                         //SourisBouton - condition
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
-                            LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                            //LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                            return true;
                         }
                     };
                 </xsl:if>
@@ -203,9 +246,11 @@ Created By: Travis Berthelot
                                         
                         //LayerVisible - condition
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
                             LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                            
+                            return true;
                         }
                     };
                 </xsl:if>
@@ -223,9 +268,11 @@ Created By: Travis Berthelot
                                         
                         //KeyFromTextPressed - condition
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
                             LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                            
+                            return true;
                         }
                     };
                 </xsl:if>
@@ -243,9 +290,11 @@ Created By: Travis Berthelot
                                         
                         //SystemInfo::IsMobile - condition
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
                             LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                            
+                            return true;
                         }
                     };
                 </xsl:if>
@@ -268,13 +317,15 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$actionAsStringsStrings" disable-output-escaping="yes" />
 
                             <!--
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             if(globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.isTime(GameTickTimeDelayHelperFactory.getInstance().getStartTime())) {
                             <xsl:for-each select="../actions" >
                                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                             <xsl:text>&#10;</xsl:text>
+                                //Action - //<xsl:value-of select="type/value" /> - call
                                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             </xsl:for-each>
+                            return true;
                             -->
                             
                 <xsl:for-each select="../../events" >
@@ -313,14 +364,16 @@ Created By: Travis Berthelot
                         };
                         
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
 
                             if(!globals.gdRunnableList.contains(this.runnable)) {
                                 globals.gdRunnableList.add(this.runnable);
                             } else {
-                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable was not in the List: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable already in the List: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
                             }
+                                
+                            return true;
                         }
 
                         @Override
@@ -329,7 +382,7 @@ Created By: Travis Berthelot
                             if(globals.gdRunnableList.contains(this.runnable)) {
                                 globals.gdRunnableList.remove(this.runnable);
                             } else {
-                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable already in the List: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable was not in the List: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
                             }
                         }
 
@@ -354,7 +407,7 @@ Created By: Travis Berthelot
 
                         //PosX - condition
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
                         
                             <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
@@ -385,6 +438,7 @@ Created By: Travis Berthelot
                                 
                             super.processStatsE();
 
+                            return true;
                         }
 
                     };
@@ -406,7 +460,7 @@ Created By: Travis Berthelot
                         
                         //PosY - condition
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
                         
                             <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
@@ -437,6 +491,8 @@ Created By: Travis Berthelot
                             }
 
                             super.processStatsE();
+                                
+                            return true;
                         }
 
                     };
@@ -454,7 +510,7 @@ Created By: Travis Berthelot
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
                     
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
                         
                             //final StringBuilder stringBuilder = new StringBuilder();
@@ -467,7 +523,8 @@ Created By: Travis Berthelot
                                 
                                 <xsl:for-each select="../events" >
                                     <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
-                                        //Events - process - under NbObjet nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                        //Event - call - under NbObjet nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                        //Condition - //NbObjet - //Event - //<xsl:value-of select="type" /> - call
                                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                     </xsl:if>
                                 </xsl:for-each>
@@ -487,6 +544,8 @@ Created By: Travis Berthelot
                             }
                             
                             super.processStatsE();
+                            
+                            return true;
                         }
 
                     };
@@ -504,7 +563,7 @@ Created By: Travis Berthelot
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
                     
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
 
                             //final StringBuilder stringBuilder = new StringBuilder();
                             //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>: ").append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>).toString()));
@@ -532,7 +591,8 @@ Created By: Travis Berthelot
                                             <xsl:with-param name="gdGameLayer" >gdGameLayer</xsl:with-param>
                                         </xsl:call-template>
                                     </xsl:for-each>
-
+                                    
+                            return true;
                         }
 
                     };
@@ -548,7 +608,7 @@ Created By: Travis Berthelot
                     
                         //VarObjet - condition
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
 
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
@@ -577,6 +637,8 @@ Created By: Travis Berthelot
                                     </xsl:for-each>
                            
                             super.processStatsE();
+                            
+                            return true;
                         }
 
                         @Override
@@ -610,7 +672,7 @@ Created By: Travis Berthelot
 
                         //VarScene - condition
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
                         
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>, this, commonStrings.PROCESS));
@@ -621,6 +683,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="thisNodeArray" >this</xsl:variable>
 
 
+                //VarScene - actionsWithIndexes - START
                 <xsl:call-template name="actionsWithIndexes" >
                     <xsl:with-param name="caller" >VarScene</xsl:with-param>
                     <xsl:with-param name="thisNodeIndex" >
@@ -645,6 +708,7 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$logString" />
                     </xsl:with-param>
                 </xsl:call-template>
+                //VarScene - actionsWithIndexes - END
                                     
                                     <!--
                                     <xsl:call-template name="actionIds" >
@@ -654,8 +718,12 @@ Created By: Travis Berthelot
                                     -->
                                 </xsl:for-each>
                                 
-                                super.processStatsE();
+                                return true;
                             }
+                            
+                            super.processStatsE();
+                                
+                            return false;
                         }
 
                     };
@@ -672,7 +740,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
 
-                        //SourisSurObjet - process
+                        //SourisSurObjet
                         @Override
                         public void process(final MotionGestureEvent motionGestureEvent) throws Exception {
                             super.processStats(motionGestureEvent);
@@ -695,24 +763,28 @@ Created By: Travis Berthelot
                                     if (motionGestureInput == TouchMotionGestureFactory.getInstance().PRESSED) {
 
                                         <xsl:for-each select="../../actions" >
-                                        //Action - process - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                        //Action - call - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                        //Action - //<xsl:value-of select="type/value" /> - call
                                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                         </xsl:for-each>
 
                                         <xsl:for-each select="../../events" >
                                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
-                                        //Events - process - under SourisSurObjet press nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                        //Event - call - under SourisSurObjet press nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                        //Event - //<xsl:value-of select="type/value" /> - call - release
                                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                         </xsl:if>
                                         </xsl:for-each> 
                                     } else {
                                         <xsl:for-each select="../../actions" >
-                                        //Action - process - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                        //Action - call - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                        //Action - //<xsl:value-of select="type/value" /> - call - release
                                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                                         </xsl:for-each>    
                                         <xsl:for-each select="../../events" >
                                         <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
-                                        //Events - process - under SourisSurObjet release nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                        //Event - call - under SourisSurObjet release nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                        //Condition - //SourisSurObjet - //Event - //<xsl:value-of select="type" /> - call - release
                                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                                         </xsl:if>
                                         </xsl:for-each> 
@@ -751,7 +823,7 @@ Created By: Travis Berthelot
                     
                     <xsl:variable name="nodeAsString" ><xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                     <xsl:variable name="actionAsString" >Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                        <xsl:if test="$typeValue != 'PauseTimer' and $typeValue != 'PlaySoundCanal'" >
+                        <xsl:if test="$typeValue != 'PlaySoundCanal'" >
                         private final String ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "B: <xsl:value-of select="translate($actionAsString, $quote, ' ')" />";
                         </xsl:if>
                         <xsl:if test="$typeValue != 'ModVarScene' and $typeValue != 'AddForceAL' and $typeValue != 'PlaySoundCanal' and $typeValue != 'StopSoundCanal'" >
@@ -766,7 +838,7 @@ Created By: Travis Berthelot
                     <xsl:if test="$typeValue = 'TextObject::String'" >
                         //TextObject::String - START
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
                         
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
@@ -777,6 +849,8 @@ Created By: Travis Berthelot
                                 <xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if>
                                 <xsl:if test="position() = last()" >);</xsl:if>
                             </xsl:for-each>
+                            
+                            return true;
                         }
                         //TextObject::String - END
                     </xsl:if>
@@ -821,16 +895,18 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'HideLayer'" >
                     //HideLayer
                     @Override
-                    public void process() throws Exception {
+                    public boolean process() throws Exception {
                         super.processStats();
 
                         LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                        
+                        return true;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PlaySound'" >
                     //PlaySound
                     @Override
-                    public void process() throws Exception {
+                    public boolean process() throws Exception {
                         super.processStats();
                     
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
@@ -845,33 +921,81 @@ Created By: Travis Berthelot
                             LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                         }
 
+                        return true;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'StopSoundCanal'" >
                     //StopSoundCanal
                     @Override
-                    public void process() throws Exception {
+                    public boolean process() throws Exception {
                         super.processStats();
                     
                         LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                        
+                        return true;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ResetTimer'" >
                     //ResetTimer
                     @Override
-                    public void process() throws Exception {
+                    public boolean process() throws Exception {
                         super.processStats();
                     
-                        LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                        LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
+                        <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 2" >globals.<xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.setStartTime();</xsl:if>
+                        </xsl:for-each>
+
+                        return true;
+                    }
+                </xsl:if>
+                <xsl:if test="$typeValue = 'PauseTimer'" >
+                    //PauseTimer
+                    @Override
+                    public boolean process() throws Exception {
+                        super.processStats();
+                    
+                        LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                        
+                        <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 2" >globals.<xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.pause();</xsl:if>
+                        </xsl:for-each>
+                        
+                        return true;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'Opacity'" >
+                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //Opacity
+                    @Override
+                    public boolean process() throws Exception {
+                        super.processStats();
+                        
+                        <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >final int size = globals.<xsl:value-of select="text()" />GDGameLayerList.size();</xsl:if></xsl:for-each>
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >final GDGameLayer gameLayer = (((GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index)));</xsl:if></xsl:for-each>
+                            this.processGD(gameLayer, globals.graphics);
+                            gameLayer.updateGDObject(globals.timeDelta);
+                        }
+
+                        return true;
+                    }
+
+                    @Override
+                    public void processGD(final GDGameLayer gameLayer, final Graphics graphics) {
+                        super.processGDStats(gameLayer);
+
+                        <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >final GDObject <xsl:value-of select="text()" /> = gameLayer.gdObject;</xsl:if></xsl:for-each>
+                        <xsl:text>&#10;</xsl:text>
+<xsl:text>                        </xsl:text><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.opacity</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:if test="not(contains(text(), 'Variable('))" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="contains(text(), 'Variable(')" ><xsl:value-of select="substring-before(text(), 'Variable(')" />Variable(<xsl:value-of select="$name" />.<xsl:value-of select="substring-after(text(), 'Variable(')" /></xsl:if></xsl:if><xsl:if test="position() = 4" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" >(((GDGameLayer) globals.<xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayerList.get(index))).gdObject.<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
+                        <xsl:text>&#10;</xsl:text>
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_IS_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.opacity</xsl:if></xsl:for-each>, this, commonStrings.PROCESS));
+                    }
+                                                            
                     @Override
                     public boolean process(final int index) throws Exception {
                         super.processStats(index);
-                        
-                        <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                         <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >final GDObject <xsl:value-of select="text()" /> = (((GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index))).gdObject;</xsl:if></xsl:for-each>
@@ -890,7 +1014,7 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($actionWithTextObjectString, $param)" >
                     //Create - GDObject with TextObject::String - START
                     @Override
-                    public void process() throws Exception {
+                    public boolean process() throws Exception {
                         super.processStats();
                             
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
@@ -905,7 +1029,8 @@ Created By: Travis Berthelot
                     
                         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         globals.<xsl:value-of select="$name" />GDObjectList.add(<xsl:value-of select="$name" />2);
-
+                        
+                        return true;
                     }
                     //Create - GDObject with TextObject::String - END
                         </xsl:if>
@@ -1030,7 +1155,7 @@ Created By: Travis Berthelot
 
                         //Scene
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
 
                             <xsl:if test="$typeValue = 'Scene'" >
@@ -1060,6 +1185,7 @@ Created By: Travis Berthelot
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
 
+                            return true;
                         }
 
                                 </xsl:if>
@@ -1214,31 +1340,32 @@ Created By: Travis Berthelot
 
                                 <xsl:if test="$typeValue = 'UnPauseTimer'" >
 
-                        //UnPauseTimer - process
+                        //UnPauseTimer
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
                             
                             try {
 
-                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
-                                    <xsl:for-each select="parameters" >
-                                        <xsl:if test="position() = 2" >globals.<xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.unPause();</xsl:if>
-                                    </xsl:for-each>
+                                <xsl:for-each select="parameters" >
+                                    <xsl:if test="position() = 2" >globals.<xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.unPause();</xsl:if>
+                                </xsl:for-each>
 
                             } catch(Exception e) {
                             //6
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
-
+                            
+                            return true;
                         }
                                 </xsl:if>
 
                                 <xsl:if test="$typeValue = 'SetAngle'" >
                         //SetAngle
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
 
                             try {
@@ -1261,6 +1388,7 @@ Created By: Travis Berthelot
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
 
+                            return true;
                         }
                                 </xsl:if>
 
@@ -1268,7 +1396,7 @@ Created By: Travis Berthelot
 
                         //ChangePlan
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
 
                             try {
@@ -1284,24 +1412,25 @@ Created By: Travis Berthelot
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
 
+                            return true;
                         }
                                 </xsl:if>
 
                                 <xsl:if test="$typeValue = 'ModVarScene'" >
 
-                        //ModVarScene - action
+                        //ModVarScene
                     <xsl:for-each select="parameters" >
                         <xsl:if test="contains(text(), 'angle')" >
                         //Update angle with rotation
                         </xsl:if>
                     </xsl:for-each>
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
                             
                             try {
 
-                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                     <xsl:variable name="player" ><xsl:for-each select="parameters" ><xsl:if test="contains(text(), 'player')" >player</xsl:if></xsl:for-each></xsl:variable>
                     <xsl:for-each select="parameters" >
                         <xsl:if test="contains(text(), 'player.')" >
@@ -1335,7 +1464,8 @@ Created By: Travis Berthelot
                             //9
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
-
+                                
+                            return true;
                         }
 
                                 </xsl:if>
@@ -1344,7 +1474,7 @@ Created By: Travis Berthelot
 
                         //TextObject::ChangeColor
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
 
                             try {
@@ -1366,6 +1496,7 @@ Created By: Travis Berthelot
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
 
+                            return true;
                         }
 
                                 </xsl:if>
@@ -1384,7 +1515,7 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
             
                             final int size = removeList.size();
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -1392,6 +1523,8 @@ Created By: Travis Berthelot
                             }
 
                             removeList.clear();
+                            
+                            return true;
                         }
             
                         @Override
@@ -1430,7 +1563,7 @@ Created By: Travis Berthelot
                     //AddForceAL
                     /*
                     @Override
-                    public void process() throws Exception {
+                    public boolean process() throws Exception {
                         super.processStats();
 
                         try {
@@ -1466,6 +1599,7 @@ Created By: Travis Berthelot
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                         }
 
+                        return true;
                     }
                     */
 
@@ -1615,7 +1749,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
                         @Override
-                        public void process() throws Exception {
+                        public boolean process() throws Exception {
                             super.processStats();
                             
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
@@ -1627,19 +1761,19 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'Timer'" >
-                    //Timer
+                    //Condition - //Timer - call
                     if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'NbObjet'" >
-                    //NbObjet
+                    //Condition - //NbObjet - call
                     if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarScene'" >
-                    //VarScene
+                    //Condition - //VarScene - call
                     if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                         siblingConditions = false;
                     }
@@ -1690,6 +1824,8 @@ Created By: Travis Berthelot
                             } else {
                                 //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> <xsl:value-of select="$gdObjectName" />GDGameLayerList was null", this, commonStrings.PROCESS));
                             }
+                                
+                            return true;
                         }
 
                         @Override
@@ -1704,19 +1840,19 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'Timer'" >
-                    //Timer
+                    //Condition - //Timer - call
                     if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'NbObjet'" >
-                    //NbObjet
+                    //Condition - //NbObjet - call
                     if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarScene'" >
-                    //VarScene
+                    //Condition - //VarScene - call
                     if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                         siblingConditions = false;
                     }
@@ -1735,19 +1871,19 @@ Created By: Travis Berthelot
             <xsl:for-each select="../conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:if test="$typeValue = 'PosX'" >
-                    //PosX
+                    //Condition - //PosX - call
                     if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosY'" >
-                    //PosY
+                    //Condition - //PosY - call
                     if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarObjet'" >
-                    //VarObjet
+                    //Condition - //VarObjet - call
                     if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
                         siblingConditions = false;
                     }
@@ -1820,7 +1956,7 @@ Created By: Travis Berthelot
                             <xsl:for-each select="../conditions" >
                                 <xsl:variable name="typeValue" select="type/value" />
                                 <xsl:if test="$typeValue = 'SourisSurObjet'" >
-                            //SourisSurObjet - condition
+                            //Condition - //SourisSurObjet - call - motionGestureEvent
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
                                 </xsl:if>
@@ -1887,7 +2023,7 @@ Created By: Travis Berthelot
                 <xsl:if test="contains($foundTimerCondition, 'found')" >
                 //Found used conditions so calling them before actions.
                 @Override
-                public void process() throws Exception {
+                public boolean process() throws Exception {
                     super.processStats();
 
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
@@ -1896,10 +2032,12 @@ Created By: Travis Berthelot
                     <xsl:variable name="typeValue" select="type/value" />
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                     <xsl:if test="position() = 1" >
-                    //Condition - process - press
+                    //Condition - //<xsl:value-of select="type/value" /> - call - press
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                     </xsl:if>
                     </xsl:for-each>
+                    
+                    return true;
                 }
 
                 @Override
@@ -1912,7 +2050,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="typeValue" select="type/value" />
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                     <xsl:if test="position() = 1" >
-                    //Condition - process - release
+                    //Condition - call - release
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                     </xsl:if>
                     </xsl:for-each>
@@ -1923,7 +2061,7 @@ Created By: Travis Berthelot
                 <xsl:if test="contains($foundOtherCondition, 'found') and not(contains($foundTimerCondition, 'found'))" >
                 //Found conditions that need processing.
                 @Override
-                public void process() throws Exception {
+                public boolean process() throws Exception {
                     super.processStats();
                     
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
@@ -1932,13 +2070,15 @@ Created By: Travis Berthelot
                     <xsl:variable name="typeValue" select="type/value" />
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                         <xsl:if test="position() = 1" >
-                    //Condition - process - eventsCreateAssignGDObjectGDNodes
+                    //eventsCreateAssignGDObjectGDNodes - //Condition - //<xsl:value-of select="type/value" /> - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                         </xsl:if>
                         <xsl:if test="position() = 2" >
-                    //Condition - process - eventsCreateAssignGDObjectGDNodes - more ifs
+                    //eventsCreateAssignGDObjectGDNodes - //Condition - call - more ifs
                         </xsl:if>
                     </xsl:for-each>
+                    
+                    return true;
                 }
                 </xsl:if>
 
@@ -1991,7 +2131,7 @@ Created By: Travis Berthelot
                 <xsl:if test="not(actions)" >
                 //Events only - No actions or conditions
                 @Override
-                public void process() throws Exception {
+                public boolean process() throws Exception {
                     super.processStats();
 
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
@@ -2001,6 +2141,7 @@ Created By: Travis Berthelot
                     <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
                         //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" />
                     <xsl:if test="not(contains($eventWithBuilderCondition, 'found'))" >
+                        //Events only - //Event - //<xsl:value-of select="type" /> - call
                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                     </xsl:if>
                     </xsl:if>
@@ -2027,6 +2168,8 @@ Created By: Travis Berthelot
 
                 </xsl:if>
                 -->
+
+                    return true;
                 }
                 
                 @Override
@@ -2039,18 +2182,19 @@ Created By: Travis Berthelot
                         <xsl:variable name="childEventWithUsedEvent" ><xsl:call-template name="childEventWithUsedEvent" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="motionGestureEvent" >true</xsl:with-param></xsl:call-template></xsl:variable>
                         //<xsl:value-of select="$childEventWithUsedEvent" />
                         <xsl:if test="contains($childEventWithUsedEvent, 'found')" >
-                    //BuiltinCommonInstructions::Standard - Used condition in children - 2
+                    //Event - //BuiltinCommonInstructions::Standard - call - motionGestureEvent - Used condition in children - 2
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
                         </xsl:if>                  
                     </xsl:if>
                     <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
-                    //BuiltinCommonInstructions::ForEach
+                    //Event - //BuiltinCommonInstructions::ForEach
                     </xsl:if>
                 </xsl:for-each>
 
                 <xsl:for-each select="conditions" >
                     <xsl:variable name="typeValue" select="type/value" />
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                    //Action - //<xsl:value-of select="type/value" /> - call - motionGestureEvent
                     //globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
                 </xsl:for-each>
 
@@ -2058,6 +2202,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="actions" >
                     //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
                     //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                    //Action - //<xsl:value-of select="type/value" /> - call - motionGestureEvent
                     //globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
                 </xsl:for-each>
 
@@ -2199,12 +2344,14 @@ Created By: Travis Berthelot
                             <xsl:text>&#10;</xsl:text>
                             
                             @Override
-                            public void process() throws Exception {
+                            public boolean process() throws Exception {
                                 super.processStats();
 
                                 this.clear();
                                 this.processM(this.gameLayerArray, null, null);
                                 this.clear2();
+                                
+                                return true;
                             }
 
                             @Override
@@ -2219,7 +2366,7 @@ Created By: Travis Berthelot
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> = "Collision: " + ACTION_PARAMETER_ID_AS_STRING_<xsl:value-of select="$actionNodeId" />;
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE = ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + objectStrings.CALLING_GDNODE;
 
-                            //objectGDObjectAtIndex2 - collide - Sprite - <xsl:value-of select="$name" /> - processM
+                            //objectGDObjectAtIndex2 - collide - Sprite - <xsl:value-of select="$name" /> - call
                             @Override
                             public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
                                 super.processMStats(gameLayerArray, gdNode, gdNodeList);
@@ -2330,12 +2477,14 @@ Created By: Travis Berthelot
                             <xsl:text>&#10;</xsl:text>
                         
                             @Override
-                            public void process() throws Exception {
+                            public boolean process() throws Exception {
                                 super.processStats();
 
                                 this.clear();
                                 this.processM(this.gameLayerArray, null, null);
                                 this.clear2();
+                                
+                                return true;
                             }
 
                             @Override
@@ -2443,7 +2592,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
                             @Override
-                            public void process() throws Exception {
+                            public boolean process() throws Exception {
                                 super.processStats();
 
                                 //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
@@ -2455,6 +2604,8 @@ Created By: Travis Berthelot
                                         this.clear2();
                                     }
                                 }
+                                        
+                                return true;
                             }
 
                             @Override

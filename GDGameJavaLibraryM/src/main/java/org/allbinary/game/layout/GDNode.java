@@ -14,6 +14,7 @@
 package org.allbinary.game.layout;
 
 import javax.microedition.lcdui.Graphics;
+
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
@@ -45,7 +46,8 @@ public class GDNode
         this.clear();
     }
     
-    public void process() throws Exception {
+    public boolean process() throws Exception {
+        return true;
     }
 
     public void processStats() {

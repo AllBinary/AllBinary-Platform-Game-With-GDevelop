@@ -16,51 +16,6 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:template name="eventsOnceConditionProcessActions" >
-        <xsl:param name="totalRecursions" />
-
-        //eventsOnceConditionProcessActions totalRecursions=<xsl:value-of select="$totalRecursions" />
-        <xsl:for-each select="events" >
-            <xsl:variable name="eventId" >[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:variable>
-            //Event nodeId=<xsl:value-of select="generate-id()" /> - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
-
-            <xsl:variable name="conditionsAsString" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'CollisionNP'" >CollisionNP</xsl:if></xsl:for-each></xsl:variable>
-            <xsl:if test="contains($conditionsAsString, 'CollisionNP')" >
-                //CollisionNP - Found - The AllBinary collision processing will kick this off instead so skipping the collision testing here
-            </xsl:if>
-
-            <xsl:for-each select="conditions" >
-                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
-                <xsl:if test="not(contains($conditionsAsString, 'CollisionNP'))" >
-                    <xsl:if test="type/value = 'BuiltinCommonInstructions::Once'" >
-                        //Condition - process - Once - builder
-                        //BuiltinCommonInstructions::Once - Found
-                        <xsl:for-each select=".." >
-                            <xsl:call-template name="eventIds" >
-                                <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                    </xsl:if>
-                </xsl:if>
-                <xsl:if test="type/value = 'DepartScene'" >
-                       //Condition - process - DepartScene - builder
-                       //DepartScene - Found
-                    <xsl:for-each select=".." >
-                        <xsl:call-template name="eventIds" >
-                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                </xsl:if>
-            </xsl:for-each>
-
-            <xsl:call-template name="eventsOnceConditionProcessActions" >
-                <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="number($totalRecursions) + 1" />
-                </xsl:with-param>
-            </xsl:call-template>
-        </xsl:for-each>
-    </xsl:template>
-
     <xsl:template name="showAll" >
         <xsl:param name="totalRecursions" />
         <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>showAll totalRecursions="<xsl:value-of select="$totalRecursions" />" /<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
