@@ -168,11 +168,12 @@ Created By: Travis Berthelot
                         //BuiltinCommonInstructions::Once - condition
                         @Override
                         public boolean process() throws Exception {
-                            super.processStats();
                         
                             if(!firstTime) {
                                 return false;
                             }
+
+                            super.processStats();
 
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
