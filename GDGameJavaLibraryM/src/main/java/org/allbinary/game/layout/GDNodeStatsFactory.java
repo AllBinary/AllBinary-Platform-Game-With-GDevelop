@@ -50,7 +50,7 @@ public class GDNodeStatsFactory {
         callStack[index][total++] = name;
     }
 
-    public String log(final StringBuilder stringBuilder) {
+    public void log(final StringBuilder stringBuilder) {
         
         final CommonStrings commonStrings = CommonStrings.getInstance();
         
@@ -76,6 +76,8 @@ public class GDNodeStatsFactory {
                 }
             }
         }
+
+        LogUtil.put(LogFactory.getInstance(stringBuilder.toString(), this, commonStrings.PROCESS));
         
 //        for(int index = 0; index < 12; index++) {
 //            for(int index2 = 0; index2 < 14999; index2++) {
@@ -90,7 +92,7 @@ public class GDNodeStatsFactory {
 //            }
 //        }
 
-        return stringBuilder.toString();
+        //return stringBuilder.toString();
     }
 
 }
