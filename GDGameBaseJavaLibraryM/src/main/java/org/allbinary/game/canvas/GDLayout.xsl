@@ -105,12 +105,16 @@ Created By: Travis Berthelot
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GDNodeStatsFactory gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                         
+                        private final StringBuilder stringBuilder = new StringBuilder();
+                        
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals;
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder builder;
                         
                         //private final AllBinaryGameLayerManager allBinaryGameLayerManager;
 
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+
+                        gdNodeStatsFactory.reset();
 
                         //this.allBinaryGameLayerManager = allBinaryGameLayerManager;
                         globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.create();
@@ -126,6 +130,8 @@ Created By: Travis Berthelot
 
                         //allBinaryGameLayerManager.log();
                         //groupLayerManagerListener.log();
+                        
+                        gdNodeStatsFactory.log(stringBuilder);
                     }
 
                     public void process() {
@@ -202,7 +208,7 @@ Created By: Travis Berthelot
 
                         globals.lastStartTime = GameTickTimeDelayHelperFactory.getInstance().getStartTime();
                         
-                        gdNodeStatsFactory.log(new StringBuilder());
+                        gdNodeStatsFactory.log(stringBuilder);
                     
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
