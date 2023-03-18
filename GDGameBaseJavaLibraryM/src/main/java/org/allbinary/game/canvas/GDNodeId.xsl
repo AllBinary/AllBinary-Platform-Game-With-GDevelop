@@ -83,7 +83,7 @@
         <xsl:for-each select="actions" >
             //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:text>&#10;</xsl:text>
-            //actionIds - //Action - //<xsl:value-of select="$caller" /> - <xsl:value-of select="type/value" /> - call
+            //<xsl:value-of select="$caller" /> - //actionIds - //Action - //<xsl:value-of select="type/value" /> - call
             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:for-each>
 

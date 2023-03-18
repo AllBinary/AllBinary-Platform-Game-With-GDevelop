@@ -720,6 +720,8 @@ Created By: Travis Berthelot
                                     -->
                                 </xsl:for-each>
                                 
+                                super.processStatsE();
+                                
                                 return true;
                             }
                             
@@ -1349,18 +1351,17 @@ Created By: Travis Berthelot
                             
                             try {
 
-                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-
-                                <xsl:for-each select="parameters" >
-                                    <xsl:if test="position() = 2" >globals.<xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.resume();</xsl:if>
-                                </xsl:for-each>
+                                <xsl:for-each select="parameters" ><xsl:if test="position() = 2" >if(globals.<xsl:value-of select="translate(text(), '&quot;', '')" />TimeDelayHelper.resume()) { </xsl:if></xsl:for-each>
+                                    LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                    return true; 
+                                }
 
                             } catch(Exception e) {
                             //6
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
                             
-                            return true;
+                            return false;
                         }
                                 </xsl:if>
 
@@ -2090,6 +2091,9 @@ Created By: Travis Berthelot
                 <xsl:if test="actions" >
                 //No used conditions so calling actions from event directly.
                 <xsl:call-template name="actionsWithIndexesProcess" >
+                    <xsl:with-param name="caller" >
+                        <xsl:value-of select="$caller" />
+                    </xsl:with-param>
                     <xsl:with-param name="layoutIndex" >
                         <xsl:value-of select="$layoutIndex" />
                     </xsl:with-param>

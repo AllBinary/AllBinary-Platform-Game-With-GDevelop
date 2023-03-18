@@ -115,7 +115,7 @@ Created By: Travis Berthelot
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
 
                     <xsl:call-template name="eventsCreateAssignGDObjectGDNodes" >
-                        <xsl:with-param name="caller" >externalEventsCreateAssignGDObject</xsl:with-param>
+                        <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
