@@ -339,6 +339,10 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         final int size = this.initIndexedAnimationInterface.length;
         for(int index = 0; index < size; index++) {
             this.initIndexedAnimationInterface[index].setAlpha(opacity);
+            if(this.gdObject.basicColor != null) {
+                //LogUtil.put(LogFactory.getInstance("setBasicColor: " + this.gdObject.basicColor, this, "updateGDObject"));
+                this.initIndexedAnimationInterface[index].setBasicColor(this.gdObject.basicColor);
+            }
         }
         
         //if(this.getName().startsWith(PLAYER)) {

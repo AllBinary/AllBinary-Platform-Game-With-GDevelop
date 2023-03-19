@@ -519,6 +519,17 @@ Created By: Travis Berthelot
                     }
                 </xsl:if>
 
+                <xsl:if test="$typeValue = 'ChangeColor'" >
+                    //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Action - //ChangeColor - call
+                    if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index)) {
+                        <xsl:if test="contains($hasNoConditionsButDoesHaveUsedAction, 'found')" >
+                        <xsl:if test="not(contains($hasCreate, 'found'))" >
+                        <xsl:call-template name="addGameLayerToList" />
+                        </xsl:if>
+                        </xsl:if>
+                    }
+                </xsl:if>
+
                 <xsl:if test="$typeValue = 'AddForceAL'" >
                     //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Action - //AddForceAL - call
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index)) {
@@ -938,6 +949,13 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'ChangePlan'" >
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                             //<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //ChangePlan - call
+                            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
+                            <xsl:text>&#10;</xsl:text>
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'ChangeColor'" >
+                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
+                            //<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //ChangeColor - call
                             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
                             <xsl:text>&#10;</xsl:text>
                 </xsl:if>

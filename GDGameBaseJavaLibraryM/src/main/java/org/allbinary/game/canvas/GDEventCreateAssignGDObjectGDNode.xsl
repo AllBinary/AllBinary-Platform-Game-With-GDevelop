@@ -1100,6 +1100,21 @@ Created By: Travis Berthelot
                     }
                 </xsl:if>
 
+                <xsl:if test="$typeValue = 'ChangeColor'" >
+                    //ChangeColor - index
+                    @Override
+                    public boolean process(final int index) throws Exception {
+                        super.processStats(index);
+
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" >(((GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index))).gdObject.basicColor = new BasicColor(</xsl:if><xsl:if test="position() != 1" >255, <xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" />, <xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >);</xsl:if>
+                    </xsl:for-each>
+                    <xsl:text>&#10;</xsl:text>
+                        return true;
+                    }
+                </xsl:if>
+
                 <xsl:if test="$typeValue = 'Create'" >
                     <xsl:if test="not(contains($actionWithTextObjectString, $param))" >
                     //Create End
