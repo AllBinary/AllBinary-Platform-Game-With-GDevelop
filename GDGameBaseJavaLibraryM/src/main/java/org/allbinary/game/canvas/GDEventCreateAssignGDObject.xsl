@@ -584,22 +584,22 @@ Created By: Travis Berthelot
 
                         }
 
+                        </xsl:if>
+
+            </xsl:if>
                         
-                        <xsl:if test="$caller = 'VarScene'" >
+            </xsl:if>
+
+            //$caller = 'VarScene'
+            <xsl:if test="not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found'))" >
                         <xsl:for-each select="events" >
-                            <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
+                            <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
                             //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Event - //<xsl:value-of select="type" /> - call
                             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             </xsl:if>
                         </xsl:for-each>
-                        </xsl:if>
-                        
-                        </xsl:if>
-
             </xsl:if>
-            </xsl:if>
-
 <!--
 //alreadyUsedParentCondition=<xsl:value-of select="$alreadyUsedParentCondition" />
 //<xsl:value-of select="$hadCondition" />
@@ -622,15 +622,16 @@ Created By: Travis Berthelot
             <xsl:variable name="hasResetTimer" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'ResetTimer'" >found</xsl:if></xsl:for-each></xsl:variable>
 
             <xsl:if test="contains($hadCondition, 'found') and contains($hadConditionOtherThanThis, 'found')" >
-            <xsl:if test="contains($hasPauseTimer, 'found') or contains($hasResetTimer, 'found')" >
-                
+
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
+                <xsl:if test="contains($hasPauseTimer, 'found') or contains($hasResetTimer, 'found') or ($caller = 'eventsCreateAssignGDObject' and contains($typeValue, 'ModVarScene'))" >
                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Timer - //<xsl:value-of select="type/value" />
                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                </xsl:if>
             </xsl:for-each>
-            </xsl:if>
+            
             </xsl:if>
 
                     } catch(Exception e) {

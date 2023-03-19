@@ -49,7 +49,7 @@
         <xsl:if test="type = 'BuiltinCommonInstructions::Comment'" >
             //BuiltinCommonInstructions::Comment
         </xsl:if>
-        <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
+        <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
             <xsl:text>&#10;</xsl:text>
             <xsl:if test="$caller = 'externalEventsProcess'" >
                 //Apparently the process below already calls this.

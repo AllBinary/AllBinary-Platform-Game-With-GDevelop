@@ -524,7 +524,7 @@ Created By: Travis Berthelot
                                 //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>").toString()));
                                 
                                 <xsl:for-each select="../events" >
-                                    <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
+                                    <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                                         //Event - call - under NbObjet nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                         //Condition - //NbObjet - //Event - //<xsl:value-of select="type" /> - call
                                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
@@ -773,7 +773,7 @@ Created By: Travis Berthelot
                                         </xsl:for-each>
 
                                         <xsl:for-each select="../../events" >
-                                        <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
+                                        <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                                         //Event - call - under SourisSurObjet press nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                         //Event - //<xsl:value-of select="type/value" /> - call - release
                                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
@@ -786,7 +786,7 @@ Created By: Travis Berthelot
                                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                                         </xsl:for-each>    
                                         <xsl:for-each select="../../events" >
-                                        <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
+                                        <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                                         //Event - call - under SourisSurObjet release nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                         //Condition - //SourisSurObjet - //Event - //<xsl:value-of select="type" /> - call - release
                                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
@@ -1979,7 +1979,7 @@ Created By: Travis Berthelot
             <xsl:if test="type = 'BuiltinCommonInstructions::Comment'" >
             //Do not create GDNode for comment event type
             </xsl:if>
-            <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
+            <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
             //Event - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
             if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                 throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
@@ -2144,7 +2144,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="events" >
                     <!-- CollisionNP is already handled. -->
                     <xsl:variable name="eventWithBuilderCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:if test="type != 'BuiltinCommonInstructions::Comment'" >
+                    <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                         //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" />
                     <xsl:if test="not(contains($eventWithBuilderCondition, 'found'))" >
                         //Events only - //Event - //<xsl:value-of select="type" /> - call
