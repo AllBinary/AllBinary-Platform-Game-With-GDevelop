@@ -17,6 +17,7 @@ import javax.microedition.lcdui.Graphics;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.SpacialStrings;
+import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.logic.basic.string.CommonSeps;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -30,6 +31,7 @@ import org.allbinary.math.PositionStrings;
  */
 public class GDObject
 {
+
     private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
     
     public final String name;
@@ -47,6 +49,7 @@ public class GDObject
     public int animation;
     
     public int opacity = 255;
+    public BasicColor basicColor;
     
     public int canvasWidth;
     public int canvasHeight;
@@ -203,13 +206,12 @@ public class GDObject
         
         return this.angle;
     }
-
+    
     public int Variable(final int value)
     {
         return value;
     }
     
-
     public String toString() {
         final CommonSeps commonSeps = CommonSeps.getInstance();
         final GDObjectStrings gdObjectStrings = GDObjectStrings.getInstance();
