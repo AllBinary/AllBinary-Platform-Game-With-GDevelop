@@ -57,23 +57,23 @@ Created By: Travis Berthelot
                     //
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosX'" >
-                    //Action - //PosX - call
+                    //Condition - //PosX - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosY'" >
-                    //Action - //PosY - call
+                    //Condition - //PosY - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'NbObjet'" >
-                    //Action - //NbObjet - call
+                    //Condition - //NbObjet - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarObjet'" >
-                    //Action - //VarObjet - call
+                    //Condition - //VarObjet - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarScene'" >
-                    //Action - //VarScene - call
+                    //Condition - //VarScene - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
             </xsl:for-each>

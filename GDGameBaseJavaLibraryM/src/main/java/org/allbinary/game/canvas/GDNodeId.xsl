@@ -326,8 +326,9 @@
         <xsl:if test="$foundCondition = 'found'" >
         
         <xsl:for-each select="actions" >
+            //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:if test="type/value = 'AddForceAL'" >
-                //Action - //AddForceAL - call - Used action in children - 4
+                //childEventWithUsedEvent2 - //Action - //AddForceAL - call - Used action in children - 4
                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
         </xsl:for-each>
