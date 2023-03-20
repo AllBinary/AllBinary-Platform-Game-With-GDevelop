@@ -218,6 +218,7 @@ Created By: Travis Berthelot
 
                     public void paint(Graphics graphics, int x, int y)
                     {
+                        //gdNodeStatsFactory.reset();
 
                     <xsl:call-template name="paintDebugButtons" >
                         <xsl:with-param name="caller" >paint</xsl:with-param>
@@ -281,6 +282,8 @@ Created By: Travis Berthelot
                             }
                         </xsl:if>
                     </xsl:for-each>
+
+                        //gdNodeStatsFactory.log(stringBuilder);
                     }
 
                     public void open() {

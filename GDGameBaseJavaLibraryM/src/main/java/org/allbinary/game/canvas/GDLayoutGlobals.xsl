@@ -77,6 +77,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
                 import org.allbinary.logic.basic.util.event.EventListenerInterface;
+                import org.allbinary.media.audio.Sound;
                 import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
@@ -109,6 +110,8 @@ Created By: Travis Berthelot
                         //public final BasicArrayList ZERO_GD_OBJECT = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                         public final GDNode[] nodeArray = new GDNode[15000];
                         public final int FAKE_COLLISION_NODE_ID = 14999;
+
+                        public BasicArrayList[] channelSoundArray = new BasicArrayList[4];
 
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
@@ -183,6 +186,13 @@ Created By: Travis Berthelot
                     public long lastStartTime = Long.MIN_VALUE;
                     //public final String FAKE_COLLISION_NODE_STRING = "FAKE_COLLISION_NODE_ID";
                  
+                    private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals() {
+                        final int size = channelSoundArray.length;
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            channelSoundArray[index] = new BasicArrayList();
+                        }
+                    }
+
                     public int SceneWindowWidth() {
                         return DisplayInfoSingleton.getInstance().getLastWidth();
                     }

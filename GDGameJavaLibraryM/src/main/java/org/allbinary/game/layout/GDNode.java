@@ -61,6 +61,8 @@ public class GDNode
     }
     
     public void processReleased() throws Exception {
+        this.processReleasedStats();
+        this.process();
     }
 
     public void processReleasedStats() {
