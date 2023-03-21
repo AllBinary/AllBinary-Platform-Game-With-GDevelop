@@ -68,6 +68,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.layout.GDNode;
+                import org.allbinary.game.layout.BaseGDNodeStats;
                 import org.allbinary.game.layout.GDNodeStatsFactory;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
@@ -111,7 +112,7 @@ Created By: Travis Berthelot
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-                        private final GDNodeStatsFactory gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
+                        private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                         
                         private final String INDEX = "index: ";
 

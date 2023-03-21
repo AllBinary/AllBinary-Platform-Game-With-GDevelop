@@ -912,9 +912,9 @@ Created By: Travis Berthelot
                         //createParamsAsString=<xsl:value-of select="$createParamsAsString" />
                         //timerActions=<xsl:value-of select="$timerActions" />
                     </xsl:if>
-                    <xsl:if test="contains($hasCreate, 'found') and contains($timerActions, 'Timer,')" >
+                    <xsl:if test="contains($hasCreate, 'found')" >
                         <xsl:variable name="text" select="substring-before($createParamsAsString, ',')" />
-                        //Create Loop - eventsCreateProcessUsed - Timer
+                        //Create Loop - eventsCreateProcessUsed - Create
                         //final StringBuilder stringBuilder = new StringBuilder();
                         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" size: ").append(size).append(" globals.<xsl:value-of select="$text" />List.size(): ").append(globals.<xsl:value-of select="$text" />List.size()).append(" globals.<xsl:value-of select="$text" />GDGameLayerList.size(): ").append(globals.<xsl:value-of select="$text" />GDGameLayerList.size()).toString(), this, commonStrings.PROCESS));
                         final int startIndex = globals.<xsl:value-of select="$text" />GDGameLayerList.size();
@@ -926,7 +926,7 @@ Created By: Travis Berthelot
                         for(int index = startIndex; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> endIndex; index++) {
                     </xsl:if>
             
-                    <xsl:if test="not(contains($timerActions, 'Timer,'))" >
+                    <xsl:if test="not(contains($hasCreate, 'found')) and not(contains($timerActions, 'Timer,'))" >
                         //Create Loop - eventsCreateProcessUsed
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                     </xsl:if>

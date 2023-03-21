@@ -21,14 +21,16 @@ import org.allbinary.logic.communication.log.LogUtil;
  *
  * @author User
  */
-public class GDNodeStatsFactory {
+public class GDNodeStatsFactory extends BaseGDNodeStats {
     
-    private static final GDNodeStatsFactory instance = new GDNodeStatsFactory();
+    private static final BaseGDNodeStats instance = 
+            new BaseGDNodeStats();
+            //new GDNodeStatsFactory();
 
     /**
      * @return the instance
      */
-    public static GDNodeStatsFactory getInstance() {
+    public static BaseGDNodeStats getInstance() {
         return instance;
     }
     

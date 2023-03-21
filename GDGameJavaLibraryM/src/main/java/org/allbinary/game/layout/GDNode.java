@@ -26,7 +26,7 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDNode
 {
-    private final GDNodeStatsFactory nodeStatsFactory = GDNodeStatsFactory.getInstance();
+    private final BaseGDNodeStats nodeStatsFactory = GDNodeStatsFactory.getInstance();
     
     public final CollidableCompositeLayer[] gameLayerArray = new CollidableCompositeLayer[5];
 
