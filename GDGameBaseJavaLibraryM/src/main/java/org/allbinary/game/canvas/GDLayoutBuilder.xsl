@@ -217,7 +217,7 @@ Created By: Travis Berthelot
                         <xsl:value-of select="name" />2.height = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
                         <xsl:value-of select="name" />2.halfWidth = (<xsl:value-of select="name" />2.width / 2);
                         <xsl:value-of select="name" />2.halfHeight = (<xsl:value-of select="name" />2.height / 2);
-                        LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />2.toString(), this, commonStrings.PROCESS));
+                        //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />2.toString(), this, commonStrings.PROCESS));
                         </xsl:if>
                         
                         globals.<xsl:value-of select="name" />GDObjectList.add(<xsl:value-of select="name" />2);
