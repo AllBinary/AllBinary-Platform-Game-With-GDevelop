@@ -91,7 +91,7 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
 //                stringBuilder.append(" groups: ");
 //                LogUtil.put(LogFactory.getInstance(this.toString(collisionLayer, stringBuilder), this, COLLIDE));
                 if (indexOfGroup >= 0) {
-                    LogUtil.put(LogFactory.getInstance("groupIndex: " + indexOfGroup, this, COLLIDE));
+                    //LogUtil.put(LogFactory.getInstance("groupIndex: " + indexOfGroup, this, COLLIDE));
                     node = ((GDNode) this.conditionWIthGroupActions.actionForGroupsList.get(indexOfGroup));
                     node.clear();
                     node.gameLayerArray[0] = this.ownerLayer;
@@ -101,7 +101,7 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
                 }
             }
         } else {
-            LogUtil.put(LogFactory.getInstance("collide: No Groups for: " + this.ownerLayer, this, COLLIDE));
+            //LogUtil.put(LogFactory.getInstance("collide: No Groups for: " + this.ownerLayer, this, COLLIDE));
         }
 
         //((CollidableDestroyableDamageableLayer) this.ownerLayer).damage(
