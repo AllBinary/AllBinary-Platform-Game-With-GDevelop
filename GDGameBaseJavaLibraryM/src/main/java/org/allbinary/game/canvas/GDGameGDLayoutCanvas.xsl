@@ -29,7 +29,6 @@ import org.allbinary.input.gyro.AllBinaryOrientationSensor;
 import org.allbinary.input.gyro.GyroSensorFactory;
 import org.allbinary.media.audio.GDGameSoundsFactoryFactory;
 import org.allbinary.util.BasicArrayList;
-
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringUtil;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -54,6 +53,8 @@ import org.allbinary.game.input.OptimizedGameInputLayerProcessorForCollidableLay
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.game.layer.PlayerGameInputGameLayer;
 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
+import org.allbinary.game.layout.BaseGDNodeStats;
+import org.allbinary.game.layout.GDNodeStatsFactory;
 import org.allbinary.game.score.BasicHighScoresFactory;
 import org.allbinary.game.state.GameState;
 import org.allbinary.game.tick.OptimizedTickableLayerProcessor;
@@ -81,6 +82,9 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
     private final int portion = 4;
     private final short SIZE = 50;
+
+    private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
+    private final StringBuilder stringBuilder = new StringBuilder();
 
     private SpecialAnimation specialAnimation = SpecialAnimation.getInstance();
 
@@ -498,9 +502,13 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
     protected void processPlayingGame() throws Exception {
     
+        gdNodeStatsFactory.reset();
+    
         super.processPlayingGame();
 
         this.specialAnimation.process();
+        
+        gdNodeStatsFactory.log(stringBuilder);
     }
 
      //Hack for GDevelop

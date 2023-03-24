@@ -136,7 +136,6 @@ Created By: Travis Berthelot
                     }
 
                     public void process() {
-                        gdNodeStatsFactory.reset();
                         
                         try {
 
@@ -208,8 +207,6 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                         globals.lastStartTime = GameTickTimeDelayHelperFactory.getInstance().getStartTime();
-                        
-                        gdNodeStatsFactory.log(stringBuilder);
                     
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
