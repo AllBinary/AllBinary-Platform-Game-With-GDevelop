@@ -142,7 +142,10 @@ Created By: Travis Berthelot
                     //<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
                     //<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
                     <xsl:variable name="name1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="name" >globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDConditionWithGroupActions</xsl:variable>
+                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="name1Comma" ><xsl:value-of select="$name1" />,</xsl:variable>
+                    <xsl:variable name="nameComma" ><xsl:value-of select="$name" />,</xsl:variable>
+
                     <xsl:variable name="nodeList" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
                         //Child VarScene conditions with actions
@@ -172,8 +175,64 @@ Created By: Travis Berthelot
                         nodeList<xsl:value-of select="$nodeList" />.add(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                             </xsl:if>
                         </xsl:for-each>
-                                                
-                        <xsl:value-of select="$name" />.groupWithActionsList.add(globals.<xsl:value-of select="$name1" />GroupInterface);
+
+                        <xsl:variable name="objectGroupNames" ><xsl:for-each select="/game/layouts/objectsGroups" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
+
+                        <xsl:text>&#10;</xsl:text>
+
+                        <xsl:if test="not(contains($objectGroupNames, $name1Comma))" >
+                        //Group name is not a layer so use <xsl:value-of select="$name1" /> from <xsl:value-of select="$objectGroupNames" />
+
+                        <xsl:text>&#10;</xsl:text>
+                        
+                        <xsl:call-template name="collisionNP" >
+                            <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
+                            <xsl:with-param name="name1" ><xsl:value-of select="$name1" /></xsl:with-param>
+                            <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
+                        </xsl:call-template>
+
+                        </xsl:if>
+
+                        <xsl:if test="contains($objectGroupNames, $name1Comma)" >
+                        //Group object needs inclusion for other names <xsl:value-of select="$name1" /> from <xsl:value-of select="$objectGroupNames" />
+                        <xsl:variable name="gameLayersInGroup" ><xsl:for-each select="/game/layouts/objectsGroups" ><xsl:if test="$name1 = name" ><xsl:for-each select="objects" ><xsl:value-of select="name/text()" />,</xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
+                        //gameLayersInGroup=<xsl:value-of select="$gameLayersInGroup" />
+                        <xsl:text>&#10;</xsl:text>
+                        
+                    <xsl:call-template name="splitCollisionNP" >
+                        <xsl:with-param name="names" >
+                            <xsl:value-of select="$gameLayersInGroup" />
+                        </xsl:with-param>
+                        <xsl:with-param name="name" >
+                            <xsl:value-of select="$name" />
+                        </xsl:with-param>
+                        <xsl:with-param name="nodeList" >
+                            <xsl:value-of select="$nodeList" />
+                        </xsl:with-param>
+                        <xsl:with-param name="iteration" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                        
+                        </xsl:if>
+                        
+                </xsl:if>
+
+            </xsl:for-each>
+
+        </xsl:for-each>
+        //eventsLogicConstruction - <xsl:value-of select="$totalRecursions" /> - END
+
+    </xsl:template>
+
+    <xsl:template name="collisionNP" >
+        <xsl:param name="name" />
+        <xsl:param name="name1" />
+        <xsl:param name="nodeList" />
+
+        <xsl:variable name="nameGDConditionWithGroupActions" >globals.<xsl:value-of select="$name" />GDConditionWithGroupActions</xsl:variable>
+        
+<xsl:text>                        </xsl:text><xsl:value-of select="$nameGDConditionWithGroupActions"/>.groupWithActionsList.add(globals.<xsl:value-of select="$name1" />GroupInterface);
                         globals.nodeArray[<xsl:value-of select="$nodeList" />] = new GDNode(<xsl:value-of select="$nodeList" />) {
                         
                             private final String NODE_AT = "Process GDNode <xsl:value-of select="$nodeList" /> at index: ";
@@ -202,14 +261,31 @@ Created By: Travis Berthelot
                             }
                         };
                         
-                        <xsl:value-of select="$name" />.actionForGroupsList.add(globals.nodeArray[<xsl:value-of select="$nodeList" />]);
-                </xsl:if>
+                        <xsl:value-of select="$nameGDConditionWithGroupActions"/>.actionForGroupsList.add(globals.nodeArray[<xsl:value-of select="$nodeList" />]);        
+    </xsl:template>
 
-            </xsl:for-each>
+    <xsl:template name="splitCollisionNP">
+        <xsl:param name="names" select="."/>
+        <xsl:param name="name" />
+        <xsl:param name="nodeList" />
+        <xsl:param name="iteration" />
 
-        </xsl:for-each>
-        //eventsLogicConstruction - <xsl:value-of select="$totalRecursions" /> - END
+        <xsl:if test="string-length($names) > 0">
+            <xsl:variable name="nextName" select="substring-before(concat($names, ','), ',')" />
 
+                        <xsl:call-template name="collisionNP" >
+                            <xsl:with-param name="name" ><xsl:value-of select="$nextName" /></xsl:with-param>
+                            <xsl:with-param name="name1" ><xsl:value-of select="$name" /></xsl:with-param>
+                            <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
+                        </xsl:call-template>
+
+            <xsl:call-template name="splitCollisionNP">
+                <xsl:with-param name="names" select="substring-after($names, ',')"/>
+                <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
+                <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
+                <xsl:with-param name="iteration" select="number($iteration) + 1" />
+            </xsl:call-template>
+        </xsl:if>
     </xsl:template>
 
 </xsl:stylesheet>

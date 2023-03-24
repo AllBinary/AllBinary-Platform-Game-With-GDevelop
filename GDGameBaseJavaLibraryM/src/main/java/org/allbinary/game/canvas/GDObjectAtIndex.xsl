@@ -27,7 +27,7 @@ Created By: Travis Berthelot
                                     if(<xsl:value-of select="$name" />GDGameLayer != null) {
                                         <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject;
                                     } else {
-                                        final String message = "eventsCreateProcessUsed <xsl:value-of select="$name" /> warning: not initialized";
+                                        final String message = "eventsCreateProcessUsed - iteration=<xsl:value-of select="$iteration" /> - <xsl:value-of select="$name" /> warning: not initialized";
                                         LogUtil.put(LogFactory.getInstance(message, this, message));
                                     }
 
@@ -111,6 +111,8 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     </xsl:variable>
 
+                    <xsl:if test="$thisNodeArray = 'globals.nodeArray[11047]'" >
+                        //TWB - temp hack
                         final GDNode gdNode = <xsl:value-of select="$thisNodeArray" />;
                         final BasicArrayList gdNodeList = new BasicArrayList();
 
@@ -153,8 +155,9 @@ Created By: Travis Berthelot
 
                         //When gdNodeList size is 1 with only the 1 object above then nothing occurs
                         final GDNode node = ((GDNode) gdNodeList.get(0));
-                        //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$logString" /> + objectStrings.CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                        LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$logString" /> + objectStrings.CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
                         node.processN(gdNode, gdNodeList);
+                    </xsl:if>
 
                 </xsl:if>
             </xsl:for-each>
