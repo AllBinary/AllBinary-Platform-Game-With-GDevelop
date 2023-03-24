@@ -52,12 +52,10 @@ public class GDNode
 
     public void processStats() {
         this.nodeStatsFactory.push(2, name);
-        //this.nodeStatsFactory.totalCalls[0][name]++;
     }
 
     public void processStatsE() {
         this.nodeStatsFactory.push(3, name);
-        //this.nodeStatsFactory.totalCalls[0][name]++;
     }
     
     public void processReleased() throws Exception {
@@ -67,7 +65,6 @@ public class GDNode
 
     public void processReleasedStats() {
         this.nodeStatsFactory.push(4, name);
-        //this.nodeStatsFactory.totalCalls[1][name]++;
     }
     
     public void process(final MotionGestureEvent motionGestureEvent) throws Exception {
@@ -75,7 +72,6 @@ public class GDNode
 
     public void processStats(final MotionGestureEvent motionGestureEvent) {
         this.nodeStatsFactory.push(5, name);
-        //this.nodeStatsFactory.totalCalls[8][name]++;
     }
     
     public boolean process(final int index) throws Exception {
@@ -84,7 +80,6 @@ public class GDNode
     
     public void processStats(final int index) throws Exception {
         this.nodeStatsFactory.push(6, name);
-        //this.nodeStatsFactory.totalCalls[2][name]++;
     }
     
     public void processEnd(final int index) throws Exception {
@@ -92,7 +87,6 @@ public class GDNode
 
     public void processEndStats(final int index) throws Exception {
         this.nodeStatsFactory.push(7, name);
-        //this.nodeStatsFactory.totalCalls[3][name]++;
     }
     
     public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
@@ -100,12 +94,10 @@ public class GDNode
 
     public void processNStats(final GDNode gdNode, final BasicArrayList gdNodeList) {
         this.nodeStatsFactory.push(8, name);
-        //this.nodeStatsFactory.totalCalls[4][name]++;
     }
 
     public void processNStatsE(final GDNode gdNode, final BasicArrayList gdNodeList) {
         this.nodeStatsFactory.push(9, name);
-        //this.nodeStatsFactory.totalCalls[4][name]++;
     }
 
     public boolean processCreate(final GDObject gdObject) throws Exception {
@@ -114,7 +106,6 @@ public class GDNode
 
     public void processCreateStats(final GDObject gdObject) {
         this.nodeStatsFactory.push(10, name);
-        //this.nodeStatsFactory.totalCalls[5][name]++;
     }
 
     public boolean processReleased(final GDObject gdObject) {
@@ -123,7 +114,6 @@ public class GDNode
 
     public void processReleasedStats(final GDObject gdObject) {
         this.nodeStatsFactory.push(11, name);
-        //this.nodeStatsFactory.totalCalls[6][name]++;
     }
 
     public boolean processG(final GDObject gdObject, final Graphics graphics) {
@@ -132,7 +122,6 @@ public class GDNode
 
     public void processGStats(final GDObject gdObject, final Graphics graphics) {
         this.nodeStatsFactory.push(12, name);
-        //this.nodeStatsFactory.totalCalls[7][name]++;
     }
 
     public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
@@ -140,12 +129,10 @@ public class GDNode
 
     public void processMStats(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
         this.nodeStatsFactory.push(13, name);
-        //this.nodeStatsFactory.totalCalls[9][name]++;
     }
 
     public void processMStatsE(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
         this.nodeStatsFactory.push(14, name);
-        //this.nodeStatsFactory.totalCalls[9][name]++;
     }
     
     public void processGD(final GDGameLayer gameLayer, final Graphics graphics) {
@@ -155,7 +142,6 @@ public class GDNode
     
     public void processGDStats(final GDGameLayer gameLayer) {
         this.nodeStatsFactory.push(15, name);
-        //this.nodeStatsFactory.totalCalls[10][name]++;
     }
 
     public void addForDelete(final GDGameLayer gameLayer) {
