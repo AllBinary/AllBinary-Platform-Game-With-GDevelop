@@ -377,29 +377,31 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
 
-                            if(!globals.gdRunnableList.contains(this.runnable)) {
-                                globals.gdRunnableList.add(this.runnable);
-                            } else {
+                            //if(this.currentRunnable != this.runnable) {
+                                this.currentRunnable = this.runnable;
+                            //} else {
                                 //Best to not remark out when parent conditions include: SourisBouton, SourisSurObjet, or KeyFromTextPressed
-                                //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable already in the List: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
-                            }
-                                
+                                //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable already set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
+                            //}
+
                             return true;
                         }
 
                         @Override
                         public void processReleased() throws Exception { //Timer
                             super.processReleasedStats();
-                            if(globals.gdRunnableList.contains(this.runnable)) {
-                                globals.gdRunnableList.remove(this.runnable);
+
+                            if(this.currentRunnable != NullRunnable.getInstance()) {
+                                this.currentRunnable = NullRunnable.getInstance();
                             } else {
-                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable was not in the List: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE, new Exception()));
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable was not set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE, new Exception()));
                             }
                         }
 
                         <xsl:value-of select="$eventsCreateProcessUsed" disable-output-escaping="yes" />
 
                     };
+                    globals.gdNodeWithRunnableList.add(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosX'" >
                     //Condition - //PosX - GDNode
@@ -1556,8 +1558,14 @@ Created By: Travis Berthelot
                     <xsl:for-each select="parameters" >
                         <xsl:if test="contains(text(), 'player.')" >
                                 //Hack FIX ME for GDevelop player
-                                final GDGameLayer playerGDGameLayer = ((GDGameLayer) globals.playerGDGameLayerList.get(0));
-                                final GDObject player = (GDObject) playerGDGameLayer.gdObject;
+                                GDGameLayer playerGDGameLayer = null;
+                                GDObject player = null;
+                                if(globals.playerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                    playerGDGameLayer = ((GDGameLayer) globals.playerGDGameLayerList.get(0));
+                                    player = (GDObject) playerGDGameLayer.gdObject;
+                                } else {
+                                    return false;
+                                }
                         </xsl:if>
                     </xsl:for-each>
                     <xsl:text>&#10;</xsl:text>

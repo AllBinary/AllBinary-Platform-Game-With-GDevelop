@@ -104,7 +104,7 @@ Created By: Travis Berthelot
                         
                         public final String PROCESS_RELEASE = "processReleased";
                         
-                        public final BasicArrayList gdRunnableList = new BasicArrayList();
+                        public final BasicArrayList gdNodeWithRunnableList = new BasicArrayList();
                         
                         public final Graphics graphics = new Graphics();
                         //public final BasicArrayList ZERO_GD_OBJECT = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);

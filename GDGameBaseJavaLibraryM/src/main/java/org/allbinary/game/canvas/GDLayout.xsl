@@ -68,6 +68,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.BaseGDNodeStats;
+                import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layout.GDNodeStatsFactory;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.graphics.GPoint;
@@ -145,11 +146,11 @@ Created By: Travis Berthelot
                             globals.timeDelta = System.currentTimeMillis() - globals.lastStartTime;
                         }
 
-                        final int size2 = globals.gdRunnableList.size();
-                        Runnable runnable;
+                        GDNode gdNode;                        
+                        final int size2 = globals.gdNodeWithRunnableList.size();
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index++) {
-                            runnable = (Runnable) globals.gdRunnableList.get(index);
-                            runnable.run();
+                            gdNode = (GDNode) globals.gdNodeWithRunnableList.get(index);
+                            gdNode.currentRunnable.run();
                         }
 
                     <xsl:for-each select="../externalEvents" >

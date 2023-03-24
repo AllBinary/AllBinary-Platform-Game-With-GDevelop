@@ -18,6 +18,7 @@ import javax.microedition.lcdui.Graphics;
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
+import org.allbinary.thread.NullRunnable;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -29,6 +30,8 @@ public class GDNode
     private final BaseGDNodeStats nodeStatsFactory = GDNodeStatsFactory.getInstance();
     
     public final CollidableCompositeLayer[] gameLayerArray = new CollidableCompositeLayer[5];
+
+    public Runnable currentRunnable = NullRunnable.getInstance();
 
     private final int name;
     

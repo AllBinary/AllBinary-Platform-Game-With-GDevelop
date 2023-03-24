@@ -257,7 +257,7 @@ Created By: Travis Berthelot
                 <xsl:if test="type/value != 'DepartScene' and type/value != 'Timer' and type/value != 'SoundPlaying' and (not(contains($caller, 'eventsCreateAssignGDObject') and type/value = 'NbObjet'))" >
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Condition - //<xsl:value-of select="type/value" /> - call - <xsl:value-of select="$thisNodeIndex" />
-                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                 </xsl:if>
                 </xsl:if>
                 </xsl:if>
@@ -411,7 +411,10 @@ Created By: Travis Berthelot
 
             <xsl:if test="contains($hasCreate, 'found')" >
                 //Hack FIX ME for player1
-                final GDObject player = ((GDGameLayer) globals.playerGDGameLayerList.get(0)).gdObject;
+                GDObject player = null;
+                if(globals.playerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                    player = ((GDGameLayer) globals.playerGDGameLayerList.get(0)).gdObject;
+                }
             </xsl:if>
 
             <xsl:for-each select="actions" >
@@ -594,6 +597,20 @@ Created By: Travis Berthelot
                         }
 
             <xsl:for-each select="actions" >
+
+                <xsl:if test="type/value = 'Delete'" >
+                    <xsl:if test="not(contains($caller, 'external'))" >
+                    <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Action - //Delete - call
+                    final GDGameLayer <xsl:value-of select="$gameLayerName" />GDGameLayer = (GDGameLayer) globals.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(0);
+                    if(<xsl:value-of select="$gameLayerName" />GDGameLayer != null) {
+                        globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gameLayerName" />GDGameLayer, globals.graphics);
+                    } else {
+                        LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "<xsl:value-of select="$gameLayerName" />GDGameLayer was null", this, commonStrings.PROCESS));
+                    }
+                        </xsl:if>
+                </xsl:if>
+
                 <xsl:if test="type/value = 'ModVarScene'" >
                     <xsl:if test="not(contains($caller, 'external'))" >
                     //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Action - //ModVarScene - call
@@ -670,6 +687,34 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:for-each>
             
+            </xsl:if>
+
+            <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
+            <xsl:if test="not(contains($hasOnceCondition, 'found'))" >
+            <xsl:if test="not(contains($alreadyUsedParentCondition, 'found'))" >
+
+            <xsl:if test="not(contains($hasOnceCondition, 'found'))" >
+                
+            <xsl:variable name="hasActions" ><xsl:for-each select="actions" >found</xsl:for-each></xsl:variable>
+
+            <xsl:for-each select="conditions" >
+                <xsl:variable name="typeValue" select="type/value" />
+                <xsl:if test="position() = 1" >
+                <xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >
+                <xsl:if test="type/value != 'DepartScene' and type/value != 'Timer' and type/value != 'SoundPlaying' and (not(contains($caller, 'eventsCreateAssignGDObject') and type/value = 'NbObjet'))" >
+                    
+                <xsl:if test="contains($hasActions, 'found')" >
+                //Condition - END
+                </xsl:if>   
+                }
+                </xsl:if>
+                </xsl:if>
+                </xsl:if>
+            </xsl:for-each>
+            </xsl:if>
+            
+            </xsl:if>
+            </xsl:if>
             </xsl:if>
 
                     } catch(Exception e) {
