@@ -156,25 +156,6 @@ Created By: Travis Berthelot
                         nodeList<xsl:value-of select="$nodeList" />.add(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]); 
                             </xsl:if>
                         </xsl:for-each>
-                                                
-                        <xsl:for-each select="../events/events" >
-                            <xsl:if test="actions" >
-                        //2
-                        nodeList<xsl:value-of select="$nodeList" />.add(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
-                            </xsl:if>
-                        </xsl:for-each>
-                        <xsl:for-each select="../events/events/events" >
-                            <xsl:if test="actions" >
-                        //3
-                        nodeList<xsl:value-of select="$nodeList" />.add(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
-                            </xsl:if>
-                        </xsl:for-each>
-                        <xsl:for-each select="../events/events/events/events" >
-                            <xsl:if test="actions" >
-                        //4
-                        nodeList<xsl:value-of select="$nodeList" />.add(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
-                            </xsl:if>
-                        </xsl:for-each>
 
                         <xsl:variable name="objectGroupNames" ><xsl:for-each select="/game/layouts/objectsGroups" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
 
