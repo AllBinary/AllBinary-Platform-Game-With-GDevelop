@@ -141,13 +141,6 @@ Created By: Travis Berthelot
                         gdNodeList.add(globals.nodeArray[<xsl:value-of select="$actionNodeId" />]);
                             </xsl:if>
                         </xsl:if>
-                        <xsl:variable name="name2" ><xsl:value-of select="name" />,</xsl:variable>
-                        <xsl:if test="contains($parametersAsString, $name2)" >
-                            <xsl:if test="not(contains($parametersAsString, $name) = text()) and name = 'player'" >
-                        //Hack for GDevelop player with GDNode - <xsl:value-of select="$name" />
-                        gdNodeList.add(globals.nodeArray[<xsl:value-of select="$actionNodeId" />]);
-                            </xsl:if>
-                        </xsl:if>
 
                     </xsl:for-each>
 

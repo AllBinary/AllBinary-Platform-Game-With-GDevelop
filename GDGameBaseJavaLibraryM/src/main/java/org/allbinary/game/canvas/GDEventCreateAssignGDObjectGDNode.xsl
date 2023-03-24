@@ -49,7 +49,7 @@ Created By: Travis Berthelot
 
             <xsl:variable name="logString" >EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                         
-            <!-- //Hack - actionWithTextObjectString is probably bad idea -->
+            <!-- //Hackish - actionWithTextObjectString is probably bad idea -->
             <xsl:variable name="actionWithTextObjectString" >
                 <xsl:for-each select="actions" >
                     <xsl:variable name="typeValue" select="type/value" />
@@ -1179,7 +1179,7 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
-                    //Hack method 1st param or list - 2
+                    //Hackish method 1st param or list - 2
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >(((GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index)).gdObject).setAngle(</xsl:if><xsl:if test="position() = 2" > (short)</xsl:if><xsl:if test="position() = 3" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" >(((GDGameLayer) globals.<xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayerList.get(0))).gdObject.<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >, (GDGameLayer) globals.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(index));</xsl:if>
                     </xsl:for-each>
@@ -1498,7 +1498,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >
                                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                    //Hack method 1st param or list - 3
+                                    //Hackish method 1st param or list - 3
                                     (((GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index))).gdObject.setAngle(</xsl:if><xsl:if test="position() = 2" > (short)</xsl:if><xsl:if test="position() = 3" ><xsl:if test="substring-before(text(), '.') = ''" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="substring-before(text(), '.') != ''" >(((GDGameLayer) globals.<xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template>GDGameLayerList.get(0))).gdObject.<xsl:value-of select="substring-after(text(), '.')" /></xsl:if></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >, (GDGameLayer) globals.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(index));<xsl:text>&#10;</xsl:text>
                                 }
                             </xsl:if>
@@ -1560,11 +1560,7 @@ Created By: Travis Berthelot
                                 final GDObject player = (GDObject) playerGDGameLayer.gdObject;
                         </xsl:if>
                     </xsl:for-each>
-                    <xsl:for-each select="parameters" >
-                        <xsl:if test="text() = 'player_life'" >
-                                //Hack GDevelop - player_life<xsl:text>&#10;</xsl:text>
-                        </xsl:if>
-                    </xsl:for-each>
+                    <xsl:text>&#10;</xsl:text>
                         //Parameters
                     <xsl:for-each select="parameters" >
                         <xsl:variable name="textValue" ><xsl:value-of select="text()" /></xsl:variable>

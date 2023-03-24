@@ -1085,7 +1085,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="contains($timerActions, 'Timer,')" >
-                            //TWB - Hack stop repeat action
+                            //TWB - Hackish stop repeat action
                             gdNodeList.clear();
             </xsl:if>
 

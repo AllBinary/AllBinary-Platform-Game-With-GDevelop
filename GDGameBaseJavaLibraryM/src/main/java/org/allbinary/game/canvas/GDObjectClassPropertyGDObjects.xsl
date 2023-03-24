@@ -48,7 +48,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                     
                         <xsl:if test="name = 'player'" >
-                        //Hack FIX ME for GDevelop player
+                        //Hack FIX ME for GDevelop player1
 
                     public short Angle(final GDGameLayer gameLayer) {
 

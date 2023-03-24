@@ -511,7 +511,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         gdNodeStatsFactory.log(stringBuilder);
     }
 
-     //Hack for GDevelop
+     //Special stop case for GDevelop
     public void stop() {
         final String STOP = "stop";
         LogUtil.put(LogFactory.getInstance(STOP, this, STOP));
