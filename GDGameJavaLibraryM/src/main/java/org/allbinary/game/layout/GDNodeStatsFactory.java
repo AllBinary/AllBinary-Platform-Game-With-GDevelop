@@ -34,67 +34,22 @@ public class GDNodeStatsFactory extends BaseGDNodeStats {
         return instance;
     }
     
-    private final int SIZE = 16;
-    //public final long[][] totalCalls = new long[SIZE][15000];
-    private final int[][] callStack = new int[SIZE][6000];
-    private int total = 0;
+    //private final CallCountGDNodeStats callCountGDNodeStats = new CallCountGDNodeStats();
+    private final CallStackGDNodeStats callStackGDNodeStats = new CallStackGDNodeStats();
     
     public void reset() {
-        for(int index2 = 0; index2 < SIZE; index2++) {
-            for (int index = 0; index < total; index++) {
-                callStack[index2][index] = 0;
-            }
-        }
-        total = 0;
+        this.callStackGDNodeStats.reset();
+        //this.callCountGDNodeStats.reset();
     }
 
     public void push(int index, int name) {
-        callStack[index][total++] = name;
+        this.callStackGDNodeStats.push(index, name);
+        //this.callCountGDNodeStats.push(index, name);
     }
 
     public void log(final StringBuilder stringBuilder) {
-        
-        final CommonStrings commonStrings = CommonStrings.getInstance();
-        
-        stringBuilder.delete(0, stringBuilder.length());
-        
-        //stringBuilder.append(this.getClass().getName());
-        //stringBuilder.append(':');
-
-        for(int index2 = 0; index2 < total; index2++) {
-            for(int index = 0; index < SIZE; index++) {
-                if(callStack[index][index2] != 0) {
-                    stringBuilder.append(index2);
-                    stringBuilder.append(':');
-                    stringBuilder.append(index);
-                    stringBuilder.append(':');
-                    stringBuilder.append(callStack[index][index2]);
-                    stringBuilder.append(';');
-                    if(stringBuilder.length() > 256) {
-                        
-                        LogUtil.put(LogFactory.getInstance(stringBuilder.toString(), this, commonStrings.PROCESS));
-                        stringBuilder.delete(0, stringBuilder.length());
-                    }
-                }
-            }
-        }
-
-        LogUtil.put(LogFactory.getInstance(stringBuilder.toString(), this, commonStrings.PROCESS));
-        
-//        for(int index = 0; index < 12; index++) {
-//            for(int index2 = 0; index2 < 14999; index2++) {
-//                if(totalCalls[index][index2] > 1000) {
-//                    stringBuilder.append(index);
-//                    stringBuilder.append(':');
-//                    stringBuilder.append(index2);
-//                    stringBuilder.append(':');
-//                    stringBuilder.append(totalCalls[index][index2]);
-//                    stringBuilder.append('\n');
-//                }
-//            }
-//        }
-
-        //return stringBuilder.toString();
+        this.callStackGDNodeStats.log(stringBuilder);
+        //this.callCountGDNodeStats.log(stringBuilder);
     }
 
 }
