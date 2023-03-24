@@ -730,7 +730,7 @@ Created By: Travis Berthelot
 
                 //VarScene - actionsWithIndexes - START
                 <xsl:call-template name="actionsWithIndexes" >
-                    <xsl:with-param name="caller" >VarScene</xsl:with-param>
+                    <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //VarScene</xsl:with-param>
                     <xsl:with-param name="thisNodeIndex" >
                         <xsl:value-of select="$thisNodeIndex" />
                     </xsl:with-param>

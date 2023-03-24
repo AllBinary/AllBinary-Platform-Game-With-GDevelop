@@ -298,13 +298,13 @@ Created By: Travis Berthelot
                         -->
                         
                         <xsl:if test="contains($hasCreate, 'found')" >
-                            <xsl:if test="contains($hasCollisionCondition, 'found')" >
+                            <xsl:if test="contains($hasCollisionCondition, 'found') and $caller != 'conditionLayout - //VarScene'" >
                             //Skipping actions with create since they are associated with a CollisionNP condition - <xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each>
                             </xsl:if>
                         </xsl:if>
 
                         //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //repeatExpression <xsl:value-of select="repeatExpression" /> //<xsl:value-of select="../../events/type" />
-                        <xsl:if test="not(contains($hasCreate, 'found')) or not(contains($hasCollisionCondition, 'found'))" >
+                        <xsl:if test="not(contains($hasCreate, 'found')) or not(contains($hasCollisionCondition, 'found')) or $caller = 'conditionLayout - //VarScene'" >
 
                         final int size = <xsl:if test="not(repeatExpression or ../../events/type = 'BuiltinCommonInstructions::ForEach')" >1</xsl:if><xsl:if test="../../events/type = 'BuiltinCommonInstructions::ForEach'" >globals.<xsl:value-of select="substring-before(substring-after($parametersAsString, ':'), ',')" />GDGameLayerList.size()</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
             
@@ -316,7 +316,7 @@ Created By: Travis Berthelot
                             if(globals.<xsl:value-of select="text()" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> size) {
                                 //LogUtil.put(LogFactory.getInstance("A: Keep from creating again before last time: <xsl:value-of select="text()" />", this, commonStrings.PROCESS));
                                 //<xsl:value-of select="$caller" />
-                                return <xsl:if test="contains($caller, 'actionsWithIndexesProcess')" > true</xsl:if>;
+                                return <xsl:if test="contains($caller, 'actionsWithIndexesProcess') or $caller = 'conditionLayout - //VarScene'" > true</xsl:if>;
                             }
                         </xsl:if>
                     </xsl:for-each>
@@ -362,12 +362,6 @@ Created By: Travis Berthelot
                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                         //Action - //TextObject::String - call - END
                         </xsl:if>
-                        </xsl:if>
-
-                        <xsl:if test="type/value = 'TextObject::String'" >
-                        //Action - //TextObject::String - call - START
-                        globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                        //Action - //TextObject::String - call - END
                         </xsl:if>
                             
                         </xsl:for-each>
@@ -415,6 +409,11 @@ Created By: Travis Berthelot
             </xsl:if>
             </xsl:if>
 
+            <xsl:if test="contains($hasCreate, 'found')" >
+                //Hack FIX ME for player1
+                final GDObject player = ((GDGameLayer) globals.playerGDGameLayerList.get(0)).gdObject;
+            </xsl:if>
+
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
@@ -431,23 +430,8 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Action - //UnPauseTimer - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
-                <xsl:if test="$typeValue = 'ModVarScene'" >
-                    <xsl:if test="not(contains($caller, 'external'))" >
-                    //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Action - //ModVarScene - call
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                    </xsl:if>
-                </xsl:if>
                 
                 <xsl:if test="$typeValue = 'Create'" >
-
-                    <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 2" >
-                            <xsl:if test="text() = 'engine_particle'" >
-                    //Hack FIX ME for engine_particle s
-                    final GDObject player = ((GDGameLayer) globals.playerGDGameLayerList.get(0)).gdObject;
-                            </xsl:if>
-                        </xsl:if>
-                    </xsl:for-each>
 
                     //createGDObject - START                    
                     <xsl:call-template name="createGDObject" >
@@ -609,14 +593,30 @@ Created By: Travis Berthelot
 
                         }
 
+            <xsl:for-each select="actions" >
+                <xsl:if test="type/value = 'ModVarScene'" >
+                    <xsl:if test="not(contains($caller, 'external'))" >
+                    //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Action - //ModVarScene - call
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    </xsl:if>
+                </xsl:if>
+            </xsl:for-each>
+
+            <xsl:for-each select="actions" >
+                <xsl:if test="type/value = 'TextObject::String'" >
+                    //Action - //TextObject::String - call - START
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    //Action - //TextObject::String - call - END
+                </xsl:if>
+            </xsl:for-each>
+
                         </xsl:if>
 
             </xsl:if>
                         
             </xsl:if>
 
-            
-            <xsl:if test="not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) or contains($caller, 'eventsCreateAssignGDObject')" >
+            <xsl:if test="not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' or contains($caller, 'eventsCreateAssignGDObject')" >
                         <xsl:for-each select="events" >
                             <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
