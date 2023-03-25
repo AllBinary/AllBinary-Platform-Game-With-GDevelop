@@ -40,7 +40,7 @@ Created By: Travis Berthelot
         
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
-            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" >target="<xsl:value-of select="target" />"</xsl:if> disable=<xsl:value-of select="disabled" />
+            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" >target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
 
             <xsl:variable name="eventAsString" >
             private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />";
@@ -530,7 +530,7 @@ Created By: Travis Berthelot
                                 
                                 <xsl:for-each select="../events" >
                                     <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
-                                //Event - call - under NbObjet nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" >target="<xsl:value-of select="target" />"</xsl:if> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                //Event - call - under NbObjet nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" >target=<xsl:value-of select="target" /></xsl:if> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                 //Condition - //NbObjet - //Event - //<xsl:value-of select="type" /> - call
                                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                     </xsl:if>
@@ -579,7 +579,7 @@ Created By: Travis Berthelot
                                 
                                 <xsl:for-each select="../events" >
                                     <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
-                                        //Event - call - under NbObjet nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" >target="<xsl:value-of select="target" />"</xsl:if> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                        //Event - call - under NbObjet nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" >target=<xsl:value-of select="target" /></xsl:if> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                         //Condition - //NbObjet - //Event - //<xsl:value-of select="type" /> - call
                                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                                     </xsl:if>
@@ -832,7 +832,7 @@ Created By: Travis Berthelot
                                             <xsl:variable name="hasTimerChildCondition" ><xsl:call-template name="hasTimerChildCondition" /></xsl:variable>
                                             //press=<xsl:value-of select="contains($press, 'found')" /> //hasTimerChildCondition=<xsl:value-of select="contains($hasTimerChildCondition, 'found')" />
                                         <xsl:if test="contains($press, 'found') or not(contains($conditions, 'found')) or contains($hasTimerChildCondition, 'found')" >
-                                        //Event - call - under SourisSurObjet press nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" >target="<xsl:value-of select="target" />"</xsl:if> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                        //Event - call - under SourisSurObjet press nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" >target=<xsl:value-of select="target" /></xsl:if> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                         //Event - //<xsl:value-of select="type" /> - call - presss
                                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                         </xsl:if>
@@ -856,7 +856,7 @@ Created By: Travis Berthelot
                                             <xsl:variable name="hasTimerChildCondition" ><xsl:call-template name="hasTimerChildCondition" /></xsl:variable>
                                             //release=<xsl:value-of select="contains($release, 'found')" /> //hasTimerChildCondition=<xsl:value-of select="contains($hasTimerChildCondition, 'found')" />
                                         <xsl:if test="(contains($press, 'found') and type/value = 'Rotate') or contains($release, 'found') or contains($hasTimerChildCondition, 'found')" >
-                                        //Event - call - under SourisSurObjet release nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" >target="<xsl:value-of select="target" />"</xsl:if> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                        //Event - call - under SourisSurObjet release nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" >target=<xsl:value-of select="target" /></xsl:if> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                                         //Condition - //SourisSurObjet - //Event - //<xsl:value-of select="type" /> - call - release
                                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                                         </xsl:if>
@@ -2102,7 +2102,7 @@ Created By: Travis Berthelot
             //Do not create GDNode for comment event type
             </xsl:if>
             <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
-            //Event - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" >target="<xsl:value-of select="target" />"</xsl:if> disable=<xsl:value-of select="disabled" />
+            //Event - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" >target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
             if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                 throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
             }
@@ -2288,7 +2288,7 @@ Created By: Travis Berthelot
                     <!-- CollisionNP is already handled. -->
                     <xsl:variable name="eventWithBuilderCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
                     <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
-                        //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" >target="<xsl:value-of select="target" />"</xsl:if>
+                        //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" >target=<xsl:value-of select="target" /></xsl:if>
                     <xsl:if test="not(contains($eventWithBuilderCondition, 'found'))" >
                         //Events only - //Event - //<xsl:value-of select="type" /> - call
                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
@@ -2326,7 +2326,7 @@ Created By: Travis Berthelot
                     super.processStats(motionGestureEvent);
 
                 <xsl:for-each select="events" >
-                    //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" >target="<xsl:value-of select="target" />"</xsl:if>
+                    //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" >target=<xsl:value-of select="target" /></xsl:if>
                     <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                         <xsl:variable name="childEventWithUsedEvent" ><xsl:call-template name="childEventWithUsedEvent" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="motionGestureEvent" >true</xsl:with-param></xsl:call-template></xsl:variable>
                         //<xsl:value-of select="$childEventWithUsedEvent" />
