@@ -36,7 +36,7 @@ Created By: Travis Berthelot
                 
         <xsl:for-each select="events" >
             
-            <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>event nodeId="<xsl:value-of select="generate-id()" /> - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]" position="<xsl:value-of select="position()" />" type="<xsl:value-of select="type" />" disable="<xsl:value-of select="disabled" />" <xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
+            <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>event nodeId="<xsl:value-of select="generate-id()" /> - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]" position="<xsl:value-of select="position()" />" type="<xsl:value-of select="type" />" <xsl:if test="target" >target="<xsl:value-of select="target" />"</xsl:if> disable="<xsl:value-of select="disabled" />" <xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
             <xsl:for-each select="repeatExpression" ><repeatExpression><xsl:value-of select="text()" /></repeatExpression></xsl:for-each>
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
