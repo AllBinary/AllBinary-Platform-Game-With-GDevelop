@@ -729,6 +729,14 @@ Created By: Travis Berthelot
                                     
                 <xsl:variable name="thisNodeArray" >this</xsl:variable>
 
+                        <xsl:for-each select="events" >
+                            <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //<xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodes - //Event - //BuiltinCommonInstructions::Link - call
+                            globals.<xsl:value-of select="target" />GDNode.process();
+                            </xsl:if>
+                        </xsl:for-each>
+
 
                 //VarScene - actionsWithIndexes - START
                 <xsl:call-template name="actionsWithIndexes" >

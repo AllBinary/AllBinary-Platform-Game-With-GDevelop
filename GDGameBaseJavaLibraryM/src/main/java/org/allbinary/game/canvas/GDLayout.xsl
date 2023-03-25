@@ -153,16 +153,16 @@ Created By: Travis Berthelot
                             gdNode.currentRunnable.run();
                         }
 
+                    <!--
                     <xsl:for-each select="../externalEvents" >
                         //externalEvents - START
-                        <!--
                         <xsl:call-template name="actionIds" >
                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                             <xsl:with-param name="caller" >externalEvents</xsl:with-param>
                         </xsl:call-template>
-                        -->
                         //externalEvents - END
                     </xsl:for-each>
+                    -->
 
                     <xsl:call-template name="eventsProcess" >
                         <xsl:with-param name="totalRecursions" >

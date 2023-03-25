@@ -106,6 +106,13 @@ Created By: Travis Berthelot
                         
                         public final BasicArrayList gdNodeWithRunnableList = new BasicArrayList();
                         
+                        <xsl:for-each select="../externalEvents" >
+                            <xsl:if test="$layoutName = associatedLayout" >
+                        public GDNode <xsl:value-of select="name" />GDNode = null;
+                            </xsl:if>
+                        </xsl:for-each>
+                            
+                    
                         public final Graphics graphics = new Graphics();
                         //public final BasicArrayList ZERO_GD_OBJECT = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                         public final GDNode[] nodeArray = new GDNode[15000];
