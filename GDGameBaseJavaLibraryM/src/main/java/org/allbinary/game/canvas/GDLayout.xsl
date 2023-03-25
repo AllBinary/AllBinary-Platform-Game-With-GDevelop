@@ -185,19 +185,24 @@ Created By: Travis Berthelot
                            <xsl:for-each select="behaviors" >
                                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
                                <xsl:if test="type = 'DestroyOutsideBehavior::DestroyOutside'" >
+                               //LogUtil.put(LogFactory.getInstance("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: check", this, commonStrings.PROCESS));
                                if(globals.destroyOutsideBehavior.process(globals.<xsl:value-of select="$objectName" />GDGameLayerList, index, globals.graphics)) {
+                                   //LogUtil.put(LogFactory.getInstance("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: remove", this, commonStrings.PROCESS));
                                    removeList.add(globals.<xsl:value-of select="$objectName" />GDGameLayerList.get(index));
                                }
                                </xsl:if>
                            </xsl:for-each>
                            }
                            
+                           GDGameLayer gdGameLayer;
                            size = removeList.size();
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                               globals.<xsl:value-of select="name" />GDGameLayerList.remove(removeList.get(index));
+                               gdGameLayer = (GDGameLayer) removeList.get(index);
+                               globals.<xsl:value-of select="name" />GDGameLayerList.remove(gdGameLayer);
+                               gdGameLayer.setDestroyed(true);
+                               //LogUtil.put(LogFactory.getInstance("Behavior objectName=<xsl:value-of select="name" /> size=globals.<xsl:value-of select="name" />GDGameLayerList size: " + globals.<xsl:value-of select="name" />GDGameLayerList.size(), this, commonStrings.PROCESS));
                            }
 
-                           //TWB - Not all layers have this behavior so other games may not work with this.
                            size = globals.<xsl:value-of select="name" />GDGameLayerList.size();
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(index)).process(globals.timeDelta);
