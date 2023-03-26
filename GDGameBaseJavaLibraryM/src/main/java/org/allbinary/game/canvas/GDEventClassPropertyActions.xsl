@@ -305,4 +305,35 @@ Created By: Travis Berthelot
         //externalEventsClassPropertyActions - END
     </xsl:template>
 
+    <xsl:template name="gdNodeToOnceList" >
+        <xsl:param name="once" />
+        <xsl:param name="iteration" />
+
+        <xsl:if test="contains($once, 'found')" >
+            <xsl:for-each select="actions" >
+                <xsl:if test="type/value = 'Opacity'" >
+                <xsl:for-each select="parameters" >
+                    <xsl:if test="position() = 1" >
+                        <xsl:if test="text() != ''" >
+                            <xsl:value-of select="text()" />
+                        </xsl:if>
+                    </xsl:if>
+                </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:if>
+
+        <xsl:for-each select="events" >
+            
+            <xsl:variable name="once" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Once'" >found</xsl:if></xsl:for-each></xsl:variable>
+
+            <xsl:call-template name="gdNodeToOnceList" >
+                <xsl:with-param name="iteration" ><xsl:value-of select="$iteration + 1" /></xsl:with-param>
+                <xsl:with-param name="once" ><xsl:value-of select="$once" /></xsl:with-param>
+            </xsl:call-template>
+        
+        </xsl:for-each>
+
+    </xsl:template>
+
 </xsl:stylesheet>

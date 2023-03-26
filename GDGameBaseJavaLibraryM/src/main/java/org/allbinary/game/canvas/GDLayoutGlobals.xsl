@@ -105,13 +105,21 @@ Created By: Travis Berthelot
                         public final String PROCESS_RELEASE = "processReleased";
                         
                         public final BasicArrayList gdNodeWithRunnableList = new BasicArrayList();
-                        
+
                         <xsl:for-each select="../externalEvents" >
                             <xsl:if test="$layoutName = associatedLayout" >
                         public GDNode <xsl:value-of select="name" />GDNode = null;
                             </xsl:if>
                         </xsl:for-each>
-                            
+
+                        <xsl:variable name="objectsWithOnceCondition" ><xsl:call-template name="gdNodeToOnceList" ><xsl:with-param name="iteration" >0</xsl:with-param></xsl:call-template></xsl:variable>
+                        //objectsWithOnceCondition=<xsl:value-of select="$objectsWithOnceCondition" />
+                        <xsl:for-each select="objects" >
+                            <xsl:if test="contains($objectsWithOnceCondition, name/text())" >
+                        public final BasicArrayList <xsl:value-of select="name/text()" />OnceGDNodeList = new BasicArrayList();
+                            </xsl:if>
+                        </xsl:for-each>
+
                     
                         public final Graphics graphics = new Graphics();
                         //public final BasicArrayList ZERO_GD_OBJECT = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);

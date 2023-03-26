@@ -35,6 +35,9 @@ public class GDNode
 
     private final int name;
     
+    //BuiltinCommonInstructions::Once - only
+    public boolean firstTime = true;
+    
     public GDNode(final int name) {
         this.name = name;
     }

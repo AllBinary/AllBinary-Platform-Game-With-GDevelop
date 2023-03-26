@@ -433,7 +433,12 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Action - //UnPauseTimer - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
-                
+
+                <xsl:if test="$typeValue = 'ModVarScene' and $caller = 'externalEventsCreateAssignGDObject - //actionsWithIndexesProcess'" >
+                    //externalEventsCreateAssignGDObject - //actionsWithIndexesProcess - //actionsWithIndexes - //Action - //ModVarScene - call
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                </xsl:if>
+                                
                 <xsl:if test="$typeValue = 'Create'" >
 
                     //createGDObject - START                    
@@ -450,6 +455,12 @@ Created By: Travis Berthelot
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Action - //Create - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate(<xsl:value-of select="$name" />2);
+                    <xsl:if test="$caller = 'externalEventsCreateAssignGDObject - //actionsWithIndexesProcess'" >
+                    final int size2 = globals.<xsl:value-of select="$name" />OnceGDNodeList.size();
+                    for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
+                        ((GDNode) globals.<xsl:value-of select="$name" />OnceGDNodeList.get(index2)).firstTime = true;
+                    }
+                    </xsl:if>
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'MettreX'" >

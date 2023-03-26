@@ -170,7 +170,6 @@ Created By: Travis Berthelot
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
 
-                        private boolean firstTime = true;
                         //BuiltinCommonInstructions::Once - condition
                         @Override
                         public boolean process() throws Exception {
@@ -195,6 +194,15 @@ Created By: Travis Berthelot
                             return false;
                         }
                     };
+                    
+                    <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                    <xsl:for-each select=".." >
+                    <xsl:call-template name="addGDNodeToOnceList" >
+                        <xsl:with-param name="iteration" >0</xsl:with-param>
+                        <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                    </xsl:call-template>
+                    </xsl:for-each>
+
                 </xsl:if>
                 <xsl:if test="$typeValue = 'SoundPlaying'" >
                     //Condition - //SoundPlaying - GDNode
@@ -2790,6 +2798,26 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:for-each>
 
+    </xsl:template>
+
+    <xsl:template name="addGDNodeToOnceList" >
+        <xsl:param name="iteration" />
+        <xsl:param name="nodeId" />
+        
+        <xsl:for-each select="actions" >
+            <xsl:for-each select="parameters" >
+                <xsl:if test="position() = 1 and text() != ''" >
+        globals.<xsl:value-of select="text()" />OnceGDNodeList.add(globals.nodeArray[<xsl:value-of select="$nodeId" />]);
+                </xsl:if>
+            </xsl:for-each>
+            
+            <!--
+            <xsl:call-template name="addGDNodeToOnceList" >
+                <xsl:with-param name="iteration" ><xsl:value-of select="$iteration" /></xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+            </xsl:call-template>
+            -->
+        </xsl:for-each>
     </xsl:template>
 
 </xsl:stylesheet>
