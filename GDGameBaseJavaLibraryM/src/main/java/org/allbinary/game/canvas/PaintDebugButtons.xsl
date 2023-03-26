@@ -18,7 +18,6 @@ Created By: Travis Berthelot
 
     <xsl:template name="paintDebugButtons" >
         <xsl:param name="caller" />
-        <xsl:param name="totalRecursions" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="objectsAsString" />
