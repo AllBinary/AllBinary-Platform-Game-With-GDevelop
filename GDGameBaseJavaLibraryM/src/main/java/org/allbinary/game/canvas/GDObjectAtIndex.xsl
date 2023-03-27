@@ -112,7 +112,15 @@ Created By: Travis Berthelot
                     </xsl:variable>
 
                     <xsl:if test="$thisNodeArray = 'globals.nodeArray[11047]'" >
-                        //Hack - last gdNodeList
+                        //Hack - gdNodeList
+                        final GDGameLayer gdGameLayer = ((GDGameLayer) globals.playerGDGameLayerList.get(0));
+                        globals.nodeArray[11047].gameLayerArray[0] = gdGameLayer;
+                        globals.nodeArray[11047].processM(globals.nodeArray[11047].gameLayerArray, null, null);
+                    </xsl:if>
+
+                    <!--
+                    <xsl:if test="never" >
+                        //Hackish - gdNodeList
                         final GDNode gdNode = <xsl:value-of select="$thisNodeArray" />;
                         final BasicArrayList gdNodeList = new BasicArrayList();
 
@@ -151,6 +159,7 @@ Created By: Travis Berthelot
                         LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$logString" /> + objectStrings.CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
                         node.processN(gdNode, gdNodeList);
                     </xsl:if>
+                    -->
 
                 </xsl:if>
             </xsl:for-each>

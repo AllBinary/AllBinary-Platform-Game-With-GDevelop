@@ -2528,6 +2528,7 @@ Created By: Travis Berthelot
                                 return true;
                             }
 
+                            <!--
                             @Override
                             public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
                                 super.processNStats(gdNode, gdNodeList);
@@ -2536,6 +2537,7 @@ Created By: Travis Berthelot
                                 this.processM(this.gameLayerArray, gdNode, gdNodeList);
                                 this.clear2();
                             }
+                            -->
 
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> = "Collision: " + ACTION_PARAMETER_ID_AS_STRING_<xsl:value-of select="$actionNodeId" />;
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE = ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + objectStrings.CALLING_GDNODE;
@@ -2661,6 +2663,7 @@ Created By: Travis Berthelot
                                 return true;
                             }
 
+                            <!--
                             @Override
                             public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
                                 super.processNStats(gdNode, gdNodeList);
@@ -2669,6 +2672,7 @@ Created By: Travis Berthelot
                                 this.processM(this.gameLayerArray, gdNode, gdNodeList);
                                 this.clear2();
                             }
+                            -->
 
                             private final String ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> = "Collision: " + ACTION_ID_AS_STRING_<xsl:value-of select="$actionNodeId" />;
                             private final String ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE = ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + objectStrings.CALLING_GDNODE;
@@ -2782,6 +2786,7 @@ Created By: Travis Berthelot
                                 return true;
                             }
 
+                            <!--
                             @Override
                             public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
                                 super.processNStats(gdNode, gdNodeList);
@@ -2796,6 +2801,7 @@ Created By: Travis Berthelot
                                     }
                                 }
                             }
+                            -->
 
                         };
 

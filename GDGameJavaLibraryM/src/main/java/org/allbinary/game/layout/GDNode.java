@@ -95,6 +95,7 @@ public class GDNode
         this.nodeStatsFactory.push(7, name);
     }
     
+    /*
     public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
     }
 
@@ -105,6 +106,7 @@ public class GDNode
     public void processNStatsE(final GDNode gdNode, final BasicArrayList gdNodeList) {
         this.nodeStatsFactory.push(9, name);
     }
+    */
 
     public boolean processCreate(final GDObject gdObject) throws Exception {
         return true;

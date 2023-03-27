@@ -1141,10 +1141,12 @@ Created By: Travis Berthelot
             </xsl:if>
             </xsl:if>
 
+            <!--
             <xsl:if test="contains($timerActions, 'Timer,')" >
-                            //TWB - Hackish stop repeat action
+                            //Hackish stop repeat action
                             gdNodeList.clear();
             </xsl:if>
+            -->
 
             <xsl:if test="$listSize != '' and contains($caller, 'otherEventLayout')" >
             <xsl:if test="not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' or contains($caller, 'eventsCreateAssignGDObject')" >
