@@ -2771,33 +2771,6 @@ Created By: Travis Berthelot
 
                             </xsl:if>
                         </xsl:if>
-                        <xsl:variable name="name2" ><xsl:value-of select="name" />,</xsl:variable>
-                        <xsl:if test="contains($parametersAsString, $name2)" >
-                            <xsl:if test="not(contains($parametersAsString, $name) = text()) and name = 'player'" >
-                        //Hack FIX ME for GDevelop player with - GDNode - <xsl:value-of select="$name" />
-                        if(globals.nodeArray[<xsl:value-of select="$actionNodeId" />] != null) {
-                            throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
-                        }
-                        globals.nodeArray[<xsl:value-of select="$actionNodeId" />] = new GDNode(<xsl:value-of select="$actionNodeId" />) {
-
-                            <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
-
-                            @Override
-                            public boolean process() throws Exception {
-                                super.processStats();
-
-                                //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
-                                if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
-                                    if(globals.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
-                                        this.clear();
-                                        this.gameLayerArray[0] = (CollidableCompositeLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0);
-                                        this.processM(this.gameLayerArray, null, null);
-                                        this.clear2();
-                                    }
-                                }
-                                        
-                                return true;
-                            }
 
                             <!--
                             @Override
@@ -2815,11 +2788,6 @@ Created By: Travis Berthelot
                                 }
                             }
                             -->
-
-                        };
-
-                            </xsl:if>
-                        </xsl:if>
 
                     </xsl:for-each>
 
