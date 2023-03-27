@@ -112,7 +112,7 @@ Created By: Travis Berthelot
                     </xsl:variable>
 
                     <xsl:if test="$thisNodeArray = 'globals.nodeArray[11047]'" >
-                        //TWB - temp hack
+                        //Hack - last gdNodeList
                         final GDNode gdNode = <xsl:value-of select="$thisNodeArray" />;
                         final BasicArrayList gdNodeList = new BasicArrayList();
 
