@@ -411,13 +411,16 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="contains($hasCreate, 'found')" >
-            <xsl:variable name="gameObjectName" >
+            <xsl:variable name="gameObjectNames" >
                 <xsl:for-each select="actions" >                                
                 <xsl:if test="type/value = 'Create'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() > 2" >
-                            <xsl:if test="contains(text(), 'player')" >
-                                found
+                            <xsl:if test="contains(text(), '.')" >
+                                <xsl:variable name="objectNameWithSeps" >:<xsl:value-of select="substring-before(text(), '.')" />,</xsl:variable>
+                                <xsl:if test="contains($objectsAsString, $objectNameWithSeps)" >
+                                    <xsl:value-of select="substring-before(text(), '.')" />,
+                                </xsl:if>
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>                    
@@ -425,16 +428,17 @@ Created By: Travis Berthelot
                 </xsl:for-each>
             </xsl:variable>
             
-            <xsl:if test="contains($gameObjectName, 'found')" >
-                //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Create
-                //Hack FIX ME for player1
-                if(globals.playerGDGameLayerList.size() == 0) {
+            <xsl:if test="$gameObjectNames != ''" >
+                <xsl:variable name="gameObjectName" ><xsl:value-of select="substring-before($gameObjectNames, ',')" /></xsl:variable>
+                //This may need to loop through more than 1 game object found
+                //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Create - //<xsl:value-of select="$gameObjectName" />
+                if(globals.<xsl:value-of select="$gameObjectName" />GDGameLayerList.size() == 0) {
                     return false;
                 }
 
-                GDObject player = null;                
-                if(globals.playerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                    player = ((GDGameLayer) globals.playerGDGameLayerList.get(0)).gdObject;
+                GDObject <xsl:value-of select="$gameObjectName" /> = null;                
+                if(globals.<xsl:value-of select="$gameObjectName" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                    <xsl:value-of select="$gameObjectName" /> = ((GDGameLayer) globals.<xsl:value-of select="$gameObjectName" />GDGameLayerList.get(0)).gdObject;
                 }
             </xsl:if>
             </xsl:if>
