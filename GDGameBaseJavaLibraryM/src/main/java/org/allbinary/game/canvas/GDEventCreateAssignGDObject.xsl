@@ -429,7 +429,7 @@ Created By: Travis Berthelot
                 //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Create
                 //Hack FIX ME for player1
                 if(globals.playerGDGameLayerList.size() == 0) {
-                    return;
+                    return false;
                 }
 
                 GDObject player = null;                
