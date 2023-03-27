@@ -111,7 +111,7 @@
         <xsl:for-each select="actions" >
             //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:text>&#10;</xsl:text>
-            //actionIdsGDObject //<xsl:value-of select="type/value" />
+            //actionIdsGDObject - //<xsl:value-of select="type/value" />
             <xsl:if test="type/value = 'Delete'" >
             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].addForDelete(<xsl:value-of select="$gdGameLayer" />);
             </xsl:if>

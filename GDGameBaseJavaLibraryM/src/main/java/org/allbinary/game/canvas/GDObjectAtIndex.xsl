@@ -84,6 +84,7 @@ Created By: Travis Berthelot
     </xsl:template>
 
     <xsl:template name="objectGDObjectAtIndex2" >
+        <xsl:param name="caller" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
         <xsl:param name="thisNodeArray" />
@@ -111,6 +112,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     </xsl:variable>
 
+                    <!--
                     <xsl:if test="$thisNodeArray = 'globals.nodeArray[11047]'" >
                         //Hack - gdNodeList
                         if(globals.playerGDGameLayerList.size() == 0) {
@@ -121,6 +123,7 @@ Created By: Travis Berthelot
                         globals.nodeArray[11047].gameLayerArray[0] = gdGameLayer;
                         globals.nodeArray[11047].processM(globals.nodeArray[11047].gameLayerArray, null, null);
                     </xsl:if>
+                    -->
 
                     <!--
                     <xsl:if test="never" >
