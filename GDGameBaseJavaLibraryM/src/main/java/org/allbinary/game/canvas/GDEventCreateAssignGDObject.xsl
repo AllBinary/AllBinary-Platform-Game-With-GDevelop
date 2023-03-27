@@ -428,8 +428,11 @@ Created By: Travis Berthelot
             <xsl:if test="contains($gameObjectName, 'found')" >
                 //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Create
                 //Hack FIX ME for player1
-                GDObject player = null;
-                
+                if(globals.playerGDGameLayerList.size() == 0) {
+                    return;
+                }
+
+                GDObject player = null;                
                 if(globals.playerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                     player = ((GDGameLayer) globals.playerGDGameLayerList.get(0)).gdObject;
                 }
