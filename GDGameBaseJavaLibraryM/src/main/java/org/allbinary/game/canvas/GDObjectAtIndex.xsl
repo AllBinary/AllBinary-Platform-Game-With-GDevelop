@@ -113,6 +113,10 @@ Created By: Travis Berthelot
 
                     <xsl:if test="$thisNodeArray = 'globals.nodeArray[11047]'" >
                         //Hack - gdNodeList
+                        if(globals.playerGDGameLayerList.size() == 0) {
+                            return;
+                        }
+
                         final GDGameLayer gdGameLayer = ((GDGameLayer) globals.playerGDGameLayerList.get(0));
                         globals.nodeArray[11047].gameLayerArray[0] = gdGameLayer;
                         globals.nodeArray[11047].processM(globals.nodeArray[11047].gameLayerArray, null, null);

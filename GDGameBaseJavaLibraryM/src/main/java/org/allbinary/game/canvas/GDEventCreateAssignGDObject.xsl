@@ -411,11 +411,29 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="contains($hasCreate, 'found')" >
+            <xsl:variable name="gameObjectName" >
+                <xsl:for-each select="actions" >                                
+                <xsl:if test="type/value = 'Create'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() > 2" >
+                            <xsl:if test="contains(text(), 'player')" >
+                                found
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>                    
+                </xsl:if>
+                </xsl:for-each>
+            </xsl:variable>
+            
+            <xsl:if test="contains($gameObjectName, 'found')" >
+                //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Create
                 //Hack FIX ME for player1
                 GDObject player = null;
+                
                 if(globals.playerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                     player = ((GDGameLayer) globals.playerGDGameLayerList.get(0)).gdObject;
                 }
+            </xsl:if>
             </xsl:if>
 
             <xsl:for-each select="actions" >
