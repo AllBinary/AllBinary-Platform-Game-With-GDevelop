@@ -80,35 +80,6 @@ Created By: Travis Berthelot
                 <xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:if></xsl:for-each>
             </xsl:variable>
 
-            //eventsCreateAssignGDObject - actionsWithIndexes - START
-            <xsl:variable name="actionsWithIndexes" >
-                <xsl:call-template name="actionsWithIndexes" >
-                    <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObject</xsl:with-param>
-                    <xsl:with-param name="thisNodeIndex" >
-                        <xsl:value-of select="$thisNodeIndex" />
-                    </xsl:with-param>
-                    <xsl:with-param name="thisNodeArray" >
-                        <xsl:value-of select="$thisNodeArray" />
-                    </xsl:with-param>                    
-                    <xsl:with-param name="layoutIndex" >
-                        <xsl:value-of select="$layoutIndex" />
-                    </xsl:with-param>
-                    <xsl:with-param name="parametersAsString" >
-                        <xsl:value-of select="$parametersAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="objectsAsString" >
-                        <xsl:value-of select="$objectsAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="createdObjectsAsString" >
-                        <xsl:value-of select="$createdObjectsAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="logString" >
-                        <xsl:value-of select="$logString" />
-                    </xsl:with-param>
-                </xsl:call-template>
-            </xsl:variable>
-            //eventsCreateAssignGDObject - actionsWithIndexes - END
-
             <xsl:variable name="eventsCreateProcessUsed" >
                 <xsl:call-template name="eventsCreateProcessUsed" >
                     <xsl:with-param name="caller" >
@@ -137,7 +108,7 @@ Created By: Travis Berthelot
             <xsl:variable name="alreadyUsedCondition" ><xsl:for-each select="conditions" ><xsl:if test="(type/value = 'SourisSurObjet' or type/value = 'CollisionNP' or type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased')" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
+                <xsl:variable name="conditionNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'CollisionNP'" >
                     //CollisionNP - condition is processed by the AllBinary collision processor
@@ -370,7 +341,42 @@ Created By: Travis Berthelot
                                     //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.getElapsed()).append('/').append(globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.getDelay()).toString(), this, commonStrings.PROCESS));
                                     if(globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.isTime(GameTickTimeDelayHelperFactory.getInstance().getStartTime())) {
                                         LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                                        <xsl:value-of select="$actionsWithIndexes" disable-output-escaping="yes" />
+                                        
+                                        <xsl:variable name="conditionPosition" ><xsl:value-of select="position()" /></xsl:variable>
+                                        <xsl:for-each select=".." >
+
+                                        //eventsCreateAssignGDObject - actionsWithIndexes - START
+                                        <xsl:call-template name="actionsWithIndexes" >
+                                            <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObject</xsl:with-param>
+                                            <xsl:with-param name="thisNodeIndex" >
+                                                <xsl:value-of select="$thisNodeIndex" />
+                                            </xsl:with-param>
+                                            <xsl:with-param name="thisNodeArray" >
+                                                <xsl:value-of select="$thisNodeArray" />
+                                            </xsl:with-param>                    
+                                            <xsl:with-param name="conditionPosition" >
+                                                <xsl:value-of select="$conditionPosition" />
+                                            </xsl:with-param>                    
+                                            <xsl:with-param name="layoutIndex" >
+                                                <xsl:value-of select="$layoutIndex" />
+                                            </xsl:with-param>
+                                            <xsl:with-param name="parametersAsString" >
+                                                <xsl:value-of select="$parametersAsString" />
+                                            </xsl:with-param>
+                                            <xsl:with-param name="objectsAsString" >
+                                                <xsl:value-of select="$objectsAsString" />
+                                            </xsl:with-param>
+                                            <xsl:with-param name="createdObjectsAsString" >
+                                                <xsl:value-of select="$createdObjectsAsString" />
+                                            </xsl:with-param>
+                                            <xsl:with-param name="logString" >
+                                                <xsl:value-of select="$logString" />
+                                            </xsl:with-param>
+                                        </xsl:call-template>
+                                        //eventsCreateAssignGDObject - actionsWithIndexes - END
+
+                                        </xsl:for-each>
+                                        
                                     }
                                         
                                     gdNodeStatsFactory.push(1, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
@@ -559,7 +565,7 @@ Created By: Travis Berthelot
                                 <xsl:for-each select="../conditions" >
                                     <xsl:if test="position() = $position + 1" >
                                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
-                                //Condition - //NbObjet - //Condition - //<xsl:value-of select="type/value" /> - call - <xsl:value-of select="$thisNodeIndex" />
+                                //Condition - //NbObjet - //Condition - //<xsl:value-of select="type/value" /> - call - <xsl:value-of select="$conditionNodeIndex" />
                                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                     </xsl:if>
                                 </xsl:for-each>
@@ -746,32 +752,36 @@ Created By: Travis Berthelot
                         </xsl:for-each>
 
 
-                //VarScene - actionsWithIndexes - START
-                <xsl:call-template name="actionsWithIndexes" >
-                    <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //VarScene</xsl:with-param>
-                    <xsl:with-param name="thisNodeIndex" >
-                        <xsl:value-of select="$thisNodeIndex" />
-                    </xsl:with-param>
-                    <xsl:with-param name="thisNodeArray" >
-                        <xsl:value-of select="$thisNodeArray" />
-                    </xsl:with-param>                    
-                    <xsl:with-param name="layoutIndex" >
-                        <xsl:value-of select="$layoutIndex" />
-                    </xsl:with-param>
-                    <xsl:with-param name="parametersAsString" >
-                        <xsl:value-of select="$parametersAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="objectsAsString" >
-                        <xsl:value-of select="$objectsAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="createdObjectsAsString" >
-                        <xsl:value-of select="$createdObjectsAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="logString" >
-                        <xsl:value-of select="$logString" />
-                    </xsl:with-param>
-                </xsl:call-template>
-                //VarScene - actionsWithIndexes - END
+                        <xsl:variable name="conditionPosition" ><xsl:value-of select="position()" /></xsl:variable>
+                        //VarScene - actionsWithIndexes - START
+                        <xsl:call-template name="actionsWithIndexes" >
+                            <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //VarScene</xsl:with-param>
+                            <xsl:with-param name="thisNodeIndex" >
+                                <xsl:value-of select="$conditionNodeIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="thisNodeArray" >
+                                <xsl:value-of select="$thisNodeArray" />
+                            </xsl:with-param>                    
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="conditionPosition" >
+                                <xsl:value-of select="$conditionPosition" />
+                            </xsl:with-param>
+                            <xsl:with-param name="parametersAsString" >
+                                <xsl:value-of select="$parametersAsString" />
+                            </xsl:with-param>
+                            <xsl:with-param name="objectsAsString" >
+                                <xsl:value-of select="$objectsAsString" />
+                            </xsl:with-param>
+                            <xsl:with-param name="createdObjectsAsString" >
+                                <xsl:value-of select="$createdObjectsAsString" />
+                            </xsl:with-param>
+                            <xsl:with-param name="logString" >
+                                <xsl:value-of select="$logString" />
+                            </xsl:with-param>
+                        </xsl:call-template>
+                        //VarScene - actionsWithIndexes - END
                                     
                                     <!--
                                     <xsl:call-template name="actionIds" >

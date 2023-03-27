@@ -219,9 +219,13 @@ Created By: Travis Berthelot
         <xsl:param name="nodeList" />
 
         <xsl:variable name="nameGDConditionWithGroupActions" >globals.<xsl:value-of select="$name" />GDConditionWithGroupActions</xsl:variable>
+        <xsl:variable name="nameGDConditionWithGroupActions1" >globals.<xsl:value-of select="$name1" />GDConditionWithGroupActions</xsl:variable>
         
 <xsl:text>                        </xsl:text><xsl:value-of select="$nameGDConditionWithGroupActions"/>.groupWithActionsList.add(globals.<xsl:value-of select="$name1" />GroupInterface);                        
                         <xsl:value-of select="$nameGDConditionWithGroupActions"/>.actionForGroupsList.add(globals.nodeArray[<xsl:value-of select="$nodeList" />]);        
+
+<xsl:text>                        </xsl:text><xsl:value-of select="$nameGDConditionWithGroupActions1"/>.groupWithActionsList.add(globals.<xsl:value-of select="$name" />GroupInterface);
+                        <xsl:value-of select="$nameGDConditionWithGroupActions1"/>.actionForGroupsList.add(globals.nodeArray[<xsl:value-of select="$nodeList" />]);        
     </xsl:template>
 
     <xsl:template name="collisionNP" >
