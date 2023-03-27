@@ -430,7 +430,7 @@ Created By: Travis Berthelot
             
             <xsl:if test="$gameObjectNames != ''" >
                 <xsl:variable name="gameObjectName" ><xsl:value-of select="substring-before($gameObjectNames, ',')" /></xsl:variable>
-                //This may need to loop through more than 1 game object found
+                //This may need to loop through more than 1 game object found: <xsl:value-of select="$gameObjectName" /> 
                 //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Create - //<xsl:value-of select="$gameObjectName" />
                 if(globals.<xsl:value-of select="$gameObjectName" />GDGameLayerList.size() == 0) {
                     return false;

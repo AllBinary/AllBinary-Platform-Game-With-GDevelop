@@ -1580,10 +1580,23 @@ Created By: Travis Berthelot
                             try {
 
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                    <xsl:variable name="player" ><xsl:for-each select="parameters" ><xsl:if test="contains(text(), 'player')" >player</xsl:if></xsl:for-each></xsl:variable>
+                                
+                    <xsl:variable name="gameObjectNames" >
                     <xsl:for-each select="parameters" >
-                        <xsl:if test="contains(text(), 'player.')" >
-                                //Hack FIX ME for GDevelop player
+                        <xsl:if test="position() > 2" >
+                            <xsl:if test="contains(text(), '.')" >
+                                <xsl:variable name="objectNameWithSeps" >:<xsl:value-of select="substring-before(text(), '.')" />,</xsl:variable>
+                                <xsl:if test="contains($objectsAsString, $objectNameWithSeps)" >
+                                    <xsl:value-of select="substring-before(text(), '.')" />,
+                                </xsl:if>
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>                    
+                    </xsl:variable>
+                    
+                    <xsl:if test="$gameObjectNames != ''" >
+                        <xsl:variable name="gameObjectName" ><xsl:value-of select="substring-before($gameObjectNames, ',')" /></xsl:variable>
+                                //This may need to loop through more than 1 game object found 2: <xsl:value-of select="$gameObjectName" /> 
                                 GDGameLayer playerGDGameLayer = null;
                                 GDObject player = null;
                                 if(globals.playerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
@@ -1592,8 +1605,8 @@ Created By: Travis Berthelot
                                 } else {
                                     return false;
                                 }
-                        </xsl:if>
-                    </xsl:for-each>
+                    </xsl:if>
+
                     <xsl:text>&#10;</xsl:text>
                         //Parameters
                     <xsl:for-each select="parameters" >
