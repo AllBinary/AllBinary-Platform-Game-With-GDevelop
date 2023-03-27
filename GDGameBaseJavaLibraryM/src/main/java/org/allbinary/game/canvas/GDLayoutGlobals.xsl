@@ -124,7 +124,9 @@ Created By: Travis Berthelot
                         public final Graphics graphics = new Graphics();
                         //public final BasicArrayList ZERO_GD_OBJECT = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                         public final GDNode[] nodeArray = new GDNode[15000];
+                        <!--
                         public final int FAKE_COLLISION_NODE_ID = 14999;
+                        -->
 
                         public BasicArrayList[] channelSoundArray = new BasicArrayList[4];
 

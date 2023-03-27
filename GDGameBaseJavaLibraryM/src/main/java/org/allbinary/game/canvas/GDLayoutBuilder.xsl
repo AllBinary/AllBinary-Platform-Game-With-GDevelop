@@ -134,20 +134,23 @@ Created By: Travis Berthelot
                         GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes objectEventNodes;
                         
                         int size = globals.nodeArray.length;
-//                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-//                            final int currentIndex = index;
-//                            globals.nodeArray[index2][index] = new GDNode() {
-//
-//                                @Override
-//                                public boolean process() throws Exception {
-//                                    super.processStats();
-//                                    LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, Integer.toString(currentIndex), new Exception()));
-//
-//                                    return true;
-//                                }
-//                            };
-//                        }
+                        <!--
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            final int currentIndex = index;
+                            globals.nodeArray[index2][index] = new GDNode() {
 
+                                @Override
+                                public boolean process() throws Exception {
+                                    super.processStats();
+                                    LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, Integer.toString(currentIndex), new Exception()));
+
+                                    return true;
+                                }
+                            };
+                        }
+                        -->
+
+                        <!--
                         globals.nodeArray[globals.FAKE_COLLISION_NODE_ID] = new GDNode(globals.FAKE_COLLISION_NODE_ID) {
 
                             @Override
@@ -163,6 +166,7 @@ Created By: Travis Berthelot
                                 super.processMStatsE(gameLayerArray, gdNode, gdNodeList);
                             }
                         };
+                        -->
 
                     GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = null;
                         try {
