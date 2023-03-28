@@ -20,7 +20,6 @@ Created By: Travis Berthelot
         <xsl:param name="totalRecursions" />
         <xsl:param name="conditionEventPosition" />
 
-        //eventsClose - START
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
 
@@ -33,6 +32,7 @@ Created By: Travis Berthelot
                 </xsl:with-param>
             </xsl:call-template>
 
+            <!--
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
 
             <xsl:for-each select="actions" >
@@ -40,18 +40,18 @@ Created By: Travis Berthelot
                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:text>&#10;</xsl:text>
             </xsl:for-each>
+            -->
 
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
+                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                     //MouseButtonReleased - removeListener
                     BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
                 </xsl:if>
             </xsl:for-each>
 
         </xsl:for-each>
-        //eventsClose - END
 
     </xsl:template>
 

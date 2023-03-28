@@ -290,19 +290,23 @@ Created By: Travis Berthelot
                     }
 
                     public void open() {
+                    //eventsOpen - START
                     <xsl:call-template name="eventsOpen" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
+                    //eventsOpen - END
                     }
 
                     public void close() {
+                    //eventsClose - START
                     <xsl:call-template name="eventsClose" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
+                    //eventsClose - END
                     }
 
                 }
