@@ -164,11 +164,13 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     -->
 
+                    //eventsProcess - START
                     <xsl:call-template name="eventsProcess" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
+                    //eventsProcess - END
                     
                     int size;
                     <xsl:for-each select="objects" >
