@@ -33,11 +33,15 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventPaint.xsl" />
+    
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectGDNodes.xsl" />
+    <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
+    
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventOpen.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClose.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
-
+    
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -122,8 +126,8 @@ Created By: Travis Berthelot
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
 
-                    //actionLayout - //eventsCreateAssignGDObject - START
-                    <xsl:call-template name="eventsCreateAssignGDObjectGDNodes" >
+                    //actionLayout - //eventsCreateAssignGDObjectGDNodesAction - START
+                    <xsl:call-template name="eventsCreateAssignGDObjectGDNodesAction" >
                         <xsl:with-param name="caller" >actionLayout</xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
@@ -143,21 +147,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
-                        <xsl:with-param name="conditionToProcess" >
-                            <xsl:value-of select="' '" />
-                        </xsl:with-param>
-                        <xsl:with-param name="actionToProcess" >
-                            <xsl:value-of select="''" />
-                        </xsl:with-param>
-                        <xsl:with-param name="otherEventToProcess" >
-                            <xsl:value-of select="' '" />
-                        </xsl:with-param>
-                        <xsl:with-param name="objectEventToProcess" >
-                            <xsl:value-of select="' '" />
-                        </xsl:with-param>
 
                     </xsl:call-template>
-                    //actionLayout - //eventsCreateAssignGDObject - END                    
+                    //actionLayout - //eventsCreateAssignGDObjectGDNodesAction - END                    
                     
 
                         } catch(Exception e) {

@@ -279,6 +279,9 @@ public class GDLayoutsToAllBinaryGenerator
 
     public static void main(String[] args) throws Exception
     {
+        //System.setProperty("jdk.xml.xpathExprGrpLimit", "0");
+        //System.setProperty("jdk.xml.xpathExprOpLimit", "0");
+        //System.setProperty("jdk.xml.xpathTotalOpLimit", "0");
         new GDLayoutsToAllBinaryGenerator().process(3);
     }
 
