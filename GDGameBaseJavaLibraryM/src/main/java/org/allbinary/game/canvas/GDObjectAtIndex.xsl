@@ -43,9 +43,10 @@ Created By: Travis Berthelot
     <xsl:template name="objectGDObjectAtIndex" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
-
+        
+        <!--
         //objectGDObjectAtIndex - START
-        //objectGDObjectAtIndex - layoutIndex=<xsl:value-of select="$layoutIndex" /> parametersAsString=<xsl:value-of select="$parametersAsString" />
+        -->
         <xsl:for-each select="/game">
             <xsl:for-each select="layouts" >
                 <xsl:variable name="index" select="position() - 1" />
@@ -65,7 +66,9 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:variable>
 
-                    //names=<xsl:value-of select="$names" />
+                    <xsl:if test="$names != ''" >
+                    //objectGDObjectAtIndex - layoutIndex=<xsl:value-of select="$layoutIndex" /> parametersAsString=<xsl:value-of select="$parametersAsString" /> names=<xsl:value-of select="$names" />
+                    </xsl:if>
                     <xsl:call-template name="split" >
                         <xsl:with-param name="names" >
                             <xsl:value-of select="$names" />
@@ -79,7 +82,9 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:for-each>
         </xsl:for-each>
+        <!--
         //objectGDObjectAtIndex - END
+        -->
 
     </xsl:template>
 

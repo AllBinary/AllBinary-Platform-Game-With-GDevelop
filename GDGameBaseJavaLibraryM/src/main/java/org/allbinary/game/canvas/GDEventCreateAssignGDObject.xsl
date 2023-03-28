@@ -455,6 +455,7 @@ Created By: Travis Berthelot
             </xsl:if>
             </xsl:if>
 
+            //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Actions
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
@@ -706,7 +707,7 @@ Created By: Travis Berthelot
             <xsl:variable name="lastCondition" ><xsl:for-each select="conditions" ><xsl:if test="position() = last()" ><xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" ><xsl:if test="preceding-sibling::conditions[number(substring(generate-id(), 2) - 65536) != $thisNodeIndex]" >found</xsl:if></xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
             <xsl:if test="contains($lastCondition, 'found') and contains($caller, 'conditionLayout')" >
-            //<xsl:value-of select="$caller" /> - //lastCondition2
+            //<xsl:value-of select="$caller" /> - //Actions - //lastCondition2
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
             //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
@@ -717,9 +718,9 @@ Created By: Travis Berthelot
 
             <xsl:if test="contains($hadCondition, 'found') and contains($hadConditionOtherThanThis, 'found') and not(contains($hasUsedSoundPlayingCondition, 'found'))" >
 
+            //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Actions
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //<xsl:value-of select="$caller" />
                 <xsl:if test="contains($hasPauseTimer, 'found') or contains($hasResetTimer, 'found') or (contains($caller, 'eventsCreateAssignGDObject') and $typeValue = 'ModVarScene')" >
                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Timer - //<xsl:value-of select="type/value" />
@@ -788,7 +789,7 @@ Created By: Travis Berthelot
 
                     //<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed
                     @Override
-                    public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
+                    public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {  //event
                         super.processMStats(gameLayerArray, gdNode, gdNodeList);
 
                         try {
@@ -865,7 +866,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="contains($hasOnceCondition, 'found') and not(contains($hasUsedOnceCondition, 'found'))" >
-            //<xsl:value-of select="$caller" /> - //hasUsedOnceCondition
+            //<xsl:value-of select="$caller" /> - //Actions - //hasUsedOnceCondition
             <xsl:for-each select="actions" >
             //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:text>&#10;</xsl:text>
@@ -879,7 +880,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="contains($lastCondition, 'found') and $caller = 'conditionLayout'" >
-            //<xsl:value-of select="$caller" /> - //lastCondition
+            //<xsl:value-of select="$caller" /> - //Actions - //lastCondition
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
             //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
@@ -889,6 +890,7 @@ Created By: Travis Berthelot
             </xsl:if>
             
             <xsl:if test="not(contains($hadCondition, 'found'))" >
+                //<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Actions - //hadCondition
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
@@ -1168,7 +1170,9 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
             </xsl:variable>
+            <xsl:if test="$firstAction != ''" >
             //firstAction=<xsl:value-of select="$firstAction" />
+            </xsl:if>
 
             <xsl:if test="string-length($firstAction) and string-length($create) = 0" >
                                 //updateGDObject - unused

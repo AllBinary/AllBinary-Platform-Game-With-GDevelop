@@ -24,10 +24,7 @@ Created By: Travis Berthelot
         //objects - SPRITES - START
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
-            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
-            //With tags <xsl:for-each select="tags" >?</xsl:for-each>
-            //With variables <xsl:for-each select="variables" >?</xsl:for-each>
-            //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
@@ -53,10 +50,7 @@ Created By: Travis Berthelot
 
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
-            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
-            //With tags <xsl:for-each select="tags" >?</xsl:for-each>
-            //With variables <xsl:for-each select="variables" >?</xsl:for-each>
-            //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />

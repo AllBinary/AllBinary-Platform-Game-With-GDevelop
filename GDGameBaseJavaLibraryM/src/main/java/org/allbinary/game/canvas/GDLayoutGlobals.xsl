@@ -177,11 +177,13 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     //eventsClassProperty - END
 
+                    //eventsClassPropertyActions - START
                     <xsl:call-template name="eventsClassPropertyActions" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
+                    //eventsClassPropertyActions - END
                     
                     <xsl:call-template name="objectsAssignGroup" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >

@@ -22,7 +22,6 @@ Created By: Travis Berthelot
         <xsl:param name="hasParentDepartSceneCondition" />
         <xsl:param name="hasParentOnceCondition" />
 
-        //eventsClassPropertyActions - START
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
 
@@ -253,7 +252,6 @@ Created By: Travis Berthelot
             </xsl:if>
 
         </xsl:for-each>
-        //eventsClassPropertyActions - END
     </xsl:template>
 
     <xsl:template name="externalEventsClassPropertyActions" >

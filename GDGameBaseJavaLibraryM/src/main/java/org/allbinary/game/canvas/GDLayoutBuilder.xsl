@@ -156,7 +156,7 @@ Created By: Travis Berthelot
                         globals.nodeArray[globals.FAKE_COLLISION_NODE_ID] = new GDNode(globals.FAKE_COLLISION_NODE_ID) {
 
                             @Override
-                            public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
+                            public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {  //builder
                                 super.processMStats(gameLayerArray, gdNode, gdNodeList);
 
                                 gdNode.gameLayerArray[0] = gameLayerArray[0];
@@ -287,10 +287,7 @@ Created By: Travis Berthelot
 
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
-                        //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
-                        //With tags <xsl:for-each select="tags" >?</xsl:for-each>
-                        //With variables <xsl:for-each select="variables" >?</xsl:for-each>
-                        //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+                        //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
                         <xsl:if test="$typeValue = 'Sprite'" >
                             <xsl:variable name="stringValue" select="string" />

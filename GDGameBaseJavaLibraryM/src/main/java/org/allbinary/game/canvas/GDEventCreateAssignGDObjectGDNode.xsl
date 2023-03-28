@@ -2548,7 +2548,7 @@ Created By: Travis Berthelot
 
                             //objectGDObjectAtIndex2 - collide - Sprite - <xsl:value-of select="$name" /> - call
                             @Override
-                            public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
+                            public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) { //collide - Sprite
                                 super.processMStats(gameLayerArray, gdNode, gdNodeList);
 
                                 //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
@@ -2683,7 +2683,7 @@ Created By: Travis Berthelot
 
                             //objectGDObjectAtIndex2 - collide - TextObject::Text - <xsl:value-of select="$name" />
                             @Override
-                            public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
+                            public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) { //collide - TextObject::Text
                                 super.processMStats(gameLayerArray, gdNode, gdNodeList);
 
                                 //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
