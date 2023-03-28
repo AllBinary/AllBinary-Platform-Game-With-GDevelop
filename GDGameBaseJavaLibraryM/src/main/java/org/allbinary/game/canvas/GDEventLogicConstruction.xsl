@@ -16,6 +16,8 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
+    <xsl:import href="./condition/GDCollisionNPConditionGDNode.xsl" />
+
     <!--
             <xsl:choose>
             <xsl:when test="not(preceding::events/actions[parameters = current()/actions/parameters])">
@@ -166,7 +168,7 @@ Created By: Travis Berthelot
 
                         <xsl:text>&#10;</xsl:text>
                         
-                        <xsl:call-template name="collisionNP" >
+                        <xsl:call-template name="collisionNPConditionGDNode" >
                             <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
                         </xsl:call-template>
                         <xsl:call-template name="addCollisionNP" >
@@ -183,7 +185,7 @@ Created By: Travis Berthelot
                         //gameLayersInGroup=<xsl:value-of select="$gameLayersInGroup" />
                         <xsl:text>&#10;</xsl:text>
 
-                        <xsl:call-template name="collisionNP" >
+                        <xsl:call-template name="collisionNPConditionGDNode" >
                             <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
                         </xsl:call-template>
 
@@ -225,38 +227,6 @@ Created By: Travis Berthelot
 
 <xsl:text>                        </xsl:text><xsl:value-of select="$nameGDConditionWithGroupActions1"/>.groupWithActionsList.add(globals.<xsl:value-of select="$name" />GroupInterface);
                         <xsl:value-of select="$nameGDConditionWithGroupActions1"/>.actionForGroupsList.add(globals.nodeArray[<xsl:value-of select="$nodeList" />]);        
-    </xsl:template>
-
-    <xsl:template name="collisionNP" >
-        <xsl:param name="nodeList" />
-
-                        globals.nodeArray[<xsl:value-of select="$nodeList" />] = new GDNode(<xsl:value-of select="$nodeList" />) {
-                        
-                            private final String NODE_AT = "Process GDNode <xsl:value-of select="$nodeList" /> at index: ";
-
-                            //Possibly more than 2 GameLayers.  So not all actions on group list are collisions but some are.
-                            @Override
-                            public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) { //construction
-                                super.processMStats(gameLayerArray, gdNode, gdNodeList);
-
-                                final int size = nodeList<xsl:value-of select="$nodeList" />.size();
-                                GDNode node;
-                                final int size2 = gameLayerArray.length;
-                                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                    //LogUtil.put(LogFactory.getInstance(NODE_AT + index, this, commonStrings.PROCESS));
-                                    node = ((GDNode) nodeList<xsl:value-of select="$nodeList" />.get(index));
-                                    //LogUtil.put(LogFactory.getInstance(objectStrings.CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                    node.clear();
-                                    for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
-                                        node.gameLayerArray[index2] = gameLayerArray[index2];
-                                    }
-                                    node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                    node.clear2();
-                                }
-                                
-                                super.processMStatsE(gameLayerArray, gdNode, gdNodeList);
-                            }
-                        };
     </xsl:template>
 
     <xsl:template name="splitCollisionNP">

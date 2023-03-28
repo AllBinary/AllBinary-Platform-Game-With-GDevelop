@@ -8,13 +8,13 @@
         <xsl:param name="layoutName" />
         <xsl:param name="totalRecursions" />
         <xsl:param name="layoutIndex" />
+        <xsl:param name="thisNodeIndex" />
         <xsl:param name="createdObjectsAsString" />
         <xsl:param name="objectsAsString" />
         <xsl:param name="conditionToProcess" />
         <xsl:param name="actionToProcess" />
         <xsl:param name="otherEventToProcess" />
         <xsl:param name="objectEventToProcess" />
-        <xsl:param name="thisNodeIndex" />        
 
         //externalEventsCreateAssignGDObject - START
         <xsl:for-each select="../externalEvents" >
