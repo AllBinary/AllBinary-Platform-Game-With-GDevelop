@@ -76,7 +76,8 @@ Created By: Travis Berthelot
                                 super.processStats();
 
                                 this.clear();
-                                this.processM(this.gameLayerArray, null, null);
+                                //this.processM(this.gameLayerArray, null, null);
+                                this.processM(this.gameLayerArray);
                                 this.clear2();
                                 
                                 return true;
@@ -88,7 +89,8 @@ Created By: Travis Berthelot
                                 super.processNStats(gdNode, gdNodeList);
 
                                 this.clear();
-                                this.processM(this.gameLayerArray, gdNode, gdNodeList);
+                                //this.processM(this.gameLayerArray, gdNode, gdNodeList);
+                                this.processM(this.gameLayerArray);
                                 this.clear2();
                             }
                             -->
@@ -97,9 +99,11 @@ Created By: Travis Berthelot
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE = ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + objectStrings.CALLING_GDNODE;
 
                             //objectGDObjectAtIndex2 - collide - Sprite - <xsl:value-of select="$name" /> - call
+                            <!--
                             @Override
-                            public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) { //collide - Sprite
-                                super.processMStats(gameLayerArray, gdNode, gdNodeList);
+                            //public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) { //collide - Sprite
+                            public void processM(final CollidableCompositeLayer[] gameLayerArray) { //collide - Sprite
+                                super.processMStats(gameLayerArray);
 
                                 //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
                                 
@@ -120,7 +124,9 @@ Created By: Travis Berthelot
                                     //final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" />; indexOfGDNode: " + indexOfGDNode;
                                     //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
                                     if(indexOfGDNode == 1) {
+                        -->
                                         <!-- 5179, 6129, 7079, 7856, 8256  contains($actionTypesAsString, 'AddForceAL') and not(contains($hasConditions, 'found')) and not(contains($hasParentConditions, 'found')) -->
+                        <!--
                                         <xsl:if test="$parentEventType = 'BuiltinCommonInstructions::ForEach' and contains($actionTypesAsString, 'AddForceAL')" >
                                         //TWB Skipping <xsl:value-of select="$actionNodeId" /><xsl:text> </xsl:text><xsl:value-of select="$actionTypesAsString" />
                                         </xsl:if>
@@ -129,7 +135,8 @@ Created By: Travis Berthelot
                                         //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
                                         node.clear();
                                         node.gameLayerArray[0] = gdGameLayer;
-                                        node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                        //node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                        node.processM(node.gameLayerArray);
                                         node.clear2();
                                         </xsl:if>
                                     } else if(indexOfGDNode == 2) { //1
@@ -139,7 +146,8 @@ Created By: Travis Berthelot
                                             node.clear();
                                             node.gameLayerArray[0] = gameLayerArray[0];
                                             node.gameLayerArray[1] = gdGameLayer;
-                                            node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                            //node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                            node.processM(node.gameLayerArray);
                                             node.clear2();
                                         //} else {
                                             //LogUtil.put(LogFactory.getInstance("Do not collide when the same group", this, commonStrings.PROCESS));
@@ -155,7 +163,8 @@ Created By: Travis Berthelot
                                     final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                     //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
                                     node.clear();
-                                    node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                    //node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                    node.processM(node.gameLayerArray);
                                     node.clear2();
                                 } else if(indexOfGDNode == 2) { //2
                                     final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
@@ -163,7 +172,8 @@ Created By: Travis Berthelot
                                     node.clear();
                                     node.gameLayerArray[0] = gameLayerArray[0];
                                     node.gameLayerArray[1] = gameLayerArray[1];
-                                    node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                    //node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                    node.processM(node.gameLayerArray);
                                     node.clear2();
                                 }
                             }
@@ -175,7 +185,8 @@ Created By: Travis Berthelot
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
                                 node.clear();
-                                node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                //node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                node.processM(node.gameLayerArray);
                                 node.clear2();
                             } else if(indexOfGDNode == 2) { //3
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
@@ -183,14 +194,16 @@ Created By: Travis Berthelot
                                 node.clear();
                                 node.gameLayerArray[0] = gameLayerArray[0];
                                 node.gameLayerArray[1] = gameLayerArray[1];
-                                node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                //node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                node.processM(node.gameLayerArray);
                                 node.clear2();
                             }
                         }
                         //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />.gdObject;
 
-                                super.processMStatsE(gameLayerArray, gdNode, gdNodeList);
+                                super.processMStatsE(gameLayerArray);
                             }
+                            -->
                         };
 
                             </xsl:if>
@@ -211,7 +224,8 @@ Created By: Travis Berthelot
                                 super.processStats();
 
                                 this.clear();
-                                this.processM(this.gameLayerArray, null, null);
+                                //this.processM(this.gameLayerArray, null, null);
+                                this.processM(this.gameLayerArray);
                                 this.clear2();
                                 
                                 return true;
@@ -223,7 +237,8 @@ Created By: Travis Berthelot
                                 super.processNStats(gdNode, gdNodeList);
 
                                 this.clear();
-                                this.processM(this.gameLayerArray, gdNode, gdNodeList);
+                                //this.processM(this.gameLayerArray, gdNode, gdNodeList);
+                                this.processM(this.gameLayerArray);
                                 this.clear2();
                             }
                             -->
@@ -232,9 +247,11 @@ Created By: Travis Berthelot
                             private final String ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE = ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + objectStrings.CALLING_GDNODE;
 
                             //objectGDObjectAtIndex2 - collide - TextObject::Text - <xsl:value-of select="$name" />
+                            <!--
                             @Override
-                            public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) { //collide - TextObject::Text
-                                super.processMStats(gameLayerArray, gdNode, gdNodeList);
+                            //public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) { //collide - TextObject::Text
+                            public void processM(final CollidableCompositeLayer[] gameLayerArray) { //collide - TextObject::Text
+                                super.processMStats(gameLayerArray);
 
                                 //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
                                 
@@ -262,7 +279,8 @@ Created By: Travis Berthelot
                                         //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
                                         node.clear();
                                         node.gameLayerArray[0] = gdGameLayer;
-                                        node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                        //node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                        node.processM(node.gameLayerArray);
                                         node.clear2();
                                     } else if(indexOfGDNode == 2) { //4
                                         //if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
@@ -271,7 +289,8 @@ Created By: Travis Berthelot
                                             node.clear();
                                             node.gameLayerArray[0] = gameLayerArray[0];
                                             node.gameLayerArray[1] = gdGameLayer;
-                                            node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                            //node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                            node.processM(node.gameLayerArray);
                                             node.clear2();
                                         //} else {
                                             LogUtil.put(LogFactory.getInstance("Do not collide when the same group", this, commonStrings.PROCESS));
@@ -292,7 +311,8 @@ Created By: Travis Berthelot
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
                                 node.clear();
-                                node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                //node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                node.processM(node.gameLayerArray);
                                 node.clear2();
                             } else if(indexOfGDNode == 2) { //5
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode + 1));
@@ -300,14 +320,16 @@ Created By: Travis Berthelot
                                 node.clear();
                                 node.gameLayerArray[0] = gameLayerArray[0];
                                 node.gameLayerArray[1] = gameLayerArray[1];
-                                node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                //node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                node.processM(node.gameLayerArray);
                                 node.clear2();
                             }
                         }
                         //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />.gdObject;
 
-                                super.processMStatsE(gameLayerArray, gdNode, gdNodeList);
+                                super.processMStatsE(gameLayerArray);
                             }
+                            -->
                         };
 
                             </xsl:if>
@@ -323,7 +345,8 @@ Created By: Travis Berthelot
                                     if(globals.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
                                         this.clear();
                                         this.gameLayerArray[0] = (CollidableCompositeLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0);
-                                        this.processM(this.gameLayerArray, gdNode, gdNodeList);
+                                        //this.processM(this.gameLayerArray, gdNode, gdNodeList);
+                                        this.processM(this.gameLayerArray);
                                         this.clear2();
                                     }
                                 }

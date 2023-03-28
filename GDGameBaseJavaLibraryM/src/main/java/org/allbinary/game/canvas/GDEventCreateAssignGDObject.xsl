@@ -789,8 +789,9 @@ Created By: Travis Berthelot
 
                     //<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed
                     @Override
-                    public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {  //event
-                        super.processMStats(gameLayerArray, gdNode, gdNodeList);
+                    //public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {  //event
+                    public void processM(final CollidableCompositeLayer[] gameLayerArray) {  //event
+                        super.processMStats(gameLayerArray);
 
                         try {
 
@@ -1220,7 +1221,7 @@ Created By: Travis Berthelot
 
             </xsl:if>
 
-                            super.processMStatsE(gameLayerArray, gdNode, gdNodeList);
+                            super.processMStatsE(gameLayerArray);
                         } catch(Exception e) {
                         //2
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + EVENT_AS_STRING_COLLISION_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));

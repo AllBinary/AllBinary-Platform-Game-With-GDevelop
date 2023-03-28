@@ -111,7 +111,8 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
                     node.clear();
                     node.gameLayerArray[0] = this.ownerLayer;
                     node.gameLayerArray[1] = collisionLayer;
-                    node.processM(node.gameLayerArray, null, null);
+                    //node.processM(node.gameLayerArray, null, null);
+                    node.processM(node.gameLayerArray);
                     node.clear2();
                 }
             }

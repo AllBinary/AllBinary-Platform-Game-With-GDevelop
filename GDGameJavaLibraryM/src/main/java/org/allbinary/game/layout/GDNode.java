@@ -132,14 +132,15 @@ public class GDNode
         this.nodeStatsFactory.push(12, name);
     }
 
-    public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
+    //, final GDNode gdNode, final BasicArrayList gdNodeList
+    public void processM(final CollidableCompositeLayer[] gameLayerArray) {
     }
 
-    public void processMStats(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
+    public void processMStats(final CollidableCompositeLayer[] gameLayerArray) {
         this.nodeStatsFactory.push(13, name);
     }
 
-    public void processMStatsE(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {
+    public void processMStatsE(final CollidableCompositeLayer[] gameLayerArray) {
         this.nodeStatsFactory.push(14, name);
     }
     

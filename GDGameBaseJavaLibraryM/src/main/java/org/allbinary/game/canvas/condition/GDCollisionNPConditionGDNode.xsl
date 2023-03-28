@@ -26,8 +26,9 @@ Created By: Travis Berthelot
 
                             //Possibly more than 2 GameLayers.  So not all actions on group list are collisions but some are.
                             @Override
-                            public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) { //construction
-                                super.processMStats(gameLayerArray, gdNode, gdNodeList);
+                            //public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) { //construction
+                            public void processM(final CollidableCompositeLayer[] gameLayerArray) { //construction
+                                super.processMStats(gameLayerArray);
 
                                 final int size = nodeList<xsl:value-of select="$nodeList" />.size();
                                 GDNode node;
@@ -40,11 +41,12 @@ Created By: Travis Berthelot
                                     for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
                                         node.gameLayerArray[index2] = gameLayerArray[index2];
                                     }
-                                    node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                    //node.processM(node.gameLayerArray, gdNode, gdNodeList);
+                                    node.processM(node.gameLayerArray);
                                     node.clear2();
                                 }
                                 
-                                super.processMStatsE(gameLayerArray, gdNode, gdNodeList);
+                                super.processMStatsE(gameLayerArray);
                             }
                         };
     </xsl:template>
