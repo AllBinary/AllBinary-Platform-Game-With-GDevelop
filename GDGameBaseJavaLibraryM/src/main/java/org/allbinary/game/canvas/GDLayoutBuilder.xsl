@@ -114,6 +114,7 @@ Created By: Travis Berthelot
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR + ":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder", this, commonStrings.CONSTRUCTOR));
                         
+                            //eventsLogicConstructionMouseButtonReleased - START
                     <xsl:call-template name="eventsLogicConstructionMouseButtonReleased" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
@@ -122,18 +123,19 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
                     </xsl:call-template>
+                            //eventsLogicConstructionMouseButtonReleased - END
 
-                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes externalEventNodes;
-                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes externalActionNodes;
-                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes externalConditionNodes;
-                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes externalOtherEventNodes;
-                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes externalObjectEventNodes;
-                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes actionNodes;
-                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes conditionNodes;
-                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes otherEventNodes;
-                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes objectEventNodes;
+                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes externalEventNodes;
+                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes externalActionNodes;
+                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes externalConditionNodes;
+                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes externalOtherEventNodes;
+                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes externalObjectEventNodes;
+                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes actionNodes;
+                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes conditionNodes;
+                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes otherEventNodes;
+                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes objectEventNodes;
                         
-                        int size = globals.nodeArray.length;
+                            int size = globals.nodeArray.length;
                         <!--
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             final int currentIndex = index;
@@ -168,7 +170,8 @@ Created By: Travis Berthelot
                         };
                         -->
 
-                    GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = null;
+                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = null;
+
                         try {
                     imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.create();
                         } catch(Exception e) {
@@ -258,13 +261,13 @@ Created By: Travis Berthelot
                     </xsl:if>
                     </xsl:for-each>
 
-                    //BuiltinCommonInstructions::Once - START
+                    //eventsOnceConditionProcessActions - START
                     <xsl:call-template name="eventsOnceConditionProcessActions" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    //BuiltinCommonInstructions::Once - END
+                    //eventsOnceConditionProcessActions - END
 
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
@@ -320,6 +323,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 -->
 
+                    //eventsLogicConstructionCollisionNP - START
                     <xsl:call-template name="eventsLogicConstructionCollisionNP" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
@@ -328,6 +332,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
                     </xsl:call-template>
+                    //eventsLogicConstructionCollisionNP - END
 
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));

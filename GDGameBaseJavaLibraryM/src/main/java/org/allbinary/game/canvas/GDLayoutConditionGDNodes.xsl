@@ -128,6 +128,7 @@ Created By: Travis Berthelot
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
 
+                    //conditionLayout - //eventsCreateAssignGDObject - START
                     <xsl:call-template name="eventsCreateAssignGDObjectGDNodes" >
                         <xsl:with-param name="caller" >conditionLayout</xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
@@ -162,6 +163,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
 
                     </xsl:call-template>
+                    //conditionLayout - //eventsCreateAssignGDObject - END
 
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
