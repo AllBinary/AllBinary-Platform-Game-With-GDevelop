@@ -144,7 +144,7 @@ Created By: Travis Berthelot
                                 @Override
                                 public boolean process() throws Exception {
                                     super.processStats();
-                                    LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, Integer.toString(currentIndex), new Exception()));
+                                    LogUtil.put(LogFactory.getInstance(Integer.toString(currentIndex), this, commonStrings.PROCESS, new Exception()));
 
                                     return true;
                                 }
@@ -162,7 +162,7 @@ Created By: Travis Berthelot
                                 gdNode.gameLayerArray[0] = gameLayerArray[0];
                                 gdNode.gameLayerArray[1] = gameLayerArray[1];
 
-                                //LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, FAKE_COLLISION_NODE_STRING));
+                                //LogUtil.put(LogFactory.getInstance(FAKE_COLLISION_NODE_STRING, this, commonStrings.PROCESS));
                                 gdNode.processM(gdNode.gameLayerArray, gdNode, gdNodeList);
                                 
                                 super.processMStatsE(gameLayerArray, gdNode, gdNodeList);

@@ -833,7 +833,7 @@ Created By: Travis Berthelot
                                 if (RectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY(), globals.<xsl:value-of select="text()" />Rectangle.getMaxX(), globals.<xsl:value-of select="text()" />Rectangle.getMaxY(),
                                     point.getX(), point.getY()))
                                 {
-                                    //LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, "Inside"));
+                                    //LogUtil.put(LogFactory.getInstance("Inside", this, commonStrings.PROCESS));
                                     final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
                                     if (motionGestureInput == TouchMotionGestureFactory.getInstance().PRESSED) {
                                         
