@@ -320,7 +320,6 @@
         <xsl:variable name="foundCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >found</xsl:if></xsl:for-each></xsl:variable>
 
         <xsl:for-each select="conditions" >
-            <xsl:variable name="typeValue" select="type/value" />
         </xsl:for-each>
 
         <xsl:if test="$foundCondition = 'found'" >
