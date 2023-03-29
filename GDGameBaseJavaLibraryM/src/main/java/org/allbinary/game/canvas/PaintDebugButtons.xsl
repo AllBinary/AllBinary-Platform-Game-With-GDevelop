@@ -26,7 +26,7 @@ Created By: Travis Berthelot
          
         <xsl:variable name="quote" >"</xsl:variable>
 
-        //<xsl:value-of select="$caller" /> - paintDebugButtons - START
+        //caller=<xsl:value-of select="$caller" /> - //paintDebugButtons - START
         final BasicColorSetUtil basicColorUtil = BasicColorSetUtil.getInstance();
         basicColorUtil.setBasicColor(
                 graphics, BasicColorFactory.getInstance().RED, BasicColorFactory.getInstance().RED.intValue());

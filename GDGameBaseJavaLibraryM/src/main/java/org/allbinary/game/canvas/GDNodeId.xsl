@@ -45,12 +45,14 @@
         <xsl:param name="totalRecursions" />
         <xsl:param name="caller" />
 
-        //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> caller=<xsl:value-of select="$caller" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
+        //caller=<xsl:value-of select="$caller" /> - eventIds
+        //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />
         <xsl:if test="type = 'BuiltinCommonInstructions::Comment'" >
             //BuiltinCommonInstructions::Comment
         </xsl:if>
         <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
             <xsl:text>&#10;</xsl:text>
+            //caller=<xsl:value-of select="$caller" /> - eventIds
             <xsl:if test="$caller = 'externalEventsProcess'" >
                 //Apparently the process below already calls this.
                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].clear();
@@ -79,12 +81,12 @@
         <xsl:param name="totalRecursions" />
         <xsl:param name="caller" />
 
-        //actionIds
-        //Actions - GDNode - totalRecursions=<xsl:value-of select="$totalRecursions" /> caller=<xsl:value-of select="$caller" />
+        //caller=<xsl:value-of select="$caller" /> - //actionIds
+        //Actions - GDNode - totalRecursions=<xsl:value-of select="$totalRecursions" />
         <xsl:for-each select="actions" >
+            //caller=<xsl:value-of select="$caller" /> - //actionIds - //Action - //<xsl:value-of select="type/value" /> - call
             //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
             <xsl:text>&#10;</xsl:text>
-            //<xsl:value-of select="$caller" /> - //actionIds - //Action - //<xsl:value-of select="type/value" /> - call
             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:for-each>
 
