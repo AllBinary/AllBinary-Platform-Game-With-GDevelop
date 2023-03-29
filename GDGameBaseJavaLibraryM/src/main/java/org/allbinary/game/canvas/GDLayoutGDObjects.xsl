@@ -37,8 +37,6 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameBaseJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventPaint.xsl" />
 
     <xsl:import href="../GDGameBaseJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
-    <xsl:import href="../GDGameBaseJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventOpen.xsl" />
-    <xsl:import href="../GDGameBaseJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClose.xsl" />
     <xsl:import href="../GDGameBaseJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
     
     <xsl:output method="html" indent="yes" />
