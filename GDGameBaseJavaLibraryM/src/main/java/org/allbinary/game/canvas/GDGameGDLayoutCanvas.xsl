@@ -324,7 +324,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         }
 
         //Combat games
-        this.cleanupGame();
+        //this.cleanupGame();
         PrimaryPlayerQueueFactory.getInstance().clear();
         SecondaryPlayerQueueFactory.getInstance().clear();
 
