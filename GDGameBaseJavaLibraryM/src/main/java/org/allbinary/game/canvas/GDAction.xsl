@@ -375,7 +375,7 @@ Created By: Travis Berthelot
             </xsl:if>
             </xsl:if>
 
-            //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Actions
+            //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Actions - 1
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
@@ -391,6 +391,10 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'UnPauseTimer'" >
                     //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Action - //UnPauseTimer - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                </xsl:if>
+                <xsl:if test="$typeValue = 'Opacity'" >
+                    //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Action - //Opacity - call
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'ModVarScene' and $caller = 'externalEventsCreateAssignGDObject - //actionsWithIndexesProcess'" >
@@ -638,7 +642,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="contains($hadCondition, 'found') and contains($hadConditionOtherThanThis, 'found') and not(contains($hasUsedSoundPlayingCondition, 'found'))" >
 
-            //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Actions
+            //<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Actions - 2
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:if test="contains($hasPauseTimer, 'found') or contains($hasResetTimer, 'found') or (contains($caller, 'eventsCreateAssignGDObject') and $typeValue = 'ModVarScene')" >
