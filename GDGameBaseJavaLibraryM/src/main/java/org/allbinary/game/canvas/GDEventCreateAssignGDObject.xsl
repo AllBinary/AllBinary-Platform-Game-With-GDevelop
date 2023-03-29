@@ -498,7 +498,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="$listSize != ''" >
                             //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Event - //<xsl:value-of select="type" /> - call
-            <xsl:if test="and contains($caller, 'otherEventLayout')" >
+            <xsl:if test="contains($caller, 'otherEventLayout')" >
                             
             <xsl:if test="not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' or contains($caller, 'eventsCreateAssignGDObject')" >
                         <xsl:for-each select="events" >
