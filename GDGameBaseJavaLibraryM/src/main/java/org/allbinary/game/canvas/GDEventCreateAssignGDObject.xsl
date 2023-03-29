@@ -219,6 +219,8 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ModVarScene'" >
                     <xsl:if test="not(contains($caller, 'external'))" >
+                    //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));                    
+                    //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>                                                
                     //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Action - //ModVarScene - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                     </xsl:if>
@@ -422,16 +424,6 @@ Created By: Travis Berthelot
                             //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //ModVarObjet - call - //<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
                             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
                             <xsl:text>&#10;</xsl:text>
-                </xsl:if>
-
-                <xsl:if test="$typeValue = 'ModVarScene'" >
-                    <xsl:if test="not(contains($caller, 'external'))" >
-                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));                    
-                            //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>                                                
-                            //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Actions - //ModVarScene - call
-                            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                            <xsl:text>&#10;</xsl:text>
-                    </xsl:if>
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'AddForceAL'" >
