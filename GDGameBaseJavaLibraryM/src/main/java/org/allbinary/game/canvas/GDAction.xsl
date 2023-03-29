@@ -98,7 +98,7 @@ Created By: Travis Berthelot
         <xsl:param name="conditionPosition" />
         <xsl:param name="logString" />
         
-                    //objectGDObjectAtIndex2 - START - <xsl:value-of select="$caller" />
+                    //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - START
                     <xsl:call-template name="objectGDObjectAtIndex2" >
                         <xsl:with-param name="caller" >
                             <xsl:value-of select="$caller" />
@@ -123,7 +123,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
                     -->
-                    //objectGDObjectAtIndex2 - END - <xsl:value-of select="$caller" />
+                    //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - END
                     
                     try {
 

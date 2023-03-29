@@ -95,7 +95,7 @@ Created By: Travis Berthelot
         <xsl:param name="thisNodeArray" />
         <xsl:param name="logString" />
 
-        //objectGDObjectAtIndex2 - layoutIndex=<xsl:value-of select="$layoutIndex" /> parametersAsString=<xsl:value-of select="$parametersAsString" />
+        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - layoutIndex=<xsl:value-of select="$layoutIndex" /> parametersAsString=<xsl:value-of select="$parametersAsString" />
         <xsl:for-each select="/game">
             <xsl:for-each select="layouts" >
                 <xsl:variable name="index" select="position() - 1" />
@@ -154,11 +154,11 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($parametersAsString, $name) = text()" >
                             <xsl:if test="$typeValue = 'Sprite'" >
-                        //objectGDObjectAtIndex2 - collide - Sprite
+                        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - //collide - Sprite
                         gdNodeList.add(globals.nodeArray[<xsl:value-of select="$actionNodeId" />]);
                             </xsl:if>
                             <xsl:if test="$typeValue = 'TextObject::Text'" >
-                        //objectGDObjectAtIndex2 - collide - TextObject::Text
+                        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - //collide - TextObject::Text
                         gdNodeList.add(globals.nodeArray[<xsl:value-of select="$actionNodeId" />]);
                             </xsl:if>
                         </xsl:if>
