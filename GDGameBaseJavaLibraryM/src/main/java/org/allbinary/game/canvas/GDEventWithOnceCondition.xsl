@@ -43,6 +43,7 @@ Created By: Travis Berthelot
                         <xsl:for-each select=".." >
                             <xsl:call-template name="eventIds" >
                                 <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                                <xsl:with-param name="caller" >onceCondition</xsl:with-param>
                             </xsl:call-template>
                         </xsl:for-each>
                     </xsl:if>
@@ -53,6 +54,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select=".." >
                         <xsl:call-template name="eventIds" >
                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                            <xsl:with-param name="caller" >onceCondition</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                 </xsl:if>
