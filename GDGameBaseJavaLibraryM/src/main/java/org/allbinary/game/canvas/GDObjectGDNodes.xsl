@@ -17,12 +17,13 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
     
     <xsl:template name="objectGDObjectGDNodes" >
+        <xsl:param name="caller" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
         <xsl:param name="actionTypesAsString" />
         <xsl:param name="parentEventType" />
 
-        //objectGDObjectGNodes - layoutIndex=<xsl:value-of select="$layoutIndex" /> parametersAsString=<xsl:value-of select="$parametersAsString" />
+        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectGNodes - layoutIndex=<xsl:value-of select="$layoutIndex" /> parametersAsString=<xsl:value-of select="$parametersAsString" />
         <xsl:for-each select="/game">
             <xsl:for-each select="layouts" >
                 <xsl:variable name="index" select="position() - 1" />
@@ -56,7 +57,7 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($parametersAsString, $name) = text()" >
                             <xsl:if test="$typeValue = 'Sprite'" >
-                        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - //Objects - //GDNode - //collide - //Sprite - //<xsl:value-of select="$name" />
+                        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //Objects - //GDNode - //collide - //Sprite - //<xsl:value-of select="$name" />
                         if(globals.nodeArray[<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
@@ -94,7 +95,7 @@ Created By: Travis Berthelot
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> = "Collision: " + ACTION_PARAMETER_ID_AS_STRING_<xsl:value-of select="$actionNodeId" />;
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE = ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + objectStrings.CALLING_GDNODE;
 
-                            //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - //collide - //Sprite - //<xsl:value-of select="$name" /> - call
+                            //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //collide - //Sprite - //<xsl:value-of select="$name" /> - call
                             <!--
                             @Override
                             //public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) { //collide - Sprite
@@ -204,7 +205,7 @@ Created By: Travis Berthelot
 
                             </xsl:if>
                             <xsl:if test="$typeValue = 'TextObject::Text'" >
-                        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - //Objects - //GDNode - //collide - //TextObject::Text - //<xsl:value-of select="$name" />
+                        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //Objects - //GDNode - //collide - //TextObject::Text - //<xsl:value-of select="$name" />
                         if(globals.nodeArray[<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
@@ -242,7 +243,7 @@ Created By: Travis Berthelot
                             private final String ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> = "Collision: " + ACTION_ID_AS_STRING_<xsl:value-of select="$actionNodeId" />;
                             private final String ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE = ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + objectStrings.CALLING_GDNODE;
 
-                            //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - //collide - //TextObject::Text - //<xsl:value-of select="$name" />
+                            //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //collide - //TextObject::Text - //<xsl:value-of select="$name" />
                             <!--
                             @Override
                             //public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) { //collide - TextObject::Text

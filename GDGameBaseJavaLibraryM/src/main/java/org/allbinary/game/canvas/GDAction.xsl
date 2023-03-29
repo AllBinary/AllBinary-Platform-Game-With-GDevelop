@@ -304,7 +304,7 @@ Created By: Travis Berthelot
                         
                         <xsl:if test="string-length($createParamsAsString) > 0" >
                             <xsl:variable name="text" select="substring-before($createParamsAsString, ',')" />
-                        //Create Loop - <xsl:value-of select="$caller" /><xsl:if test="contains($caller, 'eventsCreateAssignGDObject')" > - add one</xsl:if>
+                        //caller=<xsl:value-of select="$caller" /><xsl:if test="contains($caller, 'eventsCreateAssignGDObject')" > - add one</xsl:if> - //Create Loop
                         final int startIndex = globals.<xsl:value-of select="$text" />GDGameLayerList.size();
                         final int endIndex = startIndex + size;
                         

@@ -95,7 +95,8 @@ Created By: Travis Berthelot
         <xsl:param name="thisNodeArray" />
         <xsl:param name="logString" />
 
-        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - layoutIndex=<xsl:value-of select="$layoutIndex" /> parametersAsString=<xsl:value-of select="$parametersAsString" />
+        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2
+        //layoutIndex=<xsl:value-of select="$layoutIndex" /> parametersAsString=<xsl:value-of select="$parametersAsString" />
         <xsl:for-each select="/game">
             <xsl:for-each select="layouts" >
                 <xsl:variable name="index" select="position() - 1" />
