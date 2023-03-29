@@ -116,4 +116,8 @@ Created By: Travis Berthelot
 
     </xsl:template>
 
+    <xsl:template name="hasTimerChildCondition" >
+        <xsl:for-each select="events" ><xsl:call-template name="hasTimerChildCondition" /></xsl:for-each><xsl:for-each select="actions" ><xsl:call-template name="hasTimerChildCondition" /></xsl:for-each><xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >found</xsl:if><xsl:call-template name="hasTimerChildCondition" /></xsl:for-each>
+    </xsl:template>
+
 </xsl:stylesheet>

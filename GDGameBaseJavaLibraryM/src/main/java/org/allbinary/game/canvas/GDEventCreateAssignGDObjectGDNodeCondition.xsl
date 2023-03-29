@@ -16,8 +16,6 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:import href="./GDObjectGDNodes.xsl" />
-    
     <xsl:import href="./condition/GDOnceConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSoundPlayingConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSourisBoutonConditionGDNode.xsl" />
@@ -273,6 +271,26 @@ Created By: Travis Berthelot
 
         </xsl:for-each>
 
+    </xsl:template>
+
+    <xsl:template name="addGDNodeToOnceList" >
+        <xsl:param name="iteration" />
+        <xsl:param name="nodeId" />
+        
+        <xsl:for-each select="actions" >
+            <xsl:for-each select="parameters" >
+                <xsl:if test="position() = 1 and text() != ''" >
+        globals.<xsl:value-of select="text()" />OnceGDNodeList.add(globals.nodeArray[<xsl:value-of select="$nodeId" />]);
+                </xsl:if>
+            </xsl:for-each>
+            
+            <!--
+            <xsl:call-template name="addGDNodeToOnceList" >
+                <xsl:with-param name="iteration" ><xsl:value-of select="$iteration" /></xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+            </xsl:call-template>
+            -->
+        </xsl:for-each>
     </xsl:template>
 
 </xsl:stylesheet>

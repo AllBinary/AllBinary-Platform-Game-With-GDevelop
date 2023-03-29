@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="windows-1252"?>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-    
+
     <xsl:import href="./GDEventCreateAssignGDObjectGDNodeCondition.xsl" />
     <xsl:import href="./GDEventCreateAssignGDObjectGDNodeAction.xsl" />
+    <xsl:import href="./GDObjectGDNodes.xsl" />
     <xsl:import href="./GDEventCreateAssignGDObjectGDNodeObjectEvent.xsl" />
     <xsl:import href="./GDEventCreateAssignGDObjectGDNodeOtherEvent.xsl" />
-
+    
     <xsl:template name="externalEventsCreateAssignGDObjectCondition" >
         <xsl:param name="layoutName" />
         <xsl:param name="totalRecursions" />

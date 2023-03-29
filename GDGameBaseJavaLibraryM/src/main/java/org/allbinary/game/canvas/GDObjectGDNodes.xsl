@@ -16,10 +16,6 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
     
-    <xsl:template name="hasTimerChildCondition" >
-        <xsl:for-each select="events" ><xsl:call-template name="hasTimerChildCondition" /></xsl:for-each><xsl:for-each select="actions" ><xsl:call-template name="hasTimerChildCondition" /></xsl:for-each><xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >found</xsl:if><xsl:call-template name="hasTimerChildCondition" /></xsl:for-each>
-    </xsl:template>
-
     <xsl:template name="objectGDObjectGDNodes" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
@@ -300,8 +296,8 @@ Created By: Travis Berthelot
                                 }
                             } else {
                                 final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
-                                final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: list size was 0: " + indexOfGDNode;
-                                LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
+                                //final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: list size was 0: " + indexOfGDNode;
+                                //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
                             }
                         } else {
                             final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
@@ -359,26 +355,6 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:for-each>
 
-    </xsl:template>
-
-    <xsl:template name="addGDNodeToOnceList" >
-        <xsl:param name="iteration" />
-        <xsl:param name="nodeId" />
-        
-        <xsl:for-each select="actions" >
-            <xsl:for-each select="parameters" >
-                <xsl:if test="position() = 1 and text() != ''" >
-        globals.<xsl:value-of select="text()" />OnceGDNodeList.add(globals.nodeArray[<xsl:value-of select="$nodeId" />]);
-                </xsl:if>
-            </xsl:for-each>
-            
-            <!--
-            <xsl:call-template name="addGDNodeToOnceList" >
-                <xsl:with-param name="iteration" ><xsl:value-of select="$iteration" /></xsl:with-param>
-                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
-            </xsl:call-template>
-            -->
-        </xsl:for-each>
     </xsl:template>
 
 </xsl:stylesheet>
