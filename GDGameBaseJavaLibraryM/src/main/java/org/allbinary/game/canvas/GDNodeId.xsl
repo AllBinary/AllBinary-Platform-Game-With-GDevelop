@@ -88,19 +88,6 @@
             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:for-each>
 
-        <!--
-        <xsl:for-each select="events" >
-            <xsl:call-template name="actionIds" >
-                <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="number($totalRecursions) + 1" />
-                </xsl:with-param>
-                <xsl:with-param name="caller" >
-                    <xsl:value-of select="$caller" />
-                </xsl:with-param>
-            </xsl:call-template>
-        </xsl:for-each>
-        -->
-
     </xsl:template>
 
     <xsl:template name="actionIdsGDObject" >
@@ -130,17 +117,6 @@
             }
             -->
             
-        </xsl:for-each>
-
-        <xsl:for-each select="events" >
-            <xsl:call-template name="actionIdsGDObject" >
-                <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="number($totalRecursions) + 1" />
-                </xsl:with-param>
-                <xsl:with-param name="gdGameLayer" >
-                    <xsl:value-of select="$gdGameLayer" />
-                </xsl:with-param>
-            </xsl:call-template>
         </xsl:for-each>
 
     </xsl:template>

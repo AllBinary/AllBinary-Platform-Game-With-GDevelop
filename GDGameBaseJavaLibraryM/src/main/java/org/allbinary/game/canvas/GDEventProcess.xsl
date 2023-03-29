@@ -23,17 +23,6 @@ Created By: Travis Berthelot
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
 
-            <!--
-            <xsl:call-template name="eventsProcess" >
-                <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="number($totalRecursions) + 1" />
-                </xsl:with-param>
-                <xsl:with-param name="conditionEventPosition" >
-                    <xsl:value-of select="$eventPosition" />
-                </xsl:with-param>
-            </xsl:call-template>
-            -->
-
             //totalRecursions=<xsl:value-of select="number($totalRecursions)" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" />
 
             <xsl:if test="type = 'BuiltinCommonInstructions::Group'" >
