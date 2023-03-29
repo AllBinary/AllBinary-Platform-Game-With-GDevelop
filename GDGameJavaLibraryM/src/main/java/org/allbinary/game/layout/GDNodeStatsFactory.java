@@ -47,9 +47,9 @@ public class GDNodeStatsFactory extends BaseGDNodeStats {
         //this.callCountGDNodeStats.push(index, name);
     }
 
-    public void log(final StringBuilder stringBuilder) {
-        this.callStackGDNodeStats.log(stringBuilder);
-        //this.callCountGDNodeStats.log(stringBuilder);
+    public void log(final StringBuilder stringBuilder, final Object object) {
+        this.callStackGDNodeStats.log(stringBuilder, object);
+        //this.callCountGDNodeStats.log(stringBuilder, aClass);
     }
 
 }

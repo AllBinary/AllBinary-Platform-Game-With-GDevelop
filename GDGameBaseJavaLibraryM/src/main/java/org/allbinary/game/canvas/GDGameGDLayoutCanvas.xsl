@@ -97,6 +97,8 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
            //new BasicBuildGameInitializerFactory(),
            false);
 
+        this.cleanupGame();
+
         final String[] groupNames = new String[SIZE];
         final String GROUP_ = "Group ";
         final StringBuilder stringBuilder = new StringBuilder();
@@ -322,10 +324,9 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         }
 
         //Combat games
-        //this.cleanupGame();
+        this.cleanupGame();
         PrimaryPlayerQueueFactory.getInstance().clear();
         SecondaryPlayerQueueFactory.getInstance().clear();
-        //gameLayerManager.cleanup();
 
         if (!this.isRunning())
         {
@@ -508,15 +509,21 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
         this.specialAnimation.process();
         
-        gdNodeStatsFactory.log(stringBuilder);
+        gdNodeStatsFactory.log(stringBuilder, this);
     }
 
      //Special stop case for GDevelop
     public void stop() {
         final String STOP = "stop";
-        LogUtil.put(LogFactory.getInstance(STOP, this, STOP));
-        this.specialAnimation = SpecialAnimation.getInstance();
-        this.setGameSpecificPaintable(NullPaintable.getInstance());
+        try {
+            LogUtil.put(LogFactory.getInstance(STOP, this, STOP));
+            this.cleanupGame();
+            this.specialAnimation = SpecialAnimation.getInstance();
+            this.setGameSpecificPaintable(NullPaintable.getInstance());
+        } catch (Exception e)
+        {
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, STOP, e));
+        }
     }
 
 }

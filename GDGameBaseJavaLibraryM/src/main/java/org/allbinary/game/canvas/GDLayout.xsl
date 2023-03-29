@@ -137,7 +137,7 @@ Created By: Travis Berthelot
                         //allBinaryGameLayerManager.log();
                         //groupLayerManagerListener.log();
                         
-                        gdNodeStatsFactory.log(stringBuilder);
+                        gdNodeStatsFactory.log(stringBuilder, this);
                     }
 
                     public void process() {
@@ -290,7 +290,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
-                        //gdNodeStatsFactory.log(stringBuilder);
+                        //gdNodeStatsFactory.log(stringBuilder, this);
                     }
 
                     public void open() {

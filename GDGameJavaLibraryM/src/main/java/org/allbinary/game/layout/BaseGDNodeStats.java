@@ -26,6 +26,6 @@ public class BaseGDNodeStats {
 
     }
 
-    public void log(final StringBuilder stringBuilder) {
+    public void log(final StringBuilder stringBuilder, final Object object) {
     }    
 }

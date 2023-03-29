@@ -41,7 +41,7 @@ public class CallStackGDNodeStats {
         this.callStack[index][total++] = name;
     }
 
-    public void log(final StringBuilder stringBuilder) {
+    public void log(final StringBuilder stringBuilder, final Object object) {
         
         final CommonStrings commonStrings = CommonStrings.getInstance();
         
@@ -61,14 +61,16 @@ public class CallStackGDNodeStats {
                     stringBuilder.append(';');
                     if(stringBuilder.length() > 256) {
                         
-                        LogUtil.put(LogFactory.getInstance(stringBuilder.toString(), this, commonStrings.PROCESS));
+                        LogUtil.put(LogFactory.getInstance(stringBuilder.toString(), object, commonStrings.PROCESS));
                         stringBuilder.delete(0, stringBuilder.length());
                     }
                 }
             }
         }
 
-        LogUtil.put(LogFactory.getInstance(stringBuilder.toString(), this, commonStrings.PROCESS));
+        if(stringBuilder.length() > 0) {
+            LogUtil.put(LogFactory.getInstance(stringBuilder.toString(), object, commonStrings.PROCESS));
+        }
         
     }
 }
