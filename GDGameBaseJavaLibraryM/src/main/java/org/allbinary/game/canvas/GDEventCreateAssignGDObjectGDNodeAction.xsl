@@ -456,8 +456,8 @@ Created By: Travis Berthelot
                                 //objectsGroupsGDGameLayer - END
 
                             } else {
-                                final String message = "<xsl:value-of select="$nodeId" /> <xsl:value-of select="$gameLayer" /> warning: not initialized";
-                                LogUtil.put(LogFactory.getInstance(message, this, message));
+                                //final String message = "<xsl:value-of select="$nodeId" /> <xsl:value-of select="$gameLayer" /> warning: not initialized";
+                                //LogUtil.put(LogFactory.getInstance(message, this, message));
                             }
 
                         </xsl:if>
