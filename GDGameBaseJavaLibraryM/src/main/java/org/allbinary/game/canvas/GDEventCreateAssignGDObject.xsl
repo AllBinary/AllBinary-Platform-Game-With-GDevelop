@@ -91,7 +91,7 @@ Created By: Travis Berthelot
 
                     private final String EVENT_AS_STRING_COLLISION_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "PossibleCollision: " + EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
-                    //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed
+                    <!-- //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed -->
                     @Override
                     //public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {  //event
                     public void processM(final CollidableCompositeLayer[] gameLayerArray) {  //event
@@ -155,7 +155,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:if test="position() = 1" >
                 <xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >
-                //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed
+                <!-- //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed -->
                 <xsl:if test="type/value != 'DepartScene' and type/value != 'Timer' and (not($caller = 'conditionLayout - //eventsCreateAssignGDObjectGDNodesCondition' and type/value = 'NbObjet'))" >
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Condition - //<xsl:value-of select="type/value" /> - call - <xsl:value-of select="$thisNodeIndex" />
@@ -196,24 +196,27 @@ Created By: Travis Berthelot
             </xsl:if>
             
             <xsl:if test="not(contains($hadCondition, 'found'))" >
-                //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Actions - //hadCondition
+                <!-- //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Actions - //hadCondition -->
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                 <xsl:if test="$typeValue = 'PlaySound'" >
+                    //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                     //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Action - //PlaySound - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 
                 <xsl:if test="$typeValue = 'ResetTimer'" >
+                    //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                     //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Action - //ResetTimer - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PauseTimer'" >
+                    //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                     //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Action - //PauseTimer - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'UnPauseTimer'" >
+                    //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                     //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Action - //UnPauseTimer - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
@@ -227,11 +230,13 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'TextObject::ChangeColor'" >
+                    //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                     //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Action - //TextObject::ChangeColor - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'TextObject::String'" >
+                    //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                     //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Action - //TextObject::String - call
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
@@ -239,6 +244,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="actionAsString" >Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:if test="$typeValue = 'Delete'" >
                     <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                     //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Delete - call
                     if(<xsl:value-of select="$gameLayerName" />GDGameLayer != null) {
                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gameLayerName" />GDGameLayer, globals.graphics);
@@ -326,7 +332,7 @@ Created By: Travis Berthelot
                             //LogUtil.put(LogFactory.getInstance("TWB - globals.<xsl:value-of select="text()" />GDGameLayerList.size() " + globals.<xsl:value-of select="text()" />GDGameLayerList.size() +  " size " + size, this, commonStrings.PROCESS));
                             if(globals.<xsl:value-of select="text()" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> size) {
                                 //LogUtil.put(LogFactory.getInstance("B: Keep from creating again before last time: <xsl:value-of select="text()" />", this, commonStrings.PROCESS));
-                                //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed
+                                <!-- //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed -->
                                 return <xsl:if test="$caller = 'actionsWithIndexesProcess'" > true</xsl:if>;
                             }
                         </xsl:if>
@@ -511,7 +517,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:if test="position() = 1" >
                 <xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >
-                //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed
+                <!-- //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed -->
                 <xsl:if test="type/value != 'DepartScene' and type/value != 'Timer' and (not($caller = 'conditionLayout - //eventsCreateAssignGDObjectGDNodesCondition' and type/value = 'NbObjet'))" >
                 //Condition - END
                 }
