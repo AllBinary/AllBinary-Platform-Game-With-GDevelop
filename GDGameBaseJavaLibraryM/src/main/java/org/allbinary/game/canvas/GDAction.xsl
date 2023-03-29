@@ -398,11 +398,13 @@ Created By: Travis Berthelot
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'ModVarScene' and $caller = 'externalEventsCreateAssignGDObject - //actionsWithIndexesProcess'" >
+                <xsl:if test="$typeValue = 'ModVarScene'" >
                     //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Action - //ModVarScene - call
+                    <xsl:if test="$caller = 'externalEventsCreateAssignGDObject - //actionsWithIndexesProcess'" >
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    </xsl:if>
                 </xsl:if>
-                                
+
                 <xsl:if test="$typeValue = 'Create'" >
 
                     //createGDObject - START                    

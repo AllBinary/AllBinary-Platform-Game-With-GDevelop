@@ -496,8 +496,10 @@ Created By: Travis Berthelot
             </xsl:if>
             -->
 
-            <xsl:if test="$listSize != '' and contains($caller, 'otherEventLayout')" >
+            <xsl:if test="$listSize != ''" >
                             //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Event - //<xsl:value-of select="type" /> - call
+            <xsl:if test="and contains($caller, 'otherEventLayout')" >
+                            
             <xsl:if test="not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' or contains($caller, 'eventsCreateAssignGDObject')" >
                         <xsl:for-each select="events" >
                             <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
@@ -505,6 +507,8 @@ Created By: Travis Berthelot
                             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             </xsl:if>
                         </xsl:for-each>
+            </xsl:if>
+            
             </xsl:if>
             </xsl:if>
 
