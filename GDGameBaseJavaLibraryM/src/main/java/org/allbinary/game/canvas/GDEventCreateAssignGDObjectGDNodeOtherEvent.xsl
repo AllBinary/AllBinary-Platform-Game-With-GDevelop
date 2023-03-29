@@ -174,9 +174,7 @@ Created By: Travis Berthelot
                 <xsl:if test="actions" >
                 //No used conditions so calling actions from event directly.
                 <xsl:call-template name="actionsWithIndexesProcess" >
-                    <xsl:with-param name="caller" >
-                        <xsl:value-of select="$caller" />
-                    </xsl:with-param>
+                    <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesOtherEvent</xsl:with-param>
                     <xsl:with-param name="layoutIndex" >
                         <xsl:value-of select="$layoutIndex" />
                     </xsl:with-param>
@@ -195,9 +193,7 @@ Created By: Travis Berthelot
                 </xsl:call-template>
 
                 <xsl:call-template name="eventsCreateProcessUsed" >
-                    <xsl:with-param name="caller" >
-                        <xsl:value-of select="$caller" />
-                    </xsl:with-param>
+                    <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesOtherEvent</xsl:with-param>
                     <xsl:with-param name="thisNodeIndex" >
                         <xsl:value-of select="$thisNodeIndex" />
                     </xsl:with-param>

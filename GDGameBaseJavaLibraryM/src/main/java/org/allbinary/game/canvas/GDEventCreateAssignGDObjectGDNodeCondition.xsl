@@ -87,9 +87,7 @@ Created By: Travis Berthelot
 
             <xsl:variable name="eventsCreateProcessUsed" >
                 <xsl:call-template name="eventsCreateProcessUsed" >
-                    <xsl:with-param name="caller" >
-                        <xsl:value-of select="$caller" />
-                    </xsl:with-param>
+                    <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
                     <xsl:with-param name="thisNodeIndex" >
                         <xsl:value-of select="$thisNodeIndex" />
                     </xsl:with-param>
