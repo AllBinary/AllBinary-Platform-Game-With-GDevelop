@@ -90,7 +90,7 @@ Created By: Travis Berthelot
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder extends SpecialAnimation
                 {
-
+                    <!--
                     private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder instance;
 
                     public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder getInstance(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager)
@@ -103,6 +103,7 @@ Created By: Travis Berthelot
                         {
                             return instance;
                         }
+                    -->
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();

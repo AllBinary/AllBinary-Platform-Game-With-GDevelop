@@ -16,6 +16,9 @@ package org.allbinary.game.layer;
 import org.allbinary.game.GameInfo;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.graphics.color.BasicColor;
+import org.allbinary.layer.AllBinaryLayer;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 
 public class GDGameLayerManager extends AllBinaryGameLayerManager
 {
@@ -29,6 +32,17 @@ public class GDGameLayerManager extends AllBinaryGameLayerManager
       super(backgroundBasicColor, foregroundBasicColor, gameInfo);
    }
 
+    public void remove(final AllBinaryLayer layerInterface)
+        throws Exception
+    {
+        if(layerInterface == null) {
+            LogUtil.put(LogFactory.getInstance("Remove: null", this, "remove"));
+            return;
+        }
+        
+        super.remove(layerInterface);
+    }
+    
    /*
    public PlayerLayer getPlayerLayer() {
       return playerLayer;

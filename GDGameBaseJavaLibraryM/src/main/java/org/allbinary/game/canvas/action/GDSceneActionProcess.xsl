@@ -17,7 +17,7 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="sceneActionProcess" >
-
+        
                         //Scene
                         @Override
                         public boolean process() throws Exception {
@@ -30,7 +30,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                             </xsl:for-each>
                             </xsl:if>
-                            
+
                             <xsl:variable name="command" >
                             <xsl:if test="type/value = 'Scene'" >
                             <xsl:for-each select="parameters" >
@@ -41,7 +41,7 @@ Created By: Travis Berthelot
 
                             try {
 
-                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                                 canvas.getCustomCommandListener().commandAction(GDGameCommandFactory.getInstance().<xsl:value-of select="$command" />, ProgressCanvasFactory.getInstance());
 

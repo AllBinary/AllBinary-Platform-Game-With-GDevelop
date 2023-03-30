@@ -19,6 +19,7 @@ Created By: Travis Berthelot
     <xsl:template name="deleteActionProcess" >
 
                         private final String ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "processGD - " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
+                        <xsl:variable name="ACTION_AS_STRING_GD_" >ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
                                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
@@ -27,7 +28,11 @@ Created By: Travis Berthelot
                         //Delete
                         @Override
                         public void addForDelete(final GDGameLayer gdGameLayer) {
-                            removeList.add(gdGameLayer);
+                            //if(!removeList.contains(gdGameLayer)) {
+                                removeList.add(gdGameLayer);
+                            //} else {
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " Already added for deletion from LayerManager: " + gdGameLayer, this, commonStrings.PROCESS));
+                            //}
                         }
 
                         @Override
@@ -55,11 +60,15 @@ Created By: Travis Berthelot
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
                                             //<xsl:value-of select="text()" /><xsl:text>&#10;</xsl:text>
-                                            
-                                            globals.<xsl:value-of select="text()" />GDGameLayerList.remove(<xsl:value-of select="text()" />GDGameLayer);
-                                            //allBinaryGameLayerManager.remove(<xsl:value-of select="text()" />GDGameLayer);
-                                            <xsl:value-of select="text()" />GDGameLayer.setDestroyed(true);
-                                            
+                                                                            
+                                            //if(allBinaryGameLayerManager.getLayerManager().contains(<xsl:value-of select="text()" />GDGameLayer)) {
+                                                globals.<xsl:value-of select="text()" />GDGameLayerList.remove(<xsl:value-of select="text()" />GDGameLayer);
+                                                //allBinaryGameLayerManager.remove(<xsl:value-of select="text()" />GDGameLayer);
+                                                <xsl:value-of select="text()" />GDGameLayer.setDestroyed(true);
+                                            //} else {
+                                                //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$ACTION_AS_STRING_GD_" /> + " LayerManager does not have (probably already removed/destroyed): " + <xsl:value-of select="text()" />GDGameLayer, this, commonStrings.PROCESS));
+                                            //}
+                                                        
                                         </xsl:if>
                                     </xsl:for-each>
                                     <xsl:text>&#10;</xsl:text>
