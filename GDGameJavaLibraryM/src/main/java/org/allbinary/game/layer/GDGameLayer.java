@@ -21,7 +21,7 @@ import org.allbinary.animation.RotationAnimation;
 import org.allbinary.canvas.Processor;
 import org.allbinary.game.combat.CombatBaseBehavior;
 import org.allbinary.game.combat.damage.DamageableBaseBehavior;
-import org.allbinary.game.combat.destroy.DestroyableSimpleBehavior;
+import org.allbinary.game.combat.destroy.GDDestroyableSimpleBehavior;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
@@ -29,13 +29,11 @@ import org.allbinary.game.layout.GDObjectStrings;
 import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.color.BasicColorFactory;
-import org.allbinary.logic.basic.string.CommonSeps;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.ScaleFactorFactory;
-import org.allbinary.math.PositionStrings;
 import org.allbinary.view.ViewPosition;
 
 /**
@@ -122,7 +120,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //this.setIndexedAnimationInterface(this.initIndexedAnimationInterface);
         
         this.combatBaseBehavior = new CombatBaseBehavior(
-                DamageableBaseBehavior.getInstance(), new DestroyableSimpleBehavior(this));
+                DamageableBaseBehavior.getInstance(), new GDDestroyableSimpleBehavior(this));
         
         //LogUtil.put(LogFactory.getInstance(this.toString(), this, CommonStrings.getInstance().CONSTRUCTOR));
     }
@@ -189,7 +187,6 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
     public void setDestroyed(boolean destroyed)
     {
-        //LogUtil.put(LogFactory.getInstance("DestroyedLayerProcessor Adding: " + this, this, "add", new Exception()));
         this.combatBaseBehavior.getDestroyableBaseBehavior().setDestroyed(destroyed);
     }
     
