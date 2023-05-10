@@ -203,7 +203,7 @@ public class GDGameMIDlet extends
 
             final Displayable displayable = this.getCurrentDisplayable();
             if(displayable instanceof RunnableCanvas) {
-                ((RunnableCanvas) displayable).stop();
+                ((RunnableCanvas) displayable).end2();
             }
 
             if(command.equals(gdGameCommandFactory.<GDLayoutName0>_GD_LAYOUT)) {

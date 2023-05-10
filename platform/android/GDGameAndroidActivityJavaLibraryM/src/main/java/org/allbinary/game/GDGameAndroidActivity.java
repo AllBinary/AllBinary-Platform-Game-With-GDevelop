@@ -280,15 +280,15 @@ public class GDGameAndroidActivity extends GameMidletActivity
         } else
         {
             DisplayInfoSingleton displayInfo = DisplayInfoSingleton.getInstance();
-            
+
             View view = this.getRootView();
             //displayInfo.setLastWidth(view.getWidth());
             //displayInfo.setLastHeight(view.getHeight());
-            
+
             Bitmap bitmap =((BitmapDrawable)drawable).getBitmap();
 
             Hashtable hashtable = ImageCacheFactory.getInstance().getHashtable();
-            
+
             hashtable.put(AndroidBasicTitleProgressBar.RESOURCE, new Image(bitmap));
             
             AndroidBasicTitleProgressBar.setBackground(

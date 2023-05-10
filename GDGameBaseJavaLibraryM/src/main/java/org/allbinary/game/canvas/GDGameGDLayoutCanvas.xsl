@@ -512,17 +512,16 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         gdNodeStatsFactory.log(stringBuilder, this);
     }
 
-     //Special stop case for GDevelop
-    public void stop() {
-        final String STOP = "stop";
+    //Special end case for GDevelop
+    public void end2() {
         try {
-            LogUtil.put(LogFactory.getInstance(STOP, this, STOP));
+            LogUtil.put(LogFactory.getInstance(this.commonStrings.END, this, this.commonStrings.END));
             this.cleanupGame();
             this.specialAnimation = SpecialAnimation.getInstance();
             this.setGameSpecificPaintable(NullPaintable.getInstance());
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, STOP, e));
+            LogUtil.put(LogFactory.getInstance(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e));
         }
     }
 
