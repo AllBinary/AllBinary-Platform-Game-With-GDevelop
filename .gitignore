@@ -8,7 +8,12 @@ gen/
 
 Resources/**
 
+game.xml
+game.json
 R.java
+AndroidResources.java
+AndroidManifest.xml
+GDGameAndroidActivity.java
 GDGameAndroidEarlyResourceInitialization.java
 GD*GameSoundsFactory.java
 GDGame*Canvas.java

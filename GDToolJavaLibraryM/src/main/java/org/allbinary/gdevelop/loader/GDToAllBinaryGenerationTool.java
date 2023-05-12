@@ -65,7 +65,8 @@ public class GDToAllBinaryGenerationTool
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
         final byte[] byteArray = new byte[16384];
 
-        final FileInputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidApplicationM\\src\\main\\res\\raw\\game.json");        
+        //final FileInputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidApplicationM\\src\\main\\res\\raw\\game.json");        
+        final FileInputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.json");        
         final String gameAsConfiguration = new String(streamUtil.getByteArray(inputStream, outputStream, byteArray));
 
         final JSONTokener jsonTokener = new JSONTokener(gameAsConfiguration);

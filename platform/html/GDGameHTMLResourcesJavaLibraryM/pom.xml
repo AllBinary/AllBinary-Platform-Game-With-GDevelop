@@ -1,6 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParent</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version Start -->
+    </parent>
+        
     <groupId>org.allbinary.game.gd</groupId>
     <artifactId>GDGameHTMLResourcesJavaLibrary</artifactId>
     <version>1.0.0-SNAPSHOT</version>
@@ -15,6 +24,7 @@
         <outputPath>../GDGamePlayNWarM/war/gd/</outputPath>
         <inputPath>..\..\..\Resources\images\release\</inputPath>
         <inputPath2>..\..\..\Resources\images\wait\</inputPath2>
+        <inputPath5>..\..\..\Resources\images\gd\</inputPath5>
         <inputPath3>..\..\..\Resources\sounds\release\</inputPath3>
         
     </properties>
@@ -89,6 +99,10 @@
                                 </resource>
                                 <resource>
                                     <directory>${inputPath3}</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath5}</directory>
                                     <filtering>true</filtering>
                                 </resource>
                             </resources>              
