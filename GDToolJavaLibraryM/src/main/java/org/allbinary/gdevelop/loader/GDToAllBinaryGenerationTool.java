@@ -41,6 +41,9 @@ public class GDToAllBinaryGenerationTool
     
     private final BasicArrayList duplicateCheckList = new BasicArrayList();
 
+    private final GDToAndroidManifestGenerator androidManifestGenerator = new GDToAndroidManifestGenerator();
+    private final GDToAndroidResourcesClassGenerator androidResourcesClassGenerator = new GDToAndroidResourcesClassGenerator();
+    private final GDToAndroidGameActivityGenerator androidGameActivityGenerator = new GDToAndroidGameActivityGenerator();
     private final GDToAndroidRClassGenerator androidRClassGenerator = new GDToAndroidRClassGenerator();
     private final GDToAllBinaryResourcesGenerator allBinaryResourcesGenerator = new GDToAllBinaryResourcesGenerator();
     private final GDToAllBinarySoundsGenerator soundsGenerator = new GDToAllBinarySoundsGenerator();
@@ -86,7 +89,10 @@ public class GDToAllBinaryGenerationTool
 
         this.load(gdProject);
 
+        this.androidManifestGenerator.process();
         this.androidRClassGenerator.process();
+        this.androidResourcesClassGenerator.process();
+        this.androidGameActivityGenerator.process();
         this.allBinaryResourcesGenerator.process();
         this.soundsGenerator.process();
         this.earlyResourceInitializationGenerator.process(soundsGenerator, allBinaryResourcesGenerator);
@@ -104,7 +110,10 @@ public class GDToAllBinaryGenerationTool
 
     private void load(GDProject gdProject) throws Exception
     {
-
+        this.androidManifestGenerator.process(gdProject.name);
+        this.androidResourcesClassGenerator.process(gdProject.name);
+        this.androidGameActivityGenerator.process(gdProject.name);
+        
         //final BasicArrayList objectList = gdProject.objectList;
         //int size = objectList.size();
         //GDObject object;
