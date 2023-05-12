@@ -16,6 +16,7 @@ import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
 import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -34,14 +35,14 @@ public class GDToAllBinaryCanvasGenerator
     private final String GD_LAYOUT = "<GDLayout>";
     private final String GD_CURRENT_LAYOUT_INDEX = "<GD_CURRENT_INDEX>";
 
-    private final StringBuilder stringBuilder = new StringBuilder();
+    private final StringMaker stringBuilder = new StringMaker();
 
     private int index;
     private String name;
     private String className;
     private String orig;
 
-    public void loadLayout(final GDLayout layout, final int index)
+    public void loadLayout(final GDLayout layout, final int index) throws Exception
     {
         this.index = index;
         name = this.camelCaseUtil.getAsCamelCase(layout.name, stringBuilder);

@@ -17,6 +17,7 @@ import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
 import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -38,13 +39,13 @@ public class GDToAllBinaryMIDletGenerator
     private final String GD_LAYOUT_NAME = "<GDLayoutName";
     private final String END = ">";
 
-    private final StringBuilder stringBuilder = new StringBuilder();
+    private final StringMaker stringBuilder = new StringMaker();
     
     private BasicArrayList layoutNameList = new BasicArrayList();
     private BasicArrayList nameList = new BasicArrayList();
     private BasicArrayList classNameList = new BasicArrayList();
     
-    public void loadLayout(final GDLayout layout, final int index) {
+    public void loadLayout(final GDLayout layout, final int index) throws Exception {
         final String name = this.camelCaseUtil.getAsCamelCase(layout.name, stringBuilder);
         
         //LogUtil.put(LogFactory.getInstance(name, this, "loadLayout"));

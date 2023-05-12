@@ -11,12 +11,12 @@ import java.io.InputStream;
 import java.io.StringBufferInputStream;
 import javax.xml.transform.stream.StreamSource;
 import org.allbinary.data.tree.dom.BasicUriResolver;
-import org.allbinary.data.tree.dom.DomData;
 import org.allbinary.data.tree.dom.XslHelper;
 import org.allbinary.data.tree.dom.document.XmlDocumentHelper;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
 import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -45,7 +45,7 @@ public class GDLayoutsToAllBinaryGenerator
         {
             final String RESULT = "result: ";
 
-            final StringBuilder stringBuilder = new StringBuilder();
+            final StringMaker stringBuilder = new StringMaker();
 
             final StreamUtil streamUtil = StreamUtil.getInstance();
             final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);

@@ -102,7 +102,7 @@ public class GDToAllBinaryGenerationTool
         //"GDGameAndroidEarlyResourceInitialization"
     }
 
-    private void load(GDProject gdProject)
+    private void load(GDProject gdProject) throws Exception
     {
 
         //final BasicArrayList objectList = gdProject.objectList;
@@ -155,7 +155,7 @@ public class GDToAllBinaryGenerationTool
 
     }
 
-    public void loadLayout(final GDLayout layout, final int index)
+    public void loadLayout(final GDLayout layout, final int index) throws Exception
     {
         this.midletGenerator.loadLayout(layout, index);
         this.runnableGenerator.loadLayout(layout, index);

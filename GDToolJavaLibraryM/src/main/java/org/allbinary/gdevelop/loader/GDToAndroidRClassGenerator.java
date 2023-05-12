@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
 import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -24,7 +25,7 @@ public class GDToAndroidRClassGenerator
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
-    private final StringBuilder androidRFileStringBuilder = new StringBuilder();
+    private final StringMaker androidRFileStringBuilder = new StringMaker();
 
     final String GD_KEY = "//GD";
     

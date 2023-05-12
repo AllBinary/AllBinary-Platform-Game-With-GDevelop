@@ -514,15 +514,15 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
     //Special end case for GDevelop
     public void end2() {
-        try {
-            LogUtil.put(LogFactory.getInstance(this.commonStrings.END, this, this.commonStrings.END));
-            this.cleanupGame();
-            this.specialAnimation = SpecialAnimation.getInstance();
-            this.setGameSpecificPaintable(NullPaintable.getInstance());
-        } catch (Exception e)
-        {
-            LogUtil.put(LogFactory.getInstance(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e));
-        }
+//        try {
+//            LogUtil.put(LogFactory.getInstance(this.commonStrings.END, this, this.commonStrings.END));
+//            this.cleanupGame();
+//            this.specialAnimation = SpecialAnimation.getInstance();
+//            this.setGameSpecificPaintable(NullPaintable.getInstance());
+//        } catch (Exception e)
+//        {
+//            LogUtil.put(LogFactory.getInstance(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e));
+//        }
     }
 
 }

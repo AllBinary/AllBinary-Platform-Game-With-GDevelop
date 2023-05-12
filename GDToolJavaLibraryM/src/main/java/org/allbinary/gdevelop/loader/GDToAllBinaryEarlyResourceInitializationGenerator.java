@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
 import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -47,7 +48,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
         final String RESOURCE_INITIALIZATION_ORIGINAL = "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDGameAndroidEarlyResourceInitialization.origin";
         final String RESOURCE_INITIALIZATION = "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDGameAndroidEarlyResourceInitialization.java";
         
-        final StringBuilder stringBuilder = new StringBuilder();
+        final StringMaker stringBuilder = new StringMaker();
 
         this.appendSounds(soundsGenerator, stringBuilder);
         this.appendMedia(allBinaryResourcesGenerator, stringBuilder);
@@ -69,7 +70,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
 
     }
 
-    public void appendSounds(final GDToAllBinarySoundsGenerator soundsGenerator, final StringBuilder stringBuilder) {
+    public void appendSounds(final GDToAllBinarySoundsGenerator soundsGenerator, final StringMaker stringBuilder) {
         final BasicArrayList playSoundResourceClassNameList = soundsGenerator.playSoundResourceClassNameList;
         final BasicArrayList playSoundAndroidResourceNameList = soundsGenerator.playSoundAndroidResourceNameList;
         
@@ -85,7 +86,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
         }        
     }
 
-    public void appendMedia(final GDToAllBinaryResourcesGenerator allBinaryResourcesGenerator, final StringBuilder stringBuilder) {
+    public void appendMedia(final GDToAllBinaryResourcesGenerator allBinaryResourcesGenerator, final StringMaker stringBuilder) {
         final BasicArrayList resourceList = allBinaryResourcesGenerator.resourceList;
         final BasicArrayList androidResourceList = allBinaryResourcesGenerator.androidResourceList;
         

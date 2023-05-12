@@ -12,6 +12,7 @@ import java.io.FileInputStream;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
 import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -61,7 +62,7 @@ public class GDToAllBinarySoundsGenerator
         
         LogUtil.put(LogFactory.getInstance("Sound Total: " + size, this, CommonStrings.getInstance().PROCESS));
         
-        final StringBuilder stringBuilder = new StringBuilder();
+        final StringMaker stringBuilder = new StringMaker();
         
         for(int index = 0; index < size; index++) {
             final String name = this.camelCaseUtil.getAsCamelCase((String) playSoundAndroidResourceNameList.get(index), stringBuilder);

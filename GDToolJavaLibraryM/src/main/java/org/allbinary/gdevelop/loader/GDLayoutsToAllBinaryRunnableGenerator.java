@@ -16,8 +16,8 @@ import org.allbinary.data.tree.dom.XslHelper;
 import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
-import org.allbinary.logic.basic.io.file.AbFile;
 import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.basic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -33,7 +33,7 @@ public class GDLayoutsToAllBinaryRunnableGenerator
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
-    private final StringBuilder stringBuilder = new StringBuilder();
+    private final StringMaker stringBuilder = new StringMaker();
         
     private final XslHelper xslHelper = XslHelper.getInstance();
 
@@ -46,7 +46,7 @@ public class GDLayoutsToAllBinaryRunnableGenerator
     private BasicArrayList nameList = new BasicArrayList();
     
     
-    public void loadLayout(final GDLayout layout, final int index) {
+    public void loadLayout(final GDLayout layout, final int index) throws Exception {
         final String name = this.camelCaseUtil.getAsCamelCase(layout.name, stringBuilder);
         stringBuilder.delete(0, stringBuilder.length());
                 
@@ -59,7 +59,7 @@ public class GDLayoutsToAllBinaryRunnableGenerator
         {
             final String RESULT = "result: ";
 
-            final StringBuilder stringBuilder = new StringBuilder();
+            final StringMaker stringBuilder = new StringMaker();
             
             final StreamUtil streamUtil = StreamUtil.getInstance();
             final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
