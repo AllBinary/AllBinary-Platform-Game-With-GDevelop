@@ -181,14 +181,35 @@ Created By: Travis Berthelot
                         //Rotate
                         @Override
                         public boolean processG(final GDObject <xsl:value-of select="$name" />, final Graphics graphics) {
-                            super.processGStats(<xsl:value-of select="$name" />, graphics);
-                        <xsl:if test="$name = 'player'" >
-                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                        </xsl:if>
-                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                            //Parameters - 3
-                            <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotation = <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
-                            //<xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.angle += <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
+
+                            try {
+                                super.processGStats(<xsl:value-of select="$name" />, graphics);
+                        
+                                return this.processGPaint(<xsl:value-of select="$name" />, graphics);
+                            } catch(Exception e) {
+                                //3
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                            }
+
+                            return true;
+                        }
+                                
+                        @Override
+                        public boolean processGPaint(final GDObject <xsl:value-of select="$name" />, final Graphics graphics) {
+                        
+                            try {
+                            <xsl:if test="$name = 'player'" >
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            </xsl:if>
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //Parameters - 3
+                                <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotation = <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
+                                //<xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.angle += <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
+                            } catch(Exception e) {
+                                //3
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                            }
+
                             return true;
                         }
 

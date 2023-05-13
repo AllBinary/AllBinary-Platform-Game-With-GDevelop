@@ -43,7 +43,7 @@ Created By: Travis Berthelot
                     GDObject <xsl:value-of select="$name2" />;
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size<xsl:value-of select="$name2" />; index++) {
                         <xsl:value-of select="$name2" /> = (GDObject) globals.<xsl:value-of select="$name2" />GDObjectList.get(index);
-                        globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
+                        globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGPaint(<xsl:value-of select="$name2" />, graphics);
                     }
                     </xsl:if>
                     <!--
@@ -63,7 +63,7 @@ Created By: Travis Berthelot
                     GDObject <xsl:value-of select="$name2" />;
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size<xsl:value-of select="$name2" />; index++) {
                         <xsl:value-of select="$name2" /> = (GDObject) globals.<xsl:value-of select="$name2" />GDObjectList.get(index);
-                        globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
+                        globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGPaint(<xsl:value-of select="$name2" />, graphics);
                     }
                     </xsl:if>
                     <!--

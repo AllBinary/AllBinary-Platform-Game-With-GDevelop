@@ -37,8 +37,8 @@ extends ResourceInitialization
 
         final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
                 
-        resourceUtil.addResource(gdProjectStrings.GAME, Integer
-                .valueOf(androidResources.raw.game));
+        //resourceUtil.addResource(gdProjectStrings.GAME, Integer
+                //.valueOf(androidResources.raw.game));
         
         //final GDProject gdProject = new GDProject();
 

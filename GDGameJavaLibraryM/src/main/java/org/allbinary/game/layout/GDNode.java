@@ -128,6 +128,10 @@ public class GDNode
         return false;
     }
 
+    public boolean processGPaint(final GDObject gdObject, final Graphics graphics) {
+        return false;
+    }
+    
     public void processGStats(final GDObject gdObject, final Graphics graphics) {
         this.nodeStatsFactory.push(12, name);
     }

@@ -26,6 +26,9 @@ Created By: Travis Berthelot
                     }
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     
+                        <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
+                    
                         //VarObjet - condition
                         @Override
                         public boolean process() throws Exception {
@@ -61,13 +64,35 @@ Created By: Travis Berthelot
                             return true;
                         }
 
+                        //VarObjet
                         @Override
                         public boolean processG(final GDObject <xsl:value-of select="$gdObjectName" />, final Graphics graphics) {
-                            super.processGStats(<xsl:value-of select="$gdObjectName" />, graphics);
-                            //VarObjet
-                            if(<xsl:for-each select="parameters" ><xsl:if test="text() = 'rotation'" >.</xsl:if><xsl:if test="position() != 1 and  text() != 'rotation'" ><xsl:text> </xsl:text></xsl:if><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="text() = '='" >=</xsl:if></xsl:for-each>) {
-                                //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "VarObjet processing"));
-                                return true;
+
+                            try {
+                                super.processGStats(<xsl:value-of select="$gdObjectName" />, graphics);
+                        
+                                return this.processGPaint(<xsl:value-of select="$gdObjectName" />, graphics);
+                            } catch(Exception e) {
+                                //2
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                            }
+
+                            return false;
+                        }
+
+                        @Override
+                        public boolean processGPaint(final GDObject <xsl:value-of select="$gdObjectName" />, final Graphics graphics) {
+
+                            try {
+
+                                if(<xsl:for-each select="parameters" ><xsl:if test="text() = 'rotation'" >.</xsl:if><xsl:if test="position() != 1 and  text() != 'rotation'" ><xsl:text> </xsl:text></xsl:if><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="text() = '='" >=</xsl:if></xsl:for-each>) {
+                                    //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "VarObjet processing"));
+                                    return true;
+                                }
+
+                            } catch(Exception e) {
+                                //2
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
                             return false;
                         }

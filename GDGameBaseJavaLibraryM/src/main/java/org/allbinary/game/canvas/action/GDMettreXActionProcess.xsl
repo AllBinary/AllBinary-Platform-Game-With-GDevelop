@@ -27,6 +27,20 @@ Created By: Travis Berthelot
 
                             try {
                                 super.processGStats(gdObject, graphics);
+                        
+                                return this.processGPaint(gdObject, graphics);
+                            } catch(Exception e) {
+                                //4
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                            }
+
+                            return true;
+                        }
+                        
+                        @Override
+                        public boolean processGPaint(final GDObject gdObject, final Graphics graphics) {
+
+                            try {
 
                                 <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
