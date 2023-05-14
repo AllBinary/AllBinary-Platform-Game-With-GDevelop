@@ -57,9 +57,23 @@
             <!-- 
             AllBinaryGyroSensorJavaLibrary is included
             in the Platform project by default but is optional for final builds
-            -->            
+            -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>MotionInputAndroidResourcesJavaLibrary</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-
+        
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>FormJMEJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+                
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>AdvertisementClientNoneJavaLibrary</artifactId>
@@ -109,7 +123,7 @@
 
         <dependency>
             <groupId>org.allbinary.input</groupId>
-            <artifactId>TouchButtonResourceAnimationJavaLibrary</artifactId>
+            <artifactId>NoTouchButtonResourceAnimationJavaLibrary</artifactId>
             <!--
             <artifactId>NoTouchButtonResourceAnimationJavaLibrary</artifactId>
             <artifactId>TouchButtonResourceAnimationJavaLibrary</artifactId>
