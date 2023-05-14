@@ -29,6 +29,7 @@ GDGameCommandFactory.java
 GDGameStartGameOverCanvasRunnable.java
 GD*GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
 
+./platform/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/AndroidManifest.xml
 /platform/j2se/GDGameJ2SEApplicationM/src/
 /platform/j2me/GDGameJ2MEApplicationM/src/
 /platform/android/GDGameAndroidApplicationM/src/main/java/
