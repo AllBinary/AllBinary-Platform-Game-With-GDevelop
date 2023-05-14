@@ -3,42 +3,43 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 33
+    buildToolsVersion "33.0.2"
 
     defaultConfig {
-        applicationId "org.allbinary.game.gd"
+        applicationId "org.allbinary.game.gd.miniasteroids"
         minSdkVersion 4
-        targetSdkVersion 30
-        versionCode 40
-        versionName "1.2.12"
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.2.16"
 
         //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'G:/mnt/bc/mydev/work/j2me/games/All_Android.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'org.allbinary.game.gd.miniasteroids'
 }
 
 dependencies {
 
-    implementation ('org.allbinary:FormJSEJavaLibrary:1.0.0-SNAPSHOT') {
-        exclude group: 'org.allbinary', module: 'FormBaseJavaLibrary'
-        exclude group: 'org.allbinary', module: 'GameInputLibrary'
-        exclude group: 'org.allbinary', module: 'GameSoundsJavaLibrary'
-        exclude group: 'org.allbinary', module: 'AllBinaryJ2MELibrary'
-        exclude group: 'org.allbinary', module: 'J2MEJavaUtilLibrary'
-        exclude group: 'org.allbinary', module: 'BasicMathLibrary'
-        exclude group: 'org.allbinary', module: 'EventJ2MELibrary'
-    }
+//    implementation ('org.allbinary:FormJSEJavaLibrary:1.0.0-SNAPSHOT') {
+//        exclude group: 'org.allbinary', module: 'FormBaseJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'GameInputLibrary'
+//        exclude group: 'org.allbinary', module: 'GameSoundsJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'AllBinaryJ2MELibrary'
+//        exclude group: 'org.allbinary', module: 'J2MEJavaUtilLibrary'
+//        exclude group: 'org.allbinary', module: 'BasicMathLibrary'
+//        exclude group: 'org.allbinary', module: 'EventJ2MELibrary'
+//    }
 
     implementation ('org.allbinary:J2MEGameMidletAsActivityJavaLibrary:1.0.0-SNAPSHOT') {
         exclude group: 'org.allbinary', module: 'GameJ2MELibrary'
@@ -74,42 +75,42 @@ dependencies {
         exclude group: 'org.allbinary', module: 'EventJ2MELibrary'
     }
 
-    implementation ('org.allbinary:J2MEMidletAsActivityJavaLibrary:1.0.0-SNAPSHOT') {
-        exclude group: 'org.allbinary', module: 'GameJ2MELibrary'
-        exclude group: 'org.allbinary', module: 'AndroidTransitionAnimationJavaLibrary'
-        exclude group: 'org.allbinary', module: 'VirtualKeyboardDynamicJavaLibrary'
-        exclude group: 'org.allbinary', module: 'J2MEMidletAsViewJavaLibrary'
-        exclude group: 'org.allbinary', module: 'OpenGLESAndroidJavaLibrary'
-        exclude group: 'org.allbinary', module: 'GameInputPersistanceLibrary'
-        exclude group: 'org.allbinary', module: 'ApplicationConfigurationJavaLibrary'
-        exclude group: 'org.allbinary', module: 'AndroidBaseJavaLibrary'
-        exclude group: 'org.allbinary', module: 'AndroidSystemJavaLibrary'
-        exclude group: 'org.allbinary', module: 'GameInputLibrary'
-        exclude group: 'org.allbinary', module: 'AnimationLibrary'
-        exclude group: 'org.allbinary', module: 'RotationAnimationJavaLibrary'
-        exclude group: 'org.allbinary.animation', module: 'AllBinaryImageAnimationJavaLibrary'
-        exclude group: 'org.allbinary', module: 'AnimationResourceJavaLibrary'
-        exclude group: 'org.allbinary.animation.transition', module: 'TransitionAnimationJavaLibrary'
-        exclude group: 'org.allbinary', module: 'ApplicationStatisticsJavaLibrary'
-        exclude group: 'org.allbinary', module: 'AllBinaryJ2MELibrary'
-        exclude group: 'org.allbinary', module: 'PreGameJ2MEJavaLibrary'
-        exclude group: 'org.allbinary', module: 'GameConfigurationJavaLibrary'
-        exclude group: 'org.allbinary', module: 'GameNotificationJavaLibrary'
-        exclude group: 'org.allbinary', module: 'GroupLibrary'
-        exclude group: 'org.allbinary', module: 'MotionGestureJavaLibrary'
-        exclude group: 'org.allbinary', module: 'BasicMathLibrary'
-        exclude group: 'org.allbinary', module: 'GameAnimationJavaLibrary'
-        exclude group: 'org.allbinary', module: 'BasePreloaderFileJavaLibrary'
-        exclude group: 'org.allbinary', module: 'TrigBaseLibrary'
-        exclude group: 'org.allbinary', module: 'AllBinarySensorJavaLibrary'
-        exclude group: 'org.allbinary', module: 'AllBinaryGyroSensorJavaLibrary'
-        exclude group: 'org.allbinary', module: 'AllBinaryAccelerometerSensorJavaLibrary'
-        exclude group: 'org.allbinary', module: 'AllBinaryMagneticFieldSensorJavaLibrary'
-        exclude group: 'org.allbinary', module: 'TouchButtonBaseJavaLibrary'
-        exclude group: 'org.allbinary', module: 'TouchButtonJavaLibrary'
-        exclude group: 'org.allbinary', module: 'TouchScreenJavaLibrary'
-        exclude group: 'org.allbinary', module: 'EventJ2MELibrary'
-    }
+//    implementation ('org.allbinary:J2MEMidletAsActivityJavaLibrary:1.0.0-SNAPSHOT') {
+//        exclude group: 'org.allbinary', module: 'GameJ2MELibrary'
+//        exclude group: 'org.allbinary', module: 'AndroidTransitionAnimationJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'VirtualKeyboardDynamicJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'J2MEMidletAsViewJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'OpenGLESAndroidJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'GameInputPersistanceLibrary'
+//        exclude group: 'org.allbinary', module: 'ApplicationConfigurationJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'AndroidBaseJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'AndroidSystemJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'GameInputLibrary'
+//        exclude group: 'org.allbinary', module: 'AnimationLibrary'
+//        exclude group: 'org.allbinary', module: 'RotationAnimationJavaLibrary'
+//        exclude group: 'org.allbinary.animation', module: 'AllBinaryImageAnimationJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'AnimationResourceJavaLibrary'
+//        exclude group: 'org.allbinary.animation.transition', module: 'TransitionAnimationJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'ApplicationStatisticsJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'AllBinaryJ2MELibrary'
+//        exclude group: 'org.allbinary', module: 'PreGameJ2MEJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'GameConfigurationJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'GameNotificationJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'GroupLibrary'
+//        exclude group: 'org.allbinary', module: 'MotionGestureJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'BasicMathLibrary'
+//        exclude group: 'org.allbinary', module: 'GameAnimationJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'BasePreloaderFileJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'TrigBaseLibrary'
+//        exclude group: 'org.allbinary', module: 'AllBinarySensorJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'AllBinaryGyroSensorJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'AllBinaryAccelerometerSensorJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'AllBinaryMagneticFieldSensorJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'TouchButtonBaseJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'TouchButtonJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'TouchScreenJavaLibrary'
+//        exclude group: 'org.allbinary', module: 'EventJ2MELibrary'
+//    }
 
     implementation ('org.allbinary:J2MEMidletAsViewJavaLibrary:1.0.0-SNAPSHOT') {
         exclude group: 'org.allbinary', module: 'MotionInputAndroidDynamicJavaLibrary'

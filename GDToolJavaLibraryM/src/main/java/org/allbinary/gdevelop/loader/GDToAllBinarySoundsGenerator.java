@@ -27,9 +27,7 @@ public class GDToAllBinarySoundsGenerator
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
-
-    public final BasicArrayList playSoundAndroidResourceNameList = new BasicArrayList();
-    private final BasicArrayList playSoundResourcePathList = new BasicArrayList();
+    private final GDResources gdResources = GDResources.getInstance();
     
     public final BasicArrayList playSoundResourceClassNameList = new BasicArrayList();
     
@@ -45,8 +43,8 @@ public class GDToAllBinarySoundsGenerator
     
     public void processExpressionParam(final String param, final String resourceString) {
         LogUtil.put(LogFactory.getInstance("Sound: " + param, this, CommonStrings.getInstance().PROCESS));
-        this.playSoundAndroidResourceNameList.add(param);
-        this.playSoundResourcePathList.add(resourceString);
+        this.gdResources.playSoundAndroidResourceNameList.add(param);
+        this.gdResources.playSoundResourcePathList.add(resourceString);
     }
 
     public void process() throws Exception {
@@ -58,17 +56,17 @@ public class GDToAllBinarySoundsGenerator
         final FileInputStream fileInputStream = new FileInputStream(SOUND_ORIGINAL);
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
         
-        final int size = playSoundAndroidResourceNameList.size();
+        final int size = this.gdResources.playSoundAndroidResourceNameList.size();
         
         LogUtil.put(LogFactory.getInstance("Sound Total: " + size, this, CommonStrings.getInstance().PROCESS));
         
         final StringMaker stringBuilder = new StringMaker();
         
         for(int index = 0; index < size; index++) {
-            final String name = this.camelCaseUtil.getAsCamelCase((String) playSoundAndroidResourceNameList.get(index), stringBuilder);
+            final String name = this.camelCaseUtil.getAsCamelCase((String) this.gdResources.playSoundAndroidResourceNameList.get(index), stringBuilder);
             final Replace replace = new Replace(GD_NAME, name);
             String newFileAsString = replace.all(androidRFileAsString);
-            final Replace replace2 = new Replace(GD_FILE_NAME, (String) playSoundAndroidResourceNameList.get(index));
+            final Replace replace2 = new Replace(GD_FILE_NAME, (String) this.gdResources.playSoundAndroidResourceNameList.get(index));
             newFileAsString = replace2.all(newFileAsString);
 
             stringBuilder.delete(0, stringBuilder.length());

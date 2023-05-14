@@ -46,6 +46,7 @@ public class GDToAllBinaryGenerationTool
     private final GDToAndroidGameActivityGenerator androidGameActivityGenerator = new GDToAndroidGameActivityGenerator();
     private final GDToAndroidRClassGenerator androidRClassGenerator = new GDToAndroidRClassGenerator();
     private final GDToAllBinaryResourcesGenerator allBinaryResourcesGenerator = new GDToAllBinaryResourcesGenerator();
+    private final GDToAllBinaryAndroidResourcesGenerator allBinaryAndroidResourcesGenerator = new GDToAllBinaryAndroidResourcesGenerator();
     private final GDToAllBinarySoundsGenerator soundsGenerator = new GDToAllBinarySoundsGenerator();
     private final GDToAllBinaryEarlyResourceInitializationGenerator earlyResourceInitializationGenerator = new GDToAllBinaryEarlyResourceInitializationGenerator();
     private final GDToAllBinaryMIDletGenerator midletGenerator = new GDToAllBinaryMIDletGenerator();
@@ -95,8 +96,9 @@ public class GDToAllBinaryGenerationTool
         this.androidResourcesClassGenerator.process();
         this.androidGameActivityGenerator.process();
         this.allBinaryResourcesGenerator.process();
+        this.allBinaryAndroidResourcesGenerator.process();
         this.soundsGenerator.process();
-        this.earlyResourceInitializationGenerator.process(soundsGenerator, allBinaryResourcesGenerator);
+        this.earlyResourceInitializationGenerator.process(soundsGenerator);
         this.midletGenerator.process();
         this.runnableGenerator.process();
 
@@ -111,6 +113,7 @@ public class GDToAllBinaryGenerationTool
 
     private void load(GDProject gdProject) throws Exception
     {
+        this.allBinaryAndroidResourcesGenerator.process(gdProject.name);
         this.androidManifestGenerator.process(gdProject.name);
         this.androidResourcesClassGenerator.process(gdProject.name);
         this.androidGameActivityGenerator.process(gdProject.name);
@@ -157,6 +160,7 @@ public class GDToAllBinaryGenerationTool
 
                 this.androidRClassGenerator.processResource(fileAsString);
                 this.allBinaryResourcesGenerator.processResource(fileAsString, resourceString);
+                this.allBinaryAndroidResourcesGenerator.processResource(fileAsString, resourceString);
             }
 
             //if(resource.kind == resourceFactory.AUDIO) {

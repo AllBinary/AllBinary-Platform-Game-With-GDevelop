@@ -1,6 +1,6 @@
 package org.allbinary;
 
-import org.allbinary.game.gd.miniasteroids.R;
+import org.allbinary.game.gd.<name>.R;
 
 public class AndroidResources
 {
@@ -57,34 +57,6 @@ public class AndroidResources
         public final int error = R.raw.error;
 
         //GD
-    public final int debrish = R.raw.debrish;
-    public final int larg_asteroid_1 = R.raw.larg_asteroid_1;
-    public final int larg_asteroid_2 = R.raw.larg_asteroid_2;
-    public final int larg_asteroid_3 = R.raw.larg_asteroid_3;
-    public final int medium_asteroid_1 = R.raw.medium_asteroid_1;
-    public final int medium_asteroid_2 = R.raw.medium_asteroid_2;
-    public final int medium_asteroid_3 = R.raw.medium_asteroid_3;
-    public final int small_asteroid_1 = R.raw.small_asteroid_1;
-    public final int small_asteroid_2 = R.raw.small_asteroid_2;
-    public final int small_asteroid_3 = R.raw.small_asteroid_3;
-    public final int ship_1 = R.raw.ship_1;
-    public final int ship_bullet = R.raw.ship_bullet;
-    public final int ship_part_1 = R.raw.ship_part_1;
-    public final int ship_part_2 = R.raw.ship_part_2;
-    public final int ship_part_3 = R.raw.ship_part_3;
-    public final int touch_button_turn_left_arrow_80_by_80 = R.raw.touch_button_turn_left_arrow_80_by_80;
-    public final int touch_button_turn_right_arrow_80_by_80 = R.raw.touch_button_turn_right_arrow_80_by_80;
-    public final int touch_button_a_action_80_by_80 = R.raw.touch_button_a_action_80_by_80;
-    public final int touch_button_b_action_80_by_80 = R.raw.touch_button_b_action_80_by_80;
-
-    public final int explosion = R.raw.explosion;
-
-    public final int laser_shoot = R.raw.laser_shoot;
-
-    public final int thruster = R.raw.thruster;
-
-    public final int thruster_down = R.raw.thruster_down;
-
     }
 
     public Rraw raw = new Rraw();
@@ -98,4 +70,3 @@ public class AndroidResources
 //
 //    public Rstring string = new Rstring();
 }
-

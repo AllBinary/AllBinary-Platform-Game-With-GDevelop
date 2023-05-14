@@ -25,6 +25,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
 {
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
+    private final GDResources gdResources = GDResources.getInstance();
     
     private final String RESOURCE_0 = "\n        resourceUtil.addResource(";
     
@@ -41,7 +42,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
 
     }
 
-    public void process(final GDToAllBinarySoundsGenerator soundsGenerator, final GDToAllBinaryResourcesGenerator allBinaryResourcesGenerator) throws Exception
+    public void process(final GDToAllBinarySoundsGenerator soundsGenerator) throws Exception
     {
         final String GD_KEY = "//GD";
         
@@ -51,7 +52,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
         final StringMaker stringBuilder = new StringMaker();
 
         this.appendSounds(soundsGenerator, stringBuilder);
-        this.appendMedia(allBinaryResourcesGenerator, stringBuilder);
+        this.appendMedia(stringBuilder);
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
@@ -72,7 +73,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
 
     public void appendSounds(final GDToAllBinarySoundsGenerator soundsGenerator, final StringMaker stringBuilder) {
         final BasicArrayList playSoundResourceClassNameList = soundsGenerator.playSoundResourceClassNameList;
-        final BasicArrayList playSoundAndroidResourceNameList = soundsGenerator.playSoundAndroidResourceNameList;
+        final BasicArrayList playSoundAndroidResourceNameList = this.gdResources.playSoundAndroidResourceNameList;
         
         int size = playSoundResourceClassNameList.size();
         for(int index = 0; index < size; index++) {
@@ -86,9 +87,9 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
         }        
     }
 
-    public void appendMedia(final GDToAllBinaryResourcesGenerator allBinaryResourcesGenerator, final StringMaker stringBuilder) {
-        final BasicArrayList resourceList = allBinaryResourcesGenerator.resourceList;
-        final BasicArrayList androidResourceList = allBinaryResourcesGenerator.androidResourceList;
+    public void appendMedia(final StringMaker stringBuilder) {
+        final BasicArrayList resourceList = this.gdResources.resourceList;
+        final BasicArrayList androidResourceList = this.gdResources.androidResourceList;
         
         int size = resourceList.size();
         for(int index = 0; index < size; index++) {
