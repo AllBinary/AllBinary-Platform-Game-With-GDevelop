@@ -47,7 +47,7 @@ Created By: Travis Berthelot
                                 final GPoint rectangePoint = globals.<xsl:value-of select="text()" />Rectangle.getPoint();
                                 //LogUtil.put(LogFactory.getInstance("globals.<xsl:value-of select="text()" />Rectangle - motionGestureEvent: " + motionGestureEvent.toString(), this, commonStrings.PROCESS));
                                 //LogUtil.put(LogFactory.getInstance("globals.<xsl:value-of select="text()" />Rectangle: " + globals.<xsl:value-of select="text()" />Rectangle.toString(), this, commonStrings.PROCESS));
-                                if (RectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY(), globals.<xsl:value-of select="text()" />Rectangle.getMaxX(), globals.<xsl:value-of select="text()" />Rectangle.getMaxY(),
+                                if (RectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY() - 2, globals.<xsl:value-of select="text()" />Rectangle.getMaxX(), globals.<xsl:value-of select="text()" />Rectangle.getMaxY() + 2,
                                     point.getX(), point.getY()))
                                 {
                                     //LogUtil.put(LogFactory.getInstance("Inside", this, commonStrings.PROCESS));

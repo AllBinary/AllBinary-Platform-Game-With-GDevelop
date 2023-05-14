@@ -64,6 +64,7 @@ import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
 import org.allbinary.graphics.paint.NullPaintable;
+import org.allbinary.graphics.paint.InitUpdatePaintable;
 import org.allbinary.graphics.paint.Paintable;
 import org.allbinary.layer.event.LayerManagerEventHandler;
 import org.allbinary.media.AllBinaryVibration;
@@ -401,7 +402,16 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         }
     }
 
-    private final GamePerformanceInitUpdatePaintable gamePerformanceInitUpdatePaintable =
+//    private final Paintable paintable = 
+//            new Paintable() {
+//        public void paint(Graphics graphics) {
+//            graphics.drawString(gyroOrientationSensor.toString(), 0, halfHeight + 30 + 60, 0);
+//            graphics.drawString(accelerometerOrientationSensor.toString(), 0, halfHeight + 30 + 75, 0);
+//        }
+//    };
+    
+    private final InitUpdatePaintable gamePerformanceInitUpdatePaintable =
+        //new InitUpdatePaintable();
         new GamePerformanceInitUpdatePaintable();
 
     private final AllBinaryOrientationSensor gyroOrientationSensor = GyroSensorFactory.getInstance();
@@ -439,14 +449,12 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
         gameSpecificPaintable.paint(graphics);
 
-    	gamePerformanceInitUpdatePaintable.paint(graphics);
+    	//gamePerformanceInitUpdatePaintable.paint(graphics);
+        //paintable.paint(graphics);
 
         touchPaintable.paint(graphics);
 
         screenCapture.saveFrame();
-
-        graphics.drawString(this.gyroOrientationSensor.toString(), 0, halfHeight + 30 + 60, 0);
-        graphics.drawString(this.accelerometerOrientationSensor.toString(), 0, halfHeight + 30 + 75, 0);
 
         this.getTouchPaintable().paint(graphics);
     }

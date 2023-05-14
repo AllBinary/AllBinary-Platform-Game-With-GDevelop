@@ -43,11 +43,11 @@ Created By: Travis Berthelot
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             //<xsl:value-of select="$conditionAsString" />
-                            //SourisSurObjet - debug paint for <xsl:value-of select="text()" />
-                            if(globals.<xsl:value-of select="text()" />Rectangle != null) {                            
-                                final GPoint rectangePoint = globals.<xsl:value-of select="text()" />Rectangle.getPoint();
-                                graphics.drawRect(rectangePoint.getX(), rectangePoint.getY(), globals.<xsl:value-of select="text()" />Rectangle.getWidth(), globals.<xsl:value-of select="text()" />Rectangle.getHeight());
-                            }
+                            //SourisSurObjet - debug paint for <xsl:value-of select="text()" /> - show rect around button
+//                            if(globals.<xsl:value-of select="text()" />Rectangle != null) {                            
+//                                final GPoint rectangePoint = globals.<xsl:value-of select="text()" />Rectangle.getPoint();
+//                                graphics.drawRect(rectangePoint.getX(), rectangePoint.getY(), globals.<xsl:value-of select="text()" />Rectangle.getWidth(), globals.<xsl:value-of select="text()" />Rectangle.getHeight());
+//                            }
                         </xsl:if>
                 
                     </xsl:for-each>
