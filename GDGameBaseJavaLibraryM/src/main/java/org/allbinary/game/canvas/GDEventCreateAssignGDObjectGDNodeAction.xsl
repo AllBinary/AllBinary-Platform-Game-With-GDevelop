@@ -270,6 +270,12 @@ Created By: Travis Berthelot
 
                 </xsl:if>
 
+                <xsl:if test="$typeValue = 'LaunchFile'" >
+
+                    <xsl:call-template name="launchFileActionProcess" />
+
+                </xsl:if>
+
                 <xsl:if test="$typeValue != 'Scene' and $typeValue != 'MettreX' and $typeValue != 'MettreY' and $typeValue != 'SceneBackground' and $typeValue != 'Rotate'" >
 
                 </xsl:if>

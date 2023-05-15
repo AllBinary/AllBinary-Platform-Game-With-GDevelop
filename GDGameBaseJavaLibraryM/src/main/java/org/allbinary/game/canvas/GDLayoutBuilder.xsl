@@ -113,7 +113,25 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
 
                         public boolean initialized = false;
-                        
+
+                        public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources createSpecialAnimationImageResources() {
+                            try {
+                                return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.create();
+                            } catch(Exception e) {
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources", this, commonStrings.CONSTRUCTOR, e));
+                            }
+                            return null;
+                        }
+
+                        public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources createSpecialAnimationGDResources(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+                            try {
+                                return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance(allBinaryGameLayerManager);
+                            } catch(Exception e) {
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
+                            }
+                            return null;
+                        }
+                                                
                         public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR + ":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder", this, commonStrings.CONSTRUCTOR));
@@ -175,21 +193,10 @@ Created By: Travis Berthelot
                         };
                         -->
 
-                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = null;
-
-                        try {
-                    imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.create();
-                        } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources", this, commonStrings.CONSTRUCTOR, e));
-                        }
+                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = this.createSpecialAnimationImageResources();
 
                     //GDNode processM calls in this class can load resources
-                    GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = null;
-                        try {
-                    resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance(allBinaryGameLayerManager);
-                        } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
-                        }
+                    GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = this.createSpecialAnimationGDResources(allBinaryGameLayerManager);
 
                     //GDNode - START
                     externalEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes.getInstance(allBinaryGameLayerManager);

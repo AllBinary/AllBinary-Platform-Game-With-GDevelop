@@ -55,4 +55,49 @@ Created By: Travis Berthelot
         
     </xsl:template>
 
+    <xsl:template name="launchFileActionProcess" >
+        
+                        //LaunchFile
+                        @Override
+                        public boolean process() throws Exception {
+                            super.processStats();
+
+                            <xsl:if test="type/value = 'LaunchFile'" >
+                            <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 2" >
+                            //<xsl:value-of select="translate(text(), '\&quot;', '')" />
+                            </xsl:if>
+                            </xsl:for-each>
+                            </xsl:if>
+
+                            <xsl:variable name="command" >
+                            <xsl:if test="type/value = 'LaunchFile'" >
+                            <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 1" ><xsl:value-of select="translate(text(), '\&quot;', '')" /></xsl:if>
+                            </xsl:for-each>
+                            </xsl:if>
+                            </xsl:variable>
+
+                            try {
+
+                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
+                                //<xsl:value-of select="$command" />
+                                <xsl:if test="contains($command, 'https://localhost/about.html')" >
+                                canvas.getCustomCommandListener().commandAction(org.allbinary.game.commands.GameCommandsFactory.getInstance().DISPLAY_ABOUT, ProgressCanvasFactory.getInstance());
+                                </xsl:if>
+                                <xsl:if test="not(contains($command, 'https://localhost/about.html'))" >
+                                    throw new RuntimeException("Not Implemented");
+                                </xsl:if>
+
+                            } catch(Exception e) {
+                                //3
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                            }
+
+                            return true;
+                        }
+        
+    </xsl:template>
+
 </xsl:stylesheet>

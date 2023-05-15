@@ -55,7 +55,7 @@ public class GDToAllBinaryGenerationTool
 
     private final String PLAY_SOUND = "PlaySound";
 
-    private GDToAllBinaryGenerationTool()
+    public GDToAllBinaryGenerationTool()
     {
     }
 
