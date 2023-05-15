@@ -22,8 +22,9 @@ package org.allbinary.game.canvas;
 
 import javax.microedition.lcdui.CommandListener;
 
+import org.allbinary.animation.special.SpecialAnimation;
+        
 import org.allbinary.game.init.GDGameStaticInitializerFactory;
-
 import org.allbinary.game.configuration.GameSpeed;
 import org.allbinary.game.displayable.canvas.StartCanvas;
 import org.allbinary.game.identification.GroupFactory;
@@ -96,6 +97,17 @@ public class <GDLayout> extends StartCanvas
         GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance().close();
     }
 
+    public synchronized void unPause()
+    {
+        super.unPause();
+        this.paintedSpecialAnimationInterface = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance();
+    }
+    
+    //Hack for GD
+    public void end2() {
+        this.paintedSpecialAnimationInterface = SpecialAnimation.getInstance();
+    }
+            
 //    protected int getNextRandom()
 //    {
 //    	PreLogUtil.put("******************Demo Next Random Is Always 1", this, "getNextRandom");
