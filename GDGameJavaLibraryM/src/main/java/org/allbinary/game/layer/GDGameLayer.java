@@ -51,7 +51,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     //private final int SCALE_FACTOR_VALUE = (ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE / ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR) * 2 / 3;
     private static final int SCALE_FACTOR = ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR;
 
-    public final GDObject gdObject;
+    public GDObject gdObject;
 
     private final int quarterWidth = (this.getHalfWidth() >> 1) - 1;
     private final int quarterHeight = (this.getHalfHeight() >> 1) - 1;
@@ -125,6 +125,18 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //LogUtil.put(LogFactory.getInstance(this.toString(), this, CommonStrings.getInstance().CONSTRUCTOR));
     }
 
+    public void set(final GDObject gdObject) throws Exception {
+        final int size = this.rotationAnimationInterface.length;
+        for(int index = 0; index < size; index++) {
+            this.rotationAnimationInterface[index].setFrame(0);
+        }
+        this.gdObject = gdObject;
+        this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
+        this.initPosition();
+        this.updateGDObject(0);
+        this.setDestroyed(false);
+    }
+    
     protected IndexedAnimation[] getInitIndexedAnimationInterface()
     {
         return initIndexedAnimationInterface;

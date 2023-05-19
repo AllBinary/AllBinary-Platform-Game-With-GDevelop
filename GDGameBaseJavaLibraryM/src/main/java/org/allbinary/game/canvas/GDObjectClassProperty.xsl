@@ -59,6 +59,7 @@ Created By: Travis Berthelot
                 //private BasicArrayList <xsl:value-of select="name" />List = ZERO_GD_OBJECT;
                 //private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
                 public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+                public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                 public final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
             </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
