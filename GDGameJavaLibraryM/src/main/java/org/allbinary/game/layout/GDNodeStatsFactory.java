@@ -26,6 +26,7 @@ public class GDNodeStatsFactory extends BaseGDNodeStats {
     private static final BaseGDNodeStats instance = 
             new BaseGDNodeStats();
             //new GDNodeStatsFactory();
+            //
 
     /**
      * @return the instance

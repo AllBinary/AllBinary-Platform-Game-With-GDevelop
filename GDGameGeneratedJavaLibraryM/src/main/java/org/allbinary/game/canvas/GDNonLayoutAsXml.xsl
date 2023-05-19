@@ -15,7 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <xsl:import href="../GDGameBaseJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeIdXml.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeIdXml.xsl" />
     
     <xsl:output method="html" indent="yes" />
 

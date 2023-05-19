@@ -26,7 +26,7 @@ import org.allbinary.logic.communication.log.LogUtil;
  *
  * @author User
  */
-public class GDToAllBinaryCanvasGenerator extends Processor
+public class GDToAllBinaryThreedCanvasGenerator extends Processor
 {
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final XslHelper xslHelper = XslHelper.getInstance();
@@ -51,11 +51,11 @@ public class GDToAllBinaryCanvasGenerator extends Processor
         if (index == 1)
         {
             className = stringBuilder.append("GDGame").append(name).append("Canvas").toString();
-            this.orig = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameGDLayoutCanvas.xsl";
+            this.orig = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameGDLayoutCanvas.xsl";
         } else
         {
             className = stringBuilder.append("GDGameStart").append(name).append("Canvas").toString();
-            this.orig = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameStartGDLayoutCanvas.xsl";
+            this.orig = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameStartGDLayoutCanvas.xsl";
         }
     }
 
@@ -64,7 +64,7 @@ public class GDToAllBinaryCanvasGenerator extends Processor
     {
 
         stringBuilder.delete(0, stringBuilder.length());
-        final String CANVAS = stringBuilder.append("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\").append(this.className).append(".java").toString();
+        final String CANVAS = stringBuilder.append("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\").append(this.className).append(".java").toString();
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);

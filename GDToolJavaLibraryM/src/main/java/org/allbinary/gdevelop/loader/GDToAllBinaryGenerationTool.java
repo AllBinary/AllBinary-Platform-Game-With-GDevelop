@@ -7,6 +7,7 @@ package org.allbinary.gdevelop.loader;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import org.allbinary.canvas.Processor;
 import org.allbinary.data.tree.dom.document.XmlDocumentHelper;
 import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.gdevelop.json.GDProject;
@@ -51,6 +52,7 @@ public class GDToAllBinaryGenerationTool
     private final GDToAllBinaryEarlyResourceInitializationGenerator earlyResourceInitializationGenerator = new GDToAllBinaryEarlyResourceInitializationGenerator();
     private final GDToAllBinaryMIDletGenerator midletGenerator = new GDToAllBinaryMIDletGenerator();
     private final GDLayoutsToAllBinaryRunnableGenerator runnableGenerator = new GDLayoutsToAllBinaryRunnableGenerator();
+    private final GDLayoutsToAllBinaryThreedRunnableGenerator runnableThreedGenerator = new GDLayoutsToAllBinaryThreedRunnableGenerator();
     private final BasicArrayList layoutList = new BasicArrayList();
 
     private final String PLAY_SOUND = "PlaySound";
@@ -101,11 +103,12 @@ public class GDToAllBinaryGenerationTool
         this.earlyResourceInitializationGenerator.process(soundsGenerator);
         this.midletGenerator.process();
         this.runnableGenerator.process();
+        this.runnableThreedGenerator.process();
 
         final int size = this.layoutList.size();
         for (int index = 0; index < size; index++)
         {
-            ((GDToAllBinaryCanvasGenerator) this.layoutList.get(index)).process();
+            ((Processor) this.layoutList.get(index)).process();
         }
 
         //"GDGameAndroidEarlyResourceInitialization"
@@ -173,10 +176,14 @@ public class GDToAllBinaryGenerationTool
     {
         this.midletGenerator.loadLayout(layout, index);
         this.runnableGenerator.loadLayout(layout, index);
+        this.runnableThreedGenerator.loadLayout(layout, index);
 
         final GDToAllBinaryCanvasGenerator canvasGenerator = new GDToAllBinaryCanvasGenerator();
+        final GDToAllBinaryThreedCanvasGenerator canvasThreedGenerator = new GDToAllBinaryThreedCanvasGenerator();
         canvasGenerator.loadLayout(layout, index);
+        canvasThreedGenerator.loadLayout(layout, index);
         this.layoutList.add(canvasGenerator);
+        this.layoutList.add(canvasThreedGenerator);
 
         this.loadEvents(layout.eventList);
     }

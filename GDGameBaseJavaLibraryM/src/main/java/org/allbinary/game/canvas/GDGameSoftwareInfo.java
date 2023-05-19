@@ -10,24 +10,19 @@
 * 
 * Created By: Travis Berthelot
 * 
- */
-package org.allbinary.game.layer;
+*/
+package org.allbinary.game.canvas;
 
-import org.allbinary.game.layout.GDObject;
+import org.allbinary.logic.system.SoftwareInformation;
 
-/**
- *
- * @author User
- */
-public class NullGDGameLayerFactory extends GDGameLayerFactory
+public class GDGameSoftwareInfo
 {
-    public NullGDGameLayerFactory() {
-        super(null, null, null, null);
-    }
+    //This should change in next Android Release by moving AndroidMobile info only the client info
+    private static final SoftwareInformation SINGLETON = 
+        new SoftwareInformation("TestDemoGame", "1.2.0");
     
-    public GDGameLayer create(final GDObject gdObject) {
-        
-        throw new RuntimeException();
-        //return null;
+    public static SoftwareInformation getInstance()
+    {
+        return SINGLETON;
     }
 }

@@ -80,12 +80,14 @@ public class GDToAllBinaryMIDletGenerator
         
         final InputStream[] inputStreamArray = {
             new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.xsl"),
-            new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameCommandFactory.xsl")
+            new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.xsl"),
+            new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameCommandFactory.xsl")
         };
 
         final String[] outputArray = {
             "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.java",
-            "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameCommandFactory.java"
+            "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.java",
+            "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameCommandFactory.java"
         };
 
         final int size2 = inputStreamArray.length;
