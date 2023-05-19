@@ -10,10 +10,10 @@
         <!-- Game Version End -->
     </parent>
 
-    <artifactId>GDGameBaseJavaLibrary</artifactId>
+    <artifactId>GDGameGeneratedJavaLibrary</artifactId>
     <packaging>jar</packaging>
 
-    <name>GDGameBaseJavaLibrary</name>
+    <name>GDGameGeneratedJavaLibrary</name>
     <url>http://www.allbinary.com/</url>
 
     <properties>
