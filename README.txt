@@ -16,6 +16,8 @@ What is the goal?
 The goal of the AllBinary Platform Game with GDevelop is to help games developers 
 generate game runtimes from GDevelop game JSON.
 
+Example Game: https://play.google.com/store/apps/details?id=org.allbinary.game.gd.miniasteroids
+
 What is the License?
 
 Please see the LICENSE file in the root of the repository.
