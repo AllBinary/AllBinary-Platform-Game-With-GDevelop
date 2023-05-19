@@ -31,6 +31,8 @@
         <module>../GDGameThreedAndroidResourcesTempJavaLibraryM</module>
         <module>../GDGameThreedAndroidResourceJavaLibraryM</module>
         
+        <module>../../../resource/GDGameOpenGLThreedAnimationResourceJavaLibraryM</module>
+
         <module>../GDGameThreedAndroidBaseJavaLibraryM</module>
         <module>../GDGameThreedAndroidJavaLibraryM</module>
         <module>../GDGameThreedAndroidActivityJavaLibraryM</module>

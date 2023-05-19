@@ -48,39 +48,6 @@
         -->
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>FormJSEJavaLibrary</artifactId>        
-            <version>${allbinary.platform.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
-                    <artifactId>FormBaseJavaLibrary</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
-                    <artifactId>GameInputLibrary</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
-                    <artifactId>GameSoundsJavaLibrary</artifactId>
-                </exclusion>
-
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
-                    <artifactId>AllBinaryJ2MELibrary</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
-                    <artifactId>EventJ2MELibrary</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEJavaUtilLibrary</artifactId>                
-                </exclusion>
-
-            </exclusions>
-        </dependency>                
-        <dependency>
-            <groupId>org.allbinary</groupId>
             <artifactId>J2MEGameMidletAsActivityJavaLibrary</artifactId>        
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
@@ -100,12 +67,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>J2MEMidletAsActivityJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
             <exclusions>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
@@ -137,6 +103,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        -->
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>J2MEMidletAsViewJavaLibrary</artifactId>
@@ -443,10 +410,12 @@
     </dependencies>
 
     <build>
+        
         <pluginManagement>
             <plugins>
+                
+                <!-- Not working older: maven-android-plugin -->        
                 <plugin>
-                    <!-- Not working older: maven-android-plugin -->        
                     <groupId>com.simpligility.maven.plugins</groupId>
                     <artifactId>android-maven-plugin</artifactId>
                     <version>4.6.0</version>
@@ -483,6 +452,7 @@
                 since Eclipse has or gets the proper dependencies
                 <ignoreBuildWarnings>true</ignoreBuildWarnings>
                 4.4.2 worked
+                4.6.0 worked
                 -->
                 <groupId>com.simpligility.maven.plugins</groupId>
                 <artifactId>android-maven-plugin</artifactId>
@@ -496,7 +466,7 @@
                     -->
                     <sdk>
                         <!-- 5 is fine but is not installed by default -->
-                        <platform>5</platform>
+                        <platform>33</platform>
                     </sdk>
                     <proguard>
                         <skip>true</skip>
