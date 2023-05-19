@@ -28,11 +28,19 @@
             <groupId>org.allbinary</groupId>
             <artifactId>AllBinaryOptionalBasePlatformJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameGeneratedJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
 
         <dependency>
             <groupId>org.allbinary.game.multiplayer</groupId>
@@ -41,7 +49,7 @@
             <artifactId>AllBinaryGameClientBaseJavaLibrary</artifactId>
             -->
             <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
@@ -50,7 +58,7 @@
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameTouchJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
@@ -59,7 +67,7 @@
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
 
@@ -67,7 +75,7 @@
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameJ2MEJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
@@ -75,7 +83,7 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameThreedAndroidResourcesTempJavaLibrary</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${allbinary.platform.version}</version>
             <optional>true</optional>            
         </dependency>
         
@@ -83,7 +91,7 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameLocalHighScoresJavaLibrary</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${allbinary.platform.version}</version>
             <optional>true</optional>
         </dependency>
         -->
@@ -92,7 +100,7 @@
             <groupId>org.allbinary.game.threed</groupId>
             <artifactId>AllBinaryToAdvancedMin3dJavaLibrary</artifactId>        
             <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
 

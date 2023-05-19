@@ -8,7 +8,7 @@ import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.PreLogUtil;
 import org.allbinary.media.audio.ErrorSound;
 import org.allbinary.media.audio.SelectSound;
-import org.allbinary.media.audio.TestSound;
+//import org.allbinary.media.audio.TestSound;
 import org.allbinary.midlet.MidletIcon;
 
 public class GDGameAndroidEarlyResourceInitialization
@@ -38,8 +38,8 @@ extends ResourceInitialization
         resourceUtil.addResource(ErrorSound.getInstance().getResource(), Integer
                 .valueOf(androidResources.raw.error));
         
-        resourceUtil.addResource(TestSound.getInstance().getResource(), Integer
-                .valueOf(androidResources.raw.test));
+        //resourceUtil.addResource(TestSound.getInstance().getResource(), Integer
+                //.valueOf(androidResources.raw.test));
 
         //resourceUtil.addResource(ExplosionResources.getInstance().EXPLOSION_60_RESOURCE, Integer
           //      .valueOf(AndroidResources.raw.explosion_sprite_60_by_60));
