@@ -18,8 +18,8 @@ package playn.html;
 import org.allbinary.playn.AllBinaryPlayNGame;
 import org.allbinary.playn.AllBinaryPlayNGameRunnable;
 import org.allbinary.util.BasicArrayList;
-import playn.core.PlayN;
 import playn.core.GDGameMidletFactory;
+import playn.core.PlayN;
 import playn.core.GDGameProcessor;
 
 public class GDGameGameHtml extends HtmlGame {
@@ -37,7 +37,9 @@ public class GDGameGameHtml extends HtmlGame {
     final AllBinaryPlayNGameRunnable gameRunnable = 
             new AllBinaryPlayNGameRunnable(list);
     PlayN.run(
+            //new SoundTestGame()
             //new GraphicsTestGame()
-            new AllBinaryPlayNGame(new GDGameMidletFactory(), gameRunnable, 960, 600));
+            new AllBinaryPlayNGame(new GDGameMidletFactory(), gameRunnable, 960, 600)
+            );
   }
 }

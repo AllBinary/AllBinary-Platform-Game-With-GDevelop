@@ -36,12 +36,12 @@
         <dependency>
             <groupId>com.googlecode.playn</groupId>
             <artifactId>playn-java</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.playn</groupId>
             <artifactId>playn-html</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <!-- was asm for 2.6.1 of gwt but gwt 2.7.0 needs org.ow2.asm -->
@@ -53,9 +53,7 @@
         <dependency>
             <groupId>org.microemu</groupId>
             <artifactId>microemu-playn</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
+            <version>1.1-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <artifactId>J2MEColorJavaLibrary</artifactId>
@@ -76,7 +74,7 @@
             <groupId>org.allbinary</groupId>
             <artifactId>ABDKPlaynJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
+            <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
             
