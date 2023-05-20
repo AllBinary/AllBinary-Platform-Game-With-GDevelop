@@ -114,6 +114,7 @@ public class GDToAllBinaryGenerationTool
         this.allBinaryThreedAndroidResourcesGenerator.process();
         this.soundsGenerator.process();
         this.earlyResourceInitializationGenerator.process(soundsGenerator);
+        this.earlyResourceInitializationGenerator.process2(soundsGenerator);
         this.midletGenerator.process();
         this.runnableGenerator.process();
         this.runnableThreedGenerator.process();

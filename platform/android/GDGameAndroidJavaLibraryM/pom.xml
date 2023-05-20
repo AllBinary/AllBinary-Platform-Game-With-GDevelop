@@ -15,10 +15,21 @@
 
     <name>GDGameAndroidJavaLibrary</name>
     <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <buildLabel>${version}</buildLabel>
-        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
     </properties>
 
     <dependencies>
@@ -41,29 +52,24 @@
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>MotionInputAndroidResourcesJavaLibrary</artifactId>        
-            <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
         
         <dependency>
             <groupId>org.allbinary.input</groupId>
             <artifactId>TouchButtonResourceAnimationJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
         
         <dependency>
             <groupId>org.allbinary.input</groupId>
             <artifactId>TouchButtonResourceOpenGLESAnimationJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
         </dependency> 
-                
+
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
@@ -100,14 +106,6 @@
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->            
-        </dependency>
-
-        <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>FileJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
         </dependency>
 
     </dependencies>

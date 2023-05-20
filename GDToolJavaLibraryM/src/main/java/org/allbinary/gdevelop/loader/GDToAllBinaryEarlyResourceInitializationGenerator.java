@@ -71,6 +71,35 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
 
     }
 
+    public void process2(final GDToAllBinarySoundsGenerator soundsGenerator) throws Exception
+    {
+        final String GD_KEY = "//GD";
+        
+        final String RESOURCE_INITIALIZATION_ORIGINAL = "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDGameAndroidEarlyResourceInitialization.origin";
+        final String RESOURCE_INITIALIZATION = "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDGameAndroidEarlyResourceInitialization.java";
+        
+        final StringMaker stringBuilder = new StringMaker();
+
+        this.appendSounds(soundsGenerator, stringBuilder);
+        this.appendMedia(stringBuilder);
+
+        final StreamUtil streamUtil = StreamUtil.getInstance();
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
+        final byte[] byteArray = new byte[16384];
+
+        final FileInputStream fileInputStream = new FileInputStream(RESOURCE_INITIALIZATION_ORIGINAL);
+        
+        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
+
+        final Replace replace = new Replace(GD_KEY, stringBuilder.toString());
+        final String newFileAsString = replace.all(androidRFileAsString);
+
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE_INITIALIZATION, this, CommonStrings.getInstance().CONSTRUCTOR));
+
+        this.bufferedWriterUtil.overwrite(RESOURCE_INITIALIZATION, newFileAsString);
+
+    }
+    
     public void appendSounds(final GDToAllBinarySoundsGenerator soundsGenerator, final StringMaker stringBuilder) {
         final BasicArrayList playSoundResourceClassNameList = soundsGenerator.playSoundResourceClassNameList;
         final BasicArrayList playSoundAndroidResourceNameList = this.gdResources.playSoundAndroidResourceNameList;
