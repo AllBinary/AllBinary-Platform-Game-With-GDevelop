@@ -7,7 +7,7 @@ import org.allbinary.animation.image.GDGameOpenGLThreedBasedAnimationInterfaceFa
 //import org.allbinary.game.image.GDGameImageArrayBasedAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.resource.ResourceInitialization;
 //import org.allbinary.input.motion.button.TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory;
-import org.allbinary.input.motion.button.TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory;
+//import org.allbinary.input.motion.button.TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory;
 
 public class GDGameAndroidAnimationInterfaceFactoryResourceInitialization
 extends ResourceInitialization
@@ -33,8 +33,8 @@ extends ResourceInitialization
         //featuredAnimationInterfaceFactoryInterfaceFactory.add(
                 //new GDGameImageArrayBasedAnimationInterfaceFactoryInterfaceFactory());
 
-        featuredAnimationInterfaceFactoryInterfaceFactory.add(
-                new TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory());
+        //featuredAnimationInterfaceFactoryInterfaceFactory.add(
+                //new TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory());
 
         featuredAnimationInterfaceFactoryInterfaceFactory.add(
                 new GDGameGameResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory());
