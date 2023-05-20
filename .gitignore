@@ -51,3 +51,7 @@ GD*GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/res/drawable/
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/res/raw/
+/platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/.idea
+/platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/.gradle
+/platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/build
+/platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/release
