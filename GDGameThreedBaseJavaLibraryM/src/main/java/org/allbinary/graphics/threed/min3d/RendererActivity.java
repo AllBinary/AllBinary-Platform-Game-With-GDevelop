@@ -6,11 +6,11 @@ import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import min3d.core.SceneController;
+import org.allbinary.AndroidResources;
 import org.allbinary.android.AndroidStrings;
 import org.allbinary.android.device.OpenGLESGraphicsFactory;
 import org.allbinary.android.view.OptimizedGLSurfaceView;
 import org.allbinary.game.configuration.feature.Features;
-import org.allbinary.game.gd.R;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -29,6 +29,8 @@ import org.microemu.android.device.AndroidDisplayOpenGLESGraphicsFactory;
  */
 public class RendererActivity extends Activity //implements ISceneController
 {
+    private final AndroidResources androidResources = AndroidResources.getInstance();
+
     //protected GLSurfaceView _glSurfaceView;
     protected OptimizedGLSurfaceView _glSurfaceView;
 	
@@ -63,9 +65,9 @@ public class RendererActivity extends Activity //implements ISceneController
             
             //_glSurfaceView = new GLSurfaceView(this);
             //_glSurfaceView = new AllBinaryMidletMin3dSurfaceView2(this);
-            this.setContentView(R.layout.gd_min3d_layout);
+            this.setContentView(this.androidResources.layout.gd_min3d_layout);
             //_glSurfaceView = (GLSurfaceView) this.findViewById(R.id.gd_gl);
-            _glSurfaceView = (OptimizedGLSurfaceView) this.findViewById(R.id.gd_gl);
+            _glSurfaceView = (OptimizedGLSurfaceView) this.findViewById(this.androidResources.id.gd_gl);
 
             //TWB
             DisplayInfoSingleton displayInfo = DisplayInfoSingleton.getInstance();

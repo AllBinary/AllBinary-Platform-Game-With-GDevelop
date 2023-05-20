@@ -62,7 +62,7 @@ extends AllBinaryGameSceneController
 
     Object3dContainer _cube;
     
-	@Override 
+	@Override
 	public void updateScene()
 	{
 		//PreLogUtil.put(StringUtil.getInstance().EMPTY_STRING, this, "updateScene");

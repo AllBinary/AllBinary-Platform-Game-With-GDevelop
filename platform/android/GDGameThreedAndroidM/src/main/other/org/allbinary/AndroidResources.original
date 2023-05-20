@@ -1,6 +1,6 @@
 package org.allbinary;
 
-import org.allbinary.game.gd.threed.miniasteroids.R;
+import org.allbinary.game.gd.threed.<name>.R;
 
 public class AndroidResources
 {
@@ -24,4 +24,3 @@ public class AndroidResources
 
     public R.string string = new R.string();
 }
-

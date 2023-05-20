@@ -22,14 +22,14 @@ import org.allbinary.logic.communication.log.LogUtil;
  *
  * @author User
  */
-public class GDToAndroidGameActivityGenerator extends GDNameGenerator
+public class GDToThreedAndroidGameActivityGenerator extends GDNameGenerator
 {
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
-    public GDToAndroidGameActivityGenerator() {
+    public GDToThreedAndroidGameActivityGenerator() {
     }
-    
+
     @Override
     public void process() throws Exception {
         
@@ -37,9 +37,9 @@ public class GDToAndroidGameActivityGenerator extends GDNameGenerator
         final StringMaker stringMaker = new StringMaker();
         final String name = camelCaseUtil.getAsCamelCase(this.name, stringMaker).toLowerCase();
         
-        final String R_ORIGINAL = "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\GDGameAndroidActivity.original";
+        final String R_ORIGINAL = "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameThreedAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\GDGameAndroidActivity.original";
         stringMaker.delete(0, stringMaker.length());
-        stringMaker.append("G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\").append(name);
+        stringMaker.append("G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameThreedAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\").append(name).append("\\threed");
         final File directoryFile = new File(stringMaker.toString());
         directoryFile.mkdirs();
         final String R = stringMaker.append("\\GDGameAndroidActivity.java").toString();

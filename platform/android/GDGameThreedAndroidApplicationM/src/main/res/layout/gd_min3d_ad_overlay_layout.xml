@@ -3,7 +3,7 @@
     android:layout_width="fill_parent" android:layout_height="fill_parent" 
     android:id="@+id/root" >
 
-    <org.allbinary.game.gd.GDGameAndroidMin3dView
+    <org.allbinary.game.GDGameAndroidMin3dView
         xmlns:android="http://schemas.android.com/apk/res/android" 
         android:id="@+id/gd_gl"
         android:layout_width="fill_parent" 

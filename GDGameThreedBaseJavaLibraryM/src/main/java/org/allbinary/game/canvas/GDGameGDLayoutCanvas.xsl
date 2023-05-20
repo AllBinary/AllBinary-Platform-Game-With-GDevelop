@@ -29,12 +29,12 @@ import org.allbinary.input.gyro.AllBinaryOrientationSensor;
 import org.allbinary.input.gyro.GyroSensorFactory;
 import org.allbinary.media.audio.GDGameSoundsFactoryFactory;
 import org.allbinary.util.BasicArrayList;
-import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringUtil;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.ai.OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer;
 import org.allbinary.animation.special.SpecialAnimation;
+import org.allbinary.game.GDGameAllBinarySceneControllerFactory;
 import org.allbinary.game.GameInfo;
 import org.allbinary.game.GameTypeFactory;
 import org.allbinary.game.IntermissionFactory;
@@ -44,14 +44,12 @@ import org.allbinary.game.configuration.event.ChangedGameFeatureListener;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GameFeature;
 import org.allbinary.game.configuration.feature.GameFeatureFactory;
-import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
 import org.allbinary.game.combat.canvas.CombatGameCanvas;
 import org.allbinary.game.displayable.canvas.GamePerformanceInitUpdatePaintable;
 import org.allbinary.game.displayable.canvas.StartIntermissionPaintable;
 import org.allbinary.game.identification.GroupFactory;
 import org.allbinary.game.input.OptimizedGameInputLayerProcessorForCollidableLayer;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
-import org.allbinary.game.layer.PlayerGameInputGameLayer;
 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
 import org.allbinary.game.layout.BaseGDNodeStats;
 import org.allbinary.game.layout.GDNodeStatsFactory;
@@ -63,9 +61,10 @@ import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
-import org.allbinary.graphics.paint.NullPaintable;
+import org.allbinary.graphics.opengles.OpenGLFeatureUtil;
 import org.allbinary.graphics.paint.InitUpdatePaintable;
 import org.allbinary.graphics.paint.Paintable;
+import org.allbinary.graphics.threed.min3d.AllBinarySceneController;
 import org.allbinary.layer.event.LayerManagerEventHandler;
 import org.allbinary.media.AllBinaryVibration;
 import org.allbinary.media.audio.AllBinaryMediaManager;
@@ -344,6 +343,20 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
         new GDGameLevelBuilder(this).build();
 
+        AllBinaryGameLayerManager layerManager = this.getLayerManager();
+        OpenGLFeatureUtil openGLFeatureUtil = OpenGLFeatureUtil.getInstance();
+            
+        if (openGLFeatureUtil.isAnyThreed())
+        {
+            progressCanvas.addPortion(portion, "Building 3D Game Level");
+
+            AllBinarySceneController sceneController = GDGameAllBinarySceneControllerFactory.getInstance();
+
+            sceneController.buildScene(layerManager);
+
+            progressCanvas.addPortion(portion, "Finalizing 3D Game Level");
+        }
+        
         progressCanvas.addPortion(portion, "Set Background");
 
         //Some games update backgrounds here
@@ -375,6 +388,19 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         // A canvas not in GameState.PLAYING_GAME_STATE will not appear in
         // democanvas
         this.setGameState(GameState.PLAYING_GAME_STATE);
+    }
+
+    protected void cleanupGame() throws Exception
+    {
+        super.cleanupGame();
+        
+        if (OpenGLFeatureUtil.getInstance().isAnyThreed())
+        {
+            AllBinarySceneController sceneController = GDGameAllBinarySceneControllerFactory.getInstance();
+            sceneController.clear();
+        }
+        
+        gameLayerManager.cleanup();
     }
 
     public void setGameState(GameState gameState) throws Exception
@@ -459,6 +485,11 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         this.getTouchPaintable().paint(graphics);
     }
 
+    public void paintThreed(Graphics graphics)
+    {
+        
+    }
+    
     private TimeDelayHelper playerTimeDelayHelper = new TimeDelayHelper(2000);
             //890);
 

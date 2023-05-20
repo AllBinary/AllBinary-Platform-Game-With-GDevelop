@@ -10,9 +10,9 @@ package org.allbinary.gdevelop.loader;
  *
  * @author User
  */
-public class GDToAndroidResourcesClassGenerator extends GDNameFileGenerator
+public class GDToAndroidResourcesGenerator extends GDNameFileGenerator
 {
-    public GDToAndroidResourcesClassGenerator() {
+    public GDToAndroidResourcesGenerator() {
         super("G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.original",
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.java");
     }

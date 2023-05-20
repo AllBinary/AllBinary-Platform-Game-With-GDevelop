@@ -21,7 +21,7 @@ import org.allbinary.logic.communication.log.LogUtil;
  *
  * @author User
  */
-public class GDToAllBinaryAndroidResourcesGenerator
+public class GDToThreedAndroidResourcesGradleGenerator
 {
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
@@ -39,7 +39,7 @@ public class GDToAllBinaryAndroidResourcesGenerator
     
     private String name;
     
-    public GDToAllBinaryAndroidResourcesGenerator() {
+    public GDToThreedAndroidResourcesGradleGenerator() {
         resourceStringBuilder.append(GD_KEY);
         resourceStringBuilder.append('\n');
     }
@@ -59,8 +59,8 @@ public class GDToAllBinaryAndroidResourcesGenerator
     
     public void process() throws Exception {
 
-        final String RESOURCE_ORIGINAL = "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.original";
-        final String RESOURCE = "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java";
+        final String RESOURCE_ORIGINAL = "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.original";
+        final String RESOURCE = "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java";
         
         final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
         final StringMaker stringMaker = new StringMaker();        

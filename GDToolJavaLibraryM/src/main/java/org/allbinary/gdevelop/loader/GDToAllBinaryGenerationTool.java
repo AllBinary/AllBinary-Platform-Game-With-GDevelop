@@ -42,12 +42,22 @@ public class GDToAllBinaryGenerationTool
     
     private final BasicArrayList duplicateCheckList = new BasicArrayList();
 
-    private final GDToAndroidManifestGenerator androidManifestGenerator = new GDToAndroidManifestGenerator();
-    private final GDToAndroidResourcesClassGenerator androidResourcesClassGenerator = new GDToAndroidResourcesClassGenerator();
-    private final GDToAndroidGameActivityGenerator androidGameActivityGenerator = new GDToAndroidGameActivityGenerator();
+    private final GDNameGenerator[] gdNameFileGeneratorArray = {
+        new GDToAndroidManifestGenerator(),
+        new GDToAndroidManifestGradleGenerator(),
+        new GDToThreedAndroidManifestGenerator(),
+        new GDToThreedAndroidManifestGradleGenerator(),
+        new GDToAndroidResourcesGenerator(),
+        new GDToThreedAndroidResourcesGenerator(),
+        new GDToAndroidGameActivityGenerator(),
+        new GDToThreedAndroidGameActivityGenerator(),
+        new GDToAndroidGameActivityGenerator()
+    };
+    
     private final GDToAndroidRClassGenerator androidRClassGenerator = new GDToAndroidRClassGenerator();
     private final GDToAllBinaryResourcesGenerator allBinaryResourcesGenerator = new GDToAllBinaryResourcesGenerator();
-    private final GDToAllBinaryAndroidResourcesGenerator allBinaryAndroidResourcesGenerator = new GDToAllBinaryAndroidResourcesGenerator();
+    private final GDToAndroidResourcesGradleGenerator allBinaryAndroidResourcesGenerator = new GDToAndroidResourcesGradleGenerator();
+    private final GDToThreedAndroidResourcesGradleGenerator allBinaryThreedAndroidResourcesGenerator = new GDToThreedAndroidResourcesGradleGenerator();
     private final GDToAllBinarySoundsGenerator soundsGenerator = new GDToAllBinarySoundsGenerator();
     private final GDToAllBinaryEarlyResourceInitializationGenerator earlyResourceInitializationGenerator = new GDToAllBinaryEarlyResourceInitializationGenerator();
     private final GDToAllBinaryMIDletGenerator midletGenerator = new GDToAllBinaryMIDletGenerator();
@@ -93,12 +103,15 @@ public class GDToAllBinaryGenerationTool
 
         this.load(gdProject);
 
-        this.androidManifestGenerator.process();
+        final int size2 = gdNameFileGeneratorArray.length;
+        for(int index = 0; index < size2; index++) {
+            gdNameFileGeneratorArray[index].process();
+        }
+
         this.androidRClassGenerator.process();
-        this.androidResourcesClassGenerator.process();
-        this.androidGameActivityGenerator.process();
         this.allBinaryResourcesGenerator.process();
         this.allBinaryAndroidResourcesGenerator.process();
+        this.allBinaryThreedAndroidResourcesGenerator.process();
         this.soundsGenerator.process();
         this.earlyResourceInitializationGenerator.process(soundsGenerator);
         this.midletGenerator.process();
@@ -116,10 +129,13 @@ public class GDToAllBinaryGenerationTool
 
     private void load(GDProject gdProject) throws Exception
     {
+        final int size2 = gdNameFileGeneratorArray.length;
+        for(int index = 0; index < size2; index++) {
+            gdNameFileGeneratorArray[index].process(gdProject.name);
+        }
+        
         this.allBinaryAndroidResourcesGenerator.process(gdProject.name);
-        this.androidManifestGenerator.process(gdProject.name);
-        this.androidResourcesClassGenerator.process(gdProject.name);
-        this.androidGameActivityGenerator.process(gdProject.name);
+        this.allBinaryThreedAndroidResourcesGenerator.process(gdProject.name);
         
         //final BasicArrayList objectList = gdProject.objectList;
         //int size = objectList.size();
@@ -164,6 +180,7 @@ public class GDToAllBinaryGenerationTool
                 this.androidRClassGenerator.processResource(fileAsString);
                 this.allBinaryResourcesGenerator.processResource(fileAsString, resourceString);
                 this.allBinaryAndroidResourcesGenerator.processResource(fileAsString, resourceString);
+                this.allBinaryThreedAndroidResourcesGenerator.processResource(fileAsString, resourceString);
             }
 
             //if(resource.kind == resourceFactory.AUDIO) {
@@ -179,7 +196,7 @@ public class GDToAllBinaryGenerationTool
         this.runnableThreedGenerator.loadLayout(layout, index);
 
         final GDToAllBinaryCanvasGenerator canvasGenerator = new GDToAllBinaryCanvasGenerator();
-        final GDToAllBinaryThreedCanvasGenerator canvasThreedGenerator = new GDToAllBinaryThreedCanvasGenerator();
+        final GDToThreedAllBinaryCanvasGenerator canvasThreedGenerator = new GDToThreedAllBinaryCanvasGenerator();
         canvasGenerator.loadLayout(layout, index);
         canvasThreedGenerator.loadLayout(layout, index);
         this.layoutList.add(canvasGenerator);

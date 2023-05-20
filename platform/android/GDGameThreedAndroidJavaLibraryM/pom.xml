@@ -1,12 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParent</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version End -->
+    </parent>
+        
     <groupId>org.allbinary.game.gd</groupId>
     <artifactId>GDGameThreedAndroidJavaLibrary</artifactId>
     <packaging>jar</packaging>
-    <!-- AllBinary Platform Version Start -->
-    <version>1.0.0-SNAPSHOT</version>
-    <!-- AllBinary Platform Version End -->
 
     <name>GDGameThreedAndroidJavaLibrary</name>
     <url>http://www.allbinary.com/</url>
@@ -106,9 +112,6 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameTouchJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
         

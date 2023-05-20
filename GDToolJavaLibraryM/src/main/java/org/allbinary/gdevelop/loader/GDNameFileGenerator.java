@@ -21,14 +21,10 @@ import org.allbinary.logic.communication.log.LogUtil;
  *
  * @author User
  */
-public class GDNameFileGenerator
+public class GDNameFileGenerator extends GDNameGenerator
 {
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
-    
-    private final String GD_KEY = "<name>";
-    
-    private String name;
     
     private final String originalFilePath;
     private final String newFilePath;
@@ -38,10 +34,7 @@ public class GDNameFileGenerator
         this.newFilePath = newFilePath;
     }
     
-    public void process(final String name) {
-        this.name = name;
-    }
-    
+    @Override
     public void process() throws Exception {
                 
         final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();

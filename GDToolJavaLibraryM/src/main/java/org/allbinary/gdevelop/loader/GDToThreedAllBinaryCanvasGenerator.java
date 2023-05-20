@@ -26,7 +26,7 @@ import org.allbinary.logic.communication.log.LogUtil;
  *
  * @author User
  */
-public class GDToAllBinaryThreedCanvasGenerator extends Processor
+public class GDToThreedAllBinaryCanvasGenerator extends Processor
 {
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final XslHelper xslHelper = XslHelper.getInstance();

@@ -31,6 +31,7 @@ GDGameStartGameOverCanvasRunnable.java
 GD*GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
 
 ./platform/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/AndroidManifest.xml
+./platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/AndroidManifest.xml
 /platform/j2se/GDGameJ2SEApplicationM/src/
 /platform/j2me/GDGameJ2MEApplicationM/src/
 /platform/android/GDGameAndroidApplicationM/src/main/java/
@@ -47,3 +48,6 @@ GD*GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
 /platform/android/GDGameThreedAndroidApplicationM/src/main/java/
 /platform/android/GDGameThreedAndroidApplicationM/src/main/res/drawable/
 /platform/android/GDGameThreedAndroidApplicationM/src/main/res/raw/
+/platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/
+/platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/res/drawable/
+/platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/res/raw/
