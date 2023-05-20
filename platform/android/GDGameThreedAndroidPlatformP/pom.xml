@@ -34,16 +34,15 @@
         <module>../../../resource/GDGameOpenGLThreedAnimationResourceJavaLibraryM</module>
 
         <module>../GDGameThreedAndroidBaseJavaLibraryM</module>
-        <module>../GDGameThreedAndroidJavaLibraryM</module>
         <module>../GDGameThreedAndroidActivityJavaLibraryM</module>
         
         <!--
-        <module>../GDGameAndroidClientInfoJavaLibraryM</module>        
         -->
+        <module>../GDGameThreedAndroidClientInfoJavaLibraryM</module>
         
         <module>../GDGameThreedAndroidM</module>
         <module>../GDGameThreedAndroidApplicationM</module>
-        
+
     </modules>
 
 </project>

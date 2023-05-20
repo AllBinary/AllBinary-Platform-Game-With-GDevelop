@@ -11,10 +11,10 @@
     </parent>
         
     <groupId>org.allbinary.game.gd</groupId>
-    <artifactId>GDGameThreedAndroidJavaLibrary</artifactId>
+    <artifactId>GDGameThreedAndroidClientInfoJavaLibrary</artifactId>
     <packaging>jar</packaging>
 
-    <name>GDGameThreedAndroidJavaLibrary</name>
+    <name>GDGameThreedAndroidClientInfoJavaLibrary</name>
     <url>http://www.allbinary.com/</url>
     <distributionManagement>
         <snapshotRepository>

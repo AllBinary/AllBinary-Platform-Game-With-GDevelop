@@ -21,6 +21,7 @@ extends GDGameResourceInitialization
         
         new TouchButtonAndroidResources().init();
         
+      //GDGameAndroidResources.getInstance().init();
       //GDGameResources.init();
     }
 }
