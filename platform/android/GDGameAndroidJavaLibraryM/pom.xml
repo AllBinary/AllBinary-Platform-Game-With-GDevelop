@@ -67,7 +67,6 @@
             <groupId>org.allbinary.input</groupId>
             <artifactId>TouchButtonResourceOpenGLESAnimationJavaLibrary</artifactId>
             <version>${allbinary.platform.version}</version>
-            <optional>true</optional>
         </dependency> 
 
         <dependency>
