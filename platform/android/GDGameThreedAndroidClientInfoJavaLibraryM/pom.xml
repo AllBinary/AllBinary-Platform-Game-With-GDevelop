@@ -101,7 +101,7 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameThreedAndroidBaseJavaLibrary</artifactId>
+            <artifactId>GDGameThreedBaseJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->

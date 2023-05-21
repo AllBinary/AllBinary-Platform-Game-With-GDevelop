@@ -28,6 +28,7 @@ public final class R {
         public static final int gd_gl_layout=0x7f030002;
         public static final int gd_layout=0x7f030003;
         public static final int gd_min3d_layout=0x7f030003;
+        public static final int gd_min3d_ad_overlay_layout=0x7f030003;
     }
     public static final class raw {
     	public static final int error=0x7f040000;

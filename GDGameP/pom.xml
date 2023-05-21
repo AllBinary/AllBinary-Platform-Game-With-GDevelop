@@ -45,13 +45,15 @@
         <module>../platform/j2me/GDGameJ2MEJavaLibraryM</module>
         <module>../GDGameGeneratedJavaLibraryM</module>
         <module>../GDGameBaseJavaLibraryM</module>
+        <module>../GDGameThreedBaseJavaLibraryM</module>
         <module>../GDGameAIJavaLibraryM</module>
         <module>../GDGameJavaLibraryM</module>
         <module>../GDGameNoTouchJavaLibraryM</module>
         <!--
         
         -->
-        <module>../GDGameThreedBaseJavaLibraryM</module>
+        <module>../GDGamePreBaseJavaLibraryM</module>
+        <module>../GDGameThreedPreBaseJavaLibraryM</module>        
         
         <module>../GDGameTouchJavaLibraryM</module>
         <module>../GDGameWavSoundsJavaLibraryM</module>

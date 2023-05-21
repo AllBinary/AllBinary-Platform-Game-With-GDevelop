@@ -109,7 +109,6 @@ public class GDLayoutsToAllBinaryGenerator
                 
                 layoutGameXmlAsString,
                 layoutGameXmlAsString,
-                layoutGameXmlAsString,
                 
                 gameXmlAsString,
                 layoutGameXmlAsString,
@@ -135,7 +134,6 @@ public class GDLayoutsToAllBinaryGenerator
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutOtherEventGDNodes.xsl"),
 
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDResources.xsl"),
-                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutImageResources.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutTouchImageResources.xsl"),
                 
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGlobals.xsl"),
@@ -169,7 +167,6 @@ public class GDLayoutsToAllBinaryGenerator
                 "SpecialAnimationOtherEventGDNodes.java",
 
                 "SpecialAnimationGDResources.java",
-                "SpecialAnimationImageResources.java",
                 "SpecialAnimationTouchImageResources.java",
                 
                 "SpecialAnimationGlobals.java",
@@ -224,19 +221,25 @@ public class GDLayoutsToAllBinaryGenerator
             {
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl"),
-                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio\\GameSoundsFactory.xsl")
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio\\GameSoundsFactory.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutImageResources.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutImageResources.xsl"),
             };
-
+            
             final String[] OUTPUT_FILE_PATHS = {
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
-                "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio\\GD"
+                "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio\\GD",
+                "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+                "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD"
             };
             
             final String[] OUTPUT_FILE_PATH_END_ARRAY = {
                 "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
                 "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
                 "GameSoundsFactory.java",
+                "SpecialAnimationImageResources.java",
+                "SpecialAnimationImageResources.java",
             };
 
             final int xslTotal2 = OUTPUT_FILE_PATHS.length;

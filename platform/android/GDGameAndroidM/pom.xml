@@ -144,6 +144,12 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGamePreBaseJavaLibrary</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameAndroidClientInfoJavaLibrary</artifactId>
         </dependency>
         
