@@ -32,18 +32,29 @@ public class GDToAndroidRClassGenerator
     private final String PUBLIC_STATIC_FINAL_INT = "        public static final int ";
     private final String VALUE = " = 0x7f060007;\n";
     
+    private final String RESOURCE = "        //Resource\n";
+    private final String EXPRESSION_PARAM = "        //Expression Param\n";
+    private final String _OBJ = "_obj";
+    
     public GDToAndroidRClassGenerator() {
         androidRFileStringBuilder.append(GD_KEY);
         androidRFileStringBuilder.append('\n');
     }
     
     public void processResource(final String fileAsString) {
+        androidRFileStringBuilder.append(RESOURCE);
         androidRFileStringBuilder.append(PUBLIC_STATIC_FINAL_INT);
         androidRFileStringBuilder.append(fileAsString);
+        androidRFileStringBuilder.append(VALUE);
+        androidRFileStringBuilder.append('\n');
+        androidRFileStringBuilder.append(PUBLIC_STATIC_FINAL_INT);
+        androidRFileStringBuilder.append(fileAsString);
+        androidRFileStringBuilder.append(_OBJ);
         androidRFileStringBuilder.append(VALUE);
     }
     
     public void processExpressionParam(final String param) {
+        androidRFileStringBuilder.append(EXPRESSION_PARAM);
         androidRFileStringBuilder.append(PUBLIC_STATIC_FINAL_INT);
         androidRFileStringBuilder.append(param);
         androidRFileStringBuilder.append(VALUE);

@@ -62,99 +62,13 @@ public final class R {
         public static final int ouya_y=0x7f040016;
         
         public static final int game = 0x7f040017;
-        
+
         public static final int threed_obj = 0x7f040019;
         
         //GD
-//Expression Param
-        public static final int explosion = 0x7f060007;
-//Expression Param
-        public static final int laser_shoot = 0x7f060007;
-//Expression Param
-        public static final int thruster = 0x7f060007;
-//Expression Param
-        public static final int thruster_down = 0x7f060007;
-//Resource
-        public static final int debrish = 0x7f060007;
-
-        public static final int debrish_obj = 0x7f060007;
-//Resource
-        public static final int larg_asteroid_1 = 0x7f060007;
-
-        public static final int larg_asteroid_1_obj = 0x7f060007;
-//Resource
-        public static final int larg_asteroid_2 = 0x7f060007;
-
-        public static final int larg_asteroid_2_obj = 0x7f060007;
-//Resource
-        public static final int larg_asteroid_3 = 0x7f060007;
-
-        public static final int larg_asteroid_3_obj = 0x7f060007;
-//Resource
-        public static final int medium_asteroid_1 = 0x7f060007;
-
-        public static final int medium_asteroid_1_obj = 0x7f060007;
-//Resource
-        public static final int medium_asteroid_2 = 0x7f060007;
-
-        public static final int medium_asteroid_2_obj = 0x7f060007;
-//Resource
-        public static final int medium_asteroid_3 = 0x7f060007;
-
-        public static final int medium_asteroid_3_obj = 0x7f060007;
-//Resource
-        public static final int small_asteroid_1 = 0x7f060007;
-
-        public static final int small_asteroid_1_obj = 0x7f060007;
-//Resource
-        public static final int small_asteroid_2 = 0x7f060007;
-
-        public static final int small_asteroid_2_obj = 0x7f060007;
-//Resource
-        public static final int small_asteroid_3 = 0x7f060007;
-
-        public static final int small_asteroid_3_obj = 0x7f060007;
-//Resource
-        public static final int ship_1 = 0x7f060007;
-
-        public static final int ship_1_obj = 0x7f060007;
-//Resource
-        public static final int ship_bullet = 0x7f060007;
-
-        public static final int ship_bullet_obj = 0x7f060007;
-//Resource
-        public static final int ship_part_1 = 0x7f060007;
-
-        public static final int ship_part_1_obj = 0x7f060007;
-//Resource
-        public static final int ship_part_2 = 0x7f060007;
-
-        public static final int ship_part_2_obj = 0x7f060007;
-//Resource
-        public static final int ship_part_3 = 0x7f060007;
-
-        public static final int ship_part_3_obj = 0x7f060007;
-//Resource
-        public static final int touch_button_turn_left_arrow_80_by_80 = 0x7f060007;
-
-        public static final int touch_button_turn_left_arrow_80_by_80_obj = 0x7f060007;
-//Resource
-        public static final int touch_button_turn_right_arrow_80_by_80 = 0x7f060007;
-
-        public static final int touch_button_turn_right_arrow_80_by_80_obj = 0x7f060007;
-//Resource
-        public static final int touch_button_a_action_80_by_80 = 0x7f060007;
-
-        public static final int touch_button_a_action_80_by_80_obj = 0x7f060007;
-//Resource
-        public static final int touch_button_b_action_80_by_80 = 0x7f060007;
-
-        public static final int touch_button_b_action_80_by_80_obj = 0x7f060007;
-
     }
     public static final class string {
         public static final int progressbar_in_title_string=0x7f050001;
         public static final int gd_app_name=0x7f050000;
     }
 }
-

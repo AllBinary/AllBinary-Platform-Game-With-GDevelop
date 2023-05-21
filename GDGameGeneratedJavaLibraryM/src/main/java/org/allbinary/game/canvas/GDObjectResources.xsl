@@ -20,6 +20,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="windowWidth" />
         <xsl:param name="instancesAsString" />
+        <xsl:param name="touch" />
 
         //objects - SPRITES - START
         <xsl:for-each select="objects" >
@@ -29,10 +30,12 @@ Created By: Travis Berthelot
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
+                <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
                 public final String[] <xsl:value-of select="name" />ResourceArray;
 
                 public Image[] <xsl:value-of select="name" />ImageArray;
+                </xsl:if>
 
             </xsl:if>
 
@@ -45,6 +48,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="windowWidth" />
         <xsl:param name="instancesAsString" />
+        <xsl:param name="touch" />
 
         //objects - SPRITES - cache - START
 
@@ -55,6 +59,7 @@ Created By: Travis Berthelot
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
+                <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
                 this.<xsl:value-of select="name" />ResourceArray = new String[] {
@@ -88,6 +93,7 @@ Created By: Travis Berthelot
                 };
 
                 hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
+                </xsl:if>
 
             </xsl:if>
 

@@ -123,6 +123,15 @@ Created By: Travis Berthelot
                             return null;
                         }
 
+                        public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources createSpecialAnimationTouchImageResources() {
+                            try {
+                                return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.create();
+                            } catch(Exception e) {
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources", this, commonStrings.CONSTRUCTOR, e));
+                            }
+                            return null;
+                        }
+
                         public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources createSpecialAnimationGDResources(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
                             try {
                                 return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance(allBinaryGameLayerManager);
@@ -194,6 +203,7 @@ Created By: Travis Berthelot
                         -->
 
                         GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = this.createSpecialAnimationImageResources();
+                        GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources touchImageResources = this.createSpecialAnimationTouchImageResources();
 
                     //GDNode processM calls in this class can load resources
                     GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = this.createSpecialAnimationGDResources(allBinaryGameLayerManager);
@@ -232,10 +242,18 @@ Created By: Travis Berthelot
                         <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
                         //instances //We may need to set a dimension for each image/animation.
+                            <xsl:if test="contains(name, 'btn_')" >
+                        <xsl:value-of select="name" />2.canvasWidth = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
+                        <xsl:value-of select="name" />2.canvasHeight = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();
+                        <xsl:value-of select="name" />2.width = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
+                        <xsl:value-of select="name" />2.height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
+                            </xsl:if>
+                            <xsl:if test="not(contains(name, 'btn_'))" >
                         <xsl:value-of select="name" />2.canvasWidth = imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
                         <xsl:value-of select="name" />2.canvasHeight = imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();
                         <xsl:value-of select="name" />2.width = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
                         <xsl:value-of select="name" />2.height = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
+                            </xsl:if>
                         <xsl:value-of select="name" />2.halfWidth = (<xsl:value-of select="name" />2.width / 2);
                         <xsl:value-of select="name" />2.halfHeight = (<xsl:value-of select="name" />2.height / 2);
                         //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />2.toString(), this, commonStrings.PROCESS));

@@ -76,18 +76,18 @@ Created By: Travis Berthelot
                 import org.allbinary.media.image.ImageCopyUtil;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources extends SpecialAnimation
+                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources extends SpecialAnimation
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources instance;
+                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources instance;
 
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources create() throws Exception
+                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources create() throws Exception
                         {
-                            instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources();
+                            instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources();
                             return instance;
                         }
 
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources getInstance()
+                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources getInstance()
                         {
                             return instance;
                         }
@@ -113,11 +113,11 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
                         <xsl:with-param name="touch" >
-                            <xsl:value-of select="'false'" />
+                            <xsl:value-of select="'true'" />
                         </xsl:with-param>
                     </xsl:call-template>
 
-                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources() throws Exception {
+                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources() throws Exception {
 
                         //try {
                         
@@ -139,7 +139,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
                         <xsl:with-param name="touch" >
-                            <xsl:value-of select="'false'" />
+                            <xsl:value-of select="'true'" />
                         </xsl:with-param>
                     </xsl:call-template>
 
