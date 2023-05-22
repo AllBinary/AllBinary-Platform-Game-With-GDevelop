@@ -70,6 +70,7 @@
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
+
         </dependency>
 
         <dependency>
@@ -80,6 +81,13 @@
             <!-- AllBinary Platform Version End -->
         </dependency>      
         
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameThreedAndroidJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>      
         
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>

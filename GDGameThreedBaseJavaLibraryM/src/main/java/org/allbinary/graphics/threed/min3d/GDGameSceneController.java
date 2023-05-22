@@ -27,6 +27,8 @@ import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.SimpleGameLayer;
 import org.allbinary.game.layer.GDGameLayerManager;
 import org.allbinary.game.level.GDGameLevelBuilder;
+import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
+import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.opengles.OpenGLCapabilities;
@@ -119,7 +121,9 @@ extends AllBinaryGameSceneController
             
           //Lights and resources don't need to be added again
             if(!this.initialized)
-            {  
+            {
+                ((ResourceInitialization) GDThreedEarlyResourceInitializationFactory.getInstance().list.get(0)).init();
+                
               resourceUtil.addResource(titleThreedResources.RESOURCE_TITLE_THREE, 
                       Integer.valueOf(androidResources.raw.threed_obj)
                       );

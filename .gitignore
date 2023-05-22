@@ -12,10 +12,12 @@ gd_icon.png
 game.xml
 game.json
 R.java
+*ThreedLevelBuilder.java
 AndroidResources.java
 AndroidManifest.xml
 GDGameAndroidActivity.java
 GDGameAndroidEarlyResourceInitialization.java
+GDGameThreedAndroidEarlyResourceInitialization.java
 GD*GameSoundsFactory.java
 GDGame*Canvas.java
 *GDObjectsFactory*.java

@@ -21,7 +21,7 @@ import org.allbinary.util.BasicArrayList;
  *
  * @author User
  */
-public class GDToThreedAllBinaryEarlyResourceInitializationGenerator
+public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
 {
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
@@ -39,21 +39,21 @@ public class GDToThreedAllBinaryEarlyResourceInitializationGenerator
 
     private final String _OBJ = "_obj";
     
-    public GDToThreedAllBinaryEarlyResourceInitializationGenerator()
+    public GDToThreedAllBinarySceneAndroidResourcesGradleGenerator()
     {
 
     }
 
-    public void process(final GDToAllBinarySoundsGenerator soundsGenerator) throws Exception
+    public void process() throws Exception
     {
         final String GD_KEY = "//GD";
         
-        final String RESOURCE_INITIALIZATION_ORIGINAL = "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDGameAndroidEarlyResourceInitialization.origin";
-        final String RESOURCE_INITIALIZATION = "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDGameAndroidEarlyResourceInitialization.java";
+        final String RESOURCE_INITIALIZATION_ORIGINAL = "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDGameThreedAndroidEarlyResourceInitialization.origin";
+        final String RESOURCE_INITIALIZATION = "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDGameThreedAndroidEarlyResourceInitialization.java";
         
         final StringMaker stringBuilder = new StringMaker();
 
-        this.appendSounds(soundsGenerator, stringBuilder);
+        this.appendMedia(stringBuilder);
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
@@ -72,17 +72,21 @@ public class GDToThreedAllBinaryEarlyResourceInitializationGenerator
 
     }
     
-    public void appendSounds(final GDToAllBinarySoundsGenerator soundsGenerator, final StringMaker stringBuilder) {
-        final BasicArrayList playSoundResourceClassNameList = soundsGenerator.playSoundResourceClassNameList;
-        final BasicArrayList playSoundAndroidResourceNameList = this.gdResources.playSoundAndroidResourceNameList;
+    public void appendMedia(final StringMaker stringBuilder) {
+        final BasicArrayList resourceList = this.gdResources.resourceList;
+        final BasicArrayList androidResourceList = this.gdResources.androidResourceList;
         
-        int size = playSoundResourceClassNameList.size();
+        int size = resourceList.size();
         for(int index = 0; index < size; index++) {
             stringBuilder.append(RESOURCE_0);
-            stringBuilder.append(playSoundResourceClassNameList.get(index));
-            stringBuilder.append(SOUND_RESOURCE);
+            stringBuilder.append(GD_RESOURCE);
+            stringBuilder.append(resourceList.get(index));
+            stringBuilder.append(_RESOURCE);
             stringBuilder.append(RESOURCE_1);
-            stringBuilder.append(playSoundAndroidResourceNameList.get(index));
+            stringBuilder.append(androidResourceList.get(index));
+            if(((String) androidResourceList.get(index)).indexOf("touch") < 0) {
+                stringBuilder.append(_OBJ);
+            }
             stringBuilder.append(RESOURCE_2);
             stringBuilder.append('\n');
         }        

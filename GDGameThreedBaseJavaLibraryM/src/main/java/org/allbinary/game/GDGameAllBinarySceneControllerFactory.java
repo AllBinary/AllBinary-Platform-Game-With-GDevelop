@@ -12,7 +12,7 @@ public class GDGameAllBinarySceneControllerFactory
 
     public static final AllBinarySceneController getInstance()
     {
-        PreLogUtil.put(CommonStrings.getInstance().START, instance, CommonStrings.getInstance().CONSTRUCTOR, new Exception());
+        //PreLogUtil.put(CommonStrings.getInstance().START, instance, CommonStrings.getInstance().CONSTRUCTOR, new Exception());
         return instance;
     }
 }

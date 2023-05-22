@@ -61,6 +61,7 @@ public class GDToAllBinaryGenerationTool
     private final GDToAllBinarySoundsGenerator soundsGenerator = new GDToAllBinarySoundsGenerator();
     private final GDToAllBinaryEarlyResourceInitializationGenerator earlyResourceInitializationGenerator = new GDToAllBinaryEarlyResourceInitializationGenerator();
     private final GDToThreedAllBinaryEarlyResourceInitializationGenerator threedEarlyResourceInitializationGenerator = new GDToThreedAllBinaryEarlyResourceInitializationGenerator();
+    private final GDToThreedAllBinarySceneAndroidResourcesGradleGenerator threedSceneEarlyResourceInitializationGenerator = new GDToThreedAllBinarySceneAndroidResourcesGradleGenerator();
 
     private final GDToAllBinaryMIDletGenerator midletGenerator = new GDToAllBinaryMIDletGenerator();
     private final GDLayoutsToAllBinaryRunnableGenerator runnableGenerator = new GDLayoutsToAllBinaryRunnableGenerator();
@@ -117,6 +118,7 @@ public class GDToAllBinaryGenerationTool
         this.soundsGenerator.process();
         this.earlyResourceInitializationGenerator.process(soundsGenerator);
         this.threedEarlyResourceInitializationGenerator.process(soundsGenerator);
+        this.threedSceneEarlyResourceInitializationGenerator.process();
         this.midletGenerator.process();
         this.runnableGenerator.process();
         this.runnableThreedGenerator.process();

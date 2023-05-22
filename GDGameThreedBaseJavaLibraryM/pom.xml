@@ -10,7 +10,6 @@
         <!-- Game Version End -->
     </parent>
     
-    <groupId>org.allbinary.game.gd</groupId>
     <artifactId>GDGameThreedBaseJavaLibrary</artifactId>
     <packaging>jar</packaging>
     
