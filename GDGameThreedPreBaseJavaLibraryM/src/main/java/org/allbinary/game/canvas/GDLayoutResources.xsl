@@ -29,6 +29,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectResources.xsl" />    
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAnimations.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
@@ -59,47 +60,20 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.game.canvas;
 
-                import java.util.Hashtable;
-
-                import javax.microedition.lcdui.Image;
-
-                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
                 import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.game.resource.GDResources;
-                import org.allbinary.image.ImageCache;
-                import org.allbinary.image.ImageCacheFactory;
-                import org.allbinary.logic.basic.string.CommonStrings;
-                import org.allbinary.logic.basic.string.CommonSeps;
-                import org.allbinary.logic.basic.string.StringUtil;
-                import org.allbinary.logic.communication.log.LogFactory;
-                import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.media.image.ImageCopyUtil;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources extends SpecialAnimation
+                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources extends SpecialAnimation
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources instance;
+                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources();
 
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources create() throws Exception
-                        {
-                            instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources();
-                            return instance;
-                        }
-
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources getInstance()
+                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources getInstance()
                         {
                             return instance;
                         }
 
-                        private final CommonStrings commonStrings = CommonStrings.getInstance();
-                        private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
-                        private final ImageCache imageCache = ImageCacheFactory.getInstance();
-                        private final GDResources gdResources = GDResources.getInstance();
-
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources animationInterfaceFactoryInterfaceFactory = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
-
-                    <xsl:call-template name="imageProperties" >
+                    <xsl:call-template name="animationNames" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
@@ -112,45 +86,8 @@ Created By: Travis Berthelot
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
-                        <xsl:with-param name="touch" >
-                            <xsl:value-of select="'false'" />
-                        </xsl:with-param>
                     </xsl:call-template>
-
-                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources() throws Exception {
-
-                        //try {
                         
-                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
-
-                            final Hashtable hashTable = imageCache.getHashtable();
-
-                    <xsl:call-template name="imageCache" >
-                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
-                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
-                        <xsl:with-param name="instancesAsString" >
-                            <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="touch" >
-                            <xsl:value-of select="'false'" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-
-                    <xsl:text>&#10;</xsl:text>                    
-
-                        //} catch(Exception e) {
-                            //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
-                        //}
-
-                    }
-
                 }
             </xsl:if>
         </xsl:for-each>

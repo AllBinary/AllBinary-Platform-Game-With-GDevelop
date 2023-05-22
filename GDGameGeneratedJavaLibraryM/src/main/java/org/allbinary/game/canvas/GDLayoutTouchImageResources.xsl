@@ -97,7 +97,7 @@ Created By: Travis Berthelot
                         private final ImageCache imageCache = ImageCacheFactory.getInstance();
                         private final GDResources gdResources = GDResources.getInstance();
 
-                        private final GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources animationInterfaceFactoryInterfaceFactory = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
 
                     <xsl:call-template name="imageProperties" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >

@@ -45,12 +45,12 @@ extends BaseResourceAnimationInterfaceFactoryInterfaceFactory
     
     public boolean isFeature()
     {
-        Features features = Features.getInstance();
+        final Features features = Features.getInstance();
 
-        GraphicsFeatureFactory graphicsFeatureFactory = 
+        final GraphicsFeatureFactory graphicsFeatureFactory = 
             GraphicsFeatureFactory.getInstance();
 
-        OpenGLFeatureFactory openGLFeatureFactory = 
+        final OpenGLFeatureFactory openGLFeatureFactory = 
             OpenGLFeatureFactory.getInstance();
 
         if (features.isFeature(graphicsFeatureFactory.IMAGE_GRAPHICS) && 

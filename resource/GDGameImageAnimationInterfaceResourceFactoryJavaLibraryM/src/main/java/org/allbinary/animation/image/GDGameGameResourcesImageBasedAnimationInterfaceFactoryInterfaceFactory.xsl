@@ -92,6 +92,7 @@ import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
+import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 
@@ -111,21 +112,8 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
 
     private final CommonStrings commonStrings = CommonStrings.getInstance();
 
-                    <xsl:call-template name="animationNames" >
-                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
-                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
-                        <xsl:with-param name="instancesAsString" >
-                            <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-        
+    private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
+
     public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
         super("Game Image Animations");

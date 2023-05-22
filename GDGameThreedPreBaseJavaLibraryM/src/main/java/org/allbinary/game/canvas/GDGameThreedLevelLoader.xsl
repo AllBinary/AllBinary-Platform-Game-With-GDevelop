@@ -99,7 +99,7 @@ Created By: Travis Berthelot
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final GDResources gdResources = GDResources.getInstance();
 
-                        private final GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources animationInterfaceFactoryInterfaceFactory = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
 
                     public void build(final GL10 gl, final String glInstanceVersion) throws Exception {
 

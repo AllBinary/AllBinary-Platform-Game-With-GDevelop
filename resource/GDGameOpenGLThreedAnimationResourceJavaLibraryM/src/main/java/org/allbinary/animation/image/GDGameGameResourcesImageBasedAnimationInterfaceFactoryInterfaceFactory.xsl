@@ -97,6 +97,7 @@ import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.ThreedAnimationFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
+import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory;
@@ -123,23 +124,9 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
 
     private final CommonStrings commonStrings = CommonStrings.getInstance();
 
-                    <xsl:call-template name="animationNames" >
-                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
-                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
-                        <xsl:with-param name="instancesAsString" >
-                            <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
+    private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
 
     private final int portion = 120;
-    private int index = 1;
 
     public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
@@ -164,24 +151,16 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
     public void init(int level) 
     throws Exception
     {
-        super.init(OpenGLImageCacheFactory.getInstance(), level);        
-        
-        final String loadingString = this.toString() + " Loading: ";
-
-        index = 1;
-        
-    }
-    
-    protected void init(ImageCache imageCache, int level)
-    throws Exception
-    {
         if(this.isInitialized())
         {
             return;
         }
-
+    
+        super.init(OpenGLImageCacheFactory.getInstance(), level);        
+        
+        final String loadingString = this.toString() + " Loading: ";
+    
         //final int portion = 120;
-        //final String loadingString = this.toString() + " Loading: ";
         
         //int index = 0;
 

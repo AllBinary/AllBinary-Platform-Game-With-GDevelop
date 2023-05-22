@@ -1,6 +1,8 @@
 package org.allbinary.game.init;
 
 import org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory;
+import org.allbinary.animation.image.GD1GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
+import org.allbinary.animation.image.GD1GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory2;
 import org.allbinary.animation.image.GDGameGameResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.animation.image.GDGameOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory;
 //import org.allbinary.game.image.GDGameGameResourcesImageArrayBasedAnimationInterfaceFactoryInterfaceFactory;
@@ -36,6 +38,12 @@ extends ResourceInitialization
         //featuredAnimationInterfaceFactoryInterfaceFactory.add(
                 //new TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory());
 
+        featuredAnimationInterfaceFactoryInterfaceFactory.add(
+                new GD1GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory2());
+                
+        featuredAnimationInterfaceFactoryInterfaceFactory.add(
+                new GD1GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory());
+                
         featuredAnimationInterfaceFactoryInterfaceFactory.add(
                 new GDGameGameResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory());
         
