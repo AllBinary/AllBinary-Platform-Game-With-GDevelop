@@ -22,7 +22,7 @@ extends AllBinaryMidletMin3dSurfaceView
 
         PreLogUtil.put(CommonStrings.getInstance().START, TAG, CommonStrings.getInstance().CONSTRUCTOR);
         
-        SceneController sceneController = 
+        final SceneController sceneController = 
             GDGameAllBinarySceneControllerFactory.getInstance();
 
         this.setRenderer(sceneController.getRenderer());

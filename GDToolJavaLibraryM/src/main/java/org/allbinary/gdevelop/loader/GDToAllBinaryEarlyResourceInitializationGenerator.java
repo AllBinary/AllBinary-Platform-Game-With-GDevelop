@@ -31,7 +31,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
     
     private final String SOUND_RESOURCE = ".getInstance().getResource(), ";
 
-    private final String GD_RESOURCE = "GDResources.getInstance().";
+    private final String GD_RESOURCE = "gdResources.";
     private final String _RESOURCE = ", ";
     
     private final String RESOURCE_1 = "Integer.valueOf(androidResources.raw.";

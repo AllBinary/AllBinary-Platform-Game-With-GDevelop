@@ -265,7 +265,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
 
         progressCanvas.addPortion(portion, "Building Game Level");
 
-        new GDGameLevelBuilder(this).build();
+        new GDGameLevelBuilder(this.getLayerManager()).build();
 
         progressCanvas.addPortion(portion, "Set Background");
 

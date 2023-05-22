@@ -2,6 +2,8 @@ package org.allbinary.game;
 
 import org.allbinary.graphics.threed.min3d.AllBinarySceneController;
 import org.allbinary.graphics.threed.min3d.GDGameSceneController;
+import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.communication.log.PreLogUtil;
 
 public class GDGameAllBinarySceneControllerFactory
 {
@@ -10,6 +12,7 @@ public class GDGameAllBinarySceneControllerFactory
 
     public static final AllBinarySceneController getInstance()
     {
+        PreLogUtil.put(CommonStrings.getInstance().START, instance, CommonStrings.getInstance().CONSTRUCTOR, new Exception());
         return instance;
     }
 }

@@ -25,6 +25,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAnimations.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectThreedAnimations.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
@@ -87,11 +88,14 @@ package org.allbinary.animation.image;
 
 import javax.microedition.lcdui.Image;
 
+import min3d.core.Object3d;
+
 import org.allbinary.animation.AllBinaryImageArrayRotationAnimationFactory;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
+import org.allbinary.animation.ThreedAnimationFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
@@ -108,6 +112,11 @@ import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+
+import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
+import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
+
+import org.allbinary.util.BasicArrayList;
 
 public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
@@ -128,7 +137,10 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-        
+
+    private final int portion = 120;
+    private int index = 1;
+
     public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
         super("GDGame OpenGL ImageArray Animations");
@@ -173,13 +185,15 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
         
         //int index = 0;
 
+        final Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
+            Min3dSceneResourcesFactory.getInstance();
+    
         //ProgressCanvas progressCanvas = 
           //  ProgressCanvasFactory.getInstance();
 
                         try {
 
-    <!--
-                    <xsl:call-template name="animationFactory" >
+                    <xsl:call-template name="threedAnimationFactory" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
@@ -193,7 +207,6 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-    -->
 
                     <xsl:text>&#10;</xsl:text>
 

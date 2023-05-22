@@ -83,7 +83,7 @@ BaseResourceAnimationInterfaceFactoryInterfaceFactory
 
         animationInterfaceArray[2] = (IndexedAnimation)
             new ThreedAnimationSingletonFactory(min3dSceneResourcesFactory.get(
-                    titleThreedResources.RESOURCE_TITLE_THREE)).getInstance();
+                    titleThreedResources.RESOURCE_TITLE_THREE)[0]).getInstance();
         
         this.add(TitleResource.RESOURCE_TITLE,
                 new SingletonAnimationInterfaceFactory(

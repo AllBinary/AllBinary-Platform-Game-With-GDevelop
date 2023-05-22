@@ -225,6 +225,7 @@ public class GDLayoutsToAllBinaryGenerator
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio\\GameSoundsFactory.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutImageResources.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutImageResources.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameThreedLevelLoader.xsl"),
             };
             
             final String[] OUTPUT_FILE_PATHS = {
@@ -233,6 +234,7 @@ public class GDLayoutsToAllBinaryGenerator
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio\\GD",
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+                "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD"
             };
             
@@ -243,6 +245,7 @@ public class GDLayoutsToAllBinaryGenerator
                 "GameSoundsFactory.java",
                 "SpecialAnimationImageResources.java",
                 "SpecialAnimationImageResources.java",
+                "GameThreedLevelBuilder.java",
             };
 
             final int xslTotal2 = OUTPUT_FILE_PATHS.length;

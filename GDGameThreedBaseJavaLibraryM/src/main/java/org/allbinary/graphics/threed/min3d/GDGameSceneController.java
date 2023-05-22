@@ -21,10 +21,12 @@ import min3d.vos.light.Light;
 import org.allbinary.AndroidResources;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.ThreedAnimationSingletonFactory;
+import org.allbinary.game.canvas.GD1GameThreedLevelBuilder;
 import org.allbinary.game.identification.BasicGroupFactory;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.SimpleGameLayer;
 import org.allbinary.game.layer.GDGameLayerManager;
+import org.allbinary.game.level.GDGameLevelBuilder;
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.opengles.OpenGLCapabilities;
@@ -74,7 +76,7 @@ extends AllBinaryGameSceneController
 	}
 
     @Override
-    public void initScene(GL10 gl)
+    public void initScene(final GL10 gl)
     {
         final String METHOD_NAME = "initScene";
 
@@ -117,7 +119,7 @@ extends AllBinaryGameSceneController
             
           //Lights and resources don't need to be added again
             if(!this.initialized)
-            {              
+            {  
               resourceUtil.addResource(titleThreedResources.RESOURCE_TITLE_THREE, 
                       Integer.valueOf(androidResources.raw.threed_obj)
                       );
@@ -167,7 +169,8 @@ extends AllBinaryGameSceneController
               //titleThreeObject3dContainer.getScale().y = 
                   //titleThreeObject3dContainer.getScale().z = 3f;
 
-          min3dSceneResourcesFactory.add(titleThreedResources.RESOURCE_TITLE_THREE, titleThreeObject3dContainer);
+          final Object3d[] object3dArray = new Object3d[]{titleThreeObject3dContainer};
+          min3dSceneResourcesFactory.add(titleThreedResources.RESOURCE_TITLE_THREE, object3dArray);
                   
             progressCanvas.addEarlyPortion(portion, loadingString, index++);
 
@@ -181,6 +184,8 @@ extends AllBinaryGameSceneController
             //min3dSceneResourcesFactory.add(
                     //carModelResources.SIMPLE_CAR, vehicleObject3dContainer);
             
+            new GD1GameThreedLevelBuilder().build(gl, glInstanceVersion);
+            
             progressCanvas.addEarlyPortion(portion, loadingString, index++);
 
             PreLogUtil.put(CommonStrings.getInstance().END, this, METHOD_NAME);                
@@ -193,7 +198,7 @@ extends AllBinaryGameSceneController
 
     //private CameraLayer cameraLayer;
     
-    public void buildScene(AllBinaryGameLayerManager layerManager) throws Exception
+    public void buildScene(final AllBinaryGameLayerManager layerManager) throws Exception
     {
         try
         {
@@ -223,11 +228,11 @@ extends AllBinaryGameSceneController
 //              
 //              ((AllBinaryScene) scene).getThreedLayerManagerListener().getList().add(simpleGameLayer);
             
-            final Object3d titleThreeObject3dContainer = min3dSceneResourcesFactory.get(titleThreedResources.RESOURCE_TITLE_THREE);
+            final Object3d[] titleThreeObject3dContainerArray = min3dSceneResourcesFactory.get(titleThreedResources.RESOURCE_TITLE_THREE);
             
               final Group groupInterface = BasicGroupFactory.getInstance().GOOD;
               final AnimationInterfaceFactoryInterface animationInterfaceFactoryInterface = 
-                      new ThreedAnimationSingletonFactory(titleThreeObject3dContainer);
+                      new ThreedAnimationSingletonFactory(titleThreeObject3dContainerArray[0]);
               final int width = 20;
               final int height = 20;
               final Rectangle layerInfo = new Rectangle(PointFactory.getInstance().ZERO_ZERO, width, height);
@@ -237,7 +242,7 @@ extends AllBinaryGameSceneController
                       animationInterfaceFactoryInterface,
                       layerInfo, new StaticViewPosition(0,0,0));
 
-              titleThreeObject3dContainer.getRotationOrigin().y -= 90;
+              titleThreeObject3dContainerArray[0].getRotationOrigin().y -= 90;
               
               testGameDemoLayerManager.append(simpleGameLayer);
             
@@ -262,6 +267,9 @@ extends AllBinaryGameSceneController
 
 //            cameraLayer.processTick(layerManager);
 //            layerManager.append(cameraLayer);
+
+            new GDGameLevelBuilder(layerManager).build();
+
         }
         catch (Exception e)
         {

@@ -14,19 +14,19 @@
 package org.allbinary.game.level;
 
 import org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterfaceFactory;
-import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
+import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.layer.LayerInterfaceFactory;
 import org.allbinary.layer.LayerInterfaceVisitor;
 
 public class GDGameLevelBuilder implements LayerInterfaceVisitor
 {
-	private final AllBinaryGameCanvas gameCanvas;
+	private final AllBinaryGameLayerManager layerManager;
 
-    public GDGameLevelBuilder(AllBinaryGameCanvas gameCanvas)
+    public GDGameLevelBuilder(final AllBinaryGameLayerManager layerManager)
     		throws Exception
     {
-    	this.gameCanvas = gameCanvas;
+    	this.layerManager = layerManager;
 
         // GPoint point = PointFactory.ZERO_ZERO;
         // this.layerPlacer = new ObamaStimulusLayerPlacer(this, point);
@@ -61,6 +61,6 @@ public class GDGameLevelBuilder implements LayerInterfaceVisitor
     public void visit(AllBinaryLayer layerInterface) throws Exception
     {
         layerInterface.setVisible(true);
-        this.gameCanvas.getLayerManager().append(layerInterface);
+        this.layerManager.append(layerInterface);
     }
 }
