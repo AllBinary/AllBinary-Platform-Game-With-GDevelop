@@ -113,7 +113,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
                 initIndexedAnimationInterface[index] = (RotationAnimation) animationInterfaceFactoryInterfaceArray[index].getInstance();
             }
         } catch(Exception e) {
-            LogUtil.put(LogFactory.getInstance(this.toString(), this, CommonStrings.getInstance().CONSTRUCTOR, e));
+            final StringMaker stringMaker = new StringMaker();
+            super.toString(stringMaker);
+            LogUtil.put(LogFactory.getInstance(stringMaker.toString(), this, CommonStrings.getInstance().CONSTRUCTOR, e));
         }
 
         this.initIndexedAnimationInterfaceArray = initIndexedAnimationInterface;
