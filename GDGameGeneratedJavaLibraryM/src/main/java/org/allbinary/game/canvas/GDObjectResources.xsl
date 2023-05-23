@@ -74,9 +74,15 @@ Created By: Travis Berthelot
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
                     final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+//                    if(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> == null) {
+//                        throw new RuntimeException();
+//                    }
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
                     final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+//                    if(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> == null) {
+//                        throw new RuntimeException();
+//                    }
                     </xsl:if>
                 </xsl:for-each>
 

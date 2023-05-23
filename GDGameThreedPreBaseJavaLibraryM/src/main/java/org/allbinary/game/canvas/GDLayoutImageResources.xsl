@@ -71,6 +71,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.image.ImageCache;
                 import org.allbinary.image.ImageCacheFactory;
+                import org.allbinary.image.opengles.OpenGLImageCacheFactory;
                 import org.allbinary.logic.basic.string.CommonStrings;
                 import org.allbinary.logic.basic.string.CommonSeps;
                 import org.allbinary.logic.basic.string.StringUtil;
@@ -97,7 +98,7 @@ Created By: Travis Berthelot
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
-                        private final ImageCache imageCache = ImageCacheFactory.getInstance();
+                        //private final ImageCache imageCache = OpenGLImageCacheFactory.getInstance(); //ImageCacheFactory.getInstance();
                         private final GDResources gdResources = GDResources.getInstance();
 
                         private final GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
@@ -126,7 +127,7 @@ Created By: Travis Berthelot
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
 
-                            final Hashtable hashTable = imageCache.getHashtable();
+                            //final Hashtable hashTable = imageCache.getHashtable();
 
                     <xsl:call-template name="rectangleCache" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
