@@ -41,8 +41,8 @@ extends ResourceInitialization
         featuredAnimationInterfaceFactoryInterfaceFactory.add(
                 new GD1GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory2());
                 
-        featuredAnimationInterfaceFactoryInterfaceFactory.add(
-                new GD1GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory());
+        //featuredAnimationInterfaceFactoryInterfaceFactory.add(
+                //new GD1GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory());
                 
         featuredAnimationInterfaceFactoryInterfaceFactory.add(
                 new GDGameGameResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory());
