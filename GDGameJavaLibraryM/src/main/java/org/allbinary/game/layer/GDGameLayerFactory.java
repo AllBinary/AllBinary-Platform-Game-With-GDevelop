@@ -33,16 +33,25 @@ public class GDGameLayerFactory
     private final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray;
     private final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray;
     private final Rectangle layerInfo;
+    private final RotationBehaviorBase rotationBehavior;
     
     public GDGameLayerFactory(final Group[] groupInterface,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo) {
+        this(groupInterface, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, new RotationBehavior());
+    }
+    
+    public GDGameLayerFactory(final Group[] groupInterface,
+            final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
+            final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
+            final Rectangle layerInfo, final RotationBehaviorBase rotationBehavior) {
         
         this.groupInterface = groupInterface;
         this.animationInterfaceFactoryInterfaceArray = animationInterfaceFactoryInterfaceArray;
         this.proceduralAnimationInterfaceFactoryInterfaceArray = proceduralAnimationInterfaceFactoryInterfaceArray;
         this.layerInfo = layerInfo;
+        this.rotationBehavior = rotationBehavior;
     }
     
     public GDGameLayer create(final String name, final GDObject gdObject, final GDConditionWithGroupActions collidableBehavior) throws Exception {
@@ -55,7 +64,7 @@ public class GDGameLayerFactory
                 this.groupInterface,
                 this.animationInterfaceFactoryInterfaceArray,
                 this.proceduralAnimationInterfaceFactoryInterfaceArray,
-                this.layerInfo, gdObject);
+                this.layerInfo, gdObject, this.rotationBehavior);
         
         gameLayer.setCollidableInferface(new GDCollidableBehavior(gameLayer, collidableBehavior, true));
 
