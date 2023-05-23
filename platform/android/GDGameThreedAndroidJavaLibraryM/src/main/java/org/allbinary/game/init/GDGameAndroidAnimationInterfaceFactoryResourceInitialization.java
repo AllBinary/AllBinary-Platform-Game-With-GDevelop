@@ -38,8 +38,8 @@ extends ResourceInitialization
         //featuredAnimationInterfaceFactoryInterfaceFactory.add(
                 //new TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory());
 
-        featuredAnimationInterfaceFactoryInterfaceFactory.add(
-                new GD1GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory2());
+        //featuredAnimationInterfaceFactoryInterfaceFactory.add(
+                //new GD1GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory2());
                 
         //featuredAnimationInterfaceFactoryInterfaceFactory.add(
                 //new GD1GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory());

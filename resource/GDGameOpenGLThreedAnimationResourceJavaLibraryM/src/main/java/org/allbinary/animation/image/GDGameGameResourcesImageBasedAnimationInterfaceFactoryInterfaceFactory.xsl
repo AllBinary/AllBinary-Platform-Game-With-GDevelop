@@ -188,6 +188,9 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                     </xsl:call-template>
 
                     <xsl:text>&#10;</xsl:text>
+                    <xsl:if test="$layoutIndex = 1" >
+                    new GD1GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory2(this.getHashtable(), this.getRectangleHashtable()).init(-1);
+                    </xsl:if>
 
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
