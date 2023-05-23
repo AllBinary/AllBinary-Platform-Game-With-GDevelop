@@ -344,6 +344,8 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         final AllBinaryGameLayerManager layerManager = this.getLayerManager();
         final OpenGLFeatureUtil openGLFeatureUtil = OpenGLFeatureUtil.getInstance();
             
+        new GDGameLevelBuilder(layerManager).build();
+
         if (openGLFeatureUtil.isAnyThreed())
         {
             progressCanvas.addPortion(portion, "Building 3D Game Level");

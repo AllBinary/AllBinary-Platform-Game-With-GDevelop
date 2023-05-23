@@ -26,7 +26,6 @@ import org.allbinary.game.identification.BasicGroupFactory;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.SimpleGameLayer;
 import org.allbinary.game.layer.GDGameLayerManager;
-import org.allbinary.game.level.GDGameLevelBuilder;
 import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.graphics.PointFactory;
@@ -271,8 +270,6 @@ extends AllBinaryGameSceneController
 
 //            cameraLayer.processTick(layerManager);
 //            layerManager.append(cameraLayer);
-
-            new GDGameLevelBuilder(layerManager).build();
 
         }
         catch (Exception e)
