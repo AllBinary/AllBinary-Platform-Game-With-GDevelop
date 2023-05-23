@@ -13,6 +13,7 @@
  */
 package org.allbinary.game.layer;
 
+import javax.microedition.khronos.opengles.GL;
 import javax.microedition.lcdui.Graphics;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
@@ -29,6 +30,7 @@ import org.allbinary.game.layout.GDObjectStrings;
 import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.color.BasicColorFactory;
+import org.allbinary.image.opengles.OpenGLSurfaceChangedInterface;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -58,9 +60,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
     private final CombatBaseBehavior combatBaseBehavior;
     
-    private final IndexedAnimation[] initIndexedAnimationInterface;
-    private IndexedAnimation[] indexedAnimationInterface;
-    private RotationAnimation[] rotationAnimationInterface;
+    private final IndexedAnimation[] initIndexedAnimationInterfaceArray;
+    private IndexedAnimation[] indexedAnimationInterfaceArray;
+    private RotationAnimation[] rotationAnimationInterfaceArray;
 
     private final int SIZE;
 
@@ -114,7 +116,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             LogUtil.put(LogFactory.getInstance(this.toString(), this, CommonStrings.getInstance().CONSTRUCTOR, e));
         }
 
-        this.initIndexedAnimationInterface = initIndexedAnimationInterface;
+        this.initIndexedAnimationInterfaceArray = initIndexedAnimationInterface;
         
         this.setRotationAnimationInterfaceArray(initIndexedAnimationInterface);
         //this.setIndexedAnimationInterface(this.initIndexedAnimationInterface);
@@ -126,9 +128,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     }
 
     public void set(final GDObject gdObject) throws Exception {
-        final int size = this.rotationAnimationInterface.length;
+        final int size = this.rotationAnimationInterfaceArray.length;
         for(int index = 0; index < size; index++) {
-            this.rotationAnimationInterface[index].setFrame(0);
+            this.rotationAnimationInterfaceArray[index].setFrame(0);
         }
         this.gdObject = gdObject;
         this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
@@ -136,37 +138,47 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.updateGDObject(0);
         this.setDestroyed(false);
     }
+
+    public void set(GL gl) throws Exception
+    {
+        final int size = this.rotationAnimationInterfaceArray.length;
+        OpenGLSurfaceChangedInterface openGLSurfaceChangedInterface;
+        for(int index = 0; index < size; index++) {
+            openGLSurfaceChangedInterface = (OpenGLSurfaceChangedInterface) this.rotationAnimationInterfaceArray[index];
+            openGLSurfaceChangedInterface.set(gl);
+        }
+    }
     
     protected IndexedAnimation[] getInitIndexedAnimationInterface()
     {
-        return initIndexedAnimationInterface;
+        return initIndexedAnimationInterfaceArray;
     }
 
     public void setRotationAnimationInterfaceArray(
             final RotationAnimation[] rotationAnimationInterface)
     {
-        this.rotationAnimationInterface = rotationAnimationInterface;
-        this.setIndexedAnimationInterface(this.rotationAnimationInterface);
+        this.rotationAnimationInterfaceArray = rotationAnimationInterface;
+        this.setIndexedAnimationInterface(this.rotationAnimationInterfaceArray);
     }
 
     public RotationAnimation[] getRotationAnimationInterfaceArray()
     {
-        return this.rotationAnimationInterface;
+        return this.rotationAnimationInterfaceArray;
     }
 
     protected void setIndexedAnimationInterface(
             final IndexedAnimation[] animationInterface)
     {
-        this.indexedAnimationInterface = animationInterface;
+        this.indexedAnimationInterfaceArray = animationInterface;
     }
 
     protected IndexedAnimation[] getIndexedAnimationInterface()
     {
-        return indexedAnimationInterface;
+        return indexedAnimationInterfaceArray;
     }
 
     public RotationAnimation getRotationAnimationInterface() {
-        return this.rotationAnimationInterface[this.gdObject.animation];
+        return this.rotationAnimationInterfaceArray[this.gdObject.animation];
     }
     
 //    public void setCombatBaseBehavior(CombatBaseBehavior combatBaseBehavior)
@@ -345,12 +357,12 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             opacity = 0;
         }
         
-        final int size = this.initIndexedAnimationInterface.length;
+        final int size = this.initIndexedAnimationInterfaceArray.length;
         for(int index = 0; index < size; index++) {
-            this.initIndexedAnimationInterface[index].setAlpha(opacity);
+            this.initIndexedAnimationInterfaceArray[index].setAlpha(opacity);
             if(this.gdObject.basicColor != null) {
                 //LogUtil.put(LogFactory.getInstance("setBasicColor: " + this.gdObject.basicColor, this, "updateGDObject"));
-                this.initIndexedAnimationInterface[index].setBasicColor(this.gdObject.basicColor);
+                this.initIndexedAnimationInterfaceArray[index].setBasicColor(this.gdObject.basicColor);
             }
         }
         
@@ -390,7 +402,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //for (int index = 0; index < SIZE; index++)
         //{
             //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(this.getName()).append(" GDObject name: ").append(this.gdObject.name).toString(), this, "setRotation"));
-            rotationAnimation = this.rotationAnimationInterface[this.gdObject.animation];
+            rotationAnimation = this.rotationAnimationInterfaceArray[this.gdObject.animation];
             //if(this.getName().equals(PLAYER)) {
             //if(this.getName().startsWith(PLAYER)) {
                 //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(this.getName()).append(GDObjectStrings.getInstance().ANGLE).append(rotationAnimation.getAngleInfo().getAngle()).append(" angleAdjustment: ").append(angleAdjustment).toString(), this, "setRotation"));
@@ -448,7 +460,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             int y = this.y - quarterHeight;
 
             //for (int index = 0; index < SIZE; index++) {
-            indexedAnimationInterface[this.gdObject.animation].paint(graphics, x, y);
+            indexedAnimationInterfaceArray[this.gdObject.animation].paint(graphics, x, y);
             //}
 
             //this.paintPoints(graphics);
@@ -462,6 +474,20 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
     }
 
+    public void paintThreed(Graphics graphics)
+    {
+        try
+        {
+            final ViewPosition viewPosition = this.getViewPosition();
+            this.indexedAnimationInterfaceArray[this.gdObject.animation].paintThreed(graphics,
+                viewPosition.getX(), viewPosition.getY(), viewPosition.getZ());
+        }
+        catch (Exception e)
+        {
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "paintThreed", e));
+        }
+    }
+    
     //private final StringBuilder stringBuilder = new StringBuilder();
     //private final String F = "F";
     //private final String E = "E";
@@ -607,7 +633,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
         super.toString(stringBuffer);
         
-        final RotationAnimation rotationAnimation = this.rotationAnimationInterface[this.gdObject.animation];
+        final RotationAnimation rotationAnimation = this.rotationAnimationInterfaceArray[this.gdObject.animation];
         stringBuffer.append(GDObjectStrings.getInstance().ANGLE).append(rotationAnimation.getAngleInfo().getAngle());
         stringBuffer.append(this.gdObject.toString());
     }    
