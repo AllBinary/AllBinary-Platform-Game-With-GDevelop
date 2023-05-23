@@ -62,6 +62,15 @@
             <!-- AllBinary Platform Version End -->
         </dependency>
         
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLNoneJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+        
         <!--
             <groupId>org.allbinary.animation</groupId>
             <artifactId>AllBinaryImageAnimationRotationJavaLibrary</artifactId>
