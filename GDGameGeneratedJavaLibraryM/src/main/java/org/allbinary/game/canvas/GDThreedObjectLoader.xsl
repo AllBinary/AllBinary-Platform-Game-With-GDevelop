@@ -38,9 +38,9 @@ Created By: Travis Berthelot
                 final Object3d <xsl:value-of select="substring-before(image, '.')" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = threedLoaderFactory.getObject3dInstance(
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="substring-before(image, '.')" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, OBJ, FALSE);
                       
-                //<xsl:value-of select="substring-before(image, '.')" />Object3dContainer.getScale().x = 
-                    //<xsl:value-of select="substring-before(image, '.')" />Object3dContainer.getScale().y = 
-                        //<xsl:value-of select="substring-before(image, '.')" />Object3dContainer.getScale().z = 3f;
+                <xsl:value-of select="substring-before(image, '.')" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().x = 
+                    <xsl:value-of select="substring-before(image, '.')" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().y = 
+                        <xsl:value-of select="substring-before(image, '.')" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().z = 3f;
 
                 </xsl:for-each></xsl:for-each></xsl:for-each>
                 
