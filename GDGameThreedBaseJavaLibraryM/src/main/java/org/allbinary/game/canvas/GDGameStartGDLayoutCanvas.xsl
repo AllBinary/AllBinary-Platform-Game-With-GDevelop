@@ -80,7 +80,7 @@ public class <GDLayout> extends StartCanvas
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:for-each>
-                    GD_LAYOUT_COLOR))
+                    GD_LAYOUT_COLOR), true)
                 );
         this.setPaintableInterface(this.getDefaultPaintableInterface());
     }

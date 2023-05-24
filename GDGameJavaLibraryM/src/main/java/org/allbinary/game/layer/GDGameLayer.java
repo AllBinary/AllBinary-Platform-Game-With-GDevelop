@@ -25,10 +25,8 @@ import org.allbinary.game.combat.destroy.GDDestroyableSimpleBehavior;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
-import org.allbinary.game.layout.GDObjectStrings;
 import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.graphics.Rectangle;
-import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.image.opengles.OpenGLSurfaceChangedInterface;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringMaker;
@@ -104,7 +102,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.initPosition();
 
         this.initIndexedAnimationInterfaceArray = this.rotationBehavior.init(this.gdObject, animationInterfaceFactoryInterfaceArray);
-        this.setIndexedAnimationInterface(this.initIndexedAnimationInterfaceArray);
+        this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
 
         this.combatBaseBehavior = new CombatBaseBehavior(
                 DamageableBaseBehavior.getInstance(), new GDDestroyableSimpleBehavior(this));
@@ -121,7 +119,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.setDestroyed(false);
     }
 
-    public void set(GL gl) throws Exception
+    public void set(final GL gl) throws Exception
     {
         final int size = this.initIndexedAnimationInterfaceArray.length;
         OpenGLSurfaceChangedInterface openGLSurfaceChangedInterface;
@@ -135,25 +133,26 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.rotationBehavior.setRotation(gdObject, angleAdjustment);
     }
     
-    protected IndexedAnimation[] getInitIndexedAnimationInterface()
+    protected IndexedAnimation[] getInitIndexedAnimationInterfaceArray()
     {
         return initIndexedAnimationInterfaceArray;
     }
 
-    protected void setIndexedAnimationInterface(
+    protected void setIndexedAnimationInterfaceArray(
             final IndexedAnimation[] animationInterface)
     {
         this.indexedAnimationInterfaceArray = animationInterface;
     }
 
-    protected IndexedAnimation[] getIndexedAnimationInterface()
+    protected IndexedAnimation[] getIndexedAnimationInterfaceArray()
     {
         return indexedAnimationInterfaceArray;
     }
 
-//    public RotationAnimation getRotationAnimationInterface() {
-//        return this.rotationAnimationInterfaceArray[this.gdObject.animation];
-//    }
+    public IndexedAnimation getIndexedAnimationInterface()
+    {
+        return indexedAnimationInterfaceArray[this.gdObject.animation];
+    }
     
 //    public void setCombatBaseBehavior(CombatBaseBehavior combatBaseBehavior)
 //    {
@@ -165,13 +164,13 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         return combatBaseBehavior;
     }
 
-    public void damage(int damage,int damageType)
+    public void damage(final int damage, final int damageType)
     throws Exception
     {
         this.combatBaseBehavior.getDamageableBaseBehavior().damage(damage, damageType);
     }
 
-    public int getDamage(int damageType)
+    public int getDamage(final int damageType)
     throws Exception
     {
         return this.combatBaseBehavior.getDamageableBaseBehavior().getDamage(damageType);
@@ -183,7 +182,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         return this.combatBaseBehavior.getDestroyableBaseBehavior().isDestroyed();
     }
 
-    public void setDestroyed(boolean destroyed)
+    public void setDestroyed(final boolean destroyed)
     {
         this.combatBaseBehavior.getDestroyableBaseBehavior().setDestroyed(destroyed);
     }
@@ -232,7 +231,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         super.setPosition(x, y, this.z);
     }
 
-    public void setPosition(int x, int y, int z)
+    public void setPosition(final int x, final int y, final int z)
     {
         super.setPosition(x, y, z);
 
@@ -371,14 +370,20 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             
     //private boolean isFirst = true;
     //private final String PAINT = "paint";
-    public void paint(Graphics graphics)
+    //private final String W_ = "w ";
+    public void paint(final Graphics graphics)
     {
         try
         {
+            //if(RotationBehaviorBase.getInstance() == this.rotationBehavior) {
+                //final ViewPosition viewPosition = this.getViewPosition();
+                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.gdObject.name).append(viewPosition.getX()).append(' ').append(viewPosition.getY()).toString(), this, PAINT));
 //            if(this.isFirst) {
 //                this.isFirst = false;
-//                LogUtil.put(LogFactory.getInstance(this.gdObject.name, this, PAINT));
-//            }
+                //LogUtil.put(LogFactory.getInstance(this.gdObject.name + indexedAnimationInterfaceArray[this.gdObject.animation], this, PAINT));
+                //graphics.drawString(W_ + this.getWidth(), x, y, 0);
+                //graphics.drawImage(img, this.x, this.y, Graphics.TOP | Graphics.LEFT);
+            //}
             
             int x = this.x - quarterWidth;
             int y = this.y - quarterHeight;
@@ -398,7 +403,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
     }
 
-    public void paintThreed(Graphics graphics)
+    public void paintThreed(final Graphics graphics)
     {
         try
         {
@@ -415,7 +420,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     //private final StringBuilder stringBuilder = new StringBuilder();
     //private final String F = "F";
     //private final String E = "E";
-    public void paintPoints(Graphics graphics) {
+    public void paintPoints(final Graphics graphics) {
 
         //if(this.getName().startsWith(PLAYER_0)) {
 
@@ -530,6 +535,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
     public void paintDebug(final Graphics graphics) {
         
+        //graphics.drawString(this.gdObject.name, x, y, 0);
+
 //        final int endX = (int) (this.x + (this.velocityInterface.getVelocityXBasicDecimal().getUnscaled() / 10));
 //        final int endY = (int) (this.y + (this.velocityInterface.getVelocityYBasicDecimal().getUnscaled() / 10));
 //        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().AQUA);
@@ -542,12 +549,12 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 //        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().LIGHT_RED);
 //        this.paintAngle((short) this.getRotationAnimationInterface().getFrame(), graphics);
         
-        final ViewPosition viewPosition = this.getViewPosition();
-        final int viewX = viewPosition.getX();
-        final int viewY = viewPosition.getY();
+//        final ViewPosition viewPosition = this.getViewPosition();
+//        final int viewX = viewPosition.getX();
+//        final int viewY = viewPosition.getY();
         //LogUtil.put(LogFactory.getInstance("viewX: " + viewX + " viewY: " + viewY, this, "paint"));
-        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().PINK);
-        graphics.drawRect(viewX - this.getHalfWidth(), viewY - this.getHalfHeight(), this.getWidth() * 2, this.getHeight() * 2);
+//        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().PINK);
+//        graphics.drawRect(viewX - this.getHalfWidth(), viewY - this.getHalfHeight(), this.getWidth() * 2, this.getHeight() * 2);
 
         super.paint(graphics);
 
