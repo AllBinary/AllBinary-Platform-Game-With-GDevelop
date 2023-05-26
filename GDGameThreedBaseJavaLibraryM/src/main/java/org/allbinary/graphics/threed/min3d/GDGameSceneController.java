@@ -4,34 +4,19 @@ import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.communication.log.PreLogUtil;
-import org.allbinary.logic.java.bool.BooleanFactory;
-import org.allbinary.data.resource.ResourceUtil;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import javax.microedition.khronos.opengles.GL10;
 import min3d.core.Object3d;
-import min3d.core.Object3dContainer;
 import min3d.core.TextureManager;
-import min3d.objectPrimitives.Box;
-import min3d.parser.ModelType;
-import min3d.parser.ModelTypeFactory;
 import min3d.vos.CameraFactory;
 import min3d.vos.light.Light;
-import org.allbinary.AndroidResources;
-import org.allbinary.animation.AnimationInterfaceFactoryInterface;
-import org.allbinary.animation.ThreedAnimationSingletonFactory;
 import org.allbinary.game.canvas.GD1GameThreedLevelBuilder;
-import org.allbinary.game.identification.BasicGroupFactory;
-import org.allbinary.game.identification.Group;
-import org.allbinary.game.layer.SimpleGameLayer;
-import org.allbinary.game.layer.GDGameLayerManager;
+import org.allbinary.game.input.threed.CameraMotionGestureInputProcessor;
 import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
 import org.allbinary.game.resource.ResourceInitialization;
-import org.allbinary.graphics.PointFactory;
-import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.opengles.OpenGLCapabilities;
-import org.allbinary.view.StaticViewPosition;
 
 import org.allbinary.graphics.threed.min3d.renderer.AllBinaryToMin3dRendererFactory;
 
@@ -44,10 +29,6 @@ extends AllBinaryGameSceneController
 
     public GDGameSceneController()
     {
-        // super(new RendererFactory());
-        //super(new RendererFactory(), new CameraFactory(), new AllBinarySceneFactory(), true);
-        //super(new CompositeMin3dRendererFactory(), new CameraFactory(), new AllBinarySceneFactory(), true);
-        ////super(new Min3dAllBinaryRendererFactory(), new CameraFactory(), new AllBinarySceneFactory(), true);
         super(new AllBinaryToMin3dRendererFactory(), new CameraFactory(), new AllBinarySceneFactory(), true);
         
         PreLogUtil.put(CommonStrings.getInstance().START, TAG, CommonStrings.getInstance().CONSTRUCTOR);
@@ -59,22 +40,8 @@ extends AllBinaryGameSceneController
     final String loadingString = this.toString() + " Loading: ";
     int index;
     
-
     //private final TextureListFactory textureListFactory = TextureListFactory.getInstance();
     //private final Min3dSceneResourcesFactory min3dSceneResourcesFactory = Min3dSceneResourcesFactory.getInstance();
-
-    Object3dContainer _cube;
-    
-	@Override
-	public void updateScene()
-	{
-		//PreLogUtil.put(StringUtil.getInstance().EMPTY_STRING, this, "updateScene");
-
-		/*
-		 * Do any manipulation of scene properties or to objects in the scene here.
-		 */
-		_cube.getRotationOrigin().y++;
-	}
 
     @Override
     public void initScene(final GL10 gl)
@@ -93,70 +60,31 @@ extends AllBinaryGameSceneController
             
             progressCanvas.addEarlyPortion(portion, loadingString, index++);
             
-            final ResourceUtil resourceUtil = ResourceUtil.getInstance();
-            
             //When I can get resources fixed for opengl then I reload without loading models again.
-            //if(!this.initialized) 
-            //{
-              //  this.initialized = true;
-            //}
-
-            //Integer genericBlock = Integer.valueOf(AndroidResources.raw.generic_obj);
-            //Integer genericDrop = Integer.valueOf(AndroidResources.raw.genericdrop_obj);
-            
-            //resourceUtil.addResource(GenericModel.RESOURCE, genericBlock);
-            //resourceUtil.addResource(GenericDropModel.RESOURCE, genericDrop);
-
-            final Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
-                    Min3dSceneResourcesFactory.getInstance();
-            final ModelTypeFactory modelTypeFactory = ModelTypeFactory.getInstance();
-            final ModelType OBJ = modelTypeFactory.OBJ;
-            final Boolean FALSE = BooleanFactory.getInstance().FALSE;
-            final ThreedLoaderFactory threedLoaderFactory = ThreedLoaderFactory.getInstance();
-                        
-            final TitleThreedResources titleThreedResources = TitleThreedResources.getInstance();
-
-            final AndroidResources androidResources = AndroidResources.getInstance();
-            
-          //Lights and resources don't need to be added again
+            //Lights and resources don't need to be added again
             if(!this.initialized)
             {
                 ((ResourceInitialization) GDThreedEarlyResourceInitializationFactory.getInstance().list.get(0)).init();
+                              
+                progressCanvas.addEarlyPortion(portion, loadingString, index++);
+
+                final Light light = new Light();
+
+                light.ambient.setAll(128, 128, 128, 128);
+                light.ambient.commitToFloatBuffer();
+
+                if (scene.getLights().size() > 0) {
+                    scene.getLights().reset();
+                }
+
+                scene.getLights().add(light);
+
+            scene.getCamera().frustum.horizontalCenter(0.5f);
+            scene.getCamera().frustum.verticalCenter(0.5f);
                 
-              resourceUtil.addResource(titleThreedResources.RESOURCE_TITLE_THREE, 
-                      Integer.valueOf(androidResources.raw.threed_obj)
-                      );
+              //PreLogUtil.put(, this, METHOD_NAME);
               
-              //resourceUtil.addResource(carModelResources.SIMPLE_CAR, 
-                      //Integer.valueOf(androidResources.raw.car_obj)
-                      //);
-              
-              progressCanvas.addEarlyPortion(portion, loadingString, index++);
-
-              final Light light = new Light();
-
-              light.ambient.setAll(128,128,128, 255);
-              light.ambient.commitToFloatBuffer();
-
-              if(scene.getLights().size() > 0)
-              {
-                  scene.getLights().reset();
-              }
-              
-              scene.getLights().add(light);
-
-              PreLogUtil.put("Minimal 3d Example", this, METHOD_NAME);
-            
-                _cube = new Box(1, 1, 1, null, BooleanFactory.getInstance().TRUE,
-                        BooleanFactory.getInstance().TRUE, BooleanFactory.getInstance().FALSE);
-
-                _cube.setNormalsEnabled(true);
-
-                _cube.setColorMaterialEnabled(false);
-
-                scene.addChild(_cube);              
-              
-              //this.initialized = true;
+              this.initialized = true;
             }
             else
             {
@@ -164,28 +92,6 @@ extends AllBinaryGameSceneController
             }
 
             progressCanvas.addEarlyPortion(portion, loadingString, index++);
-            
-          final Object3d titleThreeObject3dContainer = threedLoaderFactory.getObject3dInstance(
-                  titleThreedResources.RESOURCE_TITLE_THREE, gl, glInstanceVersion, OBJ, FALSE);
-          
-          //titleThreeObject3dContainer.getScale().x = 
-              //titleThreeObject3dContainer.getScale().y = 
-                  //titleThreeObject3dContainer.getScale().z = 3f;
-
-          final Object3d[] object3dArray = new Object3d[]{titleThreeObject3dContainer};
-          min3dSceneResourcesFactory.add(titleThreedResources.RESOURCE_TITLE_THREE, object3dArray);
-                  
-            progressCanvas.addEarlyPortion(portion, loadingString, index++);
-
-            //vehicleObject3dContainer = threedLoaderFactory.getObject3dInstance(
-                    //carModelResources.SIMPLE_CAR, gl, OBJ, FALSE);
-
-            //vehicleObject3dContainer.getScale().x = 
-                //vehicleObject3dContainer.getScale().y = 
-                    //vehicleObject3dContainer.getScale().z = 13f;
-
-            //min3dSceneResourcesFactory.add(
-                    //carModelResources.SIMPLE_CAR, vehicleObject3dContainer);
             
             new GD1GameThreedLevelBuilder().build(gl, glInstanceVersion);
             
@@ -206,71 +112,87 @@ extends AllBinaryGameSceneController
         try
         {
             PreLogUtil.put(CommonStrings.getInstance().START, this, "buildScene");
-            
+
             //Reset the scene
             //scene.reset();
 
-            final GDGameLayerManager testGameDemoLayerManager = (GDGameLayerManager) layerManager;
 
-            final Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
-                    Min3dSceneResourcesFactory.getInstance();
-            
-            final TitleThreedResources titleThreedResources = TitleThreedResources.getInstance();
-            
-//              final Group groupInterface = BasicGroupFactory.getInstance().GOOD;
-//              final AnimationInterfaceFactoryInterface animationInterfaceFactoryInterface = 
-//                      new ThreedAnimationSingletonFactory(_cube);
-//              final int width = 20;
-//              final int height = 20;
-//              final Rectangle layerInfo = new Rectangle(PointFactory.getInstance().ZERO_ZERO, width, height);
-//
-//              final SimpleGameLayer simpleGameLayer = new SimpleGameLayer(
-//                      groupInterface,
-//                      animationInterfaceFactoryInterface,
-//                      layerInfo, new StaticViewPosition(0,0,0));
-//              
-//              ((AllBinaryScene) scene).getThreedLayerManagerListener().getList().add(simpleGameLayer);
-            
-            final Object3d[] titleThreeObject3dContainerArray = min3dSceneResourcesFactory.get(titleThreedResources.RESOURCE_TITLE_THREE);
-            
-              final Group groupInterface = BasicGroupFactory.getInstance().GOOD;
-              final AnimationInterfaceFactoryInterface animationInterfaceFactoryInterface = 
-                      new ThreedAnimationSingletonFactory(titleThreeObject3dContainerArray[0]);
-              final int width = 20;
-              final int height = 20;
-              final Rectangle layerInfo = new Rectangle(PointFactory.getInstance().ZERO_ZERO, width, height);
-
-              final SimpleGameLayer simpleGameLayer = new SimpleGameLayer(
-                      groupInterface,
-                      animationInterfaceFactoryInterface,
-                      layerInfo, new StaticViewPosition(0,0,0));
-
-              titleThreeObject3dContainerArray[0].getRotationOrigin().y -= 90;
-              
-              testGameDemoLayerManager.append(simpleGameLayer);
-            
-            /*
-            Object3d object3d1 = ((ThreedAnimation) 
-                    featuredAnimationInterfaceFactoryInterfaceFactory.get(RedBlockModel.RESOURCE).getInstance()).getObject3d();
-
-            Object3d rectangleObject3d = ((ThreedAnimation) 
-                    featuredAnimationInterfaceFactoryInterfaceFactory.get(RectangleModel.RESOURCE).getInstance()).getObject3d();
-
-            object3d.getScale().x = object3d.getScale().y = object3d.getScale().z = 7f;
-            
-            object3d1.getScale().x = object3d1.getScale().y = object3d1.getScale().z = 4f;
-
-            rectangleObject3d.getPosition().x = -5f;
-            rectangleObject3d.getPosition().z = -5f;
-            rectangleObject3d.setDoubleSidedEnabled(true);
-            rectangleObject3d.setLightingEnabled(false);
-            */
-
+            //scene.getCamera()
             //scene.getCamera().target = object3d;
 
-//            cameraLayer.processTick(layerManager);
+//            if(cameraLayer == null)
+//            {
+//            	//1130 uses 2100 additive
+//            	//2176 is used since no camera sway
+//            	final int distance = CameraUtil.getInstance().getDistanceBasedOn(1130);
+//            	
+//                cameraLayer = new CameraLayer(
+//                		//new SwayCameraLayer( 
+//                        //new SimpleVehicleFollowCameraLayer( 
+//                       //new SimpleFollowCameraLayer(
+//                       //new ExampleRotateAroundTargetCameraLayer(
+//                       //new ExampleLockedCameraLayer(
+//                				scene.getCamera(), 
+//                           RectangleFactory.SINGLETON, 
+//                           new ViewPosition(),
+//                           distance, distance, distance);
+//
+//                //cameraLayer.setRotationX(90);
+//            	//cameraLayer.setRotationY((short) 90);
+//                //cameraLayer.setRotationZ(90);
+//            	
+//                NullTargetFactory.getInstance().setTarget(scene);
+//                
+//                //this.adjustObject3dGameLayer = AdjustableObject3dOrientationGameLayer.getInstance();
+//            }
+//            else
+//            {
+//            	cameraLayer.getGameKeyEventList().clear();
+//            	//this.adjustObject3dGameLayer.getGameKeyEventList().clear();
+//            }
+//
+//            cameraLayer.updateCamera();
+//            //cameraLayer.processTick(layerManager);
 //            layerManager.append(cameraLayer);
 
+            //scene.getCamera().position
+            scene.getCamera().target = new Object3d(0, 0);
+            //scene.getCamera().position.x = displayInfoSingleton.getLastHalfWidth();
+            //scene.getCamera().position.y = displayInfoSingleton.getLastHalfHeight();
+            //scene.getCamera().target.getPosition().x = displayInfoSingleton.getLastHalfWidth();
+            //scene.getCamera().target.getPosition().y = displayInfoSingleton.getLastHalfHeight();
+            //x is y : y is x : z is distortion
+            //scene.getCamera().position.x = 0;
+            //scene.getCamera().position.y = 1000;
+            //scene.getCamera().position.z = 200;
+
+            //scene.getCamera().target.getPosition().x = 0;
+            //scene.getCamera().target.getPosition().y = 500;
+            //scene.getCamera().target.getPosition().z = 0;
+
+            //330.0, 955.0, -192.0->320.0, 0.0, -187.0
+           
+            scene.getCamera().position.x = 330;
+            scene.getCamera().position.y = 955;
+            scene.getCamera().position.z = -192;
+
+            scene.getCamera().target.getPosition().x = 310;
+            scene.getCamera().target.getPosition().y = 0;
+            scene.getCamera().target.getPosition().z = -187;
+            
+            CameraMotionGestureInputProcessor.getInstance().add(scene);
+
+//    humanEvilKittyLayer = new HumanTestGameDemoLayer(
+//            null, new VelocityProperties(0, 0),
+//            BasicGroupFactory.getInstance().GOOD,
+//            animationInterfaceFactoryInterfaceArray,
+//            //NullThreedAnimationFactory.getFactoryInstance(),
+//            //new ThreedAnimationFactory(object3dContainer),
+//            //new TestChildThreedCompositeInputProcessor(cameraLayer),
+//             new SelectCompositeInputProcessor(specialGameInputInterfaceArray),                    
+//            RectangleFactory.SINGLETON
+//            );
+              
         }
         catch (Exception e)
         {

@@ -361,6 +361,10 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     //eventsLogicConstructionCollisionNP - END
 
+                    <xsl:if test="$layoutIndex = 1" >
+                    //GameAreaBoxUtil.getInstance().append(allBinaryGameLayerManager);
+                    </xsl:if>
+
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                         }

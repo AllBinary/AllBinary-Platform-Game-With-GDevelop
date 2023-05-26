@@ -39,57 +39,6 @@ BaseResourceAnimationInterfaceFactoryInterfaceFactory
             return;
         }
 
-        ResourceLoadingLevelFactory resourceLoadingLevelFactory = 
-            ResourceLoadingLevelFactory.getInstance();
-
-        int portion = 120;
-        if(level == resourceLoadingLevelFactory.LOAD_EARLY.getLevel())
-        {
-            portion = 10;
-        }
-
-        final String loadingString = this.toString() + " Loading: ";
-
-        int index = 1;
-
-        ProgressCanvas progressCanvas =
-            ProgressCanvasFactory.getInstance();
-
-        progressCanvas.addPortion(portion, loadingString, index++);
-
-        Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
-            Min3dSceneResourcesFactory.getInstance();
-        
-        IndexedAnimation[] animationInterfaceArrayTemp =
-            GDGameTitleAnimationFactory.getInstance().getArrayInstance();
-            
-        IndexedAnimation[] animationInterfaceArray = new IndexedAnimation[3];
-        
-        animationInterfaceArray[0] = animationInterfaceArrayTemp[0];
-        animationInterfaceArray[1] = animationInterfaceArrayTemp[1];
-
-        TitleThreedResources titleThreedResources = TitleThreedResources.getInstance();
-
-        //final String TIRE = VehicleStrings.getInstance().TIRE;
-
-        /*
-        animationInterfaceArray[0] = (IndexedAnimation)
-        new ThreedAnimationFactory(min3dSceneResourcesFactory.get(
-                titleThreedResources.RESOURCE_TITLE_ONE)).getInstance();
-        animationInterfaceArray[1] = (IndexedAnimation)
-        new ThreedAnimationFactory(min3dSceneResourcesFactory.get(
-                titleThreedResources.RESOURCE_TITLE_TWO)).getInstance();
-        */
-
-        animationInterfaceArray[2] = (IndexedAnimation)
-            new ThreedAnimationSingletonFactory(min3dSceneResourcesFactory.get(
-                    titleThreedResources.RESOURCE_TITLE_THREE)[0]).getInstance();
-        
-        this.add(TitleResource.RESOURCE_TITLE,
-                new SingletonAnimationInterfaceFactory(
-                         GDGameThreedTitleAnimationFactory.getIntance().getInstance(
-                                animationInterfaceArray)));
-
         super.init(level);
     }
 

@@ -131,6 +131,8 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
             public void paint(Graphics graphics)
             {
                 specialAnimation.paint(graphics, 0, 0);
+                
+                //CameraMotionGestureInputProcessor.getInstance().paint(graphics);
             }
 
             public void paintThreed(Graphics graphics)

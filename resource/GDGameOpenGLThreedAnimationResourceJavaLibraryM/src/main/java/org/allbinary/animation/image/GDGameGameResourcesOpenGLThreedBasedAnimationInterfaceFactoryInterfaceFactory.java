@@ -54,39 +54,39 @@ public class GDGameGameResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterf
         
         index = 1;
 
-        ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
+        final ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
 
         progressCanvas.addPortion(portion, loadingString, index++);
 
         //this.addRectangles();
 
-        ImageCache imageCache = OpenGLImageCacheFactory.getInstance();
-        Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
-            Min3dSceneResourcesFactory.getInstance();
-
-        progressCanvas.addPortion(portion, loadingString, index++);
-
-        ExplosionResources explosionResources = ExplosionResources.getInstance();
-
-        this.add(explosionResources.EXPLOSION_60_RESOURCE,
-                NullRotationAnimationFactory.getFactoryInstance());
-
-        progressCanvas.addPortion(portion, loadingString, index++);
-
-        this.add(explosionResources.HALF_EXPLOSION_RESOURCE,
-                NullRotationAnimationFactory.getFactoryInstance()
-        );
-
-        progressCanvas.addPortion(portion, loadingString, index++);
-
-        // 3 or 5
-        this.add(explosionResources.THIRD_EXPLOSION_RESOURCE,
-                NullRotationAnimationFactory.getFactoryInstance()
-        );
-
-        AnimationInterfaceFactoryInterface[] basicAnimationInterfaceFactoryInterfaceArray;
-
-        progressCanvas.addPortion(portion, loadingString, index++);
+//        final ImageCache imageCache = OpenGLImageCacheFactory.getInstance();
+//        final Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
+//            Min3dSceneResourcesFactory.getInstance();
+//
+//        progressCanvas.addPortion(portion, loadingString, index++);
+//
+//        ExplosionResources explosionResources = ExplosionResources.getInstance();
+//
+//        this.add(explosionResources.EXPLOSION_60_RESOURCE,
+//                NullRotationAnimationFactory.getFactoryInstance());
+//
+//        progressCanvas.addPortion(portion, loadingString, index++);
+//
+//        this.add(explosionResources.HALF_EXPLOSION_RESOURCE,
+//                NullRotationAnimationFactory.getFactoryInstance()
+//        );
+//
+//        progressCanvas.addPortion(portion, loadingString, index++);
+//
+//        // 3 or 5
+//        this.add(explosionResources.THIRD_EXPLOSION_RESOURCE,
+//                NullRotationAnimationFactory.getFactoryInstance()
+//        );
+//
+//        AnimationInterfaceFactoryInterface[] basicAnimationInterfaceFactoryInterfaceArray;
+//
+//        progressCanvas.addPortion(portion, loadingString, index++);
 
         super.init(level);
     }
