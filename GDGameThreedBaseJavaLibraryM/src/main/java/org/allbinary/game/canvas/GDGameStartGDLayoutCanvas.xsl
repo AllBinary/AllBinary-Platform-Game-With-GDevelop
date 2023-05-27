@@ -26,6 +26,8 @@ import org.allbinary.animation.special.SpecialAnimation;
         
 import org.allbinary.game.init.GDGameStaticInitializerFactory;
 import org.allbinary.game.configuration.GameSpeed;
+import org.allbinary.game.configuration.feature.Features;
+import org.allbinary.game.configuration.feature.GameFeatureFactory;
 import org.allbinary.game.displayable.canvas.StartCanvas;
 import org.allbinary.game.identification.GroupFactory;
 import org.allbinary.game.paint.ColorFillPaintableFactory;
@@ -55,6 +57,11 @@ public class <GDLayout> extends StartCanvas
         this.setWait(WAIT);
 
         GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(this, null);
+            
+            //force2dCollision = <xsl:value-of select="../properties/force2dCollision" />
+        <xsl:if test="../properties/force2dCollision/text() = 'true'" >
+        Features.getInstance().isFeature(GameFeatureFactory.getInstance().COLLISIONS_FORCED_TWO_DIMENSIONAL);
+        </xsl:if>
     }
 
     public void initPostPaint() throws Exception

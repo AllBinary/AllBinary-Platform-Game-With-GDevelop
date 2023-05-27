@@ -16,6 +16,7 @@ import org.allbinary.game.canvas.GD1GameThreedLevelBuilder;
 import org.allbinary.game.input.threed.CameraMotionGestureInputProcessor;
 import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
 import org.allbinary.game.resource.ResourceInitialization;
+import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.graphics.opengles.OpenGLCapabilities;
 
 import org.allbinary.graphics.threed.min3d.renderer.AllBinaryToMin3dRendererFactory;
@@ -157,30 +158,31 @@ extends AllBinaryGameSceneController
 
             //scene.getCamera().position
             scene.getCamera().target = new Object3d(0, 0);
-            //scene.getCamera().position.x = displayInfoSingleton.getLastHalfWidth();
-            //scene.getCamera().position.y = displayInfoSingleton.getLastHalfHeight();
-            //scene.getCamera().target.getPosition().x = displayInfoSingleton.getLastHalfWidth();
-            //scene.getCamera().target.getPosition().y = displayInfoSingleton.getLastHalfHeight();
-            //x is y : y is x : z is distortion
-            //scene.getCamera().position.x = 0;
-            //scene.getCamera().position.y = 1000;
-            //scene.getCamera().position.z = 200;
-
-            //scene.getCamera().target.getPosition().x = 0;
-            //scene.getCamera().target.getPosition().y = 500;
-            //scene.getCamera().target.getPosition().z = 0;
-
-            //330.0, 955.0, -192.0->320.0, 0.0, -187.0
-           
-            scene.getCamera().position.x = 330;
-            scene.getCamera().position.y = 955;
-            scene.getCamera().position.z = -192;
-
-            scene.getCamera().target.getPosition().x = 310;
-            scene.getCamera().target.getPosition().y = 0;
-            scene.getCamera().target.getPosition().z = -187;
+            final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
             
-            CameraMotionGestureInputProcessor.getInstance().add(scene);
+            //x is height, y is distance from game area, z is width
+            //MyCanvas aLastWidth: 385 aLastHeight: 639 Display Info: fullWidth: 1440 fullHeight: 2392 lastWidth: 385 lastHeight: 639 lastHalfWidth: 192 lastHalfHeight: 319
+            //319.0, 900.0, -639.0->319.0, 0.0, -629.0
+            //319.0, 815.0, -779.0->319.0, -625.0, -629.0
+            
+//            scene.getCamera().position.x = displayInfoSingleton.getLastHalfHeight();
+//            scene.getCamera().position.y = 900;
+//            scene.getCamera().position.z = -displayInfoSingleton.getLastHeight();
+//
+//            scene.getCamera().target.getPosition().x = displayInfoSingleton.getLastHalfHeight();
+//            scene.getCamera().target.getPosition().y = 0;
+//            scene.getCamera().target.getPosition().z = -displayInfoSingleton.getLastHeight() + 10;
+
+            final int totalDistance = displayInfoSingleton.getLastHeight() + 180;
+            scene.getCamera().position.x = displayInfoSingleton.getLastHalfHeight();
+            scene.getCamera().position.y = totalDistance;
+            scene.getCamera().position.z = -displayInfoSingleton.getLastHeight() - 100;
+
+            scene.getCamera().target.getPosition().x = displayInfoSingleton.getLastHalfHeight();
+            scene.getCamera().target.getPosition().y = -totalDistance;
+            scene.getCamera().target.getPosition().z = -displayInfoSingleton.getLastHeight() + 10;
+
+            //CameraMotionGestureInputProcessor.getInstance().add(scene);
 
 //    humanEvilKittyLayer = new HumanTestGameDemoLayer(
 //            null, new VelocityProperties(0, 0),
