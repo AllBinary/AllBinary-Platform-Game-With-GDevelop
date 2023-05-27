@@ -97,7 +97,7 @@ Created By: Travis Berthelot
                         }
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
-                        private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
+                        //private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
                         //private final ImageCache imageCache = OpenGLImageCacheFactory.getInstance(); //ImageCacheFactory.getInstance();
                         private final GDResources gdResources = GDResources.getInstance();
 

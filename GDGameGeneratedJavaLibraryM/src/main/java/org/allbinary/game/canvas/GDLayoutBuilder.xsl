@@ -242,6 +242,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
                         //instances //We may need to set a dimension for each image/animation.
+                            //Hack - temp detection of buttons.
                             <xsl:if test="contains(name, 'btn_')" >
                         <xsl:value-of select="name" />2.canvasWidth = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
                         <xsl:value-of select="name" />2.canvasHeight = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();

@@ -88,14 +88,6 @@ Created By: Travis Berthelot
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />GameThreedLevelBuilder
                 {
-
-                    private static final GD<xsl:value-of select="$layoutIndex" />GameThreedLevelBuilder instance = new GD<xsl:value-of select="$layoutIndex" />GameThreedLevelBuilder();
-
-                        public static GD<xsl:value-of select="$layoutIndex" />GameThreedLevelBuilder getInstance()
-                        {
-                            return instance;
-                        }
-
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final GDResources gdResources = GDResources.getInstance();
 

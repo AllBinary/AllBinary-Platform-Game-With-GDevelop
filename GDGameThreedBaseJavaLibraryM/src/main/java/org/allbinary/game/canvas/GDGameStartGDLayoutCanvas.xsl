@@ -60,7 +60,7 @@ public class <GDLayout> extends StartCanvas
             
             //force2dCollision = <xsl:value-of select="../properties/force2dCollision" />
         <xsl:if test="../properties/force2dCollision/text() = 'true'" >
-        Features.getInstance().isFeature(GameFeatureFactory.getInstance().COLLISIONS_FORCED_TWO_DIMENSIONAL);
+        Features.getInstance().addDefault(GameFeatureFactory.getInstance().COLLISIONS_FORCED_TWO_DIMENSIONAL);
         </xsl:if>
     }
 

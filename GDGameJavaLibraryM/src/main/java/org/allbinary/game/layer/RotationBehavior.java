@@ -29,7 +29,7 @@ import org.allbinary.logic.communication.log.LogUtil;
  */
 public class RotationBehavior extends RotationBehaviorBase {
     
-    private RotationAnimation[] rotationAnimationInterfaceArray;
+    public RotationAnimation[] rotationAnimationInterfaceArray;
     
     public IndexedAnimation[] init(final GDObject gdObject, final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray) {
         final int size = animationInterfaceFactoryInterfaceArray.length;

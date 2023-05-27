@@ -120,7 +120,7 @@ Created By: Travis Berthelot
 
                     <!--
                     <xsl:if test="$thisNodeArray = 'globals.nodeArray[11047]'" >
-                        //Hack - gdNodeList
+                        //Hackish - gdNodeList
                         if(globals.playerGDGameLayerList.size() == 0) {
                             return;
                         }

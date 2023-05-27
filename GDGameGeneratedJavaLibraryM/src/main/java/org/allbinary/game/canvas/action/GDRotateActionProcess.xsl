@@ -205,6 +205,15 @@ Created By: Travis Berthelot
                                 //Parameters - 3
                                 <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotation = <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
                                 //<xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.angle += <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
+                                <xsl:text>&#10;</xsl:text>
+
+                                //Haskish - it is hard to tell if this is a feature or a hack.
+                                <xsl:if test="/game/properties/force2dCollision/text() = 'true'" >
+                                <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotationZ = <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
+                                <!-- new line -->
+                                <xsl:text>&#10;</xsl:text>
+                                </xsl:if>
+
                             } catch(Exception e) {
                                 //3
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
