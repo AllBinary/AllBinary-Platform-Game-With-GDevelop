@@ -40,7 +40,7 @@ Created By: Travis Berthelot
                       
                 <xsl:value-of select="substring-before(image, '.')" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().x = 
                     <xsl:value-of select="substring-before(image, '.')" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().y = 
-                        <xsl:value-of select="substring-before(image, '.')" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().z = 30f;
+                        <xsl:value-of select="substring-before(image, '.')" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().z = <xsl:value-of select="/game/properties/scale3d" />f;
 
                 </xsl:for-each></xsl:for-each></xsl:for-each>
                 
