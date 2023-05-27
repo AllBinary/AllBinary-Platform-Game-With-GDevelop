@@ -37,7 +37,7 @@ Created By: Travis Berthelot
                 final Object3d[] <xsl:value-of select="name" />Object3dArray = min3dSceneResourcesFactory.get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME);
                 final int <xsl:value-of select="name" />Size = <xsl:value-of select="name" />Object3dArray.length;
                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="name" />Size; index++) {
-                    <xsl:value-of select="name" />List.add(new ThreedAnimationFactory(<xsl:value-of select="name" />Object3dArray[index]));
+                    <xsl:value-of select="name" />List.add(new ThreedAnimationFactory(<xsl:value-of select="name" />Object3dArray[index], 1));
                 }
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = (AnimationInterfaceFactoryInterface[]) <xsl:value-of select="name" />List.toArray(new AnimationInterfaceFactoryInterface[<xsl:value-of select="name" />Size]);
