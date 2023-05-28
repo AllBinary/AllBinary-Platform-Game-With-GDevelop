@@ -37,6 +37,9 @@ public class GDToThreedAndroidResourcesGradleGenerator
     
     private final String GD_KEY_NAME = "<name>";
     
+    private final String _OBJ = "_obj";
+    private final String BUTTON = "button";
+    
     private String name;
     
     public GDToThreedAndroidResourcesGradleGenerator() {
@@ -50,10 +53,27 @@ public class GDToThreedAndroidResourcesGradleGenerator
     
     public void processResource(final String fileAsString, final String resourceString) {
         final String resource = resourceString.substring(1, resourceString.length() - 4).toLowerCase();
+
+        //Hack - the generation needs to break 3d objects from images.
+        boolean isThreed = true;        
+        if(resource.indexOf(BUTTON) >= 0) {
+            isThreed = false;
+        }
+        
         resourceStringBuilder.append(this.PUBLIC_FINAL_STRING);
         resourceStringBuilder.append(resource);
+        
+        if(isThreed) {
+            resourceStringBuilder.append(this._OBJ);
+        }
+        
         resourceStringBuilder.append(this.VALUE_RESOURCE_START);
         resourceStringBuilder.append(resource);
+        
+        if(isThreed) {
+            resourceStringBuilder.append(this._OBJ);
+        }
+        
         resourceStringBuilder.append(this.VALUE_RESOURCE_END);
     }
     
