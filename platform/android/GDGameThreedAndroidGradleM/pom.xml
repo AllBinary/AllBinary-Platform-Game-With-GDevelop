@@ -183,11 +183,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameAndroidBaseJavaLibrary</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.allbinary.animation</groupId>
             <artifactId>AllBinaryImageAnimationRotationJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
