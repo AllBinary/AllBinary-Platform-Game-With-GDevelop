@@ -228,7 +228,15 @@ Created By: Travis Berthelot
                         //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" />
                         <xsl:text>&#10;</xsl:text>
                         final int <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
-                        final int <xsl:value-of select="name" />Y = <xsl:value-of select="y" />;
+                        final int <xsl:value-of select="name" />Y = 
+                            <xsl:if test="contains(layer, 'touch')" >
+                                //Hack - for android orientation change.
+                                <xsl:if test="y = 506" >DisplayInfoSingleton.getInstance().getLastHeight() - (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100));</xsl:if>
+                                <xsl:if test="y = 415" >DisplayInfoSingleton.getInstance().getLastHeight() - (2 * (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100)));</xsl:if>
+                            </xsl:if>
+                            <xsl:if test="not(contains(layer, 'touch'))" >
+                                <xsl:value-of select="y" />;
+                            </xsl:if>
 
                         if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
                             globals.<xsl:value-of select="name" />GDGameLayerList.ensureCapacity(1);
@@ -242,14 +250,14 @@ Created By: Travis Berthelot
                         <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
                         //instances //We may need to set a dimension for each image/animation.
-                            //Hack - temp detection of buttons.
-                            <xsl:if test="contains(name, 'btn_')" >
+                            //Hack - the other 'btn_' cases need to look at the layer to see if it is touch or not.
+                            <xsl:if test="contains(layer, 'touch')" >
                         <xsl:value-of select="name" />2.canvasWidth = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
                         <xsl:value-of select="name" />2.canvasHeight = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();
                         <xsl:value-of select="name" />2.width = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
                         <xsl:value-of select="name" />2.height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
                             </xsl:if>
-                            <xsl:if test="not(contains(name, 'btn_'))" >
+                            <xsl:if test="not(contains(layer, 'touch'))" >
                         <xsl:value-of select="name" />2.canvasWidth = imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
                         <xsl:value-of select="name" />2.canvasHeight = imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();
                         <xsl:value-of select="name" />2.width = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
