@@ -74,22 +74,17 @@ Created By: Travis Berthelot
 */
 package org.allbinary.animation.image;
 
+import java.util.Hashtable;
 import javax.microedition.lcdui.Image;
-
-import min3d.core.Object3d;
-
 import org.allbinary.animation.AllBinaryImageArrayRotationAnimationFactory;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
-import org.allbinary.animation.ThreedAnimationFactory;
+import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
-import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
-import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory;
-import org.allbinary.image.opengles.OpenGLImageCacheFactory;
 
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
@@ -98,69 +93,59 @@ import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.image.ImageCache;
 import org.allbinary.image.ImageCacheFactory;
+import org.allbinary.image.opengles.OpenGLImageCacheFactory;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 
-import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
-import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
-
-import org.allbinary.util.BasicArrayList;
-
-public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
+public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
     private final CommonStrings commonStrings = CommonStrings.getInstance();
-
+    
     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
-
-    private final int portion = 120;
-
-    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
+        
+    public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(final Hashtable hashtable, final Hashtable rectangleHashtable)
     {
-        super("GDGame OpenGL ImageArray Animations");
+        super("Game Image Animations", hashtable, rectangleHashtable);
+    }
+            
+    public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
+    {
+        super("Game Image Animations");
     }
 
-    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
+    public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
         super(name);
     }
     
-    public void loadDayTrack(final String loadingString) throws Exception
+    public void init(int level)
+    throws Exception
     {
-        ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
-
-        Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
-            Min3dSceneResourcesFactory.getInstance();
+        this.init(OpenGLImageCacheFactory.getInstance(), level);
     }
 
-    private boolean[] isInitialized = new boolean[11];
-    
-    public void init(int level) 
+    protected void init(ImageCache imageCache, int level)
     throws Exception
     {
         if(this.isInitialized())
         {
             return;
         }
-    
-        super.init(OpenGLImageCacheFactory.getInstance(), level);        
-        
-        final String loadingString = this.toString() + " Loading: ";
-    
+
         //final int portion = 120;
+        //final String loadingString = this.toString() + " Loading: ";
         
         //int index = 0;
 
-        final Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
-            Min3dSceneResourcesFactory.getInstance();
-    
         //ProgressCanvas progressCanvas = 
           //  ProgressCanvasFactory.getInstance();
 
                         try {
 
-                    <xsl:call-template name="threedAnimationFactory" >
+                    
+                    <xsl:call-template name="touchAnimationFactory" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
@@ -175,12 +160,6 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                         </xsl:with-param>
                     </xsl:call-template>
 
-                    <xsl:text>&#10;</xsl:text>
-                    <xsl:if test="$layoutIndex = 1" >
-                    new GD1GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable()).init(-1);
-                    //GameAreaBoxUtil.getInstance().addAnimations(this);
-                    </xsl:if>
-
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
                         }
@@ -190,14 +169,21 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
     
     public boolean isLoadingLevel(int level)
     {
-        if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
-        {
+        if(level == 1) {
             return true;
         }
-        else
-        {
-            return super.isLoadingLevel(level);
-        }
+        //final ResourceLoadingLevelFactory resourceLoadingLevelFactory = 
+            //ResourceLoadingLevelFactory.getInstance();
+
+        //if (level == resourceLoadingLevelFactory.LOAD_TOUCH.getLevel())
+        //{
+            //return true;
+        //}
+        //else
+        //{
+            //return super.isLoadingLevel(level);
+        //}
+        return false;
     }
     
     public boolean isFeature()
@@ -223,6 +209,11 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
         }
     }
 
+    private void addRectangles() throws Exception
+    {
+       //this.addRectangle(BossOneShipResources.getInstance().RESOURCE, new Rectangle(PointFactory
+         //       .ZERO_ZERO, 52, 52));
+    }
 }
 
             </xsl:if>

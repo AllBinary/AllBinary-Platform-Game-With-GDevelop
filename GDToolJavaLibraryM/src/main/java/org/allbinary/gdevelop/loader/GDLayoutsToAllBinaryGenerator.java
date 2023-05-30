@@ -219,6 +219,8 @@ public class GDLayoutsToAllBinaryGenerator
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl"),
+
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio\\GameSoundsFactory.xsl"),
                 
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutResources.xsl"),
@@ -235,6 +237,8 @@ public class GDLayoutsToAllBinaryGenerator
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+                "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+                
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio\\GD",
                 
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
@@ -251,6 +255,8 @@ public class GDLayoutsToAllBinaryGenerator
                 "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
                 "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
                 "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+                "GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+                
                 "GameSoundsFactory.java",
                 
                 "SpecialAnimationResources.java",

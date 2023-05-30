@@ -31,6 +31,7 @@ GDResources.java
 GDGameCommandFactory.java
 GDGameStartGameOverCanvasRunnable.java
 GD*GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
+GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
 
 ./platform/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/AndroidManifest.xml
 ./platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/AndroidManifest.xml

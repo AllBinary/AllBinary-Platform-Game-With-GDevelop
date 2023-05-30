@@ -35,11 +35,14 @@ public class AndroidResources
     public Rid id = new Rid();
 
     public class Rlayout {
-        public final int gd_ad_overlay_layout = R.layout.gd_ad_overlay_layout;
         public final int gd_gl_layout = R.layout.gd_gl_layout;
+        public final int gd_ad_overlay_layout = R.layout.gd_ad_overlay_layout;
+        public final int gd_gl_ad_overlay_layout = R.layout.gd_gl_ad_overlay_layout;
+        public final int gd_min3d_ad_overlay_layout = R.layout.gd_min3d_ad_overlay_layout;
+        public final int gd_min3d_layout = R.layout.gd_min3d_layout;
         public final int gd_layout = R.layout.gd_layout;
 
-        public final int webview_layout = R.layout.webview_layout;
+        public final int webview_layout = R.layout.webview_layout;        
     }
 
     public Rlayout layout = new Rlayout();
