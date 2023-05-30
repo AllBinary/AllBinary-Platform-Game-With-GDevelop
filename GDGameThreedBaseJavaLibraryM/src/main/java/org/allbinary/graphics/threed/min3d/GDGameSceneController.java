@@ -201,7 +201,7 @@ extends AllBinaryGameSceneController
                 camera.position.z = -((displayInfoSingleton.getLastWidth()) + 10);
 
                 camera.target.getPosition().x = -54; //displayInfoSingleton.getLastHalfHeight();
-                camera.target.getPosition().y = -totalDistance;
+                camera.target.getPosition().y = -(totalDistance + 1360);
                 camera.target.getPosition().z = 70;
             }
 
