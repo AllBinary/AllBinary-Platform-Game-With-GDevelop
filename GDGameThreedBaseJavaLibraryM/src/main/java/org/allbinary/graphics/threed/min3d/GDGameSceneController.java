@@ -10,6 +10,7 @@ import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import javax.microedition.khronos.opengles.GL10;
 import min3d.core.Object3d;
 import min3d.core.TextureManager;
+import min3d.vos.Camera;
 import min3d.vos.CameraFactory;
 import min3d.vos.light.Light;
 import org.allbinary.game.canvas.GD1GameThreedLevelBuilder;
@@ -20,6 +21,7 @@ import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.graphics.opengles.OpenGLCapabilities;
 
 import org.allbinary.graphics.threed.min3d.renderer.AllBinaryToMin3dRendererFactory;
+import org.allbinary.logic.basic.string.StringMaker;
 
 public class GDGameSceneController 
 extends AllBinaryGameSceneController
@@ -80,8 +82,9 @@ extends AllBinaryGameSceneController
 
                 scene.getLights().add(light);
 
-            scene.getCamera().frustum.horizontalCenter(0.5f);
-            scene.getCamera().frustum.verticalCenter(0.5f);
+            final Camera camera = scene.getCamera();
+            camera.frustum.horizontalCenter(0.5f);
+            camera.frustum.verticalCenter(0.5f);
                 
               //PreLogUtil.put(, this, METHOD_NAME);
               
@@ -118,8 +121,8 @@ extends AllBinaryGameSceneController
             //scene.reset();
 
 
-            //scene.getCamera()
-            //scene.getCamera().target = object3d;
+            //camera
+            //camera.target = object3d;
 
 //            if(cameraLayer == null)
 //            {
@@ -133,7 +136,7 @@ extends AllBinaryGameSceneController
 //                       //new SimpleFollowCameraLayer(
 //                       //new ExampleRotateAroundTargetCameraLayer(
 //                       //new ExampleLockedCameraLayer(
-//                				scene.getCamera(), 
+//                				camera, 
 //                           RectangleFactory.SINGLETON, 
 //                           new ViewPosition(),
 //                           distance, distance, distance);
@@ -156,32 +159,57 @@ extends AllBinaryGameSceneController
 //            //cameraLayer.processTick(layerManager);
 //            layerManager.append(cameraLayer);
 
-            //scene.getCamera().position
-            scene.getCamera().target = new Object3d(0, 0);
+            //camera.position
+            final Camera camera = scene.getCamera();
+            camera.target = new Object3d(0, 0);
             final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
             
-            //x is height, y is distance from game area, z is width
-            //MyCanvas aLastWidth: 385 aLastHeight: 639 Display Info: fullWidth: 1440 fullHeight: 2392 lastWidth: 385 lastHeight: 639 lastHalfWidth: 192 lastHalfHeight: 319
-            //319.0, 900.0, -639.0->319.0, 0.0, -629.0
-            //319.0, 815.0, -779.0->319.0, -625.0, -629.0
+            final StringMaker stringMaker = new StringMaker();
             
-//            scene.getCamera().position.x = displayInfoSingleton.getLastHalfHeight();
-//            scene.getCamera().position.y = 900;
-//            scene.getCamera().position.z = -displayInfoSingleton.getLastHeight();
-//
-//            scene.getCamera().target.getPosition().x = displayInfoSingleton.getLastHalfHeight();
-//            scene.getCamera().target.getPosition().y = 0;
-//            scene.getCamera().target.getPosition().z = -displayInfoSingleton.getLastHeight() + 10;
+            //x is height, y is distance from game area, z is width            
+            //if(CameraMotionGestureInputProcessor.getInstance().restore(scene, stringMaker)) {
 
-            final int totalDistance = displayInfoSingleton.getLastHeight() + 180;
-            scene.getCamera().position.x = displayInfoSingleton.getLastHalfHeight();
-            scene.getCamera().position.y = totalDistance;
-            scene.getCamera().position.z = -displayInfoSingleton.getLastHeight() - 100;
+            //} else 
+            if(displayInfoSingleton.isPortrait()) {
+            
+                stringMaker.append("portrait: ");
 
-            scene.getCamera().target.getPosition().x = displayInfoSingleton.getLastHalfHeight();
-            scene.getCamera().target.getPosition().y = -totalDistance;
-            scene.getCamera().target.getPosition().z = -displayInfoSingleton.getLastHeight() + 10;
+                //MyCanvas aLastWidth: 385 aLastHeight: 639 Display Info: fullWidth: 1440 fullHeight: 2392 lastWidth: 385 lastHeight: 639 lastHalfWidth: 192 lastHalfHeight: 319
+                //319.0, 900.0, -639.0->319.0, 0.0, -629.0
+                //319.0, 815.0, -779.0->319.0, -625.0, -629.0
+                
+                //MyCanvas aLastWidth: 470 aLastHeight: 640 Display Info: fullWidth: 1800 fullHeight: 2448 lastWidth: 470 lastHeight: 640 lastHalfWidth: 235 lastHalfHeight: 320
+                //195.0, 740.0, -835.0->205.0, -785.0, -765.0
 
+                final int totalDistance = displayInfoSingleton.getLastHeight() + 100;
+                camera.position.x = displayInfoSingleton.getLastHalfHeight() - 125;
+                camera.position.y = totalDistance;
+                camera.position.z = -(displayInfoSingleton.getLastHeight()) - 200;
+
+                camera.target.getPosition().x = displayInfoSingleton.getLastHalfHeight() - 125;
+                camera.target.getPosition().y = -totalDistance;
+                camera.target.getPosition().z = -(displayInfoSingleton.getLastHeight()) - 100;
+
+            } else {
+                stringMaker.append("landscape: ");
+                
+                //MyCanvas aLastWidth: 640 aLastHeight: 422 Display Info: fullWidth: 2560 fullHeight: 1688 lastWidth: 640 lastHeight: 422 lastHalfWidth: 320 lastHalfHeight: 211
+                //-84.0, 640.0, -650.0->-54.0, -1980.0, 70.0
+                final int totalDistance = displayInfoSingleton.getLastWidth();
+                camera.position.x = -84; //displayInfoSingleton.getLastHalfHeight();
+                camera.position.y = totalDistance;
+                camera.position.z = -((displayInfoSingleton.getLastWidth()) + 10);
+
+                camera.target.getPosition().x = -54; //displayInfoSingleton.getLastHalfHeight();
+                camera.target.getPosition().y = -totalDistance;
+                camera.target.getPosition().z = 70;
+            }
+
+            camera.position.append(stringMaker);
+            stringMaker.append('-').append('>');
+            camera.target.getPosition().append(stringMaker);
+            PreLogUtil.put(stringMaker.toString(), this, "onMotionGestureEvent");
+            
             //CameraMotionGestureInputProcessor.getInstance().add(scene);
 
 //    humanEvilKittyLayer = new HumanTestGameDemoLayer(
