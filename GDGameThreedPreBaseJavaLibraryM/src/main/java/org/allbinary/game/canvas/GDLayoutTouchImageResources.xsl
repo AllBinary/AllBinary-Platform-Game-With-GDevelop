@@ -63,7 +63,6 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Image;
 
-                import org.allbinary.animation.image.GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.resource.GDResources;
                 import org.allbinary.image.ImageCache;
@@ -95,7 +94,7 @@ Created By: Travis Berthelot
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
-                        private final ImageCache imageCache = OpenGLImageCacheFactory.getInstance(); //ImageCacheFactory.getInstance();
+                        private final ImageCache imageCache = OpenGLImageCacheFactory.getInstance();
                         private final GDResources gdResources = GDResources.getInstance();
 
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources animationInterfaceFactoryInterfaceFactory = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();

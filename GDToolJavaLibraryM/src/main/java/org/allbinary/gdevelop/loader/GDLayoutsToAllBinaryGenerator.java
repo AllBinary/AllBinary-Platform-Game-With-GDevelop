@@ -108,7 +108,6 @@ public class GDLayoutsToAllBinaryGenerator
                 layoutGameXmlAsString,
                 
                 layoutGameXmlAsString,
-                layoutGameXmlAsString,
                 
                 gameXmlAsString,
                 layoutGameXmlAsString,
@@ -134,7 +133,6 @@ public class GDLayoutsToAllBinaryGenerator
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutOtherEventGDNodes.xsl"),
 
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDResources.xsl"),
-                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutTouchImageResources.xsl"),
                 
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGlobals.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDObjects.xsl")
@@ -167,7 +165,6 @@ public class GDLayoutsToAllBinaryGenerator
                 "SpecialAnimationOtherEventGDNodes.java",
 
                 "SpecialAnimationGDResources.java",
-                "SpecialAnimationTouchImageResources.java",
                 
                 "SpecialAnimationGlobals.java",
                 "GDObjectsFactory.java"
@@ -228,6 +225,8 @@ public class GDLayoutsToAllBinaryGenerator
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutResources.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutImageResources.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutImageResources.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutTouchImageResources.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutTouchImageResources.xsl"),
                 
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameThreedLevelLoader.xsl"),
             };
@@ -238,6 +237,8 @@ public class GDLayoutsToAllBinaryGenerator
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio\\GD",
                 
+                "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+                "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
@@ -256,6 +257,8 @@ public class GDLayoutsToAllBinaryGenerator
                 "SpecialAnimationResources.java",
                 "SpecialAnimationImageResources.java",
                 "SpecialAnimationImageResources.java",
+                "SpecialAnimationTouchImageResources.java",
+                "SpecialAnimationTouchImageResources.java",
                 
                 "GameThreedLevelBuilder.java",
             };
