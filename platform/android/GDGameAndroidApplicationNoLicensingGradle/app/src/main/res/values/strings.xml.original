@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="gd_app_name">Test Demo Game</string>
+    <string name="gd_app_name"><name></string>
     <string name="progressbar_in_title_string"></string>
 </resources>
