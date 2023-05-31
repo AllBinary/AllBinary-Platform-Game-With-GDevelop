@@ -10,9 +10,9 @@ package org.allbinary.gdevelop.loader;
  *
  * @author User
  */
-public class GDToGradleAndroidResourceStringsXmlGenerator extends GDNameFileGenerator
+public class GDToAndroidResourceStringsXmlGradleGenerator extends GDNameFileGenerator
 {
-    public GDToGradleAndroidResourceStringsXmlGenerator() {
+    public GDToAndroidResourceStringsXmlGradleGenerator() {
         super("G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidApplicationNoLicensingGradle\\app\\src\\main\\res\\values\\strings.xml.original",
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidApplicationNoLicensingGradle\\app\\src\\main\\res\\values\\strings.xml");
     }

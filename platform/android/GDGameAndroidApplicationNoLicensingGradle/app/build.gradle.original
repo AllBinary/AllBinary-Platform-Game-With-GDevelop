@@ -7,7 +7,8 @@ android {
     buildToolsVersion "33.0.2"
 
     defaultConfig {
-        applicationId "org.allbinary.game.gd.threed.miniasteroids"
+        //needs template
+        applicationId "org.allbinary.game.gd.<name>"
         minSdkVersion 4
         targetSdkVersion 33
         versionCode 2
@@ -19,8 +20,8 @@ android {
     buildTypes {
         release {
             //shrinkResources true
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //minifyEnabled true
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             //proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro', 'G:/mnt/bc/mydev/work/j2me/games/All_Android.pro'
         }
     }
@@ -28,7 +29,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    namespace 'org.allbinary.game.gd.threed.miniasteroids'
+    namespace 'org.allbinary.game.gd.<name>'
 }
 
 dependencies {
