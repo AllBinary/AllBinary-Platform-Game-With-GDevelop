@@ -51,7 +51,11 @@ public class GDToAllBinaryGenerationTool
         new GDToThreedAndroidResourcesGenerator(),
         new GDToAndroidGameActivityGenerator(),
         new GDToThreedAndroidGameActivityGenerator(),
-        new GDToAndroidGameActivityGenerator()
+        new GDToAndroidGameActivityGenerator(),
+        new GDToAndroidResourceStringsXmlGenerator(),
+        new GDToGradleAndroidResourceStringsXmlGenerator(),
+        new GDToThreedAndroidResourceStringsXmlGenerator(),
+        new GDToThreedGradleAndroidResourceStringsXmlGenerator(),
     };
     
     private final GDToAndroidRClassGenerator androidRClassGenerator = new GDToAndroidRClassGenerator();
