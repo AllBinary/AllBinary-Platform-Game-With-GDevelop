@@ -38,7 +38,7 @@ public class GDToAndroidResourcesGradleGenerator
     
     private final String GD_KEY_NAME = "<name>";
     
-    private String name;
+    private String packageName;
     
     public GDToAndroidResourcesGradleGenerator() {
         resourceStringBuilder.append(GD_KEY);
@@ -46,7 +46,11 @@ public class GDToAndroidResourcesGradleGenerator
     }
     
     public void process(final GDProject gdProject) {
-        this.name = gdProject.name;
+        if(gdProject.packageName != null) {
+            this.packageName = gdProject.packageName;
+        } else {
+            this.packageName = gdProject.name;
+        }
     }
     
     public void processResource(final String fileAsString, final String resourceString) {
@@ -72,7 +76,7 @@ public class GDToAndroidResourcesGradleGenerator
         final FileInputStream fileInputStream = new FileInputStream(RESOURCE_ORIGINAL);        
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
 
-        final Replace replace2 = new Replace(GD_KEY_NAME, camelCaseUtil.getAsCamelCase(this.name, stringMaker).toLowerCase());
+        final Replace replace2 = new Replace(GD_KEY_NAME, camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase());
         final String newFileAsString2 = replace2.all(androidRFileAsString);
 
         final int size = this.gdResources.playSoundAndroidResourceNameList.size();
