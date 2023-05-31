@@ -8,6 +8,7 @@ gen/
 
 Resources/**
 
+strings.xml
 gd_icon.png
 game.xml
 game.json
