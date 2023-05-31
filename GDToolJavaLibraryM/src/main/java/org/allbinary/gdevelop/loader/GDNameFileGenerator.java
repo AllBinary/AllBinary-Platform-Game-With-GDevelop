@@ -23,11 +23,11 @@ import org.allbinary.logic.communication.log.LogUtil;
  */
 public class GDNameFileGenerator extends GDNameGenerator
 {
-    private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
-    private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
+    protected final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
+    protected final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
-    private final String originalFilePath;
-    private final String newFilePath;
+    protected final String originalFilePath;
+    protected final String newFilePath;
 
     public GDNameFileGenerator(final String originalFilePath, final String newFilePath) {
         this.originalFilePath = originalFilePath;
