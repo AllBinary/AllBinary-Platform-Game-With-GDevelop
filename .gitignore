@@ -9,6 +9,7 @@ gen/
 Resources/**
 
 strings.xml
+build.gradle
 gd_icon.png
 game.xml
 game.json
