@@ -33,6 +33,7 @@ public class GDProject
     
     public final GDIde gdIde = new GDIde();
     
+    public String packageName;
     public String name;
     public String version;
     public Rectangle gameResolutionSize;
@@ -61,6 +62,7 @@ public class GDProject
         
         final JSONObject properties = gameAsConfiguration.getJSONObject(gdProjectStrings.PROPERTIES);
 
+        this.packageName = properties.getString(gdProjectStrings.PACKAGE_NAME);
         this.name = properties.getString(gdProjectStrings.NAME);
         this.version = properties.getString(gdProjectStrings.VERSION);
         

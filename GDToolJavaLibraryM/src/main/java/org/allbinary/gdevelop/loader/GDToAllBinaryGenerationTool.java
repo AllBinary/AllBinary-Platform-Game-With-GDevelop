@@ -138,15 +138,15 @@ public class GDToAllBinaryGenerationTool
         //"GDGameAndroidEarlyResourceInitialization"
     }
 
-    private void load(GDProject gdProject) throws Exception
+    private void load(final GDProject gdProject) throws Exception
     {
         final int size2 = gdNameFileGeneratorArray.length;
         for(int index = 0; index < size2; index++) {
-            gdNameFileGeneratorArray[index].process(gdProject.name);
+            gdNameFileGeneratorArray[index].process(gdProject);
         }
         
-        this.allBinaryAndroidResourcesGenerator.process(gdProject.name);
-        this.allBinaryThreedAndroidResourcesGenerator.process(gdProject.name);
+        this.allBinaryAndroidResourcesGenerator.process(gdProject);
+        this.allBinaryThreedAndroidResourcesGenerator.process(gdProject);
         
         //final BasicArrayList objectList = gdProject.objectList;
         //int size = objectList.size();

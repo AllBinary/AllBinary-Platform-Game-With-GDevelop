@@ -9,6 +9,7 @@ package org.allbinary.gdevelop.loader;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import org.allbinary.data.CamelCaseUtil;
+import org.allbinary.gdevelop.json.GDProject;
 import org.allbinary.logic.basic.io.BufferedWriterUtil;
 import org.allbinary.logic.basic.io.StreamUtil;
 import org.allbinary.logic.basic.string.CommonStrings;
@@ -44,8 +45,8 @@ public class GDToAndroidResourcesGradleGenerator
         resourceStringBuilder.append('\n');
     }
     
-    public void process(final String name) {
-        this.name = name;
+    public void process(final GDProject gdProject) {
+        this.name = gdProject.name;
     }
     
     public void processResource(final String fileAsString, final String resourceString) {

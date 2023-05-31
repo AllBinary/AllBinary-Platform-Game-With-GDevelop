@@ -13,6 +13,8 @@
  */
 package org.allbinary.gdevelop.loader;
 
+import org.allbinary.gdevelop.json.GDProject;
+
 /**
  *
  * @author User
@@ -21,10 +23,14 @@ public class GDNameGenerator {
  
     protected final String GD_KEY = "<name>";
     
-    protected String name;
+    protected String packageName;
 
-    public void process(final String name) {
-        this.name = name;
+    public void process(final GDProject gdProject) {
+        if(gdProject.packageName != null) {
+            this.packageName = gdProject.packageName;
+        } else {
+            this.packageName = gdProject.name;
+        }
     }
     
     public void process() throws Exception {

@@ -35,7 +35,7 @@ public class GDToThreedAndroidGameActivityGenerator extends GDNameGenerator
         
         final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
         final StringMaker stringMaker = new StringMaker();
-        final String name = camelCaseUtil.getAsCamelCase(this.name, stringMaker).toLowerCase();
+        final String name = camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase();
         
         final String R_ORIGINAL = "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameThreedAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\GDGameAndroidActivity.original";
         stringMaker.delete(0, stringMaker.length());
