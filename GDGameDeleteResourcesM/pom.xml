@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.allbinary.game.gd</groupId>
+        <artifactId>GDGameParent</artifactId>
+        <!-- Game Version Start -->
+        <version>1.0.0-SNAPSHOT</version>
+        <!-- Game Version Start -->
+    </parent>
+
+    <artifactId>GDGameDeleteResources</artifactId>
+    <packaging>jar</packaging>
+
+    <name>GDGameDeleteResources</name>
+    <url>http://www.allbinary.com/</url>
+
+    <properties>
+        <outputPath>..\Resources\</outputPath>
+        
+        <outputPath2>..\platform\android\GDGameAndroidApplicationM\src\main\res\drawable\</outputPath2>
+        <outputPath3>..\platform\android\GDGameAndroidApplicationM\src\main\res\raw\</outputPath3>
+        <outputPath4>..\platform\android\GDGameAndroidApplicationNoLicensingGradle\app\src\main\res\drawable\</outputPath4>
+        <outputPath5>..\platform\android\GDGameAndroidApplicationNoLicensingGradle\app\src\main\res\raw\</outputPath5>
+        <outputPath6>..\platform\html\GDGamePlayNWarM\war\gd\res\</outputPath6>
+        <outputPath7>..\platform\j2se\GDGameJ2SEApplicationM\src\main\resources\</outputPath7>
+
+        <outputPath9>..\platform\android\GDGameThreedAndroidApplicationM\src\main\res\drawable\</outputPath9>
+        <outputPath10>..\platform\android\GDGameThreedAndroidApplicationM\src\main\res\raw\</outputPath10>
+        <outputPath11>..\platform\android\GDGameThreedAndroidApplicationNoLicensingGradle\app\src\main\res\drawable\</outputPath11>
+        <outputPath12>..\platform\android\GDGameThreedAndroidApplicationNoLicensingGradle\app\src\main\res\raw\</outputPath12>
+        
+    </properties>
+
+    <dependencies>
+
+    </dependencies>
+
+    <build>
+           
+        <plugins>
+                        
+            <!-- Delete output directory -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <failOnError>false</failOnError>
+                    <followSymLinks>false</followSymLinks>
+                    <filesets>
+                        <fileset>
+                            <directory>${outputPath}</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${outputPath2}</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${outputPath3}</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${outputPath4}</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${outputPath5}</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${outputPath6}</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${outputPath7}</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${outputPath9}</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${outputPath10}</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${outputPath11}</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${outputPath12}</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+      
+        </plugins>
+    </build>
+
+</project>
