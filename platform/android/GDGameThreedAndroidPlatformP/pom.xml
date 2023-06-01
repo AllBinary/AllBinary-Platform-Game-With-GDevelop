@@ -35,12 +35,12 @@
         <module>../GDGameThreedAndroidJavaLibraryM</module>
         <module>../GDGameThreedAndroidActivityJavaLibraryM</module>
         
-        <!--
-        -->
         <module>../GDGameThreedAndroidClientInfoJavaLibraryM</module>
         
         <module>../GDGameThreedAndroidM</module>
+        <!--
         <module>../GDGameThreedAndroidApplicationM</module>
+        -->
 
     </modules>
 

@@ -295,11 +295,11 @@ NoTransitionAnimationJavaLibrary
                             <resources>          
                                 <resource>
                                     <directory>${inputPath}</directory>
-                                    <filtering>true</filtering>
+                                    <filtering>false</filtering>
                                 </resource>
                                 <resource>
                                     <directory>${inputPath2}</directory>
-                                    <filtering>true</filtering>
+                                    <filtering>false</filtering>
                                 </resource>
                                 <!--
                                 -->                

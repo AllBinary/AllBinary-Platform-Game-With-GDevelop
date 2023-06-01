@@ -22,7 +22,6 @@
         -->
         <module>../GDGameAndroidM</module>
         <module>../GDGameAndroidActivityJavaLibraryM</module>
-        <module>../GDGameAndroidApplicationM</module>
         <module>../GDGameAndroidBaseJavaLibraryM</module>
         <module>../GDGameAndroidClientInfoJavaLibraryM</module>
         <module>../GDGameAndroidJavaLibraryM</module>
@@ -31,6 +30,7 @@
         <module>../GDGameAndroidResourcesTempJavaLibraryM</module>
         <module>../GDGameAndroidSoundsJavaLibraryM</module>
         <!--
+        <module>../GDGameAndroidApplicationM</module>
         <module>../GDGameThreedAndroidPlatformP</module>
         -->
     </modules>

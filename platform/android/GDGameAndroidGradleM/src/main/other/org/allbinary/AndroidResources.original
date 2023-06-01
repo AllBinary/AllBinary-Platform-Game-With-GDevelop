@@ -48,7 +48,6 @@ public class AndroidResources
         public final int about = R.raw.about;
         public final int privacy_policy = R.raw.privacy_policy;
 
-        public final int test = R.raw.test;
         public final int licenseinitdata = R.raw.licenseinitdata;
         public final int locked_demo_game_feature_64_by_64 = R.raw.locked_demo_game_feature_64_by_64;
         public final int locked_demo_game_feature_128_by_128 = R.raw.locked_demo_game_feature_128_by_128;
