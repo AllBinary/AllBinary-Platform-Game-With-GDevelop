@@ -162,48 +162,11 @@ extends AllBinaryGameSceneController
             //camera.position
             final Camera camera = scene.getCamera();
             camera.target = new Object3d(0, 0);
-            final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
+            
             
             final StringMaker stringMaker = new StringMaker();
             
-            //x is height, y is distance from game area, z is width            
-            //if(CameraMotionGestureInputProcessor.getInstance().restore(scene, stringMaker)) {
-
-            //} else 
-            if(displayInfoSingleton.isPortrait()) {
-            
-                stringMaker.append("portrait: ");
-
-                //MyCanvas aLastWidth: 385 aLastHeight: 639 Display Info: fullWidth: 1440 fullHeight: 2392 lastWidth: 385 lastHeight: 639 lastHalfWidth: 192 lastHalfHeight: 319
-                //319.0, 900.0, -639.0->319.0, 0.0, -629.0
-                //319.0, 815.0, -779.0->319.0, -625.0, -629.0
-                
-                //MyCanvas aLastWidth: 470 aLastHeight: 640 Display Info: fullWidth: 1800 fullHeight: 2448 lastWidth: 470 lastHeight: 640 lastHalfWidth: 235 lastHalfHeight: 320
-                //195.0, 740.0, -835.0->205.0, -785.0, -765.0
-
-                final int totalDistance = displayInfoSingleton.getLastHeight() + 100;
-                camera.position.x = displayInfoSingleton.getLastHalfHeight() - 125;
-                camera.position.y = totalDistance;
-                camera.position.z = -(displayInfoSingleton.getLastHeight()) - 200;
-
-                camera.target.getPosition().x = displayInfoSingleton.getLastHalfHeight() - 125;
-                camera.target.getPosition().y = -totalDistance;
-                camera.target.getPosition().z = -(displayInfoSingleton.getLastHeight()) - 100;
-
-            } else {
-                stringMaker.append("landscape: ");
-                
-                //MyCanvas aLastWidth: 640 aLastHeight: 422 Display Info: fullWidth: 2560 fullHeight: 1688 lastWidth: 640 lastHeight: 422 lastHalfWidth: 320 lastHalfHeight: 211
-                //-84.0, 640.0, -650.0->-54.0, -1980.0, 70.0
-                final int totalDistance = displayInfoSingleton.getLastWidth();
-                camera.position.x = -84; //displayInfoSingleton.getLastHalfHeight();
-                camera.position.y = totalDistance;
-                camera.position.z = -((displayInfoSingleton.getLastWidth()) + 10);
-
-                camera.target.getPosition().x = -54; //displayInfoSingleton.getLastHalfHeight();
-                camera.target.getPosition().y = -(totalDistance + 1360);
-                camera.target.getPosition().z = 70;
-            }
+            GD1GameCameraSetup.getInstance().process(camera, stringMaker);
 
             camera.position.append(stringMaker);
             stringMaker.append('-').append('>');

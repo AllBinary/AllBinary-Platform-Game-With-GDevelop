@@ -231,6 +231,7 @@ public class GDLayoutsToAllBinaryGenerator
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutTouchImageResources.xsl"),
                 
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameThreedLevelLoader.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\graphics\\threed\\min3d\\GDGameCameraSetup.xsl"),
             };
             
             final String[] OUTPUT_FILE_PATHS = {
@@ -248,7 +249,8 @@ public class GDLayoutsToAllBinaryGenerator
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGamePreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
                 
-                "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD"
+                "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD",
+                "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\graphics\\threed\\min3d\\GD",
             };
             
             final String[] OUTPUT_FILE_PATH_END_ARRAY = {
@@ -267,6 +269,7 @@ public class GDLayoutsToAllBinaryGenerator
                 "SpecialAnimationTouchImageResources.java",
                 
                 "GameThreedLevelBuilder.java",
+                "GameCameraSetup.java"
             };
 
             final int xslTotal2 = OUTPUT_FILE_PATHS.length;
