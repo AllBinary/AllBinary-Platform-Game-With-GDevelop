@@ -37,7 +37,7 @@ Created By: Travis Berthelot
                 final Object3d[] <xsl:value-of select="name" />Object3dArray = min3dSceneResourcesFactory.get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME);
                 final int <xsl:value-of select="name" />Size = <xsl:value-of select="name" />Object3dArray.length;
                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="name" />Size; index++) {
-                <xsl:value-of select="name" />List.add(new ThreedAnimationFactory(<xsl:value-of select="name" />Object3dArray[index], 1<xsl:if test="/game/properties/force2dAnimation/text() = $name" >, false</xsl:if>));
+                    <xsl:value-of select="name" />List.add(new ThreedAnimationFactory(<xsl:value-of select="name" />Object3dArray[index], 1<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>));
                 }
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = (AnimationInterfaceFactoryInterface[]) <xsl:value-of select="name" />List.toArray(new AnimationInterfaceFactoryInterface[<xsl:value-of select="name" />Size]);

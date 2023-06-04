@@ -36,7 +36,7 @@ Created By: Travis Berthelot
 
                 <xsl:for-each select="animations" ><xsl:for-each select="directions" ><xsl:for-each select="sprites" >
                 final Object3d <xsl:value-of select="substring-before(image, '.')" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = threedLoaderFactory.getObject3dInstance(
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="substring-before(image, '.')" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, OBJ, FALSE);
+                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="substring-before(image, '.')" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, OBJ, FALSE<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
                       
                 <xsl:value-of select="substring-before(image, '.')" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().x = 
                     <xsl:value-of select="substring-before(image, '.')" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().y = 

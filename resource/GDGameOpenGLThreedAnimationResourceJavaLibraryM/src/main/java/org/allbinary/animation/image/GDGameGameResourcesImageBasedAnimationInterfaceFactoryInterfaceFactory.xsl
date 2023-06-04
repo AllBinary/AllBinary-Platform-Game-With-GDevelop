@@ -104,7 +104,7 @@ import org.allbinary.logic.communication.log.LogUtil;
 
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
-
+import org.allbinary.logic.math.PrimitiveIntUtil;
 import org.allbinary.util.BasicArrayList;
 
 public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory

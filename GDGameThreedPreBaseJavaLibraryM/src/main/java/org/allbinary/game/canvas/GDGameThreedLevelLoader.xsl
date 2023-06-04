@@ -83,6 +83,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.logic.java.bool.BooleanFactory;
+                import org.allbinary.logic.math.PrimitiveIntUtil;
                 import org.allbinary.media.image.ImageCopyUtil;
                 
                 //Layout name=<xsl:value-of select="$layoutName" />
