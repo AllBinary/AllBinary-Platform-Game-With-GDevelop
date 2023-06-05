@@ -62,15 +62,13 @@
             <!-- AllBinary Platform Version End -->
         </dependency>
 
+        <!--
         <dependency>
             <groupId>org.allbinary.game.resources</groupId>
             <artifactId>GameSoundsWavResourcesJavaLibrary</artifactId>        
-            <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
         </dependency>
         
-        <!--
         <dependency>
             <groupId>com.sun.j2me</groupId>
             <artifactId>BouncyCastleDESJavaLibrary</artifactId>

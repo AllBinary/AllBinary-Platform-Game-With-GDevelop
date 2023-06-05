@@ -28,7 +28,8 @@
     </properties>
 
     <dependencies>
-                
+        
+        <!--
         <dependency>
             <groupId>org.allbinary.game.resources</groupId>
             <artifactId>GameSoundsWavResourcesJavaLibrary</artifactId>        
@@ -44,6 +45,7 @@
             <artifactId>GameImageMediumResourcesJavaLibrary</artifactId>        
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
+        -->
 
         <!--
         <dependency>
