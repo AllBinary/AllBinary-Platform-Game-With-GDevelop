@@ -78,6 +78,10 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+                import org.allbinary.layer.AllBinaryLayer;
+                import org.allbinary.layer.event.LayerManagerEvent;
+                import org.allbinary.layer.event.LayerManagerEventHandler;
+                import org.allbinary.layer.event.LayerManagerEventListener;
                 import org.allbinary.logic.basic.util.event.EventListenerInterface;
                 import org.allbinary.media.audio.Sound;
                 import org.allbinary.time.TimeDelayHelper;
@@ -202,6 +206,15 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
+
+                    <xsl:call-template name="layerManagerEventListenerList" >
+                        <xsl:with-param name="windowWidth" >
+                            <xsl:value-of select="$windowWidth" />
+                        </xsl:with-param>
+                    </xsl:call-template>    
+                    <xsl:text>&#10;</xsl:text>
+
+                    private final LayerManagerEventListener layerManagerEventListener;
                     
                     public long timeDelta;
                     public long lastStartTime = Long.MIN_VALUE;
@@ -212,6 +225,27 @@ Created By: Travis Berthelot
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             channelSoundArray[index] = new BasicArrayList();
                         }
+                        
+                        final LayerManagerEventHandler layerManagerEventHandler = LayerManagerEventHandler.getInstance();
+                        
+                        layerManagerEventListener = new LayerManagerEventListener() {
+
+                            public void onDeleteLayerManagerEvent(final LayerManagerEvent layerManagerEvent) throws Exception
+                            {
+                                final AllBinaryLayer layerInterface = layerManagerEvent.getLayerInterface();
+                                
+                    <xsl:call-template name="layerManagerEventListenerRemove" >
+                        <xsl:with-param name="windowWidth" >
+                            <xsl:value-of select="$windowWidth" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:text>&#10;</xsl:text>
+                            }
+
+                        };
+
+                        layerManagerEventHandler.addListener(layerManagerEventListener);
+                        
                     }
 
                     public int SceneWindowWidth() {

@@ -48,6 +48,14 @@
         </dependency>
 
         <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGamePreBaseJavaLibrary</artifactId>
+            <!-- Game Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- Game Version End -->
+        </dependency>
+    
+        <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>AdvertisementClientNoneJavaLibrary</artifactId>
             <!--

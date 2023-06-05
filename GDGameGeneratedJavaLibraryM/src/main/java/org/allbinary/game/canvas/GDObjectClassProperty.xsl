@@ -59,7 +59,7 @@ Created By: Travis Berthelot
                 //private BasicArrayList <xsl:value-of select="name" />List = ZERO_GD_OBJECT;
                 //private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
                 public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
-                //public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+                public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                 public final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
             </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
@@ -97,6 +97,51 @@ Created By: Travis Berthelot
 
         </xsl:for-each>
         //objectsClassProperty - END
+
+    </xsl:template>
+
+    <xsl:template name="layerManagerEventListenerList" >
+        <xsl:param name="windowWidth" />
+
+        <xsl:variable name="behaviorsAsString" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:value-of select="type" />,</xsl:for-each></xsl:for-each></xsl:variable>
+            
+        //layerManagerEventListenerList - START
+        <xsl:for-each select="objects" >
+            
+            <xsl:if test="type = 'Sprite'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(arrayUtil.ZERO_OBJECT_ARRAY);
+            </xsl:if>
+
+        </xsl:for-each>
+
+        //layerManagerEventListenerList - END
+
+    </xsl:template>
+
+    <xsl:template name="layerManagerEventListenerRemove" >
+        <xsl:param name="windowWidth" />
+
+        <xsl:variable name="behaviorsAsString" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:value-of select="type" />,</xsl:for-each></xsl:for-each></xsl:variable>
+            
+        //layerManagerEventListenerRemove - START
+        <xsl:for-each select="objects" >
+
+            <xsl:if test="type = 'Sprite'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                if(<xsl:value-of select="name" />GDGameLayerDestroyedList.contains(layerInterface)) {
+                    <xsl:value-of select="name" />GDGameLayerDestroyedList.remove(layerInterface);
+                    <xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);
+                }
+           </xsl:if>
+
+        </xsl:for-each>
+
+        //layerManagerEventListenerRemove - END
 
     </xsl:template>
 

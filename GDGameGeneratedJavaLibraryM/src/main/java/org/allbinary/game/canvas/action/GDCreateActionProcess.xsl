@@ -63,18 +63,23 @@ Created By: Travis Berthelot
                             final int index = globals.<xsl:value-of select="text()" />GDGameLayerList.size();
 
                             GDGameLayer <xsl:value-of select="text()" />GDGameLayer;
-                            //if(globals.<xsl:value-of select="text()" />CacheGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 1) {
+                            if(globals.<xsl:value-of select="text()" />CacheGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 1) {
                                 <xsl:value-of select="text()" />GDGameLayer = resources.<xsl:value-of select="text()" />GDGameLayerFactory.create(stringBuilder.append(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>).append(CommonSeps.getInstance().UNDERSCORE).append(index).toString(), gdObject, globals.<xsl:value-of select="text()" />GDConditionWithGroupActions);
-                            //} else {
-                                //<xsl:value-of select="text()" />GDGameLayer = (GDGameLayer) globals.<xsl:value-of select="text()" />CacheGDGameLayerList.remove(0);
-                                //<xsl:value-of select="text()" />GDGameLayer.set(gdObject);
-                            //}
+                            } else {
+                                <xsl:value-of select="text()" />GDGameLayer = (GDGameLayer) globals.<xsl:value-of select="text()" />CacheGDGameLayerList.remove(0);
+                                
+                                //if(!<xsl:value-of select="text()" />GDGameLayer.getName().startsWith(gdObject.name)) {
+                                    //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(<xsl:value-of select="text()" />GDGameLayer.getName()).append(" GDObject name: ").append(gdObject.name).toString(), this, "create", new Exception()));
+                                //}
+                                
+                                <xsl:value-of select="text()" />GDGameLayer.setGDObject(gdObject);
+                            }
 
                             //stringBuilder.delete(0, stringBuilder.length());
                             //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer); at: ").append(index).toString(), this, commonStrings.PROCESS));
                             //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="text()" />GDGameLayer.toString(), this, commonStrings.PROCESS));
 
-                            //globals.<xsl:value-of select="text()" />CacheGDGameLayerList.remove(<xsl:value-of select="text()" />GDGameLayer);
+                            globals.<xsl:value-of select="text()" />CacheGDGameLayerList.remove(<xsl:value-of select="text()" />GDGameLayer);
                             globals.<xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer);
                         </xsl:if>
                     </xsl:for-each>

@@ -63,9 +63,9 @@ Created By: Travis Berthelot
                                                                             
                                             //if(allBinaryGameLayerManager.getLayerManager().contains(<xsl:value-of select="text()" />GDGameLayer)) {
                                                 globals.<xsl:value-of select="text()" />GDGameLayerList.remove(<xsl:value-of select="text()" />GDGameLayer);
+                                                globals.<xsl:value-of select="text()" />GDGameLayerDestroyedList.add(<xsl:value-of select="text()" />GDGameLayer);
                                                 //allBinaryGameLayerManager.remove(<xsl:value-of select="text()" />GDGameLayer);
                                                 <xsl:value-of select="text()" />GDGameLayer.setDestroyed(true);
-                                                //move this to allBinaryGameLayerManager remove listener globals.<xsl:value-of select="text()" />CacheGDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer);
                                             //} else {
                                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$ACTION_AS_STRING_GD_" /> + " LayerManager does not have (probably already removed/destroyed): " + <xsl:value-of select="text()" />GDGameLayer, this, commonStrings.PROCESS));
                                             //}

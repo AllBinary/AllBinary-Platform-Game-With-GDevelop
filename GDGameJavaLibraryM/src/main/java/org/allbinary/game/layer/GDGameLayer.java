@@ -114,7 +114,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //LogUtil.put(LogFactory.getInstance(this.toString(), this, CommonStrings.getInstance().CONSTRUCTOR));
     }
 
-    public void set(final GDObject gdObject) throws Exception {
+    public void setGDObject(final GDObject gdObject) throws Exception {
         this.dimensionalBehavior.rotationBehavior.set(gdObject);
         this.gdObject = gdObject;
         this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);

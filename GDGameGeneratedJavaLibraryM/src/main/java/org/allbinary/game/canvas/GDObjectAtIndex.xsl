@@ -22,10 +22,27 @@ Created By: Travis Berthelot
                                     <xsl:if test="$iteration > 1" >//iteration=<xsl:value-of select="$iteration" /> - More than 2 game layers</xsl:if>
                                     <xsl:if test="2 > $iteration" ></xsl:if>
                                     <xsl:if test="$iteration >= 1" ></xsl:if>
-                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) gameLayerArray[<xsl:value-of select="$iteration" />]);
+                                    final int <xsl:value-of select="$name" />Size2 = gameLayerArray.length;
+                                    GDGameLayer <xsl:value-of select="$name" />GDGameLayer1 = null;
+                                    GDGameLayer <xsl:value-of select="$name" />GDGameLayer2;
+                                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> <xsl:value-of select="$name" />Size2; index++) {
+                                        <xsl:value-of select="$name" />GDGameLayer2 = ((GDGameLayer) gameLayerArray[index]);
+                                        if(<xsl:value-of select="$name" />GDGameLayer2 != null) {
+                                            //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(" GDGameLayer2 name: ").append(<xsl:value-of select="$name" />GDGameLayer2.getName()).append(" GD name: ").append(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>).toString(), this, "param"));
+                                            if(<xsl:value-of select="$name" />GDGameLayer2.getName().startsWith(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>)) {
+                                                <xsl:value-of select="$name" />GDGameLayer1 = <xsl:value-of select="$name" />GDGameLayer2;
+                                            }
+                                        }
+                                    }
+                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = <xsl:value-of select="$name" />GDGameLayer1;
                                     GDObject <xsl:value-of select="$name" /> = null;
                                     if(<xsl:value-of select="$name" />GDGameLayer != null) {
                                         <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject;
+                                        
+                                        //if(!<xsl:value-of select="$name" />GDGameLayer2.getName().startsWith("<xsl:value-of select="$name" />")) {
+                                            //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(<xsl:value-of select="$name" />GDGameLayer.getName()).append(" GD name: ").append("<xsl:value-of select="$name" />").toString(), this, "create", new Exception()));
+                                        //}
+                                        
                                     } else {
                                         //final String message = "eventsCreateProcessUsed - iteration=<xsl:value-of select="$iteration" /> - <xsl:value-of select="$name" /> warning: not initialized";
                                         //LogUtil.put(LogFactory.getInstance(message, this, message));
