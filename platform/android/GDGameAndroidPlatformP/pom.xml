@@ -31,8 +31,8 @@
         <module>../GDGameAndroidSoundsJavaLibraryM</module>
         <!--
         <module>../GDGameAndroidApplicationM</module>
-        <module>../GDGameThreedAndroidPlatformP</module>
         -->
+        <module>../GDGameThreedAndroidPlatformP</module>
     </modules>
 
 </project>

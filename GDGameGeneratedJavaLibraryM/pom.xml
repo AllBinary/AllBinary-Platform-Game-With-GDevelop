@@ -62,13 +62,6 @@
             <artifactId>GDGameJ2MEJavaLibrary</artifactId>
             <optional>true</optional>
         </dependency>
-        -->
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameOpenGLThreedAnimationResourceJavaLibrary</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            <optional>true</optional>
-        </dependency>
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameAndroidSoundsJavaLibrary</artifactId>
@@ -78,6 +71,14 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameThreedAndroidJavaLibrary</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <optional>true</optional>
+        </dependency>
+        -->
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <optional>true</optional>
         </dependency>
@@ -109,6 +110,23 @@
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
 
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLNoneJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-midp</artifactId>
+            <version>2.0.4</version>
             <optional>true</optional>
         </dependency>
 

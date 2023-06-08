@@ -57,6 +57,10 @@
         
         <module>../GDGameTouchJavaLibraryM</module>
         <module>../GDGameWavSoundsJavaLibraryM</module>
+        
+        <!--
+        <module>../platform/android/GDGameThreedAndroidResourcesTempJavaLibraryM</module>
+        -->
     </modules>
 
     <dependencies>
