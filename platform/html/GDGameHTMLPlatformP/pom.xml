@@ -29,7 +29,9 @@
         <module>../GDGameHTMLJavaLibraryM</module>
         <module>../GDGameHTMLTempM</module>
         <module>../GDGamePlayNM</module>
+        <!--
         <module>../GDGamePlayNWarM</module>
+        -->
     </modules>
 
 </project>
