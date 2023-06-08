@@ -88,7 +88,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
 
-                //Layout name=<xsl:value-of select="$layoutName" />
+                //LayoutGlobals name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals
                 {
 

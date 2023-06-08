@@ -90,7 +90,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.ArrayUtil;
 
-                //Layout name=<xsl:value-of select="$layoutName" />
+                //LayoutAction name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes extends SpecialAnimation
                 {
 

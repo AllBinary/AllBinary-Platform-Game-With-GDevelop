@@ -68,7 +68,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDObject;
 
-                //Layout name=<xsl:value-of select="$layoutName" />
+                //LayoutGDObjects name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory
                 {
 

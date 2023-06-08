@@ -81,7 +81,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.ArrayUtil;
 
-                //Layout name=<xsl:value-of select="$layoutName" />
+                //LayoutObjectEvent name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes extends SpecialAnimation
                 {
 
