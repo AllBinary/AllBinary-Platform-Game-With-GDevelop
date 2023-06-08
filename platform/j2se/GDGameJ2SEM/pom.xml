@@ -43,7 +43,22 @@
             <groupId>org.allbinary</groupId>
             <artifactId>AllBinaryOnJ2SEPlatformJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2SEMediaMIDPMinimalJavaLibrary</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <!-- J2SEMediaMIDPJorbisJavaLibrary -->
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>J2SEMediaMIDPJorbisJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
         
@@ -124,14 +139,6 @@
         
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGamePreBaseJavaLibrary</artifactId>
-            <!-- Game Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- Game Version End -->
-        </dependency>
-        
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameTouchJavaLibrary</artifactId>
             <!--
             <artifactId>GDGameNoTouchJavaLibrary</artifactId>
@@ -152,6 +159,14 @@
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGamePCClientInfoJavaLibrary</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGamePreBaseJavaLibrary</artifactId>
+            <!-- Game Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- Game Version End -->
         </dependency>
 
         <dependency>
@@ -241,12 +256,6 @@
                                     <directory>${inputPath2}</directory>
                                     <filtering>false</filtering>
                                 </resource>
-                                <!--
-                                <resource>
-                                  <directory>${inputPath3}</directory>
-                                  <filtering>false</filtering>
-                                </resource>
-                                -->                
                             </resources>              
                         </configuration>            
                     </execution>
