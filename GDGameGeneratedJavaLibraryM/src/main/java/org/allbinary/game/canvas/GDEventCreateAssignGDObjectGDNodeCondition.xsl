@@ -21,6 +21,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDSourisBoutonConditionGDNode.xsl" />
     <xsl:import href="./condition/GDLayerVisibleConditionGDNode.xsl" />
     <xsl:import href="./condition/GDKeyFromTextPressedConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDKeyFromTextReleasedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSystemInfoIsMobileConditionGDNode.xsl" />
     <xsl:import href="./condition/GDTimerConditionGDNode.xsl" />
     <xsl:import href="./condition/GDPosXConditionGDNode.xsl" />
@@ -164,6 +165,11 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'KeyFromTextPressed'" >
                     
                     <xsl:call-template name="keyFromTextPressedConditionGDNode" />
+
+                </xsl:if>
+                <xsl:if test="$typeValue = 'KeyFromTextReleased'" >
+                    
+                    <xsl:call-template name="keyFromTextReleasedConditionGDNode" />
 
                 </xsl:if>
                 <xsl:if test="$typeValue = 'SystemInfo::IsMobile'" >

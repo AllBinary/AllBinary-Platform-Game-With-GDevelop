@@ -88,6 +88,8 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
     private final StringBuilder stringBuilder = new StringBuilder();
 
     private SpecialAnimation specialAnimation = SpecialAnimation.getInstance();
+    
+    private final GDGameInputProcessor gameInputProcessor = new GDGameInputProcessor();
 
     public <GDLayout>(final CommandListener commandListener,
             final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
@@ -277,7 +279,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
                 if (features.isFeature(gameFeatureFactory.GAME_INPUT_LAYER_PROCESSOR))
                 {
-                    list.add(new OptimizedGameInputLayerProcessorForCollidableLayer());
+                    //list.add(new OptimizedGameInputLayerProcessorForCollidableLayer());
                 }
 
                 if (features.isFeature(gameFeatureFactory.COLLIDABLE_INTERFACE_LAYER_PROCESSOR))
@@ -294,6 +296,8 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
                 progressCanvas.addPortion(portion, "Initializing Game");
             }
+
+            this.addPlayerGameInput(this.gameInputProcessor.getPlayerGameInput());
 
             this.buildGame(false);
 
@@ -513,6 +517,8 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
     
         gdNodeStatsFactory.reset();
     
+        this.gameInputProcessor.process(this.gameLayerManager);
+
         super.processPlayingGame();
 
         this.specialAnimation.process();

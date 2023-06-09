@@ -68,6 +68,8 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.text.CustomTextAnimation;
                 import org.allbinary.game.identification.Group;
                 import org.allbinary.game.identification.GroupFactory;
+                import org.allbinary.game.input.GameInputProcessor;
+                import org.allbinary.game.input.InputFactory;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
                 import org.allbinary.game.layout.GDNode;
@@ -134,7 +136,8 @@ Created By: Travis Berthelot
                         public final int FAKE_COLLISION_NODE_ID = 14999;
                         -->
 
-                        public BasicArrayList[] channelSoundArray = new BasicArrayList[4];
+                        public final GameInputProcessor[] inputProcessorArray = new GameInputProcessor[InputFactory.getInstance().MAX];
+                        public final BasicArrayList[] channelSoundArray = new BasicArrayList[4];
 
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >

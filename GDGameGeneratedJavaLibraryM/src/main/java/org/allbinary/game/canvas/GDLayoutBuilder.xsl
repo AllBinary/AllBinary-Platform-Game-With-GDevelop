@@ -34,6 +34,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/condition/GDEventWithKeyFromTextCondition.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventPaint.xsl" />
     
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
@@ -66,6 +67,7 @@ Created By: Travis Berthelot
                 package org.allbinary.game.canvas;
 
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.game.input.GameInputProcessorUtil;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
@@ -373,6 +375,19 @@ Created By: Travis Berthelot
                     <xsl:if test="$layoutIndex = 1" >
                     //GameAreaBoxUtil.getInstance().append(allBinaryGameLayerManager);
                     </xsl:if>
+
+                    //eventsKeyFromTextConditions - START                    
+                    <xsl:call-template name="eventsKeyFromTextConditions" >
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    //eventsKeyFromTextConditions - END
+
+                    GameInputProcessorUtil.init(globals.inputProcessorArray);
 
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
