@@ -45,7 +45,7 @@ public class GDGameInputProcessor {
         //LogUtil.put(LogFactory.getInstance("size: " + size, this, "processInput"));
         for(int index = 0; index < size; index++) {
             gameKeyEvent = (GameKeyEvent) gameKeyEventList.get(index);
-            LogUtil.put(LogFactory.getInstance("press key: " + gameKeyEvent.getKey(), this, "processInput"));
+            //LogUtil.put(LogFactory.getInstance("press key: " + gameKeyEvent.getKey(), this, "processInput"));
             globals.inputProcessorArray[gameKeyEvent.getKey()].process(allbinaryLayerManager, gameKeyEvent);
         }
 
@@ -53,7 +53,7 @@ public class GDGameInputProcessor {
         //LogUtil.put(LogFactory.getInstance("size: " + size, this, "processInput"));
         for(int index = 0; index < size2; index++) {
             gameKeyEvent = (GameKeyEvent) removalGameKeyEventList.get(index);
-            LogUtil.put(LogFactory.getInstance("release key: " + gameKeyEvent.getKey(), this, "processInput"));
+            //LogUtil.put(LogFactory.getInstance("release key: " + gameKeyEvent.getKey(), this, "processInput"));
             globals.inputProcessorArray[gameKeyEvent.getKey()].processReleased(allbinaryLayerManager, gameKeyEvent);
         }
         

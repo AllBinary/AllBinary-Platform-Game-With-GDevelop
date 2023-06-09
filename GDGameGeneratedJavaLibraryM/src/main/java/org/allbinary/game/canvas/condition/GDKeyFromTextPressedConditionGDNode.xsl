@@ -44,19 +44,9 @@ Created By: Travis Berthelot
 
                             <xsl:for-each select="../events" >
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
-                                    <xsl:variable name="childEventWithUsedEvent" >
-                                        <xsl:call-template name="childEventWithUsedEvent" >
-                                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                                            <xsl:with-param name="motionGestureEvent" >true</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:variable>
-                                    <xsl:if test="$childEventWithUsedEvent != ''" >//<xsl:value-of select="$childEventWithUsedEvent" /></xsl:if>
-                                    <xsl:if test="contains($childEventWithUsedEvent, 'found')" >
-                                    //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
-                                    <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
+                                    //...Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
                                     //Event - //BuiltinCommonInstructions::Standard - call
                                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                                    </xsl:if>                  
                                 </xsl:if>
                                 <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
                                     //Event - //BuiltinCommonInstructions::ForEach
@@ -85,19 +75,9 @@ Created By: Travis Berthelot
 
                             <xsl:for-each select="../events" >
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
-                                    <xsl:variable name="childEventWithUsedEvent" >
-                                        <xsl:call-template name="childEventWithUsedEvent" >
-                                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                                            <xsl:with-param name="motionGestureEvent" >true</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:variable>
-                                    <xsl:if test="$childEventWithUsedEvent != ''" >//<xsl:value-of select="$childEventWithUsedEvent" /></xsl:if>
-                                    <xsl:if test="contains($childEventWithUsedEvent, 'found')" >
-                                    //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
-                                    <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
+                                    //...Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
                                     //Event - //BuiltinCommonInstructions::Standard - call
                                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
-                                    </xsl:if>                  
                                 </xsl:if>
                                 <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
                                     //Event - //BuiltinCommonInstructions::ForEach
