@@ -19,6 +19,7 @@ import org.allbinary.media.audio.EarlySoundsFactoryFactory;
 import org.allbinary.media.audio.Sounds;
 import org.allbinary.game.init.DefaultGameInitializationListener;
 import org.allbinary.media.audio.GDGameSoundsFactoryFactory;
+import org.allbinary.playn.input.PlayNToAllBinaryKeyInputUtil;
 
 public class GDGame
     extends org.allbinary.game.GDGameMIDlet
@@ -27,8 +28,9 @@ implements Keyboard.Listener,
 Pointer.Listener
 {
     private final int DEVICE_ID = 0;
+    private final PlayNToAllBinaryKeyInputUtil playNToAllBinaryKeyInputUtil = PlayNToAllBinaryKeyInputUtil.getInstance();
     private AllMotionRecognizer motionRecognizer = new AllMotionRecognizer();
-
+    
     public GDGame()
     {
         BasicMotionGesturesHandler motionGesturesHandler =
@@ -42,7 +44,9 @@ Pointer.Listener
         //PlayN.mouse().setListener(this);
         PlayN.pointer().setListener(this);
         
-        new DefaultGameInitializationListener();        
+        new DefaultGameInitializationListener();
+
+        //playNToAllBinaryKeyInputUtil.log();
     }
 
     protected void init()
@@ -51,19 +55,15 @@ Pointer.Listener
         {
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, CommonStrings.getInstance().INIT));
 
-            Features features = Features.getInstance();
+            final Features features = Features.getInstance();
 
-            GameFeatureFactory gameFeatureFactory =
-                GameFeatureFactory.getInstance();
+            final GameFeatureFactory gameFeatureFactory = GameFeatureFactory.getInstance();
 
-            InputFeatureFactory inputFeatureFactory =
-                InputFeatureFactory.getInstance();
+            final InputFeatureFactory inputFeatureFactory = InputFeatureFactory.getInstance();
 
-            GraphicsFeatureFactory graphicsFeatureFactory =
-                GraphicsFeatureFactory.getInstance();
+            final GraphicsFeatureFactory graphicsFeatureFactory = GraphicsFeatureFactory.getInstance();
 
-            SensorFeatureFactory sensorFeatureFactory =
-                    SensorFeatureFactory.getInstance();
+            final SensorFeatureFactory sensorFeatureFactory = SensorFeatureFactory.getInstance();
 
             features.removeDefault(sensorFeatureFactory.ORIENTATION_SENSORS);
             features.addDefault(sensorFeatureFactory.NO_ORIENTATION);
@@ -86,11 +86,9 @@ Pointer.Listener
             //features.addDefault(inputFeatureFactory.SINGLE_KEY_PRESS);
             features.addDefault(inputFeatureFactory.REMOVE_DUPLICATE_KEY_PRESSES);
 
-            GameConfigurationCentral gameConfigurationCentral =
-                    GameConfigurationCentral.getInstance();
+            final GameConfigurationCentral gameConfigurationCentral = GameConfigurationCentral.getInstance();
 
-            SmallIntegerSingletonFactory smallIntegerSingletonFactory = 
-                    SmallIntegerSingletonFactory.getInstance();
+            final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
 
             gameConfigurationCentral.VIBRATION.setDefaultValue(smallIntegerSingletonFactory.getInstance(0));
             gameConfigurationCentral.VIBRATION.setDefault();
@@ -130,25 +128,46 @@ Pointer.Listener
         }
     }
     
-    public void onKeyDown(Keyboard.Event event)
-    {
-        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onKeyDown"));
+    //TWB - Added for custom playn 1.0.3
+    @Override
+    public void onKeyTyped(Keyboard.TypedEvent event) {
         
-        this.getCurrentDisplayable().keyPressed(event.keyCode());
+        //LogUtil.put(LogFactory.getInstance(CommonLabels.getInstance().START_LABEL + event.typedChar(), this, "onKeyTyped"));
+        
+        //this.getCurrentDisplayable().keyRepeated(event.keyCode());
     }
 
+
+    @Override
+    public void onKeyDown(Keyboard.Event event)
+    {
+        //LogUtil.put(LogFactory.getInstance(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyDown"));
+    
+        final Key key = event.key();        
+        final int abKey = this.playNToAllBinaryKeyInputUtil.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()];
+        if(abKey != -1) {
+            this.getCurrentDisplayable().keyPressed(abKey);
+        }
+    }
+
+    @Override
     public void onKeyUp(Keyboard.Event event)
     {
-        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onKeyUp"));
+        //LogUtil.put(LogFactory.getInstance(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyUp"));
         
-        this.getCurrentDisplayable().keyReleased(event.keyCode());
+        final Key key = event.key();
+
+        final int abKey = this.playNToAllBinaryKeyInputUtil.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()];
+        if(abKey != -1) {
+            this.getCurrentDisplayable().keyReleased(abKey);
+        }
     }
 
     public void onPointerStart(Pointer.Event mouseEvent)
     {
         try
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onPointerStart"));
+            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onPointerStart"));
             this.motionRecognizer.processStartMotionEvent(
                 (int) mouseEvent.x(), (int) mouseEvent.y(), this.DEVICE_ID, 
                 0);
@@ -163,7 +182,7 @@ Pointer.Listener
     {
         try
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onPointerEnd"));
+            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onPointerEnd"));
             this.motionRecognizer.processEndMotionEvent(
                 (int) mouseEvent.x(), (int) mouseEvent.y(), this.DEVICE_ID, 
                 0);
