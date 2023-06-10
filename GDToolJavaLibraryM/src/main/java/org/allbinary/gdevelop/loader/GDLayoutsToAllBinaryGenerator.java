@@ -217,6 +217,8 @@ public class GDLayoutsToAllBinaryGenerator
             final InputStream[] inputStreamArray2 = 
             {
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl"),
+                new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl"),
                 new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl"),
@@ -236,6 +238,8 @@ public class GDLayoutsToAllBinaryGenerator
             
             final String[] OUTPUT_FILE_PATHS = {
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+                "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
+                "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
                 "G:\\mnt\\bc\\mydev\\GDGamesP\\resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GD",
@@ -254,6 +258,8 @@ public class GDLayoutsToAllBinaryGenerator
             };
             
             final String[] OUTPUT_FILE_PATH_END_ARRAY = {
+                "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
+                "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
                 "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
                 "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",
                 "GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java",

@@ -86,7 +86,7 @@ Created By: Travis Berthelot
 package org.allbinary.animation.image;
 
 import javax.microedition.lcdui.Image;
-import org.allbinary.animation.image.AllBinaryJ2SEImageRotationAnimationFactory;
+import org.allbinary.animation.image.AllBinaryHTMLImageRotationAnimationFactory;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
@@ -148,7 +148,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
 
                         try {
 
-                    <xsl:call-template name="j2seAnimationFactory" >
+                    <xsl:call-template name="htmlAnimationFactory" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
