@@ -119,7 +119,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.gdObject = gdObject;
         this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
         this.initPosition();
-        this.updateGDObject(0);
+        this.updateGDObject(1000);
         this.setDestroyed(false);
     }
 
