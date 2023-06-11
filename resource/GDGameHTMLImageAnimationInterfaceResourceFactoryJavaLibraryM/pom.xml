@@ -53,11 +53,22 @@
         <dependency>
             <groupId>org.allbinary.animation</groupId>
             <artifactId>AllBinaryHTMLImageAnimationRotationJavaLibrary</artifactId>
+            <!--
+            <artifactId>AllBinaryImageAnimationRotationJavaLibrary</artifactId>
+            -->
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
-        
+
+        <dependency>
+            <groupId>org.allbinary.animation</groupId>
+            <artifactId>AllBinarySpriteAnimationJavaLibrary</artifactId>      
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>OpenGLNoneJavaLibrary</artifactId>
@@ -66,15 +77,6 @@
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
-        
-        <!--
-            <groupId>org.allbinary.animation</groupId>
-            <artifactId>AllBinaryImageAnimationRotationJavaLibrary</artifactId>
-                <dependency>
-                    <groupId>org.allbinary.animation</groupId>
-                    <artifactId>AllBinarySpriteAnimationJavaLibrary</artifactId>
-                </dependency>
-        -->
         
         <dependency>
             <groupId>org.microemu</groupId>

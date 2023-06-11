@@ -278,6 +278,7 @@ Created By: Travis Berthelot
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
+                <xsl:if test="not(contains($name, 'btn_'))" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
                 final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtable().get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
@@ -361,8 +362,9 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                 </xsl:for-each>
                 //objectsGroupsGDGameLayer - END
-                
+                </xsl:if>
             </xsl:if>
+
             <xsl:if test="$layoutIndex = 1" >
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
@@ -401,6 +403,7 @@ Created By: Travis Berthelot
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
+                <xsl:if test="not(contains($name, 'btn_'))" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
                 final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtable().get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
@@ -484,6 +487,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                 </xsl:for-each>
                 //objectsGroupsGDGameLayer - END
+                </xsl:if>
                 
             </xsl:if>
             <xsl:if test="$layoutIndex = 1" >
