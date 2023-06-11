@@ -34,6 +34,11 @@ public class GDTwodBehavior {
         
     }
     
+    public void reset(final GDObject gdObject) throws Exception {
+        this.rotationRemainder = 0;
+        this.rotationBehavior.set(gdObject);
+    }
+
     public void updateRotation(final GDObject gdObject, final long timeDelta) {
         final StringBuilder stringBuilder = new StringBuilder();
         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("timeDelta: ").append(timeDelta).toString(), this, "updateRotation"));

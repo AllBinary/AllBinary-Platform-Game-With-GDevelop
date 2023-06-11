@@ -32,6 +32,11 @@ public class GDThreedBehavior extends GDTwodBehavior {
         this.rotationAnimationInterfaceArray = rotationAnimationInterfaceArray;
     }
 
+    public void reset(final GDObject gdObject) throws Exception {
+        super.reset(gdObject);
+        this.rotationRemainderZ = 0;
+    }
+    
     public void updateRotation(final GDObject gdObject, final long timeDelta) {
         super.updateRotation(gdObject, timeDelta);
 

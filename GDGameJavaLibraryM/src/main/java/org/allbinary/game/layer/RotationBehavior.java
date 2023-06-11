@@ -47,7 +47,7 @@ public class RotationBehavior extends RotationBehaviorBase {
             LogUtil.put(LogFactory.getInstance(gdObject.toString(), this, CommonStrings.getInstance().CONSTRUCTOR, e));
         }
         
-        this.setRotationAnimationInterfaceArray(initIndexedAnimationInterfaceArray);
+        this.rotationAnimationInterfaceArray = initIndexedAnimationInterfaceArray;
         return initIndexedAnimationInterfaceArray;
     }
     
@@ -121,6 +121,6 @@ public class RotationBehavior extends RotationBehaviorBase {
     public void toString(final GDObject gdObject, final StringMaker stringBuffer) {
         final RotationAnimation rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
         stringBuffer.append(GDObjectStrings.getInstance().ANGLE).append(rotationAnimation.getAngleInfo().getAngle());
-    }    
+    }
     
 }

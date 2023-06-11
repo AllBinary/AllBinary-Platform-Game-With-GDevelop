@@ -115,7 +115,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     }
 
     public void setGDObject(final GDObject gdObject) throws Exception {
-        this.dimensionalBehavior.rotationBehavior.set(gdObject);
+        this.dimensionalBehavior.reset(gdObject);
         this.gdObject = gdObject;
         this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
         this.initPosition();
