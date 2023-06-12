@@ -22,6 +22,7 @@ import org.allbinary.game.layer.special.GDCollidableBehavior;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.util.BasicArrayList;
 
 /**
  *
@@ -35,14 +36,19 @@ public class GDGameLayerFactory
     private final Rectangle layerInfo;
     private final RotationBehaviorBase rotationBehavior;
     
-    public GDGameLayerFactory(final Group[] groupInterface,
+    private final BasicArrayList gameLayerList;
+    private final BasicArrayList gameLayerDestroyedList;
+            
+    public GDGameLayerFactory(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
+            final Group[] groupInterface,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo) {
-        this(groupInterface, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, new RotationBehavior());
+        this(gameLayerList, gameLayerDestroyedList, groupInterface, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, new RotationBehavior());
     }
     
-    public GDGameLayerFactory(final Group[] groupInterface,
+    public GDGameLayerFactory(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
+            final Group[] groupInterface,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo, final RotationBehaviorBase rotationBehavior) {
@@ -52,6 +58,9 @@ public class GDGameLayerFactory
         this.proceduralAnimationInterfaceFactoryInterfaceArray = proceduralAnimationInterfaceFactoryInterfaceArray;
         this.layerInfo = layerInfo;
         this.rotationBehavior = rotationBehavior;
+        
+        this.gameLayerList = gameLayerList;
+        this.gameLayerDestroyedList = gameLayerDestroyedList;
     }
     
     public GDGameLayer create(final String name, final GDObject gdObject, final GDConditionWithGroupActions collidableBehavior) throws Exception {
@@ -60,7 +69,9 @@ public class GDGameLayerFactory
             LogUtil.put(LogFactory.getInstance(new StringBuilder().append(name).append(" GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").append(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(this.animationInterfaceFactoryInterfaceArray[0]).toString(), this, "create", new Exception()));
         }
         
-        final GDGameLayer gameLayer = new GDGameLayer(name,
+        final GDGameLayer gameLayer = new GDGameLayer(
+                this.gameLayerList, this.gameLayerDestroyedList,
+                name,
                 this.groupInterface,
                 this.animationInterfaceFactoryInterfaceArray,
                 this.proceduralAnimationInterfaceFactoryInterfaceArray,

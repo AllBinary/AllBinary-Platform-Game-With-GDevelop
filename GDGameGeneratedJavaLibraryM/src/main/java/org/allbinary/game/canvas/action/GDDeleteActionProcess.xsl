@@ -62,8 +62,6 @@ Created By: Travis Berthelot
                                             //<xsl:value-of select="text()" /><xsl:text>&#10;</xsl:text>
                                                                             
                                             //if(allBinaryGameLayerManager.getLayerManager().contains(<xsl:value-of select="text()" />GDGameLayer)) {
-                                                globals.<xsl:value-of select="text()" />GDGameLayerList.remove(<xsl:value-of select="text()" />GDGameLayer);
-                                                globals.<xsl:value-of select="text()" />GDGameLayerDestroyedList.add(<xsl:value-of select="text()" />GDGameLayer);
                                                 //allBinaryGameLayerManager.remove(<xsl:value-of select="text()" />GDGameLayer);
                                                 <xsl:value-of select="text()" />GDGameLayer.setDestroyed(true);
                                             //} else {

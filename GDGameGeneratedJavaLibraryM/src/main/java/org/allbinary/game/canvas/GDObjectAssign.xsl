@@ -179,6 +179,8 @@ Created By: Travis Berthelot
                 //objectsGroupsGDGameLayer - END
                 
                 this.<xsl:value-of select="name" />GDGameLayerFactory = new GDGameLayerFactory(
+                    globals.<xsl:value-of select="name" />GDGameLayerList,
+                    globals.<xsl:value-of select="name" />GDGameLayerDestroyedList,
                     <xsl:value-of select="$groupInterfaceArray" />,
                     <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,

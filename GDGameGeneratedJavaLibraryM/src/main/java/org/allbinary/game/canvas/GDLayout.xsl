@@ -204,7 +204,6 @@ Created By: Travis Berthelot
                            size = removeList.size();
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                gdGameLayer = (GDGameLayer) removeList.get(index);
-                               globals.<xsl:value-of select="name" />GDGameLayerList.remove(gdGameLayer);
                                gdGameLayer.setDestroyed(true);
                                //LogUtil.put(LogFactory.getInstance("Behavior objectName=<xsl:value-of select="name" /> size=globals.<xsl:value-of select="name" />GDGameLayerList size: " + globals.<xsl:value-of select="name" />GDGameLayerList.size(), this, commonStrings.PROCESS));
                            }

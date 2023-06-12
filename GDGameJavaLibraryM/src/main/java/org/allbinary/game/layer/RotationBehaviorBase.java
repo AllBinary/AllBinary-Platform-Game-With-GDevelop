@@ -15,6 +15,7 @@ package org.allbinary.game.layer;
 
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
+import org.allbinary.animation.RotationAnimation;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringMaker;
@@ -54,12 +55,17 @@ public class RotationBehaviorBase {
         
         return initIndexedAnimationInterfaceArray;
     }
+
+    public void setRotationAnimationInterfaceArray(final IndexedAnimation[] rotationAnimationInterfaceArray)
+    {
+        
+    }
     
     public void set(final GDObject gdObject) throws Exception {
         
     }
     
-    public void setRotation(final GDObject gdObject, final short angleAdjustment) {
+    public void setRotation(final GDGameLayer gameLayer, final short angleAdjustment) {
         
     }
     

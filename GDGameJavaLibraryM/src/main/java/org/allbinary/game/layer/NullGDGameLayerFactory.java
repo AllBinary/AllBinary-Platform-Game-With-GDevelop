@@ -22,7 +22,7 @@ import org.allbinary.game.layout.GDObject;
 public class NullGDGameLayerFactory extends GDGameLayerFactory
 {
     public NullGDGameLayerFactory() {
-        super(null, null, null, null);
+        super(null, null, null, null, null, null);
     }
     
     public GDGameLayer create(final GDObject gdObject) {

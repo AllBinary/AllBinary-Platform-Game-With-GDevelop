@@ -39,7 +39,8 @@ public class GDTwodBehavior {
         this.rotationBehavior.set(gdObject);
     }
 
-    public void updateRotation(final GDObject gdObject, final long timeDelta) {
+    public void updateRotation(final GDGameLayer gameLayer, final long timeDelta) {
+        final GDObject gdObject = gameLayer.gdObject;
         final StringBuilder stringBuilder = new StringBuilder();
         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("timeDelta: ").append(timeDelta).toString(), this, "updateRotation"));
         //stringBuilder.delete(0, stringBuilder.length());
@@ -55,7 +56,7 @@ public class GDTwodBehavior {
             stringBuilder.delete(0, stringBuilder.length());
             //LogUtil.put(LogFactory.getInstance(stringBuilder.append("angleAdjustment: ").append(angleAdjustment).toString(), this, "updateRotation"));
             gdObject.angle += angleAdjustment;
-            this.rotationBehavior.setRotation(gdObject, angleAdjustment);
+            this.rotationBehavior.setRotation(gameLayer, angleAdjustment);
             rotationRemainder -= angleAdjustment;
             //LogUtil.put(LogFactory.getInstance("reset", this, "updateRotation"));
         } else {

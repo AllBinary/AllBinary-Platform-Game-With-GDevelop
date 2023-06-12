@@ -37,9 +37,10 @@ public class GDThreedBehavior extends GDTwodBehavior {
         this.rotationRemainderZ = 0;
     }
     
-    public void updateRotation(final GDObject gdObject, final long timeDelta) {
-        super.updateRotation(gdObject, timeDelta);
+    public void updateRotation(final GDGameLayer gameLayer, final long timeDelta) {
+        super.updateRotation(gameLayer, timeDelta);
 
+        final GDObject gdObject = gameLayer.gdObject;
         final StringBuilder stringBuilder = new StringBuilder();
         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("timeDelta: ").append(timeDelta).toString(), this, "updateRotation"));
         //stringBuilder.delete(0, stringBuilder.length());

@@ -37,22 +37,18 @@ public class DestroyOutsideBehavior extends GDBehavior {
         }
 
         if(gdObject.x > SceneWindowWidth() + gdObject.Width(graphics)) {
-            gameLayer.getCombatBaseBehavior().getDestroyableBaseBehavior().setDestroyed(true);
             return true;
         }
 
         if(gdObject.y > SceneWindowHeight() + gdObject.Width(graphics)) {
-            gameLayer.getCombatBaseBehavior().getDestroyableBaseBehavior().setDestroyed(true);
             return true;
         }
 
         if(gdObject.y < -gdObject.Width(graphics)) {
-            gameLayer.getCombatBaseBehavior().getDestroyableBaseBehavior().setDestroyed(true);
             return true;
         }
 
         if(gdObject.x < -gdObject.Height(graphics)) {
-            gameLayer.getCombatBaseBehavior().getDestroyableBaseBehavior().setDestroyed(true);
             return true;
         }
         
