@@ -95,7 +95,7 @@ public class <GDLayout> extends StartCanvas
                         <xsl:value-of select="$color" />
                     </xsl:if>
                     <xsl:if test="string-length($color) = 0" >
-                        255, 255, 255), 
+                        255, 255, 255, 
                     </xsl:if>
                     GD_LAYOUT_COLOR), true)
                 );
