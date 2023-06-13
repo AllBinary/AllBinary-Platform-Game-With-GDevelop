@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
+    
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -32,8 +35,12 @@ public class GDGameCommandFactory {
     public static GDGameCommandFactory getInstance() {
         return instance;
     }
+
+    <xsl:for-each select="layouts" >
+    public final Command <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_GD_LAYOUT  = new Command("<xsl:value-of select="name" />", Command.SCREEN, 1);
+    </xsl:for-each>                
+         
     
-    <GDLayoutCommand/>
 
 }
     </xsl:template>

@@ -35,8 +35,6 @@ public class GDToAllBinaryMIDletGenerator
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
-    private final String GD_LAYOUT_COMMAND = "<GDLayoutCommand/>";
-
     private final StringMaker stringBuilder = new StringMaker();
     
     private BasicArrayList layoutNameList = new BasicArrayList();
@@ -95,20 +93,7 @@ public class GDToAllBinaryMIDletGenerator
             outputStream.reset();
             final String xslFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
 
-            String newFileAsString = xslFileAsString;
-
-            final StringMaker stringBuilder = new StringMaker();
-            final int size = this.classNameList.size();
-            String className;
-            for (int index = 0; index < size; index++) {
-                className = (String) this.classNameList.get(index);
-                stringBuilder.append("    public final Command ").append((String) this.layoutNameList.get(index)).append("_GD_LAYOUT  = new Command(").append(className).append(", Command.SCREEN, 1);\n");
-            }
-
-            final String commands = stringBuilder.toString();
-            final Replace replace = new Replace(this.GD_LAYOUT_COMMAND, commands);
-            newFileAsString = replace.all(newFileAsString);
-            
+            final String newFileAsString = xslFileAsString;
             final String updatedXslDocumentStr = newFileAsString;
 
             LogUtil.put(LogFactory.getInstance(updatedXslDocumentStr, this, CommonStrings.getInstance().CONSTRUCTOR));
