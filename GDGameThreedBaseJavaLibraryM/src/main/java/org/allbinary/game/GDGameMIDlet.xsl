@@ -3,7 +3,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
-
+    
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -138,6 +138,8 @@ public class GDGameMIDlet extends
        return LicenseLevelUtil.getInstance().getMaxLevel(GDGameLayerManager.MAX_LEVEL, 6);
    }
 
+       <xsl:for-each select="layouts" >
+           <xsl:if test="position() = 2" >
    protected AllBinaryGameLayerManager createGameLayerManager()
    {
        final GameInfo gameInfo = new GameInfo(
@@ -145,8 +147,6 @@ public class GDGameMIDlet extends
                PlayerTypesFactory.getInstance().PLAYER_TYPE_ONE,
                this.getHighestLevel(), 1);
 
-       <xsl:for-each select="layouts" >
-           <xsl:if test="position() = 2" >
                <xsl:for-each select="events" >
                    <xsl:for-each select="events" >
                        <xsl:for-each select="events" >
@@ -164,9 +164,9 @@ public class GDGameMIDlet extends
                        </xsl:for-each>
                    </xsl:for-each>
                </xsl:for-each>
+   }
            </xsl:if>
        </xsl:for-each>
-   }
 
    /*
    protected void mediaInit() throws Exception
