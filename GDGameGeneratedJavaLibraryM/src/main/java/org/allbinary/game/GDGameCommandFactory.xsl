@@ -33,9 +33,8 @@ public class GDGameCommandFactory {
         return instance;
     }
     
-    public final Command <GDLayoutName0>_GD_LAYOUT  = new Command("<GDLayout0>", Command.SCREEN, 1);
-    public final Command <GDLayoutName1>_GD_LAYOUT  = new Command("<GDLayout1>", Command.SCREEN, 1);
-    public final Command <GDLayoutName2>_GD_LAYOUT  = new Command("<GDLayout2>", Command.SCREEN, 1);
+    <GDLayoutCommand/>
+
 }
     </xsl:template>
 

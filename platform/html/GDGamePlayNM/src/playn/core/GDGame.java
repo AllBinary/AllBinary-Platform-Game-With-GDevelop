@@ -33,7 +33,7 @@ Pointer.Listener
     
     public GDGame()
     {
-        BasicMotionGesturesHandler motionGesturesHandler =
+        final BasicMotionGesturesHandler motionGesturesHandler =
             motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
 
         motionGesturesHandler.addListener(
@@ -130,16 +130,15 @@ Pointer.Listener
     
     //TWB - Added for custom playn 1.0.3
     @Override
-    public void onKeyTyped(Keyboard.TypedEvent event) {
+    public void onKeyTyped(final Keyboard.TypedEvent event) {
         
         //LogUtil.put(LogFactory.getInstance(CommonLabels.getInstance().START_LABEL + event.typedChar(), this, "onKeyTyped"));
         
         //this.getCurrentDisplayable().keyRepeated(event.keyCode());
     }
 
-
     @Override
-    public void onKeyDown(Keyboard.Event event)
+    public void onKeyDown(final Keyboard.Event event)
     {
         //LogUtil.put(LogFactory.getInstance(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyDown"));
     
@@ -151,7 +150,7 @@ Pointer.Listener
     }
 
     @Override
-    public void onKeyUp(Keyboard.Event event)
+    public void onKeyUp(final Keyboard.Event event)
     {
         //LogUtil.put(LogFactory.getInstance(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyUp"));
         

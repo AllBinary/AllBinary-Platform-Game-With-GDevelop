@@ -179,6 +179,9 @@ public class GDToAllBinaryGenerationTool
             fileAsString = resource.fileAsString;
 
             startIndex = fileAsString.lastIndexOf('/');
+            if(startIndex < 0) {
+                startIndex = 0;
+            }
             endIndex = fileAsString.lastIndexOf('.');
             resourceString = fileAsString.substring(startIndex);
             fileAsString = fileAsString.substring(startIndex + 1, endIndex);

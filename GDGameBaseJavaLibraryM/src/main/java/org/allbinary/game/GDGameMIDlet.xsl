@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
+    
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -24,9 +27,10 @@ import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.Displayable;
 
 //import org.allbinary.game.canvas.GDGameStartCanvas;
-import org.allbinary.game.canvas.<GDLayout0>;
-import org.allbinary.game.canvas.<GDLayout1>;
-import org.allbinary.game.canvas.<GDLayout2>;
+<xsl:for-each select="layouts" >
+    <xsl:variable name="name" ><xsl:if test="position() != 1" >GDGameStart</xsl:if><xsl:if test="position() = 1" >GDGame</xsl:if><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
+    import org.allbinary.game.canvas.<xsl:value-of select="$name" />;
+</xsl:for-each>                
 import org.allbinary.canvas.RunnableCanvas;
 import org.allbinary.game.canvas.GDGameInputMappingHelpPaintable;
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
@@ -86,35 +90,43 @@ public class GDGameMIDlet extends
        return GDGameInputMappingHelpPaintable.getInstance();
    }
 
+<xsl:for-each select="layouts" >
+    <xsl:variable name="name" ><xsl:if test="position() != 1" >GDGameStart</xsl:if><xsl:if test="position() = 1" >GDGame</xsl:if><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
+    <xsl:if test="position() = 1" >
    public GameCanvasRunnableInterface createDemoGameCanvasRunnableInterface() throws Exception
    {
-       return new <GDLayout0>(this);
+       return new <xsl:value-of select="$name" />(this);
       //return new GDGameStartCanvas(this);
    }
-
+    </xsl:if>
+    <xsl:if test="position() = 2" >
    public GameCanvasRunnableInterface createGameCanvasRunnableInterface(
 		   AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
    {
-       return new <GDLayout1>(this, allBinaryGameLayerManager);
+       return new <xsl:value-of select="$name" />(this, allBinaryGameLayerManager);
        //return new GDGameGameCanvas(this, allBinaryGameLayerManager);
-   }
-
-   public GameCanvasRunnableInterface create<GDLayout2>RunnableInterface() throws Exception
+   }        
+    </xsl:if>
+    <xsl:if test="position() != 1 and position() != 2" >
+   public GameCanvasRunnableInterface create<xsl:value-of select="$name" />RunnableInterface() throws Exception
    {
-       return new <GDLayout2>(this);
+       return new <xsl:value-of select="$name" />(this);
       //return new GDGameStartCanvas(this);
    }
 
-    public synchronized void set<GDLayout2>RunnableInterface() throws Exception
+    public synchronized void set<xsl:value-of select="$name" />RunnableInterface() throws Exception
     {
-        LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "set<GDLayout2>"));
+        LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "set<xsl:value-of select="$name" />"));
 
         ////TWB - Loading Feature Change - Can remove remark after testing
         ProgressCanvasFactory.getInstance().start();
 
-        PrimaryThreadPool.getInstance().runTask(new <GDLayout2>Runnable(this));
+        PrimaryThreadPool.getInstance().runTask(new <xsl:value-of select="$name" />Runnable(this));
         //this.postDemoSetup();
-    }
+    }        
+    </xsl:if>
+</xsl:for-each>                
+
 
    protected HighScoresCanvas createHighScoresCanvas() throws Exception
    {
@@ -206,12 +218,13 @@ public class GDGameMIDlet extends
                 ((RunnableCanvas) displayable).end2();
             }
 
-            if(command.equals(gdGameCommandFactory.<GDLayoutName0>_GD_LAYOUT)) {
-                this.setDemo();
-            } else if(command.equals(gdGameCommandFactory.<GDLayoutName1>_GD_LAYOUT)) {
-                this.createGame();
-            } else if(command.equals(gdGameCommandFactory.<GDLayoutName2>_GD_LAYOUT)) {
-                this.set<GDLayout2>RunnableInterface();
+       <xsl:for-each select="layouts" >
+           <xsl:variable name="name" ><xsl:if test="position() != 1" >GDGameStart</xsl:if><xsl:if test="position() = 1" >GDGame</xsl:if><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
+           <xsl:if test="position() != 1" >} else </xsl:if>if(command.equals(gdGameCommandFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_GD_LAYOUT)) {
+           <xsl:if test="position() = 1" >this.setDemo();</xsl:if>
+           <xsl:if test="position() = 2" >this.createGame();</xsl:if>
+           <xsl:if test="position() != 1 and position() != 2" >this.set<xsl:value-of select="$name" />RunnableInterface();</xsl:if>
+       </xsl:for-each>                
             } else {
                 super.commandAction(command, displayable2);
             }

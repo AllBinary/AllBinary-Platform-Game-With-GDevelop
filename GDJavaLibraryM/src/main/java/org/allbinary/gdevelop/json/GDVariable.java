@@ -62,18 +62,17 @@ public class GDVariable
             this.value = 0;
             this.boolValue = false;
             
-            final JSONArray variableJSONArray = jsonObject.getJSONArray(gdProjectStrings.CHILDREN);
-            final int size = variableJSONArray.length();
-            JSONObject childJSONObject;
-            for (int index = 0; index < size; index++)
-            {
-                childJSONObject = variableJSONArray.getJSONObject(index);
-                if (type == typeFactory.STRUCTURE)
-                {
-                    this.childVariableMap.put(childJSONObject.getString(gdProjectStrings.NAME), new GDVariable(childJSONObject));
-                } else if (type == typeFactory.ARRAY)
-                {
-                    this.childVariableList.add(new GDVariable(childJSONObject));
+            if(jsonObject.has(gdProjectStrings.CHILDREN)) {
+                final JSONArray variableJSONArray = jsonObject.getJSONArray(gdProjectStrings.CHILDREN);
+                final int size = variableJSONArray.length();
+                JSONObject childJSONObject;
+                for (int index = 0; index < size; index++) {
+                    childJSONObject = variableJSONArray.getJSONObject(index);
+                    if (type == typeFactory.STRUCTURE) {
+                        this.childVariableMap.put(childJSONObject.getString(gdProjectStrings.NAME), new GDVariable(childJSONObject));
+                    } else if (type == typeFactory.ARRAY) {
+                        this.childVariableList.add(new GDVariable(childJSONObject));
+                    }
                 }
             }
         }
