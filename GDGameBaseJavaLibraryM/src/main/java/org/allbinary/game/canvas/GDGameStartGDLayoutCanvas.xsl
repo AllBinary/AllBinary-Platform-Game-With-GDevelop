@@ -72,14 +72,24 @@ public class <GDLayout> extends StartCanvas
         this.setDefaultPaintableInterface(
                 //ColorFillPaintableFactory.getInstance(BasicColorFactory.getInstance().RED)
                 ColorFillPaintableFactory.getInstance(new BasicColor(255,
-                    <xsl:for-each select="events" >
-                        <xsl:for-each select="actions" >
-                            <xsl:variable name="typeValue" select="type/value" />
-                            <xsl:if test="$typeValue = 'SceneBackground'" >
-                            <xsl:for-each select="parameters" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:for-each>,
-                            </xsl:if>
+                    <xsl:variable name="color" >
+                        <xsl:for-each select="events" >
+                            <xsl:for-each select="actions" >
+                                <xsl:variable name="typeValue" select="type/value" />
+                                <xsl:if test="$typeValue = 'SceneBackground'" >
+                                    <xsl:for-each select="parameters" >
+                                        <xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" />
+                                    </xsl:for-each>,
+                                </xsl:if>
+                            </xsl:for-each>
                         </xsl:for-each>
-                    </xsl:for-each>
+                    </xsl:variable>
+                    <xsl:if test="string-length($color) != 0" >
+                        <xsl:value-of select="$color" />
+                    </xsl:if>
+                    <xsl:if test="string-length($color) = 0" >
+                        255, 255, 255), 
+                    </xsl:if>
                     GD_LAYOUT_COLOR), false)
                 );
         this.setPaintableInterface(this.getDefaultPaintableInterface());
