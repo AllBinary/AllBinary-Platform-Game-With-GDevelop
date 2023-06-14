@@ -24,7 +24,7 @@ public class GDGenerator {
      */
     public static void main(String[] args) throws Exception {
         new GDToAllBinaryGenerationTool().process();
-        new GDLayoutsToAllBinaryGenerator().process(3);
+        new GDLayoutsToAllBinaryGenerator().process(new GDGetTotalLayouts().process());
     }
     
 }

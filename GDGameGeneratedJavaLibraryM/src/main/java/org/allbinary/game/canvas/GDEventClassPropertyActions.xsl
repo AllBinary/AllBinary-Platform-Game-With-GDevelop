@@ -124,7 +124,7 @@ Created By: Travis Berthelot
                     <!-- Once sibling/parent condition -->
 
                     <xsl:choose>
-                        <xsl:when test ="not(preceding::events/actions[parameters[1]/text() = current()/actions/parameters/text()])">
+                        <xsl:when test="not(preceding::events/actions[parameters[1]/text() = current()/actions/parameters/text()])">
                             //eventsClassPropertyActions - No Preceding text=<xsl:value-of select="parameters[1]/text()" />
                             <xsl:text>&#10;</xsl:text>
                             <xsl:for-each select="actions" >
