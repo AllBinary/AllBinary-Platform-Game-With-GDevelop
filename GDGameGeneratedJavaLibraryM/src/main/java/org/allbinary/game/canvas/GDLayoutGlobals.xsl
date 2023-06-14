@@ -41,9 +41,11 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
+        //game
         <xsl:variable name="windowWidth" select="properties/windowWidth" />
-
+        
         <xsl:for-each select="layouts" >
+            //layouts=<xsl:value-of select="name" /> position=<xsl:value-of select="position()" />-1=<GD_CURRENT_INDEX>
             <xsl:variable name="layoutIndex" select="position() - 1" />
 
             <xsl:if test="number($layoutIndex) =
@@ -114,11 +116,37 @@ Created By: Travis Berthelot
                         
                         public final BasicArrayList gdNodeWithRunnableList = new BasicArrayList();
 
+public class GDStructure {
+
+    public int Size = -1;
+
+}                    
+                    
+                    //variablesStructures - START
+                    <xsl:call-template name="variablesStructures" >
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    //variablesStructures - END
+                                        
                         <xsl:for-each select="../externalEvents" >
                             <xsl:if test="$layoutName = associatedLayout" >
                         public GDNode <xsl:value-of select="name" />GDNode = null;
                             </xsl:if>
                         </xsl:for-each>
+
+                        //variables - START
+                        <xsl:for-each select="variables" >
+                            <xsl:if test="type = 'structure'" >
+                        public final GDStructure<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = new GDStructure<xsl:value-of select="name" />();
+                            </xsl:if>
+                            <xsl:if test="type = 'string'" >
+                        //public String <xsl:value-of select="name" /> = "<xsl:value-of select="value" />";
+                        public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                            </xsl:if>
+                        </xsl:for-each>
+                        //variables - END
 
                         <xsl:variable name="objectsWithOnceCondition" ><xsl:call-template name="gdNodeToOnceList" ><xsl:with-param name="iteration" >0</xsl:with-param></xsl:call-template></xsl:variable>
                         //objectsWithOnceCondition=<xsl:value-of select="$objectsWithOnceCondition" />
@@ -153,11 +181,13 @@ Created By: Travis Berthelot
                     //instances class properties - START                    
                     <xsl:for-each select="instances" >
                         //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" /><xsl:text>&#10;</xsl:text>
-                        public final BasicArrayList <xsl:value-of select="name" />GDObjectList = new BasicArrayList();
+                        <xsl:variable name="initialVariablesValue" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="initialVariables/value" /></xsl:with-param><xsl:with-param name="find" >-</xsl:with-param><xsl:with-param name="replacementText" >Neg</xsl:with-param></xsl:call-template></xsl:variable>
+
+                        public final BasicArrayList <xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
                         <xsl:if test="layer != ''" >
                         public GDGameLayer <xsl:value-of select="name" />GDGameLayer;
                         </xsl:if>
-                        public Rectangle <xsl:value-of select="name" />Rectangle = null;
+                        public Rectangle <xsl:value-of select="name" />Rectangle<xsl:value-of select="$initialVariablesValue" /> = null;
 
                     </xsl:for-each>
                     //instances class properties - END
@@ -224,6 +254,16 @@ Created By: Travis Berthelot
                     //public final String FAKE_COLLISION_NODE_STRING = "FAKE_COLLISION_NODE_ID";
                  
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals() {
+                    
+
+                    //eventsClassPropertyArrayActions - START
+                    <xsl:call-template name="eventsClassPropertyArrayActions" >
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    //eventsClassPropertyArrayActions - END
+
                         final int size = channelSoundArray.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             channelSoundArray[index] = new BasicArrayList();
@@ -268,6 +308,26 @@ Created By: Travis Berthelot
                     }
 
                     public double Variable(final double value) {
+                        return value;
+                    }
+
+                    public int VariableString(final int value) {
+                        return value;
+                    }
+
+                    public String Variable(final String value) {
+                        return value;
+                    }
+
+                    public String VariableString(final String string) {
+                        return string;
+                    }
+
+                    public int MouseX(String string, int value) {
+                        return value;
+                    }
+
+                    public int MouseY(String string, int value) {
                         return value;
                     }
 
