@@ -21,12 +21,15 @@ Created By: Travis Berthelot
         <xsl:param name="conditionEventPosition" />
         <xsl:param name="hasParentDepartSceneCondition" />
         <xsl:param name="hasParentOnceCondition" />
+        <xsl:param name="hasParentButton" />
 
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
 
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
 
+            <xsl:variable name="hasParentButtonSibling" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
+            
             <xsl:choose>
                 <xsl:when test ="preceding::events/actions[parameters[1]/text() = current()/actions/parameters/text()]">
                     //eventsClassPropertyActions - No Preceding text=<xsl:value-of select="parameters[1]/text()" />
@@ -117,7 +120,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:when>
-                <xsl:when test ="$hasParentOnceCondition = 'true' or conditions/type/value = 'BuiltinCommonInstructions::Once'">
+                <xsl:when test ="($hasParentOnceCondition = 'true' and not(contains($hasParentButtonSibling, 'found'))) or conditions/type/value = 'BuiltinCommonInstructions::Once'">
                     <!-- Once sibling/parent condition -->
 
                     <xsl:choose>
@@ -210,6 +213,7 @@ Created By: Travis Berthelot
                         <xsl:if test="$hasParentDepartSceneCondition != 'true'" >false</xsl:if>
                     </xsl:with-param>
                     <xsl:with-param name="hasParentOnceCondition" >true</xsl:with-param>
+                    <xsl:with-param name="hasParentButton" ><xsl:if test="not(contains($hasParentButtonSibling, 'found'))" ><xsl:value-of select="$hasParentButton" /></xsl:if><xsl:if test="contains($hasParentButtonSibling, 'found')" >true</xsl:if></xsl:with-param>
                 </xsl:call-template>
             </xsl:if>
             <xsl:if test="conditions/type/value = 'DepartScene'" >
@@ -227,6 +231,7 @@ Created By: Travis Berthelot
                         <xsl:if test="$hasParentOnceCondition = 'true'" >true</xsl:if>
                         <xsl:if test="$hasParentOnceCondition != 'true'" >false</xsl:if>
                     </xsl:with-param>
+                    <xsl:with-param name="hasParentButton" ><xsl:if test="not(contains($hasParentButtonSibling, 'found'))" ><xsl:value-of select="$hasParentButton" /></xsl:if><xsl:if test="contains($hasParentButtonSibling, 'found')" >true</xsl:if></xsl:with-param>
                 </xsl:call-template>
             </xsl:if>
 
@@ -248,6 +253,7 @@ Created By: Travis Berthelot
                         <xsl:if test="$hasParentOnceCondition = 'true'" >true</xsl:if>
                         <xsl:if test="$hasParentOnceCondition != 'true'" >false</xsl:if>
                     </xsl:with-param>
+                    <xsl:with-param name="hasParentButton" ><xsl:if test="not(contains($hasParentButtonSibling, 'found'))" ><xsl:value-of select="$hasParentButton" /></xsl:if><xsl:if test="contains($hasParentButtonSibling, 'found')" >true</xsl:if></xsl:with-param>
                 </xsl:call-template>
             </xsl:if>
 

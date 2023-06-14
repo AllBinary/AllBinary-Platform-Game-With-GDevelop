@@ -49,11 +49,11 @@ Created By: Travis Berthelot
                     <xsl:if test="$gameObjectNames != ''" >
                         <xsl:variable name="gameObjectName" ><xsl:value-of select="substring-before($gameObjectNames, ',')" /></xsl:variable>
                                 //This may need to loop through more than 1 game object found 2: <xsl:value-of select="$gameObjectName" /> 
-                                GDGameLayer playerGDGameLayer = null;
-                                GDObject player = null;
-                                if(globals.playerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                                    playerGDGameLayer = ((GDGameLayer) globals.playerGDGameLayerList.get(0));
-                                    player = (GDObject) playerGDGameLayer.gdObject;
+                                GDGameLayer <xsl:value-of select="$gameObjectName" />GDGameLayer = null;
+                                GDObject <xsl:value-of select="$gameObjectName" />  = null;
+                                if(globals.<xsl:value-of select="$gameObjectName" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                    <xsl:value-of select="$gameObjectName" />GDGameLayer = ((GDGameLayer) globals.<xsl:value-of select="$gameObjectName" />GDGameLayerList.get(0));
+                                    <xsl:value-of select="$gameObjectName" /> = (GDObject) <xsl:value-of select="$gameObjectName" />GDGameLayer.gdObject;
                                 } else {
                                     return false;
                                 }
