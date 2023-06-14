@@ -28,7 +28,9 @@ import javax.microedition.lcdui.Displayable;
 
 //import org.allbinary.game.canvas.GDGameStartCanvas;
 <xsl:for-each select="layouts" >
-    <xsl:variable name="name" ><xsl:if test="position() = 1" >GDGameStart</xsl:if><xsl:if test="position() != 1" >GDGame</xsl:if><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
+    <xsl:variable name="name2" ><xsl:value-of select="translate(name, '_', ' ')" /></xsl:variable>
+    <xsl:variable name="name3" ><xsl:if test="position() != 2" >GDGameStart</xsl:if><xsl:if test="position() = 2" >GDGame</xsl:if><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
+    <xsl:variable name="name" ><xsl:value-of select="translate($name3, ' ', '')" /></xsl:variable>
     import org.allbinary.game.canvas.<xsl:value-of select="$name" />;
 </xsl:for-each>                
 import org.allbinary.canvas.RunnableCanvas;
@@ -87,7 +89,9 @@ public class GDGameMIDlet extends
    }
 
 <xsl:for-each select="layouts" >
-    <xsl:variable name="name" ><xsl:if test="position() = 1" >GDGameStart</xsl:if><xsl:if test="position() != 1" >GDGame</xsl:if><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
+    <xsl:variable name="name2" ><xsl:value-of select="translate(name, '_', ' ')" /></xsl:variable>
+    <xsl:variable name="name3" ><xsl:if test="position() != 2" >GDGameStart</xsl:if><xsl:if test="position() = 2" >GDGame</xsl:if><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
+    <xsl:variable name="name" ><xsl:value-of select="translate($name3, ' ', '')" /></xsl:variable>
     <xsl:if test="position() = 1" >
    public GameCanvasRunnableInterface createDemoGameCanvasRunnableInterface() throws Exception
    {
@@ -215,7 +219,9 @@ public class GDGameMIDlet extends
             }
 
        <xsl:for-each select="layouts" >
-           <xsl:variable name="name" ><xsl:if test="position() = 1" >GDGameStart</xsl:if><xsl:if test="position() != 1" >GDGame</xsl:if><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
+           <xsl:variable name="name2" ><xsl:value-of select="translate(name, '_', ' ')" /></xsl:variable>
+           <xsl:variable name="name3" ><xsl:if test="position() != 2" >GDGameStart</xsl:if><xsl:if test="position() = 2" >GDGame</xsl:if><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
+           <xsl:variable name="name" ><xsl:value-of select="translate($name3, ' ', '')" /></xsl:variable>
            <xsl:if test="position() != 1" >} else </xsl:if>if(command.equals(gdGameCommandFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_GD_LAYOUT)) {
            <xsl:if test="position() = 1" >this.setDemo();</xsl:if>
            <xsl:if test="position() = 2" >this.createGame();</xsl:if>
