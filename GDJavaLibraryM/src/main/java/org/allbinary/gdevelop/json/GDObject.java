@@ -39,11 +39,13 @@ public class GDObject
             this.variableList.add(new GDVariable(variableJSONArray.getJSONObject(index)));
         }        
         
-        final JSONArray effectsJSONArray = jsonObject.getJSONArray(gdProjectStrings.EFFECTS);
-        size = effectsJSONArray.length();
-        for(int index = 0; index < size; index++) {
-            this.effectsList.add(new GDEffect(effectsJSONArray.getJSONObject(index)));
-        }        
+        if(jsonObject.has(gdProjectStrings.EFFECTS)) {
+            final JSONArray effectsJSONArray = jsonObject.getJSONArray(gdProjectStrings.EFFECTS);
+            size = effectsJSONArray.length();
+            for (int index = 0; index < size; index++) {
+                this.effectsList.add(new GDEffect(effectsJSONArray.getJSONObject(index)));
+            }
+        }
 
         final JSONArray behaviorsJSONArray = jsonObject.getJSONArray(gdProjectStrings.BEHAVIORS);
         size = behaviorsJSONArray.length();
