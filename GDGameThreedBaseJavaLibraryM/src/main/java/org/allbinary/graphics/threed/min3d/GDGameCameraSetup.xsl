@@ -24,7 +24,7 @@ import min3d.vos.Camera;
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.logic.basic.string.StringMaker;
 
-public class GD<GD_CURRENT_INDEX>GameCameraSetup
+public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
 {
     private static final GD<GD_CURRENT_INDEX>GameCameraSetup instance = new GD<GD_CURRENT_INDEX>GameCameraSetup();
 
@@ -113,16 +113,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup
             }
             </xsl:for-each>
     }
-        </xsl:for-each>
-
-    public int SceneWindowWidth() {
-        return DisplayInfoSingleton.getInstance().getLastWidth();
-    }
-
-    public int SceneWindowHeight() {
-        return DisplayInfoSingleton.getInstance().getLastHeight();
-    }
-               
+        </xsl:for-each>               
 }
     </xsl:template>
 

@@ -14,7 +14,7 @@ import min3d.vos.Camera;
 import min3d.vos.CameraFactory;
 import min3d.vos.light.Light;
 import org.allbinary.game.canvas.GDGameThreedLevelBuilder;
-import org.allbinary.game.canvas.GDGameThreedLevelBuilderFactory;
+import org.allbinary.game.layer.GDGameLayerManager;
 import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.graphics.opengles.OpenGLCapabilities;
@@ -98,8 +98,11 @@ extends AllBinaryGameSceneController
 
             progressCanvas.addEarlyPortion(portion, loadingString, index++);
             
-            ((GDGameThreedLevelBuilder) gameThreedLevelBuilderFactory.list.get(0)).build(gl, glInstanceVersion);
-            
+            final int size = gameThreedLevelBuilderFactory.list.size();
+            for(int index = 0; index < size; index++) {
+                ((GDGameThreedLevelBuilder) gameThreedLevelBuilderFactory.list.get(index)).build(gl, glInstanceVersion);
+            }
+
             progressCanvas.addEarlyPortion(portion, loadingString, index++);
 
             PreLogUtil.put(CommonStrings.getInstance().END, this, METHOD_NAME);                
@@ -116,6 +119,7 @@ extends AllBinaryGameSceneController
     {
         try
         {
+            final GDGameLayerManager gdLayerManager = (GDGameLayerManager) layerManager;
             PreLogUtil.put(CommonStrings.getInstance().START, this, "buildScene");
 
             //Reset the scene
@@ -167,7 +171,7 @@ extends AllBinaryGameSceneController
             
             final StringMaker stringMaker = new StringMaker();
             
-            GD1GameCameraSetup.getInstance().process(camera, stringMaker);
+            ((GDGameCameraSetup) gameThreedLevelBuilderFactory.cameraList.get(gdLayerManager.layout)).process(camera, stringMaker);
 
             camera.position.append(stringMaker);
             stringMaker.append('-').append('>');

@@ -26,6 +26,8 @@ public class GDGameLayerManager extends AllBinaryGameLayerManager
    
    public static int MAX_LEVEL = 1; //Integer.MAX_VALUE;
    
+   public int layout = 0;
+   
    public GDGameLayerManager(final BasicColor backgroundBasicColor,
             final BasicColor foregroundBasicColor, final GameInfo gameInfo)
    {
@@ -54,4 +56,5 @@ public class GDGameLayerManager extends AllBinaryGameLayerManager
       this.playerLayer = playerLayer;
    }
    */
+    
 }

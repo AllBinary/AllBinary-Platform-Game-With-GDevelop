@@ -32,9 +32,16 @@ Created By: Travis Berthelot
  * Created By: Travis Berthelot
  * 
  */
-package org.allbinary.game.canvas;
+package org.allbinary.graphics.threed.min3d;
 
 import org.allbinary.util.BasicArrayList;
+
+        <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />GameThreedLevelBuilder;
+        </xsl:for-each>
+
+
 
 /**
  *
@@ -54,12 +61,14 @@ public class GDGameThreedLevelBuilderFactory {
     
     
     public final BasicArrayList list = new BasicArrayList();
+    public final BasicArrayList cameraList = new BasicArrayList();
     
     private GDGameThreedLevelBuilderFactory() {
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
         //Layout name=<xsl:value-of select="name" />
-        this.list.add(new GD<xsl:value-of select="$layoutIndex" />GameThreedLevelBuilder());           
+        this.list.add(new GD<xsl:value-of select="$layoutIndex" />GameThreedLevelBuilder());
+        this.cameraList.add(GD<xsl:value-of select="$layoutIndex" />GameCameraSetup.getInstance());
         </xsl:for-each>
     }
 

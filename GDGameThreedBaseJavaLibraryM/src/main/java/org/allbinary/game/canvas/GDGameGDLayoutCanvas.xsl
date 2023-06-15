@@ -50,6 +50,7 @@ import org.allbinary.game.displayable.canvas.StartIntermissionPaintable;
 import org.allbinary.game.identification.GroupFactory;
 import org.allbinary.game.input.OptimizedGameInputLayerProcessorForCollidableLayer;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
+import org.allbinary.game.layer.GDGameLayerManager;
 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
 import org.allbinary.game.layout.BaseGDNodeStats;
 import org.allbinary.game.layout.GDNodeStatsFactory;
@@ -360,6 +361,8 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
             AllBinarySceneController sceneController = GDGameAllBinarySceneControllerFactory.getInstance();
 
+            GDGameLayerManager gdGameLayerManager = (GDGameLayerManager) layerManager;
+            gdGameLayerManager.layout = <xsl:value-of select="$index" />;
             sceneController.buildScene(layerManager);
 
             progressCanvas.addPortion(portion, "Finalizing 3D Game Level");
