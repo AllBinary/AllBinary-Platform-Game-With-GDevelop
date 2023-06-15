@@ -29,5 +29,10 @@ public class GDResources
         return instance;
     }
     
+            //<xsl:for-each select="resources" >
+                //<xsl:for-each select="resources" >
+                //resources=<xsl:value-of select="file" /><xsl:text> </xsl:text><xsl:value-of select="kind" /><xsl:text> </xsl:text><xsl:value-of select="metadata" /><xsl:text> </xsl:text><xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="userAdded" />
+                //</xsl:for-each>
+            //</xsl:for-each>
     //GD
 }
