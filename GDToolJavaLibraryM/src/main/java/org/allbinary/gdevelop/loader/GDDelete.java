@@ -104,6 +104,7 @@ public class GDDelete {
         exclusionList3.add("TitleThreedResources.java");
         exclusionList3.add("TitleVectorData.java");
         exclusionList3.add("GDGameThreedLevelBuilderFactory.java");
+        exclusionList3.add("GDGameCameraSetup.java");
         
         final Vector files3 = FileListFetcher.getInstance().getFiles(
               gdToolStrings.ROOT_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java", "java");

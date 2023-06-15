@@ -16,8 +16,6 @@
         <!--
         -->
         <module>./platform/GDGameAllPlatformsP</module>
-        <module>GDPreGameBaseJavaLibrary</module>
-        <module>GDGameThreedPreBaseJavaLibraryM</module>
     </modules>
 
 </project>
