@@ -48,6 +48,8 @@ public class <GDLayout> extends StartCanvas
 
     private final int WAIT = ((GameSpeed.getInstance().getDelay() * 3) <xsl:text disable-output-escaping="yes" >&gt;&gt;</xsl:text> 1);
 
+    private final GDGameInputProcessor gameInputProcessor = new GDGameInputProcessor();
+
     public <GDLayout>(final CommandListener commandListener) throws Exception
     {
         super(commandListener, new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()),
@@ -124,7 +126,13 @@ public class <GDLayout> extends StartCanvas
     public void end2() {
         this.paintedSpecialAnimationInterface = SpecialAnimation.getInstance();
     }
-            
+
+    protected void processGame() throws Exception
+    {
+        this.gameInputProcessor.process(null, this.paintedSpecialAnimationInterface);
+        super.processGame();
+    }
+
 //    protected int getNextRandom()
 //    {
 //    	PreLogUtil.put("******************Demo Next Random Is Always 1", this, "getNextRandom");

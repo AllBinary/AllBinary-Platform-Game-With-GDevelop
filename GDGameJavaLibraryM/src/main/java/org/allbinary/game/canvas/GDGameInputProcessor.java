@@ -13,7 +13,8 @@
  */
 package org.allbinary.game.canvas;
 
-import org.allbinary.game.configuration.feature.InputFeatureFactory;
+import org.allbinary.animation.Animation;
+import org.allbinary.animation.special.SpecialAnimation;
 import org.allbinary.game.input.PlayerGameInput;
 import org.allbinary.game.input.event.GameKeyEvent;
 import org.allbinary.layer.AllBinaryLayerManager;
@@ -35,9 +36,13 @@ public class GDGameInputProcessor {
     private final BasicArrayList removalGameKeyEventList = new BasicArrayList();
     private final PlayerGameInput playerGameInput = new PlayerGameInput(gameKeyEventList, removalGameKeyEventList, 0);
 
-    public void process(final AllBinaryLayerManager allbinaryLayerManager) throws Exception {
+    public void process(final AllBinaryLayerManager allbinaryLayerManager, final Animation specialAnimation) throws Exception {
+
+        if(specialAnimation == SpecialAnimation.getInstance()) {
+            return;
+        }
         
-        final GD1SpecialAnimationGlobals globals = GD1SpecialAnimationGlobals.getInstance();
+        final GDGlobals globals = ((GDSpecialAnimation) specialAnimation).getGlobals();
 
         GameKeyEvent gameKeyEvent;
         

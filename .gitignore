@@ -24,7 +24,7 @@ GDGameThreedAndroidEarlyResourceInitialization.java
 GD*GameSoundsFactory.java
 GDGame*Canvas.java
 *GDObjectsFactory*.java
-*SpecialAnimation*.java
+GD*SpecialAnimation*.java
 *SpecialAnimation*.xml
 GDNonLayout.xml
 GD*Sound.java

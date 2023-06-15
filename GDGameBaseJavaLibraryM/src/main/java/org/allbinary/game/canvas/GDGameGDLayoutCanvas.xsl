@@ -279,7 +279,8 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
                 if (features.isFeature(gameFeatureFactory.GAME_INPUT_LAYER_PROCESSOR))
                 {
-                    list.add(new GDGameInputProcessor());
+                    //GD key input is processed via the GDGlobals input processor array.
+                    //list.add(new GDGameInputProcessor());
                     //list.add(new OptimizedGameInputLayerProcessorForCollidableLayer());
                 }
 
@@ -518,7 +519,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
     
         gdNodeStatsFactory.reset();
     
-        this.gameInputProcessor.process(this.gameLayerManager);
+        this.gameInputProcessor.process(this.gameLayerManager, this.specialAnimation);
 
         super.processPlayingGame();
 

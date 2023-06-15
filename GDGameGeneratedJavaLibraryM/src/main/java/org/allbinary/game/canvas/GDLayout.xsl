@@ -91,7 +91,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimation extends SpecialAnimation
+                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimation extends GDSpecialAnimation
                 {
 
                     private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation instance;
@@ -310,6 +310,10 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     //eventsClose - END
+                    }
+
+                    public GDGlobals getGlobals() {
+                        return this.globals;
                     }
 
                 }
