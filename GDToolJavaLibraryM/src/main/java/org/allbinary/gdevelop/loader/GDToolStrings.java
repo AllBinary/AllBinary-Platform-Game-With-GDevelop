@@ -23,4 +23,5 @@ public class GDToolStrings {
     
     public final String ROOT_PATH = "..\\";
 
+    public final String GAME_XML_PATH = this.ROOT_PATH + "game.xml";
 }

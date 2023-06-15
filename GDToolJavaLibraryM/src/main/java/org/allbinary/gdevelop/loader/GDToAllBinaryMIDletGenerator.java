@@ -71,7 +71,7 @@ public class GDToAllBinaryMIDletGenerator
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
         final byte[] byteArray = new byte[16384];
 
-        final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.ROOT_PATH + "game.xml");
+        final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.GAME_XML_PATH);
         final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
         
         final InputStream[] inputStreamArray = {

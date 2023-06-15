@@ -79,7 +79,7 @@ public class GDToAllBinaryCanvasGenerator extends Processor
         String updatedXslDocumentStr = replace.all(androidRFileAsString);
         updatedXslDocumentStr = replace2.all(updatedXslDocumentStr);
 
-        final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.ROOT_PATH + "game.xml");
+        final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.GAME_XML_PATH);
         outputStream.reset();
         final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
 

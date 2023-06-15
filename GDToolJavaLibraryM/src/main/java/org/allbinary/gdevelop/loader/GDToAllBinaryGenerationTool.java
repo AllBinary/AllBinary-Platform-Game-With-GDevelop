@@ -101,7 +101,7 @@ public class GDToAllBinaryGenerationTool
         String fixQuotes = replace.all(formattedXml);
         fixQuotes = replace2.all(fixQuotes);
 
-        final String fileName = gdToolStrings.ROOT_PATH + "game.xml";
+        final String fileName = gdToolStrings.GAME_XML_PATH;
         LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
 
         this.bufferedWriterUtil.overwrite(fileName, fixQuotes);
