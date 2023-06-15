@@ -14,8 +14,8 @@ public class GDToAndroidManifestGenerator extends GDNameFileGenerator
 {       
     public GDToAndroidManifestGenerator() {
         
-        super("G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidApplicationM\\src\\main\\AndroidManifest.original",
-                "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidApplicationM\\src\\main\\AndroidManifest.xml");
+        super(GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameAndroidApplicationM\\src\\main\\AndroidManifest.original",
+                GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameAndroidApplicationM\\src\\main\\AndroidManifest.xml");
 
     }
 

@@ -24,8 +24,8 @@ public class GDToAndroidResourceStringsXmlGenerator extends GDNameFileGenerator
     private String name;
     
     public GDToAndroidResourceStringsXmlGenerator() {
-        super("G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidApplicationM\\strings.xml.original",
-                "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidApplicationM\\src\\main\\res\\values\\strings.xml");
+        super(GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameAndroidApplicationM\\strings.xml.original",
+                GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameAndroidApplicationM\\src\\main\\res\\values\\strings.xml");
     }
 
     public void process(final GDProject gdProject) {

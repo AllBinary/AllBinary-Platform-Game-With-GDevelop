@@ -13,8 +13,8 @@ package org.allbinary.gdevelop.loader;
 public class GDToAndroidResourcesGenerator extends GDNameFileGenerator
 {
     public GDToAndroidResourcesGenerator() {
-        super("G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.original",
-                "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.java");
+        super(GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.original",
+                GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameAndroidM\\src\\main\\other\\org\\allbinary\\AndroidResources.java");
     }
 
 }

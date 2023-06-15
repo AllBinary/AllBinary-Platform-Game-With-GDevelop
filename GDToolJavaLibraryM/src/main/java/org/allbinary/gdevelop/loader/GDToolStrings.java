@@ -20,4 +20,7 @@ public class GDToolStrings {
     }
     
     public final String FILENAME = "fileName: ";
+    
+    public final String ROOT_PATH = "..\\";
+
 }

@@ -24,8 +24,8 @@ public class GDToThreedAndroidResourceStringsXmlGradleGenerator extends GDNameFi
     private String name;
     
     public GDToThreedAndroidResourceStringsXmlGradleGenerator() {
-        super("G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\strings.xml.original",
-                "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\src\\main\\res\\values\\strings.xml");
+        super(GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\strings.xml.original",
+                GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\src\\main\\res\\values\\strings.xml");
     }
 
     public void process(final GDProject gdProject) {

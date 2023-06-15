@@ -51,11 +51,11 @@ public class GDToThreedAllBinaryCanvasGenerator extends Processor
         if (index == 1)
         {
             className = stringBuilder.append("GDGame").append(name).append("Canvas").toString();
-            this.orig = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameGDLayoutCanvas.xsl";
+            this.orig = gdToolStrings.ROOT_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameGDLayoutCanvas.xsl";
         } else
         {
             className = stringBuilder.append("GDGameStart").append(name).append("Canvas").toString();
-            this.orig = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameStartGDLayoutCanvas.xsl";
+            this.orig = gdToolStrings.ROOT_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameStartGDLayoutCanvas.xsl";
         }
     }
 
@@ -64,7 +64,7 @@ public class GDToThreedAllBinaryCanvasGenerator extends Processor
     {
 
         stringBuilder.delete(0, stringBuilder.length());
-        final String CANVAS = stringBuilder.append("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\").append(this.className).append(".java").toString();
+        final String CANVAS = stringBuilder.append(gdToolStrings.ROOT_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\").append(this.className).append(".java").toString();
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
@@ -79,7 +79,7 @@ public class GDToThreedAllBinaryCanvasGenerator extends Processor
         String updatedXslDocumentStr = replace.all(androidRFileAsString);
         updatedXslDocumentStr = replace2.all(updatedXslDocumentStr);
 
-        final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
+        final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.ROOT_PATH + "game.xml");
         outputStream.reset();
         final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
 

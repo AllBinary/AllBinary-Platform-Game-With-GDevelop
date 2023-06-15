@@ -59,16 +59,17 @@ public class GDLayoutsToAllBinaryRunnableGenerator
         {
             final String RESULT = "result: ";
 
+            final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
             final StringMaker stringBuilder = new StringMaker();
             
             final StreamUtil streamUtil = StreamUtil.getInstance();
             final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
             final byte[] byteArray = new byte[16384];
 
-            final InputStream inputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDLayoutRunnable.xsl");
+            final InputStream inputStream = new FileInputStream(gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDLayoutRunnable.xsl");
             final String xslDocumentStr = new String(streamUtil.getByteArray(inputStream, outputStream, byteArray));
             
-            final FileInputStream gameInputStream = new FileInputStream("G:\\mnt\\bc\\mydev\\GDGamesP\\game.xml");
+            final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.ROOT_PATH + "game.xml");
             
             outputStream.reset();
             final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
@@ -78,7 +79,7 @@ public class GDLayoutsToAllBinaryRunnableGenerator
             //final Replace replace3 = new Replace(".Height()", ".Height(graphics)");
             //xmlDocumentStr = replace3.all(xmlDocumentStr);
 
-            final String START = "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameStart";
+            final String START = gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameStart";
             final String END = "CanvasRunnable.java";
             
             final int size = this.nameList.size();

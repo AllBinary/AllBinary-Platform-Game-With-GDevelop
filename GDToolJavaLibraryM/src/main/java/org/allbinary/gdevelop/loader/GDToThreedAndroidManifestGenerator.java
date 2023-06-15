@@ -14,8 +14,8 @@ public class GDToThreedAndroidManifestGenerator extends GDNameFileGenerator
 {       
     public GDToThreedAndroidManifestGenerator() {
         
-        super("G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameThreedAndroidApplicationM\\src\\main\\AndroidManifest.original",
-                "G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\android\\GDGameThreedAndroidApplicationM\\src\\main\\AndroidManifest.xml");
+        super(GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameThreedAndroidApplicationM\\src\\main\\AndroidManifest.original",
+                GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameThreedAndroidApplicationM\\src\\main\\AndroidManifest.xml");
 
     }
 
