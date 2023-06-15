@@ -126,7 +126,59 @@ public class GDDelete {
               gdToolStrings.ROOT_PATH + "GDGamePreBaseJavaLibraryM\\src\\main\\java", "java");
         
         this.process(files5, exclusionList5);
+
+        final BasicArrayList exclusionList6 = new BasicArrayList();
         
+        exclusionList6.add("GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
+        exclusionList6.add("GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
+        
+        final Vector files6 = FileListFetcher.getInstance().getFiles(
+              gdToolStrings.ROOT_PATH + "resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", "java");
+        
+        this.process(files6, exclusionList6);
+
+        final BasicArrayList exclusionList7 = new BasicArrayList();
+        
+        exclusionList7.add("GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
+        exclusionList7.add("GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
+        
+        final Vector files7 = FileListFetcher.getInstance().getFiles(
+              gdToolStrings.ROOT_PATH + "resource\\GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", "java");
+        
+        this.process(files7, exclusionList7);
+
+        final BasicArrayList exclusionList8 = new BasicArrayList();
+        
+        exclusionList8.add("GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
+        exclusionList8.add("GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
+        
+        final Vector files8 = FileListFetcher.getInstance().getFiles(
+              gdToolStrings.ROOT_PATH + "resource\\GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", "java");
+        
+        this.process(files8, exclusionList8);
+
+        final BasicArrayList exclusionList9 = new BasicArrayList();
+        
+        exclusionList9.add("GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
+        exclusionList9.add("GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
+        
+        final Vector files9 = FileListFetcher.getInstance().getFiles(
+              gdToolStrings.ROOT_PATH + "resource\\GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", "java");
+        
+        this.process(files9, exclusionList9);
+
+        final BasicArrayList exclusionList10 = new BasicArrayList();
+        
+        exclusionList10.add("GDGameEarlyResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory.java");
+        exclusionList10.add("GDGameGameResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory.java");
+        exclusionList10.add("GDGameOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory.java");
+        exclusionList10.add("GDGameThreedTitleAnimation.java");
+        exclusionList10.add("GDGameThreedTitleAnimationFactory.java");
+        
+        final Vector files10 = FileListFetcher.getInstance().getFiles(
+              gdToolStrings.ROOT_PATH + "resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", "java");
+        
+        this.process(files10, exclusionList10);
     }
 
     /**
