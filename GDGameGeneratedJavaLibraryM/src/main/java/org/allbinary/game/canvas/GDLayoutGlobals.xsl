@@ -164,7 +164,6 @@ public class GDStructure {
                         public final int FAKE_COLLISION_NODE_ID = 14999;
                         -->
 
-                        public final GameInputProcessor[] inputProcessorArray = new GameInputProcessor[InputFactory.getInstance().MAX];
                         public final BasicArrayList[] channelSoundArray = new BasicArrayList[4];
 
                     //objectsGroups - START

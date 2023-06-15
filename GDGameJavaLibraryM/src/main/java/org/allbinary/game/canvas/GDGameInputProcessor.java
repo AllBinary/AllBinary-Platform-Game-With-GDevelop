@@ -39,11 +39,27 @@ public class GDGameInputProcessor {
     public void process(final AllBinaryLayerManager allbinaryLayerManager, final Animation specialAnimation) throws Exception {
 
         if(specialAnimation == SpecialAnimation.getInstance()) {
+            //LogUtil.put(LogFactory.getInstance("Animation is SpecialAnimation", this, "processInput"));
             return;
         }
         
+//        if(allbinaryLayerManager == null) {
+//            LogUtil.put(LogFactory.getInstance("TWB allbinaryLayerManager is null", this, "processInput"));
+//            return;
+//        }
+//
+//        if(specialAnimation == null) {
+//            LogUtil.put(LogFactory.getInstance("TWB specialAnimation is null", this, "processInput"));
+//            return;
+//        }
+        
         final GDGlobals globals = ((GDSpecialAnimation) specialAnimation).getGlobals();
 
+//        if(globals == null) {
+//            LogUtil.put(LogFactory.getInstance("TWB globals is null", this, "processInput"));
+//            return;
+//        }
+        
         GameKeyEvent gameKeyEvent;
         
         final int size = gameKeyEventList.size();
