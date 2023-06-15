@@ -230,8 +230,8 @@ Created By: Travis Berthelot
                         //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" />
                         <xsl:text>&#10;</xsl:text>
                         if(true) {
-                        final int <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
-                        final int <xsl:value-of select="name" />Y = 
+                        final int <xsl:value-of select="name" />X = (int) <xsl:value-of select="x" />;
+                        final int <xsl:value-of select="name" />Y = (int) 
                             <xsl:if test="contains(layer, 'touch')" >
                                 //Hack - for android orientation change.
                                 <xsl:if test="y = 506" >DisplayInfoSingleton.getInstance().getLastHeight() - (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100));</xsl:if>
