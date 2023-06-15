@@ -279,6 +279,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
                 if (features.isFeature(gameFeatureFactory.GAME_INPUT_LAYER_PROCESSOR))
                 {
+                    list.add(new GDGameInputProcessor());
                     //list.add(new OptimizedGameInputLayerProcessorForCollidableLayer());
                 }
 

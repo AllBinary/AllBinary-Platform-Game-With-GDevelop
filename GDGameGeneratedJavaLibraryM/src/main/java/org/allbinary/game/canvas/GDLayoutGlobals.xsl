@@ -93,7 +93,7 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList;
 
                 //LayoutGlobals name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals
+                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals extends GDGlobals
                 {
 
                     private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals instance;
