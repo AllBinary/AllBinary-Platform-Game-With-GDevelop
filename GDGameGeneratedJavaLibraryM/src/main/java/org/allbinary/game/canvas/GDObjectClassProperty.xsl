@@ -51,6 +51,12 @@ Created By: Travis Berthelot
                 //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
             </xsl:for-each>
 
+            <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer'" >
+                public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="name" />";
+                public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+                //Unlike Sprite PrimitiveDrawing does not use Create
+                public final BasicArrayList <xsl:value-of select="name" />GDObjectList = new BasicArrayList();
+            </xsl:if>
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />

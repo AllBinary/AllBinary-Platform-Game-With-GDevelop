@@ -42,9 +42,11 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
+        //game
         <xsl:variable name="windowWidth" select="properties/windowWidth" />
 
         <xsl:for-each select="layouts" >
+            //layouts=<xsl:value-of select="name" /> position=<xsl:value-of select="position()" />-1=<GD_CURRENT_INDEX>
             <xsl:variable name="layoutIndex" select="position() - 1" />
 
             <xsl:if test="number($layoutIndex) =

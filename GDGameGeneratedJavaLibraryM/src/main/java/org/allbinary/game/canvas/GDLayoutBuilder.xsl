@@ -229,6 +229,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
                         //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" />
                         <xsl:text>&#10;</xsl:text>
+                        if(true) {
                         final int <xsl:value-of select="name" />X = <xsl:value-of select="x" />;
                         final int <xsl:value-of select="name" />Y = 
                             <xsl:if test="contains(layer, 'touch')" >
@@ -288,6 +289,7 @@ Created By: Travis Berthelot
                         globals.<xsl:value-of select="name" />GDGameLayer.updateGDObject(globals.timeDelta);
                         allBinaryGameLayerManager.insert(globals.<xsl:value-of select="name" />GDGameLayer);
                         </xsl:if>
+                        }
                     </xsl:for-each>
                     //instances create - END
 

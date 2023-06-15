@@ -55,6 +55,13 @@ public class GDDelete {
 
     public void process() throws Exception {
 
+        final BasicArrayList exclusionList0 = new BasicArrayList();
+        
+        final Vector files0 = FileListFetcher.getInstance().getFiles(
+              "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameGeneratedJavaLibraryM\\src\\main\\java", "xml");
+        
+        this.process(files0, exclusionList0);
+        
         final BasicArrayList exclusionList = new BasicArrayList();
         
         exclusionList.add("TouchButtonAndroidResources.java");
@@ -64,9 +71,9 @@ public class GDDelete {
 
         final Vector files = FileListFetcher.getInstance().getFiles(
               "G:\\mnt\\bc\\mydev\\GDGamesP\\GDGameGeneratedJavaLibraryM\\src\\main\\java", "java");
-        
+
         this.process(files, exclusionList);
-        
+
         final BasicArrayList exclusionList2 = new BasicArrayList();
         
         exclusionList2.add("GDGameGameCanvas.java");
