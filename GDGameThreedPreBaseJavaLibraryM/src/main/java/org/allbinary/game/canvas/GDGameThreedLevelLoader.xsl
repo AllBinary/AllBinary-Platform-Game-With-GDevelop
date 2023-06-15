@@ -87,11 +87,11 @@ Created By: Travis Berthelot
                 import org.allbinary.media.image.ImageCopyUtil;
                 
                 //Layout name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />GameThreedLevelBuilder
+                public class GD<xsl:value-of select="$layoutIndex" />GameThreedLevelBuilder extends GDGameThreedLevelBuilder
                 {
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final GDResources gdResources = GDResources.getInstance();
-
+                
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources animationInterfaceFactoryInterfaceFactory = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
 
                     public void build(final GL10 gl, final String glInstanceVersion) throws Exception {

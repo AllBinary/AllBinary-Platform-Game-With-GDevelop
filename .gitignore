@@ -21,6 +21,7 @@ AndroidManifest.xml
 GDGameAndroidActivity.java
 GDGameAndroidEarlyResourceInitialization.java
 GDGameThreedAndroidEarlyResourceInitialization.java
+GDGameThreedLevelBuilderFactory.java
 GD*GameSoundsFactory.java
 GDGame*Canvas.java
 *GDObjectsFactory*.java

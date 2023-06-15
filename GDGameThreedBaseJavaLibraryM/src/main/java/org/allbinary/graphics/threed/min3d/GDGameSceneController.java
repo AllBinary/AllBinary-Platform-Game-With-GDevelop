@@ -13,11 +13,10 @@ import min3d.core.TextureManager;
 import min3d.vos.Camera;
 import min3d.vos.CameraFactory;
 import min3d.vos.light.Light;
-import org.allbinary.game.canvas.GD1GameThreedLevelBuilder;
-import org.allbinary.game.input.threed.CameraMotionGestureInputProcessor;
+import org.allbinary.game.canvas.GDGameThreedLevelBuilder;
+import org.allbinary.game.canvas.GDGameThreedLevelBuilderFactory;
 import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
 import org.allbinary.game.resource.ResourceInitialization;
-import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.graphics.opengles.OpenGLCapabilities;
 
 import org.allbinary.graphics.threed.min3d.renderer.AllBinaryToMin3dRendererFactory;
@@ -29,6 +28,8 @@ extends AllBinaryGameSceneController
     private final String TAG = "GDGameSceneController";
 
     private final OpenGLCapabilities openGLCapabilities = OpenGLCapabilities.getInstance();
+
+    private final GDGameThreedLevelBuilderFactory gameThreedLevelBuilderFactory = GDGameThreedLevelBuilderFactory.getInstance();
 
     public GDGameSceneController()
     {
@@ -97,7 +98,7 @@ extends AllBinaryGameSceneController
 
             progressCanvas.addEarlyPortion(portion, loadingString, index++);
             
-            new GD1GameThreedLevelBuilder().build(gl, glInstanceVersion);
+            ((GDGameThreedLevelBuilder) gameThreedLevelBuilderFactory.list.get(0)).build(gl, glInstanceVersion);
             
             progressCanvas.addEarlyPortion(portion, loadingString, index++);
 

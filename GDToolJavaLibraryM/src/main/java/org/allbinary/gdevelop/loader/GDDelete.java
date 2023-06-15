@@ -111,7 +111,8 @@ public class GDDelete {
 
         final BasicArrayList exclusionList4 = new BasicArrayList();
         
-        //exclusionList3.add("GDGameAllBinarySceneControllerFactory.java");
+        exclusionList3.add("GDGameThreedLevelBuilder.java");
+        exclusionList3.add("GDGameThreedLevelBuilderFactory.java");
         
         final Vector files4 = FileListFetcher.getInstance().getFiles(
               gdToolStrings.ROOT_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java", "java");
