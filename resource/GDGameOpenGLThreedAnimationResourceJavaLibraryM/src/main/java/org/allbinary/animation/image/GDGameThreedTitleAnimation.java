@@ -19,11 +19,9 @@ package org.allbinary.animation.image;
 import javax.microedition.lcdui.Graphics;
 
 import org.allbinary.animation.ThreedAnimation;
-import org.allbinary.graphics.threed.min3d.GDGameSceneController;
 
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.special.TitleAnimation;
-import org.allbinary.game.GDGameAllBinarySceneControllerFactory;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.ColorChangeEvent;
 import org.allbinary.graphics.color.ColorChangeListener;
