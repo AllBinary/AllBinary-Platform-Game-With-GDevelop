@@ -41,7 +41,7 @@ implements ColorChangeListener
     private int color = ColorFromEventUtil.getInstance().COLOR_INT;
     
     //private final CameraLayer cameraLayer;
-    private final GDGameSceneController testGameDemoSceneController;
+    //private final GDGameSceneController testGameDemoSceneController;
     
     public GDGameThreedTitleAnimation(
             IndexedAnimation[] animationInterfaceArray, 
@@ -53,8 +53,8 @@ implements ColorChangeListener
         
         LogUtil.put(LogFactory.getInstance("Constructor", this, this.getClass().getName()));
         
-        testGameDemoSceneController = (GDGameSceneController) 
-            GDGameAllBinarySceneControllerFactory.getInstance();
+        //testGameDemoSceneController = (GDGameSceneController) 
+            //GDGameAllBinarySceneControllerFactory.getInstance();
     }
     
     public void onEvent(AllBinaryEventObject eventObject)
