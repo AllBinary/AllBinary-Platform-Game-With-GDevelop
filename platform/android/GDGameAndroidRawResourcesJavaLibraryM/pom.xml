@@ -46,29 +46,25 @@
             <!-- AllBinary Platform Version End -->
         </dependency>
         
+        <!--
         <dependency>
             <groupId>org.allbinary.game.resources</groupId>
             <artifactId>GameImageLowResourcesJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
         </dependency>
         
         <dependency>
             <groupId>org.allbinary.game.resources</groupId>
             <artifactId>GameImageMediumResourcesJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
         </dependency>
         
         <dependency>
             <groupId>org.allbinary.game.resources</groupId>
             <artifactId>GameOuyaImageResourcesJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
         </dependency>
+        -->
         
     </dependencies>
 
@@ -94,6 +90,7 @@
             </plugin>
             
             <!-- Delete output directory -->
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
@@ -110,6 +107,7 @@
                     </filesets>
                 </configuration>
             </plugin>
+            -->
       
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
