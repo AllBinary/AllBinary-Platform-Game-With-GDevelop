@@ -56,6 +56,14 @@ public class <GDLayout> extends StartCanvas
 
         this.setWait(WAIT);
 
+        <!--
+            <xsl:variable name="layoutTotal" ><xsl:for-each select="../layouts" ><xsl:if test="position() = last()" ><xsl:value-of select="position()" /></xsl:if></xsl:for-each></xsl:variable>
+            //layoutTotal=<xsl:value-of select="$layoutTotal" />
+            <xsl:if test="number($layoutTotal) = 1" >
+        GroupFactory.getInstance().init((short) 10, new String[0]);
+            </xsl:if>
+        -->
+        
         GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(this, null);
     }
 
