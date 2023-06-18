@@ -82,6 +82,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+                import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
                 import org.allbinary.layer.AllBinaryLayer;
                 import org.allbinary.layer.event.LayerManagerEvent;
                 import org.allbinary.layer.event.LayerManagerEventHandler;
@@ -183,7 +184,9 @@ public class GDStructure {
                         <xsl:variable name="initialVariablesValue" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="initialVariables/value" /></xsl:with-param><xsl:with-param name="find" >-</xsl:with-param><xsl:with-param name="replacementText" >Neg</xsl:with-param></xsl:call-template></xsl:variable>
 
                         public final BasicArrayList <xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
-                        <xsl:if test="layer != ''" >
+                        <xsl:variable name="name" select="name" />
+                        <xsl:variable name="notTextObject" ><xsl:for-each select="../objects" ><xsl:if test="$name = name" ><xsl:if test="type != 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:if test="layer != '' or contains($notTextObject, 'found')" >
                         public GDGameLayer <xsl:value-of select="name" />GDGameLayer;
                         </xsl:if>
                         public Rectangle <xsl:value-of select="name" />Rectangle<xsl:value-of select="$initialVariablesValue" /> = null;

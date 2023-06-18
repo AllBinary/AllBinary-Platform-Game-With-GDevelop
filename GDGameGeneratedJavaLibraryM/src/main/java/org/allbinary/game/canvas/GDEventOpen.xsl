@@ -42,6 +42,11 @@ Created By: Travis Berthelot
             </xsl:for-each>
             -->
 
+            <xsl:variable name="foundMousePositionNeeded" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'RotateTowardPosition'" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
+                BasicMotionGesturesHandler.getInstance().addListener(globals.eventListenerInterfaceLastPoint);
+            </xsl:if>
+
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >

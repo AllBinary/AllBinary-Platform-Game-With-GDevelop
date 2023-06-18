@@ -46,7 +46,7 @@ public class GDLayoutsToAllBinaryThreedRunnableGenerator
     private BasicArrayList nameList = new BasicArrayList();
     
     
-    public void loadLayout(final GDLayout layout, final int index) throws Exception {
+    public void loadLayout(final GDLayout layout, final int index, final int size) throws Exception {
         final String name = this.camelCaseUtil.getAsCamelCase(layout.name, stringBuilder);
         stringBuilder.delete(0, stringBuilder.length());
                 

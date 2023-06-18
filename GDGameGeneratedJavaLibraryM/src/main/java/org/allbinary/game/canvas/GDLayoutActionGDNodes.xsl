@@ -82,6 +82,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.displayable.MyCanvas;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.logic.basic.string.CommonStrings;
+                import org.allbinary.logic.basic.string.StringMaker;
                 import org.allbinary.logic.basic.string.CommonSeps;
                 import org.allbinary.logic.basic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogFactory;
@@ -183,7 +184,17 @@ Created By: Travis Berthelot
                     public int GlobalVariable(final int value) {
                         return value;
                     }
-                    
+
+                    public int MouseX() {
+                        final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
+                        return gdGlobalsFactory.point.getX();
+                    }
+
+                    public int MouseY() {
+                        final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
+                        return gdGlobalsFactory.point.getY();
+                    }
+
                     public String ToString(final int value) {
                         //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
                         return Integer.toString(value);

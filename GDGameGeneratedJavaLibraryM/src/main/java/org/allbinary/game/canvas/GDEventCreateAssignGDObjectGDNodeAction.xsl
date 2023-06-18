@@ -43,6 +43,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDDeleteActionProcess.xsl" />
     <xsl:import href="./action/GDAddForceALActionProcess.xsl" />
     <xsl:import href="./action/GDRotateActionProcess.xsl" />
+    <xsl:import href="./action/GDRotateTowardPositionActionProcess.xsl" />
     
     <xsl:template name="eventsCreateAssignGDObjectGDNodesAction" >
         <xsl:param name="caller" />
@@ -329,6 +330,12 @@ Created By: Travis Berthelot
 
                 </xsl:if>
 
+                <xsl:if test="$typeValue = 'RotateTowardPosition'" >
+
+                    <xsl:call-template name="rotateTowardPositionActionProcess" />
+
+                </xsl:if>
+                
                 <xsl:if test="$typeValue = 'Rotate'" >
 
                     <xsl:call-template name="rotateActionProcess" />

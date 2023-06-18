@@ -296,7 +296,15 @@ Created By: Travis Berthelot
                         //Action - //TextObject::String - call - END
                         </xsl:if>
                         </xsl:if>
-                            
+
+                        <xsl:if test="type/value = 'RotateTowardPosition'" >
+                        <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        //param1=<xsl:value-of select="$param" />
+                        //Action - //RotateTowardPosition - call - START
+                        globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                        //Action - //RotateTowardPosition - call - END
+                        </xsl:if>
+
                         </xsl:for-each>
 
                         <xsl:variable name="createParamsAsString" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" />,</xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:variable>

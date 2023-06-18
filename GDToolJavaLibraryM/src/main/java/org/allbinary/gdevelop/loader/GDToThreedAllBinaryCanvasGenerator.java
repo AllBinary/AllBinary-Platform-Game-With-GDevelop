@@ -43,12 +43,12 @@ public class GDToThreedAllBinaryCanvasGenerator extends Processor
     private String className;
     private String orig;
 
-    public void loadLayout(final GDLayout layout, final int index) throws Exception
+    public void loadLayout(final GDLayout layout, final int index, final int size) throws Exception
     {
         this.index = index;
         name = this.camelCaseUtil.getAsCamelCase(layout.name, stringBuilder);
         stringBuilder.delete(0, stringBuilder.length());
-        if (index == 1)
+        if (index == 1 || size == 1)
         {
             className = stringBuilder.append("GDGame").append(name).append("Canvas").toString();
             this.orig = gdToolStrings.ROOT_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameGDLayoutCanvas.xsl";

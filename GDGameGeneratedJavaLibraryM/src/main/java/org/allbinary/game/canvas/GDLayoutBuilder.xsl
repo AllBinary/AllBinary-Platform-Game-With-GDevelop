@@ -280,7 +280,9 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
-                        <xsl:if test="layer != ''" >
+                        <xsl:variable name="name" select="name" />
+                        <xsl:variable name="notTextObject" ><xsl:for-each select="../objects" ><xsl:if test="$name = name" ><xsl:if test="type != 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:if test="layer != '' or contains($notTextObject, 'found')" >
                         globals.<xsl:value-of select="name" />GDGameLayer = resources.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />2, globals.<xsl:value-of select="name" />GDConditionWithGroupActions);
                         LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0", this, commonStrings.PROCESS));
                         globals.<xsl:value-of select="name" />GDGameLayerList.add(globals.<xsl:value-of select="name" />GDGameLayer);

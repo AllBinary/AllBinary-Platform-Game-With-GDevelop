@@ -24,6 +24,7 @@ import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
 import org.allbinary.logic.basic.string.CommonLabels;
 
+//Similar to DemoRunnable
 public class StartRunnable implements Runnable
 {
     private final CommonStrings commonStrings = CommonStrings.getInstance();

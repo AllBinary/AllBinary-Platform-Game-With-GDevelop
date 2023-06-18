@@ -160,7 +160,7 @@ public class GDToAllBinaryGenerationTool
         for (int index = 0; index < size; index++)
         {
             layout = (GDLayout) layoutList.get(index);
-            this.loadLayout(layout, index);
+            this.loadLayout(layout, index, size);
         }
 
         //final GDResourceFactory resourceFactory = GDResourceFactory.getInstance();
@@ -202,16 +202,16 @@ public class GDToAllBinaryGenerationTool
 
     }
 
-    public void loadLayout(final GDLayout layout, final int index) throws Exception
+    public void loadLayout(final GDLayout layout, final int index, final int size) throws Exception
     {
-        this.midletGenerator.loadLayout(layout, index);
-        this.runnableGenerator.loadLayout(layout, index);
-        this.runnableThreedGenerator.loadLayout(layout, index);
+        this.midletGenerator.loadLayout(layout, index, size);
+        this.runnableGenerator.loadLayout(layout, index, size);
+        this.runnableThreedGenerator.loadLayout(layout, index, size);
 
         final GDToAllBinaryCanvasGenerator canvasGenerator = new GDToAllBinaryCanvasGenerator();
         final GDToThreedAllBinaryCanvasGenerator canvasThreedGenerator = new GDToThreedAllBinaryCanvasGenerator();
-        canvasGenerator.loadLayout(layout, index);
-        canvasThreedGenerator.loadLayout(layout, index);
+        canvasGenerator.loadLayout(layout, index, size);
+        canvasThreedGenerator.loadLayout(layout, index, size);
         this.layoutList.add(canvasGenerator);
         this.layoutList.add(canvasThreedGenerator);
 

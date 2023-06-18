@@ -130,6 +130,24 @@ public class GDDelete {
         
         this.process(files5, exclusionList5);
 
+        final BasicArrayList exclusionList20 = new BasicArrayList();
+        
+        exclusionList20.add("GDResources.java");
+        
+        final Vector files20 = FileListFetcher.getInstance().getFiles(
+              gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource", "java");
+        
+        this.process(files20, exclusionList20);
+
+        final BasicArrayList exclusionList21 = new BasicArrayList();
+        
+        //exclusionList21.add("GDGameSoundsFactory.java");
+        
+        final Vector files21 = FileListFetcher.getInstance().getFiles(
+              gdToolStrings.ROOT_PATH + "\\GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio", "java");
+        
+        this.process(files21, exclusionList21);
+                
         final BasicArrayList exclusionList6 = new BasicArrayList();
         
         exclusionList6.add("GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
