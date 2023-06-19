@@ -25,6 +25,11 @@ Created By: Travis Berthelot
 
             //totalRecursions=<xsl:value-of select="number($totalRecursions)" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" />
 
+            <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
+                //Event - //BuiltinCommonInstructions::Standard - call
+                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+            </xsl:if>
+            
             <xsl:if test="type = 'BuiltinCommonInstructions::Group'" >
                 //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                 //Event - //BuiltinCommonInstructions::Group - call
