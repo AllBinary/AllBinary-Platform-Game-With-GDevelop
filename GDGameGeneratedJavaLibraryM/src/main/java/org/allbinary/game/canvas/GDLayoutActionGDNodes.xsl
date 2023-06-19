@@ -89,6 +89,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.media.audio.Sound;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.math.NoDecimalTrigTable;
                 import org.allbinary.util.ArrayUtil;
 
                 //LayoutAction name=<xsl:value-of select="$layoutName" />

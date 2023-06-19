@@ -49,7 +49,7 @@ Created By: Travis Berthelot
 <xsl:text>                        </xsl:text>final int dy = <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.y - </xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
 
                             final int angleOfTarget = noDecimalTrigTable.antiTan(dx, dy);
-                            int angle = 270 - angleOfTarget - kenney.angle;
+                            short angle = (short) (270 - angleOfTarget - <xsl:value-of select="$name" />.angle);
                             while (angle <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 359) {
                                 angle -= 360;
                             }
@@ -58,10 +58,15 @@ Created By: Travis Berthelot
                             }
                             
                             <xsl:value-of select="$name" />.rotation = angle;
-                            LogUtil.put(LogFactory.getInstance(new StringMaker().append(ACTION_AS_STRING_324).append(<xsl:value-of select="$name" />.rotation).append("<xsl:text>&lt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS));
+                            if(<xsl:value-of select="$name" />.rotation != 0) {
+                                LogUtil.put(LogFactory.getInstance(new StringMaker().append(ACTION_AS_STRING_324).append(<xsl:value-of select="$name" />.rotation).append("<xsl:text>&lt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS));
+                            }
                             gameLayer.updateRotation(1000);
-                            LogUtil.put(LogFactory.getInstance(new StringMaker().append(ACTION_AS_STRING_324).append(<xsl:value-of select="$name" />.rotation).append("<xsl:text>&gt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS));
+                            if(<xsl:value-of select="$name" />.rotation != 0) {
+                                LogUtil.put(LogFactory.getInstance(new StringMaker().append(ACTION_AS_STRING_324).append(<xsl:value-of select="$name" />.rotation).append("<xsl:text>&gt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS));
+                            }
                             <xsl:value-of select="$name" />.rotation = 0;
+
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_324, this, commonStrings.PROCESS));
                         }
@@ -87,7 +92,7 @@ Created By: Travis Berthelot
 <xsl:text>                        </xsl:text>final int dy = <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.y - </xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
                         
                             final int angleOfTarget = noDecimalTrigTable.antiTan(dx, dy);
-                            int angle = 270 - angleOfTarget - kenney.angle;
+                            short angle = (short) (270 - angleOfTarget - <xsl:value-of select="$name" />.angle);
                             while (angle <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 359) {
                                 angle -= 360;
                             }
@@ -96,10 +101,15 @@ Created By: Travis Berthelot
                             }
 
                             <xsl:value-of select="$name" />.rotation = angle;
-                            LogUtil.put(LogFactory.getInstance(new StringMaker().append(ACTION_AS_STRING_324).append(<xsl:value-of select="$name" />.rotation).append("<xsl:text>&lt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS));
+                            if(<xsl:value-of select="$name" />.rotation != 0) {
+                                LogUtil.put(LogFactory.getInstance(new StringMaker().append(ACTION_AS_STRING_324).append(<xsl:value-of select="$name" />.rotation).append("<xsl:text>&lt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS));
+                            }
                             gameLayer.updateRotation(1000);
-                            LogUtil.put(LogFactory.getInstance(new StringMaker().append(ACTION_AS_STRING_324).append(<xsl:value-of select="$name" />.rotation).append("<xsl:text>&gt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS));
+                            if(<xsl:value-of select="$name" />.rotation != 0) {
+                                LogUtil.put(LogFactory.getInstance(new StringMaker().append(ACTION_AS_STRING_324).append(<xsl:value-of select="$name" />.rotation).append("<xsl:text>&gt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS));
+                            }
                             <xsl:value-of select="$name" />.rotation = 0;
+
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_324, this, commonStrings.PROCESS));
                         }
