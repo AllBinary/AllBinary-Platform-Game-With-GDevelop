@@ -42,6 +42,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDModVarSceneActionProcess.xsl" />
     <xsl:import href="./action/GDDeleteActionProcess.xsl" />
     <xsl:import href="./action/GDAddForceALActionProcess.xsl" />
+    <xsl:import href="./action/GDQuitActionProcess.xsl" />
     <xsl:import href="./action/GDRotateActionProcess.xsl" />
     <xsl:import href="./action/GDRotateTowardPositionActionProcess.xsl" />
     
@@ -330,12 +331,18 @@ Created By: Travis Berthelot
 
                 </xsl:if>
 
+                <xsl:if test="$typeValue = 'Quit'" >
+
+                    <xsl:call-template name="quitActionProcess" />
+
+                </xsl:if>
+
                 <xsl:if test="$typeValue = 'RotateTowardPosition'" >
 
                     <xsl:call-template name="rotateTowardPositionActionProcess" />
 
                 </xsl:if>
-                
+
                 <xsl:if test="$typeValue = 'Rotate'" >
 
                     <xsl:call-template name="rotateActionProcess" />

@@ -42,7 +42,7 @@ import org.allbinary.logic.basic.string.StringUtil;
 
 public class <GDLayout> extends StartCanvas
 {
-    private final String GD_LAYOUT_COLOR = "GDLayout<GD_CURRENT_INDEX>Color";
+    private final String GD_LAYOUT_COLOR = "GDLayout<xsl:value-of select="position()" />Color";
 
     private final int WAIT = ((GameSpeed.getInstance().getDelay() * 3) <xsl:text disable-output-escaping="yes" >&gt;&gt;</xsl:text> 1);
 

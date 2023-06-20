@@ -23,6 +23,9 @@ public class GDGenerator {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
+        //System.setProperty("jdk.xml.xpathExprGrpLimit", "0");
+        //System.setProperty("jdk.xml.xpathExprOpLimit", "0");
+        System.setProperty("jdk.xml.xpathTotalOpLimit", "0");
         new GDDelete().process();
         new GDToAllBinaryGenerationTool().process();
         new GDLayoutsToAllBinaryGenerator().process(new GDGetTotalLayouts().process());

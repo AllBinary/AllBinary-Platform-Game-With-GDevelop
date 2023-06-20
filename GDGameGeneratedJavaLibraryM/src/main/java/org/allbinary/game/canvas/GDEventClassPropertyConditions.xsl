@@ -112,6 +112,10 @@ Created By: Travis Berthelot
                     //MouseButtonReleased - eventListener
                     public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
                 </xsl:if>
+                <xsl:if test="$typeValue = 'SourisBouton'" >
+                    //SourisBouton - eventListener
+                    public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                </xsl:if>
             </xsl:for-each>
 
         </xsl:for-each>

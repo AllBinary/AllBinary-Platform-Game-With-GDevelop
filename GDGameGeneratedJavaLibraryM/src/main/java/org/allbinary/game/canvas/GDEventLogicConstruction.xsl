@@ -96,9 +96,11 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:for-each select="conditions" >
-                <xsl:if test="type/value = 'MouseButtonReleased'" >
+                <xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'SourisBouton'" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
-                    //MouseButtonReleased - create Listener
+                    <!-- //MouseButtonReleased - create Listener -->
+                    <!-- //SourisBouton - create Listener -->
+                    //<xsl:value-of select="type/value" /> - create Listener
                     globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new BaseMotionGestureEventListener() {
 
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -118,7 +120,11 @@ Created By: Travis Berthelot
                         
                             //Event for Condition
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                            
+                            <xsl:if test="type/value = 'SourisBouton'" >
+                                //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            </xsl:if>
+
                             <xsl:call-template name="actionIdsMotionGestureEvent" >
                                 <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                                 <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>

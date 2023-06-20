@@ -50,6 +50,10 @@
                     <groupId>org.allbinary</groupId>
                     <artifactId>J2SEMediaMIDPMinimalJavaLibrary</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>ScreenCaptureNoneJavaLibrary</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         
@@ -90,6 +94,12 @@
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>ScreenCaptureJavaLibrary</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

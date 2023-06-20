@@ -64,6 +64,7 @@ import org.allbinary.game.score.HighScoresPaintable;
 import org.allbinary.game.score.displayable.HighScoresCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.color.BasicColor;
+import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.media.audio.AllBinaryMediaManagerShutdown;
 import org.allbinary.media.audio.EarlySoundsFactoryFactory;
 import org.allbinary.midlet.MidletStrings;
@@ -77,8 +78,6 @@ public class GDGameMIDlet extends
    //DemoGameMidlet
 {
     private final CommonStrings commonStrings = CommonStrings.getInstance();
-    
-    private final String GD_LAYOUT_COLOR = "GDLayout2Color";
 
    public GDGameMIDlet()
    {
@@ -147,8 +146,6 @@ public class GDGameMIDlet extends
        return LicenseLevelUtil.getInstance().getMaxLevel(GDGameLayerManager.MAX_LEVEL, 6);
    }
 
-       <xsl:for-each select="layouts" >
-           <xsl:if test="position() = 2" >
    protected AllBinaryGameLayerManager createGameLayerManager()
    {
        final GameInfo gameInfo = new GameInfo(
@@ -156,26 +153,11 @@ public class GDGameMIDlet extends
                PlayerTypesFactory.getInstance().PLAYER_TYPE_ONE,
                this.getHighestLevel(), 1);
 
-               <xsl:for-each select="events" >
-                   <xsl:for-each select="events" >
-                       <xsl:for-each select="events" >
-                           <xsl:for-each select="actions" >
-                               <xsl:variable name="typeValue" select="type/value" />
-                               <xsl:if test="$typeValue = 'SceneBackground'" >
-       final BasicColor backgroundBasicColor = new BasicColor(255,
-                               <xsl:for-each select="parameters" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:for-each>,
-                               GD_LAYOUT_COLOR);
-       final BasicColor foregroundBasicColor = new BasicColor(255, 255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue,
-                               GD_LAYOUT_COLOR);
+       final BasicColorFactory basicColorFactory = BasicColorFactory.getInstance();
+       final BasicColor backgroundBasicColor = basicColorFactory.BLACK;
+       final BasicColor foregroundBasicColor = basicColorFactory.WHITE;
        return new GDGameLayerManager(backgroundBasicColor, foregroundBasicColor, gameInfo);
-                               </xsl:if>
-                           </xsl:for-each>
-                       </xsl:for-each>
-                   </xsl:for-each>
-               </xsl:for-each>
    }
-           </xsl:if>
-       </xsl:for-each>
 
    /*
    protected void mediaInit() throws Exception
@@ -210,7 +192,7 @@ public class GDGameMIDlet extends
         //this.postDemoSetup();
         </xsl:if>
         <xsl:if test="$totalLayouts = 1" >
-        final DemoGameMidletEvent startDemoGameMidletEvent = 
+         final DemoGameMidletEvent startDemoGameMidletEvent = 
             new DemoGameMidletEvent(this, DemoGameMidletStateFactory.getInstance().START_DEMO);
         DemoGameMidletEventHandler.getInstance().fireEvent(startDemoGameMidletEvent);
 

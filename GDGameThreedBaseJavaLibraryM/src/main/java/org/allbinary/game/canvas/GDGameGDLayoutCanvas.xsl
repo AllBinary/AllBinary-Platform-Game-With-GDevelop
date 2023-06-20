@@ -59,6 +59,7 @@ import org.allbinary.game.state.GameState;
 import org.allbinary.game.tick.OptimizedTickableLayerProcessor;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
+import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
@@ -79,6 +80,8 @@ import org.allbinary.time.TimeDelayHelper;
             <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
 public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBinaryGameCanvas
 {
+    private final String GD_LAYOUT_COLOR = "GDLayout<xsl:value-of select="position()" />Color";
+
     private final int WAIT = GameSpeed.getInstance().getDelay();
 
     private final int portion = 4;
@@ -118,6 +121,50 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         //this.specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(this, allBinaryGameLayerManager);
 
         //this.setPlayingGameState();
+            
+        <xsl:variable name="foundSceneBackground" >
+            <xsl:for-each select="events" >
+                   <xsl:for-each select="events" >
+                       <xsl:for-each select="events" >
+                           <xsl:for-each select="actions" >
+                               <xsl:variable name="typeValue" select="type/value" />
+                               <xsl:if test="$typeValue = 'SceneBackground'" >found
+                               </xsl:if>
+                           </xsl:for-each>
+                       </xsl:for-each>
+                   </xsl:for-each>
+               </xsl:for-each>
+        </xsl:variable>
+            
+        <xsl:if test="contains($foundSceneBackground, 'found')" >
+               <xsl:for-each select="events" >
+                   <xsl:for-each select="events" >
+                       <xsl:for-each select="events" >
+                           <xsl:for-each select="actions" >
+                               <xsl:variable name="typeValue" select="type/value" />
+                               <xsl:if test="$typeValue = 'SceneBackground'" >
+        final BasicColor backgroundBasicColor = new BasicColor(255,
+                               <xsl:for-each select="parameters" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:for-each>,
+                               GD_LAYOUT_COLOR);
+        final BasicColor foregroundBasicColor = new BasicColor(255, 255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue,
+                               GD_LAYOUT_COLOR);
+                               </xsl:if>
+                           </xsl:for-each>
+                       </xsl:for-each>
+                   </xsl:for-each>
+               </xsl:for-each>
+        </xsl:if>
+
+        <xsl:if test="not(contains($foundSceneBackground, 'found'))" >
+        final BasicColor backgroundBasicColor = new BasicColor(255,
+                               <xsl:value-of select="r" />, <xsl:value-of select="v" />, <xsl:value-of select="b" />,
+                               GD_LAYOUT_COLOR);
+        final BasicColor foregroundBasicColor = new BasicColor(255, 255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue,
+                               GD_LAYOUT_COLOR);
+        </xsl:if>
+        
+        this.gameLayerManager.setBackgroundBasicColor(backgroundBasicColor);
+        this.gameLayerManager.setForegroundBasicColor(foregroundBasicColor);
     }
 
     public void setPlayingGameState()

@@ -33,6 +33,13 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
                             //LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
+                            
+                            <xsl:for-each select="../actions" >
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //Action - //<xsl:value-of select="type/value" /> - call
+                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            </xsl:for-each>
+                            
                             return true;
                         }
                     };
