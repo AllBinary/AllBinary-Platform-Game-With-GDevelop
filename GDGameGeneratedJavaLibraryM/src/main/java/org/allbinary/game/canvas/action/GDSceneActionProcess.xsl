@@ -87,7 +87,7 @@ Created By: Travis Berthelot
                                 canvas.getCustomCommandListener().commandAction(org.allbinary.game.commands.GameCommandsFactory.getInstance().DISPLAY_ABOUT, ProgressCanvasFactory.getInstance());
                                 </xsl:if>
                                 <xsl:if test="not(contains($command, 'https://localhost/about.html')) and contains($command, 'http')" >
-                                org.allbinary.graphics.displayable.screen.WebCommandFactory.getInstance().list.add("<xsl:value-of select="$command" />");
+                                org.allbinary.graphics.displayable.screen.WebCommandProcessor.getInstance().list.add("<xsl:value-of select="$command" />");
                                 canvas.getCustomCommandListener().commandAction(org.allbinary.game.commands.GameCommandsFactory.getInstance().OPEN_WEB_URL, ProgressCanvasFactory.getInstance());
                                 </xsl:if>
                                 <xsl:if test="not(contains($command, 'http'))" >
