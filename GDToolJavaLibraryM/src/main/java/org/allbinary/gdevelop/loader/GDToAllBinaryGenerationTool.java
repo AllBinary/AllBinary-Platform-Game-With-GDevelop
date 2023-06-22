@@ -180,10 +180,12 @@ public class GDToAllBinaryGenerationTool
             startIndex = fileAsString.lastIndexOf('/');
             if(startIndex < 0) {
                 startIndex = 0;
+            } else {
+                startIndex = startIndex + 1;
             }
             endIndex = fileAsString.lastIndexOf('.');
             resourceString = fileAsString.substring(startIndex);
-            fileAsString = fileAsString.substring(startIndex + 1, endIndex);
+            fileAsString = fileAsString.substring(startIndex, endIndex);
             fileAsString = fileAsString.toLowerCase();
 
             if (!duplicateCheckList.contains(fileAsString))
