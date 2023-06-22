@@ -286,7 +286,10 @@ public class GDToAllBinaryGenerationTool
         {
             expression = (GDExpression) parametersExpressionList.get(1);
             param = expression.plainString;
-            final int startIndex = param.lastIndexOf('/');
+            int startIndex = param.lastIndexOf('/');
+            if(startIndex < 0) {
+                startIndex = 0;
+            }
             final int endIndex = param.lastIndexOf('.');
             resourceString = param.substring(startIndex);
             param = param.substring(startIndex + 1, endIndex);
