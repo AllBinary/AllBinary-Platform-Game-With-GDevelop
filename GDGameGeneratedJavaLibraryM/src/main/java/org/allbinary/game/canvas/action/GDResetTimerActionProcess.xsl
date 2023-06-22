@@ -18,7 +18,7 @@ Created By: Travis Berthelot
 
     <xsl:template name="resetTimerActionProcess" >
 
-                    //ResetTimer
+                    //ResetTimer - action
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();

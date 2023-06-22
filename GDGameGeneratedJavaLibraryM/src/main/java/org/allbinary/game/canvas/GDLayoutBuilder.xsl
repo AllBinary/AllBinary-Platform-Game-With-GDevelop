@@ -400,6 +400,7 @@ Created By: Travis Berthelot
                         //allBinaryGameLayerManager.log();
                         //groupLayerManagerListener.log();
                         
+                        GDGlobalsFactory.getInstance().newScene = false;
                         initialized = true;
                     }
 

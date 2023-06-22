@@ -21,6 +21,10 @@
     <!-- Exclude non-GWT-compatible classes -->
     <exclude name='**/*Test.java' />
   </source>
+  <source path='org/json'>
+    <!-- Exclude non-GWT-compatible classes -->
+    <exclude name='**/*Test.java' />
+  </source>
   <source path='org/graph'>
     <!-- Exclude non-GWT-compatible classes -->
     <exclude name='**/*Test.java' />

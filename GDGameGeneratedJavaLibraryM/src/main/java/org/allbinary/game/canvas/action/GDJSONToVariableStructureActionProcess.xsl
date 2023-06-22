@@ -16,17 +16,21 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:template name="quitActionProcess" >
+    <xsl:template name="jsonToVariableStructureActionProcess" >
         
-        <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    //Quit - action
+                    //JSONToVariableStructure
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();
 
                         LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                        canvas.getCustomCommandListener().commandAction(GameCommandsFactory.getInstance().EXIT_COMMAND, ProgressCanvasFactory.getInstance());
-                                                
+        <xsl:variable name="firstParametersAsString0" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+        <xsl:variable name="firstParametersAsString" ><xsl:value-of select="translate($firstParametersAsString0, '&#10;', '')" /></xsl:variable>
+                        final JSONTokener jsonTokener = new JSONTokener(<xsl:value-of select="$firstParametersAsString" />);
+                        
+                        final JSONObject jsonObject = (JSONObject) jsonTokener.nextValue();
+                        globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>JSONObject = jsonObject;
+
                         return true;
                     }
 

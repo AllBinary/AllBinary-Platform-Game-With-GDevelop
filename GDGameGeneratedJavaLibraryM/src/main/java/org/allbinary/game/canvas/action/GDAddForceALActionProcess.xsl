@@ -19,7 +19,7 @@ Created By: Travis Berthelot
     <xsl:template name="addForceALActionProcess" >
 
                                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    //AddForceAL
+                    //AddForceAL - action
                     /*
                     @Override
                     public boolean process() throws Exception {

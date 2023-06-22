@@ -25,7 +25,7 @@ Created By: Travis Berthelot
 
                         private final BasicArrayList removeList = new BasicArrayList();
 
-                        //Delete
+                        //Delete - action
                         @Override
                         public void addForDelete(final GDGameLayer gdGameLayer) {
                             //if(!removeList.contains(gdGameLayer)) {

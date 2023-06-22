@@ -31,5 +31,6 @@ public class GDGlobalsFactory {
         return instance;
     }
 
+    public boolean newScene = true;
     public GPoint point = PointFactory.getInstance().ZERO_ZERO;
 }

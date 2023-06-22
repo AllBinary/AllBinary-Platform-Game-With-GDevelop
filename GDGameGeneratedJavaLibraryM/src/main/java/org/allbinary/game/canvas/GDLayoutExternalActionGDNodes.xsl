@@ -65,6 +65,9 @@ Created By: Travis Berthelot
 
                 package org.allbinary.game.canvas;
 
+                import org.json.me.JSONObject;
+                import org.json.me.JSONTokener;
+
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDNode;

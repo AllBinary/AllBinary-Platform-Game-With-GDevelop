@@ -75,6 +75,31 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
 }                    
 
         </xsl:for-each>
+        
+        //JSONToVariableStructure - global - START
+        <xsl:call-template name="jsonObjects">
+            <xsl:with-param name="iteration" >0</xsl:with-param>
+        </xsl:call-template>
+        //JSONToVariableStructure - global - END
+    </xsl:template>
+
+    <xsl:template name="jsonObjects">
+        <xsl:param name="iteration" />
+        
+        <xsl:for-each select="events" >
+            
+            <xsl:for-each select="actions" >
+                <xsl:if test="type/value = 'JSONToVariableStructure'" >
+        public JSONObject <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>JSONObject = null;
+                </xsl:if>
+            </xsl:for-each>
+        
+        <xsl:call-template name="jsonObjects">
+            <xsl:with-param name="iteration" select="number($iteration) + 1" />
+        </xsl:call-template>
+
+        </xsl:for-each>
+
     </xsl:template>
 
     <xsl:template name="eventsClassPropertyArrayActions" >
@@ -101,7 +126,9 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                             <xsl:text>&#10;</xsl:text>
                             <xsl:for-each select="actions" >
                                 <xsl:variable name="typeValue" select="type/value" />
-                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                                 <xsl:text>&#10;</xsl:text>
                                 <xsl:if test="$typeValue = 'ModVarScene'" >
                                     //eventsClassPropertyArrayActions - //ModVarScene - 3
@@ -139,7 +166,9 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                         <xsl:otherwise>
                             <xsl:for-each select="actions" >
                                 <xsl:variable name="typeValue" select="type/value" />
-                                //eventsClassPropertyArrayActions - Had Preceding Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                                //eventsClassPropertyArrayActions - Had Preceding Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
                                 <xsl:text>&#10;</xsl:text>
                             </xsl:for-each>
                         </xsl:otherwise>
@@ -149,7 +178,9 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                 <xsl:otherwise>
                     <xsl:for-each select="actions" >
                         <xsl:variable name="typeValue" select="type/value" />
-                        //No Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                        //No Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
                         <xsl:text>&#10;</xsl:text>
                     </xsl:for-each>
                 </xsl:otherwise>
@@ -243,11 +274,15 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
 
                     <xsl:for-each select="conditions" >
                         <xsl:variable name="typeValue" select="type/value" />
-                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
                         <xsl:if test="$typeValue = 'Timer'" >
                             <xsl:for-each select="../actions" >
                                 <xsl:variable name="typeValue" select="type/value" />
-                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                                 <xsl:text>&#10;</xsl:text>
                                 <xsl:if test="$typeValue = 'ModVarScene'" >
                                     //eventsClassPropertyActions - //ModVarScene - 1
@@ -260,11 +295,13 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                 <xsl:otherwise>
                     <xsl:for-each select="conditions" >
                         <xsl:variable name="typeValue" select="type/value" />
-                        //eventsClassPropertyActions - Had preceding text Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                        //eventsClassPropertyActions - Had preceding text Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
                         <xsl:if test="$typeValue = 'Timer'" >
                             <xsl:for-each select="../actions" >
                                 <xsl:variable name="typeValue" select="type/value" />
-                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                                 <xsl:text>&#10;</xsl:text>
                             </xsl:for-each>
                         </xsl:if>
@@ -277,7 +314,9 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                     <!-- DepartScene sibling/parent condition -->
                     <xsl:for-each select="actions" >
                         <xsl:variable name="typeValue" select="type/value" />
-                            //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                            //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                             <xsl:text>&#10;</xsl:text>
                         <xsl:if test="$typeValue = 'ModVarScene'" >
                             //eventsClassPropertyActions - //ModVarScene - 2
@@ -335,7 +374,9 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                             <xsl:text>&#10;</xsl:text>
                             <xsl:for-each select="actions" >
                                 <xsl:variable name="typeValue" select="type/value" />
-                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                                 <xsl:text>&#10;</xsl:text>
                                 <xsl:if test="$typeValue = 'ModVarScene'" >
                                     //eventsClassPropertyActions - //ModVarScene - 3
@@ -391,7 +432,9 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                         <xsl:otherwise>
                             <xsl:for-each select="actions" >
                                 <xsl:variable name="typeValue" select="type/value" />
-                                //eventsClassPropertyActions - Had Preceding Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                                //eventsClassPropertyActions - Had Preceding Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
                                 <xsl:text>&#10;</xsl:text>
                             </xsl:for-each>
                         </xsl:otherwise>
@@ -401,7 +444,9 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                 <xsl:otherwise>
                     <xsl:for-each select="actions" >
                         <xsl:variable name="typeValue" select="type/value" />
-                        //No Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                        //No Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
                         <xsl:text>&#10;</xsl:text>
                     </xsl:for-each>
                 </xsl:otherwise>
@@ -477,7 +522,9 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
             <xsl:variable name="eventPosition" select="position()" />
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
+                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                 <xsl:text>&#10;</xsl:text>
                 <xsl:if test="$typeValue = 'ModVarScene'" >
                     //externalEventsClassPropertyActions - //ModVarScene

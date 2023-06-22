@@ -66,7 +66,10 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Font;
                 import javax.microedition.lcdui.Graphics;
-                
+
+                import org.json.me.JSONObject;
+                import org.json.me.JSONTokener;
+
                 import org.allbinary.animation.text.CustomTextAnimation;
                 import org.allbinary.game.identification.Group;
                 import org.allbinary.game.identification.GroupFactory;

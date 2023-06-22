@@ -67,9 +67,9 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <!-- 20210307 -->
+            <!-- 20210307, 20210307_1.3 -->
             <!-- AllBinary Platform Version Start -->
-            <version>20210307_1.3</version>
+            <version>20230227</version>
             <!-- AllBinary Platform Version End -->
 
         </dependency>

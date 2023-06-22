@@ -17,11 +17,10 @@ Created By: Travis Berthelot
 
     <xsl:output method="html" indent="yes" />
 
-    <xsl:template name="soundPlayingConditionGDNode" >
+    <xsl:template name="departSceneConditionGDNode" >
         <xsl:param name="parametersAsString" />
-
         <xsl:variable name="quote" >"</xsl:variable>
-                    //soundPlayingConditionGDNode - //Condition - //SoundPlaying - GDNode
+                    //departSceneConditionGDNode - //Condition - //DepartScene - GDNode
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -30,27 +29,17 @@ Created By: Travis Berthelot
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
 
-                        //SoundPlaying - condition
+                        //DepartScene - condition
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
                             
-                            if(true) {
+                            if(GDGlobalsFactory.getInstance().newScene) {
+                            <xsl:for-each select="../actions" >
                                 //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                                
-                                <xsl:if test="../actions" >
-                                //SoundPlaying - actions - START
-                                <xsl:for-each select="../actions" >
-                                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
-                                <xsl:text>&#10;</xsl:text>
                                 //Action - //<xsl:value-of select="type/value" /> - call
                                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                                </xsl:for-each>
-                                //SoundPlaying - actions - END
-                                </xsl:if>
-                                
+                            </xsl:for-each>
                             }
                             
                             return true;

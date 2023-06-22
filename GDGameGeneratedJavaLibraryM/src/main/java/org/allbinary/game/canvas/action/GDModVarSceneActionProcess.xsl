@@ -19,7 +19,7 @@ Created By: Travis Berthelot
     <xsl:template name="modVarSceneActionProcess" >
         <xsl:param name="objectsAsString" />
 
-                        //ModVarScene
+                        //ModVarScene - action
                     <xsl:for-each select="parameters" >
                         <xsl:if test="contains(text(), 'angle')" >
                         //Update angle with rotation

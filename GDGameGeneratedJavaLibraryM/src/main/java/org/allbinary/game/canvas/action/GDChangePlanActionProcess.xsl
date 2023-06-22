@@ -17,7 +17,7 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="changePlanActionProcess" >
-                        //ChangePlan
+                        //ChangePlan - action
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();

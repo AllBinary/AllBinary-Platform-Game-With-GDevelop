@@ -18,7 +18,7 @@ Created By: Travis Berthelot
 
     <xsl:template name="textObjectChangeColorActionProcess" >
         
-                        //TextObject::ChangeColor
+                        //TextObject::ChangeColor - action
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();

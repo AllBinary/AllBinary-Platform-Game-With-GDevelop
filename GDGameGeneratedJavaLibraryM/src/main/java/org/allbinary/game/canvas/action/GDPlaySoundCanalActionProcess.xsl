@@ -18,7 +18,7 @@ Created By: Travis Berthelot
 
     <xsl:template name="playSoundCanalActionProcess" >
 
-                    //PlaySoundCanal
+                    //PlaySoundCanal - action
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();

@@ -36,9 +36,12 @@ Created By: Travis Berthelot
             -->
 
             <xsl:for-each select="conditions" >
+                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                    
                 <xsl:if test="not(contains($hasCollisionCondition, 'found'))" >
                     <xsl:if test="type/value = 'BuiltinCommonInstructions::Once'" >
-                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each> totalRecursions=<xsl:value-of select="$totalRecursions" />
+                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
                         //eventsOnceConditionProcessActions - //Condition - //BuiltinCommonInstructions::Once - builder
                         <xsl:for-each select=".." >
                             <xsl:call-template name="eventIds" >
@@ -49,7 +52,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:if>
                 <xsl:if test="type/value = 'DepartScene'" >
-                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] type=<xsl:value-of select="type/value" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each> totalRecursions=<xsl:value-of select="$totalRecursions" />
+                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
                     //eventsOnceConditionProcessActions - //Condition - //DepartScene - builder
                     <xsl:for-each select=".." >
                         <xsl:call-template name="eventIds" >

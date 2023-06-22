@@ -66,6 +66,9 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Graphics;
 
+                import org.json.me.JSONObject;
+                import org.json.me.JSONTokener;
+                
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.commands.GameCommandsFactory;
                 import org.allbinary.game.GDGameCommandFactory;
@@ -198,6 +201,14 @@ Created By: Travis Berthelot
                         return gdGlobalsFactory.point.getY();
                     }
 
+                    public String NewLine() {
+                        return CommonSeps.getInstance().NEW_LINE;
+                    }
+
+                    public String VariableString(final Object object) {
+                        return object.toString();
+                    }
+                    
                     public String ToString(final int value) {
                         //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
                         return Integer.toString(value);
