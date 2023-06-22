@@ -21,6 +21,7 @@ Created By: Travis Berthelot
         <xsl:param name="actionWithTextObjectString" />
         <xsl:param name="nodeAsString" />
         <xsl:param name="objectsAsString" />
+        <xsl:param name="createdObjectsAsString" />
 
                     //param1=<xsl:value-of select="$param" />
                         <xsl:if test="contains($actionWithTextObjectString, $param)" >
@@ -46,7 +47,60 @@ Created By: Travis Berthelot
                     }
                     //Create - GDObject with TextObject::String - END
                         </xsl:if>
+
+                        <!-- Temp solution until I can remove duplicates -->
+                        <xsl:variable name="hasObjectInParams" >
+                        <xsl:for-each select="parameters" >
+                            <xsl:variable name="name" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:variable>
+                            <xsl:variable name="name2" ><xsl:value-of select="$name" />,</xsl:variable>
+                            <xsl:if test="string-length($name) > 0 and contains($createdObjectsAsString, $name2)" >found</xsl:if>
+                        </xsl:for-each>
+                        </xsl:variable>
+
+                        <xsl:if test="not(contains($hasObjectInParams, 'found')) and not(contains($actionWithTextObjectString, $param))" >
+                    //Create - GDObject other than TextObject::String - START
+                    @Override
+                    public boolean process() throws Exception {
+                        super.processStats();
+                            
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
+                        <!--
+                        <xsl:for-each select="parameters" >
+                            <xsl:variable name="name" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:variable>
+                            <xsl:variable name="name2" ><xsl:value-of select="$name" />,</xsl:variable>
+                            <xsl:if test="string-length($name) > 0 and contains($createdObjectsAsString, $name2)" >
+                                //Get global for factory params.
+                GDObject <xsl:value-of select="$name" /> = null;
+                if(globals.<xsl:value-of select="$name" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                    <xsl:value-of select="$name" /> = ((GDGameLayer) globals.<xsl:value-of select="$name" />GDGameLayerList.get(0)).gdObject;
+                }
+                            </xsl:if>
+                        </xsl:for-each>
+                        -->
                         
+                        //createGDObject - START
+                    <xsl:call-template name="createGDObject" >
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="nodeAsString" >
+                            <xsl:value-of select="$nodeAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        //createGDObject - END                                                                                
+                        //createGDObject - //Create - call
+                        this.processCreate(<xsl:value-of select="$name" />2);
+                        
+                        this.processEnd(globals.<xsl:value-of select="$name" />GDGameLayerList.size() - 1);
+
+                        return true;
+                    }
+                    //Create - GDObject other than TextObject::String - END
+                        </xsl:if>
+                                                
                         <xsl:if test="not(contains($actionWithTextObjectString, $param))" >
                     //Create
                     @Override

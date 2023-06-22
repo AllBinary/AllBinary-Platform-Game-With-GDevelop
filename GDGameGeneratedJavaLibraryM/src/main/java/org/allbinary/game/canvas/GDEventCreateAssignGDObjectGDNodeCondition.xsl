@@ -31,6 +31,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDVarObjetConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVarSceneConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSourisSurObjetConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDMouseButtonReleasedConditionGDNode.xsl" />
 
     <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition" >
         <xsl:param name="caller" />
@@ -156,6 +157,11 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'SourisBouton'" >
                     
                     <xsl:call-template name="sourisBoutonConditionGDNode" />
+                    
+                </xsl:if>
+                <xsl:if test="$typeValue = 'MouseButtonReleased'" >
+                    
+                    <xsl:call-template name="mouseButtonReleasedConditionGDNode" />
                     
                 </xsl:if>
                 <xsl:if test="$typeValue = 'LayerVisible'" >
