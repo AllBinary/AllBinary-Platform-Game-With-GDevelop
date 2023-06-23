@@ -183,7 +183,15 @@ public class GDGameMIDlet
 
     public void mouseMoved(MouseEvent mouseEvent)
     {
-        //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "mouseMoved"));
+        try
+        {
+            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "mouseMoved"));
+            this.motionRecognizer.processMovedMotionEvent(mouseEvent.getX(), mouseEvent.getY(), DEVICE_ID, 0);
+        }
+        catch (Exception e)
+        {
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "mouseMoved", e));
+        }
     }
 
     public void mouseDragged(MouseEvent mouseEvent)

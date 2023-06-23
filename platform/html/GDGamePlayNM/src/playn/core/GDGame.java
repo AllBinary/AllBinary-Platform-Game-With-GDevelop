@@ -24,7 +24,7 @@ import org.allbinary.playn.input.PlayNToAllBinaryKeyInputUtil;
 public class GDGame
     extends org.allbinary.game.GDGameMIDlet
 implements Keyboard.Listener, 
-//Mouse.Listener, 
+Mouse.Listener, 
 Pointer.Listener
 {
     private final int DEVICE_ID = 0;
@@ -41,7 +41,7 @@ Pointer.Listener
             MotionGestureReceiveInterfaceFactory.getInstance()));
         
         PlayN.keyboard().setListener(this);
-        //PlayN.mouse().setListener(this);
+        PlayN.mouse().setListener(this);
         PlayN.pointer().setListener(this);
         
         new DefaultGameInitializationListener();
@@ -207,46 +207,52 @@ Pointer.Listener
         }
     }
 
-    /*
     public void onMouseDown(Mouse.ButtonEvent mouseEvent)
     {
-        try
-        {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onMouseDown"));
-            this.motionRecognizer.processStartMotionEvent(
-                (int) mouseEvent.x(), (int) mouseEvent.y(),
-                mouseEvent.button());
-        }
-        catch (Exception e)
-        {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "onMouseDown", e));
-        }
+//        try
+//        {
+//            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onMouseDown"));
+//            this.motionRecognizer.processStartMotionEvent(
+//                (int) mouseEvent.x(), (int) mouseEvent.y(),
+//                mouseEvent.button());
+//        }
+//        catch (Exception e)
+//        {
+//            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "onMouseDown", e));
+//        }
     }
 
     public void onMouseUp(Mouse.ButtonEvent mouseEvent)
     {
+//        try
+//        {
+//            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onMouseUp"));
+//            this.motionRecognizer.processEndMotionEvent(
+//                (int) mouseEvent.x(), (int) mouseEvent.y(),
+//                mouseEvent.button());
+//        }
+//        catch (Exception e)
+//        {
+//            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "onMouseUp", e));
+//        }
+    }
+
+    public void onMouseMove(Mouse.MotionEvent mouseEvent)
+    {
         try
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onMouseUp"));
-            this.motionRecognizer.processEndMotionEvent(
-                (int) mouseEvent.x(), (int) mouseEvent.y(),
-                mouseEvent.button());
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onMouseMove"));
+            this.motionRecognizer.processMovedMotionEvent((int) mouseEvent.x(), (int) mouseEvent.y(), this.DEVICE_ID, 0);
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "onMouseUp", e));
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "onMouseMove", e));
         }
-    }
-
-    public void onMouseMove(Mouse.MotionEvent event)
-    {
-        
     }
 
     public void onMouseWheelScroll(Mouse.WheelEvent event)
     {
         
     }
-    * 
-    */
+
 }
