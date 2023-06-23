@@ -214,6 +214,10 @@ Created By: Travis Berthelot
                         return Integer.toString(value);
                     }
 
+                    public int ToNotString(final int value) {
+                        return value;
+                    }
+
                 }
             </xsl:if>
         </xsl:for-each>
