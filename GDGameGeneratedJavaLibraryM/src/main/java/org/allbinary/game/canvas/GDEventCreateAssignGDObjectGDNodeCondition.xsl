@@ -45,7 +45,7 @@ Created By: Travis Berthelot
         <xsl:param name="createdObjectsAsString" />
         <xsl:param name="conditionEventPosition" />
         <xsl:param name="hasParentOnceCondition" />
-         
+                 
         <xsl:variable name="quote" >"</xsl:variable>
         
         <xsl:for-each select="events" >
@@ -231,7 +231,14 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'NbObjet'" >
                     
                     <xsl:call-template name="nbObjetConditionGDNode" >
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                         <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
+                        <xsl:with-param name="thisNodeIndex" ><xsl:value-of select="$thisNodeIndex" /></xsl:with-param>
+                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                        
                     </xsl:call-template>
 
                 </xsl:if>
@@ -239,6 +246,18 @@ Created By: Travis Berthelot
                     
                     <xsl:call-template name="sceneVariableAsBooleanConditionGDNode" >
                         <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
+                        <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
+                        <xsl:with-param name="thisNodeIndex" ><xsl:value-of select="$thisNodeIndex" /></xsl:with-param>
+                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                                                
+                        <xsl:with-param name="thisNodeArray" >this</xsl:with-param>                    
+                        <xsl:with-param name="conditionPosition" ><xsl:value-of select="position()" /></xsl:with-param>
+                        <xsl:with-param name="logString" >CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:with-param>
+
                     </xsl:call-template>
                     
                 </xsl:if>

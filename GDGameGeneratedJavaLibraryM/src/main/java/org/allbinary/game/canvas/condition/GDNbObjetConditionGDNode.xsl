@@ -20,7 +20,13 @@ Created By: Travis Berthelot
     <xsl:template name="nbObjetConditionGDNode" >
         <xsl:param name="conditionNodeIndex" />
         <xsl:param name="parametersAsString" />
-        
+    
+        <xsl:param name="caller" />
+        <xsl:param name="thisNodeIndex" />
+        <xsl:param name="objectsAsString" />
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="createdObjectsAsString" />
+                
         <xsl:variable name="quote" >"</xsl:variable>
                     //nbObjetConditionGDNode - //Condition - //NbObjet - GDNode
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
@@ -43,6 +49,14 @@ Created By: Travis Berthelot
 
                                 //stringBuilder.delete(0, stringBuilder.length());
                                 //LogUtil.put(LogFactory.getInstance(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>").toString(), this, commonStrings.PROCESS));
+                                                                
+                                <xsl:for-each select="../actions" >
+                                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                                //TWBTWB
+                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
+                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                </xsl:for-each>
                                 
                                 <xsl:for-each select="../events" >
                                     <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
