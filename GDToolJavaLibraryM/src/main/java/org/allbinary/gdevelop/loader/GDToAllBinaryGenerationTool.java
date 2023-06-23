@@ -181,7 +181,7 @@ public class GDToAllBinaryGenerationTool
             if(startIndex < 0) {
                 startIndex = 0;
             } else {
-                startIndex = startIndex + 1;
+                startIndex++;
             }
             endIndex = fileAsString.lastIndexOf('.');
             resourceString = fileAsString.substring(startIndex);
@@ -289,10 +289,12 @@ public class GDToAllBinaryGenerationTool
             int startIndex = param.lastIndexOf('/');
             if(startIndex < 0) {
                 startIndex = 0;
+            } else {
+                startIndex++;
             }
             final int endIndex = param.lastIndexOf('.');
             resourceString = param.substring(startIndex);
-            param = param.substring(startIndex + 1, endIndex);
+            param = param.substring(startIndex, endIndex);
             param = param.toLowerCase();
 
             if (!duplicateCheckList.contains(param))
