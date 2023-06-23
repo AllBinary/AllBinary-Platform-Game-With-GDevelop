@@ -241,7 +241,7 @@ Pointer.Listener
     {
         try
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onMouseMove"));
+            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onMouseMove"));
             this.motionRecognizer.processMovedMotionEvent((int) mouseEvent.x(), (int) mouseEvent.y(), this.DEVICE_ID, 0);
         }
         catch (Exception e)
