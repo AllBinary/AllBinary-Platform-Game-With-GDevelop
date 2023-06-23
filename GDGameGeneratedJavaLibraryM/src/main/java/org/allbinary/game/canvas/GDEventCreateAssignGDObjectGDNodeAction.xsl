@@ -43,6 +43,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDDeleteActionProcess.xsl" />
     <xsl:import href="./action/GDAddForceALActionProcess.xsl" />
     <xsl:import href="./action/GDQuitActionProcess.xsl" />
+    <xsl:import href="./action/GDSetSceneVariableAsBooleanActionProcess.xsl" />
     <xsl:import href="./action/GDJSONToVariableStructureActionProcess.xsl" />
     <xsl:import href="./action/GDRotateActionProcess.xsl" />
     <xsl:import href="./action/GDRotateTowardPositionActionProcess.xsl" />
@@ -343,6 +344,12 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'Quit'" >
 
                     <xsl:call-template name="quitActionProcess" />
+
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'SetSceneVariableAsBoolean'" >
+
+                    <xsl:call-template name="setSceneVariableAsBooleanActionProcess" />
 
                 </xsl:if>
 

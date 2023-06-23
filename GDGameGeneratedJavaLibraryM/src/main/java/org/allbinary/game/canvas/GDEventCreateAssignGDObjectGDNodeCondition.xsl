@@ -33,6 +33,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDSourisSurObjetConditionGDNode.xsl" />
     <xsl:import href="./condition/GDMouseButtonReleasedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDDepartSceneConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDSceneVariableAsBooleanConditionGDNode.xsl" />
 
     <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition" >
         <xsl:param name="caller" />
@@ -230,6 +231,13 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'NbObjet'" >
                     
                     <xsl:call-template name="nbObjetConditionGDNode" >
+                        <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:if>
+                <xsl:if test="$typeValue = 'SceneVariableAsBoolean'" >
+                    
+                    <xsl:call-template name="sceneVariableAsBooleanConditionGDNode" >
                         <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
                     </xsl:call-template>
                     

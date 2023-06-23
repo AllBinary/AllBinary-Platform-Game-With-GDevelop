@@ -149,6 +149,10 @@ public class GDStructure {
                         //public String <xsl:value-of select="name" /> = "<xsl:value-of select="value" />";
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                             </xsl:if>
+                            <xsl:if test="type = 'boolean'" >
+                        public boolean <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                            </xsl:if>
+
                         </xsl:for-each>
                         //variables - END
 

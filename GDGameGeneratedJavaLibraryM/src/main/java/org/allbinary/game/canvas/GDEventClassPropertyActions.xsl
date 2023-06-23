@@ -261,7 +261,7 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
 
             <xsl:variable name="hasParentButtonSibling" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
-            
+                        
             <xsl:choose>
                 <xsl:when test ="preceding::events/actions[parameters[1]/text() = current()/actions/parameters/text()]">
                     //eventsClassPropertyActions - No Preceding text=<xsl:value-of select="parameters[1]/text()" />
@@ -349,6 +349,7 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="$typeValue = 'UnPauseTimer'" >
+                            //eventsClassPropertyActions - //UnPauseTimer
                             <xsl:if test="parameters[2]/text() = '='" >public int <xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />
                                     <xsl:if test="position() != last()" >
