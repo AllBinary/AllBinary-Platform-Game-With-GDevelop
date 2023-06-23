@@ -221,6 +221,11 @@ public class GDStructure {
                     </xsl:call-template>
                     //eventsClassProperty - END
 
+                    <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
+                        <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
+                    public BaseMotionGestureEventListener eventListenerInterfaceLastPoint;
+                    </xsl:if>
+
                     //eventsClassPropertyActions - START
                     <xsl:call-template name="eventsClassPropertyActions" >
                         <xsl:with-param name="totalRecursions" >

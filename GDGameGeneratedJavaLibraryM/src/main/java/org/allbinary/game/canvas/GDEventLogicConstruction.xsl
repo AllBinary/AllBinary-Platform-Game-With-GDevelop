@@ -42,33 +42,12 @@ Created By: Travis Berthelot
             </xsl:choose>
     -->
 
-    <xsl:template name="eventsLogicConstructionMouseButtonReleased" >
+    <xsl:template name="findMousePositionNeeded" >
         <xsl:param name="totalRecursions" />
-        <xsl:param name="layoutIndex" />
 
-        <xsl:variable name="quote" >"</xsl:variable>
-    
-        <xsl:for-each select="events" >
-            <xsl:variable name="eventPosition" select="position()" />
-
-            <xsl:call-template name="eventsLogicConstructionMouseButtonReleased" >
-                <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="number($totalRecursions) + 1" />
-                </xsl:with-param>
-                <xsl:with-param name="layoutIndex" >
-                    <xsl:value-of select="$layoutIndex" />
-                </xsl:with-param>
-            </xsl:call-template>
-
-            <xsl:variable name="hasMouseButtonReleasedCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'MouseButtonReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
-
-            <xsl:if test="contains($hasMouseButtonReleasedCondition, 'found')" >
-            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> <xsl:if test="repeatExpression" >repeatExpression <xsl:value-of select="repeatExpression" /></xsl:if>
-            </xsl:if>
-
-            <xsl:variable name="foundMousePositionNeeded" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'RotateTowardPosition'" >found</xsl:if></xsl:for-each></xsl:variable>
-            <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
-                    //RotateTowardPosition - MouseX MouseY
+            <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
+            <xsl:if test="contains($foundMousePositionNeeded, 'found')" >        
+                    //MouseX MouseY
                     globals.eventListenerInterfaceLastPoint = new BaseMotionGestureEventListener() {
 
                         public void onEvent(final AllBinaryEventObject eventObject)
@@ -92,7 +71,33 @@ Created By: Travis Berthelot
                             }
                         }
 
-                    };                
+                    };
+            </xsl:if>
+
+    </xsl:template>
+
+    <xsl:template name="eventsLogicConstructionMotionGestureEvent" >
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="layoutIndex" />
+
+        <xsl:variable name="quote" >"</xsl:variable>
+    
+        <xsl:for-each select="events" >
+            <xsl:variable name="eventPosition" select="position()" />
+
+            <xsl:call-template name="eventsLogicConstructionMotionGestureEvent" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="layoutIndex" >
+                    <xsl:value-of select="$layoutIndex" />
+                </xsl:with-param>
+            </xsl:call-template>
+
+            <xsl:variable name="hasMouseButtonReleasedCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'MouseButtonReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
+
+            <xsl:if test="contains($hasMouseButtonReleasedCondition, 'found')" >
+            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> <xsl:if test="repeatExpression" >repeatExpression <xsl:value-of select="repeatExpression" /></xsl:if>
             </xsl:if>
 
             <xsl:for-each select="conditions" >

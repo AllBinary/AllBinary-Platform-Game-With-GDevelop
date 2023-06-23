@@ -15,7 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
-
+    
     <xsl:template name="eventsClose" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="conditionEventPosition" />
@@ -43,11 +43,6 @@ Created By: Travis Berthelot
                 <xsl:text>&#10;</xsl:text>
             </xsl:for-each>
             -->
-
-            <xsl:variable name="foundMousePositionNeeded" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'RotateTowardPosition'" >found</xsl:if></xsl:for-each></xsl:variable>
-            <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
-                BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterfaceLastPoint);
-            </xsl:if>
 
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />

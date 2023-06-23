@@ -257,11 +257,6 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
 
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
-
-            <xsl:variable name="foundMousePositionNeeded" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'RotateTowardPosition'" >found</xsl:if></xsl:for-each></xsl:variable>
-            <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
-            public BaseMotionGestureEventListener eventListenerInterfaceLastPoint;
-            </xsl:if>
             
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
 

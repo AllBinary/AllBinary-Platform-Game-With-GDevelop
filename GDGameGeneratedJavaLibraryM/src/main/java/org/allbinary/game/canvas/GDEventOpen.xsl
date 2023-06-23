@@ -19,7 +19,7 @@ Created By: Travis Berthelot
     <xsl:template name="eventsOpen" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="conditionEventPosition" />
-
+        
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
 
@@ -43,11 +43,6 @@ Created By: Travis Berthelot
                 <xsl:text>&#10;</xsl:text>
             </xsl:for-each>
             -->
-
-            <xsl:variable name="foundMousePositionNeeded" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'RotateTowardPosition'" >found</xsl:if></xsl:for-each></xsl:variable>
-            <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
-                BasicMotionGesturesHandler.getInstance().addListener(globals.eventListenerInterfaceLastPoint);
-            </xsl:if>
 
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />

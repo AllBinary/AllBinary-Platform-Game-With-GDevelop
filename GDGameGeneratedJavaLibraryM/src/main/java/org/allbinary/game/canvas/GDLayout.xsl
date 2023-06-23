@@ -83,6 +83,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.color.BasicColorSetUtil;
                 import org.allbinary.graphics.displayable.MyCanvas;
                 import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
+                import org.allbinary.input.motion.gesture.observer.MovedMotionGesturesHandler;
                 import org.allbinary.logic.basic.string.CommonStrings;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
@@ -293,6 +294,12 @@ Created By: Travis Berthelot
                     }
 
                     public void open() {
+                    
+                    <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
+                    <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
+                        MovedMotionGesturesHandler.getInstance().addListener(globals.eventListenerInterfaceLastPoint);
+                    </xsl:if>
+                    
                     //eventsOpen - START
                     <xsl:call-template name="eventsOpen" >
                         <xsl:with-param name="totalRecursions" >
@@ -303,6 +310,11 @@ Created By: Travis Berthelot
                     }
 
                     public void close() {
+                    
+                    <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
+                        MovedMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterfaceLastPoint);
+                    </xsl:if>
+                    
                     //eventsClose - START
                     <xsl:call-template name="eventsClose" >
                         <xsl:with-param name="totalRecursions" >

@@ -146,9 +146,15 @@ Created By: Travis Berthelot
                         public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR + ":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder", this, commonStrings.CONSTRUCTOR));
-                        
-                            //eventsLogicConstructionMouseButtonReleased - START
-                    <xsl:call-template name="eventsLogicConstructionMouseButtonReleased" >
+
+                    <xsl:call-template name="findMousePositionNeeded" >
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                                                    
+                            //eventsLogicConstructionMotionGestureEvent - START
+                    <xsl:call-template name="eventsLogicConstructionMotionGestureEvent" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
@@ -156,7 +162,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
                     </xsl:call-template>
-                            //eventsLogicConstructionMouseButtonReleased - END
+                            //eventsLogicConstructionMotionGestureEvent - END
 
                             GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes externalEventNodes;
                             GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes externalActionNodes;
