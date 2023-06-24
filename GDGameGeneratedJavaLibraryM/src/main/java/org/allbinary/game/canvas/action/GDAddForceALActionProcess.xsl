@@ -20,7 +20,6 @@ Created By: Travis Berthelot
 
                                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //AddForceAL - action
-                    //TWBTWB3
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();

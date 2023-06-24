@@ -51,7 +51,6 @@ Created By: Travis Berthelot
 
                             if(<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = 'False'" >!</xsl:if></xsl:if><xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" /></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
 
-                                //TWBTWB2
                                 <xsl:for-each select="../actions" >
                                     <xsl:if test="type/value = 'Create'" >
                                         
