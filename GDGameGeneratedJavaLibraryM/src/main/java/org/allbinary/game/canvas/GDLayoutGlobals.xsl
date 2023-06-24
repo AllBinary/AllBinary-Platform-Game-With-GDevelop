@@ -90,6 +90,7 @@ Created By: Travis Berthelot
                 import org.allbinary.layer.event.LayerManagerEvent;
                 import org.allbinary.layer.event.LayerManagerEventHandler;
                 import org.allbinary.layer.event.LayerManagerEventListener;
+                import org.allbinary.logic.basic.string.StringUtil;
                 import org.allbinary.logic.basic.util.event.EventListenerInterface;
                 import org.allbinary.media.audio.Sound;
                 import org.allbinary.time.TimeDelayHelper;
@@ -146,8 +147,12 @@ public class GDStructure {
                         public final GDStructure<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = new GDStructure<xsl:value-of select="name" />();
                             </xsl:if>
                             <xsl:if test="type = 'string'" >
-                        //public String <xsl:value-of select="name" /> = "<xsl:value-of select="value" />";
+                                <xsl:if test="number(value) != value" >
+                                    public String <xsl:value-of select="name" /> = <xsl:if test="value = ''" >StringUtil.getInstance().EMPTY_STRING</xsl:if><xsl:if test="value != ''" >"<xsl:value-of select="value" />"</xsl:if>;
+                                </xsl:if>
+                                <xsl:if test="number(value) = value" >
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                                </xsl:if>
                             </xsl:if>
                             <xsl:if test="type = 'boolean'" >
                         public boolean <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
