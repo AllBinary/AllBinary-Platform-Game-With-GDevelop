@@ -44,7 +44,7 @@ Created By: Travis Berthelot
                                 LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                                 GDGlobalsFactory.getInstance().newScene = true;
-                                canvas.getCustomCommandListener().commandAction(GDGameCommandFactory.getInstance().<xsl:value-of select="$command" />, ProgressCanvasFactory.getInstance());
+                                <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="contains(text(), '(')" >//Invalid Scene - </xsl:if></xsl:if></xsl:for-each>canvas.getCustomCommandListener().commandAction(GDGameCommandFactory.getInstance().<xsl:value-of select="$command" />, ProgressCanvasFactory.getInstance());
 
                             } catch(Exception e) {
                                 //3
