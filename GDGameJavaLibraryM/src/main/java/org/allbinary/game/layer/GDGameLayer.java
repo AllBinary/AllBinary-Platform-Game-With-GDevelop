@@ -120,6 +120,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
                 DamageableBaseBehavior.getInstance(), new GDDestroyableSimpleBehavior(this));
         
         //LogUtil.put(LogFactory.getInstance(this.toString(), this, CommonStrings.getInstance().CONSTRUCTOR));
+        
+        this.dimensionalBehavior.reset(gdObject);
     }
 
     public void setGDObject(final GDObject gdObject) throws Exception {
@@ -345,7 +347,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             this.initIndexedAnimationInterfaceArray[index].setAlpha(opacity);
             if(this.gdObject.basicColor != null) {
                 //LogUtil.put(LogFactory.getInstance("setBasicColor: " + this.gdObject.basicColor, this, "updateGDObject"));
-                this.initIndexedAnimationInterfaceArray[index].setBasicColor(this.gdObject.basicColor);
+                this.initIndexedAnimationInterfaceArray[index].changeBasicColor(this.gdObject.basicColor);
             }
         }
         
