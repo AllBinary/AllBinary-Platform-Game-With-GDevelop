@@ -13,17 +13,19 @@
 
     <xsl:template name="generateCanvasKeyFromGDNameHack" >
         <xsl:param name="key" />
+        <xsl:variable name="key2" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="$key" /></xsl:with-param></xsl:call-template></xsl:variable>
+
         <xsl:choose>
-        <xsl:when test="contains($key, 'up')" >Canvas.UP</xsl:when>
-        <xsl:when test="contains($key, 'thrust')" >Canvas.UP</xsl:when>
-        <xsl:when test="contains($key, 'forward')" >Canvas.UP</xsl:when>
-        <xsl:when test="contains($key, 'down')" >Canvas.DOWN</xsl:when>
-        <xsl:when test="contains($key, 'left')" >Canvas.LEFT</xsl:when>
-        <xsl:when test="contains($key, 'right')" >Canvas.RIGHT</xsl:when>
-        <xsl:when test="contains($key, 'fire')" >Canvas.KEY_NUM0</xsl:when>
-        <xsl:when test="contains($key, 'shoot')" >Canvas.KEY_NUM0</xsl:when>
-        <xsl:when test="contains($key, 'secondary')" >Canvas.KEY_NUM7</xsl:when>
-        <xsl:when test="contains($key, 'special')" >Canvas.KEY_NUM9</xsl:when>
+        <xsl:when test="contains($key2, 'up')" >Canvas.UP</xsl:when>
+        <xsl:when test="contains($key2, 'thrust')" >Canvas.UP</xsl:when>
+        <xsl:when test="contains($key2, 'forward')" >Canvas.UP</xsl:when>
+        <xsl:when test="contains($key2, 'down')" >Canvas.DOWN</xsl:when>
+        <xsl:when test="contains($key2, 'left')" >Canvas.LEFT</xsl:when>
+        <xsl:when test="contains($key2, 'right')" >Canvas.RIGHT</xsl:when>
+        <xsl:when test="contains($key2, 'fire')" >Canvas.KEY_NUM0</xsl:when>
+        <xsl:when test="contains($key2, 'shoot')" >Canvas.KEY_NUM0</xsl:when>
+        <xsl:when test="contains($key2, 'secondary')" >Canvas.KEY_NUM7</xsl:when>
+        <xsl:when test="contains($key2, 'special')" >Canvas.KEY_NUM9</xsl:when>
         <xsl:otherwise>Canvas.UNKNOWN</xsl:otherwise>
         </xsl:choose>
         

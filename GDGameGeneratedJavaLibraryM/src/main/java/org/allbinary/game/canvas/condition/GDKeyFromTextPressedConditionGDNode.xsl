@@ -109,6 +109,8 @@ Created By: Travis Berthelot
 
                             };
                             
+                            //Make sure we only call this 1 time
+                            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
                             return true;
                         }
                     };

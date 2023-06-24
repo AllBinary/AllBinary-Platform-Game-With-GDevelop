@@ -19,11 +19,11 @@ Created By: Travis Berthelot
 
     <xsl:output method="html" indent="yes" />
 
-    <xsl:template name="keyFromTextReleasedConditionGDNode" >
+    <xsl:template name="keyPressedConditionGDNode" >
         <xsl:param name="parametersAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
-                    //keyFromTextReleasedConditionGDNode - //Condition - //KeyFromTextReleased - GDNode
+                    //keyPressedConditionGDNode - //Condition - //KeyPressed - GDNode
                     if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -32,7 +32,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
                                         
-                        //KeyFromTextReleased - condition
+                        //KeyPressed - condition
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
@@ -42,14 +42,41 @@ Created By: Travis Berthelot
                                 
                                 private boolean hasPressed = false;
                                 
-                                public void process(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception {
-                                    hasPressed = true;
+                                public void process(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
+                                {
+
+                            <xsl:for-each select="../events" >
+                                <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
+                                    //...Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
+                                    //Event - //BuiltinCommonInstructions::Standard - call
+                                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                </xsl:if>
+                                <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+                                    //Event - //BuiltinCommonInstructions::ForEach
+                                </xsl:if>
+                            </xsl:for-each>
+
+                            <xsl:for-each select="conditions" >
+                                <xsl:variable name="typeValue" select="type/value" />
+                                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
+                                    <xsl:value-of select="text()" />,</xsl:for-each>
+                                    //Action - //<xsl:value-of select="type/value" /> - call
+                                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            </xsl:for-each>
+
+                            <xsl:for-each select="../actions" >
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //Action - //<xsl:value-of select="type/value" /> - call
+                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            </xsl:for-each>
+
                                 }
 
                                 public void processReleased(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
                                 {
-                                    if(hasPressed) {
-                                        hasPressed = false;
 
                             <xsl:for-each select="../events" >
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
@@ -64,8 +91,8 @@ Created By: Travis Berthelot
 
                             <xsl:for-each select="conditions" >
                                 <xsl:variable name="typeValue" select="type/value" />
-                                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                                    <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                                    <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />,</xsl:for-each>
                                     //Action - //<xsl:value-of select="type/value" /> - call
@@ -78,12 +105,13 @@ Created By: Travis Berthelot
                                 //Action - //<xsl:value-of select="type/value" /> - call
                                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                             </xsl:for-each>
-                                    }
-                                }
-                            };
 
+                                }
+
+                            };
+    
                             //Make sure we only call this 1 time
-                            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);                                                        
+                            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
                             return true;
                         }
                     };

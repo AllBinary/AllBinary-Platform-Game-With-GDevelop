@@ -50,6 +50,7 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/j2se/GDGameJ2SEApplicationM/src/**/*.origin
 /platform/j2se/GDGameJ2SEApplicationM/src/**/*.html
 /platform/j2se/GDGameJ2SEApplicationM/src/**/*.txt
+/platform/j2se/GDGameJ2SEApplicationM/src/**/*.ogg
 /platform/j2me/GDGameJ2MEApplicationM/src/**/*.java
 /platform/j2me/GDGameJ2MEApplicationM/src/**/*.svg
 /platform/j2me/GDGameJ2MEApplicationM/src/**/*.png
@@ -61,6 +62,7 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/j2me/GDGameJ2MEApplicationM/src/**/*.origin
 /platform/j2me/GDGameJ2MEApplicationM/src/**/*.html
 /platform/j2me/GDGameJ2MEApplicationM/src/**/*.txt
+/platform/j2me/GDGameJ2MEApplicationM/src/**/*.ogg
 /platform/android/GDGameAndroidApplicationM/src/main/java/**/*.java
 /platform/android/GDGameAndroidApplicationM/src/main/java/**/*.xsl
 /platform/android/GDGameAndroidApplicationM/src/main/java/**/*.xml
@@ -70,12 +72,14 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/android/GDGameAndroidApplicationM/src/main/java/**/*.properties
 /platform/android/GDGameAndroidApplicationM/src/main/java/**/*.svg
 /platform/android/GDGameAndroidApplicationM/src/main/java/**/*.png
+/platform/android/GDGameAndroidApplicationM/src/main/java/**/*.ogg
 /platform/html/GDGameHTMLTempM/src/**/*.java
 /platform/html/GDGameHTMLTempM/src/**/*.xsl
 /platform/html/GDGameHTMLTempM/src/**/*.xml
 /platform/html/GDGameHTMLTempM/src/**/*.MF
 /platform/html/GDGameHTMLTempM/src/**/*.properties
 /platform/html/GDGameHTMLTempM/src/**/*.origin
+/platform/html/GDGameHTMLTempM/src/**/*.ogg
 ./platform/html/GDGamePlayNM/src/playn/core/GraphicsTestGame.java
 ./platform/html/GDGamePlayNM/src/playn/core/SoundTestGame.java
 /platform/html/GDGamePlayNWarM/war/gd/res
@@ -88,6 +92,7 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/android/GDGameAndroidApplicationM/src/main/java/**/*.properties
 /platform/android/GDGameAndroidApplicationM/src/main/java/**/*.svg
 /platform/android/GDGameAndroidApplicationM/src/main/java/**/*.png
+/platform/android/GDGameAndroidApplicationM/src/main/java/**/*.ogg
 /platform/android/GDGameAndroidApplicationM/src/main/res/drawable/
 /platform/android/GDGameAndroidApplicationM/src/main/res/raw/
 /platform/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.java
@@ -99,6 +104,7 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.properties
 /platform/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.svg
 /platform/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.png
+/platform/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.ogg
 /platform/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/res/drawable/
 /platform/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/res/raw/
 /platform/android/GDGameThreedAndroidApplicationM/src/main/java/**/*.java
@@ -110,6 +116,7 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/android/GDGameThreedAndroidApplicationM/src/main/java/**/*.properties
 /platform/android/GDGameThreedAndroidApplicationM/src/main/java/**/*.svg
 /platform/android/GDGameThreedAndroidApplicationM/src/main/java/**/*.png
+/platform/android/GDGameThreedAndroidApplicationM/src/main/java/**/*.ogg
 /platform/android/GDGameThreedAndroidApplicationM/src/main/res/drawable/
 /platform/android/GDGameThreedAndroidApplicationM/src/main/res/raw/
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.java
@@ -121,6 +128,7 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.properties
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.svg
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.png
+/platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.ogg
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/res/drawable/
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/res/raw/
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/.idea
