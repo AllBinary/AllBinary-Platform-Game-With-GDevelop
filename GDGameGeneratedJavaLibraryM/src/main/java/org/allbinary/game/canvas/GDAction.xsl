@@ -448,7 +448,12 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'Opacity'" >
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Action - //Opacity - call
+            <xsl:if test="not(contains($hasNoConditionsButDoesHaveUsedAction, 'found'))" >
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processU(index);
+            </xsl:if>
+            <xsl:if test="contains($hasNoConditionsButDoesHaveUsedAction, 'found')" >
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
+            </xsl:if>
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'ModVarScene'" >

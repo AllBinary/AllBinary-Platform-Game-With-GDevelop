@@ -35,6 +35,8 @@ Created By: Travis Berthelot
                             super.processStats();
                             
                             if(GDGlobalsFactory.getInstance().newScene) {
+                              LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
                             <xsl:for-each select="../actions" >
                                 //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 //Action - //<xsl:value-of select="type/value" /> - call

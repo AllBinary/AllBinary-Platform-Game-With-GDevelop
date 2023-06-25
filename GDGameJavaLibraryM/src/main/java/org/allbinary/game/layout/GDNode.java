@@ -55,7 +55,7 @@ public class GDNode
     public boolean process() throws Exception {
         return true;
     }
-
+    
     public void processStats() {
         this.nodeStatsFactory.push(2, name);
     }
@@ -79,7 +79,11 @@ public class GDNode
     public void processStats(final MotionGestureEvent motionGestureEvent) {
         this.nodeStatsFactory.push(5, name);
     }
-    
+
+    public boolean processU(final int index) throws Exception {
+        return false;
+    }
+
     public boolean process(final int index) throws Exception {
         return false;
     }

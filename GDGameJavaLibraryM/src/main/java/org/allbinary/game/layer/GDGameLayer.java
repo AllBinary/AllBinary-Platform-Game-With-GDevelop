@@ -337,7 +337,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
         this.updateRotation(timeDelta);
 
-        int opacity = this.gdObject.opacity;
+        int opacity = (int) this.gdObject.opacity;
         if(opacity < 0) {
             opacity = 0;
         }
