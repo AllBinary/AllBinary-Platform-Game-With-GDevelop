@@ -248,6 +248,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                     //eventsPaint - START
+                    <!--
                     <xsl:call-template name="eventsPaint" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
@@ -256,6 +257,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
+                    -->
                     //eventsPaint - END
 
                     //instances - START
@@ -263,16 +265,17 @@ Created By: Travis Berthelot
                         <xsl:variable name="textObjectTextName" >TextObject::Text:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $textObjectTextName)" >
                         //TextObject::Text instance
-                        if(globals.<xsl:value-of select="name" />Rectangle == null) {
+                        final int <xsl:value-of select="name" />Size = globals.<xsl:value-of select="name" />RectangleList.size();
+                        if(<xsl:value-of select="name" />Size == 0) {
 
                             final GDObject <xsl:value-of select="name" />2 = (GDObject) globals.<xsl:value-of select="name" />GDObjectList.get(0);
                             final int <xsl:value-of select="name" />X = x + <xsl:value-of select="name" />2.x;
                             final int <xsl:value-of select="name" />Y = y + <xsl:value-of select="name" />2.y;
 
-                            globals.<xsl:value-of select="name" />Rectangle = new Rectangle(
+                            final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
                                 PointFactory.getInstance().getInstance(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
                                 <xsl:value-of select="name" />2.Width(globals.graphics), <xsl:value-of select="name" />2.Height(globals.graphics));
-
+                            globals.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         }
                         </xsl:if>
                     </xsl:for-each>

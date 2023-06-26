@@ -44,11 +44,13 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($instancesAsString, $name)" >
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //MettreX
+                    if(true) {
                     final int size<xsl:value-of select="$name2" /> = globals.<xsl:value-of select="$name2" />GDObjectList.size();
                     GDObject <xsl:value-of select="$name2" />;
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size<xsl:value-of select="$name2" />; index++) {
                         <xsl:value-of select="$name2" /> = (GDObject) globals.<xsl:value-of select="$name2" />GDObjectList.get(index);
                         globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGPaint(<xsl:value-of select="$name2" />, graphics);
+                    }
                     }
                     </xsl:if>
                     <!--

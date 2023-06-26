@@ -42,14 +42,17 @@ Created By: Travis Berthelot
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 <xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 1" >
-                            if(globals.<xsl:value-of select="text()" />Rectangle != null) {
+                            final int size = globals.<xsl:value-of select="text()" />RectangleList.size();
+                            Rectangle <xsl:value-of select="text()" />Rectangle = null;
+                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             
+                                <xsl:value-of select="text()" />Rectangle = (Rectangle) globals.<xsl:value-of select="text()" />RectangleList.get(index);
                                 //LogUtil.put(LogFactory.getInstance("globals.<xsl:value-of select="text()" />Rectangle - Not Null", this, commonStrings.PROCESS));
                                 final GPoint point = motionGestureEvent.getCurrentPoint();
-                                final GPoint rectangePoint = globals.<xsl:value-of select="text()" />Rectangle.getPoint();
-                                //LogUtil.put(LogFactory.getInstance("globals.<xsl:value-of select="text()" />Rectangle - motionGestureEvent: " + motionGestureEvent.toString(), this, commonStrings.PROCESS));
-                                //LogUtil.put(LogFactory.getInstance("globals.<xsl:value-of select="text()" />Rectangle: " + globals.<xsl:value-of select="text()" />Rectangle.toString(), this, commonStrings.PROCESS));
-                                if (RectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY() - 2, globals.<xsl:value-of select="text()" />Rectangle.getMaxX(), globals.<xsl:value-of select="text()" />Rectangle.getMaxY() + 2,
+                                final GPoint rectangePoint = <xsl:value-of select="text()" />Rectangle.getPoint();
+                                //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="text()" />Rectangle - motionGestureEvent: " + motionGestureEvent.toString(), this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="text()" />Rectangle: " + globals.<xsl:value-of select="text()" />Rectangle.toString(), this, commonStrings.PROCESS));
+                                if (RectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY() - 2, <xsl:value-of select="text()" />Rectangle.getMaxX(), <xsl:value-of select="text()" />Rectangle.getMaxY() + 2,
                                     point.getX(), point.getY()))
                                 {
                                     //LogUtil.put(LogFactory.getInstance("Inside", this, commonStrings.PROCESS));
@@ -114,9 +117,10 @@ Created By: Travis Berthelot
 
                                     }
                                 }
-                            } else {
+                            } 
+                            //if(size == 0) {
                                 //LogUtil.put(LogFactory.getInstance("globals.<xsl:value-of select="text()" />Rectangle - Null", this, commonStrings.PROCESS));
-                            }
+                            //}
                                     </xsl:if>
                                 </xsl:for-each>
                         }

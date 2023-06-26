@@ -212,6 +212,11 @@ public class GDObject
     {
         return value;
     }
+
+    public float Variable(final float value)
+    {
+        return value;
+    }
     
     public String toString() {
         final CommonSeps commonSeps = CommonSeps.getInstance();

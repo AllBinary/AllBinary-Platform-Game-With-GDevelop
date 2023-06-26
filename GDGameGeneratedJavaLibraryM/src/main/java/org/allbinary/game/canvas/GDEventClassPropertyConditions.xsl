@@ -87,7 +87,7 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'TextObject::String'" >
                     <xsl:if test="preceding-sibling::actions[type/value/text() = 'Create']/parameters[2]/text() = parameters[1]/text()">
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    public final BasicArrayList <xsl:value-of select="$name" />GDObjectList = new BasicArrayList();
+                    //public final BasicArrayList <xsl:value-of select="$name" />GDObjectList = new BasicArrayList();
                     </xsl:if>
                 </xsl:if>
                 <xsl:text>&#10;</xsl:text>

@@ -54,8 +54,11 @@ Created By: Travis Berthelot
                                 final GDObject <xsl:value-of select="$name" /> = gdObject;
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS));
 
+                                <xsl:variable name="existingValue" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.x</xsl:if></xsl:for-each></xsl:variable>
+
                                 <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setX(</xsl:if>
+                                <xsl:if test="position() = 2" ><xsl:if test="text() = '+'" ><xsl:value-of select="$existingValue" /> + </xsl:if><xsl:if test="text() = '-'" ><xsl:value-of select="$existingValue" /> - </xsl:if></xsl:if>
                                 <xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if>
                                 </xsl:for-each>);
 
@@ -64,9 +67,10 @@ Created By: Travis Berthelot
                                 <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                                 <xsl:if test="contains($instancesAsString, $name2)" >
                                 //name2=<xsl:value-of select="$name2" /><xsl:text>&#10;</xsl:text>
-                                globals.<xsl:value-of select="$name" />Rectangle = new Rectangle(
+                                final Rectangle <xsl:value-of select="$name" />Rectangle = new Rectangle(
                                     PointFactory.getInstance().getInstance(<xsl:value-of select="$name" />.x, <xsl:value-of select="$name" />.y),
                                     <xsl:value-of select="$name" />.Width(globals.graphics), <xsl:value-of select="$name" />.Height(globals.graphics));
+                                globals.<xsl:value-of select="$name" />RectangleList.add(<xsl:value-of select="$name" />Rectangle);
                                 </xsl:if>
 
                             } catch(Exception e) {

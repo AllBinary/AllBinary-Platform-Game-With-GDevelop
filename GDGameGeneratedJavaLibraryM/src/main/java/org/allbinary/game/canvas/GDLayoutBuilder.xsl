@@ -74,6 +74,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
+                import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.CollidableCompositeLayer;
                 import org.allbinary.game.layout.GDObjectStrings;
                 import org.allbinary.game.rand.MyRandomFactory;
@@ -286,21 +287,23 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                         <xsl:if test="layer = 'touch'" >
-                        globals.<xsl:value-of select="name" />Rectangle = new Rectangle(
+                        final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
                             PointFactory.getInstance().getInstance(<xsl:value-of select="name" />2.x, <xsl:value-of select="name" />2.y),
                             <xsl:value-of select="name" />2.Width(globals.graphics), <xsl:value-of select="name" />2.Height(globals.graphics));
+                        globals.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         </xsl:if>
 
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         
                         <xsl:if test="layer != '' or contains($notTextObject, 'found')" >
-                        globals.<xsl:value-of select="name" />GDGameLayer = resources.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />2, globals.<xsl:value-of select="name" />GDConditionWithGroupActions);
+                        GDGameLayer <xsl:value-of select="name" />GDGameLayer = resources.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />2, globals.<xsl:value-of select="name" />GDConditionWithGroupActions);
                         LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0", this, commonStrings.PROCESS));
-                        globals.<xsl:value-of select="name" />GDGameLayerList.add(globals.<xsl:value-of select="name" />GDGameLayer);
+                        globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
 
                         //updateGDObject - 7
-                        globals.<xsl:value-of select="name" />GDGameLayer.updateGDObject(globals.timeDelta);
-                        allBinaryGameLayerManager.insert(globals.<xsl:value-of select="name" />GDGameLayer);
+                        <xsl:value-of select="name" />GDGameLayer.updateGDObject(globals.timeDelta);
+                        globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
+                        allBinaryGameLayerManager.insert(<xsl:value-of select="name" />GDGameLayer);
                         </xsl:if>
                         }
                     </xsl:for-each>
