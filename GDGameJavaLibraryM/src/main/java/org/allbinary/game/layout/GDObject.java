@@ -52,6 +52,8 @@ public class GDObject
     public float opacity = 255;
     public BasicColor basicColor;
     
+    public float max_scale;
+
     public int canvasWidth;
     public int canvasHeight;
     

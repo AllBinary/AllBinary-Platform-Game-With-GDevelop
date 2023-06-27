@@ -114,7 +114,8 @@ Created By: Travis Berthelot
                         }
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();                        
-                        private final ArrayUtil arrayUtil = ArrayUtil.getInstance();                                                
+                        private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        private final StringUtil stringUtil = StringUtil.getInstance();
 
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
@@ -179,6 +180,14 @@ Created By: Travis Berthelot
                         return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
                     }
 
+                    public float RandomFloatInRange(final double min, final double max) {
+                        return RandomFloatInRange(min, max);
+                    }
+                    
+                    public float RandomFloatInRange(final float min, final float max) {
+                         return min + (MyRandomFactory.getInstance().getAbsoluteNextInt((int) ((max - min * 1000) + 1) / 1000));
+                    }
+
                     public int Variable(final int value) {
                         return value;
                     }
@@ -201,6 +210,16 @@ Created By: Travis Berthelot
                         return gdGlobalsFactory.point.getY();
                     }
 
+                    public int MouseX(final String string, int value) {
+                        final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
+                        return gdGlobalsFactory.point.getX();
+                    }
+
+                    public int MouseY(final String string, int value) {
+                        final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
+                        return gdGlobalsFactory.point.getY();
+                    }
+                    
                     public String NewLine() {
                         return CommonSeps.getInstance().NEW_LINE;
                     }

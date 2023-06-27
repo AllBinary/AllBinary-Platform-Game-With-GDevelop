@@ -467,7 +467,7 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'Create'" >
 
-                    //createGDObject - START                    
+                    //createGDObject - Action - START
                     <xsl:call-template name="createGDObject" >
                         <xsl:with-param name="objectsAsString" >
                             <xsl:value-of select="$objectsAsString" />
@@ -476,7 +476,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$nodeId" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    //createGDObject - END
+                    //createGDObject - Action - END
                     
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />

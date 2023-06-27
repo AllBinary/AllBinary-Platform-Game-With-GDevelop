@@ -79,7 +79,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                         -->
                         
-                        //createGDObject - START
+                        //createGDObject - process - START
                     <xsl:call-template name="createGDObject" >
                         <xsl:with-param name="objectsAsString" >
                             <xsl:value-of select="$objectsAsString" />
@@ -90,7 +90,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                        //createGDObject - END                                                                                
+                        //createGDObject - process - END
                         //createGDObject - //Create - call
                         this.processCreate(<xsl:value-of select="$name" />2);
                         

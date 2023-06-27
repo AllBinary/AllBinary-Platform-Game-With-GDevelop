@@ -23,6 +23,7 @@ Created By: Travis Berthelot
         <xsl:variable name="quote" >"</xsl:variable>
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
+
                         final GDObject <xsl:value-of select="$name" />2 = gdObjectsFactory.get<xsl:value-of select="$name" />(
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() != 2" >
@@ -33,7 +34,13 @@ Created By: Travis Berthelot
                                 <xsl:if test="string-length(text()) > 0" >
                                     <xsl:call-template name="string-replace-all" >
                                         <xsl:with-param name="text" >
+                                    <xsl:call-template name="string-replace-all" >
+                                        <xsl:with-param name="text" >
                                             <xsl:value-of select="text()" />
+                                        </xsl:with-param>                                
+                                        <xsl:with-param name="find" >&quot;&quot;</xsl:with-param>
+                                        <xsl:with-param name="replacementText" >stringUtil.EMPTY_STRING</xsl:with-param>
+                                    </xsl:call-template>
                                         </xsl:with-param>
                                         <xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param>
                                         <xsl:with-param name="replacementText" ></xsl:with-param>
@@ -387,7 +394,7 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'Create'" >
 
-                                //createGDObject - START
+                                //createGDObject - Assign - START
                     <xsl:call-template name="createGDObject" >
                         <xsl:with-param name="objectsAsString" >
                             <xsl:value-of select="$objectsAsString" />
@@ -398,7 +405,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                                //createGDObject - END                                                                                
+                                //createGDObject - Assign - END                                                                                
                                 //createGDObject - //Create - call
                                 globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate(<xsl:value-of select="$name" />2);
                 </xsl:if>
