@@ -52,8 +52,6 @@ public class GDObject
     public float opacity = 255;
     public BasicColor basicColor;
     
-    public float max_scale;
-
     public int canvasWidth;
     public int canvasHeight;
     
@@ -219,7 +217,11 @@ public class GDObject
     {
         return value;
     }
-    
+
+    public void ObjectTimerElapsedTime(final String name) {
+        
+    }
+
     public String toString() {
         final CommonSeps commonSeps = CommonSeps.getInstance();
         final GDObjectStrings gdObjectStrings = GDObjectStrings.getInstance();

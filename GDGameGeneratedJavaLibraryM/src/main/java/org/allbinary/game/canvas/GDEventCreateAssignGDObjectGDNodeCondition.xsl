@@ -25,6 +25,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDKeyPressedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSystemInfoIsMobileConditionGDNode.xsl" />
     <xsl:import href="./condition/GDTimerConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDObjectTimerConditionGDNode.xsl" />
     <xsl:import href="./condition/GDPosXConditionGDNode.xsl" />
     <xsl:import href="./condition/GDPosYConditionGDNode.xsl" />
     <xsl:import href="./condition/GDNbObjetConditionGDNode.xsl" />
@@ -224,6 +225,25 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     
                 </xsl:if>
+
+                <xsl:if test="$typeValue = 'ObjectTimer'" >
+                    
+                    <xsl:call-template name="objectTimerConditionGDNode" >
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
+                        <xsl:with-param name="thisNodeIndex" ><xsl:value-of select="$thisNodeIndex" /></xsl:with-param>
+                        <xsl:with-param name="thisNodeArray" ><xsl:value-of select="$thisNodeArray" /></xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                        <xsl:with-param name="eventAsString" ><xsl:value-of select="$eventAsString" /></xsl:with-param>
+                        <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
+                        <xsl:with-param name="logString" ><xsl:value-of select="$logString" /></xsl:with-param>
+                        <xsl:with-param name="eventsCreateProcessUsed" ><xsl:value-of select="$eventsCreateProcessUsed" /></xsl:with-param>
+                    </xsl:call-template>
+                    
+                </xsl:if>
+                                
                 <xsl:if test="$typeValue = 'PosX'" >
 
                     <xsl:call-template name="posXConditionGDNode" />

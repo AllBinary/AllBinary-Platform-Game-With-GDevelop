@@ -69,6 +69,8 @@ public class GDLayoutsToAllBinaryGenerator
                 index = layoutGameXmlAsString.indexOf(VARIABLE, index + VARIABLE.length());
                     //skip digits
                 if(Character.isDigit(layoutGameXmlAsString.charAt(index + VARIABLE.length()))) {
+                    //skip max_scale
+                } else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'm' && layoutGameXmlAsString.charAt(index + VARIABLE.length() + 1) == 'a') {
                     //skip graphics
                 } else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'g') {
                     //skip angle

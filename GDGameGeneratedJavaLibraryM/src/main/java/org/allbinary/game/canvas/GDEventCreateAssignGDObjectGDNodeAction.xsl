@@ -27,9 +27,12 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDStopSoundCanalActionProcess.xsl" />
     
     <xsl:import href="./action/GDResetTimerActionProcess.xsl" />
+
     <xsl:import href="./action/GDPauseTimerActionProcess.xsl" />
     <xsl:import href="./action/GDUnPauseTimerActionProcess.xsl" />
     
+    <xsl:import href="./action/GDResetObjectTimerActionProcess.xsl" />
+
     <xsl:import href="./action/GDOpacityActionProcess.xsl" />
     <xsl:import href="./action/GDCreateActionProcess.xsl" />
     <xsl:import href="./action/GDSetAngleActionProcess.xsl" />
@@ -205,6 +208,12 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'UnPauseTimer'" >
 
                     <xsl:call-template name="unPauseTimerActionProcess" />
+
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'ResetObjectTimer'" >
+                    
+                    <xsl:call-template name="resetObjectTimerActionProcess" />
 
                 </xsl:if>
 

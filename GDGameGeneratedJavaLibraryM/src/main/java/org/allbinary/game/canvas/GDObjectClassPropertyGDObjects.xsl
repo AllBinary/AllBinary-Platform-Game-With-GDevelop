@@ -18,7 +18,7 @@ Created By: Travis Berthelot
     <xsl:template name="objectsClassPropertyGDObjects" >
         <xsl:param name="windowWidth" />
 
-        //objectsClassProperty - START
+        //objectsClassPropertyGDObjects - START
         <xsl:for-each select="objects" >
 
             <xsl:variable name="typeValue" select="type" />
@@ -31,7 +31,7 @@ Created By: Travis Berthelot
 
                 //animations/directions/sprites/originPoint/x <xsl:value-of select="animations/directions/sprites/originPoint/x" />
                 //animations/directions/sprites/originPoint/y <xsl:value-of select="animations/directions/sprites/originPoint/y" />
-                private final class <xsl:value-of select="name" /> extends GDObject {
+                public final class <xsl:value-of select="name" /> extends GDObject {
 
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
                         super(unknown, x, y, name);
@@ -47,6 +47,18 @@ Created By: Travis Berthelot
                     }
                     </xsl:if>
                     
+                    <xsl:for-each select="variables" >
+                        <xsl:if test="type = 'string'" >
+                            <xsl:if test="number(value) != value" >
+                    public String <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                            </xsl:if>
+                            <xsl:if test="number(value) = value" >
+                    //This is supposed to be a string
+                    public float <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
+
                     <!--
                         <xsl:if test="name = 'player'" >
                         //Hackish FIX ME for GDevelop player1
@@ -78,7 +90,7 @@ Created By: Travis Berthelot
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
 
-                private final class <xsl:value-of select="name" /> extends GDObject {
+                public final class <xsl:value-of select="name" /> extends GDObject {
 
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
                         super(unknown, x, y, name);
@@ -101,7 +113,7 @@ Created By: Travis Berthelot
 
         </xsl:for-each>
 
-        //objectsClassProperty - END
+        //objectsClassPropertyGDObjects - END
 
     </xsl:template>
 

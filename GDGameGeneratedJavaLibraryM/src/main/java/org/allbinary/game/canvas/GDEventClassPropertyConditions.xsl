@@ -112,6 +112,10 @@ Created By: Travis Berthelot
                     public TimeDelayHelper <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper = new TimeDelayHelper(<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >(int) (1000 * <xsl:value-of select="text()" />)</xsl:if></xsl:for-each>);
                     </xsl:if>
                 </xsl:if>
+                <xsl:if test="$typeValue = 'ObjectTimer'" >
+                    public TimeDelay timeDelay = new TimeDelay();
+                    public TimeDelayHelper <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>ObjectTimeDelayHelper = new TimeDelayHelper(timeDelay);
+                </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
                     //MouseButtonReleased - eventListener
                     public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
