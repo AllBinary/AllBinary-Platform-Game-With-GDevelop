@@ -17,6 +17,7 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="eventsClassPropertyConditions" >
+        <xsl:param name="layoutIndex" />
         <xsl:param name="totalRecursions" />
         <xsl:param name="conditionEventPosition" />
         <xsl:param name="externalEventActionModVarSceneAsString" />
@@ -113,8 +114,26 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ObjectTimer'" >
-                    public TimeDelay timeDelay = new TimeDelay();
-                    public TimeDelayHelper <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>ObjectTimeDelayHelper = new TimeDelayHelper(timeDelay);
+                    //This should probably go under each GObject instance
+                    <xsl:variable name="paramOne" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="paramThree0" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="paramThree2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$paramThree0" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$paramOne" /></xsl:with-param><xsl:with-param name="replacementText" >((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$paramOne" />) gameLayer.gdObject)</xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:variable name="paramThree3" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$paramThree2" /></xsl:with-param><xsl:with-param name="find" >Variable(</xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:variable name="paramThree" ><xsl:value-of select="substring($paramThree3, 0, string-length($paramThree3))" /></xsl:variable>
+                    public final TimeDelay timeDelay = new TimeDelay() {
+                        public int getDelay() {
+                            if(<xsl:value-of select="$paramOne" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                final GDGameLayer gameLayer = (GDGameLayer) <xsl:value-of select="$paramOne" />GDGameLayerList.get(0);
+                                return (int) <xsl:value-of select="$paramThree" /> * 1000;
+                            }
+                            return Integer.MAX_VALUE;
+                        }
+                    };
+                    public final TimeDelayHelper <xsl:value-of select="$paramOne" />ObjectTimeDelayHelper = new TimeDelayHelper(timeDelay);
+                    
+                    public float ObjectTimerElapsedTime(final String name) {
+                        return this.<xsl:value-of select="$paramOne" />ObjectTimeDelayHelper.getElapsed();
+                    }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
                     //MouseButtonReleased - eventListener

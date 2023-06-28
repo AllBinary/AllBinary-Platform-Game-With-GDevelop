@@ -47,6 +47,8 @@ public class GDObject
     public short angle;
     public int movement_angle;
     
+    public float scale;
+
     public int animation;
     
     public float opacity = 255;
@@ -216,10 +218,6 @@ public class GDObject
     public float Variable(final float value)
     {
         return value;
-    }
-
-    public void ObjectTimerElapsedTime(final String name) {
-        
     }
 
     public String toString() {

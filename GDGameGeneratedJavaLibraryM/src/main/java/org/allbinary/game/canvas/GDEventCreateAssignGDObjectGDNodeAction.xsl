@@ -50,6 +50,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDJSONToVariableStructureActionProcess.xsl" />
     <xsl:import href="./action/GDRotateActionProcess.xsl" />
     <xsl:import href="./action/GDRotateTowardPositionActionProcess.xsl" />
+    <xsl:import href="./action/GDChangeScaleActionProcess.xsl" />
     
     <xsl:template name="eventsCreateAssignGDObjectGDNodesAction" >
         <xsl:param name="caller" />
@@ -161,6 +162,9 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'ModVarObjet'" >
                     
                     <xsl:call-template name="modVarObjetActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
@@ -208,6 +212,12 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'UnPauseTimer'" >
 
                     <xsl:call-template name="unPauseTimerActionProcess" />
+
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'ChangeScale'" >
+                    
+                    <xsl:call-template name="changeScaleActionProcess" />
 
                 </xsl:if>
 

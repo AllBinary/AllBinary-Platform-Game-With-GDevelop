@@ -93,6 +93,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.basic.string.StringUtil;
                 import org.allbinary.logic.basic.util.event.EventListenerInterface;
                 import org.allbinary.media.audio.Sound;
+                import org.allbinary.time.TimeDelay;
                 import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
@@ -235,6 +236,9 @@ public class GDStructure {
 
                     //eventsClassProperty - START
                     <xsl:call-template name="eventsClassPropertyConditions" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
