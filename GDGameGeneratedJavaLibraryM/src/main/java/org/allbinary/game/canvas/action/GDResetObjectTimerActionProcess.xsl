@@ -26,12 +26,33 @@ Created By: Travis Berthelot
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                         <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" />TimeDelay.delay = 0;</xsl:if>
+                        </xsl:for-each>
+                        <xsl:text>&#10;</xsl:text>
+                        <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" />ObjectTimeDelayHelper.setStartTime();</xsl:if>
                         </xsl:for-each>
 
                         return true;
                     }
-        
+
+                    @Override
+                    public boolean process(final int index) throws Exception {
+                        super.processStats();
+                    
+                        LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
+                        <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" />TimeDelay.delay = 0;</xsl:if>
+                        </xsl:for-each>
+                        <xsl:text>&#10;</xsl:text>
+                        <xsl:for-each select="parameters" >
+                            <xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" />ObjectTimeDelayHelper.setStartTime();</xsl:if>
+                        </xsl:for-each>
+
+                        return true;
+                    }
+                
     </xsl:template>
 
 </xsl:stylesheet>

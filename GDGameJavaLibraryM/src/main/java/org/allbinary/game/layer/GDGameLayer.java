@@ -73,7 +73,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     private final BasicArrayList gameLayerDestroyedList;
             
     public GDObject gdObject;
-    
+
+    private ScalableBaseProcessor scalableProcessor = ScalableBaseProcessor.getInstance();
     private Processor processor = Processor.getInstance();
     
     public GDGameLayer(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
@@ -330,6 +331,10 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     
     public void updateGDObject(final long timeDelta)
     {
+//        if(this.scalableProcessor == ScalableProcessor.getInstance()) {
+//            LogUtil.put(LogFactory.getInstance(this.getName(), this, "updateGDObject"));
+//        }
+        
         this.move();
      
         this.gdObject.x = this.x;
@@ -344,7 +349,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
         final int size = this.initIndexedAnimationInterfaceArray.length;
         for(int index = 0; index < size; index++) {
+            //LogUtil.put(LogFactory.getInstance(this.getName(), this, "updateGDObject2"));
             this.initIndexedAnimationInterfaceArray[index].setAlpha(opacity);
+            this.scalableProcessor.process(this.gdObject, this.initIndexedAnimationInterfaceArray[index]);
             if(this.gdObject.basicColor != null) {
                 //LogUtil.put(LogFactory.getInstance("setBasicColor: " + this.gdObject.basicColor, this, "updateGDObject"));
                 this.initIndexedAnimationInterfaceArray[index].changeBasicColor(this.gdObject.basicColor);
@@ -358,6 +365,22 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
     public void updateRotation(final long timeDelta) {
         this.dimensionalBehavior.updateRotation(this, timeDelta);
+    }
+
+    private float lastScale = Float.MIN_VALUE;
+    public void setScalable() {
+//        if(this.gdObject.scale != lastScale) {
+//            LogUtil.put(LogFactory.getInstance("scale: " + this.gdObject.scale, this, CommonStrings.getInstance().PROCESS));
+//        }
+        
+        if(this.scalableProcessor == ScalableBaseProcessor.getInstance()) {
+            //LogUtil.put(LogFactory.getInstance("set maxscaleallowed 5", this, CommonStrings.getInstance().PROCESS));
+            final int size = this.initIndexedAnimationInterfaceArray.length;
+            for (int index = 0; index < size; index++) {
+                this.initIndexedAnimationInterfaceArray[index].setMaxScale(5, 5);
+            }
+        }
+        this.scalableProcessor = ScalableProcessor.getInstance();
     }
             
     //private boolean isFirst = true;

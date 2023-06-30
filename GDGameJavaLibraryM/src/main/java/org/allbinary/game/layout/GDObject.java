@@ -47,7 +47,7 @@ public class GDObject
     public short angle;
     public int movement_angle;
     
-    public float scale;
+    public float scale = 1.0f;
 
     public int animation;
     

@@ -19,6 +19,10 @@ Created By: Travis Berthelot
     <xsl:template name="changeScaleActionProcess" >
         <xsl:param name="layoutIndex" />
 
+                                <xsl:variable name="paramOne" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                                <xsl:variable name="paramThree0" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="number(text()) = text()" >f</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+                                <xsl:variable name="paramThree" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$paramThree0" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$paramOne" />.</xsl:with-param><xsl:with-param name="replacementText" >globals.</xsl:with-param></xsl:call-template></xsl:variable>
+        
                         //ChangeScale - action
                         @Override
                         public boolean process() throws Exception {
@@ -27,17 +31,14 @@ Created By: Travis Berthelot
                             try {
 
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-
-                                <xsl:variable name="paramOne" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                                <xsl:variable name="paramThree0" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="number(text()) = text()" >f</xsl:if></xsl:if></xsl:for-each></xsl:variable>
-                                <xsl:variable name="paramThree" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$paramThree0" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$paramOne" />.</xsl:with-param><xsl:with-param name="replacementText" >globals.</xsl:with-param></xsl:call-template></xsl:variable>
                                 
-                                //sprite.ObjectTimerElapsedTime(ScaleUp)
                                 final int size = globals.<xsl:value-of select="$paramOne" />GDGameLayerList.size();
                                 GDGameLayer gameLayer;
                                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                     gameLayer = (GDGameLayer) globals.<xsl:value-of select="$paramOne" />GDGameLayerList.get(index);
                                     gameLayer.gdObject.scale = <xsl:value-of select="$paramThree" />;
+                                    gameLayer.setScalable();
+                                    gameLayer.updateGDObject(globals.timeDelta);
                                 }
 
                             } catch(Exception e) {
@@ -47,7 +48,27 @@ Created By: Travis Berthelot
 
                             return true;
                         }
-                
+
+                        @Override
+                        public boolean process(final int index) throws Exception {
+                            super.processStats();
+
+                            try {
+
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
+                                final GDGameLayer gameLayer = (GDGameLayer) globals.<xsl:value-of select="$paramOne" />GDGameLayerList.get(index);
+                                gameLayer.gdObject.scale = <xsl:value-of select="$paramThree" />;
+                                gameLayer.setScalable();
+
+                            } catch(Exception e) {
+                            //8
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                            }
+
+                            return true;
+                        }
+
     </xsl:template>
 
 </xsl:stylesheet>

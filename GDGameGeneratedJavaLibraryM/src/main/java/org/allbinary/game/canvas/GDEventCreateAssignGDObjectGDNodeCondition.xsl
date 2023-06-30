@@ -174,7 +174,10 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'SourisBouton'" >
                     
-                    <xsl:call-template name="sourisBoutonConditionGDNode" />
+                    <xsl:call-template name="sourisBoutonConditionGDNode" >
+                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
+                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                    </xsl:call-template>
                     
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >

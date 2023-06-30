@@ -157,6 +157,18 @@ Created By: Travis Berthelot
 //hasCollisionCondition=<xsl:value-of select="$hasCollisionCondition" />
 -->
 
+            <xsl:if test="$caller = 'conditionLayout - //eventsCreateAssignGDObject'" >
+            <xsl:for-each select="actions" >
+                <xsl:if test="type/value = 'ChangeScale'" >
+                    <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    //param1=<xsl:value-of select="$param" />
+                    //Action - //ChangeScale - call - START
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    //Action - //ChangeScale - call - END
+                </xsl:if>
+            </xsl:for-each>
+            </xsl:if>
+
             <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
 
             <xsl:if test="not(contains($hasOnceCondition, 'found'))" >
@@ -455,6 +467,7 @@ Created By: Travis Berthelot
             <xsl:if test="contains($hasNoConditionsButDoesHaveUsedAction, 'found')" >
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
             </xsl:if>
+
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'ModVarScene'" >

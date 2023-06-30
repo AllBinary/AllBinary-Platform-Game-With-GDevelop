@@ -118,6 +118,7 @@ Created By: Travis Berthelot
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        private final StringUtil stringUtil = StringUtil.getInstance();
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
@@ -189,7 +190,27 @@ Created By: Travis Berthelot
                     public int GlobalVariable(final int value) {
                         return value;
                     }
-                    
+
+                    public int MouseX() {
+                        final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
+                        return gdGlobalsFactory.point.getX();
+                    }
+
+                    public int MouseY() {
+                        final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
+                        return gdGlobalsFactory.point.getY();
+                    }
+
+                    public int MouseX(final String string, int value) {
+                        final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
+                        return gdGlobalsFactory.point.getX();
+                    }
+
+                    public int MouseY(final String string, int value) {
+                        final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
+                        return gdGlobalsFactory.point.getY();
+                    }
+                                        
                     public String ToString(final int value) {
                         //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
                         return Integer.toString(value);

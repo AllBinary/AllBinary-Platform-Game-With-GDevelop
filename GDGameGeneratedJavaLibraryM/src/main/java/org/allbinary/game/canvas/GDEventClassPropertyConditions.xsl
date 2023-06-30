@@ -120,19 +120,32 @@ Created By: Travis Berthelot
                     <xsl:variable name="paramThree2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$paramThree0" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$paramOne" /></xsl:with-param><xsl:with-param name="replacementText" >((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$paramOne" />) gameLayer.gdObject)</xsl:with-param></xsl:call-template></xsl:variable>
                     <xsl:variable name="paramThree3" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$paramThree2" /></xsl:with-param><xsl:with-param name="find" >Variable(</xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template></xsl:variable>
                     <xsl:variable name="paramThree" ><xsl:value-of select="substring($paramThree3, 0, string-length($paramThree3))" /></xsl:variable>
-                    public final TimeDelay timeDelay = new TimeDelay() {
-                        public int getDelay() {
-                            if(<xsl:value-of select="$paramOne" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                                final GDGameLayer gameLayer = (GDGameLayer) <xsl:value-of select="$paramOne" />GDGameLayerList.get(0);
-                                return (int) <xsl:value-of select="$paramThree" /> * 1000;
-                            }
-                            return Integer.MAX_VALUE;
+
+                    public float <xsl:value-of select="$paramOne" />PortionElapsedTotal = 0;
+                    public final SimpleTimeDelay <xsl:value-of select="$paramOne" />TimeDelay = new SimpleTimeDelay(Integer.MAX_VALUE);
+                    public final TimeDelayHelper <xsl:value-of select="$paramOne" />ObjectTimeDelayHelper = new TimeDelayHelper(<xsl:value-of select="$paramOne" />TimeDelay) {
+                        public void setStartTime(final long startTime) {
+                            <xsl:value-of select="$paramOne" />PortionElapsedTotal = 1;
+                            super.setStartTime(startTime);
                         }
                     };
-                    public final TimeDelayHelper <xsl:value-of select="$paramOne" />ObjectTimeDelayHelper = new TimeDelayHelper(timeDelay);
                     
                     public float ObjectTimerElapsedTime(final String name) {
-                        return this.<xsl:value-of select="$paramOne" />ObjectTimeDelayHelper.getElapsed();
+                        final float elapsed = this.<xsl:value-of select="$paramOne" />ObjectTimeDelayHelper.getElapsed();
+                        <xsl:value-of select="$paramOne" />PortionElapsedTotal += elapsed / 100;
+                        
+                        if(<xsl:value-of select="$paramOne" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                            final GDGameLayer gameLayer = (GDGameLayer) <xsl:value-of select="$paramOne" />GDGameLayerList.get(0);
+                            final float max = <xsl:value-of select="$paramThree" />;
+                            
+                            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("<xsl:value-of select="$paramOne" />PortionElapsedTotal: ").append(<xsl:value-of select="$paramOne" />PortionElapsedTotal).append(" max: ").append(max).toString(), this, CommonStrings.getInstance().PROCESS));
+                            if(<xsl:value-of select="$paramOne" />PortionElapsedTotal <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> max) {
+                                <xsl:value-of select="$paramOne" />PortionElapsedTotal = max;
+                                this.<xsl:value-of select="$paramOne" />TimeDelay.delay = Integer.MAX_VALUE;
+                            }
+                        }
+
+                        return <xsl:value-of select="$paramOne" />PortionElapsedTotal;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
