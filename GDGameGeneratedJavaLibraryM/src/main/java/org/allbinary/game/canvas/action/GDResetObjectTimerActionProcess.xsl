@@ -21,12 +21,13 @@ Created By: Travis Berthelot
                     //ResetObjectTimer
                     @Override
                     public boolean process() throws Exception {
-                        super.processStats();
+                        throw new RuntimeException();
+<!--                        super.processStats();
                     
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                         <xsl:for-each select="parameters" >
-                            <xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" />TimeDelay.delay = 0;</xsl:if>
+                            <xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" />ObjectTimeDelay.delay = 0;</xsl:if>
                         </xsl:for-each>
                         <xsl:text>&#10;</xsl:text>
                         <xsl:for-each select="parameters" >
@@ -34,6 +35,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
 
                         return true;
+-->
                     }
 
                     @Override
@@ -42,13 +44,34 @@ Created By: Travis Berthelot
                     
                         LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
-                        <xsl:for-each select="parameters" >
-                            <xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" />TimeDelay.delay = 0;</xsl:if>
-                        </xsl:for-each>
+                        <xsl:variable name="paramOne" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        
+                        if(index <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> globals.<xsl:value-of select="$paramOne" />ObjectTimeDelayList.size()) {
+                        
+                            if(index <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> globals.<xsl:value-of select="$paramOne" />PortionElapsedTotalArray.length - 1) {
+                                //LogUtil.put(LogFactory.getInstance(, this, commonStrings.PROCESS));
+                                final int size = globals.<xsl:value-of select="$paramOne" />PortionElapsedTotalArray.length;
+                                final float[] floatArray = new float[size * 2];
+                                System.arraycopy(globals.<xsl:value-of select="$paramOne" />PortionElapsedTotalArray, 0, floatArray, 0, size);
+                                globals.<xsl:value-of select="$paramOne" />PortionElapsedTotalArray = floatArray;
+                            }
+                        
+                            final SimpleTimeDelay <xsl:value-of select="$paramOne" />ObjectTimeDelay = new SimpleTimeDelay(Integer.MAX_VALUE);
+                            final TimeDelayHelper <xsl:value-of select="$paramOne" />ObjectTimeDelayHelper = new TimeDelayHelper(<xsl:value-of select="$paramOne" />ObjectTimeDelay) {
+                                public void setStartTime(final long startTime) {
+                                    globals.<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] = 1;
+                                    super.setStartTime(startTime);
+                                }
+                            };
+                                    
+                            globals.<xsl:value-of select="$paramOne" />ObjectTimeDelayList.add(<xsl:value-of select="$paramOne" />ObjectTimeDelay);
+                            globals.<xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList.add(<xsl:value-of select="$paramOne" />ObjectTimeDelayHelper);
+                        }
+
+                        ((SimpleTimeDelay) globals.<xsl:value-of select="$paramOne" />ObjectTimeDelayList.get(index)).delay = 0;
                         <xsl:text>&#10;</xsl:text>
-                        <xsl:for-each select="parameters" >
-                            <xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" />ObjectTimeDelayHelper.setStartTime();</xsl:if>
-                        </xsl:for-each>
+<xsl:text>                        </xsl:text>((TimeDelayHelper) globals.<xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList.get(index)).setStartTime();
+
 
                         return true;
                     }

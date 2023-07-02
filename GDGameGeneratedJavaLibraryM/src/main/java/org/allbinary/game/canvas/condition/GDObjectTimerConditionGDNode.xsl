@@ -83,46 +83,57 @@ Created By: Travis Berthelot
                                     gdNodeStatsFactory.push(0, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
 
                                     //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.getElapsed()).append('/').append(globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:if></xsl:for-each>TimeDelayHelper.getDelay()).toString(), this, commonStrings.PROCESS));
-                                    if(globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>ObjectTimeDelayHelper.isTime(GameTickTimeDelayHelperFactory.getInstance().getStartTime())) {
-                                        //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                                        
-                                        <xsl:variable name="conditionPosition" ><xsl:value-of select="position()" /></xsl:variable>
-                                        <xsl:for-each select=".." >
+                                    <xsl:variable name="list" >globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>ObjectTimeDelayHelperList</xsl:variable>
 
-                                        //eventsCreateAssignGDObject - actionsWithIndexes - START
-                                        <xsl:call-template name="actionsWithIndexes" >
-                                            <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObject</xsl:with-param>
-                                            <xsl:with-param name="thisNodeIndex" >
-                                                <xsl:value-of select="$thisNodeIndex" />
-                                            </xsl:with-param>
-                                            <xsl:with-param name="thisNodeArray" >
-                                                <xsl:value-of select="$thisNodeArray" />
-                                            </xsl:with-param>                    
-                                            <xsl:with-param name="conditionPosition" >
-                                                <xsl:value-of select="$conditionPosition" />
-                                            </xsl:with-param>                    
-                                            <xsl:with-param name="layoutIndex" >
-                                                <xsl:value-of select="$layoutIndex" />
-                                            </xsl:with-param>
-                                            <xsl:with-param name="parametersAsString" >
-                                                <xsl:value-of select="$parametersAsString" />
-                                            </xsl:with-param>
-                                            <xsl:with-param name="objectsAsString" >
-                                                <xsl:value-of select="$objectsAsString" />
-                                            </xsl:with-param>
-                                            <xsl:with-param name="createdObjectsAsString" >
-                                                <xsl:value-of select="$createdObjectsAsString" />
-                                            </xsl:with-param>
-                                            <xsl:with-param name="logString" >
-                                                <xsl:value-of select="$logString" />
-                                            </xsl:with-param>
-                                        </xsl:call-template>
-                                        //eventsCreateAssignGDObject - actionsWithIndexes - END
+                                    final long startTime = GameTickTimeDelayHelperFactory.getInstance().getStartTime();
+                                    TimeDelayHelper timeDelayHelper;
 
-                                        </xsl:for-each>
+                                    final int size = <xsl:value-of select="$list" />.size();
+                                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+
+                                        timeDelayHelper = (TimeDelayHelper) <xsl:value-of select="$list" />.get(index);
+                                        if(timeDelayHelper.isTime(startTime)) {
+                                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
+                                            <xsl:variable name="conditionPosition" ><xsl:value-of select="position()" /></xsl:variable>
+                                            <xsl:for-each select=".." >
+
+                                            //eventsCreateAssignGDObject - actionsWithIndexes - START
+                                            <xsl:call-template name="actionsWithIndexes" >
+                                                <xsl:with-param name="indexInUse" >index</xsl:with-param>
+                                                <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObject</xsl:with-param>
+                                                <xsl:with-param name="thisNodeIndex" >
+                                                    <xsl:value-of select="$thisNodeIndex" />
+                                                </xsl:with-param>
+                                                <xsl:with-param name="thisNodeArray" >
+                                                    <xsl:value-of select="$thisNodeArray" />
+                                                </xsl:with-param>                    
+                                                <xsl:with-param name="conditionPosition" >
+                                                    <xsl:value-of select="$conditionPosition" />
+                                                </xsl:with-param>                    
+                                                <xsl:with-param name="layoutIndex" >
+                                                    <xsl:value-of select="$layoutIndex" />
+                                                </xsl:with-param>
+                                                <xsl:with-param name="parametersAsString" >
+                                                    <xsl:value-of select="$parametersAsString" />
+                                                </xsl:with-param>
+                                                <xsl:with-param name="objectsAsString" >
+                                                    <xsl:value-of select="$objectsAsString" />
+                                                </xsl:with-param>
+                                                <xsl:with-param name="createdObjectsAsString" >
+                                                    <xsl:value-of select="$createdObjectsAsString" />
+                                                </xsl:with-param>
+                                                <xsl:with-param name="logString" >
+                                                    <xsl:value-of select="$logString" />
+                                                </xsl:with-param>
+                                            </xsl:call-template>
+                                            //eventsCreateAssignGDObject - actionsWithIndexes - END
                                         
+                                            </xsl:for-each>
+                                        
+                                        }
+                                    
                                     }
-                                        
                                     gdNodeStatsFactory.push(1, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
                 
                                 } catch(Exception e) {

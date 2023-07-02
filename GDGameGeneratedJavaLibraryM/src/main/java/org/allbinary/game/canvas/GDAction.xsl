@@ -92,6 +92,7 @@ Created By: Travis Berthelot
     </xsl:template>
 
     <xsl:template name="actionsWithIndexes" >
+        <xsl:param name="indexInUse" />
         <xsl:param name="caller" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
