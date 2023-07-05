@@ -81,6 +81,8 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.displayable.MyCanvas;
+                import org.allbinary.input.motion.gesture.MotionGestureInput;
+                import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
                 import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.logic.basic.string.CommonStrings;

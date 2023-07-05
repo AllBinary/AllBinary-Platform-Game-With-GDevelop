@@ -126,10 +126,10 @@ Created By: Travis Berthelot
                     public final BasicArrayList <xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList = new BasicArrayList();
 
                     public float ObjectTimerElapsedTime(final int index, final String name) {
-                        final GDGameLayer gameLayer = (GDGameLayer) <xsl:value-of select="$paramOne" />GDGameLayerList.get(0);
+                        final GDGameLayer gameLayer = (GDGameLayer) <xsl:value-of select="$paramOne" />GDGameLayerList.get(index);
                         final float max = <xsl:value-of select="$paramThree" />;
                     
-                        if(spritePortionElapsedTotalArray[index] <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> max) {
+                        if(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> max) {
                             final float elapsed = ((TimeDelayHelper) this.<xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList.get(index)).getElapsed();
                             <xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] += elapsed / 100;
                         
