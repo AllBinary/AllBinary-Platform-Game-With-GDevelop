@@ -97,7 +97,6 @@ Created By: Travis Berthelot
                 import org.allbinary.math.RectangleCollisionUtil;
                 import org.allbinary.thread.NullRunnable;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
-                import org.allbinary.time.SimpleTimeDelay;
                 import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.ArrayUtil;
 

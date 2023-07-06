@@ -122,7 +122,6 @@ Created By: Travis Berthelot
                     <xsl:variable name="paramThree" ><xsl:value-of select="substring($paramThree3, 0, string-length($paramThree3))" /></xsl:variable>
                     
                     public float[] <xsl:value-of select="$paramOne" />PortionElapsedTotalArray = new float[10];
-                    public final BasicArrayList <xsl:value-of select="$paramOne" />ObjectTimeDelayList = new BasicArrayList();
                     public final BasicArrayList <xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList = new BasicArrayList();
 
                     public float ObjectTimerElapsedTime(final int index, final String name) {
@@ -130,16 +129,15 @@ Created By: Travis Berthelot
                         final float max = <xsl:value-of select="$paramThree" />;
                     
                         if(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> max) {
-                            final float elapsed = ((TimeDelayHelper) this.<xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList.get(index)).getElapsed();
+                            //final float elapsed = ((TimeDelayHelper) this.<xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList.get(index)).getElapsed(lastStartTime);
+                            final float elapsed = (float) (this.timeDelta * .001);
                             <xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] += elapsed / 100;
                         
-                            if(<xsl:value-of select="$paramOne" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {                            
-                                //LogUtil.put(LogFactory.getInstance(new StringMaker().append("<xsl:value-of select="$paramOne" />PortionElapsedTotal: ").append(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index]).append(" max: ").append(max).toString(), this, CommonStrings.getInstance().PROCESS));
-                                if(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> max) {
-                                    LogUtil.put(LogFactory.getInstance(new StringMaker().append(index).append("<xsl:value-of select="$paramOne" />PortionElapsedTotal: ").append(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index]).append(" max: ").append(max).toString(), this, CommonStrings.getInstance().PROCESS));
-                                    <xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] = max;
-                                    ((SimpleTimeDelay) this.<xsl:value-of select="$paramOne" />ObjectTimeDelayList.get(index)).delay = Integer.MAX_VALUE;
-                                }
+                            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("<xsl:value-of select="$paramOne" />PortionElapsedTotal: ").append(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index]).append(" max: ").append(max).toString(), this, CommonStrings.getInstance().PROCESS));
+                            if(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> max) {
+                                LogUtil.put(LogFactory.getInstance(new StringMaker().append(index).append("<xsl:value-of select="$paramOne" />PortionElapsedTotal: ").append(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index]).append(" max: ").append(max).toString(), this, CommonStrings.getInstance().PROCESS));
+                                <xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] = max;
+                                ((TimeDelayHelper) this.<xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList.get(index)).delay = Integer.MAX_VALUE;
                             }
                         }
 
