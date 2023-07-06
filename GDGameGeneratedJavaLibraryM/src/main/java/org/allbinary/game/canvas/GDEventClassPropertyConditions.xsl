@@ -130,8 +130,8 @@ Created By: Travis Berthelot
                     
                         if(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> max) {
                             //final float elapsed = ((TimeDelayHelper) this.<xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList.get(index)).getElapsed(lastStartTime);
-                            final float elapsed = (float) (this.timeDelta * .001);
-                            <xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] += elapsed / 100;
+                            final float elapsed = this.timeDelta;
+                            <xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] += elapsed / 1000;
                         
                             //LogUtil.put(LogFactory.getInstance(new StringMaker().append("<xsl:value-of select="$paramOne" />PortionElapsedTotal: ").append(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index]).append(" max: ").append(max).toString(), this, CommonStrings.getInstance().PROCESS));
                             if(<xsl:value-of select="$paramOne" />PortionElapsedTotalArray[index] <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> max) {
