@@ -416,6 +416,7 @@ Created By: Travis Berthelot
                         //allBinaryGameLayerManager.log();
                         //groupLayerManagerListener.log();
                         
+                        LogUtil.put(LogFactory.getInstance("DepartScene - completed", this, commonStrings.PROCESS));
                         GDGlobalsFactory.getInstance().newScene = false;
                         initialized = true;
                     }

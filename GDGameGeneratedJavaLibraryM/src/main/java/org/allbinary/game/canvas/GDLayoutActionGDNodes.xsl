@@ -244,7 +244,7 @@ Created By: Travis Berthelot
                     }
                     
                     public long TimerElapsedTime(final TimeDelayHelper timeDelayHelper) {
-                        return timeDelayHelper.getElapsed() / 1000;
+                        return timeDelayHelper.getElapsed(globals.lastStartTime) / 1000;
                     }
                     
                     public long round(final long value) {
