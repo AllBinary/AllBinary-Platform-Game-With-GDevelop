@@ -33,7 +33,7 @@ GD*Sound.java
 GDGameMIDlet.java
 GDResources.java
 GDGameCommandFactory.java
-GDGameStartGameOverCanvasRunnable.java
+GDGame*CanvasRunnable.java
 GD*GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
 GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
 

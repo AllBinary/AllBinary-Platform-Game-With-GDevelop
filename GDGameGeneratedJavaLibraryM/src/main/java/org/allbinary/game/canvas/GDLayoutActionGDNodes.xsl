@@ -243,6 +243,18 @@ Created By: Travis Berthelot
                         return gdGlobalsFactory.point.getY();
                     }
                     
+                    public long TimerElapsedTime(final TimeDelayHelper timeDelayHelper) {
+                        return timeDelayHelper.getElapsed() / 1000;
+                    }
+                    
+                    public long round(final long value) {
+                        return value;
+                    }
+                    
+                    public long abs(final long value) {
+                        return Math.abs(value);
+                    }
+
                     public String NewLine() {
                         return CommonSeps.getInstance().NEW_LINE;
                     }
@@ -254,6 +266,11 @@ Created By: Travis Berthelot
                     public String ToString(final int value) {
                         //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
                         return Integer.toString(value);
+                    }
+
+                    public String ToString(final long value) {
+                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
+                        return Long.toString(value);
                     }
 
                     public int ToNotString(final int value) {
