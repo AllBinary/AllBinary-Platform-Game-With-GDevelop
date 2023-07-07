@@ -72,8 +72,14 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory instance = new GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory();
+                    private static GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory instance = null;
 
+                    public static GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory create()
+                    {
+                        instance = new GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory();
+                        return instance;
+                    }
+                    
                     public static GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory getInstance()
                     {
                         return instance;

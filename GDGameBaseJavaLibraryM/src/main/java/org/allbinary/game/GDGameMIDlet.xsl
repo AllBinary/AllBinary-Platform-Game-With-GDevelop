@@ -23,6 +23,7 @@
 */
 package org.allbinary.game;
 
+import java.util.Hashtable;
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.Displayable;
 
@@ -31,9 +32,13 @@ import javax.microedition.lcdui.Displayable;
 //totalLayouts=<xsl:value-of select="$totalLayouts" />
 <xsl:for-each select="layouts" >
     <xsl:variable name="name2" ><xsl:value-of select="translate(name, '_', ' ')" /></xsl:variable>
+    <!--
     <xsl:variable name="name3" ><xsl:if test="position() != 2 and $totalLayouts != 1" >GDGameStart</xsl:if><xsl:if test="position() = 2 or $totalLayouts = 1" >GDGame</xsl:if><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
+    -->
+    <xsl:variable name="name3" >GDGame<xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
     <xsl:variable name="name" ><xsl:value-of select="translate($name3, ' ', '')" /></xsl:variable>
     import org.allbinary.game.canvas.<xsl:value-of select="$name" />;
+    import org.allbinary.game.midlet.<xsl:value-of select="$name" />Runnable;
 </xsl:for-each>                
 import org.allbinary.canvas.RunnableCanvas;
 import org.allbinary.game.canvas.GDGameInputMappingHelpPaintable;
@@ -94,8 +99,12 @@ public class GDGameMIDlet extends
 
 <xsl:for-each select="layouts" >
     <xsl:variable name="name2" ><xsl:value-of select="translate(name, '_', ' ')" /></xsl:variable>
+    <!--
     <xsl:variable name="name3" ><xsl:if test="position() != 2 and $totalLayouts != 1" >GDGameStart</xsl:if><xsl:if test="position() = 2 or $totalLayouts = 1" >GDGame</xsl:if><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
+    -->
+    <xsl:variable name="name3" >GDGame<xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
     <xsl:variable name="name" ><xsl:value-of select="translate($name3, ' ', '')" /></xsl:variable>
+    <!--
     <xsl:if test="position() = 1 and $totalLayouts > 1" >
    public GameCanvasRunnableInterface createDemoGameCanvasRunnableInterface() throws Exception
    {
@@ -103,13 +112,14 @@ public class GDGameMIDlet extends
       //return new GDGameStartCanvas(this);
    }
     </xsl:if>
+    -->
+    <!--
     <xsl:if test="position() = 2 or $totalLayouts = 1" >
-   public GameCanvasRunnableInterface createGameCanvasRunnableInterface(
-		   AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
+   public GameCanvasRunnableInterface createGameCanvasRunnableInterface(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
    {
        return new <xsl:value-of select="$name" />(this, allBinaryGameLayerManager);
        //return new GDGameGameCanvas(this, allBinaryGameLayerManager);
-   }        
+   }    
     </xsl:if>
     <xsl:if test="position() != 1 and position() != 2" >
    public GameCanvasRunnableInterface create<xsl:value-of select="$name" />RunnableInterface() throws Exception
@@ -127,8 +137,43 @@ public class GDGameMIDlet extends
 
         PrimaryThreadPool.getInstance().runTask(new <xsl:value-of select="$name" />Runnable(this));
         //this.postDemoSetup();
-    }        
+    }
     </xsl:if>
+    -->
+    
+    <xsl:if test="position() = 1" >
+   public GameCanvasRunnableInterface createGameCanvasRunnableInterface(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
+   {
+       return this.create<xsl:value-of select="$name" />RunnableInterface(allBinaryGameLayerManager);
+   }    
+    </xsl:if>
+    
+   public GameCanvasRunnableInterface create<xsl:value-of select="$name" />RunnableInterface() throws Exception
+   {
+       return new <xsl:value-of select="$name" />(this, this.createGameLayerManager());
+       //return new GDGameGameCanvas(this, this.createGameLayerManager());
+   }    
+    
+   public GameCanvasRunnableInterface create<xsl:value-of select="$name" />RunnableInterface(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
+   {
+       return new <xsl:value-of select="$name" />(this, allBinaryGameLayerManager);
+       //return new GDGameGameCanvas(this, allBinaryGameLayerManager);
+   }    
+
+    public synchronized void set<xsl:value-of select="$name" />RunnableInterface() throws Exception
+    {
+        LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "set<xsl:value-of select="$name" />"));
+
+        ////TWB - Loading Feature Change - Can remove remark after testing
+        ProgressCanvasFactory.getInstance().start();
+
+        final Hashtable hashtable = this.getStartStateHashtable();
+        this.setStartStateHashtable(null);
+        
+        PrimaryThreadPool.getInstance().runTask(new <xsl:value-of select="$name" />Runnable(this, hashtable));
+        //this.postDemoSetup();
+    }
+    
 </xsl:for-each>                
 
 
@@ -183,6 +228,7 @@ public class GDGameMIDlet extends
 
     public synchronized void setDemo() throws Exception
     {
+        <!--
         <xsl:if test="$totalLayouts > 1" >
         LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "setDemo"));
 
@@ -192,12 +238,15 @@ public class GDGameMIDlet extends
         //this.postDemoSetup();
         </xsl:if>
         <xsl:if test="$totalLayouts = 1" >
-         final DemoGameMidletEvent startDemoGameMidletEvent = 
+        -->
+        final DemoGameMidletEvent startDemoGameMidletEvent = 
             new DemoGameMidletEvent(this, DemoGameMidletStateFactory.getInstance().START_DEMO);
         DemoGameMidletEventHandler.getInstance().fireEvent(startDemoGameMidletEvent);
 
         this.createGame();
+        <!--
         </xsl:if>
+        -->
     }
 
     public synchronized void commandAction(final Command command, final Displayable displayable2) {
@@ -215,12 +264,18 @@ public class GDGameMIDlet extends
 
        <xsl:for-each select="layouts" >
            <xsl:variable name="name2" ><xsl:value-of select="translate(name, '_', ' ')" /></xsl:variable>
+           <!--
            <xsl:variable name="name3" ><xsl:if test="position() != 2 and $totalLayouts != 1" >GDGameStart</xsl:if><xsl:if test="position() = 2 or $totalLayouts = 1" >GDGame</xsl:if><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
+           -->
+           <xsl:variable name="name3" >GDGame<xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
            <xsl:variable name="name" ><xsl:value-of select="translate($name3, ' ', '')" /></xsl:variable>
            <xsl:if test="position() != 1" >} else </xsl:if>if(command.equals(gdGameCommandFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_GD_LAYOUT)) {
+           <!--
            <xsl:if test="position() = 1 and $totalLayouts > 1" >this.setDemo();</xsl:if>
            <xsl:if test="position() = 2 or $totalLayouts = 1" >this.createGame();</xsl:if>
            <xsl:if test="position() != 1 and position() != 2" >this.set<xsl:value-of select="$name" />RunnableInterface();</xsl:if>
+           -->
+               this.set<xsl:value-of select="$name" />RunnableInterface();
        </xsl:for-each>                
             } else {
                 super.commandAction(command, displayable2);

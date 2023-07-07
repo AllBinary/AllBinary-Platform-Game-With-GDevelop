@@ -37,6 +37,7 @@ public class GDLayoutsToAllBinaryThreedRunnableGenerator
         
     private final XslHelper xslHelper = XslHelper.getInstance();
 
+    private final String GD_LAYOUT = "<GDLayout>";
     private final String GD_CURRENT_LAYOUT_INDEX = "<GD_CURRENT_INDEX>";
 
     public GDLayoutsToAllBinaryThreedRunnableGenerator()
@@ -65,7 +66,7 @@ public class GDLayoutsToAllBinaryThreedRunnableGenerator
             final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
             final byte[] byteArray = new byte[16384];
 
-            final InputStream inputStream = new FileInputStream(gdToolStrings.ROOT_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDLayoutRunnable.xsl");
+            final InputStream inputStream = new FileInputStream(gdToolStrings.ROOT_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\midlet\\GDLayoutRunnable.xsl");
             final String xslDocumentStr = new String(streamUtil.getByteArray(inputStream, outputStream, byteArray));
             
             final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.GAME_XML_PATH);
@@ -78,14 +79,16 @@ public class GDLayoutsToAllBinaryThreedRunnableGenerator
             //final Replace replace3 = new Replace(".Height()", ".Height(graphics)");
             //xmlDocumentStr = replace3.all(xmlDocumentStr);
 
-            final String START = gdToolStrings.ROOT_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameStart";
+            final String START = gdToolStrings.ROOT_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\midlet\\GDGame";
             final String END = "CanvasRunnable.java";
             
             final int size = this.nameList.size();
-            for (int index = 2; index < size; index++)
+            for (int index = 0; index < size; index++)
             {
-                final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, (String) this.nameList.get(index));
-                final String updatedXslDocumentStr = replace.all(xslDocumentStr);
+                final Replace replace2 = new Replace(this.GD_LAYOUT, (String) this.nameList.get(index));
+                final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, Integer.toString(index));
+                final String updatedXslDocumentStr2 = replace.all(xslDocumentStr);
+                final String updatedXslDocumentStr = replace2.all(updatedXslDocumentStr2);
 
                 final String result = this.xslHelper.translate(new BasicUriResolver(),
                         new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),

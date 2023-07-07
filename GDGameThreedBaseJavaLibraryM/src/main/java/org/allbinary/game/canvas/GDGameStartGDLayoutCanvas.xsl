@@ -86,6 +86,7 @@ public class <GDLayout> extends StartCanvas
                             <xsl:for-each select="actions" >
                                 <xsl:variable name="typeValue" select="type/value" />
                                 <xsl:if test="$typeValue = 'SceneBackground'" >
+                                    //SceneBackground - moved to actions
                                     <xsl:for-each select="parameters" >
                                         <xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" />
                                     </xsl:for-each>,
@@ -97,7 +98,13 @@ public class <GDLayout> extends StartCanvas
                         <xsl:value-of select="$color" />
                     </xsl:if>
                     <xsl:if test="string-length($color) = 0" >
+                        <xsl:if test="string-length(r) > 0" >
+                        //Using Layout Color before any - //SceneBackground Action
+                        <xsl:value-of select="r" />, <xsl:value-of select="v" />, <xsl:value-of select="b" />,
+                        </xsl:if>
+                        <xsl:if test="string-length(r) = 0" >
                         255, 255, 255, 
+                        </xsl:if>
                     </xsl:if>
                     GD_LAYOUT_COLOR), true)
                 );

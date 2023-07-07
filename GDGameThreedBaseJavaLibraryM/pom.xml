@@ -48,6 +48,15 @@
         </dependency>
 
         <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>FullScreenNoneJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
             <groupId>org.allbinary.game.threed</groupId>
             <artifactId>AllBinaryToMin3dInputJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->

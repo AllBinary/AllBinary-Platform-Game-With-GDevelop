@@ -51,6 +51,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDRotateActionProcess.xsl" />
     <xsl:import href="./action/GDRotateTowardPositionActionProcess.xsl" />
     <xsl:import href="./action/GDChangeScaleActionProcess.xsl" />
+    <xsl:import href="./action/GDSceneBackgroundActionProcess.xsl" />
     
     <xsl:template name="eventsCreateAssignGDObjectGDNodesAction" >
         <xsl:param name="caller" />
@@ -152,7 +153,9 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
                 <xsl:if test="$typeValue = 'SceneBackground'" >
-                    //SceneBackground - Handled in Midlet
+
+                    <xsl:call-template name="sceneBackgroundActionProcess" />
+
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ChangeAnimation'" >
                     

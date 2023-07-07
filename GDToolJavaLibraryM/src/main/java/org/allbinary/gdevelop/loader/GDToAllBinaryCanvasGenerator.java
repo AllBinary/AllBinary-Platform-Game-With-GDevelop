@@ -48,15 +48,15 @@ public class GDToAllBinaryCanvasGenerator extends Processor
         this.index = index;
         name = this.camelCaseUtil.getAsCamelCase(layout.name, stringBuilder);
         stringBuilder.delete(0, stringBuilder.length());
-        if (index == 1 || size == 1)
-        {
+//        if (index == 1 || size == 1)
+//        {
             className = stringBuilder.append("GDGame").append(name).append("Canvas").toString();
             this.orig = gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameGDLayoutCanvas.xsl";
-        } else
-        {
-            className = stringBuilder.append("GDGameStart").append(name).append("Canvas").toString();
-            this.orig = gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameStartGDLayoutCanvas.xsl";
-        }
+//        } else
+//        {
+//            className = stringBuilder.append("GDGameStart").append(name).append("Canvas").toString();
+//            this.orig = gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameStartGDLayoutCanvas.xsl";
+//        }
     }
 
     @Override

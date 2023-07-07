@@ -121,19 +121,20 @@ Created By: Travis Berthelot
 
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
+                        LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
+                    
                         gdNodeStatsFactory.reset();
 
                         //this.allBinaryGameLayerManager = allBinaryGameLayerManager;
                         globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.create();
+                        GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.create();
                         builder = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(canvas, allBinaryGameLayerManager);
                     
-                        try {
-                    
-                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));                            
+<!--                        try {
 
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
-                        }
+                        }-->
 
                         //allBinaryGameLayerManager.log();
                         //groupLayerManagerListener.log();

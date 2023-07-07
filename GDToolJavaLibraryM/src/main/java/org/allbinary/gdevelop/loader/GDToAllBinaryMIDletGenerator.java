@@ -49,11 +49,11 @@ public class GDToAllBinaryMIDletGenerator
         stringBuilder.delete(0, stringBuilder.length());
         
         String className;
-        if(index == 1) {
+//        if(index == 1) {
             className = stringBuilder.append("GDGame").append(name).append("Canvas").toString();
-        } else {
-            className = stringBuilder.append("GDGameStart").append(name).append("Canvas").toString();
-        }
+//        } else {
+//            className = stringBuilder.append("GDGameStart").append(name).append("Canvas").toString();
+//        }
         
         LogUtil.put(LogFactory.getInstance(className, this, "loadLayout"));
         

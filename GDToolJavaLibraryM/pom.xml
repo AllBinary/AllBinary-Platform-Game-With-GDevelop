@@ -153,6 +153,22 @@
 
                 </configuration>
             </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>org.allbinary.gdevelop.loader.GDGenerator</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            
         </plugins>
 
     </build>

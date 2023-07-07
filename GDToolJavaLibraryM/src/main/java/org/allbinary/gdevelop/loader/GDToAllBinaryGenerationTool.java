@@ -72,6 +72,8 @@ public class GDToAllBinaryGenerationTool
     private final GDToAllBinaryMIDletGenerator midletGenerator = new GDToAllBinaryMIDletGenerator();
     private final GDLayoutsToAllBinaryRunnableGenerator runnableGenerator = new GDLayoutsToAllBinaryRunnableGenerator();
     private final GDLayoutsToAllBinaryThreedRunnableGenerator runnableThreedGenerator = new GDLayoutsToAllBinaryThreedRunnableGenerator();
+    //private final GDLayoutsToAllBinaryStartRunnableGenerator startRunnableGenerator = new GDLayoutsToAllBinaryStartRunnableGenerator();
+    //private final GDLayoutsToAllBinaryThreedStartRunnableGenerator startRunnableThreedGenerator = new GDLayoutsToAllBinaryThreedStartRunnableGenerator();
     private final BasicArrayList layoutList = new BasicArrayList();
 
     private final String PLAY_SOUND = "PlaySound";

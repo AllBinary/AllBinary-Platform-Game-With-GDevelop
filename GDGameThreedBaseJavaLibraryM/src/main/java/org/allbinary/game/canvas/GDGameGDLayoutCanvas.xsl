@@ -143,6 +143,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
                            <xsl:for-each select="actions" >
                                <xsl:variable name="typeValue" select="type/value" />
                                <xsl:if test="$typeValue = 'SceneBackground'" >
+        //SceneBackground - this is probably better handled as gdnode.
         final BasicColor backgroundBasicColor = new BasicColor(255,
                                <xsl:for-each select="parameters" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:for-each>,
                                GD_LAYOUT_COLOR);
@@ -156,6 +157,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         </xsl:if>
 
         <xsl:if test="not(contains($foundSceneBackground, 'found'))" >
+        //Using Layout Color before any - //SceneBackground Action
         final BasicColor backgroundBasicColor = new BasicColor(255,
                                <xsl:value-of select="r" />, <xsl:value-of select="v" />, <xsl:value-of select="b" />,
                                GD_LAYOUT_COLOR);
@@ -352,6 +354,11 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
             this.buildGame(false);
 
+            <xsl:if test="number($index) = 0" >
+            FullScreenUtil.init(this, this.getCustomCommandListener());
+            //this.close();
+            </xsl:if>
+        
         } catch (Exception e)
         {
             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "_init", e));
