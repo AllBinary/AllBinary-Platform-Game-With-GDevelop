@@ -47,6 +47,7 @@ import org.allbinary.game.configuration.feature.GameFeature;
 import org.allbinary.game.configuration.feature.GameFeatureFactory;
 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
 import org.allbinary.game.combat.canvas.CombatGameCanvas;
+import org.allbinary.game.displayable.canvas.BaseMenuBehavior;
 import org.allbinary.game.displayable.canvas.GamePerformanceInitUpdatePaintable;
 import org.allbinary.game.displayable.canvas.StartIntermissionPaintable;
 import org.allbinary.game.identification.GroupFactory;
@@ -170,6 +171,19 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         this.gameLayerManager.setForegroundBasicColor(foregroundBasicColor);
     }
 
+    <!-- 
+    public <GDLayout>(AllBinaryGameLayerManager allBinaryGameLayerManager)
+    throws Exception
+    {
+        this(null, allBinaryGameLayerManager);
+    }-->
+
+    <xsl:if test="number($index) = 0" >
+    public BaseMenuBehavior getInGameMenuBehavior() {
+        return BaseMenuBehavior.getInstance();
+    }
+    </xsl:if>
+
     public void setPlayingGameState()
     {
         this.setWait(WAIT);
@@ -194,12 +208,6 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         }
         );
 
-    }
-
-    public <GDLayout>(AllBinaryGameLayerManager allBinaryGameLayerManager)
-    throws Exception
-    {
-        this(null, allBinaryGameLayerManager);
     }
 
     public void open()

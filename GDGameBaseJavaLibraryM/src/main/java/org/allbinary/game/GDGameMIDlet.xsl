@@ -51,6 +51,7 @@ import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.communication.log.PreLogUtil;
+import org.allbinary.game.canvas.GDGlobalsFactory;
 import org.allbinary.game.GameInfo;
 import org.allbinary.game.GameMode;
 import org.allbinary.game.GameTypeFactory;
@@ -247,6 +248,11 @@ public class GDGameMIDlet extends
         <!--
         </xsl:if>
         -->
+    }
+
+    public void startGameCanvasRunnableInterface() throws Exception {
+        GDGlobalsFactory.getInstance().newScene = true;
+        super.startGameCanvasRunnableInterface();
     }
 
     public synchronized void commandAction(final Command command, final Displayable displayable2) {

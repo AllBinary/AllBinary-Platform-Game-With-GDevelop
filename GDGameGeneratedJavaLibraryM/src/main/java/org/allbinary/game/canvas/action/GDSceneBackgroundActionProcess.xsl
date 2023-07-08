@@ -32,6 +32,8 @@ Created By: Travis Berthelot
                         @Override
                         public boolean process() throws Exception {
 
+                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
                             final BasicColor backgroundBasicColor = new BasicColor(255,
                                     <xsl:value-of select="$rgbParam" />,
                                     ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
