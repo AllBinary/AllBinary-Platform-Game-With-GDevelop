@@ -141,20 +141,27 @@ public class GDGameMIDlet extends
     }
     </xsl:if>
     -->
-    
+
     <xsl:if test="position() = 1" >
+   public GameCanvasRunnableInterface createDemoGameCanvasRunnableInterface() throws Exception
+   {
+       return this.create<xsl:value-of select="$name" />RunnableInterface();
+   }
+    </xsl:if>
+
+    <xsl:if test="position() = 2 or $totalLayouts = 1" >
    public GameCanvasRunnableInterface createGameCanvasRunnableInterface(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
    {
        return this.create<xsl:value-of select="$name" />RunnableInterface(allBinaryGameLayerManager);
    }    
     </xsl:if>
-    
+
    public GameCanvasRunnableInterface create<xsl:value-of select="$name" />RunnableInterface() throws Exception
    {
        return new <xsl:value-of select="$name" />(this, this.createGameLayerManager());
        //return new GDGameGameCanvas(this, this.createGameLayerManager());
    }    
-    
+
    public GameCanvasRunnableInterface create<xsl:value-of select="$name" />RunnableInterface(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
    {
        return new <xsl:value-of select="$name" />(this, allBinaryGameLayerManager);
@@ -227,8 +234,8 @@ public class GDGameMIDlet extends
                 "mediaShutdown - postStopGameCanvasRunnableInterface"));
    }
 
-    public synchronized void setDemo() throws Exception
-    {
+//    public synchronized void setDemo() throws Exception
+//    {
         <!--
         <xsl:if test="$totalLayouts > 1" >
         LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "setDemo"));
@@ -240,15 +247,15 @@ public class GDGameMIDlet extends
         </xsl:if>
         <xsl:if test="$totalLayouts = 1" >
         -->
-        final DemoGameMidletEvent startDemoGameMidletEvent = 
-            new DemoGameMidletEvent(this, DemoGameMidletStateFactory.getInstance().START_DEMO);
-        DemoGameMidletEventHandler.getInstance().fireEvent(startDemoGameMidletEvent);
+//        final DemoGameMidletEvent startDemoGameMidletEvent = 
+//            new DemoGameMidletEvent(this, DemoGameMidletStateFactory.getInstance().START_DEMO);
+//        DemoGameMidletEventHandler.getInstance().fireEvent(startDemoGameMidletEvent);
 
-        this.createGame();
+//        this.createGame();
         <!--
         </xsl:if>
         -->
-    }
+//    }
 
     public void startGameCanvasRunnableInterface() throws Exception {
         GDGlobalsFactory.getInstance().newScene = true;
