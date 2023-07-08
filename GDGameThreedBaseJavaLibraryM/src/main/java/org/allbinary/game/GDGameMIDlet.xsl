@@ -258,6 +258,9 @@ public class GDGameMIDlet extends
 //    }
 
     public void startGameCanvasRunnableInterface() throws Exception {
+    
+       //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "startGameCanvasRunnableInterface"));
+
         GDGlobalsFactory.getInstance().newScene = true;
         super.startGameCanvasRunnableInterface();
     }
@@ -283,12 +286,22 @@ public class GDGameMIDlet extends
            <xsl:variable name="name3" >GDGame<xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
            <xsl:variable name="name" ><xsl:value-of select="translate($name3, ' ', '')" /></xsl:variable>
            <xsl:if test="position() != 1" >} else </xsl:if>if(command.equals(gdGameCommandFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_GD_LAYOUT)) {
-           <!--
-           <xsl:if test="position() = 1 and $totalLayouts > 1" >this.setDemo();</xsl:if>
-           <xsl:if test="position() = 2 or $totalLayouts = 1" >this.createGame();</xsl:if>
-           <xsl:if test="position() != 1 and position() != 2" >this.set<xsl:value-of select="$name" />RunnableInterface();</xsl:if>
-           -->
-               this.set<xsl:value-of select="$name" />RunnableInterface();
+           
+                if (this.gameStartTimeHelper.isTime())
+                {
+                    <!--
+                    <xsl:if test="position() = 1 and $totalLayouts > 1" >this.setDemo();</xsl:if>
+                    <xsl:if test="position() = 2 or $totalLayouts = 1" >this.createGame();</xsl:if>
+                    <xsl:if test="position() != 1 and position() != 2" >this.set<xsl:value-of select="$name" />RunnableInterface();</xsl:if>
+                    -->
+                    this.set<xsl:value-of select="$name" />RunnableInterface();
+
+                }
+                else
+                {
+                    LogUtil.put(LogFactory.getInstance("Starting Game Too Often", this, MidletStrings.getInstance().COMMAND_ACTION));
+                }
+           
        </xsl:for-each>                
             } else {
                 super.commandAction(command, displayable2);

@@ -301,6 +301,8 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
     {
         try
         {
+            //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "threadInit"));
+
             final int portion = 60;
             super.init();
 
@@ -374,6 +376,8 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
     public void buildGame(boolean isProgress) throws Exception
     {
+        //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "buildGame"));
+    
         this.specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(this, gameLayerManager);
         this.setPlayingGameState();
         
