@@ -179,7 +179,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
     }
 -->
 
-    <xsl:if test="number($index) = 0" >
+    <xsl:if test="number($index) = 0 or position() = last()" >
     public BaseMenuBehavior getInGameMenuBehavior() {
         return BaseMenuBehavior.getInstance();
     }
