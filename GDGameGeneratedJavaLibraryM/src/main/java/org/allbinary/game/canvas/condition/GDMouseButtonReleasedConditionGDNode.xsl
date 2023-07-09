@@ -34,11 +34,15 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
                             
-                            <xsl:for-each select="../actions" >
-                                //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                                //Action - //<xsl:value-of select="type/value" /> - call
-                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                            </xsl:for-each>
+                            <xsl:variable name="hasSourisSurObjet" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
+
+                            <xsl:if test="not(contains($hasSourisSurObjet, 'found'))" >
+                                <xsl:for-each select="../actions" >
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            //Action - //<xsl:value-of select="type/value" /> - call
+                            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                </xsl:for-each>
+                            </xsl:if>
                             
                             return true;
                         }

@@ -21,7 +21,16 @@ Created By: Travis Berthelot
 
                         private final String ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "G: " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
+                        <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
                         //MettreX
+                        public boolean process() {
+                            //final GDGameLayer gameLayer = (GDGameLayer) globals.<xsl:value-of select="$name" />GDGameLayerList.get(0);
+                            //final GDObject gdObject = gameLayer.gdObject;
+                            final GDObject gdObject = (GDObject) globals.<xsl:value-of select="$name" />GDObjectList.get(0);
+                            return this.processG(gdObject, globals.graphics);
+                        }
+                        
                         @Override
                         public boolean processG(final GDObject gdObject, final Graphics graphics) {
 
@@ -41,8 +50,6 @@ Created By: Travis Berthelot
                         public boolean processGPaint(final GDObject gdObject, final Graphics graphics) {
 
                             try {
-
-                                <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 

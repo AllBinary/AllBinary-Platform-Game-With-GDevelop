@@ -25,8 +25,9 @@ Created By: Travis Berthelot
 
                         //MettreXY
                         public boolean process() {
-                            final GDGameLayer gameLayer = (GDGameLayer) globals.<xsl:value-of select="$name" />GDGameLayerList.get(0);
-                            final GDObject gdObject = gameLayer.gdObject;
+                            //final GDGameLayer gameLayer = (GDGameLayer) globals.<xsl:value-of select="$name" />GDGameLayerList.get(0);
+                            //final GDObject gdObject = gameLayer.gdObject;
+                            final GDObject gdObject = (GDObject) globals.<xsl:value-of select="$name" />GDObjectList.get(0);
                             return this.processG(gdObject, globals.graphics);
                         }
 
