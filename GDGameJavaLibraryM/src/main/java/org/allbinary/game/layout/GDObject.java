@@ -81,6 +81,10 @@ public class GDObject
         return height;
     }
    
+    public void setX(final double x) {
+        this.setX((int) x);
+    }
+    
     public void setX(final int x) {
         final int width = DisplayInfoSingleton.getInstance().getLastWidth();
         if(x > width) {
@@ -89,7 +93,11 @@ public class GDObject
            this.x = x;
         }
     }
-    
+
+    public void setY(final double y) {
+        this.setY((int) y);
+    }
+
     public void setY(final int y) {
         final int height = DisplayInfoSingleton.getInstance().getLastHeight();
         if(y > height) {

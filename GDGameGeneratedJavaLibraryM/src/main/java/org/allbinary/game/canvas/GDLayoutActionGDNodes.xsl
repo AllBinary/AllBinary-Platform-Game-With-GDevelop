@@ -255,6 +255,23 @@ Created By: Travis Berthelot
                         return Math.abs(value);
                     }
 
+                    public double sin(final double angle) {
+                        return Math.sin(angle);
+                    }
+
+                    public double cos(final double angle) {
+                        return Math.cos(angle);
+                    }
+                    
+                    public double ToRad(final double angdeg) {
+                        //return Math.toRadians(angdeg);
+                        return angdeg;
+                    }
+                    
+                    public long TimeFromStart() {
+                        return (globals.startTime - globals.lastStartTime) / 100;
+                    }
+
                     public String NewLine() {
                         return CommonSeps.getInstance().NEW_LINE;
                     }
