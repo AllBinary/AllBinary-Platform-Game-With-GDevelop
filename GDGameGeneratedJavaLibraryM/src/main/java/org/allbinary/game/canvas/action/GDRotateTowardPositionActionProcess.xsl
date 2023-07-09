@@ -16,7 +16,10 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
+    <xsl:import href="../GDLayoutInstances.xsl" />
+    
     <xsl:template name="rotateTowardPositionActionProcess" >
+        <xsl:param name="layoutIndex" />
         
         private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
         
@@ -41,6 +44,11 @@ Created By: Travis Berthelot
                         super.processGDStats(gameLayer);
 
                         try {
+
+                            <xsl:call-template name="layoutInstances" >
+                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
+                            </xsl:call-template>
 
                         <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >final GDObject <xsl:value-of select="text()" /> = gameLayer.gdObject;</xsl:if></xsl:for-each>
                         <xsl:text>&#10;</xsl:text>
@@ -82,7 +90,12 @@ Created By: Travis Berthelot
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                         
                         try {
-                        
+
+                            <xsl:call-template name="layoutInstances" >
+                                <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
+                            </xsl:call-template>
+                                                
                         <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >final GDGameLayer gameLayer = ((GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index));</xsl:if></xsl:for-each>
                         <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >final GDObject <xsl:value-of select="text()" /> = gameLayer.gdObject;</xsl:if></xsl:for-each>
                         <xsl:text>&#10;</xsl:text>

@@ -393,7 +393,9 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'RotateTowardPosition'" >
 
-                    <xsl:call-template name="rotateTowardPositionActionProcess" />
+                    <xsl:call-template name="rotateTowardPositionActionProcess" >
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 
