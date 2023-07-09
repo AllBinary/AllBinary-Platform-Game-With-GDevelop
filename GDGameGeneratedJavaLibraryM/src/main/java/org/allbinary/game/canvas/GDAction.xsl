@@ -588,6 +588,21 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
+                <xsl:if test="$typeValue = 'MettreAutourPos'" >
+                    //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
+                    //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Action - //MettreXY - call
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(((GDGameLayer) globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />GDGameLayerList.get(index))</xsl:if></xsl:for-each>, globals.graphics);
+                    <xsl:text>&#10;</xsl:text>
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" >
+                        if(globals.<xsl:value-of select="text()" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
+                            final GDGameLayer gameLayer = (GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index);
+                            gameLayer.updatePosition();
+                        }
+                        <xsl:text>&#10;</xsl:text>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
 
                 <xsl:if test="$typeValue = 'SetAngle'" >
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />

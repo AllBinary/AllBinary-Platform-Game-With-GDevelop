@@ -42,6 +42,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDMettreXActionProcess.xsl" />
     <xsl:import href="./action/GDMettreYActionProcess.xsl" />
     <xsl:import href="./action/GDMettreXYActionProcess.xsl" />
+    <xsl:import href="./action/GDMettreAutourPosActionProcess.xsl" />
     <xsl:import href="./action/GDModVarSceneActionProcess.xsl" />
     <xsl:import href="./action/GDDeleteActionProcess.xsl" />
     <xsl:import href="./action/GDAddForceALActionProcess.xsl" />
@@ -335,6 +336,15 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'MettreXY'" >
 
                     <xsl:call-template name="mettreXYActionProcess" >
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:if>
+                <xsl:if test="$typeValue = 'MettreAutourPos'" >
+
+                    <xsl:call-template name="mettreAutourPosActionProcess" >
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
