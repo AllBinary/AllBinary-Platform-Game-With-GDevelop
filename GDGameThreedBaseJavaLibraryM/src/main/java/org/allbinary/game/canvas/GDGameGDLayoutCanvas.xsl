@@ -169,6 +169,11 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         
         this.gameLayerManager.setBackgroundBasicColor(backgroundBasicColor);
         this.gameLayerManager.setForegroundBasicColor(foregroundBasicColor);
+        
+        //force2dCollision = <xsl:value-of select="../properties/force2dCollision" />
+        <xsl:if test="../properties/force2dCollision/text() = 'true'" >
+        Features.getInstance().addDefault(GameFeatureFactory.getInstance().COLLISIONS_FORCED_TWO_DIMENSIONAL);
+        </xsl:if>
     }
 
 <!--
