@@ -43,7 +43,15 @@ Created By: Travis Berthelot
             <xsl:if test="type = 'BuiltinCommonInstructions::Comment'" >
             //Do not create GDNode for comment event type
             </xsl:if>
-            <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+            <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
+            //Do not create GDNode for link - The target GDNode is called instead.
+            </xsl:if>
+            
+            <xsl:if test="type = 'BuiltinCommonInstructions::Standard' or 
+                          type = 'BuiltinCommonInstructions::ForEachChildVariable' or 
+                          type = 'BuiltinCommonInstructions::ForEach' or 
+                          type = 'BuiltinCommonInstructions::Group' or 
+                          type = 'BuiltinCommonInstructions::Repeat'" >
             //Event - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
             if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                 throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
@@ -313,6 +321,11 @@ Created By: Travis Berthelot
                 </xsl:if>
 
             };
+            </xsl:if>
+            <xsl:if test="type = 'BuiltinCommonInstructions::JsCode'" >
+                
+                <xsl:call-template name="javascriptCodeEventGDNode" ></xsl:call-template>
+
             </xsl:if>
             <!-- other events - END -->
 

@@ -31,13 +31,17 @@ Created By: Travis Berthelot
                 <xsl:variable name="name" select="name" />
                 final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
             </xsl:if>
-            <xsl:if test="$layoutIndex = 1" >
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
 
                 //final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
 
             </xsl:if>
+            <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
+                <xsl:variable name="stringValue" select="string" />
+
+                final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+
             </xsl:if>
 
         </xsl:for-each>

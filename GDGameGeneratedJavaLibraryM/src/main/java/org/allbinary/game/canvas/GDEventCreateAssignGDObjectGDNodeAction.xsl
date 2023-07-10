@@ -19,8 +19,12 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDTextObjectStringActionProcess.xsl" />
     <xsl:import href="./action/GDTextObjectChangeColorActionProcess.xsl" />
 
+    <xsl:import href="./action/GDTextEntryObjectActionProcess.xsl" />
+
     <xsl:import href="./action/GDChangeAnimationActionProcess.xsl" />
     <xsl:import href="./action/GDModVarObjetActionProcess.xsl" />
+    
+    <xsl:import href="./action/GDHideLayerActionProcess.xsl" />
     
     <xsl:import href="./action/GDPlaySoundActionProcess.xsl" />
     <xsl:import href="./action/GDPlaySoundCanalActionProcess.xsl" />
@@ -143,7 +147,9 @@ Created By: Travis Berthelot
                 <xsl:if test="contains($actionWithTextObjectString, 'found')" >
                     <xsl:if test="$typeValue = 'TextObject::String'" >
                         
-                        <xsl:call-template name="textObjectStringActionProcess" />
+                        <xsl:call-template name="textObjectStringActionProcess" >
+                            <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        </xsl:call-template>
 
                     </xsl:if>                    
                 </xsl:if>
@@ -174,19 +180,17 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>                
-                <xsl:if test="$typeValue = 'HideLayer'" >
-                    //HideLayer - action
-                    @Override
-                    public boolean process() throws Exception {
-                        super.processStats();
-
-                        LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />));
-                        
-                        return true;
-                    }
                 </xsl:if>
-                
+                <xsl:if test="$typeValue = 'HideLayer'" >
+
+                    <xsl:call-template name="hideLayerActionProcess" />
+
+                </xsl:if>
+                <xsl:if test="$typeValue = 'TextEntryObject::String'" >
+
+                    <xsl:call-template name="textEntryObjectAsStringActionProcess" />
+
+                </xsl:if>
                 <xsl:if test="$typeValue = 'PlaySound'" >
                     
                     <xsl:call-template name="playSoundActionProcess" />

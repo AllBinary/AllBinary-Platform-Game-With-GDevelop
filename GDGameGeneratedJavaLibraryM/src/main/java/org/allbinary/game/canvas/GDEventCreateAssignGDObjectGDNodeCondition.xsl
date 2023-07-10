@@ -143,6 +143,12 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'SourisBouton'" >
                     //SourisBouton/MouseButtonPressed - Handled by AllBinary Event Listeners
                 </xsl:if>
+<!--    
+                        "value": "BuiltinCommonInstructions::Once"
+                        "value": "BuiltinCommonInstructions::Or"
+                        "value": "BuiltinCommonInstructions::And"
+                        "value": "BuiltinCommonInstructions::While"
+-->
                 <xsl:if test="$typeValue = 'BuiltinCommonInstructions::Once' and not(contains($alreadyUsedCondition, 'found'))" >
                     
                     <xsl:call-template name="onceConditionGDNode" />

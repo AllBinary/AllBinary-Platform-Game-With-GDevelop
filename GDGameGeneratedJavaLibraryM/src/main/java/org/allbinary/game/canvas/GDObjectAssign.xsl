@@ -84,7 +84,6 @@ Created By: Travis Berthelot
                 //objectsGroupsGDGameLayer - END
                 
             </xsl:if>
-            <xsl:if test="$layoutIndex = 1" >
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
 
@@ -95,8 +94,6 @@ Created By: Travis Berthelot
 
                 */
 
-                public final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
-
                 /*
                 public final GDGameLayer <xsl:value-of select="name" />GDGameLayer = globals.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, (GDObject) <xsl:value-of select="name" />List.get(0), globals.<xsl:value-of select="name" />GDConditionWithGroupActions);
 
@@ -104,6 +101,13 @@ Created By: Travis Berthelot
                 */
 
             </xsl:if>
+            <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
+                <xsl:variable name="stringValue" select="string" />
+
+                public AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = null;
+                public ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = null;
+                public final Rectangle <xsl:value-of select="name" />LayerInfo;
+
             </xsl:if>
 
         </xsl:for-each>
@@ -189,7 +193,6 @@ Created By: Travis Berthelot
                     );
 
             </xsl:if>
-            <xsl:if test="$layoutIndex = 1" >
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
 
@@ -202,6 +205,8 @@ Created By: Travis Berthelot
                                 );
 
                 this.<xsl:value-of select="name" />GDGameLayerFactory = new GDGameLayerFactory(
+                    globals.<xsl:value-of select="name" />GDGameLayerList,
+                    globals.<xsl:value-of select="name" />GDGameLayerDestroyedList,
                     new Group[] {globals.<xsl:value-of select="name" />GroupInterface},
                     <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
@@ -213,6 +218,31 @@ Created By: Travis Berthelot
                 //this.<xsl:value-of select="name" />GDGameLayerFactory = new NullGDGameLayerFactory();
 
             </xsl:if>
+            <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
+                <xsl:variable name="stringValue" select="string" />
+
+                this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[1];
+                this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray[0] = new RotationAnimationFactory();
+                this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[1];
+                this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray[0] = new RotationAnimationFactory();
+
+                this.<xsl:value-of select="name" />LayerInfo = new Rectangle(
+                                PointFactory.getInstance().getInstance(0, 0),
+                                0, 0
+                                );
+
+                this.<xsl:value-of select="name" />GDGameLayerFactory = new GDGameLayerFactory(
+                    globals.<xsl:value-of select="name" />GDGameLayerList,
+                    globals.<xsl:value-of select="name" />GDGameLayerDestroyedList,
+                    new Group[] {globals.<xsl:value-of select="name" />GroupInterface},
+                    <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
+                    <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
+                    <xsl:value-of select="name" />LayerInfo);
+
+                //globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
+
+                //this.<xsl:value-of select="name" />GDGameLayerFactory = new NullGDGameLayerFactory();
+
             </xsl:if>
 
         </xsl:for-each>

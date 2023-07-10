@@ -104,7 +104,6 @@ Created By: Travis Berthelot
                 //objectsGroupsGDGameLayer - END
                 </xsl:if>
             </xsl:if>
-            <xsl:if test="$layoutIndex = 1" >
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
 
@@ -120,7 +119,6 @@ Created By: Travis Berthelot
 
                 final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
 
-            </xsl:if>
             </xsl:if>
 
         </xsl:for-each>
@@ -228,7 +226,6 @@ Created By: Travis Berthelot
                 //objectsGroupsGDGameLayer - END
                 
             </xsl:if>
-            <xsl:if test="$layoutIndex = 1" >
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
 
@@ -242,9 +239,6 @@ Created By: Travis Berthelot
 
                 */
 
-                final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
-
-            </xsl:if>
             </xsl:if>
 
         </xsl:for-each>

@@ -8,6 +8,8 @@
     <xsl:import href="./GDEventCreateAssignGDObjectGDNodeObjectEvent.xsl" />
     <xsl:import href="./GDEventCreateAssignGDObjectGDNodeOtherEvent.xsl" />
     
+    <xsl:import href="./event/GDJsCodeEventGDNode.xsl" />
+    
     <xsl:template name="externalEventsCreateAssignGDObjectCondition" >
         <xsl:param name="layoutName" />
         <xsl:param name="totalRecursions" />

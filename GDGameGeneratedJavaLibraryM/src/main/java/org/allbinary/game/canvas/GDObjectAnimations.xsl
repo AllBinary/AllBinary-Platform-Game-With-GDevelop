@@ -117,23 +117,17 @@ Created By: Travis Berthelot
                 //objectsGroupsGDGameLayer - END
                 </xsl:if>
             </xsl:if>
-            <xsl:if test="$layoutIndex = 1" >
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
-
-                /*
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[0];
-                final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
-                final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                PointFactory.getInstance().getInstance(0, 0),
-                                0, 0
-                                );
-
-                */
 
                 final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
 
             </xsl:if>
+            <xsl:if test="$typeValue = 'TextEntryObject::String'" >
+                <xsl:variable name="stringValue" select="string" />
+
+                final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
+
             </xsl:if>
 
         </xsl:for-each>
@@ -240,7 +234,6 @@ Created By: Travis Berthelot
                 //objectsGroupsGDGameLayer - END
                 
             </xsl:if>
-            <xsl:if test="$layoutIndex = 1" >
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
 
@@ -257,7 +250,13 @@ Created By: Travis Berthelot
                 final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
 
             </xsl:if>
+            <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
+                <xsl:variable name="stringValue" select="string" />
+
+                final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
+
             </xsl:if>
+            
 
         </xsl:for-each>
         //objectsAssign - END
@@ -365,7 +364,6 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:if>
 
-            <xsl:if test="$layoutIndex = 1" >
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
 
@@ -381,7 +379,6 @@ Created By: Travis Berthelot
 
                 final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
 
-            </xsl:if>
             </xsl:if>
 
         </xsl:for-each>
@@ -490,7 +487,6 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
             </xsl:if>
-            <xsl:if test="$layoutIndex = 1" >
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
 
@@ -506,7 +502,6 @@ Created By: Travis Berthelot
 
                 final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
 
-            </xsl:if>
             </xsl:if>
 
         </xsl:for-each>
@@ -614,7 +609,6 @@ Created By: Travis Berthelot
                 //objectsGroupsGDGameLayer - END
                 
             </xsl:if>
-            <xsl:if test="$layoutIndex = 1" >
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
 
@@ -630,7 +624,6 @@ Created By: Travis Berthelot
 
                 final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
 
-            </xsl:if>
             </xsl:if>
 
         </xsl:for-each>

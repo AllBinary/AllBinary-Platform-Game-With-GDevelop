@@ -17,6 +17,7 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="textObjectStringActionProcess" >
+        <xsl:param name="layoutIndex" />
         
                         //TextObject::String - action - START
                         @Override
@@ -70,10 +71,24 @@ Created By: Travis Berthelot
                                 <xsl:if test="not(contains($thirdParam3, 'TimerElapsedTime(globals.'))" ><xsl:value-of select="$thirdParam3" /></xsl:if>
                             </xsl:variable>
 
-                            <xsl:variable name="thirdParam" >
+                            <!-- TWBTWB - temp hack - replace hardcoded TextEntry -->
+                            <xsl:variable name="thirdParam5" >
+                                <xsl:if test="contains($thirdParam4, 'TextEntry.')" >
                             <xsl:call-template name="string-replace-all" >
                                 <xsl:with-param name="text" >
                                     <xsl:value-of select="$thirdParam4" />
+                                </xsl:with-param>
+                                <xsl:with-param name="find" >TextEntry.</xsl:with-param>
+                                <xsl:with-param name="replacementText" >((GD0GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).</xsl:with-param>
+                            </xsl:call-template>
+                                </xsl:if>
+                                <xsl:if test="not(contains($thirdParam4, 'TextEntry.'))" ><xsl:value-of select="$thirdParam4" /></xsl:if>
+                            </xsl:variable>
+
+                            <xsl:variable name="thirdParam" >
+                            <xsl:call-template name="string-replace-all" >
+                                <xsl:with-param name="text" >
+                                    <xsl:value-of select="$thirdParam5" />
                                 </xsl:with-param>
                                 <xsl:with-param name="find" >]</xsl:with-param>
                                 <xsl:with-param name="replacementText" >)</xsl:with-param>

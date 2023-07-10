@@ -64,6 +64,7 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.game.canvas;
 
+                import javax.microedition.lcdui.Canvas;
                 import javax.microedition.lcdui.Graphics;
 
                 import org.json.me.JSONObject;
@@ -72,6 +73,9 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.commands.GameCommandsFactory;
                 import org.allbinary.game.GDGameCommandFactory;
+                import org.allbinary.game.input.GameInputProcessor;
+                import org.allbinary.game.input.InputFactory;
+                import org.allbinary.game.input.event.GameKeyEvent;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
@@ -85,6 +89,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
                 import org.allbinary.graphics.displayable.MyCanvas;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
+                import org.allbinary.layer.AllBinaryLayerManager;
                 import org.allbinary.logic.basic.string.CommonStrings;
                 import org.allbinary.logic.basic.string.StringMaker;
                 import org.allbinary.logic.basic.string.CommonSeps;
@@ -96,7 +101,7 @@ Created By: Travis Berthelot
                 import org.allbinary.math.NoDecimalTrigTable;
                 import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.ArrayUtil;
-
+                
                 //LayoutAction name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes extends SpecialAnimation
                 {

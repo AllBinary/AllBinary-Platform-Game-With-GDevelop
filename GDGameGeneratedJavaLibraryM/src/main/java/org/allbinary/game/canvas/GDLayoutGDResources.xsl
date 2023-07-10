@@ -64,6 +64,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
                 import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface;
                 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
+                import org.allbinary.animation.RotationAnimationFactory;
                 import org.allbinary.animation.image.GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.layer.GDGameLayerFactory;
@@ -126,6 +127,10 @@ Created By: Travis Berthelot
                             public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
                         </xsl:if>
                         <xsl:if test="$typeValue = 'TextObject::Text'" >
+                            <xsl:variable name="name" select="name" />
+                            public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
+                        </xsl:if>
+                        <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
                             <xsl:variable name="name" select="name" />
                             public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
                         </xsl:if>

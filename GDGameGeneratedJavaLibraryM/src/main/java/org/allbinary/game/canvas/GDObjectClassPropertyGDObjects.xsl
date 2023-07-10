@@ -89,7 +89,8 @@ Created By: Travis Berthelot
             </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
-
+                
+                //TextObject::Text - GDObject
                 public final class <xsl:value-of select="name" /> extends GDObject {
 
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
@@ -102,6 +103,36 @@ Created By: Travis Berthelot
 
                     public int Height(final Graphics graphics) {
                         return globals.<xsl:value-of select="name" />TextAnimationSize;
+                    }
+                };
+
+                public GDObject get<xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
+                    return new <xsl:value-of select="name" />(unknown, x, y, name);
+                }
+
+            </xsl:if>
+            <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
+                <xsl:variable name="stringValue" select="string" />
+
+                //TextEntryObject::TextEntry - GDObject
+                public final class <xsl:value-of select="name" /> extends GDObject {
+                    
+                    public final StringMaker stringMaker = new StringMaker();
+
+                    public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
+                        super(unknown, x, y, name);
+                    }
+
+                    public int Width(final Graphics graphics) {
+                        return 0;
+                    }
+
+                    public int Height(final Graphics graphics) {
+                        return 0;
+                    }
+                    
+                    public String String() {
+                        return stringMaker.toString();
                     }
                 };
 
