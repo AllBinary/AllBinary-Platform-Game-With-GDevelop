@@ -25,6 +25,9 @@ import javax.microedition.lcdui.CommandListener;
 import org.allbinary.animation.special.SpecialAnimation;
         
 import org.allbinary.game.init.GDGameStaticInitializerFactory;
+import org.allbinary.game.input.PlayerGameInput;
+import org.allbinary.game.input.event.DownKeyEventHandler;
+import org.allbinary.game.input.event.UpKeyEventHandler;
 import org.allbinary.game.configuration.GameSpeed;
 import org.allbinary.game.displayable.canvas.StartCanvas;
 import org.allbinary.game.identification.GroupFactory;
@@ -35,6 +38,7 @@ import org.allbinary.graphics.form.FormPaintable;
 import org.allbinary.graphics.paint.NullInitUpdatePaintable;
 import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.logic.basic.string.StringUtil;
+import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />
@@ -47,6 +51,10 @@ public class <GDLayout> extends StartCanvas
     private final int WAIT = ((GameSpeed.getInstance().getDelay() * 3) <xsl:text disable-output-escaping="yes" >&gt;&gt;</xsl:text> 1);
 
     private final GDGameInputProcessor gameInputProcessor = new GDGameInputProcessor();
+
+    private final DownKeyEventHandler downKeyEventHandler = DownKeyEventHandler.getInstance();
+    private final UpKeyEventHandler upKeyEventHandler = UpKeyEventHandler.getInstance();
+    private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
 
     public <GDLayout>(final CommandListener commandListener) throws Exception
     {
@@ -139,6 +147,24 @@ public class <GDLayout> extends StartCanvas
     {
         this.gameInputProcessor.process(null, this.paintedSpecialAnimationInterface);
         super.processGame();
+    }
+
+    public void handleRawKey(final int keyCode, final int deviceId, final boolean repeated) throws Exception {
+        final Integer keyCodeAsInteger = smallIntegerSingletonFactory.getInstance(keyCode);
+        this.upKeyEventHandler.fireEvent(keyCodeAsInteger);
+        this.upKeyEventHandler.getInstance(deviceId).fireEvent(keyCodeAsInteger);
+    }
+
+    public void addKeyInputListener(final PlayerGameInput playerGameInput) {
+        super.addKeyInputListener(playerGameInput);
+
+        this.downKeyEventHandler.getInstanceForPlayer(playerGameInput.getPlayerInputId()).addListenerSingleThreaded(playerGameInput);
+    }
+            
+    public void removeKeyInputListener(final PlayerGameInput playerGameInput) {
+        super.removeKeyInputListener(playerGameInput);
+
+        this.downKeyEventHandler.removeListener(playerGameInput);
     }
 
 //    protected int getNextRandom()

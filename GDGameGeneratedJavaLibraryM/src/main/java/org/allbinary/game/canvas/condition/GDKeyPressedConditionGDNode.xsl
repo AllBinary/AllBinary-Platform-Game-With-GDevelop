@@ -109,7 +109,61 @@ Created By: Travis Berthelot
                                 }
 
                             };
-    
+
+                            final int size = InputFactory.getInstance().MAX;
+                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+
+                            if(index != <xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>) {                            
+                            globals.unmappedInputProcessorArray[index] = new GameInputProcessor() {
+                                
+                                private boolean hasPressed = false;
+                                
+                                public void process(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
+                                {
+                            <xsl:for-each select="../actions" >
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //Action - //<xsl:value-of select="type/value" /> - call
+                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(gameKeyEvent);
+                            </xsl:for-each>
+                                }
+
+                                public void processReleased(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
+                                {
+                            <xsl:for-each select="../actions" >
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //Action - //<xsl:value-of select="type/value" /> - call
+                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased(gameKeyEvent);
+                            </xsl:for-each>
+                                }
+
+                                public void process(final AllBinaryLayerManager allbinaryLayerManager, final Integer keyAsInteger) throws Exception
+                                {
+                            <xsl:for-each select="../actions" >
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //Action - //<xsl:value-of select="type/value" /> - call
+                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(keyAsInteger);
+                            </xsl:for-each>
+                                }
+
+                                public void processReleased(final AllBinaryLayerManager allbinaryLayerManager, final Integer keyAsInteger) throws Exception
+                                {
+                            <xsl:for-each select="../actions" >
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //Action - //<xsl:value-of select="type/value" /> - call
+                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased(keyAsInteger);
+                            </xsl:for-each>
+                                }
+
+                            };
+
+                            }
+
+                            }
+        
                             //Make sure we only call this 1 time
                             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
                             return true;

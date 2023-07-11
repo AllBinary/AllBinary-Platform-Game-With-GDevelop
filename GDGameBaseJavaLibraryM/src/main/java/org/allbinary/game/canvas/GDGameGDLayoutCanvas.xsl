@@ -51,6 +51,9 @@ import org.allbinary.game.displayable.canvas.BaseMenuBehavior;
 import org.allbinary.game.displayable.canvas.GamePerformanceInitUpdatePaintable;
 import org.allbinary.game.displayable.canvas.StartIntermissionPaintable;
 import org.allbinary.game.identification.GroupFactory;
+import org.allbinary.game.input.PlayerGameInput;
+import org.allbinary.game.input.event.DownKeyEventHandler;
+import org.allbinary.game.input.event.UpKeyEventHandler;
 import org.allbinary.game.input.OptimizedGameInputLayerProcessorForCollidableLayer;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.game.layer.PlayerGameInputGameLayer;
@@ -70,6 +73,7 @@ import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.graphics.paint.InitUpdatePaintable;
 import org.allbinary.graphics.paint.Paintable;
 import org.allbinary.layer.event.LayerManagerEventHandler;
+import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.AllBinaryVibration;
 import org.allbinary.media.audio.AllBinaryMediaManager;
 import org.allbinary.media.audio.PlayerQueue;
@@ -96,6 +100,10 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
     
     private final GDGameInputProcessor gameInputProcessor = new GDGameInputProcessor();
 
+    private final DownKeyEventHandler downKeyEventHandler = DownKeyEventHandler.getInstance();
+    private final UpKeyEventHandler upKeyEventHandler = UpKeyEventHandler.getInstance();
+    private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+    
     public <GDLayout>(final CommandListener commandListener,
             final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
     {
@@ -593,6 +601,26 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         this.specialAnimation.process();
         
         gdNodeStatsFactory.log(stringBuilder, this);
+    }
+
+    public void handleRawKey(final int keyCode, final int deviceId, final boolean repeated) throws Exception {
+        final Integer keyCodeAsInteger = smallIntegerSingletonFactory.getInstance(keyCode);
+        this.upKeyEventHandler.fireEvent(keyCodeAsInteger);
+        this.upKeyEventHandler.getInstance(deviceId).fireEvent(keyCodeAsInteger);
+    }
+
+    public void addKeyInputListener(final PlayerGameInput playerGameInput) {
+        super.addKeyInputListener(playerGameInput);
+
+        this.downKeyEventHandler.getInstanceForPlayer(playerGameInput.getPlayerInputId()).addListenerSingleThreaded(playerGameInput);
+        this.upKeyEventHandler.getInstanceForPlayer(playerGameInput.getPlayerInputId()).addListenerSingleThreaded(playerGameInput);
+    }
+            
+    public void removeKeyInputListener(final PlayerGameInput playerGameInput) {
+        super.removeKeyInputListener(playerGameInput);
+
+        this.downKeyEventHandler.removeListener(playerGameInput);
+        this.upKeyEventHandler.removeListener(playerGameInput);
     }
 
     //Special end case for GDevelop

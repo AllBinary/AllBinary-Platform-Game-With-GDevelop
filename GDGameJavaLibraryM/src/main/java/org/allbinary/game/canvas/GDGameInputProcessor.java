@@ -16,6 +16,7 @@ package org.allbinary.game.canvas;
 import org.allbinary.animation.Animation;
 import org.allbinary.animation.special.SpecialAnimation;
 import org.allbinary.game.input.PlayerGameInput;
+import org.allbinary.game.input.PlayerInput;
 import org.allbinary.game.input.event.GameKeyEvent;
 import org.allbinary.layer.AllBinaryLayerManager;
 import org.allbinary.logic.basic.string.CommonStrings;
@@ -34,7 +35,9 @@ public class GDGameInputProcessor {
     
     private final BasicArrayList gameKeyEventList = new BasicArrayList();
     private final BasicArrayList removalGameKeyEventList = new BasicArrayList();
-    private final PlayerGameInput playerGameInput = new PlayerGameInput(gameKeyEventList, removalGameKeyEventList, 0);
+    private final BasicArrayList keyEventList = new BasicArrayList();
+    private final BasicArrayList removalKeyEventList = new BasicArrayList();
+    private final PlayerGameInput playerGameInput = new PlayerInput(keyEventList, removalKeyEventList, gameKeyEventList, removalGameKeyEventList, 0);
 
     public void process(final AllBinaryLayerManager allbinaryLayerManager, final Animation specialAnimation) throws Exception {
 
@@ -76,6 +79,23 @@ public class GDGameInputProcessor {
             gameKeyEvent = (GameKeyEvent) removalGameKeyEventList.get(index);
             //LogUtil.put(LogFactory.getInstance("release key: " + gameKeyEvent.getKey(), this, "processInput"));
             globals.inputProcessorArray[gameKeyEvent.getKey()].processReleased(allbinaryLayerManager, gameKeyEvent);
+        }
+
+        Integer keyAsInteger;
+        final int size3 = keyEventList.size();
+        //LogUtil.put(LogFactory.getInstance("size: " + size, this, "processInput"));
+        for(int index = 0; index < size3; index++) {
+            keyAsInteger = (Integer) keyEventList.get(index);
+            //LogUtil.put(LogFactory.getInstance("press key: " + gameKeyEvent.getKey(), this, "processInput"));
+            globals.unmappedInputProcessorArray[keyAsInteger.intValue()].process(allbinaryLayerManager, keyAsInteger);
+        }
+
+        final int size4 = removalKeyEventList.size();
+        //LogUtil.put(LogFactory.getInstance("size: " + size, this, "processInput"));
+        for(int index = 0; index < size4; index++) {
+            keyAsInteger = (Integer) removalKeyEventList.get(index);
+            //LogUtil.put(LogFactory.getInstance("release key: " + gameKeyEvent.getKey(), this, "processInput"));
+            globals.unmappedInputProcessorArray[keyAsInteger.intValue()].processReleased(allbinaryLayerManager, keyAsInteger);
         }
         
         this.processInput(allbinaryLayerManager);

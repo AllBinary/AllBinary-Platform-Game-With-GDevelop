@@ -19,40 +19,25 @@ Created By: Travis Berthelot
     <xsl:template name="textEntryObjectAsStringActionProcess" >
                         //TextEntryObject::String - action
                         @Override
-                        public boolean process() throws Exception {
+                        public boolean process(final Integer keyAsInteger) throws Exception {
                             super.processStats();
-                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             //<xsl:value-of select="parameters[2]" />
                             
-                            final int size = InputFactory.getInstance().MAX;
-                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            
-                            if(index != Canvas.KEY_NUM1) {
+                            LogUtil.put(LogFactory.getInstance("TWB append: " + keyAsInteger, this, commonStrings.PROCESS));
+                            ((GD0GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).stringMaker.append(keyAsInteger);
 
-                            globals.inputProcessorArray[index] = new GameInputProcessor() {
-                                
-                                private boolean hasPressed = false;
-                                
-                                public void process(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
-                                {
-
-                                }
-
-                                public void processReleased(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
-                                {
-
-                                }
-
-                            };
-
-                            }
-
-                            }
-
-                            //Make sure we only call this 1 time
-                            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
                             return true;
                         }
+
+                        @Override
+                        public boolean processReleased(final Integer keyAsInteger) throws Exception {
+                            super.processStats();
+                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
+                            return true;
+                        }
+
     </xsl:template>
 
 </xsl:stylesheet>

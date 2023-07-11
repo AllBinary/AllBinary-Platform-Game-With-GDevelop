@@ -408,6 +408,7 @@ Created By: Travis Berthelot
                     //eventsKeyFromTextConditions - END
 
                     GameInputProcessorUtil.init(globals.inputProcessorArray);
+                    GameInputProcessorUtil.init(globals.unmappedInputProcessorArray);
 
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));

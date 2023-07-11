@@ -14,12 +14,12 @@
 package org.allbinary.game.layout;
 
 import javax.microedition.lcdui.Graphics;
+import org.allbinary.game.input.event.GameKeyEvent;
 
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
 import org.allbinary.thread.NullRunnable;
-import org.allbinary.util.BasicArrayList;
 
 /**
  *
@@ -71,6 +71,19 @@ public class GDNode
 
     public void processReleasedStats() {
         this.nodeStatsFactory.push(4, name);
+    }
+
+    public boolean process(final GameKeyEvent gameKeyEvent) throws Exception {
+        return false;
+    }
+    public boolean processReleased(final GameKeyEvent gameKeyEvent) throws Exception {
+        return false;
+    }
+    public boolean process(final Integer keyAsInteger) throws Exception {
+        return false;
+    }
+    public boolean processReleased(final Integer keyAsInteger) throws Exception {
+        return false;
     }
     
     public void process(final MotionGestureEvent motionGestureEvent) throws Exception {

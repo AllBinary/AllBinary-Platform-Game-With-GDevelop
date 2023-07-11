@@ -23,5 +23,6 @@ import org.allbinary.game.input.InputFactory;
 public class GDGlobals {
     
     public final GameInputProcessor[] inputProcessorArray = new GameInputProcessor[InputFactory.getInstance().MAX];
+    public final GameInputProcessor[] unmappedInputProcessorArray = new GameInputProcessor[InputFactory.getInstance().MAX];
     
 }
