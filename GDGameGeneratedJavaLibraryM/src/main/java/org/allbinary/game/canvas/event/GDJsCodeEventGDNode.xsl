@@ -17,15 +17,22 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:template name="javascriptCodeEventGDNode" >
+        <xsl:param name="totalRecursions" />
+
                             //BuiltinCommonInstructions::JsCode
-                            globals.<xsl:value-of select="name" />GDNode = globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                            
+                                private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />";
+                                <xsl:text>&#10;</xsl:text>
                             
                                 @Override
                                 public boolean process() throws Exception {
                             
                                     //I don't have plans to implement this event type anytime soon for non HTML5 builds.
-                                    LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, new Exception()));
+                                    LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, new Exception()));
                                     
+                                    /*<xsl:value-of select="inlineCode" />*/
+
                                     return true;
                                 }
 

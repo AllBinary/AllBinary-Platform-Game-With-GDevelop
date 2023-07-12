@@ -23,6 +23,7 @@ Created By: Travis Berthelot
 
     <xsl:import href="./action/GDChangeAnimationActionProcess.xsl" />
     <xsl:import href="./action/GDModVarObjetActionProcess.xsl" />
+    <xsl:import href="./action/GDModVarSceneTxtActionProcess.xsl" />
     
     <xsl:import href="./action/GDHideLayerActionProcess.xsl" />
     
@@ -179,6 +180,11 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
+
+                </xsl:if>
+                <xsl:if test="$typeValue = 'ModVarSceneTxt'" >
+
+                    <xsl:call-template name="modVarSceneTxtActionProcess" />
 
                 </xsl:if>
                 <xsl:if test="$typeValue = 'HideLayer'" >

@@ -29,6 +29,14 @@ Created By: Travis Berthelot
         
                         //TextEntryObject::String - action
                         @Override
+                        public boolean process() throws Exception {
+                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            ((GD0GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).stringMaker.delete(0, ((GD0GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).stringMaker.length());
+
+                            return true;
+                        }
+                        
+                        @Override
                         public boolean process(final Integer keyAsInteger) throws Exception {
                             super.processStats();
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));

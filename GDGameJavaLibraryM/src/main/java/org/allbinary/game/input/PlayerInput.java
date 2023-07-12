@@ -15,9 +15,12 @@ package org.allbinary.game.input;
 
 import org.allbinary.game.input.event.DownKeyEventListenerInterface;
 import org.allbinary.game.input.event.UpKeyEventListenerInterface;
+import org.allbinary.logic.basic.string.CommonLabels;
 import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.communication.log.PreLogUtil;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -42,14 +45,22 @@ public class PlayerInput extends PlayerGameInput
 
     @Override
     public synchronized void onDownKeyEvent(final Integer keyInteger) {
-        //PreLogUtil.put(new StringMaker().append(CommonLabels.getInstance().START_LABEL).append(keyInteger.toString()).toString(), this, "onDownGameKeyEvent");
-        this.addKey(keyInteger);
+        //PreLogUtil.put(new StringMaker().append(CommonLabels.getInstance().START_LABEL).append(keyInteger.toString()).toString(), this, "onDownKeyEvent");
+        if(keyInteger.intValue() > 0) {
+            this.addKey(keyInteger);
+        } else {
+            PreLogUtil.put(new StringMaker().append("Ignoring: ").append(keyInteger.toString()).toString(), this, "onDownKeyEvent");
+        }
     }
 
     @Override
     public synchronized void onUpKeyEvent(final Integer keyInteger) {
-        //PreLogUtil.put(new StringMaker().append(CommonLabels.getInstance().START_LABEL).append(keyInteger.toString()).toString(), this, "onUpGameKeyEvent");
-        this.addKeyForRemoval(keyInteger);
+        //PreLogUtil.put(new StringMaker().append(CommonLabels.getInstance().START_LABEL).append(keyInteger.toString()).toString(), this, "onUpKeyEvent");
+        if(keyInteger.intValue() > 0) {
+            this.addKeyForRemoval(keyInteger);
+        } else {
+            PreLogUtil.put(new StringMaker().append("Ignoring: ").append(keyInteger.toString()).toString(), this, "onUpKeyEvent");
+        }
     }
 
     public synchronized void addKey(Integer keyInteger) {

@@ -91,6 +91,11 @@ Created By: Travis Berthelot
                     //public final BasicArrayList <xsl:value-of select="$name" />GDObjectList = new BasicArrayList();
                     </xsl:if>
                 </xsl:if>
+                <xsl:if test="$typeValue = 'ModVarSceneTxt'" >
+                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    public final String <xsl:value-of select="$name" /> = null;
+                </xsl:if>
+                
                 <xsl:text>&#10;</xsl:text>
             </xsl:for-each>
 
