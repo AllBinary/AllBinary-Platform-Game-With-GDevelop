@@ -40,8 +40,14 @@ public class GDNode
     
     public GDNode(final int name) {
         this.name = name;
+        
+        this.init();
     }
     
+    public void init() {
+        
+    }
+
     public void clear() {
         for(int index = 0; index < 5; index++) {
             gameLayerArray[index] = null;

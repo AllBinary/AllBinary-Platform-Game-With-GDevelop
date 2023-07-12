@@ -17,6 +17,16 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="textEntryObjectAsStringActionProcess" >
+                        private boolean[] hasReleased;
+
+                        public void init() {
+                            hasReleased = new boolean[InputFactory.getInstance().MAX];
+                            final int size = hasReleased.length;
+                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                                hasReleased[index] = true;
+                            }
+                        }
+        
                         //TextEntryObject::String - action
                         @Override
                         public boolean process(final Integer keyAsInteger) throws Exception {
@@ -24,8 +34,14 @@ Created By: Travis Berthelot
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             //<xsl:value-of select="parameters[2]" />
                             
-                            LogUtil.put(LogFactory.getInstance("TWB append: " + keyAsInteger, this, commonStrings.PROCESS));
-                            ((GD0GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).stringMaker.append(keyAsInteger);
+                            final int key = keyAsInteger.intValue();
+                            if(hasReleased[key]) {
+                                //LogUtil.put(LogFactory.getInstance("append: " + keyAsInteger, this, commonStrings.PROCESS));
+                                hasReleased[key] = false;
+                                ((GD0GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).stringMaker.append((char) key);
+                            } else {
+                                //LogUtil.put(LogFactory.getInstance("not append: " + keyAsInteger, this, commonStrings.PROCESS));
+                            }
 
                             return true;
                         }
@@ -33,7 +49,10 @@ Created By: Travis Berthelot
                         @Override
                         public boolean processReleased(final Integer keyAsInteger) throws Exception {
                             super.processStats();
-                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            
+                            final int key = keyAsInteger.intValue();
+                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + key, this, commonStrings.PROCESS));
+                            hasReleased[key] = true;
 
                             return true;
                         }
