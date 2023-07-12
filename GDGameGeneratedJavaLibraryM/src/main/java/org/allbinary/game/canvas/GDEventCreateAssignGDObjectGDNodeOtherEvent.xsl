@@ -47,6 +47,13 @@ Created By: Travis Berthelot
             //Do not create GDNode for link - The target GDNode is called instead.
             </xsl:if>
             
+            <xsl:if test="type = 'BuiltinCommonInstructions::JsCode'" >
+                
+                <xsl:call-template name="javascriptCodeEventGDNode" >
+                    <xsl:param name="totalRecursions" ><xsl:value-of select="$totalRecursions" /></xsl:param>
+                </xsl:call-template>
+
+            </xsl:if>
             <xsl:if test="type = 'BuiltinCommonInstructions::Standard' or 
                           type = 'BuiltinCommonInstructions::ForEachChildVariable' or 
                           type = 'BuiltinCommonInstructions::ForEach' or 
@@ -321,11 +328,6 @@ Created By: Travis Berthelot
                 </xsl:if>
 
             };
-            </xsl:if>
-            <xsl:if test="type = 'BuiltinCommonInstructions::JsCode'" >
-                
-                <xsl:call-template name="javascriptCodeEventGDNode" ></xsl:call-template>
-
             </xsl:if>
             <!-- other events - END -->
 
