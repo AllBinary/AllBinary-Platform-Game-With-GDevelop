@@ -48,7 +48,19 @@ Created By: Travis Berthelot
                                     
                                     if(speech != null) {
                                         //textToSpeech.process(voiceName, speech);
-                                        textToSpeech.process(speech);
+                                    
+                                        final Runnable runnable = new Runnable() {
+                                            public void run() {
+                                                try {
+                                                    textToSpeech.process(speech);
+                                                } catch(Exception e) {
+                                                    LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                                                }
+                                            }
+                                        };
+                                        
+                                        SecondaryThreadPool.getInstance().runTask(runnable);
+
                                     }
                                 </xsl:if>
 
