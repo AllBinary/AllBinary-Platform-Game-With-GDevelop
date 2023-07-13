@@ -20,10 +20,10 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="createdObjectsAsString" />
                     <xsl:variable name="secondParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    //ModVarSceneTxt - //<xsl:value-of select="$secondParam" />
+                    //ModVarSceneTxt - //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                     @Override
-                    public boolean process(final int index) throws Exception {
-                        super.processStats(index);
+                    public boolean process() throws Exception {
+                        super.processStats();
 
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                         

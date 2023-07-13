@@ -26,9 +26,13 @@ Created By: Travis Berthelot
                                 <xsl:text>&#10;</xsl:text>
                                                         
                                 <xsl:if test="contains(inlineCode, 'SpeechSynthesisUtterance')" >
-                                    
+
                                 private final TextToSpeech textToSpeech = new TextToSpeech();
                                 <xsl:text>&#10;</xsl:text>
+
+                                public void init() {
+                                    textToSpeech.init();
+                                }
 
                                 @Override
                                 public boolean process() throws Exception {
