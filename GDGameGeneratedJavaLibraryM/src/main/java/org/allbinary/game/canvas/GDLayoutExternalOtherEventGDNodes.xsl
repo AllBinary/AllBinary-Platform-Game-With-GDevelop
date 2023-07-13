@@ -80,9 +80,12 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.basic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
+
+                import org.allbinary.media.voice.TextToSpeech;
+
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.ArrayUtil;
-
+                
                 //LayoutExternalOtherEvent name=<xsl:value-of select="$layoutName" /> - GDNode processM calls in this class can load resources
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes extends SpecialAnimation
                 {
