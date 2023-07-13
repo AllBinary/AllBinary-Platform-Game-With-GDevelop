@@ -212,7 +212,15 @@ Created By: Travis Berthelot
                         final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
                         return gdGlobalsFactory.point.getY();
                     }
-                                        
+
+                    public int LastTouchId() {
+                        return 0;
+                    }
+
+                    public int LastEndedTouchId() {
+                        return 0;
+                    }
+
                     public String ToString(final int value) {
                         //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
                         return Integer.toString(value);

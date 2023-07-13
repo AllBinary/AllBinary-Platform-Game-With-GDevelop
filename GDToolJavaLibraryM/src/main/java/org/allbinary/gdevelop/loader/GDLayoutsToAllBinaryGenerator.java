@@ -69,16 +69,18 @@ public class GDLayoutsToAllBinaryGenerator
                 index = layoutGameXmlAsString.indexOf(VARIABLE, index + VARIABLE.length());
                     //skip digits
                 if(Character.isDigit(layoutGameXmlAsString.charAt(index + VARIABLE.length()))) {
-                    //skip max_scale
-                } else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'm' && layoutGameXmlAsString.charAt(index + VARIABLE.length() + 1) == 'a') {
+                    //skip GObject
+                } else if(index >= 1 && layoutGameXmlAsString.charAt(index - 1) == '.') {
                     //skip graphics
                 } else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'g') {
+                   //skip max_scale
+                //} else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'm' && layoutGameXmlAsString.charAt(index + VARIABLE.length() + 1) == 'a') {
                     //skip angle
-                } else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'a') {
+                //} else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'a') {
                     //skip movement_angle
-                } else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'm' && layoutGameXmlAsString.charAt(index + VARIABLE.length() + 1) == 'o') {
+                //} else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'm' && layoutGameXmlAsString.charAt(index + VARIABLE.length() + 1) == 'o') {
                     //opacity
-                } else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'o') {
+                //} else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'o') {
                 } else {
                     stringBuilder.delete(0, stringBuilder.length());
                     layoutGameXmlAsString = stringBuilder.append(layoutGameXmlAsString.substring(0, index + VARIABLE.length())).append(GLOBALS).append(layoutGameXmlAsString.substring(index + VARIABLE.length())).toString();

@@ -70,7 +70,7 @@ Created By: Travis Berthelot
                                 public boolean process() throws Exception {
 
                                     //I don't have plans to implement this event type anytime soon for especially non HTML5 builds.
-                                    LogUtil.put(LogFactory.getInstance(commonStrings.NOT_IMPLEMENTED, this, EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, new Exception()));
+                                    LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + commonStrings.NOT_IMPLEMENTED, this, commonStrings.PROCESS, new Exception()));
                                 </xsl:if>
 
                                     /*<xsl:value-of select="inlineCode" />*/

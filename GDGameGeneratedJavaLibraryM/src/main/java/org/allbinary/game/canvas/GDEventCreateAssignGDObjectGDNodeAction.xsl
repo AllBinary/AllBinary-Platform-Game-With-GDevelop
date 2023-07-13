@@ -346,6 +346,9 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'MettreXY'" >
 
                     <xsl:call-template name="mettreXYActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>

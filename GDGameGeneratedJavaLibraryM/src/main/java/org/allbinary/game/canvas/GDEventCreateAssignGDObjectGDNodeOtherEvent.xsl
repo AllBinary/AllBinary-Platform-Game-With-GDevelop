@@ -46,6 +46,9 @@ Created By: Travis Berthelot
             <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
             //Do not create GDNode for link - The target GDNode is called instead.
             </xsl:if>
+            <xsl:if test="type = 'BuiltinAsync::Async'" >
+            //NOT_IMPLEMENTED
+            </xsl:if>
             
             <xsl:if test="type = 'BuiltinCommonInstructions::JsCode'" >
                 
@@ -57,6 +60,7 @@ Created By: Travis Berthelot
             <xsl:if test="type = 'BuiltinCommonInstructions::Standard' or 
                           type = 'BuiltinCommonInstructions::ForEachChildVariable' or 
                           type = 'BuiltinCommonInstructions::ForEach' or 
+                          type = 'BuiltinCommonInstructions::While' or 
                           type = 'BuiltinCommonInstructions::Group' or 
                           type = 'BuiltinCommonInstructions::Repeat'" >
             //Event - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />

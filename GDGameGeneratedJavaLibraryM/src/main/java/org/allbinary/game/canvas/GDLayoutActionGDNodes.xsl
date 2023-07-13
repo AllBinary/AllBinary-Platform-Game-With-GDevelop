@@ -284,7 +284,23 @@ Created By: Travis Berthelot
                     public String VariableString(final Object object) {
                         return object.toString();
                     }
-                    
+
+                    public int LastTouchId() {
+                        return 0;
+                    }
+
+                    public int LastEndedTouchId() {
+                        return 0;
+                    }
+
+                    public int TouchX(final int touchId, final String name, final int unknown) {
+                        return 0;
+                    }
+
+                    public int TouchY(final int touchId, final String name, final int unknown) {
+                        return 0;
+                    }
+
                     public String ToString(final int value) {
                         //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
                         return Integer.toString(value);

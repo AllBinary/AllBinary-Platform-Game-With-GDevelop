@@ -36,6 +36,8 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDMouseButtonReleasedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDDepartSceneConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSceneVariableAsBooleanConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDPopStartedTouchConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDPopEndedTouchConditionGDNode.xsl" />
 
     <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition" >
         <xsl:param name="caller" />
@@ -119,83 +121,280 @@ Created By: Travis Berthelot
 
             <!-- conditions - START -->
             <xsl:variable name="alreadyUsedCondition" ><xsl:for-each select="conditions" ><xsl:if test="(type/value = 'SourisSurObjet' or type/value = 'CollisionNP' or type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased')" >found</xsl:if></xsl:for-each></xsl:variable>
+            
+            <xsl:for-each select="whileConditions" >
+                <xsl:if test="type/value = 'PopEndedTouch'" >
+                    
+                    <xsl:call-template name="popEndedTouchConditionGDNode" />
+
+                </xsl:if>
+            </xsl:for-each>
+            
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                 <xsl:variable name="conditionNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
-                <xsl:if test="$typeValue = 'CollisionNP'" >
-                    //CollisionNP - condition is processed by the AllBinary collision processor
-                </xsl:if>                
-                <xsl:if test="$typeValue = 'VarObjet'" >
-                    //VarObjet - condition is processed from eventsProcess
-                </xsl:if>                
-                <xsl:if test="$typeValue = 'NbObjet'" >
-                    //NbObjet - some conditions are processed from eventsProcess?
+                                
+                <xsl:if test="$typeValue = 'Inventory::Count'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
-                <xsl:if test="$typeValue = 'SourisSurObjet'" >
-                    //SourisSurObjet - Handled by AllBinary Event Listeners
-                </xsl:if>                
-                <xsl:if test="$typeValue = 'MouseButtonReleased'" >
-                    //MouseButtonReleased - Handled by AllBinary Event Listeners
-                </xsl:if>
-                <xsl:if test="$typeValue = 'SourisBouton'" >
-                    //SourisBouton/MouseButtonPressed - Handled by AllBinary Event Listeners
-                </xsl:if>
-<!--    
-                        "value": "BuiltinCommonInstructions::Once"
-                        "value": "BuiltinCommonInstructions::Or"
-                        "value": "BuiltinCommonInstructions::And"
-                        "value": "BuiltinCommonInstructions::While"
--->
-                <xsl:if test="$typeValue = 'BuiltinCommonInstructions::Once' and not(contains($alreadyUsedCondition, 'found'))" >
+                <xsl:if test="$typeValue = 'Inventory::Has'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'Inventory::IsFull'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'Inventory::IsEquipped'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+
+                <xsl:if test="$typeValue = 'LinkedObjects::PickObjectsLinkedTo'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+
+                <xsl:if test="$typeValue = 'SystemInfo::IsMobile'" >
                     
-                    <xsl:call-template name="onceConditionGDNode" />
-
-                    <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                    <xsl:for-each select=".." >
-                    <xsl:call-template name="addGDNodeToOnceList" >
-                        <xsl:with-param name="iteration" >0</xsl:with-param>
-                        <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
-                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
-                    </xsl:call-template>
-                    </xsl:for-each>
+                    <xsl:call-template name="systemInfoIsMobileConditionGDNode" />
 
                 </xsl:if>
-                <xsl:if test="$typeValue = 'DepartScene'" >
-                    
-                    <xsl:if test="$hasParentOnceCondition = 'true'" >
-                    //DepartScene - condition - eventsOnceConditionProcessActions    
-                    </xsl:if>
-                    <xsl:if test="$hasParentOnceCondition != 'true'" >
-                        <xsl:call-template name="departSceneConditionGDNode" />
-                    </xsl:if>
+                <xsl:if test="$typeValue = 'SystemInfo::IsNativeMobileApp'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'SystemInfo::IsNativeDesktopApp'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'SystemInfo::IsWebGLSupported'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'SystemInfo::IsPreview'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'SystemInfo::HasTouchScreen'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
 
-                </xsl:if>                
+                <xsl:if test="$typeValue = 'GetArgumentAsBoolean'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'CompareArgumentAsNumber'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'CompareArgumentAsString'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+
+                <xsl:if test="$typeValue = 'MusicPlaying'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'MusicPaused'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'MusicStopped'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
                 <xsl:if test="$typeValue = 'SoundPlaying'" >
                     
                     <xsl:call-template name="soundPlayingConditionGDNode" />
 
                 </xsl:if>
-                <xsl:if test="$typeValue = 'SourisBouton'" >
+                <xsl:if test="$typeValue = 'SoundPaused'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'SoundStopped'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                                        
+                <xsl:if test="$typeValue = 'GlobalVolume'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'SoundCanalVolume'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'MusicCanalVolume'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'SoundChannelPlayingOffset'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'MusicChannelPlayingOffset'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'SoundChannelPitch'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'MusicChannelPitch'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+
+                <xsl:if test="$typeValue = 'Width'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Height'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'AnimationName'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Sprite'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'AnimStopped'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'AnimationEnded'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'AnimationEnded2'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ScaleWidth'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ScaleHeight'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Opacity'" >
                     
-                    <xsl:call-template name="sourisBoutonConditionGDNode" >
-                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
-                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
-                    </xsl:call-template>
-                    
+                    <xsl:call-template name="opacityConditionGDNode" />
+
                 </xsl:if>
-                <xsl:if test="$typeValue = 'MouseButtonReleased'" >
+
+                <xsl:if test="$typeValue = 'FlippedX'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'FlippedY'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
                     
-                    <xsl:call-template name="mouseButtonReleasedConditionGDNode" />
-                    
+                <xsl:if test="$typeValue = 'PosX'" >
+
+                    <xsl:call-template name="posXConditionGDNode" />
+
                 </xsl:if>
+                <xsl:if test="$typeValue = 'PosY'" >
+                    
+                    <xsl:call-template name="posYConditionGDNode" />
+
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'ObjectVariableChildExists'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Angle'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Plan'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Layer'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Visible'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Invisible'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Arret'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Vitesse'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'AngleOfDisplacement'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                    
+                    <xsl:if test="$typeValue = 'NbObjet'" >
+                        //NbObjet - some are processed from eventsProcess
+                        <xsl:call-template name="nbObjetConditionGDNode" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="layoutIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="caller" >
+                                <xsl:value-of select="$caller" />
+                            </xsl:with-param>
+                            <xsl:with-param name="conditionNodeIndex" >
+                                <xsl:value-of select="$conditionNodeIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="thisNodeIndex" >
+                                <xsl:value-of select="$thisNodeIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="objectsAsString" >
+                                <xsl:value-of select="$objectsAsString" />
+                            </xsl:with-param>
+                            <xsl:with-param name="createdObjectsAsString" >
+                                <xsl:value-of select="$createdObjectsAsString" />
+                            </xsl:with-param>
+                            <xsl:with-param name="parametersAsString" >
+                                <xsl:value-of select="$parametersAsString" />
+                            </xsl:with-param>
+                        
+                        </xsl:call-template>
+
+                    </xsl:if>
+
+                    <xsl:if test="$typeValue = 'SceneInstancesCount'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'PickedInstancesCount'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'CollisionNP'" >
+                        //CollisionNP - condition is processed by the AllBinary collision processor
+                    </xsl:if>                
+                    <xsl:if test="$typeValue = 'Raycast'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'RaycastToPosition'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'Distance'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'SeDirige'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'EstTourne'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                        
+                <xsl:if test="$typeValue = 'VarObjetTxt'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ObjectVariableAsBoolean'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'VarObjetDef'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'BehaviorActivated'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'CollisionPoint'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                        
+                    <xsl:if test="$typeValue = 'SourisSurObjet'" >
+                        //SourisSurObjet - Some are Handled by AllBinary Event Listeners?
+                        <xsl:call-template name="sourisSurObjetConditionGDNode" >
+                        </xsl:call-template>
+                    
+                    </xsl:if>
+                
+                    <xsl:if test="$typeValue = 'AjoutObjConcern'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'AjoutHasard'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'PickNearest'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+
+                    <xsl:if test="$typeValue = 'CameraX'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'CameraY'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'CameraCenterX'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'CameraCenterY'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'CameraWidth'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'CameraHeight'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'CameraBorderLeft'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'CameraBorderRight'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'CameraBorderTop'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'CameraBorderBottom'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>                        
                 <xsl:if test="$typeValue = 'LayerVisible'" >
                     
                     <xsl:call-template name="layerVisibleConditionGDNode" />
                     
+                </xsl:if>                
+                    <xsl:if test="$typeValue = 'CameraAngle'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'LayerEffectEnabled'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'LayerTimeScale'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'LayerDefaultZOrder'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+
+                    <xsl:if test="$typeValue = 'Toujours'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'BuiltinCommonInstructions::Always'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    //xsl:if test="$typeValue = 'Egal'"
+                    //xsl:if test="$typeValue = 'StrEqual'" 
+                    
+                    <xsl:if test="$typeValue = 'BuiltinCommonInstructions::CompareNumbers'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+  
+                    <xsl:if test="$typeValue = 'BuiltinCommonInstructions::CompareStrings'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+      
+                    <xsl:if test="$typeValue = 'BuiltinCommonInstructions::Or'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'BuiltinCommonInstructions::And'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'BuiltinCommonInstructions::Not'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'BuiltinCommonInstructions::Once' and not(contains($alreadyUsedCondition, 'found'))" >
+                    
+                        <xsl:call-template name="onceConditionGDNode" />
+
+                        <xsl:variable name="nodeId" >
+                            <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />
+                        </xsl:variable>
+                        <xsl:for-each select=".." >
+                            <xsl:call-template name="addGDNodeToOnceList" >
+                                <xsl:with-param name="iteration" >0</xsl:with-param>
+                                <xsl:with-param name="nodeId" >
+                                    <xsl:value-of select="$nodeId" />
+                                </xsl:with-param>
+                                <xsl:with-param name="objectsAsString" >
+                                    <xsl:value-of select="$objectsAsString" />
+                                </xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+
+                    </xsl:if>
+
+                <xsl:if test="$typeValue = 'GroupExists'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+
+                <xsl:if test="$typeValue = 'KeyPressed'" >
+                    
+                    <xsl:call-template name="keyPressedConditionGDNode" />
+
                 </xsl:if>
+                    <xsl:if test="$typeValue = 'KeyReleased'" >
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    </xsl:if>
                 <xsl:if test="$typeValue = 'KeyFromTextPressed'" >
                     
                     <xsl:call-template name="keyFromTextPressedConditionGDNode" />
@@ -206,17 +405,142 @@ Created By: Travis Berthelot
                     <xsl:call-template name="keyFromTextReleasedConditionGDNode" />
 
                 </xsl:if>
-                <xsl:if test="$typeValue = 'KeyPressed'" >
-                    
-                    <xsl:call-template name="keyPressedConditionGDNode" />
+                    <xsl:if test="$typeValue = 'AnyKeyPressed'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'AnyKeyReleased'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'SystemInfo::IsMobile'" >
+                    <xsl:if test="$typeValue = 'CursorX'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'CursorY'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'MouseOnlyOnlyCursorX'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'MouseOnlyCursorY'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'MouseX'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'MouseY'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
                     
-                    <xsl:call-template name="systemInfoIsMobileConditionGDNode" />
-
-                </xsl:if>
+                    <xsl:if test="$typeValue = 'IsMouseInsideCanvas'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'SourisX'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'SourisY'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'MouseButtonPressed'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'SourisBouton'" >
+                        //SourisBouton/MouseButtonPressed - Some Handled by AllBinary Event Listeners?
+                        <xsl:call-template name="sourisBoutonConditionGDNode" >
+                            <xsl:with-param name="caller" >
+                                <xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
+                            <xsl:with-param name="objectsAsString" >
+                                <xsl:value-of select="$objectsAsString" />
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    
+                    </xsl:if>
                 
+                    <xsl:if test="$typeValue = 'MouseButtonReleased'" >
+                        //MouseButtonReleased - Some Handled by AllBinary Event Listeners?
+                        <xsl:call-template name="mouseButtonReleasedConditionGDNode" />
+                    
+                    </xsl:if>
+                
+                <xsl:if test="$typeValue = 'MouseButtonFromTextPressed'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'MouseButtonFromTextReleased'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'IsMouseWheelScrollingUp'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'IsMouseWheelScrollingDown'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>                
+                <xsl:if test="$typeValue = 'PopStartedTouch'" >
+                    
+                    <xsl:call-template name="popStartedTouchConditionGDNode" />
+
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'PopEndedTouch'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'TouchX'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'TouchY'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'HasAnyTouchStarted'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'HasAnyTouchOrMouseStarted'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'HasTouchEnded'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'Dragged'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Dropped'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+
+                <xsl:if test="$typeValue = 'PickObjectsLinkedTo'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+
+                <xsl:if test="$typeValue = 'EmitterAngle'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'EmitterAngleA'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'EmitterAngleB'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ConeSprayAngle'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ZoneRadius'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ParticleGravityAngle'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ParticleGravityLength'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+
+                <xsl:if test="$typeValue = 'ParticleRed1'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ParticleRed2'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ParticleBlue1'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ParticleBlue2'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ParticleGreen1'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ParticleGreen2'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ParticleSize1'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ParticleSize2'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ParticleAlpha1'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ParticleAlpha2'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'NoMoreParticles'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+
+                <xsl:if test="$typeValue = 'RendererParam1'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'RendererParam2'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Tank'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Flow'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Texture'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+  
+                <xsl:if test="$typeValue = 'PathFound'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'DestinationReached'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'CellWidth'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'CellHeight'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'AngleOffset'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ExtraBorder'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'DiagonalsAllowed'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ObjectRotated'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Cost'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'IsImpassable'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+
+                <xsl:if test="$typeValue = 'IsDynamic'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'IsFixedRotation'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'IsBullet'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'LinearVelocity'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'AngularVelocity'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'LinearDamping'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'CollisionWith'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'AngularDamping'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+    
+                <xsl:if test="$typeValue = 'IsMoving'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'IsOnFloor'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'IsOnLadder'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'IsJumping'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'IsGrabbingPlatform'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Gravity'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'MaxFallingSpeed'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'LadderClimbingSpeed'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'JumpSpeed'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'CanJump'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'CanGrabPlatforms'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'CurrentFallSpeed'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'CurrentJumpSpeed'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'IsObjectOnGivenFloor'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+
+                <xsl:if test="$typeValue = 'OutlineSize'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'FillOpacity'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'OutlineOpacity'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'CheckAntialiasing'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+
+                <xsl:if test="$typeValue = 'DepartScene'" >
+                    
+                    <xsl:if test="$hasParentOnceCondition = 'true'" >
+                    //DepartScene - condition - eventsOnceConditionProcessActions    
+                    </xsl:if>
+                    <xsl:if test="$hasParentOnceCondition != 'true'" >
+                        <xsl:call-template name="departSceneConditionGDNode" />
+                    </xsl:if>
+
+                </xsl:if>                
+
+                <xsl:if test="$typeValue = 'SceneJustResumed'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'HasGameJustResumed'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'DoesSceneExist'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+
+                <xsl:if test="$typeValue = 'Collision'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+
                 <xsl:if test="$typeValue = 'Timer'" >
                     
                     <xsl:call-template name="timerConditionGDNode" >
@@ -234,9 +558,9 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     
                 </xsl:if>
-
                 <xsl:if test="$typeValue = 'ObjectTimer'" >
                     
+                    //Depricated
                     <xsl:call-template name="objectTimerConditionGDNode" >
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
@@ -251,32 +575,26 @@ Created By: Travis Berthelot
                         <xsl:with-param name="eventsCreateProcessUsed" ><xsl:value-of select="$eventsCreateProcessUsed" /></xsl:with-param>
                     </xsl:call-template>
                     
-                </xsl:if>
-                                
-                <xsl:if test="$typeValue = 'PosX'" >
+                </xsl:if>                                
+                    <xsl:if test="$typeValue = 'CompareTimer'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'TimerPaused'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                    <xsl:if test="$typeValue = 'TimeScale'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
 
-                    <xsl:call-template name="posXConditionGDNode" />
-
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PosY'" >
+                <xsl:if test="$typeValue = 'VarScene'" >
                     
-                    <xsl:call-template name="posYConditionGDNode" />
-
-                </xsl:if>
-                <xsl:if test="$typeValue = 'NbObjet'" >
-                    
-                    <xsl:call-template name="nbObjetConditionGDNode" >
+                    <xsl:call-template name="varSceneCnditionGDNode" >
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                         <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
-                        <xsl:with-param name="thisNodeIndex" ><xsl:value-of select="$thisNodeIndex" /></xsl:with-param>
-                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
                         <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
-                        
+                        <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:if>                
+
+                    <xsl:if test="$typeValue = 'VarSceneTxt'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
                 <xsl:if test="$typeValue = 'SceneVariableAsBoolean'" >
                     
                     <xsl:call-template name="sceneVariableAsBooleanConditionGDNode" >
@@ -296,36 +614,58 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     
                 </xsl:if>
-                <xsl:if test="$typeValue = 'Opacity'" >
-                    
-                    <xsl:call-template name="opacityConditionGDNode" />
-
-                </xsl:if>
-                <xsl:if test="$typeValue = 'VarObjet'" >
-                    
-                    <xsl:call-template name="varObjetConditionGDNode" />
-
-                </xsl:if>
-                <xsl:if test="$typeValue = 'VarScene'" >
-                    
-                    <xsl:call-template name="varSceneCnditionGDNode" >
-                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="layoutIndex" /></xsl:with-param>
-                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
-                        <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
-                        <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
-                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
-                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
-                        <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
-                    </xsl:call-template>
-
-                </xsl:if>                
-                <xsl:if test="$typeValue = 'SourisSurObjet'" >
-                    
-                    <xsl:call-template name="sourisSurObjetConditionGDNode" >
-                    </xsl:call-template>
-                    
-                </xsl:if>
                 
+                <xsl:if test="$typeValue = 'VarGlobal'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'VarGlobalTxt'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'GlobalVariableAsBoolean'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'VarSceneDef'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'VarGlobalDef'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'SceneVariableChildCount'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'GlobalVariableChildCount'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'VariableChildExists'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'GlobalVariableChildExists'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+
+                <xsl:if test="$typeValue = 'IsFullScreen'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+
+                <xsl:if test="$typeValue = 'IsNativeMobileApp'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'IsNativeDesktopApp'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'IsWebGLSupported'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+
+                <xsl:if test="$typeValue = 'FileExists'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>                                                                                             
+
+                <xsl:if test="$typeValue = 'VarObjet'" >
+
+                    //VarObjet - some are processed from eventsProcess
+                    <xsl:call-template name="varObjetConditionGDNode" >
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'ObjectTimerPaused'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'IsEffectEnabled'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+
+                <xsl:if test="$typeValue = 'Activated'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+
+                <xsl:if test="$typeValue = 'String'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ScaleX'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'ScaleY'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Smoothed'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'IsBold'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'IsItalic'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'IsUnderlined'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Padding'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'TextAlignment'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'IsWrapping'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'WrappingWidth'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Acceleration'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Deceleration'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'MaxSpeed'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'Speed'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'AngularMaxSpeed'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'XVelocity'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                <xsl:if test="$typeValue = 'YVelocity'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+                                
             </xsl:for-each>
             <!-- conditions - END -->
 

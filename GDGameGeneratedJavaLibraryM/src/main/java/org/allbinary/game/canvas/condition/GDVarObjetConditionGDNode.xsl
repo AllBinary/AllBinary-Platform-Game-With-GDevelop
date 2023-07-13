@@ -18,6 +18,7 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:template name="varObjetConditionGDNode" >
+        <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
@@ -86,7 +87,20 @@ Created By: Travis Berthelot
 
                             try {
 
+                        
+                        <xsl:variable name="hasGameLayer" ><xsl:for-each select="parameters" ><xsl:if test="contains(text(), 'LastEndedTouchId')" >found</xsl:if></xsl:for-each></xsl:variable>
+
+                        <xsl:if test="not(contains($hasGameLayer, 'found'))" >
                                 if(<xsl:for-each select="parameters" ><xsl:if test="text() = 'rotation'" >.</xsl:if><xsl:if test="position() != 1 and  text() != 'rotation'" ><xsl:text> </xsl:text></xsl:if><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="text() = '='" >=</xsl:if></xsl:for-each>) {
+                        </xsl:if>
+
+                        <xsl:if test="contains($hasGameLayer, 'found')" >
+                                if(<xsl:for-each select="parameters" >
+                                    <xsl:if test="position() = 1" >((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="text()" />) <xsl:value-of select="text()" />).</xsl:if>
+                                    <xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if>
+                                    <xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if></xsl:if>
+                                    <xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>) {
+                        </xsl:if>
                                     //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "VarObjet processing"));
                                     return true;
                                 }
