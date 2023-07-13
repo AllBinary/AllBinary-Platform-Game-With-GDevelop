@@ -27,10 +27,11 @@ Created By: Travis Berthelot
                                                         
                                 <xsl:if test="contains(inlineCode, 'SpeechSynthesisUtterance')" >
 
-                                private final TextToSpeech textToSpeech = new TextToSpeech();
+                                private TextToSpeech textToSpeech;
                                 <xsl:text>&#10;</xsl:text>
 
                                 public void init() {
+                                    textToSpeech = new TextToSpeech();
                                     textToSpeech.init();
                                 }
 
