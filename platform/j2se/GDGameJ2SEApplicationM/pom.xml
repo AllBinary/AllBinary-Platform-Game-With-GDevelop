@@ -162,6 +162,7 @@
                             </resources>              
                         </configuration>            
                     </execution>
+                    <!--
                     <execution>
                         <id>copy-speech-resources</id>
                         <phase>validate</phase>
@@ -179,6 +180,7 @@
                             </resources>              
                         </configuration>            
                     </execution>
+                    -->
                 </executions>
             </plugin>
       
