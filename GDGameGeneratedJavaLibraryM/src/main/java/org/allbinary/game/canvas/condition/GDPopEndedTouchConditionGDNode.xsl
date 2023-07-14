@@ -18,6 +18,8 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:template name="popEndedTouchConditionGDNode" >
+        <xsl:param name="caller" />
+        <xsl:param name="objectsAsString" />
         <xsl:param name="parametersAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
@@ -39,6 +41,11 @@ Created By: Travis Berthelot
                             super.processStats();
                         
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + commonStrings.NOT_IMPLEMENTED, this, commonStrings.PROCESS));
+                            <xsl:call-template name="actionsProcess" >
+                                <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
+                                <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                                <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                            </xsl:call-template>
                                 
                             super.processStatsE();
 

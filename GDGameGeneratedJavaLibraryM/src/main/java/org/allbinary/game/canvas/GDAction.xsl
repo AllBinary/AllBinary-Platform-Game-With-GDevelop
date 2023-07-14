@@ -313,8 +313,13 @@ Created By: Travis Berthelot
                         //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //repeatExpression <xsl:value-of select="repeatExpression" /> //<xsl:value-of select="../../events/type" />
                         <xsl:if test="not(contains($hasCreate, 'found')) or not(contains($hasCollisionCondition, 'found')) or $caller = 'conditionLayout - //VarScene'" >
 
+                        <xsl:variable name="listSize" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'MettreY' or type/value = 'MettreXY' or type/value = 'MettreAutourPos'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
+
                         //GDAction
-                        final int size = <xsl:if test="not(repeatExpression or ../../events/type = 'BuiltinCommonInstructions::ForEach')" >1</xsl:if><xsl:if test="../../events/type = 'BuiltinCommonInstructions::ForEach'" >globals.<xsl:value-of select="substring-before(substring-after($parametersAsString, ':'), ',')" />GDGameLayerList.size()</xsl:if><xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" /></xsl:if>;
+                        final int size = <xsl:if test="string-length($listSize) = 0 and not(repeatExpression or ../../events/type = 'BuiltinCommonInstructions::ForEach')" >1;</xsl:if>
+                        <xsl:if test="string-length($listSize) > 0 and not(repeatExpression or ../../events/type = 'BuiltinCommonInstructions::ForEach')" ><xsl:value-of select="$listSize" />;</xsl:if>
+                        <xsl:if test="../../events/type = 'BuiltinCommonInstructions::ForEach'" >globals.<xsl:value-of select="substring-before(substring-after($parametersAsString, ':'), ',')" />GDGameLayerList.size();</xsl:if>
+                        <xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" />;</xsl:if>
             
             <xsl:if test="contains($hadConditionOtherThanThis, 'found') and ($caller = 'conditionLayout - //eventsCreateAssignGDObject' and contains($hasCreate, 'found'))" >
             //Skip size limit logic

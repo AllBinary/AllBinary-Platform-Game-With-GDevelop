@@ -125,7 +125,11 @@ Created By: Travis Berthelot
             <xsl:for-each select="whileConditions" >
                 <xsl:if test="type/value = 'PopEndedTouch'" >
                     
-                    <xsl:call-template name="popEndedTouchConditionGDNode" />
+                    <xsl:call-template name="popEndedTouchConditionGDNode" >
+                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
             </xsl:for-each>
@@ -422,11 +426,9 @@ Created By: Travis Berthelot
                     <xsl:if test="$typeValue = 'SourisBouton'" >
                         //SourisBouton/MouseButtonPressed - Some Handled by AllBinary Event Listeners?
                         <xsl:call-template name="sourisBoutonConditionGDNode" >
-                            <xsl:with-param name="caller" >
-                                <xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
-                            <xsl:with-param name="objectsAsString" >
-                                <xsl:value-of select="$objectsAsString" />
-                            </xsl:with-param>
+                            <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
+                            <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                            <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
                         </xsl:call-template>
                     
                     </xsl:if>
@@ -443,7 +445,11 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'IsMouseWheelScrollingDown'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>                
                 <xsl:if test="$typeValue = 'PopStartedTouch'" >
                     
-                    <xsl:call-template name="popStartedTouchConditionGDNode" />
+                    <xsl:call-template name="popStartedTouchConditionGDNode" >
+                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 
