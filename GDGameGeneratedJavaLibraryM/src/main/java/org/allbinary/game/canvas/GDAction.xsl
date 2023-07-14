@@ -528,7 +528,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Action - //Create - call
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate(<xsl:value-of select="$name" />2);
+                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate(<xsl:value-of select="$name" />GDobject2);
                     <xsl:if test="$caller = 'externalEventsCreateAssignGDObject - //eventsCreateAssignXGDObjectGDNodesOtherEvent - //actionsWithIndexesProcess'" >
                     final int size2 = globals.<xsl:value-of select="$name" />OnceGDNodeList.size();
                     for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {

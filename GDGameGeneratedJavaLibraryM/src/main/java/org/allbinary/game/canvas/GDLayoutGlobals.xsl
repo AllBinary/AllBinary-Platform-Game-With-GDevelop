@@ -344,6 +344,10 @@ public class GDStructure {
                         return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
                     }
 
+                    public float Random(final double range) {
+                        return ((float) MyRandomFactory.getInstance().getAbsoluteNextInt((int) (range * 1000))) / 1000;
+                    }
+                    
                     public int Variable(final int value) {
                         return value;
                     }

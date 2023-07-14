@@ -259,7 +259,7 @@ Created By: Travis Berthelot
                             globals.<xsl:value-of select="name" />GDGameLayerList.ensureCapacity(1);
                         }
 
-                        final GDObject <xsl:value-of select="name" />2 = gdObjectsFactory.get<xsl:value-of select="name" />(
+                        final GDObject <xsl:value-of select="name" />GDobject2 = gdObjectsFactory.get<xsl:value-of select="name" />(
                         null, <xsl:value-of select="name" />X, 
                         <xsl:value-of select="name" />Y, 
                         globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
@@ -269,36 +269,36 @@ Created By: Travis Berthelot
                         //instances //We may need to set a dimension for each image/animation.
                             //Hack - the other 'btn_' cases need to look at the layer to see if it is touch or not.
                             <xsl:if test="contains(layer, 'touch')" >
-                        <xsl:value-of select="name" />2.canvasWidth = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
-                        <xsl:value-of select="name" />2.canvasHeight = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();
-                        <xsl:value-of select="name" />2.width = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
-                        <xsl:value-of select="name" />2.height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
+                        <xsl:value-of select="name" />GDobject2.canvasWidth = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
+                        <xsl:value-of select="name" />GDobject2.canvasHeight = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();
+                        <xsl:value-of select="name" />GDobject2.width = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
+                        <xsl:value-of select="name" />GDobject2.height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
                             </xsl:if>
                             <xsl:if test="not(contains(layer, 'touch'))" >
-                        <xsl:value-of select="name" />2.canvasWidth = imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
-                        <xsl:value-of select="name" />2.canvasHeight = imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();
-                        <xsl:value-of select="name" />2.width = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
-                        <xsl:value-of select="name" />2.height = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
+                        <xsl:value-of select="name" />GDobject2.canvasWidth = imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
+                        <xsl:value-of select="name" />GDobject2.canvasHeight = imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();
+                        <xsl:value-of select="name" />GDobject2.width = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
+                        <xsl:value-of select="name" />GDobject2.height = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
                             </xsl:if>
-                        <xsl:value-of select="name" />2.halfWidth = (<xsl:value-of select="name" />2.width / 2);
-                        <xsl:value-of select="name" />2.halfHeight = (<xsl:value-of select="name" />2.height / 2);
-                        //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />2.toString(), this, commonStrings.PROCESS));
+                        <xsl:value-of select="name" />GDobject2.halfWidth = (<xsl:value-of select="name" />GDobject2.width / 2);
+                        <xsl:value-of select="name" />GDobject2.halfHeight = (<xsl:value-of select="name" />GDobject2.height / 2);
+                        //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />GDobject2.toString(), this, commonStrings.PROCESS));
                         </xsl:if>
                         
-                        globals.<xsl:value-of select="name" />GDObjectList.add(<xsl:value-of select="name" />2);
+                        globals.<xsl:value-of select="name" />GDObjectList.add(<xsl:value-of select="name" />GDobject2);
                         </xsl:if>
 
                         <xsl:if test="layer = 'touch'" >
                         final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
-                            PointFactory.getInstance().getInstance(<xsl:value-of select="name" />2.x, <xsl:value-of select="name" />2.y),
-                            <xsl:value-of select="name" />2.Width(globals.graphics), <xsl:value-of select="name" />2.Height(globals.graphics));
+                            PointFactory.getInstance().getInstance(<xsl:value-of select="name" />GDobject2.x, <xsl:value-of select="name" />GDobject2.y),
+                            <xsl:value-of select="name" />GDobject2.Width(globals.graphics), <xsl:value-of select="name" />GDobject2.Height(globals.graphics));
                         globals.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         </xsl:if>
 
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                         
                         <xsl:if test="layer != '' or contains($notTextObject, 'found')" >
-                        GDGameLayer <xsl:value-of select="name" />GDGameLayer = resources.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />2, globals.<xsl:value-of select="name" />GDConditionWithGroupActions);
+                        GDGameLayer <xsl:value-of select="name" />GDGameLayer = resources.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />GDobject2, globals.<xsl:value-of select="name" />GDConditionWithGroupActions);
                         LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0", this, commonStrings.PROCESS));
                         globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
 
@@ -350,7 +350,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="typeValue" select="type" />
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-                        <xsl:if test="$typeValue = 'Sprite'" >
+                        <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                             <xsl:variable name="stringValue" select="string" />
                             <xsl:variable name="name" select="name" />
                             //globals.<xsl:value-of select="name" />GDGameLayerFactory = <xsl:value-of select="name" />GDGameLayerFactory;

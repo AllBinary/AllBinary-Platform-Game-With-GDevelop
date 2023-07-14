@@ -41,7 +41,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     
                         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                        globals.<xsl:value-of select="$name" />GDObjectList.add(<xsl:value-of select="$name" />2);
+                        globals.<xsl:value-of select="$name" />GDObjectList.add(<xsl:value-of select="$name" />GDobject2);
                         
                         return true;
                     }
@@ -92,7 +92,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         //createGDObject - process - END
                         //createGDObject - //Create - call
-                        this.processCreate(<xsl:value-of select="$name" />2);
+                        this.processCreate(<xsl:value-of select="$name" />GDobject2);
                         
                         this.processEnd(globals.<xsl:value-of select="$name" />GDGameLayerList.size() - 1);
 

@@ -76,7 +76,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="name_comma" ><xsl:value-of select="name" />,</xsl:variable>
 
                             <xsl:if test="contains($parametersAsString, $name) = text() or contains($parametersAsString, $name_comma) = text()" >
-                                <xsl:if test="$typeValue = 'Sprite'" ><xsl:value-of select="name" />,</xsl:if>
+                                <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" ><xsl:value-of select="name" />,</xsl:if>
                                 <xsl:if test="$typeValue = 'TextObject::Text'" ><xsl:value-of select="name" />,</xsl:if>
                             </xsl:if>
 
@@ -125,7 +125,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="name" ><xsl:value-of select="name" />.</xsl:variable>
 
                         <xsl:if test="contains($parametersAsString, $name) = text()" >
-                            <xsl:if test="$typeValue = 'Sprite'" >
+                            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                         <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />,
                             </xsl:if>
                             <xsl:if test="$typeValue = 'TextObject::Text'" >
@@ -171,7 +171,7 @@ Created By: Travis Berthelot
                         //actionNodeId=<xsl:value-of select="$actionNodeId" />
 
                         <xsl:if test="contains($parametersAsString, $name) = text()" >
-                            <xsl:if test="$typeValue = 'Sprite'" >
+                            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                         //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - //collide - Sprite
                         gdNodeList.add(globals.nodeArray[<xsl:value-of select="$actionNodeId" />]);
                             </xsl:if>

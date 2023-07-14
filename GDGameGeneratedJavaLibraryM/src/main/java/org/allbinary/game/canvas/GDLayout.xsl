@@ -269,13 +269,13 @@ Created By: Travis Berthelot
                         final int <xsl:value-of select="name" />Size = globals.<xsl:value-of select="name" />RectangleList.size();
                         if(<xsl:value-of select="name" />Size == 0) {
 
-                            final GDObject <xsl:value-of select="name" />2 = (GDObject) globals.<xsl:value-of select="name" />GDObjectList.get(0);
-                            final int <xsl:value-of select="name" />X = x + <xsl:value-of select="name" />2.x;
-                            final int <xsl:value-of select="name" />Y = y + <xsl:value-of select="name" />2.y;
+                            final GDObject <xsl:value-of select="name" />GDobject2 = (GDObject) globals.<xsl:value-of select="name" />GDObjectList.get(0);
+                            final int <xsl:value-of select="name" />X = x + <xsl:value-of select="name" />GDobject2.x;
+                            final int <xsl:value-of select="name" />Y = y + <xsl:value-of select="name" />GDobject2.y;
 
                             final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
                                 PointFactory.getInstance().getInstance(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
-                                <xsl:value-of select="name" />2.Width(globals.graphics), <xsl:value-of select="name" />2.Height(globals.graphics));
+                                <xsl:value-of select="name" />GDobject2.Width(globals.graphics), <xsl:value-of select="name" />GDobject2.Height(globals.graphics));
                             globals.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         }
                         </xsl:if>
@@ -285,11 +285,11 @@ Created By: Travis Berthelot
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:if test="$typeValue = 'TextObject::Text'" >
-                            final int size<xsl:value-of select="name" />2 = globals.<xsl:value-of select="name" />GDObjectList.size();
-                            GDObject <xsl:value-of select="name" />2;
-                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size<xsl:value-of select="name" />2; index++) {
-                                <xsl:value-of select="name" />2 = (GDObject) globals.<xsl:value-of select="name" />GDObjectList.get(index);
-                                globals.<xsl:value-of select="name" />TextAnimation.paint(graphics, <xsl:value-of select="name" />2.x, <xsl:value-of select="name" />2.y);
+                            final int size<xsl:value-of select="name" />Size2 = globals.<xsl:value-of select="name" />GDObjectList.size();
+                            GDObject <xsl:value-of select="name" />Size2;
+                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size<xsl:value-of select="name" />Size2; index++) {
+                                <xsl:value-of select="name" />Size2 = (GDObject) globals.<xsl:value-of select="name" />GDObjectList.get(index);
+                                globals.<xsl:value-of select="name" />TextAnimation.paint(graphics, <xsl:value-of select="name" />Size2.x, <xsl:value-of select="name" />Size2.y);
                             }
                         </xsl:if>
                     </xsl:for-each>

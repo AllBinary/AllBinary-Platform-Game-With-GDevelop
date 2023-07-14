@@ -84,8 +84,8 @@ Created By: Travis Berthelot
                                 <xsl:if test="contains($instancesAsString, $name2)" >
                                 //name2=<xsl:value-of select="$name2" /><xsl:text>&#10;</xsl:text>
                                 final Rectangle <xsl:value-of select="$name" />Rectangle = new Rectangle(
-                                    PointFactory.getInstance().getInstance(<xsl:value-of select="$name" />2.x, <xsl:value-of select="$name" />2.y),
-                                    <xsl:value-of select="$name" />2.Width(globals.graphics), <xsl:value-of select="$name" />2.Height(globals.graphics));
+                                    PointFactory.getInstance().getInstance(<xsl:value-of select="$name" />GDobject2.x, <xsl:value-of select="$name" />GDobject2.y),
+                                    <xsl:value-of select="$name" />GDobject2.Width(globals.graphics), <xsl:value-of select="$name" />GDobject2.Height(globals.graphics));
                                 globals.<xsl:value-of select="$name" />RectangleList.add(<xsl:value-of select="$name" />Rectangle);
                                 </xsl:if>
 

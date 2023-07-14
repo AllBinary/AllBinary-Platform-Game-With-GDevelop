@@ -70,6 +70,18 @@ Created By: Travis Berthelot
                 public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                 public final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
             </xsl:if>
+            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+
+                //ParticleSystem::ParticleEmitter
+                //private BasicArrayList <xsl:value-of select="name" />List = ZERO_GD_OBJECT;
+                //private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
+                //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+                public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+                public final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
+            </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
 
@@ -96,6 +108,14 @@ Created By: Travis Berthelot
 
             <xsl:if test="$typeValue = 'Sprite'" >
                 //Sprite - create properties
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                public final String <xsl:value-of select="$NAME" /> = "<xsl:value-of select="name" />";
+                //public final GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory;
+            </xsl:if>
+            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
+                //ParticleSystem::ParticleEmitter - create properties
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
@@ -137,6 +157,13 @@ Created By: Travis Berthelot
                 //Sprite - layerManagerEventListenerList
                 public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(arrayUtil.ZERO_OBJECT_ARRAY);
             </xsl:if>
+            <xsl:if test="type = 'ParticleSystem::ParticleEmitter'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                //ParticleSystem::ParticleEmitter - layerManagerEventListenerList
+                public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(arrayUtil.ZERO_OBJECT_ARRAY);
+            </xsl:if>
 
         </xsl:for-each>
 
@@ -156,6 +183,17 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                //Sprite - Add to cache
+                if(<xsl:value-of select="name" />GDGameLayerDestroyedList.contains(layerInterface)) {
+                    <xsl:value-of select="name" />GDGameLayerDestroyedList.remove(layerInterface);
+                    <xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);
+                }
+           </xsl:if>
+            <xsl:if test="type = 'ParticleSystem::ParticleEmitter'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                //ParticleSystem::ParticleEmitter - Add to cache
                 if(<xsl:value-of select="name" />GDGameLayerDestroyedList.contains(layerInterface)) {
                     <xsl:value-of select="name" />GDGameLayerDestroyedList.remove(layerInterface);
                     <xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);
