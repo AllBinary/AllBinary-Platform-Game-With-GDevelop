@@ -28,7 +28,7 @@ Created By: Travis Berthelot
                             final GDObject gdObject = (GDObject) globals.<xsl:value-of select="$name" />GDObjectList.get(0);
                             final boolean result = this.processG(gdObject, globals.graphics);
 <!--
-                            if(globals.<xsl:value-of select="$name" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> 0) {
+                            if(globals.<xsl:value-of select="$name" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                 final GDGameLayer gameLayer = (GDGameLayer) globals.<xsl:value-of select="$name" />GDGameLayerList.get(0);
                                 //final GDObject gdObject = gameLayer.gdObject;
                                 gameLayer.updateGDObject(globals.timeDelta);
