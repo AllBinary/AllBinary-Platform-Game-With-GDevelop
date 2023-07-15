@@ -27,29 +27,33 @@ Created By: Travis Berthelot
             
         //objectsClassProperty - START
         <xsl:for-each select="objects" >
-            
-            <xsl:for-each select="animations" >
-                <xsl:for-each select="directions" >
-                //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
-                    <xsl:for-each select="sprites" >
-                    //image=<xsl:value-of select="image" /> hasCustomCollisionMask=<xsl:value-of select="hasCustomCollisionMask" />
-                    //OriginPoint name=<xsl:value-of select="originPoint/name" /> x=<xsl:value-of select="originPoint/x" /> y=<xsl:value-of select="originPoint/y" />
-                    //CenterPoint name=<xsl:value-of select="centerPoint/name" /> x=<xsl:value-of select="centerPoint/x" /> y=<xsl:value-of select="centerPoint/y" /> automatic=<xsl:value-of select="centerPoint/automatic" />
-                    //customCollisionMask, array, x, y                            
-                            <xsl:for-each select="points" >
-                        //Point name=<xsl:value-of select="name" /> x=<xsl:value-of select="x" /> y=<xsl:value-of select="y" />
-            //public final GPoint <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_POINT = PointFactory.getInstance().getInstance(<xsl:value-of select="x" />, <xsl:value-of select="y" />, 0);
-            public final GPoint <xsl:value-of select="name" /> = PointFactory.getInstance().getInstance(<xsl:value-of select="x" />, <xsl:value-of select="y" />, 0);
-                            </xsl:for-each>
-                        </xsl:for-each>
-                    </xsl:for-each>
-                </xsl:for-each>
-            
             <xsl:variable name="typeValue" select="type" />
+
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
             <xsl:for-each select="behaviors" >
                 //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
             </xsl:for-each>
+                        
+            <xsl:for-each select="animations" >
+                <xsl:for-each select="directions" >
+                //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
+                    <xsl:for-each select="sprites" >
+                //image=<xsl:value-of select="image" /> hasCustomCollisionMask=<xsl:value-of select="hasCustomCollisionMask" />
+                //OriginPoint name=<xsl:value-of select="originPoint/name" /> x=<xsl:value-of select="originPoint/x" /> y=<xsl:value-of select="originPoint/y" />
+                //CenterPoint name=<xsl:value-of select="centerPoint/name" /> x=<xsl:value-of select="centerPoint/x" /> y=<xsl:value-of select="centerPoint/y" /> automatic=<xsl:value-of select="centerPoint/automatic" />
+                //customCollisionMask, array, x, y                            
+                        <xsl:for-each select="points" >
+                //Point name=<xsl:value-of select="name" /> x=<xsl:value-of select="x" /> y=<xsl:value-of select="y" />
+                //public final GPoint <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_POINT = PointFactory.getInstance().getInstance(<xsl:value-of select="x" />, <xsl:value-of select="y" />, 0);
+                public final GPoint <xsl:value-of select="name" /> = PointFactory.getInstance().getInstance(<xsl:value-of select="x" />, <xsl:value-of select="y" />, 0);
+                        </xsl:for-each>
+                    </xsl:for-each>
+                </xsl:for-each>
+            </xsl:for-each>
+
+            <xsl:if test="content" >
+                //TileMap::TileMap:content
+            </xsl:if>
 
             <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer'" >
                 //PrimitiveDrawing::Drawer
@@ -76,6 +80,18 @@ Created By: Travis Berthelot
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
 
                 //ParticleSystem::ParticleEmitter
+                //private BasicArrayList <xsl:value-of select="name" />List = ZERO_GD_OBJECT;
+                //private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
+                //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+                public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+                public final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
+            </xsl:if>
+            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+
+                //TileMap::TileMap
                 //private BasicArrayList <xsl:value-of select="name" />List = ZERO_GD_OBJECT;
                 //private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
                 //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
@@ -122,6 +138,15 @@ Created By: Travis Berthelot
                 public final String <xsl:value-of select="$NAME" /> = "<xsl:value-of select="name" />";
                 //public final GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory;
             </xsl:if>
+            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+                //TileMap::TileMap - create properties
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                public final String <xsl:value-of select="$NAME" /> = "<xsl:value-of select="name" />";
+                //public final GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory;
+            </xsl:if>
+            
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 //TextObject::Text - create properties
                 <xsl:variable name="stringValue" select="string" />
@@ -164,7 +189,13 @@ Created By: Travis Berthelot
                 //ParticleSystem::ParticleEmitter - layerManagerEventListenerList
                 public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(arrayUtil.ZERO_OBJECT_ARRAY);
             </xsl:if>
-
+            <xsl:if test="type = 'TileMap::TileMap'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                //TileMap::TileMap - layerManagerEventListenerList
+                public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(arrayUtil.ZERO_OBJECT_ARRAY);
+            </xsl:if>
         </xsl:for-each>
 
         //layerManagerEventListenerList - END
@@ -188,12 +219,22 @@ Created By: Travis Berthelot
                     <xsl:value-of select="name" />GDGameLayerDestroyedList.remove(layerInterface);
                     <xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);
                 }
-           </xsl:if>
+            </xsl:if>
             <xsl:if test="type = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                 //ParticleSystem::ParticleEmitter - Add to cache
+                if(<xsl:value-of select="name" />GDGameLayerDestroyedList.contains(layerInterface)) {
+                    <xsl:value-of select="name" />GDGameLayerDestroyedList.remove(layerInterface);
+                    <xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);
+                }
+           </xsl:if>
+            <xsl:if test="type = 'TileMap::TileMap'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                //TileMap::TileMap - Add to cache
                 if(<xsl:value-of select="name" />GDGameLayerDestroyedList.contains(layerInterface)) {
                     <xsl:value-of select="name" />GDGameLayerDestroyedList.remove(layerInterface);
                     <xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);

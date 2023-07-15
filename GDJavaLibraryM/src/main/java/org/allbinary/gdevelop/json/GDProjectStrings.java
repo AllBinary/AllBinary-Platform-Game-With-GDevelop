@@ -207,6 +207,16 @@ public class GDProjectStrings
     public final String ANIMATIONS = "animations";
     public final String USE_MULTIPLE_DIRECTIONS = "useMultipleDirections";
     
+    public final String CONTENT = "content";
+    public final String TILEMAP_JSON_FILE = "tilemapJsonFile";
+    public final String TILESET_JSON_FILE = "tilesetJsonFile";
+    public final String TILEMAP_ATLAS_IMAGE = "tilemapAtlasImage";
+    public final String DISPLAY_MODE = "displayMode";
+    public final String LAYER_INDEX = "layerIndex";
+    public final String LEVEL_INDEX = "levelIndex";
+    public final String ANIMATION_SPEED_SCALE = "animationSpeedScale";
+    public final String ANIMATION_FPS = "animationFps";
+    
     public final String DIRECTIONS = "directions";
     
     public final String LOOPING = "looping";

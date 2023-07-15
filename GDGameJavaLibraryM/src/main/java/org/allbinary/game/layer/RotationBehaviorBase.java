@@ -40,7 +40,7 @@ public class RotationBehaviorBase {
     public IndexedAnimation[] init(final GDObject gdObject, final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray) {
         final int size = animationInterfaceFactoryInterfaceArray.length;
         final IndexedAnimation[] initIndexedAnimationInterfaceArray = new IndexedAnimation[size];
-        
+
         try {
             for (int index = 0; index < size; index++)
             {

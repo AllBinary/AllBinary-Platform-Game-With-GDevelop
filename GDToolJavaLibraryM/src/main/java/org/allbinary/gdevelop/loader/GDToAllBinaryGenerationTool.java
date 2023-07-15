@@ -11,6 +11,7 @@ import org.allbinary.canvas.Processor;
 import org.allbinary.data.tree.dom.document.XmlDocumentHelper;
 import org.allbinary.gdevelop.json.GDLayout;
 import org.allbinary.gdevelop.json.GDProject;
+import org.allbinary.gdevelop.json.GDProjectStrings;
 import org.allbinary.gdevelop.json.GDResourcesManager;
 import org.allbinary.gdevelop.json.event.GDEvent;
 import org.allbinary.gdevelop.json.event.GDExpression;
@@ -27,6 +28,7 @@ import org.allbinary.logic.basic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.json.XML;
@@ -39,6 +41,7 @@ public class GDToAllBinaryGenerationTool
 {
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
+    private final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
     
     private final BasicArrayList duplicateCheckList = new BasicArrayList();
 
@@ -95,21 +98,24 @@ public class GDToAllBinaryGenerationTool
         final JSONTokener jsonTokener = new JSONTokener(gameAsConfiguration);
         final JSONObject gameAsConfigurationJSONObject = (JSONObject) jsonTokener.nextValue();
 
+        final GDProject gdProject = new GDProject();
+        gdProject.load(gameAsConfigurationJSONObject);
+        this.xmlConversionHack(gameAsConfigurationJSONObject);
+
         final String xml = "<game>" + XML.toString(gameAsConfigurationJSONObject) + "<variables><value>movement_angle</value><value>angle</value></variables></game>\n";
         final String formattedXml = XmlDocumentHelper.getInstance().format(xml);
         final Replace replace = new Replace("\"", "&quot;");
         final Replace replace2 = new Replace("'", "&apos;");
+        final Replace replace3 = new Replace("contentx>", "content>");
         String fixQuotes = replace.all(formattedXml);
         fixQuotes = replace2.all(fixQuotes);
+        fixQuotes = replace3.all(fixQuotes);
 
         final String fileName = gdToolStrings.GAME_XML_PATH;
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().PROCESS));
 
         this.bufferedWriterUtil.overwrite(fileName, fixQuotes);
         //this.bufferedWriterUtil.overwrite(fileName, xml);
-
-        final GDProject gdProject = new GDProject();
-        gdProject.load(gameAsConfigurationJSONObject);
 
         this.load(gdProject);
 
@@ -139,6 +145,28 @@ public class GDToAllBinaryGenerationTool
         //"GDGameAndroidEarlyResourceInitialization"
     }
 
+    public void xmlConversionHack(JSONObject gameAsConfigurationJSONObject) {
+        final JSONArray layoutJSONArray = gameAsConfigurationJSONObject.getJSONArray(gdProjectStrings.LAYOUTS);
+        final int size4 = layoutJSONArray.length();
+        LogUtil.put(LogFactory.getInstance("Layout Total: " + size4, this, CommonStrings.getInstance().PROCESS));
+        for(int index2 = 0; index2 < size4; index2++) {
+
+            final JSONObject layoutJSONObject = layoutJSONArray.getJSONObject(index2);
+            final JSONArray jsonArray = layoutJSONObject.getJSONArray(gdProjectStrings.OBJECTS);
+            final int size3 = jsonArray.length();
+            LogUtil.put(LogFactory.getInstance("Objects: " + size3, this, CommonStrings.getInstance().PROCESS));
+            for (int index = 0; index < size3; index++) {
+
+                JSONObject jsonObject = jsonArray.getJSONObject(index);
+                if(jsonObject.has(this.gdProjectStrings.CONTENT)) {
+                    LogUtil.put(LogFactory.getInstance("Contentx remove: " + index, this, CommonStrings.getInstance().PROCESS));
+                    Object object = jsonObject.remove(gdProjectStrings.CONTENT);
+                    jsonObject.put(gdProjectStrings.CONTENT + "x", object);
+                }
+            }
+        }
+    }
+    
     private void load(final GDProject gdProject) throws Exception
     {
         final int size2 = gdNameFileGeneratorArray.length;
@@ -333,6 +361,7 @@ public class GDToAllBinaryGenerationTool
      */
     public static void main(String[] args) throws Exception
     {
+        System.setProperty("jdk.xml.xpathTotalOpLimit", "0");
         new GDToAllBinaryGenerationTool().process();
     }
 

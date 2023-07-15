@@ -22,12 +22,12 @@ Created By: Travis Berthelot
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
 
-        //objects - SPRITES - START
+        //objects - START
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter' or $typeValue = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
@@ -40,7 +40,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
         </xsl:for-each>
-        //objects - SPRITES - END
+        //objects - END
     </xsl:template>
 
     <xsl:template name="rectangleCache" >
@@ -50,13 +50,13 @@ Created By: Travis Berthelot
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
 
-        //objects - SPRITES - cache - START
+        //objects - threed object - cache - START
 
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter' or $typeValue = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
@@ -68,6 +68,13 @@ Created By: Travis Berthelot
                     <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                 </xsl:for-each>
+                
+                <xsl:if test="content" >
+                    //TileMap::TileMap:content
+                    <xsl:variable name="imageWithExtension" select="tilemapAtlasImage" />
+                    <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
+                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                </xsl:if>
                 };
 
                 //Duplicate logic of the AnimationFactory
@@ -99,7 +106,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
         </xsl:for-each>
-        //objects - SPRITES - cache - END
+        //objects - threed object - cache - END
     </xsl:template>
 
 </xsl:stylesheet>

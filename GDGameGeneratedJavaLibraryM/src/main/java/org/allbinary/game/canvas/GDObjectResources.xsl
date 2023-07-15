@@ -22,12 +22,12 @@ Created By: Travis Berthelot
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
 
-        //objects - SPRITES - START
+        //objects - START
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter' or $typeValue = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
@@ -40,7 +40,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
         </xsl:for-each>
-        //objects - SPRITES - END
+        //objects - END
     </xsl:template>
 
     <xsl:template name="imageCache" >
@@ -50,13 +50,13 @@ Created By: Travis Berthelot
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
 
-        //objects - SPRITES - cache - START
+        //objects - image - cache - START
 
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter' or $typeValue = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
@@ -68,6 +68,12 @@ Created By: Travis Berthelot
                     <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                 </xsl:for-each>
+                <xsl:if test="content" >
+                    //TileMap::TileMap:content
+                    <xsl:variable name="imageWithExtension" select="tilemapAtlasImage" />
+                    <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
+                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                </xsl:if>
                 };
 
                 <xsl:for-each select="animations" >
@@ -85,6 +91,23 @@ Created By: Travis Berthelot
 //                    }
                     </xsl:if>
                 </xsl:for-each>
+
+                <xsl:if test="content" >
+                    //TileMap::TileMap:content
+                    <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
+                    <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
+                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+//                    if(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> == null) {
+//                        throw new RuntimeException();
+//                    }
+                    </xsl:if>
+                    <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
+                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+//                    if(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> == null) {
+//                        throw new RuntimeException();
+//                    }
+                    </xsl:if>
+                </xsl:if>
 
                 <xsl:value-of select="name" />ImageArray = new Image[] {
                 <xsl:for-each select="animations" >
@@ -96,6 +119,17 @@ Created By: Travis Berthelot
                     imageCopyUtil.createImage(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, 1.44f, true),
                     </xsl:if>
                 </xsl:for-each>
+                
+                <xsl:if test="content" >
+                    //TileMap::TileMap:content
+                    <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
+                    <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
+                    <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />,
+                    </xsl:if>
+                    <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
+                    imageCopyUtil.createImage(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, 1.44f, true),
+                    </xsl:if>
+                </xsl:if>
                 };
 
                 hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
@@ -104,7 +138,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
         </xsl:for-each>
-        //objects - SPRITES - cache - END
+        //objects - image - cache - END
     </xsl:template>
 
 </xsl:stylesheet>

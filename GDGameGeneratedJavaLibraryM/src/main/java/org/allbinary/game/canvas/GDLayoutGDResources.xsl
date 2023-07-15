@@ -122,7 +122,7 @@ Created By: Travis Berthelot
                         
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
-                        <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+                        <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter' or $typeValue = 'TileMap::TileMap'" >
                             <xsl:variable name="name" select="name" />
                             public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
                         </xsl:if>
