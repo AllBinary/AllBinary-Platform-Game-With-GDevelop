@@ -114,7 +114,7 @@ public class GDGameMIDlet
         try
         {
             new Sounds(EarlySoundsFactory.getInstance()).stopAll();
-            new Sounds(new GDGameSoundsFactory()).stopAll();
+            new Sounds(GDGameSoundsFactory.getInstance()).stopAll();
         }
         catch (Exception e)
         {
