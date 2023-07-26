@@ -82,6 +82,8 @@ public class GDDelete {
         exclusionList2.add("GDGameSoftwareInfo.java");
         exclusionList2.add("GDGameSoftwareInfo.java");
         exclusionList2.add("GDGameStartCanvas.java");
+        exclusionList2.add("GDGameLevelBuilder.java");
+        exclusionList2.add("GDGeographicMap.java");
         
         final Vector files2 = FileListFetcher.getInstance().getFiles(
               gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java", "java");
@@ -105,6 +107,8 @@ public class GDDelete {
         exclusionList3.add("TitleVectorData.java");
         exclusionList3.add("GDGameThreedLevelBuilderFactory.java");
         exclusionList3.add("GDGameCameraSetup.java");
+        exclusionList3.add("GDGameLevelBuilder.java");
+        exclusionList3.add("GDGeographicMap.java");
         
         final Vector files3 = FileListFetcher.getInstance().getFiles(
               gdToolStrings.ROOT_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java", "java");
@@ -141,7 +145,8 @@ public class GDDelete {
 
         final BasicArrayList exclusionList21 = new BasicArrayList();
         
-        //exclusionList21.add("GDGameSoundsFactory.java");
+        exclusionList21.add("GDGameSounds.java");
+        exclusionList21.add("GameSoundsFactory.java");
         
         final Vector files21 = FileListFetcher.getInstance().getFiles(
               gdToolStrings.ROOT_PATH + "\\GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio", "java");

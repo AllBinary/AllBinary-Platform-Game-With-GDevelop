@@ -49,7 +49,7 @@ package org.allbinary.media.audio;
 
 import org.allbinary.util.BasicArrayList;
         
-public class GDGameSoundsFactory
+public class GDGameSounds
 extends BaseSoundsFactory
 {
     private Sound[] soundInterfaceArray = new Sound[0];

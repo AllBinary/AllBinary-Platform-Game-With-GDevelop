@@ -19,10 +19,13 @@ R.java
 AndroidResources.java
 AndroidManifest.xml
 GDGameAndroidActivity.java
+GDGeographicMap.java
 GDGameAndroidEarlyResourceInitialization.java
 GDGameThreedAndroidEarlyResourceInitialization.java
 GDGameThreedLevelBuilderFactory.java
-GD*GameSoundsFactory.java
+GD0GameSoundsFactory.java
+GD1GameSoundsFactory.java
+GD2GameSoundsFactory.java
 GDGame*Canvas.java
 *GDObjectsFactory*.java
 GD*SpecialAnimation*.java

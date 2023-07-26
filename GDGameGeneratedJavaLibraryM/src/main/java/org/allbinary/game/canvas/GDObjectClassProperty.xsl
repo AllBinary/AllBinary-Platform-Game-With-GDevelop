@@ -86,18 +86,6 @@ Created By: Travis Berthelot
                 public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                 public final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
             </xsl:if>
-            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
-                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-
-                //TileMap::TileMap
-                //private BasicArrayList <xsl:value-of select="name" />List = ZERO_GD_OBJECT;
-                //private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
-                //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
-                public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
-                public final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
-            </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
 
@@ -225,16 +213,6 @@ Created By: Travis Berthelot
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                 //ParticleSystem::ParticleEmitter - Add to cache
-                if(<xsl:value-of select="name" />GDGameLayerDestroyedList.contains(layerInterface)) {
-                    <xsl:value-of select="name" />GDGameLayerDestroyedList.remove(layerInterface);
-                    <xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);
-                }
-           </xsl:if>
-            <xsl:if test="type = 'TileMap::TileMap'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
-                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-                //TileMap::TileMap - Add to cache
                 if(<xsl:value-of select="name" />GDGameLayerDestroyedList.contains(layerInterface)) {
                     <xsl:value-of select="name" />GDGameLayerDestroyedList.remove(layerInterface);
                     <xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);

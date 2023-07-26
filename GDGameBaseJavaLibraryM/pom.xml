@@ -110,6 +110,20 @@
         </dependency>
 
         <dependency>
+            <groupId>org.allbinary.media.graphics.geography.map</groupId>
+            <artifactId>GeographicMapLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapeditor</groupId>
+            <artifactId>TiledJSONJavaLibrary</artifactId>
+            <version>1.4.2-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.microemu</groupId>
             <artifactId>microemu-midp</artifactId>
             <version>2.0.4</version>

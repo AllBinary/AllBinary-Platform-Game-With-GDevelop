@@ -22,7 +22,7 @@ import org.allbinary.game.level.GDGameLevelBuilder;
 import org.allbinary.input.accelerometer.AccelerometerSensorFactory;
 import org.allbinary.input.gyro.AllBinaryOrientationSensor;
 import org.allbinary.input.gyro.GyroSensorFactory;
-import org.allbinary.media.audio.GDGameSoundsFactoryFactory;
+import org.allbinary.media.audio.GDGameSoundsFactory;
 import org.allbinary.util.BasicArrayList;
 
 import org.allbinary.logic.basic.string.CommonStrings;
@@ -98,7 +98,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
     public void mediaInit() throws Exception
     {
         LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "mediaInit"));
-        AllBinaryMediaManager.init(GDGameSoundsFactoryFactory.getInstance());
+        AllBinaryMediaManager.init(GDGameSoundsFactory.getInstance());
     }
 
     //Don't Auto Hide instead update the list

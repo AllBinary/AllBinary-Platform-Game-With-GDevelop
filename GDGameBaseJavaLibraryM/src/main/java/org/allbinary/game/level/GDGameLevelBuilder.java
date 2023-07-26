@@ -13,15 +13,22 @@
 */
 package org.allbinary.game.level;
 
+import javax.microedition.lcdui.Image;
 import org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
+import org.allbinary.game.map.GDGeographicMap;
+import org.allbinary.graphics.color.BasicColor;
+import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.layer.LayerInterfaceFactory;
 import org.allbinary.layer.LayerInterfaceVisitor;
+import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
+import org.mapeditor.core.TileLayer;
+import org.mapeditor.core.TiledMap;
 
 public class GDGameLevelBuilder implements LayerInterfaceVisitor
 {
-	private final AllBinaryGameLayerManager layerManager;
+    private final AllBinaryGameLayerManager layerManager;
 
     public GDGameLevelBuilder(final AllBinaryGameLayerManager layerManager)
     		throws Exception
@@ -32,7 +39,7 @@ public class GDGameLevelBuilder implements LayerInterfaceVisitor
         // this.layerPlacer = new ObamaStimulusLayerPlacer(this, point);
     }
 
-    public static void init()
+    public void init() throws Exception
     {
         LayerInterfaceFactory layerInterfaceFactory = LayerInterfaceFactory.getInstance();
 
@@ -47,6 +54,17 @@ public class GDGameLevelBuilder implements LayerInterfaceVisitor
 
         // artificialIntelligenceInterfaceFactoryInterfaceFactory.add(new
         // PacePatrolAIFactory());
+        
+        final BasicColor BLACK = BasicColorFactory.getInstance().BLACK;
+        final TiledMap map = null;
+        final Image tileSetImage = null;
+
+        final GeographicMapCompositeInterface geographicMapCompositeInterface = 
+            (GeographicMapCompositeInterface) this.layerManager;
+        
+        geographicMapCompositeInterface.setGeographicMapInterface(
+                new GDGeographicMap(((TileLayer) map.getLayer(0)).getId(), map, tileSetImage, BLACK, BLACK)
+                );
     }
 
     //private BasicGameResources[] playerResourceArray = new BasicGameResources[1];

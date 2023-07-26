@@ -241,6 +241,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="notTextObject" ><xsl:for-each select="../objects" ><xsl:if test="$name = name" ><xsl:if test="type != 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
                         //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" />
+                        <xsl:if test="type != 'TileMap::TileMap'" >
                         <xsl:text>&#10;</xsl:text>
                         if(true) {
                         <xsl:if test="layer != '' or contains($notTextObject, 'found') or contains($objectsAsString, $colonName)" >
@@ -308,6 +309,7 @@ Created By: Travis Berthelot
                         allBinaryGameLayerManager.insert(<xsl:value-of select="name" />GDGameLayer);
                         </xsl:if>
                         }
+                        </xsl:if>
                     </xsl:for-each>
                     //instances create - END
 
@@ -350,7 +352,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="typeValue" select="type" />
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-                        <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter' or $typeValue = 'TileMap::TileMap'" >
+                        <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                             <xsl:variable name="stringValue" select="string" />
                             <xsl:variable name="name" select="name" />
                             //globals.<xsl:value-of select="name" />GDGameLayerFactory = <xsl:value-of select="name" />GDGameLayerFactory;

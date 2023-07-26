@@ -27,7 +27,7 @@ import org.allbinary.game.level.GDGameLevelBuilder;
 import org.allbinary.input.accelerometer.AccelerometerSensorFactory;
 import org.allbinary.input.gyro.AllBinaryOrientationSensor;
 import org.allbinary.input.gyro.GyroSensorFactory;
-import org.allbinary.media.audio.GDGameSoundsFactoryFactory;
+import org.allbinary.media.audio.GDGameSoundsFactory;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringUtil;
@@ -71,7 +71,9 @@ import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
 import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.graphics.paint.InitUpdatePaintable;
+import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.graphics.paint.Paintable;
+import org.allbinary.graphics.paint.PaintableInterface;
 import org.allbinary.layer.event.LayerManagerEventHandler;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.AllBinaryVibration;
@@ -79,6 +81,8 @@ import org.allbinary.media.audio.AllBinaryMediaManager;
 import org.allbinary.media.audio.PlayerQueue;
 import org.allbinary.media.audio.PrimaryPlayerQueueFactory;
 import org.allbinary.media.audio.SecondaryPlayerQueueFactory;
+import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
+import org.allbinary.media.graphics.geography.map.GeographicMapInterface;
 import org.allbinary.time.TimeDelayHelper;
 
         <xsl:for-each select="layouts" >
@@ -97,6 +101,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
     private final StringBuilder stringBuilder = new StringBuilder();
 
     private SpecialAnimation specialAnimation = SpecialAnimation.getInstance();
+    private PaintableInterface tileLayerPaintable = NullPaintable.getInstance();
     
     private final GDGameInputProcessor gameInputProcessor = new GDGameInputProcessor();
 
@@ -241,7 +246,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
     public void mediaInit() throws Exception
     {
         LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "mediaInit"));
-        AllBinaryMediaManager.init(GDGameSoundsFactoryFactory.getInstance());
+        AllBinaryMediaManager.init(GDGameSoundsFactory.getInstance());
     }
 
     //Don't Auto Hide instead update the list
@@ -428,6 +433,19 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         progressCanvas.addPortion(portion, "Set Background");
 
         //Some games update backgrounds here
+        final GeographicMapCompositeInterface geographicMapCompositeInterface = 
+            (GeographicMapCompositeInterface) this.getLayerManager();
+        
+        final GeographicMapInterface geographicMapInterface = 
+            geographicMapCompositeInterface.getGeographicMapInterface();
+
+        //layerManager.setBackgroundBasicColor(
+                //geographicMapInterface.getBackgroundBasicColor());
+
+        //layerManager.setForegroundBasicColor(
+                //geographicMapInterface.getForegroundBasicColor());
+
+        this.tileLayerPaintable = geographicMapInterface.getAllBinaryTiledLayer();
 
         //this.playerLayer = ((GDGameLayerManager) this.getLayerManager()).getPlayerLayer();
 
@@ -523,6 +541,8 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         /*
         graphics.drawString(soundQueue, 0, halfHeight + 15, 0);
         */
+
+        this.tileLayerPaintable.paint(graphics);
 
     	gameLayerManager.paint(graphics, 0, 0);
 

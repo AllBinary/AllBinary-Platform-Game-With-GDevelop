@@ -45,7 +45,7 @@ import org.allbinary.game.canvas.GDGameInputMappingHelpPaintable;
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
 import org.allbinary.game.commands.GameCommandsFactory;
 import org.allbinary.game.layer.GDGameLayerManager;
-import org.allbinary.media.audio.GDGameSoundsFactoryFactory;
+import org.allbinary.media.audio.GDGameSoundsFactory;
 
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -72,7 +72,7 @@ import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.media.audio.AllBinaryMediaManagerShutdown;
-import org.allbinary.media.audio.EarlySoundsFactoryFactory;
+import org.allbinary.media.audio.EarlySoundsFactory;
 import org.allbinary.midlet.MidletStrings;
 import org.allbinary.thread.PrimaryThreadPool;
 
@@ -225,10 +225,8 @@ public class GDGameMIDlet extends
         LogUtil.put(LogFactory.getInstance(commonStrings.START, this,
                 "mediaShutdown - postStopGameCanvasRunnableInterface"));
 
-        AllBinaryMediaManagerShutdown.shutdown(
-           EarlySoundsFactoryFactory.getInstance());
-        AllBinaryMediaManagerShutdown.shutdown(
-           GDGameSoundsFactoryFactory.getInstance());
+        AllBinaryMediaManagerShutdown.shutdown(EarlySoundsFactory.getInstance());
+        AllBinaryMediaManagerShutdown.shutdown(GDGameSoundsFactory.getInstance());
 
         LogUtil.put(LogFactory.getInstance(commonStrings.END, this,
                 "mediaShutdown - postStopGameCanvasRunnableInterface"));

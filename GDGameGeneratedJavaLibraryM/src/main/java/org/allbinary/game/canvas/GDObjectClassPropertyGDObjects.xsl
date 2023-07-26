@@ -117,36 +117,6 @@ Created By: Travis Berthelot
                 }
 
             </xsl:if>
-            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
-                <xsl:variable name="stringValue" select="string" />
-
-                //TileMap::TileMap - GDObject
-                public final class <xsl:value-of select="name" /> extends GDObject {
-                    
-                    public final StringMaker stringMaker = new StringMaker();
-
-                    public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
-                        super(unknown, x, y, name);
-                    }
-
-                    public int Width(final Graphics graphics) {
-                        return 0;
-                    }
-
-                    public int Height(final Graphics graphics) {
-                        return 0;
-                    }
-                    
-                    public String String() {
-                        return stringMaker.toString();
-                    }
-                };
-
-                public GDObject get<xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
-                    return new <xsl:value-of select="name" />(unknown, x, y, name);
-                }
-
-            </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
                 
