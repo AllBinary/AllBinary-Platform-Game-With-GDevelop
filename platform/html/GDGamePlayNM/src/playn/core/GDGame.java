@@ -18,7 +18,7 @@ import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.audio.EarlySoundsFactory;
 import org.allbinary.media.audio.Sounds;
 import org.allbinary.game.init.DefaultGameInitializationListener;
-import org.allbinary.media.audio.GDGameSoundsFactoryFactory;
+import org.allbinary.media.audio.GDGameSoundsFactory;
 import org.allbinary.playn.input.PlayNToAllBinaryKeyInputUtil;
 
 public class GDGame
@@ -120,7 +120,7 @@ Pointer.Listener
         try
         {
             new Sounds(EarlySoundsFactory.getInstance()).stopAll();
-            new Sounds(GDGameSoundsFactoryFactory.getInstance()).stopAll();
+            new Sounds(GDGameSoundsFactory.getInstance()).stopAll();
         }
         catch (Exception e)
         {

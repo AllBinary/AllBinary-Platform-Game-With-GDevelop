@@ -48,8 +48,22 @@
         </dependency>
 
         <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>ResourceJ2MEJavaLibrary</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameGeneratedJavaLibrary</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGamePreBaseJavaLibrary</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
@@ -79,7 +93,7 @@
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameResourceJavaLibrary</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>OpenGLNoneJavaLibrary</artifactId>
