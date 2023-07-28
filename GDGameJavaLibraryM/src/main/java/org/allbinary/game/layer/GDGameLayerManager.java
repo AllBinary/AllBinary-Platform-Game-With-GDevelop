@@ -14,14 +14,17 @@
 package org.allbinary.game.layer;
 
 import org.allbinary.game.GameInfo;
-import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
+import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
 
 public class GDGameLayerManager extends AllBinaryGameLayerManager
+        implements GeographicMapCompositeInterface
 {
+    private BasicGeographicMap geographicMapInterface;
    //private PlayerLayer playerLayer;
    
    public static int MAX_LEVEL = 1; //Integer.MAX_VALUE;
@@ -44,6 +47,16 @@ public class GDGameLayerManager extends AllBinaryGameLayerManager
         
         super.remove(layerInterface);
     }
+
+   public BasicGeographicMap getGeographicMapInterface()
+   {
+      return geographicMapInterface;
+   }
+
+   public void setGeographicMapInterface(BasicGeographicMap geographicMapInterface)
+   {
+      this.geographicMapInterface = geographicMapInterface;
+   }
     
    /*
    public PlayerLayer getPlayerLayer() {

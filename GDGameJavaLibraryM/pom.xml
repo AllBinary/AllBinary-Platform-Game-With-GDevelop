@@ -9,13 +9,13 @@
         <version>1.0.0-SNAPSHOT</version>
         <!-- Game Version End -->
     </parent>
-    
+
     <artifactId>GDGameJavaLibrary</artifactId>
     <packaging>jar</packaging>
 
     <name>GDGameJavaLibrary</name>
     <url>http://www.allbinary.com/</url>
-  
+
     <properties>
         <buildLabel>${version}</buildLabel>
         <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
@@ -43,6 +43,14 @@
             <artifactId>CombatGameJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.media.graphics.geography.map</groupId>
+            <artifactId>GeographicMapLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
 
@@ -78,20 +86,20 @@
             <!-- AllBinary Platform Version End -->
         </dependency>
 
-        <!--        
+        <!--
         <dependency>
             <groupId>org.allbinary.game.ai</groupId>
             <artifactId>AIBasicGameLibrary</artifactId>
         </dependency>
         -->
-        
+
         <!--
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>WeaponLayerJavaLibrary</artifactId>
         </dependency>
         -->
-        
+
         <!--
         <dependency>
             <groupId>org.allbinary.game.parts.weapon</groupId>
@@ -123,7 +131,7 @@
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameWavSoundsJavaLibrary</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>OpenGLNoneJavaLibrary</artifactId>
@@ -157,11 +165,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
-                <!-- 
+                <!--
                 <version>2.5.1</version>
                 <version>2.3.2</version>
                 -->
-                <configuration> 
+                <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
                     <compilerArgument>-Xlint:all</compilerArgument>
@@ -169,7 +177,7 @@
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
-                        
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
