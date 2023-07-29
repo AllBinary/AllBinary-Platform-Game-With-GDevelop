@@ -20,6 +20,7 @@ import org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterfaceFact
 import org.allbinary.game.canvas.GD0SpecialAnimationResources;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.game.map.GDGeographicMap;
+import org.allbinary.game.map.GDTiledMapProperties;
 import org.allbinary.game.resource.GDResources;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
@@ -28,11 +29,6 @@ import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.layer.LayerInterfaceFactory;
 import org.allbinary.layer.LayerInterfaceVisitor;
-import org.allbinary.logic.basic.string.CommonSeps;
-import org.allbinary.logic.basic.string.CommonStrings;
-import org.allbinary.logic.basic.string.StringMaker;
-import org.allbinary.logic.communication.log.LogFactory;
-import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
 import org.mapeditor.loader.TiledMapLoaderFromJSONFactory;
 import org.mapeditor.core.TileLayer;
@@ -78,11 +74,13 @@ public class GDGameLevelBuilder implements LayerInterfaceVisitor
         final Image tileSetImage = PlatformMapImageArray[0];
 
         final TiledMap map = TiledMapLoaderFromJSONFactory.getInstance().process(new GDJSONMapReader(), inputStream, new Image[] {tileSetImage});
-
+        
+        final GDTiledMapProperties tiledMapProperties = new GDTiledMapProperties();
+        
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
             (GeographicMapCompositeInterface) this.layerManager;
         
-        final CommonStrings commonStrings = CommonStrings.getInstance();
+        //final CommonStrings commonStrings = CommonStrings.getInstance();
         //final CommonSeps commonSeps = CommonSeps.getInstance();
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append(map.getWidth()).append(commonSeps.COLON).append(map.getHeight()).append(commonSeps.COLON).append(map.getTileWidth()).append(commonSeps.COLON).append(map.getTileHeight()).toString(), this, commonStrings.PROCESS));
 
@@ -91,7 +89,7 @@ public class GDGameLevelBuilder implements LayerInterfaceVisitor
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append("numStaticTiles: ").append((tileSetImage.getWidth() / map.getTileWidth()) * (tileSetImage.getHeight() / map.getTileHeight())).toString(), this, commonStrings.PROCESS));
 
         geographicMapCompositeInterface.setGeographicMapInterface(
-                new GDGeographicMap(((TileLayer) map.getLayer(0)).getId(), map, tileSetImage, BLACK, BLACK)
+                new GDGeographicMap(((TileLayer) map.getLayer(0)).getId(), map, tileSetImage, tiledMapProperties, BLACK, BLACK)
                 );
     }
 
