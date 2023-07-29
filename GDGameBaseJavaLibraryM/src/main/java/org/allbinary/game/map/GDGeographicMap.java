@@ -89,7 +89,7 @@ public class GDGeographicMap extends BasicGeographicMap {
                 tile = tileSet.getTile(index2);
                 animation = tile.getAnimation();
                 if(animation != null) {
-                    //LogUtil.put(LogFactory.getInstance("Creating AnimationTile", this, commonStrings.PROCESS));
+                    LogUtil.put(LogFactory.getInstance("Creating AnimationTile", this, commonStrings.PROCESS));
                     animationTileIndex = tiledLayer.createAnimatedTile(tile.getId());
                     this.animationTileIndexArray[this.animationList.size()] = animationTileIndex;
                     this.animationList.add(animation);

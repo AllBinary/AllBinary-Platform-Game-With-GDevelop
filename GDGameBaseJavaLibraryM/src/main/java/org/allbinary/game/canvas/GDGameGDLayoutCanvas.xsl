@@ -618,6 +618,14 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
         super.processPlayingGame();
 
+        final GeographicMapCompositeInterface geographicMapCompositeInterface = 
+            (GeographicMapCompositeInterface) this.getLayerManager();
+        
+        final GDGeographicMap geographicMapInterface = (GDGeographicMap) 
+            geographicMapCompositeInterface.getGeographicMapInterface();
+            
+        geographicMapInterface.update();
+
         this.specialAnimation.process();
         
         gdNodeStatsFactory.log(stringBuilder, this);
