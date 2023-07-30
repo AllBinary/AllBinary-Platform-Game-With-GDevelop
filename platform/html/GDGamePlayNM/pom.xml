@@ -47,7 +47,8 @@
             <!-- was asm for 2.6.1 of gwt but gwt 2.7.0 needs org.ow2.asm -->
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm</artifactId>
-            <!-- was 3.1 for 2.6.1 of gwt -->
+            <!-- was 3.1 and 5.0.3 for 2.6.1 of gwt -->
+            <!-- was 9.5 for 2.9.0 of gwt -->
             <version>5.0.3</version>
         </dependency>
         <dependency>
