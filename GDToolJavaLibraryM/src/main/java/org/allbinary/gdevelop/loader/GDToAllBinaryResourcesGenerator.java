@@ -71,6 +71,9 @@ public class GDToAllBinaryResourcesGenerator
         for(int index = 0; index < size; index++) {
             name = (String) this.gdResources.resourceList.get(index);
             resourceStringBuilder.append(INDENT);
+            if(name.indexOf(".json") >= 0) {
+                resourceStringBuilder.append("//");
+            }
             resourceStringBuilder.append(name);
             resourceStringBuilder.append(',');
             resourceStringBuilder.append('\n');

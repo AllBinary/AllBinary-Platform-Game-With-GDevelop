@@ -17,6 +17,10 @@
 <!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit trunk//EN" "http://google-web-toolkit.googlecode.com/svn/trunk/distro-source/core/src/gwt-module.dtd">
 <module>
 
+  <source path='gd/res'>
+    <!-- Exclude non-GWT-compatible classes -->
+    <exclude name='**/*Test.java' />
+  </source>
   <source path='org/apache/xmlrpc'>
     <!-- Exclude non-GWT-compatible classes -->
     <exclude name='**/*Test.java' />

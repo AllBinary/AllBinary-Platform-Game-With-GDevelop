@@ -15,7 +15,6 @@ package org.allbinary.game.level;
 
 import java.io.InputStream;
 import javax.microedition.lcdui.Image;
-import org.allbinary.data.resource.ResourceUtil;
 import org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.canvas.GD0SpecialAnimationResources;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
@@ -29,6 +28,7 @@ import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.layer.LayerInterfaceFactory;
 import org.allbinary.layer.LayerInterfaceVisitor;
+import org.allbinary.logic.system.PlatformAssetManager;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
 import org.mapeditor.loader.TiledMapLoaderFromJSONFactory;
 import org.mapeditor.core.TileLayer;
@@ -64,9 +64,8 @@ public class GDGameLevelBuilder implements LayerInterfaceVisitor
         // artificialIntelligenceInterfaceFactoryInterfaceFactory.add(new PacePatrolAIFactory());
         
         final BasicColor BLACK = BasicColorFactory.getInstance().BLACK;
-        final ResourceUtil resourceUtil = ResourceUtil.getInstance();
         final GDResources gdResources = GDResources.getInstance();
-        final InputStream inputStream = resourceUtil.getResourceAsStream(gdResources.MY_PLATFORMER_MAP);
+        final InputStream inputStream = PlatformAssetManager.getInstance().getResourceAsStream(gdResources.MY_PLATFORMER_MAP);
 
         final ImageCache imageCache = ImageCacheFactory.getInstance();
         final GD0SpecialAnimationResources specialAnimationResources = GD0SpecialAnimationResources.getInstance();

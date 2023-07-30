@@ -155,7 +155,12 @@ Created By: Travis Berthelot
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" /></xsl:with-param></xsl:call-template>,
                 </xsl:if>
                 };
-
+                
+                final int size = this.<xsl:value-of select="name" />JSONResourceArray.length;
+                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                    PlatformAssetManager.getInstance().getResourceAsStream(this.<xsl:value-of select="name" />JSONResourceArray[index]);
+                }                
+                
             </xsl:if>
 
         </xsl:for-each>
