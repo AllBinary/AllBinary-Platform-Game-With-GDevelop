@@ -75,6 +75,11 @@ public class GDGeographicMap extends BasicGeographicMap {
         this.tiledMapProperties = tiledMapProperties;
         this.tiledLayer = ((AllBinaryJ2METiledLayer) this.getAllBinaryTiledLayer()).getTiledLayer();
 
+        this.createAnimationTiles();
+
+    }
+
+    public void createAnimationTiles() {
         final List<TileSet> tileSetList = map.getTileSets();
         final int size = tileSetList.size();
         TileSet tileSet;
@@ -97,9 +102,8 @@ public class GDGeographicMap extends BasicGeographicMap {
                 }
             }
         }
-
     }
-
+    
     public void update() {
         final long startTime = GameTickTimeDelayHelperFactory.getInstance().getStartTime();
         final int size = this.animationList.size();
