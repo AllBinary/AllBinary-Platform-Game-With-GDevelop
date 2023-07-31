@@ -1,4 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
+
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -97,13 +100,18 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final BasicColor BLACK = BasicColorFactory.getInstance().BLACK;
         final GDResources gdResources = GDResources.getInstance();
         final PlatformAssetManager platformAssetManager = PlatformAssetManager.getInstance();
-        final InputStream inputStream = platformAssetManager.getResourceAsStream(gdResources.MY_PLATFORMER_MAP);
+                <xsl:if test="content" >
+                    //TileMap::TileMap:content
+                    <xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
+                    <xsl:variable name="json" select="substring-before($jsonWithExtension, '.')" />
+        final InputStream inputStream = platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" /></xsl:with-param></xsl:call-template>);
+                </xsl:if>
 
         //LogUtil.put(LogFactory.getInstance("Loaded Tiled Map Asset", this, commonStrings.PROCESS));
 
         final ImageCache imageCache = ImageCacheFactory.getInstance();
         final GD<xsl:value-of select="$index" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$index" />SpecialAnimationResources.getInstance();
-        final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtable().get(specialAnimationResources.PLATFORMERMAP_IMAGE_ARRAY_NAME);
+        final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtable().get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
         final Image tileSetImage = <xsl:value-of select="name" />ImageArray[0];
 
         //LogUtil.put(LogFactory.getInstance("Loading Tiled Map", this, commonStrings.PROCESS));

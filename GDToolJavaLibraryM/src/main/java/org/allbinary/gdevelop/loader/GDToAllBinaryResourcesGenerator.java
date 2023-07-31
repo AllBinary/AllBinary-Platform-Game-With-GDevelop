@@ -40,14 +40,16 @@ public class GDToAllBinaryResourcesGenerator
         resourceStringBuilder.append('\n');
     }
     
-    public void processResource(final String fileAsString, final String resourceString) {
-        this.gdResources.androidResourceList.add(fileAsString);
-        final String name = fileAsString.toUpperCase();
-        this.gdResources.resourceList.add(name);
+    public void processResource(final String nameAsString, final String resourceString) {
+        this.gdResources.androidResourceList.add(nameAsString);
+        final String name = nameAsString.toUpperCase();
+        this.gdResources.resourceNameList.add(name);
+        final String resource = resourceString.toLowerCase();
+        this.gdResources.resourceList.add(resource);
         resourceStringBuilder.append(this.PUBLIC_FINAL_STRING);
         resourceStringBuilder.append(name);
         resourceStringBuilder.append(this.VALUE_RESOURCE_START);
-        resourceStringBuilder.append(resourceString.toLowerCase());
+        resourceStringBuilder.append(resource);
         resourceStringBuilder.append(this.VALUE_RESOURCE_END);
     }
     
@@ -66,12 +68,14 @@ public class GDToAllBinaryResourcesGenerator
         final String INDENT = "        ";
         resourceStringBuilder.append('\n');
         resourceStringBuilder.append("    public final String[] resourceStringArray = {\n");
-        final int size = this.gdResources.resourceList.size();
+        final int size = this.gdResources.resourceNameList.size();
         String name;
+        String resource;
         for(int index = 0; index < size; index++) {
-            name = (String) this.gdResources.resourceList.get(index);
+            name = (String) this.gdResources.resourceNameList.get(index);
+            resource = (String) this.gdResources.resourceList.get(index);
             resourceStringBuilder.append(INDENT);
-            if(name.indexOf(".json") >= 0) {
+            if(resource.indexOf(".json") >= 0) {
                 resourceStringBuilder.append("//");
             }
             resourceStringBuilder.append(name);

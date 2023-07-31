@@ -61,7 +61,7 @@ public class GDLayoutsToAllBinaryGenerator
         this.nameList.add(name);
     }
     
-    public void process()
+    public void process() throws Exception
     {
         try
         {
@@ -115,6 +115,7 @@ public class GDLayoutsToAllBinaryGenerator
         } catch (Exception e)
         {
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+            throw e;
         }
 
     }

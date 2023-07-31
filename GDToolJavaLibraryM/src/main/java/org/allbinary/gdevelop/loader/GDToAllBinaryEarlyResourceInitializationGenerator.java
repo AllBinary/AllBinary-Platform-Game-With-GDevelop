@@ -88,7 +88,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
     }
 
     public void appendMedia(final StringMaker stringBuilder) {
-        final BasicArrayList resourceList = this.gdResources.resourceList;
+        final BasicArrayList resourceList = this.gdResources.resourceNameList;
         final BasicArrayList androidResourceList = this.gdResources.androidResourceList;
         
         int size = resourceList.size();
