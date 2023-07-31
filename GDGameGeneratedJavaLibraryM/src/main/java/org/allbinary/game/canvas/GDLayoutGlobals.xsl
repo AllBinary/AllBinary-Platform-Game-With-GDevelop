@@ -176,9 +176,10 @@ public class GDStructure {
                     
                         public final Graphics graphics = new Graphics();
                         //public final BasicArrayList ZERO_GD_OBJECT = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
-                        public final GDNode[] nodeArray = new GDNode[15000];
+                        private final int MAX_NODES = 20000
+                        public final GDNode[] nodeArray = new GDNode[MAX_NODES];
                         <!--
-                        public final int FAKE_COLLISION_NODE_ID = 14999;
+                        public final int FAKE_COLLISION_NODE_ID = MAX_NODES - 1;
                         -->
 
                         public final BasicArrayList[] channelSoundArray = new BasicArrayList[4];
