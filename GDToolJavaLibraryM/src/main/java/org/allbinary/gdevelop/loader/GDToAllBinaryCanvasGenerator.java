@@ -73,7 +73,7 @@ public class GDToAllBinaryCanvasGenerator extends Processor
         final FileInputStream fileInputStream = new FileInputStream(this.orig);        
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
         
-        final Replace replace = new Replace(GD_LAYOUT, this.className);
+        final Replace replace = new Replace(GD_LAYOUT, this.name);
         final Replace replace2 = new Replace(GD_CURRENT_LAYOUT_INDEX, Integer.toString(this.index));
 
         String updatedXslDocumentStr = replace.all(androidRFileAsString);

@@ -25,6 +25,7 @@ GDGameThreedLevelBuilderFactory.java
 GD0GameSoundsFactory.java
 GD1GameSoundsFactory.java
 GD2GameSoundsFactory.java
+GDGame*LevelBuilder.java
 GDGame*Canvas.java
 *GDObjectsFactory*.java
 GD*SpecialAnimation*.java

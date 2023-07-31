@@ -84,7 +84,7 @@ import org.allbinary.time.TimeDelayHelper;
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />
             <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
-public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBinaryGameCanvas
+public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCanvas //AllBinaryGameCanvas
 {
     private final String GD_LAYOUT_COLOR = "GDLayout<xsl:value-of select="position()" />Color";
 
@@ -101,7 +101,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
     private final GDGameInputProcessor gameInputProcessor = new GDGameInputProcessor();
     
-    public <GDLayout>(final CommandListener commandListener,
+    public GDGame<GDLayout>Canvas(final CommandListener commandListener,
             final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
     {
         super(commandListener, allBinaryGameLayerManager,
@@ -182,7 +182,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
     }
 
 <!--
-    public <GDLayout>(AllBinaryGameLayerManager allBinaryGameLayerManager)
+    public GDGame<GDLayout>Canvas(AllBinaryGameLayerManager allBinaryGameLayerManager)
     throws Exception
     {
         this(null, allBinaryGameLayerManager);

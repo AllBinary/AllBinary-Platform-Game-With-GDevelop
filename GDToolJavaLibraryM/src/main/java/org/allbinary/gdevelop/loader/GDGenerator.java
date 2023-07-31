@@ -28,7 +28,7 @@ public class GDGenerator {
         System.setProperty("jdk.xml.xpathTotalOpLimit", "0");
         new GDDelete().process();
         new GDToAllBinaryGenerationTool().process();
-        new GDLayoutsToAllBinaryGenerator().process(new GDGetTotalLayouts().process());
+        new GDLayoutsToAllBinaryLayoutGenerator().process(new GDGetTotalLayouts().process());
     }
     
 }

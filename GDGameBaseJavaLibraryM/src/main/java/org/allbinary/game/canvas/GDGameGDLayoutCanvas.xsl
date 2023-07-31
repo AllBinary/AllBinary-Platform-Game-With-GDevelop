@@ -23,11 +23,7 @@ import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Graphics;
 
 import org.allbinary.game.init.GDGameStaticInitializerFactory;
-        <xsl:for-each select="layouts" >
-            <xsl:variable name="index" select="position() - 1" />
-            <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
-import org.allbinary.game.level.GD<xsl:value-of select="$index" />GameLevelBuilder;
-        </xsl:for-each>
+import org.allbinary.game.level.GDGame<GDLayout>LevelBuilder;
 import org.allbinary.input.accelerometer.AccelerometerSensorFactory;
 import org.allbinary.input.gyro.AllBinaryOrientationSensor;
 import org.allbinary.input.gyro.GyroSensorFactory;
@@ -64,6 +60,7 @@ import org.allbinary.game.layer.PlayerGameInputGameLayer;
 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
 import org.allbinary.game.layout.BaseGDNodeStats;
 import org.allbinary.game.layout.GDNodeStatsFactory;
+import org.allbinary.game.map.GDGeographicMap;
 import org.allbinary.game.score.BasicHighScoresFactory;
 import org.allbinary.game.state.GameState;
 import org.allbinary.game.tick.OptimizedTickableLayerProcessor;
@@ -92,7 +89,7 @@ import org.allbinary.time.TimeDelayHelper;
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />
             <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
-public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBinaryGameCanvas
+public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCanvas //AllBinaryGameCanvas
 {
     private final String GD_LAYOUT_COLOR = "GDLayout<xsl:value-of select="position()" />Color";
 
@@ -113,7 +110,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
     private final UpKeyEventHandler upKeyEventHandler = UpKeyEventHandler.getInstance();
     private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
     
-    public <GDLayout>(final CommandListener commandListener,
+    public GDGame<GDLayout>Canvas(final CommandListener commandListener,
             final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
     {
         super(commandListener, allBinaryGameLayerManager,
@@ -189,7 +186,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
     }
 
     <!-- 
-    public <GDLayout>(AllBinaryGameLayerManager allBinaryGameLayerManager)
+    public GDGame<GDLayout>Canvas(AllBinaryGameLayerManager allBinaryGameLayerManager)
     throws Exception
     {
         this(null, allBinaryGameLayerManager);
@@ -432,7 +429,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
         progressCanvas.addPortion(portion, "Building Game Level");
 
-        new GD<xsl:value-of select="$index" />GameLevelBuilder(this.getLayerManager()).build();
+        new GDGame<GDLayout>LevelBuilder(this.getLayerManager()).build();
 
         progressCanvas.addPortion(portion, "Set Background");
 

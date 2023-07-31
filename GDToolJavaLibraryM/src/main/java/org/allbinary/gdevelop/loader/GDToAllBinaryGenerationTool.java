@@ -73,10 +73,21 @@ public class GDToAllBinaryGenerationTool
     private final GDToThreedAllBinarySceneAndroidResourcesGradleGenerator threedSceneEarlyResourceInitializationGenerator = new GDToThreedAllBinarySceneAndroidResourcesGradleGenerator();
 
     private final GDToAllBinaryMIDletGenerator midletGenerator = new GDToAllBinaryMIDletGenerator();
-    private final GDLayoutsToAllBinaryRunnableGenerator runnableGenerator = new GDLayoutsToAllBinaryRunnableGenerator();
-    private final GDLayoutsToAllBinaryThreedRunnableGenerator runnableThreedGenerator = new GDLayoutsToAllBinaryThreedRunnableGenerator();
-    //private final GDLayoutsToAllBinaryStartRunnableGenerator startRunnableGenerator = new GDLayoutsToAllBinaryStartRunnableGenerator();
-    //private final GDLayoutsToAllBinaryThreedStartRunnableGenerator startRunnableThreedGenerator = new GDLayoutsToAllBinaryThreedStartRunnableGenerator();
+    private final GDLayoutsToAllBinaryGenerator levelBuilderGenerator = new GDLayoutsToAllBinaryGenerator(
+            "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\level\\GDGameLevelBuilder.xsl", 
+            "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\level\\GDGame", "LevelBuilder.java");
+    private final GDLayoutsToAllBinaryGenerator runnableGenerator = new GDLayoutsToAllBinaryGenerator(
+            "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\midlet\\GDLayoutRunnable.xsl", 
+            "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\midlet\\GDGame", "CanvasRunnable.java");
+    private final GDLayoutsToAllBinaryGenerator runnableThreedGenerator = new GDLayoutsToAllBinaryGenerator(
+            "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\midlet\\GDLayoutRunnable.xsl",
+            "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\midlet\\GDGame", "CanvasRunnable.java");
+    //private final GDLayoutsToAllBinaryGenerator startRunnableGenerator = new GDLayoutsToAllBinaryGenerator(
+            //"GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDLayoutStartRunnable.xsl", 
+            //"GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameStart", "CanvasRunnable.java");
+    //private final GDLayoutsToAllBinaryGenerator startRunnableThreedGenerator = new GDLayoutsToAllBinaryGenerator(
+            //"GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDLayoutStartRunnable.xsl"
+            //"GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameStart", "CanvasRunnable.java");
     private final BasicArrayList layoutList = new BasicArrayList();
 
     private final String PLAY_SOUND = "PlaySound";
@@ -133,6 +144,7 @@ public class GDToAllBinaryGenerationTool
         this.threedEarlyResourceInitializationGenerator.process(soundsGenerator);
         this.threedSceneEarlyResourceInitializationGenerator.process();
         this.midletGenerator.process();
+        this.levelBuilderGenerator.process();
         this.runnableGenerator.process();
         this.runnableThreedGenerator.process();
 
@@ -237,6 +249,7 @@ public class GDToAllBinaryGenerationTool
     public void loadLayout(final GDLayout layout, final int index, final int size) throws Exception
     {
         this.midletGenerator.loadLayout(layout, index, size);
+        this.levelBuilderGenerator.loadLayout(layout, index, size);
         this.runnableGenerator.loadLayout(layout, index, size);
         this.runnableThreedGenerator.loadLayout(layout, index, size);
 

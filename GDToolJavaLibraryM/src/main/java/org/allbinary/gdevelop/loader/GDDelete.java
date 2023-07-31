@@ -79,10 +79,10 @@ public class GDDelete {
         final BasicArrayList exclusionList2 = new BasicArrayList();
         
         exclusionList2.add("GDGameGameCanvas.java");
+        exclusionList2.add("GDGameStartCanvas.java");        
         exclusionList2.add("GDGameSoftwareInfo.java");
-        exclusionList2.add("GDGameSoftwareInfo.java");
-        exclusionList2.add("GDGameStartCanvas.java");
         exclusionList2.add("GDGeographicMap.java");
+        exclusionList2.add("GDTiledMapProperties");
         
         final Vector files2 = FileListFetcher.getInstance().getFiles(
               gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java", "java");
