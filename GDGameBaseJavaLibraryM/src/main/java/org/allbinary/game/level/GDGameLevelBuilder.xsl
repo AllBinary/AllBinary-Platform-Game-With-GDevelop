@@ -103,8 +103,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         final ImageCache imageCache = ImageCacheFactory.getInstance();
         final GD<xsl:value-of select="$index" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$index" />SpecialAnimationResources.getInstance();
-        final Image[] PlatformMapImageArray = (Image[]) imageCache.getHashtable().get(specialAnimationResources.PLATFORMERMAP_IMAGE_ARRAY_NAME);
-        final Image tileSetImage = PlatformMapImageArray[0];
+        final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtable().get(specialAnimationResources.PLATFORMERMAP_IMAGE_ARRAY_NAME);
+        final Image tileSetImage = <xsl:value-of select="name" />ImageArray[0];
 
         //LogUtil.put(LogFactory.getInstance("Loading Tiled Map", this, commonStrings.PROCESS));
         
