@@ -23,11 +23,7 @@ import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Graphics;
 
 import org.allbinary.game.init.GDGameStaticInitializerFactory;
-        <xsl:for-each select="layouts" >
-            <xsl:variable name="index" select="position() - 1" />
-            <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
-import org.allbinary.game.level.GD<xsl:value-of select="$index" />GameLevelBuilder;
-        </xsl:for-each>
+import org.allbinary.game.level.GDGameLevelBuilder;
 import org.allbinary.input.accelerometer.AccelerometerSensorFactory;
 import org.allbinary.input.gyro.AllBinaryOrientationSensor;
 import org.allbinary.input.gyro.GyroSensorFactory;
@@ -137,7 +133,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
         GroupLayerManagerListener.getInstance().init(SIZE);
 
-        //this.specialAnimation = GD<xsl:value-of select="$index" />SpecialAnimation.getInstance(this, allBinaryGameLayerManager);
+        //this.specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(this, allBinaryGameLayerManager);
 
         //this.setPlayingGameState();
 
@@ -210,7 +206,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         this.setGameSpecificPaintable(
                 new Paintable()
         {
-            final SpecialAnimation specialAnimation = GD<xsl:value-of select="$index" />SpecialAnimation.getInstance();
+            final SpecialAnimation specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance();
 
             public void paint(Graphics graphics)
             {
@@ -395,7 +391,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
     {
         //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "buildGame"));
     
-        this.specialAnimation = GD<xsl:value-of select="$index" />SpecialAnimation.getInstance(this, gameLayerManager);
+        this.specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(this, gameLayerManager);
         this.setPlayingGameState();
         
         this.loadResources(gameLayerManager.getGameInfo().getCurrentLevel());
@@ -432,7 +428,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
         progressCanvas.addPortion(portion, "Building Game Level");
 
-        new GD<xsl:value-of select="$index" />GameLevelBuilder(this.getLayerManager()).build();
+        new GDGameLevelBuilder(this.getLayerManager()).build();
 
         progressCanvas.addPortion(portion, "Set Background");
 

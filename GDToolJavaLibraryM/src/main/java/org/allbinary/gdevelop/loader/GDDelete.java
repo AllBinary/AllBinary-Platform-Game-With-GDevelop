@@ -82,7 +82,6 @@ public class GDDelete {
         exclusionList2.add("GDGameSoftwareInfo.java");
         exclusionList2.add("GDGameSoftwareInfo.java");
         exclusionList2.add("GDGameStartCanvas.java");
-        exclusionList2.add("GDGameLevelBuilder.java");
         exclusionList2.add("GDGeographicMap.java");
         
         final Vector files2 = FileListFetcher.getInstance().getFiles(

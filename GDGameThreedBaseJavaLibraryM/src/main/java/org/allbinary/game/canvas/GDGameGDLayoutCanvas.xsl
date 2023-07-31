@@ -125,7 +125,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
         GroupLayerManagerListener.getInstance().init(SIZE);
 
-        //this.specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(this, allBinaryGameLayerManager);
+        //this.specialAnimation = GD<xsl:value-of select="$index" />SpecialAnimation.getInstance(this, allBinaryGameLayerManager);
 
         //this.setPlayingGameState();
             
@@ -204,7 +204,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
         this.setGameSpecificPaintable(
                 new Paintable()
         {
-            final SpecialAnimation specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance();
+            final SpecialAnimation specialAnimation = GD<xsl:value-of select="$index" />SpecialAnimation.getInstance();
 
             public void paint(Graphics graphics)
             {
@@ -387,7 +387,7 @@ public class <GDLayout> extends CombatGameCanvas //MultiPlayerGameCanvas //AllBi
 
     public void buildGame(boolean isProgress) throws Exception
     {
-        this.specialAnimation = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance(this, gameLayerManager);
+        this.specialAnimation = GD<xsl:value-of select="$index" />SpecialAnimation.getInstance(this, gameLayerManager);
         this.setPlayingGameState();
         
         this.loadResources(gameLayerManager.getGameInfo().getCurrentLevel());

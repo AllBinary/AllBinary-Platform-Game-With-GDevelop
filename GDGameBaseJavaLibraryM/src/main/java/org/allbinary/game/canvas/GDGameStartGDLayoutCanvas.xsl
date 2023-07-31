@@ -84,7 +84,7 @@ public class <GDLayout> extends StartCanvas
                 //);
 
         this.setSpecialAnimationInterface(
-                GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance()
+                GD<xsl:value-of select="$index" />SpecialAnimation.getInstance()
                 );
 
         this.setDefaultPaintableInterface(
@@ -123,19 +123,19 @@ public class <GDLayout> extends StartCanvas
     public void open()
     {
         super.open();
-        GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance().open();
+        GD<xsl:value-of select="$index" />SpecialAnimation.getInstance().open();
     }
 
     public void close()
     {
         super.close();
-        GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance().close();
+        GD<xsl:value-of select="$index" />SpecialAnimation.getInstance().close();
     }
 
     public synchronized void unPause()
     {
         super.unPause();
-        this.paintedSpecialAnimationInterface = GD<GD_CURRENT_INDEX>SpecialAnimation.getInstance();
+        this.paintedSpecialAnimationInterface = GD<xsl:value-of select="$index" />SpecialAnimation.getInstance();
     }
     
     //Hack for GD
