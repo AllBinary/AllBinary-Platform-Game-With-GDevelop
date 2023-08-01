@@ -38,11 +38,19 @@ public class GDToAllBinaryCanvasGenerator extends Processor
 
     private final StringMaker stringBuilder = new StringMaker();
 
+    private final String xslPath;
+    private final String path;
+    
     private int index;
     private String name;
     private String className;
     private String orig;
 
+    public GDToAllBinaryCanvasGenerator(final String xslPath, final String path) {
+        this.xslPath = xslPath;
+        this.path = path;
+    }
+    
     public void loadLayout(final GDLayout layout, final int index, final int size) throws Exception
     {
         this.index = index;
@@ -51,7 +59,7 @@ public class GDToAllBinaryCanvasGenerator extends Processor
 //        if (index == 1 || size == 1)
 //        {
             className = stringBuilder.append("GDGame").append(name).append("Canvas").toString();
-            this.orig = gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameGDLayoutCanvas.xsl";
+            this.orig = gdToolStrings.ROOT_PATH + this.xslPath;
 //        } else
 //        {
 //            className = stringBuilder.append("GDGameStart").append(name).append("Canvas").toString();
@@ -64,7 +72,7 @@ public class GDToAllBinaryCanvasGenerator extends Processor
     {
 
         stringBuilder.delete(0, stringBuilder.length());
-        final String CANVAS = stringBuilder.append(gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\").append(this.className).append(".java").toString();
+        final String CANVAS = stringBuilder.append(gdToolStrings.ROOT_PATH + this.path).append(this.className).append(".java").toString();
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);

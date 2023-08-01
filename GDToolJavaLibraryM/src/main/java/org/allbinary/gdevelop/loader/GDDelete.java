@@ -114,10 +114,18 @@ public class GDDelete {
         
         this.process(files3, exclusionList3);
 
+        final BasicArrayList exclusionList3b = new BasicArrayList();
+        
+        exclusionList3b.add("PlatformAssetManager.java");
+        
+        final Vector files3b = FileListFetcher.getInstance().getFiles(
+              gdToolStrings.ROOT_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java", "java");
+        
+        this.process(files3b, exclusionList3b);
+        
         final BasicArrayList exclusionList4 = new BasicArrayList();
         
         exclusionList4.add("GDGameThreedLevelBuilder.java");
-        
         
         final Vector files4 = FileListFetcher.getInstance().getFiles(
               gdToolStrings.ROOT_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java", "java");

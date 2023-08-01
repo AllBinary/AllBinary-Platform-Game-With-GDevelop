@@ -115,6 +115,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 
                 gameXmlAsString,
                 layoutGameXmlAsString,
+                
+                gameXmlAsString,
+
             };
 
             final InputStream[] inputStreamArray = 
@@ -139,7 +142,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 new FileInputStream(gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDResources.xsl"),
                 
                 new FileInputStream(gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGlobals.xsl"),
-                new FileInputStream(gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDObjects.xsl")
+                new FileInputStream(gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDObjects.xsl"),
+                    
+                new FileInputStream(gdToolStrings.ROOT_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\GDGamePlaynResources.xsl"), 
+
             };
 
             final int xslTotal = inputStreamArray.length;
@@ -149,7 +155,36 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 xslDocumentAsString[index] = new String(streamUtil.getByteArray(inputStreamArray[index], outputStream, byteArray));
             }
 
-            final String START_WITH_PATH = gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD";
+            final String GENERATED_START_WITH_PATH = gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GD";
+            
+            final String[] START = {
+
+                GENERATED_START_WITH_PATH,
+                GENERATED_START_WITH_PATH,
+
+                GENERATED_START_WITH_PATH,
+                GENERATED_START_WITH_PATH,
+                
+                GENERATED_START_WITH_PATH,
+                GENERATED_START_WITH_PATH,
+                GENERATED_START_WITH_PATH,
+                GENERATED_START_WITH_PATH,
+                GENERATED_START_WITH_PATH,
+                
+                GENERATED_START_WITH_PATH,
+                GENERATED_START_WITH_PATH,
+                GENERATED_START_WITH_PATH,
+                GENERATED_START_WITH_PATH,
+                
+                GENERATED_START_WITH_PATH,
+                
+                GENERATED_START_WITH_PATH,
+                GENERATED_START_WITH_PATH,
+                
+                gdToolStrings.ROOT_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\GD",
+
+            };
+            
             final String[] END = {
                 "NonLayout.xml",
                 "SpecialAnimation.xml",
@@ -171,7 +206,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 "SpecialAnimationGDResources.java",
                 
                 "SpecialAnimationGlobals.java",
-                "GDObjectsFactory.java"
+                "GDObjectsFactory.java",
+                
+                "GamePlaynResources.java",
+
             };
             
             int startIndex = 0;
@@ -193,10 +231,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                             new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
 
                     stringBuilder.delete(0, stringBuilder.length());
-                    String fileName = stringBuilder.append(START_WITH_PATH).append(indexAsString).append(END[index2]).toString();
+                    String fileName = stringBuilder.append(START[index2]).append(indexAsString).append(END[index2]).toString();
                     if(index2 == 0) {
                         stringBuilder.delete(0, stringBuilder.length());
-                        fileName = stringBuilder.append(START_WITH_PATH).append(END[index2]).toString();
+                        fileName = stringBuilder.append(START[index2]).append(END[index2]).toString();
                     }
 
                     //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));

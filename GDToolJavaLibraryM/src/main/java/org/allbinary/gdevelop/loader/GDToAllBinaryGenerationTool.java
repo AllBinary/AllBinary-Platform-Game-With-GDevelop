@@ -72,7 +72,7 @@ public class GDToAllBinaryGenerationTool
     private final GDToThreedAllBinaryEarlyResourceInitializationGenerator threedEarlyResourceInitializationGenerator = new GDToThreedAllBinaryEarlyResourceInitializationGenerator();
     private final GDToThreedAllBinarySceneAndroidResourcesGradleGenerator threedSceneEarlyResourceInitializationGenerator = new GDToThreedAllBinarySceneAndroidResourcesGradleGenerator();
 
-    private final GDToAllBinaryMIDletGenerator midletGenerator = new GDToAllBinaryMIDletGenerator();
+    private final GDToAllBinaryGlobalGenerator midletGenerator = new GDToAllBinaryGlobalGenerator();
     private final GDLayoutsToAllBinaryGenerator levelBuilderGenerator = new GDLayoutsToAllBinaryGenerator(
             "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\level\\GDGameLevelBuilder.xsl", 
             "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\level\\GDGame", "LevelBuilder.java");
@@ -253,12 +253,16 @@ public class GDToAllBinaryGenerationTool
         this.runnableGenerator.loadLayout(layout, index, size);
         this.runnableThreedGenerator.loadLayout(layout, index, size);
 
-        final GDToAllBinaryCanvasGenerator canvasGenerator = new GDToAllBinaryCanvasGenerator();
-        final GDToThreedAllBinaryCanvasGenerator canvasThreedGenerator = new GDToThreedAllBinaryCanvasGenerator();
+        final GDToAllBinaryCanvasGenerator canvasGenerator = new GDToAllBinaryCanvasGenerator(
+                "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameGDLayoutCanvas.xsl",
+                "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\");
+        final GDToAllBinaryCanvasGenerator threedCanvasGenerator = new GDToAllBinaryCanvasGenerator(
+                "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameGDLayoutCanvas.xsl",
+                "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\");
         canvasGenerator.loadLayout(layout, index, size);
-        canvasThreedGenerator.loadLayout(layout, index, size);
+        threedCanvasGenerator.loadLayout(layout, index, size);
         this.layoutList.add(canvasGenerator);
-        this.layoutList.add(canvasThreedGenerator);
+        this.layoutList.add(threedCanvasGenerator);
 
         this.loadEvents(layout.eventList);
     }
