@@ -39,7 +39,7 @@
         </dependency>
 
         <dependency>
-            <groupId>org.allbinary</groupId>
+            <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameHTMLPlaynJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
