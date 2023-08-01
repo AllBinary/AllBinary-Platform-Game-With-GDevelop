@@ -1,6 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobal.xsl" />
 
     <xsl:output method="html" indent="yes" />
 
@@ -136,10 +137,20 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append(tileSetImage.getWidth()).append(commonSeps.COLON).append(tileSetImage.getHeight()).append(commonSeps.COLON).append(map.getTileWidth()).append(commonSeps.COLON).append(map.getTileHeight()).toString(), this, commonStrings.PROCESS));
 
+        <xsl:for-each select=".." >
+            <xsl:call-template name="globalZoomCameraActions" >
+                <xsl:with-param name="tileMap" >true</xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append("numStaticTiles: ").append((tileSetImage.getWidth() / map.getTileWidth()) * (tileSetImage.getHeight() / map.getTileHeight())).toString(), this, commonStrings.PROCESS));
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("tileset w/h: ").append(tileSetImage.getWidth()).append(',').append(tileSetImage.getHeight()).toString(), this, commonStrings.PROCESS));
+        //final String string2 = new StringMaker().append("w: ").append(map.getWidth()).append(" h: ").append(map.getHeight()).append("tw: ").append(map.getTileWidth()).append(" th: ").append(map.getTileHeight()).toString();
+        //LogUtil.put(LogFactory.getInstance(string2, this, commonStrings.PROCESS));
+        //final String string = new StringMaker().append("w: ").append((int) (map.getWidth() * tileMapScale)).append(" h: ").append((int) (map.getHeight() * tileMapScale)).append("tw: ").append((int) (map.getTileWidth() * tileMapScale)).append(" th: ").append((int) (map.getTileHeight() * tileMapScale)).toString();
+        //LogUtil.put(LogFactory.getInstance(string, this, commonStrings.PROCESS));
 
         geographicMapCompositeInterface.setGeographicMapInterface(
-                new GDGeographicMap(((TileLayer) map.getLayer(0)).getId(), map, tileSetImage, tiledMapProperties, BLACK, BLACK)
+                new GDGeographicMap(((TileLayer) map.getLayer(0)).getId(), map, tileSetImage, tiledMapProperties, BLACK, BLACK, tileMapScale)
                 );
                 
             </xsl:if>

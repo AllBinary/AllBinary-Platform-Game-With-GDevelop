@@ -14,7 +14,7 @@ Created By: Travis Berthelot
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-
+    
     <xsl:template name="imageProperties" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
@@ -55,8 +55,12 @@ Created By: Travis Berthelot
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
 
+        <xsl:call-template name="globalZoomCameraActions" >
+            <xsl:with-param name="baseLayer" >true</xsl:with-param>
+            <xsl:with-param name="tileMap" >true</xsl:with-param>
+        </xsl:call-template>
+        
         //objects - image - cache - START
-
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
@@ -132,8 +136,7 @@ Created By: Travis Berthelot
                     <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />,
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
-                    //imageCopyUtil.createImage(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, 1.44f, true),
-                    imageCopyUtil.createImage(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />),
+                    imageScaleUtil.createImage(imageCache, <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, tileMapScale, 1, tileMapScale, 1, true),
                     </xsl:if>
                 </xsl:if>
                 };
