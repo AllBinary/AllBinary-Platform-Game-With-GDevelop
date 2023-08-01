@@ -240,8 +240,8 @@ Created By: Travis Berthelot
                         <xsl:variable name="colonName" >:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:variable name="notTextObject" ><xsl:for-each select="../objects" ><xsl:if test="$name = name" ><xsl:if test="type != 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
-                        //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" />
-                        <xsl:if test="type != 'TileMap::TileMap'" >
+                        //name=<xsl:value-of select="name" /> layer=<xsl:value-of select="layer" />
+                        <xsl:if test="layer != 'TileMap' and layer != 'Collision'" >
                         <xsl:text>&#10;</xsl:text>
                         if(true) {
                         <xsl:if test="layer != '' or contains($notTextObject, 'found') or contains($objectsAsString, $colonName)" >

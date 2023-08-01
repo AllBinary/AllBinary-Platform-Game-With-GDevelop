@@ -125,7 +125,8 @@ Created By: Travis Berthelot
                     <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />,
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
-                    imageCopyUtil.createImage(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, 1.44f, true),
+                    //imageCopyUtil.createImage(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, 1.44f, true),
+                    imageScaleUtil.createImage(imageCache, <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, baseLayerScale, 1, baseLayerScale, 1, true),
                     </xsl:if>
                 </xsl:for-each>
                 
