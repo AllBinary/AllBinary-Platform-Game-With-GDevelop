@@ -433,6 +433,11 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         progressCanvas.addPortion(portion, "Set Background");
 
+        <xsl:for-each select="objects" >
+            <xsl:variable name="typeValue" select="type" />
+
+            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+            
         //Some games update backgrounds here
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
             (GeographicMapCompositeInterface) this.getLayerManager();
@@ -447,6 +452,9 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
                 //geographicMapInterface.getForegroundBasicColor());
 
         this.tileLayerPaintable = geographicMapInterface.getAllBinaryTiledLayer();
+
+            </xsl:if>
+        </xsl:for-each>
 
         //this.playerLayer = ((GDGameLayerManager) this.getLayerManager()).getPlayerLayer();
 
