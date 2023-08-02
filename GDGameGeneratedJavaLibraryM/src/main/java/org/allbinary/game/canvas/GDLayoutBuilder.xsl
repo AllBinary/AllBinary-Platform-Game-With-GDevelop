@@ -23,6 +23,7 @@ Created By: Travis Berthelot
         
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
     
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobal.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
@@ -233,6 +234,10 @@ Created By: Travis Berthelot
 
                         try {
                     
+        <xsl:call-template name="globalZoomCameraActions" >
+            <xsl:with-param name="baseLayer" >true</xsl:with-param>
+        </xsl:call-template>
+                    
                     //instances create - START
                     <xsl:for-each select="instances" >
                         <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
@@ -245,7 +250,7 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                         if(true) {
                         <xsl:if test="layer != '' or contains($notTextObject, 'found') or contains($objectsAsString, $colonName)" >
-                        final int <xsl:value-of select="name" />X = (int) <xsl:value-of select="x" />;
+                        final int <xsl:value-of select="name" />X = (int) (<xsl:value-of select="x" /> * baseLayerScale);
                         final int <xsl:value-of select="name" />Y = (int) 
                             <xsl:if test="contains(layer, 'touch')" >
                                 //Hack - for android orientation change.
@@ -253,7 +258,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="y = 415" >DisplayInfoSingleton.getInstance().getLastHeight() - (2 * (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100)));</xsl:if>
                             </xsl:if>
                             <xsl:if test="not(contains(layer, 'touch'))" >
-                                <xsl:value-of select="y" />;
+                                (<xsl:value-of select="y" /> * baseLayerScale);
                             </xsl:if>
 
                         if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
