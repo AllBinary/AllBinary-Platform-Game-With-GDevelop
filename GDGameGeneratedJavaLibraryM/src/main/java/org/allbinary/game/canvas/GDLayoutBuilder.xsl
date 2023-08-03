@@ -23,6 +23,7 @@ Created By: Travis Berthelot
         
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
     
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionCentreCameraGlobal.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobal.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
@@ -72,6 +73,9 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+                import org.allbinary.graphics.displayable.event.DisplayChangeEvent;
+                import org.allbinary.graphics.displayable.event.DisplayChangeEventHandler;
+                import org.allbinary.graphics.displayable.event.DisplayChangeEventListener;
 
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
@@ -233,6 +237,10 @@ Created By: Travis Berthelot
                     //GDNode - END
 
                         try {
+
+        <xsl:call-template name="globalCentreCameraActions" >
+            <xsl:with-param name="baseLayer" >true</xsl:with-param>
+        </xsl:call-template>
                     
         <xsl:call-template name="globalZoomCameraActions" >
             <xsl:with-param name="baseLayer" >true</xsl:with-param>
@@ -250,15 +258,25 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                         if(true) {
                         <xsl:if test="layer != '' or contains($notTextObject, 'found') or contains($objectsAsString, $colonName)" >
-                        final int <xsl:value-of select="name" />X = (int) (<xsl:value-of select="x" /> * baseLayerScale);
-                        final int <xsl:value-of select="name" />Y = (int) 
+                            
+                            <xsl:if test="contains(layer, 'touch')" >
+                        final int width = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
+                        final int height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
+                            </xsl:if>
+                            <xsl:if test="not(contains(layer, 'touch'))" >
+                        final int width = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
+                        final int height = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
+                            </xsl:if>
+                            
+                        final int <xsl:value-of select="name" />X = centerCameraX != 0 ? centerCameraX - width / 2 : (int) (<xsl:value-of select="x" /> * baseLayerScale);
+                        final int <xsl:value-of select="name" />Y =
                             <xsl:if test="contains(layer, 'touch')" >
                                 //Hack - for android orientation change.
-                                <xsl:if test="y = 506" >DisplayInfoSingleton.getInstance().getLastHeight() - (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100));</xsl:if>
+                                 (int) <xsl:if test="y = 506" >DisplayInfoSingleton.getInstance().getLastHeight() - (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100));</xsl:if>
                                 <xsl:if test="y = 415" >DisplayInfoSingleton.getInstance().getLastHeight() - (2 * (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100)));</xsl:if>
                             </xsl:if>
                             <xsl:if test="not(contains(layer, 'touch'))" >
-                                (<xsl:value-of select="y" /> * baseLayerScale);
+                                centerCameraX != 0 ? centerCameraY - height / 2 :  (int) (<xsl:value-of select="y" /> * baseLayerScale);
                             </xsl:if>
 
                         if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
@@ -277,14 +295,14 @@ Created By: Travis Berthelot
                             <xsl:if test="contains(layer, 'touch')" >
                         <xsl:value-of select="name" />GDobject2.canvasWidth = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
                         <xsl:value-of select="name" />GDobject2.canvasHeight = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();
-                        <xsl:value-of select="name" />GDobject2.width = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
-                        <xsl:value-of select="name" />GDobject2.height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
+                        <xsl:value-of select="name" />GDobject2.width = width;
+                        <xsl:value-of select="name" />GDobject2.height = height;
                             </xsl:if>
                             <xsl:if test="not(contains(layer, 'touch'))" >
                         <xsl:value-of select="name" />GDobject2.canvasWidth = imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
                         <xsl:value-of select="name" />GDobject2.canvasHeight = imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();
-                        <xsl:value-of select="name" />GDobject2.width = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
-                        <xsl:value-of select="name" />GDobject2.height = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
+                        <xsl:value-of select="name" />GDobject2.width = width;
+                        <xsl:value-of select="name" />GDobject2.height = height;
                             </xsl:if>
                         <xsl:value-of select="name" />GDobject2.halfWidth = (<xsl:value-of select="name" />GDobject2.width / 2);
                         <xsl:value-of select="name" />GDobject2.halfHeight = (<xsl:value-of select="name" />GDobject2.height / 2);
@@ -302,9 +320,9 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
-                        
+                                                
                         <xsl:if test="layer != '' or contains($notTextObject, 'found')" >
-                        GDGameLayer <xsl:value-of select="name" />GDGameLayer = resources.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />GDobject2, globals.<xsl:value-of select="name" />GDConditionWithGroupActions);
+                        final GDGameLayer <xsl:value-of select="name" />GDGameLayer = resources.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />GDobject2, globals.<xsl:value-of select="name" />GDConditionWithGroupActions);
                         LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0", this, commonStrings.PROCESS));
                         globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
 
@@ -313,6 +331,13 @@ Created By: Travis Berthelot
                         globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
                         allBinaryGameLayerManager.insert(<xsl:value-of select="name" />GDGameLayer);
                         </xsl:if>
+                        
+                        <xsl:for-each select=".." >
+                            <xsl:call-template name="globalUpdateCentreCameraActions" >
+                                <xsl:with-param name="baseLayer" >true</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        
                         }
                         </xsl:if>
                     </xsl:for-each>

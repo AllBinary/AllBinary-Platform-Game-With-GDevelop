@@ -1,6 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionCentreCameraGlobal.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobal.xsl" />
 
     <xsl:output method="html" indent="yes" />
@@ -24,6 +25,7 @@ package org.allbinary.game.level;
 
 import java.io.InputStream;
 import javax.microedition.lcdui.Image;
+
 import org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterfaceFactory;
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />
@@ -31,15 +33,19 @@ import org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterfaceFact
 import org.allbinary.game.canvas.GD<xsl:value-of select="$index" />SpecialAnimationResources;
             </xsl:if>
         </xsl:for-each>
-
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
+import org.allbinary.game.layer.AllBinaryTiledLayer;
 import org.allbinary.game.map.GDGeographicMap;
 import org.allbinary.game.map.GDTiledMapProperties;
 import org.allbinary.game.resource.GDResources;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
+import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+import org.allbinary.graphics.displayable.event.DisplayChangeEvent;
+import org.allbinary.graphics.displayable.event.DisplayChangeEventHandler;
+import org.allbinary.graphics.displayable.event.DisplayChangeEventListener;
 import org.allbinary.image.ImageCache;
 import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.layer.AllBinaryLayer;
@@ -48,6 +54,7 @@ import org.allbinary.layer.LayerInterfaceVisitor;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.basic.util.event.AllBinaryEventObject;
 import org.allbinary.logic.system.PlatformAssetManager;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
 import org.mapeditor.loader.TiledMapLoaderFromJSONFactory;
@@ -141,6 +148,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             <xsl:call-template name="globalZoomCameraActions" >
                 <xsl:with-param name="tileMap" >true</xsl:with-param>
             </xsl:call-template>
+            <xsl:call-template name="globalCentreCameraActions" >
+                <xsl:with-param name="tileMap" >true</xsl:with-param>
+            </xsl:call-template>
         </xsl:for-each>
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append("numStaticTiles: ").append((tileSetImage.getWidth() / map.getTileWidth()) * (tileSetImage.getHeight() / map.getTileHeight())).toString(), this, commonStrings.PROCESS));
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append("tileset w/h: ").append(tileSetImage.getWidth()).append(',').append(tileSetImage.getHeight()).toString(), this, commonStrings.PROCESS));
@@ -152,7 +162,13 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         geographicMapCompositeInterface.setGeographicMapInterface(
                 new GDGeographicMap(((TileLayer) map.getLayer(0)).getId(), map, tileSetImage, tiledMapProperties, BLACK, BLACK, tileMapScale)
                 );
-                
+
+        <xsl:for-each select=".." >
+            <xsl:call-template name="globalUpdateCentreCameraActions" >
+                <xsl:with-param name="tileMap" >true</xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+
             </xsl:if>
 
         </xsl:for-each>        
@@ -174,6 +190,15 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         layerInterface.setVisible(true);
         this.layerManager.append(layerInterface);
     }
+    
+    public int SceneWindowWidth() {
+        return DisplayInfoSingleton.getInstance().getLastWidth();
+    }
+
+    public int SceneWindowHeight() {
+        return DisplayInfoSingleton.getInstance().getLastHeight();
+    }
+    
 }
             </xsl:if>
         </xsl:for-each>
