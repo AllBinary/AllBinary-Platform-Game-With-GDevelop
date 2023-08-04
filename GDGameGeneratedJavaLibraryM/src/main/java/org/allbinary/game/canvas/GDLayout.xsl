@@ -117,6 +117,11 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals;
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder builder;
                         
+                        //layers=<xsl:for-each select="layers" ><xsl:value-of select="name" />,</xsl:for-each>
+                        <xsl:text>&#10;</xsl:text>
+                        //behaviorsSharedData=<xsl:for-each select="behaviorsSharedData" >type=<xsl:value-of select="type" />,</xsl:for-each>
+                        <xsl:text>&#10;</xsl:text>
+                        
                         //private final AllBinaryGameLayerManager allBinaryGameLayerManager;
 
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
