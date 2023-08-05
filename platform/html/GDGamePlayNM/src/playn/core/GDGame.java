@@ -162,7 +162,7 @@ Pointer.Listener
         }
     }
 
-    public void onPointerStart(Pointer.Event mouseEvent)
+    public void onPointerStart(final Pointer.Event mouseEvent)
     {
         try
         {
@@ -177,7 +177,7 @@ Pointer.Listener
         }
     }
 
-    public void onPointerEnd(Pointer.Event mouseEvent)
+    public void onPointerEnd(final Pointer.Event mouseEvent)
     {
         try
         {
@@ -192,7 +192,7 @@ Pointer.Listener
         }
     }
 
-    public void onPointerDrag(Pointer.Event mouseEvent)
+    public void onPointerDrag(final Pointer.Event mouseEvent)
     {
         try
         {
@@ -207,7 +207,7 @@ Pointer.Listener
         }
     }
 
-    public void onMouseDown(Mouse.ButtonEvent mouseEvent)
+    public void onMouseDown(final Mouse.ButtonEvent mouseEvent)
     {
 //        try
 //        {
@@ -222,7 +222,7 @@ Pointer.Listener
 //        }
     }
 
-    public void onMouseUp(Mouse.ButtonEvent mouseEvent)
+    public void onMouseUp(final Mouse.ButtonEvent mouseEvent)
     {
 //        try
 //        {
@@ -237,7 +237,7 @@ Pointer.Listener
 //        }
     }
 
-    public void onMouseMove(Mouse.MotionEvent mouseEvent)
+    public void onMouseMove(final Mouse.MotionEvent mouseEvent)
     {
         try
         {
@@ -250,7 +250,7 @@ Pointer.Listener
         }
     }
 
-    public void onMouseWheelScroll(Mouse.WheelEvent event)
+    public void onMouseWheelScroll(final Mouse.WheelEvent event)
     {
         
     }
