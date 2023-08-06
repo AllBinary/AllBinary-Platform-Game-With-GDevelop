@@ -62,6 +62,13 @@ public class GDDelete {
               gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java", "xml");
         
         this.process(files0, exclusionList0);
+
+        final BasicArrayList exclusionList0b = new BasicArrayList();
+
+        final Vector files0b = FileListFetcher.getInstance().getFiles(
+              gdToolStrings.ROOT_PATH + "GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\", "json");
+        
+        this.process(files0b, exclusionList0b);
         
         final BasicArrayList exclusionList = new BasicArrayList();
         
