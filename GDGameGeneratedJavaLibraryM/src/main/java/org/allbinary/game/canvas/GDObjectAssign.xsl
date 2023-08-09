@@ -183,10 +183,22 @@ Created By: Travis Berthelot
                 </xsl:for-each>
                 //objectsGroupsGDGameLayer - END
                 
-                this.<xsl:value-of select="name" />GDGameLayerFactory = new GDGameLayerFactory(
+                final BasicArrayList behaviorList = new BasicArrayList();
+                
+                <xsl:for-each select="behaviors" >
+                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" />
+                    <xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >
+                
+                behaviorList.add(new GDPlatformerObjectBehavior());
+                    </xsl:if>
+                </xsl:for-each>
+
+                this.<xsl:value-of select="name" />GDGameLayerFactory = new GDCustomGameLayerFactory(
+                    allBinaryGameLayerManager,
                     globals.<xsl:value-of select="name" />GDGameLayerList,
                     globals.<xsl:value-of select="name" />GDGameLayerDestroyedList,
                     <xsl:value-of select="$groupInterfaceArray" />,
+                    behaviorList,
                     <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />LayerInfo
@@ -206,10 +218,14 @@ Created By: Travis Berthelot
                                 0, 0
                                 );
 
-                this.<xsl:value-of select="name" />GDGameLayerFactory = new GDGameLayerFactory(
+                final BasicArrayList behaviorList = new BasicArrayList();
+
+                this.<xsl:value-of select="name" />GDGameLayerFactory = new GDCustomGameLayerFactory(
+                    allBinaryGameLayerManager,
                     globals.<xsl:value-of select="name" />GDGameLayerList,
                     globals.<xsl:value-of select="name" />GDGameLayerDestroyedList,
                     new Group[] {globals.<xsl:value-of select="name" />GroupInterface},
+                    behaviorList,
                     <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />LayerInfo);
@@ -233,10 +249,14 @@ Created By: Travis Berthelot
                                 0, 0
                                 );
 
-                this.<xsl:value-of select="name" />GDGameLayerFactory = new GDGameLayerFactory(
+                final BasicArrayList behaviorList = new BasicArrayList();
+
+                this.<xsl:value-of select="name" />GDGameLayerFactory = new GDCustomGameLayerFactory(
+                    allBinaryGameLayerManager,
                     globals.<xsl:value-of select="name" />GDGameLayerList,
                     globals.<xsl:value-of select="name" />GDGameLayerDestroyedList,
                     new Group[] {globals.<xsl:value-of select="name" />GroupInterface},
+                    behaviorList,
                     <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />LayerInfo);

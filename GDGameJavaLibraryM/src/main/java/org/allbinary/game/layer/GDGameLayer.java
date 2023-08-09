@@ -47,37 +47,39 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //VelocityInterfaceCompositeInterface 
         {
 
-    //private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
-    //private final int SCALE = noDecimalTrigTable.SCALE * 10; //* GameSpeed.getInstance().getSpeed();
-    //private final int SCALE_FACTOR_VALUE = (ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE / ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR) * 2 / 3;
-    private static final int SCALE_FACTOR = ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR;
+    //protected final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
+    //protected final int SCALE = noDecimalTrigTable.SCALE * 10; //* GameSpeed.getInstance().getSpeed();
+    //protected final int SCALE_FACTOR_VALUE = (ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE / ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR) * 2 / 3;
+    protected static final int SCALE_FACTOR = ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR;
 
-    private final int quarterWidth = (this.getHalfWidth() >> 1) - 1;
-    private final int quarterHeight = (this.getHalfHeight() >> 1) - 1;
+    protected final int quarterWidth = (this.getHalfWidth() >> 1) - 1;
+    protected final int quarterHeight = (this.getHalfHeight() >> 1) - 1;
 
-    private final CombatBaseBehavior combatBaseBehavior;
+    protected final CombatBaseBehavior combatBaseBehavior;
     
-    private final IndexedAnimation[] initIndexedAnimationInterfaceArray;
-    private IndexedAnimation[] indexedAnimationInterfaceArray;
+    protected final IndexedAnimation[] initIndexedAnimationInterfaceArray;
+    protected IndexedAnimation[] indexedAnimationInterfaceArray;
 
-    private final VelocityProperties velocityInterface;
-    // private AccelerationInterface accelerationInterface;
+    protected final VelocityProperties velocityInterface;
+    // protected AccelerationInterface accelerationInterface;
     //protected final BasicAccelerationProperties acceleration;
 
     protected long realX;
     protected long realY;
     
-    private final GDTwodBehavior dimensionalBehavior;
+    protected final GDTwodBehavior dimensionalBehavior;
     
-    private final BasicArrayList gameLayerList;
-    private final BasicArrayList gameLayerDestroyedList;
+    protected final BasicArrayList gameLayerList;
+    protected final BasicArrayList gameLayerDestroyedList;
+    protected final BasicArrayList behaviorList;
             
     public GDObject gdObject;
 
-    private ScalableBaseProcessor scalableProcessor = ScalableBaseProcessor.getInstance();
-    private Processor processor = Processor.getInstance();
+    protected ScalableBaseProcessor scalableProcessor = ScalableBaseProcessor.getInstance();
+    protected Processor processor = Processor.getInstance();
     
     public GDGameLayer(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
+            final BasicArrayList behaviorList,
             final String gdName, final Group[] groupInterface,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
@@ -87,6 +89,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
         this.gameLayerList = gameLayerList;
         this.gameLayerDestroyedList = gameLayerDestroyedList;
+        
+        this.behaviorList = behaviorList;
         
         this.gdObject = gdObject;
 
