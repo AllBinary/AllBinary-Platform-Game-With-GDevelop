@@ -355,7 +355,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
                 {
                     //GD key input is processed via the GDGlobals input processor array.
                     //list.add(new GDGameInputProcessor());
-                    //list.add(new OptimizedGameInputLayerProcessorForCollidableLayer());
+                    list.add(new OptimizedGameInputLayerProcessorForCollidableLayer());
                 }
 
                 if (features.isFeature(gameFeatureFactory.COLLIDABLE_INTERFACE_LAYER_PROCESSOR))

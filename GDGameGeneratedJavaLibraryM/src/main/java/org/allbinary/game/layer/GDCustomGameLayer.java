@@ -9,15 +9,33 @@
         import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
         import org.allbinary.direction.Direction;
         import org.allbinary.direction.DirectionFactory;
+        import org.allbinary.game.GameTypeFactory;
         import org.allbinary.game.behavior.platformer.GeographicMapPlatformGameLayerBehavior;
         import org.allbinary.game.behavior.platformer.InitialJumpBehavior;
         import org.allbinary.game.behavior.platformer.PlatformCharacterBehavior;
         import org.allbinary.game.behavior.platformer.PlatformCharacterInterface;
+        import org.allbinary.game.behavior.platformer.PlayerPlatformCharacterBehavior;
+        import org.allbinary.game.configuration.feature.Features;
+        import org.allbinary.game.configuration.feature.InputFeatureFactory;
         import org.allbinary.game.identification.Group;
-        import org.allbinary.game.layout.GDObject;
+        import org.allbinary.game.input.GameInputProcessor;
+        import org.allbinary.game.input.GameInputProcessorUtil;
+        import org.allbinary.game.input.GameKeyEventSourceInterface;
+        import org.allbinary.game.input.InputFactory;
+        import org.allbinary.game.input.PlayerGameInput;
+        import org.allbinary.game.input.event.GameKeyEvent;
+        import org.allbinary.game.input.event.GameKeyEventHandler;
+        import org.allbinary.game.layer.special.Special1GameInputProcessor;
+        import org.allbinary.game.layer.special.Special2GameInputProcessor;
+        import org.allbinary.game.layer.special.SpecialFireGameInputProcessor;
+        import org.allbinary.game.layer.special.SpecialLeftGameInputProcessor;
+        import org.allbinary.game.layer.special.SpecialRightGameInputProcessor;
+        import org.allbinary.game.layer.special.SpecialUpGameInputProcessor;
+        import org.allbinary.game.layout.GDObject;        
         import org.allbinary.game.physics.acceleration.BasicAccelerationProperties;
         import org.allbinary.game.physics.velocity.VelocityProperties;
         import org.allbinary.graphics.Rectangle;
+        import org.allbinary.layer.AllBinaryLayerManager;
         import org.allbinary.logic.basic.string.CommonStrings;
         import org.allbinary.logic.communication.log.LogFactory;
         import org.allbinary.logic.communication.log.LogUtil;
@@ -26,7 +44,7 @@
         import org.allbinary.media.graphics.geography.map.GeographicMapInterface;
         import org.allbinary.util.BasicArrayList;
 
-                public class GDCustomGameLayer extends GDGameLayer implements
+                public class GDCustomGameLayer extends GDGameLayer implements GameKeyEventSourceInterface,
         
                 //Behavior name=PixelPerfectPlatformerCharacter as PixelPerfectMovement::PixelPerfectPlatformerCharacter
                 //Behavior name=PlatformerObject as PlatformBehavior::PlatformerObjectBehavior
@@ -39,6 +57,22 @@
                 //Behavior name=Platform as PlatformBehavior::PlatformBehavior
                 {
 
+        
+                //Behavior name=PixelPerfectPlatformerCharacter as PixelPerfectMovement::PixelPerfectPlatformerCharacter
+                //Behavior name=PlatformerObject as PlatformBehavior::PlatformerObjectBehavior
+    private PlayerGameInput playerGameInput;
+                        
+                        
+                    private final int id = 0;
+                        
+                    protected final GameInputProcessor[] inputProcessorArray = new GameInputProcessor[InputFactory.getInstance().MAX];
+
+    protected final boolean isSingleKeyProcessing = 
+        Features.getInstance().isFeature(
+                InputFeatureFactory.getInstance().SINGLE_KEY_REPEAT_PRESS)
+            || Features.getInstance().isFeature(
+                    InputFeatureFactory.getInstance().SINGLE_KEY_PRESS);
+
                     private final InitialJumpBehavior initialJumpBehavior = new InitialJumpBehavior() {
                         public void process() {
                             //SecondaryPlayerQueueFactory.getInstance().add(JumpSound.getInstance());
@@ -46,7 +80,7 @@
                     };
 
                     protected final GeographicMapPlatformGameLayerBehavior platformGameBehavior = new GeographicMapPlatformGameLayerBehavior();                
-                    protected final PlatformCharacterBehavior platformCharacterBehavior = new PlatformCharacterBehavior();
+                    protected final PlatformCharacterBehavior platformCharacterBehavior = new PlayerPlatformCharacterBehavior();
 
                     protected final AllBinaryGameLayerManager allBinaryGameLayerManager;
 
@@ -58,6 +92,13 @@
     protected Direction lastDirection = direction;
     
     protected boolean directionChanged = false;
+                        
+                    
+                //Behavior name=SmoothCamera as SmoothCamera::SmoothCamera
+                //Behavior name=SmoothPlatformerCamera as SmoothCamera::SmoothPlatformerCamera
+                //Behavior name=Platform as PlatformBehavior::PlatformBehavior
+                //Behavior name=Platform as PlatformBehavior::PlatformBehavior
+                //Behavior name=Platform as PlatformBehavior::PlatformBehavior
 
                     public GDCustomGameLayer(final AllBinaryGameLayerManager allBinaryGameLayerManager,
                         final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
@@ -79,7 +120,27 @@
                         this.acceleration = new BasicAccelerationProperties(
                             velocityInterface.getMaxForwardVelocity() / 12, 
                             -velocityInterface.getMaxReverseVelocity() / 12);
+
+        
+                //Behavior name=PixelPerfectPlatformerCharacter as PixelPerfectMovement::PixelPerfectPlatformerCharacter
+                //Behavior name=PlatformerObject as PlatformBehavior::PlatformerObjectBehavior
+                        this.playerGameInput = new PlayerGameInput(this.getGameKeyEventList(), 0);
+
+                        if (allBinaryGameLayerManager.getGameInfo().getGameType() != GameTypeFactory.getInstance().BOT)
+                        {   
+                            GameKeyEventHandler.getInstance().addListener(playerGameInput, playerGameInput.getPlayerInputId());
+                            //AllBinaryGameCanvas.addPlayerGameInput(((PlayerGameInputCompositeInterface) this.playerLayer).getPlayerGameInput());
+                        }
                         
+
+                        this.initInputProcessors();                        
+                    
+                //Behavior name=SmoothCamera as SmoothCamera::SmoothCamera
+                //Behavior name=SmoothPlatformerCamera as SmoothCamera::SmoothPlatformerCamera
+                //Behavior name=Platform as PlatformBehavior::PlatformBehavior
+                //Behavior name=Platform as PlatformBehavior::PlatformBehavior
+                //Behavior name=Platform as PlatformBehavior::PlatformBehavior
+
                     }
                 
         
@@ -90,6 +151,61 @@
                 //Behavior name=PlatformerObject as PlatformBehavior::PlatformerObjectBehavior - START
                     
 
+    public void initInputProcessors() {
+        this.inputProcessorArray[Canvas.UP] = new SpecialUpGameInputProcessor(this);
+
+        this.inputProcessorArray[Canvas.KEY_NUM1] = new SpecialFireGameInputProcessor(this);
+
+        this.inputProcessorArray[Canvas.RIGHT] = new SpecialRightGameInputProcessor(this);
+
+        //-key == Canvas.LEFT
+        this.inputProcessorArray[Canvas.LEFT] = new SpecialLeftGameInputProcessor(this);
+
+        this.inputProcessorArray[Canvas.KEY_NUM0] = new Special1GameInputProcessor(this);
+
+        this.inputProcessorArray[Canvas.KEY_POUND] = new Special2GameInputProcessor(this);
+
+        /*
+       (key == Canvas.KEY_NUM5)
+       {
+       } else if (key == Canvas.KEY_NUM7)
+       {
+       } else if (key == Canvas.KEY_NUM9)
+       {
+       } else if ((key == Canvas.KEY_STAR || key == Canvas.KEY_NUM3))
+       {
+       }
+         */
+        GameInputProcessorUtil.init(this.inputProcessorArray);
+    }
+
+//    private int lastSize = -1;
+
+    public synchronized void processInput2(final AllBinaryLayerManager allbinaryLayerManager) throws Exception {
+        //this.workSpecialIndex = this.minSpecialIndex;
+
+        final BasicArrayList list = this.getGameKeyEventList();
+        final int size = list.size();
+//        if(size != lastSize) {
+//            LogUtil.put(LogFactory.getInstance(new StringMaker().append("Size: ").append(size).toString(), this, "processInput"));
+//            lastSize = size;
+//        }
+
+        //if (this.isSingleKeyProcessing || this.timeHelper.isTime())
+        //{
+        int key = 0;
+        GameKeyEvent gameKeyEvent;
+
+        for (int index = 0; index < size; index++) {
+            gameKeyEvent = (GameKeyEvent) list.get(index);
+            key = gameKeyEvent.getKey();
+
+            inputProcessorArray[key].process(allbinaryLayerManager, gameKeyEvent);
+        }
+        //this.updateSpecialAnimation();
+//      }
+    }
+                        
     public void terrainEvent(final int dx, final int dy, final GeographicMapInterface geographicMapInterface,
             final GeographicMapCellPosition geographicMapCellPosition) throws Exception {
     }
@@ -119,7 +235,11 @@
 
     public void up()
     {
+        LogUtil.put(LogFactory.getInstance("Jump", this, "processInput"));
         this.platformGameBehavior.up((VelocityProperties) this.velocityInterface, acceleration, initialJumpBehavior, 1);
+        
+        //updateGDObject(globals.timeDelta);
+        updateGDObject(1000);
     }    
     
    public void right()
@@ -127,11 +247,16 @@
       this.velocityInterface.getVelocityXBasicDecimal().add(-this.acceleration.getReverse());
       this.velocityInterface.limitXYToForwardAndReverseMaxVelocity();
 
+      LogUtil.put(LogFactory.getInstance("Right: dx: " + this.velocityInterface.getVelocityXBasicDecimal().getUnscaled(), this, "processInput"));
+      
       // this.getVelocityProperties().addVelocity(
       // this.acceleration.getReverse(), 180);
 
       this.angle = 0;
       lastDirectionKey = Canvas.RIGHT;
+      
+      //updateGDObject(globals.timeDelta);
+      updateGDObject(1000);
    }
 
    public void left()
@@ -139,7 +264,7 @@
        this.velocityInterface.getVelocityXBasicDecimal().add(this.acceleration.getReverse());
        this.velocityInterface.limitXYToForwardAndReverseMaxVelocity();
 
-       // LogUtil.put(LogFactory.getInstance("Left: dx: " + this.velocityInterface.getVelocityXBasicDecimal().getUnscaled(), this, "processInput"));
+       LogUtil.put(LogFactory.getInstance("Left: dx: " + this.velocityInterface.getVelocityXBasicDecimal().getUnscaled(), this, "processInput"));
 
        // this.getVelocityProperties().addVelocity(this.acceleration.getReverse(), 0);
 
@@ -148,6 +273,8 @@
        this.angle = 180;
        lastDirectionKey = Canvas.LEFT;
 
+      //updateGDObject(globals.timeDelta);
+      updateGDObject(1000);
     }
         
    public void inputFrames()
@@ -221,7 +348,48 @@
         //this.getIndexedAnimationInterface().setFrame(0);
         //directionChanged = true;
     }
-                    
+    
+    public int getSourceId() {
+        return id;
+    }
+    
+                        
+        
+    public synchronized void processInput(final AllBinaryLayerManager allbinaryLayerManager) throws Exception
+    {
+        try
+        {
+            this.processInput2(allbinaryLayerManager);
+
+            if (isSingleKeyProcessing)
+            {
+                this.playerGameInput.clear();
+            }
+            else
+            {
+                this.playerGameInput.update();
+            }
+
+        }
+        catch (Exception e)
+        {
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "processInput"));
+            //LogUtil.put(LogFactory.getInstance("Danger Danger Danger ^^^%%$*($)*@)!$", this, "processInput", e));
+        }
+
+    }
+
+    public PlayerGameInput getPlayerGameInput()
+    {
+        return this.playerGameInput;
+    }
+    
+    public boolean implmentsGameInputInterface()
+    {
+        return true;
+    }
+    
+                        
                     //Behavior name=PlatformerObject as PlatformBehavior::PlatformerObjectBehavior - END
                 
                 //Behavior name=SmoothCamera as SmoothCamera::SmoothCamera - START
