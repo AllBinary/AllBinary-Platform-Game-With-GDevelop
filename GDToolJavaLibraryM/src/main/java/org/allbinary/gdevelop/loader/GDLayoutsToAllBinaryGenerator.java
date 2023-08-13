@@ -74,7 +74,10 @@ public class GDLayoutsToAllBinaryGenerator
             final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
             final byte[] byteArray = new byte[16384];
 
-            final InputStream inputStream = new FileInputStream(gdToolStrings.ROOT_PATH + xslPath);
+            final String xslPath = gdToolStrings.ROOT_PATH + this.xslPath;
+            LogUtil.put(LogFactory.getInstance(xslPath, this, CommonStrings.getInstance().PROCESS));
+            
+            final InputStream inputStream = new FileInputStream(xslPath);
             final String xslDocumentStr = new String(streamUtil.getByteArray(inputStream, outputStream, byteArray));
             
             final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.GAME_XML_PATH);
