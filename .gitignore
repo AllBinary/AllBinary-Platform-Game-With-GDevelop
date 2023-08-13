@@ -20,6 +20,7 @@ GD*GamePlaynResources.java
 *ThreedLevelBuilder.java
 AndroidResources.java
 AndroidManifest.xml
+GDCustomGameLayer.java
 GDGameAndroidActivity.java
 GDGameAndroidEarlyResourceInitialization.java
 GDGameThreedAndroidEarlyResourceInitialization.java

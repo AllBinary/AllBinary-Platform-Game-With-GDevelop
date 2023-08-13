@@ -294,6 +294,8 @@ Created By: Travis Berthelot
 
     public void up()
     {
+        //LogUtil.put(LogFactory.getInstance("Jump", this, "processInput"));
+
         this.platformGameBehavior.up((VelocityProperties) this.velocityInterface, acceleration, initialJumpBehavior, 1);
         
         //updateGDObject(globals.timeDelta);
@@ -305,8 +307,9 @@ Created By: Travis Berthelot
       this.velocityInterface.getVelocityXBasicDecimal().add(-this.acceleration.getReverse());
       this.velocityInterface.limitXYToForwardAndReverseMaxVelocity();
 
-      // this.getVelocityProperties().addVelocity(
-      // this.acceleration.getReverse(), 180);
+      //LogUtil.put(LogFactory.getInstance("Right: dx: " + this.velocityInterface.getVelocityXBasicDecimal().getUnscaled(), this, "processInput"));
+      
+      //this.getVelocityProperties().addVelocity(this.acceleration.getReverse(), 180);
 
       this.angle = 0;
       lastDirectionKey = Canvas.RIGHT;
@@ -320,11 +323,10 @@ Created By: Travis Berthelot
        this.velocityInterface.getVelocityXBasicDecimal().add(this.acceleration.getReverse());
        this.velocityInterface.limitXYToForwardAndReverseMaxVelocity();
 
-       // LogUtil.put(LogFactory.getInstance("Left: dx: " + this.velocityInterface.getVelocityXBasicDecimal().getUnscaled(), this, "processInput"));
+       //LogUtil.put(LogFactory.getInstance("Left: dx: " + this.velocityInterface.getVelocityXBasicDecimal().getUnscaled(), this, "processInput"));
 
-       // this.getVelocityProperties().addVelocity(this.acceleration.getReverse(), 0);
-
-       // this.specialAnimationArray[this.specialIndex++] = LEFT;
+       //this.getVelocityProperties().addVelocity(this.acceleration.getReverse(), 0);
+       //this.specialAnimationArray[this.specialIndex++] = LEFT;
 
        this.angle = 180;
        lastDirectionKey = Canvas.LEFT;
