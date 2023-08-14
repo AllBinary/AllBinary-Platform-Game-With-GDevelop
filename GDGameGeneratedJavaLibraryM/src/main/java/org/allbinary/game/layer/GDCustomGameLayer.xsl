@@ -285,7 +285,11 @@ Created By: Travis Berthelot
             final GeographicMapInterface geographicMapInterface
                     = geographicMapCompositeInterface.getGeographicMapInterface();
 
-            this.platformGameBehavior.move(geographicMapInterface, this.velocityInterface, this);
+            if(geographicMapInterface != null) {
+                this.platformGameBehavior.move(geographicMapInterface, this.velocityInterface, this);
+            } else {
+                //LogUtil.put(LogFactory.getInstance("Map was null, this, "move"));
+            }
 
         } catch (Exception e) {
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "move", e));

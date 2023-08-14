@@ -42,7 +42,6 @@ import org.mapeditor.core.TiledMap;
 
 public class GDGeographicMap extends BasicGeographicMap {
 
-    private static int[] cellTypeMapping = {0, 1};
     protected final CommonStrings commonStrings = CommonStrings.getInstance();
 
     private final TiledMap map;
@@ -54,10 +53,10 @@ public class GDGeographicMap extends BasicGeographicMap {
     private final int[] currentFrameArray = new int[5];
     private final BasicArrayList animationList = new BasicArrayList();
     
-    public GDGeographicMap(final int id, final TiledMap map, final Image tileSetImage, final GDTiledMapProperties tiledMapProperties, final BasicColor foregroundColor, final BasicColor backGroundColor, final float scale) throws Exception {
+    public GDGeographicMap(final int id, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final GDTiledMapProperties tiledMapProperties, final BasicColor foregroundColor, final BasicColor backGroundColor, final float scale) throws Exception {
         super(SmallIntegerSingletonFactory.getInstance().getInstance(id),
                 SmallIntegerSingletonFactory.getInstance().getInstance(id).toString(),
-                cellTypeMapping,
+                cellTypeIdToGeographicMapCellType,
                 new AllBinaryJ2METiledLayer(
                         SmallIntegerSingletonFactory.getInstance().getInstance(-1),
                         new TiledLayer(

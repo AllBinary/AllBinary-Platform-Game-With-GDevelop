@@ -24,6 +24,9 @@
 package org.allbinary.game.level;
 
 import java.io.InputStream;
+
+import java.util.Map;
+
 import javax.microedition.lcdui.Image;
 
 import org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterfaceFactory;
@@ -33,6 +36,7 @@ import org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterfaceFact
 import org.allbinary.game.canvas.GD<xsl:value-of select="$index" />SpecialAnimationResources;
             </xsl:if>
         </xsl:for-each>
+            
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
@@ -52,13 +56,17 @@ import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.layer.LayerInterfaceFactory;
 import org.allbinary.layer.LayerInterfaceVisitor;
 import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.basic.util.event.AllBinaryEventObject;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.logic.basic.util.event.AllBinaryEventObject;
 import org.allbinary.logic.system.PlatformAssetManager;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
+import org.allbinary.media.graphics.geography.map.platform.BasicPlatormGeographicMapCellTypeFactory;
+import org.allbinary.media.graphics.geography.map.platform.TileSetToGeographicMapUtil;
+
 import org.mapeditor.loader.TiledMapLoaderFromJSONFactory;
 import org.mapeditor.core.TileLayer;
+import org.mapeditor.core.TileSet;
 import org.mapeditor.core.TiledMap;
 import org.mapeditor.io.GDJSONMapReader;
 
@@ -102,7 +110,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                 <xsl:variable name="stringValue" select="string" />
                 //TileMap::TileMap - <xsl:value-of select="name" />
                 
-        //final CommonStrings commonStrings = CommonStrings.getInstance();
+        final CommonStrings commonStrings = CommonStrings.getInstance();
         //LogUtil.put(LogFactory.getInstance("Loading Tiled Map Asset", this, commonStrings.PROCESS));
 
         final BasicColor BLACK = BasicColorFactory.getInstance().BLACK;
@@ -136,6 +144,17 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         
         final GDTiledMapProperties tiledMapProperties = new GDTiledMapProperties();
         
+        final int layerIndex = 0;
+        final TileSet tileSet = map.getTileSets().get(layerIndex);
+        final Map tileTypeToTileIdsMap = TileSetToGeographicMapUtil.getInstance().convert(tileSet);
+        BasicPlatormGeographicMapCellTypeFactory.getInstance().init(tileTypeToTileIdsMap);
+        final int maxTileId = tileSet.getMaxTileId() + 1;
+        LogUtil.put(LogFactory.getInstance("MaxTileId: " + maxTileId, this, commonStrings.PROCESS));
+        final int[] cellTypeMapping = new int[maxTileId];
+        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> maxTileId; index++) {
+            cellTypeMapping[index] = index;
+        }
+
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
             (GeographicMapCompositeInterface) this.layerManager;
         
@@ -160,7 +179,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         //LogUtil.put(LogFactory.getInstance(string, this, commonStrings.PROCESS));
 
         geographicMapCompositeInterface.setGeographicMapInterface(
-                new GDGeographicMap(((TileLayer) map.getLayer(0)).getId(), map, tileSetImage, tiledMapProperties, BLACK, BLACK, tileMapScale)
+                new GDGeographicMap(((TileLayer) map.getLayer(layerIndex)).getId(), cellTypeMapping, map, tileSetImage, tiledMapProperties, BLACK, BLACK, tileMapScale)
                 );
 
         <xsl:for-each select=".." >
