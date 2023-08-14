@@ -81,6 +81,7 @@ Created By: Travis Berthelot
         import org.allbinary.game.layout.GDObject;        
         import org.allbinary.game.physics.acceleration.BasicAccelerationProperties;
         import org.allbinary.game.physics.velocity.VelocityProperties;
+        import org.allbinary.game.view.StaticTileLayerIntoPositionViewPosition;
         import org.allbinary.graphics.Rectangle;
         import org.allbinary.layer.AllBinaryLayerManager;
         import org.allbinary.logic.basic.string.CommonStrings;
@@ -90,6 +91,7 @@ Created By: Travis Berthelot
         import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
         import org.allbinary.media.graphics.geography.map.GeographicMapInterface;
         import org.allbinary.util.BasicArrayList;
+        import org.allbinary.view.ViewPosition;
 
                 public class GDCustomGameLayer extends GDGameLayer implements GameKeyEventSourceInterface,
         <xsl:for-each select="layouts" >
@@ -161,14 +163,41 @@ Created By: Travis Berthelot
                         final String gdName, final Group[] groupInterface,
                         final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
                         final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
-                        final Rectangle layerInfo,
+                        final Rectangle layerInfo, 
                         final GDObject gdObject, final RotationBehaviorBase rotationBehavior) throws Exception {
                         
                         super(gameLayerList, gameLayerDestroyedList, 
                             behaviorList, gdName, groupInterface,
                             animationInterfaceFactoryInterfaceArray,
                             proceduralAnimationInterfaceFactoryInterfaceArray,
-                            layerInfo, gdObject, rotationBehavior);
+                            layerInfo, 
+        <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+
+            <xsl:for-each select="objects" >            
+                <xsl:for-each select="behaviors" >
+                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" />
+                    <xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >
+                        
+                        <xsl:if test="1" >
+                            //new StaticTileLayerIntoPositionViewPosition(),
+                            new ViewPosition(),
+                        </xsl:if>
+                        <xsl:if test="0" >
+                            //new StaticTileLayerIntoPositionViewPosition(),
+                            new ViewPosition(),
+                        </xsl:if>
+
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:for-each>
+        </xsl:for-each>
+        
+        <xsl:variable name="foundOtherViewPosition" ><xsl:for-each select="layouts" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:for-each></xsl:variable>
+        <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
+                            new ViewPosition(),
+        </xsl:if>
+                            gdObject, rotationBehavior);
                         
                         this.allBinaryGameLayerManager = allBinaryGameLayerManager;
 

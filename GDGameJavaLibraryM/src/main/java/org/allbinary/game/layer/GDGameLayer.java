@@ -83,9 +83,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             final String gdName, final Group[] groupInterface,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
-            final Rectangle layerInfo,
+            final Rectangle layerInfo, final ViewPosition viewPosition,
             final GDObject gdObject, final RotationBehaviorBase rotationBehavior) throws Exception {
-        super(groupInterface, gdName, layerInfo, new ViewPosition());
+        super(groupInterface, gdName, layerInfo, viewPosition);
 
         this.gameLayerList = gameLayerList;
         this.gameLayerDestroyedList = gameLayerDestroyedList;
@@ -404,8 +404,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
                 //graphics.drawImage(img, this.x, this.y, Graphics.TOP | Graphics.LEFT);
             //}
             
-            int x = this.x - quarterWidth;
-            int y = this.y - quarterHeight;
+            final ViewPosition viewPosition = this.getViewPosition();
+            int x = viewPosition.getX() - quarterWidth;
+            int y = viewPosition.getY() - quarterHeight;
 
             //for (int index = 0; index < SIZE; index++) {
             indexedAnimationInterfaceArray[this.gdObject.animation].paint(graphics, x, y);

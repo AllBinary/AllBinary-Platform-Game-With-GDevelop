@@ -60,7 +60,8 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
                 this.groupInterface,
                 this.animationInterfaceFactoryInterfaceArray,
                 this.proceduralAnimationInterfaceFactoryInterfaceArray,
-                this.layerInfo, gdObject, this.rotationBehavior);
+                this.layerInfo,  
+                gdObject, this.rotationBehavior);
         
         gameLayer.setCollidableInferface(new GDCollidableBehavior(gameLayer, collidableBehavior, true));
 

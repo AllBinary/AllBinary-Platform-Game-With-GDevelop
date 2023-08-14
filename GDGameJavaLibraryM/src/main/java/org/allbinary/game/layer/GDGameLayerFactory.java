@@ -23,6 +23,7 @@ import org.allbinary.graphics.Rectangle;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.view.ViewPosition;
 
 /**
  *
@@ -80,7 +81,8 @@ public class GDGameLayerFactory
                 this.groupInterface,
                 this.animationInterfaceFactoryInterfaceArray,
                 this.proceduralAnimationInterfaceFactoryInterfaceArray,
-                this.layerInfo, gdObject, this.rotationBehavior);
+                this.layerInfo, new ViewPosition(), 
+                gdObject, this.rotationBehavior);
         
         gameLayer.setCollidableInferface(new GDCollidableBehavior(gameLayer, collidableBehavior, true));
 
