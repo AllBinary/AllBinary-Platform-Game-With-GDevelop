@@ -218,7 +218,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         //final int x2 = mapX + tiledLayer.getX();
         //final int y2 = mapY + tiledLayer.getY();
         final int x2 = mapX - layer.getHalfWidth() - 78;
-        final int y2 = mapY - layer.getHalfHeight() + 78;
+        final int y2 = mapY - layer.getHalfHeight() + 89;
         
 //        final CommonStrings commonStrings = CommonStrings.getInstance();
 //        LogUtil.put(LogFactory.getInstance(new StringMaker().append("camera x: ").append(centerCameraX).append("y: ").append(centerCameraY).toString(), this, commonStrings.PROCESS));
