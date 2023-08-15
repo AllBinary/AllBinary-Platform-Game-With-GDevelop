@@ -28,6 +28,7 @@ import java.io.InputStream;
 import java.util.Map;
 
 import javax.microedition.lcdui.Image;
+import javax.microedition.lcdui.game.TiledLayer;
 
 import org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterfaceFactory;
         <xsl:for-each select="layouts" >
@@ -40,10 +41,12 @@ import org.allbinary.game.canvas.GD<xsl:value-of select="$index" />SpecialAnimat
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
+import org.allbinary.game.layer.AllBinaryJ2METiledLayer;
 import org.allbinary.game.layer.AllBinaryTiledLayer;
 import org.allbinary.game.map.GDGeographicMap;
 import org.allbinary.game.map.GDTiledMapProperties;
 import org.allbinary.game.resource.GDResources;
+import org.allbinary.game.view.StaticTileLayerIntoPositionViewPosition;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
@@ -61,6 +64,7 @@ import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.system.PlatformAssetManager;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
+import org.allbinary.media.graphics.geography.map.GeographicMapInterface;
 import org.allbinary.media.graphics.geography.map.platform.BasicPlatormGeographicMapCellTypeFactory;
 import org.allbinary.media.graphics.geography.map.platform.TileSetToGeographicMapUtil;
 
@@ -188,10 +192,41 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             </xsl:call-template>
         </xsl:for-each>
 
+        StaticTileLayerIntoPositionViewPosition.setTiledLayer(tiledLayer);
+        this.setPosition(geographicMapCompositeInterface);
+
             </xsl:if>
 
         </xsl:for-each>        
 
+    }
+
+    public void setPosition(final GeographicMapCompositeInterface geographicMapCompositeInterface)
+    {
+        final AllBinaryLayer layer = StaticTileLayerIntoPositionViewPosition.layer;
+        final GeographicMapInterface geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface();
+        final TiledLayer tiledLayer = ((AllBinaryJ2METiledLayer) geographicMapInterface.getAllBinaryTiledLayer()).getTiledLayer();
+ 
+        //final int centerCameraX = (int) (SceneWindowWidth() / 2);
+        //final int centerCameraY = (int) (SceneWindowHeight() / 2);
+        //final int x2 = centerCameraX - layer.getHalfWidth() - tiledLayer.getX();
+        //final int y2 = centerCameraY - layer.getHalfHeight() - tiledLayer.getY();
+        //final int x2 = layer.getX() - tiledLayer.getX();
+        //final int y2 = layer.getY() - tiledLayer.getY();
+        final int mapX = ((tiledLayer.getRows() * tiledLayer.getCellHeight()) / 2);
+        final int mapY = ((tiledLayer.getColumns() * tiledLayer.getCellWidth()) / 2);
+        //final int x2 = mapX + tiledLayer.getX();
+        //final int y2 = mapY + tiledLayer.getY();
+        final int x2 = mapX - layer.getHalfWidth() - 78;
+        final int y2 = mapY - layer.getHalfHeight() + 78;
+        
+//        final CommonStrings commonStrings = CommonStrings.getInstance();
+//        LogUtil.put(LogFactory.getInstance(new StringMaker().append("camera x: ").append(centerCameraX).append("y: ").append(centerCameraY).toString(), this, commonStrings.PROCESS));
+//        LogUtil.put(LogFactory.getInstance(new StringMaker().append("x: ").append(layer.getX()).append("y: ").append(layer.getY()).toString(), this, commonStrings.PROCESS));
+//        LogUtil.put(LogFactory.getInstance(new StringMaker().append("tile x: ").append(tiledLayer.getX()).append("y: ").append(tiledLayer.getY()).toString(), this, commonStrings.PROCESS));
+//        LogUtil.put(LogFactory.getInstance(new StringMaker().append("map x: ").append(mapX).append("y: ").append(mapY).toString(), this, commonStrings.PROCESS));
+//        LogUtil.put(LogFactory.getInstance(new StringMaker().append("2 x: ").append(x2).append("y: ").append(y2).toString(), this, commonStrings.PROCESS));
+        layer.setPosition(x2, y2, layer.getZ());
     }
 
     //private BasicGameResources[] playerResourceArray = new BasicGameResources[1];

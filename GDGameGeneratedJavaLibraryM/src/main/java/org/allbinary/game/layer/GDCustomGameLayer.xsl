@@ -50,6 +50,7 @@ Created By: Travis Berthelot
                 package org.allbinary.game.layer;
 
         import javax.microedition.lcdui.Canvas;
+        import javax.microedition.lcdui.game.TiledLayer;
 
         import org.allbinary.animation.AnimationInterfaceFactoryInterface;
         import org.allbinary.animation.IndexedAnimationInterface;
@@ -180,12 +181,12 @@ Created By: Travis Berthelot
                     <xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >
                         
                         <xsl:if test="1" >
-                            //new StaticTileLayerIntoPositionViewPosition(),
-                            new ViewPosition(),
+                            new StaticTileLayerIntoPositionViewPosition(),
+                            //new ViewPosition(),
                         </xsl:if>
                         <xsl:if test="0" >
-                            //new StaticTileLayerIntoPositionViewPosition(),
-                            new ViewPosition(),
+                            new StaticTileLayerIntoPositionViewPosition(),
+                            //new ViewPosition(),
                         </xsl:if>
 
                     </xsl:if>
@@ -200,6 +201,8 @@ Created By: Travis Berthelot
                             gdObject, rotationBehavior);
                         
                         this.allBinaryGameLayerManager = allBinaryGameLayerManager;
+                        
+                        StaticTileLayerIntoPositionViewPosition.layer = this;
 
                         this.acceleration = new BasicAccelerationProperties(
                             velocityInterface.getMaxForwardVelocity() / 12, 
@@ -221,9 +224,10 @@ Created By: Travis Berthelot
                             GameKeyEventHandler.getInstance().addListener(playerGameInput, playerGameInput.getPlayerInputId());
                             //AllBinaryGameCanvas.addPlayerGameInput(((PlayerGameInputCompositeInterface) this.playerLayer).getPlayerGameInput());
                         }
+
                         </xsl:if>
 
-                        this.initInputProcessors();                        
+                        this.initInputProcessors();               
                     </xsl:if>
                 </xsl:for-each>
             </xsl:for-each>
@@ -445,7 +449,7 @@ Created By: Travis Berthelot
     }
     
                         <xsl:if test="1" >
-        
+                                    
     public synchronized void processInput(final AllBinaryLayerManager allbinaryLayerManager) throws Exception
     {
         try
