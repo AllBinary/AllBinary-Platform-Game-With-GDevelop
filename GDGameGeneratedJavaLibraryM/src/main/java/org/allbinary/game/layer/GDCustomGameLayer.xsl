@@ -140,7 +140,7 @@ Created By: Travis Berthelot
                         }
                     };
 
-                    protected final GeographicMapPlatformGameLayerBehavior platformGameBehavior = new GeographicMapPlatformGameLayerBehavior(false);
+                    protected final GeographicMapPlatformGameLayerBehavior platformGameBehavior = new GeographicMapPlatformGameLayerBehavior(64, false, 6);
                     protected final PlatformCharacterBehavior platformCharacterBehavior = 
                         <xsl:if test="1" >new PlayerPlatformCharacterBehavior();</xsl:if>
                         <xsl:if test="0" >new NonPlayerPlatformCharacterBehavior();</xsl:if>
@@ -376,7 +376,7 @@ Created By: Travis Berthelot
     {
         //LogUtil.put(LogFactory.getInstance("Jump", this, "processInput"));
 
-        this.platformGameBehavior.up((VelocityProperties) this.velocityInterface, acceleration, initialJumpBehavior, 1);
+        this.platformGameBehavior.up((VelocityProperties) this.velocityInterface, acceleration, initialJumpBehavior, 4);
         
     }    
 
