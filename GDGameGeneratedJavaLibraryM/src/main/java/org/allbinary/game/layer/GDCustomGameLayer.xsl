@@ -46,7 +46,9 @@ Created By: Travis Berthelot
 
     <xsl:template match="/game">
         <xsl:variable name="windowWidth" select="properties/windowWidth" />
-                
+
+        <xsl:variable name="foundOtherViewPosition" ><xsl:for-each select="layouts" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:for-each></xsl:variable>
+        
                 package org.allbinary.game.layer;
 
         import javax.microedition.lcdui.Canvas;
@@ -82,6 +84,7 @@ Created By: Travis Berthelot
         import org.allbinary.game.layout.GDObject;        
         import org.allbinary.game.physics.acceleration.BasicAccelerationProperties;
         import org.allbinary.game.physics.velocity.VelocityProperties;
+        import org.allbinary.game.physics.velocity.VelocityUtil;
         import org.allbinary.game.view.StaticTileLayerIntoPositionViewPosition;
         import org.allbinary.graphics.Rectangle;
         import org.allbinary.layer.AllBinaryLayerManager;
@@ -166,9 +169,25 @@ Created By: Travis Berthelot
                         final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
                         final Rectangle layerInfo, 
                         final GDObject gdObject, final RotationBehaviorBase rotationBehavior) throws Exception {
-                        
+
                         super(gameLayerList, gameLayerDestroyedList, 
-                            behaviorList, gdName, groupInterface,
+                            behaviorList, 
+        <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+
+            <xsl:for-each select="objects" >            
+                <xsl:for-each select="behaviors" >
+                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" />
+                    <xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >
+                            new VelocityProperties(<xsl:value-of select="number(maxSpeed) * 64" />, <xsl:value-of select="number(maxSpeed) * 64" />),
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:for-each>
+        </xsl:for-each>
+        <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
+                            new VelocityProperties(3200, 3200),
+        </xsl:if>
+                            gdName, groupInterface,
                             animationInterfaceFactoryInterfaceArray,
                             proceduralAnimationInterfaceFactoryInterfaceArray,
                             layerInfo, 
@@ -194,7 +213,6 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:for-each>
         
-        <xsl:variable name="foundOtherViewPosition" ><xsl:for-each select="layouts" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:for-each></xsl:variable>
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
                             new ViewPosition(),
         </xsl:if>
@@ -204,9 +222,30 @@ Created By: Travis Berthelot
                         
                         StaticTileLayerIntoPositionViewPosition.layer = this;
 
+        <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+
+            <xsl:for-each select="objects" >            
+                <xsl:for-each select="behaviors" >
+                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" />
+                    <xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >
+                        
+                        this.acceleration = new BasicAccelerationProperties(
+                            <xsl:value-of select="number(acceleration) * 4" />,
+                            -<xsl:value-of select="number(acceleration) * 4" />
+                        );
+
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:for-each>
+        </xsl:for-each>
+        
+        <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
                         this.acceleration = new BasicAccelerationProperties(
                             velocityInterface.getMaxForwardVelocity() / 12, 
-                            -velocityInterface.getMaxReverseVelocity() / 12);
+                            -velocityInterface.getMaxReverseVelocity() / 12
+                        );
+        </xsl:if>
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />

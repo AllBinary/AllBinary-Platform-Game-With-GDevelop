@@ -19,6 +19,7 @@ import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
 import org.allbinary.game.layer.special.GDCollidableBehavior;
+import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -77,6 +78,7 @@ public class GDGameLayerFactory
         final GDGameLayer gameLayer = new GDGameLayer(
                 this.gameLayerList, this.gameLayerDestroyedList,
                 this.behaviorList,
+                new VelocityProperties(3200, 3200),
                 name,
                 this.groupInterface,
                 this.animationInterfaceFactoryInterfaceArray,

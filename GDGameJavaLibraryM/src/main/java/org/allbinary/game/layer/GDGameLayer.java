@@ -80,6 +80,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     
     public GDGameLayer(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
             final BasicArrayList behaviorList,
+            final VelocityProperties velocityInterface,
             final String gdName, final Group[] groupInterface,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
@@ -98,7 +99,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //final MathUtil mathUtil = MathUtil.getInstance();
         //final GameSpeed gameSpeed = GameSpeed.getInstance();
         
-        this.velocityInterface = new VelocityProperties(3200, 3200);
+        this.velocityInterface = velocityInterface; //new VelocityProperties(3200, 3200);
                         //(1700 * mathUtil.sqrt((displayInfoSingleton.getLastWidth() + displayInfoSingleton.getLastHeight()))) * gameSpeed.getSpeed() / 20, 
                         //(1322 * mathUtil.sqrt((displayInfoSingleton.getLastWidth() + displayInfoSingleton.getLastHeight()))) * gameSpeed.getSpeed() / 20);
         
