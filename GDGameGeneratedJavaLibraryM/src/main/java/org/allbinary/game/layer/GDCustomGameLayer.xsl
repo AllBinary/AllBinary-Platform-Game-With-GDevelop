@@ -296,6 +296,10 @@ Created By: Travis Berthelot
         }
         //this.updateSpecialAnimation();
 //      }
+
+        //updateGDObject(globals.timeDelta);
+        updateGDObject(1000);
+        VelocityUtil.reduceX(this.velocityInterface, 90, 100);
     }
                         
     public void terrainEvent(final int dx, final int dy, final GeographicMapInterface geographicMapInterface,
@@ -335,8 +339,6 @@ Created By: Travis Berthelot
 
         this.platformGameBehavior.up((VelocityProperties) this.velocityInterface, acceleration, initialJumpBehavior, 1);
         
-        //updateGDObject(globals.timeDelta);
-        updateGDObject(1000);
     }    
 
     public void upp() {
@@ -372,8 +374,6 @@ Created By: Travis Berthelot
       this.angle = 0;
       lastDirectionKey = Canvas.RIGHT;
       
-        //updateGDObject(globals.timeDelta);
-        updateGDObject(1000);
    }
 
    public void leftp()
@@ -389,8 +389,6 @@ Created By: Travis Berthelot
        this.angle = 180;
        lastDirectionKey = Canvas.LEFT;
 
-        //updateGDObject(globals.timeDelta);
-        updateGDObject(1000);
     }
     
     public void left()
