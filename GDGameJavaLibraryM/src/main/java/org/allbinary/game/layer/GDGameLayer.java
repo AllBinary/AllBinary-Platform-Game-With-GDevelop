@@ -404,9 +404,11 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
                 //graphics.drawImage(img, this.x, this.y, Graphics.TOP | Graphics.LEFT);
             //}
             
+            //int x = this.x - quarterWidth;
+            //int y = this.y - quarterHeight;
             final ViewPosition viewPosition = this.getViewPosition();
-            int x = viewPosition.getX() - quarterWidth;
-            int y = viewPosition.getY() - quarterHeight;
+            int x = viewPosition.getX();
+            int y = viewPosition.getY();
 
             //for (int index = 0; index < SIZE; index++) {
             indexedAnimationInterfaceArray[this.gdObject.animation].paint(graphics, x, y);
