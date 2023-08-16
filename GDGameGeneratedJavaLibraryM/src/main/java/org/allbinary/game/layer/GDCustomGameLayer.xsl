@@ -137,7 +137,7 @@ Created By: Travis Berthelot
                         }
                     };
 
-                    protected final GeographicMapPlatformGameLayerBehavior platformGameBehavior = new GeographicMapPlatformGameLayerBehavior();
+                    protected final GeographicMapPlatformGameLayerBehavior platformGameBehavior = new GeographicMapPlatformGameLayerBehavior(false);
                     protected final PlatformCharacterBehavior platformCharacterBehavior = 
                         <xsl:if test="1" >new PlayerPlatformCharacterBehavior();</xsl:if>
                         <xsl:if test="0" >new NonPlayerPlatformCharacterBehavior();</xsl:if>
@@ -338,8 +338,29 @@ Created By: Travis Berthelot
         //updateGDObject(globals.timeDelta);
         updateGDObject(1000);
     }    
+
+    public void upp() {
+        
+    }
     
-   public void right()
+    public void right()
+    {
+        try {
+            final GeographicMapCompositeInterface geographicMapCompositeInterface
+                    = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+
+            final GeographicMapInterface geographicMapInterface
+                    = geographicMapCompositeInterface.getGeographicMapInterface();
+
+            if(geographicMapInterface != null) {
+                this.platformGameBehavior.right(geographicMapInterface, this.velocityInterface, this);
+            }
+        } catch (Exception e) {
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "right", e));
+        }
+    }
+    
+   public void rightp()
    {
       this.velocityInterface.getVelocityXBasicDecimal().add(-this.acceleration.getReverse());
       this.velocityInterface.limitXYToForwardAndReverseMaxVelocity();
@@ -355,7 +376,7 @@ Created By: Travis Berthelot
         updateGDObject(1000);
    }
 
-   public void left()
+   public void leftp()
    {
        this.velocityInterface.getVelocityXBasicDecimal().add(this.acceleration.getReverse());
        this.velocityInterface.limitXYToForwardAndReverseMaxVelocity();
@@ -370,6 +391,24 @@ Created By: Travis Berthelot
 
         //updateGDObject(globals.timeDelta);
         updateGDObject(1000);
+    }
+    
+    public void left()
+    {
+        try {
+            final GeographicMapCompositeInterface geographicMapCompositeInterface
+                    = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+
+            final GeographicMapInterface geographicMapInterface
+                    = geographicMapCompositeInterface.getGeographicMapInterface();
+
+            if(geographicMapInterface != null) {
+                this.platformGameBehavior.left(geographicMapInterface, this.velocityInterface, this);
+            }
+
+        } catch (Exception e) {
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "left", e));
+        }
     }
         
    public void inputFrames()
