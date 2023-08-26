@@ -63,8 +63,8 @@ import org.allbinary.logic.basic.util.event.AllBinaryEventObject;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.system.PlatformAssetManager;
+import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
-import org.allbinary.media.graphics.geography.map.GeographicMapInterface;
 import org.allbinary.media.graphics.geography.map.platform.BasicPlatormGeographicMapCellTypeFactory;
 import org.allbinary.media.graphics.geography.map.platform.TileSetToGeographicMapUtil;
 
@@ -148,17 +148,6 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         
         final GDTiledMapProperties tiledMapProperties = new GDTiledMapProperties();
         
-        final int layerIndex = 0;
-        final TileSet tileSet = map.getTileSets().get(layerIndex);
-        final Map tileTypeToTileIdsMap = TileSetToGeographicMapUtil.getInstance().convert(tileSet);
-        BasicPlatormGeographicMapCellTypeFactory.getInstance().init(tileTypeToTileIdsMap);
-        final int maxTileId = tileSet.getMaxTileId() + 1;
-        LogUtil.put(LogFactory.getInstance("MaxTileId: " + maxTileId, this, commonStrings.PROCESS));
-        final int[] cellTypeMapping = new int[maxTileId];
-        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> maxTileId; index++) {
-            cellTypeMapping[index] = index;
-        }
-
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
             (GeographicMapCompositeInterface) this.layerManager;
         
@@ -182,9 +171,28 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         //final String string = new StringMaker().append("w: ").append((int) (map.getWidth() * tileMapScale)).append(" h: ").append((int) (map.getHeight() * tileMapScale)).append("tw: ").append((int) (map.getTileWidth() * tileMapScale)).append(" th: ").append((int) (map.getTileHeight() * tileMapScale)).toString();
         //LogUtil.put(LogFactory.getInstance(string, this, commonStrings.PROCESS));
 
-        geographicMapCompositeInterface.setGeographicMapInterface(
-                new GDGeographicMap(((TileLayer) map.getLayer(layerIndex)).getId(), cellTypeMapping, map, tileSetImage, tiledMapProperties, BLACK, BLACK, tileMapScale)
-                );
+        final BasicGeographicMap[] geographicMapInterfaceArray = new BasicGeographicMap[map.getLayers().size()];
+
+        final String MAX_TILE_ID = "MaxTileId: ";
+        final StringMaker stringMaker = new StringMaker();
+
+        final int size3 = geographicMapInterfaceArray.length;
+        for(int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
+            final TileSet tileSet = map.getTileSets().get(layerIndex);
+            final Map tileTypeToTileIdsMap = TileSetToGeographicMapUtil.getInstance().convert(tileSet);
+            BasicPlatormGeographicMapCellTypeFactory.getInstance().init(tileTypeToTileIdsMap);
+            final int maxTileId = tileSet.getMaxTileId() + 1;
+            stringMaker.delete(0, stringMaker.length());
+            LogUtil.put(LogFactory.getInstance(stringMaker.append(MAX_TILE_ID).append(maxTileId).toString(), this, commonStrings.PROCESS));
+            final int[] cellTypeMapping = new int[maxTileId];
+            for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> maxTileId; index++) {
+                cellTypeMapping[index] = index;
+            }
+
+            geographicMapInterfaceArray[layerIndex] = new GDGeographicMap(((TileLayer) map.getLayer(layerIndex)), cellTypeMapping, map, tileSetImage, tiledMapProperties, BLACK, BLACK, tileMapScale);
+        }
+
+        geographicMapCompositeInterface.setGeographicMapInterface(geographicMapInterfaceArray);
 
         <xsl:for-each select=".." >
             <xsl:call-template name="globalUpdateCentreCameraActions" >
@@ -192,7 +200,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             </xsl:call-template>
         </xsl:for-each>
 
-        StaticTileLayerIntoPositionViewPosition.setTiledLayer(tiledLayer);
+        StaticTileLayerIntoPositionViewPosition.setTiledLayer(geographicMapInterfaceArray[0].getAllBinaryTiledLayer());
         this.setPosition(geographicMapCompositeInterface);
 
             </xsl:if>
@@ -204,21 +212,27 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
     public void setPosition(final GeographicMapCompositeInterface geographicMapCompositeInterface)
     {
         final AllBinaryLayer layer = StaticTileLayerIntoPositionViewPosition.layer;
-        final GeographicMapInterface geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface();
-        final TiledLayer tiledLayer = ((AllBinaryJ2METiledLayer) geographicMapInterface.getAllBinaryTiledLayer()).getTiledLayer();
+        final BasicGeographicMap[] geographicMapInterfaceArray = geographicMapCompositeInterface.getGeographicMapInterface();
+        TiledLayer tiledLayer;
+        
+        GDGeographicMap geographicMapInterface;
+        final int size = geographicMapInterfaceArray.length;
+        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+            geographicMapInterface = (GDGeographicMap) geographicMapInterfaceArray[index];
+            tiledLayer = ((AllBinaryJ2METiledLayer) geographicMapInterface.getAllBinaryTiledLayer()).getTiledLayer();
  
-        //final int centerCameraX = (int) (SceneWindowWidth() / 2);
-        //final int centerCameraY = (int) (SceneWindowHeight() / 2);
-        //final int x2 = centerCameraX - layer.getHalfWidth() - tiledLayer.getX();
-        //final int y2 = centerCameraY - layer.getHalfHeight() - tiledLayer.getY();
-        //final int x2 = layer.getX() - tiledLayer.getX();
-        //final int y2 = layer.getY() - tiledLayer.getY();
-        final int mapX = ((tiledLayer.getRows() * tiledLayer.getCellHeight()) / 2);
-        final int mapY = ((tiledLayer.getColumns() * tiledLayer.getCellWidth()) / 2);
-        //final int x2 = mapX + tiledLayer.getX();
-        //final int y2 = mapY + tiledLayer.getY();
-        final int x2 = mapX - layer.getHalfWidth() - 78;
-        final int y2 = mapY + layer.getHeight() + layer.getHalfHeight();
+            //final int centerCameraX = (int) (SceneWindowWidth() / 2);
+            //final int centerCameraY = (int) (SceneWindowHeight() / 2);
+            //final int x2 = centerCameraX - layer.getHalfWidth() - tiledLayer.getX();
+            //final int y2 = centerCameraY - layer.getHalfHeight() - tiledLayer.getY();
+            //final int x2 = layer.getX() - tiledLayer.getX();
+            //final int y2 = layer.getY() - tiledLayer.getY();
+            final int mapX = ((tiledLayer.getRows() * tiledLayer.getCellHeight()) / 2);
+            final int mapY = ((tiledLayer.getColumns() * tiledLayer.getCellWidth()) / 2);
+            //final int x2 = mapX + tiledLayer.getX();
+            //final int y2 = mapY + tiledLayer.getY();
+            final int x2 = mapX - layer.getHalfWidth() - 78;
+            final int y2 = mapY + layer.getHeight() + layer.getHalfHeight();
         
 //        final CommonStrings commonStrings = CommonStrings.getInstance();
 //        LogUtil.put(LogFactory.getInstance(new StringMaker().append("camera x: ").append(centerCameraX).append("y: ").append(centerCameraY).toString(), this, commonStrings.PROCESS));
@@ -226,7 +240,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 //        LogUtil.put(LogFactory.getInstance(new StringMaker().append("tile x: ").append(tiledLayer.getX()).append("y: ").append(tiledLayer.getY()).toString(), this, commonStrings.PROCESS));
 //        LogUtil.put(LogFactory.getInstance(new StringMaker().append("map x: ").append(mapX).append("y: ").append(mapY).toString(), this, commonStrings.PROCESS));
 //        LogUtil.put(LogFactory.getInstance(new StringMaker().append("2 x: ").append(x2).append("y: ").append(y2).toString(), this, commonStrings.PROCESS));
-        layer.setPosition(x2, y2, layer.getZ());
+            layer.setPosition(x2, y2, layer.getZ());
+        }
+        
     }
 
     //private BasicGameResources[] playerResourceArray = new BasicGameResources[1];

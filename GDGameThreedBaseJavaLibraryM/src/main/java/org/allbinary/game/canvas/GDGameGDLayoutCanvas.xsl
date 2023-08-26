@@ -53,6 +53,7 @@ import org.allbinary.game.identification.GroupFactory;
 import org.allbinary.game.input.OptimizedGameInputLayerProcessorForCollidableLayer;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.game.layer.GDGameLayerManager;
+import org.allbinary.game.layer.PaintableLayerComposite;
 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
 import org.allbinary.game.layout.BaseGDNodeStats;
 import org.allbinary.game.layout.GDNodeStatsFactory;
@@ -77,8 +78,9 @@ import org.allbinary.media.audio.AllBinaryMediaManager;
 import org.allbinary.media.audio.PlayerQueue;
 import org.allbinary.media.audio.PrimaryPlayerQueueFactory;
 import org.allbinary.media.audio.SecondaryPlayerQueueFactory;
+import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
+import org.allbinary.media.graphics.geography.map.BasicGeographicMapUtil;    
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
-import org.allbinary.media.graphics.geography.map.GeographicMapInterface;
 import org.allbinary.time.TimeDelayHelper;
 
         <xsl:for-each select="layouts" >
@@ -435,7 +437,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
             AllBinarySceneController sceneController = GDGameAllBinarySceneControllerFactory.getInstance();
 
-            GDGameLayerManager gdGameLayerManager = (GDGameLayerManager) layerManager;
+            final GDGameLayerManager gdGameLayerManager = (GDGameLayerManager) layerManager;
             gdGameLayerManager.layout = <xsl:value-of select="$index" />;
             sceneController.buildScene(layerManager);
 
@@ -448,7 +450,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
             (GeographicMapCompositeInterface) this.getLayerManager();
         
-        final GeographicMapInterface geographicMapInterface = 
+        final BasicGeographicMap[] geographicMapInterfaceArray = 
             geographicMapCompositeInterface.getGeographicMapInterface();
 
         //layerManager.setBackgroundBasicColor(
@@ -457,7 +459,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         //layerManager.setForegroundBasicColor(
                 //geographicMapInterface.getForegroundBasicColor());
 
-        this.tileLayerPaintable = geographicMapInterface.getAllBinaryTiledLayer();
+        this.tileLayerPaintable = new PaintableLayerComposite(BasicGeographicMapUtil.getInstance().createAllBinaryTiledLayerArray(geographicMapInterfaceArray));
 
         //this.playerLayer = ((GDGameLayerManager) this.getLayerManager()).getPlayerLayer();
 

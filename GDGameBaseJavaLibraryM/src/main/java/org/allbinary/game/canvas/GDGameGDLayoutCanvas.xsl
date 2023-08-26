@@ -56,6 +56,7 @@ import org.allbinary.game.input.event.DownKeyEventHandler;
 import org.allbinary.game.input.event.UpKeyEventHandler;
 import org.allbinary.game.input.OptimizedGameInputLayerProcessorForCollidableLayer;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
+import org.allbinary.game.layer.PaintableLayerComposite;
 import org.allbinary.game.layer.PlayerGameInputGameLayer;
 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
 import org.allbinary.game.layout.BaseGDNodeStats;
@@ -82,8 +83,9 @@ import org.allbinary.media.audio.AllBinaryMediaManager;
 import org.allbinary.media.audio.PlayerQueue;
 import org.allbinary.media.audio.PrimaryPlayerQueueFactory;
 import org.allbinary.media.audio.SecondaryPlayerQueueFactory;
+import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
+import org.allbinary.media.graphics.geography.map.BasicGeographicMapUtil;    
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
-import org.allbinary.media.graphics.geography.map.GeographicMapInterface;
 import org.allbinary.time.TimeDelayHelper;
 
         <xsl:for-each select="layouts" >
@@ -442,7 +444,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
             (GeographicMapCompositeInterface) this.getLayerManager();
         
-        final GeographicMapInterface geographicMapInterface = 
+        final BasicGeographicMap[] geographicMapInterfaceArray = 
             geographicMapCompositeInterface.getGeographicMapInterface();
 
         //layerManager.setBackgroundBasicColor(
@@ -451,7 +453,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         //layerManager.setForegroundBasicColor(
                 //geographicMapInterface.getForegroundBasicColor());
 
-        this.tileLayerPaintable = geographicMapInterface.getAllBinaryTiledLayer();
+        this.tileLayerPaintable = new PaintableLayerComposite(BasicGeographicMapUtil.getInstance().createAllBinaryTiledLayerArray(geographicMapInterfaceArray));
 
             </xsl:if>
         </xsl:for-each>
@@ -630,10 +632,15 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
             (GeographicMapCompositeInterface) this.getLayerManager();
         
-        final GDGeographicMap geographicMapInterface = (GDGeographicMap) 
+        final BasicGeographicMap[] geographicMapInterfaceArray = 
             geographicMapCompositeInterface.getGeographicMapInterface();
             
-        geographicMapInterface.update();
+        GDGeographicMap geographicMapInterface;
+        final int size = geographicMapInterfaceArray.length;
+        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+            geographicMapInterface = (GDGeographicMap) geographicMapInterfaceArray[index];
+            geographicMapInterface.update();
+        }
 
         this.specialAnimation.process();
         

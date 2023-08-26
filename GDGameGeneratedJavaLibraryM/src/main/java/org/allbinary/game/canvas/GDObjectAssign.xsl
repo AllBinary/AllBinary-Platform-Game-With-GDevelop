@@ -188,8 +188,25 @@ Created By: Travis Berthelot
                 <xsl:for-each select="behaviors" >
                 //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" />
                     <xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >
+
+<!--     
+              "gravity": 250,
+              "jumpSpeed": 150,
+              "jumpSustainTime": 0.2,
+              "maxFallingSpeed": 200,
+              "ladderClimbingSpeed": 100,
+              "yGrabOffset": 0,
+              //"maxSpeed": 100,
+              //"acceleration": 400,
+              "canGrabPlatforms": false,
+              "deceleration": 400,
+              "ignoreDefaultControls": false,
+              "roundCoordinates": true,
+              "slopeMaxAngle": 60,
+              "xGrabTolerance": 10
+-->
                 
-                behaviorList.add(new GDPlatformerObjectBehavior());
+                //behaviorList.add(new GDPlatformerObjectBehavior());
                     </xsl:if>
                 </xsl:for-each>
 
@@ -219,7 +236,7 @@ Created By: Travis Berthelot
                                 );
 
                 final BasicArrayList behaviorList = new BasicArrayList();
-
+                
                 this.<xsl:value-of select="name" />GDGameLayerFactory = new GDCustomGameLayerFactory(
                     allBinaryGameLayerManager,
                     globals.<xsl:value-of select="name" />GDGameLayerList,
@@ -250,7 +267,7 @@ Created By: Travis Berthelot
                                 );
 
                 final BasicArrayList behaviorList = new BasicArrayList();
-
+                
                 this.<xsl:value-of select="name" />GDGameLayerFactory = new GDCustomGameLayerFactory(
                     allBinaryGameLayerManager,
                     globals.<xsl:value-of select="name" />GDGameLayerList,

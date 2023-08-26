@@ -24,7 +24,7 @@ import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterfac
 public class GDGameLayerManager extends AllBinaryGameLayerManager
         implements GeographicMapCompositeInterface
 {
-    private BasicGeographicMap geographicMapInterface;
+    private BasicGeographicMap[] geographicMapInterfaceArray;
    //private PlayerLayer playerLayer;
    
    public static int MAX_LEVEL = 1; //Integer.MAX_VALUE;
@@ -48,14 +48,14 @@ public class GDGameLayerManager extends AllBinaryGameLayerManager
         super.remove(layerInterface);
     }
 
-   public BasicGeographicMap getGeographicMapInterface()
+   public BasicGeographicMap[] getGeographicMapInterface()
    {
-      return geographicMapInterface;
+      return geographicMapInterfaceArray;
    }
 
-   public void setGeographicMapInterface(BasicGeographicMap geographicMapInterface)
+   public void setGeographicMapInterface(final BasicGeographicMap[] geographicMapInterfaceArray)
    {
-      this.geographicMapInterface = geographicMapInterface;
+      this.geographicMapInterfaceArray = geographicMapInterfaceArray;
    }
     
    /*

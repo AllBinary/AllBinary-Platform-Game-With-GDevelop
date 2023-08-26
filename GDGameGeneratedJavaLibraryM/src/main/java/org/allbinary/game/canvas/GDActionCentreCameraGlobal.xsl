@@ -94,21 +94,31 @@ Created By: Travis Berthelot
                             });
         </xsl:if>
         <xsl:if test="string-length($tileMapScale) > 0" >
-            final AllBinaryTiledLayer tiledLayer = geographicMapCompositeInterface.getGeographicMapInterface().getAllBinaryTiledLayer();
-            tiledLayer.setPosition(centerCameraX - (tiledLayer.getHalfWidth() - 78), centerCameraY - (tiledLayer.getHalfHeight() + 109), 0);
 
-            DisplayChangeEventHandler.getInstance().addListener(new DisplayChangeEventListener() {
+            AllBinaryTiledLayer tiledLayer;
+            BasicGeographicMap geographicMapInterface;
+            final int size2 = geographicMapInterfaceArray.length;
+            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index++) {
+                geographicMapInterface = (GDGeographicMap) geographicMapInterfaceArray[index];
+                tiledLayer = geographicMapInterface.getAllBinaryTiledLayer();
+                tiledLayer.setPosition(centerCameraX - (tiledLayer.getHalfWidth() - 78), centerCameraY - (tiledLayer.getHalfHeight() + 109), 0);
+                
+                final AllBinaryTiledLayer tiledLayer2 = tiledLayer;
+                DisplayChangeEventHandler.getInstance().addListener(new DisplayChangeEventListener() {
 
-                public void onEvent(final AllBinaryEventObject eventObject) {
+                    public void onEvent(final AllBinaryEventObject eventObject) {
 
-                }
+                    }
 
-                public void onDisplayChangeEvent(final DisplayChangeEvent displayChangeEvent) {
-                    final int centerCameraX = (int) (SceneWindowWidth() / 2);
-                    final int centerCameraY = (int) (SceneWindowHeight() / 2);
-                    tiledLayer.setPosition(centerCameraX - (tiledLayer.getHalfWidth() - 78), centerCameraY - (tiledLayer.getHalfHeight() + 109), 0);
-                }
-            });
+                    public void onDisplayChangeEvent(final DisplayChangeEvent displayChangeEvent) {
+                        final int centerCameraX = (int) (SceneWindowWidth() / 2);
+                        final int centerCameraY = (int) (SceneWindowHeight() / 2);
+                        tiledLayer2.setPosition(centerCameraX - (tiledLayer2.getHalfWidth() - 78), centerCameraY - (tiledLayer2.getHalfHeight() + 109), 0);
+                    }
+                });
+
+            }
+
         </xsl:if>
 
     </xsl:template>

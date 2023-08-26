@@ -53,9 +53,9 @@ public class GDGeographicMap extends BasicGeographicMap {
     private final int[] currentFrameArray = new int[5];
     private final BasicArrayList animationList = new BasicArrayList();
     
-    public GDGeographicMap(final int id, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final GDTiledMapProperties tiledMapProperties, final BasicColor foregroundColor, final BasicColor backGroundColor, final float scale) throws Exception {
-        super(SmallIntegerSingletonFactory.getInstance().getInstance(id),
-                SmallIntegerSingletonFactory.getInstance().getInstance(id).toString(),
+    public GDGeographicMap(final TileLayer tileLayer, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final GDTiledMapProperties tiledMapProperties, final BasicColor foregroundColor, final BasicColor backGroundColor, final float scale) throws Exception {
+        super(SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()),
+                SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()).toString(),
                 cellTypeIdToGeographicMapCellType,
                 new AllBinaryJ2METiledLayer(
                         SmallIntegerSingletonFactory.getInstance().getInstance(-1),
@@ -65,7 +65,7 @@ public class GDGeographicMap extends BasicGeographicMap {
                                 tileSetImage,
                                 (int) (map.getTileWidth() * scale),
                                 (int) (map.getTileHeight() * scale)),
-                        ((TileLayer) map.getLayer(0)).getMapArray()),
+                        tileLayer.getMapArray()),
                 foregroundColor, backGroundColor,
                 new SimpleGeographicMapCellPositionFactory(),
                 new GeographicMapCellPositionBaseFactory());
