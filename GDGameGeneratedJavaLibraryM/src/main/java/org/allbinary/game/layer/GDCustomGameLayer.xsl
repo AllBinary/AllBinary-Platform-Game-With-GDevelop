@@ -341,12 +341,12 @@ Created By: Travis Berthelot
         VelocityUtil.reduceX(this.velocityInterface, 90, 100);
     }
                         
-    public void terrainEvent(final int dx, final int dy, final BasicGeographicMap geographicMapInterface,
+    public void terrainEvent(final int dx, final int dy, final BasicGeographicMap[] geographicMapInterfaceArray,
             final GeographicMapCellPosition geographicMapCellPosition) throws Exception {
     }
 
-    public void terrainMove(final BasicGeographicMap geographicMapInterface, final int dx, final int dy) {
-        this.platformCharacterBehavior.terrainMove(this, geographicMapInterface, dx, dy);
+    public void terrainMove(final BasicGeographicMap[] geographicMapInterfaceArray, final int dx, final int dy) {
+        this.platformCharacterBehavior.terrainMove(this, geographicMapInterfaceArray, dx, dy);
     }
    
     public void terrainLand() {
@@ -363,7 +363,7 @@ Created By: Travis Berthelot
 
             if(geographicMapInterfaceArray != null) {
                 final BasicGeographicMap geographicMapInterface = geographicMapInterfaceArray[0];
-                this.platformGameBehavior.move(geographicMapInterface, this.velocityInterface, this);
+                this.platformGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this);
             } else {
                 //LogUtil.put(LogFactory.getInstance("Map was null, this, "move"));
             }
@@ -391,11 +391,11 @@ Created By: Travis Berthelot
             final GeographicMapCompositeInterface geographicMapCompositeInterface
                     = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
 
-            final BasicGeographicMap geographicMapInterface
-                    = geographicMapCompositeInterface.getGeographicMapInterface()[0];
+            final BasicGeographicMap[] geographicMapInterfaceArray
+                    = geographicMapCompositeInterface.getGeographicMapInterface();
 
-            if(geographicMapInterface != null) {
-                this.platformGameBehavior.right(geographicMapInterface, this.velocityInterface, this);
+            if(geographicMapInterfaceArray != null) {
+                this.platformGameBehavior.right(geographicMapInterfaceArray, this.velocityInterface, this);
             }
         } catch (Exception e) {
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "right", e));
@@ -437,11 +437,11 @@ Created By: Travis Berthelot
             final GeographicMapCompositeInterface geographicMapCompositeInterface
                     = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
 
-            final BasicGeographicMap geographicMapInterface
-                    = geographicMapCompositeInterface.getGeographicMapInterface()[0];
+            final BasicGeographicMap[] geographicMapInterfaceArray
+                    = geographicMapCompositeInterface.getGeographicMapInterface();
 
-            if(geographicMapInterface != null) {
-                this.platformGameBehavior.left(geographicMapInterface, this.velocityInterface, this);
+            if(geographicMapInterfaceArray != null) {
+                this.platformGameBehavior.left(geographicMapInterfaceArray, this.velocityInterface, this);
             }
 
         } catch (Exception e) {
