@@ -97,19 +97,8 @@ Created By: Travis Berthelot
         import org.allbinary.util.BasicArrayList;
         import org.allbinary.view.ViewPosition;
 
-                public class GDCustomGameLayer extends GDGameLayer implements GameKeyEventSourceInterface,
-        <xsl:for-each select="layouts" >
-            <xsl:variable name="layoutIndex" select="position() - 1" />
-
-            <xsl:for-each select="objects" >            
-                <xsl:for-each select="behaviors" >
-                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" />
-                    <xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >
-                       PlatformCharacterInterface 
-                    </xsl:if>
-                </xsl:for-each>
-            </xsl:for-each>
-        </xsl:for-each>
+                public class GDCustomGameLayer extends GDGameLayer 
+        <xsl:if test="contains($foundOtherViewPosition, 'found')" >implements GameKeyEventSourceInterface, PlatformCharacterInterface </xsl:if>
                 {
 
         <xsl:for-each select="layouts" >
@@ -218,9 +207,11 @@ Created By: Travis Berthelot
         </xsl:if>
                             gdObject, rotationBehavior);
                         
+        <xsl:if test="contains($foundOtherViewPosition, 'found')" >
                         this.allBinaryGameLayerManager = allBinaryGameLayerManager;
                         
                         StaticTileLayerIntoPositionViewPosition.layer = this;
+        </xsl:if>
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -241,10 +232,10 @@ Created By: Travis Berthelot
         </xsl:for-each>
         
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
-                        this.acceleration = new BasicAccelerationProperties(
-                            velocityInterface.getMaxForwardVelocity() / 12, 
-                            -velocityInterface.getMaxReverseVelocity() / 12
-                        );
+//                        this.acceleration = new BasicAccelerationProperties(
+//                            velocityInterface.getMaxForwardVelocity() / 12, 
+//                            -velocityInterface.getMaxReverseVelocity() / 12
+//                        );
         </xsl:if>
 
         <xsl:for-each select="layouts" >

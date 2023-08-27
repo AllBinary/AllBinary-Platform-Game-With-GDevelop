@@ -60,6 +60,7 @@ import org.allbinary.layer.LayerInterfaceFactory;
 import org.allbinary.layer.LayerInterfaceVisitor;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.util.event.AllBinaryEventObject;
+import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.system.PlatformAssetManager;
@@ -178,7 +179,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         final int size3 = geographicMapInterfaceArray.length;
         for(int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
-            final TileSet tileSet = map.getTileSets().get(layerIndex);
+            final TileSet tileSet = map.getTileSets().get(0);
             final Map tileTypeToTileIdsMap = TileSetToGeographicMapUtil.getInstance().convert(tileSet);
             BasicPlatormGeographicMapCellTypeFactory.getInstance().init(tileTypeToTileIdsMap);
             final int maxTileId = tileSet.getMaxTileId() + 1;
@@ -212,6 +213,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
     public void setPosition(final GeographicMapCompositeInterface geographicMapCompositeInterface)
     {
         final AllBinaryLayer layer = StaticTileLayerIntoPositionViewPosition.layer;
+        
+        if(layer != null) {
+        
         final BasicGeographicMap[] geographicMapInterfaceArray = geographicMapCompositeInterface.getGeographicMapInterface();
         TiledLayer tiledLayer;
         
@@ -231,6 +235,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             final int mapY = ((tiledLayer.getColumns() * tiledLayer.getCellWidth()) / 2);
             //final int x2 = mapX + tiledLayer.getX();
             //final int y2 = mapY + tiledLayer.getY();
+            
             final int x2 = mapX - layer.getHalfWidth() - 78;
             final int y2 = mapY + layer.getHeight() + layer.getHalfHeight();
         
@@ -242,7 +247,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 //        LogUtil.put(LogFactory.getInstance(new StringMaker().append("2 x: ").append(x2).append("y: ").append(y2).toString(), this, commonStrings.PROCESS));
             layer.setPosition(x2, y2, layer.getZ());
         }
-        
+
+        }
     }
 
     //private BasicGameResources[] playerResourceArray = new BasicGameResources[1];
