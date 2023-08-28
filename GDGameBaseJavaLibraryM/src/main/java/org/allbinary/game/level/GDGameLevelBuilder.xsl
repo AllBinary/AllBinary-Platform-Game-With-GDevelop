@@ -123,9 +123,12 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final PlatformAssetManager platformAssetManager = PlatformAssetManager.getInstance();
                 <xsl:if test="content" >
                     //TileMap::TileMap:content
-                    <xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
-                    <xsl:variable name="json" select="substring-before($jsonWithExtension, '.')" />
-        final InputStream inputStream = platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" /></xsl:with-param></xsl:call-template>);
+                    <xsl:variable name="tileMapJSONWithExtension" select="content/tilemapJsonFile" />
+                    <xsl:variable name="tileMapJSON" select="substring-before($tileMapJSONWithExtension, '.')" />
+        final InputStream tileMapInputStream = platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);
+                    <xsl:variable name="tileSetJSONWithExtension" select="content/tilesetJsonFile" />
+                    <xsl:variable name="tileSetJSON" select="substring-before($tileSetJSONWithExtension, '.')" />
+        final InputStream tileSetInputStream = platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>);
                 </xsl:if>
 
         //LogUtil.put(LogFactory.getInstance("Loaded Tiled Map Asset", this, commonStrings.PROCESS));
@@ -140,10 +143,12 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final Features features = Features.getInstance();
         final boolean isHTML = features.isDefault(HTMLFeatureFactory.getInstance().HTML);
         int size = 0;
+        int size2 = 0;
         if(isHTML) {
-            size = inputStream.available();
+            size = tileMapInputStream.available();
+            size2 = tileSetInputStream.available();
         }
-        final TiledMap map = TiledMapLoaderFromJSONFactory.getInstance().process(new GDJSONMapReader(), inputStream, size, new Image[] {tileSetImage});
+        final TiledMap map = TiledMapLoaderFromJSONFactory.getInstance().process(new GDJSONMapReader(), tileMapInputStream, tileSetInputStream, size, size2, new Image[] {tileSetImage});
         
         //LogUtil.put(LogFactory.getInstance("Loaded Tiled Map", this, commonStrings.PROCESS));
         
