@@ -7,6 +7,9 @@
 package org.allbinary.gdevelop.json.resource;
 
 import org.allbinary.gdevelop.json.GDProjectStrings;
+import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 import org.json.JSONObject;
 
 /**
@@ -33,6 +36,8 @@ public class GDResourceFactory
     public final String VIDEO = "video";
     public final String JSON = "json";
     public final String BITMAP_FONT = "bitmapFont";
+    public final String TILE_MAP = "tilemap";
+    public final String TILE_SET = "tileset";
     
     public String get(final String kind) {
         if (kind.compareTo(this.IMAGE) == 0)
@@ -50,11 +55,18 @@ public class GDResourceFactory
         } else if (kind.compareTo(this.JSON) == 0)
         {
             return this.JSON;
+        } else if (kind.compareTo(this.TILE_MAP) == 0)
+        {
+            return this.TILE_MAP;
+        } else if (kind.compareTo(this.TILE_SET) == 0)
+        {
+            return this.TILE_SET;
         } else if (kind.compareTo(this.BITMAP_FONT) == 0)
         {
             return this.BITMAP_FONT;
         } else {
-            return null;
+            LogUtil.put(LogFactory.getInstance(kind, this, CommonStrings.getInstance().CONSTRUCTOR));
+            throw new RuntimeException(kind);
         }        
     }
     
@@ -77,11 +89,17 @@ public class GDResourceFactory
         } else if (kind == this.JSON)
         {
             return new GDJsonResource(kind, jsonObject);
+        } else if (kind == this.TILE_MAP)
+        {
+            return new GDJsonResource(kind, jsonObject);
+        } else if (kind == this.TILE_SET)
+        {
+            return new GDJsonResource(kind, jsonObject);
         } else if (kind == this.BITMAP_FONT)
         {
             return new GDBitmapFontResource(kind, jsonObject);
         } else {
-            return null;
+            throw new RuntimeException(kind);
         }
     }
     

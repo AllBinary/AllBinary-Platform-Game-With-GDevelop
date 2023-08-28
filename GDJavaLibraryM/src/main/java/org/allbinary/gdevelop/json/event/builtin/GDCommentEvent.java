@@ -44,6 +44,10 @@ public class GDCommentEvent extends GDEvent
         this.textB = colorJSONObject.getInt(gdProjectStrings.TEXT_B);
 
         this.comment1 = jsonObject.getString(gdProjectStrings.COMMENT);
-        this.comment2 = jsonObject.getString(gdProjectStrings.COMMENT2);
+        if(jsonObject.has(gdProjectStrings.COMMENT2)) {
+            this.comment2 = jsonObject.getString(gdProjectStrings.COMMENT2);
+        } else {
+            this.comment2 = null;
+        }
     }
 }
