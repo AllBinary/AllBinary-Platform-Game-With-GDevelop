@@ -115,12 +115,18 @@ public class GDToAllBinaryGenerationTool
 
         final String xml = "<game>" + XML.toString(gameAsConfigurationJSONObject) + "<variables><value>movement_angle</value><value>angle</value></variables></game>\n";
         final String formattedXml = XmlDocumentHelper.getInstance().format(xml);
-        final Replace replace = new Replace("\"", "&quot;");
+        final String QUOTE = "\"";
+        final Replace replace = new Replace(QUOTE, "&quot;");
         final Replace replace2 = new Replace("'", "&apos;");
         final Replace replace3 = new Replace("contentx>", "content>");
+        final String TAG_END = ">";
+        final Replace replace4 = new Replace(">assets\\", TAG_END);
+        final Replace replace5 = new Replace(">assets/", TAG_END);
         String fixQuotes = replace.all(formattedXml);
         fixQuotes = replace2.all(fixQuotes);
         fixQuotes = replace3.all(fixQuotes);
+        fixQuotes = replace4.all(fixQuotes);
+        fixQuotes = replace5.all(fixQuotes);
 
         final String fileName = gdToolStrings.GAME_XML_PATH;
         LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().PROCESS));
