@@ -22,9 +22,14 @@
  */
 package org.allbinary.logic.system;
 
-import com.google.gwt.resources.client.TextResource;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.google.gwt.resources.client.TextResource;
+
 import org.allbinary.data.resource.ResourceUtil;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -58,14 +63,35 @@ public class PlatformAssetManager {
     //private final String DONE = "ResourceCallback:done";
     //private final String ERROR = "ResourceCallback:error";
     
-    private String text = null;
-    private boolean requestProcessing = false;
+    private Map textToResource = new HashMap();
+    private Map requestToResource = new HashMap();
 
+    class RequestedText {
+        public String text;
+    };
+    
     public TextResource getTextResource(final String resource) {
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />
-        <xsl:if test="position() != 1" >} else </xsl:if>if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[0].compareTo(resource) == 0) {
-            return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.<xsl:for-each select="objects" ><xsl:variable name="typeValue" select="type" /><xsl:if test="$typeValue = 'TileMap::TileMap'" ><xsl:if test="content" ><xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" /><xsl:variable name="json" select="substring-before($jsonWithExtension, '.')" /><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" />();</xsl:with-param></xsl:call-template></xsl:if></xsl:if>
+
+            //<xsl:if test="position() != 1" >} else </xsl:if>
+        
+        <xsl:for-each select="objects" ><xsl:variable name="typeValue" select="type" /><xsl:if test="$typeValue = 'TileMap::TileMap'" ><xsl:if test="content" ><xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
+        if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[0].compareTo(resource) == 0) {
+        return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.<xsl:variable name="json" select="substring-before($jsonWithExtension, '.')" />
+        <xsl:call-template name="upper-case" >
+            <xsl:with-param name="text" >
+                <xsl:value-of select="$json" />();</xsl:with-param>
+        </xsl:call-template>
+        <xsl:variable name="tilesetJsonFileWithExtension" select="content/tilesetJsonFile" />
+        } else if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[1].compareTo(resource) == 0) {
+        return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.<xsl:variable name="tilesetJsonFileN" select="substring-before($tilesetJsonFileWithExtension, '.')" />
+        <xsl:call-template name="upper-case" >
+            <xsl:with-param name="text" >
+                <xsl:value-of select="$tilesetJsonFileN" />();</xsl:with-param>
+        </xsl:call-template>
+        </xsl:if>
+        </xsl:if>
         </xsl:for-each>
             
         </xsl:for-each>
@@ -77,21 +103,24 @@ public class PlatformAssetManager {
     
     public InputStream getText(final String resource, final InputStream inputStream) {
         
-        if(text != null) {
-            LogUtil.put(LogFactory.getInstance("Text already loaded", this, GET_TEXT));
-            final byte[] byteArray = text.getBytes();
+        final RequestedText requestedText2 = (RequestedText) textToResource.get(resource);
+        if(requestedText2 != null && requestedText2.text != null) {
+            LogUtil.put(LogFactory.getInstance("Text already loaded: " + resource, this, GET_TEXT));
+            final byte[] byteArray = requestedText2.text.getBytes();
             final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);
             //return new Object[] {byteArrayInputStream, text.length()};
             return byteArrayInputStream;
         } else {
-
-            if(requestProcessing) {
+            
+            if(requestedText2 != null) {
                 LogUtil.put(LogFactory.getInstance("Already Loading Text: " + resource, this, GET_TEXT));
             } else {
                 LogUtil.put(LogFactory.getInstance("Loading Text: " + resource, this, GET_TEXT));
-                requestProcessing = true;
 
-                text = this.getTextResource(resource).getText();
+                final String text = this.getTextResource(resource).getText();
+                final RequestedText requestedText = new RequestedText();
+                requestedText.text = text;
+                textToResource.put(resource, requestedText);
                 LogUtil.put(LogFactory.getInstance("Loaded Text: " + text.length(), this, GET_TEXT));
                 
 //                final ResourceCallback callback = new ResourceCallback() {
