@@ -120,8 +120,16 @@ Created By: Travis Berthelot
                     <xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
                     <xsl:variable name="json" select="substring-before($jsonWithExtension, '.')" />
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" /></xsl:with-param></xsl:call-template>,
+                    <xsl:variable name="tilesetJsonFileWithExtension" select="content/tilesetJsonFile" />
+                    <xsl:variable name="tilesetJsonFile" select="substring-before($tilesetJsonFileWithExtension, '.')" />
+                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tilesetJsonFile" /></xsl:with-param></xsl:call-template>,
                 </xsl:if>
                 };
+
+                final int size = this.<xsl:value-of select="name" />JSONResourceArray.length;
+                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                    PlatformAssetManager.getInstance().getResourceAsStream(this.<xsl:value-of select="name" />JSONResourceArray[index]);
+                }                
 
             </xsl:if>
 

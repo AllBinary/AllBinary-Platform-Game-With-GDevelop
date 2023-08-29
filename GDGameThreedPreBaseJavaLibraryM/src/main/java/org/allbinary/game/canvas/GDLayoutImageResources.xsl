@@ -79,6 +79,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.media.image.ImageCopyUtil;
+                import org.allbinary.logic.system.PlatformAssetManager;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources extends SpecialAnimation
