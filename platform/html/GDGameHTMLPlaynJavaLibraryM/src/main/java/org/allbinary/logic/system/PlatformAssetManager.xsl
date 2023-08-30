@@ -104,7 +104,7 @@ public class PlatformAssetManager {
     public InputStream getText(final String resource, final InputStream inputStream) {
         
         final RequestedText requestedText2 = (RequestedText) textToResource.get(resource);
-        if(requestedText2 != null && requestedText2.text != null) {
+        if(requestedText2 != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> requestedText2.text != null) {
             LogUtil.put(LogFactory.getInstance("Text already loaded: " + resource, this, GET_TEXT));
             final byte[] byteArray = requestedText2.text.getBytes();
             final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);
