@@ -123,6 +123,11 @@ Created By: Travis Berthelot
                     <xsl:variable name="tilesetJsonFileWithExtension" select="content/tilesetJsonFile" />
                     <xsl:variable name="tilesetJsonFile" select="substring-before($tilesetJsonFileWithExtension, '.')" />
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tilesetJsonFile" /></xsl:with-param></xsl:call-template>,
+                    
+                    <xsl:for-each select="content/tilesetJsonFiles" >
+                       <xsl:variable name="tileSetJSON" select="substring-before(text(), '.')" />
+                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>,
+                    </xsl:for-each>                    
                 </xsl:if>
                 };
 

@@ -126,9 +126,16 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                     <xsl:variable name="tileMapJSONWithExtension" select="content/tilemapJsonFile" />
                     <xsl:variable name="tileMapJSON" select="substring-before($tileMapJSONWithExtension, '.')" />
         final InputStream tileMapInputStream = platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);
+        
+        final InputStream[] tileSetInputStreamArray = {
                     <xsl:variable name="tileSetJSONWithExtension" select="content/tilesetJsonFile" />
                     <xsl:variable name="tileSetJSON" select="substring-before($tileSetJSONWithExtension, '.')" />
-        final InputStream tileSetInputStream = platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>);
+            platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>),
+                    <xsl:for-each select="content/tilesetJsonFiles" >
+                       <xsl:variable name="tileSetJSON" select="substring-before(text(), '.')" />
+            platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>),
+                    </xsl:for-each>
+                    };
                 </xsl:if>
 
         //LogUtil.put(LogFactory.getInstance("Loaded Tiled Map Asset", this, commonStrings.PROCESS));
@@ -143,12 +150,14 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final Features features = Features.getInstance();
         final boolean isHTML = features.isDefault(HTMLFeatureFactory.getInstance().HTML);
         int size = 0;
-        int size2 = 0;
+        int[] sizeArray2 = new int[tileSetInputStreamArray.length];
         if(isHTML) {
             size = tileMapInputStream.available();
-            size2 = tileSetInputStream.available();
+            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                sizeArray2[index] = tileSetInputStreamArray[index].available();
+            }
         }
-        final TiledMap map = TiledMapLoaderFromJSONFactory.getInstance().process(new GDJSONMapReader(), tileMapInputStream, tileSetInputStream, size, size2, new Image[] {tileSetImage});
+        final TiledMap map = TiledMapLoaderFromJSONFactory.getInstance().process(new GDJSONMapReader(), tileMapInputStream, tileSetInputStreamArray, size, sizeArray2, new Image[] {tileSetImage});
         
         //LogUtil.put(LogFactory.getInstance("Loaded Tiled Map", this, commonStrings.PROCESS));
         
