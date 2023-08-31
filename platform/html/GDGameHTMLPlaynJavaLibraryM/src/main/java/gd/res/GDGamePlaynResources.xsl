@@ -33,13 +33,37 @@ public interface GD<xsl:value-of select="$index" />GamePlaynResources extends Cl
                 <xsl:if test="content" >
                     //TileMap::TileMap:content
                     <xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
-                    "<xsl:value-of select="$jsonWithExtension" />"
+                    "<xsl:value-of select="$jsonWithExtension" />",
+                    <xsl:variable name="tileSetJSONWithExtension" select="content/tilesetJsonFile" />
+                    "<xsl:value-of select="$tileSetJSONWithExtension" />",
+                    <xsl:for-each select="content/tilesetJsonFiles" >
+                    "<xsl:value-of select="text()" />",
+                    </xsl:for-each>
                 </xsl:if>
   };
 
-  @Source(value = { "<xsl:if test="content" ><xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" /><xsl:value-of select="$jsonWithExtension" /></xsl:if>"})
-  public TextResource <xsl:if test="content" ><xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" /><xsl:variable name="json" select="substring-before($jsonWithExtension, '.')" /><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" /></xsl:with-param></xsl:call-template></xsl:if>();
-                
+<xsl:if test="content" >
+    <xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
+    <xsl:variable name="json" select="substring-before($jsonWithExtension, '.')" />
+  @Source(value = { "<xsl:value-of select="$jsonWithExtension" />"})
+  public TextResource <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" /></xsl:with-param></xsl:call-template>();
+</xsl:if>
+
+<xsl:if test="content" >
+    <xsl:variable name="tileSetJSONWithExtension" select="content/tilesetJsonFile" />
+    <xsl:variable name="json" select="substring-before($tileSetJSONWithExtension, '.')" />
+  @Source(value = { "<xsl:value-of select="$tileSetJSONWithExtension" />"})
+  public TextResource <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" /></xsl:with-param></xsl:call-template>();
+</xsl:if>
+
+<xsl:if test="content" >
+    <xsl:for-each select="content/tilesetJsonFiles" >
+    <xsl:variable name="json" select="substring-before(text(), '.')" />
+  @Source(value = { "<xsl:value-of select="text()" />"})
+  public TextResource <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" /></xsl:with-param></xsl:call-template>();
+    </xsl:for-each>
+</xsl:if>           
+
             </xsl:if>
 
         </xsl:for-each>        

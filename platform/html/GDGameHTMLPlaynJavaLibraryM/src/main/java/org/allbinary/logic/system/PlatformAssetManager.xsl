@@ -76,9 +76,13 @@ public class PlatformAssetManager {
 
             //<xsl:if test="position() != 1" >} else </xsl:if>
         
-        <xsl:for-each select="objects" ><xsl:variable name="typeValue" select="type" /><xsl:if test="$typeValue = 'TileMap::TileMap'" ><xsl:if test="content" ><xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
+        <xsl:for-each select="objects" ><xsl:variable name="typeValue" select="type" />
+        <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+            <xsl:if test="content" >
+                <xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
+                <xsl:variable name="json" select="substring-before($jsonWithExtension, '.')" />
         if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[0].compareTo(resource) == 0) {
-        return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.<xsl:variable name="json" select="substring-before($jsonWithExtension, '.')" />
+        return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.
         <xsl:call-template name="upper-case" >
             <xsl:with-param name="text" >
                 <xsl:value-of select="$json" />();</xsl:with-param>
@@ -90,6 +94,13 @@ public class PlatformAssetManager {
             <xsl:with-param name="text" >
                 <xsl:value-of select="$tilesetJsonFileN" />();</xsl:with-param>
         </xsl:call-template>
+        
+    <xsl:for-each select="content/tilesetJsonFiles" >
+    <xsl:variable name="json" select="substring-before(text(), '.')" />
+        } else if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[<xsl:value-of select="position() + 1" />].compareTo(resource) == 0) {
+        return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" />();</xsl:with-param></xsl:call-template>
+    </xsl:for-each>
+        
         </xsl:if>
         </xsl:if>
         </xsl:for-each>
