@@ -152,11 +152,18 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         int size = 0;
         int[] sizeArray2 = new int[tileSetInputStreamArray.length];
         if(isHTML) {
+            //LogUtil.put(LogFactory.getInstance("tileMapInputStream.available()", this, commonStrings.PROCESS));
             size = tileMapInputStream.available();
+            InputStream tileSetInputStream;
             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                sizeArray2[index] = tileSetInputStreamArray[index].available();
+                tileSetInputStream = tileSetInputStreamArray[index];
+                //LogUtil.put(LogFactory.getInstance("tileSetInputStream: " + tileSetInputStream, this, commonStrings.PROCESS));
+                if(tileSetInputStream != null) {
+                    sizeArray2[index] = tileSetInputStream.available();
+                }
             }
         }
+        //LogUtil.put(LogFactory.getInstance("Processing Tiled Map", this, commonStrings.PROCESS));
         final TiledMap map = TiledMapLoaderFromJSONFactory.getInstance().process(new GDJSONMapReader(), tileMapInputStream, tileSetInputStreamArray, size, sizeArray2, new Image[] {tileSetImage});
         
         //LogUtil.put(LogFactory.getInstance("Loaded Tiled Map", this, commonStrings.PROCESS));

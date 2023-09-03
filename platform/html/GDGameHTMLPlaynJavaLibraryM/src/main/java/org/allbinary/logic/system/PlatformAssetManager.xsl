@@ -64,7 +64,7 @@ public class PlatformAssetManager {
     //private final String ERROR = "ResourceCallback:error";
     
     private Map textToResource = new HashMap();
-    private Map requestToResource = new HashMap();
+    //private Map requestToResource = new HashMap();
 
     class RequestedText {
         public String text;
@@ -172,7 +172,8 @@ public class PlatformAssetManager {
 //                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, GET_TEXT, e));
 //                }
             }
-            
+
+            //LogUtil.put(LogFactory.getInstance("Null Text May not have loaded yet: " + resource, this, GET_TEXT));
             return null;
         }
 
