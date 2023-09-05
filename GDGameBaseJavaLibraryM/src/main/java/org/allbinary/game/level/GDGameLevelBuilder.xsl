@@ -86,7 +86,13 @@ import org.mapeditor.io.GDJSONMapReader;
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:if test="content" >
                     //TileMap::TileMap:content - <xsl:value-of select="content/generator" />
+                    <xsl:if test="content/generator = 'TileMapGenerator'" >
 import org.mapgenerator.TileMapGenerator;
+                    </xsl:if>
+                    <xsl:if test="content/generator = 'DungeonGenerator'" >
+import org.mapgenerator.dungeon.DungeonGenerator;
+                    </xsl:if>
+
                 </xsl:if>
             </xsl:if>
         </xsl:for-each>
@@ -140,6 +146,11 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                     <xsl:if test="content/generator = 'TileMapGenerator'" >
                         //platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);
         final byte[] data = new TileMapGenerator().process2().getBytes();
+        final InputStream tileMapInputStream = new ByteArrayInputStream(data);
+                    </xsl:if>
+                    <xsl:if test="content/generator = 'DungeonGenerator'" >
+                        //platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);
+        final byte[] data = new DungeonGenerator().generateJSONAsString().getBytes();
         final InputStream tileMapInputStream = new ByteArrayInputStream(data);
                     </xsl:if>
                     <xsl:if test="not(content/generator)" >
