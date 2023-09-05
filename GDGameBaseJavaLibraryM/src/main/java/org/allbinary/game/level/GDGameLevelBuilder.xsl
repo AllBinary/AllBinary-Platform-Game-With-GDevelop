@@ -23,6 +23,7 @@
 */
 package org.allbinary.game.level;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 import java.util.Map;
@@ -79,6 +80,17 @@ import org.mapeditor.io.GDJSONMapReader;
             <xsl:variable name="index" select="position() - 1" />
             <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
 
+        <xsl:for-each select="objects" >
+            <xsl:variable name="typeValue" select="type" />
+            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:if test="content" >
+                    //TileMap::TileMap:content - <xsl:value-of select="content/generator" />
+import org.mapgenerator.TileMapGenerator;
+                </xsl:if>
+            </xsl:if>
+        </xsl:for-each>
+                
 public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 {
     private final AllBinaryGameLayerManager layerManager;
@@ -122,10 +134,17 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final GDResources gdResources = GDResources.getInstance();
         final PlatformAssetManager platformAssetManager = PlatformAssetManager.getInstance();
                 <xsl:if test="content" >
-                    //TileMap::TileMap:content
+                    //TileMap::TileMap:content - <xsl:value-of select="content/generator" />
                     <xsl:variable name="tileMapJSONWithExtension" select="content/tilemapJsonFile" />
                     <xsl:variable name="tileMapJSON" select="substring-before($tileMapJSONWithExtension, '.')" />
+                    <xsl:if test="content/generator = 'TileMapGenerator'" >
+                        //platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);
+        final byte[] data = new TileMapGenerator().process2().getBytes();
+        final InputStream tileMapInputStream = new ByteArrayInputStream(data);
+                    </xsl:if>
+                    <xsl:if test="not(content/generator)" >
         final InputStream tileMapInputStream = platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);
+                    </xsl:if>
         
         final InputStream[] tileSetInputStreamArray = {
                     <xsl:variable name="tileSetJSONWithExtension" select="content/tilesetJsonFile" />
