@@ -245,7 +245,9 @@ Created By: Travis Berthelot
         <xsl:call-template name="globalZoomCameraActions" >
             <xsl:with-param name="baseLayer" >true</xsl:with-param>
         </xsl:call-template>
-                    
+        
+        <xsl:variable name="hasCentreCamera" ><xsl:for-each select="events" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'CentreCamera'" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+        
                     //instances create - START
                     <xsl:for-each select="instances" >
                         <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
@@ -264,10 +266,11 @@ Created By: Travis Berthelot
                         final int height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
                             </xsl:if>
                             <xsl:if test="not(contains(layer, 'touch'))" >
-                        final int width = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
-                        final int height = (int) (imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
+                        final int width = (int) (imageResources.<xsl:value-of select="name" />Rectangle.getWidth() / 1.44f);
+                        final int height = (int) (imageResources.<xsl:value-of select="name" />Rectangle.getHeight() / 1.44f);
                             </xsl:if>
-                            
+                        
+                        <xsl:if test="contains($hasCentreCamera, 'found')" >
                         final int <xsl:value-of select="name" />X = centerCameraX != 0 ? centerCameraX - width / 2 : (int) (<xsl:value-of select="x" /> * baseLayerScale);
                         final int <xsl:value-of select="name" />Y =
                             <xsl:if test="contains(layer, 'touch')" >
@@ -278,11 +281,18 @@ Created By: Travis Berthelot
                             <xsl:if test="not(contains(layer, 'touch'))" >
                                 centerCameraX != 0 ? centerCameraY - height / 2 :  (int) (<xsl:value-of select="y" /> * baseLayerScale);
                             </xsl:if>
+                        </xsl:if>
+
+                        <xsl:if test="not(contains($hasCentreCamera, 'found'))" >
+                        final int <xsl:value-of select="name" />X = (int) (<xsl:value-of select="x" /> * baseLayerScale);
+                        final int <xsl:value-of select="name" />Y = (int) (<xsl:value-of select="y" /> * baseLayerScale);
+                        </xsl:if>
 
                         if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
                             globals.<xsl:value-of select="name" />GDGameLayerList.ensureCapacity(1);
                         }
 
+                        //LayoutBuilder
                         final GDObject <xsl:value-of select="name" />GDobject2 = gdObjectsFactory.get<xsl:value-of select="name" />(
                         null, <xsl:value-of select="name" />X, 
                         <xsl:value-of select="name" />Y, 
@@ -299,8 +309,8 @@ Created By: Travis Berthelot
                         <xsl:value-of select="name" />GDobject2.height = height;
                             </xsl:if>
                             <xsl:if test="not(contains(layer, 'touch'))" >
-                        <xsl:value-of select="name" />GDobject2.canvasWidth = imageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
-                        <xsl:value-of select="name" />GDobject2.canvasHeight = imageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();
+                        <xsl:value-of select="name" />GDobject2.canvasWidth = imageResources.<xsl:value-of select="name" />Rectangle.getWidth();
+                        <xsl:value-of select="name" />GDobject2.canvasHeight = imageResources.<xsl:value-of select="name" />Rectangle.getHeight();
                         <xsl:value-of select="name" />GDobject2.width = width;
                         <xsl:value-of select="name" />GDobject2.height = height;
                             </xsl:if>

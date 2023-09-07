@@ -38,6 +38,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDSceneVariableAsBooleanConditionGDNode.xsl" />
     <xsl:import href="./condition/GDPopStartedTouchConditionGDNode.xsl" />
     <xsl:import href="./condition/GDPopEndedTouchConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDVelocityConditionGDNode.xsl" />
 
     <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition" >
         <xsl:param name="caller" />
@@ -244,7 +245,11 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'Visible'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
                 <xsl:if test="$typeValue = 'Invisible'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
                 <xsl:if test="$typeValue = 'Arret'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
-                <xsl:if test="$typeValue = 'Vitesse'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+
+                <xsl:if test="$typeValue = 'Vitesse'" >
+                    <xsl:call-template name="velocityConditionGDNode" />
+                </xsl:if>
+
                 <xsl:if test="$typeValue = 'AngleOfDisplacement'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
                     
                     <xsl:if test="$typeValue = 'NbObjet'" >

@@ -210,6 +210,8 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
 
+                <xsl:variable name="hasMoreThanOneImage" ><xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+
                 this.<xsl:value-of select="name" />GDGameLayerFactory = new GDCustomGameLayerFactory(
                     allBinaryGameLayerManager,
                     globals.<xsl:value-of select="name" />GDGameLayerList,
@@ -219,7 +221,7 @@ Created By: Travis Berthelot
                     <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />LayerInfo
-                    <xsl:if test="contains(name, 'btn_')" >, RotationBehaviorBase.getInstance()</xsl:if>
+                    <xsl:if test="contains(name, 'btn_') or contains($hasMoreThanOneImage, 'found')" >, RotationBehaviorBase.getInstance()</xsl:if>
                     );
 
             </xsl:if>

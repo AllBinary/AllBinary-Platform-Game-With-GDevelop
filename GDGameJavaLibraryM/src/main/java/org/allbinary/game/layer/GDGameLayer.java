@@ -149,7 +149,11 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             openGLSurfaceChangedInterface.set(gl);
         }
     }
-    
+
+    public VelocityProperties getVelocityProperties() {
+        return this.velocityInterface;
+    }
+
     public void setRotation(final short angleAdjustment) {
         this.dimensionalBehavior.rotationBehavior.setRotation(this, angleAdjustment);
     }

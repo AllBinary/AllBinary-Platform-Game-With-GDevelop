@@ -69,9 +69,11 @@ Created By: Travis Berthelot
 
                 this.<xsl:value-of select="name" />ResourceArray = new String[] {
                 <xsl:for-each select="animations" >
-                    <xsl:variable name="imageWithExtension" select="directions/sprites/image" />
+                    <xsl:for-each select="directions/sprites/image" >
+                    <xsl:variable name="imageWithExtension" select="text()" />
                     <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    </xsl:for-each>
                 </xsl:for-each>
                 
                 <xsl:if test="content" >
