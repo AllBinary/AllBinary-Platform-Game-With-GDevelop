@@ -374,15 +374,23 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             }
         }
 
-        this.animate();
-
         //if(this.getName().startsWith(PLAYER)) {
             //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().UPDATE, this, this.toString()));
         //}
     }
 
-    public void animate() {
-        this.dimensionalBehavior.animationBehavior.animate(this.gdObject, this.initIndexedAnimationInterfaceArray);
+    public void resetAnimation() {
+        this.initIndexedAnimationInterfaceArray[this.gdObject.animation].setFrame(0);
+    }
+    
+    private long elapsedTime = 0;
+    public void animate(final long timeDelta) {
+        elapsedTime += timeDelta;
+        //animations/directions/timeBetweenFrames
+        if(elapsedTime > 200) {
+            elapsedTime = elapsedTime - 200;
+            this.dimensionalBehavior.animationBehavior.animate(this.gdObject, this.initIndexedAnimationInterfaceArray);
+        }
     }
 
     public void updateRotation(final long timeDelta) {

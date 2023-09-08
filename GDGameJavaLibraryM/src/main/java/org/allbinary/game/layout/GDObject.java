@@ -71,8 +71,8 @@ public class GDObject
         this.name = name;
     }
 
-    public void setAnimation(final String animationName) {
-        
+    public boolean setAnimation(final String animationName) {
+        return false;
     }
 
     public int Width(final Graphics graphics) {

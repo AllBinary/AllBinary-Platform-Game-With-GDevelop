@@ -35,7 +35,11 @@ Created By: Travis Berthelot
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                         <xsl:for-each select="parameters" >
                             <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME</xsl:variable>
-                        <xsl:if test="position() = 1" >(((GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index))).gdObject.setAnimation(</xsl:if><xsl:if test="position() = last()" >globals.<xsl:value-of select="$animationName" />);</xsl:if>
+                        <xsl:if test="position() = 1" >GDGameLayer gameLayer = (((GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index)))</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                        </xsl:for-each>
+                        <xsl:for-each select="parameters" >
+                            <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME</xsl:variable>
+                        <xsl:if test="position() = 1" >if(gameLayer.gdObject.setAnimation(</xsl:if><xsl:if test="position() = last()" >globals.<xsl:value-of select="$animationName" />)) gameLayer.resetAnimation();</xsl:if>
                         </xsl:for-each>
                         return true;
                     }

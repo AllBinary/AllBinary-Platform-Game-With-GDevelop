@@ -188,10 +188,10 @@ Created By: Travis Berthelot
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:variable name="objectName" select="name" />
 
+                        if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                         <xsl:if test="behaviors" >
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
                         //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
-                        if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                            final BasicArrayList removeList = new BasicArrayList();
                            size = globals.<xsl:value-of select="name" />GDGameLayerList.size();
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -216,12 +216,21 @@ Created By: Travis Berthelot
                            }
 
                            size = globals.<xsl:value-of select="name" />GDGameLayerList.size();
+                           GDGameLayer gameLayer;
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                               ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(index)).process(globals.timeDelta);
+                               gameLayer = ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(index));
+                               gameLayer.process(globals.timeDelta);
+                               gameLayer.animate(globals.timeDelta);
                            }
 
-                        }
                         </xsl:if>
+                        <xsl:if test="not(behaviors)" >
+                           size = globals.<xsl:value-of select="name" />GDGameLayerList.size();
+                           for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                               ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(index)).animate(globals.timeDelta);
+                           }
+                        </xsl:if>
+                        }
                     </xsl:for-each>
 
                         globals.lastStartTime = GameTickTimeDelayHelperFactory.getInstance().getStartTime();

@@ -44,14 +44,20 @@ Created By: Travis Berthelot
                         super(unknown, x, y, name);
                     }
 
-                    public void setAnimation(final String animationName) {
+                    public boolean setAnimation(final String animationName) {
                         final int size = ANIMATION_NAMES.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             if(this.ANIMATION_NAMES[index] == animationName) {
                                 //LogUtil.put(LogFactory.getInstance(animationName, this, "setAnimation"));
-                                this.animation = index;
+                                if(this.animation != index) {
+                                    this.animation = index;
+                                    return true;
+                                } else {
+                                    return false;
+                                }
                             }
                         }
+                        return false;
                     }
                     
                     <xsl:if test="animations/directions/sprites/originPoint/x = 0 and animations/directions/sprites/originPoint/y = 0" >
