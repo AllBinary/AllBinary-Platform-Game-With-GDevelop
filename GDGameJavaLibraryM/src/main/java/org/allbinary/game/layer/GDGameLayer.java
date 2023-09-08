@@ -25,6 +25,7 @@ import org.allbinary.game.combat.damage.DamageableBaseBehavior;
 import org.allbinary.game.combat.destroy.GDDestroyableSimpleBehavior;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
+import org.allbinary.game.input.GameKeyEventSourceInterface;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.game.physics.velocity.VelocityUtil;
@@ -256,30 +257,20 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
         super.setPosition(x, y, this.z);
     }
-
-//    public void processInput(final AllBinaryLayerManager allbinaryLayerManager) throws Exception
-//    {
-//        VelocityUtil.reduce(velocityProperties, 30, FrictionData.getFrictionDenominator());
-//    }
-//        if(this.velocityInterface.getVelocityXBasicDecimal().getScaled() == 0) {
-//            if(this.velocityInterface.getVelocityYBasicDecimal().getScaled() == 0) {
-//                return false;
-//            }
-//        }
     
     public int isMovingX() {
-        return (int) (this.realX / this.SCALE_FACTOR);
+        return (int) (this.velocityInterface.getVelocityXBasicDecimal().getScaled() / this.SCALE_FACTOR);
     }
 
     public int isMovingY() {
-        return (int) (this.realY / this.SCALE_FACTOR);
+        return (int) (this.velocityInterface.getVelocityYBasicDecimal().getScaled() / this.SCALE_FACTOR);
     }
     
     public void setPosition(final int x, final int y, final int z)
     {
         super.setPosition(x, y, z);
 
-        final int scaleFactorValue = scaleFactorFactory.DEFAULT_SCALE_VALUE;
+        final int scaleFactorValue = ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE;
         this.realX = x * scaleFactorValue;
         this.realY = y * scaleFactorValue;
     }
@@ -406,6 +397,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     
     private long elapsedTime = 0;
     public void animate(final long timeDelta) {
+        
+        VelocityUtil.reduce(this.velocityInterface, 30, 100);
+
         elapsedTime += timeDelta;
         //animations/directions/timeBetweenFrames
         if(elapsedTime > 200) {

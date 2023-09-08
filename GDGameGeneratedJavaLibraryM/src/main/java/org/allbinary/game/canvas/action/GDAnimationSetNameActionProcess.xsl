@@ -29,6 +29,16 @@ Created By: Travis Berthelot
                     }
 
                     @Override
+                    public void processGD(final GDGameLayer gameLayer, final Graphics graphics) {
+                        super.processGDStats(gameLayer);
+                        
+                        <xsl:for-each select="parameters" >
+                            <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME</xsl:variable>
+                        <xsl:if test="position() = 1" >if(gameLayer.gdObject.setAnimation(</xsl:if><xsl:if test="position() = last()" >globals.<xsl:value-of select="$animationName" />)) gameLayer.resetAnimation();</xsl:if>
+                        </xsl:for-each>
+                    }
+
+                    @Override
                     public boolean process(final int index) throws Exception {
                         super.processStats(index);
 
