@@ -51,6 +51,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     //protected final int SCALE = noDecimalTrigTable.SCALE * 10; //* GameSpeed.getInstance().getSpeed();
     //protected final int SCALE_FACTOR_VALUE = (ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE / ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR) * 2 / 3;
     protected static final int SCALE_FACTOR = ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR;
+    protected static final int SCALE_FACTOR2 = SCALE_FACTOR * 10;
 
     protected final int quarterWidth = (this.getHalfWidth() >> 1) - 1;
     protected final int quarterHeight = (this.getHalfHeight() >> 1) - 1;
@@ -310,8 +311,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
     public void AddForce(final int x, final int y) {
         
-        this.velocityInterface.getVelocityXBasicDecimal().set(x * SCALE_FACTOR);
-        this.velocityInterface.getVelocityYBasicDecimal().set(y * SCALE_FACTOR);
+        this.velocityInterface.getVelocityXBasicDecimal().set(x * SCALE_FACTOR2);
+        this.velocityInterface.getVelocityYBasicDecimal().set(y * SCALE_FACTOR2);
     }
     
     //private static final String FORCE = "force";
