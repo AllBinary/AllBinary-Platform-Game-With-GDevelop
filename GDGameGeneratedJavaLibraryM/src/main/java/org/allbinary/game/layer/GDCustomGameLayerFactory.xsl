@@ -80,14 +80,14 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             final BasicArrayList behaviorList,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
-            final Rectangle layerInfo, final RotationBehaviorBase rotationBehavior) {
+            final Rectangle layerInfo, final AnimationBehaviorBase animationBehavior) {
         
         super(gameLayerList, gameLayerDestroyedList, 
             groupInterface,
             behaviorList,
             animationInterfaceFactoryInterfaceArray,
             proceduralAnimationInterfaceFactoryInterfaceArray,
-            layerInfo, rotationBehavior);
+            layerInfo, animationBehavior);
 
         this.allBinaryGameLayerManager = allBinaryGameLayerManager;
     }
@@ -108,7 +108,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
                 this.animationInterfaceFactoryInterfaceArray,
                 this.proceduralAnimationInterfaceFactoryInterfaceArray,
                 this.layerInfo,  
-                gdObject, this.rotationBehavior);
+                gdObject, this.animationBehavior);
         
         gameLayer.setCollidableInferface(new GDCollidableBehavior(gameLayer, collidableBehavior, true));
 

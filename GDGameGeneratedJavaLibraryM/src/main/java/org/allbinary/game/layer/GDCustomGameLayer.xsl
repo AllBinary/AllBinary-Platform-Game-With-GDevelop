@@ -157,7 +157,7 @@ Created By: Travis Berthelot
                         final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
                         final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
                         final Rectangle layerInfo, 
-                        final GDObject gdObject, final RotationBehaviorBase rotationBehavior) throws Exception {
+                        final GDObject gdObject, final AnimationBehaviorBase animationBehavior) throws Exception {
 
                         super(gameLayerList, gameLayerDestroyedList, 
                             behaviorList, 
@@ -205,7 +205,7 @@ Created By: Travis Berthelot
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
                             new ViewPosition(),
         </xsl:if>
-                            gdObject, rotationBehavior);
+                            gdObject, animationBehavior);
                         
         <xsl:if test="contains($foundOtherViewPosition, 'found')" >
                         this.allBinaryGameLayerManager = allBinaryGameLayerManager;

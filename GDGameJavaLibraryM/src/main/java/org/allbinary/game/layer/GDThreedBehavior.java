@@ -26,8 +26,8 @@ public class GDThreedBehavior extends GDTwodBehavior {
     
     private float rotationRemainderZ;
     
-    public GDThreedBehavior(final RotationBehaviorBase rotationBehavior, RotationAnimation[] rotationAnimationInterfaceArray) {
-        super(rotationBehavior);
+    public GDThreedBehavior(final AnimationBehaviorBase animationBehavior, RotationAnimation[] rotationAnimationInterfaceArray) {
+        super(animationBehavior);
         
         this.rotationAnimationInterfaceArray = rotationAnimationInterfaceArray;
     }

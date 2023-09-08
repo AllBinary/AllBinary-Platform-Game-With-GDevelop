@@ -22,12 +22,12 @@ import org.allbinary.game.layout.GDObject;
  */
 public class GDTwodBehavior {
     
-    public final RotationBehaviorBase rotationBehavior;
+    public final AnimationBehaviorBase animationBehavior;
     
     private float rotationRemainder;
     
-    public GDTwodBehavior(final RotationBehaviorBase rotationBehavior) {
-        this.rotationBehavior = rotationBehavior;
+    public GDTwodBehavior(final AnimationBehaviorBase animationBehavior) {
+        this.animationBehavior = animationBehavior;
     }
     
     public void process(final GDObject gdObject, final RotationAnimation rotationAnimation) {
@@ -36,7 +36,7 @@ public class GDTwodBehavior {
     
     public void reset(final GDObject gdObject) throws Exception {
         this.rotationRemainder = 0;
-        this.rotationBehavior.set(gdObject);
+        this.animationBehavior.set(gdObject);
     }
 
     public void updateRotation(final GDGameLayer gameLayer, final long timeDelta) {
@@ -66,7 +66,7 @@ public class GDTwodBehavior {
             
             gdObject.angle = (short) adjustedAngle2;
             //gdObject.angle += angleAdjustment;
-            this.rotationBehavior.setRotation(gameLayer, angleAdjustment);
+            this.animationBehavior.setRotation(gameLayer, angleAdjustment);
             rotationRemainder -= angleAdjustment;
             //LogUtil.put(LogFactory.getInstance("reset", this, "updateRotation"));
         } else {

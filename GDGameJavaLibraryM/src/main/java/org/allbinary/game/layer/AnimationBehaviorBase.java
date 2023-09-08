@@ -15,7 +15,6 @@ package org.allbinary.game.layer;
 
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
-import org.allbinary.animation.RotationAnimation;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringMaker;
@@ -26,14 +25,14 @@ import org.allbinary.logic.communication.log.LogUtil;
  *
  * @author User
  */
-public class RotationBehaviorBase {
+public class AnimationBehaviorBase {
 
-    private static final RotationBehaviorBase instance = new RotationBehaviorBase();
+    private static final AnimationBehaviorBase instance = new AnimationBehaviorBase();
 
     /**
      * @return the instance
      */
-    public static RotationBehaviorBase getInstance() {
+    public static AnimationBehaviorBase getInstance() {
         return instance;
     }
     
@@ -68,7 +67,11 @@ public class RotationBehaviorBase {
     public void setRotation(final GDGameLayer gameLayer, final short angleAdjustment) {
         
     }
+
+    public void animate(final GDObject gdObject, final IndexedAnimation[] initIndexedAnimationInterfaceArray) {
     
+    }
+
     public void toString(final GDObject gdObject, final StringMaker stringBuffer) {
         
     }

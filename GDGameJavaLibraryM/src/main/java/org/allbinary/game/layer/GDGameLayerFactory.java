@@ -37,7 +37,7 @@ public class GDGameLayerFactory
     protected final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray;
     protected final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray;
     protected final Rectangle layerInfo;
-    protected final RotationBehaviorBase rotationBehavior;
+    protected final AnimationBehaviorBase animationBehavior;
     
     protected final BasicArrayList gameLayerList;
     protected final BasicArrayList gameLayerDestroyedList;
@@ -56,14 +56,14 @@ public class GDGameLayerFactory
             final BasicArrayList behaviorList,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
-            final Rectangle layerInfo, final RotationBehaviorBase rotationBehavior) {
+            final Rectangle layerInfo, final AnimationBehaviorBase animationBehavior) {
         
         this.groupInterface = groupInterface;
         this.behaviorList = behaviorList;
         this.animationInterfaceFactoryInterfaceArray = animationInterfaceFactoryInterfaceArray;
         this.proceduralAnimationInterfaceFactoryInterfaceArray = proceduralAnimationInterfaceFactoryInterfaceArray;
         this.layerInfo = layerInfo;
-        this.rotationBehavior = rotationBehavior;
+        this.animationBehavior = animationBehavior;
         
         this.gameLayerList = gameLayerList;
         this.gameLayerDestroyedList = gameLayerDestroyedList;
@@ -84,7 +84,7 @@ public class GDGameLayerFactory
                 this.animationInterfaceFactoryInterfaceArray,
                 this.proceduralAnimationInterfaceFactoryInterfaceArray,
                 this.layerInfo, new ViewPosition(), 
-                gdObject, this.rotationBehavior);
+                gdObject, this.animationBehavior);
         
         gameLayer.setCollidableInferface(new GDCollidableBehavior(gameLayer, collidableBehavior, true));
 

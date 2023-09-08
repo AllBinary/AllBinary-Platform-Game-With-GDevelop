@@ -221,7 +221,8 @@ Created By: Travis Berthelot
                     <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />LayerInfo
-                    <xsl:if test="contains(name, 'btn_') or contains($hasMoreThanOneImage, 'found')" >, RotationBehaviorBase.getInstance()</xsl:if>
+                    <xsl:if test="contains($hasMoreThanOneImage, 'found')" >, AnimationBehavior.getInstance()</xsl:if>
+                    <xsl:if test="contains(name, 'btn_')" >, RotationBehaviorBase.getInstance()</xsl:if>
                     );
 
             </xsl:if>
