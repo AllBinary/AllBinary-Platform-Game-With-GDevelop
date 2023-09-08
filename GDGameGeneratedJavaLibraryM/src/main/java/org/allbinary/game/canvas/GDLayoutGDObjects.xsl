@@ -69,6 +69,10 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDObject;
                 
                 import org.allbinary.logic.basic.string.StringMaker;
+                
+                import org.allbinary.logic.communication.log.LogFactory;
+                import org.allbinary.logic.communication.log.LogUtil;
+                
 
                 //LayoutGDObjects name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory

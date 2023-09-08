@@ -48,6 +48,7 @@ Created By: Travis Berthelot
                         final int size = ANIMATION_NAMES.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             if(this.ANIMATION_NAMES[index] == animationName) {
+                                //LogUtil.put(LogFactory.getInstance(animationName, this, "setAnimation"));
                                 this.animation = index;
                             }
                         }

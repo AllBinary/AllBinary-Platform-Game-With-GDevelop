@@ -20,6 +20,15 @@ Created By: Travis Berthelot
         
                     //AnimatableCapability::AnimatableBehavior::SetName
                     @Override
+                    public boolean process() throws Exception {
+                        super.processStats();
+
+                        this.process(0);
+
+                        return true;
+                    }
+
+                    @Override
                     public boolean process(final int index) throws Exception {
                         super.processStats(index);
 
