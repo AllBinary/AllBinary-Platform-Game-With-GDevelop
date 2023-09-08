@@ -67,7 +67,6 @@ import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.system.PlatformAssetManager;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
-import org.allbinary.media.graphics.geography.map.platform.BasicPlatormGeographicMapCellTypeFactory;
 import org.allbinary.media.graphics.geography.map.platform.TileSetToGeographicMapUtil;
 
 import org.mapeditor.loader.TiledMapLoaderFromJSONFactory;
@@ -125,6 +124,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         // artificialIntelligenceInterfaceFactoryInterfaceFactory.add(new PacePatrolAIFactory());
 
+        <xsl:variable name="isPlatformer" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+        
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
@@ -232,7 +233,12 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         for(int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
             final TileSet tileSet = map.getTileSets().get(0);
             final Map tileTypeToTileIdsMap = TileSetToGeographicMapUtil.getInstance().convert(tileSet);
-            BasicPlatormGeographicMapCellTypeFactory.getInstance().init(tileTypeToTileIdsMap);
+            <xsl:if test="contains($isPlatformer, 'found')" >
+            org.allbinary.media.graphics.geography.map.platform.BasicPlatormGeographicMapCellTypeFactory.getInstance().init(tileTypeToTileIdsMap);
+            </xsl:if>
+            <xsl:if test="not(contains($isPlatformer, 'found'))" >
+            org.allbinary.media.graphics.geography.map.topview.BasicTopVieweographicMapCellTypeFactory.getInstance().init(tileTypeToTileIdsMap);
+            </xsl:if>
             final int maxTileId = tileSet.getMaxTileId() + 1;
             stringMaker.delete(0, stringMaker.length());
             LogUtil.put(LogFactory.getInstance(stringMaker.append(MAX_TILE_ID).append(maxTileId).toString(), this, commonStrings.PROCESS));

@@ -27,8 +27,10 @@ import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.game.physics.velocity.VelocityProperties;
+import org.allbinary.game.physics.velocity.VelocityUtil;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.image.opengles.OpenGLSurfaceChangedInterface;
+import org.allbinary.layer.AllBinaryLayerManager;
 import org.allbinary.logic.basic.string.CommonStrings;
 import org.allbinary.logic.basic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -48,10 +50,11 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         {
 
     //protected final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
+    private final ScaleFactorFactory scaleFactorFactory = ScaleFactorFactory.getInstance();
     //protected final int SCALE = noDecimalTrigTable.SCALE * 10; //* GameSpeed.getInstance().getSpeed();
-    //protected final int SCALE_FACTOR_VALUE = (ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE / ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR) * 2 / 3;
-    protected static final int SCALE_FACTOR = ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR;
-    protected static final int SCALE_FACTOR2 = SCALE_FACTOR * 10;
+    //protected final int SCALE_FACTOR_VALUE = (scaleFactorFactory.DEFAULT_SCALE_VALUE / scaleFactorFactory.DEFAULT_SCALE_FACTOR) * 2 / 3;
+    protected final int SCALE_FACTOR = scaleFactorFactory.DEFAULT_SCALE_FACTOR;
+    protected final int SCALE_FACTOR2 = SCALE_FACTOR * 10;
 
     protected final int quarterWidth = (this.getHalfWidth() >> 1) - 1;
     protected final int quarterHeight = (this.getHalfHeight() >> 1) - 1;
@@ -229,7 +232,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.realX = this.realX + velocityX;
         this.realY = this.realY + velocityY;
 
-        final int scaleFactorValue = ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE;
+        final int scaleFactorValue = scaleFactorFactory.DEFAULT_SCALE_VALUE;
         final int x = (int) (this.realX / scaleFactorValue);
         final int y = (int) (this.realY / scaleFactorValue);
 
@@ -254,11 +257,29 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         super.setPosition(x, y, this.z);
     }
 
+//    public void processInput(final AllBinaryLayerManager allbinaryLayerManager) throws Exception
+//    {
+//        VelocityUtil.reduce(velocityProperties, 30, FrictionData.getFrictionDenominator());
+//    }
+//        if(this.velocityInterface.getVelocityXBasicDecimal().getScaled() == 0) {
+//            if(this.velocityInterface.getVelocityYBasicDecimal().getScaled() == 0) {
+//                return false;
+//            }
+//        }
+    
+    public int isMovingX() {
+        return (int) (this.realX / this.SCALE_FACTOR);
+    }
+
+    public int isMovingY() {
+        return (int) (this.realY / this.SCALE_FACTOR);
+    }
+    
     public void setPosition(final int x, final int y, final int z)
     {
         super.setPosition(x, y, z);
 
-        final int scaleFactorValue = ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE;
+        final int scaleFactorValue = scaleFactorFactory.DEFAULT_SCALE_VALUE;
         this.realX = x * scaleFactorValue;
         this.realY = y * scaleFactorValue;
     }

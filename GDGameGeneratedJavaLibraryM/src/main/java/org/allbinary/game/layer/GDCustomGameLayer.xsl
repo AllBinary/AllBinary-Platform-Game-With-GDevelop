@@ -60,11 +60,11 @@ Created By: Travis Berthelot
         import org.allbinary.direction.Direction;
         import org.allbinary.direction.DirectionFactory;
         import org.allbinary.game.GameTypeFactory;
-        import org.allbinary.game.behavior.platformer.GeographicMapPlatformGameLayerBehavior;
-        import org.allbinary.game.behavior.platformer.InitialJumpBehavior;
-        import org.allbinary.game.behavior.platformer.PlatformCharacterBehavior;
-        import org.allbinary.game.behavior.platformer.PlatformCharacterInterface;
-        import org.allbinary.game.behavior.platformer.PlayerPlatformCharacterBehavior;
+//        import org.allbinary.game.behavior.platformer.GeographicMapPlatformGameLayerBehavior;
+//        import org.allbinary.game.behavior.platformer.InitialJumpBehavior;
+//        import org.allbinary.game.behavior.platformer.PlatformCharacterBehavior;
+//        import org.allbinary.game.behavior.platformer.PlatformCharacterInterface;
+//        import org.allbinary.game.behavior.platformer.PlayerPlatformCharacterBehavior;
         import org.allbinary.game.configuration.feature.Features;
         import org.allbinary.game.configuration.feature.InputFeatureFactory;
         import org.allbinary.game.identification.Group;
@@ -98,7 +98,7 @@ Created By: Travis Berthelot
         import org.allbinary.view.ViewPosition;
 
                 public class GDCustomGameLayer extends GDGameLayer 
-        <xsl:if test="contains($foundOtherViewPosition, 'found')" >implements GameKeyEventSourceInterface, PlatformCharacterInterface </xsl:if>
+        <xsl:if test="contains($foundOtherViewPosition, 'found')" >implements GameKeyEventSourceInterface, org.allbinary.game.behavior.platformer.PlatformCharacterInterface </xsl:if>
                 {
 
         <xsl:for-each select="layouts" >
@@ -123,16 +123,17 @@ Created By: Travis Berthelot
             || Features.getInstance().isFeature(
                     InputFeatureFactory.getInstance().SINGLE_KEY_PRESS);
 
-                    private final InitialJumpBehavior initialJumpBehavior = new InitialJumpBehavior() {
+                    private final org.allbinary.game.behavior.platformer.InitialJumpBehavior initialJumpBehavior = new org.allbinary.game.behavior.platformer.InitialJumpBehavior() {
                         public void process() {
                             //SecondaryPlayerQueueFactory.getInstance().add(JumpSound.getInstance());
                         }
                     };
 
-                    protected final GeographicMapPlatformGameLayerBehavior platformGameBehavior = new GeographicMapPlatformGameLayerBehavior(64, false, 6);
-                    protected final PlatformCharacterBehavior platformCharacterBehavior = 
-                        <xsl:if test="1" >new PlayerPlatformCharacterBehavior();</xsl:if>
-                        <xsl:if test="0" >new NonPlayerPlatformCharacterBehavior();</xsl:if>
+                    protected final org.allbinary.game.behavior.platformer.GeographicMapPlatformGameLayerBehavior platformGameBehavior = 
+                        new org.allbinary.game.behavior.platformer.GeographicMapPlatformGameLayerBehavior(64, false, 6);
+                    protected final org.allbinary.game.behavior.platformer.PlatformCharacterBehavior platformCharacterBehavior = 
+                        <xsl:if test="1" >new org.allbinary.game.behavior.platformer.PlayerPlatformCharacterBehavior();</xsl:if>
+                        <xsl:if test="0" >new org.allbinary.game.behavior.platformer.NonPlayerPlatformCharacterBehavior();</xsl:if>
 
                     protected final AllBinaryGameLayerManager allBinaryGameLayerManager;
 
