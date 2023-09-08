@@ -222,6 +222,11 @@ public class GDStructure {
                         public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
                         public final BasicArrayList <xsl:value-of select="name" />RectangleList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
 
+                        <xsl:for-each select="animations" >
+                            <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
+                        public final String <xsl:value-of select="$animationName" />_ANIMATION_NAME = "<xsl:value-of select="name" />";
+                        </xsl:for-each>
+
                     </xsl:for-each>
                     //objects class properties - END
 

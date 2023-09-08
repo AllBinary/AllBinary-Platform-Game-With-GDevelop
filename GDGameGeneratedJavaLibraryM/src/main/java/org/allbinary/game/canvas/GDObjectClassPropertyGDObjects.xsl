@@ -33,10 +33,26 @@ Created By: Travis Berthelot
                 //animations/directions/sprites/originPoint/y <xsl:value-of select="animations/directions/sprites/originPoint/y" />
                 public final class <xsl:value-of select="name" /> extends GDObject {
 
+                private final String[] ANIMATION_NAMES = {
+                <xsl:for-each select="animations" >
+                    <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
+                    globals.<xsl:value-of select="$animationName" />_ANIMATION_NAMES,
+                </xsl:for-each>
+                };
+
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
                         super(unknown, x, y, name);
                     }
 
+                    public void setAnimation(final String animationName) {
+                        final int size = ANIMATION_NAMES.length;
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            if(this.ANIMATION_NAMES[index] == animationName) {
+                                this.animation = index;
+                            }
+                        }
+                    }
+                    
                     <xsl:if test="animations/directions/sprites/originPoint/x = 0 and animations/directions/sprites/originPoint/y = 0" >
                     public int Width(final Graphics graphics) {
                         return canvasWidth;

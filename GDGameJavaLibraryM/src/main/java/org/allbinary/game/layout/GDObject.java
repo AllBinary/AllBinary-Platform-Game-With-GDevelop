@@ -71,6 +71,10 @@ public class GDObject
         this.name = name;
     }
 
+    public void setAnimation(final String animationName) {
+        
+    }
+
     public int Width(final Graphics graphics) {
         //return canvasWidth;
         return width;

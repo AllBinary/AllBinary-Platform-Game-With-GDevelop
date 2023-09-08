@@ -22,6 +22,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDTextEntryObjectActionProcess.xsl" />
 
     <xsl:import href="./action/GDChangeAnimationActionProcess.xsl" />
+    <xsl:import href="./action/GDAnimationSetNameActionProcess.xsl" />
     <xsl:import href="./action/GDModVarObjetActionProcess.xsl" />
     <xsl:import href="./action/GDModVarSceneTxtActionProcess.xsl" />
     
@@ -51,6 +52,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDModVarSceneActionProcess.xsl" />
     <xsl:import href="./action/GDDeleteActionProcess.xsl" />
     <xsl:import href="./action/GDAddForceALActionProcess.xsl" />
+    <xsl:import href="./action/GDAddForceXYActionProcess.xsl" />
     <xsl:import href="./action/GDQuitActionProcess.xsl" />
     <xsl:import href="./action/GDSetSceneVariableAsBooleanActionProcess.xsl" />
     <xsl:import href="./action/GDJSONToVariableStructureActionProcess.xsl" />
@@ -104,7 +106,7 @@ Created By: Travis Berthelot
                         <xsl:if test="$typeValue != 'PauseTimer' and $typeValue != 'PlaySoundCanal'" >
                 private final String ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($actionAsString, $quote, ' ')" />";
                         </xsl:if>
-                        <xsl:if test="$typeValue != 'ModVarScene' and $typeValue != 'AddForceAL' and $typeValue != 'PlaySoundCanal' and $typeValue != 'StopSoundCanal'" >
+                        <xsl:if test="$typeValue != 'ModVarScene' and $typeValue != 'AddForceAL' and $typeValue != 'AddForceXY' and $typeValue != 'PlaySoundCanal' and $typeValue != 'StopSoundCanal'" >
                 private final String ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($actionAsString, $quote, ' ')" /> at: ";
                         </xsl:if>
                 <xsl:text>&#10;</xsl:text>
@@ -137,7 +139,7 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="actionAsString" >Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "B: <xsl:value-of select="translate($actionAsString, $quote, ' ')" />";
-                        <xsl:if test="$typeValue != 'ModVarScene' and $typeValue != 'AddForceAL' and $typeValue != 'PlaySoundCanal' and $typeValue != 'StopSoundCanal'" >
+                        <xsl:if test="$typeValue != 'ModVarScene' and $typeValue != 'AddForceAL' and $typeValue != 'AddForceXY' and $typeValue != 'PlaySoundCanal' and $typeValue != 'StopSoundCanal'" >
                         private final String ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "B: <xsl:value-of select="translate($actionAsString, $quote, ' ')" /> at: ";
                         </xsl:if>
                         <xsl:if test="$typeValue = 'ModVarObjet' or $typeValue = 'Opacity'" >
@@ -381,12 +383,6 @@ Created By: Travis Berthelot
 
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'AddForceAL'" >
-
-                    <xsl:call-template name="addForceALActionProcess" />
-
-                </xsl:if>
-
                 <xsl:if test="$typeValue = 'Quit'" >
 
                     <xsl:call-template name="quitActionProcess" />
@@ -443,9 +439,19 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'MettreAutour'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
-                <xsl:if test="$typeValue = 'AddForceXY'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+
+                <xsl:if test="$typeValue = 'AddForceAL'" >
+
+                    <xsl:call-template name="addForceALActionProcess" />
+
                 </xsl:if>
+
+                <xsl:if test="$typeValue = 'AddForceXY'" >
+                    
+                    <xsl:call-template name="addForceXYActionProcess" />
+
+                </xsl:if>
+
                 <xsl:if test="$typeValue = 'AddForceVersPos'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
@@ -504,6 +510,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetName'" >
+                    <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetNameActionProcess" />
                 </xsl:if>
   
                 <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetSpeedScale'" >
