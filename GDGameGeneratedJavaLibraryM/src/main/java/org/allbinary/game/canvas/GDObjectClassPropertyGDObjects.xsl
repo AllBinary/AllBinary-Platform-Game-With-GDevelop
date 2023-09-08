@@ -36,7 +36,7 @@ Created By: Travis Berthelot
                 private final String[] ANIMATION_NAMES = {
                 <xsl:for-each select="animations" >
                     <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
-                    globals.<xsl:value-of select="$animationName" />_ANIMATION_NAMES,
+                    globals.<xsl:value-of select="$animationName" />_ANIMATION_NAME,
                 </xsl:for-each>
                 };
 

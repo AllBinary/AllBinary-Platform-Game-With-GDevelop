@@ -308,6 +308,12 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         }
     }
 
+    public void AddForce(final int x, final int y) {
+        
+        this.velocityInterface.getVelocityXBasicDecimal().set(x * SCALE_FACTOR);
+        this.velocityInterface.getVelocityYBasicDecimal().set(y * SCALE_FACTOR);
+    }
+    
     //private static final String FORCE = "force";
     //Force.cpp
     //public void Force(final int x_, final int y_, final float clearing_) {
