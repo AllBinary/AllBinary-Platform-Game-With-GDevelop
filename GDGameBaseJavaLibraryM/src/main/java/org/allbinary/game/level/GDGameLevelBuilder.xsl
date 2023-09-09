@@ -159,9 +159,11 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                     </xsl:if>
         
         final InputStream[] tileSetInputStreamArray = {
+        <!--
                     <xsl:variable name="tileSetJSONWithExtension" select="content/tilesetJsonFile" />
                     <xsl:variable name="tileSetJSON" select="substring-before($tileSetJSONWithExtension, '.')" />
             platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>),
+        -->
                     <xsl:for-each select="content/tilesetJsonFiles" >
                        <xsl:variable name="tileSetJSON" select="substring-before(text(), '.')" />
             platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>),
@@ -181,12 +183,13 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final Features features = Features.getInstance();
         final boolean isHTML = features.isDefault(HTMLFeatureFactory.getInstance().HTML);
         int size = 0;
-        int[] sizeArray2 = new int[tileSetInputStreamArray.length];
+        final int[] sizeArray2 = new int[tileSetInputStreamArray.length];
         if(isHTML) {
             //LogUtil.put(LogFactory.getInstance("tileMapInputStream.available()", this, commonStrings.PROCESS));
             size = tileMapInputStream.available();
             InputStream tileSetInputStream;
-            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+            final int size2 = tileSetInputStreamArray.length;
+            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index++) {
                 tileSetInputStream = tileSetInputStreamArray[index];
                 //LogUtil.put(LogFactory.getInstance("tileSetInputStream: " + tileSetInputStream, this, commonStrings.PROCESS));
                 if(tileSetInputStream != null) {
