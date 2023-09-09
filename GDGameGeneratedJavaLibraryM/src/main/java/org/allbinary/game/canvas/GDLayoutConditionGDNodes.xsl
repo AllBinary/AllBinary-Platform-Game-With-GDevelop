@@ -68,11 +68,7 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Graphics;
                 
                 import org.allbinary.animation.special.SpecialAnimation;
-                <xsl:for-each select="objects" >
-                    <xsl:if test="type = 'Sprite'" >
-                import org.allbinary.game.canvas.GD0GDObjectsFactory.<xsl:value-of select="name" />;
-                    </xsl:if>
-                </xsl:for-each>
+                
                 import org.allbinary.game.input.GameInputProcessor;
                 import org.allbinary.game.input.InputFactory;
                 import org.allbinary.game.input.event.GameKeyEvent;

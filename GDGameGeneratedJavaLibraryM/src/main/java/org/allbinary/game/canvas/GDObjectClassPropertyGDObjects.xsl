@@ -24,7 +24,7 @@ Created By: Travis Berthelot
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
 
-            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'PrimitiveDrawing::Drawer'" >
+            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'TileMap::TileMap' or $typeValue = 'PrimitiveDrawing::Drawer'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
@@ -34,20 +34,23 @@ Created By: Travis Berthelot
                 public final class <xsl:value-of select="name" /> extends GDObject {
 
                 <xsl:for-each select="variables" >
-                    public <xsl:value-of select="type" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                    public <xsl:if test="type = 'number'" >int</xsl:if><xsl:if test="type != 'number'" ><xsl:value-of select="type" /></xsl:if><xsl:text> </xsl:text><xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                 </xsl:for-each>
 
+                <xsl:if test="animations" >
                 private final String[] ANIMATION_NAMES = {
                 <xsl:for-each select="animations" >
                     <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
                     globals.<xsl:value-of select="$animationName" />_ANIMATION_NAME,
                 </xsl:for-each>
                 };
+                </xsl:if>
 
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
                         super(unknown, x, y, name);
                     }
 
+                    <xsl:if test="animations" >
                     public boolean setAnimation(final String animationName) {
                         final int size = ANIMATION_NAMES.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -63,6 +66,7 @@ Created By: Travis Berthelot
                         }
                         return false;
                     }
+                    </xsl:if>
                     
                     <xsl:if test="animations/directions/sprites/originPoint/x = 0 and animations/directions/sprites/originPoint/y = 0" >
                     public int Width(final Graphics graphics) {

@@ -303,7 +303,11 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'VarObjetTxt'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
 
                 <xsl:if test="$typeValue = 'ObjectVariableAsBoolean'" >
-                        <xsl:call-template name="objectVariableAsBooleanConditionGDNode" />
+                        <xsl:call-template name="objectVariableAsBooleanConditionGDNode" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                        </xsl:call-template>
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'VarObjetDef'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
