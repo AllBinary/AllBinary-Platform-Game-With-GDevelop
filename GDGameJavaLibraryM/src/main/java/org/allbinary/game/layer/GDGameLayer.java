@@ -55,7 +55,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     //protected final int SCALE = noDecimalTrigTable.SCALE * 10; //* GameSpeed.getInstance().getSpeed();
     //protected final int SCALE_FACTOR_VALUE = (scaleFactorFactory.DEFAULT_SCALE_VALUE / scaleFactorFactory.DEFAULT_SCALE_FACTOR) * 2 / 3;
     protected final int SCALE_FACTOR = scaleFactorFactory.DEFAULT_SCALE_FACTOR;
-    protected final int SCALE_FACTOR2 = SCALE_FACTOR * 10;
+    protected final int SCALE_FACTOR2 = SCALE_FACTOR * 4;
 
     protected final int quarterWidth = (this.getHalfWidth() >> 1) - 1;
     protected final int quarterHeight = (this.getHalfHeight() >> 1) - 1;

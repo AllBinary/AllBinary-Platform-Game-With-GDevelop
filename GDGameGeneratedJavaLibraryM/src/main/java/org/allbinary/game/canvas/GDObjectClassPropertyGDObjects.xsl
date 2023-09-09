@@ -33,6 +33,10 @@ Created By: Travis Berthelot
                 //animations/directions/sprites/originPoint/y <xsl:value-of select="animations/directions/sprites/originPoint/y" />
                 public final class <xsl:value-of select="name" /> extends GDObject {
 
+                <xsl:for-each select="variables" >
+                    public <xsl:value-of select="type" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                </xsl:for-each>
+
                 private final String[] ANIMATION_NAMES = {
                 <xsl:for-each select="animations" >
                     <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>

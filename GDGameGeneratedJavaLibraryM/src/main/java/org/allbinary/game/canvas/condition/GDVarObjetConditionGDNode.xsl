@@ -54,12 +54,14 @@ Created By: Travis Berthelot
                                 }
                             }
                            
+                            /*
                                     <xsl:for-each select=".." >
                                         <xsl:call-template name="delete" >
                                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                                             <xsl:with-param name="gdGameLayer" >gdGameLayer</xsl:with-param>
                                         </xsl:call-template>
                                     </xsl:for-each>
+                            */
                            
                             super.processStatsE();
                             

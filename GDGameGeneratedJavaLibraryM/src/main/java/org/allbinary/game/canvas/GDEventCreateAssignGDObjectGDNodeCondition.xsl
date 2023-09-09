@@ -39,6 +39,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDPopStartedTouchConditionGDNode.xsl" />
     <xsl:import href="./condition/GDPopEndedTouchConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVelocityConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDObjectVariableAsBooleanConditionGDNode.xsl" />
 
     <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition" >
         <xsl:param name="caller" />
@@ -300,7 +301,11 @@ Created By: Travis Berthelot
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
                         
                 <xsl:if test="$typeValue = 'VarObjetTxt'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
-                <xsl:if test="$typeValue = 'ObjectVariableAsBoolean'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
+
+                <xsl:if test="$typeValue = 'ObjectVariableAsBoolean'" >
+                        <xsl:call-template name="objectVariableAsBooleanConditionGDNode" />
+                </xsl:if>
+
                 <xsl:if test="$typeValue = 'VarObjetDef'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
                 <xsl:if test="$typeValue = 'BehaviorActivated'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
                 <xsl:if test="$typeValue = 'CollisionPoint'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
