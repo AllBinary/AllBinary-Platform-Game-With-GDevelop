@@ -44,6 +44,9 @@ Created By: Travis Berthelot
                             <xsl:if test="$typeValue = 'TileMap::TileMap'" >
                         <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />,
                             </xsl:if>
+                            <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
+                        <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />,
+                            </xsl:if>
                             <xsl:if test="$typeValue = 'TextObject::Text'" >
                         <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />,
                             </xsl:if>
@@ -360,7 +363,7 @@ Created By: Travis Berthelot
 
                             </xsl:if>                            
                             
-                            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+                            <xsl:if test="$typeValue = 'TileMap::TileMap' or $typeValue = 'TileMap::CollisionMask'" >
                         //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //Objects - //GDNode - //collide - //TileMap::TileMap - //<xsl:value-of select="$name" />
                         if(globals.nodeArray[<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");

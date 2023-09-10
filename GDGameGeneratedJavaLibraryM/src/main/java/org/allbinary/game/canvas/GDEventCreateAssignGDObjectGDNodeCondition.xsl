@@ -17,6 +17,7 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:import href="./condition/GDOnceConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDAlwaysConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSoundPlayingConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSourisBoutonConditionGDNode.xsl" />
     <xsl:import href="./condition/GDLayerVisibleConditionGDNode.xsl" />
@@ -364,8 +365,11 @@ Created By: Travis Berthelot
 
                     <xsl:if test="$typeValue = 'Toujours'" >
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                        
                     <xsl:if test="$typeValue = 'BuiltinCommonInstructions::Always'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                        <xsl:call-template name="alwaysConditionGDNode" />
+                    </xsl:if>
+
                     //xsl:if test="$typeValue = 'Egal'"
                     //xsl:if test="$typeValue = 'StrEqual'" 
                     
@@ -376,7 +380,8 @@ Created By: Travis Berthelot
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
       
                     <xsl:if test="$typeValue = 'BuiltinCommonInstructions::Or'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    </xsl:if>
                     <xsl:if test="$typeValue = 'BuiltinCommonInstructions::And'" >
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
                     <xsl:if test="$typeValue = 'BuiltinCommonInstructions::Not'" >

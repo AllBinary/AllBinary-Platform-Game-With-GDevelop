@@ -186,7 +186,9 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
 
                 /*
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[0];
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    NullRotationAnimationFactory.getFactoryInstance()
+                };
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 PointFactory.getInstance().getInstance(0, 0),
@@ -320,6 +322,7 @@ Created By: Travis Berthelot
                 }
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    NullRotationAnimationFactory.getFactoryInstance()
                 };
 
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
@@ -398,6 +401,7 @@ Created By: Travis Berthelot
                 }
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    NullRotationAnimationFactory.getFactoryInstance()
                 };
 
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
@@ -466,7 +470,9 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
 
                 /*
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[0];
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    NullRotationAnimationFactory.getFactoryInstance()
+                };
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 PointFactory.getInstance().getInstance(0, 0),

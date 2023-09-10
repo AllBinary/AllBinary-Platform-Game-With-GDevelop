@@ -14,7 +14,7 @@ import org.allbinary.image.opengles.OpenGLImageCacheFactory;
 
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory;
-import org.allbinary.animation.NullIndexedAnimationFactory;
+import org.allbinary.animation.NullRotationAnimationFactory;
 import org.allbinary.animation.NullRotationAnimationFactory;
 import org.allbinary.animation.SingletonAnimationInterfaceFactory;
 import org.allbinary.animation.VectorAnimationInterfaceFactory;

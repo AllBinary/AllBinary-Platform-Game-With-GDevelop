@@ -121,7 +121,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.initIndexedAnimationInterfaceArray = animationBehavior.init(this.gdObject, animationInterfaceFactoryInterfaceArray);
         this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
 
-        if(this.initIndexedAnimationInterfaceArray[0].isThreed()) { 
+        if(this.initIndexedAnimationInterfaceArray.length > 0 && this.initIndexedAnimationInterfaceArray[0].isThreed()) { 
             this.dimensionalBehavior = new GDThreedBehavior(animationBehavior, (RotationAnimation[]) this.initIndexedAnimationInterfaceArray);
         } else {
             this.dimensionalBehavior = new GDTwodBehavior(animationBehavior);

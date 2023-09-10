@@ -159,11 +159,12 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                     </xsl:if>
         
         final InputStream[] tileSetInputStreamArray = {
-        <!--
                     <xsl:variable name="tileSetJSONWithExtension" select="content/tilesetJsonFile" />
                     <xsl:variable name="tileSetJSON" select="substring-before($tileSetJSONWithExtension, '.')" />
+                    <xsl:if test="string-length(content/tilesetJsonFile) > 1" >
             platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>),
-        -->
+                    </xsl:if>
+
                     <xsl:for-each select="content/tilesetJsonFiles" >
                        <xsl:variable name="tileSetJSON" select="substring-before(text(), '.')" />
             platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>),

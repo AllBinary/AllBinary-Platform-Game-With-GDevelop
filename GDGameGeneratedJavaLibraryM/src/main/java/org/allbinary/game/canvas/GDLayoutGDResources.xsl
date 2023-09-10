@@ -127,7 +127,11 @@ Created By: Travis Berthelot
                         
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
-                        <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+                        <xsl:if test="$typeValue = 'Sprite'" >
+                            <xsl:variable name="name" select="name" />
+                            public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
+                        </xsl:if>
+                        <xsl:if test="$typeValue = 'TileMap::TileMap' or $typeValue = 'TileMap::CollisionMask' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                             <xsl:variable name="name" select="name" />
                             public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
                         </xsl:if>

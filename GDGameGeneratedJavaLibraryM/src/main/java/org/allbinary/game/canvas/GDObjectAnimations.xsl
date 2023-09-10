@@ -119,7 +119,7 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:if test="$typeValue = 'TileMap::TileMap' or $typeValue = 'TileMap::CollisionMask' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:if test="contains($name, 'btn_')" >
@@ -134,6 +134,7 @@ Created By: Travis Berthelot
                 }    
                     
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    NullRotationAnimationFactory.getFactoryInstance()
                 };
 
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
@@ -329,7 +330,7 @@ Created By: Travis Berthelot
                 
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:if test="$typeValue = 'TileMap::TileMap' or $typeValue = 'TileMap::CollisionMask' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
@@ -343,6 +344,7 @@ Created By: Travis Berthelot
                 }    
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    NullRotationAnimationFactory.getFactoryInstance()
                 };
 
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
@@ -411,7 +413,9 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
 
                 /*
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[0];
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    NullRotationAnimationFactory.getFactoryInstance()
+                };
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 PointFactory.getInstance().getInstance(0, 0),
@@ -549,7 +553,7 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:if test="$typeValue = 'TileMap::TileMap' or $typeValue = 'TileMap::CollisionMask' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:if test="not(contains($name, 'btn_'))" >
@@ -564,6 +568,7 @@ Created By: Travis Berthelot
                 }    
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    NullRotationAnimationFactory.getFactoryInstance()
                 };
 
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
@@ -632,7 +637,9 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
 
                 /*
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[0];
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    NullRotationAnimationFactory.getFactoryInstance()
+                };
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 PointFactory.getInstance().getInstance(0, 0),
@@ -764,7 +771,7 @@ Created By: Travis Berthelot
                 
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:if test="$typeValue = 'TileMap::TileMap' or $typeValue = 'TileMap::CollisionMask' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:if test="not(contains($name, 'btn_'))" >
@@ -779,6 +786,7 @@ Created By: Travis Berthelot
                 }    
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    NullRotationAnimationFactory.getFactoryInstance()
                 };
 
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
@@ -848,7 +856,9 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
 
                 /*
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[0];
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    NullRotationAnimationFactory.getFactoryInstance()
+                };
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 PointFactory.getInstance().getInstance(0, 0),
@@ -979,7 +989,7 @@ Created By: Travis Berthelot
                 
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:if test="$typeValue = 'TileMap::TileMap' or $typeValue = 'TileMap::CollisionMask' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
@@ -993,6 +1003,7 @@ Created By: Travis Berthelot
                 }
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    NullRotationAnimationFactory.getFactoryInstance()
                 };
 
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
@@ -1061,7 +1072,9 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
 
                 /*
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[0];
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    NullRotationAnimationFactory.getFactoryInstance()
+                };
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 PointFactory.getInstance().getInstance(0, 0),
@@ -1089,7 +1102,7 @@ Created By: Travis Berthelot
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'TileMap::TileMap' or $typeValue = 'TileMap::CollisionMask' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
@@ -1100,12 +1113,6 @@ Created By: Travis Berthelot
                 public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_PROCEDURAL_ANIMATION_NAME = "<xsl:value-of select="name" />_procedural_animation";
                 
                 public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME = "<xsl:value-of select="name" />_rectangle";
-            </xsl:if>
-            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
-                <xsl:variable name="stringValue" select="string" />
-                //Animation Total: <xsl:value-of select="count(animations)" />
-
-                public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME = "<xsl:value-of select="name" />_image_array";
             </xsl:if>
 
         </xsl:for-each>

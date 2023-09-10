@@ -26,10 +26,10 @@ Created By: Travis Berthelot
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+            <xsl:variable name="stringValue" select="string" />
+            <xsl:variable name="name" select="name" />
 
-            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter' or $typeValue = 'TileMap::TileMap'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
+            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'TileMap::TileMap' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
                 public final String[] <xsl:value-of select="name" />ResourceArray;
@@ -38,9 +38,16 @@ Created By: Travis Berthelot
                 </xsl:if>
 
             </xsl:if>
+            <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
+                <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
+                //Animation Total: <xsl:value-of select="count(animations)" />
+                //public final String[] <xsl:value-of select="name" />ResourceArray;
+
+                public Rectangle[] <xsl:value-of select="name" />ImageArray;
+                </xsl:if>
+
+            </xsl:if>
             <xsl:if test="$typeValue = 'TileMap::TileMap'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
                 public final String[] <xsl:value-of select="name" />JSONResourceArray;
             </xsl:if>
 
@@ -61,7 +68,7 @@ Created By: Travis Berthelot
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter' or $typeValue = 'TileMap::TileMap'" >
+            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'TileMap::TileMap' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
@@ -124,12 +131,14 @@ Created By: Travis Berthelot
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" /></xsl:with-param></xsl:call-template>,
                     <xsl:variable name="tilesetJsonFileWithExtension" select="content/tilesetJsonFile" />
                     <xsl:variable name="tilesetJsonFile" select="substring-before($tilesetJsonFileWithExtension, '.')" />
+                    <xsl:if test="string-length(content/tilesetJsonFile) > 1" >
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tilesetJsonFile" /></xsl:with-param></xsl:call-template>,
-                    
+                    </xsl:if>
+
                     <xsl:for-each select="content/tilesetJsonFiles" >
-                       <xsl:variable name="tileSetJSON" select="substring-before(text(), '.')" />
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>,
-                    </xsl:for-each>                    
+                        <xsl:variable name="tileSetJSON" select="substring-before(text(), '.')" />
+                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>,                        
+                    </xsl:for-each>
                 </xsl:if>
                 };
 

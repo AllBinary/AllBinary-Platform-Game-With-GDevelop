@@ -76,7 +76,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="name_comma" ><xsl:value-of select="name" />,</xsl:variable>
 
                             <xsl:if test="contains($parametersAsString, $name) = text() or contains($parametersAsString, $name_comma) = text()" >
-                                <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter' or $typeValue = 'TileMap::TileMap'" ><xsl:value-of select="name" />,</xsl:if>
+                                <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'TileMap::TileMap' or $typeValue = 'TileMap::CollisionMask' or $typeValue = 'ParticleSystem::ParticleEmitter'" ><xsl:value-of select="name" />,</xsl:if>
                                 <xsl:if test="$typeValue = 'TextObject::Text'" ><xsl:value-of select="name" />,</xsl:if>
                             </xsl:if>
 
