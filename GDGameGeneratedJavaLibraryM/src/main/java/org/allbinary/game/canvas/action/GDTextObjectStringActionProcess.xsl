@@ -79,7 +79,7 @@ Created By: Travis Berthelot
                                     <xsl:value-of select="$thirdParam4" />
                                 </xsl:with-param>
                                 <xsl:with-param name="find" >TextEntry.</xsl:with-param>
-                                <xsl:with-param name="replacementText" >((GD0GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).</xsl:with-param>
+                                <xsl:with-param name="replacementText" >((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).</xsl:with-param>
                             </xsl:call-template>
                                 </xsl:if>
                                 <xsl:if test="not(contains($thirdParam4, 'TextEntry.'))" ><xsl:value-of select="$thirdParam4" /></xsl:if>
