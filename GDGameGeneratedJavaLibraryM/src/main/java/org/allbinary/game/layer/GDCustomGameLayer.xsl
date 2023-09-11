@@ -99,12 +99,23 @@ Created By: Travis Berthelot
 
                 public class GDCustomGameLayer extends GDGameLayer 
         <xsl:if test="contains($foundOtherViewPosition, 'found')" >implements GameKeyEventSourceInterface, org.allbinary.game.behavior.platformer.PlatformCharacterInterface </xsl:if>
+        <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >implements org.allbinary.game.behavior.topview.TopViewCharacterInterface </xsl:if>
                 {
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
 
             <xsl:for-each select="objects" >            
+                
+                <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
+                <xsl:if test="type = 'TileMap::TileMap'" >
+                    protected final org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior topViewGameBehavior = 
+                        new org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior(64, false, 6);
+                    
+                    protected final AllBinaryGameLayerManager allBinaryGameLayerManager;
+                </xsl:if>
+                </xsl:if>
+
                 <xsl:for-each select="behaviors" >
                 //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" />
                     <xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >
@@ -207,7 +218,20 @@ Created By: Travis Berthelot
                             new ViewPosition(),
         </xsl:if>
                             gdObject, animationBehavior);
-                        
+
+        <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
+        <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+            <xsl:for-each select="objects" >            
+                
+                <xsl:if test="type = 'TileMap::TileMap'" >
+                        this.allBinaryGameLayerManager = allBinaryGameLayerManager;
+                </xsl:if>
+
+            </xsl:for-each>
+        </xsl:for-each>
+        </xsl:if>
+
         <xsl:if test="contains($foundOtherViewPosition, 'found')" >
                         this.allBinaryGameLayerManager = allBinaryGameLayerManager;
                         
@@ -242,7 +266,8 @@ Created By: Travis Berthelot
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
 
-            <xsl:for-each select="objects" >            
+            <xsl:for-each select="objects" >
+
                 <xsl:for-each select="behaviors" >
                 //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" />
                     <xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >
@@ -270,6 +295,62 @@ Created By: Travis Berthelot
             <xsl:variable name="layoutIndex" select="position() - 1" />
 
             <xsl:for-each select="objects" >            
+                
+                <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
+                <xsl:if test="type = 'TileMap::TileMap'" >
+    public void move() {
+        try {
+            LogUtil.put(LogFactory.getInstance("Move Map", this, "move"));
+                    
+            final GeographicMapCompositeInterface geographicMapCompositeInterface
+                    = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+
+            final BasicGeographicMap[] geographicMapInterfaceArray
+                    = geographicMapCompositeInterface.getGeographicMapInterface();
+
+            if(geographicMapInterfaceArray != null) {
+                final BasicGeographicMap geographicMapInterface = geographicMapInterfaceArray[0];
+                this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this);
+            } else {
+                //LogUtil.put(LogFactory.getInstance("Map was null, this, "move"));
+            }
+
+        } catch (Exception e) {
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "move", e));
+        }
+    }
+                    
+    public void updatePosition() {
+        this.move();
+        super.updatePosition();
+    }
+    
+    public void terrainMove(final BasicGeographicMap[] geographicMapInterfaceArray, final int dx, final int dy) {
+    }
+    
+    public void terrainEvent(final int dx, final int dy, 
+            final BasicGeographicMap[] geographicMapInterfaceArray,
+            final GeographicMapCellPosition geographicMapCellPosition) throws Exception {
+    }
+
+    public void upp()
+    {
+    }
+
+    public void leftp()
+    {
+    }
+
+    public void rightp()
+    {
+    }
+
+    public void reset() throws Exception
+    {
+    }
+                </xsl:if>
+                </xsl:if>
+                
                 <xsl:for-each select="behaviors" >
                 //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> - START
                     <xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >

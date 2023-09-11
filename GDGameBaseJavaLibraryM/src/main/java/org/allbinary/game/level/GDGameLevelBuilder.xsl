@@ -241,7 +241,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             org.allbinary.media.graphics.geography.map.platform.BasicPlatormGeographicMapCellTypeFactory.getInstance().init(tileTypeToTileIdsMap);
             </xsl:if>
             <xsl:if test="not(contains($isPlatformer, 'found'))" >
-            org.allbinary.media.graphics.geography.map.topview.BasicTopVieweographicMapCellTypeFactory.getInstance().init(tileTypeToTileIdsMap);
+            org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory.getInstance().init(tileTypeToTileIdsMap);
             </xsl:if>
             final int maxTileId = tileSet.getMaxTileId() + 1;
             stringMaker.delete(0, stringMaker.length());
