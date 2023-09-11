@@ -50,7 +50,6 @@ Created By: Travis Berthelot
 
             </xsl:if>
 
-<!--
             <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
                 
                 //Animation Total: <xsl:value-of select="count(animations)" /><xsl:text>&#10;</xsl:text>
@@ -60,7 +59,7 @@ Created By: Travis Berthelot
                 public Image[] <xsl:value-of select="$name" />ImageArray;
 
             </xsl:if>
--->
+
             <xsl:if test="$typeValue = 'TileMap::TileMap'" >
 
                 //Animation Total: <xsl:value-of select="count(animations)" /><xsl:text>&#10;</xsl:text>
@@ -231,14 +230,12 @@ Created By: Travis Berthelot
 
             </xsl:if>
 
-<!--
             <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
                 <xsl:value-of select="$name" />ImageArray = new Image[] {
                 };
                 hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
                 <xsl:value-of select="$name" />Rectangle = new Rectangle(PointFactory.getInstance().ZERO_ZERO, 0, 0);
             </xsl:if>
--->
 
             <xsl:if test="$typeValue = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />

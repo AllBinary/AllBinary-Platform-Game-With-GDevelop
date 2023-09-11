@@ -75,8 +75,7 @@ Created By: Travis Berthelot
                 public final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
             </xsl:if>
 
-            //$typeValue = 'TileMap::CollisionMask' or
-            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
@@ -151,7 +150,6 @@ Created By: Travis Berthelot
                 //public final GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory;
             </xsl:if>
             
-<!--            
             <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
                 //TileMap::TileMap - create properties
                 <xsl:variable name="stringValue" select="string" />
@@ -160,7 +158,6 @@ Created By: Travis Berthelot
                 public final String <xsl:value-of select="$NAME" /> = "<xsl:value-of select="name" />";
                 //public final GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory;
             </xsl:if>
--->
             
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 //TextObject::Text - create properties
@@ -211,7 +208,7 @@ Created By: Travis Berthelot
                 //TileMap::TileMap - layerManagerEventListenerList
                 public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(arrayUtil.ZERO_OBJECT_ARRAY);
             </xsl:if>
-<!--
+
             <xsl:if test="type = 'TileMap::CollisionMask'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
@@ -219,7 +216,7 @@ Created By: Travis Berthelot
                 //TileMap::CollisionMask - layerManagerEventListenerList
                 public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(arrayUtil.ZERO_OBJECT_ARRAY);
             </xsl:if>
--->
+
         </xsl:for-each>
 
         //layerManagerEventListenerList - END

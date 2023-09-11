@@ -25,6 +25,8 @@ Created By: Travis Berthelot
 
                         //MettreAutourPos - x, y, distance, angle
                         public boolean process() {
+                            if(globals.<xsl:value-of select="$name" />GDObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+
                             final GDObject gdObject = (GDObject) globals.<xsl:value-of select="$name" />GDObjectList.get(0);
                             final boolean result = this.processG(gdObject, globals.graphics);
 <!--
@@ -35,6 +37,8 @@ Created By: Travis Berthelot
                             }
 -->
                             return result;
+                            }
+                            return false;
                         }
                         
                         @Override

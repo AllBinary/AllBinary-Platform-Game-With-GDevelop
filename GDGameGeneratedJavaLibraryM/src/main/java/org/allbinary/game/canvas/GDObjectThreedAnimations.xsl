@@ -387,8 +387,7 @@ Created By: Travis Berthelot
                 
             </xsl:if>
 
-            //$typeValue = 'TileMap::CollisionMask' or 
-            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
