@@ -157,6 +157,7 @@
 
     <xsl:template name="actionIdsGDObjectPos">
         <xsl:param name="totalRecursions" />
+        <xsl:param name="gdObjectName" />
         <xsl:param name="gdGameLayer" />
 
         //actionIdsGDObject <xsl:value-of select="$gdGameLayer" />
@@ -166,12 +167,21 @@
             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
             //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
             <xsl:text>&#10;</xsl:text>
+            
+            <xsl:if test="contains($parametersAsString0, $gdObjectName)" >
             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdGameLayer" />, globals.graphics);
+            
             //if(globals.<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
                 <xsl:value-of select="$gdGameLayer" />.updatePosition();
             //} else {
                 //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdGameLayer" /> at index: " + index, this, commonStrings.PROCESS));
             //}
+            </xsl:if>
+            <xsl:if test="not(contains($parametersAsString0, $gdObjectName))" >
+            //Not processing the on the same GDGameLayer
+            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+            </xsl:if>
+            
         </xsl:for-each>
 
         <xsl:for-each select="events" >
@@ -181,6 +191,9 @@
                 </xsl:with-param>
                 <xsl:with-param name="gdGameLayer" >
                     <xsl:value-of select="$gdGameLayer" />
+                </xsl:with-param>
+                <xsl:with-param name="gdObjectName" >
+                    <xsl:value-of select="$gdObjectName" />
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
