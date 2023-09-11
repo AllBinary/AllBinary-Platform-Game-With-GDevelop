@@ -387,6 +387,7 @@ Created By: Travis Berthelot
                 
             </xsl:if>
 
+            //$typeValue = 'TileMap::CollisionMask' or 
             <xsl:if test="$typeValue = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />

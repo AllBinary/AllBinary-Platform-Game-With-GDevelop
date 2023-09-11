@@ -268,7 +268,7 @@
         <xsl:param name="totalRecursions" />
         <xsl:param name="motionGestureEvent" />
     
-        <xsl:variable name="hasKeyFromTextPressed" ><xsl:for-each select="conditions" ><xsl:if test = "type/value = 'KeyFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
+        <xsl:variable name="hasKeyFromTextPressed" ><xsl:for-each select="conditions" ><xsl:if test = "type/value = 'KeyFromTextPressed' or type/value = 'KeyPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
 
         <xsl:for-each select="conditions" >
             <xsl:if test="$motionGestureEvent != 'true'" ><xsl:if test="type/value = 'NbObjet'" >//foundCondition:<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:</xsl:if></xsl:if>

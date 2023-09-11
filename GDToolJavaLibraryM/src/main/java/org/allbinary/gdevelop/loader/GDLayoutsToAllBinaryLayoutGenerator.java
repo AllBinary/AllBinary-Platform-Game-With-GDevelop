@@ -224,6 +224,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 for(int index2 = startIndex; index2 < xslTotal; index2++) {
 
                     //LogUtil.put(LogFactory.getInstance("xsl index: " + index2, this, CommonStrings.getInstance().CONSTRUCTOR));
+                    LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + xslPathInputArray[index2], this, CommonStrings.getInstance().CONSTRUCTOR));
                     
                     final String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
 

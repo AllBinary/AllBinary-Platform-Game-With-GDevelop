@@ -54,6 +54,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDAddForceALActionProcess.xsl" />
     <xsl:import href="./action/GDAddForceXYActionProcess.xsl" />
     <xsl:import href="./action/GDQuitActionProcess.xsl" />
+    <xsl:import href="./action/GDSetObjectVariableAsBooleanActionProcess.xsl" />
     <xsl:import href="./action/GDSetSceneVariableAsBooleanActionProcess.xsl" />
     <xsl:import href="./action/GDJSONToVariableStructureActionProcess.xsl" />
     <xsl:import href="./action/GDRotateActionProcess.xsl" />
@@ -189,6 +190,51 @@ Created By: Travis Berthelot
                     <xsl:call-template name="modVarSceneTxtActionProcess" />
 
                 </xsl:if>
+
+                <xsl:if test="$typeValue = 'ModVarObjetTxt'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'AjoutObjConcern'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'AjoutHasard'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'SetObjectVariableAsBoolean'" >
+                    <xsl:call-template name="setObjectVariableAsBooleanActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'ToggleObjectVariableAsBoolean'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+  
+                <xsl:if test="$typeValue = 'ObjectVariablePush'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+  
+                <xsl:if test="$typeValue = 'ObjectVariablePushString'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+  
+                <xsl:if test="$typeValue = 'ObjectVariablePushNumber'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+  
+                <xsl:if test="$typeValue = 'ObjectVariablePushBool'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+  
+                <xsl:if test="$typeValue = 'ObjectVariableRemoveAt'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+
                 <xsl:if test="$typeValue = 'HideLayer'" >
 
                     <xsl:call-template name="hideLayerActionProcess" />
@@ -311,6 +357,10 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:if>
 
+                <xsl:if test="$typeValue = 'CreateByName'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+
                 <xsl:if test="$typeValue = 'Scene'" >
 
                     <xsl:call-template name="sceneActionProcess" />
@@ -424,7 +474,7 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'RotateTowardAngle'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
-                <xsl:if test="$typeValue = 'RotateTowardAngle'" >
+                <xsl:if test="$typeValue = 'RotateTowardPosition'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ChangeLayer'" >
@@ -481,6 +531,7 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'ObjectVariableClearChildren'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
+                                
                 <xsl:if test="$typeValue = 'PauseObjectTimer'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
@@ -499,16 +550,18 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'SetEffectStringParameter'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
+                              
                 <xsl:if test="$typeValue = 'SetEffectBooleanParameter'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
                 <xsl:if test="$typeValue = 'SetIncludedInParentCollisionMask'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
+                
                 <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetIndex'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
-
+  
                 <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetName'" >
                     <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetNameActionProcess" />
                 </xsl:if>

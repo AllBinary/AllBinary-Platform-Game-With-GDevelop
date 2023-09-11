@@ -69,6 +69,8 @@ Created By: Travis Berthelot
                 <xsl:variable name="index" select="position() - 1" />
                 <xsl:if test="number($index) = $layoutIndex" >
 
+                    //$typeValue = 'TileMap::CollisionMask' or
+                    //$typeValue = 'TileMap::TileMap' or 
                     <xsl:variable name="names" >
                         <xsl:for-each select="objects" >
                             <xsl:variable name="typeValue" select="type" />
@@ -76,7 +78,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="name_comma" ><xsl:value-of select="name" />,</xsl:variable>
 
                             <xsl:if test="contains($parametersAsString, $name) = text() or contains($parametersAsString, $name_comma) = text()" >
-                                <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'TileMap::TileMap' or $typeValue = 'TileMap::CollisionMask' or $typeValue = 'ParticleSystem::ParticleEmitter'" ><xsl:value-of select="name" />,</xsl:if>
+                                <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" ><xsl:value-of select="name" />,</xsl:if>
                                 <xsl:if test="$typeValue = 'TextObject::Text'" ><xsl:value-of select="name" />,</xsl:if>
                             </xsl:if>
 
@@ -85,7 +87,9 @@ Created By: Travis Berthelot
 
                     <xsl:if test="$names != ''" >
                     //objectGDObjectAtIndex - layoutIndex=<xsl:value-of select="$layoutIndex" /> parametersAsString=<xsl:value-of select="$parametersAsString" /> names=<xsl:value-of select="$names" />
+                    <xsl:text>&#10;</xsl:text>
                     </xsl:if>
+                    //split - START
                     <xsl:call-template name="split" >
                         <xsl:with-param name="names" >
                             <xsl:value-of select="$names" />
@@ -95,6 +99,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="templateName" >gameLayer</xsl:with-param>
                     </xsl:call-template>
+                    //split - END
 
                 </xsl:if>
             </xsl:for-each>

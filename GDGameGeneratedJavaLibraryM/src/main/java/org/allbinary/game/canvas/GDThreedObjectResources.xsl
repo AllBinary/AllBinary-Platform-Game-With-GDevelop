@@ -38,6 +38,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
             </xsl:if>
+<!--
             <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
                 <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
@@ -47,6 +48,8 @@ Created By: Travis Berthelot
                 </xsl:if>
 
             </xsl:if>
+-->
+
             <xsl:if test="$typeValue = 'TileMap::TileMap'" >
                 public final String[] <xsl:value-of select="name" />JSONResourceArray;
             </xsl:if>
