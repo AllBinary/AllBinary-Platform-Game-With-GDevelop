@@ -222,6 +222,12 @@ Created By: Travis Berthelot
 
                         <xsl:text>&#10;</xsl:text>
 
+                        <xsl:if test="contains($exclusionObjectsAsString, $nameComma) or contains($exclusionObjectsAsString, $name1Comma)" >
+                            //Skipping collision between <xsl:value-of select="$nameComma" /> and <xsl:value-of select="$name1Comma" />
+                        </xsl:if>
+
+                        <xsl:if test="not(contains($exclusionObjectsAsString, $nameComma) or contains($exclusionObjectsAsString, $name1Comma))" >
+
                         <xsl:if test="not(contains($objectGroupNames, $name1Comma))" >
                         //Group name is not a layer so use <xsl:value-of select="$name1" /> from <xsl:value-of select="$objectGroupNames" />
 
@@ -231,16 +237,11 @@ Created By: Travis Berthelot
                             <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
                         </xsl:call-template>
 
-                        <xsl:if test="contains($exclusionObjectsAsString, $nameComma) or contains($exclusionObjectsAsString, $name1Comma)" >
-                            //Skipping collision between <xsl:value-of select="$nameComma" /> and <xsl:value-of select="$name1Comma" />
-                        </xsl:if>
-                        <xsl:if test="not(contains($exclusionObjectsAsString, $nameComma) or contains($exclusionObjectsAsString, $name1Comma))" >
                         <xsl:call-template name="addCollisionNP" >
                             <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
                             <xsl:with-param name="name1" ><xsl:value-of select="$name1" /></xsl:with-param>
                             <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
                         </xsl:call-template>
-                        </xsl:if>
 
                         </xsl:if>
 
@@ -268,6 +269,8 @@ Created By: Travis Berthelot
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
+                        
+                        </xsl:if>
                         
                         </xsl:if>
                         
