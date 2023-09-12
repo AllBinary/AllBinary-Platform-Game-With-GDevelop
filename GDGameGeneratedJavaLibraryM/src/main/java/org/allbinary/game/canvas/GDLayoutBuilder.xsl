@@ -350,7 +350,6 @@ Created By: Travis Berthelot
 
                         //updateGDObject - 7
                         <xsl:value-of select="name" />GDGameLayer.updateGDObject(globals.timeDelta);
-                        //globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
                         allBinaryGameLayerManager.insert(<xsl:value-of select="name" />GDGameLayer);
                         </xsl:if>
                         

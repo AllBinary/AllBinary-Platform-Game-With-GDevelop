@@ -121,6 +121,7 @@
                 </xsl:if>
                 <xsl:if test="not(contains($parametersAsString0, $gdObjectName))" >
             //Not processing the on the same GDGameLayer
+            //Action - //<xsl:value-of select="type/value" /> - call
             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
 
@@ -187,6 +188,7 @@
             </xsl:if>
             <xsl:if test="not(contains($parametersAsString0, $gdObjectName))" >
             //Not processing the on the same GDGameLayer
+            //Action - //<xsl:value-of select="type/value" /> - call
             globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
             
