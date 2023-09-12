@@ -52,12 +52,26 @@ Created By: Travis Berthelot
                                 //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> ").append(INDEX).append(index).append(<xsl:for-each select="parameters" ><xsl:value-of select="text()" /></xsl:for-each>).toString(), this, commonStrings.PROCESS));
                                 if(<xsl:for-each select="parameters" ><xsl:if test="position() = 3 and string-length(text()) = 0" >!</xsl:if></xsl:for-each><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="text()" />) <xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" >).<xsl:value-of select="text()" /></xsl:if></xsl:for-each>) {
                                     //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                    
                                     <xsl:for-each select=".." >
+                            <xsl:variable name="hasOtherEvents" ><xsl:for-each select="events" ><xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >found</xsl:if></xsl:for-each></xsl:variable>
+                            <xsl:for-each select="events" >
+                                <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
+                                    //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
+                                    //Event - //BuiltinCommonInstructions::Standard - call
+                                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                </xsl:if>
+                            </xsl:for-each>
+
+                            <xsl:if test="not(contains($hasOtherEvents, 'found'))" >
+                                        
                                         <xsl:call-template name="actionIdsGDObjectPos" >
                                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                                             <xsl:with-param name="gdObjectName" ><xsl:value-of select="$gdObjectName" /></xsl:with-param>
                                             <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$gdObjectName" />GDGameLayer</xsl:with-param>
                                         </xsl:call-template>
+                                    
+                            </xsl:if>
                                     </xsl:for-each>
                                 } //else {
                                     //LogUtil.put(LogFactory.getInstance(ELSE_CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));

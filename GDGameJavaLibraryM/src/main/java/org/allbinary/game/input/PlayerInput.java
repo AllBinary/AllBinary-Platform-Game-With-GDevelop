@@ -49,7 +49,7 @@ public class PlayerInput extends PlayerGameInput
         if(keyInteger.intValue() > 0) {
             this.addKey(keyInteger);
         } else {
-            PreLogUtil.put(new StringMaker().append("Ignoring: ").append(keyInteger.toString()).toString(), this, "onDownKeyEvent");
+            //PreLogUtil.put(new StringMaker().append("Ignoring: ").append(keyInteger.toString()).toString(), this, "onDownKeyEvent");
         }
     }
 
@@ -59,7 +59,7 @@ public class PlayerInput extends PlayerGameInput
         if(keyInteger.intValue() > 0) {
             this.addKeyForRemoval(keyInteger);
         } else {
-            PreLogUtil.put(new StringMaker().append("Ignoring: ").append(keyInteger.toString()).toString(), this, "onUpKeyEvent");
+            //PreLogUtil.put(new StringMaker().append("Ignoring: ").append(keyInteger.toString()).toString(), this, "onUpKeyEvent");
         }
     }
 
