@@ -120,6 +120,11 @@ Created By: Travis Berthelot
 
         </xsl:for-each>
 
+            public final String PRIMITIVEDRAWING__DRAWER = "PrimitiveDrawing::Drawer";
+            public final String SPRITE = "Sprite";
+            public final String TILEMAP__TILEMAP = "TileMap::TileMap";
+            public final String TILEMAP__COLLISIONMASK = "TileMap::CollisionMask";
+
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>

@@ -19,7 +19,6 @@ Created By: Travis Berthelot
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="windowWidth" />
-        <xsl:param name="instancesAsString" />
 
         //objectsAssign - touchAnimationFactory - START
         final short angleIncrement = 1;
@@ -64,7 +63,7 @@ Created By: Travis Berthelot
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/x" />), 
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/y" />)),
                                 <xsl:if test="animations/directions/sprites/originPoint/x = 0" >//</xsl:if><xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 2, <xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 2
-                                <xsl:if test="animations/directions/sprites/originPoint/x = 0" ><xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()</xsl:if>
+                                <xsl:for-each select=".." ><xsl:for-each select="instances" ><xsl:if test="name = $name" ><xsl:if test="height = 0 or width = 0 or not(height) or not(width)" ><xsl:if test="animations/directions/sprites/originPoint/x = 0" ><xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()</xsl:if></xsl:if><xsl:if test="height != 0 and width != 0" ><xsl:value-of select="width" />, <xsl:value-of select="height" /></xsl:if></xsl:if></xsl:for-each></xsl:for-each>
                                 );
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
@@ -221,7 +220,6 @@ Created By: Travis Berthelot
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="windowWidth" />
-        <xsl:param name="instancesAsString" />
 
         //objectsAssign - animationFactory - START
         final short angleIncrement = 1;
@@ -275,7 +273,7 @@ Created By: Travis Berthelot
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/x" />), 
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/y" />)),
                                 <xsl:if test="animations/directions/sprites/originPoint/x = 0" >//</xsl:if><xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 2, <xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 2
-                                <xsl:if test="animations/directions/sprites/originPoint/x = 0" ><xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()</xsl:if>
+                                <xsl:for-each select=".." ><xsl:for-each select="instances" ><xsl:if test="name = $name" ><xsl:if test="height = 0 or width = 0 or not(height) or not(width)" ><xsl:if test="animations/directions/sprites/originPoint/x = 0" ><xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()</xsl:if></xsl:if><xsl:if test="height != 0 and width != 0" ><xsl:value-of select="width" />, <xsl:value-of select="height" /></xsl:if></xsl:if></xsl:for-each></xsl:for-each>
                                 );
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
@@ -443,7 +441,6 @@ Created By: Travis Berthelot
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="windowWidth" />
-        <xsl:param name="instancesAsString" />
 
         //objectsAssign - htmlAnimationFactory - START
         final short angleIncrement = 1;
@@ -498,7 +495,7 @@ Created By: Travis Berthelot
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/x" />), 
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/y" />)),
                                 <xsl:if test="animations/directions/sprites/originPoint/x = 0" >//</xsl:if><xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 2, <xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 2
-                                <xsl:if test="animations/directions/sprites/originPoint/x = 0" ><xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()</xsl:if>
+                                <xsl:for-each select=".." ><xsl:for-each select="instances" ><xsl:if test="name = $name" ><xsl:if test="height = 0 or width = 0 or not(height) or not(width)" ><xsl:if test="animations/directions/sprites/originPoint/x = 0" ><xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()</xsl:if></xsl:if><xsl:if test="height != 0 and width != 0" ><xsl:value-of select="width" />, <xsl:value-of select="height" /></xsl:if></xsl:if></xsl:for-each></xsl:for-each>
                                 );
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
@@ -660,17 +657,16 @@ Created By: Travis Berthelot
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="windowWidth" />
-        <xsl:param name="instancesAsString" />
 
         //objectsAssign - j2seAnimationFactory - START
         final short angleIncrement = 1;
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
+            <xsl:variable name="name" select="name" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
                 <xsl:if test="not(contains($name, 'btn_'))" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
@@ -715,7 +711,7 @@ Created By: Travis Berthelot
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/x" />), 
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/y" />)),
                                 <xsl:if test="animations/directions/sprites/originPoint/x = 0" >//</xsl:if><xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 2, <xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 2
-                                <xsl:if test="animations/directions/sprites/originPoint/x = 0" ><xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()</xsl:if>
+                                <xsl:for-each select=".." ><xsl:for-each select="instances" ><xsl:if test="name = $name" ><xsl:if test="height = 0 or width = 0 or not(height) or not(width)" ><xsl:if test="animations/directions/sprites/originPoint/x = 0" ><xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()</xsl:if></xsl:if><xsl:if test="height != 0 and width != 0" ><xsl:value-of select="width" />, <xsl:value-of select="height" /></xsl:if></xsl:if></xsl:for-each></xsl:for-each>
                                 );
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
@@ -773,7 +769,6 @@ Created By: Travis Berthelot
 
             <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
                 <xsl:if test="not(contains($name, 'btn_'))" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
@@ -793,7 +788,7 @@ Created By: Travis Berthelot
                 
                 this.add(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
                 this.add(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
-                
+
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 PointFactory.getInstance().getInstance(0, 0),
                                 0, 0
@@ -879,7 +874,6 @@ Created By: Travis Berthelot
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="windowWidth" />
-        <xsl:param name="instancesAsString" />
 
         //objectsAssign - androidAnimationFactory - START
         final short angleIncrement = 1;
@@ -934,7 +928,7 @@ Created By: Travis Berthelot
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/x" />), 
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/y" />)),
                                 <xsl:if test="animations/directions/sprites/originPoint/x = 0" >//</xsl:if><xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 2, <xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 2
-                                <xsl:if test="animations/directions/sprites/originPoint/x = 0" ><xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()</xsl:if>
+                                <xsl:for-each select=".." ><xsl:for-each select="instances" ><xsl:if test="name = $name" ><xsl:if test="height = 0 or width = 0 or not(height) or not(width)" ><xsl:if test="animations/directions/sprites/originPoint/x = 0" ><xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()</xsl:if></xsl:if><xsl:if test="height != 0 and width != 0" ><xsl:value-of select="width" />, <xsl:value-of select="height" /></xsl:if></xsl:if></xsl:for-each></xsl:for-each>
                                 );
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
@@ -1095,7 +1089,6 @@ Created By: Travis Berthelot
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="windowWidth" />
-        <xsl:param name="instancesAsString" />
 
         //objectsAssign - animationNames - START
         <xsl:for-each select="objects" >

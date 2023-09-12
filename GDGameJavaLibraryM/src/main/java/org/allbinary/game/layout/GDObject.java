@@ -35,6 +35,7 @@ public class GDObject
     private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
     
     public final String name;
+    public final String type;
     
     public int x;
     public int y;
@@ -64,11 +65,12 @@ public class GDObject
         
     public boolean updateSinceSetAngle;
     
-    public GDObject(final String unknown, final int x, final int y, final String name) {
+    public GDObject(final String unknown, final int x, final int y, final String name, final String type) {
         this.x = x;
         this.y = y;
         
         this.name = name;
+        this.type = type;
     }
 
     public boolean setAnimation(final String animationName) {

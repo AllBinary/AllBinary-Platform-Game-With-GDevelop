@@ -14,7 +14,7 @@ Created By: Travis Berthelot
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-
+    
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
@@ -44,6 +44,10 @@ Created By: Travis Berthelot
     
     <xsl:output method="html" indent="yes" />
 
+    <xsl:template name="getCollisionLayerList" >
+        <xsl:for-each select="events" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'CollisionNP'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:call-template name="getCollisionLayerList" /></xsl:for-each>
+    </xsl:template>
+    
     <xsl:template match="/game">
         <xsl:variable name="windowWidth" select="properties/windowWidth" />
 
@@ -53,6 +57,11 @@ Created By: Travis Berthelot
 
         import javax.microedition.lcdui.Canvas;
         import javax.microedition.lcdui.game.TiledLayer;
+
+        <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+        import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals;
+        </xsl:for-each>
 
         import org.allbinary.animation.AnimationInterfaceFactoryInterface;
         import org.allbinary.animation.IndexedAnimationInterface;
@@ -89,6 +98,7 @@ Created By: Travis Berthelot
         import org.allbinary.graphics.Rectangle;
         import org.allbinary.layer.AllBinaryLayerManager;
         import org.allbinary.logic.basic.string.CommonStrings;
+        import org.allbinary.logic.basic.string.StringMaker;
         import org.allbinary.logic.communication.log.LogFactory;
         import org.allbinary.logic.communication.log.LogUtil;
         import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
@@ -297,7 +307,7 @@ Created By: Travis Berthelot
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
 
-            <xsl:for-each select="objects" >            
+            <xsl:for-each select="objects" >
                 
                 <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
                 <xsl:if test="type = 'TileMap::TileMap'" >
@@ -313,7 +323,15 @@ Created By: Travis Berthelot
 
             if(geographicMapInterfaceArray != null) {
                 final BasicGeographicMap geographicMapInterface = geographicMapInterfaceArray[0];
-                this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
+                <xsl:variable name="gameLayer" ><xsl:for-each select=".." ><xsl:call-template name="getCollisionLayerList" /></xsl:for-each></xsl:variable>
+                final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+                if(this.gdObject.type == globals.TILEMAP__TILEMAP) {
+                    final GDGameLayer <xsl:value-of select="$gameLayer" /> = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
+                    //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
+                    this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, <xsl:value-of select="$gameLayer" />, this.gdObject.x, this.gdObject.y);
+                } else {
+                    this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
+                }
             } else {
                 //LogUtil.put(LogFactory.getInstance("Map was null, this, "move"));
             }

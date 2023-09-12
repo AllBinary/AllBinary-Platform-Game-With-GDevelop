@@ -47,7 +47,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
-                        super(unknown, x, y, name);
+                        super(unknown, x, y, name, <xsl:if test="string-length(type) = 0" >null</xsl:if><xsl:if test="string-length(type) > 0" >globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(type, ':', '_')" /></xsl:with-param></xsl:call-template></xsl:if>);
                     }
 
                     <xsl:if test="animations" >
@@ -127,7 +127,7 @@ Created By: Travis Berthelot
                     public final StringMaker stringMaker = new StringMaker();
 
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
-                        super(unknown, x, y, name);
+                        super(unknown, x, y, name, null);
                     }
 
                     public int Width(final Graphics graphics) {
@@ -155,7 +155,7 @@ Created By: Travis Berthelot
                 public final class <xsl:value-of select="name" /> extends GDObject {
 
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
-                        super(unknown, x, y, name);
+                        super(unknown, x, y, name, null);
                     }
 
                     public int Width(final Graphics graphics) {
@@ -181,7 +181,7 @@ Created By: Travis Berthelot
                     public final StringMaker stringMaker = new StringMaker();
 
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
-                        super(unknown, x, y, name);
+                        super(unknown, x, y, name, null);
                     }
 
                     public int Width(final Graphics graphics) {

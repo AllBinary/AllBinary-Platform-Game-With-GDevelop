@@ -278,8 +278,16 @@ Created By: Travis Berthelot
                         final int height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
                             </xsl:if>
                             <xsl:if test="not(contains(layer, 'touch'))" >
+
+                                <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
                         final int width = (int) (imageResources.<xsl:value-of select="name" />Rectangle.getWidth() / 1.44f);
                         final int height = (int) (imageResources.<xsl:value-of select="name" />Rectangle.getHeight() / 1.44f);
+                                </xsl:if>
+                                <xsl:if test="height != 0 and width != 0" >
+                        final int width = (int) (<xsl:value-of select="height" />);
+                        final int height = (int) (<xsl:value-of select="width" />);
+                                </xsl:if>
+
                             </xsl:if>
                         
                         <xsl:if test="contains($hasCentreCamera, 'found')" >
