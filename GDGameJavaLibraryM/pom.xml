@@ -44,17 +44,27 @@
             <artifactId>PlatformerGameBehaviorJavaLibrary</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
--->
-        <dependency>
-            <groupId>org.allbinary.media.graphics.geography.map</groupId>
-            <artifactId>BasicTopViewGeographicMapJavaLibrary</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
+        
         <dependency>
             <groupId>org.allbinary.media.graphics.geography.map</groupId>
             <artifactId>BasicPlatformGeographicMapJavaLibrary</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
+-->
+
+<!--
+        <dependency>
+            <groupId>org.allbinary.media.graphics.geography.map</groupId>
+            <artifactId>BasicTopViewGeographicMapJavaLibrary</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.behavior.topview</groupId>
+            <artifactId>TopViewGameBehaviorJavaLibrary</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+-->
 
         <dependency>
             <groupId>org.mapeditor</groupId>

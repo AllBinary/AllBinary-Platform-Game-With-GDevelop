@@ -111,7 +111,10 @@ Created By: Travis Berthelot
                 <xsl:if test="type = 'TileMap::TileMap'" >
                     protected final org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior topViewGameBehavior = 
                         new org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior(64, false, 6);
-                    
+                    protected final org.allbinary.game.behavior.topview.TopViewCharacterBehavior topViewCharacterBehavior = 
+                        <xsl:if test="1" >new org.allbinary.game.behavior.topview.PlayerTopViewCharacterBehavior();</xsl:if>
+                        <xsl:if test="0" >new org.allbinary.game.behavior.topview.NonPlayerTopViewCharacterBehavior();</xsl:if>
+
                     protected final AllBinaryGameLayerManager allBinaryGameLayerManager;
                 </xsl:if>
                 </xsl:if>
@@ -300,7 +303,7 @@ Created By: Travis Berthelot
                 <xsl:if test="type = 'TileMap::TileMap'" >
     public void move() {
         try {
-            LogUtil.put(LogFactory.getInstance("Move Map", this, "move"));
+            //LogUtil.put(LogFactory.getInstance("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move"));
                     
             final GeographicMapCompositeInterface geographicMapCompositeInterface
                     = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
@@ -310,7 +313,7 @@ Created By: Travis Berthelot
 
             if(geographicMapInterfaceArray != null) {
                 final BasicGeographicMap geographicMapInterface = geographicMapInterfaceArray[0];
-                this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this);
+                this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
             } else {
                 //LogUtil.put(LogFactory.getInstance("Map was null, this, "move"));
             }
@@ -326,6 +329,7 @@ Created By: Travis Berthelot
     }
     
     public void terrainMove(final BasicGeographicMap[] geographicMapInterfaceArray, final int dx, final int dy) {
+        this.topViewCharacterBehavior.terrainMove(this, geographicMapInterfaceArray, dx, dy);
     }
     
     public void terrainEvent(final int dx, final int dy, 
