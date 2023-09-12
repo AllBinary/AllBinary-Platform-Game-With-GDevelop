@@ -20,6 +20,7 @@ Created By: Travis Berthelot
         <xsl:param name="totalRecursions" />
         <xsl:param name="conditionEventPosition" />
 
+        <xsl:variable name="hasOtherEvents" ><xsl:for-each select="events" ><xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >found</xsl:if></xsl:for-each></xsl:variable>
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
 
@@ -64,6 +65,7 @@ Created By: Travis Berthelot
                 <xsl:text>&#10;</xsl:text>
             </xsl:for-each>
 
+            <xsl:if test="not(contains($hasOtherEvents, 'found'))" >
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -93,6 +95,7 @@ Created By: Travis Berthelot
                     globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
             </xsl:for-each>
+            </xsl:if>
 
         </xsl:for-each>
     </xsl:template>
