@@ -48,6 +48,7 @@ Created By: Travis Berthelot
                                     <xsl:for-each select=".." >
                                         <xsl:call-template name="actionIdsGDObject" >
                                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                                            <xsl:with-param name="gdObjectName" ><xsl:value-of select="$gdObjectName" /></xsl:with-param>
                                             <xsl:with-param name="gdGameLayer" >gdGameLayer</xsl:with-param>
                                         </xsl:call-template>
                                     </xsl:for-each>

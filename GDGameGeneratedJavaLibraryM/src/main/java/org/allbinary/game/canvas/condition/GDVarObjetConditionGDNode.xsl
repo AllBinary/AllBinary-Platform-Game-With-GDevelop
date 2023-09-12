@@ -45,12 +45,23 @@ Created By: Travis Berthelot
                             
                                 final GDGameLayer gdGameLayer = ((GDGameLayer) globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index));
                                 if(this.processG(gdGameLayer.gdObject, globals.graphics)) {
-                                    <xsl:for-each select=".." >
+
+                                <xsl:for-each select=".." >
+                                    <xsl:for-each select="events" >                             
+                                        <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
+                                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
+                                            //Event - //BuiltinCommonInstructions::Standard - call
+                                            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                        </xsl:if>
+                                    </xsl:for-each>
+                                   
                                         <xsl:call-template name="actionIdsGDObject" >
                                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                                            <xsl:with-param name="gdObjectName" ><xsl:value-of select="$gdObjectName" /></xsl:with-param>
                                             <xsl:with-param name="gdGameLayer" >gdGameLayer</xsl:with-param>
                                         </xsl:call-template>
-                                    </xsl:for-each>
+                                </xsl:for-each>
+
                                 }
                             }
                            
@@ -106,7 +117,7 @@ Created By: Travis Berthelot
                                     <xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if></xsl:if>
                                     <xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>) {
                         </xsl:if>
-                                    //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "VarObjet processing"));
+                                    //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "VarObjet processing", this, commonStrings.PROCESS));
                                     return true;
                                 }
 

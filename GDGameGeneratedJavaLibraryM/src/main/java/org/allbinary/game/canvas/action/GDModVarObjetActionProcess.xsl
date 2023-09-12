@@ -22,6 +22,19 @@ Created By: Travis Berthelot
                     <xsl:variable name="secondParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //ModVarObjet - //<xsl:value-of select="$secondParam" />
                     @Override
+                    public boolean process() throws Exception {
+                        super.processStats();
+
+                        <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" >final int size = globals.<xsl:value-of select="text()" />GDGameLayerList.size();</xsl:if>
+                        </xsl:for-each>
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            this.process(index);
+                        }
+                        return true;
+                    }
+                    
+                    @Override
                     public boolean process(final int index) throws Exception {
                         super.processStats(index);
 
