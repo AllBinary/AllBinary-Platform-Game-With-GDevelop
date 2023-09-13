@@ -73,6 +73,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
                 
+                import org.allbinary.logic.basic.string.StringUtil;
 
                 //LayoutGDObjects name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory
@@ -91,6 +92,7 @@ Created By: Travis Berthelot
                         return instance;
                     }
 
+                    private final StringUtil stringUtil = StringUtil.getInstance();
                     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                     
                     <xsl:call-template name="objectsClassPropertyGDObjects" >

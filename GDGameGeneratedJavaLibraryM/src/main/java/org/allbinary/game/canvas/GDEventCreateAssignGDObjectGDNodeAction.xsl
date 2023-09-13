@@ -563,7 +563,9 @@ Created By: Travis Berthelot
                 </xsl:if>
   
                 <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetName'" >
-                    <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetNameActionProcess" />
+                    <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetNameActionProcess" >
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                    </xsl:call-template>
                 </xsl:if>
   
                 <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetSpeedScale'" >

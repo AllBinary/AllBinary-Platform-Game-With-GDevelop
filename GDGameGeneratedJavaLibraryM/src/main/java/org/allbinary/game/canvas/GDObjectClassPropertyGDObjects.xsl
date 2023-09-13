@@ -33,15 +33,36 @@ Created By: Travis Berthelot
                 //animations/directions/sprites/originPoint/y <xsl:value-of select="animations/directions/sprites/originPoint/y" />
                 public final class <xsl:value-of select="name" /> extends GDObject {
 
-                <xsl:for-each select="variables" >
-                    public <xsl:if test="type = 'number'" >int</xsl:if><xsl:if test="type != 'number'" ><xsl:value-of select="type" /></xsl:if><xsl:text> </xsl:text><xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                </xsl:for-each>
+                    <xsl:for-each select="variables" >
+                        <xsl:if test="type = 'string'" >
+                            <xsl:if test="number(value) != value" >
+                    public String <xsl:value-of select="name" /> = <xsl:if test="string-length(value) > 0" ><xsl:value-of select="value" /></xsl:if><xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if>;
+                            </xsl:if>
+                            <xsl:if test="number(value) = value" >
+                    //This is supposed to be a string
+                    public float <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                            </xsl:if>
+                        </xsl:if>
+                        <xsl:if test="type = 'number'" >
+                    public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                        </xsl:if>
+                        <xsl:if test="type = 'boolean'" >
+                    public boolean <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                        </xsl:if>
+                        <xsl:if test="type = 'array'" >
+                    public String[] <xsl:value-of select="name" /> = {
+                            <xsl:for-each select="children" >
+                        "<xsl:value-of select="value" />",
+                            </xsl:for-each>
+                    };
+                        </xsl:if>                        
+                    </xsl:for-each>
 
                 <xsl:if test="animations" >
-                private final String[] ANIMATION_NAMES = {
+                public final String[] ANIMATION_NAMES = {
                 <xsl:for-each select="animations" >
                     <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
-                    globals.<xsl:value-of select="$animationName" />_ANIMATION_NAME,
+                    globals.<xsl:value-of select="$animationName" />,
                 </xsl:for-each>
                 };
                 </xsl:if>
@@ -78,18 +99,6 @@ Created By: Travis Berthelot
                     }
                     </xsl:if>
                     
-                    <xsl:for-each select="variables" >
-                        <xsl:if test="type = 'string'" >
-                            <xsl:if test="number(value) != value" >
-                    public String <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                            </xsl:if>
-                            <xsl:if test="number(value) = value" >
-                    //This is supposed to be a string
-                    public float <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                            </xsl:if>
-                        </xsl:if>
-                    </xsl:for-each>
-
                     <!--
                         <xsl:if test="name = 'player'" >
                         //Hackish FIX ME for GDevelop player1

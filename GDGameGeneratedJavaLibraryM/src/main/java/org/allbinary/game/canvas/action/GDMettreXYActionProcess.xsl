@@ -86,9 +86,9 @@ Created By: Travis Berthelot
                                 <xsl:variable name="existingValueX" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.x</xsl:if></xsl:for-each></xsl:variable>
                                 <xsl:variable name="existingValueY" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.y</xsl:if></xsl:for-each></xsl:variable>
                                 
-                        <xsl:variable name="hasGameLayer" ><xsl:for-each select="parameters" ><xsl:if test="contains(text(), '.Variable(')" >found</xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="hasObjectVariable" ><xsl:for-each select="parameters" ><xsl:if test="contains(text(), '.Variable(')" >found</xsl:if></xsl:for-each></xsl:variable>
 
-                        <xsl:if test="not(contains($hasGameLayer, 'found'))" >
+                        <xsl:if test="not(contains($hasObjectVariable, 'found'))" >
                                 <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setX(</xsl:if><xsl:if test="position() = 2" ><xsl:if test="text() = '+'" ><xsl:value-of select="$existingValueX" /> + </xsl:if><xsl:if test="text() = '-'" ><xsl:value-of select="$existingValueX" /> - </xsl:if></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >);
                                 <xsl:text>&#10;</xsl:text>
@@ -99,7 +99,7 @@ Created By: Travis Berthelot
                                 </xsl:for-each>
                         </xsl:if>
 
-                        <xsl:if test="contains($hasGameLayer, 'found')" >
+                        <xsl:if test="contains($hasObjectVariable, 'found')" >
                                 <xsl:variable name="objectsFactory" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >.Variable((int) ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="text()" />) <xsl:value-of select="text()" />).</xsl:if></xsl:for-each></xsl:variable>
 
                                 <xsl:variable name="paramX0" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '+'" ><xsl:value-of select="$existingValueX" /> + </xsl:if><xsl:if test="text() = '-'" ><xsl:value-of select="$existingValueX" /> - </xsl:if></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
