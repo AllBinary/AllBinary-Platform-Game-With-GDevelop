@@ -311,6 +311,10 @@ Created By: Travis Berthelot
                 
                 <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
                 <xsl:if test="type = 'TileMap::TileMap'" >
+                    
+        private int lastX;
+        private int lastY;
+
     public void move() {
         try {
             //LogUtil.put(LogFactory.getInstance("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move"));
@@ -328,7 +332,14 @@ Created By: Travis Berthelot
                 if(this.gdObject.type == globals.TILEMAP__TILEMAP) {
                     final GDGameLayer <xsl:value-of select="$gameLayer" /> = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
                     //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
-                    this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, <xsl:value-of select="$gameLayer" />, this.gdObject.x, this.gdObject.y);
+                    if(this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, <xsl:value-of select="$gameLayer" />, this.gdObject.x, this.gdObject.y)) {
+                        lastX = this.gdObject.x;
+                        lastY = this.gdObject.y;
+                    } else {
+                        this.gdObject.x = lastX;
+                        this.gdObject.y = lastY;
+                    }
+
                 } else {
                     this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
                 }
