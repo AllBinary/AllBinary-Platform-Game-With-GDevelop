@@ -71,7 +71,7 @@ public class GDToAllBinaryResourcesGenerator
         final int size = this.gdResources.resourceNameList.size();
         String name;
         String resource;
-        final int size2 = 7;
+        final int size2 = 100;
         for(int index = 0; index < size; index++) {
             name = (String) this.gdResources.resourceNameList.get(index);
             resource = (String) this.gdResources.resourceList.get(index);
