@@ -29,6 +29,10 @@
     <!-- Exclude non-GWT-compatible classes -->
     <exclude name='**/*Test.java' />
   </source>
+  <source path='org/mapgenerator/dungeon'>
+    <!-- Exclude non-GWT-compatible classes -->
+    <exclude name='**/*Test.java' />
+  </source>
   <source path='org/allbinary'>
     <!-- Exclude non-GWT-compatible classes -->
     <exclude name='**/*Test.java' />

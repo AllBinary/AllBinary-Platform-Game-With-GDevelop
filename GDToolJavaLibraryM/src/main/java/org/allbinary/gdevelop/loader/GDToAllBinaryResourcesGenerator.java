@@ -71,6 +71,7 @@ public class GDToAllBinaryResourcesGenerator
         final int size = this.gdResources.resourceNameList.size();
         String name;
         String resource;
+        final int size2 = 7;
         for(int index = 0; index < size; index++) {
             name = (String) this.gdResources.resourceNameList.get(index);
             resource = (String) this.gdResources.resourceList.get(index);
@@ -78,6 +79,12 @@ public class GDToAllBinaryResourcesGenerator
             if(resource.indexOf(".json") >= 0 || resource.indexOf(".t") >= 0) {
                 resourceStringBuilder.append("//");
             }
+            for(int index2 = 2; index2 < size2; index2++) {
+                if(resource.indexOf("_" + index2) >= 0) {
+                    resourceStringBuilder.append("//");
+                }
+            }
+            
             resourceStringBuilder.append(name);
             resourceStringBuilder.append(',');
             resourceStringBuilder.append('\n');
