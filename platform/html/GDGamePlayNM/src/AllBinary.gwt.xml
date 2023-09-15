@@ -25,6 +25,10 @@
     <!-- Exclude non-GWT-compatible classes -->
     <exclude name='**/*Test.java' />
   </source>
+  <source path='notjava/no/awt'>
+    <!-- Exclude non-GWT-compatible classes -->
+    <exclude name='**/*Test.java' />
+  </source>
   <source path='org/mapeditor'>
     <!-- Exclude non-GWT-compatible classes -->
     <exclude name='**/*Test.java' />
