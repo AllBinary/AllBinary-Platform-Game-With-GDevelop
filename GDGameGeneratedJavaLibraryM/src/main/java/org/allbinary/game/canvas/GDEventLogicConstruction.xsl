@@ -133,12 +133,12 @@ Created By: Travis Berthelot
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                             <xsl:if test="type/value = 'MouseButtonReleased'" >
-                            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             </xsl:if>
                             <xsl:if test="type/value = 'SourisBouton'" >
                             final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
                             if (motionGestureInput == TouchMotionGestureFactory.getInstance().PRESSED) {
-                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             }
                             </xsl:if>
 
@@ -214,7 +214,7 @@ Created By: Travis Berthelot
                         <xsl:for-each select="../events" >
                             <xsl:if test="actions" >
                         //1
-                        nodeList<xsl:value-of select="$nodeList" />.add(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]); 
+                        nodeList<xsl:value-of select="$nodeList" />.add(globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]); 
                             </xsl:if>
                         </xsl:for-each>
 
@@ -291,10 +291,10 @@ Created By: Travis Berthelot
         <xsl:variable name="nameGDConditionWithGroupActions1" >globals.<xsl:value-of select="$name1" />GDConditionWithGroupActions</xsl:variable>
         
 <xsl:text>                        </xsl:text><xsl:value-of select="$nameGDConditionWithGroupActions"/>.groupWithActionsList.add(globals.<xsl:value-of select="$name1" />GroupInterface);                        
-                        <xsl:value-of select="$nameGDConditionWithGroupActions"/>.actionForGroupsList.add(globals.nodeArray[<xsl:value-of select="$nodeList" />]);        
+                        <xsl:value-of select="$nameGDConditionWithGroupActions"/>.actionForGroupsList.add(globals.nodeArray[globals.NODE_<xsl:value-of select="$nodeList" />]);        
 
 <xsl:text>                        </xsl:text><xsl:value-of select="$nameGDConditionWithGroupActions1"/>.groupWithActionsList.add(globals.<xsl:value-of select="$name" />GroupInterface);
-                        <xsl:value-of select="$nameGDConditionWithGroupActions1"/>.actionForGroupsList.add(globals.nodeArray[<xsl:value-of select="$nodeList" />]);        
+                        <xsl:value-of select="$nameGDConditionWithGroupActions1"/>.actionForGroupsList.add(globals.nodeArray[globals.NODE_<xsl:value-of select="$nodeList" />]);        
     </xsl:template>
 
     <xsl:template name="splitCollisionNP">

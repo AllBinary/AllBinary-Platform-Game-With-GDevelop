@@ -176,7 +176,12 @@ public class GDStructure {
                     
                         public final Graphics graphics = new Graphics();
                         //public final BasicArrayList ZERO_GD_OBJECT = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
-                        private final int MAX_NODES = 20000;
+                        
+                    <xsl:call-template name="generateIndexToNodeIdMapping" >
+                        <xsl:with-param name="totalRecursion" >0</xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:variable name="total" ><xsl:call-template name="generateGDNodeTotal" ></xsl:call-template></xsl:variable>
+                        private final int MAX_NODES = <xsl:value-of select="$total" />;
                         public final GDNode[] nodeArray = new GDNode[MAX_NODES];
                         <!--
                         public final int FAKE_COLLISION_NODE_ID = MAX_NODES - 1;

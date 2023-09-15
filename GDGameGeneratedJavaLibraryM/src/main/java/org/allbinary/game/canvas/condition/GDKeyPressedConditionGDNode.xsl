@@ -24,10 +24,10 @@ Created By: Travis Berthelot
 
         <xsl:variable name="quote" >"</xsl:variable>
                     //keyPressedConditionGDNode - //Condition - //KeyPressed - GDNode
-                    if(globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
+                    if(globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
-                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                    globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
@@ -49,7 +49,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                                     //...Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
                                     //Event - //BuiltinCommonInstructions::Standard - call
-                                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                    globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                 </xsl:if>
                                 <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
                                     //Event - //BuiltinCommonInstructions::ForEach
@@ -64,14 +64,14 @@ Created By: Travis Berthelot
                                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />,</xsl:for-each>
                                     //Action - //<xsl:value-of select="type/value" /> - call
-                                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                    globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             </xsl:for-each>
 
                             <xsl:for-each select="../actions" >
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 //Action - //<xsl:value-of select="type/value" /> - call
-                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             </xsl:for-each>
 
                             <xsl:for-each select="../events" >
@@ -92,7 +92,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                                     //...Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
                                     //Event - //BuiltinCommonInstructions::Standard - call
-                                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                                    globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                                 </xsl:if>
                                 <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
                                     //Event - //BuiltinCommonInstructions::ForEach
@@ -106,14 +106,14 @@ Created By: Travis Berthelot
                                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />,</xsl:for-each>
                                     //Action - //<xsl:value-of select="type/value" /> - call
-                                    globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                                    globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                             </xsl:for-each>
 
                             <xsl:for-each select="../actions" >
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 //Action - //<xsl:value-of select="type/value" /> - call
-                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                                globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                             </xsl:for-each>
 
                                 }
@@ -150,7 +150,7 @@ Created By: Travis Berthelot
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 //Action - //<xsl:value-of select="type/value" /> - call
-                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(gameKeyEvent);
+                                globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(gameKeyEvent);
                             </xsl:for-each>
                                 }
 
@@ -160,7 +160,7 @@ Created By: Travis Berthelot
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 //Action - //<xsl:value-of select="type/value" /> - call
-                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased(gameKeyEvent);
+                                globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased(gameKeyEvent);
                             </xsl:for-each>
                                 }
 
@@ -170,7 +170,7 @@ Created By: Travis Berthelot
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 //Action - //<xsl:value-of select="type/value" /> - call
-                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(keyAsInteger);
+                                globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(keyAsInteger);
                             </xsl:for-each>
                                 }
 
@@ -180,7 +180,7 @@ Created By: Travis Berthelot
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 //Action - //<xsl:value-of select="type/value" /> - call
-                                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased(keyAsInteger);
+                                globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased(keyAsInteger);
                             </xsl:for-each>
                                 }
 
@@ -191,7 +191,7 @@ Created By: Travis Berthelot
                             }
         
                             //Make sure we only call this 1 time
-                            globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+                            globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
                             return true;
                         }
                     };

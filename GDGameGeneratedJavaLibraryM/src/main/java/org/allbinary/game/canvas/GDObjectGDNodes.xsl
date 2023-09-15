@@ -67,10 +67,10 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($parametersAsString, $name) = text()" >
                             <xsl:if test="$typeValue = 'Sprite'" >
                         //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //Objects - //GDNode - //collide - //Sprite - //<xsl:value-of select="$name" />
-                        if(globals.nodeArray[<xsl:value-of select="$actionNodeId" />] != null) {
+                        if(globals.nodeArray[globals.PARAM_NODE_<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
-                        globals.nodeArray[<xsl:value-of select="$actionNodeId" />] = new GDNode(<xsl:value-of select="$actionNodeId" />) {
+                        globals.nodeArray[globals.PARAM_NODE_<xsl:value-of select="$actionNodeId" />] = new GDNode(<xsl:value-of select="$actionNodeId" />) {
 
                             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
@@ -216,10 +216,10 @@ Created By: Travis Berthelot
                             
                             <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
                         //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //Objects - //GDNode - //collide - //ParticleSystem::ParticleEmitter - //<xsl:value-of select="$name" />
-                        if(globals.nodeArray[<xsl:value-of select="$actionNodeId" />] != null) {
+                        if(globals.nodeArray[globals.PARAM_NODE_<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
-                        globals.nodeArray[<xsl:value-of select="$actionNodeId" />] = new GDNode(<xsl:value-of select="$actionNodeId" />) {
+                        globals.nodeArray[globals.PARAM_NODE_<xsl:value-of select="$actionNodeId" />] = new GDNode(<xsl:value-of select="$actionNodeId" />) {
 
                             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
@@ -365,10 +365,10 @@ Created By: Travis Berthelot
 
                             <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap'" >
                         //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //Objects - //GDNode - //collide - //TileMap::TileMap - //<xsl:value-of select="$name" />
-                        if(globals.nodeArray[<xsl:value-of select="$actionNodeId" />] != null) {
+                        if(globals.nodeArray[globals.PARAM_NODE_<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
-                        globals.nodeArray[<xsl:value-of select="$actionNodeId" />] = new GDNode(<xsl:value-of select="$actionNodeId" />) {
+                        globals.nodeArray[globals.PARAM_NODE_<xsl:value-of select="$actionNodeId" />] = new GDNode(<xsl:value-of select="$actionNodeId" />) {
 
                             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
@@ -516,10 +516,10 @@ Created By: Travis Berthelot
                             
                             <xsl:if test="$typeValue = 'TextObject::Text'" >
                         //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //Objects - //GDNode - //collide - //TextObject::Text - //<xsl:value-of select="$name" />
-                        if(globals.nodeArray[<xsl:value-of select="$actionNodeId" />] != null) {
+                        if(globals.nodeArray[globals.PARAM_NODE_<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
-                        globals.nodeArray[<xsl:value-of select="$actionNodeId" />] = new GDNode(<xsl:value-of select="$actionNodeId" />) {
+                        globals.nodeArray[globals.PARAM_NODE_<xsl:value-of select="$actionNodeId" />] = new GDNode(<xsl:value-of select="$actionNodeId" />) {
 
                             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 

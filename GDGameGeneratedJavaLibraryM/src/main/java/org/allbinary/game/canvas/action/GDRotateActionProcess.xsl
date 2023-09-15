@@ -38,19 +38,19 @@ Created By: Travis Berthelot
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
                 <xsl:if test="$typeValue = 'Timer'" >
                     //Condition - //Timer - call
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                    if(!globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'NbObjet'" >
                     //Condition - //NbObjet - call
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                    if(!globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarScene'" >
                     //Condition - //VarScene - call
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                    if(!globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                         siblingConditions = false;
                     }
                 </xsl:if>
@@ -69,19 +69,19 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:if test="$typeValue = 'PosX'" >
                     //PosX
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
+                    if(!globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosY'" >
                     //PosY
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
+                    if(!globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarObjet'" >
                     //VarObjet
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
+                    if(!globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
                         siblingConditions = false;
                     }
                 </xsl:if>
@@ -119,19 +119,19 @@ Created By: Travis Berthelot
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
                 <xsl:if test="$typeValue = 'Timer'" >
                     //Condition - //Timer - call
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                    if(!globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'NbObjet'" >
                     //Condition - //NbObjet - call
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                    if(!globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarScene'" >
                     //Condition - //VarScene - call
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                    if(!globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
                         siblingConditions = false;
                     }
                 </xsl:if>
@@ -150,19 +150,19 @@ Created By: Travis Berthelot
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:if test="$typeValue = 'PosX'" >
                     //Condition - //PosX - call
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
+                    if(!globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosY'" >
                     //Condition - //PosY - call
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
+                    if(!globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
                         siblingConditions = false;
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarObjet'" >
                     //Condition - //VarObjet - call
-                    if(!globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
+                    if(!globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(gameLayer.gdObject, globals.graphics)) {
                         siblingConditions = false;
                     }
                 </xsl:if>

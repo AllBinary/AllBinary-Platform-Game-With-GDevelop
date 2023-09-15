@@ -20,7 +20,7 @@ Created By: Travis Berthelot
     <xsl:template name="collisionNPConditionGDNode" >
         <xsl:param name="nodeList" />
                         //collisionNPConditionGDNode
-                        globals.nodeArray[<xsl:value-of select="$nodeList" />] = new GDNode(<xsl:value-of select="$nodeList" />) {
+                        globals.nodeArray[globals.NODE_<xsl:value-of select="$nodeList" />] = new GDNode(<xsl:value-of select="$nodeList" />) {
                         
                             private final String NODE_AT = "Process GDNode <xsl:value-of select="$nodeList" /> at index: ";
 

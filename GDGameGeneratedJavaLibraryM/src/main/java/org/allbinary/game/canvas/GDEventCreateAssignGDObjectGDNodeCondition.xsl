@@ -98,7 +98,7 @@ Created By: Travis Berthelot
             </xsl:variable>
 
             <xsl:variable name="thisNodeArray" >
-                <xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:if></xsl:for-each>
+                <xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:if></xsl:for-each>
             </xsl:variable>
 
             <xsl:variable name="eventsCreateProcessUsed" >
@@ -747,17 +747,17 @@ Created By: Travis Berthelot
                 //TWBRemove - events that were not handled before
                 //Event - call - once - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
                 <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
         </xsl:for-each>
         <xsl:for-each select="actions" >
             <xsl:for-each select="parameters" >
                 <xsl:if test="position() = 1 and text() != '' and not(contains(text(), $objectsAsString))" >
                     //TWBRemove - had once for
-                    //globals.<xsl:value-of select="text()" />OnceGDNodeList.add(globals.nodeArray[<xsl:value-of select="$nodeId" />]);
+                    //globals.<xsl:value-of select="text()" />OnceGDNodeList.add(globals.nodeArray[globals.NODE_<xsl:value-of select="$nodeId" />]);
                 </xsl:if>
                 <xsl:if test="position() = 1 and text() != '' and contains(text(), $objectsAsString)" >
-        globals.<xsl:value-of select="text()" />OnceGDNodeList.add(globals.nodeArray[<xsl:value-of select="$nodeId" />]);
+        globals.<xsl:value-of select="text()" />OnceGDNodeList.add(globals.nodeArray[globals.NODE_<xsl:value-of select="$nodeId" />]);
                 </xsl:if>
             </xsl:for-each>
             

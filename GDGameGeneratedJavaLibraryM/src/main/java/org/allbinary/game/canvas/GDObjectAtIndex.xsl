@@ -178,11 +178,11 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($parametersAsString, $name) = text()" >
                             <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                         //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - //collide - Sprite
-                        gdNodeList.add(globals.nodeArray[<xsl:value-of select="$actionNodeId" />]);
+                        gdNodeList.add(globals.nodeArray[globals.NODE_<xsl:value-of select="$actionNodeId" />]);
                             </xsl:if>
                             <xsl:if test="$typeValue = 'TextObject::Text'" >
                         //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - //collide - TextObject::Text
-                        gdNodeList.add(globals.nodeArray[<xsl:value-of select="$actionNodeId" />]);
+                        gdNodeList.add(globals.nodeArray[globals.NODE_<xsl:value-of select="$actionNodeId" />]);
                             </xsl:if>
                         </xsl:if>
 
