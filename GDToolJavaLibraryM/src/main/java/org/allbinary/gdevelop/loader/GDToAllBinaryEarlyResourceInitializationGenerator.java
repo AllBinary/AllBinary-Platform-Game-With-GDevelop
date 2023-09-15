@@ -27,7 +27,9 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
     
-    private final String RESOURCE_0 = "\n        resourceUtil.addResource(";
+    private final String NEW_LINE = "\n";
+    private final String COMMENT = "//";
+    private final String RESOURCE_0 = "        resourceUtil.addResource(";
     
     private final String SOUND_RESOURCE = ".getInstance().getResource(), ";
 
@@ -92,10 +94,24 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
         final BasicArrayList androidResourceList = this.gdResources.androidResourceList;
         
         int size = resourceList.size();
+        final int size2 = 100;
+        String resource;
         for(int index = 0; index < size; index++) {
+            
+            resource = (String) resourceList.get(index);
+
+            stringBuilder.append(NEW_LINE);
+            
+            for(int index2 = 2; index2 < size2; index2++) {
+                if(resource.indexOf("_" + index2) >= 0) {
+                    stringBuilder.append(COMMENT);
+                }
+            }
+            
             stringBuilder.append(RESOURCE_0);
+            
             stringBuilder.append(GD_RESOURCE);
-            stringBuilder.append(resourceList.get(index));
+            stringBuilder.append(resource);
             stringBuilder.append(_RESOURCE);
             stringBuilder.append(RESOURCE_1);
             stringBuilder.append(androidResourceList.get(index));
