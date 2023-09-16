@@ -62,7 +62,9 @@ Created By: Travis Berthelot
                 public final String[] ANIMATION_NAMES = {
                 <xsl:for-each select="animations" >
                     <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:if test="string-length($animationName) > 0" >
                     globals.<xsl:value-of select="$animationName" />,
+                    </xsl:if>
                 </xsl:for-each>
                 };
                 </xsl:if>
