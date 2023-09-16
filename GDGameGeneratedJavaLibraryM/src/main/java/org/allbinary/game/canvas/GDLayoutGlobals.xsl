@@ -229,7 +229,9 @@ public class GDStructure {
 
                         <xsl:for-each select="animations" >
                             <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            <xsl:if test="string-length($animationName)" >
                         public final String <xsl:value-of select="$animationName" /> = "<xsl:value-of select="name" />";
+                            </xsl:if>
                         </xsl:for-each>
 
                     </xsl:for-each>

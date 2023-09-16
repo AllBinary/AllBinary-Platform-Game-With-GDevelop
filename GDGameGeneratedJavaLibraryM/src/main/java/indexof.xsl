@@ -20,4 +20,22 @@
         </xsl:choose>
     </xsl:template>
 
+    <xsl:template name="substring-after-last">
+        <xsl:param name="string" />
+        <xsl:param name="char" />
+
+        <xsl:choose>
+            <xsl:when test="contains($string, $char)">
+                <xsl:call-template name="substring-after-last">
+                    <xsl:with-param name="string" select="substring-after($string, $char)" />
+                    <xsl:with-param name="char" select="$char" />
+                </xsl:call-template>
+            </xsl:when>
+
+            <xsl:otherwise>
+                <xsl:value-of select="$string" />
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+  
 </xsl:stylesheet>
