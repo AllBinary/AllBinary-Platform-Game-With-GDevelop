@@ -66,6 +66,8 @@ Created By: Travis Berthelot
 
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.resource.GDResources;
+                import org.allbinary.graphics.PointFactory;
+                import org.allbinary.graphics.Rectangle;
                 import org.allbinary.image.ImageCache;
                 import org.allbinary.image.ImageCacheFactory;
                 import org.allbinary.image.opengles.OpenGLImageCacheFactory;
@@ -76,6 +78,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.logic.system.PlatformAssetManager;
                 import org.allbinary.media.image.ImageCopyUtil;
+                import org.allbinary.media.image.ImageScaleUtil;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources extends SpecialAnimation
@@ -96,6 +99,7 @@ Created By: Travis Berthelot
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
+                        private final ImageScaleUtil imageScaleUtil = ImageScaleUtil.getInstance();
                         private final ImageCache imageCache = OpenGLImageCacheFactory.getInstance();
                         private final GDResources gdResources = GDResources.getInstance();
 

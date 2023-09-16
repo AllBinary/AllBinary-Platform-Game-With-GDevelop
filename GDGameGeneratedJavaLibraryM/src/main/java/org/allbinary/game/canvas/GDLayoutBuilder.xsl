@@ -273,11 +273,11 @@ Created By: Travis Berthelot
                         if(true) {
                         <xsl:if test="layer != '' or contains($notTextObject, 'found') or contains($objectsAsString, $colonName)" >
                             
-                            <xsl:if test="contains(layer, 'touch')" >
+                            <xsl:if test="contains(name, 'btn_')" >
                         final int width = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
                         final int height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
                             </xsl:if>
-                            <xsl:if test="not(contains(layer, 'touch'))" >
+                            <xsl:if test="not(contains(name, 'btn_'))" >
 
                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
                         final int width = (int) (imageResources.<xsl:value-of select="name" />Rectangle.getWidth() / 1.44f);
@@ -293,12 +293,12 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($hasCentreCamera, 'found')" >
                         final int <xsl:value-of select="name" />X = centerCameraX != 0 ? centerCameraX - width / 2 : (int) (<xsl:value-of select="x" /> * baseLayerScale);
                         final int <xsl:value-of select="name" />Y =
-                            <xsl:if test="contains(layer, 'touch')" >
+                            <xsl:if test="contains(name, 'btn_')" >
                                 //Hack - for android orientation change.
                                  (int) <xsl:if test="y = 506" >DisplayInfoSingleton.getInstance().getLastHeight() - (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100));</xsl:if>
                                 <xsl:if test="y = 415" >DisplayInfoSingleton.getInstance().getLastHeight() - (2 * (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100)));</xsl:if>
                             </xsl:if>
-                            <xsl:if test="not(contains(layer, 'touch'))" >
+                            <xsl:if test="not(contains(name, 'btn_'))" >
                                 centerCameraX != 0 ? centerCameraY - height / 2 :  (int) (<xsl:value-of select="y" /> * baseLayerScale);
                             </xsl:if>
                         </xsl:if>
@@ -322,13 +322,13 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
                         //instances //We may need to set a dimension for each image/animation.
                             //Hack - the other 'btn_' cases need to look at the layer to see if it is touch or not.
-                            <xsl:if test="contains(layer, 'touch')" >
+                            <xsl:if test="contains(name, 'btn_')" >
                         <xsl:value-of select="name" />GDobject2.canvasWidth = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
                         <xsl:value-of select="name" />GDobject2.canvasHeight = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();
                         <xsl:value-of select="name" />GDobject2.width = width;
                         <xsl:value-of select="name" />GDobject2.height = height;
                             </xsl:if>
-                            <xsl:if test="not(contains(layer, 'touch'))" >
+                            <xsl:if test="not(contains(name, 'btn_'))" >
                         <xsl:value-of select="name" />GDobject2.canvasWidth = imageResources.<xsl:value-of select="name" />Rectangle.getWidth();
                         <xsl:value-of select="name" />GDobject2.canvasHeight = imageResources.<xsl:value-of select="name" />Rectangle.getHeight();
                         <xsl:value-of select="name" />GDobject2.width = width;
@@ -342,7 +342,7 @@ Created By: Travis Berthelot
                         globals.<xsl:value-of select="name" />GDObjectList.add(<xsl:value-of select="name" />GDobject2);
                         </xsl:if>
 
-                        <xsl:if test="layer = 'touch'" >
+                        <xsl:if test="contains(name, 'btn_')" >
                         final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
                             PointFactory.getInstance().getInstance(<xsl:value-of select="name" />GDobject2.x, <xsl:value-of select="name" />GDobject2.y),
                             <xsl:value-of select="name" />GDobject2.Width(globals.graphics), <xsl:value-of select="name" />GDobject2.Height(globals.graphics));
