@@ -103,7 +103,7 @@ Created By: Travis Berthelot
                 </xsl:for-each>
             </xsl:variable>
 
-            <!-- <xsl:if test="type/value != 'Timer' and type/value != 'CollisionNP' and type/value != 'VarObjet' and type/value = 'NbObjet' and type/value = 'DepartScene' and type/value = 'SourisSurObjet' and type/value = 'MouseButtonReleased'  and type/value = 'SourisBouton'" >found</xsl:if> -->
+            <!-- <xsl:if test="type/value != 'Timer' and type/value != 'CollisionNP' and type/value != 'VarObjet' and type/value = 'NbObjet' and type/value = 'DepartScene' and type/value = 'SourisSurObjet' and type/value = 'MouseButtonReleased'  and type/value = 'SourisBouton' MouseButtonPressed" >found</xsl:if> -->
 
             <xsl:variable name="foundOtherCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'VarObjet' or type/value = 'NbObjet' or type/value = 'ObjectVariableAsBoolean'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="foundVarSceneCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'VarScene'" >found</xsl:if></xsl:for-each></xsl:variable>

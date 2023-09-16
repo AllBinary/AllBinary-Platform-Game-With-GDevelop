@@ -135,6 +135,12 @@ Created By: Travis Berthelot
                             <xsl:if test="type/value = 'MouseButtonReleased'" >
                             globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             </xsl:if>
+                            <xsl:if test="type/value = 'MouseButtonPressed'" >
+                            final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
+                            if (motionGestureInput == TouchMotionGestureFactory.getInstance().PRESSED) {
+                                globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            }
+                            </xsl:if>
                             <xsl:if test="type/value = 'SourisBouton'" >
                             final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
                             if (motionGestureInput == TouchMotionGestureFactory.getInstance().PRESSED) {

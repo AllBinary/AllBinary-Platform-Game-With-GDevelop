@@ -75,7 +75,7 @@ Created By: Travis Berthelot
                 </xsl:for-each>
             </xsl:variable>
 
-            <xsl:variable name="hasAssociatedSiblingCondition" select="conditions/type/value = 'MouseButtonReleased' or conditions/type/value = 'SourisBouton' or conditions/type/value = 'VarScene' or conditions/type/value = 'Timer'" />
+            <xsl:variable name="hasAssociatedSiblingCondition" select="conditions/type/value = 'MouseButtonReleased' or conditions/type/value = 'SourisBouton' or conditions/type/value = 'MouseButtonPressed' or conditions/type/value = 'VarScene' or conditions/type/value = 'Timer'" />
             <xsl:variable name="parentEventType" ><xsl:for-each select="../../events" ><xsl:value-of select="type" /></xsl:for-each></xsl:variable>
             <xsl:variable name="actionTypesAsString" ><xsl:for-each select="actions" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="type/value" />,</xsl:for-each></xsl:variable>
             <xsl:variable name="parametersAsString0" ><xsl:for-each select="actions" ><xsl:for-each select="parameters" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="text()" />,</xsl:for-each></xsl:for-each></xsl:variable>
@@ -123,7 +123,7 @@ Created By: Travis Berthelot
             </xsl:variable>
 
             <!-- conditions - START -->
-            <xsl:variable name="alreadyUsedCondition" ><xsl:for-each select="conditions" ><xsl:if test="(type/value = 'SourisSurObjet' or type/value = 'CollisionNP' or type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased')" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="alreadyUsedCondition" ><xsl:for-each select="conditions" ><xsl:if test="(type/value = 'SourisSurObjet' or type/value = 'CollisionNP' or type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased')" >found</xsl:if></xsl:for-each></xsl:variable>
             
             <xsl:for-each select="whileConditions" >
                 <xsl:if test="type/value = 'PopEndedTouch'" >
@@ -441,8 +441,8 @@ Created By: Travis Berthelot
                     <xsl:if test="$typeValue = 'IsMouseInsideCanvas'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
                     <xsl:if test="$typeValue = 'SourisX'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
                     <xsl:if test="$typeValue = 'SourisY'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
-                    <xsl:if test="$typeValue = 'MouseButtonPressed'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
-                    <xsl:if test="$typeValue = 'SourisBouton'" >
+
+                    <xsl:if test="$typeValue = 'MouseButtonPressed' or $typeValue = 'SourisBouton'" >
                         //SourisBouton/MouseButtonPressed - Some Handled by AllBinary Event Listeners?
                         <xsl:call-template name="sourisBoutonConditionGDNode" >
                             <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
