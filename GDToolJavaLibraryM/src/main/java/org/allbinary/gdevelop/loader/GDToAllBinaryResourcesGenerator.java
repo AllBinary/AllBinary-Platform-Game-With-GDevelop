@@ -80,7 +80,7 @@ public class GDToAllBinaryResourcesGenerator
                 resourceStringBuilder.append("//");
             }
             for(int index2 = 2; index2 < size2; index2++) {
-                if(resource.indexOf("_" + index2) >= 0) {
+                if(name.endsWith("_" + index2)) {
                     resourceStringBuilder.append("//");
                 }
             }
