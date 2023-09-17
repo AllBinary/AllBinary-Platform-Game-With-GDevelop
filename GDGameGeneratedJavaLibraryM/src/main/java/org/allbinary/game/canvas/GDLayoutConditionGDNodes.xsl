@@ -86,6 +86,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+                import org.allbinary.graphics.displayable.screen.DisplayPointScalar;
                 import org.allbinary.input.motion.gesture.MotionGestureInput;
                 import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;

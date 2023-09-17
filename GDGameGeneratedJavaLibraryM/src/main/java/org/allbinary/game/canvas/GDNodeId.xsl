@@ -273,6 +273,7 @@
 
     </xsl:template>
 
+<!--
     <xsl:template name="actionIdsMotionGestureEvent">
         <xsl:param name="totalRecursions" />
         <xsl:param name="layoutIndex" />
@@ -335,6 +336,7 @@
         </xsl:for-each>
 
     </xsl:template>
+-->
 
     <!-- Events - <xsl:value-of select="$totalRecursions" /> -->
 <!--

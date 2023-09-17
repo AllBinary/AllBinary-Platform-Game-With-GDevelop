@@ -34,6 +34,8 @@ Created By: Travis Berthelot
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
 
+                        private final DisplayPointScalar displayPointScalar = DisplayPointScalar.getInstance();
+
                         //SourisSurObjet
                         @Override
                         public void process(final MotionGestureEvent motionGestureEvent) throws Exception {
@@ -48,9 +50,10 @@ Created By: Travis Berthelot
                             
                                 <xsl:value-of select="text()" />Rectangle = (Rectangle) globals.<xsl:value-of select="text()" />RectangleList.get(index);
                                 //LogUtil.put(LogFactory.getInstance("globals.<xsl:value-of select="text()" />Rectangle - Not Null", this, commonStrings.PROCESS));
-                                final GPoint point = motionGestureEvent.getCurrentPoint();
+                                final GPoint point = displayPointScalar.process(motionGestureEvent.getCurrentPoint());
                                 final GPoint rectangePoint = <xsl:value-of select="text()" />Rectangle.getPoint();
                                 //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="text()" />Rectangle - motionGestureEvent: " + motionGestureEvent.toString(), this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="text()" /> - point: " + point.toString(), this, commonStrings.PROCESS));
                                 //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="text()" />Rectangle: " + <xsl:value-of select="text()" />Rectangle.toString(), this, commonStrings.PROCESS));
                                 if (RectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY() - 2, <xsl:value-of select="text()" />Rectangle.getMaxX(), <xsl:value-of select="text()" />Rectangle.getMaxY() + 2,
                                     point.getX(), point.getY()))
