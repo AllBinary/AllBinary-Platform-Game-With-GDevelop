@@ -35,7 +35,7 @@ Created By: Travis Berthelot
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
 
                         private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
-                        private final DisplayPointScalar displayPointScalar = DisplayPointScalar.getInstance();
+                        //private final DisplayPointScalar displayPointScalar = DisplayPointScalar.getInstance();
 
                         private final Runnable runnable = new Runnable() {
                         
@@ -111,19 +111,28 @@ Created By: Travis Berthelot
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 <xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 1" >
-                            final int size = globals.<xsl:value-of select="text()" />RectangleList.size();
-                            Rectangle <xsl:value-of select="text()" />Rectangle = null;
+                            //final int size = globals.<xsl:value-of select="text()" />RectangleList.size();
+                            //Rectangle <xsl:value-of select="text()" />Rectangle = null;                                        
+                            final int size = globals.<xsl:value-of select="text()" />GDGameLayerList.size();
+                            //final int size = globals.<xsl:value-of select="text()" />RectangleList.size();
+                            GDGameLayer gameLayer;
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             
-                                <xsl:value-of select="text()" />Rectangle = (Rectangle) globals.<xsl:value-of select="text()" />RectangleList.get(index);
+                                //<xsl:value-of select="text()" />Rectangle = (Rectangle) globals.<xsl:value-of select="text()" />RectangleList.get(index);
                                 //LogUtil.put(LogFactory.getInstance("globals.<xsl:value-of select="text()" />Rectangle - Not Null", this, commonStrings.PROCESS));
-                                final GPoint point = displayPointScalar.process(motionGestureEvent.getCurrentPoint());
-                                final GPoint rectangePoint = <xsl:value-of select="text()" />Rectangle.getPoint();
+                                //final GPoint point = displayPointScalar.process(motionGestureEvent.getCurrentPoint());
+                                //final GPoint rectangePoint = <xsl:value-of select="text()" />Rectangle.getPoint();
+                                
+                                gameLayer = (GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index);
+                                //LogUtil.put(LogFactory.getInstance("globals.<xsl:value-of select="text()" />GDameLayer - Not Null", this, commonStrings.PROCESS));
+                                final GPoint point = motionGestureEvent.getCurrentPoint();
                                 //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="text()" />Rectangle - motionGestureEvent: " + motionGestureEvent.toString(), this, commonStrings.PROCESS));
                                 //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="text()" /> - point: " + point.toString(), this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="text()" />GDGameLayer: " + gameLayer.toString(), this, commonStrings.PROCESS));
+                                
                                 //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="text()" />Rectangle: " + <xsl:value-of select="text()" />Rectangle.toString(), this, commonStrings.PROCESS));
-                                if (RectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY() - 2, <xsl:value-of select="text()" />Rectangle.getMaxX(), <xsl:value-of select="text()" />Rectangle.getMaxY() + 2,
-                                    point.getX(), point.getY()))
+                                //if (RectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY() - 2, <xsl:value-of select="text()" />Rectangle.getMaxX(), <xsl:value-of select="text()" />Rectangle.getMaxY() + 2, point.getX(), point.getY()))
+                                if (RectangleCollisionUtil.isInside(gameLayer.getX(), gameLayer.getY() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY()))
                                 {
                                     //LogUtil.put(LogFactory.getInstance("Inside", this, commonStrings.PROCESS));
                                     final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
