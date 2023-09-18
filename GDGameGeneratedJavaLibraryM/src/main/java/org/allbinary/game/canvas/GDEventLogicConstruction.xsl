@@ -107,14 +107,17 @@ Created By: Travis Berthelot
                 //eventsLogicConstructionMotionGestureEvent - Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                 <xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'MouseButtonPressed'" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
+                                        
                     <!-- //MouseButtonReleased - create Listener -->
                     <!-- //SourisBouton - create Listener -->
                     //<xsl:value-of select="type/value" /> - create Listener
                     globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new BaseMotionGestureEventListener() {
 
+                    private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
+
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         //private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
-
+                        
                         public void onEvent(final AllBinaryEventObject eventObject)
                         {
                         }
@@ -136,25 +139,17 @@ Created By: Travis Berthelot
                             <xsl:if test="type/value = 'MouseButtonReleased'" >
                             globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             </xsl:if>
-                            <xsl:if test="type/value = 'MouseButtonPressed'" >
-                            final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
-                            if (motionGestureInput == TouchMotionGestureFactory.getInstance().PRESSED) {
-                                globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                            }
-                            </xsl:if>
                             <xsl:if test="type/value = 'SourisBouton'" >
                             final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
-                            if (motionGestureInput == TouchMotionGestureFactory.getInstance().PRESSED) {
+                            if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
                                 globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             }
                             </xsl:if>
 
-<!--
                             <xsl:call-template name="actionIdsMotionGestureEvent" >
                                 <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                                 <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                             </xsl:call-template>
--->
 
                             } catch(Exception e) {
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
@@ -162,6 +157,7 @@ Created By: Travis Berthelot
                         }
 
                     };
+
                 </xsl:if>
 
             </xsl:for-each>

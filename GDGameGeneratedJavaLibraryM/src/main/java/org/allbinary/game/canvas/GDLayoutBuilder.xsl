@@ -86,6 +86,8 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.CollidableCompositeLayer;
+                import org.allbinary.game.layout.BaseGDNodeStats;
+                import org.allbinary.game.layout.GDNodeStatsFactory;
                 import org.allbinary.game.layout.GDObjectStrings;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.PointFactory;
@@ -99,6 +101,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.basic.util.event.AllBinaryEventObject;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.thread.NullRunnable;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.ArrayUtil;
 
@@ -123,7 +126,8 @@ Created By: Travis Berthelot
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-                        
+
+                        private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();                        
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
 

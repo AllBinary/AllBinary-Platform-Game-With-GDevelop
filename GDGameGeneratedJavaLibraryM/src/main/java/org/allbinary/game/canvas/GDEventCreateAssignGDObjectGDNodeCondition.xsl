@@ -18,8 +18,8 @@ Created By: Travis Berthelot
 
     <xsl:import href="./condition/GDOnceConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAlwaysConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDOrConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSoundPlayingConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDSourisBoutonConditionGDNode.xsl" />
     <xsl:import href="./condition/GDLayerVisibleConditionGDNode.xsl" />
     <xsl:import href="./condition/GDKeyFromTextPressedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDKeyFromTextReleasedConditionGDNode.xsl" />
@@ -34,6 +34,8 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDVarObjetConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVarSceneConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSourisSurObjetConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDSourisBoutonConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDMouseButtonPressedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDMouseButtonReleasedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDDepartSceneConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSceneVariableAsBooleanConditionGDNode.xsl" />
@@ -380,7 +382,7 @@ Created By: Travis Berthelot
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
       
                     <xsl:if test="$typeValue = 'BuiltinCommonInstructions::Or'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        <xsl:call-template name="orConditionGDNode" />
                     </xsl:if>
                     <xsl:if test="$typeValue = 'BuiltinCommonInstructions::And'" >
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
@@ -442,8 +444,17 @@ Created By: Travis Berthelot
                     <xsl:if test="$typeValue = 'SourisX'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
                     <xsl:if test="$typeValue = 'SourisY'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
 
-                    <xsl:if test="$typeValue = 'MouseButtonPressed' or $typeValue = 'SourisBouton'" >
-                        //SourisBouton/MouseButtonPressed - Some Handled by AllBinary Event Listeners?
+                    <xsl:if test="$typeValue = 'MouseButtonPressed'" >
+                        //MouseButtonPressed - Some Handled by AllBinary Event Listeners? should have as a sub condition //SourisSurObjet
+                        <xsl:call-template name="mouseButtonPressedConditionGDNode" >
+                            <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
+                            <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                            <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:if>
+
+                    <xsl:if test="$typeValue = 'SourisBouton'" >
+                        //SourisBouton - Some Handled by AllBinary Event Listeners? This is currently for single button press without continued processing until release
                         <xsl:call-template name="sourisBoutonConditionGDNode" >
                             <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
                             <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
