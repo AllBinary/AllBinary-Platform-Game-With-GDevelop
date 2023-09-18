@@ -239,6 +239,12 @@ Created By: Travis Berthelot
                 
                 <xsl:if test="type = 'TileMap::TileMap'" >
                         this.allBinaryGameLayerManager = allBinaryGameLayerManager;
+                    
+                        //final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+                        //if(this.gdObject.type == globals.TILEMAP__TILEMAP) {
+                            //this.updatePosition();
+                        //}
+                    
                 </xsl:if>
 
             </xsl:for-each>
@@ -338,10 +344,16 @@ Created By: Travis Berthelot
                     } else {
                         this.gdObject.x = lastX;
                         this.gdObject.y = lastY;
+                        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Back: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
                     }
 
                 } else {
-                    this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
+                    final GDGameLayer <xsl:value-of select="$gameLayer" /> = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
+                    if(this == <xsl:value-of select="$gameLayer" />) {
+                        this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
+                    } else {
+                        super.move();
+                    }
                 }
             } else {
                 //LogUtil.put(LogFactory.getInstance("Map was null, this, "move"));
