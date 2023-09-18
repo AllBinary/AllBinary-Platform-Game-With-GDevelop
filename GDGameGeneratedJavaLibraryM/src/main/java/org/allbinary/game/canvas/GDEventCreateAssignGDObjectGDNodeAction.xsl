@@ -49,6 +49,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDMettreYActionProcess.xsl" />
     <xsl:import href="./action/GDMettreXYActionProcess.xsl" />
     <xsl:import href="./action/GDMettreAutourPosActionProcess.xsl" />
+    <xsl:import href="./action/GDModVarGlobalActionProcess.xsl" />
     <xsl:import href="./action/GDModVarSceneActionProcess.xsl" />
     <xsl:import href="./action/GDDeleteActionProcess.xsl" />
     <xsl:import href="./action/GDAddForceALActionProcess.xsl" />
@@ -425,6 +426,23 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
+                </xsl:if>
+                
+                <xsl:if test="$typeValue = 'ModVarGlobal'" >
+
+                    <xsl:call-template name="modVarGlobalActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'ModVarGlobalTxt'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'Delete'" >

@@ -40,6 +40,29 @@ Created By: Travis Berthelot
     
     <xsl:output method="html" indent="yes" />
 
+    <xsl:template name="variables" >
+                        <xsl:for-each select="variables" >
+                            <xsl:if test="type = 'structure'" >
+                        public final GDStructure<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = new GDStructure<xsl:value-of select="name" />();
+                            </xsl:if>
+                            <xsl:if test="type = 'string'" >
+                                <xsl:if test="number(value) != value" >
+                                    public String <xsl:value-of select="name" /> = <xsl:if test="value = ''" >StringUtil.getInstance().EMPTY_STRING</xsl:if><xsl:if test="value != ''" >"<xsl:value-of select="value" />"</xsl:if>;
+                                </xsl:if>
+                                <xsl:if test="number(value) = value" >
+                        public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                                </xsl:if>
+                            </xsl:if>
+                            <xsl:if test="type = 'boolean'" >
+                        public boolean <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                            </xsl:if>
+                            <xsl:if test="type = 'number'" >
+                        public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                            </xsl:if>
+
+                        </xsl:for-each>
+    </xsl:template>
+
     <xsl:template match="/game">
         //game
         <xsl:variable name="windowWidth" select="properties/windowWidth" />
@@ -130,6 +153,11 @@ public class GDStructure {
     public int Size = -1;
 
 }                    
+                    //global - variables - START
+                    <xsl:for-each select=".." >
+                    <xsl:call-template name="variables" />
+                    </xsl:for-each>
+                    //global - variables - END
                     
                     //variablesStructures - START
                     <xsl:call-template name="variablesStructures" >
@@ -146,23 +174,7 @@ public class GDStructure {
                         </xsl:for-each>
 
                         //variables - START
-                        <xsl:for-each select="variables" >
-                            <xsl:if test="type = 'structure'" >
-                        public final GDStructure<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = new GDStructure<xsl:value-of select="name" />();
-                            </xsl:if>
-                            <xsl:if test="type = 'string'" >
-                                <xsl:if test="number(value) != value" >
-                                    public String <xsl:value-of select="name" /> = <xsl:if test="value = ''" >StringUtil.getInstance().EMPTY_STRING</xsl:if><xsl:if test="value != ''" >"<xsl:value-of select="value" />"</xsl:if>;
-                                </xsl:if>
-                                <xsl:if test="number(value) = value" >
-                        public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                                </xsl:if>
-                            </xsl:if>
-                            <xsl:if test="type = 'boolean'" >
-                        public boolean <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                            </xsl:if>
-
-                        </xsl:for-each>
+                        <xsl:call-template name="variables" />
                         //variables - END
 
                         <xsl:variable name="objectsWithOnceCondition" ><xsl:call-template name="gdNodeToOnceList" ><xsl:with-param name="iteration" >0</xsl:with-param></xsl:call-template></xsl:variable>

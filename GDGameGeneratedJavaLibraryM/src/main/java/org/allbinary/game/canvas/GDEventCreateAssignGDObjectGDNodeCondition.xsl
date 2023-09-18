@@ -31,6 +31,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDPosYConditionGDNode.xsl" />
     <xsl:import href="./condition/GDNbObjetConditionGDNode.xsl" />
     <xsl:import href="./condition/GDOpacityConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDVarGlobalConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVarObjetConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVarSceneConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSourisSurObjetConditionGDNode.xsl" />
@@ -44,7 +45,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDVelocityConditionGDNode.xsl" />
     <xsl:import href="./condition/GDObjectVariableAsBooleanConditionGDNode.xsl" />
 
-    <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition" >
+    <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition2" >
         <xsl:param name="caller" />
         <xsl:param name="totalRecursions" />
         <xsl:param name="layoutIndex" />
@@ -54,92 +55,13 @@ Created By: Travis Berthelot
         <xsl:param name="createdObjectsAsString" />
         <xsl:param name="conditionEventPosition" />
         <xsl:param name="hasParentOnceCondition" />
-                 
-        <xsl:variable name="quote" >"</xsl:variable>
+        <xsl:param name="alreadyUsedCondition" />
+        <xsl:param name="thisNodeArray" />
+        <xsl:param name="eventAsString" />
+        <xsl:param name="actionAsStringsStrings" />
+        <xsl:param name="logString" />
+        <xsl:param name="eventsCreateProcessUsed" />
         
-        <xsl:for-each select="events" >
-            <xsl:variable name="eventPosition" select="position()" />
-            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-
-            <xsl:variable name="eventAsString" >
-            //2
-            private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />";
-            <xsl:text>&#10;</xsl:text>
-            </xsl:variable>
-
-            <xsl:variable name="logString" >EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                        
-            <!-- //Hackish - actionWithTextObjectString is probably bad idea -->
-            <xsl:variable name="actionWithTextObjectString" >
-                <xsl:for-each select="actions" >
-                    <xsl:variable name="typeValue" select="type/value" />
-                    <xsl:if test="$typeValue = 'TextObject::String'" >found:<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:if>
-                </xsl:for-each>
-            </xsl:variable>
-
-            <xsl:variable name="hasAssociatedSiblingCondition" select="conditions/type/value = 'MouseButtonReleased' or conditions/type/value = 'SourisBouton' or conditions/type/value = 'MouseButtonPressed' or conditions/type/value = 'VarScene' or conditions/type/value = 'Timer'" />
-            <xsl:variable name="parentEventType" ><xsl:for-each select="../../events" ><xsl:value-of select="type" /></xsl:for-each></xsl:variable>
-            <xsl:variable name="actionTypesAsString" ><xsl:for-each select="actions" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="type/value" />,</xsl:for-each></xsl:variable>
-            <xsl:variable name="parametersAsString0" ><xsl:for-each select="actions" ><xsl:for-each select="parameters" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="text()" />,</xsl:for-each></xsl:for-each></xsl:variable>
-            <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-
-            <xsl:variable name="actionAsStringsStrings" >
-            <xsl:for-each select="actions" >
-                <xsl:variable name="typeValue" select="type/value" />
-                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                <xsl:variable name="actionAsString" >Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
-                        <xsl:if test="$typeValue != 'PauseTimer' and $typeValue != 'PlaySoundCanal'" >
-                private final String ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($actionAsString, $quote, ' ')" />";
-                        </xsl:if>
-                        <xsl:if test="$typeValue != 'ModVarScene' and $typeValue != 'AddForceAL' and $typeValue != 'PlaySoundCanal' and $typeValue != 'StopSoundCanal'" >
-                private final String ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($actionAsString, $quote, ' ')" /> at: ";
-                        </xsl:if>
-                <xsl:text>&#10;</xsl:text>
-            </xsl:for-each>
-            </xsl:variable>
-
-            <xsl:variable name="thisNodeArray" >
-                <xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:if></xsl:for-each>
-            </xsl:variable>
-
-            <xsl:variable name="eventsCreateProcessUsed" >
-                <xsl:call-template name="eventsCreateProcessUsed" >
-                    <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
-                    <xsl:with-param name="thisNodeIndex" >
-                        <xsl:value-of select="$thisNodeIndex" />
-                    </xsl:with-param>
-                    <xsl:with-param name="objectsAsString" >
-                        <xsl:value-of select="$objectsAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="layoutIndex" >
-                        <xsl:value-of select="$layoutIndex" />
-                    </xsl:with-param>
-                    <xsl:with-param name="parametersAsString" >
-                        <xsl:value-of select="$parametersAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="createdObjectsAsString" >
-                        <xsl:value-of select="$createdObjectsAsString" />
-                    </xsl:with-param>
-                </xsl:call-template>
-            </xsl:variable>
-
-            <!-- conditions - START -->
-            <xsl:variable name="alreadyUsedCondition" ><xsl:for-each select="conditions" ><xsl:if test="(type/value = 'SourisSurObjet' or type/value = 'CollisionNP' or type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased')" >found</xsl:if></xsl:for-each></xsl:variable>
-            
-            <xsl:for-each select="whileConditions" >
-                <xsl:if test="type/value = 'PopEndedTouch'" >
-                    
-                    <xsl:call-template name="popEndedTouchConditionGDNode" >
-                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
-                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
-                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
-                    </xsl:call-template>
-
-                </xsl:if>
-            </xsl:for-each>
-            
-            <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
@@ -651,7 +573,18 @@ Created By: Travis Berthelot
                     
                 </xsl:if>
                 
-                <xsl:if test="$typeValue = 'VarGlobal'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'VarGlobal'" >
+                    <xsl:call-template name="varGlobalConditionGDNode" >
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
+                        <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                        <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
+                    </xsl:call-template>
+                </xsl:if>
+                
                 <xsl:if test="$typeValue = 'VarGlobalTxt'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
                 <xsl:if test="$typeValue = 'GlobalVariableAsBoolean'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
                 <xsl:if test="$typeValue = 'VarSceneDef'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
@@ -701,7 +634,211 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'AngularMaxSpeed'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
                 <xsl:if test="$typeValue = 'XVelocity'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
                 <xsl:if test="$typeValue = 'YVelocity'" >                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED                </xsl:if>
-                                
+        
+    </xsl:template>
+
+    <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition" >
+        <xsl:param name="caller" />
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="thisNodeIndex" />
+        <xsl:param name="instancesAsString" />
+        <xsl:param name="objectsAsString" />
+        <xsl:param name="createdObjectsAsString" />
+        <xsl:param name="conditionEventPosition" />
+        <xsl:param name="hasParentOnceCondition" />
+                 
+        <xsl:variable name="quote" >"</xsl:variable>
+        
+        <xsl:for-each select="events" >
+            <xsl:variable name="eventPosition" select="position()" />
+            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+
+            <xsl:variable name="eventAsString" >
+            //2
+            private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />";
+            <xsl:text>&#10;</xsl:text>
+            </xsl:variable>
+
+            <xsl:variable name="logString" >EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                        
+            <!-- //Hackish - actionWithTextObjectString is probably bad idea -->
+            <xsl:variable name="actionWithTextObjectString" >
+                <xsl:for-each select="actions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    <xsl:if test="$typeValue = 'TextObject::String'" >found:<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:if>
+                </xsl:for-each>
+            </xsl:variable>
+
+            <xsl:variable name="hasAssociatedSiblingCondition" select="conditions/type/value = 'MouseButtonReleased' or conditions/type/value = 'SourisBouton' or conditions/type/value = 'MouseButtonPressed' or conditions/type/value = 'VarScene' or conditions/type/value = 'Timer'" />
+            <xsl:variable name="parentEventType" ><xsl:for-each select="../../events" ><xsl:value-of select="type" /></xsl:for-each></xsl:variable>
+            <xsl:variable name="actionTypesAsString" ><xsl:for-each select="actions" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="type/value" />,</xsl:for-each></xsl:variable>
+            <xsl:variable name="parametersAsString0" ><xsl:for-each select="actions" ><xsl:for-each select="parameters" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="text()" />,</xsl:for-each></xsl:for-each></xsl:variable>
+            <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+
+            <xsl:variable name="actionAsStringsStrings" >
+            <xsl:for-each select="actions" >
+                <xsl:variable name="typeValue" select="type/value" />
+                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                <xsl:variable name="actionAsString" >Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
+                        <xsl:if test="$typeValue != 'PauseTimer' and $typeValue != 'PlaySoundCanal'" >
+                private final String ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($actionAsString, $quote, ' ')" />";
+                        </xsl:if>
+                        <xsl:if test="$typeValue != 'ModVarScene' and $typeValue != 'AddForceAL' and $typeValue != 'PlaySoundCanal' and $typeValue != 'StopSoundCanal'" >
+                private final String ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($actionAsString, $quote, ' ')" /> at: ";
+                        </xsl:if>
+                <xsl:text>&#10;</xsl:text>
+            </xsl:for-each>
+            </xsl:variable>
+
+            <xsl:variable name="thisNodeArray" >
+                <xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:if></xsl:for-each>
+            </xsl:variable>
+
+            <xsl:variable name="eventsCreateProcessUsed" >
+                <xsl:call-template name="eventsCreateProcessUsed" >
+                    <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
+                    <xsl:with-param name="thisNodeIndex" >
+                        <xsl:value-of select="$thisNodeIndex" />
+                    </xsl:with-param>
+                    <xsl:with-param name="objectsAsString" >
+                        <xsl:value-of select="$objectsAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="layoutIndex" >
+                        <xsl:value-of select="$layoutIndex" />
+                    </xsl:with-param>
+                    <xsl:with-param name="parametersAsString" >
+                        <xsl:value-of select="$parametersAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="createdObjectsAsString" >
+                        <xsl:value-of select="$createdObjectsAsString" />
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+
+            <!-- conditions - START -->
+            <xsl:variable name="alreadyUsedCondition" ><xsl:for-each select="conditions" ><xsl:if test="(type/value = 'SourisSurObjet' or type/value = 'CollisionNP' or type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased')" >found</xsl:if></xsl:for-each></xsl:variable>
+            
+            <xsl:for-each select="whileConditions" >
+                <xsl:if test="type/value = 'PopEndedTouch'" >
+                    
+                    <xsl:call-template name="popEndedTouchConditionGDNode" >
+                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:if>
+            </xsl:for-each>
+            
+            <xsl:for-each select="conditions" >
+
+            <xsl:call-template name="eventsCreateAssignGDObjectGDNodesCondition2" >
+                <xsl:with-param name="caller" >
+                    <xsl:value-of select="$caller" />
+                </xsl:with-param>
+                <xsl:with-param name="layoutIndex" >
+                    <xsl:value-of select="$layoutIndex" />
+                </xsl:with-param>
+                <xsl:with-param name="thisNodeIndex" >
+                    <xsl:value-of select="$thisNodeIndex" />
+                </xsl:with-param>
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="instancesAsString" >
+                    <xsl:value-of select="$instancesAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="objectsAsString" >
+                    <xsl:value-of select="$objectsAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="createdObjectsAsString" >
+                    <xsl:value-of select="$createdObjectsAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="conditionEventPosition" >
+                    <xsl:value-of select="$eventPosition" />
+                </xsl:with-param>
+                <xsl:with-param name="hasParentOnceCondition" >
+                    <xsl:value-of select="$hasParentOnceCondition" />
+                </xsl:with-param>
+                <xsl:with-param name="alreadyUsedCondition" >
+                    <xsl:value-of select="$alreadyUsedCondition" />
+                </xsl:with-param>
+                <xsl:with-param name="thisNodeArray" >
+                    <xsl:value-of select="$thisNodeArray" />
+                </xsl:with-param>
+                <xsl:with-param name="eventAsString" >
+                    <xsl:value-of select="$eventAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="actionAsStringsStrings" >
+                    <xsl:value-of select="$actionAsStringsStrings" />
+                </xsl:with-param>
+                <xsl:with-param name="logString" >
+                    <xsl:value-of select="$logString" />
+                </xsl:with-param>
+                <xsl:with-param name="eventsCreateProcessUsed" >
+                    <xsl:value-of select="$eventsCreateProcessUsed" />
+                </xsl:with-param>
+
+            </xsl:call-template>
+
+                <!-- subInstructions - conditions - START -->
+                <xsl:for-each select="subInstructions" >
+                    //subInstructions - START
+
+            <xsl:call-template name="eventsCreateAssignGDObjectGDNodesCondition2" >
+                <xsl:with-param name="caller" >
+                    <xsl:value-of select="$caller" />
+                </xsl:with-param>
+                <xsl:with-param name="layoutIndex" >
+                    <xsl:value-of select="$layoutIndex" />
+                </xsl:with-param>
+                <xsl:with-param name="thisNodeIndex" >
+                    <xsl:value-of select="$thisNodeIndex" />
+                </xsl:with-param>
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="instancesAsString" >
+                    <xsl:value-of select="$instancesAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="objectsAsString" >
+                    <xsl:value-of select="$objectsAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="createdObjectsAsString" >
+                    <xsl:value-of select="$createdObjectsAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="conditionEventPosition" >
+                    <xsl:value-of select="$eventPosition" />
+                </xsl:with-param>
+                <xsl:with-param name="hasParentOnceCondition" >
+                    <xsl:value-of select="$hasParentOnceCondition" />
+                </xsl:with-param>
+                <xsl:with-param name="alreadyUsedCondition" >
+                    <xsl:value-of select="$alreadyUsedCondition" />
+                </xsl:with-param>
+                <xsl:with-param name="thisNodeArray" >
+                    <xsl:value-of select="$thisNodeArray" />
+                </xsl:with-param>
+                <xsl:with-param name="eventAsString" >
+                    <xsl:value-of select="$eventAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="actionAsStringsStrings" >
+                    <xsl:value-of select="$actionAsStringsStrings" />
+                </xsl:with-param>
+                <xsl:with-param name="logString" >
+                    <xsl:value-of select="$logString" />
+                </xsl:with-param>
+                <xsl:with-param name="eventsCreateProcessUsed" >
+                    <xsl:value-of select="$eventsCreateProcessUsed" />
+                </xsl:with-param>
+
+            </xsl:call-template>
+
+                //subInstructions - END
+                </xsl:for-each>
+                <!-- subInstructions - conditions - END -->
             </xsl:for-each>
             <!-- conditions - END -->
 
