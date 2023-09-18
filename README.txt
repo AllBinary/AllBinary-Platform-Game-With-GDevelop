@@ -29,9 +29,9 @@ Where is the other code?
 
 It depends on the AllBinary Platform and thirdparty libraries.
 
-Who is responsible for all this shit?
+Who is responsible for this repo?
 
-Travis Berthelot travisberthelot@hotmail.com
+Travis Berthelot travisberthelot@allbinary.com
 
 What is the AllBinary Plaform Game?
 
