@@ -104,7 +104,7 @@ Created By: Travis Berthelot
         <xsl:param name="conditionPosition" />
         <xsl:param name="logString" />
         
-                    //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - START
+                    //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //objectGDObjectAtIndex2 - START
                     <xsl:call-template name="objectGDObjectAtIndex2" >
                         <xsl:with-param name="caller" >
                             <xsl:value-of select="$caller" />
@@ -129,12 +129,12 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
                     -->
-                    //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - END
+                    //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //objectGDObjectAtIndex2 - END
                     
                     try {
 
             <xsl:variable name="alreadyUsedParentCondition" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
-            <xsl:variable name="hadCondition" ><xsl:for-each select="conditions" >found</xsl:for-each></xsl:variable>
+            <xsl:variable name="hasCondition" ><xsl:for-each select="conditions" >found</xsl:for-each></xsl:variable>
             <xsl:variable name="hadConditionOtherThanThis" ><xsl:for-each select="conditions" ><xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >found</xsl:if></xsl:for-each></xsl:variable>
             <!-- position() = 1 and -->
             <xsl:variable name="alreadyUsedCondition" ><xsl:for-each select="conditions" ><xsl:if test="(type/value = 'SourisSurObjet' or type/value = 'CollisionNP' or type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased')" >found</xsl:if></xsl:for-each></xsl:variable>
@@ -143,13 +143,13 @@ Created By: Travis Berthelot
             <xsl:variable name="hasUsedOnceCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Once'" ><xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" ><xsl:if test="preceding-sibling::conditions[number(substring(generate-id(), 2) - 65536) != $thisNodeIndex]" >found</xsl:if></xsl:if></xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="hasUsedSoundPlayingCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'SoundPlaying'" ><xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" ><xsl:if test="preceding-sibling::conditions[number(substring(generate-id(), 2) - 65536) != $thisNodeIndex]" >found</xsl:if></xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
-            <xsl:variable name="hasNoConditionsButDoesHaveUsedAction" ><xsl:if test="not(contains($hadCondition, 'found'))" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'SetAngle' or type/value = 'ChangePlan' or type/value = 'AddForceAL' or type/value = 'ChangeAnimation' or type/value = 'ModVarObjet'" >found</xsl:if></xsl:for-each></xsl:if></xsl:variable>
+            <xsl:variable name="hasNoConditionsButDoesHaveUsedAction" ><xsl:if test="not(contains($hasCondition, 'found'))" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'SetAngle' or type/value = 'ChangePlan' or type/value = 'AddForceAL' or type/value = 'ChangeAnimation' or type/value = 'ModVarObjet'" >found</xsl:if></xsl:for-each></xsl:if></xsl:variable>
             <xsl:variable name="hasCreate" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="hasCollisionCondition" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
 
 <!--
 //alreadyUsedParentCondition=<xsl:value-of select="$alreadyUsedParentCondition" />
-//hadCondition=<xsl:value-of select="$hadCondition" />
+//hasCondition=<xsl:value-of select="$hasCondition" />
 //hadConditionOtherThanThis=<xsl:value-of select="$hadConditionOtherThanThis" />
 //alreadyUsedCondition=<xsl:value-of select="$alreadyUsedCondition" />
 //hasOnceCondition=<xsl:value-of select="$hasOnceCondition" />
@@ -160,6 +160,7 @@ Created By: Travis Berthelot
 -->
 
             <xsl:if test="$caller = 'conditionLayout - //eventsCreateAssignGDObject'" >
+            //conditionLayout - //eventsCreateAssignGDObject - START
             <xsl:for-each select="actions" >
                 <xsl:if test="type/value = 'Scene'" >
                     <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
@@ -177,11 +178,13 @@ Created By: Travis Berthelot
                     //Action - //ChangeScale - call - END
                 </xsl:if>
             </xsl:for-each>
+            //conditionLayout - //eventsCreateAssignGDObject - END
             </xsl:if>
 
             <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
-
+            //alreadyUsedCondition - not - //1 - START
             <xsl:if test="not(contains($hasOnceCondition, 'found'))" >
+            //hasOnceCondition - not - //Conditions - START
             <xsl:for-each select="conditions" >
                 <xsl:if test="type/value = 'DepartScene'" >
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -198,10 +201,11 @@ Created By: Travis Berthelot
                 globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
             </xsl:for-each>
+            //hasOnceCondition - not - //1 - END
             </xsl:if>
 
             <xsl:if test="not(contains($alreadyUsedParentCondition, 'found'))" >
-
+            //alreadyUsedParentCondition - not - START
             <xsl:for-each select="conditions" >
                 <!-- A sibling of BuiltinCommonInstructions::Once may not call it -->
                 <xsl:if test="type/value = 'BuiltinCommonInstructions::Once'" >
@@ -218,6 +222,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
 
             <xsl:if test="contains($hasOnceCondition, 'found')" >
+            //hasOnceCondition - START
             <xsl:for-each select="conditions" >
                 <!-- A sibling of BuiltinCommonInstructions::Once may not call it -->
                 <xsl:if test="type/value != 'BuiltinCommonInstructions::Once' and type/value != 'SoundPlaying'" >
@@ -231,9 +236,11 @@ Created By: Travis Berthelot
                 </xsl:if>
                 </xsl:if>
             </xsl:for-each>
+            //hasOnceCondition - END
             </xsl:if>
 
             <xsl:if test="not(contains($hasOnceCondition, 'found'))" >
+            //alreadyUsedCondition - not - //2 - START
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 <!--
@@ -259,9 +266,12 @@ Created By: Travis Berthelot
                 //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Condition - call - more ifs
                 </xsl:if>
             </xsl:for-each>
+            //alreadyUsedCondition - not - //2 - END
             </xsl:if>
 
+            //alreadyUsedParentCondition - not - START
             </xsl:if>
+            //alreadyUsedCondition - not - END
             </xsl:if>
 
             <xsl:if test="contains($hasOnceCondition, 'found')" >
@@ -278,7 +288,7 @@ Created By: Travis Berthelot
             </xsl:if>
             </xsl:if>
 
-            <xsl:if test="contains($hadCondition, 'found') and not(contains($hadConditionOtherThanThis, 'found'))" >
+            <xsl:if test="contains($hasCondition, 'found') and not(contains($hadConditionOtherThanThis, 'found'))" >
                 //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //hadConditionOtherThanThis <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />= <xsl:value-of select="$thisNodeIndex" />
             </xsl:if>
 
@@ -418,7 +428,7 @@ Created By: Travis Berthelot
             boolean actionWithUpdate = false;
             </xsl:if>
 
-            <xsl:if test="not(contains($hadCondition, 'found'))" >
+            <xsl:if test="not(contains($hasCondition, 'found'))" >
             <xsl:if test="not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found'))" >
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
@@ -751,7 +761,7 @@ Created By: Travis Berthelot
             </xsl:if>
             
 <!--
-            <xsl:if test="not(contains($alreadyUsedParentCondition, 'found')) and contains($hadCondition, 'found') and contains($hadConditionOtherThanThis, 'found')" >
+            <xsl:if test="not(contains($alreadyUsedParentCondition, 'found')) and contains($hasCondition, 'found') and contains($hadConditionOtherThanThis, 'found')" >
             <xsl:if test="not(contains($alreadyUsedCondition, 'found')) and not(contains($hasOnceCondition, 'found')) and not(contains($hasUsedOnceCondition, 'found'))" >
             <xsl:if test="not(contains($hasNoConditionsButDoesHaveUsedAction, 'found')) and not(contains($hasCreate, 'found')) and not(contains($hasCollisionCondition, 'found'))" >
             </xsl:if>
@@ -779,7 +789,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
             </xsl:if>
 
-            <xsl:if test="contains($hadCondition, 'found') and contains($hadConditionOtherThanThis, 'found') and not(contains($hasUsedSoundPlayingCondition, 'found'))" >
+            <xsl:if test="contains($hasCondition, 'found') and contains($hadConditionOtherThanThis, 'found') and not(contains($hasUsedSoundPlayingCondition, 'found'))" >
 
             //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Actions - 2 - START
             <xsl:for-each select="actions" >
@@ -802,7 +812,9 @@ Created By: Travis Berthelot
             
             </xsl:if>
 
-            <xsl:if test="not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' or contains($caller, 'eventsCreateAssignGDObject')" >
+            <xsl:if test="not(contains($hasCondition, 'found'))" >
+            <xsl:if test="not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene'" >
+                //not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' - START
                         <xsl:for-each select="events" >
                             <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
@@ -810,6 +822,85 @@ Created By: Travis Berthelot
                             globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             </xsl:if>
                         </xsl:for-each>
+                //not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' - END
+            </xsl:if>
+                
+            <xsl:if test="contains($caller, 'eventsCreateAssignGDObject')" >
+                //contains($caller, 'eventsCreateAssignGDObject') - START
+                        <xsl:for-each select="events" >
+                            <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Event - //<xsl:value-of select="type" /> - call
+                            //globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            </xsl:if>
+                        </xsl:for-each>
+                //contains($caller, 'eventsCreateAssignGDObject') - END
+            </xsl:if>
+            </xsl:if>
+
+            <xsl:if test="contains($hasCondition, 'found')" >
+            <xsl:for-each select="conditions" >
+                <xsl:variable name="typeValue" select="type/value" />
+                <xsl:if test="($conditionPosition = '' and position() = 1) or position() = $conditionPosition + 1" >
+                <xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >
+                <xsl:if test="type/value != 'DepartScene' and type/value != 'SoundPlaying' and (not(contains($caller, 'eventsCreateAssignGDObject') and type/value = 'NbObjet'))" >
+
+            <xsl:if test="not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene'" >
+                //maybe - not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' - START
+                        <xsl:for-each select="../events" >
+                            <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Event - //<xsl:value-of select="type" /> - call
+                            // maybe we should not call this here.
+                            globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            </xsl:if>
+                        </xsl:for-each>
+                //maybe - not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' - END
+            </xsl:if>
+                
+            <xsl:if test="contains($caller, 'eventsCreateAssignGDObject')" >
+                //maybe - contains($caller, 'eventsCreateAssignGDObject') - START
+                        <xsl:for-each select="../events" >
+                            <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Event - //<xsl:value-of select="type" /> - call
+                            // maybe we should not call this here.
+                            globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            </xsl:if>
+                        </xsl:for-each>
+                //maybe - contains($caller, 'eventsCreateAssignGDObject') - END
+            </xsl:if>
+
+                </xsl:if>
+                </xsl:if>
+                </xsl:if>
+            </xsl:for-each>
+
+            <xsl:if test="not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene'" >
+                //maybe - not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' - START
+                        <xsl:for-each select="events" >
+                            <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Event - //<xsl:value-of select="type" /> - call
+                            //Was calling these, but maybe should not have been
+                            //globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            </xsl:if>
+                        </xsl:for-each>
+                //maybe - not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' - END
+            </xsl:if>
+                
+            <xsl:if test="contains($caller, 'eventsCreateAssignGDObject')" >
+                //maybe - contains($caller, 'eventsCreateAssignGDObject') - START
+                        <xsl:for-each select="events" >
+                            <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Event - //<xsl:value-of select="type" /> - call
+                            //Was calling these, but maybe should not have been
+                            //globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            </xsl:if>
+                        </xsl:for-each>
+                //maybe - contains($caller, 'eventsCreateAssignGDObject') - END
+            </xsl:if>
             </xsl:if>
 
             <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >

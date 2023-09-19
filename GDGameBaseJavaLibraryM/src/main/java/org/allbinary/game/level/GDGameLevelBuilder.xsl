@@ -33,12 +33,13 @@ import javax.microedition.lcdui.game.TiledLayer;
 
 import org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterfaceFactory;
         <xsl:for-each select="layouts" >
-            <xsl:variable name="index" select="position() - 1" />
-            <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
-import org.allbinary.game.canvas.GD<xsl:value-of select="$index" />SpecialAnimationResources;
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+            <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
+import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
+import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals;
             </xsl:if>
         </xsl:for-each>
-            
+
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
@@ -76,8 +77,8 @@ import org.mapeditor.core.TiledMap;
 import org.mapeditor.io.GDJSONMapReader;
 
         <xsl:for-each select="layouts" >
-            <xsl:variable name="index" select="position() - 1" />
-            <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+            <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
 
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
@@ -140,24 +141,34 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final BasicColor BLACK = BasicColorFactory.getInstance().BLACK;
         final GDResources gdResources = GDResources.getInstance();
         final PlatformAssetManager platformAssetManager = PlatformAssetManager.getInstance();
+        final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+
                 <xsl:if test="content" >
                     //TileMap::TileMap:content - <xsl:value-of select="content/generator" />
                     <xsl:variable name="tileMapJSONWithExtension" select="content/tilemapJsonFile" />
                     <xsl:variable name="tileMapJSON" select="substring-before($tileMapJSONWithExtension, '.')" />
+        InputStream tileMapInputStream2 = null;
                     <xsl:if test="content/generator = 'TileMapGenerator'" >
-                        //platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);
+                    //"generator": "TileMapGenerator",
         final byte[] data = new TileMapGenerator().process2().getBytes();
-        final InputStream tileMapInputStream = new ByteArrayInputStream(data);
+        tileMapInputStream2 = new ByteArrayInputStream(data);
                     </xsl:if>
                     <xsl:if test="content/generator = 'DungeonGenerator'" >
-                        //platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);
-        final byte[] data = new DungeonGenerator().generateJSONAsString().getBytes();
-        final InputStream tileMapInputStream = new ByteArrayInputStream(data);
+        //"generator": "DungeonGenerator",
+        if(globals.RandomDungeon) {
+            LogUtil.put(LogFactory.getInstance("Loading Tiled Map Asset", this, commonStrings.PROCESS));
+            final byte[] data = new DungeonGenerator().generateJSONAsString().getBytes();
+            tileMapInputStream2 = new ByteArrayInputStream(data);
+        } else {
+            tileMapInputStream2 = platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);
+        }
                     </xsl:if>
-                    <xsl:if test="not(content/generator)" >
-        final InputStream tileMapInputStream = platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);
+                    <xsl:if test="not(content/generator) or string-length(content/generator) = 0" >
+        tileMapInputStream2 = platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);
                     </xsl:if>
-        
+
+        final InputStream tileMapInputStream = tileMapInputStream2;
+
         final InputStream[] tileSetInputStreamArray = {
                     <xsl:variable name="tileSetJSONWithExtension" select="content/tilesetJsonFile" />
                     <xsl:variable name="tileSetJSON" select="substring-before($tileSetJSONWithExtension, '.')" />
@@ -175,7 +186,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         //LogUtil.put(LogFactory.getInstance("Loaded Tiled Map Asset", this, commonStrings.PROCESS));
 
         final ImageCache imageCache = ImageCacheFactory.getInstance();
-        final GD<xsl:value-of select="$index" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$index" />SpecialAnimationResources.getInstance();
+        final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
         final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtable().get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
         final Image tileSetImage = <xsl:value-of select="name" />ImageArray[0];
 

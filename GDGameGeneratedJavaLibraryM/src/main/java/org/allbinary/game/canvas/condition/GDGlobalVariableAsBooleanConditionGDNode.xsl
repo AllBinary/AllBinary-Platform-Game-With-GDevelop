@@ -17,7 +17,7 @@ Created By: Travis Berthelot
 
     <xsl:output method="html" indent="yes" />
 
-    <xsl:template name="varGlobalConditionGDNode" >
+    <xsl:template name="globalVariableAsBooleanConditionGDNode" >
         <xsl:param name="conditionNodeIndex" />
         <xsl:param name="parametersAsString" />
     
@@ -28,7 +28,7 @@ Created By: Travis Berthelot
         <xsl:param name="createdObjectsAsString" />
                 
         <xsl:variable name="quote" >"</xsl:variable>
-                    //varGlobalConditionGDNode - //Condition - //VarGlobal - GDNode
+                    //globalVariableAsBooleanConditionGDNode - //Condition - //VarGlobal - GDNode
                     if(globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -37,7 +37,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
                     
-                        //VarGlobal - condition
+                        //GlobalVariableAsBoolean - condition
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
@@ -47,7 +47,7 @@ Created By: Travis Berthelot
                             //final StringBuilder stringBuilder = new StringBuilder();
                             //LogUtil.put(LogFactory.getInstance(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).toString(), this, commonStrings.PROCESS));
 
-                            if(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >globals.</xsl:if><xsl:value-of select="text() " disable-output-escaping="yes" /></xsl:for-each>) {
+                            if(<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = 'False'" >!</xsl:if></xsl:if></xsl:for-each><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >globals.<xsl:value-of select="text() " /></xsl:if></xsl:for-each>) {
 
                                 //stringBuilder.delete(0, stringBuilder.length());
                                 //LogUtil.put(LogFactory.getInstance(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).toString(), this, commonStrings.PROCESS));
@@ -70,7 +70,7 @@ Created By: Travis Berthelot
                                     //TWBTWB
                                 </xsl:for-each>
                                 </xsl:if>
-                                                                
+
                                 <xsl:for-each select="../events" >
                                     <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                                 //Event - call - under NbObjet nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> parameters=<xsl:value-of select="$parametersAsString" />

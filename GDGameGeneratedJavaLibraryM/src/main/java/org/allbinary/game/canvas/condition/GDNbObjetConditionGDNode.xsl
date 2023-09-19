@@ -50,9 +50,9 @@ Created By: Travis Berthelot
                                 //stringBuilder.delete(0, stringBuilder.length());
                                 //LogUtil.put(LogFactory.getInstance(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>").toString(), this, commonStrings.PROCESS));
                                 
-                                <xsl:variable name="hasCondition" ><xsl:for-each select="../conditions" >found</xsl:for-each></xsl:variable>
+                                <xsl:variable name="hasOtherConditions" ><xsl:for-each select="preceding-sibling::conditions" >found</xsl:for-each></xsl:variable>
 
-                                <xsl:if test="not(contains($hasCondition, 'found'))" >
+                                <xsl:if test="not(contains($hasOtherConditions, 'found'))" >
 
                                 <xsl:for-each select="../actions" >
                                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -63,7 +63,7 @@ Created By: Travis Berthelot
                                 
                                 </xsl:if>
 
-                                <xsl:if test="contains($hasCondition, 'found')" >
+                                <xsl:if test="contains($hasOtherConditions, 'found')" >
                                 <xsl:for-each select="../actions" >
                                     //TWBTWB
                                 </xsl:for-each>

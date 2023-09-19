@@ -33,6 +33,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDOpacityConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVarGlobalConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVarObjetConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDGlobalVariableAsBooleanConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVarSceneConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSourisSurObjetConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSourisBoutonConditionGDNode.xsl" />
@@ -586,7 +587,17 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
                 <xsl:if test="$typeValue = 'VarGlobalTxt'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
-                <xsl:if test="$typeValue = 'GlobalVariableAsBoolean'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
+                <xsl:if test="$typeValue = 'GlobalVariableAsBoolean'" >
+                    <xsl:call-template name="globalVariableAsBooleanConditionGDNode" >
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
+                        <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                        <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
+                    </xsl:call-template>
+                </xsl:if>
                 <xsl:if test="$typeValue = 'VarSceneDef'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
                 <xsl:if test="$typeValue = 'VarGlobalDef'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
                 <xsl:if test="$typeValue = 'SceneVariableChildCount'" >//<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
