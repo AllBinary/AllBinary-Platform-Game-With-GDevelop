@@ -128,8 +128,8 @@ public class GDGeographicMap extends BasicGeographicMap {
     }
 
     public void reset() {
-        AllBinaryTiledLayer allBinaryTiledLayer = this.getAllBinaryTiledLayer();
-        int y = -DisplayInfoSingleton.getInstance().getLastHeight() + allBinaryTiledLayer.getHeight();
+        final AllBinaryTiledLayer allBinaryTiledLayer = this.getAllBinaryTiledLayer();
+        final int y = -DisplayInfoSingleton.getInstance().getLastHeight() + allBinaryTiledLayer.getHeight();
         allBinaryTiledLayer.setPosition(0, -y, allBinaryTiledLayer.getZ());
     }
 

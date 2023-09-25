@@ -104,6 +104,7 @@ Created By: Travis Berthelot
         import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
         import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
         import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
+        import org.allbinary.media.graphics.geography.map.GeographicMapEventHandler;
         import org.allbinary.util.BasicArrayList;
         import org.allbinary.view.ViewPosition;
 
@@ -350,13 +351,15 @@ Created By: Travis Berthelot
                 } else {
                     final GDGameLayer <xsl:value-of select="$gameLayer" /> = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
                     if(this == <xsl:value-of select="$gameLayer" />) {
-                        this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
+                        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Player - Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
+                        //this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
                     } else {
                         super.move();
                     }
                 }
             } else {
-                //LogUtil.put(LogFactory.getInstance("Map was null, this, "move"));
+                //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
+                GeographicMapEventHandler.getInstance().addListener(this);
             }
 
         } catch (Exception e) {
@@ -365,8 +368,8 @@ Created By: Travis Berthelot
     }
                     
     public void updatePosition() {
-        this.move();
         super.updatePosition();
+        this.move();
     }
     
     public void terrainMove(final BasicGeographicMap[] geographicMapInterfaceArray, final int dx, final int dy) {

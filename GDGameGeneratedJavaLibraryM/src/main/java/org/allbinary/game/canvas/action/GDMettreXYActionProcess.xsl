@@ -114,11 +114,14 @@ Created By: Travis Berthelot
                                 <xsl:variable name="paramY0" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="text() = '+'" ><xsl:value-of select="$existingValueY" /> + </xsl:if><xsl:if test="text() = '-'" ><xsl:value-of select="$existingValueY" /> - </xsl:if></xsl:if><xsl:if test="position() = 5" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                                 <xsl:variable name="paramY" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$paramY0" /></xsl:with-param><xsl:with-param name="find" >.Variable(</xsl:with-param><xsl:with-param name="replacementText" ><xsl:value-of select="$objectsFactory" /></xsl:with-param></xsl:call-template></xsl:variable>
 
+                                <xsl:variable name="mapPositionHackX" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:if test="contains(text(), 'Map')" > &#42; 1.44f</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+                                <xsl:variable name="mapPositionHackY" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:if test="contains(text(), 'Map')" > &#42; 2.07f</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+
                                 <xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setX(<xsl:value-of select="$paramX" />);<xsl:text>&#10;</xsl:text></xsl:if>
+                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setX(<xsl:value-of select="$paramX" /><xsl:value-of select="$mapPositionHackX" />);<xsl:text>&#10;</xsl:text></xsl:if>
                                 </xsl:for-each>
                                 <xsl:text>                                </xsl:text><xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setY(<xsl:value-of select="$paramY" />);</xsl:if></xsl:for-each>
+                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setY(<xsl:value-of select="$paramY" /><xsl:value-of select="$mapPositionHackY" />);</xsl:if></xsl:for-each>
                                     
                         </xsl:if>
                                 

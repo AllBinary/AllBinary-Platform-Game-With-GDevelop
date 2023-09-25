@@ -20,6 +20,7 @@ import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
+import org.allbinary.media.graphics.geography.map.GeographicMapEventHandler;
 
 public class GDGameLayerManager extends AllBinaryGameLayerManager
         implements GeographicMapCompositeInterface
@@ -56,6 +57,10 @@ public class GDGameLayerManager extends AllBinaryGameLayerManager
    public void setGeographicMapInterface(final BasicGeographicMap[] geographicMapInterfaceArray)
    {
       this.geographicMapInterfaceArray = geographicMapInterfaceArray;
+      
+      final GeographicMapEventHandler geographicMapEventHandler = GeographicMapEventHandler.getInstance();
+      geographicMapEventHandler.fireEvent();
+      geographicMapEventHandler.removeAllListeners();
    }
     
    /*
