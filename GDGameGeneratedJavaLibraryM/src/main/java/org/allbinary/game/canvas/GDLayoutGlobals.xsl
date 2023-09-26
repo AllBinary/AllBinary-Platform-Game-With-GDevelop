@@ -205,6 +205,7 @@ public class GDStructure {
                     <xsl:for-each select="objectsGroups" >
                         public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="name" />";
                         public final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                        public final BasicArrayList <xsl:value-of select="name" />GDObjectList = new BasicArrayList();
                         public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList();
                         <xsl:for-each select="objects" >
                         //public final Group <xsl:value-of select="name" />GroupInterface;
@@ -221,7 +222,7 @@ public class GDStructure {
                         public final BasicArrayList <xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
                         <xsl:variable name="name" select="name" />
                         <xsl:variable name="notTextObject" ><xsl:for-each select="../objects" ><xsl:if test="$name = name" ><xsl:if test="type != 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
-                        <xsl:if test="layer != '' or contains($notTextObject, 'found')" >
+                        <xsl:if test="contains($notTextObject, 'found')" >
                         public GDGameLayer <xsl:value-of select="name" />GDGameLayer;
                         </xsl:if>
                         public Rectangle <xsl:value-of select="name" />Rectangle<xsl:value-of select="$initialVariablesValue" /> = null;

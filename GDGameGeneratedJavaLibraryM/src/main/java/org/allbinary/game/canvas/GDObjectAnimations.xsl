@@ -15,6 +15,27 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:template name="getSetSizeForObject" >
+        <xsl:param name="name" />
+        
+        <xsl:for-each select="events" >
+            <xsl:for-each select="actions" >
+                <xsl:if test="type/value = 'ResizableCapability::ResizableBehavior::SetSize'" >
+                    <xsl:if test="parameters[1] = $name" >
+                        //Action -  ResizableCapability::ResizableBehavior::SetSize - <xsl:value-of select="parameters[1]" />/<xsl:value-of select="$name" />
+                        <xsl:text>&#10;</xsl:text>
+                        <xsl:value-of select="parameters[3]" />, <xsl:value-of select="parameters[4]" />
+                    </xsl:if>
+                </xsl:if>
+            </xsl:for-each>
+            
+            <xsl:call-template name="getSetSizeForObject" >
+                <xsl:with-param name="name" select="$name" />
+            </xsl:call-template>
+
+        </xsl:for-each>
+    </xsl:template>
+
     <xsl:template name="touchAnimationFactory" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
@@ -85,6 +106,14 @@ Created By: Travis Berthelot
                                                 </xsl:if>
                                             </xsl:if>
                                         </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                                <xsl:for-each select="/game" >
+                                    <xsl:for-each select="layouts" >
+                                <xsl:call-template name="getSetSizeForObject" >
+                                    <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                    <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
+                                </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:for-each>
                                 );
@@ -318,6 +347,14 @@ Created By: Travis Berthelot
                                                 </xsl:if>
                                             </xsl:if>
                                         </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                                <xsl:for-each select="/game" >
+                                    <xsl:for-each select="layouts" >
+                                <xsl:call-template name="getSetSizeForObject" >
+                                    <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                    <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
+                                </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:for-each>
                                 );
@@ -565,6 +602,14 @@ Created By: Travis Berthelot
                                         </xsl:if>
                                     </xsl:for-each>
                                 </xsl:for-each>
+                                <xsl:for-each select="/game" >
+                                    <xsl:for-each select="layouts" >
+                                <xsl:call-template name="getSetSizeForObject" >
+                                    <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                    <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
+                                </xsl:call-template>
+                                    </xsl:for-each>
+                                </xsl:for-each>
                                 );
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
@@ -802,6 +847,14 @@ Created By: Travis Berthelot
                                                 </xsl:if>
                                             </xsl:if>
                                         </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                                <xsl:for-each select="/game" >
+                                    <xsl:for-each select="layouts" >
+                                <xsl:call-template name="getSetSizeForObject" >
+                                    <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                    <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
+                                </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:for-each>
                                 );
@@ -1042,6 +1095,14 @@ Created By: Travis Berthelot
                                                 </xsl:if>
                                             </xsl:if>
                                         </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                                <xsl:for-each select="/game" >
+                                    <xsl:for-each select="layouts" >
+                                <xsl:call-template name="getSetSizeForObject" >
+                                    <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                                    <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
+                                </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:for-each>
                                 );

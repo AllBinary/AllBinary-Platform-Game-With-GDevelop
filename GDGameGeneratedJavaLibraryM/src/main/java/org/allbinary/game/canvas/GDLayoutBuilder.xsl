@@ -267,7 +267,6 @@ Created By: Travis Berthelot
 
                         //name=<xsl:value-of select="name" /> layer=<xsl:value-of select="layer" />
                         
-                        <!--<xsl:if test="layer != 'TileMap' and layer != 'Collision'" >-->
                         <xsl:if test="contains($exclusionObjectsAsString, $colonName)" >
                             //Skipping instance name=<xsl:value-of select="name" /> exclusionType=<xsl:value-of select="$exclusionObjectsAsString" />
                         </xsl:if>
@@ -275,8 +274,9 @@ Created By: Travis Berthelot
                             
                         <xsl:text>&#10;</xsl:text>
                         if(true) {
-                        <xsl:if test="layer != '' or contains($notTextObject, 'found') or contains($objectsAsString, $colonName)" >
-                            
+                        <xsl:if test="contains($notTextObject, 'found')" >
+                            //or contains($objectsAsString, $colonName)
+                            //notTextObject = <xsl:value-of select="$notTextObject" /> or contains($objectsAsString, $colonName/<xsl:value-of select="$colonName" />) = <xsl:value-of select="contains($objectsAsString, $colonName)" />
                             <xsl:if test="contains(name, 'btn_')" >
                         final int width = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
                         final int height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
@@ -355,7 +355,7 @@ Created By: Travis Berthelot
 
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                                                 
-                        <xsl:if test="layer != '' or contains($notTextObject, 'found')" >
+                        <xsl:if test="contains($notTextObject, 'found')" >
                         final GDGameLayer <xsl:value-of select="name" />GDGameLayer = resources.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />GDobject2, globals.<xsl:value-of select="name" />GDConditionWithGroupActions);
                         LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0", this, commonStrings.PROCESS));
                         globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);

@@ -281,7 +281,7 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($objectsAsString, $textObjectTextName)" >
                         //TextObject::Text instance
                         final int <xsl:value-of select="name" />Size = globals.<xsl:value-of select="name" />RectangleList.size();
-                        if(<xsl:value-of select="name" />Size == 0) {
+                        if(<xsl:value-of select="name" />Size != 0) {
 
                             final GDObject <xsl:value-of select="name" />GDobject2 = (GDObject) globals.<xsl:value-of select="name" />GDObjectList.get(0);
                             final int <xsl:value-of select="name" />X = x + <xsl:value-of select="name" />GDobject2.x;
