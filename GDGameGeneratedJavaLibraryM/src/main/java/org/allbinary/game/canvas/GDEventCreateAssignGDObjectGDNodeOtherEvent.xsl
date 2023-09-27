@@ -110,7 +110,7 @@ Created By: Travis Berthelot
             <xsl:variable name="foundLinkEvent" ><xsl:for-each select="events" ><xsl:if test="type = 'BuiltinCommonInstructions::Link'" >found</xsl:if></xsl:for-each></xsl:variable>
             
             <!-- //foundOtherCondition=<xsl:value-of select="$foundOtherCondition" /> -->
-                                
+
                 <xsl:if test="contains($foundTimerCondition, 'found')" >
                 //Found used conditions so calling them before actions.
                 @Override
@@ -118,7 +118,7 @@ Created By: Travis Berthelot
                     super.processStats();
 
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-
+                    
                     <xsl:for-each select="conditions" >
                     <xsl:variable name="typeValue" select="type/value" />
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
@@ -195,6 +195,22 @@ Created By: Travis Berthelot
                 }
                 </xsl:if>
 
+                <xsl:if test="whileConditions" >
+                @Override
+                public boolean process() throws Exception {
+                    super.processStats();
+                    
+                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                    <xsl:for-each select="whileConditions" >
+                    //whileConditions - //<xsl:value-of select="type/value" /> - call
+                    globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    </xsl:for-each>
+                    
+                    return true;
+                }
+                </xsl:if>
+
+                <xsl:if test="not(whileConditions)" >
                 <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
                 <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
 
@@ -328,6 +344,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 </xsl:if>
                 
+                </xsl:if>
                 </xsl:if>
                 </xsl:if>
 
