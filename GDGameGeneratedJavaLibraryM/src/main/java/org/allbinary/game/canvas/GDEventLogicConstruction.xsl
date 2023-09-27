@@ -194,7 +194,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:for-each select="whileConditions" >
-                //whileConditions - NOT_IMPLEMENTED
+                //eventsLogicConstructionCollisionNP - //whileConditions - NOT_IMPLEMENTED
             </xsl:for-each>
 
             <xsl:for-each select="conditions" >

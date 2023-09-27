@@ -731,7 +731,58 @@ Created By: Travis Berthelot
             <!-- conditions - START -->
             <xsl:variable name="alreadyUsedCondition" ><xsl:for-each select="conditions" ><xsl:if test="(type/value = 'SourisSurObjet' or type/value = 'CollisionNP' or type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased')" >found</xsl:if></xsl:for-each></xsl:variable>
             
+            <!-- whileConditions - conditions - START -->
             <xsl:for-each select="whileConditions" >
+                
+            <xsl:call-template name="eventsCreateAssignGDObjectGDNodesCondition2" >
+                <xsl:with-param name="caller" >
+                    <xsl:value-of select="$caller" />
+                </xsl:with-param>
+                <xsl:with-param name="layoutIndex" >
+                    <xsl:value-of select="$layoutIndex" />
+                </xsl:with-param>
+                <xsl:with-param name="thisNodeIndex" >
+                    <xsl:value-of select="$thisNodeIndex" />
+                </xsl:with-param>
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="instancesAsString" >
+                    <xsl:value-of select="$instancesAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="objectsAsString" >
+                    <xsl:value-of select="$objectsAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="createdObjectsAsString" >
+                    <xsl:value-of select="$createdObjectsAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="conditionEventPosition" >
+                    <xsl:value-of select="$eventPosition" />
+                </xsl:with-param>
+                <xsl:with-param name="hasParentOnceCondition" >
+                    <xsl:value-of select="$hasParentOnceCondition" />
+                </xsl:with-param>
+                <xsl:with-param name="alreadyUsedCondition" >
+                    <xsl:value-of select="$alreadyUsedCondition" />
+                </xsl:with-param>
+                <xsl:with-param name="thisNodeArray" >
+                    <xsl:value-of select="$thisNodeArray" />
+                </xsl:with-param>
+                <xsl:with-param name="eventAsString" >
+                    <xsl:value-of select="$eventAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="actionAsStringsStrings" >
+                    <xsl:value-of select="$actionAsStringsStrings" />
+                </xsl:with-param>
+                <xsl:with-param name="logString" >
+                    <xsl:value-of select="$logString" />
+                </xsl:with-param>
+                <xsl:with-param name="eventsCreateProcessUsed" >
+                    <xsl:value-of select="$eventsCreateProcessUsed" />
+                </xsl:with-param>
+
+            </xsl:call-template>
+                
                 <xsl:if test="type/value = 'PopEndedTouch'" >
                     
                     <xsl:call-template name="popEndedTouchConditionGDNode" >
@@ -742,7 +793,8 @@ Created By: Travis Berthelot
 
                 </xsl:if>
             </xsl:for-each>
-            
+            <!-- whileConditions - conditions - END -->
+
             <xsl:for-each select="conditions" >
 
             <xsl:call-template name="eventsCreateAssignGDObjectGDNodesCondition2" >
