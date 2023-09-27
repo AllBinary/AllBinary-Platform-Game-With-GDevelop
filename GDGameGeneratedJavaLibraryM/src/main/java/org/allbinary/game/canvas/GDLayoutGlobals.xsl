@@ -101,6 +101,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
                 import org.allbinary.game.layout.GDNode;
+                import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layout.behavior.DestroyOutsideBehavior;
                 import org.allbinary.game.layout.behavior.GDBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
@@ -153,6 +154,7 @@ public class GDStructure {
     public int Size = -1;
 
 }                    
+                                        
                     //global - variables - START
                     <xsl:for-each select=".." >
                     <xsl:call-template name="variables" />
@@ -208,6 +210,7 @@ public class GDStructure {
                         public final BasicArrayList <xsl:value-of select="name" />GDObjectList = new BasicArrayList();
                         public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList();
                         <xsl:for-each select="objects" >
+                        public final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" />";
                         //public final Group <xsl:value-of select="name" />GroupInterface;
                         </xsl:for-each>
                     </xsl:for-each>
@@ -323,6 +326,15 @@ public class GDStructure {
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals() {
                     
 
+                    //objectsGroups - START
+                    <xsl:for-each select="objectsGroups" >
+                        <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+                        <xsl:for-each select="objects" >
+                        <xsl:value-of select="$name" />GDObjectList.add(new GDObject(null, -1, -1, <xsl:value-of select="name" />, null));
+                        </xsl:for-each>
+                    </xsl:for-each>
+                    //objectsGroups - END
+                    
                     //eventsClassPropertyArrayActions - START
                     <xsl:call-template name="eventsClassPropertyArrayActions" >
                         <xsl:with-param name="totalRecursions" >
