@@ -365,7 +365,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
                     if (basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.isType(mapArray[index][index2])) {
                     
-                        LogUtil.put(LogFactory.getInstance("Set Start Position", this, commonStrings.PROCESS));
+                        stringMaker.delete(0, stringMaker.length());
+                        LogUtil.put(LogFactory.getInstance(stringMaker.append("Set Start Position c: ").append(index2).append(" r: ").append(index).toString(), this, commonStrings.PROCESS));
 
                         geographicMapCellPosition = geographicMapCellPositionFactory.getInstance(index2, index);
                         
@@ -379,8 +380,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                         final GDGameLayer PlayerGDGameLayer = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
                         
                         //(SceneWindowWidth() / 2) - (Player.Width() / 2)
-                        PlatformerMap.startX=-(((geographicMapCellPosition.getColumn() - 1) * allBinaryTiledLayer.getCellWidth()) - DisplayInfoSingleton.getInstance().getLastWidth() + PlayerGDGameLayer.getWidth());
-                        PlatformerMap.startY=-(((geographicMapCellPosition.getRow() - 1) * allBinaryTiledLayer.getCellHeight()) - DisplayInfoSingleton.getInstance().getLastHeight() + PlayerGDGameLayer.getHeight());
+                        PlatformerMap.startX=-(((geographicMapCellPosition.getColumn() - 1) * allBinaryTiledLayer.getCellWidth()) - DisplayInfoSingleton.getInstance().getLastWidth() + PlayerGDGameLayer.getHalfWidth());
+                        PlatformerMap.startY=-(((geographicMapCellPosition.getRow() - 1) * allBinaryTiledLayer.getCellHeight()) - DisplayInfoSingleton.getInstance().getLastHeight());
 
                         stringMaker.delete(0, stringMaker.length());
                         LogUtil.put(LogFactory.getInstance(stringMaker.append(PlatformerMap.startX).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.startY).toString(), this, commonStrings.PROCESS));
