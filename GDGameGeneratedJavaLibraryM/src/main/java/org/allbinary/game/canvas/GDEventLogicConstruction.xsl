@@ -239,6 +239,7 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                         
                         <xsl:call-template name="collisionNPConditionGDNode" >
+                            //CollisionNP
                             <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
                         </xsl:call-template>
 
@@ -257,6 +258,7 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
 
                         <xsl:call-template name="collisionNPConditionGDNode" >
+                            //CollisionNP
                             <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
                         </xsl:call-template>
 

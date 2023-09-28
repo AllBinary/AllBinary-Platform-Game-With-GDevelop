@@ -41,6 +41,7 @@ Created By: Travis Berthelot
 
     <xsl:import href="./action/GDOpacityActionProcess.xsl" />
     <xsl:import href="./action/GDCreateActionProcess.xsl" />
+    <xsl:import href="./action/GDCreateByNameActionProcess.xsl" />
     <xsl:import href="./action/GDSetAngleActionProcess.xsl" />
     <xsl:import href="./action/GDChangePlanActionProcess.xsl" />
     <xsl:import href="./action/GDChangeColorActionProcess.xsl" />
@@ -321,6 +322,28 @@ Created By: Travis Berthelot
                     
                 </xsl:if>
 
+                <xsl:if test="$typeValue = 'CreateByName'" >
+
+                    <xsl:call-template name="createByNameActionProcess" >
+                        <xsl:with-param name="param" >
+                            <xsl:value-of select="$param" />
+                        </xsl:with-param>
+                        <xsl:with-param name="actionWithTextObjectString" >
+                            <xsl:value-of select="$actionWithTextObjectString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="nodeAsString" >
+                            <xsl:value-of select="$nodeAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:if>
+
                 <xsl:if test="$typeValue = 'SetAngle'" >
                     
                     <xsl:call-template name="setAngleActionProcess" >
@@ -359,7 +382,20 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'CreateByName'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+
+                    <xsl:if test="not(contains($actionWithTextObjectString, $param))" >
+                        
+                        <xsl:call-template name="createByNameEndActionProcess" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="nodeId" >
+                                <xsl:value-of select="$nodeId" />
+                            </xsl:with-param>
+                        </xsl:call-template>
+
+                    </xsl:if>
+
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'Scene'" >

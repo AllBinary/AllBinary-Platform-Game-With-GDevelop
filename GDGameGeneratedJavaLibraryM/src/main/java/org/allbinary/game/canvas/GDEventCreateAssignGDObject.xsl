@@ -25,9 +25,80 @@ Created By: Travis Berthelot
 
 
                         //createGDObject
-                        final GDObject <xsl:value-of select="$name" />GDobject2 = gdObjectsFactory.get<xsl:value-of select="$name" />(
+                        final GDObject <xsl:value-of select="$name" />GDobject2 = gdObjectsFactory.<xsl:value-of select="$name" />GDObjectFactory.get(
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() != 2" >
+                            <xsl:if test="position() != last()" >
+                                <xsl:if test="string-length(text()) = 0" >
+                                    null
+                                </xsl:if>
+                                <xsl:if test="string-length(text()) > 0" >
+                                    <xsl:call-template name="string-replace-all" >
+                                        <xsl:with-param name="text" >
+                                    <xsl:call-template name="string-replace-all" >
+                                        <xsl:with-param name="text" >
+                                            <xsl:value-of select="text()" />
+                                        </xsl:with-param>                                
+                                        <xsl:with-param name="find" >&quot;&quot;</xsl:with-param>
+                                        <xsl:with-param name="replacementText" >stringUtil.EMPTY_STRING</xsl:with-param>
+                                    </xsl:call-template>
+                                        </xsl:with-param>
+                                        <xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param>
+                                        <xsl:with-param name="replacementText" ></xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:if>,
+                            </xsl:if>
+                            <xsl:if test="position() = last()" >
+                                <xsl:if test="string-length(text()) = 0" >
+                                    globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>
+                                </xsl:if>
+                                <xsl:if test="string-length(text()) > 0" >
+                                    <xsl:value-of select="text()" />
+                                </xsl:if>
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>);
+
+                    <xsl:if test="$name = 'player_bullet'" >
+                    //stringBuilder.delete(0, stringBuilder.length());
+                    //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeAsString" />").append(' ').append(<xsl:value-of select="$name" />GDobject2.name)<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:if test="position() != last()" ><xsl:if test="string-length(text()) > 0" >.append("<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" >'</xsl:with-param></xsl:call-template>: ").append(<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template>)</xsl:if></xsl:if><xsl:if test="position() = last()" ><xsl:if test="string-length(text()) = 0" >.toString()</xsl:if><xsl:if test="string-length(text()) > 0" >.append("<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" >'</xsl:with-param></xsl:call-template>: ").append(<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template>).toString()</xsl:if></xsl:if></xsl:if></xsl:for-each>, this, commonStrings.PROCESS));
+                    //final int size2 = globals.player_bulletGDGameLayerList.size();
+                    //for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
+                        //stringBuilder.delete(0, stringBuilder.length());
+                        //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeAsString" />").append(' ').append(<xsl:value-of select="$name" />GDobject2.name).append(' ').append(index2).append('\"').append(globals.player_bulletGDGameLayerList.get(index2)).toString(), this, commonStrings.PROCESS));
+                    //}
+                    </xsl:if>
+                    
+                    <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
+                    <xsl:if test="contains($objectsAsString, $spriteName)" >
+                    //We may need to set a dimension for each image/animation. CreateAssign 
+                    <xsl:value-of select="$name" />GDobject2.canvasWidth = imageResources.<xsl:value-of select="$name" />ImageArray[0].getWidth();
+                    <xsl:value-of select="$name" />GDobject2.canvasHeight = imageResources.<xsl:value-of select="$name" />ImageArray[0].getHeight();
+                    <xsl:value-of select="$name" />GDobject2.width = (int) (imageResources.<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f);
+                    <xsl:value-of select="$name" />GDobject2.height = (int) (imageResources.<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f);
+                    <xsl:value-of select="$name" />GDobject2.halfWidth = (<xsl:value-of select="$name" />GDobject2.width / 2);
+                    <xsl:value-of select="$name" />GDobject2.halfHeight = (<xsl:value-of select="$name" />GDobject2.height / 2);
+                    //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />GDobject2.toString(), this, commonStrings.PROCESS));
+                    </xsl:if>
+                    <xsl:if test="not(contains($objectsAsString, $spriteName))" >
+                        //objectsAsString=<xsl:value-of select="$objectsAsString" />
+                        //LogUtil.put(LogFactory.getInstance("GDObject:<xsl:value-of select="$name" /> != <xsl:value-of select="$spriteName" />", this, commonStrings.PROCESS));
+                    </xsl:if>
+
+    </xsl:template>
+
+    <xsl:template name="createByNameGDObject" >
+        <xsl:param name="objectsAsString" />
+        <xsl:param name="nodeAsString" />
+
+        <xsl:variable name="quote" >"</xsl:variable>
+                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
+
+                        //createByNameGDObject
+                        final GDObject <xsl:value-of select="$name" />GDobject2 = ((GDObjectFactory) gdObjectsFactory.gdObjectFactoryList.get(gdObjectsFactory.get<xsl:value-of select="$name" />Index(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>))).get(
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() != 2 and position() != 3" >
                             <xsl:if test="position() != last()" >
                                 <xsl:if test="string-length(text()) = 0" >
                                     null

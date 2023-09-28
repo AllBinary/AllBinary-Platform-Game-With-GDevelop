@@ -59,6 +59,16 @@ Created By: Travis Berthelot
                             <xsl:if test="type = 'number'" >
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                             </xsl:if>
+                            <xsl:if test="type = 'array'" >
+                        //array
+                                <xsl:for-each select="children" >
+                        public final String <xsl:value-of select="value" /> = "<xsl:value-of select="value" />";
+                                </xsl:for-each>
+
+                        public String[] <xsl:value-of select="name" /> = {
+                                        <xsl:for-each select="children" ><xsl:value-of select="value" /></xsl:for-each>,
+                        };
+                            </xsl:if>
 
                         </xsl:for-each>
     </xsl:template>
@@ -178,7 +188,7 @@ public class GDStructure {
                         //variables - START
                         <xsl:call-template name="variables" />
                         //variables - END
-
+                        
                         <xsl:variable name="objectsWithOnceCondition" ><xsl:call-template name="gdNodeToOnceList" ><xsl:with-param name="iteration" >0</xsl:with-param></xsl:call-template></xsl:variable>
                         //objectsWithOnceCondition=<xsl:value-of select="$objectsWithOnceCondition" />
                         <xsl:for-each select="objects" >
@@ -207,10 +217,12 @@ public class GDStructure {
                     <xsl:for-each select="objectsGroups" >
                         public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="name" />";
                         public final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
-                        public final BasicArrayList <xsl:value-of select="name" />GDObjectList = new BasicArrayList();
-                        public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList();
+                        public final BasicArrayList <xsl:value-of select="name" />GDObjectListOfList = new BasicArrayList();
+                        public final BasicArrayList <xsl:value-of select="name" />GDGameLayerListOfList = new BasicArrayList();
+                        public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerListOfList = new BasicArrayList();
+                        public final BasicArrayList <xsl:value-of select="name" />GDConditionWithGroupActionsList = new BasicArrayList();
                         <xsl:for-each select="objects" >
-                        public final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" />";
+                        //public final String <xsl:value-of select="name" /> = "<xsl:value-of select="name" />";
                         //public final Group <xsl:value-of select="name" />GroupInterface;
                         </xsl:for-each>
                     </xsl:for-each>
@@ -325,16 +337,18 @@ public class GDStructure {
                  
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals() {
                     
-
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
                         <xsl:for-each select="objects" >
-                        <xsl:value-of select="$name" />GDObjectList.add(new GDObject(null, -1, -1, <xsl:value-of select="name" />, null));
+                            <xsl:value-of select="$name" />GDObjectListOfList.add(<xsl:value-of select="name" />GDObjectList);
+                            <xsl:value-of select="$name" />GDGameLayerListOfList.add(<xsl:value-of select="name" />GDGameLayerList);
+                            <xsl:value-of select="$name" />CacheGDGameLayerListOfList.add(<xsl:value-of select="name" />CacheGDGameLayerList);
+                            <xsl:value-of select="$name" />GDConditionWithGroupActionsList.add(<xsl:value-of select="name" />GDConditionWithGroupActions);
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroups - END
-                    
+                                    
                     //eventsClassPropertyArrayActions - START
                     <xsl:call-template name="eventsClassPropertyArrayActions" >
                         <xsl:with-param name="totalRecursions" >

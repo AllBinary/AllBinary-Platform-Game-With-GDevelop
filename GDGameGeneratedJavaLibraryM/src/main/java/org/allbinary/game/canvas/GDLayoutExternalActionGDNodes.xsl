@@ -162,6 +162,14 @@ Created By: Travis Berthelot
                     public int GlobalVariable(final int value) {
                         return value;
                     }
+
+                    public String GlobalVariableString(final String value) {
+                        return value;
+                    }
+
+                    public int GlobalVariableChildCount(final String[] array) {
+                        return array.length;
+                    }
                     
                     public String ToString(final int value) {
                         //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);

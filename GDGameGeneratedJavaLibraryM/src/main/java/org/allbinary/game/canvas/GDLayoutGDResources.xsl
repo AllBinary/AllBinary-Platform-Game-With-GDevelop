@@ -110,6 +110,14 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
 
+                    //objectsGroups - START
+                    <xsl:for-each select="objectsGroups" >
+                        public final BasicArrayList <xsl:value-of select="name" />GDGameLayerFactoryList = new BasicArrayList();
+                        <xsl:for-each select="objects" >
+                        </xsl:for-each>
+                    </xsl:for-each>
+                    //objectsGroups - END
+                        
                     <xsl:call-template name="objectsProperties" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
@@ -152,7 +160,7 @@ Created By: Travis Berthelot
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
 
                     animationInterfaceFactoryInterfaceFactory.init(-1);
-                    
+                                        
                     <xsl:call-template name="objectsAssign" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
@@ -168,6 +176,15 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>                    
+                    
+                    //objectsGroups - START
+                    <xsl:for-each select="objectsGroups" >
+                        <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+                        <xsl:for-each select="objects" >
+                            <xsl:value-of select="$name" />GDGameLayerFactoryList.add(<xsl:value-of select="name" />GDGameLayerFactory);
+                        </xsl:for-each>
+                    </xsl:for-each>
+                    //objectsGroups - END
 
                     <xsl:if test="$layoutIndex = 1" >
                     //GameAreaBoxUtil.getInstance().addGameLayerFactories(animationInterfaceFactoryInterfaceFactory);

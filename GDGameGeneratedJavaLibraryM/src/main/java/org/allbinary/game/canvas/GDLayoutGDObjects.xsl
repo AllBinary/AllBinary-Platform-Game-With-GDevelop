@@ -67,6 +67,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDObject;
+                import org.allbinary.game.layout.GDObjectFactory;
                 
                 import org.allbinary.logic.basic.string.StringMaker;
                 
@@ -74,7 +75,8 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogUtil;
                 
                 import org.allbinary.logic.basic.string.StringUtil;
-
+                import org.allbinary.util.BasicArrayList;
+                
                 //LayoutGDObjects name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory
                 {
@@ -101,6 +103,40 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
+                    
+                    //objectsGroups - START
+                    <xsl:for-each select="objectsGroups" >
+                        <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+                    public final BasicArrayList gdObjectFactoryList = new BasicArrayList();
+                    </xsl:for-each>
+                    //objectsGroups - END
+                    
+                    private GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory() {
+                    
+                    //objectsGroups - START
+                    <xsl:for-each select="objectsGroups" >
+                        <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+                        <xsl:for-each select="objects" >
+                        gdObjectFactoryList.add(<xsl:value-of select="name" />GDObjectFactory);
+                        </xsl:for-each>
+                    </xsl:for-each>
+                    //objectsGroups - END
+
+                    }
+                    
+                    //objectsGroups - START
+                    <xsl:for-each select="objectsGroups" >
+                        <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+                    public int get<xsl:value-of select="name" />Index(String name) {
+                        <xsl:for-each select="objects" >
+                            <xsl:if test="position() != 1" >} else </xsl:if>if(name == globals.<xsl:value-of select="name" />) {
+                            return <xsl:value-of select="position() - 1" />;
+                        </xsl:for-each>
+                        }
+                        throw new RuntimeException("Missing Name: " + name);
+                    }
+                    </xsl:for-each>
+                    //objectsGroups - END
                     
                 }
             </xsl:if>

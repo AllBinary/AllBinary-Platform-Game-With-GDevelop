@@ -317,7 +317,7 @@ Created By: Travis Berthelot
                         }
 
                         //LayoutBuilder
-                        final GDObject <xsl:value-of select="name" />GDobject2 = gdObjectsFactory.get<xsl:value-of select="name" />(
+                        final GDObject <xsl:value-of select="name" />GDobject2 = gdObjectsFactory.<xsl:value-of select="$name" />GDObjectFactory.get(
                         null, <xsl:value-of select="name" />X, 
                         <xsl:value-of select="name" />Y, 
                         globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);

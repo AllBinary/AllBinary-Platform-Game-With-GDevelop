@@ -81,7 +81,10 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
+                import org.allbinary.game.layout.GDObjectFactory;
+                import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
+                import org.allbinary.game.layer.special.GDConditionWithGroupActions;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.PointFactory;
@@ -226,6 +229,14 @@ Created By: Travis Berthelot
 
                     public int GlobalVariable(final int value) {
                         return value;
+                    }
+
+                    public String GlobalVariableString(final String value) {
+                        return value;
+                    }
+
+                    public int GlobalVariableChildCount(final String[] array) {
+                        return array.length;
                     }
 
                     public int MouseX() {

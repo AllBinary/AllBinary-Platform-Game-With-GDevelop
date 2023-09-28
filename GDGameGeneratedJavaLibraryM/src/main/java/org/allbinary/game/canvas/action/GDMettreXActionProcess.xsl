@@ -13,8 +13,7 @@ AllBinary or the root directory of AllBinary's AllBinary Platform repository.
 Created By: Travis Berthelot
 -->
 
-<xsl:stylesheet version="1.0"
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="mettreXActionProcess" >
         <xsl:param name="instancesAsString" />
@@ -25,18 +24,56 @@ Created By: Travis Berthelot
 
                         //MettreX
                         public boolean process() {
-                            if(globals.<xsl:value-of select="$name" />GDObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                            final GDObject gdObject = (GDObject) globals.<xsl:value-of select="$name" />GDObjectList.get(0);
-                            final boolean result = this.processG(gdObject, globals.graphics);
+                        
+                            <xsl:variable name="objectGroup" >
+                                <xsl:for-each select="/game">
+                                    <xsl:for-each select="layouts" >
+                                            <xsl:for-each select="objectsGroups" >
+                                                <xsl:if test="name = $name" >
+                                                    found
+                                                </xsl:if>
+                                            </xsl:for-each>
+                                        <!--
+                                        <xsl:variable name="layoutIndex2" select="position() - 1" />
+                                        <xsl:if test="number($layoutIndex2) = $layoutIndex" > 
+                                        -->
+                                        <!--</xsl:if>-->
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                            </xsl:variable>
 
-                            if(globals.<xsl:value-of select="$name" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                                final GDGameLayer gameLayer = (GDGameLayer) globals.<xsl:value-of select="$name" />GDGameLayerList.get(0);
-                                //final GDObject gdObject = gameLayer.gdObject;
-                                gameLayer.updatePosition();
+                            <xsl:if test="string-length($objectGroup) > 0" >
+                            final int size = globals.<xsl:value-of select="$name" />GDObjectListOfList.size();
+                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            final BasicArrayList gdObjectList = ((BasicArrayList) globals.<xsl:value-of select="$name" />GDObjectListOfList.get(index));
+                            final BasicArrayList gdGameLayerList = ((BasicArrayList) globals.<xsl:value-of select="$name" />GDGameLayerListOfList.get(index));
+                            </xsl:if>
+                            <xsl:if test="string-length($objectGroup) = 0" >
+                            final BasicArrayList gdObjectList = globals.<xsl:value-of select="$name" />GDObjectList;
+                            final BasicArrayList gdGameLayerList = globals.<xsl:value-of select="$name" />GDGameLayerList;
+                            </xsl:if>
+                            final int size2 = gdObjectList.size();
+                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + size2, this, commonStrings.PROCESS));
+                            for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
+                            //if(gdObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+
+                                final GDObject gdObject = (GDObject) gdObjectList.get(index2);
+                                final boolean result = this.processG(gdObject, globals.graphics);
+
+                                //if(gdGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                    final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(index2);
+                                    //final GDObject gdObject = gameLayer.gdObject;
+                                    gameLayer.updatePosition();
+                                //}
+
+                                return result;
+                            //}
                             }
 
-                            return result;
+                            <xsl:if test="string-length($objectGroup) > 0" >
                             }
+                            </xsl:if>
+
                             return false;
                         }
                         

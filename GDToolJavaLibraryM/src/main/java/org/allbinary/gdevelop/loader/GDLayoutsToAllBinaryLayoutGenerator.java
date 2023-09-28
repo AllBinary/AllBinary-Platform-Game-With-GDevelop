@@ -61,6 +61,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             gameXmlAsString = replace3.all(gameXmlAsString);
             final Replace replace4 = new Replace("GlobalVariable(", "GlobalVariable(globals.");
             gameXmlAsString = replace4.all(gameXmlAsString);
+            final Replace replace5 = new Replace("GlobalVariableString(", "GlobalVariableString(globals.");
+            gameXmlAsString = replace5.all(gameXmlAsString);
+            final Replace replace6 = new Replace("GlobalVariableChildCount(", "GlobalVariableChildCount(globals.");
+            gameXmlAsString = replace6.all(gameXmlAsString);
             
             String layoutGameXmlAsString = new String(gameXmlAsString);
             final String VARIABLE = "Variable(";
@@ -87,11 +91,11 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 }
             }
 
-            final Replace replace5 = new Replace("PointX(&quot;", "PointX(&quot;globals.");
-            layoutGameXmlAsString = replace5.all(layoutGameXmlAsString);
+            final Replace replace7 = new Replace("PointX(&quot;", "PointX(&quot;globals.");
+            layoutGameXmlAsString = replace7.all(layoutGameXmlAsString);
 
-            final Replace replace6 = new Replace("PointY(&quot;", "PointY(&quot;globals.");
-            layoutGameXmlAsString = replace6.all(layoutGameXmlAsString);
+            final Replace replace8 = new Replace("PointY(&quot;", "PointY(&quot;globals.");
+            layoutGameXmlAsString = replace8.all(layoutGameXmlAsString);
 
             final String[] xmlStringArray = {
                 gameXmlAsString,

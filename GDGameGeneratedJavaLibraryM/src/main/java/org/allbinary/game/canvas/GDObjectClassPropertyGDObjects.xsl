@@ -124,9 +124,13 @@ Created By: Travis Berthelot
                     
                 };
 
-                public GDObject get<xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
-                    return new <xsl:value-of select="name" />(unknown, x, y, name);
-                }
+                public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new GDObjectFactory() {
+
+                    public GDObject get(final String unknown, final int x, final int y, final String name) {
+                        return new <xsl:value-of select="name" />(unknown, x, y, name);
+                    }
+
+                };    
 
             </xsl:if>
             <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
@@ -154,9 +158,13 @@ Created By: Travis Berthelot
                     }
                 };
 
-                public GDObject get<xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
-                    return new <xsl:value-of select="name" />(unknown, x, y, name);
-                }
+                public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new GDObjectFactory() {
+
+                    public GDObject get(final String unknown, final int x, final int y, final String name) {
+                        return new <xsl:value-of select="name" />(unknown, x, y, name);
+                    }
+
+                };    
 
             </xsl:if>
             <xsl:if test="$typeValue = 'TextObject::Text'" >
@@ -178,9 +186,13 @@ Created By: Travis Berthelot
                     }
                 };
 
-                public GDObject get<xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
-                    return new <xsl:value-of select="name" />(unknown, x, y, name);
-                }
+                public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new GDObjectFactory() {
+
+                    public GDObject get(final String unknown, final int x, final int y, final String name) {
+                        return new <xsl:value-of select="name" />(unknown, x, y, name);
+                    }
+
+                };    
 
             </xsl:if>
             <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
@@ -208,9 +220,13 @@ Created By: Travis Berthelot
                     }
                 };
 
-                public GDObject get<xsl:value-of select="name" />(final String unknown, final int x, final int y, final String name) {
-                    return new <xsl:value-of select="name" />(unknown, x, y, name);
-                }
+                public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new GDObjectFactory() {
+
+                    public GDObject get(final String unknown, final int x, final int y, final String name) {
+                        return new <xsl:value-of select="name" />(unknown, x, y, name);
+                    }
+
+                };    
 
             </xsl:if>
 
