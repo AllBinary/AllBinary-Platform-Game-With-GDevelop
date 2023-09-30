@@ -47,7 +47,29 @@ Created By: Travis Berthelot
     <xsl:template name="getCollisionLayerList" >
         <xsl:for-each select="events" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'CollisionNP'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:call-template name="getCollisionLayerList" /></xsl:for-each>
     </xsl:template>
-    
+
+    <xsl:template name="mapCollisionMaskHack" >
+        <xsl:for-each select="events" >
+            <xsl:variable name="foundCollisionNP" >
+            <xsl:for-each select="conditions" >
+                <xsl:if test="type/value = 'CollisionNP'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" >
+                            <xsl:value-of select="text()" />
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>
+            </xsl:variable>
+            <xsl:if test="string-length($foundCollisionNP) > 0" >
+                <xsl:for-each select="actions" >
+            globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                </xsl:for-each>
+            </xsl:if>
+            <xsl:call-template name="mapCollisionMaskHack" />
+        </xsl:for-each>
+    </xsl:template>
+        
     <xsl:template match="/game">
         <xsl:variable name="windowWidth" select="properties/windowWidth" />
 
@@ -56,6 +78,7 @@ Created By: Travis Berthelot
                 package org.allbinary.game.layer;
 
         import javax.microedition.lcdui.Canvas;
+        import javax.microedition.lcdui.Graphics;
         import javax.microedition.lcdui.game.TiledLayer;
 
         <xsl:for-each select="layouts" >
@@ -95,8 +118,12 @@ Created By: Travis Berthelot
         import org.allbinary.game.physics.velocity.VelocityProperties;
         import org.allbinary.game.physics.velocity.VelocityUtil;
         import org.allbinary.game.view.StaticTileLayerIntoPositionViewPosition;
+        import org.allbinary.graphics.GPoint;
         import org.allbinary.graphics.Rectangle;
+        import org.allbinary.graphics.color.BasicColorFactory;
+        import org.allbinary.layer.AllBinaryLayer;
         import org.allbinary.layer.AllBinaryLayerManager;
+        import org.allbinary.logic.basic.string.CommonSeps;
         import org.allbinary.logic.basic.string.CommonStrings;
         import org.allbinary.logic.basic.string.StringMaker;
         import org.allbinary.logic.communication.log.LogFactory;
@@ -116,12 +143,37 @@ Created By: Travis Berthelot
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
 
-            <xsl:for-each select="objects" >            
+            <xsl:for-each select="objects" >
                 
                 <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
                 <xsl:if test="type = 'TileMap::TileMap'" >
                     protected final org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior topViewGameBehavior = 
-                        new org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior(64, false, 6);
+                        new org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior(64, false, 6) {
+                    
+    public void moveAndLand(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellPosition geographicMapCellPosition, final VelocityProperties velocityProperties, final AllBinaryLayer layer, final int x, final int y) throws Exception {
+        
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand"));
+        
+        if (geographicMapCellPosition != null) {
+
+            super.moveAndLand(geographicMapInterfaceArray, geographicMapCellPosition, velocityProperties, layer, x, y);
+
+            //final String MOVE_AND_LAND = "moveAndLand";
+            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND));
+        } else {
+            //LogUtil.put(LogFactory.getInstance("do not move", this, "moveAndLand"));
+
+            //CollisionNP
+<!--            final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+            <xsl:for-each select=".." >
+            <xsl:call-template name="mapCollisionMaskHack" />
+            </xsl:for-each>-->
+
+        }
+        
+    }
+                    
+                    };
                     protected final org.allbinary.game.behavior.topview.TopViewCharacterBehavior topViewCharacterBehavior = 
                         <xsl:if test="1" >new org.allbinary.game.behavior.topview.PlayerTopViewCharacterBehavior();</xsl:if>
                         <xsl:if test="0" >new org.allbinary.game.behavior.topview.NonPlayerTopViewCharacterBehavior();</xsl:if>
@@ -325,7 +377,7 @@ Created By: Travis Berthelot
     public void move() {
         try {
             //LogUtil.put(LogFactory.getInstance("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move"));
-                    
+
             final GeographicMapCompositeInterface geographicMapCompositeInterface
                     = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
 
@@ -333,7 +385,7 @@ Created By: Travis Berthelot
                     = geographicMapCompositeInterface.getGeographicMapInterface();
 
             if(geographicMapInterfaceArray != null) {
-                final BasicGeographicMap geographicMapInterface = geographicMapInterfaceArray[0];
+                //final BasicGeographicMap geographicMapInterface = geographicMapInterfaceArray[0];
                 <xsl:variable name="gameLayer" ><xsl:for-each select=".." ><xsl:call-template name="getCollisionLayerList" /></xsl:for-each></xsl:variable>
                 final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                 if(this.gdObject.type == globals.TILEMAP__TILEMAP) {
@@ -343,9 +395,9 @@ Created By: Travis Berthelot
                         lastX = this.gdObject.x;
                         lastY = this.gdObject.y;
                     } else {
-                        this.gdObject.x = lastX;
-                        this.gdObject.y = lastY;
-                        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Back: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
+                        //this.gdObject.setX(lastX);
+                        //this.gdObject.setY(lastY);
+                        LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Back?: ").append(this.gdObject.x).append(CommonSeps.getInstance().COMMA).append(this.gdObject.y).toString(), this, "move"));
                     }
 
                 } else {
@@ -358,7 +410,7 @@ Created By: Travis Berthelot
                     }
                 }
             } else {
-                //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
                 GeographicMapEventHandler.getInstance().addListener(this);
             }
 
@@ -372,6 +424,49 @@ Created By: Travis Berthelot
         this.move();
     }
     
+    public void move2() {
+        try {
+            //LogUtil.put(LogFactory.getInstance("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move"));
+
+            final GeographicMapCompositeInterface geographicMapCompositeInterface
+                    = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+
+            final BasicGeographicMap[] geographicMapInterfaceArray
+                    = geographicMapCompositeInterface.getGeographicMapInterface();
+
+            if(geographicMapInterfaceArray != null) {
+                //final BasicGeographicMap geographicMapInterface = geographicMapInterfaceArray[0];
+                
+                final GD0SpecialAnimationGlobals globals = GD0SpecialAnimationGlobals.getInstance();
+                if(this.gdObject.type == globals.TILEMAP__TILEMAP) {
+                    final GDGameLayer Player = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
+                    //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
+                    this.terrainMove(geographicMapInterfaceArray, this.gdObject.x, this.gdObject.y);
+
+                } else {
+                    final GDGameLayer Player = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
+                    if(this == Player) {
+                        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Player - Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
+                        //this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
+                    } else {
+                        super.move();
+                    }
+                }
+            } else {
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
+                GeographicMapEventHandler.getInstance().addListener(this);
+            }
+
+        } catch (Exception e) {
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "move", e));
+        }
+    }
+
+    public void updatePosition2() {
+        super.updatePosition();
+        this.move2();
+    }
+
     public void terrainMove(final BasicGeographicMap[] geographicMapInterfaceArray, final int dx, final int dy) {
         this.topViewCharacterBehavior.terrainMove(this, geographicMapInterfaceArray, dx, dy);
     }
@@ -396,6 +491,15 @@ Created By: Travis Berthelot
     public void reset() throws Exception
     {
     }
+                    
+//    public void paint(final Graphics graphics) {
+//        super.paint(graphics);
+//        if(this.topViewGameBehavior.blockGeographicMapCellPosition != null) {
+//        graphics.setColor(BasicColorFactory.getInstance().RED.intValue());
+//        graphics.drawString(this.topViewGameBehavior.blockGeographicMapCellPosition.toString(), 10, 10, 0);
+//        }
+//    }
+
                 </xsl:if>
                 </xsl:if>
                 

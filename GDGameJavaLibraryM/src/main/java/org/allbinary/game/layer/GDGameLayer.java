@@ -365,8 +365,10 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
         this.move();
      
-        this.gdObject.x = this.x;
-        this.gdObject.y = this.y;
+        //this.gdObject.x = this.x;
+        //this.gdObject.y = this.y;
+        this.gdObject.setX(this.x);
+        this.gdObject.setY(this.y);
         
         this.updateRotation(timeDelta);
 
