@@ -25,7 +25,7 @@ import org.allbinary.animation.special.TitleAnimation;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.ColorChangeEvent;
 import org.allbinary.graphics.color.ColorChangeListener;
-import org.allbinary.logic.basic.util.event.AllBinaryEventObject;
+import org.allbinary.logic.util.event.AllBinaryEventObject;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.media.graphics.geography.map.ColorFromEventUtil;

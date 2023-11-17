@@ -29,7 +29,7 @@ import org.allbinary.input.gyro.AllBinaryOrientationSensor;
 import org.allbinary.input.gyro.GyroSensorFactory;
 import org.allbinary.media.audio.GDGameSoundsFactory;
 import org.allbinary.util.BasicArrayList;
-import org.allbinary.logic.basic.string.StringUtil;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.ai.OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer;

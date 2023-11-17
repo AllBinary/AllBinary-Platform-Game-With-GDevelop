@@ -22,7 +22,7 @@ package org.allbinary.graphics.threed.min3d;
 import min3d.vos.Camera;
 
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
-import org.allbinary.logic.basic.string.StringMaker;
+import org.allbinary.logic.string.StringMaker;
 
 public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
 {

@@ -36,7 +36,7 @@ import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.form.FormPaintable;
 import org.allbinary.graphics.paint.NullInitUpdatePaintable;
 import org.allbinary.graphics.paint.NullPaintable;
-import org.allbinary.logic.basic.string.StringUtil;
+import org.allbinary.logic.string.StringUtil;
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />

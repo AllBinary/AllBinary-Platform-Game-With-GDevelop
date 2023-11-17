@@ -7,7 +7,7 @@
 package org.allbinary.gdevelop.json.event.builtin;
 
 import org.allbinary.gdevelop.json.event.GDExpression;
-import org.allbinary.logic.basic.string.StringUtil;
+import org.allbinary.logic.string.StringUtil;
 import org.json.JSONObject;
 
 /**

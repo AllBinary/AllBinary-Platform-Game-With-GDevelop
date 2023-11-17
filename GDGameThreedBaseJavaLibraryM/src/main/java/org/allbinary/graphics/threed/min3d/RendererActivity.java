@@ -12,7 +12,7 @@ import org.allbinary.android.device.OpenGLESGraphicsFactory;
 import org.allbinary.android.view.OptimizedGLSurfaceView;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
-import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.microemu.android.device.AndroidDisplayOpenGLESGraphicsFactory;

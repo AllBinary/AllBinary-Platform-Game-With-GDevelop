@@ -9,7 +9,7 @@ package org.allbinary.gdevelop.json.event.builtin;
 import org.allbinary.gdevelop.json.GDProjectStrings;
 import org.allbinary.gdevelop.json.event.GDEvent;
 import org.allbinary.gdevelop.json.event.GDInstruction;
-import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;

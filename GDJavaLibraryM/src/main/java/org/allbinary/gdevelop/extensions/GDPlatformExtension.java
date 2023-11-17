@@ -6,7 +6,7 @@
 package org.allbinary.gdevelop.extensions;
 
 import org.allbinary.gdevelop.extensions.builtin.metadata.GDBehaviorMetadata;
-import org.allbinary.logic.basic.string.StringUtil;
+import org.allbinary.logic.string.StringUtil;
 
 /**
  *

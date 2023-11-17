@@ -13,11 +13,11 @@ import javax.xml.transform.stream.StreamSource;
 import org.allbinary.data.tree.dom.BasicUriResolver;
 import org.allbinary.data.tree.dom.XslHelper;
 import org.allbinary.data.tree.dom.document.XmlDocumentHelper;
-import org.allbinary.logic.basic.io.BufferedWriterUtil;
-import org.allbinary.logic.basic.io.StreamUtil;
-import org.allbinary.logic.basic.string.CommonStrings;
-import org.allbinary.logic.basic.string.StringMaker;
-import org.allbinary.logic.basic.string.regex.replace.Replace;
+import org.allbinary.logic.io.BufferedWriterUtil;
+import org.allbinary.logic.io.StreamUtil;
+import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 

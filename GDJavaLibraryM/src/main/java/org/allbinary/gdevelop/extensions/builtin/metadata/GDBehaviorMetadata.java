@@ -9,7 +9,7 @@ import java.util.HashMap;
 import org.allbinary.gdevelop.extensions.GDPlatformExtension;
 import org.allbinary.gdevelop.project.GDBehavior;
 import org.allbinary.gdevelop.project.GDBehaviorsSharedData;
-import org.allbinary.logic.basic.string.CommonSeps;
+import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.util.BasicArrayList;
 
 /**

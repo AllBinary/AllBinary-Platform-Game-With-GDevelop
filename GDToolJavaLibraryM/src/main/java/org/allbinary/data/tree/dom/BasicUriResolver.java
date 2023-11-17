@@ -16,8 +16,8 @@ package org.allbinary.data.tree.dom;
 import javax.xml.transform.Source;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.URIResolver;
-import org.allbinary.logic.basic.path.AbFilePath;
-import org.allbinary.logic.basic.path.AbPath;
+import org.allbinary.logic.io.path.AbFilePath;
+import org.allbinary.logic.io.path.AbPath;
 
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;

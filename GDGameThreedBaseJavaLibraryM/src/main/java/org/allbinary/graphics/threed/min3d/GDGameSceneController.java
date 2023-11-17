@@ -1,6 +1,6 @@
 package org.allbinary.graphics.threed.min3d;
 
-import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.communication.log.PreLogUtil;
@@ -20,7 +20,7 @@ import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.graphics.opengles.OpenGLCapabilities;
 
 import org.allbinary.graphics.threed.min3d.renderer.AllBinaryToMin3dRendererFactory;
-import org.allbinary.logic.basic.string.StringMaker;
+import org.allbinary.logic.string.StringMaker;
 
 public class GDGameSceneController 
 extends AllBinaryGameSceneController

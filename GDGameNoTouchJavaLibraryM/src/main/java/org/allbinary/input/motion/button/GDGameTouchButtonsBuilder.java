@@ -14,7 +14,7 @@
 package org.allbinary.input.motion.button;
 
 import org.allbinary.input.motion.button.BaseTouchInput;
-import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.input.gyro.SensorGameUpdateProcessor;

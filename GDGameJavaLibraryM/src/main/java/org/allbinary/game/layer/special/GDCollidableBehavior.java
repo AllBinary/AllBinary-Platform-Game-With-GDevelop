@@ -18,7 +18,7 @@ import org.allbinary.game.collision.CollidableInterfaceCompositeInterface;
 import org.allbinary.game.identification.GroupInterface;
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layout.GDNode;
-import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.ForcedLogUtil;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;

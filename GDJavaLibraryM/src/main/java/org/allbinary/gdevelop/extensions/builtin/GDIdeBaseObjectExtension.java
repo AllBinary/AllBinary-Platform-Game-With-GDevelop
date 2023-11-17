@@ -8,7 +8,7 @@ package org.allbinary.gdevelop.extensions.builtin;
 import org.allbinary.gdevelop.extensions.GDPlatformExtension;
 import org.allbinary.gdevelop.extensions.builtin.metadata.GDBehaviorMetadata;
 import org.allbinary.gdevelop.extensions.builtin.metadata.GDParameterFactory;
-import org.allbinary.logic.basic.string.StringUtil;
+import org.allbinary.logic.string.StringUtil;
 
 /**
  *

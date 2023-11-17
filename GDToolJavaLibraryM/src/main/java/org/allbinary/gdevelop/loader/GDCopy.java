@@ -14,11 +14,11 @@
 package org.allbinary.gdevelop.loader;
 
 import java.util.Vector;
-import org.allbinary.logic.basic.io.file.AbFile;
-import org.allbinary.logic.basic.io.file.FileListFetcher;
-import org.allbinary.logic.basic.io.file.FileUtil;
-import org.allbinary.logic.basic.path.AbPath;
-import org.allbinary.logic.basic.string.CommonStrings;
+import org.allbinary.logic.io.file.AbFile;
+import org.allbinary.logic.io.file.FileListFetcher;
+import org.allbinary.logic.io.file.FileUtil;
+import org.allbinary.logic.io.path.AbPath;
+import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 

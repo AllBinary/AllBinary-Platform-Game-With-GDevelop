@@ -1,6 +1,6 @@
 package org.allbinary.business.advertisement;
 
-import org.allbinary.logic.basic.string.StringUtil;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.direction.Direction;
 import org.allbinary.direction.DirectionFactory;
 

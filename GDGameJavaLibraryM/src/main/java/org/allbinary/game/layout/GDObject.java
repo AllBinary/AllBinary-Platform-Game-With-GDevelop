@@ -19,7 +19,7 @@ import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.SpacialStrings;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
-import org.allbinary.logic.basic.string.CommonSeps;
+import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.math.NoDecimalTrigTable;
