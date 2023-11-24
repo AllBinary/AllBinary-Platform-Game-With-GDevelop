@@ -289,7 +289,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         final int size3 = geographicMapInterfaceArray.length;
         for(int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
-            final TileSet tileSet = map.getTileSets().get(0);
+            final TileSet tileSet = (TileSet) map.getTileSets().get(0);
             final Map tileTypeToTileIdsMap = TileSetToGeographicMapUtil.getInstance().convert(tileSet);
             <xsl:if test="contains($isPlatformer, 'found')" >
             org.allbinary.media.graphics.geography.map.platform.BasicPlatormGeographicMapCellTypeFactory.getInstance().init(tileTypeToTileIdsMap);

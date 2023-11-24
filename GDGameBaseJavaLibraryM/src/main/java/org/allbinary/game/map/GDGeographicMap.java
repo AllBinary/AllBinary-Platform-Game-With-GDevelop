@@ -79,7 +79,7 @@ public class GDGeographicMap extends BasicGeographicMap {
     }
 
     public void createAnimationTiles() {
-        final List<TileSet> tileSetList = map.getTileSets();
+        final BasicArrayList tileSetList = map.getTileSets();
         final int size = tileSetList.size();
         TileSet tileSet;
         Tile tile;
@@ -87,7 +87,7 @@ public class GDGeographicMap extends BasicGeographicMap {
         int animationTileIndex;
         int tileCount;
         for(int index = 0; index < size; index++) {
-            tileSet = tileSetList.get(index);
+            tileSet = (TileSet) tileSetList.get(index);
             tileCount = tileSet.getTilecount();
             for(int index2 = 0; index2 < tileCount; index2++) {
                 tile = tileSet.getTile(index2);
@@ -97,7 +97,7 @@ public class GDGeographicMap extends BasicGeographicMap {
                     animationTileIndex = tiledLayer.createAnimatedTile(tile.getId());
                     this.animationTileIndexArray[this.animationList.size()] = animationTileIndex;
                     this.animationList.add(animation);
-                    this.getAllBinaryTiledLayer().updateCells(((TileLayer) map.getLayer(0)).getMapArray(), animation.getFrame().get(0).getTileid(), animationTileIndex);
+                    this.getAllBinaryTiledLayer().updateCells(((TileLayer) map.getLayer(0)).getMapArray(), ((Frame) animation.getFrame().get(0)).getTileid(), animationTileIndex);
                 }
             }
         }
@@ -110,7 +110,7 @@ public class GDGeographicMap extends BasicGeographicMap {
         Frame frame;
         for(int index = 0; index < size; index++) {
             animation = (Animation) this.animationList.get(index);
-            frame = animation.getFrame().get(this.currentFrameArray[index]);
+            frame = (Frame) animation.getFrame().get(this.currentFrameArray[index]);
 
             if (startTime - this.startTimeFrameArray[index] > frame.getDuration()) {
                 //LogUtil.put(LogFactory.getInstance(new StringMaker().append("AnimationTile: ").append(this.animationTileIndexArray[index]).append(":").append(frame.getTileid()).toString(), this, commonStrings.PROCESS));
