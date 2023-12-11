@@ -435,7 +435,7 @@ Created By: Travis Berthelot
             if(geographicMapInterfaceArray != null) {
                 //final BasicGeographicMap geographicMapInterface = geographicMapInterfaceArray[0];
                 
-                final GD0SpecialAnimationGlobals globals = GD0SpecialAnimationGlobals.getInstance();
+                final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                 if(this.gdObject.type == globals.TILEMAP__COLLISIONMASK) {
 
                 } else if(this.gdObject.type == globals.TILEMAP__TILEMAP) {

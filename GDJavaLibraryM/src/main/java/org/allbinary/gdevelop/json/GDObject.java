@@ -6,6 +6,7 @@
 
 package org.allbinary.gdevelop.json;
 
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.BasicArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -31,7 +32,11 @@ public class GDObject
 
         this.type = type;
         this.name = jsonObject.getString(gdProjectStrings.NAME);
-        this.tags = jsonObject.getString(gdProjectStrings.TAGS);
+        if(jsonObject.has(gdProjectStrings.TAGS)) {
+            this.tags = jsonObject.getString(gdProjectStrings.TAGS);
+        } else {
+            this.tags = StringUtil.getInstance().EMPTY_STRING;
+        }
         
         final JSONArray variableJSONArray = jsonObject.getJSONArray(gdProjectStrings.VARIABLES);
         int size = variableJSONArray.length();
