@@ -269,7 +269,7 @@ public class GDObject
 
         final StringBuilder stringBuilder = new StringBuilder();
         return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON)
-                .append(this.name)
+                .append(this.name).append(this.hashCode())
                 .append(commonSeps.SPACE)
                 .append(positionStrings.X_LABEL).append(this.x)
                 .append(positionStrings.Y_LABEL).append(this.y)

@@ -25,6 +25,8 @@ Created By: Travis Berthelot
                         //MettreX
                         public boolean process() {
                         
+                            //boolean result = false;
+
                             <xsl:variable name="objectGroup" >
                                 <xsl:for-each select="/game">
                                     <xsl:for-each select="layouts" >
@@ -52,13 +54,18 @@ Created By: Travis Berthelot
                             final BasicArrayList gdObjectList = globals.<xsl:value-of select="$name" />GDObjectList;
                             final BasicArrayList gdGameLayerList = globals.<xsl:value-of select="$name" />GDGameLayerList;
                             </xsl:if>
+                            
                             final int size2 = gdObjectList.size();
+                            //if(size2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                            //    result = true;
+                            //}
+
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + size2, this, commonStrings.PROCESS));
                             for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
                             //if(gdObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
 
                                 final GDObject gdObject = (GDObject) gdObjectList.get(index2);
-                                final boolean result = this.processG(gdObject, globals.graphics);
+                                result = result <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.processG(gdObject, globals.graphics);
 
                                 //if(gdGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                     final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(index2);
@@ -66,7 +73,6 @@ Created By: Travis Berthelot
                                     gameLayer.updatePosition();
                                 //}
 
-                                return result;
                             //}
                             }
 
@@ -74,7 +80,8 @@ Created By: Travis Berthelot
                             }
                             </xsl:if>
 
-                            return false;
+                            //return result;
+                            return true;
                         }
                         
                         @Override
