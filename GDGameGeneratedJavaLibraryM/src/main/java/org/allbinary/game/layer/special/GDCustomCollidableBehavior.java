@@ -13,36 +13,87 @@
  */
 package org.allbinary.game.layer.special;
 
+import org.allbinary.game.canvas.GD0SpecialAnimationGlobals;
 import org.allbinary.game.collision.CollidableBaseBehavior;
 import org.allbinary.game.collision.CollidableInterfaceCompositeInterface;
 import org.allbinary.game.identification.GroupInterface;
 import org.allbinary.game.layer.CollidableCompositeLayer;
+import org.allbinary.game.layer.GDCustomGameLayer;
 import org.allbinary.game.layout.GDNode;
-import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.game.layout.GDObject;
 import org.allbinary.logic.communication.log.ForcedLogUtil;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
+import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
+import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
 
 /**
  *
  * @author User
  */
-public class GDCollidableBehavior extends CollidableBaseBehavior 
+public class GDCustomCollidableBehavior extends CollidableBaseBehavior 
 {
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
     
     public final GDConditionWithGroupActions conditionWIthGroupActions;
     
-    public GDCollidableBehavior(final CollidableCompositeLayer ownerLayer, final GDConditionWithGroupActions collidableBehavior, final boolean collidable)
+    public GDCustomCollidableBehavior(final CollidableCompositeLayer ownerLayer, final GDConditionWithGroupActions collidableBehavior, final boolean collidable)
     {
         super(ownerLayer, collidable);
         
         this.conditionWIthGroupActions = collidableBehavior;
     }
     
-    private final String IS_COLLISION = "isCollision";
+    //private final String IS_COLLISION = "isCollision";
 
+    public boolean isCollision(final CollidableCompositeLayer collisionLayer) 
+    {
+        final GD0SpecialAnimationGlobals globals = GD0SpecialAnimationGlobals.getInstance();
+        //if(((GDCustomGameLayer) this.ownerLayer).gdObject.type == globals.TILEMAP__COLLISIONMASK) {
+        final GDCustomGameLayer collisionMaskCustomGameLayer = ((GDCustomGameLayer) collisionLayer);
+        if(collisionMaskCustomGameLayer.gdObject.type == globals.TILEMAP__COLLISIONMASK) {
+            
+            return this.isCollision3(collisionMaskCustomGameLayer);
+        } else {
+            return this.isCollision2(collisionLayer);
+        }
+    }
+    
+    public boolean isCollision3(final GDCustomGameLayer collisionMaskCustomGameLayer) {
+        
+        try {
+            
+            final GeographicMapCompositeInterface geographicMapCompositeInterface
+                    = (GeographicMapCompositeInterface) collisionMaskCustomGameLayer.allBinaryGameLayerManager;
+
+            final BasicGeographicMap[] geographicMapInterfaceArray
+                    = geographicMapCompositeInterface.getGeographicMapInterface();
+
+            if(geographicMapInterfaceArray != null) {
+
+                final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) this.ownerLayer);
+                final GDObject gdObject = collisionMaskCustomGameLayer.gdObject;
+                final GeographicMapCellPosition geographicMapCellPosition = collisionMaskCustomGameLayer.topViewGameBehavior.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, customGameLayer.getVelocityProperties(), customGameLayer, gdObject.x, gdObject.y);
+
+                //LogUtil.put(LogFactory.getInstance("geographicMapCellPosition: " + geographicMapCellPosition, this, commonStrings.PROCESS));
+                if(geographicMapCellPosition == null) {
+                    //LogUtil.put(LogFactory.getInstance(globals.TILEMAP__COLLISIONMASK, this, commonStrings.PROCESS));
+                    //LogUtil.put(LogFactory.getInstance(gdObject.toShortString(), this, commonStrings.PROCESS));
+                    return true;
+                }
+            }
+            
+        } catch(Exception e) {
+            LogUtil.put(LogFactory.getInstance(this.commonStrings.EXCEPTION, this, this.commonStrings.PROCESS, e));
+        }
+        
+        return false;
+    }
+    
     // TODO TWB Special Super Efficient Collision Processing
-    public boolean isCollision(final CollidableCompositeLayer collisionLayer)
+    public boolean isCollision2(final CollidableCompositeLayer collisionLayer)
     {
         //final StringBuilder stringBuilder = new StringBuilder();
         //LogUtil.put(LogFactory.getInstance(stringBuilder.append(':').append(this.ownerLayer.getName()).append(':').append(collisionLayer.getName()).toString(), this, IS_COLLISION));
@@ -56,7 +107,7 @@ public class GDCollidableBehavior extends CollidableBaseBehavior
 //        }
 
         //if(this.collidableBehavior.groupCollisionList.size() > 0) {
-        if(((GDCollidableBehavior) collisionLayer.getCollidableInferface()).conditionWIthGroupActions.groupWithActionsList.size() > 0) {
+        if(((GDCustomCollidableBehavior) collisionLayer.getCollidableInferface()).conditionWIthGroupActions.groupWithActionsList.size() > 0) {
             //stringBuilder.delete(0, stringBuilder.length());
             //LogUtil.put(LogFactory.getInstance(stringBuilder.append(this.ownerLayer.getGroupInterface()[0]).append(" != ").append(collisionLayer.getGroupInterface()[0]).toString(), this, IS_COLLISION));
             if (this.ownerLayer.getGroupInterface()[0] != collisionLayer.getGroupInterface()[0]) {

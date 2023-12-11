@@ -63,6 +63,8 @@ Created By: Travis Berthelot
         <xsl:param name="logString" />
         <xsl:param name="eventsCreateProcessUsed" />
         
+                <xsl:variable name="nodeList" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
@@ -212,8 +214,14 @@ Created By: Travis Berthelot
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
                     <xsl:if test="$typeValue = 'PickedInstancesCount'" >
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
-                    <xsl:if test="$typeValue = 'CollisionNP'" >
+                    <xsl:if test="$typeValue = '(Used when using the AllBinary Collision Processing) CollisionNP'" >
                         //CollisionNP - condition is processed by the AllBinary collision processor
+                    </xsl:if>                
+                    <xsl:if test="$typeValue = 'CollisionNP'" >
+                        //CollisionNP - ?
+                        <xsl:call-template name="collisionNPConditionGDNode" >
+                            <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
+                        </xsl:call-template>
                     </xsl:if>                
                     <xsl:if test="$typeValue = 'Raycast'" >
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED</xsl:if>
@@ -729,7 +737,7 @@ Created By: Travis Berthelot
             </xsl:variable>
 
             <!-- conditions - START -->
-            <xsl:variable name="alreadyUsedCondition" ><xsl:for-each select="conditions" ><xsl:if test="(type/value = 'SourisSurObjet' or type/value = 'CollisionNP' or type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased')" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="alreadyUsedCondition" ><xsl:for-each select="conditions" ><xsl:if test="(type/value = 'SourisSurObjet' or type/value = '(Used when using the AllBinary Collision Processing) CollisionNP' or type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased')" >found</xsl:if></xsl:for-each></xsl:variable>
             
             <!-- whileConditions - conditions - START -->
             <xsl:for-each select="whileConditions" >

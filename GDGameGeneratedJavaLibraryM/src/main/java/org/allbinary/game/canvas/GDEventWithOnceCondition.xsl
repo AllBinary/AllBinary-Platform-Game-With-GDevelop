@@ -21,7 +21,7 @@ Created By: Travis Berthelot
 
         <xsl:for-each select="events" >
             <xsl:variable name="eventId" >[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:variable>
-            <xsl:variable name="hasCollisionCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="hasCollisionCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = '(Used when using the AllBinary Collision Processing) CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
 
             <xsl:variable name="hasNeededCondition" ><xsl:for-each select="conditions" ><xsl:if test="not(contains($hasCollisionCondition, 'found'))" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Once'" >found</xsl:if></xsl:if><xsl:if test="type/value = 'DepartScene'" >found</xsl:if></xsl:for-each></xsl:variable>
 

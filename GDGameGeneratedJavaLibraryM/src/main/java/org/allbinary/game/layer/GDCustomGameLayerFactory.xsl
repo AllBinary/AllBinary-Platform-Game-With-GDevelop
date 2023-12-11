@@ -52,7 +52,7 @@ package org.allbinary.game.layer;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.game.identification.Group;
-import org.allbinary.game.layer.special.GDCollidableBehavior;
+import org.allbinary.game.layer.special.GDCustomCollidableBehavior;
 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.graphics.Rectangle;
@@ -110,7 +110,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
                 this.layerInfo,  
                 gdObject, this.animationBehavior);
         
-        gameLayer.setCollidableInferface(new GDCollidableBehavior(gameLayer, collidableBehavior, true));
+        gameLayer.setCollidableInferface(new GDCustomCollidableBehavior(gameLayer, collidableBehavior, true));
 
         //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(name).append(" GDObject name: ").append(gdObject.name).append(" w/h/d: ").append(gameLayer.getWidth()).append('/').append(gameLayer.getHeight()).append('/').append(gameLayer.getDepth()).toString(), this, "create"));
         

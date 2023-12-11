@@ -95,12 +95,13 @@ public class GDObject
 
     public void setX(final int x) {
         final int lastWidth = DisplayInfoSingleton.getInstance().getLastWidth();
-        if(x > lastWidth) {
-            LogUtil.put(LogFactory.getInstance("DisplayInfoSingleton lastWidth: " + lastWidth, this, "setX", new Exception()));
-            this.x = lastWidth;
-        } else {
+//        if(x > lastWidth) {
+//            LogUtil.put(LogFactory.getInstance("DisplayInfoSingleton lastWidth: " + lastWidth, this, "setX", new Exception()));
+//            this.x = lastWidth;
+//        } else {
            this.x = x;
-        }
+//        }
+
 //        if(this.name.indexOf(MAP) >= 0) {
 //            LogUtil.put(LogFactory.getInstance("GDGameLevelLevelBuilder x: " + this.x, this, "setX"));
 //        }
@@ -112,12 +113,13 @@ public class GDObject
 
     public void setY(final int y) {
         final int lastHeight = DisplayInfoSingleton.getInstance().getLastHeight();
-        if(y > lastHeight) {
-            LogUtil.put(LogFactory.getInstance("DisplayInfoSingleton lastHeight: " + lastHeight, this, "setX", new Exception()));
-            this.y = lastHeight;
-        } else {
+//        if(y > lastHeight) {
+//            LogUtil.put(LogFactory.getInstance("DisplayInfoSingleton lastHeight: " + lastHeight, this, "setX", new Exception()));
+//            this.y = lastHeight;
+//        } else {
            this.y = y;
-        }
+//        }
+
 //        if(this.name.indexOf(MAP) >= 0) {
 //            LogUtil.put(LogFactory.getInstance("GDGameLevelLevelBuilder y: " + this.y, this, "setY"));
 //        }
@@ -242,6 +244,21 @@ public class GDObject
     public float Variable(final float value)
     {
         return value;
+    }
+
+    public String toShortString() {
+        final CommonSeps commonSeps = CommonSeps.getInstance();
+        final GDObjectStrings gdObjectStrings = GDObjectStrings.getInstance();
+        final PositionStrings positionStrings = PositionStrings.getInstance();
+        final SpacialStrings spacialStrings = SpacialStrings.getInstance();
+
+        final StringBuilder stringBuilder = new StringBuilder();
+        return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON)
+                .append(this.name)
+                .append(commonSeps.SPACE)
+                .append(positionStrings.X_LABEL).append(this.x)
+                .append(positionStrings.Y_LABEL).append(this.y)
+                .toString();
     }
 
     public String toString() {

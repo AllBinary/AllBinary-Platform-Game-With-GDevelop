@@ -19,6 +19,9 @@ Created By: Travis Berthelot
 
     <xsl:template name="externalLinkEventGDNode" >
                             //externalLinkEventGDNode
+                            if(globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
+                                throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
+                            }
                             globals.<xsl:value-of select="name" />GDNode = globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                             
                                 @Override

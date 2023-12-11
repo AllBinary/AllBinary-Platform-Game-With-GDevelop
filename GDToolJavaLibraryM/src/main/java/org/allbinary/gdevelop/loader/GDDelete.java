@@ -77,6 +77,7 @@ public class GDDelete {
         exclusionList.add("GDGameInputProcessor.java");
         exclusionList.add("GDGameResourceInitialization.java");
         exclusionList.add("GDGlobals.java");
+        exclusionList.add("GDCustomCollidableBehavior.java");
 
         final Vector files = FileListFetcher.getInstance().getFiles(
               gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java", "java");

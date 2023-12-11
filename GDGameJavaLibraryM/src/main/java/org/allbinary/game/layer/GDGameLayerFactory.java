@@ -18,7 +18,7 @@ import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
-import org.allbinary.game.layer.special.GDCollidableBehavior;
+import org.allbinary.game.layer.special.GDWithAllBinaryCollidableBehavior;
 import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -86,7 +86,7 @@ public class GDGameLayerFactory
                 this.layerInfo, new ViewPosition(), 
                 gdObject, this.animationBehavior);
         
-        gameLayer.setCollidableInferface(new GDCollidableBehavior(gameLayer, collidableBehavior, true));
+        gameLayer.setCollidableInferface(new GDWithAllBinaryCollidableBehavior(gameLayer, collidableBehavior, true));
 
         //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(name).append(" GDObject name: ").append(gdObject.name).append(" w/h/d: ").append(gameLayer.getWidth()).append('/').append(gameLayer.getHeight()).append('/').append(gameLayer.getDepth()).toString(), this, "create"));
         

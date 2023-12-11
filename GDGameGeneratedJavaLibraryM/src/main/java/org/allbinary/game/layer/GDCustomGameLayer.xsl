@@ -44,10 +44,6 @@ Created By: Travis Berthelot
     
     <xsl:output method="html" indent="yes" />
 
-    <xsl:template name="getCollisionLayerList" >
-        <xsl:for-each select="events" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'CollisionNP'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:if></xsl:for-each><xsl:call-template name="getCollisionLayerList" /></xsl:for-each>
-    </xsl:template>
-
     <xsl:template name="mapCollisionMaskHack" >
         <xsl:for-each select="events" >
             <xsl:variable name="foundCollisionNP" >
@@ -63,7 +59,7 @@ Created By: Travis Berthelot
             </xsl:variable>
             <xsl:if test="string-length($foundCollisionNP) > 0" >
                 <xsl:for-each select="actions" >
-            globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+            //globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:for-each>
             </xsl:if>
             <xsl:call-template name="mapCollisionMaskHack" />
@@ -123,9 +119,9 @@ Created By: Travis Berthelot
         import org.allbinary.graphics.color.BasicColorFactory;
         import org.allbinary.layer.AllBinaryLayer;
         import org.allbinary.layer.AllBinaryLayerManager;
-        import org.allbinary.logic.basic.string.CommonSeps;
-        import org.allbinary.logic.basic.string.CommonStrings;
-        import org.allbinary.logic.basic.string.StringMaker;
+        import org.allbinary.logic.string.CommonSeps;
+        import org.allbinary.logic.string.CommonStrings;
+        import org.allbinary.logic.string.StringMaker;
         import org.allbinary.logic.communication.log.LogFactory;
         import org.allbinary.logic.communication.log.LogUtil;
         import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
@@ -147,8 +143,8 @@ Created By: Travis Berthelot
                 
                 <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
                 <xsl:if test="type = 'TileMap::TileMap'" >
-                    protected final org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior topViewGameBehavior = 
-                        new org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior(64, false, 6) {
+                    public final org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior2 topViewGameBehavior = 
+                        new org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior2(64, false, 6) {
                     
     public void moveAndLand(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellPosition geographicMapCellPosition, final VelocityProperties velocityProperties, final AllBinaryLayer layer, final int x, final int y) throws Exception {
         
@@ -162,12 +158,12 @@ Created By: Travis Berthelot
             //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND));
         } else {
             //LogUtil.put(LogFactory.getInstance("do not move", this, "moveAndLand"));
-
+                    
             //CollisionNP
-<!--            final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+            final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
             <xsl:for-each select=".." >
             <xsl:call-template name="mapCollisionMaskHack" />
-            </xsl:for-each>-->
+            </xsl:for-each>
 
         }
         
@@ -178,7 +174,7 @@ Created By: Travis Berthelot
                         <xsl:if test="1" >new org.allbinary.game.behavior.topview.PlayerTopViewCharacterBehavior();</xsl:if>
                         <xsl:if test="0" >new org.allbinary.game.behavior.topview.NonPlayerTopViewCharacterBehavior();</xsl:if>
 
-                    protected final AllBinaryGameLayerManager allBinaryGameLayerManager;
+                    public final AllBinaryGameLayerManager allBinaryGameLayerManager;
                 </xsl:if>
                 </xsl:if>
 
@@ -294,7 +290,8 @@ Created By: Travis Berthelot
                         this.allBinaryGameLayerManager = allBinaryGameLayerManager;
                     
                         //final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-                        //if(this.gdObject.type == globals.TILEMAP__TILEMAP) {
+                        //if(this.gdObject.type == globals.TILEMAP__COLLISIONMASK) {
+                        //} else if(this.gdObject.type == globals.TILEMAP__TILEMAP) {
                             //this.updatePosition();
                         //}
                     
@@ -386,23 +383,24 @@ Created By: Travis Berthelot
 
             if(geographicMapInterfaceArray != null) {
                 //final BasicGeographicMap geographicMapInterface = geographicMapInterfaceArray[0];
-                <xsl:variable name="gameLayer" ><xsl:for-each select=".." ><xsl:call-template name="getCollisionLayerList" /></xsl:for-each></xsl:variable>
                 final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-                if(this.gdObject.type == globals.TILEMAP__TILEMAP) {
-                    final GDGameLayer <xsl:value-of select="$gameLayer" /> = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
-                    //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
-                    if(this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, <xsl:value-of select="$gameLayer" />, this.gdObject.x, this.gdObject.y)) {
+                if(this.gdObject.type == globals.TILEMAP__COLLISIONMASK) {
+
+                } else if(this.gdObject.type == globals.TILEMAP__TILEMAP) {
+                    final GDGameLayer player = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
+                    //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Map: ").append(this.gdObject.toShortString()).toString(), this, "move"));
+                    if(this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, player, this.gdObject.x, this.gdObject.y)) {
                         lastX = this.gdObject.x;
                         lastY = this.gdObject.y;
                     } else {
                         //this.gdObject.setX(lastX);
                         //this.gdObject.setY(lastY);
-                        LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Back?: ").append(this.gdObject.x).append(CommonSeps.getInstance().COMMA).append(this.gdObject.y).toString(), this, "move"));
+                        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Back?: ").append(this.gdObject.x).append(CommonSeps.getInstance().COMMA).append(this.gdObject.y).toString(), this, "move"));
                     }
 
                 } else {
-                    final GDGameLayer <xsl:value-of select="$gameLayer" /> = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
-                    if(this == <xsl:value-of select="$gameLayer" />) {
+                    final GDGameLayer player = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
+                    if(this == player) {
                         //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Player - Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
                         //this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
                     } else {
@@ -438,7 +436,9 @@ Created By: Travis Berthelot
                 //final BasicGeographicMap geographicMapInterface = geographicMapInterfaceArray[0];
                 
                 final GD0SpecialAnimationGlobals globals = GD0SpecialAnimationGlobals.getInstance();
-                if(this.gdObject.type == globals.TILEMAP__TILEMAP) {
+                if(this.gdObject.type == globals.TILEMAP__COLLISIONMASK) {
+
+                } else if(this.gdObject.type == globals.TILEMAP__TILEMAP) {
                     final GDGameLayer Player = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
                     //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
                     this.terrainMove(geographicMapInterfaceArray, this.gdObject.x, this.gdObject.y);

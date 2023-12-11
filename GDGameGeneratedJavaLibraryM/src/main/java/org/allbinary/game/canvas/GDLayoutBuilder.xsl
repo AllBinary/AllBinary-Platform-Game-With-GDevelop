@@ -61,7 +61,8 @@ Created By: Travis Berthelot
                 <xsl:variable name="objectsAsString" >,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                     //$typeValue = 'TileMap::CollisionMask' or 
                     //$typeValue = 'TileMap::TileMap' or //Not excluded anymore.
-                <xsl:variable name="exclusionObjectsAsString" >,<xsl:for-each select="objects" ><xsl:if test="contains(type, 'Collision')" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:if></xsl:for-each></xsl:variable>
+                    //exclusionObjectsAsStringNotInUse=,<xsl:for-each select="objects" ><xsl:if test="contains(type, 'Collision')" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:if></xsl:for-each>
+                <xsl:variable name="exclusionObjectsAsString" ></xsl:variable>
                 
                 <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>

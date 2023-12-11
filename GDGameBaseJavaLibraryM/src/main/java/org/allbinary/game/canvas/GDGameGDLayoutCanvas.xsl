@@ -360,10 +360,10 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
                     list.add(new OptimizedGameInputLayerProcessorForCollidableLayer());
                 }
 
-                if (features.isFeature(gameFeatureFactory.COLLIDABLE_INTERFACE_LAYER_PROCESSOR))
-                {
-                    list.add(new OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer());
-                }
+                //if (features.isFeature(gameFeatureFactory.COLLIDABLE_INTERFACE_LAYER_PROCESSOR))
+                //{
+                //    list.add(new OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer());
+                //}
 
                 if (features.isFeature(gameFeatureFactory.TICKABLE_LAYER_PROCESSOR))
                 {

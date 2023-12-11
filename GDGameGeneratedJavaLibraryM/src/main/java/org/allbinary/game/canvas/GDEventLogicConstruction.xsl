@@ -238,8 +238,8 @@ Created By: Travis Berthelot
 
                         <xsl:text>&#10;</xsl:text>
                         
-                        <xsl:call-template name="collisionNPConditionGDNode" >
-                            //CollisionNP
+                        //CollisionNP
+                        <xsl:call-template name="collisionNPConditionGDNodeUsingAllBinary" >
                             <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
                         </xsl:call-template>
 
@@ -257,8 +257,8 @@ Created By: Travis Berthelot
                         //gameLayersInGroup=<xsl:value-of select="$gameLayersInGroup" />
                         <xsl:text>&#10;</xsl:text>
 
-                        <xsl:call-template name="collisionNPConditionGDNode" >
-                            //CollisionNP
+                        //CollisionNP
+                        <xsl:call-template name="collisionNPConditionGDNodeUsingAllBinary" >
                             <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
                         </xsl:call-template>
 

@@ -94,6 +94,10 @@ Created By: Travis Berthelot
                     //Condition - //VarScene - call
                     globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
+                <xsl:if test="$typeValue = 'CollisionNP'" >
+                    //Condition - //CollisionNP - call
+                    globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                </xsl:if>
             </xsl:for-each>
             </xsl:if>
 
