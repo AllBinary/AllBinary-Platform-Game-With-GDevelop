@@ -65,7 +65,8 @@ Created By: Travis Berthelot
                             for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
                             //if(gdObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                 final GDObject gdObject = (GDObject) gdObjectList.get(index2);
-                                result = result <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.processG(gdObject, globals.graphics);
+                                //result = result <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> 
+                                this.processG(gdObject, globals.graphics);
 
                                 //if(gdGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                     final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(index2);
