@@ -50,12 +50,28 @@ Created By: Travis Berthelot
                     public boolean <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                         </xsl:if>
                         <xsl:if test="type = 'array'" >
+                            <xsl:if test="contains(name, 'BoolArray')" >
+                    public boolean[] <xsl:value-of select="name" /> = {
+                            <xsl:for-each select="children" >
+                        "<xsl:value-of select="value" />",
+                            </xsl:for-each>
+                    };
+                            </xsl:if>
+                            <xsl:if test="contains(name, 'IntArray')" >
+                    public int[] <xsl:value-of select="name" /> = {
+                            <xsl:for-each select="children" >
+                        "<xsl:value-of select="value" />",
+                            </xsl:for-each>
+                    };
+                            </xsl:if>
+                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'BoolArray'))" >
                     public String[] <xsl:value-of select="name" /> = {
                             <xsl:for-each select="children" >
                         "<xsl:value-of select="value" />",
                             </xsl:for-each>
                     };
-                        </xsl:if>                        
+                            </xsl:if>
+                        </xsl:if>
                     </xsl:for-each>
 
                 <xsl:if test="animations" >
