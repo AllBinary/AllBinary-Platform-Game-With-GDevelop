@@ -114,7 +114,7 @@ Created By: Travis Berthelot
                                 if(<xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 1" >((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="text()" />) <xsl:value-of select="text()" />).</xsl:if>
                                     <xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if>
-                                    <xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if></xsl:if>
+                                    <xsl:if test="position() = 3" ><xsl:if test="text() != '>'" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="text() = '>'" ><xsl:text disable-output-escaping="yes" > &gt; </xsl:text></xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if></xsl:if>
                                     <xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>) {
                         </xsl:if>
                                     //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "VarObjet processing", this, commonStrings.PROCESS));
