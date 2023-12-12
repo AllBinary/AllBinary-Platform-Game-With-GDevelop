@@ -47,7 +47,7 @@ Created By: Travis Berthelot
             //Do not create GDNode for link - The target GDNode is called instead.
             </xsl:if>
             <xsl:if test="type = 'BuiltinAsync::Async'" >
-            //NOT_IMPLEMENTED
+            //<xsl:value-of select="type" /> NOT_IMPLEMENTED
             </xsl:if>
             
             <xsl:if test="type = 'BuiltinCommonInstructions::JsCode'" >
