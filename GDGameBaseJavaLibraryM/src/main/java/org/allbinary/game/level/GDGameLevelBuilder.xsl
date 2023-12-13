@@ -160,7 +160,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             globals.RandomDungeon = true;
             if(globals.RandomDungeon) {
                 LogUtil.put(LogFactory.getInstance("Loading Tiled Map Asset", this, commonStrings.PROCESS));
-                final byte[] data = new DungeonGenerator().generateJSONAsString().getBytes();
+                final DungeonGenerator dungeonGenerator = new DungeonGenerator();
+                final int[][] mapData = dungeonGenerator.generate();
+                final byte[] data = dungeonGenerator.generateJSONAsString(mapData).getBytes();
                 tileMapInputStream2 = new ByteArrayInputStream(data);
             } else {
                 tileMapInputStream2 = platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);
@@ -382,7 +384,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                     //LogUtil.put(LogFactory.getInstance(stringMaker.append(F).append(index).append(CommonSeps.getInstance().SPACE).append(index2).toString(), this, commonStrings.PROCESS));
                     //LogUtil.put(LogFactory.getInstance(basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.toString(), this, commonStrings.PROCESS));
                     
-                    if (basicTopViewGeographicMapCellTypeFactory.OTHER_CELL_TYPE.isType(mapArray[index][index2])) {
+                    if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index][index2])) {
                         placementXIntArray[placementTotal] = index;
                         placementYIntArray[placementTotal] = index2;
                         placementTotal++;
