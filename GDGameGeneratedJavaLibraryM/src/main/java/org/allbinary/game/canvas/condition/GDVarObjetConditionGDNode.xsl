@@ -22,6 +22,7 @@ Created By: Travis Berthelot
         <xsl:param name="parametersAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
+        
                     //varObjetConditionGDNode - //Condition - //VarObjet - GDNode
                     if(globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
@@ -35,6 +36,8 @@ Created By: Travis Berthelot
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
+                        
+                            boolean result = true;
 
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(globals.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>"));
@@ -46,22 +49,48 @@ Created By: Travis Berthelot
                                 final GDGameLayer gdGameLayer = ((GDGameLayer) globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index));
                                 if(this.processG(gdGameLayer.gdObject, globals.graphics)) {
 
+                                <xsl:variable name="hasCondition" ><xsl:for-each select="conditions" >found</xsl:for-each></xsl:variable>
+
+                                <xsl:variable name="hasSiblingWithDuplicateProcessing" >
+                                    <xsl:for-each select=".." >
+                                        <xsl:for-each select="whileConditions" >
+                                        <!--
+                                        <xsl:if test="type/value = 'BuiltinCommonInstructions::And'" >found</xsl:if>
+                                        <xsl:if test="type/value = 'BuiltinCommonInstructions::Or'" >found</xsl:if>
+                                        -->
+                                        </xsl:for-each>
+                                    </xsl:for-each>
+                                </xsl:variable>
+                                
+                                <xsl:if test="contains($hasSiblingWithDuplicateProcessing, 'found')" >
+                                    //Skipping duplicate processing
+                                </xsl:if>
+                                <xsl:if test="not(contains($hasSiblingWithDuplicateProcessing, 'found'))" >
+                                    //If condition is true then process the following
+
                                 <xsl:for-each select=".." >
                                     <xsl:for-each select="events" >                             
-                                        <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
-                                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
-                                            //Event - //BuiltinCommonInstructions::Standard - call
-                                            globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                        <xsl:if test="not(type = 'BuiltinCommonInstructions::Standard')" >
+                                        //Was not including - <xsl:value-of select="type" /> before
                                         </xsl:if>
+                                        //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
+                                        //Event - <xsl:value-of select="type" /> - call
+                                        globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                     </xsl:for-each>
                                    
-                                        <xsl:call-template name="actionIdsGDObject" >
-                                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                                            <xsl:with-param name="gdObjectName" ><xsl:value-of select="$gdObjectName" /></xsl:with-param>
-                                            <xsl:with-param name="gdGameLayer" >gdGameLayer</xsl:with-param>
-                                        </xsl:call-template>
-                                </xsl:for-each>
+                                    <xsl:if test="not(contains($hasCondition, 'found'))" >
+                                    <xsl:call-template name="actionIdsGDObject" >
+                                        <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                                        <xsl:with-param name="gdObjectName" ><xsl:value-of select="$gdObjectName" /></xsl:with-param>
+                                        <xsl:with-param name="gdGameLayer" >gdGameLayer</xsl:with-param>
+                                    </xsl:call-template>
+                                    </xsl:if>
 
+                                </xsl:for-each>
+                                </xsl:if>
+
+                                } else {
+                                    result = false;
                                 }
                             }
                            
@@ -76,7 +105,7 @@ Created By: Travis Berthelot
                            
                             super.processStatsE();
                             
-                            return true;
+                            return result;
                         }
 
                         //VarObjet

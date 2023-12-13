@@ -17,6 +17,7 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="createByNameActionProcess" >
+        <xsl:param name="layoutIndex" />
         <xsl:param name="param" />
         <xsl:param name="actionWithTextObjectString" />
         <xsl:param name="nodeAsString" />
@@ -34,6 +35,9 @@ Created By: Travis Berthelot
                                                         
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                     <xsl:call-template name="createByNameGDObject" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
                         <xsl:with-param name="objectsAsString" >
                             <xsl:value-of select="$objectsAsString" />
                         </xsl:with-param>
@@ -83,6 +87,9 @@ Created By: Travis Berthelot
                         
                         //createGDObject - process - START
                     <xsl:call-template name="createByNameGDObject" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
                         <xsl:with-param name="objectsAsString" >
                             <xsl:value-of select="$objectsAsString" />
                         </xsl:with-param>

@@ -17,6 +17,7 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="createGDObject" >
+        <xsl:param name="layoutIndex" />
         <xsl:param name="objectsAsString" />
         <xsl:param name="nodeAsString" />
 
@@ -88,6 +89,7 @@ Created By: Travis Berthelot
     </xsl:template>
 
     <xsl:template name="createByNameGDObject" >
+        <xsl:param name="layoutIndex" />
         <xsl:param name="objectsAsString" />
         <xsl:param name="nodeAsString" />
 
@@ -96,6 +98,22 @@ Created By: Travis Berthelot
 
 
                         //createByNameGDObject
+                        
+                    <xsl:variable name="hasGameLayer2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="contains(text(), '.')" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+
+                    <xsl:variable name="gameLayerName3" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:if></xsl:for-each></xsl:variable>
+                    //gameLayerName3=<xsl:value-of select="$gameLayerName3" />
+                    <xsl:variable name="gameLayerName4" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4 and contains(text(), '-')" ><xsl:value-of select="substring-after($gameLayerName3, '-')" /></xsl:if><xsl:if test="position() = 4 and not(contains($gameLayerName3, '-'))" ><xsl:value-of select="$gameLayerName3" /></xsl:if></xsl:for-each></xsl:variable>
+                    //gameLayerName4=<xsl:value-of select="$gameLayerName4" />
+                    <xsl:variable name="gameLayerName" ><xsl:call-template name="substring-after-last" ><xsl:with-param name="string" ><xsl:value-of select="$gameLayerName4" /></xsl:with-param><xsl:with-param name="char" select="' '" /></xsl:call-template></xsl:variable>
+                    //gameLayerName=<xsl:value-of select="$gameLayerName" />
+
+                    <xsl:if test="contains($hasGameLayer2, 'found')" >
+                    final GDGameLayer <xsl:value-of select="$gameLayerName" />GDGameLayer = (GDGameLayer) globals.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(0);
+                    //final GDObject <xsl:value-of select="$gameLayerName" /> = <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
+                    final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$gameLayerName" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="$gameLayerName" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$gameLayerName" />)<xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
+                    </xsl:if>
+                        
                         final GDObject <xsl:value-of select="$name" />GDobject2 = ((GDObjectFactory) gdObjectsFactory.gdObjectFactoryList.get(gdObjectsFactory.get<xsl:value-of select="$name" />Index(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>))).get(
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() != 2 and position() != 3" >
@@ -468,6 +486,9 @@ Created By: Travis Berthelot
 
                                 //createGDObject - Assign - START
                     <xsl:call-template name="createGDObject" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
                         <xsl:with-param name="objectsAsString" >
                             <xsl:value-of select="$objectsAsString" />
                         </xsl:with-param>

@@ -16,11 +16,18 @@ Created By: Travis Berthelot
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:output method="html" indent="yes" />
-    <xsl:template name="orConditionGDNode" >
+    <xsl:template name="andConditionGDNode" >
         <xsl:param name="parametersAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
-                    //orConditionGDNode - //Condition - //BuiltinCommonInstructions::Or - GDNode
+        
+        <xsl:variable name="hasSiblingWithDuplicateProcessing" >
+            <xsl:for-each select=".." >
+                <xsl:if test="type = 'BuiltinCommonInstructions::While'" >found</xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
+        
+                    //andConditionGDNode - //Condition - //BuiltinCommonInstructions::And - GDNode
                     if(globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -29,11 +36,13 @@ Created By: Travis Berthelot
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
 
-                        //BuiltinCommonInstructions::Or - condition
+                        //BuiltinCommonInstructions::And - condition
                         @Override
                         public boolean process() throws Exception {
 
                             super.processStats();
+
+                            boolean result = true;
 
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
@@ -42,15 +51,26 @@ Created By: Travis Berthelot
                             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                             //subInstructions - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                             //subInstructions - //Condition - //<xsl:value-of select="type/value" /> - call
-                            if(globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
-                                this.processSub();
-                                return true;
+                            if(!globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                                result = false;
                             }
                             </xsl:for-each>
 
-                            return false;
+                            <xsl:if test="contains($hasSiblingWithDuplicateProcessing, 'found')" >
+                                //Skipping duplicate processing
+                            </xsl:if>
+
+                            <xsl:if test="not(contains($hasSiblingWithDuplicateProcessing, 'found'))" >
+                            if(result) {
+                                this.processSub();
+                            }
+                            </xsl:if>
+
+
+                            return result;
                         }
                         
+                        <xsl:if test="not(contains($hasSiblingWithDuplicateProcessing, 'found'))" >
                         public void processSub() throws Exception {
                             <xsl:for-each select=".." >
                                 <xsl:for-each select="actions" >
@@ -65,6 +85,8 @@ Created By: Travis Berthelot
                                 </xsl:for-each>
                             </xsl:for-each>
                         }
+                        </xsl:if>
+
                     };
 
     </xsl:template>

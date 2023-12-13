@@ -57,6 +57,9 @@ Created By: Travis Berthelot
                                         <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
                     //createGDObject - SceneVariableAsBoolean - START                    
                     <xsl:call-template name="createGDObject" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
                         <xsl:with-param name="objectsAsString" >
                             <xsl:value-of select="$objectsAsString" />
                         </xsl:with-param>

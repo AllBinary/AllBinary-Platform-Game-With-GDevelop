@@ -26,6 +26,7 @@ package org.allbinary.game.level;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
+import java.util.Arrays;
 import java.util.Map;
 
 import javax.microedition.lcdui.Image;
@@ -51,6 +52,7 @@ import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.map.GDGeographicMap;
 import org.allbinary.game.map.GDTiledMapProperties;
+import org.allbinary.game.rand.MyRandomFactory;
 import org.allbinary.game.resource.GDResources;
 import org.allbinary.game.view.StaticTileLayerIntoPositionViewPosition;
 import org.allbinary.graphics.color.BasicColor;
@@ -130,7 +132,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final GDResources gdResources = GDResources.getInstance();
         final PlatformAssetManager platformAssetManager = PlatformAssetManager.getInstance();
         final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-                
+
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
@@ -348,6 +350,22 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory
                 = org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory.getInstance();
 
+        final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+        final GD0GDObjectsFactory.PlatformerMap platformerMap = (GD0GDObjectsFactory.PlatformerMap) globals.PlatformerMapGDObjectList.get(0);
+        int placementTotal = 0;
+        int placementMax = 0;
+        for (int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
+            //LogUtil.put(LogFactory.getInstance("Find Start Position on map layer: " + layerIndex, this, commonStrings.PROCESS));
+            final TileLayer tileLayer = ((TileLayer) map.getLayer(layerIndex));
+            final int[][] mapArray = tileLayer.getMapArray();
+            final int size = mapArray.length * mapArray[0].length;
+            if(size <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> placementMax) {
+                placementMax = size;
+            }
+        }        
+        final int[] placementXIntArray = new int[placementMax];
+        final int[] placementYIntArray = new int[placementMax];
+
         BasicGeographicMapCellPositionFactory geographicMapCellPositionFactory;
         GeographicMapCellPosition geographicMapCellPosition;
         for (int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
@@ -363,6 +381,12 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                     //stringMaker.delete(0, stringMaker.length());
                     //LogUtil.put(LogFactory.getInstance(stringMaker.append(F).append(index).append(CommonSeps.getInstance().SPACE).append(index2).toString(), this, commonStrings.PROCESS));
                     //LogUtil.put(LogFactory.getInstance(basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.toString(), this, commonStrings.PROCESS));
+                    
+                    if (basicTopViewGeographicMapCellTypeFactory.OTHER_CELL_TYPE.isType(mapArray[index][index2])) {
+                        placementXIntArray[placementTotal] = index;
+                        placementYIntArray[placementTotal] = index2;
+                        placementTotal++;
+                    }
 
                     if (basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.isType(mapArray[index][index2])) {
                     
@@ -406,6 +430,16 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                 }
             }
         }
+        
+        platformerMap.placementXIntArray = Arrays.copyOf(placementXIntArray, placementTotal);
+        platformerMap.placementYIntArray = Arrays.copyOf(placementYIntArray, placementTotal);
+        platformerMap.placementIntArray = new int[placementTotal];
+        final int size = platformerMap.placementIntArray.length;
+        final MyRandomFactory randomFactory = MyRandomFactory.getInstance();
+        for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+            platformerMap.placementIntArray[index] = randomFactory.getAbsoluteNextInt(placementTotal);
+        }
+        LogUtil.put(LogFactory.getInstance("placementTotal: " + placementTotal, this, commonStrings.PROCESS));
     }
 
     private int lastWidthUsed = 0;
