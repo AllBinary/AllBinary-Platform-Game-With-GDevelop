@@ -385,8 +385,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                     //LogUtil.put(LogFactory.getInstance(basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.toString(), this, commonStrings.PROCESS));
                     
                     if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index][index2])) {
-                        placementXIntArray[placementTotal] = index;
-                        placementYIntArray[placementTotal] = index2;
+                        placementXIntArray[placementTotal] = index * map.getTileWidth();
+                        placementYIntArray[placementTotal] = index2 * map.getTileHeight();
                         placementTotal++;
                     }
 
