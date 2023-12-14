@@ -197,7 +197,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                 //whileConditions - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
-                //eventsLogicConstructionCollisionNP - //whileConditions - maybe? NOT_IMPLEMENTED
+                //eventsLogicConstructionCollisionNP - //whileConditions - NOT_IMPLEMENTED
             </xsl:for-each>
 
             <xsl:for-each select="conditions" >
@@ -246,6 +246,7 @@ Created By: Travis Berthelot
                             <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
                         </xsl:call-template>
 
+                        //CollisionNP - add Groups/Teams
                         <xsl:call-template name="addCollisionNP" >
                             <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
                             <xsl:with-param name="name1" ><xsl:value-of select="$name1" /></xsl:with-param>
@@ -286,6 +287,13 @@ Created By: Travis Berthelot
                         
                 </xsl:if>
 
+            <xsl:for-each select="subInstructions" >
+                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                //subInstructions - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
+                //eventsLogicConstructionCollisionNP - //subInstructions - NOT_IMPLEMENTED
+            </xsl:for-each>
+
             </xsl:for-each>
 
         </xsl:for-each>
@@ -316,6 +324,7 @@ Created By: Travis Berthelot
         <xsl:if test="string-length($names) > 0">
             <xsl:variable name="nextName" select="substring-before(concat($names, ','), ',')" />
 
+                        //CollisionNP - add Groups/Teams
                         <xsl:call-template name="addCollisionNP" >
                             <xsl:with-param name="name" ><xsl:value-of select="$nextName" /></xsl:with-param>
                             <xsl:with-param name="name1" ><xsl:value-of select="$name" /></xsl:with-param>

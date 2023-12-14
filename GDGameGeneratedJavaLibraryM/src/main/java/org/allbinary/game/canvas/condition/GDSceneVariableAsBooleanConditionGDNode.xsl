@@ -51,6 +51,8 @@ Created By: Travis Berthelot
 
                             if(<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = 'False'" >!</xsl:if></xsl:if><xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" /></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
 
+                                <xsl:variable name="hasCreate" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" >found</xsl:if></xsl:for-each></xsl:variable>
+
                                 <xsl:for-each select="../actions" >
                                     <xsl:if test="type/value = 'Create'" >
                                         
@@ -79,7 +81,12 @@ Created By: Travis Berthelot
                                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
+                                    <xsl:if test="contains($hasCreate, 'found')" >
                                 globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
+                                    </xsl:if>
+                                    <xsl:if test="not(contains($hasCreate, 'found'))" >
+                                globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                    </xsl:if>
                                     </xsl:if>
                                 </xsl:for-each>
 

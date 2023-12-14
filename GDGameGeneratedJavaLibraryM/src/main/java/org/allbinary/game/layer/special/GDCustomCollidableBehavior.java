@@ -57,7 +57,8 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
             
             return this.isCollision3(collisionMaskCustomGameLayer);
         } else {
-            return this.isCollision2(collisionLayer);
+            return super.isCollision(collisionLayer);
+            //return this.isCollision2(collisionLayer);
         }
     }
     

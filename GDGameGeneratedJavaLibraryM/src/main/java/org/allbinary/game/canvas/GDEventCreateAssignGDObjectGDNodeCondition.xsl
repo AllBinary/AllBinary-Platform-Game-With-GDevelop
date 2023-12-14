@@ -32,6 +32,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDPosYConditionGDNode.xsl" />
     <xsl:import href="./condition/GDNbObjetConditionGDNode.xsl" />
     <xsl:import href="./condition/GDOpacityConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDObjectVariableChildCountConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVarGlobalConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVarObjetConditionGDNode.xsl" />
     <xsl:import href="./condition/GDGlobalVariableAsBooleanConditionGDNode.xsl" />
@@ -246,7 +247,7 @@ Created By: Travis Berthelot
                         //NbObjet - some are processed from eventsProcess
                         <xsl:call-template name="nbObjetConditionGDNode" >
                             <xsl:with-param name="layoutIndex" >
-                                <xsl:value-of select="layoutIndex" />
+                                <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
                             <xsl:with-param name="caller" >
                                 <xsl:value-of select="$caller" />
@@ -784,7 +785,7 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'Timer'" >
                     
                     <xsl:call-template name="timerConditionGDNode" >
-                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                         <xsl:with-param name="thisNodeIndex" ><xsl:value-of select="$thisNodeIndex" /></xsl:with-param>
                         <xsl:with-param name="thisNodeArray" ><xsl:value-of select="$thisNodeArray" /></xsl:with-param>
@@ -802,7 +803,7 @@ Created By: Travis Berthelot
                     
                     //Depricated
                     <xsl:call-template name="objectTimerConditionGDNode" >
-                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                         <xsl:with-param name="thisNodeIndex" ><xsl:value-of select="$thisNodeIndex" /></xsl:with-param>
                         <xsl:with-param name="thisNodeArray" ><xsl:value-of select="$thisNodeArray" /></xsl:with-param>
@@ -830,7 +831,7 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'VarScene'" >
 
                     <xsl:call-template name="varSceneCnditionGDNode" >
-                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                         <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
@@ -851,7 +852,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
                         <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
 
-                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                         <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
                         <xsl:with-param name="thisNodeIndex" ><xsl:value-of select="$thisNodeIndex" /></xsl:with-param>
@@ -867,7 +868,7 @@ Created By: Travis Berthelot
                 
                 <xsl:if test="$typeValue = 'VarGlobal'" >
                     <xsl:call-template name="varGlobalConditionGDNode" >
-                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                         <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
@@ -883,7 +884,7 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'GlobalVariableAsBoolean'" >
                     <xsl:call-template name="globalVariableAsBooleanConditionGDNode" >
-                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                         <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
@@ -897,6 +898,17 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarGlobalDef'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+                <xsl:if test="$typeValue = 'ObjectVariableChildCount'" >
+                    <xsl:call-template name="objectVariableChildCountConditionGDNode" >
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
+                        <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                        <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
+                    </xsl:call-template>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'SceneVariableChildCount'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED

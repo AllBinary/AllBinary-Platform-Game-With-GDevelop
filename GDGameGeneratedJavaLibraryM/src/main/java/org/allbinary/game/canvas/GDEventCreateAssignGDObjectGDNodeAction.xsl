@@ -26,6 +26,8 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDModVarObjetActionProcess.xsl" />
     <xsl:import href="./action/GDModVarSceneTxtActionProcess.xsl" />
     
+    <xsl:import href="./action/GDObjectVariablePushNumberActionProcess.xsl" />
+
     <xsl:import href="./action/GDHideLayerActionProcess.xsl" />
     
     <xsl:import href="./action/GDPlaySoundActionProcess.xsl" />
@@ -226,7 +228,16 @@ Created By: Travis Berthelot
                 </xsl:if>
   
                 <xsl:if test="$typeValue = 'ObjectVariablePushNumber'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+
+                    <xsl:call-template name="objectVariablePushNumberActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                                        
                 </xsl:if>
   
                 <xsl:if test="$typeValue = 'ObjectVariablePushBool'" >

@@ -64,6 +64,8 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.game.canvas;
 
+                import java.util.Arrays;
+                
                 import javax.microedition.lcdui.Canvas;
                 import javax.microedition.lcdui.Graphics;
 
