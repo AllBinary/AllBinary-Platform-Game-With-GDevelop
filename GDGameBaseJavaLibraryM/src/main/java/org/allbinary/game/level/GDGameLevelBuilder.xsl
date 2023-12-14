@@ -80,6 +80,7 @@ import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
 import org.allbinary.media.graphics.geography.map.GeographicMapInterface;
 import org.allbinary.media.graphics.geography.map.platform.TileSetToGeographicMapUtil;
+import org.allbinary.util.ArrayUtil;
 
 import org.mapeditor.loader.TiledMapLoaderFromJSONFactory;
 import org.mapeditor.core.TileLayer;
@@ -433,8 +434,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             }
         }
         
-        platformerMap.placementXIntArray = Arrays.copyOf(placementXIntArray, placementTotal);
-        platformerMap.placementYIntArray = Arrays.copyOf(placementYIntArray, placementTotal);
+        final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+        platformerMap.placementXIntArray = arrayUtil.copyOf(placementXIntArray, placementTotal);
+        platformerMap.placementYIntArray = arrayUtil.copyOf(placementYIntArray, placementTotal);
         platformerMap.placementIntArray = new int[placementTotal];
         final int size = platformerMap.placementIntArray.length;
         final MyRandomFactory randomFactory = MyRandomFactory.getInstance();
