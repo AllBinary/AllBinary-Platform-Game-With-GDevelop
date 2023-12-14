@@ -56,7 +56,7 @@ Created By: Travis Berthelot
 <xsl:text>                        </xsl:text><xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="text()" />) paramOneGameLayer.gdObject).</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if>
                         </xsl:for-each> = <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" >Arrays.copyOf(((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="text()" />) paramOneGameLayer.gdObject).</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" />, </xsl:if>
+                        <xsl:if test="position() = 1" >arrayUtil.copyOf(((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="text()" />) paramOneGameLayer.gdObject).</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" />, </xsl:if>
                         </xsl:for-each><xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="text()" />) paramOneGameLayer.gdObject).</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" />.length + 1);</xsl:if>
                         </xsl:for-each>
