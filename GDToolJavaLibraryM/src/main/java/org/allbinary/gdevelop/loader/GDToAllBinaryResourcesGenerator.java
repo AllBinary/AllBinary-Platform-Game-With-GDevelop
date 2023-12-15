@@ -15,6 +15,7 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -55,6 +56,9 @@ public class GDToAllBinaryResourcesGenerator
     
     public void process() throws Exception {
 
+        final CommonSeps commonSeps = CommonSeps.getInstance();
+        final String TOUCH = "TOUCH";
+        
         final String RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.origin";
         final String RESOURCE = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.java";
         
@@ -80,7 +84,7 @@ public class GDToAllBinaryResourcesGenerator
                 resourceStringBuilder.append("//");
             }
             for(int index2 = 2; index2 < size2; index2++) {
-                if(name.endsWith("_" + index2)) {
+                if(name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
                     resourceStringBuilder.append("//");
                 }
             }

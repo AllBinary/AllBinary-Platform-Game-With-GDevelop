@@ -15,6 +15,7 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -90,6 +91,9 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
     }
 
     public void appendMedia(final StringMaker stringBuilder) {
+        final CommonSeps commonSeps = CommonSeps.getInstance();
+        final String TOUCH = "TOUCH";
+
         final BasicArrayList resourceList = this.gdResources.resourceNameList;
         final BasicArrayList androidResourceList = this.gdResources.androidResourceList;
         
@@ -103,7 +107,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
             stringBuilder.append(NEW_LINE);
             
             for(int index2 = 2; index2 < size2; index2++) {
-                if(resource.indexOf("_" + index2) >= 0) {
+                if(resource.indexOf(commonSeps.UNDERSCORE + index2) >= 0 && resource.indexOf(TOUCH) < 0) {
                     stringBuilder.append(COMMENT);
                 }
             }
