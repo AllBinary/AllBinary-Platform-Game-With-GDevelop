@@ -65,12 +65,14 @@ Created By: Travis Berthelot
                 <xsl:for-each select="animations" >
                     //<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray[<xsl:value-of select="position()" /> - 1] = ;
                     new OneRowSpriteIndexedAnimationFactory(
-                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />])
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
+                    )
                     //,
-                    //<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth(),
-                    //<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight(),
+                    //-<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth() / 2,
+                    //-<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight() / 2
                     //angleIncrement
-                    //)<xsl:if test="position() != last()" >,</xsl:if>
+                    //)
+                    <xsl:if test="position() != last()" >,</xsl:if>
                 </xsl:for-each>
                 };
 
@@ -108,6 +110,7 @@ Created By: Travis Berthelot
                                         </xsl:if>
                                     </xsl:for-each>
                                 </xsl:for-each>
+                                <!--
                                 <xsl:for-each select="/game" >
                                     <xsl:for-each select="layouts" >
                                 <xsl:call-template name="getSetSizeForObject" >
@@ -116,6 +119,7 @@ Created By: Travis Berthelot
                                 </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:for-each>
+                                -->
                                 );
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
@@ -299,9 +303,36 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                     new OneRowSpriteIndexedAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
-                    //,
-                    //<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth(),
-                    //<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight(),
+                    //)
+                    ,
+                                <xsl:for-each select=".." >
+                                    <xsl:for-each select=".." >
+                                    <xsl:variable name="hasInstance" ><xsl:for-each select="instances" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+                                    <xsl:if test="not(contains($hasInstance, 'found'))" >
+                                        //No instance available
+                                        0, 0
+                                    </xsl:if>
+                                    <xsl:for-each select="instances" >
+                                        <xsl:if test="name = $name" >
+                                            <xsl:if test="contains(name, 'btn_')" >
+                                                //btn_ - found
+                                                -<xsl:value-of select="$name" />ImageArray[0].getWidth(), -<xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                            </xsl:if>
+                                            <xsl:if test="not(contains(name, 'btn_'))" >
+                                                //btn_ - not
+                                                <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
+                                                    <xsl:if test="animations/directions/sprites/originPoint/x = 0" >
+                                                        -<xsl:value-of select="$name" />ImageArray[0].getWidth(), -<xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                                    </xsl:if>
+                                                </xsl:if>
+                                                <xsl:if test="height != 0 and width != 0" >
+                                                    -(<xsl:value-of select="width" /> / 2), -(<xsl:value-of select="height" /> / 2)
+                                                </xsl:if>
+                                            </xsl:if>
+                                        </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                                </xsl:for-each>
                     //angleIncrement
                     </xsl:if>
                     <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
@@ -329,6 +360,11 @@ Created By: Travis Berthelot
                                 <!--
                                 -->
                                 <xsl:for-each select=".." >
+                                    <xsl:variable name="hasInstance" ><xsl:for-each select="instances" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+                                    <xsl:if test="not(contains($hasInstance, 'found'))" >
+                                        //No instance available
+                                        <xsl:value-of select="$name" />ImageArray[0].getHeight(), <xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                    </xsl:if>
                                     <xsl:for-each select="instances" >
                                         <xsl:if test="name = $name" >
                                             <xsl:if test="contains(name, 'btn_')" >
@@ -349,6 +385,7 @@ Created By: Travis Berthelot
                                         </xsl:if>
                                     </xsl:for-each>
                                 </xsl:for-each>
+                                <!--
                                 <xsl:for-each select="/game" >
                                     <xsl:for-each select="layouts" >
                                 <xsl:call-template name="getSetSizeForObject" >
@@ -357,6 +394,7 @@ Created By: Travis Berthelot
                                 </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:for-each>
+                                -->
                                 );
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
@@ -552,9 +590,36 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                     new OneRowSpriteIndexedAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
-                    //,
-                    //<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth(),
-                    //<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight(),
+                    //)
+                    ,
+                                <xsl:for-each select=".." >
+                                    <xsl:for-each select=".." >
+                                    <xsl:variable name="hasInstance" ><xsl:for-each select="instances" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+                                    <xsl:if test="not(contains($hasInstance, 'found'))" >
+                                        //No instance available
+                                        0, 0
+                                    </xsl:if>
+                                    <xsl:for-each select="instances" >
+                                        <xsl:if test="name = $name" >
+                                            <xsl:if test="contains(name, 'btn_')" >
+                                                //btn_ - found
+                                                -<xsl:value-of select="$name" />ImageArray[0].getWidth(), -<xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                            </xsl:if>
+                                            <xsl:if test="not(contains(name, 'btn_'))" >
+                                                //btn_ - not
+                                                <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
+                                                    <xsl:if test="animations/directions/sprites/originPoint/x = 0" >
+                                                        -<xsl:value-of select="$name" />ImageArray[0].getWidth(), -<xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                                    </xsl:if>
+                                                </xsl:if>
+                                                <xsl:if test="height != 0 and width != 0" >
+                                                    -(<xsl:value-of select="width" /> / 2), -(<xsl:value-of select="height" /> / 2)
+                                                </xsl:if>
+                                            </xsl:if>
+                                        </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                                </xsl:for-each>
                     //angleIncrement
                     </xsl:if>
                     <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
@@ -582,6 +647,11 @@ Created By: Travis Berthelot
                                 <!--
                                 -->
                                 <xsl:for-each select=".." >
+                                    <xsl:variable name="hasInstance" ><xsl:for-each select="instances" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+                                    <xsl:if test="not(contains($hasInstance, 'found'))" >
+                                        //No instance available
+                                        <xsl:value-of select="$name" />ImageArray[0].getHeight(), <xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                    </xsl:if>
                                     <xsl:for-each select="instances" >
                                         <xsl:if test="name = $name" >
                                             <xsl:if test="contains(name, 'btn_')" >
@@ -602,6 +672,7 @@ Created By: Travis Berthelot
                                         </xsl:if>
                                     </xsl:for-each>
                                 </xsl:for-each>
+                                <!--
                                 <xsl:for-each select="/game" >
                                     <xsl:for-each select="layouts" >
                                 <xsl:call-template name="getSetSizeForObject" >
@@ -610,6 +681,7 @@ Created By: Travis Berthelot
                                 </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:for-each>
+                                -->
                                 );
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
@@ -799,9 +871,36 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                     new OneRowSpriteIndexedAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
-                    //,
-                    //<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth(),
-                    //<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight(),
+                    //)
+                    ,
+                                <xsl:for-each select=".." >
+                                    <xsl:for-each select=".." >
+                                    <xsl:variable name="hasInstance" ><xsl:for-each select="instances" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+                                    <xsl:if test="not(contains($hasInstance, 'found'))" >
+                                        //No instance available
+                                        0, 0
+                                    </xsl:if>
+                                    <xsl:for-each select="instances" >
+                                        <xsl:if test="name = $name" >
+                                            <xsl:if test="contains(name, 'btn_')" >
+                                                //btn_ - found
+                                                -<xsl:value-of select="$name" />ImageArray[0].getWidth(), -<xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                            </xsl:if>
+                                            <xsl:if test="not(contains(name, 'btn_'))" >
+                                                //btn_ - not
+                                                <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
+                                                    <xsl:if test="animations/directions/sprites/originPoint/x = 0" >
+                                                        -<xsl:value-of select="$name" />ImageArray[0].getWidth(), -<xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                                    </xsl:if>
+                                                </xsl:if>
+                                                <xsl:if test="height != 0 and width != 0" >
+                                                    -(<xsl:value-of select="width" /> / 2), -(<xsl:value-of select="height" /> / 2)
+                                                </xsl:if>
+                                            </xsl:if>
+                                        </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                                </xsl:for-each>
                     //angleIncrement
                     </xsl:if>
                     <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
@@ -829,6 +928,11 @@ Created By: Travis Berthelot
                                 <!--
                                 -->
                                 <xsl:for-each select=".." >
+                                    <xsl:variable name="hasInstance" ><xsl:for-each select="instances" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+                                    <xsl:if test="not(contains($hasInstance, 'found'))" >
+                                        //No instance available
+                                        <xsl:value-of select="$name" />ImageArray[0].getHeight(), <xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                    </xsl:if>
                                     <xsl:for-each select="instances" >
                                         <xsl:if test="name = $name" >
                                             <xsl:if test="contains(name, 'btn_')" >
@@ -849,6 +953,7 @@ Created By: Travis Berthelot
                                         </xsl:if>
                                     </xsl:for-each>
                                 </xsl:for-each>
+                                <!--
                                 <xsl:for-each select="/game" >
                                     <xsl:for-each select="layouts" >
                                 <xsl:call-template name="getSetSizeForObject" >
@@ -857,6 +962,7 @@ Created By: Travis Berthelot
                                 </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:for-each>
+                                -->
                                 );
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
@@ -1047,9 +1153,36 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                     new OneRowSpriteIndexedAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
-                    //,
-                    //<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth(),
-                    //<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight(),
+                    //)
+                    ,
+                                <xsl:for-each select=".." >
+                                    <xsl:for-each select=".." >
+                                    <xsl:variable name="hasInstance" ><xsl:for-each select="instances" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+                                    <xsl:if test="not(contains($hasInstance, 'found'))" >
+                                        //No instance available
+                                        0, 0
+                                    </xsl:if>
+                                    <xsl:for-each select="instances" >
+                                        <xsl:if test="name = $name" >
+                                            <xsl:if test="contains(name, 'btn_')" >
+                                                //btn_ - found
+                                                -<xsl:value-of select="$name" />ImageArray[0].getWidth(), -<xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                            </xsl:if>
+                                            <xsl:if test="not(contains(name, 'btn_'))" >
+                                                //btn_ - not
+                                                <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
+                                                    <xsl:if test="animations/directions/sprites/originPoint/x = 0" >
+                                                        -<xsl:value-of select="$name" />ImageArray[0].getWidth(), -<xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                                    </xsl:if>
+                                                </xsl:if>
+                                                <xsl:if test="height != 0 and width != 0" >
+                                                    -(<xsl:value-of select="width" /> / 2), -(<xsl:value-of select="height" /> / 2)
+                                                </xsl:if>
+                                            </xsl:if>
+                                        </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                                </xsl:for-each>
                     //angleIncrement
                     </xsl:if>
                     <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
@@ -1077,6 +1210,11 @@ Created By: Travis Berthelot
                                 <!--
                                 -->
                                 <xsl:for-each select=".." >
+                                    <xsl:variable name="hasInstance" ><xsl:for-each select="instances" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+                                    <xsl:if test="not(contains($hasInstance, 'found'))" >
+                                        //No instance available
+                                        <xsl:value-of select="$name" />ImageArray[0].getHeight(), <xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                    </xsl:if>
                                     <xsl:for-each select="instances" >
                                         <xsl:if test="name = $name" >
                                             <xsl:if test="contains(name, 'btn_')" >
@@ -1097,6 +1235,7 @@ Created By: Travis Berthelot
                                         </xsl:if>
                                     </xsl:for-each>
                                 </xsl:for-each>
+                                <!--
                                 <xsl:for-each select="/game" >
                                     <xsl:for-each select="layouts" >
                                 <xsl:call-template name="getSetSizeForObject" >
@@ -1105,6 +1244,7 @@ Created By: Travis Berthelot
                                 </xsl:call-template>
                                     </xsl:for-each>
                                 </xsl:for-each>
+                                -->
                                 );
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
