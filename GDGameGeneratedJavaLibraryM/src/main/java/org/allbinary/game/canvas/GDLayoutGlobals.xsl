@@ -66,7 +66,7 @@ Created By: Travis Berthelot
                                 </xsl:for-each>
 
                         public String[] <xsl:value-of select="name" /> = {
-                                        <xsl:for-each select="children" ><xsl:value-of select="value" /></xsl:for-each>,
+                                        <xsl:for-each select="children" ><xsl:value-of select="value" />,</xsl:for-each>
                         };
                             </xsl:if>
 
