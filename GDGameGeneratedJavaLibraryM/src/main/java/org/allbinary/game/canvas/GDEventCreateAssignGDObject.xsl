@@ -126,7 +126,14 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="text" >
                                     <xsl:call-template name="string-replace-all" >
                                         <xsl:with-param name="text" >
+                                    <!-- //TWB - Hack -->
+                                    <xsl:call-template name="string-replace-all" >
+                                        <xsl:with-param name="text" >
                                             <xsl:value-of select="text()" />
+                                        </xsl:with-param>                                
+                                        <xsl:with-param name="find" >.placementIndex]]</xsl:with-param>
+                                        <xsl:with-param name="replacementText" >.placementIndex]] * 2</xsl:with-param>
+                                    </xsl:call-template>
                                         </xsl:with-param>                                
                                         <xsl:with-param name="find" >&quot;&quot;</xsl:with-param>
                                         <xsl:with-param name="replacementText" >stringUtil.EMPTY_STRING</xsl:with-param>
@@ -149,6 +156,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>);
 
                     <xsl:if test="$name = 'player_bullet'" >
+                    //TWB - Hack
                     //stringBuilder.delete(0, stringBuilder.length());
                     //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeAsString" />").append(' ').append(<xsl:value-of select="$name" />GDobject2.name)<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:if test="position() != last()" ><xsl:if test="string-length(text()) > 0" >.append("<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" >'</xsl:with-param></xsl:call-template>: ").append(<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template>)</xsl:if></xsl:if><xsl:if test="position() = last()" ><xsl:if test="string-length(text()) = 0" >.toString()</xsl:if><xsl:if test="string-length(text()) > 0" >.append("<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" >'</xsl:with-param></xsl:call-template>: ").append(<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template>).toString()</xsl:if></xsl:if></xsl:if></xsl:for-each>, this, commonStrings.PROCESS));
                     //final int size2 = globals.player_bulletGDGameLayerList.size();

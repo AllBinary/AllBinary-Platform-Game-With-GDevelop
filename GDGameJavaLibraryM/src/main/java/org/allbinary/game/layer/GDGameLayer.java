@@ -25,18 +25,18 @@ import org.allbinary.game.combat.damage.DamageableBaseBehavior;
 import org.allbinary.game.combat.destroy.GDDestroyableSimpleBehavior;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
-import org.allbinary.game.input.GameKeyEventSourceInterface;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.game.physics.velocity.VelocityUtil;
 import org.allbinary.graphics.Rectangle;
+import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.image.opengles.OpenGLSurfaceChangedInterface;
-import org.allbinary.layer.AllBinaryLayerManager;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.ScaleFactorFactory;
+import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.view.ViewPosition;
 
@@ -623,7 +623,21 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
         super.paint(graphics);
 
+//        final StringMaker stringMaker = new StringMaker();
+//        final CommonSeps commonSeps = CommonSeps.getInstance();
+//        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().WHITE);
+//        graphics.drawString(stringMaker.append(c).append(commonSeps.COMMA).append(r).append(commonSeps.COLON).toString(), x + 5, y + 10, 0);        
+//        final GDGameLayer PlatformerMapGDGameLayer = (GDGameLayer) globals.PlatformerMapGDGameLayerList.get(0);
+//        final GD0GDObjectsFactory.PlatformerMap PlatformerMap = (GD0GDObjectsFactory.PlatformerMap) PlatformerMapGDGameLayer.gdObject;                                
+//        EnemiesGDGameLayer.c = PlatformerMap.placementXIntArray[PlatformerMap.placementIntArray[PlatformerMap.placementIndex]] / 24;
+//        EnemiesGDGameLayer.r = PlatformerMap.placementYIntArray[PlatformerMap.placementIntArray[PlatformerMap.placementIndex]] / 24;
+//        stringBuilder.delete(0, stringBuilder.length());
+//        LogUtil.put(LogFactory.getInstance(stringBuilder.append("TWB c: ").append(EnemiesGDGameLayer.c).append(" r: ").append(EnemiesGDGameLayer.r).toString(), this, commonStrings.PROCESS));
+        
     }
+    
+//    public int c;
+//    public int r;
     
     public void toString(final StringMaker stringBuffer) {
 

@@ -386,8 +386,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                     //LogUtil.put(LogFactory.getInstance(basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.toString(), this, commonStrings.PROCESS));
                     
                     if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index][index2])) {
-                        placementXIntArray[placementTotal] = index * map.getTileWidth();
-                        placementYIntArray[placementTotal] = index2 * map.getTileHeight();
+                        placementXIntArray[placementTotal] = (index2) * map.getTileWidth();
+                        placementYIntArray[placementTotal] = (index) * map.getTileHeight();
                         placementTotal++;
                     }
 
@@ -446,34 +446,34 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         LogUtil.put(LogFactory.getInstance("placementTotal: " + placementTotal, this, commonStrings.PROCESS));
     }
 
-    private int lastWidthUsed = 0;
-    private int lastHeightUsed = 0;
+//    private int lastWidthUsed = 0;
+//    private int lastHeightUsed = 0;
         
-    public void udpatePositionFromWindowSize(final int lastWidth, final int lastHeight, final StringMaker stringMaker, final Object reason) {
-    
-        stringMaker.delete(0, stringMaker.length());
-        LogUtil.put(LogFactory.getInstance(stringMaker.append("DisplayInfoSingleton ").append(lastWidth).append(CommonSeps.getInstance().COMMA).append(lastHeight).toString(), reason, commonStrings.PROCESS));
-        
-        final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-
-        final GDCustomGameLayer PlatformerMapGDGameLayer = (GDCustomGameLayer) globals.PlatformerMapGDGameLayerList.get(0);
-        final GD0GDObjectsFactory.PlatformerMap PlatformerMap = (GD0GDObjectsFactory.PlatformerMap) PlatformerMapGDGameLayer.gdObject;
-
-        final int dx = (lastWidth - lastWidthUsed);
-        final int dy = (lastHeight - lastHeightUsed);
-        
-        if(dx != 0 || dy != 0) {
-            stringMaker.delete(0, stringMaker.length());
-            LogUtil.put(LogFactory.getInstance(stringMaker.append("DisplayInfoSingleton dx/dy: ").append(dx).append(CommonSeps.getInstance().FORWARD_SLASH).append(dy).toString(), reason, commonStrings.PROCESS));
-
-            PlatformerMap.setX(PlatformerMap.x + dx);
-            PlatformerMap.setY(PlatformerMap.y + dy);
-            lastWidthUsed = lastWidth;
-            lastHeightUsed = lastHeight;
-        }
-
-        PlatformerMapGDGameLayer.updatePosition2();
-    }
+//    public void udpatePositionFromWindowSize(final int lastWidth, final int lastHeight, final StringMaker stringMaker, final Object reason) {
+//    
+//        stringMaker.delete(0, stringMaker.length());
+//        LogUtil.put(LogFactory.getInstance(stringMaker.append("DisplayInfoSingleton ").append(lastWidth).append(CommonSeps.getInstance().COMMA).append(lastHeight).toString(), reason, commonStrings.PROCESS));
+//        
+//        final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+//
+//        final GDCustomGameLayer PlatformerMapGDGameLayer = (GDCustomGameLayer) globals.PlatformerMapGDGameLayerList.get(0);
+//        final GD0GDObjectsFactory.PlatformerMap PlatformerMap = (GD0GDObjectsFactory.PlatformerMap) PlatformerMapGDGameLayer.gdObject;
+//
+//        final int dx = (lastWidth - lastWidthUsed);
+//        final int dy = (lastHeight - lastHeightUsed);
+//        
+//        if(dx != 0 || dy != 0) {
+//            stringMaker.delete(0, stringMaker.length());
+//            LogUtil.put(LogFactory.getInstance(stringMaker.append("DisplayInfoSingleton dx/dy: ").append(dx).append(CommonSeps.getInstance().FORWARD_SLASH).append(dy).toString(), reason, commonStrings.PROCESS));
+//
+//            PlatformerMap.setX(PlatformerMap.x + dx);
+//            PlatformerMap.setY(PlatformerMap.y + dy);
+//            lastWidthUsed = lastWidth;
+//            lastHeightUsed = lastHeight;
+//        }
+//
+//        PlatformerMapGDGameLayer.updatePosition2();
+//    }
 
     public void setStartPosition(final GeographicMapInterface[] geographicMapInterfaceArray, final GeographicMapCellPosition geographicMapCellPosition, final int layerIndex, final StringMaker stringMaker) {
         
@@ -488,8 +488,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         final GDGameLayer PlayerGDGameLayer = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
 
-        PlatformerMap.startX = -(((geographicMapCellPosition.getColumn() + 3) * allBinaryTiledLayer.getCellWidth()));
-        PlatformerMap.startY = -(((geographicMapCellPosition.getRow()) * allBinaryTiledLayer.getCellHeight()));
+        PlatformerMap.startX = -( ((geographicMapCellPosition.getColumn() + 3) * allBinaryTiledLayer.getCellWidth()) + ((allBinaryTiledLayer.getCellWidth() * 1) / 3) );
+        PlatformerMap.startY = -( ((geographicMapCellPosition.getRow()) * allBinaryTiledLayer.getCellHeight()) + ((allBinaryTiledLayer.getCellHeight() * 17) / 20) );
 
         stringMaker.delete(0, stringMaker.length());
         LogUtil.put(LogFactory.getInstance(stringMaker.append(PlatformerMap.startX).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.startY).toString(), this, commonStrings.PROCESS));
