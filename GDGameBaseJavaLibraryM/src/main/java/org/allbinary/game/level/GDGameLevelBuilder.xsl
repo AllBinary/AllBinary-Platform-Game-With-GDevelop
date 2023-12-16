@@ -399,36 +399,36 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
                         geographicMapCellPosition = geographicMapCellPositionFactory.getInstance(index2, index);
                         
-                            DisplayChangeEventHandler.getInstance().addListener(new DisplayChangeEventListener() {
-                                
-                                public void onEvent(final AllBinaryEventObject eventObject) {
-                                    
-                                }
-
-                                public void onDisplayChangeEvent(final DisplayChangeEvent displayChangeEvent) {
-
-                                    final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
-                                    final int lastWidth = displayInfoSingleton.getLastHalfWidth();
-                                    final int lastHeight = displayInfoSingleton.getLastHalfHeight();
-                                    //DisplayChangeEventHandler.getInstance().removeListener(this);
-                                    udpatePositionFromWindowSize(lastWidth, lastHeight, stringMaker, this);
-
-                                }
-                            });
+//                            DisplayChangeEventHandler.getInstance().addListener(new DisplayChangeEventListener() {
+//                                
+//                                public void onEvent(final AllBinaryEventObject eventObject) {
+//                                    
+//                                }
+//
+//                                public void onDisplayChangeEvent(final DisplayChangeEvent displayChangeEvent) {
+//
+//                                    final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
+//                                    final int lastWidth = displayInfoSingleton.getLastHalfWidth();
+//                                    final int lastHeight = displayInfoSingleton.getLastHalfHeight();
+//                                    //DisplayChangeEventHandler.getInstance().removeListener(this);
+//                                    udpatePositionFromWindowSize(lastWidth, lastHeight, stringMaker, this);
+//
+//                                }
+//                            });
                                                 
                         //(SceneWindowWidth() / 2) - (Player.Width() / 2)
                         this.setStartPosition(geographicMapInterfaceArray, geographicMapCellPosition, layerIndex, stringMaker);
 
-                        final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
-                        final int lastWidth = displayInfoSingleton.getLastHalfWidth();
-                        final int lastHeight = displayInfoSingleton.getLastHalfHeight();
-                        if(lastWidth != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> lastHeight != 0) {
-                            this.udpatePositionFromWindowSize(lastWidth, lastHeight, stringMaker, this);
-                        } else {
-                            stringMaker.delete(0, stringMaker.length());
-                            LogUtil.put(LogFactory.getInstance("Display not ready to set start position", this, commonStrings.PROCESS));
-                        }
-                        
+//                        final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
+//                        final int lastWidth = displayInfoSingleton.getLastHalfWidth();
+//                        final int lastHeight = displayInfoSingleton.getLastHalfHeight();
+//                        if(lastWidth != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> lastHeight != 0) {
+//                            this.udpatePositionFromWindowSize(lastWidth, lastHeight, stringMaker, this);
+//                        } else {
+//                            stringMaker.delete(0, stringMaker.length());
+//                            LogUtil.put(LogFactory.getInstance("Display not ready to set start position", this, commonStrings.PROCESS));
+//                        }
+
                     }
                 }
             }
