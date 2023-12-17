@@ -116,7 +116,13 @@ Created By: Travis Berthelot
                     -->
                     <xsl:variable name="imageWithExtension" select="directions/sprites/image" />
                     <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
+                    <xsl:if test="string-length($image) > 0" >
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    </xsl:if>
+                    <xsl:if test="string-length($image) = 0" >
+                    //Named animation without Sprites/Images.
+                    gdResources.BLANK,
+                    </xsl:if>
                     <!--
                     </xsl:for-each>
                 };

@@ -40,6 +40,10 @@ Created By: Travis Berthelot
 
                         <!-- <xsl:if test="$secondParam = 'opacity'" > -->
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
+                        
+                        <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="text()" /><xsl:text> </xsl:text><xsl:value-of select="text()" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="text()" />) ((GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index)).gdObject;</xsl:if></xsl:for-each>
+                        <xsl:text>&#10;</xsl:text>
+                        
                         <!-- </xsl:if> -->
                         <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >final GDGameLayer paramOneGameLayer = ((GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index));</xsl:if>

@@ -239,6 +239,10 @@ Created By: Travis Berthelot
                         return array.length;
                     }
 
+                    public int GlobalVariableChildCount(final int[] array) {
+                        return array.length;
+                    }
+
                     public int MouseX() {
                         final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
                         return gdGlobalsFactory.point.getX();

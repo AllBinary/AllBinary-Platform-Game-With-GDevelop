@@ -167,6 +167,10 @@ Created By: Travis Berthelot
                         return value;
                     }
 
+                    public int GlobalVariableChildCount(final int[] array) {
+                        return array.length;
+                    }
+
                     public int GlobalVariableChildCount(final String[] array) {
                         return array.length;
                     }

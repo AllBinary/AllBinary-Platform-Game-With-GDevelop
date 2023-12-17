@@ -71,7 +71,7 @@ public class GDToAllBinaryResourcesGenerator
         
         final String INDENT = "        ";
         resourceStringBuilder.append('\n');
-        resourceStringBuilder.append("    public final String[] resourceStringArray = {\n");
+        resourceStringBuilder.append("    public final String[] resourceStringArray = {\nBLANK,\n");
         final int size = this.gdResources.resourceNameList.size();
         String name;
         String resource;
