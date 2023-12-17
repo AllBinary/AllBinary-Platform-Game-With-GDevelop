@@ -76,6 +76,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.logic.string.StringMaker;
                 import org.allbinary.logic.system.PlatformAssetManager;
                 import org.allbinary.media.image.ImageCopyUtil;
                 import org.allbinary.media.image.ImageScaleUtil;
@@ -155,6 +156,18 @@ Created By: Travis Berthelot
                             //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                         //}
 
+                    }
+
+                    public void validateSprites(final String name, final Image[] imageArray) {
+                        final CommonSeps commonSeps = CommonSeps.getInstance();
+                        final int size = imageArray.length;
+                        Image image;
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            image = imageArray[index];
+                            if (image.getWidth() % image.getHeight() != 0) {
+                                LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(image.getWidth()).append(commonSeps.COLON).append(image.getHeight()).toString(), this, commonStrings.PROCESS));
+                            }
+                        }
                     }
 
                 }
