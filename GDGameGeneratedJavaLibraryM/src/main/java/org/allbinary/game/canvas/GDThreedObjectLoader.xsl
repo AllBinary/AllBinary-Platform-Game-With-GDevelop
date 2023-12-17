@@ -35,20 +35,32 @@ Created By: Travis Berthelot
                 <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
-                <xsl:for-each select="animations" ><xsl:for-each select="directions" ><xsl:for-each select="sprites" >
-                final Object3d <xsl:value-of select="substring-before(image, '.')" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = threedLoaderFactory.getObject3dInstance(
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="substring-before(image, '.')" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, OBJ, FALSE<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
+                <xsl:for-each select="animations" >
+                    <xsl:variable name="resourceWithExtension" select="directions/sprites/image" />
+                    <xsl:variable name="image2" select="substring-before($resourceWithExtension, '.')" />
+                    <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>                    
+                    <xsl:if test="string-length($image) > 0" >
+                        
+                final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = threedLoaderFactory.getObject3dInstance(
+                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, OBJ, FALSE<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
                       
-                <xsl:value-of select="substring-before(image, '.')" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().x = 
-                    <xsl:value-of select="substring-before(image, '.')" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().y = 
-                    <xsl:value-of select="substring-before(image, '.')" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().z = <xsl:if test="/game/properties/scale3d" ><xsl:value-of select="/game/properties/scale3d" /></xsl:if><xsl:if test="not(/game/properties/scale3d)" >0</xsl:if>f;
+                <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().x = 
+                    <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().y = 
+                    <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().z = <xsl:if test="/game/properties/scale3d" ><xsl:value-of select="/game/properties/scale3d" /></xsl:if><xsl:if test="not(/game/properties/scale3d)" >0</xsl:if>f;
+                    
+                    </xsl:if>
 
-                </xsl:for-each></xsl:for-each></xsl:for-each>
+                </xsl:for-each>
                 
                 final Object3d[] <xsl:value-of select="$name" />Object3dContainerArray = {
-                <xsl:for-each select="animations" ><xsl:for-each select="directions" ><xsl:for-each select="sprites" >
-                    <xsl:value-of select="substring-before(image, '.')" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer,
-                </xsl:for-each></xsl:for-each></xsl:for-each>
+                <xsl:for-each select="animations" >
+                    <xsl:variable name="resourceWithExtension" select="directions/sprites/image" />
+                    <xsl:variable name="image2" select="substring-before($resourceWithExtension, '.')" />
+                    <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:if test="string-length($image) > 0" >
+                    <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer,
+                    </xsl:if>
+                </xsl:for-each>
                 
                 };
 

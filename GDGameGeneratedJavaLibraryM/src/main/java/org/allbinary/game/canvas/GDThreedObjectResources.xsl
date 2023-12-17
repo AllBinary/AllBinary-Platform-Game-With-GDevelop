@@ -78,11 +78,13 @@ Created By: Travis Berthelot
 
                 this.<xsl:value-of select="name" />ResourceArray = new String[] {
                 <xsl:for-each select="animations" >
-                    <xsl:for-each select="directions/sprites/image" >
-                    <xsl:variable name="imageWithExtension" select="text()" />
-                    <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
+                    <xsl:variable name="resourceWithExtension" select="directions/sprites/image" />                    
+                    <xsl:variable name="image2" select="substring-before($resourceWithExtension, '.')" />
+                    <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>                    
+                    <xsl:if test="string-length($image) > 0" >
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
-                    </xsl:for-each>
+                    </xsl:if>
+                    
                 </xsl:for-each>
                 
                 <xsl:if test="content" >
