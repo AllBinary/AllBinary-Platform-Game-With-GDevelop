@@ -114,7 +114,7 @@ Created By: Travis Berthelot
                     final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$gameLayerName" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="$gameLayerName" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$gameLayerName" />)<xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
                     </xsl:if>
                         
-                        final GDObject <xsl:value-of select="$name" />GDobject2 = ((GDObjectFactory) gdObjectsFactory.gdObjectFactoryList.get(gdObjectsFactory.get<xsl:value-of select="$name" />Index(createStringIndex))).get(
+                        final GDObject <xsl:value-of select="$name" />GDobject2 = ((GDObjectFactory) gdObjectsFactory.gdObjectFactoryList.get(createIndex)).get(
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() != 2 and position() != 3" >
                             <xsl:if test="position() != last()" >
