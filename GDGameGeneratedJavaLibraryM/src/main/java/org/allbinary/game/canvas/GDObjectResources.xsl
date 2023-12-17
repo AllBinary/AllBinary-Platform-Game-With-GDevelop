@@ -66,7 +66,7 @@ Created By: Travis Berthelot
                 
                 public Rectangle <xsl:value-of select="name" />Rectangle;
                 
-                public final String[] <xsl:value-of select="name" />ContentResourceArray;
+                public final String[] <xsl:value-of select="name" />ResourceArray;
 
                 public Image[] <xsl:value-of select="name" />ImageArray;
 
@@ -133,7 +133,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'TileMap::TileMap'" >
-                this.<xsl:value-of select="name" />ContentResourceArray = new String[] {
+                this.<xsl:value-of select="name" />ResourceArray = new String[] {
                 <xsl:if test="content" >
                     //TileMap::TileMap:content
                     <xsl:variable name="imageWithExtension" select="content/tilemapAtlasImage" />
@@ -184,13 +184,13 @@ Created By: Travis Berthelot
                     //TileMap::TileMap:content
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
-                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ContentResourceArray[0]);
+                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[0]);
 //                    if(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> == null) {
 //                        throw new RuntimeException();
 //                    }
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
-                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ContentResourceArray[0]);
+                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[0]);
 //                    if(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> == null) {
 //                        throw new RuntimeException();
 //                    }
@@ -232,6 +232,7 @@ Created By: Travis Berthelot
                 };  
                 </xsl:if>
 
+                //this.validateSprites(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ResourceArray, <xsl:value-of select="name" />ImageArray);
                 hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
                 <xsl:value-of select="$name" />Rectangle = new Rectangle(PointFactory.getInstance().ZERO_ZERO, <xsl:value-of select="name" />ImageArray[0].getWidth(), <xsl:value-of select="name" />ImageArray[0].getHeight());
 

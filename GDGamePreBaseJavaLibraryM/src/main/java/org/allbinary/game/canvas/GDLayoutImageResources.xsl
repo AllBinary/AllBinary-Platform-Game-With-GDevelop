@@ -158,14 +158,14 @@ Created By: Travis Berthelot
 
                     }
 
-                    public void validateSprites(final String name, final Image[] imageArray) {
+                    public void validateSprites(final String name, final String[] resourceArray, final Image[] imageArray) {
                         final CommonSeps commonSeps = CommonSeps.getInstance();
                         final int size = imageArray.length;
                         Image image;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             image = imageArray[index];
-                            if (image.getWidth() % image.getHeight() != 0) {
-                                LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(image.getWidth()).append(commonSeps.COLON).append(image.getHeight()).toString(), this, commonStrings.PROCESS));
+                            if (image.getWidth() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> image.getHeight() <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> image.getWidth() % image.getHeight() != 0) {
+                                LogUtil.put(LogFactory.getInstance(new StringMaker().append(index).append(name).append(image.getWidth()).append(commonSeps.COLON).append(image.getHeight()).toString(), this, commonStrings.PROCESS));
                             }
                         }
                     }
