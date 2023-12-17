@@ -27,11 +27,16 @@ public class GDToAllBinaryResourcesGenerator
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
+    private final CommonSeps commonSeps = CommonSeps.getInstance();
         
     private final StringMaker resourceStringBuilder = new StringMaker();
     
     private final String GD_KEY = "//GD";
+    private final String TOUCH = "TOUCH";
+    private final String UNDERSCORE_0 = commonSeps.UNDERSCORE + "0";
             
+    private final int size2 = 100;
+    
     private final String PUBLIC_FINAL_STRING = "    public final String ";
     private final String VALUE_RESOURCE_START = " = \"";
     private final String VALUE_RESOURCE_END = "\";\n";
@@ -47,6 +52,17 @@ public class GDToAllBinaryResourcesGenerator
         this.gdResources.resourceNameList.add(name);
         final String resource = resourceString.toLowerCase();
         this.gdResources.resourceList.add(resource);
+        
+        if (name.endsWith(UNDERSCORE_0) && name.indexOf(TOUCH) < 0) {
+            resourceStringBuilder.append("//");
+        }
+
+        for (int index2 = 2; index2 < size2; index2++) {
+            if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
+                resourceStringBuilder.append("//");
+            }
+        }
+        
         resourceStringBuilder.append(this.PUBLIC_FINAL_STRING);
         resourceStringBuilder.append(name);
         resourceStringBuilder.append(this.VALUE_RESOURCE_START);
@@ -55,9 +71,6 @@ public class GDToAllBinaryResourcesGenerator
     }
     
     public void process() throws Exception {
-
-        final CommonSeps commonSeps = CommonSeps.getInstance();
-        final String TOUCH = "TOUCH";
         
         final String RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.origin";
         final String RESOURCE = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.java";
@@ -75,7 +88,6 @@ public class GDToAllBinaryResourcesGenerator
         final int size = this.gdResources.resourceNameList.size();
         String name;
         String resource;
-        final int size2 = 100;
         for(int index = 0; index < size; index++) {
             name = (String) this.gdResources.resourceNameList.get(index);
             resource = (String) this.gdResources.resourceList.get(index);
@@ -83,6 +95,11 @@ public class GDToAllBinaryResourcesGenerator
             if(resource.indexOf(".json") >= 0 || resource.indexOf(".t") >= 0) {
                 resourceStringBuilder.append("//");
             }
+            
+            if (name.endsWith(UNDERSCORE_0) && name.indexOf(TOUCH) < 0) {
+                resourceStringBuilder.append("//");
+            }
+            
             for(int index2 = 2; index2 < size2; index2++) {
                 if(name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
                     resourceStringBuilder.append("//");
