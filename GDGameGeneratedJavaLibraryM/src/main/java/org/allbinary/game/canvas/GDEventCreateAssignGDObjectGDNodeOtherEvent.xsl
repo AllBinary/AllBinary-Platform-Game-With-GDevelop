@@ -105,7 +105,7 @@ Created By: Travis Berthelot
 
             <!-- <xsl:if test="type/value != 'Timer' and type/value != '(Used when using the AllBinary Collision Processing) CollisionNP' and type/value != 'VarObjet' and type/value = 'NbObjet' and type/value = 'DepartScene' and type/value = 'SourisSurObjet' and type/value = 'MouseButtonReleased' and type/value = 'SourisBouton' and type/value = 'MouseButtonPressed'" >found</xsl:if> -->
 
-            <xsl:variable name="foundOtherCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'ObjectVariableChildCount' or type/value = 'VarObjet' or type/value = 'NbObjet' or type/value = 'ObjectVariableAsBoolean' or type/value = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="foundOtherCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Always' or type/value = 'ObjectVariableChildCount' or type/value = 'VarObjet' or type/value = 'NbObjet' or type/value = 'ObjectVariableAsBoolean' or type/value = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="foundVarSceneCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'VarScene'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="foundLinkEvent" ><xsl:for-each select="events" ><xsl:if test="type = 'BuiltinCommonInstructions::Link'" >found</xsl:if></xsl:for-each></xsl:variable>
             
@@ -151,6 +151,7 @@ Created By: Travis Berthelot
 
  //
                 <xsl:if test="contains($foundOtherCondition, 'found') and not(contains($foundTimerCondition, 'found')) or (contains($foundVarSceneCondition, 'found') and contains($foundLinkEvent, 'found'))" >
+                    <xsl:if test="not(whileConditions)" >
                 //Found conditions that need processing.
                 @Override
                 public boolean process() throws Exception {
@@ -193,9 +194,11 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     
                 }
+                    </xsl:if>
                 </xsl:if>
 
                 <xsl:if test="whileConditions" >
+                //whileConditions
                 @Override
                 public boolean process() throws Exception {
                     super.processStats();
