@@ -29,7 +29,7 @@ Created By: Travis Berthelot
 
                             //boolean result = false;
 
-                            <xsl:variable name="objectGroup" >
+                            <xsl:variable name="hasObjectGroup" >
                                 <xsl:for-each select="/game">
                                     <xsl:for-each select="layouts" >
                                             <xsl:for-each select="objectsGroups" >
@@ -37,22 +37,17 @@ Created By: Travis Berthelot
                                                     found
                                                 </xsl:if>
                                             </xsl:for-each>
-                                        <!--
-                                        <xsl:variable name="layoutIndex2" select="position() - 1" />
-                                        <xsl:if test="number($layoutIndex2) = $layoutIndex" > 
-                                        -->
-                                        <!--</xsl:if>-->
                                     </xsl:for-each>
                                 </xsl:for-each>
                             </xsl:variable>
 
-                            <xsl:if test="string-length($objectGroup) > 0" >
+                            <xsl:if test="string-length($hasObjectGroup) > 0" >
                             final int size = globals.<xsl:value-of select="$name" />GDObjectListOfList.size();
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             final BasicArrayList gdObjectList = ((BasicArrayList) globals.<xsl:value-of select="$name" />GDObjectListOfList.get(index));
                             final BasicArrayList gdGameLayerList = ((BasicArrayList) globals.<xsl:value-of select="$name" />GDGameLayerListOfList.get(index));
                             </xsl:if>
-                            <xsl:if test="string-length($objectGroup) = 0" >
+                            <xsl:if test="string-length($hasObjectGroup) = 0" >
                             final BasicArrayList gdObjectList = globals.<xsl:value-of select="$name" />GDObjectList;
                             final BasicArrayList gdGameLayerList = globals.<xsl:value-of select="$name" />GDGameLayerList;
                             </xsl:if>
@@ -77,7 +72,7 @@ Created By: Travis Berthelot
                             //}
                             }
 
-                            <xsl:if test="string-length($objectGroup) > 0" >
+                            <xsl:if test="string-length($hasObjectGroup) > 0" >
                             }
                             </xsl:if>
 
@@ -111,8 +106,14 @@ Created By: Travis Berthelot
                                 //    LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "gdObject was null", this, commonStrings.PROCESS));
                                 //    return;
                                 //}
-                                
+                            
+                            <xsl:if test="not(contains($hasObjectGroup, 'found'))" >   
+                                final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$name" />) gdObject;
+                            </xsl:if>
+                            
+                            <xsl:if test="contains($hasObjectGroup, 'found')" >
                                 final GDObject <xsl:value-of select="$name" /> = gdObject;
+                            </xsl:if>
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS));
 
                     <xsl:variable name="hasGameLayer2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:if test="contains(text(), '.')" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>

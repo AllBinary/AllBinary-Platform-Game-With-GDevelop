@@ -431,6 +431,9 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'MettreX'" >
 
                     <xsl:call-template name="mettreXActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
@@ -440,6 +443,9 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'MettreY'" >
 
                     <xsl:call-template name="mettreYActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
@@ -462,6 +468,9 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'MettreAutourPos'" >
 
                     <xsl:call-template name="mettreAutourPosActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>

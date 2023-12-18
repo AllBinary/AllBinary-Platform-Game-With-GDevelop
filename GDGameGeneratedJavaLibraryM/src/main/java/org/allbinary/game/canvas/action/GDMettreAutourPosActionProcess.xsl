@@ -17,11 +17,24 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="mettreAutourPosActionProcess" >
+        <xsl:param name="layoutIndex" />
         <xsl:param name="instancesAsString" />
 
                         private final String ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "G: " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
                         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
+                            <xsl:variable name="hasObjectGroup" >
+                                <xsl:for-each select="/game">
+                                    <xsl:for-each select="layouts" >
+                                            <xsl:for-each select="objectsGroups" >
+                                                <xsl:if test="name = $name" >
+                                                    found
+                                                </xsl:if>
+                                            </xsl:for-each>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                            </xsl:variable>
 
                         //MettreAutourPos - x, y, distance, angle
                         public boolean process() {
@@ -68,7 +81,14 @@ Created By: Travis Berthelot
                                 //    return;
                                 //}
 
+                            <xsl:if test="not(contains($hasObjectGroup, 'found'))" >   
+                                final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$name" />) gdObject;
+                            </xsl:if>
+                            
+                            <xsl:if test="contains($hasObjectGroup, 'found')" >
                                 final GDObject <xsl:value-of select="$name" /> = gdObject;
+                            </xsl:if>
+
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS));
 
                                 <xsl:variable name="existingValue" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.x</xsl:if></xsl:for-each></xsl:variable>
