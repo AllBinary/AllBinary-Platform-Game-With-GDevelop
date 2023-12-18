@@ -167,7 +167,7 @@
                 globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processM(globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].gameLayerArray);
                 globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].clear2();
             </xsl:if>
-            //eventIds - //Events - //<xsl:value-of select="type" /> - call
+            //eventIds - //Events - //<xsl:value-of select="type" /> - //<xsl:value-of select="name" /> - call
             globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:if>
 
