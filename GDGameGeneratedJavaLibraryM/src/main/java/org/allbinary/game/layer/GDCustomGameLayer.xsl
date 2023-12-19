@@ -836,6 +836,7 @@ Created By: Travis Berthelot
             
     public void processGDCollision() throws Exception {
         final int size = this.collisionList.size();
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P));
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             node = (GDNode) this.collisionList.get(index);
