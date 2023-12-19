@@ -129,7 +129,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
                     public int get<xsl:value-of select="name" />Index(String name) {
                         <xsl:for-each select="objects" >
-                            <xsl:if test="position() != 1" >} else </xsl:if>if(name == globals.<xsl:value-of select="name" />) {
+                            <xsl:if test="position() != 1" >} else </xsl:if>if(name == globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>) {
                             return <xsl:value-of select="position() - 1" />;
                         </xsl:for-each>
                         }

@@ -65,7 +65,32 @@ Created By: Travis Berthelot
             <xsl:call-template name="mapCollisionMaskHack" />
         </xsl:for-each>
     </xsl:template>
-        
+
+    <xsl:template name="mapCollisionMaskHack2" >
+        <xsl:for-each select="events" >
+            <xsl:variable name="foundCollisionNP" >
+            <xsl:for-each select="conditions" >
+                <xsl:if test="type/value = 'CollisionNP'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" >
+                            <xsl:value-of select="text()" />
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>
+            </xsl:variable>
+            <xsl:if test="string-length($foundCollisionNP) > 0" >
+                <xsl:for-each select="actions" >
+                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    if(this.gdObject.name == globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>) {
+                        this.collisionList.add(globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    }
+                </xsl:for-each>
+            </xsl:if>
+            <xsl:call-template name="mapCollisionMaskHack2" />
+        </xsl:for-each>
+    </xsl:template>
+
     <xsl:template match="/game">
         <xsl:variable name="windowWidth" select="properties/windowWidth" />
 
@@ -109,6 +134,7 @@ Created By: Travis Berthelot
         import org.allbinary.game.layer.special.SpecialLeftGameInputProcessor;
         import org.allbinary.game.layer.special.SpecialRightGameInputProcessor;
         import org.allbinary.game.layer.special.SpecialUpGameInputProcessor;
+        import org.allbinary.game.layout.GDNode;
         import org.allbinary.game.layout.GDObject;        
         import org.allbinary.game.physics.acceleration.BasicAccelerationProperties;
         import org.allbinary.game.physics.velocity.VelocityProperties;
@@ -135,6 +161,7 @@ Created By: Travis Berthelot
         <xsl:if test="contains($foundOtherViewPosition, 'found')" >implements GameKeyEventSourceInterface, org.allbinary.game.behavior.platformer.PlatformCharacterInterface </xsl:if>
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >implements org.allbinary.game.behavior.topview.TopViewCharacterInterface </xsl:if>
                 {
+                    private final BasicArrayList collisionList = new BasicArrayList();
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -160,7 +187,7 @@ Created By: Travis Berthelot
             //LogUtil.put(LogFactory.getInstance("do not move", this, "moveAndLand"));
                     
             //CollisionNP
-            final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+            //final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
             <xsl:for-each select=".." >
             <xsl:call-template name="mapCollisionMaskHack" />
             </xsl:for-each>
@@ -356,6 +383,11 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
             </xsl:for-each>
+            
+            //CollisionNP - processing for the specific game object
+            final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+            <xsl:call-template name="mapCollisionMaskHack2" />
+            
         </xsl:for-each>
 
                     }
@@ -802,6 +834,14 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:for-each>
             
+    public void processGDCollision() throws Exception {
+        final int size = this.collisionList.size();
+        GDNode node;
+        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+            node = (GDNode) this.collisionList.get(index);
+            node.processGD(this, null);
+        }
+    }
                 
                 }
 

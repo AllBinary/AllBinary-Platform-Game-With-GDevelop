@@ -135,7 +135,7 @@ public class GDNode
     }
     */
 
-    public boolean processCreate(final GDObject gdObject, final int createIndex) throws Exception {
+    public boolean processCreate(final GDObject gdObject, final String createString, final int createIndex) throws Exception {
         return true;
     }
     

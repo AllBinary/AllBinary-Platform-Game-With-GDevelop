@@ -62,12 +62,15 @@ Created By: Travis Berthelot
                             <xsl:if test="type = 'array'" >
                         //array
                                 <xsl:for-each select="children" >
-                        public final String <xsl:value-of select="value" /> = "<xsl:value-of select="value" />";
+                        //public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="value" />";
                                 </xsl:for-each>
-
+                        
                         public String[] <xsl:value-of select="name" /> = {
-                                        <xsl:for-each select="children" ><xsl:value-of select="value" />,</xsl:for-each>
+                                        <xsl:for-each select="children" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template>,
+                                        <xsl:text>&#10;</xsl:text>
+                                        </xsl:for-each>                                        
                         };
+                        
                             </xsl:if>
 
                         </xsl:for-each>
@@ -164,13 +167,7 @@ public class GDStructure {
     public int Size = -1;
 
 }                    
-                                        
-                    //global - variables - START
-                    <xsl:for-each select=".." >
-                    <xsl:call-template name="variables" />
-                    </xsl:for-each>
-                    //global - variables - END
-                    
+                                                            
                     //variablesStructures - START
                     <xsl:call-template name="variablesStructures" >
                         <xsl:with-param name="totalRecursions" >
@@ -188,7 +185,7 @@ public class GDStructure {
                         //variables - START
                         <xsl:call-template name="variables" />
                         //variables - END
-                        
+                                                
                         <xsl:variable name="objectsWithOnceCondition" ><xsl:call-template name="gdNodeToOnceList" ><xsl:with-param name="iteration" >0</xsl:with-param></xsl:call-template></xsl:variable>
                         //objectsWithOnceCondition=<xsl:value-of select="$objectsWithOnceCondition" />
                         <xsl:for-each select="objects" >
@@ -326,6 +323,13 @@ public class GDStructure {
                             <xsl:value-of select="$windowWidth" />
                         </xsl:with-param>
                     </xsl:call-template>    
+                    <xsl:text>&#10;</xsl:text>
+
+                    //global - variables - START
+                    <xsl:for-each select=".." >
+                    <xsl:call-template name="variables" />
+                    </xsl:for-each>
+                    //global - variables - END
                     <xsl:text>&#10;</xsl:text>
 
                     private final LayerManagerEventListener layerManagerEventListener;

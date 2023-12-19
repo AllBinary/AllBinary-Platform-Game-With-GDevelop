@@ -87,8 +87,8 @@ Created By: Travis Berthelot
                         
                         //createGDObject - process - START
                     
-                        final String createStringIndex = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                        final int createIndex = gdObjectsFactory.get<xsl:value-of select="$name" />Index(createStringIndex);
+                        final String createString = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                        final int createIndex = gdObjectsFactory.get<xsl:value-of select="$name" />Index(createString);
                         
                     <xsl:call-template name="createByNameGDObject" >
                         <xsl:with-param name="layoutIndex" >
@@ -104,7 +104,7 @@ Created By: Travis Berthelot
 
                         //createGDObject - process - END
                         //createGDObject - //CreateByName - call
-                        this.processCreate(<xsl:value-of select="$name" />GDobject2, createIndex);
+                        this.processCreate(<xsl:value-of select="$name" />GDobject2, createString, createIndex);
                         
                         this.processEnd(((BasicArrayList) globals.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
                         //this.processEnd(globals.<xsl:value-of select="$name" />GDGameLayerList.size() - 1);
@@ -117,7 +117,7 @@ Created By: Travis Berthelot
                         <xsl:if test="not(contains($actionWithTextObjectString, $param))" >
                     //CreateByName
                     @Override
-                    public boolean processCreate(final GDObject gdObject, final int createIndex) throws Exception {
+                    public boolean processCreate(final GDObject gdObject, final String createString, final int createIndex) throws Exception {
                         super.processCreateStats(gdObject);
 
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 2" >globals.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if></xsl:for-each>, this, commonStrings.PROCESS));
@@ -138,9 +138,12 @@ Created By: Travis Berthelot
                             stringBuilder.delete(0, stringBuilder.length());
                             final int index = <xsl:value-of select="text()" />GDGameLayerList.size();
 
-                            GDGameLayer <xsl:value-of select="text()" />GDGameLayer;
+                            GDGameLayer <xsl:value-of select="text()" />GDGameLayer = null;
                             if(<xsl:value-of select="text()" />CacheGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 1) {
-                                <xsl:value-of select="text()" />GDGameLayer = <xsl:value-of select="text()" />GDGameLayerFactory.create(stringBuilder.append(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>).append(CommonSeps.getInstance().UNDERSCORE).append(index).toString(), gdObject, null); //<xsl:value-of select="text()" />GDConditionWithGroupActions);
+                                //globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>
+                                <xsl:text>&#10;</xsl:text>
+                                <xsl:value-of select="text()" />GDGameLayer = <xsl:value-of select="text()" />GDGameLayerFactory.create(stringBuilder.append(createString).append(CommonSeps.getInstance().UNDERSCORE).append(index).toString(), gdObject, null); //<xsl:value-of select="text()" />GDConditionWithGroupActions);
+                                <xsl:text>&#10;</xsl:text>
                             } else {
                                 <xsl:value-of select="text()" />GDGameLayer = (GDGameLayer) <xsl:value-of select="text()" />CacheGDGameLayerList.remove(0);
                                 

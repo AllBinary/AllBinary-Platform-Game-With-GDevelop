@@ -160,7 +160,9 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                         if(gameLayer2.getCollidableInferface().isCollision(gameLayer)) {
-                    
+                            
+                            gameLayer2.processGDCollision();
+<!--        
             <xsl:for-each select=".." >
             <xsl:for-each select="actions" >
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -171,6 +173,7 @@ Created By: Travis Berthelot
             globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:for-each>
             </xsl:for-each>
+-->
                             return true;
          
                         }

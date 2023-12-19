@@ -139,6 +139,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.dimensionalBehavior.animationBehavior.setRotationAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
         this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
         this.dimensionalBehavior.reset(gdObject);
+        
         this.gdObject = gdObject;
         this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
         this.initPosition();
@@ -429,7 +430,11 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         }
         this.scalableProcessor = ScalableProcessor.getInstance();
     }
-            
+
+    public void processGDCollision() throws Exception {
+        throw new RuntimeException();
+    }
+    
     //private boolean isFirst = true;
     //private final String PAINT = "paint";
     //private final String W_ = "w ";

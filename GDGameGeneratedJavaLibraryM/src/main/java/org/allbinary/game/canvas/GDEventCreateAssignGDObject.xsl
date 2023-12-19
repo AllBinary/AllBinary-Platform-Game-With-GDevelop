@@ -51,7 +51,8 @@ Created By: Travis Berthelot
                             </xsl:if>
                             <xsl:if test="position() = last()" >
                                 <xsl:if test="string-length(text()) = 0" >
-                                    globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>
+                                    //globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>
+                                    createString
                                 </xsl:if>
                                 <xsl:if test="string-length(text()) > 0" >
                                     <xsl:value-of select="text()" />
@@ -146,7 +147,8 @@ Created By: Travis Berthelot
                             </xsl:if>
                             <xsl:if test="position() = last()" >
                                 <xsl:if test="string-length(text()) = 0" >
-                                    globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>
+                                    //globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>
+                                    createString
                                 </xsl:if>
                                 <xsl:if test="string-length(text()) > 0" >
                                     <xsl:value-of select="text()" />
