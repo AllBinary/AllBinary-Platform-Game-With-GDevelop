@@ -230,7 +230,7 @@ Created By: Travis Berthelot
 
                 */
 
-                final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
+                //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
 
             </xsl:if>
 

@@ -128,7 +128,7 @@ Created By: Travis Berthelot
 
                             GDGameLayer <xsl:value-of select="text()" />GDGameLayer;
                             if(globals.<xsl:value-of select="text()" />CacheGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 1) {
-                                <xsl:value-of select="text()" />GDGameLayer = resources.<xsl:value-of select="text()" />GDGameLayerFactory.create(stringBuilder.append(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>).append(CommonSeps.getInstance().UNDERSCORE).append(index).toString(), gdObject, globals.<xsl:value-of select="text()" />GDConditionWithGroupActions);
+                                <xsl:value-of select="text()" />GDGameLayer = resources.<xsl:value-of select="text()" />GDGameLayerFactory.create(stringBuilder.append(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>).append(CommonSeps.getInstance().UNDERSCORE).append(index).toString(), gdObject, null); //globals.<xsl:value-of select="text()" />GDConditionWithGroupActions);
                             } else {
                                 <xsl:value-of select="text()" />GDGameLayer = (GDGameLayer) globals.<xsl:value-of select="text()" />CacheGDGameLayerList.remove(0);
                                 

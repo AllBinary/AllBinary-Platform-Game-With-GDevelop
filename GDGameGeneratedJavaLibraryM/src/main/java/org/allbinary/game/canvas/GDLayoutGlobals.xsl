@@ -344,7 +344,7 @@ public class GDStructure {
                             <xsl:value-of select="$name" />GDObjectListOfList.add(<xsl:value-of select="name" />GDObjectList);
                             <xsl:value-of select="$name" />GDGameLayerListOfList.add(<xsl:value-of select="name" />GDGameLayerList);
                             <xsl:value-of select="$name" />CacheGDGameLayerListOfList.add(<xsl:value-of select="name" />CacheGDGameLayerList);
-                            <xsl:value-of select="$name" />GDConditionWithGroupActionsList.add(<xsl:value-of select="name" />GDConditionWithGroupActions);
+                            //<xsl:value-of select="$name" />GDConditionWithGroupActionsList.add(<xsl:value-of select="name" />GDConditionWithGroupActions);
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroups - END

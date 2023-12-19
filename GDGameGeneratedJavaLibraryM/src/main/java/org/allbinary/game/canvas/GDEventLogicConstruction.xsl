@@ -305,14 +305,14 @@ Created By: Travis Berthelot
         <xsl:param name="name1" />
         <xsl:param name="nodeList" />
 
-        <xsl:variable name="nameGDConditionWithGroupActions" >globals.<xsl:value-of select="$name" />GDConditionWithGroupActions</xsl:variable>
-        <xsl:variable name="nameGDConditionWithGroupActions1" >globals.<xsl:value-of select="$name1" />GDConditionWithGroupActions</xsl:variable>
+        //<xsl:variable name="nameGDConditionWithGroupActions" >globals.<xsl:value-of select="$name" />GDConditionWithGroupActions</xsl:variable>
+        //<xsl:variable name="nameGDConditionWithGroupActions1" >globals.<xsl:value-of select="$name1" />GDConditionWithGroupActions</xsl:variable>
         
-<xsl:text>                        </xsl:text><xsl:value-of select="$nameGDConditionWithGroupActions"/>.groupWithActionsList.add(globals.<xsl:value-of select="$name1" />GroupInterface);                        
-                        <xsl:value-of select="$nameGDConditionWithGroupActions"/>.actionForGroupsList.add(globals.nodeArray[globals.NODE_<xsl:value-of select="$nodeList" />]);        
+//<xsl:text>                        </xsl:text><xsl:value-of select="$nameGDConditionWithGroupActions"/>.groupWithActionsList.add(globals.<xsl:value-of select="$name1" />GroupInterface);                        
+//                        <xsl:value-of select="$nameGDConditionWithGroupActions"/>.actionForGroupsList.add(globals.nodeArray[globals.NODE_<xsl:value-of select="$nodeList" />]);        
 
-<xsl:text>                        </xsl:text><xsl:value-of select="$nameGDConditionWithGroupActions1"/>.groupWithActionsList.add(globals.<xsl:value-of select="$name" />GroupInterface);
-                        <xsl:value-of select="$nameGDConditionWithGroupActions1"/>.actionForGroupsList.add(globals.nodeArray[globals.NODE_<xsl:value-of select="$nodeList" />]);        
+//<xsl:text>                        </xsl:text><xsl:value-of select="$nameGDConditionWithGroupActions1"/>.groupWithActionsList.add(globals.<xsl:value-of select="$name" />GroupInterface);
+//                        <xsl:value-of select="$nameGDConditionWithGroupActions1"/>.actionForGroupsList.add(globals.nodeArray[globals.NODE_<xsl:value-of select="$nodeList" />]);        
     </xsl:template>
 
     <xsl:template name="splitCollisionNP">
@@ -324,7 +324,7 @@ Created By: Travis Berthelot
         <xsl:if test="string-length($names) > 0">
             <xsl:variable name="nextName" select="substring-before(concat($names, ','), ',')" />
 
-                        //CollisionNP - add Groups/Teams
+                        //CollisionNP - add Groups/Teams - //2
                         <xsl:call-template name="addCollisionNP" >
                             <xsl:with-param name="name" ><xsl:value-of select="$nextName" /></xsl:with-param>
                             <xsl:with-param name="name1" ><xsl:value-of select="$name" /></xsl:with-param>

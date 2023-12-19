@@ -105,7 +105,7 @@ Created By: Travis Berthelot
                 */
 
                 /*
-                public final GDGameLayer <xsl:value-of select="name" />GDGameLayer = globals.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, (GDObject) <xsl:value-of select="name" />List.get(0), globals.<xsl:value-of select="name" />GDConditionWithGroupActions);
+                public final GDGameLayer <xsl:value-of select="name" />GDGameLayer = globals.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, (GDObject) <xsl:value-of select="name" />List.get(0), null); //globals.<xsl:value-of select="name" />GDConditionWithGroupActions);
 
                 globals.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
                 */

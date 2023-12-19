@@ -82,10 +82,22 @@ Created By: Travis Berthelot
                                 //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
-                    
+
+                            <xsl:variable name="name2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     
-                            <xsl:variable name="objectGroup" >
+                            <xsl:variable name="hasObjectGroup2" >
+                                <xsl:for-each select="/game">
+                                    <xsl:for-each select="layouts" >
+                                            <xsl:for-each select="objectsGroups" >
+                                                <xsl:if test="name = $name2" >
+                                                    found
+                                                </xsl:if>
+                                            </xsl:for-each>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                            </xsl:variable>
+                            <xsl:variable name="hasObjectGroup" >
                                 <xsl:for-each select="/game">
                                     <xsl:for-each select="layouts" >
                                             <xsl:for-each select="objectsGroups" >
@@ -93,29 +105,39 @@ Created By: Travis Berthelot
                                                     found
                                                 </xsl:if>
                                             </xsl:for-each>
-                                        <!--
-                                        <xsl:variable name="layoutIndex2" select="position() - 1" />
-                                        <xsl:if test="number($layoutIndex2) = $layoutIndex" > 
-                                        -->
-                                        <!--</xsl:if>-->
                                     </xsl:for-each>
                                 </xsl:for-each>
                             </xsl:variable>
 
-                            <xsl:if test="string-length($objectGroup) > 0" >
+                            <xsl:if test="string-length($hasObjectGroup2) > 0" >
+                            //CollisionNP - objectsGroups - //<xsl:value-of select="$name2" />
+                            final int size = globals.<xsl:value-of select="$name2" />GDObjectListOfList.size();
+                            for(int index3 = 0; index3 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index3++) {
+                            //final BasicArrayList gdObjectList2 = ((BasicArrayList) globals.<xsl:value-of select="$name2" />GDObjectListOfList.get(index3));
+                            final BasicArrayList gdGameLayerList2 = ((BasicArrayList) globals.<xsl:value-of select="$name2" />GDGameLayerListOfList.get(index3));
+                            </xsl:if>
+                            <xsl:if test="string-length($hasObjectGroup2) = 0" >
+                            //CollisionNP - //<xsl:value-of select="$name2" />
+                            //final BasicArrayList gdObjectList2 = globals.<xsl:value-of select="$name2" />GDObjectList;
+                            final BasicArrayList gdGameLayerList2 = globals.<xsl:value-of select="$name2" />GDGameLayerList;
+                            </xsl:if>
+                    
+                            <xsl:if test="string-length($hasObjectGroup) > 0" >
+                            //CollisionNP - objectsGroups - //<xsl:value-of select="$name" />
                             final int size = globals.<xsl:value-of select="$name" />GDObjectListOfList.size();
                             for(int index3 = 0; index3 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index3++) {
                             //final BasicArrayList gdObjectList = ((BasicArrayList) globals.<xsl:value-of select="$name" />GDObjectListOfList.get(index3));
                             final BasicArrayList gdGameLayerList = ((BasicArrayList) globals.<xsl:value-of select="$name" />GDGameLayerListOfList.get(index3));
                             </xsl:if>
-                            <xsl:if test="string-length($objectGroup) = 0" >
+                            <xsl:if test="string-length($hasObjectGroup) = 0" >
+                            //CollisionNP - //<xsl:value-of select="$name" />
                             //final BasicArrayList gdObjectList = globals.<xsl:value-of select="$name" />GDObjectList;
                             final BasicArrayList gdGameLayerList = globals.<xsl:value-of select="$name" />GDGameLayerList;
                             </xsl:if>
-                    
+                                        
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
-                    final int <xsl:value-of select="text()" />Size = globals.<xsl:value-of select="text()" />GDGameLayerList.size();
+                    final int <xsl:value-of select="text()" />Size = gdGameLayerList2.size();
                         </xsl:if>
                     </xsl:for-each>
                     <xsl:for-each select="parameters" >
@@ -127,7 +149,7 @@ Created By: Travis Berthelot
                     for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />Size</xsl:if></xsl:for-each>; index2++) {
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
-                        final GDGameLayer gameLayer2 = (GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index2);
+                        final GDGameLayer gameLayer2 = (GDGameLayer) gdGameLayerList2.get(index2);
                         </xsl:if>
                     </xsl:for-each>
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" />Size2</xsl:if></xsl:for-each>; index++) {
@@ -158,7 +180,10 @@ Created By: Travis Berthelot
 
                     }
                                 
-                    <xsl:if test="string-length($objectGroup) > 0" >
+                    <xsl:if test="string-length($hasObjectGroup) > 0" >
+                    }
+                    </xsl:if>
+                    <xsl:if test="string-length($hasObjectGroup2) > 0" >
                     }
                     </xsl:if>
                                 super.processStatsE();
