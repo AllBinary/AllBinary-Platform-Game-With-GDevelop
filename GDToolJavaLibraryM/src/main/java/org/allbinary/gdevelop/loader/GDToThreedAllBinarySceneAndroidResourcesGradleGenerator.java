@@ -15,6 +15,7 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -23,13 +24,20 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
 {
+    private final CommonSeps commonSeps = CommonSeps.getInstance();
+    
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
+
+    private final String NEW_LINE = "\n";
+    private final String COMMENT = "//";
+    private final String TOUCH = "TOUCH";
+    private final String UNDERSCORE_0 = commonSeps.UNDERSCORE + "0";
     
-    private final String RESOURCE_0 = "\n        resourceUtil.addResource(";
+    private final String RESOURCE_0 = "        resourceUtil.addResource(";
     
-    private final String SOUND_RESOURCE = ".getInstance().getResource(), ";
+    //private final String SOUND_RESOURCE = ".getInstance().getResource(), ";
 
     private final String GD_RESOURCE = "gdResources.";
     private final String _RESOURCE = ", ";
@@ -76,11 +84,28 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
         final BasicArrayList resourceList = this.gdResources.resourceNameList;
         final BasicArrayList androidResourceList = this.gdResources.androidResourceList;
         
-        int size = resourceList.size();
+        final int size = resourceList.size();
+        final int size2 = 100;
+        String resource;
         for(int index = 0; index < size; index++) {
+
+            resource = (String) resourceList.get(index);
+
+            stringBuilder.append(NEW_LINE);
+            
+            if (resource.endsWith(UNDERSCORE_0) && resource.indexOf(TOUCH) < 0) {
+                stringBuilder.append(COMMENT);
+            }
+            
+            for(int index2 = 2; index2 < size2; index2++) {
+                if(resource.endsWith(commonSeps.UNDERSCORE + index2) && resource.indexOf(TOUCH) < 0) {
+                    stringBuilder.append(COMMENT);
+                }
+            }            
+            
             stringBuilder.append(RESOURCE_0);
             stringBuilder.append(GD_RESOURCE);
-            stringBuilder.append(resourceList.get(index));
+            stringBuilder.append(resource);
             stringBuilder.append(_RESOURCE);
             stringBuilder.append(RESOURCE_1);
             stringBuilder.append(androidResourceList.get(index));
@@ -88,7 +113,6 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
                 stringBuilder.append(_OBJ);
             }
             stringBuilder.append(RESOURCE_2);
-            stringBuilder.append('\n');
         }        
     }
     

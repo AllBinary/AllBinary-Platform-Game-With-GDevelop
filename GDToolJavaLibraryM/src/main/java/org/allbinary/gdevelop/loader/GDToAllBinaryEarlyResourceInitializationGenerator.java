@@ -97,12 +97,11 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
 
     public void appendMedia(final StringMaker stringBuilder) {
         final CommonSeps commonSeps = CommonSeps.getInstance();
-        final String TOUCH = "TOUCH";
 
         final BasicArrayList resourceList = this.gdResources.resourceNameList;
         final BasicArrayList androidResourceList = this.gdResources.androidResourceList;
         
-        int size = resourceList.size();
+        final int size = resourceList.size();
         final int size2 = 100;
         String resource;
         for(int index = 0; index < size; index++) {
@@ -119,7 +118,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
                 if(resource.endsWith(commonSeps.UNDERSCORE + index2) && resource.indexOf(TOUCH) < 0) {
                     stringBuilder.append(COMMENT);
                 }
-            }
+            }            
                         
             stringBuilder.append(RESOURCE_0);
             
