@@ -47,9 +47,15 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
     }
     
     //private final String IS_COLLISION = "isCollision";
+    //private final String B = "BatEnemy";
 
     public boolean isCollision(final CollidableCompositeLayer collisionLayer) 
     {
+//        final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) this.ownerLayer);
+//        if (customGameLayer.gdObject.name.compareTo(B) == 0) {
+//            LogUtil.put(LogFactory.getInstance("isCollision: " + customGameLayer.toString(), this, commonStrings.PROCESS));
+//        }
+        
         final GD0SpecialAnimationGlobals globals = GD0SpecialAnimationGlobals.getInstance();
         //if(((GDCustomGameLayer) this.ownerLayer).gdObject.type == globals.TILEMAP__COLLISIONMASK) {
         final GDCustomGameLayer collisionMaskCustomGameLayer = ((GDCustomGameLayer) collisionLayer);
@@ -62,6 +68,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
         }
     }
     
+//    GeographicMapCellPosition lastGeographicMapCellPosition;
     public boolean isCollision3(final GDCustomGameLayer collisionMaskCustomGameLayer) {
         
         try {
@@ -78,7 +85,13 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
                 final GDObject gdObject = collisionMaskCustomGameLayer.gdObject;
                 final GeographicMapCellPosition geographicMapCellPosition = collisionMaskCustomGameLayer.topViewGameBehavior.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, customGameLayer.getVelocityProperties(), customGameLayer, gdObject.x, gdObject.y);
 
-                //LogUtil.put(LogFactory.getInstance("geographicMapCellPosition: " + geographicMapCellPosition, this, commonStrings.PROCESS));
+//                if(customGameLayer.gdObject.name.compareTo(B) == 0) {
+//                    if(lastGeographicMapCellPosition != geographicMapCellPosition) {
+//                        lastGeographicMapCellPosition = geographicMapCellPosition;
+//                       LogUtil.put(LogFactory.getInstance("geographicMapCellPosition: " + geographicMapCellPosition, this, commonStrings.PROCESS));
+//                    }
+//                }
+
                 if(geographicMapCellPosition == null) {
                     //LogUtil.put(LogFactory.getInstance(globals.TILEMAP__COLLISIONMASK, this, commonStrings.PROCESS));
                     //LogUtil.put(LogFactory.getInstance(gdObject.toShortString(), this, commonStrings.PROCESS));
@@ -86,7 +99,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
                 }
                 
             } else {
-                //LogUtil.put(LogFactory.getInstance(this.commonStrings.EXCEPTION, this, this.commonStrings.PROCESS, new Exception()));
+                LogUtil.put(LogFactory.getInstance(this.commonStrings.EXCEPTION, this, this.commonStrings.PROCESS, new Exception()));
                 return true;
             }
             
