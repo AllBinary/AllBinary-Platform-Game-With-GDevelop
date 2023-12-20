@@ -76,7 +76,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
 
                 final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) this.ownerLayer);
                 final GDObject gdObject = collisionMaskCustomGameLayer.gdObject;
-                final GeographicMapCellPosition geographicMapCellPosition = collisionMaskCustomGameLayer.topViewGameBehavior.getGeographicMapCellPositionIfNotSolidBlockOrOffMapLeft(geographicMapInterfaceArray, customGameLayer.getVelocityProperties(), customGameLayer, gdObject.x, gdObject.y);
+                final GeographicMapCellPosition geographicMapCellPosition = collisionMaskCustomGameLayer.topViewGameBehavior.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, customGameLayer.getVelocityProperties(), customGameLayer, gdObject.x, gdObject.y);
 
                 //LogUtil.put(LogFactory.getInstance("geographicMapCellPosition: " + geographicMapCellPosition, this, commonStrings.PROCESS));
                 if(geographicMapCellPosition == null) {
@@ -85,15 +85,9 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
                     return true;
                 }
                 
-                final GeographicMapCellPosition geographicMapCellPosition2 = collisionMaskCustomGameLayer.topViewGameBehavior.getGeographicMapCellPositionIfNotSolidBlockOrOffMapRight(geographicMapInterfaceArray, customGameLayer.getVelocityProperties(), customGameLayer, gdObject.x - gdObject.width, gdObject.y - gdObject.height);
-                
-                //LogUtil.put(LogFactory.getInstance("geographicMapCellPosition: " + geographicMapCellPosition2, this, commonStrings.PROCESS));
-                if(geographicMapCellPosition2 == null) {
-                    //LogUtil.put(LogFactory.getInstance(globals.TILEMAP__COLLISIONMASK, this, commonStrings.PROCESS));
-                    //LogUtil.put(LogFactory.getInstance(gdObject.toShortString(), this, commonStrings.PROCESS));
-                    return true;
-                }
-                
+            } else {
+                //LogUtil.put(LogFactory.getInstance(this.commonStrings.EXCEPTION, this, this.commonStrings.PROCESS, new Exception()));
+                return true;
             }
             
         } catch(Exception e) {

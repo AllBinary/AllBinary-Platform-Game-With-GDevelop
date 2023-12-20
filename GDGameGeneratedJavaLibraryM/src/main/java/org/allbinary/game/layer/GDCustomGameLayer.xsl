@@ -833,7 +833,8 @@ Created By: Travis Berthelot
                 </xsl:for-each>
             </xsl:for-each>
         </xsl:for-each>
-            
+
+    //private final String P = "processGDCollision";            
     public void processGDCollision() throws Exception {
         final int size = this.collisionList.size();
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P));
