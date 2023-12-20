@@ -32,6 +32,8 @@ extends ResourceInitialization
         final AndroidResources androidResources = AndroidResources.getInstance();
         
         final GDResources gdResources = GDResources.getInstance();
+
+        resourceUtil.addResource(gdResources.BLANK, Integer.valueOf(androidResources.raw.blank));
                 
         //GD
         

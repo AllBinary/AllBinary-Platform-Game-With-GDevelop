@@ -55,6 +55,8 @@ extends ResourceInitialization
         resourceUtil.addResource(ErrorSound.getInstance().getResource(), Integer
                 .valueOf(androidResources.raw.error));
         
+        resourceUtil.addResource(gdResources.BLANK, Integer.valueOf(androidResources.raw.blank));
+
         //GD
         
         //resourceUtil.addResource(TestSound.getInstance().getResource(), Integer

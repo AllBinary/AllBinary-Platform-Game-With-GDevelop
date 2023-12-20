@@ -62,6 +62,8 @@ public final class R {
         
         public static final int game = 0x7f040017;
         
+        public static final int blank = 0x7f060007;
+
         //GD
     }
     public static final class string {
