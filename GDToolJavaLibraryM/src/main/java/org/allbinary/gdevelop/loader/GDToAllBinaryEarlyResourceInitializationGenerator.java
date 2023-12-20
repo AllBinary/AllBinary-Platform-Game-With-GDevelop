@@ -24,12 +24,17 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDToAllBinaryEarlyResourceInitializationGenerator
 {
+    private final CommonSeps commonSeps = CommonSeps.getInstance();
+
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
     
     private final String NEW_LINE = "\n";
     private final String COMMENT = "//";
+    private final String TOUCH = "TOUCH";
+    private final String UNDERSCORE_0 = commonSeps.UNDERSCORE + "0";
+    
     private final String RESOURCE_0 = "        resourceUtil.addResource(";
     
     private final String SOUND_RESOURCE = ".getInstance().getResource(), ";
@@ -106,12 +111,16 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
 
             stringBuilder.append(NEW_LINE);
             
+            if (resource.endsWith(UNDERSCORE_0) && resource.indexOf(TOUCH) < 0) {
+                stringBuilder.append(COMMENT);
+            }
+            
             for(int index2 = 2; index2 < size2; index2++) {
-                if(resource.indexOf(commonSeps.UNDERSCORE + index2) >= 0 && resource.indexOf(TOUCH) < 0) {
+                if(resource.endsWith(commonSeps.UNDERSCORE + index2) && resource.indexOf(TOUCH) < 0) {
                     stringBuilder.append(COMMENT);
                 }
             }
-            
+                        
             stringBuilder.append(RESOURCE_0);
             
             stringBuilder.append(GD_RESOURCE);

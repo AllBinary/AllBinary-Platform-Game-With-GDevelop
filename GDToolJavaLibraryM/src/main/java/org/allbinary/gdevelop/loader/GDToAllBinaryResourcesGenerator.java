@@ -24,15 +24,17 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDToAllBinaryResourcesGenerator
 {
+    private final CommonSeps commonSeps = CommonSeps.getInstance();
+    
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
-    private final CommonSeps commonSeps = CommonSeps.getInstance();
         
     private final StringMaker resourceStringBuilder = new StringMaker();
     
     private final String GD_KEY = "//GD";
     private final String TOUCH = "TOUCH";
+    private final String COMMENT = "//";
     private final String UNDERSCORE_0 = commonSeps.UNDERSCORE + "0";
             
     private final int size2 = 100;
@@ -54,12 +56,12 @@ public class GDToAllBinaryResourcesGenerator
         this.gdResources.resourceList.add(resource);
         
         if (name.endsWith(UNDERSCORE_0) && name.indexOf(TOUCH) < 0) {
-            resourceStringBuilder.append("//");
+            resourceStringBuilder.append(COMMENT);
         }
 
         for (int index2 = 2; index2 < size2; index2++) {
             if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
-                resourceStringBuilder.append("//");
+                resourceStringBuilder.append(COMMENT);
             }
         }
         
@@ -93,16 +95,16 @@ public class GDToAllBinaryResourcesGenerator
             resource = (String) this.gdResources.resourceList.get(index);
             resourceStringBuilder.append(INDENT);
             if(resource.indexOf(".json") >= 0 || resource.indexOf(".t") >= 0) {
-                resourceStringBuilder.append("//");
+                resourceStringBuilder.append(COMMENT);
             }
             
             if (name.endsWith(UNDERSCORE_0) && name.indexOf(TOUCH) < 0) {
-                resourceStringBuilder.append("//");
+                resourceStringBuilder.append(COMMENT);
             }
             
             for(int index2 = 2; index2 < size2; index2++) {
                 if(name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
-                    resourceStringBuilder.append("//");
+                    resourceStringBuilder.append(COMMENT);
                 }
             }
             
