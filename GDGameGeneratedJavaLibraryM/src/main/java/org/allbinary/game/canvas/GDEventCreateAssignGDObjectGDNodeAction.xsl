@@ -255,7 +255,11 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'TextEntryObject::String'" >
 
-                    <xsl:call-template name="textEntryObjectAsStringActionProcess" />
+                    <xsl:call-template name="textEntryObjectAsStringActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PlaySound'" >

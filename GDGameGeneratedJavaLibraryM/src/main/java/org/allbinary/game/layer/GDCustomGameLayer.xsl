@@ -368,9 +368,11 @@ Created By: Travis Berthelot
             
             //CollisionNP - processing for the specific game object
             final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals<xsl:value-of select="$layoutIndex" /> = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+            if(globals<xsl:value-of select="$layoutIndex" /> != null) {
             <xsl:call-template name="mapCollisionMaskHack2" >
                 <xsl:with-param name="layoutIndex" select="$layoutIndex" />
             </xsl:call-template>
+            }
             
         </xsl:for-each>
 

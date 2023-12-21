@@ -17,6 +17,8 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="textEntryObjectAsStringActionProcess" >
+        <xsl:param name="layoutIndex" />
+
                         private boolean[] hasReleased;
 
                         public void init() {
@@ -31,7 +33,7 @@ Created By: Travis Berthelot
                         @Override
                         public boolean process() throws Exception {
                             LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                            ((GD0GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).stringMaker.delete(0, ((GD0GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).stringMaker.length());
+                            ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).stringMaker.delete(0, ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).stringMaker.length());
 
                             return true;
                         }
@@ -46,7 +48,7 @@ Created By: Travis Berthelot
                             if(hasReleased[key]) {
                                 //LogUtil.put(LogFactory.getInstance("append: " + keyAsInteger, this, commonStrings.PROCESS));
                                 hasReleased[key] = false;
-                                ((GD0GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).stringMaker.append((char) key);
+                                ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).stringMaker.append((char) key);
                             } else {
                                 //LogUtil.put(LogFactory.getInstance("not append: " + keyAsInteger, this, commonStrings.PROCESS));
                             }
