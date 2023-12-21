@@ -56,7 +56,7 @@ public class GDGameInputProcessor {
 //            return;
 //        }
         
-        final GDGlobals globals = ((GDSpecialAnimation) specialAnimation).getGlobals();
+        final GDSceneGlobals globals = ((GDSpecialAnimation) specialAnimation).getGlobals();
 
 //        if(globals == null) {
 //            LogUtil.put(LogFactory.getInstance("TWB globals is null", this, "processInput"));

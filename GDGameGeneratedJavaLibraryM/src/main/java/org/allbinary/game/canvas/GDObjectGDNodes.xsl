@@ -114,15 +114,15 @@ Created By: Travis Berthelot
 
                                 //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
                                 
-                        //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
-                        if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
-                            if(globals.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
-                                final int size = globals.<xsl:value-of select="name" />GDGameLayerList.size();
+                        //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList != null) {
+                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
+                            if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.size() != 0) {
+                                final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.size();
                                 GDGameLayer gdGameLayer;
                                 GDNode node;
                                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                     //<xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />
-                                    gdGameLayer = ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(index));
+                                    gdGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.get(index));
                                     <xsl:if test="string-length($params) > 0" >
                                     /*
                                         <xsl:value-of select="$params" />
@@ -264,15 +264,15 @@ Created By: Travis Berthelot
 
                                 //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
                                 
-                        //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
-                        if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
-                            if(globals.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
-                                final int size = globals.<xsl:value-of select="name" />GDGameLayerList.size();
+                        //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList != null) {
+                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
+                            if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.size() != 0) {
+                                final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.size();
                                 GDGameLayer gdGameLayer;
                                 GDNode node;
                                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                     //<xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />
-                                    gdGameLayer = ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(index));
+                                    gdGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.get(index));
                                     <xsl:if test="string-length($params) > 0" >
                                     /*
                                         <xsl:value-of select="$params" />
@@ -415,15 +415,15 @@ Created By: Travis Berthelot
 
                                 //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
                                 
-                        //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
-                        if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
-                            if(globals.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
-                                final int size = globals.<xsl:value-of select="name" />GDGameLayerList.size();
+                        //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList != null) {
+                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
+                            if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.size() != 0) {
+                                final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.size();
                                 GDGameLayer gdGameLayer;
                                 GDNode node;
                                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                     //<xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />
-                                    gdGameLayer = ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(index));
+                                    gdGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.get(index));
                                     <xsl:if test="string-length($params) > 0" >
                                     /*
                                         <xsl:value-of select="$params" />
@@ -569,15 +569,15 @@ Created By: Travis Berthelot
                                 final CollidableCompositeLayer gameLayer = gameLayerArray[0];
                                 final CollidableCompositeLayer gameLayer2 = gameLayerArray[1];
 
-                        //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
-                        if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
-                            if(globals.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
-                                final int size = globals.<xsl:value-of select="name" />GDGameLayerList.size();
+                        //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList != null) {
+                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
+                            if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.size() != 0) {
+                                final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.size();
                                 GDGameLayer gdGameLayer;
                                 GDNode node;
                                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                    //globals.<xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />
-                                    gdGameLayer = ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(index));
+                                    //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />
+                                    gdGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.get(index));
                                     <xsl:if test="string-length($params) > 0" >
                                     /*
                                         <xsl:value-of select="$params" />
@@ -651,11 +651,11 @@ Created By: Travis Berthelot
                             public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
                                 super.processNStats(gdNode, gdNodeList);
 
-                                //if(globals.<xsl:value-of select="name" />GDGameLayerList != null) {
-                                if(globals.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
-                                    if(globals.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
+                                //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList != null) {
+                                if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
+                                    if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.size() != 0) {
                                         this.clear();
-                                        this.gameLayerArray[0] = (CollidableCompositeLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0);
+                                        this.gameLayerArray[0] = (CollidableCompositeLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.get(0);
                                         //this.processM(this.gameLayerArray, gdNode, gdNodeList);
                                         this.processM(this.gameLayerArray);
                                         this.clear2();

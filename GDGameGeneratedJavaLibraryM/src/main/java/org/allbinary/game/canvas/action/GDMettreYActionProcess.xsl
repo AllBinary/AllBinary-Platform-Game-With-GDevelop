@@ -42,14 +42,14 @@ Created By: Travis Berthelot
                             </xsl:variable>
 
                             <xsl:if test="string-length($hasObjectGroup) > 0" >
-                            final int size = globals.<xsl:value-of select="$name" />GDObjectListOfList.size();
+                            final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template><xsl:value-of select="$name" />GDObjectListOfList.size();
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            final BasicArrayList gdObjectList = ((BasicArrayList) globals.<xsl:value-of select="$name" />GDObjectListOfList.get(index));
-                            final BasicArrayList gdGameLayerList = ((BasicArrayList) globals.<xsl:value-of select="$name" />GDGameLayerListOfList.get(index));
+                            final BasicArrayList gdObjectList = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template><xsl:value-of select="$name" />GDObjectListOfList.get(index));
+                            final BasicArrayList gdGameLayerList = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template><xsl:value-of select="$name" />GDGameLayerListOfList.get(index));
                             </xsl:if>
                             <xsl:if test="string-length($hasObjectGroup) = 0" >
-                            final BasicArrayList gdObjectList = globals.<xsl:value-of select="$name" />GDObjectList;
-                            final BasicArrayList gdGameLayerList = globals.<xsl:value-of select="$name" />GDGameLayerList;
+                            final BasicArrayList gdObjectList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template><xsl:value-of select="$name" />GDObjectList;
+                            final BasicArrayList gdGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template><xsl:value-of select="$name" />GDGameLayerList;
                             </xsl:if>
 
                             final int size2 = gdObjectList.size();
@@ -109,7 +109,7 @@ Created By: Travis Berthelot
                                 //}
                                 
                             <xsl:if test="not(contains($hasObjectGroup, 'found'))" >   
-                                final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$name" />) gdObject;
+                                final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) gdObject;
                             </xsl:if>
                             
                             <xsl:if test="contains($hasObjectGroup, 'found')" >
@@ -136,7 +136,7 @@ Created By: Travis Berthelot
                                 final Rectangle <xsl:value-of select="$name" />Rectangle = new Rectangle(
                                     PointFactory.getInstance().getInstance(<xsl:value-of select="$name" />GDobject2.x, <xsl:value-of select="$name" />GDobject2.y),
                                     <xsl:value-of select="$name" />GDobject2.Width(globals.graphics), <xsl:value-of select="$name" />GDobject2.Height(globals.graphics));
-                                globals.<xsl:value-of select="$name" />RectangleList.add(<xsl:value-of select="$name" />Rectangle);
+                                <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template><xsl:value-of select="$name" />RectangleList.add(<xsl:value-of select="$name" />Rectangle);
                                 </xsl:if>
 
                             } catch(Exception e) {

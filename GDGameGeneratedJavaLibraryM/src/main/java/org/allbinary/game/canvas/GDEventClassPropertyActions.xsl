@@ -23,6 +23,7 @@ Created By: Travis Berthelot
         
         <xsl:for-each select="children" >
             <xsl:if test="type = 'structure'" >
+                //structure
             public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
 
             <xsl:call-template name="variablesStructuresChildren" >
@@ -34,24 +35,26 @@ Created By: Travis Berthelot
                  
             }
             
-            public final GDStructure<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:if test="number(name) >= 0" >n</xsl:if><xsl:value-of select="name" /> = new GDStructure<xsl:value-of select="name" />();
+            public final GDStructure<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:if test="number(name) = name" >n</xsl:if><xsl:value-of select="name" /> = new GDStructure<xsl:value-of select="name" />();
             
-            <xsl:if test="number(name) >= 0" >
+            <xsl:if test="number(name) = name" >
             public GDStructure<xsl:value-of select="name" /> get<xsl:value-of select="$parentName" />Size() {
                 return this.get<xsl:value-of select="name" />();
             }
             </xsl:if>
             
             public GDStructure<xsl:value-of select="name" /> get<xsl:value-of select="name" />() {
-                return <xsl:if test="number(name) >= 0" >n</xsl:if><xsl:value-of select="name" />;
+                return <xsl:if test="number(name) = name" >n</xsl:if><xsl:value-of select="name" />;
             }
             
             </xsl:if>
             
             <xsl:if test="type = 'string'" >
             //public String <xsl:value-of select="name" /> = "<xsl:value-of select="value" />";
+            <xsl:if test="number(value) = value" >
             public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-            </xsl:if>            
+            </xsl:if>
+            </xsl:if>
 
         </xsl:for-each>
 
@@ -60,7 +63,8 @@ Created By: Travis Berthelot
     <xsl:template name="variablesStructures" >
         
         <xsl:for-each select="variables" >
-
+            <xsl:if test="name" >
+        //variable
 public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
 
     public GDStructure<xsl:value-of select="name" />() {
@@ -72,8 +76,8 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
             <xsl:with-param name="parentName" ><xsl:value-of select="name" /></xsl:with-param>
         </xsl:call-template>
     
-}                    
-
+}
+            </xsl:if>
         </xsl:for-each>
         
         //JSONToVariableStructure - global - START

@@ -59,16 +59,23 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             //final Replace replace3 = new Replace(".Height()", ".Height(globals.graphics)");
             final Replace replace3 = new Replace(".Height()", ".Height(null)");
             gameXmlAsString = replace3.all(gameXmlAsString);
-            final Replace replace4 = new Replace("GlobalVariable(", "GlobalVariable(globals.");
+            final Replace replace4 = new Replace("GlobalVariable(", "GlobalVariable(gameGlobals.");
             gameXmlAsString = replace4.all(gameXmlAsString);
-            final Replace replace5 = new Replace("GlobalVariableString(", "GlobalVariableString(globals.");
+            final Replace replace5 = new Replace("GlobalVariableString(", "GlobalVariableString(gameGlobals.");
             gameXmlAsString = replace5.all(gameXmlAsString);
-            final Replace replace6 = new Replace("GlobalVariableChildCount(", "GlobalVariableChildCount(globals.");
+            final Replace replace6 = new Replace("GlobalVariableChildCount(", "GlobalVariableChildCount(gameGlobals.");
             gameXmlAsString = replace6.all(gameXmlAsString);
             
             String layoutGameXmlAsString = new String(gameXmlAsString);
-            final String VARIABLE = "Variable(";
+            final String[] VARIABLE_ARRAY = {
+                "Variable(",
+                "VariableString(",
+                "VariableChildCount("
+            };
             final String GLOBALS = "globals.";
+            final int size2 = VARIABLE_ARRAY.length;
+            for(int index2 = 0; index2 < size2; index2++) {
+                final String VARIABLE = VARIABLE_ARRAY[index2];
             for(int index = 0; index >= 0;) {
                 index = layoutGameXmlAsString.indexOf(VARIABLE, index + VARIABLE.length());
                     //skip digits
@@ -90,6 +97,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                     layoutGameXmlAsString = stringBuilder.append(layoutGameXmlAsString.substring(0, index + VARIABLE.length())).append(GLOBALS).append(layoutGameXmlAsString.substring(index + VARIABLE.length())).toString();
                 }
             }
+            }
 
             final Replace replace7 = new Replace("PointX(&quot;", "PointX(&quot;globals.");
             layoutGameXmlAsString = replace7.all(layoutGameXmlAsString);
@@ -99,6 +107,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator
 
             final String[] xmlStringArray = {
                 gameXmlAsString,
+                gameXmlAsString,
+                gameXmlAsString,
+
                 layoutGameXmlAsString,
 
                 layoutGameXmlAsString,
@@ -127,6 +138,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             final String[] xslPathInputArray = 
             {
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDNonLayoutAsXml.xsl",                
+                gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGlobals.xsl",
+                gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGlobalsGDObjectsFactory.xsl",
+
+
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutAsXml.xsl",
 
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayout.xsl",
@@ -145,9 +160,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator
 
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDResources.xsl",
                 
-                gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGlobals.xsl",
-                gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDObjects.xsl",
-                    
+                gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutSceneAsSpecialAnimationGlobals.xsl",
+                gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDObjectsFactory.xsl",
+                
                 gdToolStrings.ROOT_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\GDGamePlaynResources.xsl", 
 
             };
@@ -165,6 +180,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             final String[] START = {
 
                 GENERATED_START_WITH_PATH,
+                GENERATED_START_WITH_PATH,
+                GENERATED_START_WITH_PATH,
+                
                 GENERATED_START_WITH_PATH,
 
                 GENERATED_START_WITH_PATH,
@@ -192,6 +210,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             
             final String[] END = {
                 "NonLayout.xml",
+                "GameGlobals.java",
+                "GlobalsGDObjectsFactory.java",
+
                 "SpecialAnimation.xml",
                 
                 "SpecialAnimation.java",
@@ -238,7 +259,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
 
                     stringBuilder.delete(0, stringBuilder.length());
                     String fileName = stringBuilder.append(START[index2]).append(indexAsString).append(END[index2]).toString();
-                    if(index2 == 0) {
+                    if(index2 < 3) {
                         stringBuilder.delete(0, stringBuilder.length());
                         fileName = stringBuilder.append(START[index2]).append(END[index2]).toString();
                     }
@@ -247,7 +268,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                     
                     LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
 
-                    if(index2 == 0 || index2 == 1) {
+                    if(index2 == 0 || index2 == 3) {
                         LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
                         stringBuilder.delete(0, stringBuilder.length());
                         final String formattedXml = XmlDocumentHelper.getInstance().format(stringBuilder.append(GAME_START).append(result).append(GAME_END).toString());

@@ -44,7 +44,7 @@ Created By: Travis Berthelot
                             </xsl:variable>
 
                             <xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" /></xsl:if>
+                                <xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" /></xsl:if>
                                 <xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if>
                                 <xsl:if test="position() = 3" ><xsl:value-of select="$thirdParam" /></xsl:if>
                                 <xsl:if test="position() = last()" >;</xsl:if>

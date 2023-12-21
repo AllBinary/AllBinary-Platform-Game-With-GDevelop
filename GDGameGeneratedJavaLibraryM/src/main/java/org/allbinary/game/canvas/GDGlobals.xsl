@@ -21,12 +21,13 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
     
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
     
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssignGlobals.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssignGroups.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
@@ -78,24 +79,18 @@ Created By: Travis Berthelot
     <xsl:template match="/game">
         //game
         <xsl:variable name="windowWidth" select="properties/windowWidth" />
-        
-        <xsl:for-each select="layouts" >
-            <xsl:variable name="layoutIndex" select="position() - 1" />
-            //layouts=<xsl:value-of select="name" /> position=<xsl:value-of select="position()" />-1=<xsl:value-of select="$layoutIndex" />
 
-            <xsl:if test="number($layoutIndex) =
-                <GD_CURRENT_INDEX>" >
+        <xsl:variable name="noLayoutIndex" select="NoIndex" />
+
                 <!-- Android images assets need to be enlarged if they are not setup to be inside the cirle area needed -->
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
-                <xsl:variable name="layoutName" select="name" />
+                <xsl:variable name="gameName" select="properties/name" />
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="objectsAsString" >,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
-                <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
-                <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
+                <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="gameName" ><xsl:value-of select="$gameName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 //instancesAsString=<xsl:value-of select="$instancesAsString" />
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
-                //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
 
                 package org.allbinary.game.canvas;
 
@@ -137,19 +132,19 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
 
-                //LayoutGlobals name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals extends GDGlobals
+                //GameGlobals name=<xsl:value-of select="properties/name" />
+                public class GDGameGlobals extends GDGlobals
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals instance;
+                    private static GDGameGlobals instance;
 
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals create()
+                    public static GDGameGlobals create()
                     {
-                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals();
+                        instance = new GDGameGlobals();
                         return instance;
                     }
 
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals getInstance()
+                    public static GDGameGlobals getInstance()
                     {
                         return instance;
                     }
@@ -157,34 +152,9 @@ Created By: Travis Berthelot
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
                         
-                        public final String PROCESS_RELEASE = "processReleased";
-                        
                         public final BasicArrayList gdNodeWithRunnableList = new BasicArrayList();
-
-public class GDStructure {
-
-    public int Size = -1;
-
-}                    
-                                                            
-                    //variablesStructures - START
-                    <xsl:call-template name="variablesStructures" >
-                        <xsl:with-param name="totalRecursions" >
-                            <xsl:value-of select="0" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-                    //variablesStructures - END
-                                        
-                        <xsl:for-each select="../externalEvents" >
-                            <xsl:if test="$layoutName = associatedLayout" >
-                        public GDNode <xsl:value-of select="name" />GDNode = null;
-                            </xsl:if>
-                        </xsl:for-each>
-
-                        //variables - START
-                        <xsl:call-template name="variables" />
-                        //variables - END
-                                                
+                        private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                                                                                        
                         <xsl:variable name="objectsWithOnceCondition" ><xsl:call-template name="gdNodeToOnceList" ><xsl:with-param name="iteration" >0</xsl:with-param></xsl:call-template></xsl:variable>
                         //objectsWithOnceCondition=<xsl:value-of select="$objectsWithOnceCondition" />
                         <xsl:for-each select="objects" >
@@ -192,22 +162,10 @@ public class GDStructure {
                         public final BasicArrayList <xsl:value-of select="name/text()" />OnceGDNodeList = new BasicArrayList();
                             </xsl:if>
                         </xsl:for-each>
-
-                    
-                        public final Graphics graphics = new Graphics();
-                        //public final BasicArrayList ZERO_GD_OBJECT = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                         
                     <xsl:call-template name="generateIndexToNodeIdMapping" >
                         <xsl:with-param name="totalRecursion" >0</xsl:with-param>
                     </xsl:call-template>
-                    <xsl:variable name="total" ><xsl:call-template name="generateGDNodeTotal" ></xsl:call-template></xsl:variable>
-                        private final int MAX_NODES = <xsl:value-of select="$total" />;
-                        public final GDNode[] nodeArray = new GDNode[MAX_NODES];
-                        <!--
-                        public final int FAKE_COLLISION_NODE_ID = MAX_NODES - 1;
-                        -->
-
-                        public final BasicArrayList[] channelSoundArray = new BasicArrayList[4];
 
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
@@ -223,24 +181,6 @@ public class GDStructure {
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroups - END
-
-<!--
-                    //instances class properties - START                    
-                    <xsl:for-each select="instances" >
-                        //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" /><xsl:text>&#10;</xsl:text>
-                        <xsl:variable name="initialVariablesValue" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="initialVariables/value" /></xsl:with-param><xsl:with-param name="find" >-</xsl:with-param><xsl:with-param name="replacementText" >Neg</xsl:with-param></xsl:call-template></xsl:variable>
-
-                        public final BasicArrayList <xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
-                        <xsl:variable name="name" select="name" />
-                        <xsl:variable name="notTextObject" ><xsl:for-each select="../objects" ><xsl:if test="$name = name" ><xsl:if test="type != 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
-                        <xsl:if test="contains($notTextObject, 'found')" >
-                        public GDGameLayer <xsl:value-of select="name" />GDGameLayer;
-                        </xsl:if>
-                        public Rectangle <xsl:value-of select="name" />Rectangle<xsl:value-of select="$initialVariablesValue" /> = null;
-
-                    </xsl:for-each>
-                    //instances class properties - END
--->
 
                     //objects class properties - START                    
                     <xsl:for-each select="objects" >
@@ -263,30 +203,24 @@ public class GDStructure {
 
                     <xsl:call-template name="externalEventsClassProperty" >
                         <xsl:with-param name="layoutName" >
-                            <xsl:value-of select="$layoutName" />
+                            <xsl:value-of select="$gameName" />
                         </xsl:with-param>
                     </xsl:call-template>
 
+                    //more objects class properties - START
                     <xsl:call-template name="objectsClassProperty" >
                         <xsl:with-param name="windowWidth" >
                             <xsl:value-of select="$windowWidth" />
                         </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
-
-                    //eventsClassProperty - START
-                    <xsl:call-template name="eventsClassPropertyConditions" >
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="totalRecursions" >
-                            <xsl:value-of select="0" />
-                        </xsl:with-param>
-                        <xsl:with-param name="externalEventActionModVarSceneAsString" >
-                            <xsl:value-of select="$externalEventActionModVarSceneAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-                    //eventsClassProperty - END
+            public final String PRIMITIVEDRAWING__DRAWER = gameGlobals.PRIMITIVEDRAWING__DRAWER;
+            public final String SPRITE = gameGlobals.SPRITE;
+            public final String TILEMAP__TILEMAP = gameGlobals.TILEMAP__TILEMAP;
+            public final String TILEMAP__COLLISIONMASK = gameGlobals.TILEMAP__COLLISIONMASK;
+                    <xsl:text>&#10;</xsl:text>
+                    //more objects class properties - END
+                    <xsl:text>&#10;</xsl:text>
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                         <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
@@ -306,7 +240,7 @@ public class GDStructure {
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
+                            <xsl:value-of select="$noLayoutIndex" />
                         </xsl:with-param>
                         <xsl:with-param name="windowWidth" >
                             <xsl:value-of select="$windowWidth" />
@@ -324,21 +258,15 @@ public class GDStructure {
                     </xsl:call-template>    
                     <xsl:text>&#10;</xsl:text>
 
-                    //global - variables - START
-                    <xsl:for-each select=".." >
+                    //variables - START
                     <xsl:call-template name="variables" />
-                    </xsl:for-each>
-                    //global - variables - END
+                    //variables - END
+
                     <xsl:text>&#10;</xsl:text>
 
                     private final LayerManagerEventListener layerManagerEventListener;
-                    
-                    public long timeDelta;
-                    public long startTime = System.currentTimeMillis();
-                    public long lastStartTime = startTime;
-                    //public final String FAKE_COLLISION_NODE_STRING = "FAKE_COLLISION_NODE_ID";
-                 
-                    private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals() {
+                                     
+                    private GDGameGlobals() {
                     
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
@@ -359,11 +287,6 @@ public class GDStructure {
                         </xsl:with-param>
                     </xsl:call-template>
                     //eventsClassPropertyArrayActions - END
-
-                        final int size = channelSoundArray.length;
-                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            channelSoundArray[index] = new BasicArrayList();
-                        }
                         
                         final LayerManagerEventHandler layerManagerEventHandler = LayerManagerEventHandler.getInstance();
                         
@@ -386,63 +309,8 @@ public class GDStructure {
                         layerManagerEventHandler.addListener(layerManagerEventListener);
                         
                     }
-
-                    public int SceneWindowWidth() {
-                        return DisplayInfoSingleton.getInstance().getLastWidth();
-                    }
-
-                    public int SceneWindowHeight() {
-                        return DisplayInfoSingleton.getInstance().getLastHeight();
-                    }
-
-                    public int Random(final int range) {
-                        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
-                    }
-
-                    public float Random(final double range) {
-                        return ((float) MyRandomFactory.getInstance().getAbsoluteNextInt((int) (range * 1000))) / 1000;
-                    }
-                    
-                    public int Variable(final int value) {
-                        return value;
-                    }
-
-                    public double Variable(final double value) {
-                        return value;
-                    }
-
-                    public int VariableString(final int value) {
-                        return value;
-                    }
-
-                    public String Variable(final String value) {
-                        return value;
-                    }
-
-                    public String VariableString(final String string) {
-                        return string;
-                    }
-
-                    public int MouseX(String string, int value) {
-                        return value;
-                    }
-
-                    public int MouseY(String string, int value) {
-                        return value;
-                    }
-
-                    public int GlobalVariable(final int value) {
-                        return value;
-                    }
-                    
-                    public String ToString(final int value) {
-                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
-                        return Integer.toString(value);
-                    }
                        
                 }
-            </xsl:if>
-        </xsl:for-each>
     </xsl:template>
 
 </xsl:stylesheet>

@@ -27,12 +27,12 @@ Created By: Travis Berthelot
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                             <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                            final int size = globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.size();
+                            final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gdObjectName" />GDGameLayerList.size();
                             GDGameLayer <xsl:value-of select="$gdObjectName" />GDGameLayer;
                             GDObject <xsl:value-of select="$gdObjectName" />;
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 
-                                <xsl:value-of select="$gdObjectName" /><xsl:text>GDGameLayer = (GDGameLayer) globals.</xsl:text><xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
+                                <xsl:value-of select="$gdObjectName" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
                                 this.processGD(<xsl:value-of select="$gdObjectName" /><xsl:text>GDGameLayer</xsl:text>, null);
                             }
                             
@@ -44,7 +44,7 @@ Created By: Travis Berthelot
                             super.processGDStats(gameLayer);
 
                             final GDObject <xsl:value-of select="$gdObjectName" /><xsl:text> = </xsl:text>gameLayer.gdObject;                            
-                            <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="text()" />) <xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" >).<xsl:value-of select="text()" /></xsl:if></xsl:for-each><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:if test="string-length(text()) = 0" > = false;</xsl:if><xsl:if test="string-length(text()) > 0" > = <xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>;</xsl:if></xsl:if></xsl:for-each>
+                            <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" />) <xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" >).<xsl:value-of select="text()" /></xsl:if></xsl:for-each><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:if test="string-length(text()) = 0" > = false;</xsl:if><xsl:if test="string-length(text()) > 0" > = <xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>;</xsl:if></xsl:if></xsl:for-each>
 
                         }
                         //SetObjectVariableAsBoolean - action - END

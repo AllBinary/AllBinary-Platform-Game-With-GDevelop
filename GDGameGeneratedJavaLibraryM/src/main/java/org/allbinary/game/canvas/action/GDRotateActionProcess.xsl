@@ -57,12 +57,12 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:if>
 
-                        //if(globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList != null) {
-                        if(globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
+                        //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gdObjectName" />GDGameLayerList != null) {
+                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gdObjectName" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                             GDGameLayer gameLayer;
-                            final int size = globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.size();
+                            final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gdObjectName" />GDGameLayerList.size();
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                gameLayer = (GDGameLayer) globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
+                                gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
 
         <xsl:if test="../conditions" >
             <xsl:for-each select="../conditions" >
@@ -87,12 +87,12 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:for-each>
                 if(siblingConditions) {
-                    this.processGD(((GDGameLayer) globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)), globals.graphics);
+                    this.processGD(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)), globals.graphics);
                 }
         </xsl:if>
 
         <xsl:if test="not(../conditions)" >
-                                this.processGD(((GDGameLayer) globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)), globals.graphics);
+                                this.processGD(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)), globals.graphics);
         </xsl:if>
                                 //updateGDObject - 5
                                 gameLayer.updateGDObject(globals.timeDelta);
@@ -138,12 +138,12 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:if>
 
-                        //if(globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList != null) {
-                        if(globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
+                        //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gdObjectName" />GDGameLayerList != null) {
+                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gdObjectName" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                             GDGameLayer gameLayer;
-                            final int size = globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.size();
+                            final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gdObjectName" />GDGameLayerList.size();
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                gameLayer = (GDGameLayer) globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
+                                gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
 
         <xsl:if test="../conditions" >
             <xsl:for-each select="../conditions" >
@@ -168,12 +168,12 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:for-each>
                 if(siblingConditions) {
-                    this.processReleased(((GDGameLayer) globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)).gdObject);
+                    this.processReleased(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)).gdObject);
                 }
         </xsl:if>
 
         <xsl:if test="not(../conditions)" >
-                                this.processReleased(((GDGameLayer) globals.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)).gdObject);
+                                this.processReleased(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)).gdObject);
         </xsl:if>
                                 //updateGDObject - 6
                                 gameLayer.updateGDObject(globals.timeDelta);

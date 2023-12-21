@@ -194,11 +194,11 @@ Created By: Travis Berthelot
                     }
 
                     public int Width(final Graphics graphics) {
-                        return globals.<xsl:value-of select="name" />TextAnimation.getWidth();
+                        return <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />TextAnimation.getWidth();
                     }
 
                     public int Height(final Graphics graphics) {
-                        return globals.<xsl:value-of select="name" />TextAnimationSize;
+                        return <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />TextAnimationSize;
                     }
                 };
 

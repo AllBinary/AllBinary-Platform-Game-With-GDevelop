@@ -111,20 +111,20 @@ Created By: Travis Berthelot
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 <xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 1" >
-                            //final int size = globals.<xsl:value-of select="text()" />RectangleList.size();
+                            //final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />RectangleList.size();
                             //Rectangle <xsl:value-of select="text()" />Rectangle = null;                                        
-                            final int size = globals.<xsl:value-of select="text()" />GDGameLayerList.size();
-                            //final int size = globals.<xsl:value-of select="text()" />RectangleList.size();
+                            final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />GDGameLayerList.size();
+                            //final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />RectangleList.size();
                             GDGameLayer gameLayer;
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             
-                                //<xsl:value-of select="text()" />Rectangle = (Rectangle) globals.<xsl:value-of select="text()" />RectangleList.get(index);
-                                //LogUtil.put(LogFactory.getInstance("globals.<xsl:value-of select="text()" />Rectangle - Not Null", this, commonStrings.PROCESS));
+                                //<xsl:value-of select="text()" />Rectangle = (Rectangle) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />RectangleList.get(index);
+                                //LogUtil.put(LogFactory.getInstance("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />Rectangle - Not Null", this, commonStrings.PROCESS));
                                 //final GPoint point = displayPointScalar.process(motionGestureEvent.getCurrentPoint());
                                 //final GPoint rectangePoint = <xsl:value-of select="text()" />Rectangle.getPoint();
                                 
-                                gameLayer = (GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index);
-                                //LogUtil.put(LogFactory.getInstance("globals.<xsl:value-of select="text()" />GDameLayer - Not Null", this, commonStrings.PROCESS));
+                                gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />GDGameLayerList.get(index);
+                                //LogUtil.put(LogFactory.getInstance("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />GDameLayer - Not Null", this, commonStrings.PROCESS));
                                 final GPoint point = motionGestureEvent.getCurrentPoint();
                                 //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="text()" />Rectangle - motionGestureEvent: " + motionGestureEvent.toString(), this, commonStrings.PROCESS));
                                 //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="text()" /> - point: " + point.toString(), this, commonStrings.PROCESS));
@@ -203,7 +203,7 @@ Created By: Travis Berthelot
                                 }
                             } 
                             //if(size == 0) {
-                                //LogUtil.put(LogFactory.getInstance("globals.<xsl:value-of select="text()" />Rectangle - Null", this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />Rectangle - Null", this, commonStrings.PROCESS));
                             //}
                                     </xsl:if>
                                 </xsl:for-each>

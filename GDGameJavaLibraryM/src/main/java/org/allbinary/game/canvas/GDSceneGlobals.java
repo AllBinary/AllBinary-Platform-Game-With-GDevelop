@@ -13,10 +13,16 @@
  */
 package org.allbinary.game.canvas;
 
+import org.allbinary.game.input.GameInputProcessor;
+import org.allbinary.game.input.InputFactory;
+
 /**
  *
  * @author User
  */
-public class GDGlobals {
+public class GDSceneGlobals {
+    
+    public final GameInputProcessor[] inputProcessorArray = new GameInputProcessor[InputFactory.getInstance().MAX];
+    public final GameInputProcessor[] unmappedInputProcessorArray = new GameInputProcessor[InputFactory.getInstance().MAX];
     
 }

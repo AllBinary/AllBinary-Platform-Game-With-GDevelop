@@ -36,12 +36,16 @@ Created By: Travis Berthelot
                         
             <xsl:for-each select="animations" >
                 <xsl:for-each select="directions" >
-                //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
+<!--                
+                    //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
+-->
                     <xsl:for-each select="sprites" >
+<!--         
                 //image=<xsl:value-of select="image" /> hasCustomCollisionMask=<xsl:value-of select="hasCustomCollisionMask" />
                 //OriginPoint name=<xsl:value-of select="originPoint/name" /> x=<xsl:value-of select="originPoint/x" /> y=<xsl:value-of select="originPoint/y" />
                 //CenterPoint name=<xsl:value-of select="centerPoint/name" /> x=<xsl:value-of select="centerPoint/x" /> y=<xsl:value-of select="centerPoint/y" /> automatic=<xsl:value-of select="centerPoint/automatic" />
-                //customCollisionMask, array, x, y                            
+                //customCollisionMask, array, x, y
+-->
                         <xsl:for-each select="points" >
                 //Point name=<xsl:value-of select="name" /> x=<xsl:value-of select="x" /> y=<xsl:value-of select="y" />
                 //public final GPoint <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_POINT = PointFactory.getInstance().getInstance(<xsl:value-of select="x" />, <xsl:value-of select="y" />, 0);
@@ -119,11 +123,6 @@ Created By: Travis Berthelot
             </xsl:if>
 
         </xsl:for-each>
-
-            public final String PRIMITIVEDRAWING__DRAWER = "PrimitiveDrawing::Drawer";
-            public final String SPRITE = "Sprite";
-            public final String TILEMAP__TILEMAP = "TileMap::TileMap";
-            public final String TILEMAP__COLLISIONMASK = "TileMap::CollisionMask";
 
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />

@@ -53,7 +53,7 @@ Created By: Travis Berthelot
     <xsl:template name="gameLayerList" >
         <xsl:param name="name" />
 
-                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) globals.<xsl:value-of select="$name" />GDGameLayerList.get(index));
+                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template><xsl:value-of select="$name" />GDGameLayerList.get(index));
 
     </xsl:template>
 

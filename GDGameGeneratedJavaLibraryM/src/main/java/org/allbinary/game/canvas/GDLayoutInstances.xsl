@@ -21,7 +21,7 @@
                 //instances - START
                 <xsl:for-each select="instances" >
                     <xsl:if test="not(contains(name, $name))" >
-                        final GDObject <xsl:value-of select="name" /> = (GDObject) globals.<xsl:value-of select="name" />GDObjectList.get(0);
+                        final GDObject <xsl:value-of select="name" /> = (GDObject) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDObjectList.get(0);
                     </xsl:if>
                 </xsl:for-each>
                 //instances - END

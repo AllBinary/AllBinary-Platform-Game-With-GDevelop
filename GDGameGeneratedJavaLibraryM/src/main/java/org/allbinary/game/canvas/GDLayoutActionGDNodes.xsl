@@ -21,8 +21,8 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
         
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
-    
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObjectGDNodeAction.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
@@ -125,6 +125,7 @@ Created By: Travis Berthelot
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
 
+                        private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
@@ -226,6 +227,18 @@ Created By: Travis Berthelot
                         return value;
                     }
 
+                    public String VariableString(final Object object) {
+                        return object.toString();
+                    }
+
+                    public int VariableChildCount(final String[] array) {
+                        return array.length;
+                    }
+
+                    public int VariableChildCount(final int[] array) {
+                        return array.length;
+                    }
+
                     public int GlobalVariable(final int value) {
                         return value;
                     }
@@ -293,10 +306,6 @@ Created By: Travis Berthelot
 
                     public String NewLine() {
                         return CommonSeps.getInstance().NEW_LINE;
-                    }
-
-                    public String VariableString(final Object object) {
-                        return object.toString();
                     }
 
                     public int LastTouchId() {

@@ -29,16 +29,16 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobal.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectResources.xsl" />    
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
-    
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/animation/GDObjectAnimations.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventPaint.xsl" />
 
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
+    
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -63,34 +63,83 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.game.canvas;
 
-                import org.allbinary.animation.special.SpecialAnimation;
+                import javax.microedition.lcdui.Graphics;
 
-                //Layout name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources extends SpecialAnimation
+                import org.allbinary.game.layer.GDGameLayer;
+                import org.allbinary.game.layout.GDObject;
+                import org.allbinary.game.layout.GDObjectFactory;
+                
+                import org.allbinary.logic.string.StringMaker;
+                
+                import org.allbinary.logic.communication.log.LogFactory;
+                import org.allbinary.logic.communication.log.LogUtil;
+                
+                import org.allbinary.logic.string.StringUtil;
+                import org.allbinary.util.BasicArrayList;
+                
+                //LayoutGDObjects name=<xsl:value-of select="$layoutName" />
+                public class GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources();
+                    private static GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory instance = null;
 
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources getInstance()
-                        {
-                            return instance;
-                        }
+                    public static GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory create()
+                    {
+                        instance = new GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory();
+                        return instance;
+                    }
+                    
+                    public static GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory getInstance()
+                    {
+                        return instance;
+                    }
 
-                    <xsl:call-template name="animationNames" >
-                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
-                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
+                    private final StringUtil stringUtil = StringUtil.getInstance();
+                    
+                    private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                    private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+                    
+                    <xsl:call-template name="objectsClassPropertyGDObjects" >
                         <xsl:with-param name="windowWidth" >
                             <xsl:value-of select="$windowWidth" />
                         </xsl:with-param>
-                        <xsl:with-param name="instancesAsString" >
-                            <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>
                     </xsl:call-template>
-                        
+                    <xsl:text>&#10;</xsl:text>
+                    
+                    //objectsGroups - START
+                    <xsl:for-each select="objectsGroups" >
+                        <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+                    public final BasicArrayList gdObjectFactoryList = new BasicArrayList();
+                    </xsl:for-each>
+                    //objectsGroups - END
+                    
+                    private GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory() {
+                    
+                    //objectsGroups - START
+                    <xsl:for-each select="objectsGroups" >
+                        <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+                        <xsl:for-each select="objects" >
+                        gdObjectFactoryList.add(<xsl:value-of select="name" />GDObjectFactory);
+                        </xsl:for-each>
+                    </xsl:for-each>
+                    //objectsGroups - END
+
+                    }
+                    
+                    //objectsGroups - START
+                    <xsl:for-each select="objectsGroups" >
+                        <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+                    public int get<xsl:value-of select="name" />Index(String name) {
+                        <xsl:for-each select="objects" >
+                            <xsl:if test="position() != 1" >} else </xsl:if>if(name == globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>) {
+                            return <xsl:value-of select="position() - 1" />;
+                        </xsl:for-each>
+                        }
+                        throw new RuntimeException("Missing Name: " + name);
+                    }
+                    </xsl:for-each>
+                    //objectsGroups - END
+                    
                 }
             </xsl:if>
         </xsl:for-each>

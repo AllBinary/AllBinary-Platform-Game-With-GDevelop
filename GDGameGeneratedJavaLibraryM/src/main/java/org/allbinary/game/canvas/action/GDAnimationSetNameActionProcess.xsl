@@ -28,28 +28,38 @@ Created By: Travis Berthelot
 
                         <xsl:for-each select="parameters" >
                             <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
-                        <xsl:if test="position() = 1" >final int size = globals.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                        <xsl:if test="position() = 1" >final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                         </xsl:for-each>
 
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                         <xsl:for-each select="parameters" >
                             <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
-                        <xsl:if test="position() = 1" >final GDGameLayer gameLayer = (((GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index)))</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                        <xsl:if test="position() = 1" >final GDGameLayer gameLayer = (((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />GDGameLayerList.get(index)))</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                         </xsl:for-each>
                         
                         <xsl:text>&#10;</xsl:text>
                         
                         <xsl:if test="not(contains($hasObjectVariable, 'found'))" >
+                        <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         <xsl:for-each select="parameters" >
-                            <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
-                        <xsl:if test="position() = 1" >if(gameLayer.gdObject.setAnimation(</xsl:if><xsl:if test="position() = last()" >globals.<xsl:value-of select="$animationName" />)) gameLayer.resetAnimation();</xsl:if>
+                            <xsl:if test="position() = 1" >
+                                if(gameLayer.gdObject.setAnimation(</xsl:if>
+                                <xsl:if test="position() = last()" >
+                                    <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                    <xsl:call-template name="globals" >
+                                        <xsl:with-param name="name" >
+                                            <xsl:value-of select="$name" />
+                                        </xsl:with-param>
+                                    </xsl:call-template>
+                                    <xsl:value-of select="$animationName" />)) gameLayer.resetAnimation();
+                            </xsl:if>
                         </xsl:for-each>
                         </xsl:if>
                         
                         <xsl:if test="contains($hasObjectVariable, 'found')" >
 
                         <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" >final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="text()" /><xsl:text> </xsl:text><xsl:value-of select="text()" /> = ((GD0GDObjectsFactory.<xsl:value-of select="text()" />) gameLayer.gdObject);<xsl:text>&#10;</xsl:text></xsl:if>
+                        <xsl:if test="position() = 1" >final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" /><xsl:text> </xsl:text><xsl:value-of select="text()" /> = ((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" />) gameLayer.gdObject);<xsl:text>&#10;</xsl:text></xsl:if>
                         </xsl:for-each>
                         <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >final int offset = (<xsl:value-of select="text()" />.animation_name_array.length * <xsl:value-of select="text()" />.animation_direction_array.length * <xsl:value-of select="text()" />.character);<xsl:text>&#10;</xsl:text></xsl:if>
@@ -69,16 +79,27 @@ Created By: Travis Berthelot
                         super.processGDStats(gameLayer);
 
                         <xsl:if test="not(contains($hasObjectVariable, 'found'))" >
+                        <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         <xsl:for-each select="parameters" >
-                            <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
-                        <xsl:if test="position() = 1" >if(gameLayer.gdObject.setAnimation(</xsl:if><xsl:if test="position() = last()" >globals.<xsl:value-of select="$animationName" />)) gameLayer.resetAnimation();</xsl:if>
+                        <xsl:if test="position() = 1" >
+                            //<xsl:value-of select="text()" />
+                            if(gameLayer.gdObject.setAnimation(</xsl:if>
+                            <xsl:if test="position() = last()" >
+                                <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                <xsl:call-template name="globals" >
+                                    <xsl:with-param name="name" >
+                                        <xsl:value-of select="$name" />
+                                    </xsl:with-param>
+                                </xsl:call-template>
+                                <xsl:value-of select="$animationName" />)) gameLayer.resetAnimation();
+                        </xsl:if>
                         </xsl:for-each>
                         </xsl:if>
                         
                         <xsl:if test="contains($hasObjectVariable, 'found')" >
 
                         <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" >final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="text()" /><xsl:text> </xsl:text><xsl:value-of select="text()" /> = ((GD0GDObjectsFactory.<xsl:value-of select="text()" />) gameLayer.gdObject);<xsl:text>&#10;</xsl:text></xsl:if>
+                        <xsl:if test="position() = 1" >final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" /><xsl:text> </xsl:text><xsl:value-of select="text()" /> = ((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" />) gameLayer.gdObject);<xsl:text>&#10;</xsl:text></xsl:if>
                         </xsl:for-each>
                         <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >final int offset = (<xsl:value-of select="text()" />.animation_name_array.length * <xsl:value-of select="text()" />.animation_direction_array.length * <xsl:value-of select="text()" />.character);<xsl:text>&#10;</xsl:text></xsl:if>
@@ -97,23 +118,34 @@ Created By: Travis Berthelot
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                         <xsl:for-each select="parameters" >
                             <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
-                        <xsl:if test="position() = 1" >if(index <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> globals.<xsl:value-of select="text()" />GDGameLayerList.size()) return false;<xsl:text>&#10;</xsl:text></xsl:if>
-                        <xsl:if test="position() = 1" >final GDGameLayer gameLayer = (((GDGameLayer) globals.<xsl:value-of select="text()" />GDGameLayerList.get(index)))</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                        <xsl:if test="position() = 1" >if(index <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />GDGameLayerList.size()) return false;<xsl:text>&#10;</xsl:text></xsl:if>
+                        <xsl:if test="position() = 1" >final GDGameLayer gameLayer = (((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />GDGameLayerList.get(index)))</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                         </xsl:for-each>
                         
                         <xsl:text>&#10;</xsl:text>
                         
                         <xsl:if test="not(contains($hasObjectVariable, 'found'))" >
+                        <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         <xsl:for-each select="parameters" >
-                            <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
-                        <xsl:if test="position() = 1" >if(gameLayer.gdObject.setAnimation(</xsl:if><xsl:if test="position() = last()" >globals.<xsl:value-of select="$animationName" />)) gameLayer.resetAnimation();</xsl:if>
+                            <xsl:if test="position() = 1" >
+                                //<xsl:value-of select="text()" />
+                                if(gameLayer.gdObject.setAnimation(</xsl:if>
+                                <xsl:if test="position() = last()" >
+                                    <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                    <xsl:call-template name="globals" >
+                                        <xsl:with-param name="name" >
+                                            <xsl:value-of select="$name" />
+                                        </xsl:with-param>
+                                    </xsl:call-template>
+                                    <xsl:value-of select="$animationName" />)) gameLayer.resetAnimation();
+                            </xsl:if>
                         </xsl:for-each>
                         </xsl:if>
                         
                         <xsl:if test="contains($hasObjectVariable, 'found')" >
 
                         <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" >final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="text()" /><xsl:text> </xsl:text><xsl:value-of select="text()" /> = ((GD0GDObjectsFactory.<xsl:value-of select="text()" />) gameLayer.gdObject);<xsl:text>&#10;</xsl:text></xsl:if>
+                        <xsl:if test="position() = 1" >final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" /><xsl:text> </xsl:text><xsl:value-of select="text()" /> = ((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" />) gameLayer.gdObject);<xsl:text>&#10;</xsl:text></xsl:if>
                         </xsl:for-each>
                         <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >final int offset = (<xsl:value-of select="text()" />.animation_name_array.length * <xsl:value-of select="text()" />.animation_direction_array.length * <xsl:value-of select="text()" />.character);<xsl:text>&#10;</xsl:text></xsl:if>

@@ -16,30 +16,8 @@ Created By: Travis Berthelot
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/indexof.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/replace.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
-        
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
     
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAssign.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectAtIndex.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyActions.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClassPropertyConditions.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObject.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventWithOnceCondition.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventPaint.xsl" />
-        
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventLogicConstruction.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventOpen.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventClose.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/PaintDebugButtons.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
 
     <xsl:output method="html" indent="yes" />
 
@@ -66,6 +44,8 @@ Created By: Travis Berthelot
     </xsl:template>
 
     <xsl:template name="mapCollisionMaskHack2" >
+        <xsl:param name="layoutIndex" />
+
         <xsl:for-each select="events" >
             <xsl:variable name="foundCollisionNP" >
             <xsl:for-each select="conditions" >
@@ -81,12 +61,14 @@ Created By: Travis Berthelot
             <xsl:if test="string-length($foundCollisionNP) > 0" >
                 <xsl:for-each select="actions" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    if(this.gdObject.name == globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>) {
-                        this.collisionList.add(globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    if(this.gdObject.name == globals<xsl:value-of select="$layoutIndex" />.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>) {
+                        this.collisionList.add(globals<xsl:value-of select="$layoutIndex" />.nodeArray[globals<xsl:value-of select="$layoutIndex" />.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                     }
                 </xsl:for-each>
             </xsl:if>
-            <xsl:call-template name="mapCollisionMaskHack2" />
+            <xsl:call-template name="mapCollisionMaskHack2" >
+                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
+            </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
 
@@ -111,6 +93,7 @@ Created By: Travis Berthelot
         import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
         import org.allbinary.direction.Direction;
         import org.allbinary.direction.DirectionFactory;
+        import org.allbinary.game.canvas.GDGameGlobals;
         import org.allbinary.game.GameTypeFactory;
 //        import org.allbinary.game.behavior.platformer.GeographicMapPlatformGameLayerBehavior;
 //        import org.allbinary.game.behavior.platformer.InitialJumpBehavior;
@@ -384,8 +367,10 @@ Created By: Travis Berthelot
             </xsl:for-each>
             
             //CollisionNP - processing for the specific game object
-            final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-            <xsl:call-template name="mapCollisionMaskHack2" />
+            final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals<xsl:value-of select="$layoutIndex" /> = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+            <xsl:call-template name="mapCollisionMaskHack2" >
+                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
+            </xsl:call-template>
             
         </xsl:for-each>
 
@@ -406,6 +391,8 @@ Created By: Travis Berthelot
         try {
             //LogUtil.put(LogFactory.getInstance("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move"));
 
+                final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+
             final GeographicMapCompositeInterface geographicMapCompositeInterface
                     = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
 
@@ -418,7 +405,7 @@ Created By: Travis Berthelot
                 if(this.gdObject.type == globals.TILEMAP__COLLISIONMASK) {
 
                 } else if(this.gdObject.type == globals.TILEMAP__TILEMAP) {
-                    final GDGameLayer player = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
+                    final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>PlayerGDGameLayerList.get(0);
                     //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Map: ").append(this.gdObject.toShortString()).toString(), this, "move"));
                     if(this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, player, this.gdObject.x, this.gdObject.y)) {
                         lastX = this.gdObject.x;
@@ -430,7 +417,7 @@ Created By: Travis Berthelot
                     }
 
                 } else {
-                    final GDGameLayer player = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
+                    final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>PlayerGDGameLayerList.get(0);
                     if(this == player) {
                         //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Player - Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
                         //this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
@@ -457,6 +444,8 @@ Created By: Travis Berthelot
         try {
             //LogUtil.put(LogFactory.getInstance("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move"));
 
+            final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+
             final GeographicMapCompositeInterface geographicMapCompositeInterface
                     = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
 
@@ -470,12 +459,12 @@ Created By: Travis Berthelot
                 if(this.gdObject.type == globals.TILEMAP__COLLISIONMASK) {
 
                 } else if(this.gdObject.type == globals.TILEMAP__TILEMAP) {
-                    final GDGameLayer Player = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
+                    final GDGameLayer Player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>PlayerGDGameLayerList.get(0);
                     //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
                     this.terrainMove(geographicMapInterfaceArray, this.gdObject.x, this.gdObject.y);
 
                 } else {
-                    final GDGameLayer Player = (GDGameLayer) globals.PlayerGDGameLayerList.get(0);
+                    final GDGameLayer Player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>PlayerGDGameLayerList.get(0);
                     if(this == Player) {
                         //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Player - Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
                         //this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);

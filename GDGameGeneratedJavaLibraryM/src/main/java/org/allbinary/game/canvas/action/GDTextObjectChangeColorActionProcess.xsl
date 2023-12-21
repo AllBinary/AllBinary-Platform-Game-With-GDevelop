@@ -29,7 +29,7 @@ Created By: Travis Berthelot
 
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
-                                            globals.<xsl:value-of select="text()" />TextAnimation.setBasicColor(new BasicColor(255, </xsl:if>
+                                            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />TextAnimation.setBasicColor(new BasicColor(255, </xsl:if>
                                         <xsl:if test="position() = 2" >
                                             <xsl:value-of select="translate(substring(text(), 2, string-length(text()) - 2), ';', ',')" />
                                         </xsl:if>
