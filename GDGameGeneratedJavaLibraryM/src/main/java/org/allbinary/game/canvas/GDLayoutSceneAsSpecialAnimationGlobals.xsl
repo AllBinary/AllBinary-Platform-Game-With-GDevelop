@@ -271,10 +271,11 @@ public class GDStructure {
                         </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
-            public final String PRIMITIVEDRAWING__DRAWER = "PrimitiveDrawing::Drawer";
-            public final String SPRITE = "Sprite";
-            public final String TILEMAP__TILEMAP = "TileMap::TileMap";
-            public final String TILEMAP__COLLISIONMASK = "TileMap::CollisionMask";
+            private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+            public final String PRIMITIVEDRAWING__DRAWER = gameGlobals.PRIMITIVEDRAWING__DRAWER;
+            public final String SPRITE = gameGlobals.SPRITE;
+            public final String TILEMAP__TILEMAP = gameGlobals.TILEMAP__TILEMAP;
+            public final String TILEMAP__COLLISIONMASK = gameGlobals.TILEMAP__COLLISIONMASK;
                     <xsl:text>&#10;</xsl:text>
                     //more objects class properties - END
                     <xsl:text>&#10;</xsl:text>
@@ -445,7 +446,7 @@ public class GDStructure {
                         //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
                         return Integer.toString(value);
                     }
-                       
+
                 }
             </xsl:if>
         </xsl:for-each>

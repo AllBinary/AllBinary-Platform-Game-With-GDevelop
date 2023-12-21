@@ -342,6 +342,10 @@ Created By: Travis Berthelot
                     //eventsClose - END
                     }
 
+                    public GDSceneGlobals getGlobals() {
+                        return this.globals;
+                    }
+
                 }
             </xsl:if>
         </xsl:for-each>

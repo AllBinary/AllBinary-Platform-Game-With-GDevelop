@@ -136,13 +136,13 @@ Created By: Travis Berthelot
                 public class GDGameGlobals extends GDGlobals
                 {
 
-                    private static GDGameGlobals instance;
+                    private static final GDGameGlobals instance = new GDGameGlobals();
 
-                    public static GDGameGlobals create()
-                    {
-                        instance = new GDGameGlobals();
-                        return instance;
-                    }
+//                    public static GDGameGlobals create()
+//                    {
+//                        instance = new GDGameGlobals();
+//                        return instance;
+//                    }
 
                     public static GDGameGlobals getInstance()
                     {
@@ -153,7 +153,6 @@ Created By: Travis Berthelot
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
                         
                         public final BasicArrayList gdNodeWithRunnableList = new BasicArrayList();
-                        private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                                                                                         
                         <xsl:variable name="objectsWithOnceCondition" ><xsl:call-template name="gdNodeToOnceList" ><xsl:with-param name="iteration" >0</xsl:with-param></xsl:call-template></xsl:variable>
                         //objectsWithOnceCondition=<xsl:value-of select="$objectsWithOnceCondition" />
@@ -214,10 +213,10 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
-            public final String PRIMITIVEDRAWING__DRAWER = gameGlobals.PRIMITIVEDRAWING__DRAWER;
-            public final String SPRITE = gameGlobals.SPRITE;
-            public final String TILEMAP__TILEMAP = gameGlobals.TILEMAP__TILEMAP;
-            public final String TILEMAP__COLLISIONMASK = gameGlobals.TILEMAP__COLLISIONMASK;
+            public final String PRIMITIVEDRAWING__DRAWER = "PrimitiveDrawing::Drawer";
+            public final String SPRITE = "Sprite";
+            public final String TILEMAP__TILEMAP = "TileMap::TileMap";
+            public final String TILEMAP__COLLISIONMASK = "TileMap::CollisionMask";
                     <xsl:text>&#10;</xsl:text>
                     //more objects class properties - END
                     <xsl:text>&#10;</xsl:text>

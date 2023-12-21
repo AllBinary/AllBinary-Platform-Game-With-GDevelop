@@ -629,6 +629,11 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         super.processPlayingGame();
 
+        <xsl:for-each select="objects" >
+            <xsl:variable name="typeValue" select="type" />
+
+            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
             (GeographicMapCompositeInterface) this.getLayerManager();
         
@@ -641,6 +646,9 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             geographicMapInterface = (GDGeographicMap) geographicMapInterfaceArray[index];
             geographicMapInterface.update();
         }
+        
+            </xsl:if>
+        </xsl:for-each>
 
         this.specialAnimation.process();
         
