@@ -131,10 +131,11 @@ Created By: Travis Berthelot
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();                        
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+                        private final GDGlobalsGDObjectsFactory gdGlobalsObjectsFactory = GDGlobalsGDObjectsFactory.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
 
                         public boolean initialized = false;
-
+                        
                         public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources createSpecialAnimationImageResources() {
                             try {
                                 return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.create();
@@ -156,6 +157,24 @@ Created By: Travis Berthelot
                         public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources createSpecialAnimationGDResources(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
                             try {
                                 return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance(allBinaryGameLayerManager);
+                            } catch(Exception e) {
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
+                            }
+                            return null;
+                        }
+
+                        public GDGlobalSpecialAnimationImageResources createGlobalSpecialAnimationImageResources() {
+                            try {
+                                return GDGlobalSpecialAnimationImageResources.create();
+                            } catch(Exception e) {
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "GDGlobalSpecialAnimationImageResources", this, commonStrings.CONSTRUCTOR, e));
+                            }
+                            return null;
+                        }
+
+                        public GDGlobalsGDResources createGlobalsSpecialAnimationGDResources(AllBinaryGameLayerManager allBinaryGameLayerManager) {
+                            try {
+                                return GDGlobalsGDResources.getInstance(allBinaryGameLayerManager);
                             } catch(Exception e) {
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                             }
@@ -229,10 +248,12 @@ Created By: Travis Berthelot
                         };
                         -->
 
+                        GDGlobalSpecialAnimationImageResources globalImageResources = this.createGlobalSpecialAnimationImageResources();
                         GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = this.createSpecialAnimationImageResources();
                         GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources touchImageResources = this.createSpecialAnimationTouchImageResources();
 
                     //GDNode processM calls in this class can load resources
+                    GDGlobalsGDResources globalResources = this.createGlobalsSpecialAnimationGDResources(allBinaryGameLayerManager);
                     GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = this.createSpecialAnimationGDResources(allBinaryGameLayerManager);
 
                     //GDNode - START
@@ -265,7 +286,18 @@ Created By: Travis Berthelot
                         <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
                         <xsl:variable name="name" select="name" />
                         <xsl:variable name="colonName" >:<xsl:value-of select="name" /></xsl:variable>
-                        <xsl:variable name="notTextObject" ><xsl:for-each select="../objects" ><xsl:if test="$name = name" ><xsl:if test="type != 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="notTextObject" >
+                            <xsl:for-each select="../objects" >
+                                <xsl:if test="$name = name" >
+                                    <xsl:if test="type != 'TextObject::Text'" >found</xsl:if>
+                                </xsl:if>
+                            </xsl:for-each>
+                            <xsl:for-each select="/game/objects" >
+                                <xsl:if test="$name = name" >
+                                    <xsl:if test="type != 'TextObject::Text'" >found</xsl:if>
+                                </xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
 
                         //name=<xsl:value-of select="name" /> layer=<xsl:value-of select="layer" />
                         
@@ -319,10 +351,10 @@ Created By: Travis Berthelot
                         }
 
                         //LayoutBuilder
-                        final GDObject <xsl:value-of select="name" />GDobject2 = gdObjectsFactory.<xsl:value-of select="$name" />GDObjectFactory.get(
+                        final GDObject <xsl:value-of select="name" />GDobject2 = <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="$name" />GDObjectFactory.get(
                         null, <xsl:value-of select="name" />X, 
                         <xsl:value-of select="name" />Y, 
-                        globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
                         
                         <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
@@ -358,7 +390,7 @@ Created By: Travis Berthelot
                         //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                                                 
                         <xsl:if test="contains($notTextObject, 'found')" >
-                        final GDGameLayer <xsl:value-of select="name" />GDGameLayer = resources.<xsl:value-of select="name" />GDGameLayerFactory.create(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />GDobject2, null); //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDConditionWithGroupActions);
+                        final GDGameLayer <xsl:value-of select="name" />GDGameLayer = <xsl:call-template name="globalResourse" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />GDobject2, null); //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDConditionWithGroupActions);
                         LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeId" /> for <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0", this, commonStrings.PROCESS));
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
 

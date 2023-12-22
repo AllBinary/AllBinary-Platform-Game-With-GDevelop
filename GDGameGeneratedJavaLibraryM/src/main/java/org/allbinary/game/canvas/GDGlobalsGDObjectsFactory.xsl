@@ -73,13 +73,13 @@ Created By: Travis Berthelot
                 public class GDGlobalsGDObjectsFactory
                 {
 
-                    private static GDGlobalsGDObjectsFactory instance = null;
+                    private static final GDGlobalsGDObjectsFactory instance = new GDGlobalsGDObjectsFactory();
 
-                    public static GDGlobalsGDObjectsFactory create()
+<!--                    public static GDGlobalsGDObjectsFactory create()
                     {
                         instance = new GDGlobalsGDObjectsFactory();
                         return instance;
-                    }
+                    }-->
                     
                     public static GDGlobalsGDObjectsFactory getInstance()
                     {

@@ -38,7 +38,8 @@ GD*SpecialAnimation*.java
 GDNonLayout.xml
 GD*Sound.java
 GD*Sounds.java
-GDGameGlobals.java
+GDGlobal**.java
+GD*GameGlobal*.java
 
 GDGameMIDlet.java
 GDResources.java

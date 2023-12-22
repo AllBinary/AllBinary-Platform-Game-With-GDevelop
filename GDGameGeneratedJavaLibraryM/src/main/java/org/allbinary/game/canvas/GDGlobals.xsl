@@ -80,8 +80,6 @@ Created By: Travis Berthelot
         //game
         <xsl:variable name="windowWidth" select="properties/windowWidth" />
 
-        <xsl:variable name="noLayoutIndex" select="NoIndex" />
-
                 <!-- Android images assets need to be enlarged if they are not setup to be inside the cirle area needed -->
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
                 <xsl:variable name="gameName" select="properties/name" />
@@ -239,7 +237,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$noLayoutIndex" />
+                            Globals
                         </xsl:with-param>
                         <xsl:with-param name="windowWidth" >
                             <xsl:value-of select="$windowWidth" />

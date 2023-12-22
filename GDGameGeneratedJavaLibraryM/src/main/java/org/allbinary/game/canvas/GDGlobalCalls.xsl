@@ -17,13 +17,22 @@
         <xsl:for-each select="/game" >
             <xsl:for-each select="objects" >
                 <xsl:if test="name = $name" >found</xsl:if>
-<!--                <xsl:for-each select="animations" >
-                    <xsl:if test="name = $name" >found</xsl:if>
-                </xsl:for-each>-->
             </xsl:for-each>
         </xsl:for-each>
         </xsl:variable>
         <xsl:if test="contains($isGlobal, 'found')" >gameGlobals.</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >globals.</xsl:if>
+    </xsl:template>
+
+    <xsl:template name="globalResourse" >
+        <xsl:param name="name" />
+        <xsl:variable name="isGlobal" >
+        <xsl:for-each select="/game" >
+            <xsl:for-each select="objects" >
+                <xsl:if test="name = $name" >found</xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>
+        </xsl:variable>
+        <xsl:if test="contains($isGlobal, 'found')" >globalResources.</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >resources.</xsl:if>
     </xsl:template>
 
     <xsl:template name="objectFactory" >
@@ -37,6 +46,18 @@
         </xsl:for-each>
         </xsl:variable>
         <xsl:if test="contains($isGlobal, 'found')" >Globals</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" ><xsl:value-of select="$layoutIndex" /></xsl:if>
+    </xsl:template>
+
+    <xsl:template name="objectFactoryFromProperty" >
+        <xsl:param name="name" />
+        <xsl:variable name="isGlobal" >
+        <xsl:for-each select="/game" >
+            <xsl:for-each select="objects" >
+                <xsl:if test="name = $name" >found</xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>
+        </xsl:variable>
+        <xsl:if test="contains($isGlobal, 'found')" >gdGlobalsObjectsFactory.</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >gdObjectsFactory.</xsl:if>
     </xsl:template>
 
 </xsl:stylesheet>
