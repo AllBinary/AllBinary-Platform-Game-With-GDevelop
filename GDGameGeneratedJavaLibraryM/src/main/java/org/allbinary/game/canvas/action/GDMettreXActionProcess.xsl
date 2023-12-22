@@ -59,26 +59,9 @@ Created By: Travis Berthelot
 
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + size2, this, commonStrings.PROCESS));
                             for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
-                            //if(gdObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-
                                 final GDObject gdObject = (GDObject) gdObjectList.get(index2);
                                 //result = result <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> 
-                                this.processG(gdObject, globals.graphics);
-
-                                <xsl:if test="contains($isTextObject, 'found')" >
-                                    //TextObject::Text - does not currently have a GameLayer
-                                    //if(gdGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                                    //}
-                                </xsl:if>
-                                <xsl:if test="not(contains($isTextObject, 'found'))" >
-                                //if(gdGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                                    final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(index2);
-                                    //final GDObject gdObject = gameLayer.gdObject;
-                                    gameLayer.updatePosition();
-                                //}
-                                </xsl:if>
-
-                            //}
+                                this.processG(gdObject, gdGameLayerList, index2, globals.graphics);
                             }
 
                             <xsl:if test="string-length($hasObjectGroup) > 0" >
@@ -90,12 +73,26 @@ Created By: Travis Berthelot
                         }
                         
                         @Override
-                        public boolean processG(final GDObject gdObject, final Graphics graphics) {
+                        public boolean processG(final GDObject gdObject, final BasicArrayList gdGameLayerList, final int gdObjectIndex, final Graphics graphics) {
 
                             try {
                                 super.processGStats(gdObject, graphics);
-                        
-                                return this.processGPaint(gdObject, graphics);
+
+                                final boolean result = this.processGPaint(gdObject, graphics);
+                                
+                                <xsl:if test="contains($isTextObject, 'found')" >
+                                    //TextObject::Text - does not currently have a GameLayer
+                                    //if(gdGameLayerList != null  gdGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                    //}
+                                </xsl:if>
+                                <xsl:if test="not(contains($isTextObject, 'found'))" >
+                                    final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(gdObjectIndex);
+                                    //final GDObject gdObject = gameLayer.gdObject;
+                                    gameLayer.updatePosition();
+                                </xsl:if>
+                                
+                                return result;
+
                             } catch(Exception e) {
                                 //4
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
@@ -103,7 +100,32 @@ Created By: Travis Berthelot
 
                             return true;
                         }
-                        
+
+                        @Override
+                        public boolean processGS(final GDGameLayer gameLayer, final Graphics graphics) {
+
+                            try {
+                                super.processGStats(gameLayer.gdObject, graphics);
+
+                                final boolean result = this.processGPaint(gameLayer.gdObject, graphics);
+                                
+                                <xsl:if test="contains($isTextObject, 'found')" >
+                                    //TextObject::Text - does not currently have a GameLayer
+                                </xsl:if>
+                                <xsl:if test="not(contains($isTextObject, 'found'))" >
+                                    gameLayer.updatePosition();
+                                </xsl:if>
+                                
+                                return result;
+
+                            } catch(Exception e) {
+                                //4
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                            }
+
+                            return true;
+                        }
+
                         @Override
                         public boolean processGPaint(final GDObject gdObject, final Graphics graphics) {
 

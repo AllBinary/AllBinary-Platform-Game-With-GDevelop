@@ -185,7 +185,7 @@ Created By: Travis Berthelot
 
                         //Rotate
                         @Override
-                        public boolean processG(final GDObject <xsl:value-of select="$name" />, final Graphics graphics) {
+                        public boolean processG(final GDObject <xsl:value-of select="$name" />, final BasicArrayList gdGameLayerList, final int gdObjectIndex, final Graphics graphics) {
 
                             try {
                                 super.processGStats(<xsl:value-of select="$name" />, graphics);
@@ -198,7 +198,22 @@ Created By: Travis Berthelot
 
                             return true;
                         }
-                                
+
+                        @Override
+                        public boolean processGS(final GDGameLayer gameLayer, final Graphics graphics) {
+
+                            try {
+                                super.processGStats(gameLayer.gdObject, graphics);
+                        
+                                return this.processGPaint(gameLayer.gdObject, graphics);
+                            } catch(Exception e) {
+                                //3
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                            }
+
+                            return true;
+                        }
+
                         @Override
                         public boolean processGPaint(final GDObject <xsl:value-of select="$name" />, final Graphics graphics) {
                         

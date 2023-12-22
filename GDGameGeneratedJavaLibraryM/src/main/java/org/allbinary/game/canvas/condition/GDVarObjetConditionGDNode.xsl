@@ -47,7 +47,7 @@ Created By: Travis Berthelot
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             
                                 final GDGameLayer gdGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index));
-                                if(this.processG(gdGameLayer.gdObject, globals.graphics)) {
+                                if(this.processG(gdGameLayer.gdObject, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gdObjectName" />GDGameLayerList, index, globals.graphics)) {
 
                                 <xsl:variable name="hasCondition" ><xsl:for-each select="conditions" >found</xsl:for-each></xsl:variable>
 
@@ -110,12 +110,27 @@ Created By: Travis Berthelot
 
                         //VarObjet
                         @Override
-                        public boolean processG(final GDObject <xsl:value-of select="$gdObjectName" />, final Graphics graphics) {
+                        public boolean processG(final GDObject <xsl:value-of select="$gdObjectName" />, final BasicArrayList gdGameLayerList, final int gdObjectIndex, final Graphics graphics) {
 
                             try {
                                 super.processGStats(<xsl:value-of select="$gdObjectName" />, graphics);
                         
                                 return this.processGPaint(<xsl:value-of select="$gdObjectName" />, graphics);
+                            } catch(Exception e) {
+                                //2
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                            }
+
+                            return false;
+                        }
+
+                        @Override
+                        public boolean processG(final GDGameLayer gameLayer, final Graphics graphics) {
+
+                            try {
+                                super.processGStats(gameLayer.gdObject, graphics);
+                        
+                                return this.processGPaint(gameLayer.gdObject, graphics);
                             } catch(Exception e) {
                                 //2
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));

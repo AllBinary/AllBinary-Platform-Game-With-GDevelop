@@ -51,6 +51,9 @@ import org.allbinary.game.layer.AllBinaryJ2METiledLayer;
 import org.allbinary.game.layer.AllBinaryTiledLayer;
 import org.allbinary.game.layer.GDCustomGameLayer;
 import org.allbinary.game.layer.GDGameLayer;
+import org.allbinary.game.layer.special.TempMapMovementBehavior;
+import org.allbinary.game.layer.special.TempNoMapMovementBehavior;
+import org.allbinary.game.layer.special.TempMovementBehaviorFactory;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.map.GDGeographicMap;
 import org.allbinary.game.map.GDTiledMapProperties;
@@ -234,6 +237,13 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final LayerInterfaceFactory layerInterfaceFactory = LayerInterfaceFactory.getInstance();
 
         layerInterfaceFactory.init();
+
+        <xsl:variable name="hasTileMap" >
+            <xsl:for-each select="objects" >
+                <xsl:if test="type = 'TileMap::TileMap'" >found</xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
+        TempMovementBehaviorFactory.getInstance().movementBehavior = <xsl:if test="contains($hasTileMap, 'found')" >TempMapMovementBehavior</xsl:if><xsl:if test="not(contains($hasTileMap, 'found'))" >TempNoMapMovementBehavior</xsl:if>.getInstance();
 
         // layerInterfaceFactory.add(new RussianInfantryLayerFactory());
 

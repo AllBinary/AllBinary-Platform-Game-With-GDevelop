@@ -20,6 +20,7 @@ import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
 import org.allbinary.thread.NullRunnable;
+import org.allbinary.util.BasicArrayList;
 
 /**
  *
@@ -155,10 +156,14 @@ public class GDNode
         this.nodeStatsFactory.push(11, name);
     }
 
-    public boolean processG(final GDObject gdObject, final Graphics graphics) {
+    public boolean processG(final GDObject gdObject, final BasicArrayList gdGameLayerList, final int gdObjectIndex, final Graphics graphics) {
         return false;
     }
 
+    public boolean processGS(final GDGameLayer gameLayer, final Graphics graphics) {
+        return false;
+    }
+    
     public boolean processGPaint(final GDObject gdObject, final Graphics graphics) {
         return false;
     }
@@ -181,7 +186,7 @@ public class GDNode
     
     public void processGD(final GDGameLayer gameLayer, final Graphics graphics) {
         this.processGDStats(gameLayer);
-        this.processG(gameLayer.gdObject, graphics);
+        this.processGS(gameLayer, graphics);
     }
     
     public void processGDStats(final GDGameLayer gameLayer) {

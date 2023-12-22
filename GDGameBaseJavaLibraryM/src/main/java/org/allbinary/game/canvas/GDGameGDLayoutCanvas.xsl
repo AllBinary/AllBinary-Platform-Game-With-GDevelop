@@ -634,6 +634,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
             <xsl:if test="$typeValue = 'TileMap::TileMap'" >
 
+        //Some games update backgrounds here
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
             (GeographicMapCompositeInterface) this.getLayerManager();
         

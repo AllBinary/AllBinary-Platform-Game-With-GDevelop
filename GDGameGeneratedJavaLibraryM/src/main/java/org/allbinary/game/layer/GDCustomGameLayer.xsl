@@ -116,6 +116,8 @@ Created By: Travis Berthelot
         import org.allbinary.game.layer.special.SpecialLeftGameInputProcessor;
         import org.allbinary.game.layer.special.SpecialRightGameInputProcessor;
         import org.allbinary.game.layer.special.SpecialUpGameInputProcessor;
+        import org.allbinary.game.layer.special.TempMapMovementBehavior;
+        import org.allbinary.game.layer.special.TempMovementBehaviorFactory;        
         import org.allbinary.game.layout.GDNode;
         import org.allbinary.game.layout.GDObject;        
         import org.allbinary.game.physics.acceleration.BasicAccelerationProperties;
@@ -393,7 +395,8 @@ Created By: Travis Berthelot
         try {
             //LogUtil.put(LogFactory.getInstance("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move"));
 
-                final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+            if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
+            final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
             final GeographicMapCompositeInterface geographicMapCompositeInterface
                     = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
@@ -432,6 +435,10 @@ Created By: Travis Berthelot
                 GeographicMapEventHandler.getInstance().addListener(this);
             }
 
+            } else {
+                super.move();
+            }
+
         } catch (Exception e) {
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "move", e));
         }
@@ -446,6 +453,7 @@ Created By: Travis Berthelot
         try {
             //LogUtil.put(LogFactory.getInstance("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move"));
 
+            if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
             final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
             final GeographicMapCompositeInterface geographicMapCompositeInterface
@@ -477,6 +485,10 @@ Created By: Travis Berthelot
             } else {
                 LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
                 GeographicMapEventHandler.getInstance().addListener(this);
+            }
+
+            } else {
+                super.move();
             }
 
         } catch (Exception e) {
