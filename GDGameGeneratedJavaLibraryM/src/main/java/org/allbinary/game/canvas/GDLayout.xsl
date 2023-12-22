@@ -296,6 +296,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //instances - END
 
+                    //objects - START
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:if test="$typeValue = 'TextObject::Text'" >
@@ -307,6 +308,7 @@ Created By: Travis Berthelot
                             }
                         </xsl:if>
                     </xsl:for-each>
+                    //objects - end
 
                         //gdNodeStatsFactory.log(stringBuilder, this);
                     }
