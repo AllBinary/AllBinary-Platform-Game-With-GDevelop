@@ -99,7 +99,7 @@ Created By: Travis Berthelot
                         //private final ImageCache imageCache = OpenGLImageCacheFactory.getInstance(); //ImageCacheFactory.getInstance();
                         private final GDResources gdResources = GDResources.getInstance();
 
-                        private final GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
+                        //private final GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
 
                     <xsl:call-template name="rectangleProperties" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >

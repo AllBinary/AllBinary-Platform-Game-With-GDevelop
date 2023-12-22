@@ -165,7 +165,7 @@ Created By: Travis Berthelot
 
                         public GDGlobalSpecialAnimationImageResources createGlobalSpecialAnimationImageResources() {
                             try {
-                                return GDGlobalSpecialAnimationImageResources.create();
+                                return GDGlobalSpecialAnimationImageResources.getInstanceOrCreate();
                             } catch(Exception e) {
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "GDGlobalSpecialAnimationImageResources", this, commonStrings.CONSTRUCTOR, e));
                             }

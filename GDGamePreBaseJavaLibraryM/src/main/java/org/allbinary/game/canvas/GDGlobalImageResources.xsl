@@ -81,14 +81,11 @@ Created By: Travis Berthelot
 
                     private static GDGlobalSpecialAnimationImageResources instance;
 
-                        public static GDGlobalSpecialAnimationImageResources create() throws Exception
+                        public static GDGlobalSpecialAnimationImageResources getInstanceOrCreate() throws Exception
                         {
-                            instance = new GDGlobalSpecialAnimationImageResources();
-                            return instance;
-                        }
-
-                        public static GDGlobalSpecialAnimationImageResources getInstance()
-                        {
+                            if(instance == null) {
+                                instance = new GDGlobalSpecialAnimationImageResources();
+                            }
                             return instance;
                         }
 
