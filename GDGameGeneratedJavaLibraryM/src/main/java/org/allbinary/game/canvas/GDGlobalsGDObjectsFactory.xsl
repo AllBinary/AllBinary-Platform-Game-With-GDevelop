@@ -88,7 +88,7 @@ Created By: Travis Berthelot
 
                     private final StringUtil stringUtil = StringUtil.getInstance();
                     
-                    private final GDGameGlobals globals = GDGameGlobals.getInstance();
+                    private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                     
                     <xsl:call-template name="objectsClassPropertyGDObjects" >
                         <xsl:with-param name="windowWidth" >
