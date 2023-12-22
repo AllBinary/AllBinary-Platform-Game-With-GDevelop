@@ -34,6 +34,7 @@ Created By: Travis Berthelot
                 public final class <xsl:value-of select="name" /> extends GDObject {
 
                     <xsl:for-each select="variables" >
+                        //Variable - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                         <xsl:if test="type = 'string'" >
                             <xsl:if test="number(value) != value" >
                     public String <xsl:value-of select="name" /> = <xsl:if test="string-length(value) > 0" ><xsl:value-of select="value" /></xsl:if><xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if>;
