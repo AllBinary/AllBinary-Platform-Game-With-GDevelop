@@ -125,7 +125,7 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public boolean processG(final GDGameLayer gameLayer, final Graphics graphics) {
+                        public boolean processGS(final GDGameLayer gameLayer, final Graphics graphics) {
 
                             try {
                                 super.processGStats(gameLayer.gdObject, graphics);
