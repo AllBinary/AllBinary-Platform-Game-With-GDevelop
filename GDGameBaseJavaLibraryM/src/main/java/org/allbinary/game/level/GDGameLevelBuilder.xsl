@@ -510,8 +510,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         //final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
         //final GDGameLayer PlayerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
 
-        PlatformerMap.startX = -( ((geographicMapCellPosition.getColumn() + 3) * allBinaryTiledLayer.getCellWidth()) + ((allBinaryTiledLayer.getCellWidth() * 1) / 3) );
-        PlatformerMap.startY = -( ((geographicMapCellPosition.getRow()) * allBinaryTiledLayer.getCellHeight()) + ((allBinaryTiledLayer.getCellHeight() * 17) / 20) );
+        PlatformerMap.startX = -( ((geographicMapCellPosition.getColumn()) * allBinaryTiledLayer.getCellWidth()) );
+        PlatformerMap.startY = -( ((geographicMapCellPosition.getRow()) * allBinaryTiledLayer.getCellHeight()) );
 
         stringMaker.delete(0, stringMaker.length());
         LogUtil.put(LogFactory.getInstance(stringMaker.append(PlatformerMap.startX).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.startY).toString(), this, commonStrings.PROCESS));
