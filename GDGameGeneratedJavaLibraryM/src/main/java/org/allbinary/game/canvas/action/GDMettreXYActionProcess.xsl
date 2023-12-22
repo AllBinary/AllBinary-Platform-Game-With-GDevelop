@@ -23,6 +23,7 @@ Created By: Travis Berthelot
                         private final String ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "G: " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
                         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="isTextObject" ><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$name = name" ><xsl:if test="type = 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each><xsl:for-each select="layouts" ><xsl:for-each select="objects" ><xsl:if test="$name = name" ><xsl:if test="type = 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each></xsl:for-each></xsl:for-each></xsl:variable>
 
                         //MettreXY
                         public boolean process() {
@@ -63,11 +64,19 @@ Created By: Travis Berthelot
                                 //result = result <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> 
                                 this.processG(gdObject, globals.graphics);
 
+                        
+                                <xsl:if test="contains($isTextObject, 'found')" >
+                                    //TextObject::Text - does not currently have a GameLayer
+                                    //if(gdGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                    //}
+                                </xsl:if>
+                                <xsl:if test="not(contains($isTextObject, 'found'))" >
                                 //if(gdGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                     final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(index2);
                                     //final GDObject gdObject = gameLayer.gdObject;
                                     gameLayer.updatePosition();
                                 //}
+                                </xsl:if>
 
                             //}
                             }

@@ -307,6 +307,7 @@ Created By: Travis Berthelot
                         <xsl:if test="not(contains($exclusionObjectsAsString, $colonName))" >
                             
                         <xsl:text>&#10;</xsl:text>
+                        //<xsl:value-of select="name" /> - //notTextObject=<xsl:value-of select="$notTextObject" />
                         if(true) {
                         <xsl:if test="contains($notTextObject, 'found')" >
                             //or contains($objectsAsString, $colonName)
@@ -327,7 +328,7 @@ Created By: Travis Berthelot
                                 </xsl:if>
 
                             </xsl:if>
-                        
+                            
                         <xsl:if test="contains($hasCentreCamera, 'found')" >
                         final int <xsl:value-of select="name" />X = centerCameraX != 0 ? centerCameraX - width / 2 : (int) (<xsl:value-of select="x" /> * baseLayerScale);
                         final int <xsl:value-of select="name" />Y =
@@ -379,6 +380,16 @@ Created By: Travis Berthelot
                         
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDObjectList.add(<xsl:value-of select="name" />GDobject2);
                         </xsl:if>
+                        
+                            <xsl:if test="not(contains($notTextObject, 'found'))" >
+                        final int <xsl:value-of select="name" />X = (int) (<xsl:value-of select="x" /> * baseLayerScale);
+                        final int <xsl:value-of select="name" />Y = (int) (<xsl:value-of select="y" /> * baseLayerScale);
+                        final GDObject <xsl:value-of select="name" />GDobject2 = <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="$name" />GDObjectFactory.get(
+                        null, <xsl:value-of select="name" />X, 
+                        <xsl:value-of select="name" />Y, 
+                        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDObjectList.add(<xsl:value-of select="name" />GDobject2);
+                            </xsl:if>                        
 
                         <xsl:if test="contains(name, 'btn_')" >
                         final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
@@ -386,8 +397,6 @@ Created By: Travis Berthelot
                             <xsl:value-of select="name" />GDobject2.Width(globals.graphics), <xsl:value-of select="name" />GDobject2.Height(globals.graphics));
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         </xsl:if>
-
-                        //this.<xsl:value-of select="name" /> = new <xsl:value-of select="name" />(null, <xsl:value-of select="name" />X, <xsl:value-of select="name" />Y, null);
                                                 
                         <xsl:if test="contains($notTextObject, 'found')" >
                         final GDGameLayer <xsl:value-of select="name" />GDGameLayer = <xsl:call-template name="globalResourse" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />GDobject2, null); //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDConditionWithGroupActions);
