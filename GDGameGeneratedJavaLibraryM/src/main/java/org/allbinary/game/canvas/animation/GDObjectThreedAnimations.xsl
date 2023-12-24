@@ -57,7 +57,7 @@ Created By: Travis Berthelot
                                 <xsl:for-each select=".." >
                                     <xsl:variable name="hasInstance" ><xsl:for-each select="instances" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
                                     <xsl:if test="not(contains($hasInstance, 'found'))" >
-                                        //No instance available
+                                        //No instance available - probably should not set instance values here anyways.
                                         ,0, 0
                                     </xsl:if>                                    
                                     <xsl:for-each select="instances" >

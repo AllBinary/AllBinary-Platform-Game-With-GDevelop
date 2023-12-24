@@ -54,7 +54,7 @@ Created By: Travis Berthelot
                                     <xsl:for-each select=".." >
                                     <xsl:variable name="hasInstance" ><xsl:for-each select="instances" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
                                     <xsl:if test="not(contains($hasInstance, 'found'))" >
-                                        //No instance available
+                                        //No instance available - probably should not set instance values here anyways.
                                         0, 0
                                     </xsl:if>
                                     <xsl:for-each select="instances" >
@@ -107,7 +107,7 @@ Created By: Travis Berthelot
                                 <xsl:for-each select=".." >
                                     <xsl:variable name="hasInstance" ><xsl:for-each select="instances" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
                                     <xsl:if test="not(contains($hasInstance, 'found'))" >
-                                        //No instance available
+                                        //No instance available - probably should not set instance values here anyways.
                                         <xsl:value-of select="$name" />ImageArray[0].getHeight(), <xsl:value-of select="$name" />ImageArray[0].getHeight()
                                     </xsl:if>
                                     <xsl:for-each select="instances" >
