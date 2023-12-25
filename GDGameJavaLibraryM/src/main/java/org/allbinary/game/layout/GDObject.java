@@ -270,6 +270,8 @@ public class GDObject
                 .append(commonSeps.SPACE)
                 .append(positionStrings.X_LABEL).append(this.x)
                 .append(positionStrings.Y_LABEL).append(this.y)
+                .append(spacialStrings.WIDTH_LABEL).append(this.width)
+                .append(spacialStrings.HEIGHT_LABEL).append(this.height)
                 .toString();
     }
 
