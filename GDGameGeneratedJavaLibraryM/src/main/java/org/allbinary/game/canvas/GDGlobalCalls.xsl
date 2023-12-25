@@ -23,7 +23,7 @@
         <xsl:if test="contains($isGlobal, 'found')" >gameGlobals.</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >globals.</xsl:if>
     </xsl:template>
 
-    <xsl:template name="globalResourse" >
+    <xsl:template name="globalResource" >
         <xsl:param name="name" />
         <xsl:variable name="isGlobal" >
         <xsl:for-each select="/game" >
@@ -33,6 +33,18 @@
         </xsl:for-each>
         </xsl:variable>
         <xsl:if test="contains($isGlobal, 'found')" >globalResources.</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >resources.</xsl:if>
+    </xsl:template>
+
+    <xsl:template name="globalImageResource" >
+        <xsl:param name="name" />
+        <xsl:variable name="isGlobal" >
+        <xsl:for-each select="/game" >
+            <xsl:for-each select="objects" >
+                <xsl:if test="name = $name" >found</xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>
+        </xsl:variable>
+        <xsl:if test="contains($isGlobal, 'found')" >globalImageResources</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >imageResources</xsl:if>
     </xsl:template>
 
     <xsl:template name="objectFactory" >

@@ -58,7 +58,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
                 <xsl:variable name="layoutName" select="name" />
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
-                <xsl:variable name="objectsAsString" >,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="objectsAsString" >,<xsl:for-each select="/game/objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                     //$typeValue = 'TileMap::CollisionMask' or 
                     //$typeValue = 'TileMap::TileMap' or //Not excluded anymore.
                     //exclusionObjectsAsStringNotInUse=,<xsl:for-each select="objects" ><xsl:if test="contains(type, 'Collision')" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:if></xsl:for-each>
@@ -285,6 +285,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="instances" >
                         <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
                         <xsl:variable name="name" select="name" />
+                        <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:variable name="colonName" >:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:variable name="notTextObject" >
                             <xsl:for-each select="../objects" >
@@ -319,12 +320,12 @@ Created By: Travis Berthelot
                             <xsl:if test="not(contains(name, 'btn_'))" >
 
                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
-                        final int width = (int) (imageResources.<xsl:value-of select="name" />Rectangle.getWidth() / 1.44f);
-                        final int height = (int) (imageResources.<xsl:value-of select="name" />Rectangle.getHeight() / 1.44f);
+                        final int width = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth() / 1.44f);
+                        final int height = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight() / 1.44f);
                                 </xsl:if>
                                 <xsl:if test="height != 0 and width != 0" >
-                        final int width = (int) (<xsl:value-of select="height" />);
-                        final int height = (int) (<xsl:value-of select="width" />);
+                        final int width = (int) (<xsl:value-of select="height" /> * 1.44f);
+                        final int height = (int) (<xsl:value-of select="width" /> * 1.44f);
                                 </xsl:if>
 
                             </xsl:if>
@@ -355,26 +356,26 @@ Created By: Travis Berthelot
                         final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="name" />GDobject2 = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text>) <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="$name" />GDObjectFactory.get(
                         null, <xsl:value-of select="name" />X, 
                         <xsl:value-of select="name" />Y, 
+                        <xsl:if test="contains($objectsAsString, $spriteName)" >
+                        width, height,
+                        </xsl:if>
+                        <xsl:if test="not(contains($objectsAsString, $spriteName))" >
+                        0, 0,
+                        </xsl:if>
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
                         
-                        <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
+                        
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
                         //instances //We may need to set a dimension for each image/animation.
-                            //Hack - the other 'btn_' cases need to look at the layer to see if it is touch or not.
+                        //Hack - the other 'btn_' cases need to look at the layer to see if it is touch or not.
                             <xsl:if test="contains(name, 'btn_')" >
                         <xsl:value-of select="name" />GDobject2.canvasWidth = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
                         <xsl:value-of select="name" />GDobject2.canvasHeight = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();
-                        <xsl:value-of select="name" />GDobject2.width = width;
-                        <xsl:value-of select="name" />GDobject2.height = height;
                             </xsl:if>
                             <xsl:if test="not(contains(name, 'btn_'))" >
-                        <xsl:value-of select="name" />GDobject2.canvasWidth = imageResources.<xsl:value-of select="name" />Rectangle.getWidth();
-                        <xsl:value-of select="name" />GDobject2.canvasHeight = imageResources.<xsl:value-of select="name" />Rectangle.getHeight();
-                        <xsl:value-of select="name" />GDobject2.width = width;
-                        <xsl:value-of select="name" />GDobject2.height = height;
+                        <xsl:value-of select="name" />GDobject2.canvasWidth = <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth();
+                        <xsl:value-of select="name" />GDobject2.canvasHeight = <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight();
                             </xsl:if>
-                        <xsl:value-of select="name" />GDobject2.halfWidth = (<xsl:value-of select="name" />GDobject2.width / 2);
-                        <xsl:value-of select="name" />GDobject2.halfHeight = (<xsl:value-of select="name" />GDobject2.height / 2);
                         //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />GDobject2.toString(), this, commonStrings.PROCESS));
                         </xsl:if>
                         
@@ -388,6 +389,12 @@ Created By: Travis Berthelot
                         final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="name" />GDobject2 = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="$name" />GDObjectFactory.get(
                         null, <xsl:value-of select="name" />X, 
                         <xsl:value-of select="name" />Y, 
+                        <xsl:if test="contains($objectsAsString, $spriteName)" >
+                        width, height,
+                        </xsl:if>
+                        <xsl:if test="not(contains($objectsAsString, $spriteName))" >
+                        0, 0,
+                        </xsl:if>
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDObjectList.add(<xsl:value-of select="name" />GDobject2);
                             </xsl:if>                        
@@ -406,7 +413,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                                                 
                         <xsl:if test="contains($notTextObject, 'found')" >
-                        final GDGameLayer <xsl:value-of select="name" />GDGameLayer = <xsl:call-template name="globalResourse" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />GDobject2, null); //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDConditionWithGroupActions);
+                        //Create - Instances
+                        final GDGameLayer <xsl:value-of select="name" />GDGameLayer = <xsl:call-template name="globalResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>, <xsl:value-of select="name" />GDobject2, null); //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDConditionWithGroupActions);
                         LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeId" /> for <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0", this, commonStrings.PROCESS));
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
 

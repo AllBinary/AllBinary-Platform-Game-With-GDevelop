@@ -24,6 +24,7 @@ Created By: Travis Berthelot
         <xsl:variable name="quote" >"</xsl:variable>
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
+                    <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
 
                         //createGDObject
                         final GDObject <xsl:value-of select="$name" />GDobject2 = gdObjectsFactory.<xsl:value-of select="$name" />GDObjectFactory.get(
@@ -49,6 +50,17 @@ Created By: Travis Berthelot
                                     </xsl:call-template>
                                 </xsl:if>,
                             </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
+                            <xsl:if test="contains($objectsAsString, $spriteName)" >
+                                (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f),
+                                (int) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f),                               
+                            </xsl:if>
+                            <xsl:if test="not(contains($objectsAsString, $spriteName))" >
+                                0, 0,
+                            </xsl:if>
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() != 2" >                            
                             <xsl:if test="position() = last()" >
                                 <xsl:if test="string-length(text()) = 0" >
                                     //globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>
@@ -71,15 +83,10 @@ Created By: Travis Berthelot
                     //}
                     </xsl:if>
                     
-                    <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:if test="contains($objectsAsString, $spriteName)" >
                     //We may need to set a dimension for each image/animation. CreateAssign 
-                    <xsl:value-of select="$name" />GDobject2.canvasWidth = imageResources.<xsl:value-of select="$name" />ImageArray[0].getWidth();
-                    <xsl:value-of select="$name" />GDobject2.canvasHeight = imageResources.<xsl:value-of select="$name" />ImageArray[0].getHeight();
-                    <xsl:value-of select="$name" />GDobject2.width = (int) (imageResources.<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f);
-                    <xsl:value-of select="$name" />GDobject2.height = (int) (imageResources.<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f);
-                    <xsl:value-of select="$name" />GDobject2.halfWidth = (<xsl:value-of select="$name" />GDobject2.width / 2);
-                    <xsl:value-of select="$name" />GDobject2.halfHeight = (<xsl:value-of select="$name" />GDobject2.height / 2);
+                    <xsl:value-of select="$name" />GDobject2.canvasWidth = <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth();
+                    <xsl:value-of select="$name" />GDobject2.canvasHeight = <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight();
                     //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />GDobject2.toString(), this, commonStrings.PROCESS));
                     </xsl:if>
                     <xsl:if test="not(contains($objectsAsString, $spriteName))" >
@@ -96,7 +103,7 @@ Created By: Travis Berthelot
 
         <xsl:variable name="quote" >"</xsl:variable>
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-
+                    <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
 
                         //createByNameGDObject
                         
@@ -144,7 +151,18 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="replacementText" ></xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:if>,
+                            </xsl:if>                            
+                        </xsl:if>
+                    </xsl:for-each>
+                            <xsl:if test="contains($objectsAsString, $spriteName)" >
+                                (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f),
+                                (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f),
                             </xsl:if>
+                            <xsl:if test="not(contains($objectsAsString, $spriteName))" >
+                                0, 0,
+                            </xsl:if>
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() != 2 and position() != 3" >
                             <xsl:if test="position() = last()" >
                                 <xsl:if test="string-length(text()) = 0" >
                                     //globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>
@@ -155,7 +173,8 @@ Created By: Travis Berthelot
                                 </xsl:if>
                             </xsl:if>
                         </xsl:if>
-                    </xsl:for-each>);
+                    </xsl:for-each>
+                    );
 
                     <xsl:if test="$name = 'player_bullet'" >
                     //TWB - Hack
@@ -168,15 +187,10 @@ Created By: Travis Berthelot
                     //}
                     </xsl:if>
                     
-                    <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:if test="contains($objectsAsString, $spriteName)" >
                     //We may need to set a dimension for each image/animation. CreateAssign 
-                    <xsl:value-of select="$name" />GDobject2.canvasWidth = imageResources.<xsl:value-of select="$name" />ImageArray[0].getWidth();
-                    <xsl:value-of select="$name" />GDobject2.canvasHeight = imageResources.<xsl:value-of select="$name" />ImageArray[0].getHeight();
-                    <xsl:value-of select="$name" />GDobject2.width = (int) (imageResources.<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f);
-                    <xsl:value-of select="$name" />GDobject2.height = (int) (imageResources.<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f);
-                    <xsl:value-of select="$name" />GDobject2.halfWidth = (<xsl:value-of select="$name" />GDobject2.width / 2);
-                    <xsl:value-of select="$name" />GDobject2.halfHeight = (<xsl:value-of select="$name" />GDobject2.height / 2);
+                    <xsl:value-of select="$name" />GDobject2.canvasWidth = <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth();
+                    <xsl:value-of select="$name" />GDobject2.canvasHeight = <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight();
                     //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />GDobject2.toString(), this, commonStrings.PROCESS));
                     </xsl:if>
                     <xsl:if test="not(contains($objectsAsString, $spriteName))" >

@@ -45,7 +45,7 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray[<xsl:value-of select="position()" /> - 1] = ;
                     <xsl:variable name="hasMoreThanOneImage" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:variable>
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
-                    new OneRowSpriteIndexedAnimationFactory(
+                    new OneRowJ2SESpriteIndexedAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
                     //)
                     ,

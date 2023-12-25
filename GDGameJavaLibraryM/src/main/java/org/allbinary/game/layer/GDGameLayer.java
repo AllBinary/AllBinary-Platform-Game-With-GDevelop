@@ -118,6 +118,11 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
         this.initPosition();
 
+        final int size = animationInterfaceFactoryInterfaceArray.length;
+        for(int index = 0; index < size; index++) {
+            animationInterfaceFactoryInterfaceArray[index].setInitialSize(this.gdObject.width, this.gdObject.height);
+        }
+
         this.initIndexedAnimationInterfaceArray = animationBehavior.init(this.gdObject, animationInterfaceFactoryInterfaceArray);
         this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
 
