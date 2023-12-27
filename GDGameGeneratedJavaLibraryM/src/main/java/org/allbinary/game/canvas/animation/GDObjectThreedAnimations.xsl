@@ -64,7 +64,7 @@ Created By: Travis Berthelot
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/y" />)
                                 </xsl:if>
                                 <xsl:if test="animations/directions/sprites/originPoint/y = 0" >
-                                0, 
+                                0
                                 </xsl:if>
                                 )
                                 //<xsl:if test="animations/directions/sprites/originPoint/x = 0" ></xsl:if><xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 2, <xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 2
@@ -314,7 +314,7 @@ Created By: Travis Berthelot
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/y" />)
                                 </xsl:if>
                                 <xsl:if test="animations/directions/sprites/originPoint/y = 0" >
-                                0, 
+                                0
                                 </xsl:if>
                                 ),
                                 <xsl:if test="animations/directions/sprites/originPoint/x = 0" >//</xsl:if><xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 2, <xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 2
