@@ -103,8 +103,19 @@ Created By: Travis Berthelot
                 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 PointFactory.getInstance().getInstance(
+                                <xsl:if test="animations/directions/sprites/originPoint/x != 0" >
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/x" />), 
-                                (<xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/y" />)),
+                                </xsl:if>
+                                <xsl:if test="animations/directions/sprites/originPoint/x = 0" >
+                                0, 
+                                </xsl:if>
+                                <xsl:if test="animations/directions/sprites/originPoint/y != 0" >
+                                (<xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/y" />)
+                                </xsl:if>
+                                <xsl:if test="animations/directions/sprites/originPoint/y = 0" >
+                                0, 
+                                </xsl:if>
+                                ),
                                 //<xsl:if test="animations/directions/sprites/originPoint/x = 0" >//</xsl:if><xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 2, <xsl:value-of select="animations/directions/sprites/originPoint/y" /> * 2
                                 //old - <xsl:for-each select=".." ><xsl:for-each select="instances" ><xsl:if test="name = $name" ><xsl:if test="height = 0 or width = 0 or not(height) or not(width)" ><xsl:if test="animations/directions/sprites/originPoint/x = 0" ><xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()</xsl:if></xsl:if><xsl:if test="height != 0 and width != 0" ><xsl:value-of select="width" />, <xsl:value-of select="height" /></xsl:if></xsl:if></xsl:for-each></xsl:for-each>
                                 <!--
