@@ -380,7 +380,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             this.buildGame(false);
 
             <xsl:if test="number($index) = 0" >
-            FullScreenUtil.init(this, this.getCustomCommandListener());
+            FullScreenUtil.getInstance().init(this, this.getCustomCommandListener());
             //this.close();
             </xsl:if>
         
@@ -676,7 +676,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         this.upKeyEventHandler.removeListener(playerGameInput);
     }
 
-    //Special end case for GDevelop
+    //Special end2 case for GDevelop
     public void end2() {
 //        try {
 //            LogUtil.put(LogFactory.getInstance(this.commonStrings.END, this, this.commonStrings.END));
@@ -687,6 +687,19 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 //        {
 //            LogUtil.put(LogFactory.getInstance(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e));
 //        }
+    }
+
+    //Special end case for GDevelop
+    public void end() {
+        try {
+            super.end();
+            this.cleanupManager();
+            GDGameGlobals.getInstance().clear();
+            LogUtil.put(LogFactory.getInstance(this.commonStrings.END, this, this.commonStrings.END));
+        } catch (Exception e)
+        {
+            LogUtil.put(LogFactory.getInstance(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e));
+        }
     }
 
 }
