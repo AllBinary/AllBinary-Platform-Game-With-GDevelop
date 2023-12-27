@@ -57,7 +57,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
-                <xsl:if test="not(contains($name, 'btn_'))" >
+                <xsl:if test="contains($name, 'btn_')" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
                 final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtable().get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
@@ -206,7 +206,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
-                <xsl:if test="not(contains($name, 'btn_'))" >
+                <xsl:if test="contains($name, 'btn_')" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
                 final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtable().get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
