@@ -387,6 +387,7 @@ Created By: Travis Berthelot
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
                         
                         
+<!--                    
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
                         //instances //We may need to set a dimension for each image/animation.
                         //Hack - the other 'btn_' cases need to look at the layer to see if it is touch or not.
@@ -400,6 +401,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />GDobject2.toString(), this, commonStrings.PROCESS));
                         </xsl:if>
+-->
                         
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDObjectList.add(<xsl:value-of select="name" />GDobject2);
                         </xsl:if>

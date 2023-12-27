@@ -108,6 +108,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                     
                     <xsl:if test="animations/directions/sprites/originPoint/x = 0 and animations/directions/sprites/originPoint/y = 0" >
+<!--                
                     public int Width(final Graphics graphics) {
                         return canvasWidth;
                     }
@@ -115,6 +116,7 @@ Created By: Travis Berthelot
                     public int Height(final Graphics graphics) {
                         return canvasHeight;
                     }
+-->
                     </xsl:if>
                     
                     <!--

@@ -55,8 +55,8 @@ public class GDObject
     public float opacity = 255;
     public BasicColor basicColor;
     
-    public int canvasWidth;
-    public int canvasHeight;
+//    public int canvasWidth;
+//    public int canvasHeight;
     
     public int width;
     public int height;
@@ -289,10 +289,10 @@ public class GDObject
                 .append(positionStrings.Y_LABEL).append(this.y)
                 .append(commonSeps.SPACE)
                 .append(positionStrings.Z_LABEL).append(this.zOrder)
-                .append(commonSeps.SPACE)
-                .append(spacialStrings.WIDTH_LABEL).append(this.canvasWidth)
-                .append(commonSeps.SPACE)
-                .append(spacialStrings.HEIGHT_LABEL).append(this.canvasHeight)
+//                .append(commonSeps.SPACE)
+//                .append(spacialStrings.WIDTH_LABEL).append(this.canvasWidth)
+//                .append(commonSeps.SPACE)
+//                .append(spacialStrings.HEIGHT_LABEL).append(this.canvasHeight)
                 .append(commonSeps.SPACE)
                 .append(spacialStrings.WIDTH_LABEL).append(this.width)
                 .append(commonSeps.SPACE)

@@ -86,10 +86,12 @@ Created By: Travis Berthelot
                     </xsl:if>
                     
                     <xsl:if test="contains($objectsAsString, $spriteName)" >
+<!--
                     //We may need to set a dimension for each image/animation. CreateAssign 
                     <xsl:value-of select="$name" />GDobject2.canvasWidth = <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth();
                     <xsl:value-of select="$name" />GDobject2.canvasHeight = <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight();
                     //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />GDobject2.toString(), this, commonStrings.PROCESS));
+-->
                     </xsl:if>
                     <xsl:if test="not(contains($objectsAsString, $spriteName))" >
                         //objectsAsString=<xsl:value-of select="$objectsAsString" />
