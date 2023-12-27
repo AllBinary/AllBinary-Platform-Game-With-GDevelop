@@ -18,7 +18,6 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
-        <xsl:variable name="windowWidth" select="properties/windowWidth" />
                 
 package org.allbinary.game.layer;
 

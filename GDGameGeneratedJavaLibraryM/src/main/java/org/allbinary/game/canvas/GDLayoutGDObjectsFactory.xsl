@@ -42,7 +42,6 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
-        <xsl:variable name="windowWidth" select="properties/windowWidth" />
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -100,9 +99,6 @@ Created By: Travis Berthelot
                     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                     
                     <xsl:call-template name="objectsClassPropertyGDObjects" >
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
                     

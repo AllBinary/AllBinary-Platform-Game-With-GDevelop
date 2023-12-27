@@ -16,7 +16,7 @@ Created By: Travis Berthelot
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:template name="objectsClassProperty" >
-        <xsl:param name="windowWidth" />
+        <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
 
         <xsl:variable name="behaviorsAsString" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:value-of select="type" />,</xsl:for-each></xsl:for-each></xsl:variable>
 
@@ -184,7 +184,6 @@ Created By: Travis Berthelot
     </xsl:template>
 
     <xsl:template name="layerManagerEventListenerList" >
-        <xsl:param name="windowWidth" />
 
         <xsl:variable name="behaviorsAsString" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:value-of select="type" />,</xsl:for-each></xsl:for-each></xsl:variable>
             
@@ -228,7 +227,6 @@ Created By: Travis Berthelot
     </xsl:template>
 
     <xsl:template name="layerManagerEventListenerRemove" >
-        <xsl:param name="windowWidth" />
 
         <xsl:variable name="behaviorsAsString" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:value-of select="type" />,</xsl:for-each></xsl:for-each></xsl:variable>
             

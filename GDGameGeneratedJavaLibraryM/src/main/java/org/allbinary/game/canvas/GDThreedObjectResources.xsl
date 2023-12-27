@@ -18,7 +18,6 @@ Created By: Travis Berthelot
     <xsl:template name="rectangleProperties" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="windowWidth" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
 
@@ -60,7 +59,6 @@ Created By: Travis Berthelot
     <xsl:template name="rectangleCache" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="windowWidth" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
 
@@ -103,14 +101,15 @@ Created By: Travis Berthelot
                         //TWB - int the future add image dimensions to the game.xml.
                         <xsl:for-each select="directions" >
                             <xsl:for-each select="sprites" >
-                    new Rectangle(PointFactory.getInstance().ZERO_ZERO, <xsl:value-of select="originPoint/x" /> * 2, <xsl:value-of select="originPoint/y" /> * 2),
+                    new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="originPoint/x" /> * 2 * scale, <xsl:value-of select="originPoint/y" /> * 2 * scale),
                             </xsl:for-each>
                         </xsl:for-each>
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
                         <xsl:for-each select="directions" >
                             <xsl:for-each select="sprites" >
-                    new Rectangle(PointFactory.getInstance().ZERO_ZERO, (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f), (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f)),
+                    //new Rectangle(pointFactory.ZERO_ZERO, (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f), (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f)),
+                    new Rectangle(pointFactory.ZERO_ZERO, (int) (<xsl:value-of select="originPoint/x" /> * 2 * scale), (int) (<xsl:value-of select="originPoint/x" /> * 2 * scale)),
                             </xsl:for-each>
                         </xsl:for-each>
                     </xsl:if>

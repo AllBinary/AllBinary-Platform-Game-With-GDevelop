@@ -43,7 +43,6 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
-        <xsl:variable name="windowWidth" select="properties/windowWidth" />
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />

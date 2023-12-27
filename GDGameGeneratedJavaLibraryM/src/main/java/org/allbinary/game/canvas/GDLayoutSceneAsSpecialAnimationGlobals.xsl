@@ -78,7 +78,6 @@ Created By: Travis Berthelot
 
     <xsl:template match="/game">
         //game
-        <xsl:variable name="windowWidth" select="properties/windowWidth" />
         
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -266,9 +265,6 @@ public class GDStructure {
 
                     //more objects class properties - START
                     <xsl:call-template name="objectsClassProperty" >
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
             private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
@@ -314,9 +310,6 @@ public class GDStructure {
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
@@ -324,9 +317,6 @@ public class GDStructure {
                     <xsl:text>&#10;</xsl:text>
 
                     <xsl:call-template name="layerManagerEventListenerList" >
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
                     </xsl:call-template>    
                     <xsl:text>&#10;</xsl:text>
 
@@ -377,9 +367,6 @@ public class GDStructure {
                                 final AllBinaryLayer layerInterface = layerManagerEvent.getLayerInterface();
                                 
                     <xsl:call-template name="layerManagerEventListenerRemove" >
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
                             }

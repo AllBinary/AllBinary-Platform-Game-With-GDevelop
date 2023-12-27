@@ -45,7 +45,6 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
-        <xsl:variable name="windowWidth" select="properties/windowWidth" />
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -76,6 +75,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDNodeStatsFactory;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.graphics.GPoint;
+                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.color.BasicColor;
@@ -125,6 +125,13 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                         
                         //private final AllBinaryGameLayerManager allBinaryGameLayerManager;
+                        
+                        private final DisplayUtil displayUtil = DisplayUtil.getInstance();
+                        <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
+                        <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />        
+                        private final int scaleWidth = (displayUtil.width / <xsl:value-of select="$windowWidth" />);
+                        private final int scaleHeight = (displayUtil.height / <xsl:value-of select="$windowHeight" />);
+                        private final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
 
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
@@ -295,7 +302,7 @@ Created By: Travis Berthelot
 
                             final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
                                 PointFactory.getInstance().getInstance(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
-                                <xsl:value-of select="name" />GDobject2.Width(globals.graphics), <xsl:value-of select="name" />GDobject2.Height(globals.graphics));
+                                <xsl:value-of select="name" />GDobject2.Width(globals.graphics) * scale, <xsl:value-of select="name" />GDobject2.Height(globals.graphics) * scale);
                             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         }
                         </xsl:if>

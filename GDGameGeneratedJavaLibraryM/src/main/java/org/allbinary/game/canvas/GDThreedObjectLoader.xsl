@@ -18,7 +18,6 @@ Created By: Travis Berthelot
     <xsl:template name="threedResourceLoading" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="windowWidth" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
 

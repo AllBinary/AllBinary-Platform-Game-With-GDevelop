@@ -18,8 +18,14 @@ Created By: Travis Berthelot
     <xsl:template name="androidAnimationFactory" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="windowWidth" />
 
+        final DisplayUtil displayUtil = DisplayUtil.getInstance();
+        <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
+        <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />        
+        final int scaleWidth = (displayUtil.width / <xsl:value-of select="$windowWidth" />);
+        final int scaleHeight = (displayUtil.height / <xsl:value-of select="$windowHeight" />);
+        final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
+        
         //objectsAssign - androidAnimationFactory - START
         final short angleIncrement = 1;
         <xsl:for-each select="objects" >
@@ -123,7 +129,7 @@ Created By: Travis Berthelot
                                                     </xsl:if>
                                                 </xsl:if>
                                                 <xsl:if test="height != 0 and width != 0" >
-                                                    <xsl:value-of select="width" />, <xsl:value-of select="height" />
+                                                    <xsl:value-of select="width" /> * scale, <xsl:value-of select="height" /> * scale
                                                 </xsl:if>
                                             </xsl:if>
                                         </xsl:if>

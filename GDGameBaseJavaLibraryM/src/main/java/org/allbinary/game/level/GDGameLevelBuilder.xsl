@@ -59,6 +59,7 @@ import org.allbinary.game.map.GDGeographicMap;
 import org.allbinary.game.map.GDTiledMapProperties;
 import org.allbinary.game.rand.MyRandomFactory;
 import org.allbinary.game.resource.GDResources;
+import org.allbinary.graphics.DisplayUtil;
 import org.allbinary.game.view.StaticTileLayerIntoPositionViewPosition;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
@@ -234,6 +235,13 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
     public void init() throws Exception
     {
+        final DisplayUtil displayUtil = DisplayUtil.getInstance();
+        <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
+        <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />        
+        final int scaleWidth = (displayUtil.width / <xsl:value-of select="$windowWidth" />);
+        final int scaleHeight = (displayUtil.height / <xsl:value-of select="$windowHeight" />);
+        final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
+    
         final LayerInterfaceFactory layerInterfaceFactory = LayerInterfaceFactory.getInstance();
 
         layerInterfaceFactory.init();

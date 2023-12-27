@@ -42,7 +42,6 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
-        <xsl:variable name="windowWidth" select="properties/windowWidth" />
 
                 <!-- Android images assets need to be enlarged if they are not setup to be inside the cirle area needed -->
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
@@ -91,9 +90,6 @@ Created By: Travis Berthelot
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                     
                     <xsl:call-template name="objectsClassPropertyGDObjects" >
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
                     

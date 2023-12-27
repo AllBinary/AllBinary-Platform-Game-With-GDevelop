@@ -78,7 +78,6 @@ Created By: Travis Berthelot
 
     <xsl:template match="/game">
         //game
-        <xsl:variable name="windowWidth" select="properties/windowWidth" />
 
                 <!-- Android images assets need to be enlarged if they are not setup to be inside the cirle area needed -->
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
@@ -204,9 +203,6 @@ Created By: Travis Berthelot
 
                     //more objects class properties - START
                     <xsl:call-template name="objectsClassProperty" >
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
             public final String PRIMITIVEDRAWING__DRAWER = "PrimitiveDrawing::Drawer";
@@ -237,9 +233,6 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" >
                             Globals
                         </xsl:with-param>
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
@@ -247,9 +240,6 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>
 
                     <xsl:call-template name="layerManagerEventListenerList" >
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
                     </xsl:call-template>    
                     <xsl:text>&#10;</xsl:text>
 
@@ -292,9 +282,6 @@ Created By: Travis Berthelot
                                 final AllBinaryLayer layerInterface = layerManagerEvent.getLayerInterface();
                                 
                     <xsl:call-template name="layerManagerEventListenerRemove" >
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
                             }

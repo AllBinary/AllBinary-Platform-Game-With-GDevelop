@@ -16,7 +16,6 @@ Created By: Travis Berthelot
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
     <xsl:template name="objectsClassPropertyGDObjects" >
-        <xsl:param name="windowWidth" />
 
         //objectsClassPropertyGDObjects - START
         <xsl:for-each select="objects" >

@@ -47,8 +47,7 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
-        <xsl:variable name="windowWidth" select="properties/windowWidth" />
-
+        
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
 
@@ -76,6 +75,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.input.GameInputProcessorUtil;
+                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
@@ -184,6 +184,13 @@ Created By: Travis Berthelot
                         public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR + ":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder", this, commonStrings.CONSTRUCTOR));
+
+                            final DisplayUtil displayUtil = DisplayUtil.getInstance();
+                            <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
+                            <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />        
+                            final int scaleWidth = (displayUtil.width / <xsl:value-of select="$windowWidth" />);
+                            final int scaleHeight = (displayUtil.height / <xsl:value-of select="$windowHeight" />);
+                            final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
 
                     <xsl:call-template name="findMousePositionNeeded" >
                         <xsl:with-param name="totalRecursions" >
@@ -314,18 +321,33 @@ Created By: Travis Berthelot
                             //or contains($objectsAsString, $colonName)
                             //notTextObject = <xsl:value-of select="$notTextObject" /> or contains($objectsAsString, $colonName/<xsl:value-of select="$colonName" />) = <xsl:value-of select="contains($objectsAsString, $colonName)" />
                             <xsl:if test="contains(name, 'btn_')" >
-                        final int width = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
-                        final int height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
-                            </xsl:if>
-                            <xsl:if test="not(contains(name, 'btn_'))" >
-
+                        //btn_ - found
                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
-                        final int width = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth() / 1.44f);
-                        final int height = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight() / 1.44f);
+                        //final int width = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
+                        //final int height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
+                        final int width = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() * scale);
+                        final int height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() * scale);
                                 </xsl:if>
                                 <xsl:if test="height != 0 and width != 0" >
-                        final int width = (int) (<xsl:value-of select="height" /> * 1.44f);
-                        final int height = (int) (<xsl:value-of select="width" /> * 1.44f);
+                        //final int width = (int) (<xsl:value-of select="width" /> * 1.44f);
+                        //final int height = (int) (<xsl:value-of select="height" /> * 1.44f);
+                        final int width = (int) (<xsl:value-of select="width" /> * scale);
+                        final int height = (int) (<xsl:value-of select="height" /> * scale);
+                                </xsl:if>
+                            </xsl:if>                            
+                            <xsl:if test="not(contains(name, 'btn_'))" >
+                        //btn_ - not
+                                <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
+                        //final int width = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth() / 1.44f);
+                        //final int height = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight() / 1.44f);
+                        final int width = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth() * scale);
+                        final int height = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight() * scale);
+                                </xsl:if>
+                                <xsl:if test="height != 0 and width != 0" >
+                        //final int width = (int) (<xsl:value-of select="width" /> * 1.44f);
+                        //final int height = (int) (<xsl:value-of select="height" /> * 1.44f);
+                        final int width = (int) (<xsl:value-of select="width" /> * scale);
+                        final int height = (int) (<xsl:value-of select="height" /> * scale);
                                 </xsl:if>
 
                             </xsl:if>
@@ -408,7 +430,7 @@ Created By: Travis Berthelot
                         <xsl:if test="contains(name, 'btn_')" >
                         final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
                             PointFactory.getInstance().getInstance(<xsl:value-of select="name" />GDobject2.x, <xsl:value-of select="name" />GDobject2.y),
-                            <xsl:value-of select="name" />GDobject2.Width(globals.graphics), <xsl:value-of select="name" />GDobject2.Height(globals.graphics));
+                            <xsl:value-of select="name" />GDobject2.Width(globals.graphics) * scale, <xsl:value-of select="name" />GDobject2.Height(globals.graphics) * scale);
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         </xsl:if>
                                                 

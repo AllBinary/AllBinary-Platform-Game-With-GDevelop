@@ -18,7 +18,6 @@ Created By: Travis Berthelot
     <xsl:template name="imageProperties" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="windowWidth" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
 
@@ -82,7 +81,6 @@ Created By: Travis Berthelot
     <xsl:template name="imageCache" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="windowWidth" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
 
@@ -234,7 +232,7 @@ Created By: Travis Berthelot
 
                 this.validateSprites(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ResourceArray, <xsl:value-of select="name" />ImageArray);
                 hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
-                <xsl:value-of select="$name" />Rectangle = new Rectangle(PointFactory.getInstance().ZERO_ZERO, <xsl:value-of select="name" />ImageArray[0].getWidth(), <xsl:value-of select="name" />ImageArray[0].getHeight());
+                <xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />ImageArray[0].getWidth(), <xsl:value-of select="name" />ImageArray[0].getHeight());
 
             </xsl:if>
 
@@ -242,7 +240,7 @@ Created By: Travis Berthelot
                 <xsl:value-of select="$name" />ImageArray = new Image[] {
                 };
                 hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
-                <xsl:value-of select="$name" />Rectangle = new Rectangle(PointFactory.getInstance().ZERO_ZERO, 0, 0);
+                <xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TileMap::TileMap'" >

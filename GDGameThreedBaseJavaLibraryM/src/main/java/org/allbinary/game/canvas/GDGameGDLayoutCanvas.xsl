@@ -377,7 +377,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             this.buildGame(false);
 
             <xsl:if test="number($index) = 0" >
-            FullScreenUtil.init(this, this.getCustomCommandListener());
+            FullScreenUtil.getInstance().init(this, this.getCustomCommandListener());
             //this.close();
             </xsl:if>
         

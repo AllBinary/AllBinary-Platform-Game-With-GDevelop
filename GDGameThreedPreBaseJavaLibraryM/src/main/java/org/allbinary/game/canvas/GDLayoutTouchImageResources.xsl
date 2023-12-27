@@ -40,7 +40,6 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
-        <xsl:variable name="windowWidth" select="properties/windowWidth" />
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -67,6 +66,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.resource.GDResources;
+                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.image.ImageCache;
@@ -114,9 +114,6 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
-                        </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
@@ -131,6 +128,14 @@ Created By: Travis Berthelot
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
 
+                            final PointFactory pointFactory = PointFactory.getInstance();
+                            final DisplayUtil displayUtil = DisplayUtil.getInstance();
+                            <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
+                            <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />        
+                            final int scaleWidth = (displayUtil.width / <xsl:value-of select="$windowWidth" />);
+                            final int scaleHeight = (displayUtil.height / <xsl:value-of select="$windowHeight" />);
+                            final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
+                    
                             final Hashtable hashTable = imageCache.getHashtable();
 
                     <xsl:call-template name="imageCache" >
@@ -139,9 +144,6 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="windowWidth" >
-                            <xsl:value-of select="$windowWidth" />
                         </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />

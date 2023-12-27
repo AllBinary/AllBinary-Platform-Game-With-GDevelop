@@ -37,10 +37,17 @@ Created By: Travis Berthelot
     </xsl:template>
 
     <xsl:template name="touchAnimationFactory" >
+        <xsl:param name="platform" />
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="windowWidth" />
 
+        final DisplayUtil displayUtil = DisplayUtil.getInstance();
+        <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
+        <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />        
+        final int scaleWidth = (displayUtil.width / <xsl:value-of select="$windowWidth" />);
+        final int scaleHeight = (displayUtil.height / <xsl:value-of select="$windowHeight" />);
+        final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
+        
         //objectsAssign - touchAnimationFactory - START
         final short angleIncrement = 1;
         <xsl:for-each select="objects" >
@@ -64,7 +71,7 @@ Created By: Travis Berthelot
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                 <xsl:for-each select="animations" >
                     //<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray[<xsl:value-of select="position()" /> - 1] = ;
-                    new OneRowSpriteIndexedAnimationFactory(
+                    new OneRow<xsl:value-of select="$platform" />SpriteIndexedAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
                     )
                     //,
@@ -99,7 +106,14 @@ Created By: Travis Berthelot
                                         <xsl:if test="name = $name" >
                                             <xsl:if test="contains(name, 'btn_')" >
                                                 //btn_ - found
-                                                <xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                                <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
+                                                    <xsl:if test="animations/directions/sprites/originPoint/x = 0" >
+                                                        <xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                                    </xsl:if>
+                                                </xsl:if>
+                                                <xsl:if test="height != 0 and width != 0" >
+                                                    <xsl:value-of select="width" /> * scale, <xsl:value-of select="height" /> * scale
+                                                </xsl:if>
                                             </xsl:if>
                                             <xsl:if test="not(contains(name, 'btn_'))" >
                                                 //btn_ - not
@@ -109,7 +123,7 @@ Created By: Travis Berthelot
                                                     </xsl:if>
                                                 </xsl:if>
                                                 <xsl:if test="height != 0 and width != 0" >
-                                                    <xsl:value-of select="width" />, <xsl:value-of select="height" />
+                                                    <xsl:value-of select="width" /> * scale, <xsl:value-of select="height" /> * scale
                                                 </xsl:if>
                                             </xsl:if>
                                         </xsl:if>
@@ -280,7 +294,6 @@ Created By: Travis Berthelot
     <xsl:template name="animationNames" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="windowWidth" />
 
         //objectsAssign - animationNames - START
         <xsl:for-each select="objects" >

@@ -19,7 +19,7 @@ Created By: Travis Berthelot
     <xsl:template name="globalZoomCameraActions" >
         <xsl:param name="baseLayer" />
         <xsl:param name="tileMap" />
-
+        
         <xsl:for-each select="events" >
             <xsl:for-each select="actions" >
                 <xsl:if test="type/value = 'ZoomCamera'" >
@@ -35,7 +35,8 @@ Created By: Travis Berthelot
 
         <xsl:if test="string-length($baseLayerScale) > 0" >
                     //ZoomCamera - Base layer
-                    final float baseLayerScale = (float) Math.ceil(<xsl:value-of select="$baseLayerScale" /> * 1.44f);
+                    //final float baseLayerScale = (float) Math.ceil(<xsl:value-of select="$baseLayerScale" /> * 1.44f);
+                    final float baseLayerScale = (float) <xsl:value-of select="$baseLayerScale" /> * scale;
         </xsl:if>
         <xsl:if test="$baseLayer = 'true'" >
         <xsl:if test="string-length($baseLayerScale) = 0" >
@@ -45,7 +46,8 @@ Created By: Travis Berthelot
         
         <xsl:if test="string-length($tileMapScale) > 0" >
                     //ZoomCamera - TileMap
-                    final float tileMapScale = (float) Math.ceil(<xsl:value-of select="$tileMapScale" /> * 1.44f);
+                    //final float tileMapScale = (float) Math.ceil(<xsl:value-of select="$tileMapScale" /> * 1.44f);
+                    final float tileMapScale = (float) <xsl:value-of select="$tileMapScale" /> * scale;
         </xsl:if>
         <xsl:if test="$tileMap = 'true'" >
         <xsl:if test="string-length($tileMapScale) = 0" >

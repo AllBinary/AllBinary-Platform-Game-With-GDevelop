@@ -18,7 +18,6 @@ Created By: Travis Berthelot
     <xsl:template name="objectsAssignGroup" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="windowWidth" />
         <xsl:param name="instancesAsString" />
 
         //objectsAssignGroup - START

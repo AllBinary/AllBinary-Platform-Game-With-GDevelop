@@ -18,7 +18,6 @@ Created By: Travis Berthelot
     <xsl:template name="objectsProperties" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="windowWidth" />
         <xsl:param name="instancesAsString" />
 
         //objectsAssign - objectsProperties - START
@@ -127,7 +126,6 @@ Created By: Travis Berthelot
     <xsl:template name="objectsAssign" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="windowWidth" />
         <xsl:param name="instancesAsString" />
 
         //objectsAssign - START
