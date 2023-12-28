@@ -118,6 +118,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
         this.initPosition();
 
+        //LogUtil.put(LogFactory.getInstance(this.gdObject.toShortString(), this, CommonStrings.getInstance().CONSTRUCTOR));
         final int size = animationInterfaceFactoryInterfaceArray.length;
         for(int index = 0; index < size; index++) {
             animationInterfaceFactoryInterfaceArray[index].setInitialSize(this.gdObject.width, this.gdObject.height);
@@ -420,10 +421,14 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.dimensionalBehavior.updateRotation(this, timeDelta);
     }
 
-    private float lastScale = Float.MIN_VALUE;
+//    private float lastScaleX = Float.MIN_VALUE;
+//    private float lastScaleY = Float.MIN_VALUE;
     public void setScalable() {
-//        if(this.gdObject.scale != lastScale) {
-//            LogUtil.put(LogFactory.getInstance("scale: " + this.gdObject.scale, this, CommonStrings.getInstance().PROCESS));
+//        if(this.gdObject.scaleX != lastScaleX) {
+//            LogUtil.put(LogFactory.getInstance("scaleX: " + this.gdObject.scaleX, this, CommonStrings.getInstance().PROCESS));
+//        }
+//        if(this.gdObject.scaleY != lastScaleY) {
+//            LogUtil.put(LogFactory.getInstance("scaleY: " + this.gdObject.scaleY, this, CommonStrings.getInstance().PROCESS));
 //        }
         
         if(this.scalableProcessor == ScalableBaseProcessor.getInstance()) {

@@ -32,6 +32,6 @@ public class ScalableProcessor extends ScalableBaseProcessor {
     }
     
     public void process(final GDObject gdObject, final IndexedAnimation initIndexedAnimationInterface) {
-        initIndexedAnimationInterface.setScale(gdObject.scale, gdObject.scale);
+        initIndexedAnimationInterface.setScale(gdObject.scaleX, gdObject.scaleY);
     }
 }

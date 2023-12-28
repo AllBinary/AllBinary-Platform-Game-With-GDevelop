@@ -37,7 +37,7 @@ Created By: Travis Berthelot
                                 GDGameLayer gameLayer;
                                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                     gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template><xsl:value-of select="$paramOne" />GDGameLayerList.get(index);
-                                    gameLayer.gdObject.scale = <xsl:value-of select="$paramThree" />;
+                                    gameLayer.gdObject.scaleX = gameLayer.gdObject.scaleY = <xsl:value-of select="$paramThree" />;
                                     gameLayer.setScalable();
                                     gameLayer.updateGDObject(globals.timeDelta);
                                 }
