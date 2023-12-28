@@ -36,6 +36,7 @@ public class GDToAllBinaryResourcesGenerator
     private final String TOUCH = "TOUCH";
     private final String COMMENT = "//";
     private final String UNDERSCORE_0 = commonSeps.UNDERSCORE + "0";
+    private final String BLANK = "BLANK";
             
     private final int size2 = 100;
     
@@ -54,6 +55,10 @@ public class GDToAllBinaryResourcesGenerator
         this.gdResources.resourceNameList.add(name);
         final String resource = resourceString.toLowerCase();
         this.gdResources.resourceList.add(resource);
+        
+        if(name.indexOf(BLANK) >= 0) {
+            resourceStringBuilder.append(COMMENT);
+        }
         
         if (name.endsWith(UNDERSCORE_0) && name.indexOf(TOUCH) < 0) {
             resourceStringBuilder.append(COMMENT);
@@ -85,6 +90,8 @@ public class GDToAllBinaryResourcesGenerator
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
         
         final String INDENT = "        ";
+        final String JSON = ".json";
+        final String T = ".t";
         resourceStringBuilder.append('\n');
         resourceStringBuilder.append("    public final String[] resourceStringArray = {\nBLANK,\n");
         final int size = this.gdResources.resourceNameList.size();
@@ -94,7 +101,11 @@ public class GDToAllBinaryResourcesGenerator
             name = (String) this.gdResources.resourceNameList.get(index);
             resource = (String) this.gdResources.resourceList.get(index);
             resourceStringBuilder.append(INDENT);
-            if(resource.indexOf(".json") >= 0 || resource.indexOf(".t") >= 0) {
+            if(resource.indexOf(JSON) >= 0 || resource.indexOf(T) >= 0) {
+                resourceStringBuilder.append(COMMENT);
+            }
+
+            if(resource.toUpperCase().indexOf(BLANK) >= 0) {
                 resourceStringBuilder.append(COMMENT);
             }
             
