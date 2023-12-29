@@ -67,19 +67,28 @@ Created By: Travis Berthelot
                 } else {
                     LogUtil.put(LogFactory.getInstance("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT));
                 }    
-                    
+                
+<!--                <xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each>-->
+                <xsl:variable name="hasMoreThanOneImage" >found</xsl:variable>
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                 <xsl:for-each select="animations" >
                     //<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray[<xsl:value-of select="position()" /> - 1] = ;
+                    <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                     new OneRow<xsl:value-of select="$platform" />SpriteIndexedAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
-                    )
                     //,
                     //-<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth() / 2,
                     //-<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight() / 2
                     //angleIncrement
-                    //)
-                    <xsl:if test="position() != last()" >,</xsl:if>
+                    </xsl:if>
+                    <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
+                    new AllBinary<xsl:value-of select="$platform" />ImageRotationAnimationFactory(
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth(),
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight(),
+                    angleIncrement
+                    </xsl:if>
+                    )<xsl:if test="position() != last()" >,</xsl:if>
                 </xsl:for-each>
                 };
 

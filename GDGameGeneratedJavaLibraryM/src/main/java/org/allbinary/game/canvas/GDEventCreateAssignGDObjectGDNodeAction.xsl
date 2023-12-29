@@ -64,6 +64,9 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDRotateActionProcess.xsl" />
     <xsl:import href="./action/GDRotateTowardPositionActionProcess.xsl" />
     <xsl:import href="./action/GDChangeScaleActionProcess.xsl" />
+    <xsl:import href="./action/GDScalableBehaviorSetValueActionProcess.xsl" />
+    <xsl:import href="./action/GDScalableBehaviorSetXActionProcess.xsl" />
+    <xsl:import href="./action/GDScalableBehaviorSetYActionProcess.xsl" />
     <xsl:import href="./action/GDSceneBackgroundActionProcess.xsl" />
     
     <xsl:template name="eventsCreateAssignGDObjectGDNodesAction" >
@@ -784,12 +787,15 @@ Created By: Travis Berthelot
                 
                 <xsl:if test="$typeValue = 'ScalableCapability::ScalableBehavior::SetValue'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    <xsl:call-template name="scalableBehaviorSetValueActionProcess" />
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ScalableCapability::ScalableBehavior::SetX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    <xsl:call-template name="scalableBehaviorSetXActionProcess" />
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ScalableCapability::ScalableBehavior::SetY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    <xsl:call-template name="scalableBehaviorSetYActionProcess" />
                 </xsl:if>
                 
                 <xsl:if test="$typeValue = 'ResizableCapability::ResizableBehavior::SetWidth'" >
