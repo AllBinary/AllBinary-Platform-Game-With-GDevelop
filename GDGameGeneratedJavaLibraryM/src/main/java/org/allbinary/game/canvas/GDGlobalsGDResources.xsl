@@ -146,7 +146,7 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
+                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR + allBinaryGameLayerManager, this, commonStrings.CONSTRUCTOR));
 
                     animationInterfaceFactoryInterfaceFactory.init(-1);
                                         

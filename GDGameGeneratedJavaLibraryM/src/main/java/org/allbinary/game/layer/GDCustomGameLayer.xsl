@@ -307,6 +307,7 @@ Created By: Travis Berthelot
 
         <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
             this.allBinaryGameLayerManager = allBinaryGameLayerManager;
+            //LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR + allBinaryGameLayerManager, this, commonStrings.CONSTRUCTOR));
         </xsl:if>
 <!--
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
@@ -466,7 +467,7 @@ Created By: Travis Berthelot
             }
 
         } catch (Exception e) {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "move", e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "move", e));
         }
     }
                     
@@ -517,7 +518,7 @@ Created By: Travis Berthelot
             }
 
         } catch (Exception e) {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "move2", e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "move2", e));
         }
     }
 
@@ -657,7 +658,7 @@ Created By: Travis Berthelot
             }
 
         } catch (Exception e) {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "move", e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "move", e));
         }
     }
 
@@ -686,7 +687,7 @@ Created By: Travis Berthelot
                 this.platformGameBehavior.right(geographicMapInterfaceArray, this.velocityInterface, this);
             }
         } catch (Exception e) {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "right", e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "right", e));
         }
     }
     
@@ -733,7 +734,7 @@ Created By: Travis Berthelot
             }
 
         } catch (Exception e) {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "left", e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "left", e));
         }
     }
         
@@ -833,7 +834,7 @@ Created By: Travis Berthelot
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "processInput"));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "processInput"));
             //LogUtil.put(LogFactory.getInstance("Danger Danger Danger ^^^%%$*($)*@)!$", this, "processInput", e));
         }
 
