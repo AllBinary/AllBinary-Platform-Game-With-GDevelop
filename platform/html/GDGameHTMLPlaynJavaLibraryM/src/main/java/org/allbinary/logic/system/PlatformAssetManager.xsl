@@ -74,11 +74,11 @@ public class PlatformAssetManager {
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />
 
-            //<xsl:if test="position() != 1" >} else </xsl:if>
-        
-        <xsl:for-each select="objects" ><xsl:variable name="typeValue" select="type" />
+        <xsl:for-each select="objects" >
+            <xsl:variable name="typeValue" select="type" />
         <xsl:if test="$typeValue = 'TileMap::TileMap'" >
             <xsl:if test="content" >
+                <xsl:variable name="lastPosition" ><xsl:value-of select="position()" /></xsl:variable>
                 <xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
                 <xsl:variable name="json" select="substring-before($jsonWithExtension, '.')" />
         if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[0].compareTo(resource) == 0) {
@@ -87,6 +87,7 @@ public class PlatformAssetManager {
             <xsl:with-param name="text" >
                 <xsl:value-of select="$json" />();</xsl:with-param>
         </xsl:call-template>
+
         <xsl:variable name="tilesetJsonFileWithExtension" select="content/tilesetJsonFile" />
         } else if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[1].compareTo(resource) == 0) {
         return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.<xsl:variable name="tilesetJsonFileN" select="substring-before($tilesetJsonFileWithExtension, '.')" />
@@ -94,20 +95,38 @@ public class PlatformAssetManager {
             <xsl:with-param name="text" >
                 <xsl:value-of select="$tilesetJsonFileN" />();</xsl:with-param>
         </xsl:call-template>
-        
-    <xsl:for-each select="content/tilesetJsonFiles" >
-    <xsl:variable name="json" select="substring-before(text(), '.')" />
+
+        <xsl:if test="not(content/tilesetJsonFiles)" >
+                } else //else1
+        </xsl:if>
+
+        <xsl:for-each select="content/tilesetJsonFiles" >
+        <xsl:variable name="json" select="substring-before(text(), '.')" />
         } else if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[<xsl:value-of select="position() + 1" />].compareTo(resource) == 0) {
         return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" />();</xsl:with-param></xsl:call-template>
+        
+    <xsl:for-each select="../../../objects" >
+        <xsl:if test="$lastPosition" >
+        <xsl:variable name="typeValue" select="type" />
+        <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+            <xsl:if test="content" >
+                <xsl:if test="position() != 1" >
+        } else //else2
+        <xsl:text>&#10;</xsl:text>
+                </xsl:if>
+            </xsl:if>
+        </xsl:if>
+        </xsl:if>
     </xsl:for-each>
         
-        </xsl:if>
+        </xsl:for-each>
+        
+            </xsl:if>
         </xsl:if>
         </xsl:for-each>
             
         </xsl:for-each>
-
-        } else {
+        {
             throw new RuntimeException();
         }
     }
