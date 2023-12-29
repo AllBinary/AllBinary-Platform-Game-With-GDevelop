@@ -62,6 +62,10 @@ extends BaseSoundsFactory
         int index = 0;
 
         final BasicArrayList list = new BasicArrayList();
+        
+    list.add(SelectSound.getInstance());
+    list.add(ErrorSound.getInstance());
+        
 <xsl:for-each select="layouts" >
     final GD<xsl:value-of select="position() - 1" />GameSoundsFactory gd<xsl:value-of select="position() - 1" />GameSoundsFactory = GD<xsl:value-of select="position() - 1" />GameSoundsFactory.getInstance();
     list.addAll(gd<xsl:value-of select="position() - 1" />GameSoundsFactory.soundList);
