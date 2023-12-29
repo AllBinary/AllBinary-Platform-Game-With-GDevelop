@@ -81,13 +81,13 @@ import javax.microedition.lcdui.Image;
 
 import min3d.core.Object3d;
 
-import org.allbinary.animation.AllBinaryImageArrayRotationAnimationFactory;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.NullRotationAnimationFactory;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.ThreedAnimationFactory;
+import org.allbinary.animation.image.ImageArrayRotationAnimationFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;

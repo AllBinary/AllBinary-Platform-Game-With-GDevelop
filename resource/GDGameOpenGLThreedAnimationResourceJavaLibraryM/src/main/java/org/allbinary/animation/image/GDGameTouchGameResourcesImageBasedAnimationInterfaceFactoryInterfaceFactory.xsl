@@ -79,11 +79,11 @@ package org.allbinary.animation.image;
 
 import java.util.Hashtable;
 import javax.microedition.lcdui.Image;
-import org.allbinary.animation.AllBinaryImageArrayRotationAnimationFactory;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
+import org.allbinary.animation.image.ImageArrayRotationAnimationFactory;
 import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
