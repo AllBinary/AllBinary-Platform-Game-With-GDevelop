@@ -18,6 +18,7 @@ import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
 import org.allbinary.media.graphics.geography.map.GeographicMapEventHandler;
@@ -56,6 +57,9 @@ public class GDGameLayerManager extends AllBinaryGameLayerManager
 
    public void setGeographicMapInterface(final BasicGeographicMap[] geographicMapInterfaceArray)
    {
+       //final CommonStrings commonStrings = CommonStrings.getInstance();
+       //LogUtil.put(LogFactory.getInstance(commonStrings.START + this, this, commonStrings.PROCESS));
+       
       this.geographicMapInterfaceArray = geographicMapInterfaceArray;
       
       final GeographicMapEventHandler geographicMapEventHandler = GeographicMapEventHandler.getInstance();
