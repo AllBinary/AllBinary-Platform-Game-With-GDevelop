@@ -75,7 +75,7 @@
         <outputDirectory>war/WEB-INF/classes</outputDirectory>
 
         <plugins>
-            
+                  
             <!-- The Server does not need these as they are really just for GWT client compilation -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -109,6 +109,12 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>gwt-maven-plugin</artifactId>
                 <version>${gwt.version}</version>
+                <configuration>
+                    <extraJvmArgs>-Xmx512m</extraJvmArgs>
+<!--                    -Xms512m -->
+<!--                    -Dgwt.jjs.permutationWorkerFactory=com.google.gwt.dev.ThreadedPermutationWorkerFactory-->
+<!--                    <localWorkers>3</localWorkers>-->
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>

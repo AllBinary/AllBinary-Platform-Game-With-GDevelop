@@ -52,7 +52,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="animations" >
                     //<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray[<xsl:value-of select="position()" /> - 1] = ;
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
-                    new OneRowSpriteIndexedAnimationFactory(
+                    new OneRowHTMLSpriteIndexedAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
                     //)
                     ,

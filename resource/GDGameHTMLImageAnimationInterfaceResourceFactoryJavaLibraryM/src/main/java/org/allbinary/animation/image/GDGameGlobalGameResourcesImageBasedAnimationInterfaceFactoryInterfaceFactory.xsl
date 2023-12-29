@@ -91,6 +91,7 @@ import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.animation.image.AllBinaryHTMLImageRotationAnimationFactory;
 import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
+import org.allbinary.animation.image.sprite.OneRowHTMLSpriteIndexedAnimationFactory;
 import org.allbinary.game.canvas.GDGlobalSpecialAnimationResources;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
