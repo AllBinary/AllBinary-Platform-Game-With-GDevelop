@@ -395,7 +395,7 @@ Created By: Travis Berthelot
         <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
         public void setGDObject(final AllBinaryGameLayerManager allBinaryGameLayerManager, final GDObject gdObject) throws Exception {
             this.allBinaryGameLayerManager = allBinaryGameLayerManager;
-            LogUtil.put(LogFactory.getInstance(commonStrings.START + allBinaryGameLayerManager, this, commonStrings.PROCESS));
+            LogUtil.put(LogFactory.getInstance(new StringMaker().append(commonStrings.START).append(this.getName()).append(CommonSeps.getInstance().SPACE).append(allBinaryGameLayerManager).toString(), this, commonStrings.PROCESS));
             if(this.allBinaryGameLayerManager == null) {
                 throw new RuntimeException();
             }
@@ -432,7 +432,7 @@ Created By: Travis Berthelot
             final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
             if(this.allBinaryGameLayerManager == null) {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append("0LayerManager was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
                 return;
             }
             
@@ -448,7 +448,7 @@ Created By: Travis Berthelot
 
                 } else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
                     final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>PlayerGDGameLayerList.get(0);
-                    //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Map: ").append(this.gdObject.toShortString()).toString(), this, "move"));
+                    //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Map: ").append(this.getName()).toString(), this, "move"));
                     if(this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, player, this.gdObject.x, this.gdObject.y)) {
                         lastX = this.gdObject.x;
                         lastY = this.gdObject.y;
@@ -468,7 +468,7 @@ Created By: Travis Berthelot
                     }
                 }
             } else {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
                 GeographicMapEventHandler.getInstance().addListener(this);
             }
 
@@ -494,7 +494,7 @@ Created By: Travis Berthelot
             final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
             if(this.allBinaryGameLayerManager == null) {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append("1LayerManager was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("1LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
                 return;
             }
 
@@ -524,7 +524,7 @@ Created By: Travis Berthelot
                     }
                 }
             } else {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move2"));
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move2"));
                 GeographicMapEventHandler.getInstance().addListener(this);
             }
 
@@ -698,7 +698,7 @@ Created By: Travis Berthelot
     {
         try {
             if(this.allBinaryGameLayerManager == null) {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append("3LayerManager was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("3LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
                 return;
             }
         
@@ -749,7 +749,7 @@ Created By: Travis Berthelot
     {
         try {
             if(this.allBinaryGameLayerManager == null) {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append("4LayerManager was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("4LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
                 return;
             }
 

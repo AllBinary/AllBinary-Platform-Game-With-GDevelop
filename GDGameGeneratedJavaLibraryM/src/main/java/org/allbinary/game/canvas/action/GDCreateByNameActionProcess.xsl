@@ -135,7 +135,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             final StringBuilder stringBuilder = new StringBuilder();
-                            stringBuilder.delete(0, stringBuilder.length());
+                            //stringBuilder.delete(0, stringBuilder.length());
                             final int index = <xsl:value-of select="text()" />GDGameLayerList.size();
 
                             GDGameLayer <xsl:value-of select="text()" />GDGameLayer = null;
