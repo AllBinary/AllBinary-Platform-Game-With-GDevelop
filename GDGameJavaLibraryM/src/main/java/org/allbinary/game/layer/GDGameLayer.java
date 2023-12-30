@@ -141,7 +141,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.dimensionalBehavior.reset(gdObject);
     }
 
-    public void setGDObject(final AllBinaryGameLayerManager allBinaryGameLayerManager, final GDObject gdObject) throws Exception {
+    public void setGDObject(final GDObject gdObject) throws Exception {
         this.dimensionalBehavior.animationBehavior.setRotationAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
         this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
         this.dimensionalBehavior.reset(gdObject);
@@ -150,6 +150,10 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
         this.initPosition();
         this.setDestroyed(false);
+    }
+
+    public void setAllBinaryGameLayerManager(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
+        
     }
 
     public void set(final GL gl) throws Exception
