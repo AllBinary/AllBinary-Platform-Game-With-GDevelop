@@ -25,6 +25,7 @@ import org.allbinary.logic.communication.log.ForcedLogUtil;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.logic.string.StringMaker;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
@@ -72,6 +73,11 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
     public boolean isCollision3(final GDCustomGameLayer collisionMaskCustomGameLayer) {
         
         try {
+            
+            if(collisionMaskCustomGameLayer.allBinaryGameLayerManager == null) {
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("LayerManager was null: ").append(collisionMaskCustomGameLayer.allBinaryGameLayerManager).toString(), this, "move"));
+                return false;
+            }
             
             final GeographicMapCompositeInterface geographicMapCompositeInterface
                     = (GeographicMapCompositeInterface) collisionMaskCustomGameLayer.allBinaryGameLayerManager;

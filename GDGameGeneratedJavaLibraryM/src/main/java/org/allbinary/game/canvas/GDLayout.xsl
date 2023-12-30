@@ -124,8 +124,6 @@ Created By: Travis Berthelot
                         //behaviorsSharedData=<xsl:for-each select="behaviorsSharedData" >type=<xsl:value-of select="type" />,</xsl:for-each>
                         <xsl:text>&#10;</xsl:text>
                         
-                        //private final AllBinaryGameLayerManager allBinaryGameLayerManager;
-                        
                         private final DisplayUtil displayUtil = DisplayUtil.getInstance();
                         <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
                         <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />        

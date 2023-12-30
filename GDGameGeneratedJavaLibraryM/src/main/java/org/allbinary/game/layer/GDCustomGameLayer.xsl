@@ -194,7 +194,7 @@ Created By: Travis Berthelot
                         <xsl:if test="1" >new org.allbinary.game.behavior.topview.PlayerTopViewCharacterBehavior();</xsl:if>
                         <xsl:if test="0" >new org.allbinary.game.behavior.topview.NonPlayerTopViewCharacterBehavior();</xsl:if>
 
-                    public final AllBinaryGameLayerManager allBinaryGameLayerManager;
+                    public AllBinaryGameLayerManager allBinaryGameLayerManager;
 
                 </xsl:if>
 
@@ -232,7 +232,7 @@ Created By: Travis Berthelot
                         <xsl:if test="1" >new org.allbinary.game.behavior.platformer.PlayerPlatformCharacterBehavior();</xsl:if>
                         <xsl:if test="0" >new org.allbinary.game.behavior.platformer.NonPlayerPlatformCharacterBehavior();</xsl:if>
 
-                    protected final AllBinaryGameLayerManager allBinaryGameLayerManager;
+                    protected AllBinaryGameLayerManager allBinaryGameLayerManager;
 
                     protected BasicAccelerationProperties acceleration;
 
@@ -248,7 +248,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:for-each>
 
-                    public GDCustomGameLayer(final AllBinaryGameLayerManager allBinaryGameLayerManager,
+                    public GDCustomGameLayer(
                         final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
                         final BasicArrayList behaviorList,
                         final String gdName, final Group[] groupInterface,
@@ -305,10 +305,6 @@ Created By: Travis Berthelot
         </xsl:if>
                             gdObject, animationBehavior);
 
-        <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
-            this.allBinaryGameLayerManager = allBinaryGameLayerManager;
-            //LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR + allBinaryGameLayerManager, this, commonStrings.CONSTRUCTOR));
-        </xsl:if>
 <!--
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
         <xsl:for-each select="layouts" >
@@ -331,8 +327,6 @@ Created By: Travis Berthelot
 -->
 
         <xsl:if test="contains($foundOtherViewPosition, 'found')" >
-                        this.allBinaryGameLayerManager = allBinaryGameLayerManager;
-                        
                         StaticTileLayerIntoPositionViewPosition.layer = this;
         </xsl:if>
 
@@ -373,11 +367,11 @@ Created By: Travis Berthelot
                         <xsl:if test="1" >
                         this.playerGameInput = new PlayerGameInput(this.getGameKeyEventList(), 0);
 
-                        if (allBinaryGameLayerManager.getGameInfo().getGameType() != GameTypeFactory.getInstance().BOT)
-                        {   
+                        //if (allBinaryGameLayerManager.getGameInfo().getGameType() != GameTypeFactory.getInstance().BOT)
+                        //{   
                             GameKeyEventHandler.getInstance().addListener(playerGameInput, playerGameInput.getPlayerInputId());
                             //AllBinaryGameCanvas.addPlayerGameInput(((PlayerGameInputCompositeInterface) this.playerLayer).getPlayerGameInput());
-                        }
+                        //}
 
                         </xsl:if>
 
@@ -398,6 +392,17 @@ Created By: Travis Berthelot
 
                     }
 
+        <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
+        public void setGDObject(final AllBinaryGameLayerManager allBinaryGameLayerManager, final GDObject gdObject) throws Exception {
+            this.allBinaryGameLayerManager = allBinaryGameLayerManager;
+            LogUtil.put(LogFactory.getInstance(commonStrings.START + allBinaryGameLayerManager, this, commonStrings.PROCESS));
+            if(this.allBinaryGameLayerManager == null) {
+                throw new RuntimeException();
+            }
+            super.setGDObject(allBinaryGameLayerManager, gdObject);
+        }
+        </xsl:if>
+        
         <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
                     
         private int lastX;
@@ -426,9 +431,14 @@ Created By: Travis Berthelot
             if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
             final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
+            if(this.allBinaryGameLayerManager == null) {
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("0LayerManager was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
+                return;
+            }
+            
             final GeographicMapCompositeInterface geographicMapCompositeInterface
                     = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
-
+            
             final BasicGeographicMap[] geographicMapInterfaceArray
                     = geographicMapCompositeInterface.getGeographicMapInterface();
 
@@ -458,7 +468,7 @@ Created By: Travis Berthelot
                     }
                 }
             } else {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
                 GeographicMapEventHandler.getInstance().addListener(this);
             }
 
@@ -482,6 +492,11 @@ Created By: Travis Berthelot
 
             if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
             final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+
+            if(this.allBinaryGameLayerManager == null) {
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("1LayerManager was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
+                return;
+            }
 
             final GeographicMapCompositeInterface geographicMapCompositeInterface
                     = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
@@ -509,7 +524,7 @@ Created By: Travis Berthelot
                     }
                 }
             } else {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move2"));
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move2"));
                 GeographicMapEventHandler.getInstance().addListener(this);
             }
 
@@ -644,6 +659,11 @@ Created By: Travis Berthelot
 
     public void move() {
         try {
+            if(this.allBinaryGameLayerManager == null) {
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("2LayerManager was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
+                return;
+            }
+        
             final GeographicMapCompositeInterface geographicMapCompositeInterface
                     = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
 
@@ -677,6 +697,11 @@ Created By: Travis Berthelot
     public void right()
     {
         try {
+            if(this.allBinaryGameLayerManager == null) {
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("3LayerManager was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
+                return;
+            }
+        
             final GeographicMapCompositeInterface geographicMapCompositeInterface
                     = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
 
@@ -723,6 +748,11 @@ Created By: Travis Berthelot
     public void left()
     {
         try {
+            if(this.allBinaryGameLayerManager == null) {
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("4LayerManager was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
+                return;
+            }
+
             final GeographicMapCompositeInterface geographicMapCompositeInterface
                     = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
 

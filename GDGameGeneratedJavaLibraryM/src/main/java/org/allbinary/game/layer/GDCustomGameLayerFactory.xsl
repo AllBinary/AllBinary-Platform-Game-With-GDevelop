@@ -34,22 +34,21 @@ import org.allbinary.util.BasicArrayList;
 
 public class GDCustomGameLayerFactory extends GDGameLayerFactory
 {
-    private final AllBinaryGameLayerManager allBinaryGameLayerManager;
 
     private final int width;
     private final int height;
 
-    public GDCustomGameLayerFactory(final AllBinaryGameLayerManager allBinaryGameLayerManager,
+    public GDCustomGameLayerFactory(
             final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
             final Group[] groupInterface,
             final BasicArrayList behaviorList,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo) {
-        this(allBinaryGameLayerManager, gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, new RotationBehavior());
+        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, new RotationBehavior());
     }
     
-    public GDCustomGameLayerFactory(final AllBinaryGameLayerManager allBinaryGameLayerManager,
+    public GDCustomGameLayerFactory(
             final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
             final Group[] groupInterface,
             final BasicArrayList behaviorList,
@@ -63,8 +62,6 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             animationInterfaceFactoryInterfaceArray,
             proceduralAnimationInterfaceFactoryInterfaceArray,
             layerInfo, animationBehavior);
-
-        this.allBinaryGameLayerManager = allBinaryGameLayerManager;
         
         this.width = this.layerInfo.getWidth();
         this.height = this.layerInfo.getHeight();
@@ -88,7 +85,6 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
         }
 
         final GDCustomGameLayer gameLayer = new GDCustomGameLayer(
-                this.allBinaryGameLayerManager,
                 this.gameLayerList, this.gameLayerDestroyedList,
                 this.behaviorList,
                 name,
