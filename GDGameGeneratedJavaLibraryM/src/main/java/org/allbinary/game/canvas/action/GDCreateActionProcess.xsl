@@ -136,9 +136,11 @@ Created By: Travis Berthelot
                                     //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(<xsl:value-of select="text()" />GDGameLayer.getName()).append(" GDObject name: ").append(gdObject.name).toString(), this, "create", new Exception()));
                                 //}
                                 
-                                <xsl:value-of select="text()" />GDGameLayer.setGDObject(allBinaryGameLayerManager, gdObject);
+                                <xsl:value-of select="text()" />GDGameLayer.setGDObject(gdObject);
                             }
-
+                            
+                            <xsl:value-of select="text()" />GDGameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
+                                
                             //stringBuilder.delete(0, stringBuilder.length());
                             //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeId" /> for <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer); at: ").append(index).toString(), this, commonStrings.PROCESS));
                             //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="text()" />GDGameLayer.toString(), this, commonStrings.PROCESS));

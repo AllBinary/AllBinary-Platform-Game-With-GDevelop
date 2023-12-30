@@ -392,14 +392,13 @@ Created By: Travis Berthelot
 
                     }
 
-        <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
-        public void setGDObject(final AllBinaryGameLayerManager allBinaryGameLayerManager, final GDObject gdObject) throws Exception {
+        <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >            
+        public void setAllBinaryGameLayerManager(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
             this.allBinaryGameLayerManager = allBinaryGameLayerManager;
             LogUtil.put(LogFactory.getInstance(new StringMaker().append(commonStrings.START).append(this.getName()).append(CommonSeps.getInstance().SPACE).append(allBinaryGameLayerManager).toString(), this, commonStrings.PROCESS));
             if(this.allBinaryGameLayerManager == null) {
                 throw new RuntimeException();
             }
-            super.setGDObject(allBinaryGameLayerManager, gdObject);
         }
         </xsl:if>
         
@@ -408,6 +407,8 @@ Created By: Travis Berthelot
         private int lastX;
         private int lastY;
 
+        private int total;
+            
         //String lastString = "";
     public void move() {
         try {
@@ -432,7 +433,10 @@ Created By: Travis Berthelot
             final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
             if(this.allBinaryGameLayerManager == null) {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
+                if(total <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5) {
+                    total++;
+                    LogUtil.put(LogFactory.getInstance(new StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
+                }
                 return;
             }
             

@@ -211,13 +211,14 @@ Created By: Travis Berthelot
                                 </xsl:if></xsl:if></xsl:for-each><xsl:text>&#10;</xsl:text>
 
                                 <xsl:variable name="mapPositionHackX" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:if test="contains(text(), 'startX')" > &#42; scale</xsl:if></xsl:if></xsl:for-each></xsl:variable>
-                                <xsl:variable name="mapPositionHackY" ><xsl:for-each select="parameters" ><xsl:if test="position() = 5" ><xsl:if test="contains(text(), 'startY')" > - (scale * 24 * 119) - 12</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+                                <xsl:variable name="mapPositionHackY0" ><xsl:for-each select="parameters" ><xsl:if test="position() = 5" ><xsl:if test="contains(text(), 'startY')" >(</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+                                <xsl:variable name="mapPositionHackY" ><xsl:for-each select="parameters" ><xsl:if test="position() = 5" ><xsl:if test="contains(text(), 'startY')" > &#42; scale) + 36</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
                                 <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setX(<xsl:value-of select="$paramX" /><xsl:value-of select="$mapPositionHackX" />);<xsl:text>&#10;</xsl:text></xsl:if>
                                 </xsl:for-each>
                                 <xsl:text>                                </xsl:text><xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setY(<xsl:value-of select="$paramY" /><xsl:value-of select="$mapPositionHackY" />);</xsl:if></xsl:for-each>
+                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setY(<xsl:value-of select="$mapPositionHackY0" /><xsl:value-of select="$paramY" /><xsl:value-of select="$mapPositionHackY" />);</xsl:if></xsl:for-each>
                                     
                         </xsl:if>
                                 

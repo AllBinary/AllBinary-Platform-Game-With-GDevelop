@@ -45,6 +45,7 @@ import org.allbinary.game.configuration.event.ChangedGameFeatureListener;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GameFeature;
 import org.allbinary.game.configuration.feature.GameFeatureFactory;
+import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
 import org.allbinary.game.combat.canvas.CombatGameCanvas;
 import org.allbinary.game.displayable.canvas.BaseMenuBehavior;
@@ -71,6 +72,8 @@ import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
+import org.allbinary.graphics.opengles.CurrentDisplayableFactory;
+import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.graphics.paint.InitUpdatePaintable;
 import org.allbinary.graphics.paint.NullPaintable;
@@ -674,6 +677,29 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         this.downKeyEventHandler.removeListener(playerGameInput);
         this.upKeyEventHandler.removeListener(playerGameInput);
+    }
+
+    public void setRunning(final boolean running) 
+    {
+        super.setRunning(running);
+
+        try
+        {
+            final Features features = Features.getInstance();
+            
+            //If game thread is not actually running
+            if ((features.isDefault(OpenGLFeatureFactory.getInstance().OPENGL) ||
+                    features.isDefault(HTMLFeatureFactory.getInstance().HTML))
+                    <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> !running)
+            {
+                final CurrentDisplayableFactory currentDisplayableFactory = CurrentDisplayableFactory.getInstance();
+                currentDisplayableFactory.clearRunnable();
+                this.end();
+            }
+        } catch (Exception e)
+        {
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, SET_RUNNING, e));
+        }        
     }
 
     //Special end2 case for GDevelop
