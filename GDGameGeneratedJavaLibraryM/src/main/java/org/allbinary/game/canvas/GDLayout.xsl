@@ -111,6 +111,7 @@ Created By: Travis Berthelot
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
+                        private final GameTickTimeDelayHelperFactory gameTickTimeDelayHelperFactory = GameTickTimeDelayHelperFactory.getInstance()
                         
                         private final StringBuilder stringBuilder = new StringBuilder();
                         
@@ -244,7 +245,7 @@ Created By: Travis Berthelot
                         }
                     </xsl:for-each>
 
-                        globals.lastStartTime = GameTickTimeDelayHelperFactory.getInstance().getStartTime();
+                        globals.lastStartTime = gameTickTimeDelayHelperFactory.getStartTime();
                     
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
