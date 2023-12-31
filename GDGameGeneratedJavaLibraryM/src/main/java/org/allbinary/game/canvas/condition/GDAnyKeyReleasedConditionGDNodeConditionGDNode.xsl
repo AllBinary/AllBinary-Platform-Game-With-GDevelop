@@ -38,7 +38,7 @@ Created By: Travis Berthelot
                             super.processStats();
                             LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             //<xsl:value-of select="parameters[2]" />
-                            globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>] = new GameInputProcessor() {
+                            globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>] = new GDRGameInputProcessor() {
                                 
                                 private boolean hasPressed = false;
                                 

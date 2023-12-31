@@ -38,7 +38,7 @@ Created By: Travis Berthelot
                             super.processStats();
                             LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             //<xsl:value-of select="parameters[2]" />
-                            globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>] = new GameInputProcessor() {
+                            final GDRGameInputProcessor gameInputProcessor = new GDRGameInputProcessor() {
                                 
                                 private boolean hasPressed = false;
                                 
@@ -84,11 +84,19 @@ Created By: Travis Berthelot
                                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                             </xsl:for-each>
                                     }
+                                    
                                 }
                             };
 
-                            //Make sure we only call this 1 time
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);                                                        
+                            if(globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>] != null) {
+                                final GDRGameInputProcessor gameInputProcessor2 = (GDRGameInputProcessor) globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>];
+                                gameInputProcessor2.releasedGameInputProcessor = gameInputProcessor;
+                            } else {
+                                globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>] = gameInputProcessor;
+                                //Make sure we only call this 1 time
+                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);                                                        
+                            }
+
                             return true;
                         }
                     };

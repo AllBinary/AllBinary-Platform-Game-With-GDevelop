@@ -68,6 +68,8 @@ Created By: Travis Berthelot
                 
                 import org.allbinary.animation.special.SpecialAnimation;
                 
+                import org.allbinary.game.input.GDRGameInputProcessor;
+
                 import org.allbinary.game.input.GameInputProcessor;
                 import org.allbinary.game.input.InputFactory;
                 import org.allbinary.game.input.event.GameKeyEvent;

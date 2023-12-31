@@ -39,10 +39,11 @@ Created By: Travis Berthelot
                             LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                             //<xsl:value-of select="parameters[2]" />
-                            globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>] = new GameInputProcessor() {
+                            globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>] = new GDRGameInputProcessor() {
                             
                                 public void process(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
                                 {
+                                    this.releasedGameInputProcessor.process(allbinaryLayerManager, gameKeyEvent);
 
                             <xsl:for-each select="../events" >
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
@@ -114,6 +115,8 @@ Created By: Travis Berthelot
                                 //Action - //<xsl:value-of select="type/value" /> - call
                                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                             </xsl:for-each>
+
+                                    this.releasedGameInputProcessor.processReleased(allbinaryLayerManager, gameKeyEvent);
 
                                 }
 
