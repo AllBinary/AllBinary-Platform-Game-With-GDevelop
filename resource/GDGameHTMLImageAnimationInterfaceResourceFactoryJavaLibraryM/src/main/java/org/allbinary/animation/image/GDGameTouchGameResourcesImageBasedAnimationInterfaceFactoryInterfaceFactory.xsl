@@ -149,6 +149,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
 
                     
                     <xsl:call-template name="touchAnimationFactory" >
+                        <xsl:with-param name="platform" >HTML</xsl:with-param>
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>

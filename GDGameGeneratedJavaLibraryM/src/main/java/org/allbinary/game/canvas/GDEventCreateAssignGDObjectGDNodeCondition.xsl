@@ -16,6 +16,7 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
+    <xsl:import href="./condition/GDTextContainerCapabilityTextContainerBehaviorValueConditionGDNode.xsl" />
     <xsl:import href="./condition/GDOnceConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAlwaysConditionGDNode.xsl" />
     <xsl:import href="./condition/GDOrConditionGDNode.xsl" />
@@ -24,6 +25,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDLayerVisibleConditionGDNode.xsl" />
     <xsl:import href="./condition/GDKeyFromTextPressedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDKeyFromTextReleasedConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDAnyKeyReleasedConditionGDNodeConditionGDNode.xsl" />
     <xsl:import href="./condition/GDKeyPressedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSystemInfoIsMobileConditionGDNode.xsl" />
     <xsl:import href="./condition/GDTimerConditionGDNode.xsl" />
@@ -72,7 +74,13 @@ Created By: Travis Berthelot
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                 <xsl:variable name="conditionNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
-                                
+
+                <xsl:if test="$typeValue = 'TextContainerCapability::TextContainerBehavior::Value'" >
+
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+<!--                    <xsl:call-template name="textContainerCapabilityTextContainerBehaviorValueConditionGDNode" />-->
+
+                </xsl:if>
                 <xsl:if test="$typeValue = 'Inventory::Count'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
@@ -448,9 +456,9 @@ Created By: Travis Berthelot
                     <xsl:call-template name="keyPressedConditionGDNode" />
 
                 </xsl:if>
-                    <xsl:if test="$typeValue = 'KeyReleased'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                    </xsl:if>
+                <xsl:if test="$typeValue = 'KeyReleased'" >
+                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
                 <xsl:if test="$typeValue = 'KeyFromTextPressed'" >
                     
                     <xsl:call-template name="keyFromTextPressedConditionGDNode" />
@@ -465,7 +473,10 @@ Created By: Travis Berthelot
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                     </xsl:if>
                     <xsl:if test="$typeValue = 'AnyKeyReleased'" >
+
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+<!--                        <xsl:call-template name="anyKeyReleasedConditionGDNode" />-->
+
                     </xsl:if>
 
                     <xsl:if test="$typeValue = 'CursorX'" >
