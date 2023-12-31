@@ -45,7 +45,18 @@ Created By: Travis Berthelot
                             <xsl:if test="position() = 1" >
                                 if(gameLayer.gdObject.setAnimation(</xsl:if>
                                 <xsl:if test="position() = last()" >
-                                    <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                    <xsl:variable name="animationName" >
+                                        <xsl:if test="not(contains(text(), 'Variable'))" >
+                                        <xsl:call-template name="upper-case" >
+                                            <xsl:with-param name="text" >
+                                                <xsl:value-of select="translate(text(), '&quot;', '')" />
+                                            </xsl:with-param>
+                                        </xsl:call-template>
+                                        </xsl:if>
+                                        <xsl:if test="contains(text(), 'Variable')" >
+                                            <xsl:value-of select="translate(text(), '&quot;', '')" />
+                                        </xsl:if>
+                                    </xsl:variable>
                                     <xsl:call-template name="globals" >
                                         <xsl:with-param name="name" >
                                             <xsl:value-of select="$name" />
@@ -85,7 +96,18 @@ Created By: Travis Berthelot
                             //<xsl:value-of select="text()" />
                             if(gameLayer.gdObject.setAnimation(</xsl:if>
                             <xsl:if test="position() = last()" >
-                                <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                    <xsl:variable name="animationName" >
+                                        <xsl:if test="not(contains(text(), 'Variable'))" >
+                                        <xsl:call-template name="upper-case" >
+                                            <xsl:with-param name="text" >
+                                                <xsl:value-of select="translate(text(), '&quot;', '')" />
+                                            </xsl:with-param>
+                                        </xsl:call-template>
+                                        </xsl:if>
+                                        <xsl:if test="contains(text(), 'Variable')" >
+                                            <xsl:value-of select="translate(text(), '&quot;', '')" />
+                                        </xsl:if>
+                                    </xsl:variable>
                                 <xsl:call-template name="globals" >
                                     <xsl:with-param name="name" >
                                         <xsl:value-of select="$name" />
@@ -131,7 +153,18 @@ Created By: Travis Berthelot
                                 //<xsl:value-of select="text()" />
                                 if(gameLayer.gdObject.setAnimation(</xsl:if>
                                 <xsl:if test="position() = last()" >
-                                    <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                    <xsl:variable name="animationName" >
+                                        <xsl:if test="not(contains(text(), 'Variable'))" >
+                                        <xsl:call-template name="upper-case" >
+                                            <xsl:with-param name="text" >
+                                                <xsl:value-of select="translate(text(), '&quot;', '')" />
+                                            </xsl:with-param>
+                                        </xsl:call-template>
+                                        </xsl:if>
+                                        <xsl:if test="contains(text(), 'Variable')" >
+                                            <xsl:value-of select="translate(text(), '&quot;', '')" />
+                                        </xsl:if>
+                                    </xsl:variable>
                                     <xsl:call-template name="globals" >
                                         <xsl:with-param name="name" >
                                             <xsl:value-of select="$name" />

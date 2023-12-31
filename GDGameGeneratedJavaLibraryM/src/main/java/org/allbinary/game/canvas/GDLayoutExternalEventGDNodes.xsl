@@ -96,6 +96,8 @@ Created By: Travis Berthelot
 
                     private final CommonStrings commonStrings = CommonStrings.getInstance();
                     private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                    
+                    private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
                     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
 

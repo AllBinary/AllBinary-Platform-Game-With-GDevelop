@@ -115,6 +115,7 @@ Created By: Travis Berthelot
                         
                         private final StringBuilder stringBuilder = new StringBuilder();
                         
+                        private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GDGlobalsSpecialAnimation gdGlobalsSpecialAnimation = GDGlobalsSpecialAnimation.getInstance();
 
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals;

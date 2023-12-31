@@ -64,10 +64,15 @@ Created By: Travis Berthelot
 
                 package org.allbinary.game.canvas;
 
+                import javax.microedition.lcdui.Graphics;
+                
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
-
+                
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
+                import org.allbinary.game.layer.GDGameLayer;
+                import org.allbinary.game.layout.GDNode;
+                import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.logic.string.CommonStrings;
                 import org.allbinary.logic.string.CommonSeps;
@@ -75,6 +80,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.util.ArrayUtil;
+                import org.allbinary.util.BasicArrayList;
 
                 //LayoutExternalCondition name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes extends SpecialAnimation

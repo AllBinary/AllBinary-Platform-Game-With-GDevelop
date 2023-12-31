@@ -28,6 +28,7 @@
         <xsl:param name="layoutName" />
 
         //externalEventsClassProperty - START
+<!--        
         <xsl:for-each select="../externalEvents" >
             <xsl:if test="$layoutName = associatedLayout" >
                 <xsl:call-template name="externalEventsClassPropertyActions" >
@@ -37,6 +38,7 @@
                 </xsl:call-template>
             </xsl:if>
         </xsl:for-each>
+-->        
         //externalEventsClassProperty - END
 
     </xsl:template>

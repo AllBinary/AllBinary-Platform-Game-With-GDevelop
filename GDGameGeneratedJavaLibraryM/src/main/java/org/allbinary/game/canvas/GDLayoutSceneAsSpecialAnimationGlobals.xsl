@@ -40,42 +40,6 @@ Created By: Travis Berthelot
 
     <xsl:output method="html" indent="yes" />
 
-    <xsl:template name="variables" >
-                        <xsl:for-each select="variables" >
-                            <xsl:if test="type = 'structure'" >
-                        public final GDStructure<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = new GDStructure<xsl:value-of select="name" />();
-                            </xsl:if>
-                            <xsl:if test="type = 'string'" >
-                                <xsl:if test="number(value) != value" >
-                                    public String <xsl:value-of select="name" /> = <xsl:if test="value = ''" >StringUtil.getInstance().EMPTY_STRING</xsl:if><xsl:if test="value != ''" >"<xsl:value-of select="value" />"</xsl:if>;
-                                </xsl:if>
-                                <xsl:if test="number(value) = value" >
-                        public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                                </xsl:if>
-                            </xsl:if>
-                            <xsl:if test="type = 'boolean'" >
-                        public boolean <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                            </xsl:if>
-                            <xsl:if test="type = 'number'" >
-                        public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                            </xsl:if>
-                            <xsl:if test="type = 'array'" >
-                        //array
-                                <xsl:for-each select="children" >
-                        //public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="value" />";
-                                </xsl:for-each>
-                        
-                        public String[] <xsl:value-of select="name" /> = {
-                                        <xsl:for-each select="children" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template>,
-                                        <xsl:text>&#10;</xsl:text>
-                                        </xsl:for-each>                                        
-                        };
-                        
-                            </xsl:if>
-
-                        </xsl:for-each>
-    </xsl:template>
-
     <xsl:template match="/game">
         //game
         
@@ -193,22 +157,10 @@ public class GDStructure {
                         public final Graphics graphics = new Graphics();
                         //public final BasicArrayList ZERO_GD_OBJECT = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                         
-                    <xsl:call-template name="generateIndexToNodeIdMapping" >
-                        <xsl:with-param name="totalRecursion" >0</xsl:with-param>
-                    </xsl:call-template>
-                    <xsl:variable name="total" ><xsl:call-template name="generateGDNodeTotal" ></xsl:call-template></xsl:variable>
-                        private final int MAX_NODES = <xsl:value-of select="$total" />;
-                        public final GDNode[] nodeArray = new GDNode[MAX_NODES];
-                        <!--
-                        public final int FAKE_COLLISION_NODE_ID = MAX_NODES - 1;
-                        -->
-
-                        public final BasicArrayList[] channelSoundArray = new BasicArrayList[4];
-
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
-                        public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="name" />";
-                        public final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>);
+                        public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME = "<xsl:value-of select="name" />";
+                        public final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME);
                         public final BasicArrayList <xsl:value-of select="name" />GDObjectListOfList = new BasicArrayList();
                         public final BasicArrayList <xsl:value-of select="name" />GDGameLayerListOfList = new BasicArrayList();
                         public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerListOfList = new BasicArrayList();
@@ -296,11 +248,13 @@ public class GDStructure {
                     </xsl:if>
 
                     //eventsClassPropertyActions - START
+<!--                    
                     <xsl:call-template name="eventsClassPropertyActions" >
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
                     </xsl:call-template>
+-->
                     //eventsClassPropertyActions - END
                     
                     <xsl:call-template name="objectsAssignGroup" >
@@ -352,11 +306,6 @@ public class GDStructure {
                         </xsl:with-param>
                     </xsl:call-template>
                     //eventsClassPropertyArrayActions - END
-
-                        final int size = channelSoundArray.length;
-                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            channelSoundArray[index] = new BasicArrayList();
-                        }
                         
                         final LayerManagerEventHandler layerManagerEventHandler = LayerManagerEventHandler.getInstance();
                         

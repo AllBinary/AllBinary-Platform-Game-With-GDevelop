@@ -64,6 +64,8 @@ Created By: Travis Berthelot
 
                 package org.allbinary.game.canvas;
 
+                import javax.microedition.lcdui.Graphics;
+                
                 import org.json.me.JSONObject;
                 import org.json.me.JSONTokener;
 
@@ -79,6 +81,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.CommonSeps;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.ArrayUtil;
 
@@ -101,6 +104,7 @@ Created By: Travis Berthelot
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        private final GameTickTimeDelayHelperFactory gameTickTimeDelayHelperFactory = GameTickTimeDelayHelperFactory.getInstance();
                         
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
@@ -149,6 +153,10 @@ Created By: Travis Berthelot
 
                     public int Random(final int range) {
                         return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
+                    }
+
+                    public String VariableString(final String string) {
+                        return string;
                     }
 
                     public int Variable(final int value) {

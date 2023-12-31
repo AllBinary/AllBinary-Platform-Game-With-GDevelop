@@ -36,7 +36,7 @@ Created By: Travis Berthelot
             </xsl:variable>
             <xsl:if test="string-length($foundCollisionNP) > 0" >
                 <xsl:for-each select="actions" >
-            //globals.nodeArray[globals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:for-each>
             </xsl:if>
             <xsl:call-template name="mapCollisionMaskHack" />
@@ -62,7 +62,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="actions" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     if(this.gdObject.name == globals<xsl:value-of select="$layoutIndex" />.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>) {
-                        this.collisionList.add(globals<xsl:value-of select="$layoutIndex" />.nodeArray[globals<xsl:value-of select="$layoutIndex" />.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                        this.collisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                     }
                 </xsl:for-each>
             </xsl:if>
@@ -355,6 +355,7 @@ Created By: Travis Berthelot
 //                        );
         </xsl:if>
 
+        final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
 

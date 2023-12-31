@@ -99,10 +99,11 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.media.audio.Sound;
-                import org.allbinary.util.BasicArrayList;
                 import org.allbinary.math.NoDecimalTrigTable;
+                import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.ArrayUtil;
+                import org.allbinary.util.BasicArrayList;
                 
                 //LayoutAction name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes extends SpecialAnimation
@@ -124,6 +125,7 @@ Created By: Travis Berthelot
                         private final CommonStrings commonStrings = CommonStrings.getInstance();                        
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
+                        private final GameTickTimeDelayHelperFactory gameTickTimeDelayHelperFactory = GameTickTimeDelayHelperFactory.getInstance();
 
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
@@ -225,6 +227,10 @@ Created By: Travis Berthelot
 
                     public double Variable(final double value) {
                         return value;
+                    }
+
+                    public String VariableString(final String string) {
+                        return string;
                     }
 
                     public String VariableString(final Object object) {

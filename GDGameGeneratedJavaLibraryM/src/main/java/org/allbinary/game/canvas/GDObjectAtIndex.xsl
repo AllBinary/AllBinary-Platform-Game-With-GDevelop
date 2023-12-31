@@ -29,7 +29,20 @@ Created By: Travis Berthelot
                                         <xsl:value-of select="$name" />GDGameLayer2 = ((GDGameLayer) gameLayerArray[index]);
                                         if(<xsl:value-of select="$name" />GDGameLayer2 != null) {
                                             //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(" GDGameLayer2 name: ").append(<xsl:value-of select="$name" />GDGameLayer2.getName()).append(" GD name: ").append(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>).toString(), this, "param"));
-                                            if(<xsl:value-of select="$name" />GDGameLayer2.getName().startsWith(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>)) {
+                                            <xsl:variable name="hasObject" >
+                                                <xsl:for-each select="//objects" >
+                                                    <xsl:if test="$name = name" >found</xsl:if>
+                                                </xsl:for-each>
+                                            </xsl:variable>
+                                            <xsl:variable name="NAME" >
+                                                <xsl:call-template name="upper-case" >
+                                                    <xsl:with-param name="text" >
+                                                        <xsl:value-of select="$name" />
+                                                    </xsl:with-param>
+                                                </xsl:call-template>
+                                                <xsl:if test="contains($hasObject, 'found')" >_OBJECT_NAME</xsl:if>
+                                            </xsl:variable>
+                                            if(<xsl:value-of select="$name" />GDGameLayer2.getName().startsWith(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template><xsl:value-of select="$NAME" />)) {
                                                 <xsl:value-of select="$name" />GDGameLayer1 = <xsl:value-of select="$name" />GDGameLayer2;
                                             }
                                         }
@@ -141,16 +154,16 @@ Created By: Travis Berthelot
                     </xsl:variable>
 
                     <!--
-                    <xsl:if test="$thisNodeArray = 'globals.nodeArray[11047]'" >
+                    <xsl:if test="$thisNodeArray = 'gameGlobals.nodeArray[11047]'" >
                         //Hackish - gdNodeList
                         if(globals.playerGDGameLayerList.size() == 0) {
                             return;
                         }
 
                         final GDGameLayer gdGameLayer = ((GDGameLayer) globals.playerGDGameLayerList.get(0));
-                        globals.nodeArray[11047].gameLayerArray[0] = gdGameLayer;
-                        //globals.nodeArray[11047].processM(globals.nodeArray[11047].gameLayerArray, null, null);
-                        globals.nodeArray[11047].processM(globals.nodeArray[11047].gameLayerArray);
+                        gameGlobals.nodeArray[11047].gameLayerArray[0] = gdGameLayer;
+                        //gameGlobals.nodeArray[11047].processM(gameGlobals.nodeArray[11047].gameLayerArray, null, null);
+                        gameGlobals.nodeArray[11047].processM(gameGlobals.nodeArray[11047].gameLayerArray);
                     </xsl:if>
                     -->
 
@@ -178,17 +191,17 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($parametersAsString, $name) = text()" >
                             <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                         //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - //collide - Sprite
-                        gdNodeList.add(globals.nodeArray[globals.NODE_<xsl:value-of select="$actionNodeId" />]);
+                        gdNodeList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$actionNodeId" />]);
                             </xsl:if>
                             <xsl:if test="$typeValue = 'TextObject::Text'" >
                         //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex2 - //collide - TextObject::Text
-                        gdNodeList.add(globals.nodeArray[globals.NODE_<xsl:value-of select="$actionNodeId" />]);
+                        gdNodeList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$actionNodeId" />]);
                             </xsl:if>
                         </xsl:if>
 
                     </xsl:for-each>
 
-                        gdNodeList.add(globals.nodeArray[globals.FAKE_COLLISION_NODE_ID]);
+                        gdNodeList.add(gameGlobals.nodeArray[gameGlobals.FAKE_COLLISION_NODE_ID]);
 
                         //When gdNodeList size is 1 with only the 1 object above then nothing occurs
                         final GDNode node = ((GDNode) gdNodeList.get(0));
