@@ -27,6 +27,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDKeyFromTextReleasedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAnyKeyReleasedConditionGDNodeConditionGDNode.xsl" />
     <xsl:import href="./condition/GDKeyPressedConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDKeyReleasedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSystemInfoIsMobileConditionGDNode.xsl" />
     <xsl:import href="./condition/GDTimerConditionGDNode.xsl" />
     <xsl:import href="./condition/GDObjectTimerConditionGDNode.xsl" />
@@ -457,7 +458,9 @@ Created By: Travis Berthelot
 
                 </xsl:if>
                 <xsl:if test="$typeValue = 'KeyReleased'" >
-                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    
+                    <xsl:call-template name="keyFromTextReleasedConditionGDNode" />
+
                 </xsl:if>
                 <xsl:if test="$typeValue = 'KeyFromTextPressed'" >
                     
