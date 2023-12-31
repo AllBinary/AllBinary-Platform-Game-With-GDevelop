@@ -90,6 +90,17 @@ Created By: Travis Berthelot
                     }
 
                     <xsl:if test="animations" >
+                    public String getAnimation(final String animationName) {
+                        final int size = ANIMATION_NAMES.length;
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            if(this.ANIMATION_NAMES[index].compareTo(animationName) == 0) {
+                                //LogUtil.put(LogFactory.getInstance(animationName, this, "getAnimation"));
+                                return this.ANIMATION_NAMES[index];
+                            }
+                        }
+                        throw new RuntimeException();
+                    }
+                    
                     public boolean setAnimation(final String animationName) {
                         final int size = ANIMATION_NAMES.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {

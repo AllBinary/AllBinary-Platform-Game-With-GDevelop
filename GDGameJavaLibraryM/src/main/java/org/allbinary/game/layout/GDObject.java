@@ -78,6 +78,10 @@ public class GDObject
         this.type = type;
     }
 
+    public String getAnimation(final String animationName) {
+        throw new RuntimeException();
+    }
+
     public boolean setAnimation(final String animationName) {
         return false;
     }
