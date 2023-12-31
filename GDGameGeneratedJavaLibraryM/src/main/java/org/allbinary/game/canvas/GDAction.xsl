@@ -16,6 +16,7 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
+    <!-- TWB - Hack - Replace the templates in this file with correct logic -->
     <xsl:template name="actionsWithIndexesProcess" >
         <xsl:param name="caller" />
         <xsl:param name="layoutIndex" />
