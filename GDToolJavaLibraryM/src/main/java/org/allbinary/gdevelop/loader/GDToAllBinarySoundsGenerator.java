@@ -41,6 +41,10 @@ public class GDToAllBinarySoundsGenerator
     private final String SOUND = "Sound";
     private final String _JAVA = ".java";
     
+    private final String SKIPPING_SOUND = "Skpping Sound: ";
+    private final String SELECT = "select";
+    private final String ERROR = "error";
+    
     public void processExpressionParam(final String param, final String resourceString) {
         LogUtil.put(LogFactory.getInstance(SOUND + param, this, CommonStrings.getInstance().PROCESS));
         
@@ -57,6 +61,17 @@ public class GDToAllBinarySoundsGenerator
 
         //int endIndex = param.lastIndexOf('.');
         final String fileAsString = param.substring(startIndex);
+        
+        if(fileAsString.compareTo(SELECT) == 0) {
+            LogUtil.put(LogFactory.getInstance(SKIPPING_SOUND + fileAsString, this, CommonStrings.getInstance().PROCESS));
+            return;
+        }
+
+        if(fileAsString.compareTo(ERROR) == 0) {
+            LogUtil.put(LogFactory.getInstance(SKIPPING_SOUND + fileAsString, this, CommonStrings.getInstance().PROCESS));
+            return;
+        }
+
         LogUtil.put(LogFactory.getInstance(SOUND + fileAsString, this, CommonStrings.getInstance().PROCESS));
         
         this.gdResources.playSoundAndroidResourceNameList.add(fileAsString);

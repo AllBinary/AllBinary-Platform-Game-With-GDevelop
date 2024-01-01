@@ -25,7 +25,6 @@ Created By: Travis Berthelot
         <xsl:param name="createdObjectsAsString" />
         <xsl:param name="conditionEventPosition" />
         <xsl:param name="conditionToProcess" />
-        <xsl:param name="actionToProcess" />
         <xsl:param name="otherEventToProcess" />
         <xsl:param name="objectEventToProcess" />
          
@@ -108,39 +107,6 @@ Created By: Travis Berthelot
                 </xsl:call-template>
             </xsl:variable>
 
-            <!-- actions - START -->
-            <xsl:if test="$actionToProcess = ''" >
-            <xsl:for-each select="actions" >
-                <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
-                <xsl:variable name="typeValue" select="type/value" />
-                <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-
-                <xsl:if test="$typeValue = 'PlaySound'" >
-                       <xsl:variable name="fileName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:call-template name="after-lastIndexOf"><xsl:with-param name="string" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="char" >/</xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
-                       <xsl:variable name="fileName2" ><xsl:value-of select="translate(substring-before($fileName, '.'), '_', ' ')" /></xsl:variable>
-                       <xsl:variable name="fileName3" ><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$fileName2" /></xsl:with-param></xsl:call-template></xsl:variable>                       
-                    //PlaySound
-                    if(!soundList.contains(org.allbinary.game.resource.GD<xsl:value-of select="translate($fileName3, ' ', '')" />Sound.getInstance())) {
-                        soundList.add(org.allbinary.game.resource.GD<xsl:value-of select="translate($fileName3, ' ', '')" />Sound.getInstance());
-                    }
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlaySoundCanal'" >
-                       <xsl:variable name="fileName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:call-template name="after-lastIndexOf"><xsl:with-param name="string" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="char" >/</xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
-                       <xsl:variable name="fileName2" ><xsl:value-of select="translate(substring-before($fileName, '.'), '_', ' ')" /></xsl:variable>
-                       <xsl:variable name="fileName3" ><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$fileName2" /></xsl:with-param></xsl:call-template></xsl:variable>                       
-                    //PlaySoundCanal
-                    if(!soundList.contains(org.allbinary.game.resource.GD<xsl:value-of select="translate($fileName3, ' ', '')" />Sound.getInstance())) {
-                        soundList.add(org.allbinary.game.resource.GD<xsl:value-of select="translate($fileName3, ' ', '')" />Sound.getInstance());
-                    }
-                </xsl:if>
-                <xsl:if test="$typeValue = 'StopSoundCanal'" >
-                    //StopSoundCanal
-                </xsl:if>
-
-            </xsl:for-each>
-            </xsl:if>
-            <!-- actions - END -->
-
             <xsl:if test="$objectEventToProcess = ''" >
             <xsl:call-template name="objectGDObjectGDNodes" >
                 <xsl:with-param name="layoutIndex" >
@@ -177,9 +143,6 @@ Created By: Travis Berthelot
                 <xsl:with-param name="conditionToProcess" >
                     <xsl:value-of select="$conditionToProcess" />
                 </xsl:with-param>
-                <xsl:with-param name="actionToProcess" >
-                    <xsl:value-of select="$actionToProcess" />
-                </xsl:with-param>
                 <xsl:with-param name="otherEventToProcess" >
                     <xsl:value-of select="$otherEventToProcess" />
                 </xsl:with-param>
@@ -193,6 +156,88 @@ Created By: Travis Berthelot
     
         //<xsl:value-of select="$caller" /> - eventsCreateAssignGDObject - END
 
+    </xsl:template>
+
+    <xsl:template name="findSoundInAction" >
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="file" />
+
+        <xsl:for-each select="/game" >
+        <xsl:for-each select="layouts" >
+            <xsl:if test="position() - 1 = $layoutIndex" >
+        <xsl:for-each select="events" >
+            <xsl:for-each select="actions" >
+                <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
+                <xsl:variable name="typeValue" select="type/value" />
+                <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                
+                <xsl:if test="$param = $file" >
+
+                <xsl:if test="$typeValue = 'PlayMusic'" >
+                    //PlayMusic - <xsl:value-of select="$file" />
+                </xsl:if>
+                <xsl:if test="$typeValue = 'PlaySound'" >
+                    //PlaySound - <xsl:value-of select="$file" />
+                </xsl:if>
+                <xsl:if test="$typeValue = 'PlaySoundCanal'" >
+                    //PlaySoundCanal - <xsl:value-of select="$file" />
+                </xsl:if>
+                <xsl:if test="$typeValue = 'StopSoundCanal'" >
+                    //StopSoundCanal - <xsl:value-of select="$file" />
+                </xsl:if>
+
+                </xsl:if>
+
+            </xsl:for-each>
+
+            <xsl:call-template name="findSoundInAction" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>
+
+            </xsl:call-template>
+        </xsl:for-each>
+            </xsl:if>
+        </xsl:for-each>
+        </xsl:for-each>
+
+    </xsl:template>
+
+    <xsl:template name="playsoundloading" >
+        <xsl:param name="layoutIndex" />
+
+            <xsl:for-each select="/game/resources" >
+                //Resources
+                <xsl:for-each select="resources" >
+                    <xsl:if test="contains(file, '.ogg') or contains(file, '.wav') or contains(file, '.mp3')" >
+<!--                    //Audio File - <xsl:value-of select="file" />-->
+                        <xsl:variable name="thisLayoutHasThisSoundResource" >
+                            <xsl:call-template name="findSoundInAction" >                        
+                                <xsl:with-param name="totalRecursions" >
+                                    <xsl:value-of select="0" />
+                                </xsl:with-param>
+                                <xsl:with-param name="layoutIndex" >
+                                    <xsl:value-of select="$layoutIndex" />
+                                </xsl:with-param>
+                                <xsl:with-param name="file" >
+                                    <xsl:value-of select="file" />
+                                </xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:if test="contains($thisLayoutHasThisSoundResource, 'Play')" >
+                    <xsl:variable name="fileName" ><xsl:call-template name="after-lastIndexOf"><xsl:with-param name="string" ><xsl:value-of select="file" /></xsl:with-param><xsl:with-param name="char" >/</xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:variable name="fileName2" ><xsl:value-of select="translate(substring-before($fileName, '.'), '_', ' ')" /></xsl:variable>
+                    <xsl:variable name="fileName3" ><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$fileName2" /></xsl:with-param></xsl:call-template></xsl:variable>                       
+                    //Audio File with Action - <xsl:value-of select="file" />
+                    //if(!soundList.contains(org.allbinary.game.resource.GD<xsl:value-of select="translate($fileName3, ' ', '')" />Sound.getInstance())) {
+                        soundList.add(org.allbinary.game.resource.GD<xsl:value-of select="translate($fileName3, ' ', '')" />Sound.getInstance());
+                    //}
+                        </xsl:if>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:for-each>
+                                
     </xsl:template>
 
 </xsl:stylesheet>

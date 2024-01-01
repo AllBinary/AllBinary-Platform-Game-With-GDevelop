@@ -165,8 +165,8 @@ public class GDDelete {
 
         final BasicArrayList exclusionList21 = new BasicArrayList();
         
-        exclusionList21.add("GDGameSounds.java");
-        exclusionList21.add("GameSoundsFactory.java");
+        //exclusionList21.add("GDGameSounds.java");
+        //exclusionList21.add("GameSoundsFactory.java");
         
         final Vector files21 = fileListFetcher.getFiles(
               gdToolStrings.ROOT_PATH + "\\GDGameWavSoundsJavaLibraryM\\src\\main\\java\\org\\allbinary\\media\\audio", "java");
