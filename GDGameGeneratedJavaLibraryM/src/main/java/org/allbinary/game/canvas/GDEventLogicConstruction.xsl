@@ -65,7 +65,10 @@ Created By: Travis Berthelot
                             final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
                             gdGlobalsFactory.point = motionGestureEvent.getCurrentPoint();
                             
-                            
+                            <xsl:call-template name="actionIdsMovedMotionGestureEvent" >
+                                <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                            </xsl:call-template>
+
                             } catch(Exception e) {
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
                             }

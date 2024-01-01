@@ -21,16 +21,17 @@ Created By: Travis Berthelot
         <xsl:param name="parametersAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
-                    //sourisSurObjetConditionGDNode - //Condition - //SourisSurObjet - GDNode
+                    <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
+                    <xsl:variable name="conditions" ><xsl:for-each select="../../conditions" >found</xsl:for-each></xsl:variable>
+                    <xsl:variable name="release" ><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'MouseButtonReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="press" ><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
+        
+                    //sourisSurObjetConditionGDNode - //Condition - //SourisSurObjet - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
                     if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     
-                    <xsl:variable name="conditions" ><xsl:for-each select="../../conditions" >found</xsl:for-each></xsl:variable>
-                    <xsl:variable name="release" ><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'MouseButtonReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:variable name="press" ><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
-
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
 
@@ -41,6 +42,8 @@ Created By: Travis Berthelot
                         
                             public void run() {
                                 try {
+                                    //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
                                     gdNodeStatsFactory.push(0, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
 
                                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 7; index++) {
@@ -88,12 +91,14 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
 
+                        <xsl:if test="contains($press, 'found') or contains($release, 'found')" >
                             //if(this.currentRunnable != this.runnable) {
                                 this.currentRunnable = this.runnable;
                             //} else {
                                 //Best to not remark out when parent conditions include: SourisBouton, SourisSurObjet, or KeyFromTextPressed
                                 //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable already set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
                             //}
+                        </xsl:if>
 
                             return true;
                         }
@@ -102,11 +107,14 @@ Created By: Travis Berthelot
                         public void processReleased() throws Exception { //Timer
                             super.processReleasedStats();
 
+                        <xsl:if test="contains($press, 'found') or contains($release, 'found')" >
                             if(this.currentRunnable != NullRunnable.getInstance()) {
                                 this.currentRunnable = NullRunnable.getInstance();
                             } else {
                                 //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable was not set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
                             }
+                        </xsl:if>
+                        
                         }
                                                                         
                         //SourisSurObjet
@@ -141,6 +149,12 @@ Created By: Travis Berthelot
                                 if (RectangleCollisionUtil.isInside(gameLayer.getX(), gameLayer.getY() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY()))
                                 {
                                     //LogUtil.put(LogFactory.getInstance("Inside", this, commonStrings.PROCESS));
+                                    <xsl:if test="$inverted != 'true'" >
+                                    <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
+                                        runnable.run();
+                                    </xsl:if>
+                                    </xsl:if>
+                                    <xsl:if test="contains($press, 'found') or contains($release, 'found')" >
                                     final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
                                     if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
                                         
@@ -148,7 +162,9 @@ Created By: Travis Berthelot
                                         //Assume press when not parent condition telling us.
                                         </xsl:if>
 
+                                        
                                         this.process();
+                                        
                                         <!--
                                         <xsl:for-each select="../../actions" >
                                             <xsl:variable name="hasTimerChildCondition" ><xsl:call-template name="hasTimerChildCondition" /></xsl:variable>
@@ -206,6 +222,13 @@ Created By: Travis Berthelot
                                         </xsl:for-each>
                                     -->
                                     }
+                                    </xsl:if>
+                                } else {
+                                    <xsl:if test="$inverted = 'true'" >
+                                    <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
+                                        runnable.run();
+                                    </xsl:if>
+                                    </xsl:if>
                                 }
                             } 
                             //if(size == 0) {
