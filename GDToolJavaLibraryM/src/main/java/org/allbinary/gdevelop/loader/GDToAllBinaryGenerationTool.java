@@ -90,7 +90,20 @@ public class GDToAllBinaryGenerationTool
             //"GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameStart", "CanvasRunnable.java");
     private final BasicArrayList layoutList = new BasicArrayList();
 
+    private final String LOAD_STANDARD_EVENT = "loadStandardEvent";
+    
+    private final String LOAD_ACTIONS = "loadActions";
+    private final String ACTION_LIST_SIZE = "actionList size: ";
+    private final String INSTRUCTION_TYPE_VALUE = "instruction.typeValue: ";
+    private final String LAYOUT_TOTAL = "Layout Total: ";
+    private final String OBJECTS = "Objects: ";
+    private final String CONTENT_REMOVE = "Contentx remove: ";
+    private final String X = "x";
+    private final String PARAMETERS_EXPRESSION_LIST = "parametersExpressionList size: ";
+    private final String LOAD_EXPRESSION = "loadExpressions";
+    
     private final String PLAY_SOUND = "PlaySound";
+    private final String PLAY_MUSIC = "PlayMusic";
 
     public GDToAllBinaryGenerationTool()
     {
@@ -166,20 +179,20 @@ public class GDToAllBinaryGenerationTool
     public void xmlConversionHack(JSONObject gameAsConfigurationJSONObject) {
         final JSONArray layoutJSONArray = gameAsConfigurationJSONObject.getJSONArray(gdProjectStrings.LAYOUTS);
         final int size4 = layoutJSONArray.length();
-        LogUtil.put(LogFactory.getInstance("Layout Total: " + size4, this, CommonStrings.getInstance().PROCESS));
+        LogUtil.put(LogFactory.getInstance(LAYOUT_TOTAL + size4, this, CommonStrings.getInstance().PROCESS));
         for(int index2 = 0; index2 < size4; index2++) {
 
             final JSONObject layoutJSONObject = layoutJSONArray.getJSONObject(index2);
             final JSONArray jsonArray = layoutJSONObject.getJSONArray(gdProjectStrings.OBJECTS);
             final int size3 = jsonArray.length();
-            LogUtil.put(LogFactory.getInstance("Objects: " + size3, this, CommonStrings.getInstance().PROCESS));
+            LogUtil.put(LogFactory.getInstance(OBJECTS + size3, this, CommonStrings.getInstance().PROCESS));
             for (int index = 0; index < size3; index++) {
 
                 JSONObject jsonObject = jsonArray.getJSONObject(index);
                 if(jsonObject.has(this.gdProjectStrings.CONTENT)) {
-                    LogUtil.put(LogFactory.getInstance("Contentx remove: " + index, this, CommonStrings.getInstance().PROCESS));
+                    LogUtil.put(LogFactory.getInstance(CONTENT_REMOVE + index, this, CommonStrings.getInstance().PROCESS));
                     Object object = jsonObject.remove(gdProjectStrings.CONTENT);
-                    jsonObject.put(gdProjectStrings.CONTENT + "x", object);
+                    jsonObject.put(gdProjectStrings.CONTENT + X, object);
                 }
             }
         }
@@ -300,25 +313,28 @@ public class GDToAllBinaryGenerationTool
 
     private void loadStandardEvent(final GDStandardEvent standardEvent)
     {
-        LogUtil.put(LogFactory.getInstance(StringUtil.getInstance().EMPTY_STRING, this, "loadStandardEvent"));
+        LogUtil.put(LogFactory.getInstance(StringUtil.getInstance().EMPTY_STRING, this, LOAD_STANDARD_EVENT));
         this.loadEvents(standardEvent.eventList);
         this.loadActions(standardEvent.actionList);
     }
-
+    
     private void loadActions(final BasicArrayList actionList)
     {
         final int size = actionList.size();
         
-        LogUtil.put(LogFactory.getInstance("actionList size: " + size, this, "loadActions"));
+        LogUtil.put(LogFactory.getInstance(ACTION_LIST_SIZE + size, this, LOAD_ACTIONS));
         
         GDInstruction instruction;
         for (int index = 0; index < size; index++)
         {
             instruction = (GDInstruction) actionList.get(index);
 
-            LogUtil.put(LogFactory.getInstance("instruction.typeValue: " + instruction.typeValue, this, "loadActions"));
+            LogUtil.put(LogFactory.getInstance(INSTRUCTION_TYPE_VALUE + instruction.typeValue, this, LOAD_ACTIONS));
 
             if (instruction.typeValue.indexOf(this.PLAY_SOUND) >= 0)
+            {
+                this.loadExpressions(instruction.parametersExpressionList);
+            } else if (instruction.typeValue.indexOf(this.PLAY_MUSIC) >= 0)
             {
                 this.loadExpressions(instruction.parametersExpressionList);
             }
@@ -329,7 +345,7 @@ public class GDToAllBinaryGenerationTool
     {
         final int size = parametersExpressionList.size();
         
-        LogUtil.put(LogFactory.getInstance("parametersExpressionList size: ", this, "loadExpressions"));
+        LogUtil.put(LogFactory.getInstance(PARAMETERS_EXPRESSION_LIST, this, LOAD_EXPRESSION));
         
         GDExpression expression;
         String param;
