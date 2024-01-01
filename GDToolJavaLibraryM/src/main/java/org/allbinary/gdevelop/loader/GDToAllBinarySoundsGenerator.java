@@ -42,8 +42,24 @@ public class GDToAllBinarySoundsGenerator
     private final String _JAVA = ".java";
     
     public void processExpressionParam(final String param, final String resourceString) {
-        LogUtil.put(LogFactory.getInstance("Sound: " + param, this, CommonStrings.getInstance().PROCESS));
-        this.gdResources.playSoundAndroidResourceNameList.add(param);
+        LogUtil.put(LogFactory.getInstance(SOUND + param, this, CommonStrings.getInstance().PROCESS));
+        
+        int startIndex = param.lastIndexOf('/');
+        if (startIndex < 0) {
+            startIndex = param.lastIndexOf('\\');
+        }
+        
+        if (startIndex < 0) {
+            startIndex = 0;
+        } else {
+            startIndex++;
+        }
+
+        //int endIndex = param.lastIndexOf('.');
+        final String fileAsString = param.substring(startIndex);
+        LogUtil.put(LogFactory.getInstance(SOUND + fileAsString, this, CommonStrings.getInstance().PROCESS));
+        
+        this.gdResources.playSoundAndroidResourceNameList.add(fileAsString);
         this.gdResources.playSoundResourcePathList.add(resourceString);
     }
 
@@ -77,6 +93,7 @@ public class GDToAllBinarySoundsGenerator
             stringBuilder.append(_JAVA);
             
             final String fileName = stringBuilder.toString();
+            //LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().PROCESS));
             
             stringBuilder.delete(0, stringBuilder.length());
             
