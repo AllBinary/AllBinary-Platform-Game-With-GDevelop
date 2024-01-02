@@ -104,7 +104,7 @@ Created By: Travis Berthelot
                 import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
-                import org.microemu.midp.media.BasicPlayer;
+                import org.allbinary.media.audio.PlayerComposite;
                 
                 //LayoutAction name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes extends SpecialAnimation
