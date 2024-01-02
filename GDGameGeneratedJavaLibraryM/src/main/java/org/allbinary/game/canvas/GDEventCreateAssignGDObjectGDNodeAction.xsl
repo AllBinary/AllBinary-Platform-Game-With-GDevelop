@@ -16,6 +16,7 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
+    <xsl:import href="./action/GDTextContainerCapabilityTextContainerBehaviorSetValueActionProcess.xsl" />
     <xsl:import href="./action/GDTextObjectStringActionProcess.xsl" />
     <xsl:import href="./action/GDTextObjectChangeColorActionProcess.xsl" />
 
@@ -165,6 +166,14 @@ Created By: Travis Berthelot
 
                     </xsl:if>                    
                 </xsl:if>
+                    <xsl:if test="$typeValue = 'TextContainerCapability::TextContainerBehavior::SetValue'" >
+                        
+                        <xsl:call-template name="textContainerCapabilityTextContainerBehaviorSetValueActionProcess" >
+                            <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        </xsl:call-template>
+
+                    </xsl:if>                    
+
                 <xsl:if test="$typeValue = 'TextObject::ChangeColor'" >
 
                     <xsl:call-template name="textObjectChangeColorActionProcess" />
