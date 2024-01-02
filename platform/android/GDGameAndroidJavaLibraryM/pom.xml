@@ -30,6 +30,10 @@
 
     <properties>
         <buildLabel>${version}</buildLabel>
+        <android.sdk.version>4.1.1.4</android.sdk.version>
+        <!--
+        <android.sdk.path></android.sdk.path>
+        -->
     </properties>
 
     <dependencies>
@@ -55,7 +59,14 @@
             <version>${allbinary.platform.version}</version>
             <optional>true</optional>
         </dependency>
-        
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>MusicAndroidJavaLibrary</artifactId>
+            <version>${allbinary.platform.version}</version>
+            <optional>true</optional>
+        </dependency>
+                
         <dependency>
             <groupId>org.allbinary.input</groupId>
             <artifactId>TouchButtonResourceAnimationJavaLibrary</artifactId>
@@ -111,6 +122,20 @@
             <artifactId>microemu-midp</artifactId>
             <version>2.0.4</version>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <version>${android.sdk.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <version>${android.sdk.version}</version>
+            <scope>provided</scope>
+            <classifier>sources</classifier>
         </dependency>
 
     </dependencies>

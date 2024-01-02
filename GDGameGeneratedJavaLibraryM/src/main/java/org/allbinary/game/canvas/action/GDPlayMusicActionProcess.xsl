@@ -30,8 +30,20 @@ Created By: Travis Berthelot
                         <xsl:variable name="fileName3" ><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$fileName2" /></xsl:with-param></xsl:call-template></xsl:variable>
                         <xsl:variable name="fileName4" ><xsl:value-of select="translate($fileName3, ' ', '')" /></xsl:variable>
                         
+                        <xsl:variable name="volume" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         try {
-                            <xsl:if test="$fileName4 = 'Select' or $fileName4 = 'Error'" >org.allbinary.media.audio.</xsl:if><xsl:if test="not($fileName4 = 'Select' or $fileName4 = 'Error')" >org.allbinary.game.resource.GD</xsl:if><xsl:value-of select="$fileName4" />Sound.getInstance().getPlayer().start();
+
+                            final Sound sound = <xsl:if test="$fileName4 = 'Select' or $fileName4 = 'Error'" >org.allbinary.media.audio.</xsl:if><xsl:if test="not($fileName4 = 'Select' or $fileName4 = 'Error')" >org.allbinary.game.resource.GD</xsl:if><xsl:value-of select="$fileName4" />Sound.getInstance();
+                            final BasicPlayer player = sound.getPlayer();
+                            
+                            <xsl:if test="string-length($volume) > 0" >
+                            final int volume = <xsl:value-of select="$volume" />;
+                            final int leftVolume = volume;
+                            final int rightVolume = volume;
+                            player.setVolume(leftVolume, rightVolume);
+                            </xsl:if>
+                            player.start();
+
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                         }
