@@ -84,6 +84,7 @@ Created By: Travis Berthelot
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.ArrayUtil;
+                import org.microemu.midp.media.BasicPlayer;
 
                 //LayoutExternalAction name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes extends SpecialAnimation
