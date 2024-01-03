@@ -20,13 +20,8 @@ Created By: Travis Berthelot
         <xsl:param name="caller" />
         <xsl:param name="totalRecursions" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="instancesAsString" />
         <xsl:param name="objectsAsString" />
         <xsl:param name="createdObjectsAsString" />
-        <xsl:param name="conditionEventPosition" />
-        <xsl:param name="conditionToProcess" />
-        <xsl:param name="otherEventToProcess" />
-        <xsl:param name="objectEventToProcess" />
          
         <xsl:variable name="quote" >"</xsl:variable>
 
@@ -107,17 +102,6 @@ Created By: Travis Berthelot
                 </xsl:call-template>
             </xsl:variable>
 
-            <xsl:if test="$objectEventToProcess = ''" >
-            <xsl:call-template name="objectGDObjectGDNodes" >
-                <xsl:with-param name="layoutIndex" >
-                    <xsl:value-of select="$layoutIndex" />
-                </xsl:with-param>
-                <xsl:with-param name="parametersAsString" >
-                    <xsl:value-of select="$parametersAsString" />
-                </xsl:with-param>
-            </xsl:call-template>
-            </xsl:if>
-
             <xsl:call-template name="playsound" >
                 <xsl:with-param name="caller" >
                     <xsl:value-of select="$caller" />
@@ -128,26 +112,11 @@ Created By: Travis Berthelot
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
                 </xsl:with-param>
-                <xsl:with-param name="instancesAsString" >
-                    <xsl:value-of select="$instancesAsString" />
-                </xsl:with-param>
                 <xsl:with-param name="objectsAsString" >
                     <xsl:value-of select="$objectsAsString" />
                 </xsl:with-param>
                 <xsl:with-param name="createdObjectsAsString" >
                     <xsl:value-of select="$createdObjectsAsString" />
-                </xsl:with-param>
-                <xsl:with-param name="conditionEventPosition" >
-                    <xsl:value-of select="$eventPosition" />
-                </xsl:with-param>
-                <xsl:with-param name="conditionToProcess" >
-                    <xsl:value-of select="$conditionToProcess" />
-                </xsl:with-param>
-                <xsl:with-param name="otherEventToProcess" >
-                    <xsl:value-of select="$otherEventToProcess" />
-                </xsl:with-param>
-                <xsl:with-param name="objectEventToProcess" >
-                    <xsl:value-of select="$objectEventToProcess" />
                 </xsl:with-param>
 
             </xsl:call-template>
