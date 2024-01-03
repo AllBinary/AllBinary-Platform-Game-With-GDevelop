@@ -32,6 +32,9 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDHideLayerActionProcess.xsl" />
     
     <xsl:import href="./action/GDPlayMusicActionProcess.xsl" />
+    <xsl:import href="./action/GDPlayMusicCanalActionProcess.xsl" />
+    <xsl:import href="./action/GDStopMusicCanalActionProcess.xsl" />
+
     <xsl:import href="./action/GDPlaySoundActionProcess.xsl" />
     <xsl:import href="./action/GDPlaySoundCanalActionProcess.xsl" />
     <xsl:import href="./action/GDStopSoundCanalActionProcess.xsl" />
@@ -285,6 +288,16 @@ Created By: Travis Berthelot
                     
                     <xsl:call-template name="playMusicActionProcess" />
 
+                </xsl:if>
+                <xsl:if test="$typeValue = 'PlayMusicCanal'" >
+                    
+                    <xsl:call-template name="playMusicCanalActionProcess" />
+
+                </xsl:if>
+                <xsl:if test="$typeValue = 'StopMusicCanal'" >
+                    
+                    <xsl:call-template name="stopMusicCanalActionProcess" />
+                    
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PlaySoundCanal'" >
                     
