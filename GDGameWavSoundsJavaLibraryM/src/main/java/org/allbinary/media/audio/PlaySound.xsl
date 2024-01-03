@@ -148,6 +148,9 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'PlayMusic'" >
                     //PlayMusic - <xsl:value-of select="$file" />
                 </xsl:if>
+                <xsl:if test="$typeValue = 'PlayMusicCanal'" >
+                    //PlayMusicCanal - <xsl:value-of select="$file" />
+                </xsl:if>
                 </xsl:if>
 
                 <xsl:if test="$musicOrSound = 'sound'" >
