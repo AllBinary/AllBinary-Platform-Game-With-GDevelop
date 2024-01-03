@@ -131,6 +131,7 @@ Created By: Travis Berthelot
         <xsl:param name="totalRecursions" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="file" />
+        <xsl:param name="musicOrSound" />
 
         <xsl:for-each select="/game" >
         <xsl:for-each select="layouts" >
@@ -142,10 +143,14 @@ Created By: Travis Berthelot
                 <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                 
                 <xsl:if test="$param = $file" >
-
+                
+                <xsl:if test="$musicOrSound = 'music'" >
                 <xsl:if test="$typeValue = 'PlayMusic'" >
                     //PlayMusic - <xsl:value-of select="$file" />
                 </xsl:if>
+                </xsl:if>
+
+                <xsl:if test="$musicOrSound = 'sound'" >
                 <xsl:if test="$typeValue = 'PlaySound'" >
                     //PlaySound - <xsl:value-of select="$file" />
                 </xsl:if>
@@ -154,6 +159,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'StopSoundCanal'" >
                     //StopSoundCanal - <xsl:value-of select="$file" />
+                </xsl:if>
                 </xsl:if>
 
                 </xsl:if>
@@ -175,6 +181,7 @@ Created By: Travis Berthelot
 
     <xsl:template name="playsoundloading" >
         <xsl:param name="layoutIndex" />
+        <xsl:param name="musicOrSound" />
 
             <xsl:for-each select="/game/resources" >
                 //Resources
@@ -192,6 +199,9 @@ Created By: Travis Berthelot
                                 <xsl:with-param name="file" >
                                     <xsl:value-of select="file" />
                                 </xsl:with-param>
+                                <xsl:with-param name="musicOrSound" >
+                                    <xsl:value-of select="$musicOrSound" />
+                                </xsl:with-param>
                             </xsl:call-template>
                         </xsl:variable>
                         <xsl:if test="contains($thisLayoutHasThisSoundResource, 'Play')" >
@@ -199,9 +209,13 @@ Created By: Travis Berthelot
                     <xsl:variable name="fileName2" ><xsl:value-of select="translate(substring-before($fileName, '.'), '_', ' ')" /></xsl:variable>
                     <xsl:variable name="fileName3" ><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$fileName2" /></xsl:with-param></xsl:call-template></xsl:variable>                       
                     //Audio File with Action - <xsl:value-of select="file" />
-                    //if(!soundList.contains(org.allbinary.game.resource.GD<xsl:value-of select="translate($fileName3, ' ', '')" />Sound.getInstance())) {
+                    <xsl:if test="$musicOrSound = 'music'" >
+                    if(!soundList.contains(org.allbinary.game.resource.GD<xsl:value-of select="translate($fileName3, ' ', '')" />Sound.getInstance())) {
+                    </xsl:if>
+                    <xsl:if test="$musicOrSound = 'music'" >
                         soundList.add(org.allbinary.game.resource.GD<xsl:value-of select="translate($fileName3, ' ', '')" />Sound.getInstance());
-                    //}
+                    }
+                    </xsl:if>
                         </xsl:if>
                     </xsl:if>
                 </xsl:for-each>

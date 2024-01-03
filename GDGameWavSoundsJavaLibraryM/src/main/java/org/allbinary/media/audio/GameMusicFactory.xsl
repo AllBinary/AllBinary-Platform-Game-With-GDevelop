@@ -38,18 +38,11 @@ Created By: Travis Berthelot
         //game
         <xsl:variable name="windowWidth" select="properties/windowWidth" />
 
-        <xsl:for-each select="layouts" >
-            //layouts=<xsl:value-of select="name" /> position=<xsl:value-of select="position()" />-1=<GD_CURRENT_INDEX>
-            <xsl:variable name="layoutIndex" select="position() - 1" />
-
-            <xsl:if test="number($layoutIndex) =
-                <GD_CURRENT_INDEX>" >
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
-                <xsl:variable name="layoutName" select="name" />
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="objectsAsString" >,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
-                <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
-                <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
+                <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
+                <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 //instancesAsString=<xsl:value-of select="$instancesAsString" />
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
@@ -65,13 +58,12 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
 
-                //Layout name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory
+                public class GDGameMusicFactory
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory instance = new GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory();
+                    private static final GDGameMusicFactory instance = new GDGameMusicFactory();
 
-                    public static GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory getInstance()
+                    public static GDGameMusicFactory getInstance()
                     {
                         return instance;
                     }
@@ -80,7 +72,7 @@ Created By: Travis Berthelot
 
                     public final BasicArrayList soundList = new BasicArrayList();
 
-                    public GD<xsl:value-of select="$layoutIndex" />GameSoundsFactory() {
+                    public GDGameMusicFactory() {
 
                         try {
                         
@@ -105,12 +97,15 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 -->
 
+                <xsl:for-each select="layouts" >
+                    <xsl:variable name="layoutIndex" select="position() - 1" />
                     <xsl:call-template name="playsoundloading" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
-                        <xsl:with-param name="musicOrSound" >sound</xsl:with-param>
+                        <xsl:with-param name="musicOrSound" >music</xsl:with-param>
                     </xsl:call-template>
+                </xsl:for-each>
 
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
@@ -119,8 +114,7 @@ Created By: Travis Berthelot
                     }
 
                 }
-            </xsl:if>
-        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>
