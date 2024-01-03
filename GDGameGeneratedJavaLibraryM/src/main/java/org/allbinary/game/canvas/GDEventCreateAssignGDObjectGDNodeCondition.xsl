@@ -21,6 +21,8 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDAlwaysConditionGDNode.xsl" />
     <xsl:import href="./condition/GDOrConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAndConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDMusicPlayingConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDMusicStoppedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSoundPlayingConditionGDNode.xsl" />
     <xsl:import href="./condition/GDLayerVisibleConditionGDNode.xsl" />
     <xsl:import href="./condition/GDKeyFromTextPressedConditionGDNode.xsl" />
@@ -131,16 +133,23 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'MusicPlaying'" >
+
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    <xsl:call-template name="musicPlayingConditionGDNode" />
+
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MusicPaused'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MusicStopped'" >
+                    
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    <xsl:call-template name="musicStoppedConditionGDNode" />
+                    
                 </xsl:if>
                 <xsl:if test="$typeValue = 'SoundPlaying'" >
                     
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                     <xsl:call-template name="soundPlayingConditionGDNode" />
 
                 </xsl:if>
