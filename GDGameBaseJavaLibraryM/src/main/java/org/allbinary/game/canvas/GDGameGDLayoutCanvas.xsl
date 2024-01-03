@@ -747,6 +747,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     public void end() {
         try {
             super.end();
+            musicManager.stop();
             this.cleanupManager();
             GDGameGlobals.getInstance().clear();
             LogUtil.put(LogFactory.getInstance(this.commonStrings.END, this, this.commonStrings.END));
