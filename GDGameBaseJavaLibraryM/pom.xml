@@ -30,13 +30,13 @@
         </dependency>
 
         <!--
+        -->
+        <!--
         <dependency>
             <groupId>org.mapgenerator</groupId>
             <artifactId>TileMapGeneratorJavaLibraryM</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
-        -->
-        <!--
         -->
         <dependency>
             <groupId>org.mapgenerator.dungeon</groupId>
@@ -47,6 +47,15 @@
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>AllBinaryOptionalBasePlatformJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>MusicJ2MEJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->

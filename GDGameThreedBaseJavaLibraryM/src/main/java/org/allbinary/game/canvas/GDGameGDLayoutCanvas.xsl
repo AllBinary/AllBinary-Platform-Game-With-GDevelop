@@ -66,6 +66,7 @@ import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
+import org.allbinary.game.gd.MusicManagerFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureUtil;
 import org.allbinary.graphics.paint.InitUpdatePaintable;
 import org.allbinary.graphics.paint.NullPaintable;
@@ -75,9 +76,11 @@ import org.allbinary.graphics.threed.min3d.AllBinarySceneController;
 import org.allbinary.layer.event.LayerManagerEventHandler;
 import org.allbinary.media.AllBinaryVibration;
 import org.allbinary.media.audio.AllBinaryMediaManager;
+import org.allbinary.media.audio.GDGameMusicFactory;
 import org.allbinary.media.audio.PlayerQueue;
 import org.allbinary.media.audio.PrimaryPlayerQueueFactory;
 import org.allbinary.media.audio.SecondaryPlayerQueueFactory;
+import org.allbinary.media.audio.music.MusicManager;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMapUtil;    
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
@@ -103,6 +106,8 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
     private final GDGameInputProcessor gameInputProcessor = new GDGameInputProcessor();
     
+    private final MusicManager musicManager;
+    
     public GDGame<GDLayout>Canvas(final CommandListener commandListener,
             final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
     {
@@ -111,6 +116,8 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
                 new GDGameStaticInitializerFactory(),
            //new BasicBuildGameInitializerFactory(),
            false);
+
+        musicManager = MusicManagerFactory.create(GDGameMusicFactory.getInstance().soundList);
 
         this.cleanupGame();
 
@@ -646,6 +653,8 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     
         gdNodeStatsFactory.reset();
     
+        musicManager.process();
+
         this.gameInputProcessor.process(this.gameLayerManager, this.specialAnimation);
 
         super.processPlayingGame();
@@ -653,6 +662,14 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         this.specialAnimation.process();
         
         gdNodeStatsFactory.log(stringBuilder, this);
+    }
+
+    @Override
+    public void endGameThread() throws Exception
+    {
+    	super.endGameThread();
+    	
+    	musicManager.stop();
     }
 
     //Special end case for GDevelop

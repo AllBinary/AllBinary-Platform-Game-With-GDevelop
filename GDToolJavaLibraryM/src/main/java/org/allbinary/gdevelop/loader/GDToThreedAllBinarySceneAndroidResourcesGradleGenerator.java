@@ -32,7 +32,6 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
 
     private final String NEW_LINE = "\n";
     private final String COMMENT = "//";
-    private final String TOUCH = "TOUCH";
     private final String UNDERSCORE_0 = commonSeps.UNDERSCORE + "0";
     
     private final String RESOURCE_0 = "        resourceUtil.addResource(";
@@ -46,6 +45,11 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
     private final String RESOURCE_2 = "));";
 
     private final String _OBJ = "_obj";
+    
+    private final String _TOUCH = "TOUCH";
+    private final String TOUCH = "touch";
+    private final String _BLANK = "BLANK";
+    private final String BLANK = "blank";
     
     public GDToThreedAllBinarySceneAndroidResourcesGradleGenerator()
     {
@@ -93,12 +97,14 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
 
             stringBuilder.append(NEW_LINE);
             
-            if (resource.endsWith(UNDERSCORE_0) && resource.indexOf(TOUCH) < 0) {
+            if (resource.endsWith(UNDERSCORE_0) && 
+                    (resource.indexOf(_TOUCH) < 0 || resource.indexOf(_BLANK) < 0)) {
                 stringBuilder.append(COMMENT);
             }
             
             for(int index2 = 2; index2 < size2; index2++) {
-                if(resource.endsWith(commonSeps.UNDERSCORE + index2) && resource.indexOf(TOUCH) < 0) {
+                if(resource.endsWith(commonSeps.UNDERSCORE + index2) && 
+                        (resource.indexOf(_TOUCH) < 0 || resource.indexOf(_BLANK) < 0)) {
                     stringBuilder.append(COMMENT);
                 }
             }            
@@ -109,7 +115,8 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
             stringBuilder.append(_RESOURCE);
             stringBuilder.append(RESOURCE_1);
             stringBuilder.append(androidResourceList.get(index));
-            if(((String) androidResourceList.get(index)).indexOf("touch") < 0) {
+            if(((String) androidResourceList.get(index)).indexOf(TOUCH) < 0 && 
+                    ((String) androidResourceList.get(index)).indexOf(BLANK) < 0) {
                 stringBuilder.append(_OBJ);
             }
             stringBuilder.append(RESOURCE_2);

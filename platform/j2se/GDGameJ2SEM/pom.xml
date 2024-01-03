@@ -59,6 +59,14 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
+            <artifactId>MusicJ2MEJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
             <artifactId>J2SEMediaMIDPMinimalJavaLibrary</artifactId>
             <!-- J2SEMediaMIDPMinimalJavaLibrary -->
             <!-- J2SEMediaMIDPJorbisJavaLibrary -->

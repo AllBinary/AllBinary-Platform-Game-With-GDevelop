@@ -36,12 +36,21 @@ public class GDToAndroidRClassGenerator
     private final String EXPRESSION_PARAM = "        //Expression Param\n";
     private final String _OBJ = "_obj";
     
+    private final String BLANK = "blank";
+    private final String SKIPPING = "Skipping: ";
+    
     public GDToAndroidRClassGenerator() {
         androidRFileStringBuilder.append(GD_KEY);
         androidRFileStringBuilder.append('\n');
     }
     
     public void processResource(final String fileAsString) {
+        
+        if(fileAsString.compareTo(BLANK) == 0) {
+            LogUtil.put(LogFactory.getInstance(SKIPPING + fileAsString, this, CommonStrings.getInstance().PROCESS));
+            return;
+        }
+        
         androidRFileStringBuilder.append(RESOURCE);
         androidRFileStringBuilder.append(PUBLIC_STATIC_FINAL_INT);
         androidRFileStringBuilder.append(fileAsString);
