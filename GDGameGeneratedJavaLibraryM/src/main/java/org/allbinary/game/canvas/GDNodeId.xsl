@@ -432,6 +432,29 @@
         <xsl:for-each select="events" >
 
             <xsl:for-each select="conditions" >
+
+                <xsl:if test="type/value = 'GlobalVariableAsBoolean'" >
+                    <xsl:variable name="hasFocus" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" /></xsl:for-each></xsl:variable>
+                    <xsl:if test="$hasFocus = 'hasFocus'" >
+            //This is a special case to start audio on HTML builds
+                <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
+                <xsl:variable name="conditions" ><xsl:for-each select="../conditions" >found</xsl:for-each></xsl:variable>
+                <xsl:variable name="release" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'MouseButtonReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
+                <xsl:variable name="press" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
+                    
+                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                        <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
+            //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
+            //Condition - //GlobalVariableAsBoolean - call - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
+                            final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
+                            if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            }
+                        </xsl:if>
+                    </xsl:if>
+                </xsl:if>
+                
                 <xsl:if test="type/value = 'SourisSurObjet'" >
 
                 <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
@@ -441,11 +464,11 @@
                     
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                                    <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
+                        <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
             //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
             //Condition - //SourisSurObjet - call - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
-                                    </xsl:if>                
+                        </xsl:if>
                 </xsl:if>
             </xsl:for-each>
 

@@ -50,6 +50,8 @@ Created By: Travis Berthelot
                     //MouseX MouseY
                     globals.eventListenerInterfaceLastPoint = new BaseMotionGestureEventListener() {
 
+                    private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
+
                         public void onEvent(final AllBinaryEventObject eventObject)
                         {
                         }
