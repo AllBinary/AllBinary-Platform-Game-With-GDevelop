@@ -76,10 +76,16 @@ import org.allbinary.graphics.threed.min3d.AllBinarySceneController;
 import org.allbinary.layer.event.LayerManagerEventHandler;
 import org.allbinary.media.AllBinaryVibration;
 import org.allbinary.media.audio.AllBinaryMediaManager;
-import org.allbinary.media.audio.GDGameMusicFactory;
+        <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+            <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
+import org.allbinary.media.audio.GD<xsl:value-of select="position() - 1" />GameMusicFactory;
+            </xsl:if>
+        </xsl:for-each>
 import org.allbinary.media.audio.PlayerQueue;
 import org.allbinary.media.audio.PrimaryPlayerQueueFactory;
 import org.allbinary.media.audio.SecondaryPlayerQueueFactory;
+import org.allbinary.media.audio.Sound;
 import org.allbinary.media.audio.music.MusicManager;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMapUtil;    
@@ -87,8 +93,8 @@ import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterfac
 import org.allbinary.time.TimeDelayHelper;
 
         <xsl:for-each select="layouts" >
-            <xsl:variable name="index" select="position() - 1" />
-            <xsl:if test="number($index) = <GD_CURRENT_INDEX>" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+            <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
 public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCanvas //AllBinaryGameCanvas
 {
     private final String GD_LAYOUT_COLOR = "GDLayout<xsl:value-of select="position()" />Color";
@@ -117,7 +123,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
            //new BasicBuildGameInitializerFactory(),
            false);
 
-        musicManager = MusicManagerFactory.create(GDGameMusicFactory.getInstance().soundList);
+        musicManager = MusicManagerFactory.create(GD<xsl:value-of select="$layoutIndex" />GameMusicFactory.getInstance().soundList);
 
         this.cleanupGame();
 
@@ -134,7 +140,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         GroupLayerManagerListener.getInstance().init(SIZE);
 
-        //this.specialAnimation = GD<xsl:value-of select="$index" />SpecialAnimation.getInstance(this, allBinaryGameLayerManager);
+        //this.specialAnimation = GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance(this, allBinaryGameLayerManager);
 
         //this.setPlayingGameState();
             
@@ -198,7 +204,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     }
 -->
 
-    <xsl:if test="number($index) = 0 or position() = last()" >
+    <xsl:if test="number($layoutIndex) = 0 or position() = last()" >
     public BaseMenuBehavior getInGameMenuBehavior() {
         return BaseMenuBehavior.getInstance();
     }
@@ -213,7 +219,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         this.setGameSpecificPaintable(
                 new Paintable()
         {
-            final SpecialAnimation specialAnimation = GD<xsl:value-of select="$index" />SpecialAnimation.getInstance();
+            final SpecialAnimation specialAnimation = GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance();
 
             public void paint(Graphics graphics)
             {
@@ -383,7 +389,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
             this.buildGame(false);
 
-            <xsl:if test="number($index) = 0" >
+            <xsl:if test="number($layoutIndex) = 0" >
             FullScreenUtil.getInstance().init(this, this.getCustomCommandListener());
             //this.close();
             </xsl:if>
@@ -396,7 +402,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
     public void buildGame(boolean isProgress) throws Exception
     {
-        this.specialAnimation = GD<xsl:value-of select="$index" />SpecialAnimation.getInstance(this, gameLayerManager);
+        this.specialAnimation = GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance(this, gameLayerManager);
         this.setPlayingGameState();
         
         this.loadResources(gameLayerManager.getGameInfo().getCurrentLevel());
@@ -445,7 +451,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             AllBinarySceneController sceneController = GDGameAllBinarySceneControllerFactory.getInstance();
 
             final GDGameLayerManager gdGameLayerManager = (GDGameLayerManager) layerManager;
-            gdGameLayerManager.layout = <xsl:value-of select="$index" />;
+            gdGameLayerManager.layout = <xsl:value-of select="$layoutIndex" />;
             sceneController.buildScene(layerManager);
 
             progressCanvas.addPortion(portion, "Finalizing 3D Game Level");
@@ -662,6 +668,11 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         this.specialAnimation.process();
         
         gdNodeStatsFactory.log(stringBuilder, this);
+    }
+
+    @Override
+    public void nextSong(final Sound nextSongSound) {
+        musicManager.nextSong(nextSongSound);
     }
 
     @Override

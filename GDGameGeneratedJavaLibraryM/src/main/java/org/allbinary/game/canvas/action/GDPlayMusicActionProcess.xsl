@@ -42,7 +42,9 @@ Created By: Travis Berthelot
                             final int rightVolume = volume;
                             player.setVolume(leftVolume, rightVolume);
                             </xsl:if>
-                            player.start();
+                            
+                            //player.start();
+                            canvas.nextSong(sound);
 
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));

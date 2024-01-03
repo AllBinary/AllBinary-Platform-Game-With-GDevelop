@@ -27,6 +27,8 @@ GDGameAndroidActivity.java
 GDGameAndroidEarlyResourceInitialization.java
 GDGameThreedAndroidEarlyResourceInitialization.java
 GDGameThreedLevelBuilderFactory.java
+GD*GameMusicFactory.java
+GD*GameSoundsFactory.java
 GD0GameSoundsFactory.java
 GD1GameSoundsFactory.java
 GD2GameSoundsFactory.java
