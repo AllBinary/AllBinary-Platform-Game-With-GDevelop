@@ -60,6 +60,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDAddForceALActionProcess.xsl" />
     <xsl:import href="./action/GDAddForceXYActionProcess.xsl" />
     <xsl:import href="./action/GDQuitActionProcess.xsl" />
+    <xsl:import href="./action/GDSetGlobalVariableAsBooleanActionProcess.xsl" />
     <xsl:import href="./action/GDSetObjectVariableAsBooleanActionProcess.xsl" />
     <xsl:import href="./action/GDSetSceneVariableAsBooleanActionProcess.xsl" />
     <xsl:import href="./action/GDJSONToVariableStructureActionProcess.xsl" />
@@ -535,6 +536,12 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'Quit'" >
 
                     <xsl:call-template name="quitActionProcess" />
+
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'SetGlobalVariableAsBoolean'" >
+
+                    <xsl:call-template name="setGlobalVariableAsBooleanActionProcess" />
 
                 </xsl:if>
 
