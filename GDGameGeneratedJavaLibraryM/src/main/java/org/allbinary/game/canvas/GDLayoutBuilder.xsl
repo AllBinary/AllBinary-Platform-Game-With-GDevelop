@@ -329,6 +329,7 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                         //<xsl:value-of select="name" /> - //notTextObject=<xsl:value-of select="$notTextObject" />
                         if(true) {
+                        final int scaleTouchButtons = 1; //2
                         <xsl:if test="contains($notTextObject, 'found')" >
                             //or contains($objectsAsString, $colonName)
                             //notTextObject = <xsl:value-of select="$notTextObject" /> or contains($objectsAsString, $colonName/<xsl:value-of select="$colonName" />) = <xsl:value-of select="contains($objectsAsString, $colonName)" />
@@ -343,8 +344,8 @@ Created By: Travis Berthelot
                                 <xsl:if test="height != 0 and width != 0" >
                         //final int width = (int) (<xsl:value-of select="width" /> * 1.44f);
                         //final int height = (int) (<xsl:value-of select="height" /> * 1.44f);
-                        final int width = (int) (<xsl:value-of select="width" /> * scale);
-                        final int height = (int) (<xsl:value-of select="height" /> * scale);
+                        final int width = (int) (<xsl:value-of select="width" /> * scale * scaleTouchButtons);
+                        final int height = (int) (<xsl:value-of select="height" /> * scale * scaleTouchButtons);
                                 </xsl:if>
                             </xsl:if>                            
                             <xsl:if test="not(contains(name, 'btn_'))" >
@@ -449,7 +450,7 @@ Created By: Travis Berthelot
                         <xsl:if test="contains(name, 'btn_')" >
                         final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
                             PointFactory.getInstance().getInstance(<xsl:value-of select="name" />GDobject2.x, <xsl:value-of select="name" />GDobject2.y),
-                            <xsl:value-of select="name" />GDobject2.Width(globals.graphics) * scale, <xsl:value-of select="name" />GDobject2.Height(globals.graphics) * scale);
+                            <xsl:value-of select="name" />GDobject2.Width(globals.graphics) * scale * scaleTouchButtons, <xsl:value-of select="name" />GDobject2.Height(globals.graphics) * scale * scaleTouchButtons);
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         </xsl:if>
                                                 

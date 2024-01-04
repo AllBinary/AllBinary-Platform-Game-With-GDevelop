@@ -128,13 +128,14 @@ Created By: Travis Berthelot
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
 
+                            final int scaleTouchButtons = 1; //2
                             final PointFactory pointFactory = PointFactory.getInstance();
                             final DisplayUtil displayUtil = DisplayUtil.getInstance();
                             <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
                             <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />        
                             final int scaleWidth = (displayUtil.width / <xsl:value-of select="$windowWidth" />);
                             final int scaleHeight = (displayUtil.height / <xsl:value-of select="$windowHeight" />);
-                            final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
+                            final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth * scaleTouchButtons : scaleHeight * scaleTouchButtons;
                     
                             final Hashtable hashTable = imageCache.getHashtable();
 
