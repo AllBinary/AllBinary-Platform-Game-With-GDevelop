@@ -67,6 +67,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 
+                import org.allbinary.game.layout.GDObjectStrings;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.CollidableCompositeLayer;
                 import org.allbinary.game.rand.MyRandomFactory;
@@ -98,6 +99,7 @@ Created By: Travis Berthelot
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
 
+                        private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
 
