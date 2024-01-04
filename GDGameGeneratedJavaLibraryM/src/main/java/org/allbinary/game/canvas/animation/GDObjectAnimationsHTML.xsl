@@ -31,11 +31,11 @@ Created By: Travis Berthelot
         final short angleIncrement = 1;
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
+            <xsl:variable name="name" select="name" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
                 <xsl:if test="not(contains($name, 'btn_'))" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
@@ -209,11 +209,11 @@ Created By: Travis Berthelot
                 </xsl:for-each>
                 //objectsGroupsGDGameLayer - END
                 </xsl:if>
+                
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
                 <xsl:if test="not(contains($name, 'btn_'))" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
@@ -289,6 +289,7 @@ Created By: Travis Berthelot
                 </xsl:for-each>
                 //objectsGroupsGDGameLayer - END
                 </xsl:if>
+                
             </xsl:if>
                         
             <xsl:if test="$typeValue = 'TextObject::Text'" >
