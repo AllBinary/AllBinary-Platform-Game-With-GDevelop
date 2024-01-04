@@ -13,12 +13,19 @@
  */
 package org.allbinary.game.gd;
 
-//import org.allbinary.media.audio.music.BaseMusicService;
+import org.allbinary.media.audio.music.MusicManager;
+import org.allbinary.util.BasicArrayList;
 
 /**
  *
  * @author User
  */
-public class MusicService //extends BaseMusicService
-{
+public class MusicManagerFactory {
+    
+    /**
+     * @return the instance
+     */
+    public static MusicManager create(final BasicArrayList list) {
+        return new MusicManager(list);
+    }
 }
