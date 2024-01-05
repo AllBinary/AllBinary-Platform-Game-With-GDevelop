@@ -263,7 +263,7 @@
             <xsl:value-of select="$gdGameLayer" />.updateGDObject(globals.timeDelta);
                 </xsl:if>
                 <xsl:if test="not(contains($parametersAsString0, $gdObjectName))" >
-            //Not processing the on the same GDGameLayer
+            //Not processing the on the same GDGameLayer2
             //Action - //<xsl:value-of select="type/value" /> - call
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
