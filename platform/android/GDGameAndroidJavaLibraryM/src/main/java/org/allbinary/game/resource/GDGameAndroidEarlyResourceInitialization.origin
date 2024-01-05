@@ -13,7 +13,6 @@ import org.allbinary.AndroidResources;
 
 import org.allbinary.data.resource.ResourceUtil;
 import org.allbinary.game.resource.ResourceInitialization;
-import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.media.audio.ErrorSound;
 import org.allbinary.media.audio.SelectSound;
 import org.allbinary.midlet.MidletIcon;
