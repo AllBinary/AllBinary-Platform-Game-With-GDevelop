@@ -1,0 +1,8 @@
+MIDlet-1: GDGameMIDlet,/image/image.png,GDGameMIDlet
+MIDlet-Jar-Size: 400000
+MIDlet-Jar-URL: ./target/GDGameJ2SEApplication-1.0.0-SNAPSHOT.jar
+MIDlet-Name: GDGameMIDlet
+MIDlet-Vendor: Vendor
+MIDlet-Version: 2.0
+MicroEdition-Configuration: CLDC-1.0
+MicroEdition-Profile: MIDP-1.0
