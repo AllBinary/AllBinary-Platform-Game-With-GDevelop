@@ -969,6 +969,7 @@ Created By: Travis Berthelot
                     //VarObjet - some are processed from eventsProcess
                     <xsl:call-template name="varObjetConditionGDNode" >
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
                     </xsl:call-template>
 
                 </xsl:if>
