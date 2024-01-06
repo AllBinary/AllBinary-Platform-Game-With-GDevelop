@@ -100,10 +100,10 @@ public class GDObject
         this.setX((int) x);
     }
     
-    private static final String MAP = "Map";
+    //private static final String MAP = "Map";
 
     public void setX(final int x) {
-        final int lastWidth = DisplayInfoSingleton.getInstance().getLastWidth();
+        //final int lastWidth = DisplayInfoSingleton.getInstance().getLastWidth();
 //        if(x > lastWidth) {
 //            LogUtil.put(LogFactory.getInstance("DisplayInfoSingleton lastWidth: " + lastWidth, this, "setX", new Exception()));
 //            this.x = lastWidth;
