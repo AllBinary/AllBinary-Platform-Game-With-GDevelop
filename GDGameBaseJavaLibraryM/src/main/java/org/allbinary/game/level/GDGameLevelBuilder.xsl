@@ -175,7 +175,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                 LogUtil.put(LogFactory.getInstance("Loading Tiled Map Asset", this, commonStrings.PROCESS));
                 final DungeonGenerator dungeonGenerator = new DungeonGenerator();
                 final int[][] mapData = dungeonGenerator.generate();
-                final byte[] data = dungeonGenerator.generateJSONAsString(mapData).getBytes();
+                final byte[] data = dungeonGenerator.generateJSONAsString(mapData, gameGlobals.tileWidth, gameGlobals.tileHeight).getBytes();
                 tileMapInputStream2 = new ByteArrayInputStream(data);
             } else {
                 tileMapInputStream2 = platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);

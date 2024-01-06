@@ -153,9 +153,7 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            Global
-                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >Global</xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
