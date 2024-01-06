@@ -128,7 +128,8 @@ Created By: Travis Berthelot
                         
                         private final DisplayUtil displayUtil = DisplayUtil.getInstance();
                         <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
-                        <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />        
+                        <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />
+                        private final int scaleLayout = <xsl:if test="$layoutIndex = 0" >1</xsl:if><xsl:if test="$layoutIndex > 0" >2</xsl:if>;
                         private final int scaleWidth = (displayUtil.width / <xsl:value-of select="$windowWidth" />);
                         private final int scaleHeight = (displayUtil.height / <xsl:value-of select="$windowHeight" />);
                         private final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;

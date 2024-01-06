@@ -101,7 +101,12 @@ Created By: Travis Berthelot
                         //TWB - int the future add image dimensions to the game.xml.
                         <xsl:for-each select="directions" >
                             <xsl:for-each select="sprites" >
-                    new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="originPoint/x" /> * 2 * scale, <xsl:value-of select="originPoint/y" /> * 2 * scale),
+                    new Rectangle(pointFactory.ZERO_ZERO, 
+                                <xsl:if test="originPoint/x = 0" >0</xsl:if>
+                                <xsl:if test="originPoint/x != 0" ><xsl:value-of select="originPoint/x" /> * 2 * scale</xsl:if>, 
+                                <xsl:if test="originPoint/y = 0" >0</xsl:if>
+                                <xsl:if test="originPoint/y != 0" ><xsl:value-of select="originPoint/y" /> * 2 * scale </xsl:if>
+                                ),
                             </xsl:for-each>
                         </xsl:for-each>
                     </xsl:if>
@@ -109,7 +114,12 @@ Created By: Travis Berthelot
                         <xsl:for-each select="directions" >
                             <xsl:for-each select="sprites" >
                     //new Rectangle(pointFactory.ZERO_ZERO, (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f), (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f)),
-                    new Rectangle(pointFactory.ZERO_ZERO, (int) (<xsl:value-of select="originPoint/x" /> * 2 * scale), (int) (<xsl:value-of select="originPoint/x" /> * 2 * scale)),
+                    new Rectangle(pointFactory.ZERO_ZERO, 
+                                <xsl:if test="originPoint/x = 0" >0</xsl:if>
+                                <xsl:if test="originPoint/x != 0" ><xsl:value-of select="originPoint/x" /> * 2 * scale</xsl:if>, 
+                                <xsl:if test="originPoint/y = 0" >0</xsl:if>
+                                <xsl:if test="originPoint/y != 0" ><xsl:value-of select="originPoint/y" /> * 2 * scale </xsl:if>
+                               ),
                             </xsl:for-each>
                         </xsl:for-each>
                     </xsl:if>

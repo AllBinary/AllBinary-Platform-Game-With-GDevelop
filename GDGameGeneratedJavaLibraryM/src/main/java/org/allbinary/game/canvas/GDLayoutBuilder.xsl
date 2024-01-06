@@ -190,9 +190,10 @@ Created By: Travis Berthelot
 
                             final DisplayUtil displayUtil = DisplayUtil.getInstance();
                             <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
-                            <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />        
-                            final int scaleWidth = (displayUtil.width / <xsl:value-of select="$windowWidth" />);
-                            final int scaleHeight = (displayUtil.height / <xsl:value-of select="$windowHeight" />);
+                            <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />
+                            final int scaleLayout = <xsl:if test="$layoutIndex = 0" >1</xsl:if><xsl:if test="$layoutIndex > 0" >2</xsl:if>;
+                            final int scaleWidth = (scaleLayout * displayUtil.width / <xsl:value-of select="$windowWidth" />);
+                            final int scaleHeight = (scaleLayout * displayUtil.height / <xsl:value-of select="$windowHeight" />);
                             final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
                         <xsl:if test="$layoutIndex = 0" >
                         <xsl:for-each select=".." >
@@ -331,7 +332,7 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                         //<xsl:value-of select="name" /> - //notTextObject=<xsl:value-of select="$notTextObject" />
                         if(true) {
-                        final int scaleTouchButtons = 1; //2
+                        final int scaleTouchButtons = <xsl:if test="$layoutIndex = 0" >1</xsl:if><xsl:if test="$layoutIndex > 0" >2</xsl:if>;
                         <xsl:if test="contains($notTextObject, 'found')" >
                             //or contains($objectsAsString, $colonName)
                             //notTextObject = <xsl:value-of select="$notTextObject" /> or contains($objectsAsString, $colonName/<xsl:value-of select="$colonName" />) = <xsl:value-of select="contains($objectsAsString, $colonName)" />
