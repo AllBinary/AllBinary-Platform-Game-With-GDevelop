@@ -120,6 +120,7 @@ Created By: Travis Berthelot
 
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
+                        private final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
                         
                         public final String PROCESS_RELEASE = "processReleased";
                         
@@ -327,11 +328,11 @@ public class GDStructure {
                     }
 
                     public int SceneWindowWidth() {
-                        return DisplayInfoSingleton.getInstance().getLastWidth();
+                        return displayInfoSingleton.getLastWidth();
                     }
 
                     public int SceneWindowHeight() {
-                        return DisplayInfoSingleton.getInstance().getLastHeight();
+                        return displayInfoSingleton.getLastHeight();
                     }
 
                     public int Random(final int range) {

@@ -128,7 +128,8 @@ Created By: Travis Berthelot
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                         private final GameTickTimeDelayHelperFactory gameTickTimeDelayHelperFactory = GameTickTimeDelayHelperFactory.getInstance();
-                        
+                        private final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
+
                         private final String INDEX = "index: ";
 
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
@@ -175,11 +176,11 @@ Created By: Travis Berthelot
                     }
 
                     public int SceneWindowWidth() {
-                        return DisplayInfoSingleton.getInstance().getLastWidth();
+                        return displayInfoSingleton.getLastWidth();
                     }
 
                     public int SceneWindowHeight() {
-                        return DisplayInfoSingleton.getInstance().getLastHeight();
+                        return displayInfoSingleton.getLastHeight();
                     }
 
                     public int Random(final int range) {

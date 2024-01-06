@@ -107,8 +107,9 @@ Created By: Travis Berthelot
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        private final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
+
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-                        
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
@@ -157,11 +158,11 @@ Created By: Travis Berthelot
                     //}
 
                     public int SceneWindowWidth() {
-                        return DisplayInfoSingleton.getInstance().getLastWidth();
+                        return displayInfoSingleton.getLastWidth();
                     }
 
                     public int SceneWindowHeight() {
-                        return DisplayInfoSingleton.getInstance().getLastHeight();
+                        return displayInfoSingleton.getLastHeight();
                     }
 
                     public int Random(final int range) {

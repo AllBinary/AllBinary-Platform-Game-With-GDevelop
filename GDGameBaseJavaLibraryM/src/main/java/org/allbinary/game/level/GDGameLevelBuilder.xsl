@@ -118,6 +118,8 @@ import org.mapgenerator.dungeon.DungeonGenerator;
 public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 {
     private final CommonStrings commonStrings = CommonStrings.getInstance();
+
+    private final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
     
     private final AllBinaryGameLayerManager layerManager;
 
@@ -140,6 +142,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
     public TiledMap createMap(final Image tileSetImage, final boolean forcePreGeneratedMap) {
 
         final CommonStrings commonStrings = CommonStrings.getInstance();
+
         try {
         
         final GDResources gdResources = GDResources.getInstance();
@@ -590,11 +593,11 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
     }
     
     public int SceneWindowWidth() {
-        return DisplayInfoSingleton.getInstance().getLastWidth();
+        return displayInfoSingleton.getLastWidth();
     }
 
     public int SceneWindowHeight() {
-        return DisplayInfoSingleton.getInstance().getLastHeight();
+        return displayInfoSingleton.getLastHeight();
     }
     
 }

@@ -69,8 +69,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.special.SpecialAnimation;
                 
                 import org.allbinary.game.input.GDRGameInputProcessor;
-
-                import org.allbinary.graphics.displayable.DisplayInfoSingleton;                
+                import org.allbinary.graphics.displayable.DisplayInfoSingleton;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDNode;
@@ -103,6 +102,7 @@ Created By: Travis Berthelot
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        private final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
 
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
@@ -139,11 +139,11 @@ Created By: Travis Berthelot
                     }
 
                     public int SceneWindowWidth() {
-                        return DisplayInfoSingleton.getInstance().getLastWidth();
+                        return displayInfoSingleton.getLastWidth();
                     }
 
                     public int SceneWindowHeight() {
-                        return DisplayInfoSingleton.getInstance().getLastHeight();
+                        return displayInfoSingleton.getLastHeight();
                     }
 
                     public int Random(final int range) {

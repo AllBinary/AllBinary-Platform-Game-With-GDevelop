@@ -127,6 +127,7 @@ Created By: Travis Berthelot
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
                         private final GameTickTimeDelayHelperFactory gameTickTimeDelayHelperFactory = GameTickTimeDelayHelperFactory.getInstance();
+                        private final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
 
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
@@ -181,11 +182,11 @@ Created By: Travis Berthelot
                     }
 
                     public int SceneWindowWidth() {
-                        return DisplayInfoSingleton.getInstance().getLastWidth();
+                        return displayInfoSingleton.getLastWidth();
                     }
 
                     public int SceneWindowHeight() {
-                        return DisplayInfoSingleton.getInstance().getLastHeight();
+                        return displayInfoSingleton.getLastHeight();
                     }
 
                     public int Random(final int range) {
