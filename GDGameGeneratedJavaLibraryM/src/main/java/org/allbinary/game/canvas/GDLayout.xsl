@@ -24,6 +24,8 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
     
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
+    
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
@@ -126,13 +128,12 @@ Created By: Travis Berthelot
                         //behaviorsSharedData=<xsl:for-each select="behaviorsSharedData" >type=<xsl:value-of select="type" />,</xsl:for-each>
                         <xsl:text>&#10;</xsl:text>
                         
-                        private final DisplayUtil displayUtil = DisplayUtil.getInstance();
-                        <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
-                        <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />
-                        private final int scaleLayout = <xsl:if test="$layoutIndex = 0" >1</xsl:if><xsl:if test="$layoutIndex > 0" >2</xsl:if>;
-                        private final int scaleWidth = (displayUtil.width / <xsl:value-of select="$windowWidth" />);
-                        private final int scaleHeight = (displayUtil.height / <xsl:value-of select="$windowHeight" />);
-                        private final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
+                        <xsl:call-template name="scale" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                        </xsl:call-template>
+
 
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 

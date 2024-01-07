@@ -317,13 +317,13 @@ Created By: Travis Berthelot
                                 <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:if test="contains(text(), 'startX')" >//TWB - Hack for map y position basically the height of the map</xsl:if></xsl:if></xsl:for-each><xsl:text>&#10;</xsl:text>
                                 
                                 <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:if test="contains(text(), 'startX')" >
-                            final DisplayUtil displayUtil = DisplayUtil.getInstance();
-                            <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
-                            <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />        
-                            final int scaleLayout = <xsl:if test="$layoutIndex = 0" >1</xsl:if><xsl:if test="$layoutIndex > 0" >2</xsl:if>;
-                            final int scaleWidth = (scaleLayout * displayUtil.width / <xsl:value-of select="$windowWidth" />);
-                            final int scaleHeight = (scaleLayout * displayUtil.height / <xsl:value-of select="$windowHeight" />);
-                            final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
+                                    
+                                    <xsl:call-template name="scale" >
+                                        <xsl:with-param name="layoutIndex" >
+                                            <xsl:value-of select="$layoutIndex" />
+                                        </xsl:with-param>
+                                    </xsl:call-template>
+
                                 </xsl:if></xsl:if></xsl:for-each><xsl:text>&#10;</xsl:text>
 
                                 <xsl:variable name="mapPositionHackX" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:if test="contains(text(), 'startX')" > &#42; scale</xsl:if></xsl:if></xsl:for-each></xsl:variable>

@@ -23,6 +23,8 @@ Created By: Travis Berthelot
     
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
+
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
     
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
@@ -102,14 +104,12 @@ Created By: Travis Berthelot
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
 
-                            final DisplayUtil displayUtil = DisplayUtil.getInstance();
-                            <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
-                            <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />
-                            final int scaleLayout = <xsl:if test="$layoutIndex = 0" >1</xsl:if><xsl:if test="$layoutIndex > 0" >2</xsl:if>;
-                            final int scaleWidth = (scaleLayout * displayUtil.width / <xsl:value-of select="$windowWidth" />);
-                            final int scaleHeight = (scaleLayout * displayUtil.height / <xsl:value-of select="$windowHeight" />);
-                            final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
-                        
+                        <xsl:call-template name="scale" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                        </xsl:call-template>
+
                             final Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
                                 Min3dSceneResourcesFactory.getInstance();
                             final ThreedLoaderFactory threedLoaderFactory = ThreedLoaderFactory.getInstance();

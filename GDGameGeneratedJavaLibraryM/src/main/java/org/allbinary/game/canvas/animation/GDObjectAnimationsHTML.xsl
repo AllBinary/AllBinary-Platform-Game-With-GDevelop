@@ -20,20 +20,11 @@ Created By: Travis Berthelot
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
 
-        final DisplayUtil displayUtil = DisplayUtil.getInstance();
-        <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
-        <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />
-        <xsl:if test="not($layoutIndex = 'Global')" >
-        final int scaleLayout = <xsl:if test="$layoutIndex = 0" >1</xsl:if><xsl:if test="$layoutIndex > 0" >2</xsl:if>;
-        final int scaleWidth = (scaleLayout * displayUtil.width / <xsl:value-of select="$windowWidth" />);
-        final int scaleHeight = (scaleLayout * displayUtil.height / <xsl:value-of select="$windowHeight" />);
-        final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
-        </xsl:if>
-        <xsl:if test="$layoutIndex = 'Global'" >
-        final int scaleWidth = (displayUtil.width / <xsl:value-of select="$windowWidth" />);
-        final int scaleHeight = (displayUtil.height / <xsl:value-of select="$windowHeight" />);
-        final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
-        </xsl:if>
+        <xsl:call-template name="scaleGlobal" >
+            <xsl:with-param name="layoutIndex" >
+                <xsl:value-of select="$layoutIndex" />
+            </xsl:with-param>
+        </xsl:call-template>
         
         //objectsAssign - htmlAnimationFactory - START
         final short angleIncrement = 1;

@@ -1,6 +1,9 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
+    
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
+    
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionCentreCameraGlobal.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionZoomCameraGlobal.xsl" />
 
@@ -121,13 +124,11 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
     private final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
 
-    private final DisplayUtil displayUtil = DisplayUtil.getInstance();
-    <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
-    <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />
-    private final int scaleLayout = <xsl:if test="$layoutIndex = 0" >1</xsl:if><xsl:if test="$layoutIndex > 0" >2</xsl:if>;
-    private final int scaleWidth = (scaleLayout * displayUtil.width / <xsl:value-of select="$windowWidth" />);
-    private final int scaleHeight = (scaleLayout * displayUtil.height / <xsl:value-of select="$windowHeight" />);
-    private final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
+    <xsl:call-template name="scale" >
+        <xsl:with-param name="layoutIndex" >
+            <xsl:value-of select="$layoutIndex" />
+        </xsl:with-param>
+    </xsl:call-template>
         
     private final AllBinaryGameLayerManager layerManager;
     
