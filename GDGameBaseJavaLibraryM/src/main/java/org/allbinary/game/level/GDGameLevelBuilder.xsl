@@ -120,9 +120,17 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
     private final CommonStrings commonStrings = CommonStrings.getInstance();
 
     private final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
-    
-    private final AllBinaryGameLayerManager layerManager;
 
+    private final DisplayUtil displayUtil = DisplayUtil.getInstance();
+    <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
+    <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />
+    private final int scaleLayout = <xsl:if test="$layoutIndex = 0" >1</xsl:if><xsl:if test="$layoutIndex > 0" >2</xsl:if>;
+    private final int scaleWidth = (scaleLayout * displayUtil.width / <xsl:value-of select="$windowWidth" />);
+    private final int scaleHeight = (scaleLayout * displayUtil.height / <xsl:value-of select="$windowHeight" />);
+    private final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
+        
+    private final AllBinaryGameLayerManager layerManager;
+    
     public GDGame<GDLayout>LevelBuilder(final AllBinaryGameLayerManager layerManager)
     		throws Exception
     {
@@ -175,7 +183,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                 LogUtil.put(LogFactory.getInstance("Loading Tiled Map Asset", this, commonStrings.PROCESS));
                 final DungeonGenerator dungeonGenerator = new DungeonGenerator();
                 final int[][] mapData = dungeonGenerator.generate();
-                final byte[] data = dungeonGenerator.generateJSONAsString(mapData, gameGlobals.tileWidth, gameGlobals.tileHeight).getBytes();
+                final byte[] data = dungeonGenerator.generateJSONAsString(mapData, gameGlobals.tileWidth * scale, gameGlobals.tileHeight * scale).getBytes();
                 tileMapInputStream2 = new ByteArrayInputStream(data);
             } else {
                 tileMapInputStream2 = platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);
@@ -237,15 +245,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         </xsl:for-each>
 
     public void init() throws Exception
-    {
-        final DisplayUtil displayUtil = DisplayUtil.getInstance();
-        <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
-        <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />
-        final int scaleLayout = <xsl:if test="$layoutIndex = 0" >1</xsl:if><xsl:if test="$layoutIndex > 0" >2</xsl:if>;
-        final int scaleWidth = (scaleLayout * displayUtil.width / <xsl:value-of select="$windowWidth" />);
-        final int scaleHeight = (scaleLayout * displayUtil.height / <xsl:value-of select="$windowHeight" />);
-        final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
-    
+    {    
         final LayerInterfaceFactory layerInterfaceFactory = LayerInterfaceFactory.getInstance();
 
         layerInterfaceFactory.init();
@@ -337,7 +337,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                 cellTypeMapping[index] = index;
             }
 
-            geographicMapInterfaceArray[layerIndex] = new GDGeographicMap(((TileLayer) map.getLayer(layerIndex)), cellTypeMapping, map, tileSetImage, tiledMapProperties, BLACK, BLACK, tileMapScale);
+            geographicMapInterfaceArray[layerIndex] = new GDGeographicMap(((TileLayer) map.getLayer(layerIndex)), cellTypeMapping, map, tileSetImage, tiledMapProperties, BLACK, BLACK);
         }
 
         geographicMapCompositeInterface.setGeographicMapInterface(geographicMapInterfaceArray);

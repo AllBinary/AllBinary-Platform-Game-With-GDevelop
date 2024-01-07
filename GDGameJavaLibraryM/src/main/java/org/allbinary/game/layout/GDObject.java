@@ -121,7 +121,7 @@ public class GDObject
     }
 
     public void setY(final int y) {
-        final int lastHeight = DisplayInfoSingleton.getInstance().getLastHeight();
+        //final int lastHeight = DisplayInfoSingleton.getInstance().getLastHeight();
 //        if(y > lastHeight) {
 //            LogUtil.put(LogFactory.getInstance("DisplayInfoSingleton lastHeight: " + lastHeight, this, "setX", new Exception()));
 //            this.y = lastHeight;

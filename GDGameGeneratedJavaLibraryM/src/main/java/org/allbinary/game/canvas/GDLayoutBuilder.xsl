@@ -195,17 +195,6 @@ Created By: Travis Berthelot
                             final int scaleWidth = (scaleLayout * displayUtil.width / <xsl:value-of select="$windowWidth" />);
                             final int scaleHeight = (scaleLayout * displayUtil.height / <xsl:value-of select="$windowHeight" />);
                             final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
-                        <xsl:if test="$layoutIndex = 0" >
-                        <xsl:for-each select=".." >
-                            <xsl:for-each select="variables" >
-                                <xsl:if test="name = 'tileWidth'" >
-                                    final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-                                    gameGlobals.tileWidth = gameGlobals.tileWidth * scale / 2;
-                                    gameGlobals.tileHeight = gameGlobals.tileHeight * scale / 2;
-                                </xsl:if>
-                            </xsl:for-each>
-                        </xsl:for-each>
-                        </xsl:if>
 
                     <xsl:call-template name="findMousePositionNeeded" >
                         <xsl:with-param name="totalRecursions" >
