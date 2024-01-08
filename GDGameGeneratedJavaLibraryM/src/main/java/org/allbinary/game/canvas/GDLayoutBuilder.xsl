@@ -186,7 +186,7 @@ Created By: Travis Berthelot
                             }
                             return null;
                         }
-                                                
+
                         public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
                             <xsl:call-template name="scale" >
@@ -195,6 +195,8 @@ Created By: Travis Berthelot
                                 </xsl:with-param>
                             </xsl:call-template>
                             globals.scale = scale;
+                            globals.scaleNominator = scale;
+                            globals.scaleDenominator = 2;
                             
                             LogUtil.put(LogFactory.getInstance(new StringMaker().append(commonStrings.CONSTRUCTOR).append(":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder scale: ").append(globals.scale).toString(), this, commonStrings.CONSTRUCTOR));
 
