@@ -62,6 +62,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.GDGameLayer;
+                import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.color.BasicColorFactory;
                 import org.allbinary.graphics.color.BasicColorSetUtil;
                 import org.allbinary.graphics.displayable.MyCanvas;
@@ -84,6 +85,7 @@ Created By: Travis Berthelot
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        private final PointFactory pointFactory = PointFactory.getInstance();
                         
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                 
@@ -214,7 +216,7 @@ Created By: Travis Berthelot
                             final int <xsl:value-of select="name" />Y = y + <xsl:value-of select="name" />GDobject2.y;
 
                             final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
-                                PointFactory.getInstance().getInstance(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
+                                pointFactory.getInstance(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
                                 <xsl:value-of select="name" />GDobject2.Width(globals.graphics) * scale, <xsl:value-of select="name" />GDobject2.Height(globals.graphics) * scale);
                             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         }

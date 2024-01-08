@@ -344,7 +344,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="contains($instancesAsString, $name2)" >
                                 //name2=<xsl:value-of select="$name2" /><xsl:text>&#10;</xsl:text>
                                 final Rectangle <xsl:value-of select="$name" />Rectangle = new Rectangle(
-                                    PointFactory.getInstance().getInstance(<xsl:value-of select="$name" />GDobject2.x, <xsl:value-of select="$name" />GDobject2.y),
+                                    pointFactory.getInstance(<xsl:value-of select="$name" />GDobject2.x, <xsl:value-of select="$name" />GDobject2.y),
                                     <xsl:value-of select="$name" />GDobject2.Width(globals.graphics) * scale, <xsl:value-of select="$name" />GDobject2.Height(globals.graphics) * scale);
                                 <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>xsl:value-of select="$name" />RectangleList.add(<xsl:value-of select="$name" />Rectangle);
                                 </xsl:if>
@@ -573,7 +573,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="contains($instancesAsString, $name2)" >
                                 //name2=<xsl:value-of select="$name2" /><xsl:text>&#10;</xsl:text>
                                 final Rectangle <xsl:value-of select="$name" />Rectangle = new Rectangle(
-                                    PointFactory.getInstance().getInstance(<xsl:value-of select="$name" />GDobject2.x, <xsl:value-of select="$name" />GDobject2.y),
+                                    pointFactory.getInstance(<xsl:value-of select="$name" />GDobject2.x, <xsl:value-of select="$name" />GDobject2.y),
                                     <xsl:value-of select="$name" />GDobject2.Width(globals.graphics) * scale, <xsl:value-of select="$name" />GDobject2.Height(globals.graphics) * scale);
                                 <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>xsl:value-of select="$name" />RectangleList.add(<xsl:value-of select="$name" />Rectangle);
                                 </xsl:if>

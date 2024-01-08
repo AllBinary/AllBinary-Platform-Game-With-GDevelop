@@ -232,7 +232,7 @@ Created By: Travis Berthelot
                 };
                 this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
                 this.<xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                PointFactory.getInstance().getInstance(0, 0),
+                                pointFactory.getInstance(0, 0),
                                 0, 0
                                 );
 
@@ -261,7 +261,7 @@ Created By: Travis Berthelot
                 this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray[0] = new RotationAnimationFactory();
 
                 this.<xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                PointFactory.getInstance().getInstance(0, 0),
+                                pointFactory.getInstance(0, 0),
                                 0, 0
                                 );
 
