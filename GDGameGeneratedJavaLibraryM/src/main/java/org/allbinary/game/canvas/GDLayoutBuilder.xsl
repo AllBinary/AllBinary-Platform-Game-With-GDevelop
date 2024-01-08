@@ -104,6 +104,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.logic.string.CommonStrings;
                 import org.allbinary.logic.string.CommonSeps;
+                import org.allbinary.logic.string.StringMaker;
                 import org.allbinary.logic.util.event.AllBinaryEventObject;
                 import org.allbinary.thread.NullRunnable;
                 import org.allbinary.util.BasicArrayList;
@@ -187,14 +188,15 @@ Created By: Travis Berthelot
                         }
                                                 
                         public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
-                        
-                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR + ":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder", this, commonStrings.CONSTRUCTOR));
 
                             <xsl:call-template name="scale" >
                                 <xsl:with-param name="layoutIndex" >
                                     <xsl:value-of select="$layoutIndex" />
                                 </xsl:with-param>
                             </xsl:call-template>
+                            globals.scale = scale;
+                            
+                            LogUtil.put(LogFactory.getInstance(new StringMaker().append(commonStrings.CONSTRUCTOR).append(":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder scale: ").append(globals.scale).toString(), this, commonStrings.CONSTRUCTOR));
 
                     <xsl:call-template name="findMousePositionNeeded" >
                         <xsl:with-param name="totalRecursions" >

@@ -90,7 +90,7 @@ import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterfac
 import org.allbinary.media.graphics.geography.map.GeographicMapInterface;
 import org.allbinary.media.graphics.geography.map.platform.TileSetToGeographicMapUtil;
 import org.allbinary.util.ArrayUtil;
-
+import org.allbinary.util.BasicArrayList;
 import org.mapeditor.loader.TiledMapLoaderFromJSONFactory;
 import org.mapeditor.core.TileLayer;
 import org.mapeditor.core.TileSet;
@@ -184,7 +184,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                 LogUtil.put(LogFactory.getInstance("Loading Tiled Map Asset", this, commonStrings.PROCESS));
                 final DungeonGenerator dungeonGenerator = new DungeonGenerator();
                 final int[][] mapData = dungeonGenerator.generate();
-                final byte[] data = dungeonGenerator.generateJSONAsString(mapData, gameGlobals.tileWidth * scale, gameGlobals.tileHeight * scale).getBytes();
+                final byte[] data = dungeonGenerator.generateJSONAsString(mapData, gameGlobals.tileWidth, gameGlobals.tileHeight).getBytes();
                 tileMapInputStream2 = new ByteArrayInputStream(data);
             } else {
                 tileMapInputStream2 = platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);
@@ -234,6 +234,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         }
         //LogUtil.put(LogFactory.getInstance("Processing Tiled Map", this, commonStrings.PROCESS));
         final TiledMap map = TiledMapLoaderFromJSONFactory.getInstance().process(new GDJSONMapReader(), tileMapInputStream, tileSetInputStreamArray, size, sizeArray2, new Image[] {tileSetImage});
+        map.setTileWidth(map.getTileWidth() * scale);
+        map.setTileHeight(map.getTileHeight() * scale);
         map.getLayers().size();
         return map;
         } catch(Exception e) {
