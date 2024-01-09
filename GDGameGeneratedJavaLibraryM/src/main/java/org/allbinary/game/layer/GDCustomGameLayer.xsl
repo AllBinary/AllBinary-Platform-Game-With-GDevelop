@@ -134,6 +134,7 @@ Created By: Travis Berthelot
         import org.allbinary.logic.communication.log.LogFactory;
         import org.allbinary.logic.communication.log.LogUtil;
         import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
+        import org.allbinary.media.graphics.geography.map.BasicGeographicMapUtil;
         import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
         import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
         import org.allbinary.media.graphics.geography.map.GeographicMapEventHandler;
@@ -144,6 +145,8 @@ Created By: Travis Berthelot
         <xsl:if test="contains($foundOtherViewPosition, 'found')" >implements GameKeyEventSourceInterface, org.allbinary.game.behavior.platformer.PlatformCharacterInterface </xsl:if>
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >implements org.allbinary.game.behavior.topview.TopViewCharacterInterface </xsl:if>
                 {
+                    private final BasicGeographicMapUtil basicGeographicMapUtil = BasicGeographicMapUtil.getInstance();
+
                     private final BasicArrayList collisionList = new BasicArrayList();
 
         <xsl:variable name="hasLayoutWithTileMapAndIsTopView" >
@@ -405,8 +408,8 @@ Created By: Travis Berthelot
         
         <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
                     
-        private int lastX;
-        private int lastY;
+        //private int lastX;
+        //private int lastY;
 
         private int total;
             
@@ -454,14 +457,18 @@ Created By: Travis Berthelot
                 } else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
                     final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>PlayerGDGameLayerList.get(0);
                     //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Map: ").append(this.getName()).toString(), this, "move"));
-                    if(this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, player, this.gdObject.x, this.gdObject.y)) {
-                        lastX = this.gdObject.x;
-                        lastY = this.gdObject.y;
-                    } else {
-                        //this.gdObject.setX(lastX);
-                        //this.gdObject.setY(lastY);
-                        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Back?: ").append(this.gdObject.x).append(CommonSeps.getInstance().COMMA).append(this.gdObject.y).toString(), this, "move"));
-                    }
+                    
+                    //basicGeographicMapUtil.move(geographicMapInterfaceArray, -x, -y);
+                    basicGeographicMapUtil.setPosition(geographicMapInterfaceArray, x, y);
+                    
+//                    if(this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, player, this.gdObject.x, this.gdObject.y)) {
+//                        lastX = this.gdObject.x;
+//                        lastY = this.gdObject.y;
+//                    } else {
+//                        //this.gdObject.setX(lastX);
+//                        //this.gdObject.setY(lastY);
+//                        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Back?: ").append(this.gdObject.x).append(CommonSeps.getInstance().COMMA).append(this.gdObject.y).toString(), this, "move"));
+//                    }
 
                 } else {
                     final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>PlayerGDGameLayerList.get(0);
@@ -515,9 +522,20 @@ Created By: Travis Berthelot
                 if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
 
                 } else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
-                    final GDGameLayer Player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>PlayerGDGameLayerList.get(0);
+                    final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>PlayerGDGameLayerList.get(0);
                     //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move2"));
-                    this.terrainMove(geographicMapInterfaceArray, this.gdObject.x, this.gdObject.y);
+                    
+                    //basicGeographicMapUtil.move(geographicMapInterfaceArray, -x, -y);
+                    basicGeographicMapUtil.setPosition(geographicMapInterfaceArray, x, y);
+
+//                    if(this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, player, this.gdObject.x, this.gdObject.y)) {
+//                        lastX = this.gdObject.x;
+//                        lastY = this.gdObject.y;
+//                    } else {
+//                        //this.gdObject.setX(lastX);
+//                        //this.gdObject.setY(lastY);
+//                        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Back?: ").append(this.gdObject.x).append(CommonSeps.getInstance().COMMA).append(this.gdObject.y).toString(), this, "move"));
+//                    }
 
                 } else {
                     final GDGameLayer Player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>PlayerGDGameLayerList.get(0);
