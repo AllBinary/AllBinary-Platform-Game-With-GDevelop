@@ -245,6 +245,19 @@ Created By: Travis Berthelot
                             channelSoundArray[index] = new BasicArrayList();
                         }
                     
+                        <xsl:for-each select="variables" >
+                            <xsl:if test="type = 'boolean'" >
+                                <xsl:if test="name = 'RandomDungeon'" >
+        this.RandomDungeon = true;
+
+        final CommonStrings commonStrings = CommonStrings.getInstance();
+        final StringMaker stringMaker = new StringMaker();
+        LogUtil.put(LogFactory.getInstance(stringMaker.append("PlatformerMap: RandomDungeon: ").append(this.RandomDungeon).toString(), this, commonStrings.PROCESS));
+
+                                </xsl:if>
+                            </xsl:if>
+                        </xsl:for-each>
+                                        
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
