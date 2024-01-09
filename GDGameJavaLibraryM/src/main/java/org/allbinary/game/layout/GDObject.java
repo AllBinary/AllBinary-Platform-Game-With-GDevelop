@@ -18,7 +18,7 @@ import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.SpacialStrings;
 import org.allbinary.graphics.color.BasicColor;
-import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -103,9 +103,9 @@ public class GDObject
     //private static final String MAP = "Map";
 
     public void setX(final int x) {
-        //final int lastWidth = DisplayInfoSingleton.getInstance().getLastWidth();
+        //final int lastWidth = GameTickDisplayInfoSingleton.getInstance().getLastWidth();
 //        if(x > lastWidth) {
-//            LogUtil.put(LogFactory.getInstance("DisplayInfoSingleton lastWidth: " + lastWidth, this, "setX", new Exception()));
+//            LogUtil.put(LogFactory.getInstance("GameTickDisplayInfoSingleton lastWidth: " + lastWidth, this, "setX", new Exception()));
 //            this.x = lastWidth;
 //        } else {
            this.x = x;
@@ -121,9 +121,9 @@ public class GDObject
     }
 
     public void setY(final int y) {
-        //final int lastHeight = DisplayInfoSingleton.getInstance().getLastHeight();
+        //final int lastHeight = GameTickDisplayInfoSingleton.getInstance().getLastHeight();
 //        if(y > lastHeight) {
-//            LogUtil.put(LogFactory.getInstance("DisplayInfoSingleton lastHeight: " + lastHeight, this, "setX", new Exception()));
+//            LogUtil.put(LogFactory.getInstance("GameTickDisplayInfoSingleton lastHeight: " + lastHeight, this, "setX", new Exception()));
 //            this.y = lastHeight;
 //        } else {
            this.y = y;

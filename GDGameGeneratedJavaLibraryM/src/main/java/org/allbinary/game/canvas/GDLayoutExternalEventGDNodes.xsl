@@ -68,7 +68,7 @@ Created By: Travis Berthelot
                 package org.allbinary.game.canvas;
 
                 import org.allbinary.animation.special.SpecialAnimation;
-                import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.rand.MyRandomFactory;

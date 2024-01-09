@@ -86,7 +86,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.Rectangle;
-                import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.graphics.displayable.screen.DisplayPointScalar;
                 import org.allbinary.input.motion.gesture.MotionGestureInput;
                 import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
@@ -128,7 +128,7 @@ Created By: Travis Berthelot
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                         private final GameTickTimeDelayHelperFactory gameTickTimeDelayHelperFactory = GameTickTimeDelayHelperFactory.getInstance();
-                        private final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
+                        private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
 
                         private final String INDEX = "index: ";
 
@@ -176,11 +176,11 @@ Created By: Travis Berthelot
                     }
 
                     public int SceneWindowWidth() {
-                        return displayInfoSingleton.getLastWidth();
+                        return gameTickDisplayInfoSingleton.getLastWidth();
                     }
 
                     public int SceneWindowHeight() {
-                        return displayInfoSingleton.getLastHeight();
+                        return gameTickDisplayInfoSingleton.getLastHeight();
                     }
 
                     public int Random(final int range) {

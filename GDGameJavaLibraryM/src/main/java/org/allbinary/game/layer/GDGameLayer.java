@@ -100,13 +100,13 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
         this.gdObject = gdObject;
 
-        //final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
+        //final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
         //final MathUtil mathUtil = MathUtil.getInstance();
         //final GameSpeed gameSpeed = GameSpeed.getInstance();
         
         this.velocityInterface = velocityInterface; //new VelocityProperties(3200, 3200);
-                        //(1700 * mathUtil.sqrt((displayInfoSingleton.getLastWidth() + displayInfoSingleton.getLastHeight()))) * gameSpeed.getSpeed() / 20, 
-                        //(1322 * mathUtil.sqrt((displayInfoSingleton.getLastWidth() + displayInfoSingleton.getLastHeight()))) * gameSpeed.getSpeed() / 20);
+                        //(1700 * mathUtil.sqrt((gameTickDisplayInfoSingleton.getLastWidth() + gameTickDisplayInfoSingleton.getLastHeight()))) * gameSpeed.getSpeed() / 20, 
+                        //(1322 * mathUtil.sqrt((gameTickDisplayInfoSingleton.getLastWidth() + gameTickDisplayInfoSingleton.getLastHeight()))) * gameSpeed.getSpeed() / 20);
         
         /*        
         this.acceleration = new BasicAccelerationProperties(

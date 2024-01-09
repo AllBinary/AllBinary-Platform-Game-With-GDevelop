@@ -76,7 +76,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
-                import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
                 import org.allbinary.layer.AllBinaryLayer;
                 import org.allbinary.layer.event.LayerManagerEvent;

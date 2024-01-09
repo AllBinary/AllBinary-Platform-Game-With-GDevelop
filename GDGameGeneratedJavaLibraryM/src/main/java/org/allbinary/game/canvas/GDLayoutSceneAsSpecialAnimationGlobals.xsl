@@ -84,7 +84,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
-                import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
                 import org.allbinary.layer.AllBinaryLayer;
                 import org.allbinary.layer.event.LayerManagerEvent;
@@ -120,7 +120,7 @@ Created By: Travis Berthelot
 
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
-                        private final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
+                        private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
                         
                         public final String PROCESS_RELEASE = "processReleased";
                         
@@ -328,11 +328,11 @@ public class GDStructure {
                     }
 
                     public int SceneWindowWidth() {
-                        return displayInfoSingleton.getLastWidth();
+                        return gameTickDisplayInfoSingleton.getLastWidth();
                     }
 
                     public int SceneWindowHeight() {
-                        return displayInfoSingleton.getLastHeight();
+                        return gameTickDisplayInfoSingleton.getLastHeight();
                     }
 
                     public int Random(final int range) {

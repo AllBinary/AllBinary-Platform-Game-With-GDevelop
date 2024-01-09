@@ -22,7 +22,7 @@ import javax.microedition.lcdui.game.TiledLayer;
 import org.allbinary.game.layer.AllBinaryJ2METiledLayer;
 import org.allbinary.game.layer.AllBinaryTiledLayer;
 import org.allbinary.graphics.color.BasicColor;
-import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -129,8 +129,8 @@ public class GDGeographicMap extends BasicGeographicMap {
 
     public void reset() {
         final AllBinaryTiledLayer allBinaryTiledLayer = this.getAllBinaryTiledLayer();
-        final int lastHeight = DisplayInfoSingleton.getInstance().getLastHeight();
-        //LogUtil.put(LogFactory.getInstance("DisplayInfoSingleton lastHeight: " + lastHeight, this, "reset"));
+        final int lastHeight = GameTickDisplayInfoSingleton.getInstance().getLastHeight();
+        //LogUtil.put(LogFactory.getInstance("GameTickDisplayInfoSingleton lastHeight: " + lastHeight, this, "reset"));
         final int y = -lastHeight + allBinaryTiledLayer.getHeight();
         allBinaryTiledLayer.setPosition(0, -y, allBinaryTiledLayer.getZ());
     }

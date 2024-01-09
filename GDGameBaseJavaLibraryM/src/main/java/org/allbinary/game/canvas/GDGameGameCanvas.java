@@ -52,7 +52,7 @@ import org.allbinary.game.tick.OptimizedTickableLayerProcessor;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.color.BasicColorFactory;
-import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
 import org.allbinary.input.motion.button.BaseTouchInput;
 import org.allbinary.input.motion.button.GDGameNeededTouchButtonsBuilder;
@@ -329,8 +329,6 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
 
     private final AllBinaryOrientationSensor gyroOrientationSensor = GyroSensorFactory.getInstance();
     private final AllBinaryOrientationSensor accelerometerOrientationSensor = AccelerometerSensorFactory.getInstance();
-    
-    private final int halfHeight = DisplayInfoSingleton.getInstance().getLastHalfHeight();
 
     //private String soundQueue = PrimaryPlayerQueueFactory.getInstance().toString();
     
@@ -360,6 +358,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         
         screenCapture.saveFrame();
 
+        final int halfHeight = GameTickDisplayInfoSingleton.getInstance().getLastHalfHeight();
         graphics.drawString(this.gyroOrientationSensor.toString(), 0, halfHeight + 30 + 60, 0);
         graphics.drawString(this.accelerometerOrientationSensor.toString(), 0, halfHeight + 30 + 75, 0);
 

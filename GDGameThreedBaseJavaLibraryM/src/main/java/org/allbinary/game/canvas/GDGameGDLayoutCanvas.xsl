@@ -64,7 +64,7 @@ import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
-import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
 import org.allbinary.game.gd.MusicManagerFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureUtil;
@@ -544,6 +544,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 //    private final Paintable paintable = 
 //            new Paintable() {
 //        public void paint(Graphics graphics) {
+//            final int halfHeight = GameTickDisplayInfoSingleton.getInstance().getLastHalfHeight();
 //            graphics.drawString(gyroOrientationSensor.toString(), 0, halfHeight + 30 + 60, 0);
 //            graphics.drawString(accelerometerOrientationSensor.toString(), 0, halfHeight + 30 + 75, 0);
 //        }
@@ -555,8 +556,6 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
     private final AllBinaryOrientationSensor gyroOrientationSensor = GyroSensorFactory.getInstance();
     private final AllBinaryOrientationSensor accelerometerOrientationSensor = AccelerometerSensorFactory.getInstance();
-
-    private final int halfHeight = DisplayInfoSingleton.getInstance().getLastHalfHeight();
 
     //private String soundQueue = PrimaryPlayerQueueFactory.getInstance().toString();
 
@@ -576,11 +575,10 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         this.getBasicColorUtil().setBasicColor(graphics, gameLayerManager.getForegroundBasicColor());
 
+        //final int halfHeight = GameTickDisplayInfoSingleton.getInstance().getLastHalfHeight();
         //graphics.drawString(TEXT, 0, halfHeight, 0);
 
-        /*
-        graphics.drawString(soundQueue, 0, halfHeight + 15, 0);
-        */
+        //graphics.drawString(soundQueue, 0, halfHeight + 15, 0);
 
         this.tileLayerPaintable.paint(graphics);
 

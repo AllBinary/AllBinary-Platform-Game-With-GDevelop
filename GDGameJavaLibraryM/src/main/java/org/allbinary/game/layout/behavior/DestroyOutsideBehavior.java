@@ -16,7 +16,7 @@ package org.allbinary.game.layout.behavior;
 import javax.microedition.lcdui.Graphics;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layout.GDObject;
-import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -25,7 +25,7 @@ import org.allbinary.util.BasicArrayList;
  */
 public class DestroyOutsideBehavior extends GDBehavior {
 
-    private final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
+    private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
 
     public boolean process(final BasicArrayList gameLayerList, final int index, final Graphics graphics) {
 
@@ -56,11 +56,11 @@ public class DestroyOutsideBehavior extends GDBehavior {
     }
 
     public int SceneWindowWidth() {
-        return this.displayInfoSingleton.getLastWidth();
+        return this.gameTickDisplayInfoSingleton.getLastWidth();
     }
 
     public int SceneWindowHeight() {
-        return this.displayInfoSingleton.getLastHeight();
+        return this.gameTickDisplayInfoSingleton.getLastHeight();
     }
 
 }

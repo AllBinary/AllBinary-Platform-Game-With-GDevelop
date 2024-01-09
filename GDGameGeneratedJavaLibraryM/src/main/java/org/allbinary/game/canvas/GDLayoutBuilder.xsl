@@ -80,7 +80,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.graphics.color.BasicColor;
-                import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.graphics.displayable.event.DisplayChangeEvent;
                 import org.allbinary.graphics.displayable.event.DisplayChangeEventHandler;
                 import org.allbinary.graphics.displayable.event.DisplayChangeEventListener;
@@ -131,7 +131,7 @@ Created By: Travis Berthelot
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final PointFactory pointFactory = PointFactory.getInstance();
-                        private final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
+                        private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
                         
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
 
@@ -367,8 +367,8 @@ Created By: Travis Berthelot
                         final int <xsl:value-of select="name" />Y =
                             <xsl:if test="contains(name, 'btn_')" >
                                 //Hack - for android orientation change.
-                                 (int) <xsl:if test="y = 506" >displayInfoSingleton.getLastHeight() - (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100));</xsl:if>
-                                <xsl:if test="y = 415" >displayInfoSingleton.getLastHeight() - (2 * (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100)));</xsl:if>
+                                 (int) <xsl:if test="y = 506" >gameTickDisplayInfoSingleton.getLastHeight() - (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100));</xsl:if>
+                                <xsl:if test="y = 415" >gameTickDisplayInfoSingleton.getLastHeight() - (2 * (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100)));</xsl:if>
                             </xsl:if>
                             <xsl:if test="not(contains(name, 'btn_'))" >
                                 centerCameraX != 0 ? centerCameraY - height / 2 :  (int) (<xsl:value-of select="y" /> * baseLayerScale);
@@ -599,11 +599,11 @@ Created By: Travis Berthelot
                     }
 
                     public int SceneWindowWidth() {
-                        return displayInfoSingleton.getLastWidth();
+                        return gameTickDisplayInfoSingleton.getLastWidth();
                     }
 
                     public int SceneWindowHeight() {
-                        return displayInfoSingleton.getLastHeight();
+                        return gameTickDisplayInfoSingleton.getLastHeight();
                     }
 
                     public int Random(final int range) {
