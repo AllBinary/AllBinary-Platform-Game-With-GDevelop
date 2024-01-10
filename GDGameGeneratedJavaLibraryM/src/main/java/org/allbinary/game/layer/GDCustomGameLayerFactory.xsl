@@ -44,8 +44,9 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             final BasicArrayList behaviorList,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
-            final Rectangle layerInfo) {
-        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, new RotationBehavior());
+            final Rectangle layerInfo,
+            final Rectangle[][] rectangleArrayOfArrays) {
+        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, new RotationBehavior());
     }
     
     public GDCustomGameLayerFactory(
@@ -54,14 +55,18 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             final BasicArrayList behaviorList,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
-            final Rectangle layerInfo, final AnimationBehaviorBase animationBehavior) {
+            final Rectangle layerInfo, 
+            final Rectangle[][] rectangleArrayOfArrays,
+            final AnimationBehaviorBase animationBehavior) {
         
         super(gameLayerList, gameLayerDestroyedList, 
             groupInterface,
             behaviorList,
             animationInterfaceFactoryInterfaceArray,
             proceduralAnimationInterfaceFactoryInterfaceArray,
-            layerInfo, animationBehavior);
+            layerInfo, 
+            rectangleArrayOfArrays, 
+            animationBehavior);
         
         this.width = this.layerInfo.getWidth();
         this.height = this.layerInfo.getHeight();

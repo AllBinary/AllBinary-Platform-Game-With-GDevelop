@@ -37,6 +37,7 @@ public class GDGameLayerFactory
     protected final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray;
     protected final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray;
     protected final Rectangle layerInfo;
+    protected final Rectangle[][] rectangleArrayOfArrays;
     protected final AnimationBehaviorBase animationBehavior;
     
     protected final BasicArrayList gameLayerList;
@@ -47,8 +48,9 @@ public class GDGameLayerFactory
             final BasicArrayList behaviorList,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
-            final Rectangle layerInfo) {
-        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, new RotationBehavior());
+            final Rectangle layerInfo,
+            final Rectangle[][] rectangleArrayOfArrays) {
+        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, new RotationBehavior());
     }
     
     public GDGameLayerFactory(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
@@ -56,13 +58,16 @@ public class GDGameLayerFactory
             final BasicArrayList behaviorList,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
-            final Rectangle layerInfo, final AnimationBehaviorBase animationBehavior) {
+            final Rectangle layerInfo, 
+            final Rectangle[][] rectangleArrayOfArrays,
+            final AnimationBehaviorBase animationBehavior) {
         
         this.groupInterface = groupInterface;
         this.behaviorList = behaviorList;
         this.animationInterfaceFactoryInterfaceArray = animationInterfaceFactoryInterfaceArray;
         this.proceduralAnimationInterfaceFactoryInterfaceArray = proceduralAnimationInterfaceFactoryInterfaceArray;
         this.layerInfo = layerInfo;
+        this.rectangleArrayOfArrays = rectangleArrayOfArrays;
         this.animationBehavior = animationBehavior;
         
         this.gameLayerList = gameLayerList;

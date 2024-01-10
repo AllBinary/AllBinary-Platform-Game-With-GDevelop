@@ -32,7 +32,7 @@ Created By: Travis Berthelot
                 public final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray;
                 public final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray;
                 public final Rectangle <xsl:value-of select="name" />LayerInfo;
-                public final Rectangle[][] <xsl:value-of select="name" />RectangleArrayofArrays;
+                public final Rectangle[][] <xsl:value-of select="name" />RectangleArrayOfArrays;
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
 
@@ -91,7 +91,7 @@ Created By: Travis Berthelot
                 public final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray;
                 public final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray;
                 public final Rectangle <xsl:value-of select="name" />LayerInfo;
-                public final Rectangle[][] <xsl:value-of select="name" />RectangleArrayofArrays;
+                public final Rectangle[][] <xsl:value-of select="name" />RectangleArrayOfArrays;
 
             </xsl:if>
 
@@ -101,7 +101,7 @@ Created By: Travis Berthelot
                 public final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray;
                 public final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray;
                 public final Rectangle <xsl:value-of select="name" />LayerInfo;
-                public final Rectangle[][] <xsl:value-of select="name" />RectangleArrayofArrays;
+                public final Rectangle[][] <xsl:value-of select="name" />RectangleArrayOfArrays;
 
             </xsl:if>
             <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
@@ -110,7 +110,7 @@ Created By: Travis Berthelot
                 public AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = null;
                 public ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = null;
                 public final Rectangle <xsl:value-of select="name" />LayerInfo;
-                public final Rectangle[][] <xsl:value-of select="name" />RectangleArrayofArrays;
+                public final Rectangle[][] <xsl:value-of select="name" />RectangleArrayOfArrays;
 
             </xsl:if>
 
@@ -135,7 +135,7 @@ Created By: Travis Berthelot
                 this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = (AnimationInterfaceFactoryInterface[]) ((AnimationInterfaceFactoryInterfaceComposite) animationInterfaceFactoryInterfaceFactory.getBasicAnimationInterfaceFactoryInstance(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME)).getAnimationInterfaceFactoryInterfaceArray();
                 this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = (ProceduralAnimationInterfaceFactoryInterface[]) ((BaseAnimationInterfaceFactoryInterfaceComposite) animationInterfaceFactoryInterfaceFactory.getBasicAnimationInterfaceFactoryInstance(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_PROCEDURAL_ANIMATION_NAME)).getBasicAnimationInterfaceFactoryInterfaceArray();
                 this.<xsl:value-of select="name" />LayerInfo = animationInterfaceFactoryInterfaceFactory.getRectangle(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME);
-                this.<xsl:value-of select="name" />RectangleArrayofArrays = animationInterfaceFactoryInterfaceFactory.getRectangleArrayOfArrays(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME);
+                this.<xsl:value-of select="name" />RectangleArrayOfArrays = animationInterfaceFactoryInterfaceFactory.getRectangleArrayOfArrays(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME);
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
 
@@ -222,7 +222,8 @@ Created By: Travis Berthelot
                     <xsl:value-of select="name" />BehaviorList,
                     <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
-                    <xsl:value-of select="name" />LayerInfo
+                    <xsl:value-of select="name" />LayerInfo,
+                    <xsl:value-of select="name" />RectangleArrayOfArrays
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >, AnimationBehavior.getInstance()</xsl:if>
                     <xsl:if test="contains(name, 'btn_')" >, AnimationBehaviorBase.getInstance()</xsl:if>
                     );
@@ -240,7 +241,7 @@ Created By: Travis Berthelot
                                 pointFactory.getInstance(0, 0),
                                 0, 0
                                 );
-                this.<xsl:value-of select="name" />RectangleArrayofArrays = new Rectangle[0][0];
+                this.<xsl:value-of select="name" />RectangleArrayOfArrays = new Rectangle[0][0];
 
                 final BasicArrayList <xsl:value-of select="name" />BehaviorList = new BasicArrayList();
                 
@@ -251,7 +252,8 @@ Created By: Travis Berthelot
                     <xsl:value-of select="name" />BehaviorList,
                     <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
-                    <xsl:value-of select="name" />LayerInfo);
+                    <xsl:value-of select="name" />LayerInfo,
+                    <xsl:value-of select="name" />RectangleArrayOfArrays);
 
                 //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
 
@@ -280,7 +282,8 @@ Created By: Travis Berthelot
                     <xsl:value-of select="name" />BehaviorList,
                     <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
-                    <xsl:value-of select="name" />LayerInfo);
+                    <xsl:value-of select="name" />LayerInfo,
+                    <xsl:value-of select="name" />RectangleArrayOfArrays);
 
                 //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
 
