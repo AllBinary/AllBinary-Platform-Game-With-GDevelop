@@ -77,7 +77,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     protected final BasicArrayList gameLayerList;
     protected final BasicArrayList gameLayerDestroyedList;
     protected final BasicArrayList behaviorList;
-            
+
+    protected final Rectangle[][] rectangleArrayOfArrays;
+
     public GDObject gdObject;
 
     protected ScalableBaseProcessor scalableProcessor = ScalableBaseProcessor.getInstance();
@@ -89,7 +91,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             final String gdName, final Group[] groupInterface,
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
-            final Rectangle layerInfo, final ViewPosition viewPosition,
+            final Rectangle layerInfo, 
+            final Rectangle[][] rectangleArrayOfArrays,
+            final ViewPosition viewPosition,
             final GDObject gdObject, final AnimationBehaviorBase animationBehavior) throws Exception {
         super(groupInterface, gdName, layerInfo, viewPosition);
 
@@ -139,6 +143,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //LogUtil.put(LogFactory.getInstance(this.toString(), this, commonStrings.CONSTRUCTOR));
         
         this.dimensionalBehavior.reset(gdObject);
+        
+        this.rectangleArrayOfArrays = rectangleArrayOfArrays;
     }
 
     public void setGDObject(final GDObject gdObject) throws Exception {
@@ -477,7 +483,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             //}
 
             //this.paintPoints(graphics);
-            //this.paintDebug(graphics);
+            this.paintDebug(graphics);
         }
         catch (Exception e)
         {

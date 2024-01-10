@@ -235,6 +235,8 @@ Created By: Travis Berthelot
                         <xsl:if test="1" >new org.allbinary.game.behavior.platformer.PlayerPlatformCharacterBehavior();</xsl:if>
                         <xsl:if test="0" >new org.allbinary.game.behavior.platformer.NonPlayerPlatformCharacterBehavior();</xsl:if>
 
+                    protected final Rectangle[][] rectangleArrayOfArrays;
+
                     protected AllBinaryGameLayerManager allBinaryGameLayerManager;
 
                     protected BasicAccelerationProperties acceleration;
@@ -258,6 +260,7 @@ Created By: Travis Berthelot
                         final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
                         final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
                         final Rectangle layerInfo, 
+                        final Rectangle[][] rectangleArrayOfArrays,
                         final GDObject gdObject, final AnimationBehaviorBase animationBehavior) throws Exception {
 
                         super(gameLayerList, gameLayerDestroyedList, 
@@ -281,6 +284,7 @@ Created By: Travis Berthelot
                             animationInterfaceFactoryInterfaceArray,
                             proceduralAnimationInterfaceFactoryInterfaceArray,
                             layerInfo, 
+                            rectangleArrayOfArrays,
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
 
@@ -390,6 +394,7 @@ Created By: Travis Berthelot
             <xsl:call-template name="mapCollisionMaskHack2" >
                 <xsl:with-param name="layoutIndex" select="$layoutIndex" />
             </xsl:call-template>
+            
             }
             
         </xsl:for-each>

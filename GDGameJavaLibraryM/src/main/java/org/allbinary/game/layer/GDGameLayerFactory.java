@@ -88,7 +88,9 @@ public class GDGameLayerFactory
                 this.groupInterface,
                 this.animationInterfaceFactoryInterfaceArray,
                 this.proceduralAnimationInterfaceFactoryInterfaceArray,
-                this.layerInfo, new ViewPosition(), 
+                this.layerInfo, 
+                this.rectangleArrayOfArrays,
+                new ViewPosition(), 
                 gdObject, this.animationBehavior);
         
         gameLayer.setCollidableInferface(new GDWithAllBinaryCollidableBehavior(gameLayer, collidableBehavior, true));
