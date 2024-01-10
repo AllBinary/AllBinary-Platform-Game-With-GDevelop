@@ -172,7 +172,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                     <xsl:text>&#10;</xsl:text>
                     
                     <xsl:text>&#10;</xsl:text>
-                    new GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable()).init(-1);
+                    new GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable(), this.getRectangleArrayOfArraysHashtable()).init(-1);
 
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));

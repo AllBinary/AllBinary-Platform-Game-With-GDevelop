@@ -111,9 +111,9 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
     
     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
         
-    public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(final Hashtable hashtable, final Hashtable rectangleHashtable)
+    public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(final Hashtable hashtable, final Hashtable rectangleHashtable, final Hashtable rectangleArrayHashtable)
     {
-        super("Game Image Animations", hashtable, rectangleHashtable);
+        super("Game Image Animations", hashtable, rectangleHashtable, rectangleArrayHashtable);
     }
             
     public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()

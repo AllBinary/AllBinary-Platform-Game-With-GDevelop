@@ -181,7 +181,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                     </xsl:call-template>
 
                     <xsl:text>&#10;</xsl:text>
-                    new GD1GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable()).init(-1);
+                    new GD1GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable(), this.getRectangleArrayOfArraysHashtable()).init(-1);
                     //GameAreaBoxUtil.getInstance().addAnimations(this);
 
                         } catch(Exception e) {

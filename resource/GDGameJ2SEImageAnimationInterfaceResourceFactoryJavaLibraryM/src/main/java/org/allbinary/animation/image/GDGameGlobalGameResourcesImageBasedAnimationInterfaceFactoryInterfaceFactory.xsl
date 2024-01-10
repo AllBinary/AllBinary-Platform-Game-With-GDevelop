@@ -164,7 +164,7 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
                     <xsl:text>&#10;</xsl:text>
 
                     <xsl:text>&#10;</xsl:text>
-                    //new GDGlobalGameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable()).init(-1);
+                    //new GDGlobalGameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable(), this.getRectangleArrayOfArraysHashtable()).init(-1);
                     
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
