@@ -78,7 +78,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     protected final BasicArrayList gameLayerDestroyedList;
     protected final BasicArrayList behaviorList;
 
-    protected final Rectangle[][] rectangleArrayOfArrays;
+    public final Rectangle[][] rectangleArrayOfArrays;
 
     public GDObject gdObject;
 
@@ -475,15 +475,15 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             //int x = this.x - quarterWidth;
             //int y = this.y - quarterHeight;
             final ViewPosition viewPosition = this.getViewPosition();
-            int x = viewPosition.getX();
-            int y = viewPosition.getY();
+            final int x = viewPosition.getX();
+            final int y = viewPosition.getY();
 
             //for (int index = 0; index < SIZE; index++) {
             indexedAnimationInterfaceArray[this.gdObject.animation].paint(graphics, x, y);
             //}
 
             //this.paintPoints(graphics);
-            this.paintDebug(graphics);
+            //this.paintDebug(graphics);
         }
         catch (Exception e)
         {
@@ -658,9 +658,10 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 //        EnemiesGDGameLayer.r = PlatformerMap.placementYIntArray[PlatformerMap.placementIntArray[PlatformerMap.placementIndex]] / 24;
 //        stringBuilder.delete(0, stringBuilder.length());
 //        LogUtil.put(LogFactory.getInstance(stringBuilder.append("TWB c: ").append(EnemiesGDGameLayer.c).append(" r: ").append(EnemiesGDGameLayer.r).toString(), this, commonStrings.PROCESS));
-        
+
+        this.getCollidableInferface().paint(graphics);
     }
-    
+        
 //    public int c;
 //    public int r;
     

@@ -100,7 +100,11 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
                 this.rectangleArrayOfArrays,
                 gdObject, this.animationBehavior);
         
-        gameLayer.setCollidableInferface(new GDCustomCollidableBehavior(gameLayer, collidableBehavior, true));
+        if(this.rectangleArrayOfArrays.length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+            gameLayer.setCollidableInferface(new GDCustomMaskCollidableBehavior(gameLayer, collidableBehavior, true));
+        } else {
+            gameLayer.setCollidableInferface(new GDCustomCollidableBehavior(gameLayer, collidableBehavior, true));
+        }
 
         //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(name).append(" GDObject name: ").append(gdObject.name).append(" w/h/d: ").append(gameLayer.getWidth()).append('/').append(gameLayer.getHeight()).append('/').append(gameLayer.getDepth()).toString(), this, "create"));
         
