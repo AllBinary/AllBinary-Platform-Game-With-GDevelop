@@ -193,10 +193,16 @@ Created By: Travis Berthelot
                             <xsl:if test="position() = 1" >
                             <xsl:variable name="position" ><xsl:value-of select="position()" /></xsl:variable>
                             <xsl:for-each select="customCollisionMask" >
+                //final float hackScale = ((float) scale) * 125.0f / 1000.0f;
+                final float hackScale = 3.0f * 125.0f / 1000.0f;
                 final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
-                                pointFactory.getInstance(<xsl:value-of select="array[1]/x" />, <xsl:value-of select="array[1]/y" />),
-                                    <xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />, <xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />
+                                pointFactory.getInstance((int) (<xsl:value-of select="array[1]/x" /> * hackScale), (int) (<xsl:value-of select="array[1]/y" /> * hackScale)),
+                                    (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale)
                                 );
+
+//                LogUtil.put(LogFactory.getInstance("scale: " + scale, this, CommonStrings.getInstance().PROCESS));
+//                LogUtil.put(LogFactory.getInstance("hackScale: " + hackScale, this, CommonStrings.getInstance().PROCESS));
+//                LogUtil.put(LogFactory.getInstance("Rectangle: " + PlayerWarrior_IdleLeft_Animation1CollisionMask, this, CommonStrings.getInstance().PROCESS));
 
                 final int size = <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray.length;
                 final Rectangle[][] rectangleArrayOfArrays = new Rectangle[1][size];
