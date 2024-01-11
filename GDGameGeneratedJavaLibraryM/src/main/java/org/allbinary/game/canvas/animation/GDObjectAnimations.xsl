@@ -195,7 +195,7 @@ Created By: Travis Berthelot
                             <xsl:for-each select="customCollisionMask" >
                 final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
                                 pointFactory.getInstance(<xsl:value-of select="array[1]/x" />, <xsl:value-of select="array[1]/y" />),
-                                    <xsl:value-of select="array[4]/x" />, <xsl:value-of select="array[4]/y" />
+                                    <xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />, <xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />
                                 );
 
                 final int size = <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray.length;
