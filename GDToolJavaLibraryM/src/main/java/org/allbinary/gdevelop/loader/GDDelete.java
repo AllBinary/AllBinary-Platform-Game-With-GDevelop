@@ -75,6 +75,7 @@ public class GDDelete {
         
         exclusionList.add("TouchButtonAndroidResources.java");
         exclusionList.add("StartRunnable.java");
+        exclusionList.add("GeographicMapTopViewMaskGameLayerBehavior.java");
         exclusionList.add("GDGameInputProcessor.java");
         exclusionList.add("GDGameResourceInitialization.java");
         exclusionList.add("GDGlobals.java");
