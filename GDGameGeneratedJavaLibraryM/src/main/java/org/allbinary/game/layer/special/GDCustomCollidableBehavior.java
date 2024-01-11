@@ -89,7 +89,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
 
                 final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) this.ownerLayer);
                 final GDObject gdObject = collisionMaskCustomGameLayer.gdObject;
-                final GeographicMapCellPosition geographicMapCellPosition = collisionMaskCustomGameLayer.topViewGameBehavior.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, customGameLayer.getVelocityProperties(), customGameLayer, gdObject.x, gdObject.y);
+                final GeographicMapCellPosition geographicMapCellPosition = customGameLayer.topViewGameBehavior.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, customGameLayer.getVelocityProperties(), customGameLayer, gdObject.x, gdObject.y);
 
 //                if(customGameLayer.gdObject.name.compareTo(B) == 0) {
 //                    if(lastGeographicMapCellPosition != geographicMapCellPosition) {

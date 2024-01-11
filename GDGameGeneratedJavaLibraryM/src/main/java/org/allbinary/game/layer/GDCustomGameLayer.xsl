@@ -161,38 +161,8 @@ Created By: Travis Berthelot
         </xsl:variable>
 
                 <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
-                    public final org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior2 topViewGameBehavior = 
-                        new org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior2(64, false, 6) {
-                    
-    public void moveAndLand(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellPosition geographicMapCellPosition, final VelocityProperties velocityProperties, final AllBinaryLayer layer, final int x, final int y) throws Exception {
-        
-        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand"));
-        
-        if (geographicMapCellPosition != null) {
+                    public final org.allbinary.game.behavior.topview.GeographicMapTopViewLayerBehavior topViewGameBehavior;
 
-            super.moveAndLand(geographicMapInterfaceArray, geographicMapCellPosition, velocityProperties, layer, x, y);
-
-            //final String MOVE_AND_LAND = "moveAndLand";
-            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND));
-        } else {
-            //LogUtil.put(LogFactory.getInstance("do not move", this, "moveAndLand"));
-                    
-            //CollisionNP
-<!--
-            <xsl:for-each select="layouts" >
-            <xsl:variable name="layoutIndex" select="position() - 1" />
-            //final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-            </xsl:for-each>
--->
-            <xsl:for-each select=".." >
-            <xsl:call-template name="mapCollisionMaskHack" />
-            </xsl:for-each>
-
-        }
-        
-    }
-                    
-                    };
                     protected final org.allbinary.game.behavior.topview.TopViewCharacterBehavior topViewCharacterBehavior = 
                         <xsl:if test="1" >new org.allbinary.game.behavior.topview.PlayerTopViewCharacterBehavior();</xsl:if>
                         <xsl:if test="0" >new org.allbinary.game.behavior.topview.NonPlayerTopViewCharacterBehavior();</xsl:if>
@@ -311,6 +281,82 @@ Created By: Travis Berthelot
                             new ViewPosition(),
         </xsl:if>
                             gdObject, animationBehavior);
+
+                <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
+                    org.allbinary.game.behavior.topview.GeographicMapTopViewLayerBehavior topViewGameBehavior;
+                    
+                    if(this.rectangleArrayOfArrays != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.rectangleArrayOfArrays.length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                    
+                    topViewGameBehavior = new org.allbinary.game.behavior.topview.GeographicMapTopViewMaskGameLayerBehavior(64, false, 6) {
+                    
+    public void moveAndLand(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellPosition geographicMapCellPosition, final VelocityProperties velocityProperties, final AllBinaryLayer layer, final int x, final int y) throws Exception {
+        
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand"));
+        
+        if (geographicMapCellPosition != null) {
+
+            super.moveAndLand(geographicMapInterfaceArray, geographicMapCellPosition, velocityProperties, layer, x, y);
+
+            //final String MOVE_AND_LAND = "moveAndLand";
+            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND));
+        } else {
+            //LogUtil.put(LogFactory.getInstance("do not move", this, "moveAndLand"));
+                    
+            //CollisionNP
+<!--
+            <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+            //final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+            </xsl:for-each>
+-->
+            <xsl:for-each select=".." >
+            <xsl:call-template name="mapCollisionMaskHack" />
+            </xsl:for-each>
+
+        }
+        
+    }
+                    
+                    };
+                    
+                    } else {
+
+                    topViewGameBehavior = new org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior2(64, false, 6) {
+                    
+    public void moveAndLand(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellPosition geographicMapCellPosition, final VelocityProperties velocityProperties, final AllBinaryLayer layer, final int x, final int y) throws Exception {
+        
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand"));
+        
+        if (geographicMapCellPosition != null) {
+
+            super.moveAndLand(geographicMapInterfaceArray, geographicMapCellPosition, velocityProperties, layer, x, y);
+
+            //final String MOVE_AND_LAND = "moveAndLand";
+            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND));
+        } else {
+            //LogUtil.put(LogFactory.getInstance("do not move", this, "moveAndLand"));
+                    
+            //CollisionNP
+<!--
+            <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+            //final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+            </xsl:for-each>
+-->
+            <xsl:for-each select=".." >
+            <xsl:call-template name="mapCollisionMaskHack" />
+            </xsl:for-each>
+
+        }
+        
+    }
+                    
+                    };
+                    
+                    }
+
+                    this.topViewGameBehavior = topViewGameBehavior;
+                </xsl:if>
 
 <!--
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >

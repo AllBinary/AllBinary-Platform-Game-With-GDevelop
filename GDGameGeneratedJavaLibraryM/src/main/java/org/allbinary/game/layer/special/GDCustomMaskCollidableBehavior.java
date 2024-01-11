@@ -83,13 +83,15 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
             final int ownerViewX = ownerViewPosition.getX();
             final int ownerViewY = ownerViewPosition.getY();
             
-            final Rectangle maskRectangle = collisionMaskCustomGameLayer.rectangleArrayOfArrays[0][0];
-            final GPoint maskPoint = maskRectangle.getPoint();
+//            final Rectangle maskRectangle = collisionMaskCustomGameLayer.rectangleArrayOfArrays[0][0];
+//            final GPoint maskPoint = maskRectangle.getPoint();
             final ViewPosition viewPosition = collisionMaskCustomGameLayer.getViewPosition();
             final int viewX = viewPosition.getX();
             final int viewY = viewPosition.getY();
 
-            return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskRectangle.getHeight(), viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskRectangle.getWidth(), viewY + maskRectangle.getHeight());
+            return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskRectangle.getHeight(), 
+                    //viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskRectangle.getWidth(), viewY + maskRectangle.getHeight());
+                    viewX, viewY, viewX + collisionMaskCustomGameLayer.getWidth(), viewY + collisionMaskCustomGameLayer.getHeight());
         }
     }
     
@@ -113,7 +115,7 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
 
                 final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) this.ownerLayer);
                 final GDObject gdObject = collisionMaskCustomGameLayer.gdObject;
-                final GeographicMapCellPosition geographicMapCellPosition = collisionMaskCustomGameLayer.topViewGameBehavior.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, customGameLayer.getVelocityProperties(), customGameLayer, gdObject.x, gdObject.y);
+                final GeographicMapCellPosition geographicMapCellPosition = customGameLayer.topViewGameBehavior.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, customGameLayer.getVelocityProperties(), customGameLayer, gdObject.x, gdObject.y);
 
 //                if(customGameLayer.gdObject.name.compareTo(B) == 0) {
 //                    if(lastGeographicMapCellPosition != geographicMapCellPosition) {
@@ -170,14 +172,15 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
             final int ownerViewX = ownerViewPosition.getX();
             final int ownerViewY = ownerViewPosition.getY();
             
-            final Rectangle maskRectangle = collisionMaskCustomGameLayer.rectangleArrayOfArrays[0][0];
-            final GPoint maskPoint = maskRectangle.getPoint();
+//            final Rectangle maskRectangle = collisionMaskCustomGameLayer.rectangleArrayOfArrays[0][0];
+//            final GPoint maskPoint = maskRectangle.getPoint();
             final ViewPosition viewPosition = collisionMaskCustomGameLayer.getViewPosition();
             final int viewX = viewPosition.getX();
             final int viewY = viewPosition.getY();
 
-            return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskRectangle.getHeight(), viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskRectangle.getWidth(), viewY + maskRectangle.getHeight());
-
+            return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskRectangle.getHeight(), 
+                    //viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskRectangle.getWidth(), viewY + maskRectangle.getHeight());
+                    viewX, viewY, viewX + collisionMaskCustomGameLayer.getWidth(), viewY + collisionMaskCustomGameLayer.getHeight());
             }
         } else {
             //stringBuilder.delete(0, stringBuilder.length());
@@ -270,7 +273,7 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
 
         this.basicColorUtil.setBasicColor(graphics, PURPLE);
 
-        graphics.drawRect(viewX + ownerMaskPoint.getX(), viewY + ownerMaskPoint.getY(), viewX + ownerMaskRectangle.getMaxX(), viewY + ownerMaskRectangle.getMaxY());
+        graphics.drawRect(viewX + ownerMaskPoint.getX(), viewY + ownerMaskPoint.getY(), ownerMaskRectangle.getWidth(), ownerMaskRectangle.getHeight());
         //this.getViewPosition().getX2() - viewX,
         //this.getViewPosition().getY2() - viewY);
 

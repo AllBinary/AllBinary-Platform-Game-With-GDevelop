@@ -25,6 +25,7 @@ import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.GDCustomCollidableBehavior;
+import org.allbinary.game.layer.special.GDCustomMaskCollidableBehavior;
 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.graphics.Rectangle;
@@ -100,7 +101,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
                 this.rectangleArrayOfArrays,
                 gdObject, this.animationBehavior);
 
-        if(this.rectangleArrayOfArrays != null && this.rectangleArrayOfArrays.length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+        if(this.rectangleArrayOfArrays != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.rectangleArrayOfArrays.length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
             gameLayer.setCollidableInferface(new GDCustomMaskCollidableBehavior(gameLayer, collidableBehavior, true));
         } else {
             gameLayer.setCollidableInferface(new GDCustomCollidableBehavior(gameLayer, collidableBehavior, true));
