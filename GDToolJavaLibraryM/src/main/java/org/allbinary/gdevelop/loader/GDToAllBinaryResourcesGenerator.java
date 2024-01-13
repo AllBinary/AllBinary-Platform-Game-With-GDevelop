@@ -7,6 +7,7 @@
 package org.allbinary.gdevelop.loader;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.logic.io.StreamUtil;
@@ -15,8 +16,8 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.io.file.FileUtil;
 import org.allbinary.logic.string.CommonSeps;
-import org.allbinary.util.BasicArrayList;
 
 /**
  *
@@ -44,9 +45,21 @@ public class GDToAllBinaryResourcesGenerator
     private final String VALUE_RESOURCE_START = " = \"";
     private final String VALUE_RESOURCE_END = "\";\n";
     
+    private final boolean hasRotationImages;
     public GDToAllBinaryResourcesGenerator() {
+        hasRotationImages = this.hasRotationImages();
         resourceStringBuilder.append(GD_KEY);
         resourceStringBuilder.append('\n');
+    }
+    
+    public boolean hasRotationImages() {
+        final FileUtil fileUtil = FileUtil.getInstance();
+        final String filePath = gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\animation\\GDRotationAnimation.txt";
+        final String fileAsString = fileUtil.readAsString(filePath);
+        if(fileAsString.indexOf("found") >= 0) {
+            return true;
+        }
+        return false;
     }
     
     public void processResource(final String nameAsString, final String resourceString) {
@@ -64,9 +77,11 @@ public class GDToAllBinaryResourcesGenerator
             resourceStringBuilder.append(COMMENT);
         }
 
-        for (int index2 = 2; index2 < size2; index2++) {
-            if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
-                resourceStringBuilder.append(COMMENT);
+        if(!this.hasRotationImages) {
+            for (int index2 = 2; index2 < size2; index2++) {
+                if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
+                    resourceStringBuilder.append(COMMENT);
+                }
             }
         }
         
@@ -113,9 +128,11 @@ public class GDToAllBinaryResourcesGenerator
                 resourceStringBuilder.append(COMMENT);
             }
             
-            for(int index2 = 2; index2 < size2; index2++) {
-                if(name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
-                    resourceStringBuilder.append(COMMENT);
+            if(!this.hasRotationImages) {
+                for (int index2 = 2; index2 < size2; index2++) {
+                    if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
+                        resourceStringBuilder.append(COMMENT);
+                    }
                 }
             }
             
