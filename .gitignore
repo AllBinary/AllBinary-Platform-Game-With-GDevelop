@@ -21,6 +21,7 @@ GD*GamePlaynResources.java
 *ThreedLevelBuilder.java
 AndroidResources.java
 AndroidManifest.xml
+GDRotationAnimation.txt
 GDCustomGameLayer.java
 GDCustomGameLayerFactory.java
 GDGameAndroidActivity.java
