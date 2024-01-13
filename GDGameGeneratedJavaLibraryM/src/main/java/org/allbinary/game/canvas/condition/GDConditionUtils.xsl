@@ -26,6 +26,19 @@
         <xsl:when test="contains($key2, 'shoot')" >Canvas.KEY_NUM0</xsl:when>
         <xsl:when test="contains($key2, 'secondary')" >Canvas.KEY_NUM7</xsl:when>
         <xsl:when test="contains($key2, 'return')" >Canvas.KEY_NUM0</xsl:when>
+        
+        <!-- these are for testing -->
+        <xsl:when test="contains($key2, 'num0')" >Canvas.KEY_NUM0</xsl:when>
+        <xsl:when test="contains($key2, 'num1')" >Canvas.KEY_NUM1</xsl:when>
+        <xsl:when test="contains($key2, 'num2')" >Canvas.KEY_NUM2</xsl:when>
+        <xsl:when test="contains($key2, 'num3')" >Canvas.KEY_NUM3</xsl:when>
+        <xsl:when test="contains($key2, 'num4')" >Canvas.KEY_NUM4</xsl:when>
+        <xsl:when test="contains($key2, 'num5')" >Canvas.KEY_NUM5</xsl:when>
+        <xsl:when test="contains($key2, 'num6')" >Canvas.KEY_NUM6</xsl:when>
+        <xsl:when test="contains($key2, 'num7')" >Canvas.KEY_NUM7</xsl:when>
+        <xsl:when test="contains($key2, 'num8')" >Canvas.KEY_NUM8</xsl:when>
+        <xsl:when test="contains($key2, 'num9')" >Canvas.KEY_NUM9</xsl:when>
+        
         <xsl:otherwise>Canvas.UNKNOWN</xsl:otherwise>
         </xsl:choose>
         

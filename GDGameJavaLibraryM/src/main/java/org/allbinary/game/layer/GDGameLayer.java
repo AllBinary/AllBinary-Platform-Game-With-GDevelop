@@ -625,7 +625,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
     public void paintDebug(final Graphics graphics) {
         
-        //graphics.drawString(this.gdObject.name, x, y, 0);
+        //graphics.drawString(this.getName(), x, y, 0);
 
 //        final int endX = (int) (this.x + (this.velocityInterface.getVelocityXBasicDecimal().getUnscaled() / 10));
 //        final int endY = (int) (this.y + (this.velocityInterface.getVelocityYBasicDecimal().getUnscaled() / 10));
