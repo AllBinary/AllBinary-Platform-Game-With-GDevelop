@@ -113,6 +113,7 @@ import org.mapgenerator.TileMapGenerator;
                     </xsl:if>
                     <xsl:if test="content/generator = 'DungeonGenerator'" >
 import org.mapgenerator.dungeon.DungeonGenerator;
+import org.mapgenerator.dungeon.Tunneller;
                     </xsl:if>
 
                 </xsl:if>
@@ -508,8 +509,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                             }
                         }
 -->
-                    
-                        final AllBinaryTiledLayer allBinaryTiledLayer = geographicMapInterfaceArray[layerIndex].getAllBinaryTiledLayer();
+
                         stringMaker.delete(0, stringMaker.length());
                         LogUtil.put(LogFactory.getInstance(stringMaker.append("Planned Start Position c: ").append(allBinaryTiledLayer.getColumns()).append(CommonSeps.getInstance().FORWARD_SLASH).append(index2 * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).append(index2).append(" r: ").append(allBinaryTiledLayer.getRows()).append(CommonSeps.getInstance().FORWARD_SLASH).append(index * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).append(index).toString(), this, commonStrings.PROCESS));
                                                 
