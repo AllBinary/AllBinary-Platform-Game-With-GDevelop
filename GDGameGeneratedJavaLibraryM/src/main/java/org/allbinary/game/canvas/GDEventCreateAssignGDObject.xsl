@@ -144,7 +144,7 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="text()" />
                                         </xsl:with-param>                                
                                         <xsl:with-param name="find" >.placementIndex]]</xsl:with-param>
-                                        <xsl:with-param name="replacementText" >.placementIndex]] * 2</xsl:with-param>
+                                        <xsl:with-param name="replacementText" >.placementIndex]]</xsl:with-param>
                                     </xsl:call-template>
                                         </xsl:with-param>                                
                                         <xsl:with-param name="find" >&quot;&quot;</xsl:with-param>

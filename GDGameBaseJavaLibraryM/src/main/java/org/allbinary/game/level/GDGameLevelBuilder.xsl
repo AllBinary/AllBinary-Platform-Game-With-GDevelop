@@ -177,6 +177,13 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                     <xsl:if test="content/generator = 'DungeonGenerator'" >
         //"generator": "DungeonGenerator",
         if(!gameGlobals.RandomDungeon) {
+            final GD1GDObjectsFactory.PlatformerMap platformerMap = (GD1GDObjectsFactory.PlatformerMap) globals.PlatformerMapGDObjectList.get(0);
+            final int size = platformerMap.placementIntArray.length;
+            for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                platformerMap.placementXIntArray[index] *= 2;
+                platformerMap.placementYIntArray[index] *= 2;
+            }
+
             tileMapInputStream2 = platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);
         } else {
             //LogUtil.put(LogFactory.getInstance("Loading Tiled Map Asset", this, commonStrings.PROCESS));
