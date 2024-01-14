@@ -70,6 +70,7 @@ Created By: Travis Berthelot
                                 //old - <xsl:for-each select=".." ><xsl:for-each select="instances" ><xsl:if test="name = $name" ><xsl:if test="height = 0 or width = 0 or not(height) or not(width)" ><xsl:if test="animations/directions/sprites/originPoint/x = 0" ><xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()</xsl:if></xsl:if><xsl:if test="height != 0 and width != 0" ><xsl:value-of select="width" />, <xsl:value-of select="height" /></xsl:if></xsl:if></xsl:for-each></xsl:for-each>
                                 <!--
                                 -->
+                                <xsl:variable name="hasOriginPointX" ><xsl:if test="animations/directions/sprites/originPoint/x = 0" >found</xsl:if></xsl:variable>
                                 <xsl:for-each select=".." >
                                     <xsl:variable name="hasInstance" ><xsl:for-each select="instances" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
                                     <xsl:if test="not(contains($hasInstance, 'found'))" >
@@ -85,8 +86,8 @@ Created By: Travis Berthelot
                                             <xsl:if test="not(contains(name, 'btn_'))" >
                                                 //btn_ - not
                                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
-                                                    <xsl:if test="animations/directions/sprites/originPoint/x = 0" >
-                                                        ,<xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                                    <xsl:if test="contains($hasOriginPointX, 'found')" >
+                                                        //,<xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()
                                                     </xsl:if>
                                                 </xsl:if>
                                                 <xsl:if test="height != 0 and width != 0" >

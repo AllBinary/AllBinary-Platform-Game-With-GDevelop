@@ -79,8 +79,6 @@ public class GDDelete {
         exclusionList.add("GDGameInputProcessor.java");
         exclusionList.add("GDGameResourceInitialization.java");
         exclusionList.add("GDGlobals.java");
-        exclusionList.add("GDCustomCollidableBehavior.java");
-        exclusionList.add("GDCustomMaskCollidableBehavior.java");
         exclusionList.add("TempMovementBehaviorFactory.java");
         exclusionList.add("TempNoMapMovementBehavior.java");
         exclusionList.add("TempMapMovementBehavior.java");

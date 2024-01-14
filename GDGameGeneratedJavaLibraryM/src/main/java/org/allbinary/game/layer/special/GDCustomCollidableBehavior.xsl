@@ -1,3 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+AllBinary Open License Version 1
+Copyright (c) 2011 AllBinary
+
+By agreeing to this license you and any business entity you represent are
+legally bound to the AllBinary Open License Version 1 legal agreement.
+
+You may obtain the AllBinary Open License Version 1 legal agreement from
+AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+
+Created By: Travis Berthelot
+-->
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
+    
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
+
+    <xsl:output method="html" indent="yes" />
+
+    <xsl:template match="/game">
+
+        <xsl:variable name="foundOtherViewPosition" ><xsl:for-each select="layouts" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:for-each></xsl:variable>
+
+        <xsl:variable name="hasLayoutWithTileMapAndIsTopView" >
+        <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+            <xsl:for-each select="objects" >                
+                <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
+                <xsl:if test="type = 'TileMap::TileMap'" >found</xsl:if>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>
+        </xsl:variable>
+        
 /*
 * AllBinary Open License Version 1
 * Copyright (c) 2011 AllBinary
@@ -60,6 +98,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
         final GD0SpecialAnimationGlobals globals = GD0SpecialAnimationGlobals.getInstance();
         //if(((GDCustomGameLayer) this.ownerLayer).gdObject.type == globals.TILEMAP__COLLISIONMASK) {
         final GDCustomGameLayer collisionMaskCustomGameLayer = ((GDCustomGameLayer) collisionLayer);
+        <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
         if(collisionMaskCustomGameLayer.gdObject.type == globals.TILEMAP__COLLISIONMASK) {
             
             return this.isCollision3(collisionMaskCustomGameLayer);
@@ -67,8 +106,13 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
             return super.isCollision(collisionLayer);
             //return this.isCollision2(collisionLayer);
         }
+        </xsl:if>
+        <xsl:if test="not(contains($hasLayoutWithTileMapAndIsTopView, 'found'))" >
+        return super.isCollision(collisionLayer);
+        </xsl:if>
     }
     
+    <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
 //    GeographicMapCellPosition lastGeographicMapCellPosition;
     public boolean isCollision3(final GDCustomGameLayer collisionMaskCustomGameLayer) {
         
@@ -115,6 +159,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
         
         return false;
     }
+    </xsl:if>
     
     // TODO TWB Special Super Efficient Collision Processing
     public boolean isCollision2(final CollidableCompositeLayer collisionLayer)
@@ -130,8 +175,8 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
 //            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "isCollision - with self"));
 //        }
 
-        //if(this.collidableBehavior.groupCollisionList.size() > 0) {
-        if(((GDCustomCollidableBehavior) collisionLayer.getCollidableInferface()).conditionWIthGroupActions.groupWithActionsList.size() > 0) {
+        //if(this.collidableBehavior.groupCollisionList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+        if(((GDCustomCollidableBehavior) collisionLayer.getCollidableInferface()).conditionWIthGroupActions.groupWithActionsList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
             //stringBuilder.delete(0, stringBuilder.length());
             //LogUtil.put(LogFactory.getInstance(stringBuilder.append(this.ownerLayer.getGroupInterface()[0]).append(" != ").append(collisionLayer.getGroupInterface()[0]).toString(), this, IS_COLLISION));
             if (this.ownerLayer.getGroupInterface()[0] != collisionLayer.getGroupInterface()[0]) {
@@ -162,7 +207,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
             return;
         }
 
-        if(this.conditionWIthGroupActions.groupWithActionsList.size() > 0) {
+        if(this.conditionWIthGroupActions.groupWithActionsList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
             //final StringBuilder stringBuilder = new StringBuilder();
             //LogUtil.put(LogFactory.getInstance(stringBuilder.append(COLLIDE).append(':').append(this.ownerLayer.getName()).append(':').append(collisionLayer.getName()).toString(), this, COLLIDE));
 
@@ -172,7 +217,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
             final int size = groupInterfaceArray.length;
             int indexOfGroup;
             GDNode node;
-            for (int index = 0; index < size; index++) {
+            for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 
                 indexOfGroup = this.conditionWIthGroupActions.groupWithActionsList.indexOf(groupInterfaceArray[index]);
 //                stringBuilder.delete(0, stringBuilder.length());
@@ -180,7 +225,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
 //                this.conditionWIthGroupActions.append(stringBuilder);
 //                stringBuilder.append(" groups: ");
 //                LogUtil.put(LogFactory.getInstance(this.toString(collisionLayer, stringBuilder), this, COLLIDE));
-                if (indexOfGroup >= 0) {
+                if (indexOfGroup <xsl:text disable-output-escaping="yes" >&gt;</xsl:text>= 0) {
                     //LogUtil.put(LogFactory.getInstance("groupIndex: " + indexOfGroup, this, COLLIDE));
                     node = ((GDNode) this.conditionWIthGroupActions.actionForGroupsList.get(indexOfGroup));
                     node.clear();
@@ -213,14 +258,18 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
     
     public String toString(final CollidableCompositeLayer collisionLayer, final StringBuilder stringBuilder) {
         int size = this.ownerLayer.getGroupInterface().length;
-        for (int index = 0; index < size; index++) {
+        for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             stringBuilder.append(this.ownerLayer.getGroupInterface()[index]);
         }
         stringBuilder.append(" != ");
         size = collisionLayer.getGroupInterface().length;
-        for (int index = 0; index < size; index++) {
+        for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             stringBuilder.append(collisionLayer.getGroupInterface()[index]);
         }
         return stringBuilder.toString();
     }
 }
+
+    </xsl:template>
+
+</xsl:stylesheet>

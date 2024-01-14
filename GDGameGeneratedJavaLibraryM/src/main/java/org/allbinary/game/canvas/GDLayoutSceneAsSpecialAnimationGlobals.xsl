@@ -121,6 +121,7 @@ Created By: Travis Berthelot
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
+                        private final PointFactory pointFactory = PointFactory.getInstance();
                         
                         public final String PROCESS_RELEASE = "processReleased";
                         
