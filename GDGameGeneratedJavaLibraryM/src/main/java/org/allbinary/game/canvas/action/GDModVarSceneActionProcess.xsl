@@ -51,8 +51,8 @@ Created By: Travis Berthelot
                                 //This may need to loop through more than 1 game object found 2: <xsl:value-of select="$gameObjectName" /> 
                                 GDGameLayer <xsl:value-of select="$gameObjectName" />GDGameLayer = null;
                                 GDObject <xsl:value-of select="$gameObjectName" />  = null;
-                                if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gameObjectName" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                                    <xsl:value-of select="$gameObjectName" />GDGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param></xsl:call-template><xsl:value-of select="$gameObjectName" />GDGameLayerList.get(0));
+                                if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameObjectName" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                    <xsl:value-of select="$gameObjectName" />GDGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameObjectName" />GDGameLayerList.get(0));
                                     <xsl:value-of select="$gameObjectName" /> = (GDObject) <xsl:value-of select="$gameObjectName" />GDGameLayer.gdObject;
                                 } else {
                                     return false;
