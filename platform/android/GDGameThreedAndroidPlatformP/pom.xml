@@ -27,8 +27,8 @@
 
         <!--
         <module>../GDGameThreedAndroidRawResourcesJavaLibraryM</module>
-        -->
         <module>../GDGameThreedAndroidResourcesTempJavaLibraryM</module>
+        -->
         <module>../GDGameThreedAndroidResourceJavaLibraryM</module>
         
         <module>../../../resource/GDGameOpenGLThreedAnimationResourceJavaLibraryM</module>
