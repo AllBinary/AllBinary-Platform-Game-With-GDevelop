@@ -117,7 +117,7 @@ Created By: Travis Berthelot
                     <!--
                     private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder instance;
 
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder getInstance(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager)
+                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder getInstance(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager)
                     {
                         instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(canvas, allBinaryGameLayerManager);
                         return instance;
@@ -189,7 +189,7 @@ Created By: Travis Berthelot
                             return null;
                         }
 
-                        public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+                        public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
                             <xsl:call-template name="scale" >
                                 <xsl:with-param name="layoutIndex" >

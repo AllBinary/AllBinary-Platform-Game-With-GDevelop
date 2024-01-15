@@ -48,7 +48,7 @@ Created By: Travis Berthelot
                             }
                             
                             //player.start();
-                            canvas.nextSong(sound);
+                            abCanvas.nextSong(sound);
 
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));

@@ -44,7 +44,7 @@ Created By: Travis Berthelot
                                 LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                                 if(!GDGlobalsFactory.getInstance().newScene) {
-                                    <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="contains(text(), '(')" >//Invalid Scene - </xsl:if></xsl:if></xsl:for-each>canvas.getCustomCommandListener().commandAction(GDGameCommandFactory.getInstance().<xsl:value-of select="$command" />, ProgressCanvasFactory.getInstance());
+                                    <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="contains(text(), '(')" >//Invalid Scene - </xsl:if></xsl:if></xsl:for-each>abCanvas.getCustomCommandListener().commandAction(GDGameCommandFactory.getInstance().<xsl:value-of select="$command" />, ProgressCanvasFactory.getInstance());
                                 }
 
                             } catch(Exception e) {
@@ -86,11 +86,11 @@ Created By: Travis Berthelot
 
                                 //<xsl:value-of select="$command" />
                                 <xsl:if test="contains($command, 'https://localhost/about.html')" >
-                                canvas.getCustomCommandListener().commandAction(org.allbinary.game.commands.GameCommandsFactory.getInstance().DISPLAY_ABOUT, ProgressCanvasFactory.getInstance());
+                                abCanvas.getCustomCommandListener().commandAction(org.allbinary.game.commands.GameCommandsFactory.getInstance().DISPLAY_ABOUT, ProgressCanvasFactory.getInstance());
                                 </xsl:if>
                                 <xsl:if test="not(contains($command, 'https://localhost/about.html')) and contains($command, 'http')" >
                                 org.allbinary.graphics.displayable.screen.WebCommandProcessor.getInstance().list.add("<xsl:value-of select="$command" />");
-                                canvas.getCustomCommandListener().commandAction(org.allbinary.game.commands.GameCommandsFactory.getInstance().OPEN_WEB_URL, ProgressCanvasFactory.getInstance());
+                                abCanvas.getCustomCommandListener().commandAction(org.allbinary.game.commands.GameCommandsFactory.getInstance().OPEN_WEB_URL, ProgressCanvasFactory.getInstance());
                                 </xsl:if>
                                 <xsl:if test="not(contains($command, 'http'))" >
                                     throw new RuntimeException("Not Implemented");

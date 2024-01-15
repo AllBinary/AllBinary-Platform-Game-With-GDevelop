@@ -99,7 +99,7 @@ Created By: Travis Berthelot
 
                     private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation instance;
 
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation getInstance(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager)
+                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation getInstance(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager)
                     {
                         instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(canvas, allBinaryGameLayerManager);
                         return instance;
@@ -137,13 +137,12 @@ Created By: Travis Berthelot
                         </xsl:call-template>
 
 
-                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final MyCanvas canvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
                         LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
                     
                         gdNodeStatsFactory.reset();
 
-                        //this.allBinaryGameLayerManager = allBinaryGameLayerManager;
                         globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.create();
                         GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.create();
                         builder = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(canvas, allBinaryGameLayerManager);

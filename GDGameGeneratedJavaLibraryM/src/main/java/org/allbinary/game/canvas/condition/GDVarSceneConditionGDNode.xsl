@@ -52,7 +52,7 @@ Created By: Travis Berthelot
                                 //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "VarScene processing", this, commonStrings.PROCESS));
                                 <xsl:for-each select=".." >
                                     
-                                    <xsl:variable name="hadConditionOtherThanThis" ><xsl:for-each select="conditions" ><xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >found</xsl:if></xsl:for-each></xsl:variable>
+                                    <xsl:variable name="hadConditionOtherThanThis" ><xsl:for-each select="conditions" ><xsl:if test="type/value != 'BuiltinCommonInstructions::Once'" ><xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
                                     <xsl:if test="contains($hadConditionOtherThanThis, 'found')" >
                                         <xsl:variable name="otherConditions" ><xsl:for-each select="conditions" ><xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >found</xsl:if></xsl:for-each></xsl:variable>
