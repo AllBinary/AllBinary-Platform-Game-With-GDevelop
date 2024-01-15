@@ -76,6 +76,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.CollidableCompositeLayer;
                 import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.logic.string.CommonStrings;
                 import org.allbinary.logic.string.CommonSeps;
                 import org.allbinary.logic.string.StringUtil;
@@ -121,7 +122,13 @@ Created By: Travis Berthelot
                         try {
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
-
+      
+                                    <xsl:call-template name="scale" >
+                                        <xsl:with-param name="layoutIndex" >
+                                            <xsl:value-of select="$layoutIndex" />
+                                        </xsl:with-param>
+                                    </xsl:call-template>
+                                                          
                     <xsl:call-template name="externalEventsCreateAssignGDObjectOtherEvent" >
                         <xsl:with-param name="layoutName" >
                             <xsl:value-of select="$layoutName" />

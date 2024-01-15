@@ -24,6 +24,8 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
     
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
+
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObjectGDNodeCondition.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
@@ -84,6 +86,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
                 import org.allbinary.game.layout.GDObjectStrings;
                 import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
@@ -138,13 +141,18 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
-
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
                         try {
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
 
+                                    <xsl:call-template name="scale" >
+                                        <xsl:with-param name="layoutIndex" >
+                                            <xsl:value-of select="$layoutIndex" />
+                                        </xsl:with-param>
+                                    </xsl:call-template>
+                                            
                     //conditionLayout - //eventsCreateAssignGDObject - START
                     <xsl:call-template name="eventsCreateAssignGDObjectGDNodesCondition" >
                         <xsl:with-param name="caller" >conditionLayout</xsl:with-param>

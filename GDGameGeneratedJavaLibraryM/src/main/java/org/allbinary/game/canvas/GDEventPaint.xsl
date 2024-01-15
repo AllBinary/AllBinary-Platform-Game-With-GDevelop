@@ -55,7 +55,10 @@ Created By: Travis Berthelot
                     </xsl:if>
                     <!--
                     <xsl:if test="not(contains($instancesAsString, $name))" >
-                        //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
+                        //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, 
+                        //<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />GDGameLayerList</xsl:if></xsl:for-each>,
+                        //index,
+                        //graphics);
                     </xsl:if>
                     -->
                 </xsl:if>
@@ -75,7 +78,10 @@ Created By: Travis Berthelot
                     </xsl:if>
                     <!--
                     <xsl:if test="not(contains($instancesAsString, $name))" >
-                        //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, graphics);
+                        //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processG(<xsl:value-of select="$name2" />, 
+                        //<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />GDGameLayerList</xsl:if></xsl:for-each>,
+                        //index,
+                        //graphics);
                     </xsl:if>
                     -->
                 </xsl:if>

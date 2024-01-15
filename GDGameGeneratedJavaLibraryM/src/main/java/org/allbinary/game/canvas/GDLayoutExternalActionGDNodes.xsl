@@ -77,6 +77,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.logic.string.CommonStrings;
                 import org.allbinary.logic.string.CommonSeps;
@@ -120,7 +121,13 @@ Created By: Travis Berthelot
                         try {
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
-
+      
+                                    <xsl:call-template name="scale" >
+                                        <xsl:with-param name="layoutIndex" >
+                                            <xsl:value-of select="$layoutIndex" />
+                                        </xsl:with-param>
+                                    </xsl:call-template>
+                                                          
                     <xsl:call-template name="externalEventsCreateAssignGDObjectAction" >
                         <xsl:with-param name="layoutName" >
                             <xsl:value-of select="$layoutName" />

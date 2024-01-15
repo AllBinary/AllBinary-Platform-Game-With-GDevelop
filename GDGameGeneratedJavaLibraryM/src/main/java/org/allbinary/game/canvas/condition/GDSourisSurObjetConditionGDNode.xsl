@@ -150,11 +150,11 @@ Created By: Travis Berthelot
                                 {
                                     //LogUtil.put(LogFactory.getInstance("Inside", this, commonStrings.PROCESS));
                                     <xsl:if test="$inverted != 'true'" >
-                                    <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
+                                    <xsl:if test="not(contains($press, 'found')) or contains($release, 'found')" >
                                         runnable.run();
                                     </xsl:if>
                                     </xsl:if>
-                                    <xsl:if test="contains($press, 'found') or contains($release, 'found')" >
+                                    <xsl:if test="contains($press, 'found') or not(contains($release, 'found'))" >
                                     final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
                                     if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
                                         
@@ -225,7 +225,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 } else {
                                     <xsl:if test="$inverted = 'true'" >
-                                    <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
+                                    <xsl:if test="not(contains($press, 'found')) or contains($release, 'found')" >
                                         runnable.run();
                                     </xsl:if>
                                     </xsl:if>

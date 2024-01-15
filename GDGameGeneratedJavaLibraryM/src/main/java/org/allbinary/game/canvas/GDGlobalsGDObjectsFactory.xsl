@@ -93,12 +93,10 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
                     
-                    //objectsGroups - START
-                    <xsl:for-each select="objectsGroups" >
-                        <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+                    <xsl:variable name="hasObjectsGroup" ><xsl:for-each select="objectsGroups" >found</xsl:for-each></xsl:variable>
+                    <xsl:if test="contains($hasObjectsGroup, 'found')" >
                     public final BasicArrayList gdObjectFactoryList = new BasicArrayList();
-                    </xsl:for-each>
-                    //objectsGroups - END
+                    </xsl:if>
                     
                     private GDGlobalsGDObjectsFactory() {
                     
@@ -116,9 +114,9 @@ Created By: Travis Berthelot
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
-                    public int get<xsl:value-of select="name" />Index(String name) {
+                    public int get<xsl:value-of select="name" />Index(final String name) {
                         <xsl:for-each select="objects" >
-                            <xsl:if test="position() != 1" >} else </xsl:if>if(name == globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>) {
+                            <xsl:if test="position() != 1" >} else </xsl:if>if(name == globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
                             return <xsl:value-of select="position() - 1" />;
                         </xsl:for-each>
                         }

@@ -56,10 +56,12 @@ Created By: Travis Berthelot
                 <xsl:variable name="objectsAsString" >,<xsl:for-each select="/game/objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
+                <xsl:variable name="variables" ><xsl:for-each select="variables" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 //instancesAsString=<xsl:value-of select="$instancesAsString" />
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
+                //variables=<xsl:value-of select="$variables" />
 
                 package org.allbinary.game.canvas;
 
@@ -81,6 +83,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.behavior.DestroyOutsideBehavior;
                 import org.allbinary.game.layout.behavior.GDBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
@@ -230,6 +233,38 @@ public class GDStructure {
                     //more objects class properties - END
                     <xsl:text>&#10;</xsl:text>
 
+                    //variables - default - START
+                    public int scale;
+                    public int scaleNominator;
+                    public int scaleDenominator;
+                    //variables - default - END
+
+                    //variables - external - ModVarScene - START
+                    <xsl:for-each select="../externalEvents" >
+                    <xsl:call-template name="actionsWithUndefinedVariables" >
+                        <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                        <xsl:with-param name="variables" >
+                            <xsl:value-of select="$variables" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    </xsl:for-each>
+                    //variables - external - ModVarScene - END
+                    <xsl:text>&#10;</xsl:text>
+
+                    //variables - ModVarScene - START
+                    <xsl:call-template name="actionsWithUndefinedVariables" >
+                        <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                        <xsl:with-param name="variables" >
+                            <xsl:value-of select="$variables" />
+                        </xsl:with-param>
+                    </xsl:call-template>    
+                    //variables - ModVarScene - END
+                    <xsl:text>&#10;</xsl:text>
+
+                    //variables - START
+                    <xsl:call-template name="variables" />
+                    //variables - END
+
                     //eventsClassProperty - START
                     <xsl:call-template name="eventsClassPropertyConditions" >
                         <xsl:with-param name="layoutIndex" >
@@ -275,10 +310,6 @@ public class GDStructure {
                     <xsl:call-template name="layerManagerEventListenerList" >
                     </xsl:call-template>    
                     <xsl:text>&#10;</xsl:text>
-
-                    //variables - START
-                    <xsl:call-template name="variables" />
-                    //variables - END
 
                     private final LayerManagerEventListener layerManagerEventListener;
                     

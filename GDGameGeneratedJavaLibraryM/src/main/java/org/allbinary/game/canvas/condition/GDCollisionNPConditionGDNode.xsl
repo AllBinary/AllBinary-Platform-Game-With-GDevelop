@@ -162,7 +162,7 @@ Created By: Travis Berthelot
 
                         if(gameLayer2.getCollidableInferface().isCollision(gameLayer)) {
                             
-                            gameLayer2.processGDCollision();
+                            gameLayer2.processGDCollision(globals.<xsl:value-of select="parameters[2]/text()" />GroupInterface);
 <!--        
             <xsl:for-each select=".." >
             <xsl:for-each select="actions" >

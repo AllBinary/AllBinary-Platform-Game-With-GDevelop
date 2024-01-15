@@ -49,9 +49,11 @@ Created By: Travis Berthelot
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="objectsAsString" >,<xsl:for-each select="/game/objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="gameName" ><xsl:value-of select="$gameName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
+                <xsl:variable name="variables" ><xsl:for-each select="variables" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 //instancesAsString=<xsl:value-of select="$instancesAsString" />
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
+                //variables=<xsl:value-of select="$variables" />
 
                 package org.allbinary.game.canvas;
 
@@ -73,6 +75,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.behavior.DestroyOutsideBehavior;
                 import org.allbinary.game.layout.behavior.GDBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
@@ -228,6 +231,29 @@ Created By: Travis Berthelot
 
                     <xsl:call-template name="layerManagerEventListenerList" >
                     </xsl:call-template>    
+                    <xsl:text>&#10;</xsl:text>
+
+
+                    //variables - ModVarGlobal - START
+                    <xsl:call-template name="actionsWithUndefinedGlobalVariables" >
+                        <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                        <xsl:with-param name="variables" >
+                            <xsl:value-of select="$variables" />
+                        </xsl:with-param>
+                    </xsl:call-template>    
+                    //variables - ModVarGlobal - END
+                    <xsl:text>&#10;</xsl:text>
+
+                    //variables - layouts - ModVarGlobal - START
+                    <xsl:for-each select="layouts" >
+                    <xsl:call-template name="actionsWithUndefinedGlobalVariables" >
+                        <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                        <xsl:with-param name="variables" >
+                            <xsl:value-of select="$variables" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    </xsl:for-each>
+                    //variables - layouts - ModVarGlobal - END
                     <xsl:text>&#10;</xsl:text>
 
                     //variables - START

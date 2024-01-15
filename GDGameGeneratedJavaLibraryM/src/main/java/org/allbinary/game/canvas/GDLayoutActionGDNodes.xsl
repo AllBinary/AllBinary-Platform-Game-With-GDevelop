@@ -79,20 +79,20 @@ Created By: Travis Berthelot
                 import org.allbinary.game.input.event.GameKeyEvent;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDNode;
-                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layout.GDObjectFactory;
                 import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
-                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
                 import org.allbinary.graphics.displayable.MyCanvas;
+                import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.layer.AllBinaryLayerManager;
                 import org.allbinary.logic.string.CommonStrings;
@@ -128,6 +128,7 @@ Created By: Travis Berthelot
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();                        
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        private final PointFactory pointFactory = PointFactory.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
                         private final GameTickTimeDelayHelperFactory gameTickTimeDelayHelperFactory = GameTickTimeDelayHelperFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
@@ -147,7 +148,13 @@ Created By: Travis Berthelot
                         try {
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
-
+                                            
+                                    <xsl:call-template name="scale" >
+                                        <xsl:with-param name="layoutIndex" >
+                                            <xsl:value-of select="$layoutIndex" />
+                                        </xsl:with-param>
+                                    </xsl:call-template>
+                                            
                     //actionLayout - //eventsCreateAssignGDObjectGDNodesAction - START
                     <xsl:call-template name="eventsCreateAssignGDObjectGDNodesAction" >
                         <xsl:with-param name="caller" >actionLayout</xsl:with-param>

@@ -21,7 +21,7 @@ package org.allbinary.graphics.threed.min3d;
 
 import min3d.vos.Camera;
 
-import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
+import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.logic.string.StringMaker;
 
 public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
@@ -42,7 +42,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
         <xsl:for-each select="properties" >
     public void process(final Camera camera, final StringMaker stringMaker) {
             
-            final GameTickDisplayInfoSingleton displayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
+            final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
             
             <xsl:for-each select="camera" >
             //x is height, y is distance from game area, z is width            
