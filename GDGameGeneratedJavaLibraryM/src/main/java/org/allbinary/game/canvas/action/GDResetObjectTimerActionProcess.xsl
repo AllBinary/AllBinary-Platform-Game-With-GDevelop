@@ -27,11 +27,11 @@ Created By: Travis Berthelot
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                         <xsl:for-each select="parameters" >
-                            <xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />ObjectTimeDelay.delay = 0;</xsl:if>
+                            <xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />ObjectTimeDelay.delay = 0;</xsl:if>
                         </xsl:for-each>
                         <xsl:text>&#10;</xsl:text>
                         <xsl:for-each select="parameters" >
-                            <xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />ObjectTimeDelayHelper.setStartTime(globals.lastStartTime);</xsl:if>
+                            <xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />ObjectTimeDelayHelper.setStartTime(globals.lastStartTime);</xsl:if>
                         </xsl:for-each>
 
                         return true;

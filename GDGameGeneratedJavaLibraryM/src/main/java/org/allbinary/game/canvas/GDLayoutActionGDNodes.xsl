@@ -143,7 +143,7 @@ Created By: Travis Berthelot
                         
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
-                        this.canvas = canvas;
+                        this.canvas = abCanvas;
 
                         try {
                         

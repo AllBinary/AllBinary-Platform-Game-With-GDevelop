@@ -79,14 +79,14 @@ Created By: Travis Berthelot
                 <xsl:for-each select="animations" >
                     <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
                     <xsl:if test="string-length($animationName) > 0" >
-                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template><xsl:value-of select="$animationName" />,
+                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$animationName" />,
                     </xsl:if>
                 </xsl:for-each>
                 };
                 </xsl:if>
 
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final int width, final int height, final String name) {
-                        super(unknown, x, y, width, height, name, <xsl:if test="string-length(type) = 0" >null</xsl:if><xsl:if test="string-length(type) > 0" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(type, ':', '_')" /></xsl:with-param></xsl:call-template></xsl:if>);
+                        super(unknown, x, y, width, height, name, <xsl:if test="string-length(type) = 0" >null</xsl:if><xsl:if test="string-length(type) > 0" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(type, ':', '_')" /></xsl:with-param></xsl:call-template></xsl:if>);
                     }
 
                     <xsl:if test="animations" >
@@ -207,11 +207,11 @@ Created By: Travis Berthelot
                     }
 
                     public int Width(final Graphics graphics) {
-                        return <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />TextAnimation.getWidth();
+                        return <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />TextAnimation.getWidth();
                     }
 
                     public int Height(final Graphics graphics) {
-                        return <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template><xsl:value-of select="name" />TextAnimationSize;
+                        return <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />TextAnimationSize;
                     }
                 };
 

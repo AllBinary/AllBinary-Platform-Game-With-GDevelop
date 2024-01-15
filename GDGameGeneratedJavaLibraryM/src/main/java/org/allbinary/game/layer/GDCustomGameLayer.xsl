@@ -47,8 +47,8 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
 
         <xsl:for-each select="events" >
-            <xsl:variable name="foundCollisionNP" >
             <xsl:for-each select="conditions" >
+            <xsl:variable name="foundCollisionNP" >
                 <xsl:if test="type/value = 'CollisionNP'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
@@ -56,10 +56,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
-            </xsl:for-each>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-            <xsl:for-each select="conditions" >
                 <xsl:if test="type/value = 'CollisionNP'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
@@ -67,24 +65,41 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
-            </xsl:for-each>
             </xsl:variable>
+            
             <xsl:if test="string-length($foundCollisionNP) > 0" >
-                <xsl:for-each select="actions" >
+                //Condition - <xsl:value-of select="$foundCollisionNP" /> with <xsl:value-of select="$foundCollisionNP2" />
+                <xsl:for-each select="../actions" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    if(this.gdObject.name == globals<xsl:value-of select="$layoutIndex" />.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
-                        this.<xsl:value-of select="$foundCollisionNP2" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    <xsl:if test="//objectsGroups/name/text() = $foundCollisionNP" >
+                    //Using action instead of CollisionNP
+                    if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                    </xsl:if>
+                    <xsl:if test="not(//objectsGroups/name/text() = $foundCollisionNP)" >
+                    //Using CollisionNP
+                    if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                    </xsl:if>
+                        this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                     }
                 </xsl:for-each>
-                <xsl:if test="not(actions)" >
-                <xsl:for-each select="events" >
+                <xsl:if test="not(../actions)" >
+                <xsl:for-each select="../events" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    if(this.gdObject.name == globals<xsl:value-of select="$layoutIndex" />.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
-                        this.<xsl:value-of select="$foundCollisionNP2" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    <xsl:if test="//objectsGroups/name/text() = $foundCollisionNP" >
+                    //Using event instead of CollisionNP
+                    if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                    </xsl:if>
+                    <xsl:if test="not(//objectsGroups/name/text() = $foundCollisionNP)" >
+                    //Using CollisionNP
+                    if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                    </xsl:if>
+                        this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                     }
                 </xsl:for-each>
                 </xsl:if>
             </xsl:if>
+
+            </xsl:for-each>
             <xsl:call-template name="addCollisionList" >
                 <xsl:with-param name="layoutIndex" select="$layoutIndex" />
             </xsl:call-template>
@@ -95,8 +110,8 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
 
         <xsl:for-each select="events" >
-            <xsl:variable name="foundCollisionNP" >
             <xsl:for-each select="whileConditions" >
+            <xsl:variable name="foundCollisionNP" >
                 <xsl:if test="type/value = 'CollisionNP'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
@@ -104,10 +119,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
-            </xsl:for-each>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-            <xsl:for-each select="whileConditions" >
                 <xsl:if test="type/value = 'CollisionNP'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
@@ -115,25 +128,110 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
-            </xsl:for-each>
             </xsl:variable>
+            
             <xsl:if test="string-length($foundCollisionNP) > 0" >
-                <xsl:for-each select="actions" >
+                //WhileCondition - <xsl:value-of select="$foundCollisionNP" /> with <xsl:value-of select="$foundCollisionNP2" />
+                <xsl:for-each select="../actions" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    if(this.gdObject.name == globals<xsl:value-of select="$layoutIndex" />.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
-                        this.<xsl:value-of select="$foundCollisionNP2" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    <xsl:if test="//objectsGroups/name/text() = $foundCollisionNP" >
+                    //Using action instead of CollisionNP
+                    if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                    </xsl:if>
+                    <xsl:if test="not(//objectsGroups/name/text() = $foundCollisionNP)" >
+                    //Using CollisionNP
+                    if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                    </xsl:if>
+                        this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                     }
                 </xsl:for-each>
-                <xsl:if test="not(actions)" >
-                <xsl:for-each select="events" >
+                <xsl:if test="not(../actions)" >
+                <xsl:for-each select="../events" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    if(this.gdObject.name == globals<xsl:value-of select="$layoutIndex" />.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
-                        this.<xsl:value-of select="$foundCollisionNP2" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    <xsl:if test="//objectsGroups/name/text() = $foundCollisionNP" >
+                    //Using event instead of CollisionNP
+                    if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                    </xsl:if>
+                    <xsl:if test="not(//objectsGroups/name/text() = $foundCollisionNP)" >
+                    //Using CollisionNP
+                    if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                    </xsl:if>
+                        this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                     }
                 </xsl:for-each>
                 </xsl:if>
             </xsl:if>
+            
+            </xsl:for-each>
+            
             <xsl:call-template name="addWhileCollisionList" >
+                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xsl:template name="addSubInstructionsCollisionList" >
+        <xsl:param name="layoutIndex" />
+
+        <xsl:for-each select="events" >
+            <xsl:for-each select="conditions" >
+                <xsl:for-each select="subInstructions" >
+
+            <xsl:variable name="foundCollisionNP" >
+                <xsl:if test="type/value = 'CollisionNP'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" >
+                            <xsl:value-of select="text()" />
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:variable>
+            <xsl:variable name="foundCollisionNP2" >
+                <xsl:if test="type/value = 'CollisionNP'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 2" >
+                            <xsl:value-of select="text()" />
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:variable>
+            
+            <xsl:if test="string-length($foundCollisionNP) > 0" >
+                //SubInstructions - <xsl:value-of select="$foundCollisionNP" /> with <xsl:value-of select="$foundCollisionNP2" />
+                <xsl:for-each select="../../actions" >
+                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:if test="//objectsGroups/name/text() = $foundCollisionNP" >
+                    //Using action instead of CollisionNP
+                    if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                    </xsl:if>
+                    <xsl:if test="not(//objectsGroups/name/text() = $foundCollisionNP)" >
+                    //Using CollisionNP
+                    if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                    </xsl:if>
+                        this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    }
+                </xsl:for-each>
+                <xsl:if test="not(../../actions)" >
+                <xsl:for-each select="../../events" >
+                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:if test="//objectsGroups/name/text() = $foundCollisionNP" >
+                    //Using event instead of CollisionNP
+                    if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                    </xsl:if>
+                    <xsl:if test="not(//objectsGroups/name/text() = $foundCollisionNP)" >
+                    //Using CollisionNP
+                    if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                    </xsl:if>
+                        this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    }
+                </xsl:for-each>
+                </xsl:if>
+            </xsl:if>
+            
+                </xsl:for-each>
+            </xsl:for-each>
+            
+            <xsl:call-template name="addSubInstructionsCollisionList" >
                 <xsl:with-param name="layoutIndex" select="$layoutIndex" />
             </xsl:call-template>
         </xsl:for-each>
@@ -141,11 +239,10 @@ Created By: Travis Berthelot
 
     <xsl:template name="createCollisionList" >
         <xsl:param name="layoutIndex" />
-        <xsl:param name="used" />
 
         <xsl:for-each select="events" >
-            <xsl:variable name="foundCollisionNP" >
             <xsl:for-each select="conditions" >
+            <xsl:variable name="foundCollisionNP" >
                 <xsl:if test="type/value = 'CollisionNP'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
@@ -153,10 +250,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
-            </xsl:for-each>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-            <xsl:for-each select="conditions" >
                 <xsl:if test="type/value = 'CollisionNP'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
@@ -164,43 +259,30 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
-            </xsl:for-each>
             </xsl:variable>
+            
             <xsl:if test="string-length($foundCollisionNP) > 0" >
-                <xsl:if test="actions" >
+                //Conditions - <xsl:value-of select="$foundCollisionNP" /> with <xsl:value-of select="$foundCollisionNP2" />
+                <xsl:if test="../actions" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="name2" ><xsl:value-of select="$name" />,</xsl:variable>
-                    <xsl:if test="not(contains($used, $name2))" >
                     //action under condition
-                    private final BasicArrayList <xsl:value-of select="$foundCollisionNP2" />CollisionList = new BasicArrayList();
-                    </xsl:if>
+                    private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList = new BasicArrayList();
                 </xsl:if>
-                <xsl:if test="not(actions)" >
-                <xsl:if test="events" >
+                <xsl:if test="not(../actions)" >
+                <xsl:if test="../events" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="name2" ><xsl:value-of select="$name" />,</xsl:variable>
-                    <xsl:if test="not(contains($used, $name2))" >
                     //event under condition
-                    private final BasicArrayList <xsl:value-of select="$foundCollisionNP2" />CollisionList = new BasicArrayList();
-                    </xsl:if>
+                    private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList = new BasicArrayList();
                 </xsl:if>
                 </xsl:if>
             </xsl:if>
+            
+            </xsl:for-each>
+            
             <xsl:call-template name="createCollisionList" >
                 <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-                <xsl:with-param name="used" ><xsl:value-of select="$used" /><xsl:if test="string-length($foundCollisionNP) > 0" >
-                <xsl:if test="actions" >
-                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:value-of select="$name" />,
-                </xsl:if>
-                <xsl:if test="not(actions)" >
-                <xsl:if test="events" >
-                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:value-of select="$name" />,
-                </xsl:if>
-                </xsl:if>
-                </xsl:if>
-                </xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
@@ -209,8 +291,8 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
 
         <xsl:for-each select="events" >
-            <xsl:variable name="foundCollisionNP" >
             <xsl:for-each select="whileConditions" >
+            <xsl:variable name="foundCollisionNP" >
                 <xsl:if test="type/value = 'CollisionNP'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
@@ -218,10 +300,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
-            </xsl:for-each>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-            <xsl:for-each select="whileConditions" >
                 <xsl:if test="type/value = 'CollisionNP'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
@@ -229,23 +309,89 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
-            </xsl:for-each>
             </xsl:variable>
+
             <xsl:if test="string-length($foundCollisionNP) > 0" >
-                <xsl:if test="actions" >
+                //WhileConditions - <xsl:value-of select="$foundCollisionNP" /> with <xsl:value-of select="$foundCollisionNP2" />
+                <xsl:if test="../actions" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //action under whileCondition
-                    private final BasicArrayList <xsl:value-of select="$foundCollisionNP2" />CollisionList = new BasicArrayList();
+                    private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList = new BasicArrayList();
                 </xsl:if>
-                <xsl:if test="not(actions)" >
-                <xsl:if test="events" >
+                <xsl:if test="not(../actions)" >
+                <xsl:if test="../events" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //event under whileCondition
-                    private final BasicArrayList <xsl:value-of select="$foundCollisionNP2" />CollisionList = new BasicArrayList();
+                    private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList = new BasicArrayList();
                 </xsl:if>
                 </xsl:if>
             </xsl:if>
+            
+            </xsl:for-each>
+            
             <xsl:call-template name="createWhileCollisionList" >
+                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xsl:template name="createSubInstructionsCollisionList" >
+        <xsl:param name="layoutIndex" />
+
+        <xsl:for-each select="events" >
+            <xsl:for-each select="conditions" >
+                <xsl:for-each select="subInstructions" >
+                    <xsl:variable name="foundCollisionNP" >
+                        <xsl:if test="type/value = 'CollisionNP'" >
+                            <xsl:for-each select="parameters" >
+                                <xsl:if test="position() = 1" >
+                                    <xsl:value-of select="text()" />
+                                </xsl:if>
+                            </xsl:for-each>
+                        </xsl:if>
+                    </xsl:variable>
+                    <xsl:variable name="foundCollisionNP2" >
+                        <xsl:if test="type/value = 'CollisionNP'" >
+                            <xsl:for-each select="parameters" >
+                                <xsl:if test="position() = 2" >
+                                    <xsl:value-of select="text()" />
+                                </xsl:if>
+                            </xsl:for-each>
+                        </xsl:if>
+                    </xsl:variable>
+
+                    <xsl:if test="string-length($foundCollisionNP) > 0" >
+                        //SubInstructions - <xsl:value-of select="$foundCollisionNP" /> with <xsl:value-of select="$foundCollisionNP2" />
+                        <xsl:if test="../../actions" >
+                            <xsl:variable name="name" >
+                                <xsl:for-each select="parameters" >
+                                    <xsl:if test="position() = 1" >
+                                        <xsl:value-of select="text()" />
+                                    </xsl:if>
+                                </xsl:for-each>
+                            </xsl:variable>
+                            //action under whileCondition
+                            private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList = new BasicArrayList();
+                        </xsl:if>
+                        <xsl:if test="not(../../actions)" >
+                            <xsl:if test="../../events" >
+                                <xsl:variable name="name" >
+                                    <xsl:for-each select="parameters" >
+                                        <xsl:if test="position() = 1" >
+                                            <xsl:value-of select="text()" />
+                                        </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:variable>
+                                //event under whileCondition
+                                private final BasicArrayList <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList = new BasicArrayList();
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:if>
+                    
+                </xsl:for-each>
+            </xsl:for-each>
+
+            <xsl:call-template name="createSubInstructionsCollisionList" >
                 <xsl:with-param name="layoutIndex" select="$layoutIndex" />
             </xsl:call-template>
         </xsl:for-each>
@@ -255,8 +401,9 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
 
         <xsl:for-each select="events" >
-            <xsl:variable name="foundCollisionNP" >
             <xsl:for-each select="conditions" >
+                
+            <xsl:variable name="foundCollisionNP" >
                 <xsl:if test="type/value = 'CollisionNP'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
@@ -264,10 +411,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
-            </xsl:for-each>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-            <xsl:for-each select="conditions" >
                 <xsl:if test="type/value = 'CollisionNP'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
@@ -275,34 +420,34 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
-            </xsl:for-each>
             </xsl:variable>
+            
             <xsl:if test="string-length($foundCollisionNP) > 0" >
-                <xsl:if test="actions" >
+                <xsl:if test="../actions" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-    public void <xsl:value-of select="$foundCollisionNP2" />ProcessGDCollision() throws Exception {
-        final int size = this.<xsl:value-of select="$foundCollisionNP2" />CollisionList.size();
+    public void <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />ProcessGDCollision() throws Exception {
+        final int size = this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.size();
 //        if(this.gdObject.name.compareTo(B) == 0) {
 //            LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P));
 //        }
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-            node = (GDNode) this.<xsl:value-of select="$foundCollisionNP2" />CollisionList.get(index);
+            node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.get(index);
             node.processGD(this, null);
         }
     }
                 </xsl:if>
-                <xsl:if test="not(actions)" >
-                <xsl:if test="events" >
+                <xsl:if test="not(../actions)" >
+                <xsl:if test="../events" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-    public void <xsl:value-of select="$foundCollisionNP2" />ProcessGDCollision() throws Exception {
-        final int size = this.<xsl:value-of select="$foundCollisionNP2" />CollisionList.size();
+    public void <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />ProcessGDCollision() throws Exception {
+        final int size = this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.size();
 //        if(this.gdObject.name.compareTo(B) == 0) {
 //            LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P));
 //        }
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-            node = (GDNode) this.<xsl:value-of select="$foundCollisionNP2" />CollisionList.get(index);
+            node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.get(index);
             node.processGD(this, null);
         }
     }
@@ -310,6 +455,9 @@ Created By: Travis Berthelot
                 </xsl:if>
 
             </xsl:if>
+            
+            </xsl:for-each>
+
             <xsl:call-template name="processCollisionList" >
                 <xsl:with-param name="layoutIndex" select="$layoutIndex" />
             </xsl:call-template>
@@ -320,8 +468,10 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
 
         <xsl:for-each select="events" >
-            <xsl:variable name="foundCollisionNP" >
+
             <xsl:for-each select="whileConditions" >
+
+            <xsl:variable name="foundCollisionNP" >
                 <xsl:if test="type/value = 'CollisionNP'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
@@ -329,10 +479,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
-            </xsl:for-each>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-            <xsl:for-each select="whileConditions" >
                 <xsl:if test="type/value = 'CollisionNP'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
@@ -340,34 +488,34 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
-            </xsl:for-each>
             </xsl:variable>
+            
             <xsl:if test="string-length($foundCollisionNP) > 0" >
-                <xsl:if test="actions" >
+                <xsl:if test="../actions" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-    public void <xsl:value-of select="$foundCollisionNP2" />ProcessGDCollision() throws Exception {
-        final int size = this.<xsl:value-of select="$foundCollisionNP2" />CollisionList.size();
+    public void <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />ProcessGDCollision() throws Exception {
+        final int size = this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.size();
 //        if(this.gdObject.name.compareTo(B) == 0) {
 //            LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P));
 //        }
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-            node = (GDNode) this.<xsl:value-of select="$foundCollisionNP2" />CollisionList.get(index);
+            node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.get(index);
             node.processGD(this, null);
         }
     }
                 </xsl:if>
-                <xsl:if test="not(actions)" >
-                <xsl:if test="events" >
+                <xsl:if test="not(../actions)" >
+                <xsl:if test="../events" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-    public void <xsl:value-of select="$foundCollisionNP2" />ProcessGDCollision() throws Exception {
-        final int size = this.<xsl:value-of select="$foundCollisionNP2" />CollisionList.size();
+    public void <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />ProcessGDCollision() throws Exception {
+        final int size = this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.size();
 //        if(this.gdObject.name.compareTo(B) == 0) {
 //            LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P));
 //        }
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-            node = (GDNode) this.<xsl:value-of select="$foundCollisionNP2" />CollisionList.get(index);
+            node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.get(index);
             node.processGD(this, null);
         }
     }
@@ -375,7 +523,80 @@ Created By: Travis Berthelot
                 </xsl:if>
 
             </xsl:if>
+            
+            </xsl:for-each>
+
             <xsl:call-template name="processWhileCollisionList" >
+                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xsl:template name="processSubInstructionsCollisionList" >
+        <xsl:param name="layoutIndex" />
+
+        <xsl:for-each select="events" >
+
+            <xsl:for-each select="conditions" >
+                <xsl:for-each select="subInstructions" >
+
+            <xsl:variable name="foundCollisionNP" >
+                <xsl:if test="type/value = 'CollisionNP'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" >
+                            <xsl:value-of select="text()" />
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:variable>
+            <xsl:variable name="foundCollisionNP2" >
+                <xsl:if test="type/value = 'CollisionNP'" >
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 2" >
+                            <xsl:value-of select="text()" />
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:variable>
+            
+            <xsl:if test="string-length($foundCollisionNP) > 0" >
+                <xsl:if test="../../actions" >
+                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+    public void <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />ProcessGDCollision() throws Exception {
+        final int size = this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.size();
+//        if(this.gdObject.name.compareTo(B) == 0) {
+//            LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P));
+//        }
+        GDNode node;
+        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+            node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.get(index);
+            node.processGD(this, null);
+        }
+    }
+                </xsl:if>
+                <xsl:if test="not(../../actions)" >
+                <xsl:if test="../../events" >
+                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+    public void <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />ProcessGDCollision() throws Exception {
+        final int size = this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.size();
+//        if(this.gdObject.name.compareTo(B) == 0) {
+//            LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P));
+//        }
+        GDNode node;
+        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+            node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.get(index);
+            node.processGD(this, null);
+        }
+    }
+                </xsl:if>
+                </xsl:if>
+
+            </xsl:if>
+            
+                </xsl:for-each>
+            </xsl:for-each>
+
+            <xsl:call-template name="processSubInstructionsCollisionList" >
                 <xsl:with-param name="layoutIndex" select="$layoutIndex" />
             </xsl:call-template>
         </xsl:for-each>
@@ -462,6 +683,9 @@ Created By: Travis Berthelot
                 <xsl:with-param name="layoutIndex" select="$layoutIndex" />
             </xsl:call-template>
             <xsl:call-template name="createWhileCollisionList" >
+                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
+            </xsl:call-template>
+            <xsl:call-template name="createSubInstructionsCollisionList" >
                 <xsl:with-param name="layoutIndex" select="$layoutIndex" />
             </xsl:call-template>
         </xsl:for-each>
@@ -760,6 +984,9 @@ Created By: Travis Berthelot
             <xsl:call-template name="addWhileCollisionList" >
                 <xsl:with-param name="layoutIndex" select="$layoutIndex" />
             </xsl:call-template>
+            <xsl:call-template name="addSubInstructionsCollisionList" >
+                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
+            </xsl:call-template>
             }
             
         </xsl:for-each>
@@ -852,7 +1079,7 @@ Created By: Travis Berthelot
                 if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
 
                 } else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
-                    final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>PlayerGDGameLayerList.get(0);
+                    final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.get(0);
                     //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Map: ").append(this.getName()).toString(), this, "move"));
                     
                     //basicGeographicMapUtil.move(geographicMapInterfaceArray, -x, -y);
@@ -868,7 +1095,7 @@ Created By: Travis Berthelot
 //                    }
 
                 } else {
-                    final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>PlayerGDGameLayerList.get(0);
+                    final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.get(0);
                     if(this == player) {
                         //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Player - Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
                         //this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
@@ -919,7 +1146,7 @@ Created By: Travis Berthelot
                 if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
 
                 } else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
-                    final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>PlayerGDGameLayerList.get(0);
+                    final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.get(0);
                     //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move2"));
                     
                     //basicGeographicMapUtil.move(geographicMapInterfaceArray, -x, -y);
@@ -935,7 +1162,7 @@ Created By: Travis Berthelot
 //                    }
 
                 } else {
-                    final GDGameLayer Player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>PlayerGDGameLayerList.get(0);
+                    final GDGameLayer Player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.get(0);
                     if(this == Player) {
                         //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Player - Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move2"));
                         //this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
@@ -1327,6 +1554,9 @@ Created By: Travis Berthelot
                 <xsl:with-param name="layoutIndex" select="$layoutIndex" />
             </xsl:call-template>
             <xsl:call-template name="processWhileCollisionList" >
+                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
+            </xsl:call-template>
+            <xsl:call-template name="processSubInstructionsCollisionList" >
                 <xsl:with-param name="layoutIndex" select="$layoutIndex" />
             </xsl:call-template>
         </xsl:for-each>

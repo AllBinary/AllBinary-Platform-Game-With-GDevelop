@@ -76,7 +76,7 @@ Created By: Travis Berthelot
                     <!--
                     <xsl:if test="((number(parameters[3]) = 0 or number(parameters[3])) and substring-after(parameters[3]/text(), '.') = '') or not(number(parameters[3]))" >
                     <xsl:for-each select="parameters" >
-                        //<xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />_updated = true;</xsl:if>
+                        //<xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />_updated = true;</xsl:if>
                     </xsl:for-each>
                     </xsl:if>
                     -->

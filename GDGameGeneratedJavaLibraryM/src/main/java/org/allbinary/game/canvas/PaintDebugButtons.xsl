@@ -45,9 +45,9 @@ Created By: Travis Berthelot
                         <xsl:if test="position() = 1" >
                             //<xsl:value-of select="$conditionAsString" />
                             //SourisSurObjet - debug paint for <xsl:value-of select="text()" /> - show rect around button
-//                            if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />Rectangle != null) {                            
-//                                final GPoint rectangePoint = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />Rectangle.getPoint();
-//                                graphics.drawRect(rectangePoint.getX(), rectangePoint.getY(), <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />Rectangle.getWidth(), <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />Rectangle.getHeight());
+//                            if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle != null) {                            
+//                                final GPoint rectangePoint = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle.getPoint();
+//                                graphics.drawRect(rectangePoint.getX(), rectangePoint.getY(), <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle.getWidth(), <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle.getHeight());
 //                            }
                         </xsl:if>
                 

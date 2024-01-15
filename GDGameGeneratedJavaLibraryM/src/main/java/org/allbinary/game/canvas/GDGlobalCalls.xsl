@@ -13,6 +13,8 @@
 
     <xsl:template name="globals" >
         <xsl:param name="name" />
+        <xsl:param name="layoutIndex" />
+
         <xsl:variable name="isGlobal" >
         <xsl:for-each select="/game" >
             <xsl:for-each select="objects" >
@@ -23,7 +25,7 @@
             </xsl:for-each>
         </xsl:for-each>
         </xsl:variable>
-        <xsl:if test="contains($isGlobal, 'found')" >gameGlobals.</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >globals.</xsl:if>
+        <xsl:if test="contains($isGlobal, 'found')" >gameGlobals</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >globals<xsl:value-of select="$layoutIndex" /></xsl:if>
     </xsl:template>
 
     <xsl:template name="globalResource" >

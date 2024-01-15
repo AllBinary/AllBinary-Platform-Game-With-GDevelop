@@ -42,7 +42,7 @@ Created By: Travis Berthelot
                                                 </xsl:call-template>
                                                 <xsl:if test="contains($hasObject, 'found')" >_OBJECT_NAME</xsl:if>
                                             </xsl:variable>
-                                            if(<xsl:value-of select="$name" />GDGameLayer2.getName().startsWith(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template><xsl:value-of select="$NAME" />)) {
+                                            if(<xsl:value-of select="$name" />GDGameLayer2.getName().startsWith(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$NAME" />)) {
                                                 <xsl:value-of select="$name" />GDGameLayer1 = <xsl:value-of select="$name" />GDGameLayer2;
                                             }
                                         }
@@ -66,7 +66,7 @@ Created By: Travis Berthelot
     <xsl:template name="gameLayerList" >
         <xsl:param name="name" />
 
-                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template><xsl:value-of select="$name" />GDGameLayerList.get(index));
+                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(index));
 
     </xsl:template>
 

@@ -30,13 +30,13 @@ Created By: Travis Berthelot
 
                         <xsl:for-each select="parameters" >
                             <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
-                        <xsl:if test="position() = 1" >final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                        <xsl:if test="position() = 1" >final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                         </xsl:for-each>
 
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                         <xsl:for-each select="parameters" >
                             <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
-                        <xsl:if test="position() = 1" >final GDGameLayer gameLayer = (((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />GDGameLayerList.get(index)))</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                        <xsl:if test="position() = 1" >final GDGameLayer gameLayer = (((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index)))</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                         </xsl:for-each>
                         
                         <xsl:text>&#10;</xsl:text>
@@ -61,11 +61,7 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="translate(text(), '&quot;', '')" />
                                         </xsl:if>
                                     </xsl:variable>
-                                    <xsl:call-template name="globals" >
-                                        <xsl:with-param name="name" >
-                                            <xsl:value-of select="$name" />
-                                        </xsl:with-param>
-                                    </xsl:call-template>
+                                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.
                                     <xsl:value-of select="$animationName" />))) gameLayer.resetAnimation();
                             </xsl:if>
                         </xsl:for-each>
@@ -87,11 +83,7 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="translate(text(), '&quot;', '')" />
                                         </xsl:if>
                                     </xsl:variable>
-                                    <xsl:call-template name="globals" >
-                                        <xsl:with-param name="name" >
-                                            <xsl:value-of select="$name" />
-                                        </xsl:with-param>
-                                    </xsl:call-template>
+                                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.
                                     <xsl:value-of select="$animationName" />)) gameLayer.resetAnimation();
                             </xsl:if>
                         </xsl:for-each>
@@ -143,11 +135,7 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="translate(text(), '&quot;', '')" />
                                         </xsl:if>
                                     </xsl:variable>
-                                    <xsl:call-template name="globals" >
-                                        <xsl:with-param name="name" >
-                                            <xsl:value-of select="$name" />
-                                        </xsl:with-param>
-                                    </xsl:call-template>
+                                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.
                                     <xsl:value-of select="$animationName" />))) gameLayer.resetAnimation();
                             </xsl:if>
                         </xsl:for-each>
@@ -169,11 +157,7 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="translate(text(), '&quot;', '')" />
                                         </xsl:if>
                                     </xsl:variable>
-                                    <xsl:call-template name="globals" >
-                                        <xsl:with-param name="name" >
-                                            <xsl:value-of select="$name" />
-                                        </xsl:with-param>
-                                    </xsl:call-template>
+                                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.
                                     <xsl:value-of select="$animationName" />)) gameLayer.resetAnimation();
                             </xsl:if>
                         </xsl:for-each>
@@ -204,8 +188,8 @@ Created By: Travis Berthelot
 
                         <xsl:for-each select="parameters" >
                             <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
-                        <xsl:if test="position() = 1" >if(index <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />GDGameLayerList.size()) return false;<xsl:text>&#10;</xsl:text></xsl:if>
-                        <xsl:if test="position() = 1" >final GDGameLayer gameLayer = (((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />GDGameLayerList.get(index)))</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
+                        <xsl:if test="position() = 1" >if(index <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size()) return false;<xsl:text>&#10;</xsl:text></xsl:if>
+                        <xsl:if test="position() = 1" >final GDGameLayer gameLayer = (((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index)))</xsl:if><xsl:if test="position() = last()" >;</xsl:if>
                         </xsl:for-each>
                         
                         <xsl:text>&#10;</xsl:text>
@@ -230,11 +214,7 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="translate(text(), '&quot;', '')" />
                                         </xsl:if>
                                     </xsl:variable>
-                                    <xsl:call-template name="globals" >
-                                        <xsl:with-param name="name" >
-                                            <xsl:value-of select="$name" />
-                                        </xsl:with-param>
-                                    </xsl:call-template>
+                                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.
                                     <xsl:value-of select="$animationName" />))) gameLayer.resetAnimation();
                             </xsl:if>
                         </xsl:for-each>
@@ -256,11 +236,7 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="translate(text(), '&quot;', '')" />
                                         </xsl:if>
                                     </xsl:variable>
-                                    <xsl:call-template name="globals" >
-                                        <xsl:with-param name="name" >
-                                            <xsl:value-of select="$name" />
-                                        </xsl:with-param>
-                                    </xsl:call-template>
+                                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.
                                     <xsl:value-of select="$animationName" />)) gameLayer.resetAnimation();
                             </xsl:if>
                         </xsl:for-each>
