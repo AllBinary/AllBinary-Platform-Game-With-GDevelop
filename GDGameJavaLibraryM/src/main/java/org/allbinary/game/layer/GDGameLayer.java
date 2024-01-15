@@ -450,10 +450,6 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         }
         this.scalableProcessor = ScalableProcessor.getInstance();
     }
-
-    public void processGDCollision(final Group groupInterface) throws Exception {
-        throw new RuntimeException();
-    }
     
     //private boolean isFirst = true;
     //private final String PAINT = "paint";

@@ -1543,9 +1543,6 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:for-each>
 
-        public void processGDCollision(final Group groupInterface) throws Exception {
-        }
-
     //private final String P = "processGDCollision";    
     //private final String B = "BatEnemy";
         <xsl:for-each select="layouts" >

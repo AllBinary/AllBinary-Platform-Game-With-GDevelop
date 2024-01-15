@@ -76,6 +76,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.input.InputFactory;
                 import org.allbinary.game.input.event.GameKeyEvent;
                 import org.allbinary.game.layer.GDGameLayer;
+                import org.allbinary.game.layer.GDCustomGameLayer;
                 import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layout.BaseGDNodeStats;
