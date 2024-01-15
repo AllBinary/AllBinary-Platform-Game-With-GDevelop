@@ -35,22 +35,22 @@ public class GDNodeStatsFactory extends BaseGDNodeStats {
         return instance;
     }
     
-    //private final CallCountGDNodeStats callCountGDNodeStats = new CallCountGDNodeStats();
+    private final CallCountGDNodeStats callCountGDNodeStats = new CallCountGDNodeStats();
     private final CallStackGDNodeStats callStackGDNodeStats = new CallStackGDNodeStats();
     
     public void reset() {
+        this.callCountGDNodeStats.reset();
         this.callStackGDNodeStats.reset();
-        //this.callCountGDNodeStats.reset();
     }
 
     public void push(int index, int name) {
+        this.callCountGDNodeStats.push(index, name);
         this.callStackGDNodeStats.push(index, name);
-        //this.callCountGDNodeStats.push(index, name);
     }
 
     public void log(final StringBuilder stringBuilder, final Object object) {
+        this.callCountGDNodeStats.log(stringBuilder);
         this.callStackGDNodeStats.log(stringBuilder, object);
-        //this.callCountGDNodeStats.log(stringBuilder, aClass);
     }
 
 }
