@@ -125,7 +125,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //LogUtil.put(LogFactory.getInstance(this.gdObject.toShortString(), this, commonStrings.CONSTRUCTOR));
         final int size = animationInterfaceFactoryInterfaceArray.length;
         for(int index = 0; index < size; index++) {
-            animationInterfaceFactoryInterfaceArray[index].setInitialSize(this.gdObject.width, this.gdObject.height);
+            animationInterfaceFactoryInterfaceArray[index].setInitialSize(this.gdObject.Width(null), this.gdObject.Height(null));
         }
 
         this.initIndexedAnimationInterfaceArray = animationBehavior.init(this.gdObject, animationInterfaceFactoryInterfaceArray);
@@ -451,7 +451,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.scalableProcessor = ScalableProcessor.getInstance();
     }
 
-    public void processGDCollision() throws Exception {
+    public void processGDCollision(final Group groupInterface) throws Exception {
         throw new RuntimeException();
     }
     

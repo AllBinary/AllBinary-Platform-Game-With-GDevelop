@@ -80,11 +80,13 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             LogUtil.put(LogFactory.getInstance(new StringBuilder().append(name).append(" GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").append(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(this.animationInterfaceFactoryInterfaceArray[0]).toString(), this, "create", new Exception()));
         }
 
-        //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(name).append(" GDObject name: ").append(gdObject.name).append(" gdObject.width: ").append(gdObject.width).append("gdObject.height: ").append(gdObject.height).append(" this.width: ").append(this.width).append(" this.height: ").append(this.height).toString(), this, "create"));
-        if(gdObject.width != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> gdObject.height != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> (this.width != gdObject.width || this.height != gdObject.height)) {
+        final int gdObjectWidth = gdObject.Width(null);
+        final int gdObjectHeight = gdObject.Height(null);
+        //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(name).append(" GDObject name: ").append(gdObject.name).append(" gdObjectWidth: ").append(gdObjectWidth).append("gdObjectHeight: ").append(gdObjectHeight).append(" this.width: ").append(this.width).append(" this.height: ").append(this.height).toString(), this, "create"));
+        if(gdObjectWidth != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> gdObjectHeight != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> (this.width != gdObjectWidth || this.height != gdObjectHeight)) {
             //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(name).append(" GDObject name: ").append(gdObject.name).toString(), this, "create"));
-            this.layerInfo.setWidth(gdObject.width);
-            this.layerInfo.setHeight(gdObject.height);
+            this.layerInfo.setWidth(gdObjectWidth);
+            this.layerInfo.setHeight(gdObjectHeight);
         } else {
             this.layerInfo.setWidth(this.width);
             this.layerInfo.setHeight(this.height);

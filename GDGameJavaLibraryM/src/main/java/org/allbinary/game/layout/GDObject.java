@@ -59,10 +59,10 @@ public class GDObject
 //    public int canvasWidth;
 //    public int canvasHeight;
     
-    public int width;
-    public int height;
-    public int halfWidth;
-    public int halfHeight;
+    private int width;
+    private int height;
+    private int halfWidth;
+    private int halfHeight;
         
     public boolean updateSinceSetAngle;
     
