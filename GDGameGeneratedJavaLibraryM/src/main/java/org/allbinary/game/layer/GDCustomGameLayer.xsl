@@ -168,11 +168,13 @@ Created By: Travis Berthelot
             <xsl:if test="string-length($foundCollisionNP) > 0" >
                 <xsl:for-each select="actions" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    //action under condition
                     private final BasicArrayList <xsl:value-of select="$foundCollisionNP2" />CollisionList = new BasicArrayList();
                 </xsl:for-each>
                 <xsl:if test="not(actions)" >
                 <xsl:for-each select="events" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    //event under condition
                     private final BasicArrayList <xsl:value-of select="$foundCollisionNP2" />CollisionList = new BasicArrayList();
                 </xsl:for-each>
                 </xsl:if>
@@ -212,11 +214,13 @@ Created By: Travis Berthelot
             <xsl:if test="string-length($foundCollisionNP) > 0" >
                 <xsl:for-each select="actions" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    //action under whileCondition
                     private final BasicArrayList <xsl:value-of select="$foundCollisionNP2" />CollisionList = new BasicArrayList();
                 </xsl:for-each>
                 <xsl:if test="not(actions)" >
                 <xsl:for-each select="events" >
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    //event under whileCondition
                     private final BasicArrayList <xsl:value-of select="$foundCollisionNP2" />CollisionList = new BasicArrayList();
                 </xsl:for-each>
                 </xsl:if>
