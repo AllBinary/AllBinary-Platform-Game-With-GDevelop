@@ -145,7 +145,7 @@ Created By: Travis Berthelot
 
                         globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.create();
                         GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.create();
-                        builder = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(canvas, allBinaryGameLayerManager);
+                        builder = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(abCanvas, allBinaryGameLayerManager);
                     
 <!--                        try {
 

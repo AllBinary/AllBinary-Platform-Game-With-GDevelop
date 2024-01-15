@@ -117,7 +117,7 @@ Created By: Travis Berthelot
 
                     public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes getInstance(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager)
                     {
-                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes(canvas, allBinaryGameLayerManager);
+                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes(abCanvas, allBinaryGameLayerManager);
                         return instance;
                     }
 
