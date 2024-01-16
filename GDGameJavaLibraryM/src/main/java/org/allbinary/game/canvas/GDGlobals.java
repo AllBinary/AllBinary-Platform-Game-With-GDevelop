@@ -13,10 +13,18 @@
  */
 package org.allbinary.game.canvas;
 
+import org.allbinary.game.identification.GroupFactory;
+import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.util.ArrayUtil;
+
 /**
  *
  * @author User
  */
 public class GDGlobals {
     
+    protected final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+    protected final GroupFactory groupFactory = GroupFactory.getInstance();
+    protected final CommonStrings commonStrings = CommonStrings.getInstance();
+
 }

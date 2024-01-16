@@ -241,7 +241,7 @@ Created By: Travis Berthelot
 
                         </xsl:if>
                         <xsl:if test="not(behaviors)" >
-                           //Behavior - non animation
+                           //Behavior - animation without behaviors
                            size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size();
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(index)).animate(globals.timeDelta);

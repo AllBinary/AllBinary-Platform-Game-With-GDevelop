@@ -113,9 +113,6 @@ Created By: Travis Berthelot
                     {
                         return instance;
                     }
-
-                        private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
-                        private final GroupFactory groupFactory = GroupFactory.getInstance();
                         
                         <xsl:variable name="objectsWithOnceCondition" ><xsl:call-template name="gdNodeToOnceList" ><xsl:with-param name="iteration" >0</xsl:with-param></xsl:call-template></xsl:variable>
                         //objectsWithOnceCondition=<xsl:value-of select="$objectsWithOnceCondition" />
@@ -267,6 +264,8 @@ Created By: Travis Berthelot
                                      
                     private GDGameGlobals() {
                     
+                        LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
+
                         final int size = channelSoundArray.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             channelSoundArray[index] = new BasicArrayList();
