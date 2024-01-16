@@ -101,7 +101,9 @@ Created By: Travis Berthelot
 
                     public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation getInstance(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager)
                     {
+                        //For now lets recreate.
                         GDGameGlobals.create();
+                        GDGlobalsSpecialAnimation.create();
                         instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(abCanvas, allBinaryGameLayerManager);
                         return instance;
                     }
