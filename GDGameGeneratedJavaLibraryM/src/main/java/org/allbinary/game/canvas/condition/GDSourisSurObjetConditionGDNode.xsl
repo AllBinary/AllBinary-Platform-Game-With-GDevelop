@@ -196,7 +196,7 @@ Created By: Travis Berthelot
                                         </xsl:for-each>
                                     -->
                                         
-                                    } else {
+                                    } else if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
                                     
                                         this.processReleased();
                                     <!--
@@ -230,7 +230,7 @@ Created By: Travis Berthelot
                                     final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
                                     if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
 
-                                    } else {
+                                    } else if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
 
                                         runnable.run();
 
@@ -254,7 +254,9 @@ Created By: Travis Berthelot
                                                 
                     };
 
+                    <xsl:if test="contains($press, 'found')" >
                     globals.gdNodeWithRunnableList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    </xsl:if>
 
     </xsl:template>
 
