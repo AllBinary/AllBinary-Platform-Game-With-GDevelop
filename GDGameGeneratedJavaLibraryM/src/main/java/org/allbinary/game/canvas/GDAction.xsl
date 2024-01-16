@@ -733,7 +733,7 @@ Created By: Travis Berthelot
                     <xsl:if test="not(contains($caller, 'external'))" >
                     <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Action - //Delete - call
-                    //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.size() != 0) {
+                    if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.size() != 0) {
 
                     final GDGameLayer <xsl:value-of select="$gameLayerName" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(0);
                     if(<xsl:value-of select="$gameLayerName" />GDGameLayer != null) {
@@ -742,7 +742,7 @@ Created By: Travis Berthelot
                         LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "<xsl:value-of select="$gameLayerName" />GDGameLayer was null", this, commonStrings.PROCESS));
                     }
 
-                    //}
+                    }
                         </xsl:if>
                 </xsl:if>
 
