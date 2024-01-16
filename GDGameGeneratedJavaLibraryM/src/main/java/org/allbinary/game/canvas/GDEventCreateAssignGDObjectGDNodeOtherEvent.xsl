@@ -71,7 +71,7 @@ Created By: Travis Berthelot
 
                 <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
-            <xsl:variable name="foundOtherCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Always' or type/value = 'ObjectVariableChildCount' or type/value = 'VarObjet' or type/value = 'VarScene' or type/value = 'NbObjet' or type/value = 'ObjectVariableAsBoolean' or type/value = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="foundOtherCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Always' or type/value = 'DepartScene' or type/value = 'ObjectVariableChildCount' or type/value = 'VarObjet' or type/value = 'VarScene' or type/value = 'NbObjet' or type/value = 'ObjectVariableAsBoolean' or type/value = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="foundVarSceneCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'VarScene'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="foundLinkEvent" ><xsl:for-each select="events" ><xsl:if test="type = 'BuiltinCommonInstructions::Link'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="foundTimerCondition" >
@@ -116,51 +116,13 @@ Created By: Travis Berthelot
             
             <!-- //foundOtherCondition=<xsl:value-of select="$foundOtherCondition" /> -->
 
-                <xsl:if test="contains($foundTimerCondition, 'found')" >
-                //Found used conditions so calling them before actions.
                 @Override
                 public boolean process() throws Exception {
                     super.processStats();
 
-                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                    
-                    <xsl:for-each select="conditions" >
-                    <xsl:variable name="typeValue" select="type/value" />
-                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
-                    <xsl:if test="position() = 1" >
-                    //Condition - //<xsl:value-of select="type/value" /> - call - press
-                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
-                    </xsl:if>
-                    </xsl:for-each>
-                    
-                    return true;
-                }
-
-                @Override
-                public void processReleased() throws Exception { //Event
-                    super.processReleasedStats();
-                
-                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
-
-                    <xsl:for-each select="conditions" >
-                    <xsl:variable name="typeValue" select="type/value" />
-                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
-                    <xsl:if test="position() = 1" >
-                    //Condition - call - release
-                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
-                    </xsl:if>
-                    </xsl:for-each>
-                }
-                
-                </xsl:if>
-
- //
-                <xsl:if test="contains($foundOtherCondition, 'found') and not(contains($foundTimerCondition, 'found')) or (contains($foundVarSceneCondition, 'found') and contains($foundLinkEvent, 'found'))" >
+                <xsl:if test="contains($foundOtherCondition, 'found') or contains($foundTimerCondition, 'found') or (contains($foundVarSceneCondition, 'found') and contains($foundLinkEvent, 'found'))" >
                     <xsl:if test="not(whileConditions)" >
                 //Found conditions that need processing.
-                @Override
-                public boolean process() throws Exception {
-                    super.processStats();
                     
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
@@ -175,38 +137,11 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                     
-                    return true;
-                }
-
-                @Override
-                public void processReleased() throws Exception {
-                    super.processReleasedStats();
-                    
-                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
-
-                    <xsl:for-each select="conditions" >
-                    <xsl:variable name="typeValue" select="type/value" />
-                    <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                    <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
-                        <xsl:if test="position() = 1" >
-                    //eventsCreateAssignGDObjectGDNodes - //Condition - //<xsl:value-of select="type/value" /> - release - call
-                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
-                        </xsl:if>
-                        <xsl:if test="position() = 2" >
-                    //eventsCreateAssignGDObjectGDNodes - //Condition - call - more ifs
-                        </xsl:if>
-                    </xsl:for-each>
-                    
-                }
                     </xsl:if>
                 </xsl:if>
 
                 <xsl:if test="whileConditions" >
                 //whileConditions
-                @Override
-                public boolean process() throws Exception {
-                    super.processStats();
                     
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                     <xsl:for-each select="whileConditions" >
@@ -219,61 +154,11 @@ Created By: Travis Berthelot
                     }
                     </xsl:for-each>
                     
-                    return true;
-                }
                 </xsl:if>
 
-                <xsl:if test="not(whileConditions)" >
-                <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
-                <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
-
-                <xsl:if test="actions" >
-                //caller=<xsl:value-of select="$caller" /> //No used conditions so calling actions from event directly.
-                <xsl:call-template name="actionsWithIndexesProcess" >
-                    <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignXGDObjectGDNodesOtherEvent</xsl:with-param>
-                    <xsl:with-param name="layoutIndex" >
-                        <xsl:value-of select="$layoutIndex" />
-                    </xsl:with-param>
-                    <xsl:with-param name="parametersAsString" >
-                        <xsl:value-of select="$parametersAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="createdObjectsAsString" >
-                        <xsl:value-of select="$createdObjectsAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="objectsAsString" >
-                        <xsl:value-of select="$objectsAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="thisNodeIndex" >
-                        <xsl:value-of select="$thisNodeIndex" />
-                    </xsl:with-param>                    
-                </xsl:call-template>
-
-                <xsl:call-template name="eventsCreateProcessUsed" >
-                    <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignXGDObjectGDNodesOtherEvent</xsl:with-param>
-                    <xsl:with-param name="thisNodeIndex" >
-                        <xsl:value-of select="$thisNodeIndex" />
-                    </xsl:with-param>
-                    <xsl:with-param name="objectsAsString" >
-                        <xsl:value-of select="$objectsAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="layoutIndex" >
-                        <xsl:value-of select="$layoutIndex" />
-                    </xsl:with-param>
-                    <xsl:with-param name="parametersAsString" >
-                        <xsl:value-of select="$parametersAsString" />
-                    </xsl:with-param>
-                    <xsl:with-param name="createdObjectsAsString" >
-                        <xsl:value-of select="$createdObjectsAsString" />
-                    </xsl:with-param>
-                </xsl:call-template>
-                </xsl:if>
-                                
                 <xsl:if test="not(conditions)" >
                 <xsl:if test="not(actions)" >
                 //Events only - No actions or conditions
-                @Override
-                public boolean process() throws Exception {
-                    super.processStats();
 
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                 <xsl:for-each select="events" >
@@ -310,9 +195,121 @@ Created By: Travis Berthelot
                 </xsl:if>
                 -->
 
+                </xsl:if>
+                </xsl:if>
+
+                <xsl:if test="not(whileConditions)" >
+                <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
+                <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
+
+                <xsl:if test="actions" >
+                //caller=<xsl:value-of select="$caller" /> //No used conditions so calling actions from event directly.
+                <xsl:call-template name="actionsWithIndexesProcess" >
+                    <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignXGDObjectGDNodesOtherEvent</xsl:with-param>
+                    <xsl:with-param name="layoutIndex" >
+                        <xsl:value-of select="$layoutIndex" />
+                    </xsl:with-param>
+                    <xsl:with-param name="parametersAsString" >
+                        <xsl:value-of select="$parametersAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="createdObjectsAsString" >
+                        <xsl:value-of select="$createdObjectsAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="objectsAsString" >
+                        <xsl:value-of select="$objectsAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="thisNodeIndex" >
+                        <xsl:value-of select="$thisNodeIndex" />
+                    </xsl:with-param>                    
+                </xsl:call-template>
+
+                </xsl:if>
+                
+                </xsl:if>
+                </xsl:if>
+                </xsl:if>
+                
                     return true;
+
+                }
+
+                <xsl:if test="not(whileConditions)" >
+                <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
+                <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
+
+                <xsl:if test="actions" >
+                //caller=<xsl:value-of select="$caller" /> //No used conditions so calling actions from event directly.
+
+                <xsl:call-template name="eventsCreateProcessUsed" >
+                    <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignXGDObjectGDNodesOtherEvent</xsl:with-param>
+                    <xsl:with-param name="thisNodeIndex" >
+                        <xsl:value-of select="$thisNodeIndex" />
+                    </xsl:with-param>
+                    <xsl:with-param name="objectsAsString" >
+                        <xsl:value-of select="$objectsAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="layoutIndex" >
+                        <xsl:value-of select="$layoutIndex" />
+                    </xsl:with-param>
+                    <xsl:with-param name="parametersAsString" >
+                        <xsl:value-of select="$parametersAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="createdObjectsAsString" >
+                        <xsl:value-of select="$createdObjectsAsString" />
+                    </xsl:with-param>
+                </xsl:call-template>
+                </xsl:if>
+
+                <xsl:if test="contains($foundTimerCondition, 'found')" >
+                //Found used conditions so calling them before actions.
+                @Override
+                public void processReleased() throws Exception { //Event
+                    super.processReleasedStats();
+                
+                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
+
+                    <xsl:for-each select="conditions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
+                    <xsl:if test="position() = 1" >
+                    //Condition - call - release
+                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                    </xsl:if>
+                    </xsl:for-each>
                 }
                 
+                </xsl:if>
+                 
+                <xsl:if test="contains($foundOtherCondition, 'found') and not(contains($foundTimerCondition, 'found')) or (contains($foundVarSceneCondition, 'found') and contains($foundLinkEvent, 'found'))" >
+                    <xsl:if test="not(whileConditions)" >
+                //Found conditions that need processing.
+                @Override
+                public void processReleased() throws Exception {
+                    super.processReleasedStats();
+                    
+                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
+
+                    <xsl:for-each select="conditions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                    <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
+                        <xsl:if test="position() = 1" >
+                    //eventsCreateAssignGDObjectGDNodes - //Condition - //<xsl:value-of select="type/value" /> - release - call
+                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                        </xsl:if>
+                        <xsl:if test="position() = 2" >
+                    //eventsCreateAssignGDObjectGDNodes - //Condition - call - more ifs
+                        </xsl:if>
+                    </xsl:for-each>
+                    
+                }
+                    </xsl:if>
+                </xsl:if>
+
+                <xsl:if test="not(conditions)" >
+                <xsl:if test="not(actions)" >
+                //Events only - No actions or conditions                
                 @Override
                 public void process(final MotionGestureEvent motionGestureEvent) throws Exception {
                     super.processStats(motionGestureEvent);

@@ -24,7 +24,9 @@
                 <xsl:if test="name = $name" >found</xsl:if>
             </xsl:for-each>
         </xsl:for-each>
+        <xsl:if test="//actions[type/value/text() = 'ModVarGlobal']/parameters[1]/text() = $name" >found</xsl:if>
         </xsl:variable>
+        
         <xsl:if test="contains($isGlobal, 'found')" >gameGlobals</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >globals<xsl:value-of select="$layoutIndex" /></xsl:if>
     </xsl:template>
 
