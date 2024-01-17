@@ -352,7 +352,7 @@ Created By: Travis Berthelot
                         final BasicArrayList gameLayerList = new BasicArrayList();
             </xsl:if>
             </xsl:if>
-                        //final StringBuilder stringBuilder = new StringBuilder();
+                        //final StringMaker stringBuilder = new StringMaker();
 
                        <xsl:variable name="actionWithTextObjectString" >
                            <xsl:for-each select="actions" >
@@ -878,8 +878,8 @@ Created By: Travis Berthelot
                             <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Event - //<xsl:value-of select="type" /> - call
-                            // maybe we should not call this here.
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            // maybe we should not call this here.1
+                            //TWB not called anymore <xsl:value-of select="$caller" /> - //actionsWithIndexes //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             </xsl:if>
                             <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
@@ -896,7 +896,7 @@ Created By: Travis Berthelot
                             <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //caller=<xsl:value-of select="$caller" /> - //actionsWithIndexes - //Event - //<xsl:value-of select="type" /> - call
-                            // maybe we should not call this here.
+                            // maybe we should not call this here.2
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             </xsl:if>
                             <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >

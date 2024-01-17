@@ -163,7 +163,10 @@ Created By: Travis Berthelot
                         if(gameLayer2.getCollidableInferface().isCollision(gameLayer)) {
                             
                             ((GDCustomGameLayer) gameLayer2).<xsl:value-of select="parameters[1]/text()" /><xsl:value-of select="parameters[2]/text()" />ProcessGDCollision();
-<!--        
+                            //name=<xsl:value-of select="name()" />
+        
+                            <xsl:if test="name() = 'subInstructions'" >
+            <xsl:for-each select=".." >
             <xsl:for-each select=".." >
             <xsl:for-each select="actions" >
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -171,10 +174,35 @@ Created By: Travis Berthelot
             //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                 <xsl:text>&#10;</xsl:text>
             //Action - //<xsl:value-of select="type/value" /> - call
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGS(gameLayer2, null);
+            </xsl:for-each>
+            
+            <xsl:for-each select="events" >
+            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGS(gameLayer2, null);
             </xsl:for-each>
             </xsl:for-each>
--->
+            </xsl:for-each>
+                            </xsl:if>
+
+                            <xsl:if test="not(name() = 'subInstructions')" >
+            <xsl:for-each select=".." >
+            <xsl:for-each select="actions" >
+                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+            //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
+                <xsl:text>&#10;</xsl:text>
+            //Action - //<xsl:value-of select="type/value" /> - call
+            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGS(gameLayer2, null);
+            </xsl:for-each>
+            
+            <xsl:for-each select="events" >
+            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGS(gameLayer2, null);
+            </xsl:for-each>
+            </xsl:for-each>
+                            </xsl:if>
+
                             result = true;
          
                         }
