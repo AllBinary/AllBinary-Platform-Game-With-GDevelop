@@ -128,20 +128,44 @@ Created By: Travis Berthelot
     </xsl:template>
 
     <xsl:template name="findSoundInAction" >
-        <xsl:param name="totalRecursions" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="file" />
         <xsl:param name="musicOrSound" />
 
         <xsl:for-each select="/game" >
         <xsl:for-each select="layouts" >
+<!--            //Layout - <xsl:value-of select="position()" />-->
             <xsl:if test="position() - 1 = $layoutIndex" >
+                
+            <xsl:call-template name="findSoundInActionRecursion" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="0" />
+                </xsl:with-param>
+                <xsl:with-param name="file" >
+                    <xsl:value-of select="$file" />
+                </xsl:with-param>
+                <xsl:with-param name="musicOrSound" >
+                    <xsl:value-of select="$musicOrSound" />
+                </xsl:with-param>
+            </xsl:call-template>
+            
+            </xsl:if>
+        </xsl:for-each>
+        </xsl:for-each>
+
+    </xsl:template>
+
+    <xsl:template name="findSoundInActionRecursion" >
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="file" />
+        <xsl:param name="musicOrSound" />
+
         <xsl:for-each select="events" >
             <xsl:for-each select="actions" >
                 <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                
+<!--                //Action - <xsl:value-of select="$typeValue" />-->
                 <xsl:if test="$param = $file" >
                 
                 <xsl:if test="$musicOrSound = 'music'" >
@@ -169,15 +193,18 @@ Created By: Travis Berthelot
 
             </xsl:for-each>
 
-            <xsl:call-template name="findSoundInAction" >
+            <xsl:call-template name="findSoundInActionRecursion" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
                 </xsl:with-param>
+                <xsl:with-param name="file" >
+                    <xsl:value-of select="$file" />
+                </xsl:with-param>
+                <xsl:with-param name="musicOrSound" >
+                    <xsl:value-of select="$musicOrSound" />
+                </xsl:with-param>
 
             </xsl:call-template>
-        </xsl:for-each>
-            </xsl:if>
-        </xsl:for-each>
         </xsl:for-each>
 
     </xsl:template>
@@ -190,12 +217,9 @@ Created By: Travis Berthelot
                 //Resources
                 <xsl:for-each select="resources" >
                     <xsl:if test="contains(file, '.ogg') or contains(file, '.wav') or contains(file, '.mp3')" >
-<!--                    //Audio File - <xsl:value-of select="file" />-->
+                    //Audio File - <xsl:value-of select="file" />
                         <xsl:variable name="thisLayoutHasThisSoundResource" >
                             <xsl:call-template name="findSoundInAction" >                        
-                                <xsl:with-param name="totalRecursions" >
-                                    <xsl:value-of select="0" />
-                                </xsl:with-param>
                                 <xsl:with-param name="layoutIndex" >
                                     <xsl:value-of select="$layoutIndex" />
                                 </xsl:with-param>
@@ -207,6 +231,7 @@ Created By: Travis Berthelot
                                 </xsl:with-param>
                             </xsl:call-template>
                         </xsl:variable>
+<!--                    /*thisLayoutHasThisSoundResource=<xsl:value-of select="$thisLayoutHasThisSoundResource" />*/-->
                         <xsl:if test="contains($thisLayoutHasThisSoundResource, 'Play')" >
                     <xsl:variable name="fileName" ><xsl:call-template name="after-lastIndexOf"><xsl:with-param name="string" ><xsl:value-of select="file" /></xsl:with-param><xsl:with-param name="char" >/</xsl:with-param></xsl:call-template></xsl:variable>
                     <xsl:variable name="fileName2" ><xsl:value-of select="translate(substring-before($fileName, '.'), '_', ' ')" /></xsl:variable>
@@ -215,8 +240,8 @@ Created By: Travis Berthelot
                     <xsl:if test="$musicOrSound = 'music'" >
                     if(!soundList.contains(org.allbinary.game.resource.GD<xsl:value-of select="translate($fileName3, ' ', '')" />Sound.getInstance())) {
                     </xsl:if>
-                    <xsl:if test="$musicOrSound = 'music'" >
                         soundList.add(org.allbinary.game.resource.GD<xsl:value-of select="translate($fileName3, ' ', '')" />Sound.getInstance());
+                    <xsl:if test="$musicOrSound = 'music'" >
                     }
                     </xsl:if>
                         </xsl:if>
