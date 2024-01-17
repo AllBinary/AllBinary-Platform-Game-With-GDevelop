@@ -134,7 +134,7 @@ Created By: Travis Berthelot
 
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
-                            final StringBuilder stringBuilder = new StringBuilder();
+                            final StringMaker stringBuilder = new StringMaker();
                             //stringBuilder.delete(0, stringBuilder.length());
                             final int index = <xsl:value-of select="text()" />GDGameLayerList.size();
 
@@ -148,7 +148,7 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="text()" />GDGameLayer = (GDGameLayer) <xsl:value-of select="text()" />CacheGDGameLayerList.remove(0);
                                 
                                 //if(!<xsl:value-of select="text()" />GDGameLayer.getName().startsWith(gdObject.name)) {
-                                    //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(<xsl:value-of select="text()" />GDGameLayer.getName()).append(" GDObject name: ").append(gdObject.name).toString(), this, "create", new Exception()));
+                                    //LogUtil.put(LogFactory.getInstance(new StringMaker().append(<xsl:value-of select="text()" />GDGameLayer.getName()).append(" GDObject name: ").append(gdObject.name).toString(), this, "create", new Exception()));
                                 //}
                                 <xsl:value-of select="text()" />GDGameLayer.setGDObject(gdObject);
                             }

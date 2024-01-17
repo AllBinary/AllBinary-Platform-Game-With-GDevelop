@@ -44,7 +44,7 @@ Created By: Travis Berthelot
                         
                             boolean result = false;
 
-                            //final StringBuilder stringBuilder = new StringBuilder();
+                            //final StringMaker stringBuilder = new StringMaker();
                             //LogUtil.put(LogFactory.getInstance(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).toString(), this, commonStrings.PROCESS));
 
                             if(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:value-of select="text() " disable-output-escaping="yes" /></xsl:for-each>) {

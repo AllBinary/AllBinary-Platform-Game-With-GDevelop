@@ -33,7 +33,7 @@ Created By: Travis Berthelot
                         //private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
                         //private final String ELSE_CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Else: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
-                        //private final StringBuilder stringBuilder = new StringBuilder();
+                        //private final StringMaker stringBuilder = new StringMaker();
 
                         //PopEndedTouch - condition
                         @Override

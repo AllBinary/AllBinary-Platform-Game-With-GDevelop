@@ -172,7 +172,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="multilineString" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue2" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&#10;'" /></xsl:with-param><xsl:with-param name="replacementText" >\n").append("</xsl:with-param></xsl:call-template></xsl:variable>
 
                 public final CustomTextAnimation <xsl:value-of select="name" />TextAnimation =
-                new CustomTextAnimation(new StringBuilder().append("<xsl:value-of select="$multilineString" />").toString(), Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, <xsl:value-of select="name" />TextAnimationSize));
+                new CustomTextAnimation(new StringMaker().append("<xsl:value-of select="$multilineString" />").toString(), Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, <xsl:value-of select="name" />TextAnimationSize));
 
                 <xsl:variable name="name2" >,<xsl:value-of select="name" />,</xsl:variable>
 

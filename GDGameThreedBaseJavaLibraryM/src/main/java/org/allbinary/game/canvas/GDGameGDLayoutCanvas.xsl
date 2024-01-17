@@ -105,7 +105,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     private final short SIZE = 50;
 
     private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
-    private final StringBuilder stringBuilder = new StringBuilder();
+    private final StringMaker stringBuilder = new StringMaker();
 
     private SpecialAnimation specialAnimation = SpecialAnimation.getInstance();
     private PaintableInterface tileLayerPaintable = NullPaintable.getInstance();
@@ -129,7 +129,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         final String[] groupNames = new String[SIZE];
         final String GROUP_ = "Group ";
-        final StringBuilder stringBuilder = new StringBuilder();
+        final StringMaker stringBuilder = new StringMaker();
         for(short index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> SIZE; index++) {
             stringBuilder.delete(0, stringBuilder.length());
             groupNames[index] = stringBuilder.append(GROUP_).append(index).toString();

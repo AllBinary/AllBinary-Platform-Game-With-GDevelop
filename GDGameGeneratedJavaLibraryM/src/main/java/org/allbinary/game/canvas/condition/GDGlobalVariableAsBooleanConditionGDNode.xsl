@@ -44,7 +44,7 @@ Created By: Travis Berthelot
                         
                             boolean result = false;
 
-                            //final StringBuilder stringBuilder = new StringBuilder();
+                            //final StringMaker stringBuilder = new StringMaker();
                             //LogUtil.put(LogFactory.getInstance(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).toString(), this, commonStrings.PROCESS));
 
                             if(<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = 'False' or string-length(text()) = 0" >!</xsl:if></xsl:if></xsl:for-each><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >gameGlobals.<xsl:value-of select="text() " /></xsl:if></xsl:for-each>) {

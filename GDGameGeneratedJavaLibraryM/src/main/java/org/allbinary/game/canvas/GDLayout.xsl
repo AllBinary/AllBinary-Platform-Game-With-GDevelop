@@ -120,7 +120,7 @@ Created By: Travis Berthelot
                         
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                         
-                        private final StringBuilder stringBuilder = new StringBuilder();
+                        private final StringMaker stringBuilder = new StringMaker();
                         
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GDGlobalsSpecialAnimation gdGlobalsSpecialAnimation = GDGlobalsSpecialAnimation.getInstance();

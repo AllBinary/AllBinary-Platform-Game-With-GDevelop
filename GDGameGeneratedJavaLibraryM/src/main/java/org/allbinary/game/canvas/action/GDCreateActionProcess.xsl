@@ -122,7 +122,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
-                            final StringBuilder stringBuilder = new StringBuilder();
+                            final StringMaker stringBuilder = new StringMaker();
                             //stringBuilder.delete(0, stringBuilder.length());
                             final int index = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size();
 
@@ -133,7 +133,7 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="text()" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />CacheGDGameLayerList.remove(0);
                                 
                                 //if(!<xsl:value-of select="text()" />GDGameLayer.getName().startsWith(gdObject.name)) {
-                                    //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(<xsl:value-of select="text()" />GDGameLayer.getName()).append(" GDObject name: ").append(gdObject.name).toString(), this, "create", new Exception()));
+                                    //LogUtil.put(LogFactory.getInstance(new StringMaker().append(<xsl:value-of select="text()" />GDGameLayer.getName()).append(" GDObject name: ").append(gdObject.name).toString(), this, "create", new Exception()));
                                 //}
                                 
                                 <xsl:value-of select="text()" />GDGameLayer.setGDObject(gdObject);

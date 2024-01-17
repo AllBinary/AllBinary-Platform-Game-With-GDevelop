@@ -230,7 +230,7 @@ Created By: Travis Berthelot
 
                             //if(gameLayerArray[0] != null) {
                                 //if(gameLayerArray[1] != null) {
-                                    //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Collision: between gameLayer: ").append(gameLayerArray[0].getName()).append(" and gameLayer2: ").append(gameLayerArray[1].getName()).toString(), this, commonStrings.PROCESS));
+                                    //LogUtil.put(LogFactory.getInstance(new StringMaker().append(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Collision: between gameLayer: ").append(gameLayerArray[0].getName()).append(" and gameLayer2: ").append(gameLayerArray[1].getName()).toString(), this, commonStrings.PROCESS));
                                 //}
                             //}
         
@@ -502,7 +502,7 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($hasCreate, 'found')" >
                         <xsl:variable name="text" select="substring-before($createParamsAsString, ',')" />
                         //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Create Loop - //Create
-                        //final StringBuilder stringBuilder = new StringBuilder();
+                        //final StringMaker stringBuilder = new StringMaker();
                         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" size: ").append(size).append(" <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$text" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$text" />List.size(): ").append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$text" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$text" />List.size()).append(" <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$text" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$text" />GDGameLayerList.size(): ").append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$text" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$text" />GDGameLayerList.size()).toString(), this, commonStrings.PROCESS));
                         final int startIndex = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$text" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$text" />GDGameLayerList.size();
                         final int endIndex = startIndex + size;

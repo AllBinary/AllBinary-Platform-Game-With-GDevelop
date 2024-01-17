@@ -164,11 +164,11 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
     // TODO TWB Special Super Efficient Collision Processing
     public boolean isCollision2(final CollidableCompositeLayer collisionLayer)
     {
-        //final StringBuilder stringBuilder = new StringBuilder();
+        //final StringMaker stringBuilder = new StringMaker();
         //LogUtil.put(LogFactory.getInstance(stringBuilder.append(':').append(this.ownerLayer.getName()).append(':').append(collisionLayer.getName()).toString(), this, IS_COLLISION));
         
 //        if(!this.ownerLayer.getName().startsWith("player_bullet") || !collisionLayer.getName().startsWith("player_bullet")) {
-//            final StringBuilder stringBuilder = new StringBuilder();
+//            final StringMaker stringBuilder = new StringMaker();
 //            final String string = this.toString(collisionLayer, stringBuilder);
 //            LogUtil.put(LogFactory.getInstance(string, this, "isCollision"));
 //        } else {
@@ -208,7 +208,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
         }
 
         if(this.conditionWIthGroupActions.groupWithActionsList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-            //final StringBuilder stringBuilder = new StringBuilder();
+            //final StringMaker stringBuilder = new StringMaker();
             //LogUtil.put(LogFactory.getInstance(stringBuilder.append(COLLIDE).append(':').append(this.ownerLayer.getName()).append(':').append(collisionLayer.getName()).toString(), this, COLLIDE));
 
             final GroupInterface[] groupInterfaceArray = collisionLayer.getGroupInterface();
@@ -256,7 +256,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
         ForcedLogUtil.log("No Longer Used", this);
     }
     
-    public String toString(final CollidableCompositeLayer collisionLayer, final StringBuilder stringBuilder) {
+    public String toString(final CollidableCompositeLayer collisionLayer, final StringMaker stringBuilder) {
         int size = this.ownerLayer.getGroupInterface().length;
         for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             stringBuilder.append(this.ownerLayer.getGroupInterface()[index]);
