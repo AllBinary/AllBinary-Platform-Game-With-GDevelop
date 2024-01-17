@@ -233,11 +233,18 @@ public class GDStructure {
                     //more objects class properties - END
                     <xsl:text>&#10;</xsl:text>
 
+                    <xsl:variable name="hasScaleVariable" >
+                        <xsl:for-each select="variables" >
+                            <xsl:if test="name = 'scale'" >found</xsl:if>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <xsl:if test="not(contains($hasScaleVariable, 'found'))" >
                     //variables - default - START
                     public int scale;
                     public int scaleNominator;
                     public int scaleDenominator;
                     //variables - default - END
+                    </xsl:if>
 
                     //variables - external - ModVarScene - START
                     <xsl:for-each select="../externalEvents" >
