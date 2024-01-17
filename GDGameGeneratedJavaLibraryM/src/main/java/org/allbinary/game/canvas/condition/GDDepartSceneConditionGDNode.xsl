@@ -50,7 +50,7 @@ Created By: Travis Berthelot
                                 </xsl:for-each>
                                 
                                 <xsl:for-each select="events" >
-                                <xsl:call-template name="eventIdsNoRecursions" >
+                                <xsl:call-template name="eventIdsLessRecursion" >
                                     <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                                     <xsl:with-param name="caller" >DepartScene</xsl:with-param>
                                 </xsl:call-template>

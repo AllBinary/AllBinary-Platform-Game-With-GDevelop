@@ -75,6 +75,8 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.game.canvas;
 
+                import javax.microedition.lcdui.Graphics;
+                
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.input.GameInputProcessorUtil;
                 import org.allbinary.graphics.DisplayUtil;
@@ -489,7 +491,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="../externalEvents" >
                     <xsl:if test="$layoutName = associatedLayout" >
                     //externalEventsProcess - START
-                        <xsl:call-template name="eventIds" >
+                        <xsl:call-template name="eventIdsLessRecursion" >
                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                             <xsl:with-param name="caller" >externalEventsProcess</xsl:with-param>
                         </xsl:call-template>

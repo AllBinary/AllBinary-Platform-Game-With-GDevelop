@@ -44,7 +44,7 @@ Created By: Travis Berthelot
                         //Condition nodeId=<xsl:value-of select="generate-id()" /> - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
                         //eventsOnceConditionProcessActions - //Condition - //BuiltinCommonInstructions::Once - builder
                         <xsl:for-each select=".." >
-                            <xsl:call-template name="eventIds" >
+                            <xsl:call-template name="eventIdsLessRecursion" >
                                 <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                                 <xsl:with-param name="caller" >onceCondition - //BuiltinCommonInstructions::Once</xsl:with-param>
                             </xsl:call-template>
@@ -55,7 +55,7 @@ Created By: Travis Berthelot
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - [<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
                     //eventsOnceConditionProcessActions - //Condition - //DepartScene - builder
                     <xsl:for-each select=".." >
-                        <xsl:call-template name="eventIdsNoRecursions" >
+                        <xsl:call-template name="eventIdsLessRecursion" >
                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                             <xsl:with-param name="caller" >onceCondition - //DepartScene</xsl:with-param>
                         </xsl:call-template>
