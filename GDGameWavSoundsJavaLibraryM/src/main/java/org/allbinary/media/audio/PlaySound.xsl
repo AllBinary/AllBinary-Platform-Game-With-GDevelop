@@ -235,14 +235,17 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($thisLayoutHasThisSoundResource, 'Play')" >
                     <xsl:variable name="fileName" ><xsl:call-template name="after-lastIndexOf"><xsl:with-param name="string" ><xsl:value-of select="file" /></xsl:with-param><xsl:with-param name="char" >/</xsl:with-param></xsl:call-template></xsl:variable>
                     <xsl:variable name="fileName2" ><xsl:value-of select="translate(substring-before($fileName, '.'), '_', ' ')" /></xsl:variable>
-                    <xsl:variable name="fileName3" ><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$fileName2" /></xsl:with-param></xsl:call-template></xsl:variable>                       
+                    <xsl:variable name="fileName3" ><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$fileName2" /></xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:variable name="fileName4" ><xsl:value-of select="translate($fileName3, ' ', '')" /></xsl:variable>
                     //Audio File with Action - <xsl:value-of select="file" />
+                    <xsl:if test="$file != 'select' and $file != 'error'" >
                     <xsl:if test="$musicOrSound = 'music'" >
-                    if(!soundList.contains(org.allbinary.game.resource.GD<xsl:value-of select="translate($fileName3, ' ', '')" />Sound.getInstance())) {
+                    if(!soundList.contains(org.allbinary.game.resource.GD<xsl:value-of select="$fileName4" />Sound.getInstance())) {
                     </xsl:if>
-                        soundList.add(org.allbinary.game.resource.GD<xsl:value-of select="translate($fileName3, ' ', '')" />Sound.getInstance());
+                        soundList.add(org.allbinary.game.resource.GD<xsl:value-of select="$fileName4" />Sound.getInstance());
                     <xsl:if test="$musicOrSound = 'music'" >
                     }
+                    </xsl:if>
                     </xsl:if>
                         </xsl:if>
                     </xsl:if>
