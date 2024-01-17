@@ -1145,7 +1145,9 @@ Created By: Travis Berthelot
                         ../events
                         -->
                         <xsl:variable name="childEventWithUsedEvent" ><xsl:for-each select="../events" ><xsl:call-template name="childEventWithUsedEvent" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="motionGestureEvent" >true</xsl:with-param></xsl:call-template></xsl:for-each></xsl:variable>
-                        <xsl:if test="contains($childEventWithUsedEvent, 'found')" >
+                        <xsl:variable name="hasSourisSurObjetCondition" ><xsl:for-each select="../conditions" ><xsl:variable name="typeValue" select="type/value" /><xsl:if test="$typeValue = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
+                        
+                        <xsl:if test="contains($childEventWithUsedEvent, 'found') and contains($hasSourisSurObjetCondition, 'found')" >
                         //SourisSurObjet - motionGestureEvent
                         @Override
                         public void process(final MotionGestureEvent motionGestureEvent) throws Exception {
