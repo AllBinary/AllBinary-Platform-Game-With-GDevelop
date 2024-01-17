@@ -39,6 +39,7 @@ import org.allbinary.graphics.paint.NullInitUpdatePaintable;
 import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+import org.allbinary.logic.string.StringMaker;
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />

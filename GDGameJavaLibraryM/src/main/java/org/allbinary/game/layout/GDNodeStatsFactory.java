@@ -13,9 +13,7 @@
  */
 package org.allbinary.game.layout;
 
-import org.allbinary.logic.string.CommonStrings;
-import org.allbinary.logic.communication.log.LogFactory;
-import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringMaker;
 
 /**
  *
@@ -48,7 +46,7 @@ public class GDNodeStatsFactory extends BaseGDNodeStats {
         this.callStackGDNodeStats.push(index, name);
     }
 
-    public void log(final StringBuilder stringBuilder, final Object object) {
+    public void log(final StringMaker stringBuilder, final Object object) {
         this.callCountGDNodeStats.log(stringBuilder);
         this.callStackGDNodeStats.log(stringBuilder, object);
     }

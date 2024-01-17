@@ -315,7 +315,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 //        if(this.getName().startsWith(MEDIUM_ASTEROID)) {
 //            final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
 //            final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-//            LogUtil.put(LogFactory.getInstance(new StringBuilder()
+//            LogUtil.put(LogFactory.getInstance(new StringMaker()
 //                .append(this.getName())
 //                .append(CommonSeps.getInstance().COLON)
 //                .append(this.velocityInterface.toString())
@@ -483,7 +483,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         }
         catch (Exception e)
         {
-            //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(this.getName()).append(" GDObject name: ").append(this.gdObject.name).toString(), this, "paint"));
+            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(" GDObject name: ").append(this.gdObject.name).toString(), this, "paint"));
             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "paint", e));
         }
         
@@ -503,7 +503,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         }
     }
     
-    //private final StringBuilder stringBuilder = new StringBuilder();
+    //private final StringMaker stringBuilder = new StringMaker();
     //private final String F = "F";
     //private final String E = "E";
     public void paintPoints(final Graphics graphics) {

@@ -77,7 +77,7 @@ public class RotationBehavior extends AnimationBehaviorBase {
         //short nextAngle;
         //for (int index = 0; index < SIZE; index++)
         //{
-            //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(gameLayer.getName()).append(" GDObject name: ").append(gdObject.name).toString(), this, "setRotation"));
+            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(gameLayer.getName()).append(" GDObject name: ").append(gdObject.name).toString(), this, "setRotation"));
             rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
             
             if(angleAdjustment > 0) {

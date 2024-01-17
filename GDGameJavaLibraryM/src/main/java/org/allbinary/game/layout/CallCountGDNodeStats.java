@@ -16,6 +16,7 @@ package org.allbinary.game.layout;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringMaker;
 
 /**
  *
@@ -42,7 +43,7 @@ public class CallCountGDNodeStats {
         this.totalCalls[index][name]++;
     }
 
-    public void log(final StringBuilder stringBuilder) {
+    public void log(final StringMaker stringBuilder) {
         
         final CommonStrings commonStrings = CommonStrings.getInstance();
         

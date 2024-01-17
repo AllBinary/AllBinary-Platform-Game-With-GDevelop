@@ -13,6 +13,7 @@
  */
 package org.allbinary.game.layer.special;
 
+import org.allbinary.logic.string.StringMaker;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -28,7 +29,7 @@ public class GDConditionWithGroupActions
     {
     }
     
-    public void append(final StringBuilder stringBuilder) {
+    public void append(final StringMaker stringBuilder) {
         
         stringBuilder.append("GDConditionWithGroupActions: ");
         

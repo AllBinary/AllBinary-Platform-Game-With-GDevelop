@@ -15,6 +15,7 @@ package org.allbinary.game.layer;
 
 import org.allbinary.animation.RotationAnimation;
 import org.allbinary.game.layout.GDObject;
+import org.allbinary.logic.string.StringMaker;
 
 /**
  *
@@ -41,7 +42,7 @@ public class GDThreedBehavior extends GDTwodBehavior {
         super.updateRotation(gameLayer, timeDelta);
 
         final GDObject gdObject = gameLayer.gdObject;
-        final StringBuilder stringBuilder = new StringBuilder();
+        final StringMaker stringBuilder = new StringMaker();
         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("timeDelta: ").append(timeDelta).toString(), this, "updateRotation"));
         //stringBuilder.delete(0, stringBuilder.length());
         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("prior rotationRemainder: ").append(rotationRemainder).toString(), this, "updateRotation"));

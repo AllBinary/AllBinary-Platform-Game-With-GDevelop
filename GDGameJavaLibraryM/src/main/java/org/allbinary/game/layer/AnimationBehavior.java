@@ -39,7 +39,7 @@ public class AnimationBehavior extends AnimationBehaviorBase {
         try {
             initIndexedAnimationInterfaceArray[gdObject.animation].nextFrame();
         } catch (Exception e) {
-            //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(this.getName()).append(" GDObject name: ").append(this.gdObject.name).toString(), this, "animate"));
+            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(" GDObject name: ").append(this.gdObject.name).toString(), this, "animate"));
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "animate", e));
         }
     }

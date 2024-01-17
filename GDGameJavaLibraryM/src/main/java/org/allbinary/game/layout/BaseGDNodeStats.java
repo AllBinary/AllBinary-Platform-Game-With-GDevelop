@@ -13,6 +13,8 @@
  */
 package org.allbinary.game.layout;
 
+import org.allbinary.logic.string.StringMaker;
+
 /**
  *
  * @author User
@@ -26,6 +28,6 @@ public class BaseGDNodeStats {
 
     }
 
-    public void log(final StringBuilder stringBuilder, final Object object) {
+    public void log(final StringMaker stringBuilder, final Object object) {
     }    
 }

@@ -86,9 +86,10 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.displayable.MyCanvas;
                 import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
                 import org.allbinary.input.motion.gesture.observer.MovedMotionGesturesHandler;
-                import org.allbinary.logic.string.CommonStrings;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.logic.string.CommonStrings;
+                import org.allbinary.logic.string.StringMaker;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;

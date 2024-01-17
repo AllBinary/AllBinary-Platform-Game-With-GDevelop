@@ -91,6 +91,7 @@ import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMapUtil;    
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
 import org.allbinary.time.TimeDelayHelper;
+import org.allbinary.logic.string.StringMaker;
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />

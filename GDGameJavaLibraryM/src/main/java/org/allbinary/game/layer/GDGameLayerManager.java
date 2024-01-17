@@ -57,8 +57,8 @@ public class GDGameLayerManager extends AllBinaryGameLayerManager
 
    public void setGeographicMapInterface(final BasicGeographicMap[] geographicMapInterfaceArray)
    {
-       //final CommonStrings commonStrings = CommonStrings.getInstance();
-       //LogUtil.put(LogFactory.getInstance(commonStrings.START + this, this, commonStrings.PROCESS));
+       final CommonStrings commonStrings = CommonStrings.getInstance();
+       LogUtil.put(LogFactory.getInstance(commonStrings.START + this, this, commonStrings.PROCESS));
        
       this.geographicMapInterfaceArray = geographicMapInterfaceArray;
       

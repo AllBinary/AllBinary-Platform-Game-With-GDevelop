@@ -18,10 +18,8 @@ import org.allbinary.game.collision.CollidableInterfaceCompositeInterface;
 import org.allbinary.game.identification.GroupInterface;
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layout.GDNode;
-import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.ForcedLogUtil;
-import org.allbinary.logic.communication.log.LogFactory;
-import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringMaker;
 
 /**
  *
@@ -44,11 +42,11 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
     // TODO TWB Special Super Efficient Collision Processing
     public boolean isCollision(final CollidableCompositeLayer collisionLayer)
     {
-        //final StringBuilder stringBuilder = new StringBuilder();
+        //final StringMaker stringBuilder = new StringMaker();
         //LogUtil.put(LogFactory.getInstance(stringBuilder.append(':').append(this.ownerLayer.getName()).append(':').append(collisionLayer.getName()).toString(), this, IS_COLLISION));
         
 //        if(!this.ownerLayer.getName().startsWith("player_bullet") || !collisionLayer.getName().startsWith("player_bullet")) {
-//            final StringBuilder stringBuilder = new StringBuilder();
+//            final StringMaker stringBuilder = new StringMaker();
 //            final String string = this.toString(collisionLayer, stringBuilder);
 //            LogUtil.put(LogFactory.getInstance(string, this, "isCollision"));
 //        } else {
@@ -88,7 +86,7 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
         }
 
         if(this.conditionWIthGroupActions.groupWithActionsList.size() > 0) {
-            //final StringBuilder stringBuilder = new StringBuilder();
+            //final StringMaker stringBuilder = new StringMaker();
             //LogUtil.put(LogFactory.getInstance(stringBuilder.append(COLLIDE).append(':').append(this.ownerLayer.getName()).append(':').append(collisionLayer.getName()).toString(), this, COLLIDE));
 
             final GroupInterface[] groupInterfaceArray = collisionLayer.getGroupInterface();
@@ -136,7 +134,7 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
         ForcedLogUtil.log("No Longer Used", this);
     }
     
-    public String toString(final CollidableCompositeLayer collisionLayer, final StringBuilder stringBuilder) {
+    public String toString(final CollidableCompositeLayer collisionLayer, final StringMaker stringBuilder) {
         int size = this.ownerLayer.getGroupInterface().length;
         for (int index = 0; index < size; index++) {
             stringBuilder.append(this.ownerLayer.getGroupInterface()[index]);

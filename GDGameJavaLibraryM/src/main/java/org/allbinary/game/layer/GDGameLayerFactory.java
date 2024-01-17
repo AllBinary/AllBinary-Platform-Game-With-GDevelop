@@ -23,6 +23,7 @@ import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringMaker;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.view.ViewPosition;
 
@@ -77,7 +78,7 @@ public class GDGameLayerFactory
     public GDGameLayer create(final String name, final GDObject gdObject, final GDConditionWithGroupActions collidableBehavior) throws Exception {
         
         if(!name.startsWith(gdObject.name)) {
-            LogUtil.put(LogFactory.getInstance(new StringBuilder().append(name).append(" GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").append(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(this.animationInterfaceFactoryInterfaceArray.length > 0 ? this.animationInterfaceFactoryInterfaceArray[0] : "empty").toString(), this, "create", new Exception()));
+            LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").append(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(this.animationInterfaceFactoryInterfaceArray.length > 0 ? this.animationInterfaceFactoryInterfaceArray[0] : "empty").toString(), this, "create", new Exception()));
         }
         
         final GDGameLayer gameLayer = new GDGameLayer(
@@ -95,7 +96,7 @@ public class GDGameLayerFactory
         
         gameLayer.setCollidableInferface(new GDWithAllBinaryCollidableBehavior(gameLayer, collidableBehavior, true));
 
-        //LogUtil.put(LogFactory.getInstance(new StringBuilder().append(name).append(" GDObject name: ").append(gdObject.name).append(" w/h/d: ").append(gameLayer.getWidth()).append('/').append(gameLayer.getHeight()).append('/').append(gameLayer.getDepth()).toString(), this, "create"));
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" w/h/d: ").append(gameLayer.getWidth()).append('/').append(gameLayer.getHeight()).append('/').append(gameLayer.getDepth()).toString(), this, "create"));
         
         return gameLayer;
     }

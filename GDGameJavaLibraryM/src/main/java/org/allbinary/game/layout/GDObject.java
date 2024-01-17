@@ -18,10 +18,10 @@ import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.SpacialStrings;
 import org.allbinary.graphics.color.BasicColor;
-import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringMaker;
 import org.allbinary.math.NoDecimalTrigTable;
 import org.allbinary.math.PositionStrings;
 
@@ -150,7 +150,7 @@ public class GDObject
         return this.y + this.height;
     }
     
-    //private final StringBuilder stringBuilder = new StringBuilder();
+    //private final StringMaker stringBuilder = new StringMaker();
     public int PointX(final GPoint point) {
         
         final short angle = this.angle;
@@ -217,7 +217,7 @@ public class GDObject
         }
         
         //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-        //LogUtil.put(LogFactory.getInstance(new StringBuilder()
+        //LogUtil.put(LogFactory.getInstance(new StringMaker()
             //.append(this.name)
             //.append(objectStrings.ANGLE).append(angle)
             //.append(objectStrings.ANGLE).append(adjustedAngle).toString(), this, objectStrings.ANGLE));
@@ -239,7 +239,7 @@ public class GDObject
     public short Angle() {
         
         //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-        //LogUtil.put(LogFactory.getInstance(new StringBuilder()
+        //LogUtil.put(LogFactory.getInstance(new StringMaker()
                 //.append(objectStrings.ANGLE).append(angle).toString(), this, objectStrings.ANGLE));
         
         return this.angle;
@@ -269,7 +269,7 @@ public class GDObject
         final PositionStrings positionStrings = PositionStrings.getInstance();
         final SpacialStrings spacialStrings = SpacialStrings.getInstance();
 
-        final StringBuilder stringBuilder = new StringBuilder();
+        final StringMaker stringBuilder = new StringMaker();
         return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON)
                 .append(this.name)
                 .append(commonSeps.SPACE)
@@ -286,7 +286,7 @@ public class GDObject
         final PositionStrings positionStrings = PositionStrings.getInstance();
         final SpacialStrings spacialStrings = SpacialStrings.getInstance();
 
-        final StringBuilder stringBuilder = new StringBuilder();
+        final StringMaker stringBuilder = new StringMaker();
         return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON)
                 .append(this.name).append(this.hashCode())
                 .append(commonSeps.SPACE)
