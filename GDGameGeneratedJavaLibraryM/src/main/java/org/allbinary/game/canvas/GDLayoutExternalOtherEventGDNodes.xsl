@@ -66,6 +66,8 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.game.canvas;
 
+                import javax.microedition.lcdui.Graphics;
+                
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.GDGameLayerFactory;

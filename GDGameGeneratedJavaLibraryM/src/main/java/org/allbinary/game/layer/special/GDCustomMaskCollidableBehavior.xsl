@@ -52,6 +52,7 @@ Created By: Travis Berthelot
 package org.allbinary.game.layer.special;
 
 import javax.microedition.lcdui.Graphics;
+
 import org.allbinary.game.canvas.GD0SpecialAnimationGlobals;
 import org.allbinary.game.collision.CollidableBaseBehavior;
 import org.allbinary.game.collision.CollidableInterfaceCompositeInterface;
