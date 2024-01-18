@@ -262,6 +262,10 @@ public class GDObject
     public int VariableChildCount(final String[] array) {
         return array.length;
     }
+
+    public String ObjectName() {
+        return this.name;
+    }
     
     public String toShortString() {
         final CommonSeps commonSeps = CommonSeps.getInstance();
