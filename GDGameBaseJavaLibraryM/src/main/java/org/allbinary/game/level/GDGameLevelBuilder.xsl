@@ -59,7 +59,6 @@ import org.allbinary.game.layer.special.TempNoMapMovementBehavior;
 import org.allbinary.game.layer.special.TempMovementBehaviorFactory;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.map.GDGeographicMap;
-import org.allbinary.game.map.GDTiledMapProperties;
 import org.allbinary.game.rand.MyRandomFactory;
 import org.allbinary.game.resource.GDResources;
 import org.allbinary.graphics.DisplayUtil;
@@ -97,6 +96,7 @@ import org.mapeditor.core.TileLayer;
 import org.mapeditor.core.TileSet;
 import org.mapeditor.core.TiledMap;
 import org.mapeditor.io.GDJSONMapReader;
+import org.mapeditor.io.TiledJSONUtil;
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -141,6 +141,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
     </xsl:call-template>
         
     private final AllBinaryGameLayerManager layerManager;
+
+    private int generatedWidth;
+    private int generatedHeight;
     
     public GDGame<GDLayout>LevelBuilder(final AllBinaryGameLayerManager layerManager)
     		throws Exception
@@ -196,9 +199,40 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         } else {
             //LogUtil.put(LogFactory.getInstance("Loading Tiled Map Asset", this, commonStrings.PROCESS));
             final DungeonGenerator dungeonGenerator = new DungeonGenerator();
+            final TiledJSONUtil tiledJSONUtil = TiledJSONUtil.getInstance();
             //dungeonGenerator.setConfig(Tunneller.getConfigParameters());
             final int[][] mapData = dungeonGenerator.generate();
-            final byte[] data = dungeonGenerator.generateJSONAsString(mapData, gameGlobals.tileWidth, gameGlobals.tileHeight).getBytes();
+            generatedWidth = mapData.length;
+            generatedHeight = mapData[0].length;
+            final byte[] data = tiledJSONUtil.generateJSONAsString(mapData, gameGlobals.tileWidth, gameGlobals.tileHeight).getBytes();
+            tileMapInputStream2 = new ByteArrayInputStream(data);
+        }
+                    </xsl:if>
+                    <xsl:if test="content/generator = 'SameSizeGenerator'" >
+        //"generator": "SameSizeGenerator",
+        if(!gameGlobals.RandomDungeon) {
+            final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) globals.<xsl:value-of select="name" />GDObjectList.get(0);
+            final int size = platformerMap.placementIntArray.length;
+            for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                platformerMap.placementXIntArray[index] *= 2;
+                platformerMap.placementYIntArray[index] *= 2;
+            }
+
+            tileMapInputStream2 = platformAssetManager.getResourceAsStream(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileMapJSON" /></xsl:with-param></xsl:call-template>);
+        } else {
+            //LogUtil.put(LogFactory.getInstance("Loading Tiled Map Asset", this, commonStrings.PROCESS));
+            final TiledJSONUtil tiledJSONUtil = TiledJSONUtil.getInstance();
+            final int[][] mapData = new int[generatedWidth][generatedHeight];
+            
+            final int size = mapData.length;
+            final int size2 = mapData[0].length;
+            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
+                    mapData[index][index2] = 1;
+                }
+            }
+
+            final byte[] data = tiledJSONUtil.generateJSONAsString(mapData, gameGlobals.tileWidth, gameGlobals.tileHeight).getBytes();
             tileMapInputStream2 = new ByteArrayInputStream(data);
         }
                     </xsl:if>
@@ -307,8 +341,6 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         
         //LogUtil.put(LogFactory.getInstance("Loaded Tiled Map", this, commonStrings.PROCESS));
         
-        final GDTiledMapProperties tiledMapProperties = new GDTiledMapProperties();
-        
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append(map.getWidth()).append(commonSeps.COLON).append(map.getHeight()).append(commonSeps.COLON).append(map.getTileWidth()).append(commonSeps.COLON).append(map.getTileHeight()).toString(), this, commonStrings.PROCESS));
 
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append(tileSetImage.getWidth()).append(commonSeps.COLON).append(tileSetImage.getHeight()).append(commonSeps.COLON).append(map.getTileWidth()).append(commonSeps.COLON).append(map.getTileHeight()).toString(), this, commonStrings.PROCESS));
@@ -348,7 +380,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                 cellTypeMapping[index] = index;
             }
 
-            geographicMapList.add(new GDGeographicMap(((TileLayer) map.getLayer(layerIndex)), cellTypeMapping, map, tileSetImage, tiledMapProperties, BLACK, BLACK));
+            geographicMapList.add(new GDGeographicMap(((TileLayer) map.getLayer(layerIndex)), cellTypeMapping, map, tileSetImage, BLACK, BLACK));
         }
 
         }
