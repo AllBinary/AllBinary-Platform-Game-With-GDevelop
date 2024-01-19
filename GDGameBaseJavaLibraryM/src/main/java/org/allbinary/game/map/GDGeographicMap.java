@@ -16,7 +16,6 @@
  */
 package org.allbinary.game.map;
 
-import java.util.List;
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.TiledLayer;
 import org.allbinary.game.layer.AllBinaryJ2METiledLayer;
