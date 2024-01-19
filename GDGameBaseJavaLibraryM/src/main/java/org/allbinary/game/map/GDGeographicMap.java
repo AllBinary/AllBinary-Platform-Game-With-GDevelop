@@ -78,6 +78,10 @@ public class GDGeographicMap extends BasicGeographicMap {
 
     }
 
+    public TiledMap getMap() {
+        return map;
+    }
+
     public void createAnimationTiles() {
         final BasicArrayList tileSetList = map.getTileSets();
         final int size = tileSetList.size();

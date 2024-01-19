@@ -90,6 +90,7 @@ Created By: Travis Berthelot
         </xsl:call-template>
         
         //objects - image - cache - START
+        int size;
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             <xsl:variable name="name" select="name" />
@@ -267,7 +268,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 };
                 
-                final int size = this.<xsl:value-of select="name" />JSONResourceArray.length;
+                size = this.<xsl:value-of select="name" />JSONResourceArray.length;
                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                     PlatformAssetManager.getInstance().getResourceAsStream(this.<xsl:value-of select="name" />JSONResourceArray[index]);
                 }                

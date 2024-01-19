@@ -452,11 +452,9 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         progressCanvas.addPortion(portion, "Set Background");
 
-        <xsl:for-each select="objects" >
-            <xsl:variable name="typeValue" select="type" />
-
-            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
-            
+        <xsl:variable name="hasOneOrMoreTileMaps" ><xsl:for-each select="objects" ><xsl:if test="type = 'TileMap::TileMap'" >found</xsl:if></xsl:for-each></xsl:variable>
+        
+        <xsl:if test="contains($hasOneOrMoreTileMaps, 'found')" >
         //Some games update backgrounds here
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
             (GeographicMapCompositeInterface) this.getLayerManager();
@@ -471,10 +469,8 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
                 //geographicMapInterface.getForegroundBasicColor());
 
         this.tileLayerPaintable = new PaintableLayerComposite(BasicGeographicMapUtil.getInstance().createAllBinaryTiledLayerArray(geographicMapInterfaceArray));
-
-            </xsl:if>
-        </xsl:for-each>
-
+        </xsl:if>
+            
         //this.playerLayer = ((GDGameLayerManager) this.getLayerManager()).getPlayerLayer();
 
         //DestroyedEventHandler.getInstance().addListener((EventListenerInterface) playerLayer);
@@ -645,10 +641,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         super.processPlayingGame();
 
-        <xsl:for-each select="objects" >
-            <xsl:variable name="typeValue" select="type" />
-
-            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+        <xsl:if test="contains($hasOneOrMoreTileMaps, 'found')" >
 
         //Some games update backgrounds here
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
@@ -664,8 +657,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             geographicMapInterface.update();
         }
         
-            </xsl:if>
-        </xsl:for-each>
+        </xsl:if>
 
         this.specialAnimation.process();
         

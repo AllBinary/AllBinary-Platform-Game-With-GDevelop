@@ -64,6 +64,7 @@ Created By: Travis Berthelot
 
         //objects - threed object - cache - START
 
+        int size;
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
@@ -155,7 +156,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 };
 
-                final int size = this.<xsl:value-of select="name" />JSONResourceArray.length;
+                size = this.<xsl:value-of select="name" />JSONResourceArray.length;
                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                     PlatformAssetManager.getInstance().getResourceAsStream(this.<xsl:value-of select="name" />JSONResourceArray[index]);
                 }                

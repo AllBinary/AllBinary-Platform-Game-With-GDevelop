@@ -102,27 +102,35 @@ import org.mapeditor.io.GDJSONMapReader;
             <xsl:variable name="layoutIndex" select="position() - 1" />
             <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
 
-        <xsl:for-each select="objects" >
-            <xsl:variable name="typeValue" select="type" />
-            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:if test="content" >
-                    //TileMap::TileMap:content - <xsl:value-of select="content/generator" />
-                    <xsl:if test="content/generator = 'TileMapGenerator'" >
+                <xsl:variable name="hasOneOrMoreTileMaps" >
+                    <xsl:for-each select="objects" >
+                        <xsl:if test="type = 'TileMap::TileMap'" >found</xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+
+                <xsl:variable name="tileMapGenerator" >
+                    <xsl:for-each select="objects" >
+                        <xsl:if test="type = 'TileMap::TileMap'" >
+                            <xsl:if test="content" >
+                                //TileMap::TileMap:content - <xsl:value-of select="content/generator" />
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+
+                <xsl:value-of select="$tileMapGenerator" />
+                <xsl:if test="contains($tileMapGenerator, 'TileMapGenerator')" >
 import org.mapgenerator.TileMapGenerator;
-                    </xsl:if>
-                    <xsl:if test="content/generator = 'DungeonGenerator'" >
+                </xsl:if>
+                <xsl:if test="contains($tileMapGenerator, 'DungeonGenerator')" >
 import org.mapgenerator.dungeon.DungeonGenerator;
 import org.mapgenerator.dungeon.Tunneller;
-                    </xsl:if>
-
                 </xsl:if>
-            </xsl:if>
-        </xsl:for-each>
-                
+
 public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 {
     private final CommonStrings commonStrings = CommonStrings.getInstance();
+    private final CommonSeps commonSeps = CommonSeps.getInstance();
 
     //private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
 
@@ -144,15 +152,15 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
     }
 
         <xsl:variable name="isPlatformer" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+        
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="$typeValue = 'TileMap::TileMap'" >
         
-    public TiledMap createMap(final Image tileSetImage) {
+    public TiledMap create<xsl:value-of select="name" />TiledMap(final Image tileSetImage) {
 
-        final CommonStrings commonStrings = CommonStrings.getInstance();
         final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
         try {
@@ -177,7 +185,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                     <xsl:if test="content/generator = 'DungeonGenerator'" >
         //"generator": "DungeonGenerator",
         if(!gameGlobals.RandomDungeon) {
-            final GD1GDObjectsFactory.PlatformerMap platformerMap = (GD1GDObjectsFactory.PlatformerMap) globals.PlatformerMapGDObjectList.get(0);
+            final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) globals.<xsl:value-of select="name" />GDObjectList.get(0);
             final int size = platformerMap.placementIntArray.length;
             for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                 platformerMap.placementXIntArray[index] *= 2;
@@ -244,7 +252,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         } catch(Exception e) {
         LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
         gameGlobals.RandomDungeon = false;
-        return this.createMap(tileSetImage);
+        return this.create<xsl:value-of select="name" />TiledMap(tileSetImage);
         }
     }
             </xsl:if>
@@ -257,12 +265,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         layerInterfaceFactory.init();
 
-        <xsl:variable name="hasTileMap" >
-            <xsl:for-each select="objects" >
-                <xsl:if test="type = 'TileMap::TileMap'" >found</xsl:if>
-            </xsl:for-each>
-        </xsl:variable>
-        TempMovementBehaviorFactory.getInstance().movementBehavior = <xsl:if test="contains($hasTileMap, 'found')" >TempMapMovementBehavior</xsl:if><xsl:if test="not(contains($hasTileMap, 'found'))" >TempNoMapMovementBehavior</xsl:if>.getInstance();
+        TempMovementBehaviorFactory.getInstance().movementBehavior = <xsl:if test="contains($hasOneOrMoreTileMaps, 'found')" >TempMapMovementBehavior</xsl:if><xsl:if test="not(contains($hasOneOrMoreTileMaps, 'found'))" >TempNoMapMovementBehavior</xsl:if>.getInstance();
 
         // layerInterfaceFactory.add(new RussianInfantryLayerFactory());
 
@@ -273,35 +276,39 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         // artificialIntelligenceInterfaceFactoryInterfaceFactory.add(new PacePatrolAIFactory());
         
+        <xsl:if test="contains($hasOneOrMoreTileMaps, 'found')" >
+
+        final String MAX_TILE_ID = "MaxTileId: ";
+        final StringMaker stringMaker = new StringMaker();
+            
+        final BasicColor BLACK = BasicColorFactory.getInstance().BLACK;
+        final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+
+        final ImageCache imageCache = ImageCacheFactory.getInstance();
+        final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
+
+        final BasicArrayList geographicMapList = new BasicArrayList();
+
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="$typeValue = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
+        if(true) {
                 //TileMap::TileMap - <xsl:value-of select="name" />
+
+        //LogUtil.put(LogFactory.getInstance("Loading Tiled Map Asset: " + <xsl:value-of select="name" />, this, commonStrings.PROCESS));
                 
-        final CommonStrings commonStrings = CommonStrings.getInstance();
-        //LogUtil.put(LogFactory.getInstance("Loading Tiled Map Asset", this, commonStrings.PROCESS));
-
-        final BasicColor BLACK = BasicColorFactory.getInstance().BLACK;
-        final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-
-        final ImageCache imageCache = ImageCacheFactory.getInstance();
-        final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
         final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtable().get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
         final Image tileSetImage = <xsl:value-of select="name" />ImageArray[0];
         
-        final TiledMap map = this.createMap(tileSetImage);
+        final TiledMap map = this.create<xsl:value-of select="name" />TiledMap(tileSetImage);
         
         //LogUtil.put(LogFactory.getInstance("Loaded Tiled Map", this, commonStrings.PROCESS));
         
         final GDTiledMapProperties tiledMapProperties = new GDTiledMapProperties();
         
-        final GeographicMapCompositeInterface geographicMapCompositeInterface = 
-            (GeographicMapCompositeInterface) this.layerManager;
-        
-        //final CommonSeps commonSeps = CommonSeps.getInstance();
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append(map.getWidth()).append(commonSeps.COLON).append(map.getHeight()).append(commonSeps.COLON).append(map.getTileWidth()).append(commonSeps.COLON).append(map.getTileHeight()).toString(), this, commonStrings.PROCESS));
 
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append(tileSetImage.getWidth()).append(commonSeps.COLON).append(tileSetImage.getHeight()).append(commonSeps.COLON).append(map.getTileWidth()).append(commonSeps.COLON).append(map.getTileHeight()).toString(), this, commonStrings.PROCESS));
@@ -321,12 +328,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         //final String string = new StringMaker().append("w: ").append((int) (map.getWidth() * tileMapScale)).append(" h: ").append((int) (map.getHeight() * tileMapScale)).append("tw: ").append((int) (map.getTileWidth() * tileMapScale)).append(" th: ").append((int) (map.getTileHeight() * tileMapScale)).toString();
         //LogUtil.put(LogFactory.getInstance(string, this, commonStrings.PROCESS));
 
-        final BasicGeographicMap[] geographicMapInterfaceArray = new BasicGeographicMap[map.getLayers().size()];
+        stringMaker.delete(0, stringMaker.length());
 
-        final String MAX_TILE_ID = "MaxTileId: ";
-        final StringMaker stringMaker = new StringMaker();
-
-        final int size3 = geographicMapInterfaceArray.length;
+        final int size3 = map.getLayers().size();
         for(int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
             final TileSet tileSet = (TileSet) map.getTileSets().get(0);
             final Hashtable tileTypeToTileIdsMap = TileSetToGeographicMapUtil.getInstance().convert(tileSet);
@@ -344,20 +348,25 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                 cellTypeMapping[index] = index;
             }
 
-            geographicMapInterfaceArray[layerIndex] = new GDGeographicMap(((TileLayer) map.getLayer(layerIndex)), cellTypeMapping, map, tileSetImage, tiledMapProperties, BLACK, BLACK);
+            geographicMapList.add(new GDGeographicMap(((TileLayer) map.getLayer(layerIndex)), cellTypeMapping, map, tileSetImage, tiledMapProperties, BLACK, BLACK));
         }
 
-        geographicMapCompositeInterface.setGeographicMapInterface(geographicMapInterfaceArray);
+        }
+            </xsl:if>
 
-                <xsl:if test="content" >
-                    <xsl:if test="content/generator = 'TileMapGenerator'" >
-                    </xsl:if>
-                    <xsl:if test="content/generator = 'DungeonGenerator'" >
+        </xsl:for-each>
+
+        final BasicGeographicMap[] geographicMapInterfaceArray = (BasicGeographicMap[]) geographicMapList.toArray(new BasicGeographicMap[geographicMapList.size()]);
+        
+                <xsl:value-of select="$tileMapGenerator" />
+                <xsl:if test="contains($tileMapGenerator, 'TileMapGenerator')" >
+
+                </xsl:if>
+                <xsl:if test="contains($tileMapGenerator, 'DungeonGenerator')" >
         final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
         if(gameGlobals.RandomDungeon) {
-            this.setStartPoint(map, geographicMapInterfaceArray);
+            this.setStartPoint(geographicMapInterfaceArray);
         }
-                    </xsl:if>
                 </xsl:if>
 
         <xsl:for-each select=".." >
@@ -369,37 +378,46 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                 <xsl:with-param name="tileMap" >true</xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
-
-            </xsl:if>
-
-        </xsl:for-each>
+        
+        final GeographicMapCompositeInterface geographicMapCompositeInterface = 
+            (GeographicMapCompositeInterface) this.layerManager;
+        
+        geographicMapCompositeInterface.setGeographicMapInterface(geographicMapInterfaceArray);
+                
+        </xsl:if>
 
     }
 
-
         <xsl:for-each select="objects" >
-                
-            <xsl:if test="type = 'TileMap::TileMap'" >
+            <xsl:variable name="typeValue" select="type" />
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-    public void setStartPoint(final TiledMap map, final GeographicMapInterface[] geographicMapInterfaceArray) throws Exception {
+            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+                <xsl:if test="name = 'PlatformerMap'" >
+
+    public void setStartPoint(final GeographicMapInterface[] geographicMapInterfaceArray) throws Exception {
 
         final StringMaker stringMaker = new StringMaker();
         //final String F = "Finding Start Position: ";
         
         //LogUtil.put(LogFactory.getInstance("Find Start Position", this, commonStrings.PROCESS));
 
-        final int size3 = geographicMapInterfaceArray.length;
-        
         final org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory
                 = org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory.getInstance();
 
         final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-        final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.PlatformerMap platformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.PlatformerMap) globals.PlatformerMapGDObjectList.get(0);
+        final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) globals.<xsl:value-of select="name" />GDObjectList.get(0);
         int otherPlacementTotal = 0;
         int placementTotal = 0;
         int placementMax = 0;
-        for (int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
+        GDGeographicMap gdGeographicMap;
+        TiledMap map;
+        if(true) {
+        int layerIndex = 0;
+        //for (int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
             //LogUtil.put(LogFactory.getInstance("Find Start Position on map layer: " + layerIndex, this, commonStrings.PROCESS));
+            gdGeographicMap = (GDGeographicMap) geographicMapInterfaceArray[layerIndex];
+            map = gdGeographicMap.getMap();
             final TileLayer tileLayer = ((TileLayer) map.getLayer(layerIndex));
             final int[][] mapArray = tileLayer.getMapArray();
             final int size = mapArray.length * mapArray[0].length;
@@ -416,16 +434,24 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         boolean placed;
 
+        AllBinaryTiledLayer allBinaryTiledLayer;
         BasicGeographicMapCellPositionFactory geographicMapCellPositionFactory;
         GeographicMapCellPosition geographicMapCellPosition;
-        for (int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
+
+        if(true) {
+        int layerIndex = 0;
+        //for (int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
             //LogUtil.put(LogFactory.getInstance("Find Start Position on map layer: " + layerIndex, this, commonStrings.PROCESS));
-            geographicMapCellPositionFactory = geographicMapInterfaceArray[layerIndex].getGeographicMapCellPositionFactory();
+
+            gdGeographicMap = (GDGeographicMap) geographicMapInterfaceArray[layerIndex];
+            allBinaryTiledLayer = gdGeographicMap.getAllBinaryTiledLayer();
+            map = gdGeographicMap.getMap();    
+            geographicMapCellPositionFactory = gdGeographicMap.getGeographicMapCellPositionFactory();
+
             final TileLayer tileLayer = ((TileLayer) map.getLayer(layerIndex));
             final int[][] mapArray = tileLayer.getMapArray();
             final int size4 = mapArray.length;
             final int size2 = mapArray[0].length;
-            final AllBinaryTiledLayer allBinaryTiledLayer = geographicMapInterfaceArray[layerIndex].getAllBinaryTiledLayer();
             for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size4; index++) {
                 for (int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
                 
@@ -577,8 +603,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 //        
 //        final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
 //
-//        final GDCustomGameLayer PlatformerMapGDGameLayer = (GDCustomGameLayer) globals.PlatformerMapGDGameLayerList.get(0);
-//        final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.PlatformerMap PlatformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.PlatformerMap) PlatformerMapGDGameLayer.gdObject;
+//        final GDCustomGameLayer <xsl:value-of select="name" />GDGameLayer = (GDCustomGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0);
+//        final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) <xsl:value-of select="name" />GDGameLayer.gdObject;
 //
 //        final int dx = (lastWidth - lastWidthUsed);
 //        final int dy = (lastHeight - lastHeightUsed);
@@ -587,13 +613,13 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 //            stringMaker.delete(0, stringMaker.length());
 //            LogUtil.put(LogFactory.getInstance(stringMaker.append("lastWidth:  dx/dy: ").append(dx).append(CommonSeps.getInstance().FORWARD_SLASH).append(dy).toString(), reason, commonStrings.PROCESS));
 //
-//            PlatformerMap.setX(PlatformerMap.x + dx);
-//            PlatformerMap.setY(PlatformerMap.y + dy);
+//            platformerMap.setX(platformerMap.x + dx);
+//            platformerMap.setY(platformerMap.y + dy);
 //            lastWidthUsed = lastWidth;
 //            lastHeightUsed = lastHeight;
 //        }
 //
-//        PlatformerMapGDGameLayer.updatePosition2();
+//        <xsl:value-of select="name" />GDGameLayer.updatePosition2();
 //    }
 
     public void setStartPosition(final GeographicMapInterface[] geographicMapInterfaceArray, final GeographicMapCellPosition geographicMapCellPosition, final int layerIndex, final StringMaker stringMaker) {
@@ -618,8 +644,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
 
-        final GDCustomGameLayer PlatformerMapGDGameLayer = (GDCustomGameLayer) globals.PlatformerMapGDGameLayerList.get(0);
-        final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.PlatformerMap PlatformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.PlatformerMap) PlatformerMapGDGameLayer.gdObject;
+        final GDCustomGameLayer <xsl:value-of select="name" />GDGameLayer = (GDCustomGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0);
+        final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) <xsl:value-of select="name" />GDGameLayer.gdObject;
         //final GDObject Wall = (GDObject) globals.WallGDObjectList.get(0);
         //final GDGameLayer wallGDGameLayer = (GDGameLayer) globals.WallGDGameLayerList.get(0);
 
@@ -628,20 +654,20 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         //final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
         //final GDGameLayer PlayerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
 
-        PlatformerMap.startX = -( ((geographicMapCellPosition.getColumn()) * allBinaryTiledLayer.getCellWidth()) );
-        PlatformerMap.startY = -( ((geographicMapCellPosition.getRow()) * allBinaryTiledLayer.getCellHeight()) );
-        //PlatformerMap.startX = PlatformerMap.startX + (displayInfoSingleton / 2);
-        //PlatformerMap.startY = PlatformerMap.startY + (displayInfoSingleton / 2);
-        PlatformerMap.startX = PlatformerMap.startX - (allBinaryTiledLayer.getCellWidth() / 2);
-        PlatformerMap.startY = PlatformerMap.startY - (allBinaryTiledLayer.getCellHeight() / 2);
+        platformerMap.startX = -( ((geographicMapCellPosition.getColumn()) * allBinaryTiledLayer.getCellWidth()) );
+        platformerMap.startY = -( ((geographicMapCellPosition.getRow()) * allBinaryTiledLayer.getCellHeight()) );
+        //platformerMap.startX = platformerMap.startX + (displayInfoSingleton / 2);
+        //platformerMap.startY = platformerMap.startY + (displayInfoSingleton / 2);
+        platformerMap.startX = platformerMap.startX - (allBinaryTiledLayer.getCellWidth() / 2);
+        platformerMap.startY = platformerMap.startY - (allBinaryTiledLayer.getCellHeight() / 2);
 
         stringMaker.delete(0, stringMaker.length());
-        LogUtil.put(LogFactory.getInstance(stringMaker.append("PlatformerMap: ").append(PlatformerMap.startX).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.startY).toString(), this, commonStrings.PROCESS));
+        LogUtil.put(LogFactory.getInstance(stringMaker.append("<xsl:value-of select="name" />: ").append(platformerMap.startX).append(CommonSeps.getInstance().SPACE).append(platformerMap.startY).toString(), this, commonStrings.PROCESS));
 
-        PlatformerMap.setX(PlatformerMap.Variable((int) PlatformerMap.startX));
-        PlatformerMap.setY(PlatformerMap.Variable((int) PlatformerMap.startY));
+        platformerMap.setX(platformerMap.Variable((int) platformerMap.startX));
+        platformerMap.setY(platformerMap.Variable((int) platformerMap.startY));
 
-        PlatformerMapGDGameLayer.updatePosition2();
+        <xsl:value-of select="name" />GDGameLayer.updatePosition2();
     }
         
     public void setPosition(final GeographicMapCompositeInterface geographicMapCompositeInterface)
@@ -684,6 +710,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         }
     }
+                </xsl:if>
             </xsl:if>
         </xsl:for-each>
 
