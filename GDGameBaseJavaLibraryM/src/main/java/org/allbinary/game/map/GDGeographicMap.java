@@ -43,17 +43,16 @@ import org.mapeditor.core.TiledMap;
 public class GDGeographicMap extends BasicGeographicMap {
 
     protected final CommonStrings commonStrings = CommonStrings.getInstance();
-
+    
     private final TiledMap map;
     private final TiledLayer tiledLayer;
-    private final GDTiledMapProperties tiledMapProperties;
     
     private final int[] animationTileIndexArray = new int[5];
     private final long[] startTimeFrameArray = new long[5];
     private final int[] currentFrameArray = new int[5];
     private final BasicArrayList animationList = new BasicArrayList();
     
-    public GDGeographicMap(final TileLayer tileLayer, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final GDTiledMapProperties tiledMapProperties, final BasicColor foregroundColor, final BasicColor backGroundColor) throws Exception {
+    public GDGeographicMap(final TileLayer tileLayer, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final BasicColor foregroundColor, final BasicColor backGroundColor) throws Exception {
         super(SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()),
                 SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()).toString(),
                 cellTypeIdToGeographicMapCellType,
@@ -71,7 +70,6 @@ public class GDGeographicMap extends BasicGeographicMap {
                 new GeographicMapCellPositionBaseFactory());
 
         this.map = map;
-        this.tiledMapProperties = tiledMapProperties;
         this.tiledLayer = ((AllBinaryJ2METiledLayer) this.getAllBinaryTiledLayer()).getTiledLayer();
 
         this.createAnimationTiles();
@@ -85,23 +83,26 @@ public class GDGeographicMap extends BasicGeographicMap {
     public void createAnimationTiles() {
         final BasicArrayList tileSetList = map.getTileSets();
         final int size = tileSetList.size();
-        TileSet tileSet;
-        Tile tile;
-        Animation animation;
-        int animationTileIndex;
-        int tileCount;
-        for(int index = 0; index < size; index++) {
-            tileSet = (TileSet) tileSetList.get(index);
-            tileCount = tileSet.getTilecount();
-            for(int index2 = 0; index2 < tileCount; index2++) {
-                tile = tileSet.getTile(index2);
-                animation = tile.getAnimation();
-                if(animation != null) {
-                    LogUtil.put(LogFactory.getInstance("Creating AnimationTile", this, commonStrings.PROCESS));
-                    animationTileIndex = tiledLayer.createAnimatedTile(tile.getId());
-                    this.animationTileIndexArray[this.animationList.size()] = animationTileIndex;
-                    this.animationList.add(animation);
-                    this.getAllBinaryTiledLayer().updateCells(((TileLayer) map.getLayer(0)).getMapArray(), ((Frame) animation.getFrame().get(0)).getTileid(), animationTileIndex);
+        if(size > 0) {
+            final String CREATING_ANIMATION_TILE = "Creating AnimationTile: ";
+            TileSet tileSet;
+            Tile tile;
+            Animation animation;
+            int animationTileIndex;
+            int tileCount;
+            for (int index = 0; index < size; index++) {
+                tileSet = (TileSet) tileSetList.get(index);
+                tileCount = tileSet.getTilecount();
+                for (int index2 = 0; index2 < tileCount; index2++) {
+                    tile = tileSet.getTile(index2);
+                    animation = tile.getAnimation();
+                    if (animation != null) {
+                        animationTileIndex = tiledLayer.createAnimatedTile(tile.getId());
+                        LogUtil.put(LogFactory.getInstance(CREATING_ANIMATION_TILE + animationTileIndex, this, commonStrings.PROCESS));
+                        this.animationTileIndexArray[this.animationList.size()] = animationTileIndex;
+                        this.animationList.add(animation);
+                        this.getAllBinaryTiledLayer().updateCells(((TileLayer) map.getLayer(0)).getMapArray(), ((Frame) animation.getFrame().get(0)).getTileid(), animationTileIndex);
+                    }
                 }
             }
         }
@@ -120,7 +121,7 @@ public class GDGeographicMap extends BasicGeographicMap {
                 //LogUtil.put(LogFactory.getInstance(new StringMaker().append("AnimationTile: ").append(this.animationTileIndexArray[index]).append(":").append(frame.getTileid()).toString(), this, commonStrings.PROCESS));
                 this.startTimeFrameArray[index] = startTime;
                 tiledLayer.setAnimatedTile(this.animationTileIndexArray[index], frame.getTileid());
-                
+
                 if (this.currentFrameArray[index] + 1 < animation.getFrame().size()) {
                     this.currentFrameArray[index]++;
                 } else {
