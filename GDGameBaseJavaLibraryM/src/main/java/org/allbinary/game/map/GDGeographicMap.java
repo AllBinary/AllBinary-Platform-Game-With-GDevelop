@@ -47,10 +47,10 @@ public class GDGeographicMap extends BasicGeographicMap {
     private final TiledMap map;
     private final TiledLayer tiledLayer;
     
-    private final int[] animationTileIndexArray = new int[5];
-    private final long[] startTimeFrameArray = new long[5];
-    private final int[] currentFrameArray = new int[5];
-    private final BasicArrayList animationList = new BasicArrayList();
+    private final int[] animationTileIndexArray;
+    private final long[] startTimeFrameArray;
+    private final int[] currentFrameArray;
+    private final Animation[] animationArray;
     
     public GDGeographicMap(final TileLayer tileLayer, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final BasicColor foregroundColor, final BasicColor backGroundColor) throws Exception {
         super(SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()),
@@ -71,24 +71,30 @@ public class GDGeographicMap extends BasicGeographicMap {
 
         this.map = map;
         this.tiledLayer = ((AllBinaryJ2METiledLayer) this.getAllBinaryTiledLayer()).getTiledLayer();
+        
+        final BasicArrayList tileList = new BasicArrayList();
+        this.createAnimationTiles(tileList);
 
-        this.createAnimationTiles();
-
+        final int size = tileList.size();
+        this.animationTileIndexArray = new int[size];
+        this.startTimeFrameArray = new long[size];
+        this.currentFrameArray = new int[size];
+        this.animationArray = new Animation[size];
+        
+        this.setAnimations(tileList);
     }
 
     public TiledMap getMap() {
         return map;
     }
 
-    public void createAnimationTiles() {
+    public void createAnimationTiles(final BasicArrayList tileList) {
         final BasicArrayList tileSetList = map.getTileSets();
         final int size = tileSetList.size();
         if(size > 0) {
-            final String CREATING_ANIMATION_TILE = "Creating AnimationTile: ";
             TileSet tileSet;
             Tile tile;
             Animation animation;
-            int animationTileIndex;
             int tileCount;
             for (int index = 0; index < size; index++) {
                 tileSet = (TileSet) tileSetList.get(index);
@@ -97,24 +103,36 @@ public class GDGeographicMap extends BasicGeographicMap {
                     tile = tileSet.getTile(index2);
                     animation = tile.getAnimation();
                     if (animation != null) {
-                        animationTileIndex = tiledLayer.createAnimatedTile(tile.getId());
-                        LogUtil.put(LogFactory.getInstance(CREATING_ANIMATION_TILE + animationTileIndex, this, commonStrings.PROCESS));
-                        this.animationTileIndexArray[this.animationList.size()] = animationTileIndex;
-                        this.animationList.add(animation);
-                        this.getAllBinaryTiledLayer().updateCells(((TileLayer) map.getLayer(0)).getMapArray(), ((Frame) animation.getFrame().get(0)).getTileid(), animationTileIndex);
+                        tileList.add(tile);
                     }
                 }
             }
         }
     }
     
+    public void setAnimations(final BasicArrayList tileList) {
+        final int size = tileList.size();
+        int animationTileIndex;
+        final String CREATING_ANIMATION_TILE = "Creating AnimationTile: ";
+        Tile tile;
+        Animation animation;
+        for(int index = 0; index < size; index++) {
+            tile = (Tile) tileList.get(index);
+            animationTileIndex = tiledLayer.createAnimatedTile(tile.getId());
+            LogUtil.put(LogFactory.getInstance(CREATING_ANIMATION_TILE + animationTileIndex, this, commonStrings.PROCESS));
+            this.animationArray[index] = animation = tile.getAnimation();
+            this.animationTileIndexArray[index] = animationTileIndex;
+            this.getAllBinaryTiledLayer().updateCells(((TileLayer) map.getLayer(0)).getMapArray(), ((Frame) animation.getFrame().get(0)).getTileid(), animationTileIndex);
+        }
+    }
+    
     public void update() {
         final long startTime = GameTickTimeDelayHelperFactory.getInstance().getStartTime();
-        final int size = this.animationList.size();
+        final int size = this.animationArray.length;;
         Animation animation;
         Frame frame;
         for(int index = 0; index < size; index++) {
-            animation = (Animation) this.animationList.get(index);
+            animation = (Animation) this.animationArray[index];
             frame = (Frame) animation.getFrame().get(this.currentFrameArray[index]);
 
             if (startTime - this.startTimeFrameArray[index] > frame.getDuration()) {
