@@ -38,6 +38,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     private final GravityUtil gravityUtil = GravityUtil.getInstance();
     
     private final GeographicMapBehavior geographicMapBehavior = new MultiGeographicMapBehavior();
+    //private final GeographicMapBehavior geographicMapBehavior = new GeographicMapBehavior();
 
     private final boolean autoStepBlocks;
     //private final int offsetY;
