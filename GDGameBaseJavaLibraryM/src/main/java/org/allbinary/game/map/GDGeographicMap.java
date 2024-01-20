@@ -21,6 +21,7 @@ import javax.microedition.lcdui.game.TiledLayer;
 import org.allbinary.game.layer.AllBinaryJ2METiledLayer;
 import org.allbinary.game.layer.AllBinaryTiledLayer;
 import org.allbinary.graphics.color.BasicColor;
+import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
@@ -51,7 +52,7 @@ public class GDGeographicMap extends BasicGeographicMap {
     private final int[] currentFrameArray;
     private final Animation[] animationArray;
     
-    public GDGeographicMap(final TileLayer tileLayer, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final BasicColor foregroundColor, final BasicColor backGroundColor) throws Exception {
+    public GDGeographicMap(final TileLayer tileLayer, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final BasicColor foregroundColor, final BasicColor backGroundColor, final BasicColor debugColor) throws Exception {
         super(SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()),
                 SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()).toString(),
                 cellTypeIdToGeographicMapCellType,
@@ -63,7 +64,8 @@ public class GDGeographicMap extends BasicGeographicMap {
                                 tileSetImage,
                                 (int) (map.getTileWidth()),
                                 (int) (map.getTileHeight())),
-                        tileLayer.getMapArray()),
+                        tileLayer.getMapArray(),
+                        debugColor.intValue()),
                 foregroundColor, backGroundColor,
                 new SimpleGeographicMapCellPositionFactory(),
                 new GeographicMapCellPositionBaseFactory());
