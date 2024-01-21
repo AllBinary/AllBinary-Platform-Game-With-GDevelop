@@ -13,6 +13,7 @@
  */
 package org.allbinary.game.behavior.topview;
 
+import org.allbinary.media.graphics.geography.map.MultiGeographicMapBehavior;
 import org.allbinary.game.layer.AllBinaryTiledLayer;
 import org.allbinary.game.layer.GDCustomGameLayer;
 import org.allbinary.game.physics.acceleration.GravityUtil;
@@ -89,7 +90,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
          */
     }
 
-    private GeographicMapCellPosition getPositionTopLeft(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final AllBinaryLayer layer, final int x, final int y) throws Exception {
+    private GeographicMapCellPosition getPositionTopLeft(final BasicGeographicMap[] geographicMapInterfaceArray, final AllBinaryLayer layer, final int x, final int y) throws Exception {
         
         final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) layer;
         final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
@@ -109,7 +110,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
         return geographicMapInterfaceArray[0].getCellPositionAtNoThrow(xCellPosition, yCellPosition);
     }
         
-    private GeographicMapCellPosition getPositionTopRight(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final AllBinaryLayer layer, final int x, final int y) throws Exception {
+    private GeographicMapCellPosition getPositionTopRight(final BasicGeographicMap[] geographicMapInterfaceArray,  final AllBinaryLayer layer, final int x, final int y) throws Exception {
 
         final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) layer;
         final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
@@ -129,7 +130,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
         return geographicMapInterfaceArray[0].getCellPositionAtNoThrow(xCellPosition, yCellPosition);
     }
 
-    private GeographicMapCellPosition getPositionBottomLeft(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final AllBinaryLayer layer, final int x, final int y) throws Exception {
+    private GeographicMapCellPosition getPositionBottomLeft(final BasicGeographicMap[] geographicMapInterfaceArray, final AllBinaryLayer layer, final int x, final int y) throws Exception {
 
         final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) layer;
         final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
@@ -149,7 +150,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
         return geographicMapInterfaceArray[0].getCellPositionAtNoThrow(xCellPosition, yCellPosition);
     }
     
-    private GeographicMapCellPosition getPositionBottomRight(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final AllBinaryLayer layer, final int x, final int y) throws Exception {
+    private GeographicMapCellPosition getPositionBottomRight(final BasicGeographicMap[] geographicMapInterfaceArray, final AllBinaryLayer layer, final int x, final int y) throws Exception {
 
         final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) layer;
         final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
@@ -169,7 +170,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
         return geographicMapInterfaceArray[0].getCellPositionAtNoThrow(xCellPosition, yCellPosition);
     }
     
-    private GeographicMapCellPosition getLeftPosition(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final AllBinaryLayer layer) throws Exception {
+    private GeographicMapCellPosition getLeftPosition(final BasicGeographicMap[] geographicMapInterfaceArray, final AllBinaryLayer layer) throws Exception {
 
         final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) layer;
         final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
@@ -184,7 +185,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
         return geographicMapInterfaceArray[0].getCellPositionAtNoThrow(xCellPosition, yCellPosition);        
     }
 
-    private GeographicMapCellPosition getRightPosition(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final AllBinaryLayer layer) throws Exception {
+    private GeographicMapCellPosition getRightPosition(final BasicGeographicMap[] geographicMapInterfaceArray, final AllBinaryLayer layer) throws Exception {
 
         final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) layer;
         final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
@@ -203,7 +204,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     public GeographicMapCellPosition getGeographicMapCellPositionIfNotSolidBlockOrOffMap(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final VelocityProperties velocityProperties, final AllBinaryLayer layer, final int x, int y) throws Exception {
         
         GeographicMapCellPosition geographicMapCellPosition = null;
-        final GeographicMapCellPosition topLeftGeographicMapCellPosition = this.getPositionTopLeft(geographicMapInterfaceArray, geographicMapCellTypeArray, layer, x, y);
+        final GeographicMapCellPosition topLeftGeographicMapCellPosition = this.getPositionTopLeft(geographicMapInterfaceArray, layer, x, y);
         geographicMapCellPosition = this.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray, topLeftGeographicMapCellPosition, velocityProperties, layer);
 
         if (geographicMapCellPosition == null) {
@@ -213,7 +214,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
             return null;
         }
         
-        final GeographicMapCellPosition topRightGeographicMapCellPosition = this.getPositionTopRight(geographicMapInterfaceArray, geographicMapCellTypeArray, layer, x, y);
+        final GeographicMapCellPosition topRightGeographicMapCellPosition = this.getPositionTopRight(geographicMapInterfaceArray, layer, x, y);
         geographicMapCellPosition = this.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray, topRightGeographicMapCellPosition, velocityProperties, layer);
 
         if (geographicMapCellPosition == null) {
@@ -223,7 +224,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
             return null;
         }
         
-        final GeographicMapCellPosition bottomLeftGeographicMapCellPosition = this.getPositionBottomLeft(geographicMapInterfaceArray, geographicMapCellTypeArray, layer, x, y);
+        final GeographicMapCellPosition bottomLeftGeographicMapCellPosition = this.getPositionBottomLeft(geographicMapInterfaceArray, layer, x, y);
         geographicMapCellPosition = this.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray, bottomLeftGeographicMapCellPosition, velocityProperties, layer);
 
         if (geographicMapCellPosition == null) {
@@ -233,7 +234,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
             return null;
         }
         
-        final GeographicMapCellPosition bottomRightGeographicMapCellPosition = this.getPositionBottomRight(geographicMapInterfaceArray, geographicMapCellTypeArray, layer, x, y);
+        final GeographicMapCellPosition bottomRightGeographicMapCellPosition = this.getPositionBottomRight(geographicMapInterfaceArray, layer, x, y);
         geographicMapCellPosition = this.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray, bottomRightGeographicMapCellPosition, velocityProperties, layer);
 
         if (geographicMapCellPosition == null) {
@@ -382,7 +383,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     @Override
     public void left(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final VelocityProperties velocityProperties, final AllBinaryLayer layer) throws Exception {
 
-        final GeographicMapCellPosition geographicMapCellPosition = this.getLeftPosition(geographicMapInterfaceArray, geographicMapCellTypeArray, layer);
+        final GeographicMapCellPosition geographicMapCellPosition = this.getLeftPosition(geographicMapInterfaceArray, layer);
 
         if (geographicMapCellPosition != null) {
 
@@ -410,7 +411,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     @Override
     public void right(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final VelocityProperties velocityProperties, final AllBinaryLayer layer) throws Exception {
 
-        final GeographicMapCellPosition geographicMapCellPosition = this.getRightPosition(geographicMapInterfaceArray, geographicMapCellTypeArray, layer);
+        final GeographicMapCellPosition geographicMapCellPosition = this.getRightPosition(geographicMapInterfaceArray, layer);
 
         if (geographicMapCellPosition != null) {
 
