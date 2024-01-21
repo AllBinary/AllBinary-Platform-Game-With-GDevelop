@@ -73,6 +73,7 @@ import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.math.RectangleCollisionUtil;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
+import org.allbinary.media.graphics.geography.map.GeographicMapCellType;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
 import org.allbinary.view.ViewPosition;
@@ -154,12 +155,14 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
 
             final BasicGeographicMap[] geographicMapInterfaceArray
                     = geographicMapCompositeInterface.getGeographicMapInterface();
+            final GeographicMapCellType[] geographicMapCellTypeArray = geographicMapCompositeInterface.geographicMapCellTypeArray();
 
             if(geographicMapInterfaceArray != null) {
 
                 final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) this.ownerLayer);
                 final GDObject gdObject = collisionMaskCustomGameLayer.gdObject;
-                final GeographicMapCellPosition geographicMapCellPosition = customGameLayer.topViewGameBehavior.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, customGameLayer.getVelocityProperties(), customGameLayer, gdObject.x, gdObject.y);
+                final GeographicMapCellPosition geographicMapCellPosition = customGameLayer.topViewGameBehavior.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(
+                    geographicMapInterfaceArray, geographicMapCellTypeArray, customGameLayer.getVelocityProperties(), customGameLayer, gdObject.x, gdObject.y);
 
 //                if(customGameLayer.gdObject.name.compareTo(B) == 0) {
 //                    if(lastGeographicMapCellPosition != geographicMapCellPosition) {

@@ -21,15 +21,14 @@ import javax.microedition.lcdui.game.TiledLayer;
 import org.allbinary.game.layer.AllBinaryJ2METiledLayer;
 import org.allbinary.game.layer.AllBinaryTiledLayer;
 import org.allbinary.graphics.color.BasicColor;
-import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.logic.string.CommonStrings;
-import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPositionBaseFactory;
+import org.allbinary.media.graphics.geography.map.GeographicMapCellTypeFactory;
 import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositionFactory;
 import org.allbinary.time.GameTickTimeDelayHelperFactory;
 import org.allbinary.util.BasicArrayList;
@@ -52,7 +51,7 @@ public class GDGeographicMap extends BasicGeographicMap {
     private final int[] currentFrameArray;
     private final Animation[] animationArray;
     
-    public GDGeographicMap(final TileLayer tileLayer, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final BasicColor foregroundColor, final BasicColor backGroundColor, final BasicColor debugColor) throws Exception {
+    public GDGeographicMap(final TileLayer tileLayer, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final GeographicMapCellTypeFactory geographicMapCellTypeFactory, final BasicColor foregroundColor, final BasicColor backGroundColor, final BasicColor debugColor) throws Exception {
         super(SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()),
                 SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()).toString(),
                 cellTypeIdToGeographicMapCellType,
@@ -68,7 +67,8 @@ public class GDGeographicMap extends BasicGeographicMap {
                         debugColor.intValue()),
                 foregroundColor, backGroundColor,
                 new SimpleGeographicMapCellPositionFactory(),
-                new GeographicMapCellPositionBaseFactory());
+                new GeographicMapCellPositionBaseFactory(),
+                geographicMapCellTypeFactory);
 
         this.map = map;
         this.tiledLayer = ((AllBinaryJ2METiledLayer) this.getAllBinaryTiledLayer()).getTiledLayer();

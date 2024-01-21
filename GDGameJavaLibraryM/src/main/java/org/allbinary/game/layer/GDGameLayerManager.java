@@ -20,6 +20,7 @@ import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
+import org.allbinary.media.graphics.geography.map.GeographicMapCellType;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
 import org.allbinary.media.graphics.geography.map.GeographicMapEventHandler;
 
@@ -27,6 +28,7 @@ public class GDGameLayerManager extends AllBinaryGameLayerManager
         implements GeographicMapCompositeInterface
 {
     private BasicGeographicMap[] geographicMapInterfaceArray;
+    private GeographicMapCellType[] geographicMapCellTypeArray;
    //private PlayerLayer playerLayer;
    
    public static int MAX_LEVEL = 1; //Integer.MAX_VALUE;
@@ -61,12 +63,17 @@ public class GDGameLayerManager extends AllBinaryGameLayerManager
        LogUtil.put(LogFactory.getInstance(commonStrings.START + this, this, commonStrings.PROCESS));
        
       this.geographicMapInterfaceArray = geographicMapInterfaceArray;
+      this.geographicMapCellTypeArray = new GeographicMapCellType[this.geographicMapInterfaceArray.length];
       
       final GeographicMapEventHandler geographicMapEventHandler = GeographicMapEventHandler.getInstance();
       geographicMapEventHandler.fireEvent();
       geographicMapEventHandler.removeAllListeners();
    }
-    
+
+   public GeographicMapCellType[] geographicMapCellTypeArray() {
+       return this.geographicMapCellTypeArray;
+   }
+
    /*
    public PlayerLayer getPlayerLayer() {
       return playerLayer;

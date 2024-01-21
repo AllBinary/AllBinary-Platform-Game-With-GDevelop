@@ -120,10 +120,12 @@ import org.mapeditor.io.TiledJSONUtil;
 
                 <xsl:value-of select="$tileMapGenerator" />
                 <xsl:if test="contains($tileMapGenerator, 'TileMapGenerator')" >
+import org.allbinary.media.graphics.geography.map.GeographicMapCellTypeFactory;
 import org.allbinary.game.behavior.topview.placement.TileMapPlacementVisitor;
 import org.mapgenerator.TileMapGenerator;
                 </xsl:if>
                 <xsl:if test="contains($tileMapGenerator, 'DungeonGenerator')" >
+import org.allbinary.media.graphics.geography.map.GeographicMapCellTypeFactory;
 import org.allbinary.game.behavior.topview.placement.TileMapPlacementVisitor;
 import org.mapgenerator.dungeon.DungeonGenerator;
 import org.mapgenerator.dungeon.Tunneller;
@@ -372,11 +374,12 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         for(int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
             final TileSet tileSet = (TileSet) map.getTileSets().get(0);
             final Hashtable tileTypeToTileIdsMap = TileSetToGeographicMapUtil.getInstance().convert(tileSet);
+            final GeographicMapCellTypeFactory geographicMapCellTypeFactory = 
             <xsl:if test="contains($isPlatformer, 'found')" >
-            org.allbinary.media.graphics.geography.map.platform.BasicPlatormGeographicMapCellTypeFactory.getInstance().init(tileTypeToTileIdsMap);
+            new org.allbinary.media.graphics.geography.map.platform.BasicPlatormGeographicMapCellTypeFactory(tileTypeToTileIdsMap);
             </xsl:if>
             <xsl:if test="not(contains($isPlatformer, 'found'))" >
-            org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory.getInstance().init(tileTypeToTileIdsMap);
+            new org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory(tileTypeToTileIdsMap);
             </xsl:if>
             final int maxTileId = tileSet.getMaxTileId() + 1;
             stringMaker.delete(0, stringMaker.length());
@@ -386,7 +389,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                 cellTypeMapping[index] = index;
             }
 
-            geographicMapList.add(new GDGeographicMap(((TileLayer) map.getLayer(layerIndex)), cellTypeMapping, map, tileSetImage, BLACK, BLACK, COLORS[geographicMapList.size()]));
+            geographicMapList.add(new GDGeographicMap(((TileLayer) map.getLayer(layerIndex)), cellTypeMapping, map, tileSetImage, geographicMapCellTypeFactory, BLACK, BLACK, COLORS[geographicMapList.size()]));
         }
 
         }
@@ -440,9 +443,6 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         
         //LogUtil.put(LogFactory.getInstance("Find Start Position", this, commonStrings.PROCESS));
 
-        final org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory
-                = org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory.getInstance();
-
         final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
         final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) globals.<xsl:value-of select="name" />GDObjectList.get(0);
         int otherPlacementTotal = 0;
@@ -473,6 +473,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         boolean placed;
 
         AllBinaryTiledLayer allBinaryTiledLayer;
+        org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory;
         BasicGeographicMapCellPositionFactory geographicMapCellPositionFactory;
         GeographicMapCellPosition geographicMapCellPosition;
 
@@ -482,6 +483,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             //LogUtil.put(LogFactory.getInstance("Find Start Position on map layer: " + layerIndex, this, commonStrings.PROCESS));
 
             gdGeographicMap = (GDGeographicMap) geographicMapInterfaceArray[layerIndex];
+            basicTopViewGeographicMapCellTypeFactory = (org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory) gdGeographicMap.getGeographicMapCellTypeFactory();
             allBinaryTiledLayer = gdGeographicMap.getAllBinaryTiledLayer();
             map = gdGeographicMap.getMap();    
             geographicMapCellPositionFactory = gdGeographicMap.getGeographicMapCellPositionFactory();
@@ -700,10 +702,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         platformerMap.startY = platformerMap.startY - (allBinaryTiledLayer.getCellHeight() / 2);
 
         //Temp hack for RPG game.
-        final org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory
-                = org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory.getInstance();
-        
         final GDGeographicMap gdGeographicMap = (GDGeographicMap) geographicMapInterfaceArray[layerIndex];
+        final org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory = 
+            (org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory) gdGeographicMap.getGeographicMapCellTypeFactory();
         final TiledMap map = gdGeographicMap.getMap();
         final TileLayer tileLayer = ((TileLayer) map.getLayer(layerIndex));
         final int[][] mapArray = tileLayer.getMapArray();

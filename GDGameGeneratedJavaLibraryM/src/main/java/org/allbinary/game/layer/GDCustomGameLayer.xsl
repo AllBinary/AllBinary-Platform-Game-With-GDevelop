@@ -742,6 +742,7 @@ Created By: Travis Berthelot
         import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
         import org.allbinary.media.graphics.geography.map.BasicGeographicMapUtil;
         import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
+        import org.allbinary.media.graphics.geography.map.GeographicMapCellType;
         import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
         import org.allbinary.media.graphics.geography.map.GeographicMapEventHandler;
         import org.allbinary.util.BasicArrayList;
@@ -905,14 +906,14 @@ Created By: Travis Berthelot
                     if(this.rectangleArrayOfArrays != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.rectangleArrayOfArrays.length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                     
                     topViewGameBehavior = new org.allbinary.game.behavior.topview.GeographicMapTopViewMaskGameLayerBehavior(64, false, 6) {
-                    
-    public void moveAndLand(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellPosition geographicMapCellPosition, final VelocityProperties velocityProperties, final AllBinaryLayer layer, final int x, final int y) throws Exception {
+
+    public void moveAndLand(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final GeographicMapCellPosition geographicMapCellPosition, final VelocityProperties velocityProperties, final AllBinaryLayer layer, final int x, final int y) throws Exception {
         
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand"));
         
         if (geographicMapCellPosition != null) {
 
-            super.moveAndLand(geographicMapInterfaceArray, geographicMapCellPosition, velocityProperties, layer, x, y);
+            super.moveAndLand(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition, velocityProperties, layer, x, y);
 
             //final String MOVE_AND_LAND = "moveAndLand";
             //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND));
@@ -940,13 +941,13 @@ Created By: Travis Berthelot
 
                     topViewGameBehavior = new org.allbinary.game.behavior.topview.GeographicMapTopViewGameLayerBehavior2(64, false, 6) {
                     
-    public void moveAndLand(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellPosition geographicMapCellPosition, final VelocityProperties velocityProperties, final AllBinaryLayer layer, final int x, final int y) throws Exception {
+    public void moveAndLand(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final GeographicMapCellPosition geographicMapCellPosition, final VelocityProperties velocityProperties, final AllBinaryLayer layer, final int x, final int y) throws Exception {
         
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand"));
         
         if (geographicMapCellPosition != null) {
 
-            super.moveAndLand(geographicMapInterfaceArray, geographicMapCellPosition, velocityProperties, layer, x, y);
+            super.moveAndLand(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition, velocityProperties, layer, x, y);
 
             //final String MOVE_AND_LAND = "moveAndLand";
             //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND));
@@ -1086,11 +1087,12 @@ Created By: Travis Berthelot
     {
     }
             
-    public void terrainMove(final BasicGeographicMap[] geographicMapInterfaceArray, final int dx, final int dy) {
+    public void terrainMove(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final int dx, final int dy) {
     }
 
     public void terrainEvent(final int dx, final int dy, 
             final BasicGeographicMap[] geographicMapInterfaceArray,
+            final GeographicMapCellType[] geographicMapCellTypeArray,
             final GeographicMapCellPosition geographicMapCellPosition) throws Exception {
     }
 
@@ -1151,7 +1153,6 @@ Created By: Travis Berthelot
                     = geographicMapCompositeInterface.getGeographicMapInterface();
 
             if(geographicMapInterfaceArray != null) {
-                //final BasicGeographicMap geographicMapInterface = geographicMapInterfaceArray[0];
                 if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
 
                 } else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
@@ -1217,7 +1218,6 @@ Created By: Travis Berthelot
                     = geographicMapCompositeInterface.getGeographicMapInterface();
 
             if(geographicMapInterfaceArray != null) {
-                //final BasicGeographicMap geographicMapInterface = geographicMapInterfaceArray[0];
                 
                 if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
 
@@ -1265,12 +1265,13 @@ Created By: Travis Berthelot
         this.move2();
     }
 
-    public void terrainMove(final BasicGeographicMap[] geographicMapInterfaceArray, final int dx, final int dy) {
+    public void terrainMove(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final int dx, final int dy) {
         this.topViewCharacterBehavior.terrainMove(this, geographicMapInterfaceArray, dx, dy);
     }
     
     public void terrainEvent(final int dx, final int dy, 
             final BasicGeographicMap[] geographicMapInterfaceArray,
+            final GeographicMapCellType[] geographicMapCellTypeArray,
             final GeographicMapCellPosition geographicMapCellPosition) throws Exception {
     }
 
@@ -1372,7 +1373,7 @@ Created By: Travis Berthelot
             final GeographicMapCellPosition geographicMapCellPosition) throws Exception {
     }
 
-    public void terrainMove(final BasicGeographicMap[] geographicMapInterfaceArray, final int dx, final int dy) {
+    public void terrainMove(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final int dx, final int dy) {
         this.platformCharacterBehavior.terrainMove(this, geographicMapInterfaceArray, dx, dy);
     }
    
@@ -1394,7 +1395,6 @@ Created By: Travis Berthelot
                     = geographicMapCompositeInterface.getGeographicMapInterface();
 
             if(geographicMapInterfaceArray != null) {
-                final BasicGeographicMap geographicMapInterface = geographicMapInterfaceArray[0];
                 this.platformGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this);
             } else {
                 //LogUtil.put(LogFactory.getInstance("Map was null, this, "move"));
