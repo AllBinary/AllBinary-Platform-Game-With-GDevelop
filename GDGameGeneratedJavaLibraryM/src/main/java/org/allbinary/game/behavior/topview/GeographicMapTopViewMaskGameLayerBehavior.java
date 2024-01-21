@@ -282,6 +282,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
              //|| basicPlatormGeographicMapCellTypeFactory.JUMP_THRU_CELL_TYPE.isType(cellType)
             
                 if (geographicMapCellTypeFactory.BLOCK_CELL_TYPE.isType(cellType) || geographicMapCellTypeFactory.OFF_MAP_CELL_TYPE.isType(cellType)) {
+                //if (cellType.getType() != 14) {
                     
                     //LogUtil.put(LogFactory.getInstance("found cellType: " + cellType, this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
                     

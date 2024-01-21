@@ -699,6 +699,26 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         platformerMap.startX = platformerMap.startX - (allBinaryTiledLayer.getCellWidth() / 2);
         platformerMap.startY = platformerMap.startY - (allBinaryTiledLayer.getCellHeight() / 2);
 
+        //Temp hack for RPG game.
+        final GDGeographicMap gdGeographicMap = (GDGeographicMap) geographicMapInterfaceArray[layerIndex];
+        final TiledMap map = gdGeographicMap.getMap();
+        final TileLayer tileLayer = ((TileLayer) map.getLayer(layerIndex));
+        final int[][] mapArray = tileLayer.getMapArray();
+        
+        if(!basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[geographicMapCellPosition.getRow()][geographicMapCellPosition.getColumn() + 1])) {
+        platformerMap.startX = platformerMap.startX + 16;
+        }
+        if(!basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[geographicMapCellPosition.getRow()][geographicMapCellPosition.getColumn() - 1])) {
+        platformerMap.startX = platformerMap.startX - 16;
+        }
+
+//        if(!basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[geographicMapCellPosition.getColumn()][geographicMapCellPosition.getRow() + 1])) {
+//        platformerMap.startY = platformerMap.startY - 1;
+//        }
+//        if(!basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[geographicMapCellPosition.getColumn()][geographicMapCellPosition.getRow() - 1])) {
+//        platformerMap.startY = platformerMap.startY + 1;
+//        }
+        
         stringMaker.delete(0, stringMaker.length());
         LogUtil.put(LogFactory.getInstance(stringMaker.append("<xsl:value-of select="name" />: ").append(platformerMap.startX).append(CommonSeps.getInstance().SPACE).append(platformerMap.startY).toString(), this, commonStrings.PROCESS));
 
