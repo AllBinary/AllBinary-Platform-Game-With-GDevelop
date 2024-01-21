@@ -709,10 +709,10 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final int[][] mapArray = tileLayer.getMapArray();
         
         if(!basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[geographicMapCellPosition.getRow()][geographicMapCellPosition.getColumn() + 1])) {
-            platformerMap.startX = platformerMap.startX - 10;
+            platformerMap.startX = platformerMap.startX + 18;
         }
         if(!basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[geographicMapCellPosition.getRow()][geographicMapCellPosition.getColumn() - 1])) {
-            platformerMap.startX = platformerMap.startX + 10;
+            platformerMap.startX = platformerMap.startX - 18;
         }
         
         stringMaker.delete(0, stringMaker.length());
