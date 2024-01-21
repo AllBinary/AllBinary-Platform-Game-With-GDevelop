@@ -40,6 +40,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDObjectVariableChildCountConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVarGlobalConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVarObjetConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDSceneInstancesCountConditionGDNode.xsl" />
     <xsl:import href="./condition/GDGlobalVariableAsBooleanConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVarSceneConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSourisSurObjetConditionGDNode.xsl" />
@@ -291,7 +292,9 @@ Created By: Travis Berthelot
                     </xsl:if>
 
                     <xsl:if test="$typeValue = 'SceneInstancesCount'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        
+                        <xsl:call-template name="sceneInstancesCountConditionGDNode" />
+
                     </xsl:if>
                     <xsl:if test="$typeValue = 'PickedInstancesCount'" >
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED

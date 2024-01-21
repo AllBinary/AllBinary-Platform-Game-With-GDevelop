@@ -177,7 +177,36 @@ Created By: Travis Berthelot
                                     <xsl:if test="position() = 1" >((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" />) <xsl:value-of select="text()" />).</xsl:if>
                                     <xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if>
                                     <xsl:if test="position() = 3" ><xsl:if test="text() != '>' and text() != '&lt;'" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="text() = '>'" ><xsl:text disable-output-escaping="yes" > &gt; </xsl:text></xsl:if><xsl:if test="text() = '&lt;'" ><xsl:text disable-output-escaping="yes" > &lt; </xsl:text></xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if></xsl:if>
-                                    <xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>) {
+                                    <xsl:if test="position() = 4" >
+                                        <xsl:variable name="before" >
+                                            <xsl:value-of select="substring-before(text(), '.')" />
+                                        </xsl:variable>
+                                        <xsl:variable name="hasObject" >
+                                            <xsl:for-each select="//objects" >
+                                                <xsl:if test="name = $before" >found</xsl:if>
+                                            </xsl:for-each>
+                                        </xsl:variable>
+
+                                        <xsl:if test="$before != ''" >
+                                            //<xsl:value-of select="$before" /> - <xsl:value-of select="$hasObject" />
+                                            <xsl:text>&#10;</xsl:text>
+                                            <xsl:if test="contains($hasObject, 'found')" >
+                                                ((GD<xsl:call-template name="objectFactory" >
+                                                    <xsl:with-param name="name" >
+                                                        <xsl:value-of select="$before" />
+                                                    </xsl:with-param>
+                                                    <xsl:with-param name="layoutIndex" >
+                                                        <xsl:value-of select="$layoutIndex" />
+                                                    </xsl:with-param>
+                                                </xsl:call-template>GDObjectsFactory.<xsl:value-of select="$before" />) <xsl:value-of select="$before" />).<xsl:value-of select="substring-after(text(), '.')" />
+                                            </xsl:if>
+                                        </xsl:if>
+                                        <xsl:if test="not(contains($hasObject, 'found'))" >
+                                            <xsl:value-of select="text()" />
+                                        </xsl:if>
+ 
+                                    </xsl:if>
+                                </xsl:for-each>) {
 <!--                        </xsl:if>-->
                                     //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "VarObjet processing", this, commonStrings.PROCESS));
                                     return true;

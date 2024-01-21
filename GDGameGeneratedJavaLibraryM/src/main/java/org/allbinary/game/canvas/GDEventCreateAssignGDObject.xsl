@@ -27,10 +27,12 @@ Created By: Travis Berthelot
                     <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
 
                         //createGDObject
-                        final GDObject <xsl:value-of select="$name" />GDobject2 = gdObjectsFactory.<xsl:value-of select="$name" />GDObjectFactory.get(
+                        final GDObject <xsl:value-of select="$name" />GDobject2 = <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectFactory.get(
+                        //parameters
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() != 2" >
                             <xsl:if test="position() != last()" >
+                                <xsl:variable name="param" >
                                 <xsl:if test="string-length(text()) = 0" >
                                     null
                                 </xsl:if>
@@ -48,24 +50,36 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param>
                                         <xsl:with-param name="replacementText" ></xsl:with-param>
                                     </xsl:call-template>
-                                </xsl:if>,
+                                </xsl:if>
+                                </xsl:variable>                                
+                                <xsl:if test="not(contains($param, 'SceneInstancesCount('))" >
+                                    <xsl:value-of select="$param" />,
+                                </xsl:if>
+                                <xsl:if test="contains($param, 'SceneInstancesCount(')" >
+                                    <xsl:variable name="objectName" >
+                                        <xsl:value-of select="substring-before(substring-after($param, 'SceneInstancesCount('), ')')" />
+                                    </xsl:variable>
+                                    <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$objectName" /></xsl:with-param><xsl:with-param name="replacementText" >SceneInstancesCount(gameGlobals.<xsl:value-of select="$objectName" />GDGameLayerList.size())</xsl:with-param></xsl:call-template>,
+                                </xsl:if>
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
+                    //Objects have sprite name
                             <xsl:if test="contains($objectsAsString, $spriteName)" >
-                                //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f),
-                                //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f),
-                                (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth() * scale),
-                                (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight() * scale),
+                                //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f),
+                                //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f),
+                                (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth() * scale),
+                                (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight() * scale),
                             </xsl:if>
                             <xsl:if test="not(contains($objectsAsString, $spriteName))" >
                                 0, 0,
                             </xsl:if>
+                    //parameters2
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() != 2" >                            
                             <xsl:if test="position() = last()" >
                                 <xsl:if test="string-length(text()) = 0" >
-                                    globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME
+                                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME
                                     //createString
                                 </xsl:if>
                                 <xsl:if test="string-length(text()) > 0" >
