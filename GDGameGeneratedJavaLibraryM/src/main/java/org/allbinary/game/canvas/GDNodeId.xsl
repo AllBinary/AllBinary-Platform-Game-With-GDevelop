@@ -308,12 +308,13 @@
             <xsl:if test="type/value = 'Delete'" >
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].addForDelete(<xsl:value-of select="$gdGameLayer" />);
             </xsl:if>
-            <xsl:if test="type/value != 'Delete'" >
+            <xsl:if test="type/value != 'Create' and type/value != 'Delete'" >
                 <xsl:if test="contains($parametersAsString0, $gdObjectName)" >
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdGameLayer" />, globals.graphics);
             <!-- 
             if(globals.<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) { 
             -->
+
             //updateGDObject - 8
             <xsl:value-of select="$gdGameLayer" />.updateGDObject(globals.timeDelta);
                 </xsl:if>

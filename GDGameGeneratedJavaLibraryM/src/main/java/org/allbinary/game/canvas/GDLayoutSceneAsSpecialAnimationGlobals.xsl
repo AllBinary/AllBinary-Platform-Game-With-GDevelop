@@ -202,6 +202,7 @@ public class GDStructure {
 
                         public final BasicArrayList <xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
                         public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
+                        public final BasicArrayList <xsl:value-of select="name" />RemoveList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
                         public final BasicArrayList <xsl:value-of select="name" />RectangleList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
 
                         <xsl:for-each select="animations" >

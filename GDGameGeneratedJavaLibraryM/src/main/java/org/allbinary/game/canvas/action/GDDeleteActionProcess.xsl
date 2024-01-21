@@ -23,13 +23,11 @@ Created By: Travis Berthelot
 
                                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
-                        private final BasicArrayList removeList = new BasicArrayList();
-
                         //Delete - action
                         @Override
                         public void addForDelete(final GDGameLayer gdGameLayer) {
-                            //if(!removeList.contains(gdGameLayer)) {
-                                removeList.add(gdGameLayer);
+                            //if(!<xsl:value-of select="$name" />RemoveList.contains(gdGameLayer)) {
+                                <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />RemoveList.add(gdGameLayer);
                             //} else {
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " Already added for deletion from LayerManager: " + gdGameLayer, this, commonStrings.PROCESS));
                             //}
@@ -38,12 +36,12 @@ Created By: Travis Berthelot
                         @Override
                         public boolean process() throws Exception {
             
-                            final int size = removeList.size();
+                            final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />RemoveList.size();
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                this.processGD((GDGameLayer) removeList.get(index), globals.graphics);
+                                this.processGD((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />RemoveList.get(index), globals.graphics);
                             }
 
-                            removeList.clear();
+                            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />RemoveList.clear();
                             
                             return true;
                         }

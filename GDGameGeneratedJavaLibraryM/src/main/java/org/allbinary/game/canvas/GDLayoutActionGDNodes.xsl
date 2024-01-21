@@ -134,6 +134,8 @@ Created By: Travis Berthelot
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
 
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                        private final GDGlobalsGDResources globalResources = GDGlobalsGDResources.getInstance();
+                        private final GDGlobalsGDObjectsFactory gdGlobalsObjectsFactory = GDGlobalsGDObjectsFactory.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
@@ -148,6 +150,8 @@ Created By: Travis Berthelot
                         try {
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
+                    
+                            final GDGlobalSpecialAnimationImageResources globalImageResources = GDGlobalSpecialAnimationImageResources.getInstanceOrCreate();
                                             
                                     <xsl:call-template name="scale" >
                                         <xsl:with-param name="layoutIndex" >
@@ -271,6 +275,10 @@ Created By: Travis Berthelot
 
                     public int GlobalVariableChildCount(final int[] array) {
                         return array.length;
+                    }
+
+                    public int SceneInstancesCount(final int size) {
+                        return size;
                     }
 
                     public int MouseX() {
