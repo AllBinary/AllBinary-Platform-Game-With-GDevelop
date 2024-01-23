@@ -21,6 +21,7 @@ import com.google.gwt.resources.client.TextResource;
 public interface GD<xsl:value-of select="$index" />GamePlaynResources extends ClientBundle {
   public static final GD<xsl:value-of select="$index" />GamePlaynResources INSTANCE =  GWT.create(GD<xsl:value-of select="$index" />GamePlaynResources.class);
 
+  final String[] NAMES = {
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
@@ -29,7 +30,6 @@ public interface GD<xsl:value-of select="$index" />GamePlaynResources extends Cl
                 <xsl:variable name="stringValue" select="string" />
                 //TileMap::TileMap - <xsl:value-of select="name" />
 
-  final String[] NAMES = {
                 <xsl:if test="content" >
                     //TileMap::TileMap:content
                     <xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
@@ -40,7 +40,17 @@ public interface GD<xsl:value-of select="$index" />GamePlaynResources extends Cl
                     "<xsl:value-of select="text()" />",
                     </xsl:for-each>
                 </xsl:if>
-  };
+
+            </xsl:if>
+
+        </xsl:for-each>        
+    };
+    
+        <xsl:for-each select="objects" >
+            <xsl:variable name="typeValue" select="type" />
+
+            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+                <xsl:variable name="stringValue" select="string" />
 
 <xsl:if test="content" >
     <xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
@@ -67,7 +77,7 @@ public interface GD<xsl:value-of select="$index" />GamePlaynResources extends Cl
             </xsl:if>
 
         </xsl:for-each>        
-  
+    
 }                
             </xsl:if>
         </xsl:for-each>
