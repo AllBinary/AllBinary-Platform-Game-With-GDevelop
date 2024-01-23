@@ -28,6 +28,7 @@ import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellType;
+import org.allbinary.util.BasicArrayList;
 import org.allbinary.view.ViewPosition;
 
 /**
@@ -40,12 +41,15 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     
     private final MultiGeographicMapBehavior geographicMapBehavior = new MultiGeographicMapBehavior();
 
+    public final BasicArrayList unsafeGeographicMapCellPositionList = new BasicArrayList();
+    public final BasicArrayList unsafePossibleGeographicMapCellPositionList = new BasicArrayList();
+    
     private final boolean autoStepBlocks;
     //private final int offsetY;
     
     //public GeographicMapCellPosition blockGeographicMapCellPosition;
 
-    private GeographicMapCellPosition previousGeographicMapCellPosition;
+    //private GeographicMapCellPosition previousGeographicMapCellPosition;
 
     public GeographicMapTopViewMaskGameLayerBehavior() {
         super(16 //32
@@ -90,7 +94,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
          */
     }
 
-    private GeographicMapCellPosition getPositionTopLeft(final BasicGeographicMap[] geographicMapInterfaceArray, final AllBinaryLayer layer, final int x, final int y) throws Exception {
+    private BasicArrayList get(final BasicGeographicMap[] geographicMapInterfaceArray, final BasicArrayList geographicMapCellPositionList, final AllBinaryLayer layer, final int x, final int y) throws Exception {
         
         final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) layer;
         final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
@@ -106,70 +110,12 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
 //                .toString(), this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
         final int xCellPosition = viewX + maskPoint.getX() + -x;
         final int yCellPosition = viewY + maskPoint.getY() + -y;
-
-        return geographicMapInterfaceArray[0].getCellPositionAtNoThrow(xCellPosition, yCellPosition);
-    }
+        final int x2CellPosition = viewX + maskPoint.getX() + -x + maskRectangle.getWidth();
+        final int y2CellPosition = viewY + maskPoint.getY() + -y + maskRectangle.getHeight();
         
-    private GeographicMapCellPosition getPositionTopRight(final BasicGeographicMap[] geographicMapInterfaceArray,  final AllBinaryLayer layer, final int x, final int y) throws Exception {
-
-        final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) layer;
-        final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
-        final GPoint maskPoint = maskRectangle.getPoint();
-        final ViewPosition viewPosition = customGameLayer.getViewPosition();
-        final int viewX = viewPosition.getX();
-        final int viewY = viewPosition.getY();
-        
-//        final CommonSeps commonSeps = CommonSeps.getInstance();
-//        LogUtil.put(LogFactory.getInstance(new StringMaker()
-//                .append(layer.getX()).append(commonSeps.COLON).append(-x).append(commonSeps.COLON).append(layer.getHalfWidth())
-//                .append(layer.getY()).append(commonSeps.COLON).append(-y).append(commonSeps.COLON).append(layer.getHalfHeight())
-//                .toString(), this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
-        final int xCellPosition = viewX + maskPoint.getX() + -x + maskRectangle.getWidth();
-        final int yCellPosition = viewY + maskPoint.getY() + -y;
-
-        return geographicMapInterfaceArray[0].getCellPositionAtNoThrow(xCellPosition, yCellPosition);
+        return geographicMapInterfaceArray[0].getCellPositionAtNoThrow(xCellPosition, yCellPosition, x2CellPosition, y2CellPosition, geographicMapCellPositionList);
     }
-
-    private GeographicMapCellPosition getPositionBottomLeft(final BasicGeographicMap[] geographicMapInterfaceArray, final AllBinaryLayer layer, final int x, final int y) throws Exception {
-
-        final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) layer;
-        final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
-        final GPoint maskPoint = maskRectangle.getPoint();
-        final ViewPosition viewPosition = customGameLayer.getViewPosition();
-        final int viewX = viewPosition.getX();
-        final int viewY = viewPosition.getY();
-        
-//        final CommonSeps commonSeps = CommonSeps.getInstance();
-//        LogUtil.put(LogFactory.getInstance(new StringMaker()
-//                .append(layer.getX()).append(commonSeps.COLON).append(-x).append(commonSeps.COLON).append(layer.getHalfWidth())
-//                .append(layer.getY()).append(commonSeps.COLON).append(-y).append(commonSeps.COLON).append(layer.getHalfHeight())
-//                .toString(), this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
-        final int xCellPosition = viewX + maskPoint.getX() + -x;
-        final int yCellPosition = viewY + maskPoint.getY() + -y + maskRectangle.getHeight();
-
-        return geographicMapInterfaceArray[0].getCellPositionAtNoThrow(xCellPosition, yCellPosition);
-    }
-    
-    private GeographicMapCellPosition getPositionBottomRight(final BasicGeographicMap[] geographicMapInterfaceArray, final AllBinaryLayer layer, final int x, final int y) throws Exception {
-
-        final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) layer;
-        final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
-        final GPoint maskPoint = maskRectangle.getPoint();
-        final ViewPosition viewPosition = customGameLayer.getViewPosition();
-        final int viewX = viewPosition.getX();
-        final int viewY = viewPosition.getY();
-        
-//        final CommonSeps commonSeps = CommonSeps.getInstance();
-//        LogUtil.put(LogFactory.getInstance(new StringMaker()
-//                .append(layer.getX()).append(commonSeps.COLON).append(-x).append(commonSeps.COLON).append(layer.getHalfWidth())
-//                .append(layer.getY()).append(commonSeps.COLON).append(-y).append(commonSeps.COLON).append(layer.getHalfHeight())
-//                .toString(), this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
-        final int xCellPosition = viewX + maskPoint.getX() + -x + maskRectangle.getWidth();
-        final int yCellPosition = viewY + maskPoint.getY() + -y + maskRectangle.getHeight();
-
-        return geographicMapInterfaceArray[0].getCellPositionAtNoThrow(xCellPosition, yCellPosition);
-    }
-    
+       
     private GeographicMapCellPosition getLeftPosition(final BasicGeographicMap[] geographicMapInterfaceArray, final AllBinaryLayer layer) throws Exception {
 
         final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) layer;
@@ -203,64 +149,43 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     @Override
     public GeographicMapCellPosition getGeographicMapCellPositionIfNotSolidBlockOrOffMap(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final VelocityProperties velocityProperties, final AllBinaryLayer layer, final int x, int y) throws Exception {
         
-        GeographicMapCellPosition geographicMapCellPosition = null;
-        final GeographicMapCellPosition topLeftGeographicMapCellPosition = this.getPositionTopLeft(geographicMapInterfaceArray, layer, x, y);
-        geographicMapCellPosition = this.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray, topLeftGeographicMapCellPosition, velocityProperties, layer);
+        final BasicArrayList geographicMapCellPositionList = this.unsafeGeographicMapCellPositionList;
+        this.get(geographicMapInterfaceArray, geographicMapCellPositionList, layer, x, y);
+        LogUtil.put(LogFactory.getInstance("Blocks Touching Total: " + geographicMapCellPositionList.size(), this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
+
+        final GeographicMapCellPosition geographicMapCellPosition = this.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPositionList, velocityProperties, layer);
 
         if (geographicMapCellPosition == null) {
 //            if(layer.getName().startsWith("BatEnemy")) {
 //                LogUtil.put(LogFactory.getInstance("Found impassable block: top left", this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
 //            }
             return null;
-        }
-        
-        final GeographicMapCellPosition topRightGeographicMapCellPosition = this.getPositionTopRight(geographicMapInterfaceArray, layer, x, y);
-        geographicMapCellPosition = this.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray, topRightGeographicMapCellPosition, velocityProperties, layer);
-
-        if (geographicMapCellPosition == null) {
-//            if(layer.getName().startsWith("BatEnemy")) {
-//                LogUtil.put(LogFactory.getInstance("Found impassable block: top right ", this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
-//            }
-            return null;
-        }
-        
-        final GeographicMapCellPosition bottomLeftGeographicMapCellPosition = this.getPositionBottomLeft(geographicMapInterfaceArray, layer, x, y);
-        geographicMapCellPosition = this.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray, bottomLeftGeographicMapCellPosition, velocityProperties, layer);
-
-        if (geographicMapCellPosition == null) {
-//            if(layer.getName().startsWith("BatEnemy")) {
-//                LogUtil.put(LogFactory.getInstance("Found impassable block: bottom left ", this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
-//            }
-            return null;
-        }
-        
-        final GeographicMapCellPosition bottomRightGeographicMapCellPosition = this.getPositionBottomRight(geographicMapInterfaceArray, layer, x, y);
-        geographicMapCellPosition = this.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray, bottomRightGeographicMapCellPosition, velocityProperties, layer);
-
-        if (geographicMapCellPosition == null) {
-//            if(layer.getName().startsWith("BatEnemy")) {
-//                LogUtil.put(LogFactory.getInstance("Found impassable block: bottom right ", this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
-//            }
         } else {
 //            if(layer.getName().startsWith("BatEnemy")) {
 //                LogUtil.put(LogFactory.getInstance("Did not find impassable block ", this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
 //            }
         }
-        
+
         return geographicMapCellPosition;
     }
     
     @Override
-    public GeographicMapCellPosition getGeographicMapCellPositionIfNotSolidBlockOrOffMap(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final GeographicMapCellPosition geographicMapCellPosition, final VelocityProperties velocityProperties, final AllBinaryLayer layer) throws Exception {
+    public GeographicMapCellPosition getGeographicMapCellPositionIfNotSolidBlockOrOffMap(final BasicGeographicMap[] geographicMapInterfaceArray, final GeographicMapCellType[] geographicMapCellTypeArray, final BasicArrayList geographicMapCellPositionList, final VelocityProperties velocityProperties, final AllBinaryLayer layer) throws Exception {
         
         //LogUtil.put(LogFactory.getInstance(geographicMapCellPosition.toString(), this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
-        
+
+        //GeographicMapCellPosition previousGeographicMapCellPosition = null;        
+        unsafePossibleGeographicMapCellPositionList.clear();
+
         // If walking into a solid block
         //this.isJumpAction && 
         //this.previousGeographicMapCellPosition != geographicMapCellPosition && 
-        if (geographicMapCellPosition != null) {
+        if (geographicMapCellPositionList.size() > 0) {
 
-            final GeographicMapCellPosition possibleStepGeographicMapCellPosition = geographicMapCellPosition;
+            final int size = geographicMapCellPositionList.size();
+            for(int index = 0; index < size; index++) {
+
+            final GeographicMapCellPosition possibleStepGeographicMapCellPosition = (GeographicMapCellPosition) geographicMapCellPositionList.get(index);
 
 //            final GeographicMapCellPosition possibleStepGeographicMapCellPosition
 //                    = geographicMapInterfaceArray[0].getGeographicMapCellPositionFactory().getInstance(
@@ -299,26 +224,33 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
 //                        this.previousGeographicMapCellPosition = possibleStepGeographicMapCellPosition;
 //                        return possibleStepGeographicMapCellPosition;
 //                    } else {
-                        //LogUtil.put(LogFactory.getInstance("do not move", this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
+                        LogUtil.put(LogFactory.getInstance("do not move", this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
                         //this.blockGeographicMapCellPosition = possibleStepGeographicMapCellPosition;
                         //velocityProperties.getVelocityXBasicDecimal().set(0);
-                        this.previousGeographicMapCellPosition = null;
+                        //previousGeographicMapCellPosition = null;
                         return null;
 //                    }
                 } else {
                     //LogUtil.put(LogFactory.getInstance("cellType: " + cellType, this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
-                    this.previousGeographicMapCellPosition = possibleStepGeographicMapCellPosition;
-                    return possibleStepGeographicMapCellPosition;
+                    //previousGeographicMapCellPosition = possibleStepGeographicMapCellPosition;
+                    unsafePossibleGeographicMapCellPositionList.add(possibleStepGeographicMapCellPosition);
+                    //return possibleStepGeographicMapCellPosition;
                 }
 
             }
-
+            }
+            
+            if(unsafePossibleGeographicMapCellPositionList.size() > 0) {
+                LogUtil.put(LogFactory.getInstance("Tile with movement allowed total: " + unsafePossibleGeographicMapCellPositionList.size(), this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
+                return (GeographicMapCellPosition) unsafePossibleGeographicMapCellPositionList.get(0);
+            }
+            
         } else {
             //LogUtil.put(LogFactory.getInstance("GeographicMapCellPosition was null: Probably off Map: " + layer.toString(), this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap", new Exception()));
         }
         
         //LogUtil.put(LogFactory.getInstance("not moving", this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
-        this.previousGeographicMapCellPosition = null;
+        //previousGeographicMapCellPosition = null;
         return null;
         //this.previousGeographicMapCellPosition = geographicMapCellPosition;
         //return geographicMapCellPosition;
