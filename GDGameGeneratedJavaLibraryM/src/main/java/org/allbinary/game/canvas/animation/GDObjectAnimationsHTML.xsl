@@ -184,6 +184,43 @@ Created By: Travis Berthelot
                                 </xsl:variable>
                 this.addRectangle(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
+                <xsl:if test="$name = 'Player'" >
+                <xsl:for-each select="animations" >
+                    <xsl:if test="position() = 1" >
+                    <xsl:if test="string-length(name) > 0" >
+                    <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
+                    <xsl:for-each select="directions" >
+                        <xsl:for-each select="sprites" >
+                            <xsl:if test="position() = 1" >
+                            <xsl:variable name="position" ><xsl:value-of select="position()" /></xsl:variable>
+                            <xsl:for-each select="customCollisionMask" >
+                //final float hackScale = ((float) scale) * 125.0f / 1000.0f;
+                final float hackScale = 3.0f * 125.0f / 1000.0f;
+                final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
+                                pointFactory.getInstance((int) (<xsl:value-of select="array[1]/x" /> * hackScale), (int) (<xsl:value-of select="array[1]/y" /> * hackScale)),
+                                    (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale)
+                                );
+
+//                LogUtil.put(LogFactory.getInstance("scale: " + scale, this, CommonStrings.getInstance().PROCESS));
+//                LogUtil.put(LogFactory.getInstance("hackScale: " + hackScale, this, CommonStrings.getInstance().PROCESS));
+//                LogUtil.put(LogFactory.getInstance("Rectangle: " + PlayerWarrior_IdleLeft_Animation1CollisionMask, this, CommonStrings.getInstance().PROCESS));
+
+                final int size = <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray.length;
+                final Rectangle[][] rectangleArrayOfArrays = new Rectangle[1][size];
+                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                    rectangleArrayOfArrays[0][index] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
+                }
+                this.addRectangleArrayOfArrays(specialAnimationResources.PLAYER_ANIMATION_NAME, rectangleArrayOfArrays);
+
+                            </xsl:for-each>
+                            </xsl:if>
+                        </xsl:for-each>
+                    </xsl:for-each>
+                    </xsl:if>
+                    </xsl:if>
+                </xsl:for-each>
+                </xsl:if>
+                
                 <xsl:variable name="groupInterfaceArray" >
                     <xsl:if test="string-length($parentGroupIfAny) > 0" >new Group[] {globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface}</xsl:if>
                     <xsl:if test="string-length($parentGroupIfAny) = 0" >new Group[] {<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface}</xsl:if>
@@ -263,43 +300,6 @@ Created By: Travis Berthelot
                                 </xsl:for-each>
                                 </xsl:variable>
                 this.addRectangle(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
-
-                <xsl:if test="$name = 'Player'" >
-                <xsl:for-each select="animations" >
-                    <xsl:if test="position() = 1" >
-                    <xsl:if test="string-length(name) > 0" >
-                    <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
-                    <xsl:for-each select="directions" >
-                        <xsl:for-each select="sprites" >
-                            <xsl:if test="position() = 1" >
-                            <xsl:variable name="position" ><xsl:value-of select="position()" /></xsl:variable>
-                            <xsl:for-each select="customCollisionMask" >
-                //final float hackScale = ((float) scale) * 125.0f / 1000.0f;
-                final float hackScale = 3.0f * 125.0f / 1000.0f;
-                final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
-                                pointFactory.getInstance((int) (<xsl:value-of select="array[1]/x" /> * hackScale), (int) (<xsl:value-of select="array[1]/y" /> * hackScale)),
-                                    (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale)
-                                );
-
-//                LogUtil.put(LogFactory.getInstance("scale: " + scale, this, CommonStrings.getInstance().PROCESS));
-//                LogUtil.put(LogFactory.getInstance("hackScale: " + hackScale, this, CommonStrings.getInstance().PROCESS));
-//                LogUtil.put(LogFactory.getInstance("Rectangle: " + PlayerWarrior_IdleLeft_Animation1CollisionMask, this, CommonStrings.getInstance().PROCESS));
-
-                final int size = <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray.length;
-                final Rectangle[][] rectangleArrayOfArrays = new Rectangle[1][size];
-                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                    rectangleArrayOfArrays[0][index] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
-                }
-                this.addRectangleArrayOfArrays(specialAnimationResources.PLAYER_ANIMATION_NAME, rectangleArrayOfArrays);
-
-                            </xsl:for-each>
-                            </xsl:if>
-                        </xsl:for-each>
-                    </xsl:for-each>
-                    </xsl:if>
-                    </xsl:if>
-                </xsl:for-each>
-                </xsl:if>
 
                 <xsl:variable name="groupInterfaceArray" >
                     <xsl:if test="string-length($parentGroupIfAny) > 0" >new Group[] {globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface}</xsl:if>

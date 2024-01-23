@@ -77,11 +77,14 @@ public class PlatformAssetManager {
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
         <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+            <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:variable name="previousCount" ><xsl:value-of select="count(../objects[type = 'TileMap::TileMap' and number(substring(generate-id(), 2) - 65536) &lt; $id])" /></xsl:variable>
+            //previousCount=<xsl:value-of select="$previousCount" />
             <xsl:if test="content" >
                 <xsl:variable name="lastPosition" ><xsl:value-of select="position()" /></xsl:variable>
                 <xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
                 <xsl:variable name="json" select="substring-before($jsonWithExtension, '.')" />
-        if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[0].compareTo(resource) == 0) {
+        if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[<xsl:value-of select="$previousCount * 2" />].compareTo(resource) == 0) {
         return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.
         <xsl:call-template name="upper-case" >
             <xsl:with-param name="text" >
@@ -89,7 +92,7 @@ public class PlatformAssetManager {
         </xsl:call-template>
 
         <xsl:variable name="tilesetJsonFileWithExtension" select="content/tilesetJsonFile" />
-        } else if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[1].compareTo(resource) == 0) {
+        } else if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[<xsl:value-of select="($previousCount * 2) + 1" />].compareTo(resource) == 0) {
         return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.<xsl:variable name="tilesetJsonFileN" select="substring-before($tilesetJsonFileWithExtension, '.')" />
         <xsl:call-template name="upper-case" >
             <xsl:with-param name="text" >
@@ -102,7 +105,7 @@ public class PlatformAssetManager {
 
         <xsl:for-each select="content/tilesetJsonFiles" >
         <xsl:variable name="json" select="substring-before(text(), '.')" />
-        } else if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[<xsl:value-of select="position() + 1" />].compareTo(resource) == 0) {
+        } else if (GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.NAMES[<xsl:value-of select="($previousCount * 2) + 2" />].compareTo(resource) == 0) {
         return GD<xsl:value-of select="$index" />GamePlaynResources.INSTANCE.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" />();</xsl:with-param></xsl:call-template>
         
     <xsl:for-each select="../../../objects" >
@@ -127,7 +130,7 @@ public class PlatformAssetManager {
             
         </xsl:for-each>
         {
-            throw new RuntimeException();
+            throw new RuntimeException(resource);
         }
     }
     

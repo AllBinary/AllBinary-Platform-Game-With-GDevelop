@@ -73,7 +73,6 @@
             <groupId>org.allbinary</groupId>
             <artifactId>MicroemulatorSkinJavaLibrary</artifactId>
             <version>${allbinary.platform.version}</version>
-            <optional>true</optional>
         </dependency>
 
         <dependency>

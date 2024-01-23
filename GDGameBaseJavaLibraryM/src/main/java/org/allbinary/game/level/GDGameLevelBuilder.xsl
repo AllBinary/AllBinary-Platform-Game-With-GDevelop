@@ -264,7 +264,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         //LogUtil.put(LogFactory.getInstance("Loaded Tiled Map Asset", this, commonStrings.PROCESS));
 
-        //LogUtil.put(LogFactory.getInstance("Loading Tiled Map", this, commonStrings.PROCESS));
+        //LogUtil.put(LogFactory.getInstance("Loading Tiled Map" + map, this, commonStrings.PROCESS));
         
         final Features features = Features.getInstance();
         final boolean isHTML = features.isDefault(HTMLFeatureFactory.getInstance().HTML);
@@ -340,7 +340,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         if(true) {
                 //TileMap::TileMap - <xsl:value-of select="name" />
 
-        //LogUtil.put(LogFactory.getInstance("Loading Tiled Map Asset: " + <xsl:value-of select="name" />, this, commonStrings.PROCESS));
+        //LogUtil.put(LogFactory.getInstance("Loading Tiled Map Asset: <xsl:value-of select="name" />", this, commonStrings.PROCESS));
                 
         final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtable().get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
         final Image tileSetImage = <xsl:value-of select="name" />ImageArray[0];
@@ -389,7 +389,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                 cellTypeMapping[index] = index;
             }
 
-            geographicMapList.add(new GDGeographicMap(((TileLayer) map.getLayer(layerIndex)), cellTypeMapping, map, tileSetImage, geographicMapCellTypeFactory, BLACK, BLACK, COLORS[geographicMapList.size()]));
+            final TileLayer tileLayer = ((TileLayer) map.getLayer(layerIndex));
+            final BasicColor color = COLORS[geographicMapList.size()];
+            geographicMapList.add(new GDGeographicMap(tileLayer, cellTypeMapping, map, tileSetImage, geographicMapCellTypeFactory, BLACK, BLACK, color));
         }
 
         }
