@@ -337,6 +337,7 @@ Created By: Travis Berthelot
                     
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                     <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
+                        BasicMotionGesturesHandler.getInstance().addListener(globals.eventListenerInterfaceLastPoint);
                         MovedMotionGesturesHandler.getInstance().addListener(globals.eventListenerInterfaceLastPoint);
                     </xsl:if>
                     
