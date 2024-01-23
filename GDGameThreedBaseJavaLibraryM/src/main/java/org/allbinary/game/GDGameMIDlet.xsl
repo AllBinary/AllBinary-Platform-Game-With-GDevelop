@@ -83,7 +83,6 @@ public class GDGameMIDlet extends
    SpecialDemoGameMidlet
    //DemoGameMidlet
 {
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
 
    public GDGameMIDlet()
    {
