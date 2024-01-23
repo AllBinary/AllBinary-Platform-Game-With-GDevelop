@@ -151,7 +151,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
         
         final BasicArrayList geographicMapCellPositionList = this.unsafeGeographicMapCellPositionList;
         this.get(geographicMapInterfaceArray, geographicMapCellPositionList, layer, x, y);
-        LogUtil.put(LogFactory.getInstance("Blocks Touching Total: " + geographicMapCellPositionList.size(), this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
+        //LogUtil.put(LogFactory.getInstance("Blocks Touching Total: " + geographicMapCellPositionList.size(), this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
 
         final GeographicMapCellPosition geographicMapCellPosition = this.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPositionList, velocityProperties, layer);
 
@@ -224,7 +224,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
 //                        this.previousGeographicMapCellPosition = possibleStepGeographicMapCellPosition;
 //                        return possibleStepGeographicMapCellPosition;
 //                    } else {
-                        LogUtil.put(LogFactory.getInstance("do not move", this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
+                        //LogUtil.put(LogFactory.getInstance("do not move", this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
                         //this.blockGeographicMapCellPosition = possibleStepGeographicMapCellPosition;
                         //velocityProperties.getVelocityXBasicDecimal().set(0);
                         //previousGeographicMapCellPosition = null;
@@ -241,7 +241,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
             }
             
             if(unsafePossibleGeographicMapCellPositionList.size() > 0) {
-                LogUtil.put(LogFactory.getInstance("Tile with movement allowed total: " + unsafePossibleGeographicMapCellPositionList.size(), this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
+                //LogUtil.put(LogFactory.getInstance("Tile with movement allowed total: " + unsafePossibleGeographicMapCellPositionList.size(), this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap"));
                 return (GeographicMapCellPosition) unsafePossibleGeographicMapCellPositionList.get(0);
             }
             
