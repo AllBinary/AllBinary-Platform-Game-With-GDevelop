@@ -1,5 +1,6 @@
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
-import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.data.resource.ResourceUtil;
@@ -16,8 +17,6 @@ import org.allbinary.input.motion.gesture.observer.MotionGestureReceiveInterface
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.audio.EarlySoundsFactory;
 import org.allbinary.media.audio.Sounds;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
 import org.allbinary.game.init.DefaultGameInitializationListener;
 import org.allbinary.media.audio.GDGameSoundsFactory;
 
