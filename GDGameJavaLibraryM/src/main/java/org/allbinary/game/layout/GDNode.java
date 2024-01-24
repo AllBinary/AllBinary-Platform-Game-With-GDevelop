@@ -18,10 +18,8 @@ import org.allbinary.game.input.event.GameKeyEvent;
 
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layer.GDGameLayer;
+import org.allbinary.input.motion.gesture.MotionGestureInput;
 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
-import org.allbinary.logic.communication.log.LogFactory;
-import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.thread.NullRunnable;
 import org.allbinary.util.BasicArrayList;
 
@@ -99,7 +97,7 @@ public class GDNode
         return false;
     }
     
-    public boolean process(final MotionGestureEvent motionGestureEvent) throws Exception {
+    public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
         return false;
     }
 

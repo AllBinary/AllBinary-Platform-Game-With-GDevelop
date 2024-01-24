@@ -1150,7 +1150,7 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($childEventWithUsedEvent, 'found') and contains($hasSourisSurObjetCondition, 'found')" >
                         //SourisSurObjet - motionGestureEvent
                         @Override
-                        public boolean process(final MotionGestureEvent motionGestureEvent) throws Exception {
+                        public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                             super.processStats(motionGestureEvent);
                             
                             //Conditions - START
@@ -1159,7 +1159,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="$typeValue = 'SourisSurObjet'" >
                             //Condition - //SourisSurObjet - call - motionGestureEvent
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
                                 </xsl:if>
                             </xsl:for-each>
                             //Conditions - END

@@ -101,11 +101,12 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
-                import org.allbinary.util.BasicArrayList;
+                import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
                 import org.allbinary.math.RectangleCollisionUtil;
                 import org.allbinary.thread.NullRunnable;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.time.TimeDelayHelper;
+                import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.ArrayUtil;
 
                 //LayoutCondition name=<xsl:value-of select="$layoutName" /> - GDNode processM calls in this class can load resources
@@ -129,11 +130,13 @@ Created By: Travis Berthelot
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
+                        private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
+                        private final RectangleCollisionUtil rectangleCollisionUtil = RectangleCollisionUtil.getInstance();
+                        
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                         private final GameTickTimeDelayHelperFactory gameTickTimeDelayHelperFactory = GameTickTimeDelayHelperFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
-                        private final RectangleCollisionUtil rectangleCollisionUtil = RectangleCollisionUtil.getInstance();
 
                         private final String INDEX = "index: ";
 

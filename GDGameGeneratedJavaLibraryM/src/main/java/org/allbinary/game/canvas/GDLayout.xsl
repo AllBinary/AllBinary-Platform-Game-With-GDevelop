@@ -84,6 +84,8 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.color.BasicColorFactory;
                 import org.allbinary.graphics.color.BasicColorSetUtil;
                 import org.allbinary.graphics.displayable.MyCanvas;
+                import org.allbinary.input.motion.gesture.MotionGestureInput;
+                import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
                 import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.input.motion.gesture.observer.MovedMotionGesturesHandler;
@@ -140,7 +142,8 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
                         </xsl:call-template>
-
+                        
+                    private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
 
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
@@ -188,7 +191,16 @@ Created By: Travis Berthelot
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size10; index++) {
                         
                             motionGestureEvent = (MotionGestureEvent) motionEventList.get(index);
-                            globals.lastPointGDNode.process(motionGestureEvent);
+                            
+                            final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
+                            if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
+                                globals.lastMotionGestureInput = motionGestureInput;
+                            } else if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
+                                globals.lastMotionGestureInput = motionGestureInput;
+                            }
+
+                            //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
+                            globals.lastPointGDNode.process(motionGestureEvent, globals.lastMotionGestureInput);
                 
         <xsl:for-each select="events" >
 
@@ -196,15 +208,15 @@ Created By: Travis Berthelot
                 
                 <xsl:if test="type/value = 'MouseButtonReleased'" >
                             //MouseButtonReleased - eventListener
-                            globals.mouseButtonReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent);
+                            globals.mouseButtonReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonPressed'" >
                             //MouseButtonPressed - eventListener
-                            globals.mouseButtonPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent);
+                            globals.mouseButtonPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
                 </xsl:if>
                 <xsl:if test="type/value = 'SourisBouton'" >
                             //SourisBouton - eventListener
-                            globals.mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent);
+                            globals.mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
                 </xsl:if>
                 
             </xsl:for-each>

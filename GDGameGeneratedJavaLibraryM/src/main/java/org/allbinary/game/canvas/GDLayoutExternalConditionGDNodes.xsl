@@ -83,6 +83,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
 
@@ -105,6 +106,7 @@ Created By: Travis Berthelot
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
 
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();

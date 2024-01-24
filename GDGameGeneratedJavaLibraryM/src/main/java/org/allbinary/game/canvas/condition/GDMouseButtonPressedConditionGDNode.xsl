@@ -62,7 +62,7 @@ Created By: Travis Berthelot
                         return true;
                     }
 
-                    public boolean process(final MotionGestureEvent motionGestureEvent) throws Exception {
+                    public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                         super.processStats(motionGestureEvent);
                         
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
@@ -71,12 +71,12 @@ Created By: Travis Berthelot
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                                 //caller=<xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodes - //Event - //BuiltinCommonInstructions::Standard - call
                                 //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
+                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
                                 </xsl:if>
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                                 //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                                 //Event - //BuiltinCommonInstructions::Link - call
-                                globals.<xsl:value-of select="target" />GDNode.process(motionGestureEvent);
+                                globals.<xsl:value-of select="target" />GDNode.process(motionGestureEvent, lastMotionGestureInput);
                                 </xsl:if>
                             </xsl:for-each>
                             </xsl:for-each>

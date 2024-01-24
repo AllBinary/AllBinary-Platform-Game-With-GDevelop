@@ -88,6 +88,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
+                import org.allbinary.input.motion.gesture.MotionGestureInput;
                 import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
                 import org.allbinary.layer.AllBinaryLayer;
                 import org.allbinary.layer.event.LayerManagerEvent;
@@ -298,6 +299,8 @@ public class GDStructure {
                         new BasicArrayList(),
                         new BasicArrayList()
                     };
+                    //public GDNode currentButtonGDNodePressed = null;
+                    MotionGestureInput lastMotionGestureInput = null;
                     </xsl:if>
 
                     //eventsClassPropertyActions - START

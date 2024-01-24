@@ -35,7 +35,6 @@ Created By: Travis Berthelot
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
 
-                        private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
                         //private final DisplayPointScalar displayPointScalar = DisplayPointScalar.getInstance();
 
                         private final Runnable runnable = new Runnable() {
@@ -46,7 +45,7 @@ Created By: Travis Berthelot
 
                                     gdNodeStatsFactory.push(0, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
 
-                                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 7; index++) {
+                                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5; index++) {
                                     <xsl:for-each select=".." >
                                         <xsl:for-each select="actions" >
                                             <xsl:variable name="hasTimerChildCondition" ><xsl:call-template name="hasTimerChildCondition" /></xsl:variable>
@@ -122,7 +121,7 @@ Created By: Travis Berthelot
                                             
                         //SourisSurObjet
                         @Override
-                        public boolean process(final MotionGestureEvent motionGestureEvent) throws Exception {
+                        public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                             super.processStats(motionGestureEvent);
 
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
@@ -158,14 +157,18 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                     </xsl:if>
                                     <xsl:if test="contains($press, 'found')" >
-                                    final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
-                                    if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
+                                    //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
+                                    if (lastMotionGestureInput == touchMotionGestureFactory.PRESSED) {
                                         
                                         <xsl:if test="not(contains($conditions, 'found'))" >
                                         //Assume press when not parent condition telling us.
                                         </xsl:if>
 
-                                        
+                                        //if(globals.currentButtonGDNodePressed != null) {
+                                        //    globals.currentButtonGDNodePressed.processReleased();
+                                        //}
+                                        //globals.currentButtonGDNodePressed = this;
+
                                         this.process();
                                         
                                         <!--
@@ -196,7 +199,7 @@ Created By: Travis Berthelot
                                         </xsl:for-each>
                                     -->
                                         
-                                    } else if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
+                                    } else if(lastMotionGestureInput == touchMotionGestureFactory.RELEASED) {
                                     
                                         this.processReleased();
                                     <!--
@@ -227,10 +230,10 @@ Created By: Travis Berthelot
                                     }
                                     </xsl:if>
                                     <xsl:if test="contains($release, 'found')" >
-                                    final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
-                                    if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
+                                    //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
+                                    if (lastMotionGestureInput == touchMotionGestureFactory.PRESSED) {
 
-                                    } else if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
+                                    } else if(lastMotionGestureInput == touchMotionGestureFactory.RELEASED) {
 
                                         runnable.run();
 
@@ -238,6 +241,12 @@ Created By: Travis Berthelot
                                     </xsl:if>
 
                                 } else {
+                                
+                                    <xsl:if test="contains($press, 'found')" >
+                                        //Release button when not in button area
+                                        this.processReleased();
+                                    </xsl:if>
+                                    
                                     <xsl:if test="$inverted = 'true'" >
                                     <xsl:if test="not(contains($press, 'found')) or contains($release, 'found')" >
                                         runnable.run();
