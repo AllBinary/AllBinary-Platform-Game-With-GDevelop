@@ -291,6 +291,13 @@ public class GDStructure {
                         <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
                     public BaseMotionGestureEventListener eventListenerInterfaceLastPoint;
                     public GDNode lastPointGDNode;
+                            
+                    public int inUseMotionEventListIndex = 0;
+                    public int processingMotionEventListIndex = 0;
+                    public BasicArrayList[] motionEventListOfList = {
+                        new BasicArrayList(),
+                        new BasicArrayList()
+                    };
                     </xsl:if>
 
                     //eventsClassPropertyActions - START

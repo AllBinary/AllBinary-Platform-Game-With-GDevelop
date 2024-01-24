@@ -85,6 +85,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.color.BasicColorSetUtil;
                 import org.allbinary.graphics.displayable.MyCanvas;
                 import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
+                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.input.motion.gesture.observer.MovedMotionGesturesHandler;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
@@ -172,6 +173,46 @@ Created By: Travis Berthelot
                         } else {
                             globals.timeDelta = System.currentTimeMillis() - globals.lastStartTime;
                         }
+
+                        if(globals.processingMotionEventListIndex == 0) {
+                            globals.processingMotionEventListIndex = 1;
+                            globals.inUseMotionEventListIndex = 0;
+                        } else {
+                            globals.processingMotionEventListIndex = 0;
+                            globals.inUseMotionEventListIndex = 1;
+                        }
+
+                        final BasicArrayList motionEventList = (BasicArrayList) globals.motionEventListOfList[globals.processingMotionEventListIndex];
+                        final int size10 = motionEventList.size();
+                        MotionGestureEvent motionGestureEvent;
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size10; index++) {
+                        
+                            motionGestureEvent = (MotionGestureEvent) motionEventList.get(index);
+                            globals.lastPointGDNode.process(motionGestureEvent);
+                
+        <xsl:for-each select="events" >
+
+            <xsl:for-each select="conditions" >
+                
+                <xsl:if test="type/value = 'MouseButtonReleased'" >
+                            //MouseButtonReleased - eventListener
+                            globals.mouseButtonReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent);
+                </xsl:if>
+                <xsl:if test="type/value = 'MouseButtonPressed'" >
+                            //MouseButtonPressed - eventListener
+                            globals.mouseButtonPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent);
+                </xsl:if>
+                <xsl:if test="type/value = 'SourisBouton'" >
+                            //SourisBouton - eventListener
+                            globals.mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent);
+                </xsl:if>
+                
+            </xsl:for-each>
+
+        </xsl:for-each>
+                    }
+                    motionEventList.clear();
+
 
                         GDNode gdNode;                        
                         final int size2 = globals.gdNodeWithRunnableList.size();
