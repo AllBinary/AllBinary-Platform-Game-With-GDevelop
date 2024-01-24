@@ -174,7 +174,7 @@ public class GDObject
 
         //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
         //stringBuilder.delete(0, stringBuilder.length());
-        //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, stringBuilder.append(CommonStrings.getInstance().EXCEPTION_LABEL).append('g').append(objectStrings.ANGLE).append(adjustedAngle).append(':').append(this.x).append(':').append(x).append(':').append(halfWidth).toString()));
+        //LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append('g').append(objectStrings.ANGLE).append(adjustedAngle).append(':').append(this.x).append(':').append(x).append(':').append(halfWidth).toString()));
         
         return this.x + x + this.halfWidth;
         //return this.x;

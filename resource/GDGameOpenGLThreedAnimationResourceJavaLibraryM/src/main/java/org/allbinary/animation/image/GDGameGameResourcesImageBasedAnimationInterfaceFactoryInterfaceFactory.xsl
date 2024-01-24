@@ -185,7 +185,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                     //GameAreaBoxUtil.getInstance().addAnimations(this);
 
                         } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                         }
 
         super.init(level);

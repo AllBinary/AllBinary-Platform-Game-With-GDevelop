@@ -165,7 +165,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
                     </xsl:call-template>
 
                         } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                         }
 
         super.init(level);

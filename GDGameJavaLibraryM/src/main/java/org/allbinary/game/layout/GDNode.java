@@ -44,7 +44,7 @@ public class GDNode
     
     public GDNode(final int name) {
         
-        //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START + name, this, CommonStrings.getInstance().CONSTRUCTOR));
+        //LogUtil.put(LogFactory.getInstance(commonStrings.START + name, this, commonStrings.CONSTRUCTOR));
         
         this.name = name;
         

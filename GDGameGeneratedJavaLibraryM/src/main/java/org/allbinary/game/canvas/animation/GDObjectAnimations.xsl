@@ -201,9 +201,9 @@ Created By: Travis Berthelot
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale)
                                 );
 
-//                LogUtil.put(LogFactory.getInstance("scale: " + scale, this, CommonStrings.getInstance().PROCESS));
-//                LogUtil.put(LogFactory.getInstance("hackScale: " + hackScale, this, CommonStrings.getInstance().PROCESS));
-//                LogUtil.put(LogFactory.getInstance("Rectangle: " + PlayerWarrior_IdleLeft_Animation1CollisionMask, this, CommonStrings.getInstance().PROCESS));
+//                LogUtil.put(LogFactory.getInstance("scale: " + scale, this, commonStrings.PROCESS));
+//                LogUtil.put(LogFactory.getInstance("hackScale: " + hackScale, this, commonStrings.PROCESS));
+//                LogUtil.put(LogFactory.getInstance("Rectangle: " + PlayerWarrior_IdleLeft_Animation1CollisionMask, this, commonStrings.PROCESS));
 
                 final int size = <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray.length;
                 final Rectangle[][] rectangleArrayOfArrays = new Rectangle[1][size];

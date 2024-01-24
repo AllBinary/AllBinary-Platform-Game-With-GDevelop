@@ -51,6 +51,8 @@ import org.allbinary.graphics.displayable.command.MyCommandsFactory;
 
 public class GDGame<GDLayout>CanvasRunnable implements Runnable
 {
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
+    
     private final GDGameMIDlet demoGameMidlet;
     private final Hashtable hashtable;
     
@@ -69,7 +71,7 @@ public class GDGame<GDLayout>CanvasRunnable implements Runnable
     {
         try
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START_RUNNABLE, this, CommonStrings.getInstance().RUN));
+            LogUtil.put(LogFactory.getInstance(commonStrings.START_RUNNABLE, this, commonStrings.RUN));
 
             this.demoGameMidlet.commandAction(
                     MyCommandsFactory.getInstance().SET_DISPLAYABLE,
@@ -94,11 +96,11 @@ public class GDGame<GDLayout>CanvasRunnable implements Runnable
             DemoGameMidletEventHandler.getInstance().fireEvent(
                     this.startGameMidletEvent);
             
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().END_RUNNABLE, this, CommonStrings.getInstance().RUN));
+            LogUtil.put(LogFactory.getInstance(commonStrings.END_RUNNABLE, this, commonStrings.RUN));
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().RUN, e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.RUN, e));
         }
     }
 }
