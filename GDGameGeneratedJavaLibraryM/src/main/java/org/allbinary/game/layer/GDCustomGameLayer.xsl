@@ -1174,6 +1174,7 @@ Created By: Travis Berthelot
                 if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
 
                 } else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
+                    if(<xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.size() > 0) {
                     final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.get(0);
                     //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Map: ").append(this.getName()).toString(), this, "move"));
                     
@@ -1188,14 +1189,16 @@ Created By: Travis Berthelot
 //                        //this.gdObject.setY(lastY);
 //                        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Back?: ").append(this.gdObject.x).append(CommonSeps.getInstance().COMMA).append(this.gdObject.y).toString(), this, "move"));
 //                    }
-
+                    }
                 } else {
+                    if(<xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.size() > 0) {
                     final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.get(0);
                     if(this == player) {
                         //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Player - Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move"));
                         //this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
                     } else {
                         super.move();
+                    }
                     }
                 }
             } else {
@@ -1240,6 +1243,7 @@ Created By: Travis Berthelot
                 if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
 
                 } else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
+                    if(<xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.size() > 0) {
                     final GDGameLayer player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.get(0);
                     //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move2"));
                     
@@ -1254,14 +1258,16 @@ Created By: Travis Berthelot
 //                        //this.gdObject.setY(lastY);
 //                        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Move Back?: ").append(this.gdObject.x).append(CommonSeps.getInstance().COMMA).append(this.gdObject.y).toString(), this, "move"));
 //                    }
-
+                    }
                 } else {
+                    if(<xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.size() > 0) {
                     final GDGameLayer Player = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" >Player</xsl:with-param></xsl:call-template>.PlayerGDGameLayerList.get(0);
                     if(this == Player) {
                         //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Player - Move Map: ").append(this.gdObject.x).append(",").append(this.gdObject.y).toString(), this, "move2"));
                         //this.topViewGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this, this.gdObject.x, this.gdObject.y);
                     } else {
                         super.move();
+                    }
                     }
                 }
             } else {
