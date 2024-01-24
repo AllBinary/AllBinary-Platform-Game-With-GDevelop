@@ -115,7 +115,7 @@ Created By: Travis Berthelot
             <!-- <xsl:if test="type/value != 'Timer' and type/value != '(Used when using the AllBinary Collision Processing) CollisionNP' and type/value != 'VarObjet' and type/value = 'NbObjet' and type/value = 'DepartScene' and type/value = 'SourisSurObjet' and type/value = 'MouseButtonReleased' and type/value = 'SourisBouton' and type/value = 'MouseButtonPressed'" >found</xsl:if> -->
             
             <!-- //foundOtherCondition=<xsl:value-of select="$foundOtherCondition" /> -->
-
+                
                 @Override
                 public boolean process() throws Exception {
                     super.processStats();
@@ -231,6 +231,168 @@ Created By: Travis Berthelot
                 
                     return true;
 
+                }                
+
+                @Override
+                public boolean process(final MotionGestureEvent motionGestureEvent) throws Exception {
+                    super.processStats(motionGestureEvent);
+
+                <xsl:if test="contains($foundOtherCondition, 'found') or contains($foundTimerCondition, 'found') or (contains($foundVarSceneCondition, 'found') and contains($foundLinkEvent, 'found'))" >
+                    <xsl:if test="not(whileConditions)" >
+                //Found conditions that need processing.
+                    
+                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
+                    <xsl:for-each select="conditions" >
+                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
+                        <xsl:if test="position() = 1" >
+                    //eventsCreateAssignGDObjectGDNodes - //Condition - //<xsl:value-of select="type/value" /> - press - call
+                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
+                        </xsl:if>
+                        <xsl:if test="position() = 2" >
+                    //eventsCreateAssignGDObjectGDNodes - //Condition - call - more ifs
+                        </xsl:if>
+                    </xsl:for-each>
+                    
+                    </xsl:if>
+                </xsl:if>
+
+                <xsl:if test="whileConditions" >
+                //whileConditions
+                    
+                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                    <xsl:for-each select="whileConditions" >
+                    //whileConditions - //<xsl:value-of select="type/value" /> - call
+                    while(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent)) {
+                    <xsl:for-each select="../conditions" >
+                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
+                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
+                    </xsl:for-each>
+                    }
+                    </xsl:for-each>
+                    
+                </xsl:if>
+
+                <xsl:if test="not(conditions)" >
+                <xsl:if test="not(actions)" >
+                //Events only - No actions or conditions
+
+                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                <xsl:for-each select="events" >
+                    <!-- CollisionNP is already handled. -->
+                    <xsl:variable name="eventWithBuilderCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = '(Used when using the AllBinary Collision Processing) CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                        //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
+                    <xsl:if test="not(contains($eventWithBuilderCondition, 'found'))" >
+                        //Events only - //Event - //<xsl:value-of select="type" /> - call
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
+                    </xsl:if>
+                    </xsl:if>
+                </xsl:for-each>
+
+                <!--
+                <xsl:for-each select="conditions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
+                    //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
+                </xsl:for-each>
+
+                <xsl:if test="actions" >
+                <xsl:for-each select="actions" >
+                    //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
+                    //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                    //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
+                </xsl:for-each>
+
+                <xsl:call-template name="actionIds" >
+                    <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                    <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
+                </xsl:call-template>
+
+                </xsl:if>
+                -->
+
+                </xsl:if>
+                </xsl:if>
+
+                <xsl:if test="not(whileConditions)" >
+                <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
+                <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
+
+                <xsl:if test="actions" >
+                //caller=<xsl:value-of select="$caller" /> //No used conditions so calling actions from event directly.
+<!--
+                motionGestureEvent
+                <xsl:call-template name="actionsWithIndexesProcess" >
+                    <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignXGDObjectGDNodesOtherEvent</xsl:with-param>
+                    <xsl:with-param name="layoutIndex" >
+                        <xsl:value-of select="$layoutIndex" />
+                    </xsl:with-param>
+                    <xsl:with-param name="parametersAsString" >
+                        <xsl:value-of select="$parametersAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="createdObjectsAsString" >
+                        <xsl:value-of select="$createdObjectsAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="objectsAsString" >
+                        <xsl:value-of select="$objectsAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="thisNodeIndex" >
+                        <xsl:value-of select="$thisNodeIndex" />
+                    </xsl:with-param>
+                </xsl:call-template>
+-->
+
+                </xsl:if>
+                
+                </xsl:if>
+                </xsl:if>
+                </xsl:if>
+
+                <xsl:if test="not(conditions)" >
+                <xsl:if test="not(actions)" >
+                //Events only - No actions or conditions                
+
+                <xsl:for-each select="events" >
+                    <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
+                        <xsl:variable name="childEventWithUsedEvent" ><xsl:call-template name="childEventWithUsedEvent" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="motionGestureEvent" >true</xsl:with-param></xsl:call-template></xsl:variable>
+                        <xsl:if test="$childEventWithUsedEvent != ''" >//<xsl:value-of select="$childEventWithUsedEvent" /></xsl:if>
+                        <xsl:if test="contains($childEventWithUsedEvent, 'found')" >
+                    //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
+                    //Event - //BuiltinCommonInstructions::Standard - call - motionGestureEvent - Used condition in children - 2
+                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
+                        </xsl:if>                  
+                    </xsl:if>
+                    <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+                    //Event - //BuiltinCommonInstructions::ForEach
+                    </xsl:if>
+                </xsl:for-each>
+
+                <xsl:for-each select="conditions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
+                    //Condition - //<xsl:value-of select="type/value" /> - call - motionGestureEvent
+                    //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
+                </xsl:for-each>
+
+                <xsl:if test="actions" >
+                <xsl:for-each select="actions" >
+                    //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
+                    //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                    //Action - //<xsl:value-of select="type/value" /> - call - motionGestureEvent
+                    //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
+                </xsl:for-each>
+
+                <xsl:call-template name="actionIds" >
+                    <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                    <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
+                </xsl:call-template>
+
+                </xsl:if>
+
+                </xsl:if>
+                </xsl:if>
+                    return true;                           
                 }
 
                 public boolean processGS(final GDGameLayer gameLayer, final Graphics graphics) {
@@ -344,53 +506,6 @@ Created By: Travis Berthelot
                     
                 }
                     </xsl:if>
-                </xsl:if>
-
-                <xsl:if test="not(conditions)" >
-                <xsl:if test="not(actions)" >
-                //Events only - No actions or conditions                
-                @Override
-                public void process(final MotionGestureEvent motionGestureEvent) throws Exception {
-                    super.processStats(motionGestureEvent);
-
-                <xsl:for-each select="events" >
-                    <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
-                        <xsl:variable name="childEventWithUsedEvent" ><xsl:call-template name="childEventWithUsedEvent" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="motionGestureEvent" >true</xsl:with-param></xsl:call-template></xsl:variable>
-                        <xsl:if test="$childEventWithUsedEvent != ''" >//<xsl:value-of select="$childEventWithUsedEvent" /></xsl:if>
-                        <xsl:if test="contains($childEventWithUsedEvent, 'found')" >
-                    //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
-                    //Event - //BuiltinCommonInstructions::Standard - call - motionGestureEvent - Used condition in children - 2
-                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
-                        </xsl:if>                  
-                    </xsl:if>
-                    <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
-                    //Event - //BuiltinCommonInstructions::ForEach
-                    </xsl:if>
-                </xsl:for-each>
-
-                <xsl:for-each select="conditions" >
-                    <xsl:variable name="typeValue" select="type/value" />
-                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
-                    //Condition - //<xsl:value-of select="type/value" /> - call - motionGestureEvent
-                    //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
-                </xsl:for-each>
-
-                <xsl:if test="actions" >
-                <xsl:for-each select="actions" >
-                    //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
-                    //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                    //Action - //<xsl:value-of select="type/value" /> - call - motionGestureEvent
-                    //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent);
-                </xsl:for-each>
-
-                <xsl:call-template name="actionIds" >
-                    <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                    <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
-                </xsl:call-template>
-
-                </xsl:if>
-                }
-                </xsl:if>
                 </xsl:if>
                 
                 </xsl:if>

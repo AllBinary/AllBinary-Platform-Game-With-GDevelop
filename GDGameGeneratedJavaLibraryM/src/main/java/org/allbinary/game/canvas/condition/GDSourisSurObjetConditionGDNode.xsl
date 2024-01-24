@@ -119,10 +119,10 @@ Created By: Travis Berthelot
                         </xsl:if>
                         
                         }
-                                                                        
+                                            
                         //SourisSurObjet
                         @Override
-                        public void process(final MotionGestureEvent motionGestureEvent) throws Exception {
+                        public boolean process(final MotionGestureEvent motionGestureEvent) throws Exception {
                             super.processStats(motionGestureEvent);
 
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
@@ -250,6 +250,8 @@ Created By: Travis Berthelot
                             //}
                                     </xsl:if>
                                 </xsl:for-each>
+                                
+                            return true;
                         }
                                                 
                     };

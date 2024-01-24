@@ -1150,7 +1150,7 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($childEventWithUsedEvent, 'found') and contains($hasSourisSurObjetCondition, 'found')" >
                         //SourisSurObjet - motionGestureEvent
                         @Override
-                        public void process(final MotionGestureEvent motionGestureEvent) throws Exception {
+                        public boolean process(final MotionGestureEvent motionGestureEvent) throws Exception {
                             super.processStats(motionGestureEvent);
                             
                             //Conditions - START
@@ -1164,6 +1164,7 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                             //Conditions - END
                         
+                            return true;
                         }
                         </xsl:if>
 

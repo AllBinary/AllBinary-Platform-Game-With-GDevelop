@@ -79,6 +79,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.CollidableCompositeLayer;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.DisplayUtil;
+                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.logic.string.CommonStrings;
                 import org.allbinary.logic.string.CommonSeps;
                 import org.allbinary.logic.string.StringUtil;

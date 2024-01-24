@@ -55,7 +55,7 @@ Created By: Travis Berthelot
                             return true;
                         }
                         
-                        public void process(final MotionGestureEvent motionGestureEvent) throws Exception {
+                        public boolean process(final MotionGestureEvent motionGestureEvent) throws Exception {
                             <xsl:for-each select=".." >
 
                             <xsl:for-each select="conditions" >
@@ -82,6 +82,8 @@ Created By: Travis Berthelot
                             </xsl:if>
                             
                             </xsl:for-each>
+                            
+                            return true;
                         }
 
                         

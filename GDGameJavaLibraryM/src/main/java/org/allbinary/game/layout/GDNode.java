@@ -99,7 +99,8 @@ public class GDNode
         return false;
     }
     
-    public void process(final MotionGestureEvent motionGestureEvent) throws Exception {
+    public boolean process(final MotionGestureEvent motionGestureEvent) throws Exception {
+        return false;
     }
 
     public void processStats(final MotionGestureEvent motionGestureEvent) {
