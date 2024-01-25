@@ -66,9 +66,10 @@ public class GDObject
         
     public boolean updateSinceSetAngle;
     
-    public GDObject(final String unknown, final int x, final int y, final int width, final int height, final String name, final String type) {
+    public GDObject(final String unknown, final int x, final int y, final int zOrder, final int width, final int height, final String name, final String type) {
         this.x = x;
         this.y = y;
+        this.zOrder = zOrder;
         this.width = width;
         this.height = height;
         this.halfWidth = width / 2;

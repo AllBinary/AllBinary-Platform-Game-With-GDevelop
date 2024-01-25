@@ -193,6 +193,8 @@ Created By: Travis Berthelot
                                 //updateGDObject - 3
                                 <xsl:value-of select="$gameLayer" />.updateGDObject(globals.timeDelta);
                                 
+                                //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$gameLayer" />.gdObject.zOrder" + <xsl:value-of select="$gameLayer" />.gdObject.zOrder, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$gameLayer" />.getZ()" + <xsl:value-of select="$gameLayer" />.getZ(), this, commonStrings.PROCESS));
                                 allBinaryGameLayerManager.insert(<xsl:value-of select="$gameLayer" />);
 
                                 //objectsGroupsGDGameLayer - START

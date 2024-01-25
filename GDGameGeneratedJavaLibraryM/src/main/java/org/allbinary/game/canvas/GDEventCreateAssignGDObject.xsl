@@ -64,6 +64,18 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
+                    //zOrder - <xsl:value-of select="zOrder" />
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = last()" >
+                            //last=<xsl:value-of select="text()" />
+                            <xsl:if test="not(text())" >
+                    6,
+                            </xsl:if>
+                            <xsl:if test="contains(text(), 'Overlay')" >
+                    Integer.MAX_VALUE,
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
                     //Objects have sprite name
                             <xsl:if test="contains($objectsAsString, $spriteName)" >
                                 //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f),
@@ -178,6 +190,18 @@ Created By: Travis Berthelot
                                 (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth() * scale),
                                 (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight() * scale),
                             </xsl:if>
+                            //zOrder is not available for create by name - <xsl:value-of select="zOrder" />
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = last()" >
+                            //last=<xsl:value-of select="text()" />
+                            <xsl:if test="not(text())" >
+                    6,
+                            </xsl:if>
+                            <xsl:if test="contains(text(), 'Overlay')" >
+                    Integer.MAX_VALUE,
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
                             <xsl:if test="not(contains($objectsAsString, $spriteName))" >
                                 0, 0,
                             </xsl:if>
