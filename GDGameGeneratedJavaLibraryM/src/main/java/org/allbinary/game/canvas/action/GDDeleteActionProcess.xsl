@@ -92,10 +92,15 @@ Created By: Travis Berthelot
                             return true;
                         }
             
+                        //Using parameters from CollisionNP
                         @Override
-                        public boolean processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final GDGameLayer gameLayer2, final Graphics graphics) {
+                        <xsl:if test="../conditions[type/value = 'CollisionNP']" >
+                        public boolean processGD(final GDGameLayer <xsl:value-of select="../conditions[type/value = 'CollisionNP']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="../conditions[type/value = 'CollisionNP']/parameters[2]" />GDGameLayer, final Graphics graphics) {
+                        </xsl:if>
+                        <xsl:if test="not(../conditions[type/value = 'CollisionNP'])" >
+                        public boolean processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final GDGameLayer gdGameLayer, final Graphics graphics) {
+                        </xsl:if>
                             super.processGDStats(<xsl:value-of select="$name" />GDGameLayer);
-                        
                             try {
 
                             <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>

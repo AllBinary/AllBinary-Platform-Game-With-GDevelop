@@ -162,7 +162,7 @@ Created By: Travis Berthelot
 
                         if(gameLayer2.getCollidableInferface().isCollision(gameLayer)) {
                             
-                            gameGlobals.gameLayer2 = gameLayer2;
+                            gameGlobals.gameLayer2 = gameLayer;
 
                             ((GDCustomGameLayer) gameLayer2).<xsl:value-of select="parameters[1]/text()" /><xsl:value-of select="parameters[2]/text()" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />ProcessGDCollision();
                             //name=<xsl:value-of select="name()" />
