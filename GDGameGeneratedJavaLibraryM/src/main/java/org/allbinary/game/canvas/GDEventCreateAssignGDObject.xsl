@@ -88,16 +88,8 @@ Created By: Travis Berthelot
                             </xsl:if>
                     //parameters2
                     <xsl:for-each select="parameters" >
-                        <xsl:if test="position() != 2" >                            
-                            <xsl:if test="position() = last()" >
-                                <xsl:if test="string-length(text()) = 0" >
-                                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME
-                                    //createString
-                                </xsl:if>
-                                <xsl:if test="string-length(text()) > 0" >
-                                    <xsl:value-of select="text()" />
-                                </xsl:if>
-                            </xsl:if>
+                        <xsl:if test="position() = 2" >
+                            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>_OBJECT_NAME
                         </xsl:if>
                     </xsl:for-each>);
 
