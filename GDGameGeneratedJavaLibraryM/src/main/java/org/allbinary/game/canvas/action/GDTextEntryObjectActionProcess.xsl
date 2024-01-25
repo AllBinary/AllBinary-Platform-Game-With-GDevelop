@@ -33,7 +33,7 @@ Created By: Travis Berthelot
                         @Override
                         public boolean process() throws Exception {
                             LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                            ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).stringMaker.delete(0, ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).stringMaker.length());
+                            ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry) ((GDGameLayer) globals.TextEntryGDGameLayerList.get(0)).gdObject).stringMaker.delete(0, ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry) ((GDGameLayer) globals.TextEntrGDGameLayerList.get(0)).gdObject).stringMaker.length());
 
                             return true;
                         }
@@ -48,7 +48,7 @@ Created By: Travis Berthelot
                             if(hasReleased[key]) {
                                 //LogUtil.put(LogFactory.getInstance("append: " + keyAsInteger, this, commonStrings.PROCESS));
                                 hasReleased[key] = false;
-                                ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry) globals.TextEntryGDObjectList.get(0)).stringMaker.append((char) key);
+                                ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.TextEntry) ((GDGameLayer) globals.TextEntryGDGameLayerList.get(0)).gdObject).stringMaker.append((char) key);
                             } else {
                                 //LogUtil.put(LogFactory.getInstance("not append: " + keyAsInteger, this, commonStrings.PROCESS));
                             }

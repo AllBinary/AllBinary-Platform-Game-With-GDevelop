@@ -197,7 +197,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                     <xsl:if test="content/generator = 'DungeonGenerator'" >
         //"generator": "DungeonGenerator",
         if(!gameGlobals.RandomDungeon) {
-            final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) globals.<xsl:value-of select="name" />GDObjectList.get(0);
+            final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject);
             final int size = platformerMap.placementIntArray.length;
             for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                 platformerMap.placementXIntArray[index] *= 2;
@@ -220,7 +220,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                     <xsl:if test="content/generator = 'SameSizeGenerator'" >
         //"generator": "SameSizeGenerator",
         if(!gameGlobals.RandomDungeon) {
-            final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) globals.<xsl:value-of select="name" />GDObjectList.get(0);
+            final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject);
             final int size = platformerMap.placementIntArray.length;
             for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                 platformerMap.placementXIntArray[index] *= 2;
@@ -446,7 +446,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         //LogUtil.put(LogFactory.getInstance("Find Start Position", this, commonStrings.PROCESS));
 
         final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-        final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) globals.<xsl:value-of select="name" />GDObjectList.get(0);
+        final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject);
         int otherPlacementTotal = 0;
         int placementTotal = 0;
         int placementMax = 0;
@@ -688,7 +688,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         final GDCustomGameLayer <xsl:value-of select="name" />GDGameLayer = (GDCustomGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0);
         final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) <xsl:value-of select="name" />GDGameLayer.gdObject;
-        //final GDObject Wall = (GDObject) globals.WallGDObjectList.get(0);
+        //final GDObject Wall = (GDObject) ((GDGameLayer) globals.WallGDGameLayerList.get(0)).gdObject;
         //final GDGameLayer wallGDGameLayer = (GDGameLayer) globals.WallGDGameLayerList.get(0);
 
         final AllBinaryTiledLayer allBinaryTiledLayer = geographicMapInterfaceArray[layerIndex].getAllBinaryTiledLayer();

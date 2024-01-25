@@ -48,7 +48,7 @@ Created By: Travis Berthelot
                             //LogUtil.put(LogFactory.getInstance(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).toString(), this, commonStrings.PROCESS));
 
                             <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text() " disable-output-escaping="yes" /></xsl:if></xsl:for-each></xsl:variable>
-                            final GDObject <xsl:value-of select="$name" />GDobject = (GDObject) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectList.get(0);
+                            final GDObject <xsl:value-of select="$name" />GDobject = (GDObject) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(0)).gdObject;
 
                             if(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" />) <xsl:if test="position() = 1" ><xsl:value-of select="text() " disable-output-escaping="yes" />GDobject</xsl:if>).</xsl:if><xsl:if test="position() != 1" ><xsl:value-of select="text() " disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 2" >.length</xsl:if></xsl:for-each>) {
 
