@@ -45,7 +45,7 @@ Created By: Travis Berthelot
 
                                     gdNodeStatsFactory.push(0, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
 
-                                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5; index++) {
+                                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 3; index++) {
                                     <xsl:for-each select=".." >
                                         <xsl:for-each select="actions" >
                                             <xsl:variable name="hasTimerChildCondition" ><xsl:call-template name="hasTimerChildCondition" /></xsl:variable>

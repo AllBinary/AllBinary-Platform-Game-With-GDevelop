@@ -117,6 +117,10 @@ Created By: Travis Berthelot
                                 </xsl:variable>
 
                                 <xsl:if test="contains($hasActionOtherThanCreate, 'found')" >
+                                
+                                if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.size() == 0) {
+                                    return false;
+                                }
                                 final GDGameLayer gdGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(0));
                                 </xsl:if>
 

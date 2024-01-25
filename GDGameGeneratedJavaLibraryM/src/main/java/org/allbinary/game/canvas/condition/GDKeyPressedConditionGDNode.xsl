@@ -46,7 +46,7 @@ Created By: Travis Berthelot
                                 {
                                     this.releasedGameInputProcessor.process(allbinaryLayerManager, gameKeyEvent);
                                 
-                                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5; index++) {
+                                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 3; index++) {
                             <xsl:for-each select="../events" >
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                                     //...Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
