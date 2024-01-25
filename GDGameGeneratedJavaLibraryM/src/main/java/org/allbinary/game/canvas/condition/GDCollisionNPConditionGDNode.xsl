@@ -138,22 +138,24 @@ Created By: Travis Berthelot
                                         
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
-                    final int <xsl:value-of select="text()" />Size = gdGameLayerList2.size();
+                    //final int <xsl:value-of select="text()" />Size = gdGameLayerList2.size();
                         </xsl:if>
                     </xsl:for-each>
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
-                    final int <xsl:value-of select="text()" />Size2 = gdGameLayerList.size();
+                    //final int <xsl:value-of select="text()" />Size2 = gdGameLayerList.size();
                         </xsl:if>
                     </xsl:for-each>
 
-                    for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />Size</xsl:if></xsl:for-each>; index2++) {
+                    //for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />Size</xsl:if></xsl:for-each>; index2++) {
+                    for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList2.size(); index2++) {
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                         final GDGameLayer gameLayer2 = (GDGameLayer) gdGameLayerList2.get(index2);
                         </xsl:if>
                     </xsl:for-each>
-                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" />Size2</xsl:if></xsl:for-each>; index++) {
+                    //for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" />Size2</xsl:if></xsl:for-each>; index++) {
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size(); index++) {
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                         final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(index);
