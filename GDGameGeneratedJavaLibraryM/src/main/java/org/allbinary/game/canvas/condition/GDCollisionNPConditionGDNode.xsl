@@ -162,6 +162,8 @@ Created By: Travis Berthelot
 
                         if(gameLayer2.getCollidableInferface().isCollision(gameLayer)) {
                             
+                            gameGlobals.gameLayer2 = gameLayer2;
+
                             ((GDCustomGameLayer) gameLayer2).<xsl:value-of select="parameters[1]/text()" /><xsl:value-of select="parameters[2]/text()" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />ProcessGDCollision();
                             //name=<xsl:value-of select="name()" />
         
@@ -174,12 +176,12 @@ Created By: Travis Berthelot
             //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                 <xsl:text>&#10;</xsl:text>
             //Action - //<xsl:value-of select="type/value" /> - call
-            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGS(gameLayer2, null);
+            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer2, null, null);
             </xsl:for-each>
             
             <xsl:for-each select="events" >
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGS(gameLayer2, null);
+            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer2, null, null);
             </xsl:for-each>
             </xsl:for-each>
             </xsl:for-each>
@@ -193,12 +195,12 @@ Created By: Travis Berthelot
             //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                 <xsl:text>&#10;</xsl:text>
             //Action - //<xsl:value-of select="type/value" /> - call
-            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGS(gameLayer2, null);
+            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer2, null, null);
             </xsl:for-each>
             
             <xsl:for-each select="events" >
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGS(gameLayer2, null);
+            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer2, null, null);
             </xsl:for-each>
             </xsl:for-each>
                             </xsl:if>

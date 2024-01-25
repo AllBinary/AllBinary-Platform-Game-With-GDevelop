@@ -153,6 +153,7 @@ Created By: Travis Berthelot
                         public final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_GROUPS_NAME);
                         public final BasicArrayList <xsl:value-of select="name" />GDObjectListOfList = new BasicArrayList();
                         public final BasicArrayList <xsl:value-of select="name" />GDGameLayerListOfList = new BasicArrayList();
+                        public final BasicArrayList <xsl:value-of select="name" />GDGameLayerRemoveListOfList = new BasicArrayList();
                         public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerListOfList = new BasicArrayList();
                         public final BasicArrayList <xsl:value-of select="name" />GDConditionWithGroupActionsList = new BasicArrayList();
                         <xsl:for-each select="objects" >
@@ -262,6 +263,7 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>
 
                     private final LayerManagerEventListener layerManagerEventListener;
+                    public GDGameLayer gameLayer2;
                                      
                     private GDGameGlobals() {
                     

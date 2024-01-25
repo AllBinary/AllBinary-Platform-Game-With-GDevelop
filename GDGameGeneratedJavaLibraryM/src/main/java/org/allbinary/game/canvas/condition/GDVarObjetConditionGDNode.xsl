@@ -125,10 +125,10 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public boolean processGS(final GDGameLayer gameLayer, final Graphics graphics) {
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) {
 
                             try {
-                                super.processGStats(gameLayer.gdObject, graphics);
+                                super.processGDStats(gameLayer);
                         
                                 return this.processGPaint(gameLayer.gdObject, graphics);
                             } catch(Exception e) {

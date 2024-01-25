@@ -513,7 +513,7 @@ Created By: Travis Berthelot
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.get(index);
-            node.processGD(this, null);
+            node.processGD(this, gameGlobals.gameLayer2, null);
         }
     }
                 </xsl:if>
@@ -528,7 +528,7 @@ Created By: Travis Berthelot
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.get(index);
-            node.processGD(this, null);
+            node.processGD(this, gameGlobals.gameLayer2, null);
         }
     }
                 </xsl:if>
@@ -586,7 +586,7 @@ Created By: Travis Berthelot
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.get(index);
-            node.processGS(this, null);
+            node.processGD(this, gameGlobals.gameLayer2, null);
         }
     }
                 </xsl:if>
@@ -601,7 +601,7 @@ Created By: Travis Berthelot
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.get(index);
-            node.processGS(this, null);
+            node.processGD(this, gameGlobals.gameLayer2, null);
         }
     }
                 </xsl:if>
@@ -662,7 +662,7 @@ Created By: Travis Berthelot
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.get(index);
-            node.processGS(this, null);
+            node.processGD(this, gameGlobals.gameLayer2, null);
         }
     }
                 </xsl:if>
@@ -677,7 +677,7 @@ Created By: Travis Berthelot
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.get(index);
-            node.processGS(this, null);
+            node.processGD(this, gameGlobals.gameLayer2, null);
         }
     }
                 </xsl:if>
@@ -771,6 +771,7 @@ Created By: Travis Berthelot
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >implements org.allbinary.game.behavior.topview.TopViewCharacterInterface </xsl:if>
                 {
                     private final BasicGeographicMapUtil basicGeographicMapUtil = BasicGeographicMapUtil.getInstance();
+                    private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -1044,7 +1045,6 @@ Created By: Travis Berthelot
 //                        );
         </xsl:if>
 
-        final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
 
@@ -1138,7 +1138,6 @@ Created By: Travis Berthelot
         try {
             //LogUtil.put(LogFactory.getInstance("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move"));
 
-//            final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 //            if(gameGlobals.PlayerGDGameLayerList.size() >= 0) {
 //                final GDGameLayer player = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
 //                if(this == player) {
@@ -1154,7 +1153,6 @@ Created By: Travis Berthelot
 //            }
 
             if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
-            final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
             if(this.allBinaryGameLayerManager == null) {
                 if(total <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5) {
@@ -1225,7 +1223,6 @@ Created By: Travis Berthelot
             //LogUtil.put(LogFactory.getInstance("Move Map: " + this.gdObject.x + "," + this.gdObject.y, this, "move2"));
 
             if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
-            final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
             if(this.allBinaryGameLayerManager == null) {
                 LogUtil.put(LogFactory.getInstance(new StringMaker().append("1LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));

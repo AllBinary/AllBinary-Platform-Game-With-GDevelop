@@ -163,20 +163,7 @@ Created By: Travis Berthelot
                     }
 
                     @Override
-                    public boolean processGS(final GDGameLayer gameLayer, final Graphics graphics) {
-
-                        try {
-                            super.processGStats(gameLayer.gdObject, graphics);
-                            this.processGD(gameLayer, graphics);
-                            return true;
-                        } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
-                        }
-                        return false;
-                    }
-
-                    @Override
-                    public void processGD(final GDGameLayer gameLayer, final Graphics graphics) {
+                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) {
                         super.processGDStats(gameLayer);
 
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
@@ -263,6 +250,8 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                         
                         </xsl:if>
+                        
+                        return true;
                     }
 
                     @Override

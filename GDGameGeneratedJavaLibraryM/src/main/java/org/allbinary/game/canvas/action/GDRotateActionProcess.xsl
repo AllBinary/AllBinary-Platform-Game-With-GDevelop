@@ -96,12 +96,12 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:for-each>
                 if(siblingConditions) {
-                    this.processGD(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)), globals.graphics);
+                    this.processGD(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)), null, globals.graphics);
                 }
         </xsl:if>
 
         <xsl:if test="not(../conditions)" >
-                                this.processGD(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)), globals.graphics);
+                                this.processGD(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)), null, globals.graphics);
         </xsl:if>
                                 //updateGDObject - 5
                                 gameLayer.updateGDObject(globals.timeDelta);
@@ -218,10 +218,10 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public boolean processGS(final GDGameLayer gameLayer, final Graphics graphics) {
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) {
 
                             try {
-                                super.processGStats(gameLayer.gdObject, graphics);
+                                super.processGDStats(gameLayer);
                         
                                 return this.processGPaint(gameLayer.gdObject, graphics);
                             } catch(Exception e) {

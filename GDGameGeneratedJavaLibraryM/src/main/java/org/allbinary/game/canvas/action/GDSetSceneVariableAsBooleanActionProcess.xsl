@@ -31,6 +31,15 @@ Created By: Travis Berthelot
                         return true;
                     }
 
+                    @Override
+                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) {
+                        try {
+                            this.process();
+                        } catch(Exception e) {
+                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                        }
+                        return true;                   
+                    }
     </xsl:template>
 
 </xsl:stylesheet>

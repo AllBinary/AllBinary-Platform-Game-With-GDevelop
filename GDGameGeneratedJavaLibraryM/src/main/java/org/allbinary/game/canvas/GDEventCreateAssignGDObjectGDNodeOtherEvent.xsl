@@ -395,21 +395,23 @@ Created By: Travis Berthelot
                     return true;                           
                 }
 
-                public boolean processGS(final GDGameLayer gameLayer, final Graphics graphics) {
-                    //super.processGDStats(gameLayer);
+                @Override
+                public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) {
+                    super.processGDStats(gameLayer);
 
                 <xsl:for-each select="conditions" >
                     <xsl:variable name="typeValue" select="type/value" />
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
-                    //Condition - //<xsl:value-of select="type/value" /> - call - motionGestureEvent
-                    if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGS(gameLayer, graphics)) {
+                    //Condition - //<xsl:value-of select="type/value" /> - call
+                    gameGlobals.gameLayer2 = null;
+                    if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer, null, graphics)) {
                 </xsl:for-each>
 
                 <xsl:for-each select="actions" >
                     //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
                     //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                    //Action - //<xsl:value-of select="type/value" /> - call - motionGestureEvent
-                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGS(gameLayer, graphics);
+                    //Action - //<xsl:value-of select="type/value" /> - call
+                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer, gameGlobals.gameLayer2, graphics);
                 </xsl:for-each>
 
                 <xsl:for-each select="events" >
@@ -418,8 +420,8 @@ Created By: Travis Berthelot
                         <xsl:if test="$childEventWithUsedEvent != ''" >//<xsl:value-of select="$childEventWithUsedEvent" /></xsl:if>
                         <xsl:if test="contains($childEventWithUsedEvent, 'found')" >
                     //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if>
-                    //Event - //BuiltinCommonInstructions::Standard - call - motionGestureEvent - Used condition in children - 2
-                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGS(gameLayer, graphics);
+                    //Event - //BuiltinCommonInstructions::Standard - call - Used condition in children - 2
+                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer, gameGlobals.gameLayer2, graphics);
                         </xsl:if>                  
                     </xsl:if>
                     <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >

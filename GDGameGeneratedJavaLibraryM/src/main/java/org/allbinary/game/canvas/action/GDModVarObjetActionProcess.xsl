@@ -118,7 +118,7 @@ Created By: Travis Berthelot
                     }        
 
                     @Override
-                    public void processGD(final GDGameLayer gameLayer, final Graphics graphics) {
+                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) {
                         super.processGDStats(gameLayer);
 
                         <!-- <xsl:if test="$secondParam = 'opacity'" > -->
@@ -188,7 +188,7 @@ Created By: Travis Berthelot
                         <!-- <xsl:if test="$secondParam = 'opacity'" > -->
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_IS_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" />) gameLayer.gdObject).</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>, this, commonStrings.PROCESS));
                         <!-- </xsl:if> -->
-                        //return true;
+                        return true;
                     }        
 
     </xsl:template>

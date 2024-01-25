@@ -43,7 +43,7 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                 </xsl:call-template>
 
-                                this.processGD(<xsl:value-of select="$name" />GDGameLayer, globals.graphics);
+                                this.processGD(<xsl:value-of select="$name" />GDGameLayer, null, globals.graphics);
 
             <xsl:if test="../actions" >
                                 }
@@ -79,7 +79,7 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                 </xsl:call-template>
 
-                            this.processGD(<xsl:value-of select="$name" />GDGameLayer, globals.graphics);
+                            this.processGD(<xsl:value-of select="$name" />GDGameLayer, null, globals.graphics);
                             return true;
 
             <xsl:if test="../actions" >
@@ -96,7 +96,7 @@ Created By: Travis Berthelot
                         private final String ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "processGD - " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
                         @Override
-                        public void processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final Graphics graphics) {
+                        public boolean processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final GDGameLayer gameLayer2, final Graphics graphics) {
                             super.processGDStats(<xsl:value-of select="$name" />GDGameLayer);
 
                             try {
@@ -195,6 +195,8 @@ Created By: Travis Berthelot
                             //13
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
+                                
+                            return true;
 
                         }
         

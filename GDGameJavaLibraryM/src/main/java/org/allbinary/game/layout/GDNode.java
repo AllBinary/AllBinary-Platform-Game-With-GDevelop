@@ -164,10 +164,6 @@ public class GDNode
     public boolean processG(final GDObject gdObject, final BasicArrayList gdGameLayerList, final int gdObjectIndex, final Graphics graphics) {
         return false;
     }
-
-    public boolean processGS(final GDGameLayer gameLayer, final Graphics graphics) {
-        return false;
-    }
     
     public boolean processGPaint(final GDObject gdObject, final Graphics graphics) {
         return false;
@@ -189,9 +185,9 @@ public class GDNode
         this.nodeStatsFactory.push(14, name);
     }
     
-    public void processGD(final GDGameLayer gameLayer, final Graphics graphics) {
+    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) {
         this.processGDStats(gameLayer);
-        this.processGS(gameLayer, graphics);
+        return false;
     }
     
     public void processGDStats(final GDGameLayer gameLayer) {
