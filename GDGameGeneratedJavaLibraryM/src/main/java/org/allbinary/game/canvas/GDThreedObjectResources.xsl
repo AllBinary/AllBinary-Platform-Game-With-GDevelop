@@ -101,6 +101,7 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
                         //TWB - int the future add image dimensions to the game.xml.
                         <xsl:for-each select="directions" >
+                            //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
                             <xsl:for-each select="sprites" >
                     new Rectangle(pointFactory.ZERO_ZERO, 
                                 <xsl:if test="originPoint/x = 0" >0</xsl:if>
@@ -113,6 +114,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
                         <xsl:for-each select="directions" >
+                            //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
                             <xsl:for-each select="sprites" >
                     //new Rectangle(pointFactory.ZERO_ZERO, (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f), (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f)),
                     new Rectangle(pointFactory.ZERO_ZERO, 

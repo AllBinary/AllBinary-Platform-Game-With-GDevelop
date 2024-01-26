@@ -36,9 +36,7 @@ Created By: Travis Berthelot
                         
             <xsl:for-each select="animations" >
                 <xsl:for-each select="directions" >
-<!--                
-                    //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
--->
+
                     <xsl:for-each select="sprites" >
 <!--         
                 //image=<xsl:value-of select="image" /> hasCustomCollisionMask=<xsl:value-of select="hasCustomCollisionMask" />

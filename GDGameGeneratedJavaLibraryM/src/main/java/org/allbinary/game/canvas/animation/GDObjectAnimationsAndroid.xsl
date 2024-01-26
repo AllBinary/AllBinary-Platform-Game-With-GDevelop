@@ -189,6 +189,7 @@ Created By: Travis Berthelot
                     <xsl:if test="string-length(name) > 0" >
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:for-each select="directions" >
+                        //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
                         <xsl:for-each select="sprites" >
                             <xsl:if test="position() = 1" >
                             <xsl:variable name="position" ><xsl:value-of select="position()" /></xsl:variable>
