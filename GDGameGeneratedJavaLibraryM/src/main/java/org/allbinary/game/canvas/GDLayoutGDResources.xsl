@@ -61,6 +61,7 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.game.canvas;
 
+                import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
                 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
                 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
@@ -74,8 +75,8 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDCustomGameLayerFactory;
                 import org.allbinary.game.identification.Group;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
-                import org.allbinary.game.layer.AnimationBehavior;
-                import org.allbinary.game.layer.AnimationBehaviorBase;
+                import org.allbinary.game.layer.GDAnimationBehavior;
+                import org.allbinary.game.layer.GDAnimationBehaviorBase;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
@@ -153,6 +154,8 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
+
+                        super(AnimationBehavior.getInstance());
 
                         //try {
                         

@@ -287,6 +287,10 @@ Created By: Travis Berthelot
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                 <xsl:for-each select="animations" >
+                    <xsl:for-each select="directions" >
+                    //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
+                    </xsl:for-each>
+                    
                     //<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray[<xsl:value-of select="position()" /> - 1] = ;
                     new AllBinaryAndroidImageRotationAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],

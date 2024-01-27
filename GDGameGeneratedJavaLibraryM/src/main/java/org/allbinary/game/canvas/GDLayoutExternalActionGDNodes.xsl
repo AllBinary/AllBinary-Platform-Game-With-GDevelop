@@ -71,6 +71,7 @@ Created By: Travis Berthelot
                 import org.json.me.JSONObject;
                 import org.json.me.JSONTokener;
 
+                import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDNode;
@@ -118,6 +119,8 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
                         
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+
+                        super(AnimationBehavior.getInstance());
 
                         try {
                         

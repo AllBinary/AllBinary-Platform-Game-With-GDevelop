@@ -39,7 +39,7 @@ public class GDGameLayerFactory
     protected final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray;
     protected final Rectangle layerInfo;
     protected final Rectangle[][] rectangleArrayOfArrays;
-    protected final AnimationBehaviorBase animationBehavior;
+    protected final GDAnimationBehaviorBase animationBehavior;
     
     protected final BasicArrayList gameLayerList;
     protected final BasicArrayList gameLayerDestroyedList;
@@ -51,7 +51,7 @@ public class GDGameLayerFactory
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo,
             final Rectangle[][] rectangleArrayOfArrays) {
-        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, new RotationBehavior());
+        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, new GDRotationBehavior());
     }
     
     public GDGameLayerFactory(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
@@ -61,7 +61,7 @@ public class GDGameLayerFactory
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo, 
             final Rectangle[][] rectangleArrayOfArrays,
-            final AnimationBehaviorBase animationBehavior) {
+            final GDAnimationBehaviorBase animationBehavior) {
         
         this.groupInterface = groupInterface;
         this.behaviorList = behaviorList;

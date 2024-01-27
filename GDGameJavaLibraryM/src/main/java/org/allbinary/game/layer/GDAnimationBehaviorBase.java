@@ -25,14 +25,14 @@ import org.allbinary.logic.communication.log.LogUtil;
  *
  * @author User
  */
-public class AnimationBehaviorBase {
+public class GDAnimationBehaviorBase {
 
-    private static final AnimationBehaviorBase instance = new AnimationBehaviorBase();
+    private static final GDAnimationBehaviorBase instance = new GDAnimationBehaviorBase();
 
     /**
      * @return the instance
      */
-    public static AnimationBehaviorBase getInstance() {
+    public static GDAnimationBehaviorBase getInstance() {
         return instance;
     }
     
@@ -68,7 +68,7 @@ public class AnimationBehaviorBase {
         
     }
 
-    public void animate(final GDObject gdObject, final IndexedAnimation[] initIndexedAnimationInterfaceArray) {
+    public void animate(final GDObject gdObject, final IndexedAnimation[] initIndexedAnimationInterfaceArray, final long timeDelta) {
     
     }
 

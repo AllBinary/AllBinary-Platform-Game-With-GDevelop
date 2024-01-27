@@ -71,6 +71,9 @@ Created By: Travis Berthelot
                 <xsl:variable name="hasMoreThanOneImage" >found</xsl:variable>
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                 <xsl:for-each select="animations" >
+                    <xsl:for-each select="directions" >
+                    //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
+                    </xsl:for-each>
                     //<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray[<xsl:value-of select="position()" /> - 1] = ;
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                     new OneRow<xsl:value-of select="$platform" />SpriteIndexedAnimationFactory(
@@ -87,6 +90,9 @@ Created By: Travis Berthelot
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight(),
                     angleIncrement
                     </xsl:if>
+                    <xsl:for-each select="directions" >,
+                    new IndexedAnimationBehavior(<xsl:if test="looping" >-1</xsl:if><xsl:if test="not(looping)" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
+                    </xsl:for-each>
                     )<xsl:if test="position() != last()" >,</xsl:if>
                 </xsl:for-each>
                 };
@@ -190,7 +196,6 @@ Created By: Travis Berthelot
                     <xsl:if test="string-length(name) > 0" >
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:for-each select="directions" >
-                        //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
                         <xsl:for-each select="sprites" >
                             <xsl:if test="position() = 1" >
                             <xsl:variable name="position" ><xsl:value-of select="position()" /></xsl:variable>

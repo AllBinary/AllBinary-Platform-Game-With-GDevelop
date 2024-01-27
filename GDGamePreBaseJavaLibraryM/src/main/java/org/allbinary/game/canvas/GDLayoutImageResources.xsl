@@ -66,8 +66,9 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Image;
 
-                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
+                import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
                 import org.allbinary.game.resource.GDResources;
                 import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.PointFactory;
@@ -125,6 +126,8 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources() throws Exception {
+
+                        super(AnimationBehavior.getInstance());
 
                         //try {
                         

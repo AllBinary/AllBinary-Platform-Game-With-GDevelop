@@ -23,11 +23,11 @@ import org.allbinary.logic.string.StringMaker;
  */
 public class GDTwodBehavior {
     
-    public final AnimationBehaviorBase animationBehavior;
+    public final GDAnimationBehaviorBase animationBehavior;
     
     private float rotationRemainder;
     
-    public GDTwodBehavior(final AnimationBehaviorBase animationBehavior) {
+    public GDTwodBehavior(final GDAnimationBehaviorBase animationBehavior) {
         this.animationBehavior = animationBehavior;
     }
     

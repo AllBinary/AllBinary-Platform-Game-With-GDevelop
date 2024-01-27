@@ -27,7 +27,7 @@ import org.allbinary.logic.communication.log.LogUtil;
  *
  * @author User
  */
-public class RotationBehavior extends AnimationBehaviorBase {
+public class GDRotationBehavior extends GDAnimationBehaviorBase {
     
     public RotationAnimation[] rotationAnimationInterfaceArray;
     

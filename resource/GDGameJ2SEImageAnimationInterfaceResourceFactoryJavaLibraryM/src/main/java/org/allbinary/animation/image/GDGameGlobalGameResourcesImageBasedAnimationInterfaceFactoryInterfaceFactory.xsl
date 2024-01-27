@@ -86,9 +86,11 @@ Created By: Travis Berthelot
 package org.allbinary.animation.image;
 
 import javax.microedition.lcdui.Image;
+
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
+import org.allbinary.animation.IndexedAnimationBehavior;
 import org.allbinary.animation.NullRotationAnimationFactory;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;

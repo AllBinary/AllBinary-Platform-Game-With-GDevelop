@@ -94,7 +94,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             final Rectangle layerInfo, 
             final Rectangle[][] rectangleArrayOfArrays,
             final ViewPosition viewPosition,
-            final GDObject gdObject, final AnimationBehaviorBase animationBehavior) throws Exception {
+            final GDObject gdObject, final GDAnimationBehaviorBase animationBehavior) throws Exception {
         super(groupInterface, gdName, layerInfo, viewPosition);
 
         this.gameLayerList = gameLayerList;
@@ -414,17 +414,11 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.initIndexedAnimationInterfaceArray[this.gdObject.animation].setFrame(0);
     }
     
-    private long elapsedTime = 0;
     public void animate(final long timeDelta) {
         
         VelocityUtil.reduce(this.velocityInterface, 30, 100);
 
-        elapsedTime += timeDelta;
-        //animations/directions/timeBetweenFrames
-        if(elapsedTime > 200) {
-            elapsedTime = elapsedTime - 200;
-            this.dimensionalBehavior.animationBehavior.animate(this.gdObject, this.initIndexedAnimationInterfaceArray);
-        }
+        this.dimensionalBehavior.animationBehavior.animate(this.gdObject, this.initIndexedAnimationInterfaceArray, timeDelta);
     }
 
     public void updateRotation(final long timeDelta) {
@@ -479,7 +473,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             //}
 
             //this.paintPoints(graphics);
-            //this.paintDebug(graphics);
+            this.paintDebug(graphics);
         }
         catch (Exception e)
         {

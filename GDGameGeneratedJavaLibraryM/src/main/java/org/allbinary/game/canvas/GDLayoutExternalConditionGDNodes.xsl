@@ -68,8 +68,8 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Graphics;
                 
+                import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
-                
                 import org.allbinary.game.input.GDRGameInputProcessor;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
@@ -113,6 +113,8 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
 
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+
+                        super(AnimationBehavior.getInstance());
 
                         try {
                         

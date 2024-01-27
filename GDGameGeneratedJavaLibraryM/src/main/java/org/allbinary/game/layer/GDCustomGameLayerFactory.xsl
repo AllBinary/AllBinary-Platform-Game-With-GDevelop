@@ -48,7 +48,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo,
             final Rectangle[][] rectangleArrayOfArrays) {
-        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, new RotationBehavior());
+        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, new GDRotationBehavior());
     }
     
     public GDCustomGameLayerFactory(
@@ -59,7 +59,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo, 
             final Rectangle[][] rectangleArrayOfArrays,
-            final AnimationBehaviorBase animationBehavior) {
+            final GDAnimationBehaviorBase animationBehavior) {
         
         super(gameLayerList, gameLayerDestroyedList, 
             groupInterface,

@@ -77,6 +77,9 @@ Created By: Travis Berthelot
 
                 this.<xsl:value-of select="name" />ResourceArray = new String[] {
                 <xsl:for-each select="animations" >
+                    <xsl:for-each select="directions" >
+                    //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
+                    </xsl:for-each>
                     <xsl:variable name="resourceWithExtension" select="directions/sprites/image" />                    
                     <xsl:variable name="image2" select="substring-before($resourceWithExtension, '.')" />
                     <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>                    
@@ -101,7 +104,6 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
                         //TWB - int the future add image dimensions to the game.xml.
                         <xsl:for-each select="directions" >
-                            //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
                             <xsl:for-each select="sprites" >
                     new Rectangle(pointFactory.ZERO_ZERO, 
                                 <xsl:if test="originPoint/x = 0" >0</xsl:if>
@@ -114,7 +116,6 @@ Created By: Travis Berthelot
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
                         <xsl:for-each select="directions" >
-                            //looping=<xsl:value-of select="looping" /> timeBetweenFrames=<xsl:value-of select="timeBetweenFrames" />
                             <xsl:for-each select="sprites" >
                     //new Rectangle(pointFactory.ZERO_ZERO, (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f), (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f)),
                     new Rectangle(pointFactory.ZERO_ZERO, 

@@ -224,8 +224,8 @@ Created By: Travis Berthelot
                     <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />LayerInfo,
                     <xsl:value-of select="name" />RectangleArrayOfArrays
-                    <xsl:if test="contains($hasMoreThanOneImage, 'found')" >, AnimationBehavior.getInstance()</xsl:if>
-                    <xsl:if test="contains(name, 'btn_')" >, AnimationBehaviorBase.getInstance()</xsl:if>
+                    <xsl:if test="contains($hasMoreThanOneImage, 'found')" >, GDAnimationBehavior.getInstance()</xsl:if>
+                    <xsl:if test="contains(name, 'btn_')" >, GDAnimationBehaviorBase.getInstance()</xsl:if>
                     );
 
             </xsl:if>

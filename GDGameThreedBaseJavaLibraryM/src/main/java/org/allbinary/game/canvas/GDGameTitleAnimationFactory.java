@@ -13,11 +13,11 @@
 */
 package org.allbinary.game.canvas;
 
+import org.allbinary.animation.AnimationBehavior;
 import org.allbinary.animation.ColorLessVectorAnimation;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.VectorExplosionGenerator;
 import org.allbinary.animation.special.TitleAnimation;
-import org.allbinary.game.canvas.TitleVectorData;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
 
@@ -64,13 +64,13 @@ public class GDGameTitleAnimationFactory
                 titleVectorData.testPoints, 6, 
                 vectorExplosionGenerator.RANDOM);
 
-        animationInterfaceArray[0] = new ColorLessVectorAnimation(points);
+        animationInterfaceArray[0] = new ColorLessVectorAnimation(points, AnimationBehavior.getInstance());
 
         points = vectorExplosionGenerator.getInstance(
                 titleVectorData.gamePoints, 6, 
                 vectorExplosionGenerator.RANDOM);
 
-        animationInterfaceArray[1] = new ColorLessVectorAnimation(points);
+        animationInterfaceArray[1] = new ColorLessVectorAnimation(points, AnimationBehavior.getInstance());
         
         return animationInterfaceArray;
     }

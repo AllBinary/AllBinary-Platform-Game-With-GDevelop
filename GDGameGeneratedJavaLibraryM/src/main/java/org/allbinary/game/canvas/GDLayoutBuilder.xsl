@@ -77,6 +77,7 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Graphics;
                 
+                import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.input.GameInputProcessorUtil;
                 import org.allbinary.graphics.DisplayUtil;
@@ -192,6 +193,8 @@ Created By: Travis Berthelot
                         }
 
                         public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+
+                            super(AnimationBehavior.getInstance());
 
                             <xsl:call-template name="scale" >
                                 <xsl:with-param name="layoutIndex" >

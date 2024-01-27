@@ -70,7 +70,8 @@ Created By: Travis Berthelot
 
                 import org.json.me.JSONObject;
                 import org.json.me.JSONTokener;
-                
+
+                import org.allbinary.animation.AnimationBehavior;                
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.commands.GameCommandsFactory;
                 import org.allbinary.game.GDGameCommandFactory;
@@ -144,6 +145,8 @@ Created By: Travis Berthelot
                         private final MyCanvas canvas;
                         
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+
+                        super(AnimationBehavior.getInstance());
 
                         this.canvas = abCanvas;
 

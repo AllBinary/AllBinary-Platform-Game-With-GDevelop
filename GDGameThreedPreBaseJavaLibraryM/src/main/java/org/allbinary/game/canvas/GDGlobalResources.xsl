@@ -57,6 +57,7 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.game.canvas;
 
+                import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
 
                 //Game name=<xsl:value-of select="$gameName" />
@@ -69,6 +70,10 @@ Created By: Travis Berthelot
                         {
                             return instance;
                         }
+
+                    private GDGlobalSpecialAnimationResources() {
+                        super(AnimationBehavior.getInstance());
+                    }
 
                     <xsl:call-template name="animationNames" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >

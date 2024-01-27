@@ -68,6 +68,7 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Canvas;
                 import javax.microedition.lcdui.Graphics;
                 
+                import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
                 
                 import org.allbinary.game.input.GDRGameInputProcessor;
@@ -146,6 +147,8 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+
+                        super(AnimationBehavior.getInstance());
 
                         try {
                         

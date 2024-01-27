@@ -69,6 +69,7 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Graphics;
                 
+                import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.GDGameLayerFactory;
@@ -129,6 +130,8 @@ Created By: Travis Berthelot
                         </xsl:call-template>
                         
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+
+                        super(AnimationBehavior.getInstance());
 
                         try {
                         
