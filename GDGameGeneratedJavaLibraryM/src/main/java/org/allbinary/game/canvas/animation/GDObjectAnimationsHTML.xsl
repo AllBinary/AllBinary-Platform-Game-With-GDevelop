@@ -98,7 +98,7 @@ Created By: Travis Berthelot
                     angleIncrement
                     </xsl:if>
                     <xsl:for-each select="directions" >,
-                    new IndexedAnimationBehavior(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
+                    new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
                     </xsl:for-each>
                     )<xsl:if test="position() != last()" >,</xsl:if>
                 </xsl:for-each>
