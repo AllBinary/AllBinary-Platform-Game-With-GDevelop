@@ -100,7 +100,8 @@ Created By: Travis Berthelot
                 public class GDGameGlobals extends GDGlobals
                 {
 
-                    //private static final GDGameGlobals instance = new GDGameGlobals();
+                    private static final GDGameGlobals instance = new GDGameGlobals();
+<!--                
                     private static GDGameGlobals instance;
 
                     public static GDGameGlobals create()
@@ -108,6 +109,7 @@ Created By: Travis Berthelot
                         instance = new GDGameGlobals();
                         return instance;
                     }
+-->
 
                     public static GDGameGlobals getInstance()
                     {

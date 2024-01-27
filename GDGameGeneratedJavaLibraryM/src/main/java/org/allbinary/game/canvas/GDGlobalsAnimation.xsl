@@ -76,7 +76,8 @@ Created By: Travis Berthelot
                 public class GDGlobalsSpecialAnimation extends GDSpecialAnimation
                 {
 
-                    //private static final GDGlobalsSpecialAnimation instance = new GDGlobalsSpecialAnimation();
+                    private static final GDGlobalsSpecialAnimation instance = new GDGlobalsSpecialAnimation();
+<!--                
                     private static GDGlobalsSpecialAnimation instance;
 
                     public static GDGlobalsSpecialAnimation create()
@@ -84,6 +85,7 @@ Created By: Travis Berthelot
                         instance = new GDGlobalsSpecialAnimation();
                         return instance;
                     }
+-->
 
                         public static GDGlobalsSpecialAnimation getInstance()
                         {
