@@ -67,7 +67,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDCustomGameLayerFactory;
                 import org.allbinary.game.identification.Group;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
-                import org.allbinary.game.layer.GDAnimationBehavior;
+                import org.allbinary.game.layer.GDIndividualAnimationBehavior;
                 import org.allbinary.game.layer.GDAnimationBehaviorBase;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
                 import org.allbinary.graphics.GPoint;
