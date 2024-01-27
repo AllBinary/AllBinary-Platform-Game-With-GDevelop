@@ -19,23 +19,22 @@ import org.allbinary.game.layout.GDObject;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringMaker;
 
 /**
  *
  * @author User
  */
-public class GDAnimationBehavior extends GDAnimationBehaviorBase {
+public class GDIndividualAnimationBehavior extends GDAnimationBehaviorBase {
     
-    private static final GDAnimationBehavior instance = new GDAnimationBehavior();
+    private static final GDIndividualAnimationBehavior instance = new GDIndividualAnimationBehavior();
 
     /**
      * @return the instance
      */
-    public static GDAnimationBehavior getInstance() {
+    public static GDIndividualAnimationBehavior getInstance() {
         return instance;
     }
-    
-    private long elapsedTime = 0;
     
     @Override
     public void animate(final GDObject gdObject, final IndexedAnimation[] initIndexedAnimationInterfaceArray, final long timeDelta) {
@@ -46,10 +45,10 @@ public class GDAnimationBehavior extends GDAnimationBehaviorBase {
 
             //animations/directions/loop
             if(indexedAnimationBehavior.loopTotal < 0 || !indexedAnimation.isLastFrame()) {
-                elapsedTime += timeDelta;
+                indexedAnimationBehavior.elapsedTime += timeDelta;
                 //animations/directions/timeBetweenFrames
-                if (elapsedTime > indexedAnimationBehavior.frameDelayTime) {
-                    elapsedTime = elapsedTime - indexedAnimationBehavior.frameDelayTime;
+                if (indexedAnimationBehavior.elapsedTime > indexedAnimationBehavior.frameDelayTime) {
+                    indexedAnimationBehavior.elapsedTime = indexedAnimationBehavior.elapsedTime - indexedAnimationBehavior.frameDelayTime;
                     indexedAnimation.nextFrame();
                 }
             }
