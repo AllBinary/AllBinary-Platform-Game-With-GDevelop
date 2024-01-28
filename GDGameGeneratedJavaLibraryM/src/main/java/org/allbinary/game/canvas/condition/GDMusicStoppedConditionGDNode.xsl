@@ -35,12 +35,13 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
                             
-<!--                            if(true) {
+                            if(true) {
                                 //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 
-                                <xsl:if test="../actions" >
-                                //MusicStopped - actions - START
-                                <xsl:for-each select="../actions" >
+<!--                    
+                                <xsl:for-each select=".." >
+                                <xsl:if test="actions" >
+                                <xsl:for-each select="actions" >
                                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
@@ -48,11 +49,12 @@ Created By: Travis Berthelot
                                 //Action - //<xsl:value-of select="type/value" /> - call
                                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                 </xsl:for-each>
-                                //SoundPlaying - actions - END
                                 </xsl:if>
+                                </xsl:for-each>
+-->
                                 
                             }
--->
+
                             
                             return true;
                         }
