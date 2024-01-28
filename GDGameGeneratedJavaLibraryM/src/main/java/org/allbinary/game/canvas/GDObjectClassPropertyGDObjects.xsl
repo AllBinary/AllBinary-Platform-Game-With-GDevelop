@@ -44,7 +44,12 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="type = 'number'" >
-                    public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                            <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay'))" >
+                                public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                            </xsl:if>
+                            <xsl:if test="contains(name, 'Time') or contains(name, 'Delay')" >
+                                public long <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                            </xsl:if>
                         </xsl:if>
                         <xsl:if test="type = 'boolean'" >
                     public boolean <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
