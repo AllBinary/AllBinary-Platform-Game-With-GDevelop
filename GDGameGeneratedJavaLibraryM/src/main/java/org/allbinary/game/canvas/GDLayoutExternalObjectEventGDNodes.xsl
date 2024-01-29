@@ -162,6 +162,10 @@ Created By: Travis Berthelot
                         return value;
                     }
                     
+                    public long GlobalVariable(final long value) {
+                        return value;
+                    }
+                    
                     public int GlobalVariable(final int value) {
                         return value;
                     }

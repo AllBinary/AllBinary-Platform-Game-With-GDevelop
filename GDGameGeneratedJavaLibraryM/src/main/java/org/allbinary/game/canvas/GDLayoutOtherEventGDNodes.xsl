@@ -191,7 +191,11 @@ Created By: Travis Berthelot
                     public double Variable(final double value) {
                         return value;
                     }
-                    
+
+                    public long GlobalVariable(final long value) {
+                        return value;
+                    }
+                                        
                     public int GlobalVariable(final int value) {
                         return value;
                     }
