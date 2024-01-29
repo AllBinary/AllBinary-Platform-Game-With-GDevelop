@@ -82,6 +82,7 @@ Created By: Travis Berthelot
         <xsl:param name="thisNodeIndex" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="objectsAsString" />
+        <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
         <xsl:param name="conditionEventPosition" />
          
@@ -199,6 +200,9 @@ Created By: Travis Berthelot
                     <xsl:call-template name="modVarObjetActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
                         </xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
@@ -1190,6 +1194,9 @@ Created By: Travis Berthelot
                 </xsl:with-param>
                 <xsl:with-param name="objectsAsString" >
                     <xsl:value-of select="$objectsAsString" />
+                </xsl:with-param>
+                <xsl:with-param name="objectsGroupsAsString" >
+                    <xsl:value-of select="$objectsGroupsAsString" />
                 </xsl:with-param>
                 <xsl:with-param name="createdObjectsAsString" >
                     <xsl:value-of select="$createdObjectsAsString" />

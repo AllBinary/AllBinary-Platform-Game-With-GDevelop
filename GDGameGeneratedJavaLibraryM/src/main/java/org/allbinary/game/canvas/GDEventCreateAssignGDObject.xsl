@@ -735,5 +735,9 @@ Created By: Travis Berthelot
         <xsl:param name="createdObjectsAsString" />
         <xsl:variable name="name2" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:variable><xsl:variable name="key" >,<xsl:value-of select="$name2" />,</xsl:variable><xsl:if test="contains($createdObjectsAsString, $key)" ><xsl:value-of select="$name2" /></xsl:if>
     </xsl:template>
+    <xsl:template name="paramIndexedArray2" >
+        <xsl:param name="createdObjectsAsString" />
+        <xsl:variable name="name2" ><xsl:value-of select="text()" /></xsl:variable><xsl:variable name="key" >,<xsl:value-of select="$name2" />,</xsl:variable><xsl:if test="contains($createdObjectsAsString, $key)" ><xsl:value-of select="$name2" /></xsl:if>
+    </xsl:template>
 
 </xsl:stylesheet>
