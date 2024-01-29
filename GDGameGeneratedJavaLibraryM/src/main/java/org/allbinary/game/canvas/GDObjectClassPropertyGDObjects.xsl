@@ -186,7 +186,7 @@ Created By: Travis Berthelot
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
                         super(unknown, x, y, z, width, height, name, <xsl:if test="string-length(type) = 0" >null</xsl:if><xsl:if test="string-length(type) > 0" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(type, ':', '_')" /></xsl:with-param></xsl:call-template></xsl:if>);
                         
-                    <xsl:if test="not(contains($hasObjectInObjectsGroups, 'found'))" >
+                    <xsl:if test="contains($hasObjectInObjectsGroups, 'found')" >
                     <xsl:for-each select="variables" >
                         <xsl:if test="type = 'string'" >
                             <xsl:if test="number(value) != value" >
