@@ -233,6 +233,9 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'PosX'" >
 
                     <xsl:call-template name="posXConditionGDNode" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
                         <xsl:with-param name="objectsGroupsAsString" >
                             <xsl:value-of select="$objectsGroupsAsString" />
                         </xsl:with-param>
@@ -241,7 +244,14 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosY'" >
                     
-                    <xsl:call-template name="posYConditionGDNode" />
+                    <xsl:call-template name="posYConditionGDNode" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 
@@ -986,6 +996,9 @@ Created By: Travis Berthelot
                     <xsl:call-template name="varObjetConditionGDNode" >
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
                     </xsl:call-template>
 
                 </xsl:if>

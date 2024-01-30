@@ -42,6 +42,133 @@ Created By: Travis Berthelot
             </xsl:choose>
     -->
 
+    <xsl:template name="firstParam" >
+        <xsl:variable name="firstParam" >
+            <xsl:for-each select="parameters" >
+                <xsl:if test="position() = 1" >
+                    <xsl:value-of select="text()" />
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="hasObject1" >
+            <xsl:for-each select="//objects" >
+                <xsl:if test="name = $firstParam" >found</xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="hasObjectGroup1" >
+            <xsl:for-each select="//objectsGroups" >
+                <xsl:if test="name = $firstParam" >found</xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="isInObjectGroup" >
+            <xsl:for-each select="//objectsGroups/objects" >
+                <xsl:if test="name = $firstParam" >found</xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="objectGroup" >
+            <xsl:for-each select="//objectsGroups" >
+                <xsl:variable name="name" >
+                    <xsl:value-of select="name" />
+                </xsl:variable>
+                <xsl:for-each select="objects" >
+                    <xsl:if test="name = $firstParam" >
+                        <xsl:value-of select="$name" />
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="collisionProcessGDParamOne" >
+            <xsl:call-template name="collisionProcessGDParamOne" >
+                <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+            </xsl:call-template>
+        </xsl:variable>
+<!--
+        <xsl:if test="contains($isInObjectGroup, 'found') and $objectGroup = $collisionProcessGDParamOne" >
+            //hasObject1=<xsl:value-of select="$hasObject1" />
+            //hasObjectGroup1=<xsl:value-of select="$hasObjectGroup1" />
+            //isInObjectGroup=<xsl:value-of select="$isInObjectGroup" />
+            //collisionProcessGDParamOne=<xsl:value-of select="$collisionProcessGDParamOne" />
+            //isFirstParamInTheObjectGroupOfTheCollidedFirstParam=<xsl:value-of select="$objectGroup" />
+        </xsl:if>
+-->
+        <xsl:if test="contains($isInObjectGroup, 'found') and $objectGroup = $collisionProcessGDParamOne" ><xsl:value-of select="$objectGroup" /></xsl:if><xsl:if test="not(contains($isInObjectGroup, 'found') and $objectGroup = $collisionProcessGDParamOne)" ><xsl:value-of select="$firstParam" /></xsl:if>
+    </xsl:template>
+
+    <xsl:template name="collisionProcessGD" >
+        <xsl:param name="totalRecursions" />
+        
+        <xsl:for-each select=".." >
+            <xsl:if test="conditions[type/value = 'CollisionNP']" >
+                //From parent collision
+                //totalRecursions=<xsl:value-of select="$totalRecursions" />
+                @Override
+                public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[2]" />GDGameLayer, final Graphics graphics) {
+            </xsl:if>
+            
+            <xsl:call-template name="collisionProcessGD" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions" />
+                </xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+                
+    </xsl:template>
+
+    <xsl:template name="collisionProcessGDParamOne" >
+        <xsl:param name="totalRecursions" />
+        
+        <xsl:for-each select=".." >
+            <xsl:if test="conditions[type/value = 'CollisionNP']" >
+                <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[1]" />
+            </xsl:if>
+            
+            <xsl:call-template name="collisionProcessGDParamOne" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions" />
+                </xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+                
+    </xsl:template>
+
+    <xsl:template name="collisionProcessGDParamTwo" >
+        <xsl:param name="totalRecursions" />
+        
+        <xsl:for-each select=".." >
+            <xsl:if test="conditions[type/value = 'CollisionNP']" >
+                <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[2]" />
+            </xsl:if>
+            
+            <xsl:call-template name="collisionProcessGDParamTwo" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions" />
+                </xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+                
+    </xsl:template>
+
+    <xsl:template name="hasCollisionProcessGD" >
+        <xsl:param name="totalRecursions" />
+        
+        <xsl:for-each select=".." >
+            <xsl:if test="conditions[type/value = 'CollisionNP']" >
+                found
+            </xsl:if>
+            
+            <xsl:call-template name="hasCollisionProcessGD" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions" />
+                </xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+                
+    </xsl:template>
+
     <xsl:template name="findMousePositionNeeded" >
         <xsl:param name="totalRecursions" />
 
