@@ -44,7 +44,8 @@ Created By: Travis Berthelot
                             super.processStats();
 
                             <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                            <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;'" >.y</xsl:if><xsl:if test="text() = '&gt;'" >.Y2()</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+<!--                            <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;' or text() = '&lt;='" >.y</xsl:if><xsl:if test="text() = '&gt;' or text() = '&gt;='" >.Y2()</xsl:if></xsl:if></xsl:for-each></xsl:variable>-->
+                            <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;' or text() = '&lt;=' or text() = '&gt;' or text() = '&gt;='" >.y</xsl:if></xsl:if></xsl:for-each></xsl:variable>
                                                 
                             <xsl:if test="$paramOneNameObjectsGroups = '' and $paramTwoNameObjectsGroups = ''" >
 
