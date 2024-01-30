@@ -109,17 +109,18 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
         
         final GD0SpecialAnimationGlobals globals = GD0SpecialAnimationGlobals.getInstance();
         //if(((GDCustomGameLayer) this.ownerLayer).gdObject.type == globals.TILEMAP__COLLISIONMASK) {
-        final GDCustomGameLayer collisionMaskCustomGameLayer = ((GDCustomGameLayer) collisionLayer);
+        final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) collisionLayer);
         <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
-        if(collisionMaskCustomGameLayer.gdObject.type == globals.TILEMAP__COLLISIONMASK) {
+        if(customGameLayer.gdObject.type == globals.TILEMAP__COLLISIONMASK) {
             
-            return this.isCollision3(collisionMaskCustomGameLayer);
+            return this.isCollision3(customGameLayer);
         } else {
         </xsl:if>
+        
             //return super.isCollision(collisionLayer);
             //return this.isCollision2(collisionLayer);
-            final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) this.ownerLayer;
-            final Rectangle ownerMaskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
+            final GDCustomGameLayer collisionMaskCustomGameLayer2 = (GDCustomGameLayer) this.ownerLayer;
+            final Rectangle ownerMaskRectangle = collisionMaskCustomGameLayer2.rectangleArrayOfArrays[0][0];
             final GPoint ownerMaskPoint = ownerMaskRectangle.getPoint();
             final ViewPosition ownerViewPosition = this.ownerLayer.getViewPosition();
             final int ownerViewX = ownerViewPosition.getX();
@@ -127,13 +128,13 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
             
 //            final Rectangle maskRectangle = collisionMaskCustomGameLayer.rectangleArrayOfArrays[0][0];
 //            final GPoint maskPoint = maskRectangle.getPoint();
-            final ViewPosition viewPosition = collisionMaskCustomGameLayer.getViewPosition();
+            final ViewPosition viewPosition = customGameLayer.getViewPosition();
             final int viewX = viewPosition.getX();
             final int viewY = viewPosition.getY();
 
-            return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskRectangle.getHeight(), 
+            return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskPoint.getX() + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskPoint.getY( )+ ownerMaskRectangle.getHeight(), 
                     //viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskRectangle.getWidth(), viewY + maskRectangle.getHeight());
-                    viewX, viewY, viewX + collisionMaskCustomGameLayer.getWidth(), viewY + collisionMaskCustomGameLayer.getHeight());
+                    viewX, viewY, viewX + customGameLayer.getWidth(), viewY + customGameLayer.getHeight());
         <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >            
         }
         </xsl:if>
@@ -204,17 +205,17 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
 //            LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, "isCollision - with self"));
 //        }
 
-        final GDCustomGameLayer collisionMaskCustomGameLayer = ((GDCustomGameLayer) collisionLayer);
+        final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) collisionLayer);
         //if(this.collidableBehavior.groupCollisionList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-        if(((GDCustomCollidableBehavior) collisionMaskCustomGameLayer.getCollidableInferface()).conditionWIthGroupActions.groupWithActionsList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+        if(((GDCustomCollidableBehavior) customGameLayer.getCollidableInferface()).conditionWIthGroupActions.groupWithActionsList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
             //stringBuilder.delete(0, stringBuilder.length());
             //LogUtil.put(LogFactory.getInstance(stringBuilder.append(this.ownerLayer.getGroupInterface()[0]).append(" != ").append(collisionLayer.getGroupInterface()[0]).toString(), this, IS_COLLISION));
             if (this.ownerLayer.getGroupInterface()[0] != collisionLayer.getGroupInterface()[0]) {
                 //stringBuilder.delete(0, stringBuilder.length());
                 //LogUtil.put(LogFactory.getInstance(this.toString(collisionLayer, stringBuilder), this, "isCollision - super"));
                 //return super.isCollision(collisionLayer);
-            final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) this.ownerLayer;
-            final Rectangle ownerMaskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
+            final GDCustomGameLayer collisionMackCustomGameLayer = (GDCustomGameLayer) this.ownerLayer;
+            final Rectangle ownerMaskRectangle = collisionMackCustomGameLayer.rectangleArrayOfArrays[0][0];
             final GPoint ownerMaskPoint = ownerMaskRectangle.getPoint();
             final ViewPosition ownerViewPosition = this.ownerLayer.getViewPosition();
             final int ownerViewX = ownerViewPosition.getX();
@@ -222,13 +223,13 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
             
 //            final Rectangle maskRectangle = collisionMaskCustomGameLayer.rectangleArrayOfArrays[0][0];
 //            final GPoint maskPoint = maskRectangle.getPoint();
-            final ViewPosition viewPosition = collisionMaskCustomGameLayer.getViewPosition();
+            final ViewPosition viewPosition = customGameLayer.getViewPosition();
             final int viewX = viewPosition.getX();
             final int viewY = viewPosition.getY();
 
-            return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskRectangle.getHeight(), 
+            return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskPoint.getX() + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskPoint.getY() + ownerMaskRectangle.getHeight(), 
                     //viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskRectangle.getWidth(), viewY + maskRectangle.getHeight());
-                    viewX, viewY, viewX + collisionMaskCustomGameLayer.getWidth(), viewY + collisionMaskCustomGameLayer.getHeight());
+                    viewX, viewY, viewX + customGameLayer.getWidth(), viewY + customGameLayer.getHeight());
             }
         } else {
             //stringBuilder.delete(0, stringBuilder.length());
