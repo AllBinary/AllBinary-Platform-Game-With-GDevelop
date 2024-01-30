@@ -18,6 +18,8 @@ Created By: Travis Berthelot
 
     <xsl:template name="mettreYActionProcess" >
         <xsl:param name="layoutIndex" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="createdObjectsAsString" />
         <xsl:param name="instancesAsString" />
 
                         private final String ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "G: " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
@@ -104,20 +106,109 @@ Created By: Travis Berthelot
                             return true;
                         }
 
-                        @Override
-                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) {
+                        <xsl:variable name="param" >
+                            <xsl:for-each select="parameters" >
+                                <xsl:if test="position() = 3" >
+                                    <xsl:if test="not(contains(text(), 'SceneInstancesCount('))" >
+                                        <xsl:value-of select="text()" />
+                                    </xsl:if>
+                                    <xsl:if test="contains(text(), 'SceneInstancesCount(')" >
+                                        <xsl:variable name="objectName" >
+                                            <xsl:value-of select="substring-before(substring-after(text(), 'SceneInstancesCount('), ')')" />
+                                        </xsl:variable>
+                                        <xsl:call-template name="string-replace-all" >
+                                            <xsl:with-param name="text" >
+                                                <xsl:value-of select="text()" />
+                                            </xsl:with-param>
+                                            <xsl:with-param name="find" >
+                                                <xsl:value-of select="$objectName" />
+                                            </xsl:with-param>
+                                            <xsl:with-param name="replacementText" >SceneInstancesCount(gameGlobals.<xsl:value-of select="$objectName" />GDGameLayerList.size())</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:if>
+                                </xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+                                                
+                        <xsl:variable name="beforeSecondParam" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
+
+                        <xsl:variable name="hasObject3" >
+                            <xsl:for-each select="//objects" >
+                                <xsl:if test="name = $beforeSecondParam" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+                        <xsl:variable name="hasObjectGroup3" >
+                            <xsl:for-each select="//objectsGroups" >
+                                <xsl:if test="name = $beforeSecondParam" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+
+                        <xsl:if test="contains($hasObject3, 'found') or contains($hasObjectGroup3, 'found')" >
+                        //beforeSecondParam=<xsl:value-of select="$beforeSecondParam" />
+                        </xsl:if>
+
+                        <xsl:variable name="firstOrBeforeFourthParam" >
+                            <xsl:if test="contains($hasObject3, 'found') or contains($hasObjectGroup3, 'found')" >
+                                <xsl:value-of select="$beforeSecondParam" />
+                            </xsl:if>
+                            <xsl:if test="not(contains($hasObject3, 'found') or contains($hasObjectGroup3, 'found'))" >
+                            <xsl:for-each select="parameters" >
+                                <xsl:if test="position() = 1" >
+                                    <xsl:value-of select="text()" />
+                                </xsl:if>
+                            </xsl:for-each>
+                            </xsl:if>
+                        </xsl:variable>
+                
+                    <xsl:variable name="paramOneNameObjectsGroups" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="paramIndexedArray2" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$objectsGroupsAsString" /></xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="secondParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="paramTwoName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template></xsl:if></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="paramTwoNameObjectsGroups" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$objectsGroupsAsString" /></xsl:with-param></xsl:call-template></xsl:if></xsl:if></xsl:for-each></xsl:variable>                    
+                    //paramOneNameObjectsGroups=<xsl:value-of select="$paramOneNameObjectsGroups" />
+                    //paramTwoName=<xsl:value-of select="$paramTwoName" />
+                    //paramTwoNameObjectsGroups=<xsl:value-of select="$paramTwoNameObjectsGroups" />
+
+                    <xsl:variable name="hasCollisionProcessGD" >
+                        <xsl:call-template name="hasCollisionProcessGD" >
+                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:variable>
+                    <xsl:call-template name="collisionProcessGD" >
+                        <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:if test="not(contains($hasCollisionProcessGD, 'found'))" >
+                    //Not from parent collision
+                    public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2, final Graphics graphics) {
+                    
+                        super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
+                    </xsl:if>
+                    <xsl:if test="contains($hasCollisionProcessGD, 'found')" >
+                        super.processGDStats(<xsl:call-template name="collisionProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param></xsl:call-template>GDGameLayer);
+                    </xsl:if>
 
                             try {
-                                super.processGDStats(gameLayer);
                         
-                                final boolean result = this.processGPaint(gameLayer.gdObject, graphics);
+                    <xsl:if test="$paramOneNameObjectsGroups != ''" >
+                                final boolean result = this.processGPaint(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject, graphics);
                                 
                                 <xsl:if test="contains($isTextObject, 'found')" >
                                     //TextObject::Text - does not currently have a GameLayer
                                 </xsl:if>
                                 <xsl:if test="not(contains($isTextObject, 'found'))" >
-                                    gameLayer.updatePosition();
+                                    <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.updatePosition();
                                 </xsl:if>
+                    </xsl:if>
+
+                    <xsl:if test="$paramOneNameObjectsGroups = ''" >
+                                final boolean result = this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, graphics);
+                                
+                                <xsl:if test="contains($isTextObject, 'found')" >
+                                    //TextObject::Text - does not currently have a GameLayer
+                                </xsl:if>
+                                <xsl:if test="not(contains($isTextObject, 'found'))" >
+                                    <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.updatePosition();
+                                </xsl:if>
+                    </xsl:if>
                                 
                                 return result;
 
