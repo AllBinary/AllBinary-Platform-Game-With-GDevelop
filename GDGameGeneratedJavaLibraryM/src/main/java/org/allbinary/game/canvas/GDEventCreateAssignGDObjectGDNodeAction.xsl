@@ -862,7 +862,7 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ResizableCapability::ResizableBehavior::SetSize'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_REALLY_IMPLEMENTED - Currently set in the AnimationFactory
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED - Started work on but disabled - getSetSizeForObject
                 </xsl:if>
                 
                 <xsl:if test="$typeValue = 'FlippableCapability::FlippableBehavior::FlipX'" >
