@@ -338,7 +338,7 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
         
-                <xsl:if test="$typeValue = PrimitiveDrawing::OutlineSize''" >
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::OutlineSize'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
         
