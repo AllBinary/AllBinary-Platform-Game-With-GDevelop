@@ -212,13 +212,7 @@ Created By: Travis Berthelot
                                 //}
                             
                                 //Param not from parent
-                            <xsl:if test="not(contains($hasObjectGroup, 'found'))" >   
                                 final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) gdObject;
-                            </xsl:if>
-                            
-                            <xsl:if test="contains($hasObjectGroup, 'found')" >
-                                final GDObject <xsl:value-of select="$name" /> = gdObject;
-                            </xsl:if>
 
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS));
 
@@ -526,13 +520,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                             <xsl:if test="string-length($parentConditionObject) = 0" >
                                 //Param not from parent
-                            <xsl:if test="not(contains($hasObjectGroup, 'found'))" >   
                                 final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) gdObject;
-                            </xsl:if>
-                            
-                            <xsl:if test="contains($hasObjectGroup, 'found')" >
-                                final GDObject <xsl:value-of select="$name" /> = gdObject;
-                            </xsl:if>
                             </xsl:if>
 
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS));

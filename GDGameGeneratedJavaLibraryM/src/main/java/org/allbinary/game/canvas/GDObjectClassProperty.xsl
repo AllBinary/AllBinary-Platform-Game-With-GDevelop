@@ -61,6 +61,7 @@ Created By: Travis Berthelot
                 //PrimitiveDrawing::Drawer
                 public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="name" />";
                 //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+                public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                 //Unlike Sprite PrimitiveDrawing does not use Create
                 //public final BasicArrayList <xsl:value-of select="name" />GDObjectList = new BasicArrayList();
             </xsl:if>
@@ -135,6 +136,14 @@ Created By: Travis Berthelot
                 public final String <xsl:value-of select="$NAME" />_OBJECT_NAME = "<xsl:value-of select="name" />";
                 //public final GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory;
             </xsl:if>
+            <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer'" >
+                //PrimitiveDrawing::Drawer - create properties
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                public final String <xsl:value-of select="$NAME" />_OBJECT_NAME = "<xsl:value-of select="name" />";
+                //public final GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory;
+            </xsl:if>
             <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
                 //ParticleSystem::ParticleEmitter - create properties
                 <xsl:variable name="stringValue" select="string" />
@@ -201,6 +210,13 @@ Created By: Travis Berthelot
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                 //ParticleSystem::ParticleEmitter - layerManagerEventListenerList
+                public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(arrayUtil.ZERO_OBJECT_ARRAY);
+            </xsl:if>
+            <xsl:if test="type = 'PrimitiveDrawing::Drawer'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                //PrimitiveDrawing::Drawer - layerManagerEventListenerList
                 public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(arrayUtil.ZERO_OBJECT_ARRAY);
             </xsl:if>
             <xsl:if test="type = 'TileMap::TileMap'" >

@@ -94,18 +94,75 @@ Created By: Travis Berthelot
         <xsl:if test="contains($isInObjectGroup, 'found') and $objectGroup = $collisionProcessGDParamOne" ><xsl:value-of select="$objectGroup" /></xsl:if><xsl:if test="not(contains($isInObjectGroup, 'found') and $objectGroup = $collisionProcessGDParamOne)" ><xsl:value-of select="$firstParam" /></xsl:if>
     </xsl:template>
 
+    <xsl:template name="linkedObjectsPickObjectsLinkedToProcessGD" >
+        <xsl:param name="totalRecursions" />
+        
+        <xsl:for-each select=".." >
+            <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
+                //From parent LinkedObjects::PickObjectsLinkedTo
+                //totalRecursions=<xsl:value-of select="$totalRecursions" />
+                @Override
+                public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[2]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[3]" />GDGameLayer, final Graphics graphics) {
+            </xsl:if>
+            
+            <xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGD" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions" />
+                </xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+                
+    </xsl:template>
+
     <xsl:template name="collisionProcessGD" >
         <xsl:param name="totalRecursions" />
         
         <xsl:for-each select=".." >
             <xsl:if test="conditions[type/value = 'CollisionNP']" >
-                //From parent collision
+                //From parent CollisionNP
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
                 public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[2]" />GDGameLayer, final Graphics graphics) {
             </xsl:if>
             
             <xsl:call-template name="collisionProcessGD" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions" />
+                </xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+                
+    </xsl:template>
+
+    <xsl:template name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" >
+        <xsl:param name="totalRecursions" />
+        
+        <xsl:for-each select=".." >
+            <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
+                <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[2]" />
+            </xsl:if>
+            
+            <xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions" />
+                </xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+                
+    </xsl:template>
+
+    <xsl:template name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" >
+        <xsl:param name="totalRecursions" />
+        
+        <xsl:for-each select=".." >
+            <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
+                <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[3]" />
+            </xsl:if>
+            
+            <xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions" />
                 </xsl:with-param>
@@ -142,6 +199,24 @@ Created By: Travis Berthelot
             </xsl:if>
             
             <xsl:call-template name="collisionProcessGDParamTwo" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions" />
+                </xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+                
+    </xsl:template>
+    
+    <xsl:template name="hasLinkedObjectsPickObjectsLinkedToProcessGD" >
+        <xsl:param name="totalRecursions" />
+        
+        <xsl:for-each select=".." >
+            <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
+                found
+            </xsl:if>
+            
+            <xsl:call-template name="hasLinkedObjectsPickObjectsLinkedToProcessGD" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions" />
                 </xsl:with-param>
@@ -382,12 +457,10 @@ Created By: Travis Berthelot
                 //eventsLogicConstructionCollisionNP - //whileConditions - NOT_IMPLEMENTED
             </xsl:for-each>
 
-            <xsl:for-each select="conditions" >
-                <xsl:variable name="typeValue" select="type/value" />
+            <xsl:for-each select="conditions[type/value = 'CollisionNP']" >
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
 
-                <xsl:if test="type/value = 'CollisionNP'" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //Condition - //CollisionNP
                     //<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
@@ -466,8 +539,6 @@ Created By: Travis Berthelot
                         </xsl:if>
                         
                         </xsl:if>
-                        
-                </xsl:if>
 
             <xsl:for-each select="subInstructions" >
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>

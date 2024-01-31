@@ -220,6 +220,186 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
 
+                <xsl:if test="$typeValue = 'LinkedObjects::LinkObjects'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED yet
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'LinkedObjects::RemoveLinkBetween'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'LinkedObjects::RemoveAllLinksOf'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+                        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::Circle'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::Line'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::LineV2'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+                
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::Ellipse'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::RoundedRectangle'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::ChamferRectangle'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+                
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::RegularPolygon'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::Torus'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::Star'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::Arc'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+            
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::BezierCurve'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::QuadraticCurve'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::BeginFillPath'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+                
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::EndFillPath'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+                
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::PathMoveTo'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+                
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::PathLineTo'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+                
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::PathBezierCurveTo'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::PathArc'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::PathQuadraticCurveTo'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::ClosePath'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::Arc'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::ArcTo'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer::ClearShapes'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::ClearBetweenFrames'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::FillColor'" >
+                    
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED yet
+                    
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::OutlineColor'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = PrimitiveDrawing::OutlineSize''" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::FillOpacity'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+                        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::OutlineOpacity'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::UseRelativeCoordinates'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+            
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::Scale'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer::SetScaleX'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer::SetScaleX'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::FlipX'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::FlipY'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::Width'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::Height'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::SetRotationCenter'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+        
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::SetAntialiasing'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+                
+                <xsl:if test="$typeValue = 'PrimitiveDrawing::Rectangle'" >
+                    
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED yet
+                    
+                </xsl:if>
+
                 <xsl:if test="$typeValue = 'AjoutObjConcern'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
