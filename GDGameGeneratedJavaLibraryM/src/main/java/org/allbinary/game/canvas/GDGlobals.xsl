@@ -267,7 +267,7 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>
 
                     private final LayerManagerEventListener layerManagerEventListener;
-                    public GDGameLayer gameLayer2;
+                    public GDGameLayer[] tempGameLayerArray = new GDGameLayer[2];
                                      
                     private GDGameGlobals() {
                     

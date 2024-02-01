@@ -513,7 +513,7 @@ Created By: Travis Berthelot
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.get(index);
-            node.processGD(this, gameGlobals.gameLayer2, null);
+            node.processGD(this, gameGlobals.tempGameLayerArray[0], null);
         }
     }
                 </xsl:if>
@@ -528,7 +528,7 @@ Created By: Travis Berthelot
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.get(index);
-            node.processGD(this, gameGlobals.gameLayer2, null);
+            node.processGD(this, gameGlobals.tempGameLayerArray[0], null);
         }
     }
                 </xsl:if>
@@ -586,7 +586,7 @@ Created By: Travis Berthelot
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.get(index);
-            node.processGD(this, gameGlobals.gameLayer2, null);
+            node.processGD(this, gameGlobals.tempGameLayerArray[0], null);
         }
     }
                 </xsl:if>
@@ -601,7 +601,7 @@ Created By: Travis Berthelot
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.get(index);
-            node.processGD(this, gameGlobals.gameLayer2, null);
+            node.processGD(this, gameGlobals.tempGameLayerArray[0], null);
         }
     }
                 </xsl:if>
@@ -662,7 +662,7 @@ Created By: Travis Berthelot
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.get(index);
-            node.processGD(this, gameGlobals.gameLayer2, null);
+            node.processGD(this, gameGlobals.tempGameLayerArray[0], null);
         }
     }
                 </xsl:if>
@@ -677,7 +677,7 @@ Created By: Travis Berthelot
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             node = (GDNode) this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" />CollisionList.get(index);
-            node.processGD(this, gameGlobals.gameLayer2, null);
+            node.processGD(this, gameGlobals.tempGameLayerArray[0], null);
         }
     }
                 </xsl:if>
