@@ -15,6 +15,7 @@ package org.allbinary.game.layer;
 
 import javax.microedition.khronos.opengles.GL;
 import javax.microedition.lcdui.Graphics;
+import org.allbinary.animation.Animation;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
@@ -29,14 +30,11 @@ import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.game.physics.velocity.VelocityUtil;
 import org.allbinary.graphics.Rectangle;
-import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.image.opengles.OpenGLSurfaceChangedInterface;
-import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.ScaleFactorFactory;
-import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.view.ViewPosition;
 
@@ -61,7 +59,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     protected final int quarterHeight = (this.getHalfHeight() >> 1) - 1;
 
     protected final CombatBaseBehavior combatBaseBehavior;
-    
+
+    public Animation[] animationArray = new Animation[0];
+
     protected final IndexedAnimation[] initIndexedAnimationInterfaceArray;
     protected IndexedAnimation[] indexedAnimationInterfaceArray;
 
@@ -469,9 +469,14 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             final int y = viewPosition.getY();
 
             //for (int index = 0; index < SIZE; index++) {
-            indexedAnimationInterfaceArray[this.gdObject.animation].paint(graphics, x, y);
+            this.indexedAnimationInterfaceArray[this.gdObject.animation].paint(graphics, x, y);
             //}
 
+            final int size = animationArray.length;
+            for (int index = 0; index < size; index++) {
+                this.animationArray[index].paint(graphics, x, y);
+            }
+            
             //this.paintPoints(graphics);
             this.paintDebug(graphics);
         }
@@ -488,8 +493,17 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         try
         {
             final ViewPosition viewPosition = this.getViewPosition();
-            this.indexedAnimationInterfaceArray[this.gdObject.animation].paintThreed(graphics,
-                viewPosition.getX(), viewPosition.getY(), viewPosition.getZ());
+            final int x = viewPosition.getX();
+            final int y = viewPosition.getY();
+            final int z = viewPosition.getZ();
+
+            this.indexedAnimationInterfaceArray[this.gdObject.animation].paintThreed(graphics, x, y, z);
+            
+            final int size = animationArray.length;
+            for (int index = 0; index < size; index++) {
+                this.animationArray[index].paintThreed(graphics, x, y, z);
+            }
+
         }
         catch (Exception e)
         {
