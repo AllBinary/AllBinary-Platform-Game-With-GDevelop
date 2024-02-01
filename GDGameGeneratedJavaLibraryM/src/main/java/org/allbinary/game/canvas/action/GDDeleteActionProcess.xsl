@@ -188,7 +188,6 @@ Created By: Travis Berthelot
                                     <xsl:text>&#10;</xsl:text>
 
                             } catch(Exception e) {
-                            //11
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
 

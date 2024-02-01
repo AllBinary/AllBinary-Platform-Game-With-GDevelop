@@ -77,7 +77,6 @@ Created By: Travis Berthelot
                                 return result;
 
                             } catch(Exception e) {
-                                //4
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
 
@@ -102,7 +101,6 @@ Created By: Travis Berthelot
                                 return result;
 
                             } catch(Exception e) {
-                                //4
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
 
@@ -150,7 +148,6 @@ Created By: Travis Berthelot
                                 //<xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.x</xsl:if></xsl:for-each>;
 
                             } catch(Exception e) {
-                                //5
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
 

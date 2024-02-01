@@ -210,7 +210,6 @@ Created By: Travis Berthelot
                         
                                 return this.processGPaint(<xsl:value-of select="$name" />, graphics);
                             } catch(Exception e) {
-                                //3
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
 
@@ -225,7 +224,6 @@ Created By: Travis Berthelot
                         
                                 return this.processGPaint(gameLayer.gdObject, graphics);
                             } catch(Exception e) {
-                                //3
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
 
@@ -253,7 +251,6 @@ Created By: Travis Berthelot
                                 </xsl:if>
 
                             } catch(Exception e) {
-                                //3
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
 

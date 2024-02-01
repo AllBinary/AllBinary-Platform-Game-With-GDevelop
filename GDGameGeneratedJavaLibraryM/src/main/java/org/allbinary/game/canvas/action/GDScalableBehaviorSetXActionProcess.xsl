@@ -41,7 +41,6 @@ Created By: Travis Berthelot
                                 }
 
                             } catch(Exception e) {
-                            //8
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
 
@@ -61,7 +60,6 @@ Created By: Travis Berthelot
                                 gameLayer.setScalable();
 
                             } catch(Exception e) {
-                            //8
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
 
