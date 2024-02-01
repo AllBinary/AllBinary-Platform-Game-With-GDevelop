@@ -39,15 +39,17 @@ Created By: Travis Berthelot
 
                             <xsl:variable name="secondParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
-                            final int size = gdGameLayerList.size();
-                            final int size2 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$secondParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$secondParam" />GDGameLayerList.size();
+                            //final int size = gdGameLayerList.size();
+                            //final int size2 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$secondParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$secondParam" />GDGameLayerList.size();
                             GDGameLayer gameLayer;
                             GDGameLayer gameLayer2;
-                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            //for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size(); index++) {
 
                                 gameLayer = (GDGameLayer) gdGameLayerList.get(index);
 
-                                for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
+                                //for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
+                                for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$secondParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$secondParam" />GDGameLayerList.size(); index2++) {
                                     gameLayer2 = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$secondParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$secondParam" />GDGameLayerList.get(index2);
 
                             <xsl:variable name="hasOtherConditions" ><xsl:for-each select="preceding-sibling::conditions" >found</xsl:for-each></xsl:variable>
