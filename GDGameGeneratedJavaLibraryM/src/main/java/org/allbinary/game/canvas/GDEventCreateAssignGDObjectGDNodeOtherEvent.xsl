@@ -139,7 +139,8 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:variable>
                     
-                    <xsl:if test="$object" >
+                    <xsl:if test="string-length($object) > 0" >
+                    //object=<xsl:value-of select="$object" />
                     <xsl:if test="contains($hasObjectGroup, 'found')" >
                     final int size3 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$object" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$object" />GDGameLayerListOfList.size();
                     for(int index3 = 0; index3 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; index3++) {
@@ -153,7 +154,7 @@ Created By: Travis Berthelot
                     }
                     </xsl:if>
                     </xsl:if>
-                    <xsl:if test="not($object)" >
+                    <xsl:if test="string-length($object) = 0" >
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                     </xsl:if>
                     

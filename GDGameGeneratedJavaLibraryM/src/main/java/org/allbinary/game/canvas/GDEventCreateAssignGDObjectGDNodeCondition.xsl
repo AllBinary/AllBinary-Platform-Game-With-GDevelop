@@ -19,6 +19,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDTextContainerCapabilityTextContainerBehaviorValueConditionGDNode.xsl" />
     <xsl:import href="./condition/GDOnceConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAlwaysConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDLinkedObjectsPickObjectsLinkedToConditionGDNode.xsl" />
     <xsl:import href="./condition/GDOrConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAndConditionGDNode.xsl" />
     <xsl:import href="./condition/GDMusicPlayingConditionGDNode.xsl" />
@@ -98,10 +99,6 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
                 <xsl:if test="$typeValue = 'Inventory::IsEquipped'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-
-                <xsl:if test="$typeValue = 'LinkedObjects::PickObjectsLinkedTo'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
 
@@ -225,7 +222,7 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'LinkedObjects::PickObjectsLinkedTo'" >
 
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED yet
+                    <xsl:call-template name="linkedObjectsPickObjectsLinkedToConditionGDNode" />
                     
                 </xsl:if>        
 
