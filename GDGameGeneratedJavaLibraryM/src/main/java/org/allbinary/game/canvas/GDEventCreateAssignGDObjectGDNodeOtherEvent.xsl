@@ -79,7 +79,7 @@ Created By: Travis Berthelot
                     <xsl:if test="type/value = 'Timer'" >found</xsl:if>
                 </xsl:for-each>
             </xsl:variable>
-                                
+
                 //3 - Event
                 private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />";
                 <xsl:text>&#10;</xsl:text>
@@ -129,8 +129,8 @@ Created By: Travis Berthelot
                     //Does not have one of the special conditions.
                     <xsl:for-each select="conditions" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />                        
-                        <xsl:if test="type/value = 'BuiltinCommonInstructions::And'" >
-                    //other - //Condition - //<xsl:value-of select="type/value" /> - press - call
+                        <xsl:if test="type/value = 'BuiltinCommonInstructions::And' or type/value = 'BuiltinCommonInstructions::ForEach'" >
+                    //other - //Condition - //<xsl:value-of select="type/value" /> - call
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                         </xsl:if>
                     </xsl:for-each>
@@ -147,7 +147,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="conditions" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                         <xsl:if test="position() = 1" >
-                    //eventsCreateAssignGDObjectGDNodes - //Condition - //<xsl:value-of select="type/value" /> - press - call
+                    //eventsCreateAssignGDObjectGDNodes - //Condition - //<xsl:value-of select="type/value" /> - call
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                         </xsl:if>
                         <xsl:if test="position() = 2" >
@@ -266,7 +266,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="conditions" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                         <xsl:if test="position() = 1" >
-                    //eventsCreateAssignGDObjectGDNodes - //Condition - //<xsl:value-of select="type/value" /> - press - call
+                    //eventsCreateAssignGDObjectGDNodes - //Condition - //<xsl:value-of select="type/value" /> - call
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
                         </xsl:if>
                         <xsl:if test="position() = 2" >
