@@ -129,7 +129,7 @@ Created By: Travis Berthelot
                     //Does not have one of the special conditions.
                     <xsl:for-each select="conditions" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />                        
-                        <xsl:if test="type/value = 'BuiltinCommonInstructions::And' or type/value = 'BuiltinCommonInstructions::ForEach'" >
+                        <xsl:if test="type/value = 'BuiltinCommonInstructions::And' or type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
                     //other - //Condition - //<xsl:value-of select="type/value" /> - call
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                         </xsl:if>
