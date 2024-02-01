@@ -27,6 +27,8 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDModVarObjetActionProcess.xsl" />
     <xsl:import href="./action/GDModVarSceneTxtActionProcess.xsl" />
     
+    <xsl:import href="./action/GDLinkedObjectsLinkObjectsActionProcess.xsl" />
+    
     <xsl:import href="./action/GDObjectVariablePushNumberActionProcess.xsl" />
 
     <xsl:import href="./action/GDHideLayerActionProcess.xsl" />
@@ -221,7 +223,22 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'LinkedObjects::LinkObjects'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED yet
+                    
+                    <xsl:call-template name="linkedObjectsLinkObjectsActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>                        
+                    
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'LinkedObjects::RemoveLinkBetween'" >

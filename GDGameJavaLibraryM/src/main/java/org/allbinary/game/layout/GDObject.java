@@ -14,6 +14,7 @@
 package org.allbinary.game.layout;
 
 import javax.microedition.lcdui.Graphics;
+
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.SpacialStrings;
@@ -24,6 +25,7 @@ import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.math.NoDecimalTrigTable;
 import org.allbinary.math.PositionStrings;
+import org.allbinary.util.BasicArrayList;
 
 /**
  *
@@ -33,6 +35,8 @@ public class GDObject
 {
 
     private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
+    
+    public final BasicArrayList linkedGDObjectList = new BasicArrayList();
     
     public final String name;
     public final String type;
