@@ -37,13 +37,26 @@ Created By: Travis Berthelot
 
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
+                            <xsl:variable name="secondParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
+                            final int size = gdGameLayerList.size();
+                            final int size2 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$secondParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$secondParam" />GDGameLayerList.size();
+                            GDGameLayer gameLayer;
+                            GDGameLayer gameLayer2;
+                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+
+                                gameLayer = (GDGameLayer) gdGameLayerList.get(index);
+
+                                for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
+                                    gameLayer2 = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$secondParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$secondParam" />GDGameLayerList.get(index2);
+
                             <xsl:variable name="hasOtherConditions" ><xsl:for-each select="preceding-sibling::conditions" >found</xsl:for-each></xsl:variable>
                             <xsl:for-each select="preceding-sibling::conditions" >
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                             //Preceding-Sibling - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                             //Preceding-Sibling - //Condition - //<xsl:value-of select="type/value" /> - call
-                            if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(gdGameLayerList)) {
+                            if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer, gameLayer2, null)) {
                                 return true;
                             }
                             </xsl:for-each>
@@ -57,24 +70,26 @@ Created By: Travis Berthelot
                                 //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                                 <xsl:text>&#10;</xsl:text>
                                 //Action - //<xsl:value-of select="type/value" /> - call
-                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(gdGameLayerList);
+                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer, gameLayer2, null);
                                 </xsl:for-each>
                                     
                                 <xsl:for-each select="events" >
                                     <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                                 //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" />
                                 //Event - //<xsl:value-of select="type" /> - call
-                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(gdGameLayerList);
+                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer, gameLayer2, null);
                                     </xsl:if>
                                     <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                                 //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                                 //Event - //BuiltinCommonInstructions::Link - call
-                                globals.<xsl:value-of select="target" />GDNode.process(gdGameLayerList);
+                                globals.<xsl:value-of select="target" />GDNode..processGD(gameLayer, gameLayer2, null);
                                     </xsl:if>
                                 </xsl:for-each>
 
                                 </xsl:for-each>
                             </xsl:if>
+                                }
+                            }
 
                             return false;
                         }

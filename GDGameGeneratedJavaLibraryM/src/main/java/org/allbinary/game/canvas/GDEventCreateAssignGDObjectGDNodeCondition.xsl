@@ -222,7 +222,11 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'LinkedObjects::PickObjectsLinkedTo'" >
 
-                    <xsl:call-template name="linkedObjectsPickObjectsLinkedToConditionGDNode" />
+                    <xsl:call-template name="linkedObjectsPickObjectsLinkedToConditionGDNode" >
+                        <xsl:with-param name="parametersAsString" >
+                            <xsl:value-of select="$parametersAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
                     
                 </xsl:if>        
 
