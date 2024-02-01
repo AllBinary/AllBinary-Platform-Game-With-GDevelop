@@ -131,7 +131,32 @@ Created By: Travis Berthelot
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />                        
                         <xsl:if test="type/value = 'BuiltinCommonInstructions::And' or type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
                     //other - //Condition - //<xsl:value-of select="type/value" /> - call
+                    
+                    <xsl:variable name="object" ><xsl:value-of select="../object" /></xsl:variable>
+                    <xsl:variable name="hasObjectGroup" >
+                        <xsl:for-each select="//objectsGroups" >
+                            <xsl:if test="name = $object" >found</xsl:if>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    
+                    <xsl:if test="$object" >
+                    <xsl:if test="contains($hasObjectGroup, 'found')" >
+                    final int size3 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$object" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$object" />GDGameLayerListOfList.size();
+                    for(int index3 = 0; index3 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; index3++) {
+                    final BasicArrayList gdGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$object" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$object" />GDGameLayerListOfList.get(size3);
+                    </xsl:if>
+                    <xsl:if test="not(contains($hasObjectGroup, 'found'))" >
+                    final BasicArrayList gdGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="object" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$object" />GDGameLayerList;
+                    </xsl:if>
+                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(gdGameLayerList);
+                    <xsl:if test="contains($hasObjectGroup, 'found')" >
+                    }
+                    </xsl:if>
+                    </xsl:if>
+                    <xsl:if test="not($object)" >
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    </xsl:if>
+                    
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>
