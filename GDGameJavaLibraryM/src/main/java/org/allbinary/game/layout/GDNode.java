@@ -68,7 +68,7 @@ public class GDNode
     }
     
     //Used by BuiltinCommonInstructions::ForEach only
-    public boolean process(final BasicArrayList gdGameLayerList) {
+    public boolean process(final BasicArrayList gdGameLayerList) throws Exception {
         return true;
     }
 
