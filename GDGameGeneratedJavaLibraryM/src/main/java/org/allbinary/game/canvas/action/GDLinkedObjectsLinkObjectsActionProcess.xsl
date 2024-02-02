@@ -110,16 +110,16 @@ Created By: Travis Berthelot
 
                     //LinkedObjects::LinkObjects - Add
                     <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 2" >gameGlobals.tempGameLayerArray[0].gdObject.linkedGDObjectList.add(</xsl:if>
+                        <xsl:if test="position() = 2" >gameGlobals.tempGameLayerArray[0].linkedGDGameLayerList.add(</xsl:if>
                         <xsl:if test="position() = 3" >
-                            gameGlobals.tempGameLayerArray[1].gdObject
+                            gameGlobals.tempGameLayerArray[1]
                         </xsl:if>
                         <xsl:if test="position() = last()" >);</xsl:if>
                     </xsl:for-each>
 
 <!--
                     <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 2" ><xsl:value-of select="text()" />.linkedGDObjectList.add(</xsl:if>
+                        <xsl:if test="position() = 2" ><xsl:value-of select="text()" />.linkedGDGameLayerList.add(</xsl:if>
                         <xsl:if test="position() = 3" >
                             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.
                             <xsl:value-of select="text()" />GDGameLayerList.get(
@@ -141,7 +141,9 @@ Created By: Travis Berthelot
                             try {
                                 super.processGStats(gdObject, graphics);
                         
-                                final boolean result = this.processGPaint(gdObject, graphics);
+                                if(true) throw new RuntimeException();
+                                final boolean result = true;
+                                    //this.processGPaint(gdObject, graphics);
                                                                 
                                 return result;
 
@@ -252,30 +254,6 @@ Created By: Travis Berthelot
 -->
                     
                             try {
-                        
-                    <xsl:if test="$paramOneNameObjectsGroups != ''" >
-                                final boolean result = this.processGPaint(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject, graphics);
-                                
-                    </xsl:if>
-
-                    <xsl:if test="$paramOneNameObjectsGroups = ''" >
-                                final boolean result = this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, graphics);
-                                
-                    </xsl:if>
-                                
-                                return result;
-
-                            } catch(Exception e) {
-                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
-                            }
-
-                            return true;
-                        }
-
-                        @Override
-                        public boolean processGPaint(final GDObject gdObject, final Graphics graphics) {
-
-                            try {
 
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
@@ -284,21 +262,6 @@ Created By: Travis Berthelot
                                 //    return;
                                 //}
                             
-                            <xsl:if test="string-length($parentConditionObject) > 0" >
-                            <xsl:if test="not(contains($parentObjectHasObjectGroup, 'found'))" >
-                                //Param from parent
-                                final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$parentConditionObject" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$parentConditionObject" /><xsl:text> </xsl:text><xsl:value-of select="$parentConditionObject" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$parentConditionObject" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$parentConditionObject" />) gdObject;
-                            </xsl:if>
-                            
-                            <xsl:if test="contains($parentObjectHasObjectGroup, 'found')" >
-                                final GDObject <xsl:value-of select="$parentConditionObject" /> = gdObject;
-                            </xsl:if>
-                            </xsl:if>
-                            <xsl:if test="string-length($parentConditionObject) = 0" >
-                                //Param not from parent
-                                final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) gdObject;
-                            </xsl:if>
-
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS));
 
                     <xsl:for-each select="/game" >
@@ -365,7 +328,7 @@ Created By: Travis Berthelot
 
                     //LinkedObjects::LinkObjects - Add
                     <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 2" ><xsl:value-of select="text()" />.linkedGDObjectList.add(</xsl:if>
+                        <xsl:if test="position() = 2" ><xsl:value-of select="text()" />GDGameLayer.linkedGDGameLayerList.add(</xsl:if>
                         <xsl:if test="position() = 3" >
                             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.
                             <xsl:value-of select="text()" />GDGameLayerList.get(

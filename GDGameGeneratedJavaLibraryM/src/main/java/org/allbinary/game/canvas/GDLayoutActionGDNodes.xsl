@@ -88,6 +88,8 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
+                import org.allbinary.game.layer.GDPrimitiveDrawing;
+                import org.allbinary.game.layer.GDPrimitiveDrawingAnimationFactory;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.color.BasicColor;

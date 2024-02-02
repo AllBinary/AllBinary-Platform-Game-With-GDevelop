@@ -77,6 +77,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.behavior.DestroyOutsideBehavior;
                 import org.allbinary.game.layout.behavior.GDBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
@@ -125,6 +126,15 @@ Created By: Travis Berthelot
                         public final BasicArrayList <xsl:value-of select="name/text()" />OnceGDNodeList = new BasicArrayList();
                             </xsl:if>
                         </xsl:for-each>
+
+                    //PrimitiveDrawing::FillColor - START
+                        <xsl:for-each select="//actions[type/value = 'PrimitiveDrawing::FillColor']" >
+                            public BasicColor <xsl:for-each select="parameters" ><xsl:if test="position() = 2" >RGB_<xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', '_')" />_BASIC_COLOR</xsl:if></xsl:for-each> = new BasicColor(255, 
+                                <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:if></xsl:for-each>,
+                                "<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >RGB_<xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', '_')" />_BASIC_COLOR</xsl:if></xsl:for-each>"
+                                );
+                        </xsl:for-each>
+                    //PrimitiveDrawing::FillColor - END              
 
                     <xsl:for-each select="externalEvents" >
                         //Count - //ExternalEvents - START
@@ -344,6 +354,7 @@ Created By: Travis Berthelot
                 
             <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer'" >
                 //PrimitiveDrawing::Drawer
+                <xsl:value-of select="name" />CacheGDGameLayerList.clear();
             </xsl:if>
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />

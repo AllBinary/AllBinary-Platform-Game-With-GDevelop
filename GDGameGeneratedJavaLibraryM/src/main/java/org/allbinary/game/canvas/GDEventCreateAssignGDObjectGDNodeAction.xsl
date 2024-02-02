@@ -76,6 +76,8 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDScalableBehaviorSetXActionProcess.xsl" />
     <xsl:import href="./action/GDScalableBehaviorSetYActionProcess.xsl" />
     <xsl:import href="./action/GDSceneBackgroundActionProcess.xsl" />
+    <xsl:import href="./action/GDPrimitiveDrawingFillColorActionProcess.xsl" />
+    <xsl:import href="./action/GDPrimitiveDrawingRectangleActionProcess.xsl" />
     
     <xsl:template name="eventsCreateAssignGDObjectGDNodesAction" >
         <xsl:param name="caller" />
@@ -347,7 +349,7 @@ Created By: Travis Berthelot
         
                 <xsl:if test="$typeValue = 'PrimitiveDrawing::FillColor'" >
                     
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED yet
+                    <xsl:call-template name="primitiveDrawingFillColorActionProcess" />
                     
                 </xsl:if>
         
@@ -413,7 +415,11 @@ Created By: Travis Berthelot
                 
                 <xsl:if test="$typeValue = 'PrimitiveDrawing::Rectangle'" >
                     
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED yet
+                    <xsl:call-template name="primitiveDrawingRectangleActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
                     
                 </xsl:if>
 
@@ -761,7 +767,11 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'Delete'" >
                     
-                    <xsl:call-template name="deleteActionProcess" />
+                    <xsl:call-template name="deleteActionProcess" >
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 

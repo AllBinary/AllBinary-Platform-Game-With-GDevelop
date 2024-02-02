@@ -72,6 +72,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.RotationAnimationFactory;
                 import org.allbinary.animation.image.GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.animation.NullAnimationFactory;
                 import org.allbinary.animation.NullRotationAnimationFactory;
                 import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.layer.GDCustomGameLayerFactory;
@@ -80,6 +81,8 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDSingleAnimationBehavior;
                 import org.allbinary.game.layer.GDIndividualAnimationBehavior;
                 import org.allbinary.game.layer.GDAnimationBehaviorBase;
+                import org.allbinary.game.layer.GDPrimitiveDrawing;
+                import org.allbinary.game.layer.GDPrimitiveDrawingAnimationFactory;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;

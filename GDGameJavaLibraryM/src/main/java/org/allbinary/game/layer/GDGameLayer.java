@@ -60,8 +60,6 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
     protected final CombatBaseBehavior combatBaseBehavior;
 
-    public Animation[] animationArray = new Animation[0];
-
     protected final IndexedAnimation[] initIndexedAnimationInterfaceArray;
     protected IndexedAnimation[] indexedAnimationInterfaceArray;
 
@@ -80,12 +78,17 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
     public final Rectangle[][] rectangleArrayOfArrays;
 
+    public final BasicArrayList linkedGDGameLayerList = new BasicArrayList();    
+
     public GDObject gdObject;
+
+    public Animation primitiveDrawing;
 
     protected ScalableBaseProcessor scalableProcessor = ScalableBaseProcessor.getInstance();
     protected Processor processor = Processor.getInstance();
     
-    public GDGameLayer(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
+    public GDGameLayer(final Animation primitiveDrawing, 
+            final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
             final BasicArrayList behaviorList,
             final VelocityProperties velocityInterface,
             final String gdName, final Group[] groupInterface,
@@ -97,6 +100,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             final GDObject gdObject, final GDAnimationBehaviorBase animationBehavior) throws Exception {
         super(groupInterface, gdName, layerInfo, viewPosition);
 
+        this.primitiveDrawing = primitiveDrawing;
+        
         this.gameLayerList = gameLayerList;
         this.gameLayerDestroyedList = gameLayerDestroyedList;
         
@@ -414,11 +419,12 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.initIndexedAnimationInterfaceArray[this.gdObject.animation].setFrame(0);
     }
     
-    public void animate(final long timeDelta) {
+    public void animate(final long timeDelta) throws Exception {
         
         VelocityUtil.reduce(this.velocityInterface, 30, 100);
 
         this.dimensionalBehavior.animationBehavior.animate(this.gdObject, this.initIndexedAnimationInterfaceArray, timeDelta);
+        this.primitiveDrawing.nextFrame();
     }
 
     public void updateRotation(final long timeDelta) {
@@ -472,10 +478,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             this.indexedAnimationInterfaceArray[this.gdObject.animation].paint(graphics, x, y);
             //}
 
-            final int size = animationArray.length;
-            for (int index = 0; index < size; index++) {
-                this.animationArray[index].paint(graphics, x, y);
-            }
+            this.primitiveDrawing.paint(graphics, x, y);
             
             //this.paintPoints(graphics);
             this.paintDebug(graphics);
@@ -499,10 +502,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
             this.indexedAnimationInterfaceArray[this.gdObject.animation].paintThreed(graphics, x, y, z);
             
-            final int size = animationArray.length;
-            for (int index = 0; index < size; index++) {
-                this.animationArray[index].paintThreed(graphics, x, y, z);
-            }
+            this.primitiveDrawing.paintThreed(graphics, x, y, z);
 
         }
         catch (Exception e)

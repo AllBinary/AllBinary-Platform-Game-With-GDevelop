@@ -61,6 +61,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
                 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
                 import org.allbinary.animation.BasicAnimationInterfaceFactoryInterface;
+                import org.allbinary.animation.NullAnimationFactory;
                 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
                 import org.allbinary.animation.RotationAnimationFactory;
                 import org.allbinary.animation.image.GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;

@@ -711,6 +711,7 @@ Created By: Travis Berthelot
         import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals;
         </xsl:for-each>
 
+        import org.allbinary.animation.Animation;
         import org.allbinary.animation.AnimationInterfaceFactoryInterface;
         import org.allbinary.animation.IndexedAnimationInterface;
         import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
@@ -861,6 +862,7 @@ Created By: Travis Berthelot
         </xsl:for-each>
 
                     public GDCustomGameLayer(
+                        final Animation primitiveDrawing,
                         final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
                         final BasicArrayList behaviorList,
                         final String gdName, final Group[] groupInterface,
@@ -870,7 +872,7 @@ Created By: Travis Berthelot
                         final Rectangle[][] rectangleArrayOfArrays,
                         final GDObject gdObject, final GDAnimationBehaviorBase animationBehavior) throws Exception {
 
-                        super(gameLayerList, gameLayerDestroyedList, 
+                        super(primitiveDrawing, gameLayerList, gameLayerDestroyedList, 
                             behaviorList, 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />

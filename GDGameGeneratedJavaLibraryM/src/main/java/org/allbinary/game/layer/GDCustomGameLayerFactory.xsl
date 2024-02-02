@@ -21,6 +21,7 @@ Created By: Travis Berthelot
                 
 package org.allbinary.game.layer;
 
+import org.allbinary.animation.Animation;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.game.identification.Group;
@@ -37,10 +38,12 @@ import org.allbinary.util.BasicArrayList;
 public class GDCustomGameLayerFactory extends GDGameLayerFactory
 {
 
+    private final AnimationInterfaceFactoryInterface primitiveDrawingAnimationFactory;
     private final int width;
     private final int height;
 
     public GDCustomGameLayerFactory(
+            final AnimationInterfaceFactoryInterface primitiveDrawingAnimationFactory,
             final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
             final Group[] groupInterface,
             final BasicArrayList behaviorList,
@@ -48,10 +51,11 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo,
             final Rectangle[][] rectangleArrayOfArrays) {
-        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, new GDRotationBehavior());
+        this(primitiveDrawingAnimationFactory, gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, new GDRotationBehavior());
     }
     
     public GDCustomGameLayerFactory(
+            final AnimationInterfaceFactoryInterface primitiveDrawingAnimationFactory,
             final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
             final Group[] groupInterface,
             final BasicArrayList behaviorList,
@@ -69,7 +73,8 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             layerInfo, 
             rectangleArrayOfArrays, 
             animationBehavior);
-        
+    
+        this.primitiveDrawingAnimationFactory = primitiveDrawingAnimationFactory;    
         this.width = this.layerInfo.getWidth();
         this.height = this.layerInfo.getHeight();
     }
@@ -94,6 +99,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
         }
 
         final GDCustomGameLayer gameLayer = new GDCustomGameLayer(
+                this.primitiveDrawingAnimationFactory.getInstance(),
                 this.gameLayerList, this.gameLayerDestroyedList,
                 this.behaviorList,
                 name,

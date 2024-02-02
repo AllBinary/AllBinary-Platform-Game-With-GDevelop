@@ -78,6 +78,14 @@ Created By: Travis Berthelot
 
                             return false;
                         }
+                        
+                        @Override
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) {
+                            this.processGDStats(gameLayer);
+                            
+                            return true;
+                        }
+                        
                     };
 
     </xsl:template>

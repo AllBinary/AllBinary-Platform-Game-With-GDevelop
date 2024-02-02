@@ -14,6 +14,7 @@
 package org.allbinary.game.layer;
 
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
+import org.allbinary.animation.NullAnimationFactory;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
@@ -82,6 +83,7 @@ public class GDGameLayerFactory
         }
         
         final GDGameLayer gameLayer = new GDGameLayer(
+            NullAnimationFactory.getFactoryInstance().getInstance(), 
                 this.gameLayerList, this.gameLayerDestroyedList,
                 this.behaviorList,
                 new VelocityProperties(3200, 3200),
