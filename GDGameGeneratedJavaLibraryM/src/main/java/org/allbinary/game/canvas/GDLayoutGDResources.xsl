@@ -82,6 +82,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDIndividualAnimationBehavior;
                 import org.allbinary.game.layer.GDAnimationBehaviorBase;
                 import org.allbinary.game.layer.GDPrimitiveDrawing;
+                import org.allbinary.game.layer.GDRectOnlyPrimitiveDrawing;
                 import org.allbinary.game.layer.GDPrimitiveDrawingAnimationFactory;
                 import org.allbinary.game.layer.GDRectOnlyPrimitiveDrawingAnimationFactory;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;

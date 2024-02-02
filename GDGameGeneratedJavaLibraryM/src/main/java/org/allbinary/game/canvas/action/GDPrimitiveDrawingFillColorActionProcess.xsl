@@ -62,7 +62,7 @@ Created By: Travis Berthelot
                         
                         try {
 
-                            ((GDPrimitiveDrawing) <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayer.primitiveDrawing).addFillColor(
+                            ((GDRectOnlyPrimitiveDrawing) <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>GDGameLayer.primitiveDrawing).addFillColor(
                                 gameGlobals.<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >RGB_<xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', '_')" />_BASIC_COLOR</xsl:if></xsl:for-each>
                                 );
                                 
