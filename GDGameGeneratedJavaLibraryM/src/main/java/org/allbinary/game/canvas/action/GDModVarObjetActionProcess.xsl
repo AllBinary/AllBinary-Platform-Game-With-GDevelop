@@ -167,7 +167,7 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                             final GDGameLayer <xsl:value-of select="$paramTwoNameObjectsGroups" />GDGameLayer = ((GDGameLayer) <xsl:value-of select="$paramTwoNameObjectsGroups" />GDGameLayerList.get(index));
                         <xsl:text>&#10;</xsl:text>
-                            final GDObject <xsl:value-of select="$paramTwoNameObjectsGroups" /> = <xsl:value-of select="$paramTwoNameObjectsGroups" />GDGameLayer.gdObject;
+                            final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$paramTwoNameObjectsGroups" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$paramTwoNameObjectsGroups" /><xsl:text> </xsl:text><xsl:value-of select="$paramTwoNameObjectsGroups" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$paramTwoNameObjectsGroups" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$paramTwoNameObjectsGroups" />) <xsl:value-of select="$paramTwoNameObjectsGroups" />GDGameLayer.gdObject;
                         </xsl:if>
                         <xsl:text>&#10;</xsl:text>
                         <xsl:text>&#10;</xsl:text>
@@ -248,7 +248,7 @@ Created By: Travis Berthelot
                         <xsl:if test="$paramTwoNameObjectsGroups != ''" >
                             //final GDGameLayer <xsl:value-of select="$paramTwoNameObjectsGroups" />GameLayer = gameLayer2;
                         <xsl:text>&#10;</xsl:text>
-                            final GDObject <xsl:value-of select="$paramTwoNameObjectsGroups" /> = <xsl:value-of select="$paramTwoNameObjectsGroups" />GDGameLayer.gdObject;
+                            final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$paramTwoNameObjectsGroups" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$paramTwoNameObjectsGroups" /><xsl:text> </xsl:text><xsl:value-of select="$paramTwoNameObjectsGroups" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$paramTwoNameObjectsGroups" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$paramTwoNameObjectsGroups" />) <xsl:value-of select="$paramTwoNameObjectsGroups" />GDGameLayer.gdObject;
                         </xsl:if>
                         <xsl:text>&#10;</xsl:text>
                         <xsl:text>&#10;</xsl:text>
