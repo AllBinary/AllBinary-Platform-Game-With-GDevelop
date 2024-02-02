@@ -481,7 +481,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             this.primitiveDrawing.paint(graphics, x, y);
             
             //this.paintPoints(graphics);
-            this.paintDebug(graphics);
+            //this.paintDebug(graphics);
         }
         catch (Exception e)
         {
