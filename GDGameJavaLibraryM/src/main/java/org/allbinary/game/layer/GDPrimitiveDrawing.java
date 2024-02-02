@@ -19,7 +19,9 @@ import org.allbinary.animation.vector.ARectangleFilledAnimation;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.logic.string.StringMaker;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.CircularIndexUtil;
 
@@ -36,8 +38,6 @@ public class GDPrimitiveDrawing extends Animation {
     };
 
     private final CircularIndexUtil circularIndexUtil = CircularIndexUtil.getInstance(animationListArray.length);
-    
-    public BasicArrayList animationList = animationListArray[animationListArray.length - 1];
 
     public final BasicArrayList colorAnimationInUseList = new BasicArrayList();
     public final BasicArrayList colorAnimationCacheList = new BasicArrayList();
@@ -45,6 +45,8 @@ public class GDPrimitiveDrawing extends Animation {
     public final BasicArrayList aRetangleFilledAnimationInUseList = new BasicArrayList();
     public final BasicArrayList aRetangleFilledAnimationCacheList = new BasicArrayList();
 
+    public BasicArrayList animationList = animationListArray[animationListArray.length - 1];
+    
     @Override
     public void nextFrame() {
         
@@ -73,6 +75,7 @@ public class GDPrimitiveDrawing extends Animation {
             this.animationListArray[this.circularIndexUtil.getIndex()].add(colorAnimation);
             this.colorAnimationInUseList.add(colorAnimation);
         }
+
     }
 
     public void addFillRectangle(final int x, final int y, final int x2, final int y2) {
@@ -95,6 +98,7 @@ public class GDPrimitiveDrawing extends Animation {
             this.aRetangleFilledAnimationInUseList.add(rectangleFilledAnimation);
         }
         
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("addFillRectangle: ").append(x).append(CommonSeps.getInstance().COMMA).append(y).append(CommonSeps.getInstance().COMMA).append(x2).append(CommonSeps.getInstance().COMMA).append(y2).toString(), this, CommonStrings.getInstance().PROCESS));
         //LogUtil.put(LogFactory.getInstance("addFillRectangle: " + this.animationListArray[this.circularIndexUtil.getIndex()].size(), this, CommonStrings.getInstance().PROCESS));
     }
 
