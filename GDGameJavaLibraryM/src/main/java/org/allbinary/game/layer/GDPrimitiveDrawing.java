@@ -50,7 +50,7 @@ public class GDPrimitiveDrawing extends Animation {
         
         this.animationList = this.animationListArray[this.circularIndexUtil.getIndex()];
         this.circularIndexUtil.next();
-        LogUtil.put(LogFactory.getInstance("TWBnextFrame: " + this.animationListArray[this.circularIndexUtil.getIndex()].size(), this, CommonStrings.getInstance().PROCESS));
+        //LogUtil.put(LogFactory.getInstance("nextFrame: " + this.animationListArray[this.circularIndexUtil.getIndex()].size(), this, CommonStrings.getInstance().PROCESS));
         this.animationListArray[this.circularIndexUtil.getIndex()].clear();
         
         this.colorAnimationCacheList.addAll(this.colorAnimationInUseList);
@@ -77,8 +77,6 @@ public class GDPrimitiveDrawing extends Animation {
 
     public void addFillRectangle(final int x, final int y, final int x2, final int y2) {
         
-        LogUtil.put(LogFactory.getInstance("TWBaddFillRectangle: " + this.animationListArray[this.circularIndexUtil.getIndex()].size(), this, CommonStrings.getInstance().PROCESS));
-        
         if(this.aRetangleFilledAnimationCacheList.size() == 0) {
             final ARectangleFilledAnimation rectangleFilledAnimation = new ARectangleFilledAnimation();
             rectangleFilledAnimation.x = x;
@@ -96,19 +94,21 @@ public class GDPrimitiveDrawing extends Animation {
             this.animationListArray[this.circularIndexUtil.getIndex()].add(rectangleFilledAnimation);
             this.aRetangleFilledAnimationInUseList.add(rectangleFilledAnimation);
         }
+        
+        //LogUtil.put(LogFactory.getInstance("addFillRectangle: " + this.animationListArray[this.circularIndexUtil.getIndex()].size(), this, CommonStrings.getInstance().PROCESS));
     }
 
-    private int lastSize;
+//    private int lastSize;
 
     public void paint(final Graphics graphics, final int x, final int y)
     {
         final BasicArrayList animationList = this.animationList;
         final int size = animationList.size();
         
-        if(lastSize != size) {
-            lastSize = size;
-            LogUtil.put(LogFactory.getInstance("TWBpaint " + size, this, CommonStrings.getInstance().PROCESS));
-        }
+//        if(lastSize != size) {
+//            lastSize = size;
+//            LogUtil.put(LogFactory.getInstance("TWBpaint " + size, this, CommonStrings.getInstance().PROCESS));
+//        }
 
         for (int index = 0; index < size; index++) {
             ((Animation) animationList.get(index)).paint(graphics, x, y);
