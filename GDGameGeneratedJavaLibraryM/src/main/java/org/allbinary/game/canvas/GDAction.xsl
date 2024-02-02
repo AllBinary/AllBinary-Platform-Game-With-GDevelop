@@ -22,6 +22,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
         <xsl:param name="createdObjectsAsString" />
+        <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="objectsAsString" />
         <xsl:param name="thisNodeIndex" />
                     
@@ -94,6 +95,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
         <xsl:param name="createdObjectsAsString" />
+        <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="objectsAsString" />
         <xsl:param name="thisNodeArray" />
         <xsl:param name="thisNodeIndex" />
@@ -522,6 +524,9 @@ Created By: Travis Berthelot
 
                     //createGDObject - Action - START
                     <xsl:call-template name="createGDObject" >
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
                         <xsl:with-param name="objectsAsString" >
                             <xsl:value-of select="$objectsAsString" />
                         </xsl:with-param>

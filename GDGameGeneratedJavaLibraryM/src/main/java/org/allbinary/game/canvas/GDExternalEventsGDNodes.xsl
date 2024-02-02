@@ -100,6 +100,7 @@
         <xsl:param name="layoutIndex" />
         <xsl:param name="thisNodeIndex" />
         <xsl:param name="createdObjectsAsString" />
+        <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="objectsAsString" />
 
         //externalEventsCreateAssignGDObjectOtherEvent - START
@@ -119,6 +120,9 @@
                     </xsl:with-param>
                     <xsl:with-param name="createdObjectsAsString" >
                         <xsl:value-of select="$createdObjectsAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="objectsGroupsAsString" >
+                        <xsl:value-of select="$objectsGroupsAsString" />
                     </xsl:with-param>
                     <xsl:with-param name="objectsAsString" >
                         <xsl:value-of select="$objectsAsString" />
