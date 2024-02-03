@@ -114,7 +114,11 @@
                         public boolean <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                             </xsl:if>
                             <xsl:if test="type = 'number'" >
-                                <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE'))" >
+                                <xsl:if test="contains(name, 'TIME_SCALE')" >
+                        //GD is not using ms for timestamp as it says.  So this gets around that by multiplying all time processing by 10.
+                        public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />0;
+                                </xsl:if>
+                                <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'TIME_SCALE'))" >
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                                 </xsl:if>
                                 <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE')" >
