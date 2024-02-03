@@ -303,7 +303,29 @@ Created By: Travis Berthelot
                                 if(<xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.</xsl:if>
                                     <xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if>
-                                    <xsl:if test="position() = 3" ><xsl:if test="text() != '>' and text() != '&lt;' and text() != '&lt;='" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="text() = '>'" ><xsl:text disable-output-escaping="yes" > &gt; </xsl:text></xsl:if><xsl:if test="text() = '&lt;'" ><xsl:text disable-output-escaping="yes" > &lt; </xsl:text></xsl:if><xsl:if test="text() = '&lt;='" ><xsl:text disable-output-escaping="yes" > &lt;= </xsl:text></xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if></xsl:if>
+                                    <xsl:if test="position() = 3" >
+                                        <xsl:if test="text() != '>' and text() != '&lt;' and text() != '&lt;=' and text() != '&gt;' and text() != '&gt;='" >
+                                            <xsl:value-of select="text()" />
+                                        </xsl:if>
+                                        <xsl:if test="text() = '>'" >
+                                            <xsl:text disable-output-escaping="yes" > &gt; </xsl:text>
+                                        </xsl:if>
+                                        <xsl:if test="text() = '&lt;'" >
+                                            <xsl:text disable-output-escaping="yes" > &lt; </xsl:text>
+                                        </xsl:if>
+                                        <xsl:if test="text() = '&lt;='" >
+                                            <xsl:text disable-output-escaping="yes" > &lt;= </xsl:text>
+                                        </xsl:if>
+                                        <xsl:if test="text() = '&gt;'" >
+                                            <xsl:text disable-output-escaping="yes" > &gt; </xsl:text>
+                                        </xsl:if>
+                                        <xsl:if test="text() = '&gt;='" >
+                                            <xsl:text disable-output-escaping="yes" > &gt;= </xsl:text>
+                                        </xsl:if>
+                                        <xsl:if test="text() = '='" >=</xsl:if>
+                                        <xsl:if test="text() = '+'" >=</xsl:if>
+                                        <xsl:if test="text() = '-'" >=</xsl:if>
+                                    </xsl:if>
                                     <xsl:if test="position() = 4" >
                                         <xsl:variable name="before" >
                                             <xsl:value-of select="substring-before(text(), '.')" />
