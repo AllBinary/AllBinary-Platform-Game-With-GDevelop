@@ -307,16 +307,13 @@ Created By: Travis Berthelot
                                         <xsl:if test="text() != '>' and text() != '&lt;' and text() != '&lt;=' and text() != '&gt;' and text() != '&gt;='" >
                                             <xsl:value-of select="text()" />
                                         </xsl:if>
-                                        <xsl:if test="text() = '>'" >
-                                            <xsl:text disable-output-escaping="yes" > &gt; </xsl:text>
-                                        </xsl:if>
                                         <xsl:if test="text() = '&lt;'" >
                                             <xsl:text disable-output-escaping="yes" > &lt; </xsl:text>
                                         </xsl:if>
                                         <xsl:if test="text() = '&lt;='" >
                                             <xsl:text disable-output-escaping="yes" > &lt;= </xsl:text>
                                         </xsl:if>
-                                        <xsl:if test="text() = '&gt;'" >
+                                        <xsl:if test="text() = '>' or text() = '&gt;'" >
                                             <xsl:text disable-output-escaping="yes" > &gt; </xsl:text>
                                         </xsl:if>
                                         <xsl:if test="text() = '&gt;='" >
