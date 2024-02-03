@@ -88,7 +88,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:for-each>
                         -->
-                        
+
                         //createGDObject - process - START
                     <xsl:call-template name="createGDObject" >
                         <xsl:with-param name="layoutIndex" >
@@ -106,13 +106,15 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                         //createGDObject - process - END
-                        //createGDObject - //Create - call
+                        //createGDObject - //Create
                         this.processCreate(<xsl:value-of select="$name" />GDobject2);
                         
                         this.processEnd(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1);
 
                         return true;
+                        
                     }
+
                     //Create - GDObject other than TextObject::String - END
                         </xsl:if>
                                                 
@@ -156,6 +158,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                         return false;
+                        
                     }
                         </xsl:if>
         

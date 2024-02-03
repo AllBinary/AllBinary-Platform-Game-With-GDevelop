@@ -79,13 +79,23 @@ Created By: Travis Berthelot
                 //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                     
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:if test="//objectsGroups/name/text() = $foundCollisionNP" >
-                    //Using action instead of CollisionNP
+                    <xsl:if test="//objectsGroups/name/text() = $name" >
+                    //Using ObjectsGroups
+                    //if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                    if(<xsl:for-each select="//objectsGroups" >
+                                <xsl:if test="name = $foundCollisionNP" >
+                                <xsl:for-each select="objects" >this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME<xsl:if test="position() != last()" > || <xsl:text>&#10;</xsl:text>                                </xsl:if>
+                            </xsl:for-each></xsl:if></xsl:for-each>) {
+                    </xsl:if>
+                    <xsl:if test="not(//objectsGroups/name/text() = $name)" >
+                    <xsl:if test="//objects/name/text() = $name" >
+                    //Using GDObject param
                     if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
                     </xsl:if>
-                    <xsl:if test="not(//objectsGroups/name/text() = $foundCollisionNP)" >
+                    <xsl:if test="not(//objects/name/text() = $name)" >
                     //Using CollisionNP
                     if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                    </xsl:if>
                     </xsl:if>
                         this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                     }
@@ -118,7 +128,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:if>
                     <xsl:if test="not(//objectsGroups/name/text() = $foundCollisionNP)" >
-                    //Using CollisionNP
+                    //Using CollisionNP 2
                     if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
                         this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                     }
@@ -176,7 +186,7 @@ Created By: Travis Berthelot
                     if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
                     </xsl:if>
                     <xsl:if test="not(//objectsGroups/name/text() = $foundCollisionNP)" >
-                    //Using CollisionNP
+                    //Using CollisionNP 3
                     if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
                     </xsl:if>
                         this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
@@ -201,7 +211,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:if>
                     <xsl:if test="not(//objectsGroups/name/text() = $foundCollisionNP)" >
-                    //Using CollisionNP
+                    //Using CollisionNP 4
                     if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
                         this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                     }
@@ -260,11 +270,11 @@ Created By: Travis Berthelot
                 
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:if test="//objectsGroups/name/text() = $foundCollisionNP" >
-                    //Using action instead of CollisionNP
+                    //Using action instead of CollisionNP 2
                     if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
                     </xsl:if>
                     <xsl:if test="not(//objectsGroups/name/text() = $foundCollisionNP)" >
-                    //Using CollisionNP
+                    //Using CollisionNP 5
                     if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
                     </xsl:if>
                         this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
@@ -289,7 +299,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:if>
                     <xsl:if test="not(//objectsGroups/name/text() = $foundCollisionNP)" >
-                    //Using CollisionNP
+                    //Using CollisionNP 6
                     if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$foundCollisionNP" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
                         this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                     }

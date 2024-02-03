@@ -29,10 +29,41 @@ Created By: Travis Berthelot
 
                     //createGDObject - <xsl:value-of select="$spriteName" />
 
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() > 2" >
+                            <xsl:if test="contains(text(), '.')" >
+                                <xsl:variable name="objectNameWithSeps" >:<xsl:value-of select="substring-before(text(), '.')" />,</xsl:variable>
+                                <xsl:if test="contains($objectsAsString, $objectNameWithSeps)" >
+                                    <xsl:variable name="name2" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:variable>
+                                    <xsl:if test="$name != $name2" >
+                                        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                                        <xsl:variable name="hasPriorDuplicate" >
+                                        <xsl:for-each select="../parameters" >
+                                            <xsl:if test="position() > 2" >
+                                                <xsl:if test="contains(text(), '.')" >
+                                                <xsl:variable name="nodeId2" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                                                <xsl:variable name="name3" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:variable>
+                                                <xsl:if test="$name2 = $name3" >
+                                                    <xsl:if test="$nodeId > $nodeId2" >found</xsl:if>
+                                                </xsl:if>
+                                                </xsl:if>
+                                            </xsl:if>
+                                        </xsl:for-each>
+                                        </xsl:variable>
+                                        <xsl:if test="not(contains($hasPriorDuplicate, 'found'))" >
+                                        final GDObject <xsl:value-of select="$name2" /> = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDGameLayerList.get(0)).gdObject;
+                                        </xsl:if>
+                                    </xsl:if>
+                                </xsl:if>
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>                    
+                    
                     final GDObject <xsl:value-of select="$name" />GDobject2 = <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectFactory.get(
                     //parameters
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() != 2" >
+                            //position=<xsl:value-of select="position()" /><xsl:text>&#10;</xsl:text>
                             <xsl:if test="position() != last()" >
                                 <xsl:variable name="param" >
                                 <xsl:if test="string-length(text()) = 0" >

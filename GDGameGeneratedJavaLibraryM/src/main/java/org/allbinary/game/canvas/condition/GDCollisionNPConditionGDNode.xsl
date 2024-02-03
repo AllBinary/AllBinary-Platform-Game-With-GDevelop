@@ -112,10 +112,10 @@ Created By: Travis Berthelot
 
                             <xsl:if test="string-length($hasObjectGroup2) > 0" >
                             //CollisionNP - objectsGroups - //<xsl:value-of select="$name2" />
-                            final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDGameLayerListOfList.size();
-                            for(int index3 = 0; index3 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index3++) {
-                            //final BasicArrayList gdObjectList2 = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDObjectListOfList.get(index3));
-                            final BasicArrayList gdGameLayerList2 = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDGameLayerListOfList.get(index3));
+                            final int <xsl:value-of select="$name2" />Size2 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDGameLayerListOfList.size();
+                            for(int <xsl:value-of select="$name2" />Index2 = 0; <xsl:value-of select="$name2" />Index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$name2" />Size2; <xsl:value-of select="$name2" />Index2++) {
+                            //final BasicArrayList gdObjectList2 = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDObjectListOfList.get(<xsl:value-of select="$name2" />Index2));
+                            final BasicArrayList gdGameLayerList2 = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDGameLayerListOfList.get(<xsl:value-of select="$name2" />Index2));
                             </xsl:if>
                             <xsl:if test="string-length($hasObjectGroup2) = 0" >
                             //CollisionNP - //<xsl:value-of select="$name2" />
@@ -124,11 +124,11 @@ Created By: Travis Berthelot
                             </xsl:if>
                     
                             <xsl:if test="string-length($hasObjectGroup) > 0" >
-                            //CollisionNP - objectsGroups - //<xsl:value-of select="$name" />
-                            final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.size();
-                            for(int index3 = 0; index3 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index3++) {
-                            //final BasicArrayList gdObjectList = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectListOfList.get(index3));
-                            final BasicArrayList gdGameLayerList = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(index3));
+                            //CollisionNP - objectsGroups - //<xsl:value-of select="$name" /> - 2
+                            final int <xsl:value-of select="$name" />Size3 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.size();
+                            for(int <xsl:value-of select="$name" />Index3 = 0; <xsl:value-of select="$name" />Index3 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$name" />Size3; <xsl:value-of select="$name" />Index3++) {
+                            //final BasicArrayList gdObjectList = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectListOfList.get(<xsl:value-of select="$name" />Index3));
+                            final BasicArrayList gdGameLayerList = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(<xsl:value-of select="$name" />Index3));
                             </xsl:if>
                             <xsl:if test="string-length($hasObjectGroup) = 0" >
                             //CollisionNP - //<xsl:value-of select="$name" />
