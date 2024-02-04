@@ -148,6 +148,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             <xsl:value-of select="$layoutIndex" />
         </xsl:with-param>
     </xsl:call-template>
+    ////LogUtil.put(LogFactory.getInstance(new StringMaker().append("scale: ").append(scale).toString(), this, commonStrings.PROCESS));
         
     private final AllBinaryGameLayerManager layerManager;
 

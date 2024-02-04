@@ -151,6 +151,8 @@ Created By: Travis Berthelot
 
                         LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
                     
+                        ////LogUtil.put(LogFactory.getInstance(new StringMaker().append("scale: ").append(scale).toString(), this, commonStrings.PROCESS));
+
                         gdNodeStatsFactory.reset();
 
                         globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.create();

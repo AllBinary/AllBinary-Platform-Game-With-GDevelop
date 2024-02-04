@@ -317,6 +317,7 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="$layoutIndex" />
                                         </xsl:with-param>
                                     </xsl:call-template>
+                                    ////LogUtil.put(LogFactory.getInstance(new StringMaker().append("scale: ").append(scale).toString(), this, commonStrings.PROCESS));
 
                                 </xsl:if></xsl:if></xsl:for-each><xsl:text>&#10;</xsl:text>
 

@@ -36,6 +36,7 @@
         final int scaleHeight = (displayUtil.height / <xsl:value-of select="$windowHeight" />);
         final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
         </xsl:if>
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("scaleGlobal - scale: ").append(scale).toString(), this, commonStrings.PROCESS));
     </xsl:template>
 
     <xsl:template name="scaleTouchButtons" >
@@ -48,6 +49,7 @@
                             final int scaleWidth = (scaleLayout * displayUtil.width / <xsl:value-of select="$windowWidth" />);
                             final int scaleHeight = (scaleLayout * displayUtil.height / <xsl:value-of select="$windowHeight" />);
                             final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth * scaleTouchButtons : scaleHeight * scaleTouchButtons;
+                            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("scaleTouchButtons - scale: ").append(scale).toString(), this, commonStrings.PROCESS));
     </xsl:template>
 
 </xsl:stylesheet>

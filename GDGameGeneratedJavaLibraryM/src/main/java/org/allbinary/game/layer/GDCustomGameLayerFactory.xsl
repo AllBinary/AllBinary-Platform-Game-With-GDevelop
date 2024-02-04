@@ -90,12 +90,13 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
         final int gdObjectHeight = gdObject.Height(null);
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" gdObjectWidth: ").append(gdObjectWidth).append("gdObjectHeight: ").append(gdObjectHeight).append(" this.width: ").append(this.width).append(" this.height: ").append(this.height).toString(), this, "create"));
         if(gdObjectWidth != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> gdObjectHeight != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> (this.width != gdObjectWidth || this.height != gdObjectHeight)) {
-            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).toString(), this, "create"));
             this.layerInfo.setWidth(gdObjectWidth);
             this.layerInfo.setHeight(gdObjectHeight);
+            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(' ').append(this.layerInfo).toString(), this, "create"));
         } else {
             this.layerInfo.setWidth(this.width);
             this.layerInfo.setHeight(this.height);
+            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" 2GDObject name: ").append(gdObject.name).append(' ').append(this.layerInfo).toString(), this, "create"));
         }
 
         final GDCustomGameLayer gameLayer = new GDCustomGameLayer(

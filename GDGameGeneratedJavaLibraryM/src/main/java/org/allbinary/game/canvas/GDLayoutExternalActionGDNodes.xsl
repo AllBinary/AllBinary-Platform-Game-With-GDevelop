@@ -133,6 +133,7 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="$layoutIndex" />
                                         </xsl:with-param>
                                     </xsl:call-template>
+                                    ////LogUtil.put(LogFactory.getInstance(new StringMaker().append("scale: ").append(scale).toString(), this, commonStrings.PROCESS));
                                                           
                     <xsl:call-template name="externalEventsCreateAssignGDObjectAction" >
                         <xsl:with-param name="layoutName" >

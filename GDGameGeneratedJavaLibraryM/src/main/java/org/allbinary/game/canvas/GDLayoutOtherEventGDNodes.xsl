@@ -124,12 +124,6 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
-
-                        <xsl:call-template name="scale" >
-                            <xsl:with-param name="layoutIndex" >
-                                <xsl:value-of select="$layoutIndex" />
-                            </xsl:with-param>
-                        </xsl:call-template>
                         
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
 
@@ -139,6 +133,13 @@ Created By: Travis Berthelot
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
 
+                        <xsl:call-template name="scale" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                        </xsl:call-template>
+                        ////LogUtil.put(LogFactory.getInstance(new StringMaker().append("scale: ").append(scale).toString(), this, commonStrings.PROCESS));
+                    
                     //otherEventLayout - //eventsCreateAssignGDObjectGDNodesOtherEvent - START
                     <xsl:call-template name="eventsCreateAssignGDObjectGDNodesOtherEvent" >
                         <xsl:with-param name="caller" >otherEventLayout</xsl:with-param>

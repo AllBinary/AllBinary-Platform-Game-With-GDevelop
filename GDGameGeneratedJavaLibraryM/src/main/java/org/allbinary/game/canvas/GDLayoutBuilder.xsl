@@ -203,6 +203,7 @@ Created By: Travis Berthelot
                                     <xsl:value-of select="$layoutIndex" />
                                 </xsl:with-param>
                             </xsl:call-template>
+                            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("scale: ").append(scale).toString(), this, commonStrings.PROCESS));
                             globals.scale = scale;
                             globals.scaleNominator = scale;
                             globals.scaleDenominator = 2;
