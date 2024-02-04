@@ -29,12 +29,13 @@ Created By: Travis Berthelot
 
                     //param1=<xsl:value-of select="$param" />
                         <xsl:if test="contains($actionWithTextObjectString, $param)" >
-                    //Create - GDObject with TextObject::String - START
+                    //createActionProcess - //Create - GDObject with TextObject::String - START
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();
                             
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                        //createGDObject - TextObject::String - process - START
                     <xsl:call-template name="createGDObject" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
@@ -49,6 +50,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$nodeAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
+                        //createGDObject - TextObject::String - process - END
                     
                         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectList.add(<xsl:value-of select="$name" />GDobject2);
@@ -68,7 +70,7 @@ Created By: Travis Berthelot
                         </xsl:variable>
 
                         <xsl:if test="not(contains($hasObjectInParams, 'found')) and not(contains($actionWithTextObjectString, $param))" >
-                    //Create - GDObject other than TextObject::String - START
+                    //createActionProcess - //Create - GDObject other than TextObject::String - START
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();
@@ -160,6 +162,19 @@ Created By: Travis Berthelot
                         return false;
                         
                     }
+                    
+                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) {
+                        this.processGDStats(gameLayer);
+
+                        try {
+                           this.process();
+                        } catch(Exception e) {
+                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                        }
+
+                        return false;
+                    }
+
                         </xsl:if>
         
     </xsl:template>

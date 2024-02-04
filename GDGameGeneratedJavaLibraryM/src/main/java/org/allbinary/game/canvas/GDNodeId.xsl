@@ -308,7 +308,7 @@
             <xsl:if test="type/value = 'Delete'" >
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].addForDelete(<xsl:value-of select="$gdGameLayer" />);
             </xsl:if>
-            <xsl:if test="type/value != 'Create' and type/value != 'Delete'" >
+            <xsl:if test="type/value != 'Delete'" >
                 <xsl:if test="contains($parametersAsString0, $gdObjectName)" >
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdGameLayer" />, null, globals.graphics);
             <!-- 

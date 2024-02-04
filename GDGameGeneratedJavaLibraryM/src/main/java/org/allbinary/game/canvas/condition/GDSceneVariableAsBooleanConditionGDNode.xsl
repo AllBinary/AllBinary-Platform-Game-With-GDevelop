@@ -56,7 +56,7 @@ Created By: Travis Berthelot
                                     <xsl:if test="type/value = 'Create'" >
                                         
                                         <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
-                    //createGDObject - SceneVariableAsBoolean - START                    
+                    //SceneVariableAsBoolean - //createGDObject - START
                     <xsl:call-template name="createGDObject" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
@@ -71,7 +71,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$nodeId" />
                         </xsl:with-param>
                     </xsl:call-template>
-                    //createGDObject - SceneVariableAsBoolean - END
+                    //SceneVariableAsBoolean - //createGDObject - END
                                         
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="typs/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />

@@ -157,7 +157,7 @@ Created By: Travis Berthelot
                                     <xsl:call-template name="actionIdsGDObject" >
                                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                                         <xsl:with-param name="gdObjectName" ><xsl:value-of select="$gdObjectName" /></xsl:with-param>
-                                        <xsl:with-param name="gdGameLayer" >gdGameLayer</xsl:with-param>
+                                        <xsl:with-param name="gdGameLayer" ><xsl:if test="not(contains($hasActionOtherThanCreate, 'found'))" ><xsl:value-of select="$gameLayerName" />GDGameLayer</xsl:if><xsl:if test="contains($hasActionOtherThanCreate, 'found')" >gdGameLayer</xsl:if></xsl:with-param>
                                     </xsl:call-template>
                                     </xsl:if>
 

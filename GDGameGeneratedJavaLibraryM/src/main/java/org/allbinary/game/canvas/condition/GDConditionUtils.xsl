@@ -58,7 +58,7 @@
                                     <xsl:if test="type/value = 'Create'" >
                                         
                                         <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
-                            //createGDObject - SceneVariableAsBoolean - START                    
+                            //actionProcess - //createGDObject - START
                             <xsl:call-template name="createGDObject" >
                                 <xsl:with-param name="layoutIndex" >
                                     <xsl:value-of select="$layoutIndex" />
@@ -73,7 +73,7 @@
                                     <xsl:value-of select="$nodeId" />
                                 </xsl:with-param>
                             </xsl:call-template>
-                            //createGDObject - SceneVariableAsBoolean - END
+                            //actionProcess - //createGDObject - END
                                         
                             <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="typs/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
@@ -84,6 +84,9 @@
                                 </xsl:for-each>
 
                                 <xsl:for-each select="actions" >
+                                    <xsl:if test="type/value = 'Create' or type/value != 'SetSceneVariableAsBoolean'" >
+                                    //Skipping
+                                    </xsl:if>
                                     <xsl:if test="type/value != 'Create' and type/value != 'SetSceneVariableAsBoolean'" >
                                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
