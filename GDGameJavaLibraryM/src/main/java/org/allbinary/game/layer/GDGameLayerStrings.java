@@ -30,5 +30,6 @@ public class GDGameLayerStrings
     }
     
     public final String ADD_FORCE_AL = "AddForceUsingPolarCoordinates";
-    public final String LENGTH = "length: ";    
+    public final String LENGTH = "length: ";
+    public final String MULTIPLE_TIMES = "Attempting to add to cache more than 1 time: ";
 }

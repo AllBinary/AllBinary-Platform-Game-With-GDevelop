@@ -70,6 +70,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.identification.GroupFactory;
                 import org.allbinary.game.input.GameInputProcessor;
                 import org.allbinary.game.input.InputFactory;
+                import org.allbinary.game.layer.GDGameLayerStrings;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
                 import org.allbinary.game.layout.GDNode;
@@ -118,7 +119,9 @@ Created By: Travis Berthelot
                     {
                         return instance;
                     }
-                        
+                     
+                    private final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
+                           
                         <xsl:variable name="objectsWithOnceCondition" ><xsl:call-template name="gdNodeToOnceList" ><xsl:with-param name="iteration" >0</xsl:with-param></xsl:call-template></xsl:variable>
                         //objectsWithOnceCondition=<xsl:value-of select="$objectsWithOnceCondition" />
                         <xsl:for-each select="objects" >
@@ -275,9 +278,10 @@ Created By: Travis Berthelot
                     //variables - END
 
                     <xsl:text>&#10;</xsl:text>
+                    public final GDGameLayer[] tempGameLayerArray = new GDGameLayer[<xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />];
+                    public final int[] creationIndex = new int[<xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />];
 
                     private final LayerManagerEventListener layerManagerEventListener;
-                    public GDGameLayer[] tempGameLayerArray = new GDGameLayer[<xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />];
                                      
                     private GDGameGlobals() {
                     

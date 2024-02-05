@@ -78,6 +78,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.identification.GroupFactory;
                 import org.allbinary.game.input.GameInputProcessor;
                 import org.allbinary.game.input.InputFactory;
+                import org.allbinary.game.layer.GDGameLayerStrings;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
                 import org.allbinary.game.layout.GDNode;
@@ -124,10 +125,13 @@ Created By: Travis Berthelot
                         return instance;
                     }
 
+                        private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
                         private final PointFactory pointFactory = PointFactory.getInstance();
+                        
+                        private final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
                         
                         public final String PROCESS_RELEASE = "processReleased";
                         

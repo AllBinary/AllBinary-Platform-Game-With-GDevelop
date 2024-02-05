@@ -255,7 +255,11 @@ Created By: Travis Berthelot
                 //Sprite - Add to cache
                 if(<xsl:value-of select="name" />GDGameLayerDestroyedList.contains(layerInterface)) {
                     <xsl:value-of select="name" />GDGameLayerDestroyedList.remove(layerInterface);
-                    <xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);
+                    if(!<xsl:value-of select="name" />CacheGDGameLayerList.contains(layerInterface)) {
+                        <xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);
+                    } else {
+                        LogUtil.put(LogFactory.getInstance(gameLayerStrings.MULTIPLE_TIMES + layerInterface, this, commonStrings.PROCESS));
+                    }
                 }
             </xsl:if>
             <xsl:if test="type = 'ParticleSystem::ParticleEmitter'" >
@@ -265,7 +269,11 @@ Created By: Travis Berthelot
                 //ParticleSystem::ParticleEmitter - Add to cache
                 if(<xsl:value-of select="name" />GDGameLayerDestroyedList.contains(layerInterface)) {
                     <xsl:value-of select="name" />GDGameLayerDestroyedList.remove(layerInterface);
-                    <xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);
+                    if(!<xsl:value-of select="name" />CacheGDGameLayerList.contains(layerInterface)) {
+                        <xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);
+                    } else {
+                        LogUtil.put(LogFactory.getInstance(gameLayerStrings.MULTIPLE_TIMES + layerInterface, this, commonStrings.PROCESS));
+                    }
                 }
            </xsl:if>
 
