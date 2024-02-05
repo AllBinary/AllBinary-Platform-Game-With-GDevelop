@@ -92,7 +92,6 @@ Created By: Travis Berthelot
                         <xsl:if test="$paramOneNameObjectsGroups != ''" >
                         final GDGameLayer <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer = gameGlobals.tempGameLayerArray[0];
                         if(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer != null) {
-                        gameGlobals.tempGameLayerArray[0] = null;
 
 <xsl:text>                        </xsl:text>
                         <xsl:if test="$paramTwoName != ''" >final GDGameLayer paramTwoGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$paramTwoName" />GDGameLayerList.get(0));</xsl:if>
