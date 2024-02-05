@@ -202,7 +202,7 @@ Created By: Travis Berthelot
                                                                             
                                             //if(allBinaryGameLayerManager.getLayerManager().contains(<xsl:value-of select="text()" />GDGameLayer)) {
                                                 //allBinaryGameLayerManager.remove(<xsl:value-of select="text()" />GDGameLayer);
-                                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + <xsl:value-of select="text()" />GDGameLayer, this, commonStrings.PROCESS));
+                                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + <xsl:value-of select="text()" />GDGameLayer, this, commonStrings.PROCESS));
                                                 <xsl:value-of select="text()" />GDGameLayer.setDestroyed(true);
                                             //} else {
                                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$ACTION_AS_STRING_GD_" /> + " LayerManager does not have (probably already removed/destroyed): " + <xsl:value-of select="text()" />GDGameLayer, this, commonStrings.PROCESS));
