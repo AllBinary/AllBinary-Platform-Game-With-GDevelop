@@ -277,7 +277,7 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>
 
                     private final LayerManagerEventListener layerManagerEventListener;
-                    public GDGameLayer[] tempGameLayerArray = new GDGameLayer[2];
+                    public GDGameLayer[] tempGameLayerArray = new GDGameLayer[<xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />];
                                      
                     private GDGameGlobals() {
                     

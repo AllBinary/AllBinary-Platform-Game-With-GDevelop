@@ -110,9 +110,17 @@ Created By: Travis Berthelot
 
                     //LinkedObjects::LinkObjects - Add
                     <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 2" >gameGlobals.tempGameLayerArray[0].linkedGDGameLayerList.add(</xsl:if>
+                        <xsl:if test="position() = 2" >
+                            <xsl:variable name="text" ><xsl:value-of select="text()" /></xsl:variable>
+                            <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
+                            //LinkedObjects::LinkObjects - <xsl:value-of select="$text" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
+                            //gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />].linkedGDGameLayerList.add(
+                            gameGlobals.tempGameLayerArray[0].linkedGDGameLayerList.add(</xsl:if>
                         <xsl:if test="position() = 3" >
-                            gameGlobals.tempGameLayerArray[1]
+                            <xsl:variable name="text" ><xsl:value-of select="text()" /></xsl:variable>
+                            <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
+                            //LinkedObjects::LinkObjects - <xsl:value-of select="$text" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
+                            gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]
                         </xsl:if>
                         <xsl:if test="position() = last()" >);</xsl:if>
                     </xsl:for-each>

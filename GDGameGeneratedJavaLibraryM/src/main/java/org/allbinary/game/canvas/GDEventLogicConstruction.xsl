@@ -94,6 +94,73 @@ Created By: Travis Berthelot
         <xsl:if test="contains($isInObjectGroup, 'found') and $objectGroup = $collisionProcessGDParamOne" ><xsl:value-of select="$objectGroup" /></xsl:if><xsl:if test="not(contains($isInObjectGroup, 'found') and $objectGroup = $collisionProcessGDParamOne)" ><xsl:value-of select="$firstParam" /></xsl:if>
     </xsl:template>
 
+    <xsl:template name="parentObjectsGroupsOrObjectOrCreateSibling" >
+        <xsl:param name="totalRecursions" />
+        
+        <xsl:for-each select=".." >
+            <xsl:for-each select="conditions" >
+<!--                 and type/value != 'GlobalVariableAsBoolean'-->
+                <xsl:if test="type/value != 'DepartScene' and type/value != 'KeyPressed' and type/value != 'KeyReleased' and type/value != 'MusicStopped' and type/value != 'BuiltinCommonInstructions::Always'" >
+                <xsl:if test="count(parameters) > 0" >
+                    <xsl:variable name="hasObjectsGroupsOrObjectInParameters" >
+                        <xsl:for-each select="parameters" >
+                            <xsl:variable name="text" ><xsl:value-of select="text()" /></xsl:variable>
+                            <xsl:for-each select="//objectsGroups" >
+                                <xsl:if test="name = $text" >found</xsl:if>
+                            </xsl:for-each>
+                            <xsl:for-each select="//objects" >
+                                <xsl:if test="name = $text" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <xsl:if test="contains($hasObjectsGroupsOrObjectInParameters, 'found')" >
+                    <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                    <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                    <xsl:if test="$totalRecursions = 0" >
+                    //Sibling - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
+                    </xsl:if>
+                    <xsl:if test="$totalRecursions > 0" >
+                    //Parent - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
+                    </xsl:if>
+                    </xsl:if>
+                </xsl:if>
+                </xsl:if>
+            </xsl:for-each>
+
+            <xsl:for-each select="actions" >
+                <xsl:if test="type/value = 'Create' and type/value != 'CreateByName'" >
+                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                <xsl:if test="$totalRecursions = 0" >
+                //Sibling - //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
+                </xsl:if>
+                <xsl:if test="$totalRecursions > 0" >
+                //Parent - //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
+                </xsl:if>
+                </xsl:if>
+            </xsl:for-each>
+
+            <xsl:for-each select="events" >
+                <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >                    
+                <xsl:if test="$totalRecursions = 0" >
+                //Sibling - //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                </xsl:if>
+                <xsl:if test="$totalRecursions > 0" >
+                //Parent - //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                </xsl:if>
+                </xsl:if>
+            </xsl:for-each>
+            
+            <xsl:call-template name="parentObjectsGroupsOrObjectOrCreateSibling" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions + 1" />
+                </xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+                
+    </xsl:template>
+
     <xsl:template name="linkedObjectsPickObjectsLinkedToProcessGD" >
         <xsl:param name="totalRecursions" />
         
@@ -128,7 +195,7 @@ Created By: Travis Berthelot
             
             <xsl:call-template name="collisionProcessGD" >
                 <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="$totalRecursions" />
+                    <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
             </xsl:call-template>
             
@@ -146,7 +213,7 @@ Created By: Travis Berthelot
             
             <xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" >
                 <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="$totalRecursions" />
+                    <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
             </xsl:call-template>
             
@@ -164,7 +231,7 @@ Created By: Travis Berthelot
             
             <xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" >
                 <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="$totalRecursions" />
+                    <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
             </xsl:call-template>
             
@@ -182,7 +249,7 @@ Created By: Travis Berthelot
             
             <xsl:call-template name="collisionProcessGDParamOne" >
                 <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="$totalRecursions" />
+                    <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
             </xsl:call-template>
             
@@ -200,7 +267,7 @@ Created By: Travis Berthelot
             
             <xsl:call-template name="collisionProcessGDParamTwo" >
                 <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="$totalRecursions" />
+                    <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
             </xsl:call-template>
             
@@ -218,7 +285,7 @@ Created By: Travis Berthelot
             
             <xsl:call-template name="hasLinkedObjectsPickObjectsLinkedToProcessGD" >
                 <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="$totalRecursions" />
+                    <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
             </xsl:call-template>
             
@@ -236,7 +303,7 @@ Created By: Travis Berthelot
             
             <xsl:call-template name="hasCollisionProcessGD" >
                 <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="$totalRecursions" />
+                    <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
             </xsl:call-template>
             
