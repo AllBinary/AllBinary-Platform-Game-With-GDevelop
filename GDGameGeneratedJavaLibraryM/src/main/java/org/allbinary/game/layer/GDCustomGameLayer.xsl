@@ -1176,7 +1176,7 @@ Created By: Travis Berthelot
         <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
         public void setAllBinaryGameLayerManager(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
             this.allBinaryGameLayerManager = allBinaryGameLayerManager;
-            LogUtil.put(LogFactory.getInstance(new StringMaker().append(commonStrings.START).append(this.getName()).append(CommonSeps.getInstance().SPACE).append(allBinaryGameLayerManager).toString(), this, commonStrings.PROCESS));
+            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(commonStrings.START).append(this.getName()).append(CommonSeps.getInstance().SPACE).append(allBinaryGameLayerManager).toString(), this, commonStrings.PROCESS));
             if(this.allBinaryGameLayerManager == null) {
                 throw new RuntimeException();
             }
