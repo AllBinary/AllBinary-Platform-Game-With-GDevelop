@@ -79,7 +79,7 @@ Created By: Travis Berthelot
                             public boolean process() throws Exception {
                                 super.processStats();
                             
-                                boolean result = false;
+                                boolean result = true;
                                 //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
@@ -210,7 +210,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
                             </xsl:if>
 
-                            result = true;
+                            result = false;
          
                         }
                     

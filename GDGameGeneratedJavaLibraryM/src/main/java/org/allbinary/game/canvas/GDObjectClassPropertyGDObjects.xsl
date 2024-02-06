@@ -59,7 +59,7 @@ Created By: Travis Berthelot
                                 public long <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                                 </xsl:if>
                                 <xsl:if test="value = '9223372036854776000'" >
-                                //Long.MAX_VALUE = 9223372036854775807L GD does not like the real value 9223372036854776000
+                                //Long.MAX_VALUE = 9223372036854776000 GD does not like the real value 9223372036854775807L
                                 public long <xsl:value-of select="name" /> = 9223372036854775807L;
                                 </xsl:if>
                             </xsl:if>
