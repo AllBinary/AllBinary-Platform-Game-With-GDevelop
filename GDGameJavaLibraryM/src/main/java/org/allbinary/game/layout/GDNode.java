@@ -166,7 +166,7 @@ public class GDNode
         this.nodeStatsFactory.push(11, name);
     }
 
-    public boolean processG(final GDObject gdObject, final BasicArrayList gdGameLayerList, final int gdObjectIndex, final Graphics graphics) {
+    public boolean processG(final GDObject gdObject, final BasicArrayList gdGameLayerList, final int gdObjectIndex, final Graphics graphics) throws Exception {
         return false;
     }
     
@@ -190,7 +190,7 @@ public class GDNode
         this.nodeStatsFactory.push(14, name);
     }
     
-    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) {
+    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
         this.processGDStats(gameLayer);
         return false;
     }

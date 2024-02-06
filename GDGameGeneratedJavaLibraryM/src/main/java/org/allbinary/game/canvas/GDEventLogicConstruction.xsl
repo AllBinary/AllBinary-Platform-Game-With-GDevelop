@@ -169,7 +169,7 @@ Created By: Travis Berthelot
                 //From parent LinkedObjects::PickObjectsLinkedTo
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
-                public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[2]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[3]" />GDGameLayer, final Graphics graphics) {
+                public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[2]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[3]" />GDGameLayer, final Graphics graphics) throws Exception {
             </xsl:if>
             
             <xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGD" >
@@ -190,7 +190,7 @@ Created By: Travis Berthelot
                 //From parent CollisionNP
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
-                public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[2]" />GDGameLayer, final Graphics graphics) {
+                public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[2]" />GDGameLayer, final Graphics graphics) throws Exception {
             </xsl:if>
             
             <xsl:call-template name="collisionProcessGD" >

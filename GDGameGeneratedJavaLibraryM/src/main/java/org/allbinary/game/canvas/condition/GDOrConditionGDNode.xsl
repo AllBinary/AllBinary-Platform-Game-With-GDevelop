@@ -52,11 +52,10 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) {
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                     
                             super.processGDStats(gameLayer);
 
-                            try {
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                             <xsl:for-each select="subInstructions" >
@@ -69,10 +68,6 @@ Created By: Travis Berthelot
                                 return true;
                             }
                             </xsl:for-each>
-
-                            } catch(Exception e) {
-                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
-                            }
 
                             return false;
                         }
