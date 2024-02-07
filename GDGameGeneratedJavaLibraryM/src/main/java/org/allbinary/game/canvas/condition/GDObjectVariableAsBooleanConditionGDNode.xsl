@@ -39,13 +39,29 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
                         
-                            <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                            final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.size();
+                        <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        
+                        <xsl:variable name="hasObjectGroup" >
+                            <xsl:for-each select="//objectsGroups" >
+                                <xsl:if test="name = $gdObjectName" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+
+                    <xsl:if test="contains($hasObjectGroup, 'found')" >
+                        final int size3 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerListOfList.size();
+                        for(int index3 = 0; index3 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; index3++) {
+                        final BasicArrayList <xsl:value-of select="$gdObjectName" />GDGameLayerList = (BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerListOfList.get(index3);
+                    </xsl:if>
+                    <xsl:if test="not(contains($hasObjectGroup, 'found'))" >
+                        final BasicArrayList <xsl:value-of select="$gdObjectName" />GDGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList;
+                    </xsl:if>
+
+                            final int size = <xsl:value-of select="$gdObjectName" />GDGameLayerList.size();
                             GDGameLayer <xsl:value-of select="$gdObjectName" />GDGameLayer;
                             GDObject <xsl:value-of select="$gdObjectName" />;
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 
-                                <xsl:value-of select="$gdObjectName" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
+                                <xsl:value-of select="$gdObjectName" />GDGameLayer = (GDGameLayer) <xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
                                 <xsl:value-of select="$gdObjectName" /><xsl:text> = </xsl:text><xsl:value-of select="$gdObjectName" />GDGameLayer.gdObject;
                                 
                                 //stringBuilder.delete(0, stringBuilder.length());
@@ -83,7 +99,11 @@ Created By: Travis Berthelot
                                 //}
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index).toString(), this, commonStrings.PROCESS));
                             }
-                                
+
+                    <xsl:if test="contains($hasObjectGroup, 'found')" >
+                        }
+                    </xsl:if>
+                                                                
                             super.processStatsE();
 
                             return true;
