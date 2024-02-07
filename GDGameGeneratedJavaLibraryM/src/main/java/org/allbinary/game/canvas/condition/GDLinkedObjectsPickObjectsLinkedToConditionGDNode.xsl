@@ -31,24 +31,16 @@ Created By: Travis Berthelot
 
                         //LinkedObjects::PickObjectsLinkedTo - condition
                         @Override
-                        public boolean process(final BasicArrayList gdGameLayerList) throws Exception {
+                        public boolean processGD(final GDGameLayer gameLayer2, final GDGameLayer unusedGameLayer, final Graphics graphics) throws Exception {
 
-                            super.processStats();
+                            super.processGDStats(gameLayer2);
 
                             //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                             <xsl:variable name="secondParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
-                            //final int size = gdGameLayerList.size();
-                            int size2 = 0;
+                            final int size2 = gameLayer2.linkedGDGameLayerList.size();
                             GDGameLayer gameLayer;
-                            GDGameLayer gameLayer2;
-                            //for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size(); index++) {
-
-                                gameLayer2 = (GDGameLayer) gdGameLayerList.get(index);
-
-                                size2 = gameLayer2.linkedGDGameLayerList.size();
                                 for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
                                     gameLayer = (GDGameLayer) gameLayer2.linkedGDGameLayerList.get(index2);
 
@@ -94,7 +86,6 @@ Created By: Travis Berthelot
                             </xsl:if>
                                     }
                                 }
-                            }
 
                             return false;
                         }

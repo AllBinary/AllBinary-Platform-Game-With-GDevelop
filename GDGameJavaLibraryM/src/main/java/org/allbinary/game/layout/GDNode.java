@@ -67,11 +67,6 @@ public class GDNode
         return true;
     }
     
-    //Used by BuiltinCommonInstructions::ForEach only
-    public boolean process(final BasicArrayList gdGameLayerList) throws Exception {
-        return true;
-    }
-
     public void processStats() {
         this.nodeStatsFactory.push(2, name);
     }
