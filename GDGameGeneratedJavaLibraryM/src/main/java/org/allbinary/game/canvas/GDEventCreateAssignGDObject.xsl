@@ -584,7 +584,7 @@ Created By: Travis Berthelot
                             if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> size) {
                                 //LogUtil.put(LogFactory.getInstance("B: Keep from creating again before last time: <xsl:value-of select="text()" />", this, commonStrings.PROCESS));
                                 <!-- //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed -->
-                                return <xsl:if test="$caller = 'actionsWithIndexesProcess'" > true</xsl:if>;
+                                return <xsl:if test="contains($caller, 'hackProcessing2')" > true</xsl:if>;
                             }
                         </xsl:if>
                     </xsl:for-each>

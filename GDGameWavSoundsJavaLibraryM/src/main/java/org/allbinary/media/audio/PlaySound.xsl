@@ -64,8 +64,8 @@ Created By: Travis Berthelot
                 <xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:if></xsl:for-each>
             </xsl:variable>
 
-            <xsl:variable name="actionsWithIndexes" >
-                <xsl:call-template name="actionsWithIndexes" >
+<!--            <xsl:variable name="hackProcessing" >
+                <xsl:call-template name="hackProcessing" >
                     <xsl:with-param name="caller" >eventsCreateAssignGDObject</xsl:with-param>
                     <xsl:with-param name="thisNodeArray" >
                         <xsl:value-of select="$thisNodeArray" />
@@ -100,7 +100,7 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$createdObjectsAsString" />
                     </xsl:with-param>
                 </xsl:call-template>
-            </xsl:variable>
+            </xsl:variable>-->
 
             <xsl:call-template name="playsound" >
                 <xsl:with-param name="caller" >

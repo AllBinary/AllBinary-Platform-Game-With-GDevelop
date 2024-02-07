@@ -132,7 +132,7 @@ Created By: Travis Berthelot
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />                        
                         <xsl:if test="type/value = 'BuiltinCommonInstructions::And' or type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
                     //other - //Condition - //<xsl:value-of select="type/value" /> - call
-                    
+
                     <xsl:variable name="object" ><xsl:value-of select="../object" /></xsl:variable>
                     <xsl:variable name="hasObjectGroup" >
                         <xsl:for-each select="//objectsGroups" >
@@ -250,8 +250,11 @@ Created By: Travis Berthelot
                 <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
 
                 <xsl:if test="actions" >
+                //Was not being called before - START
+                </xsl:if>
+
                 //caller=<xsl:value-of select="$caller" /> //No used conditions so calling actions from event directly.
-                <xsl:call-template name="actionsWithIndexesProcess" >
+                <xsl:call-template name="hackProcessing" >
                     <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignXGDObjectGDNodesOtherEvent</xsl:with-param>
                     <xsl:with-param name="layoutIndex" >
                         <xsl:value-of select="$layoutIndex" />
@@ -270,12 +273,14 @@ Created By: Travis Berthelot
                     </xsl:with-param>                    
                 </xsl:call-template>
 
+                <xsl:if test="actions" >
+                //Was not being called before - END
                 </xsl:if>
-                
+                                
                 </xsl:if>
                 </xsl:if>
                 </xsl:if>
-                
+
                     return true;
 
                 }                
@@ -370,7 +375,7 @@ Created By: Travis Berthelot
                 //caller=<xsl:value-of select="$caller" /> //No used conditions so calling actions from event directly.
 <!--
                 motionGestureEvent
-                <xsl:call-template name="actionsWithIndexesProcess" >
+                <xsl:call-template name="hackProcessing2" >
                     <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignXGDObjectGDNodesOtherEvent</xsl:with-param>
                     <xsl:with-param name="layoutIndex" >
                         <xsl:value-of select="$layoutIndex" />

@@ -80,8 +80,7 @@ Created By: Travis Berthelot
                     
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:if test="//objectsGroups/name/text() = $name" >
-                    //Using ObjectsGroups
-                    //if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
+                    //Using ObjectsGroups - <xsl:value-of select="$foundCollisionNP" />
                     if(<xsl:for-each select="//objectsGroups" >
                                 <xsl:if test="name = $foundCollisionNP" >
                                 <xsl:for-each select="objects" >this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME<xsl:if test="position() != last()" > || <xsl:text>&#10;</xsl:text>                                </xsl:if>
@@ -106,11 +105,15 @@ Created By: Travis Berthelot
 
                     <xsl:if test="//objectsGroups/name/text() = $foundCollisionNP" >
                         <xsl:for-each select="conditions" >
+                        <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                        <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                        //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
+
                         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         <xsl:if test="//objectsGroups/name/text() = $name" >
-                    //Using child condition instead of CollisionNP - condition name was an objectsGroups
+                    //Using ObjectsGroups - <xsl:value-of select="$foundCollisionNP" /> - //Using child condition instead of CollisionNP - condition name was an objectsGroups
                             if(<xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $name" >
+                                <xsl:if test="name = $foundCollisionNP" >
                                 <xsl:for-each select="objects" >this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME<xsl:if test="position() != last()" > || <xsl:text>&#10;</xsl:text>                                </xsl:if>
                             </xsl:for-each></xsl:if></xsl:for-each>) {
                         </xsl:if>
@@ -182,8 +185,7 @@ Created By: Travis Berthelot
                 
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:if test="//objectsGroups/name/text() = $foundCollisionNP" >
-                    //Using action instead of CollisionNP
-                    //Using ObjectsGroups
+                    //Using ObjectsGroups - <xsl:value-of select="$foundCollisionNP" /> - //Using action instead of CollisionNP
                     //if(this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME) {
                     if(<xsl:for-each select="//objectsGroups" >
                                 <xsl:if test="name = $foundCollisionNP" >

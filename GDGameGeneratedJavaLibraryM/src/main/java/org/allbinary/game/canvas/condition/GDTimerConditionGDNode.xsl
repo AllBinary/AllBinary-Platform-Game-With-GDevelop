@@ -15,7 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <xsl:import href="../GDAction.xsl" />
+    <xsl:import href="../GDHack.xsl" />
 
     <xsl:output method="html" indent="yes" />
 
@@ -89,8 +89,8 @@ Created By: Travis Berthelot
                                         <xsl:variable name="conditionPosition" ><xsl:value-of select="position()" /></xsl:variable>
                                         <xsl:for-each select=".." >
 
-                                        //eventsCreateAssignGDObject - actionsWithIndexes - START
-                                        <xsl:call-template name="actionsWithIndexes" >
+                                        //eventsCreateAssignGDObject - hackProcessing - START
+                                        <xsl:call-template name="hackProcessing" >
                                             <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObject</xsl:with-param>
                                             <xsl:with-param name="thisNodeIndex" >
                                                 <xsl:value-of select="$thisNodeIndex" />
@@ -117,7 +117,7 @@ Created By: Travis Berthelot
                                                 <xsl:value-of select="$logString" />
                                             </xsl:with-param>
                                         </xsl:call-template>
-                                        //eventsCreateAssignGDObject - actionsWithIndexes - END
+                                        //eventsCreateAssignGDObject - hackProcessing - END
 
                                         </xsl:for-each>
                                         
