@@ -63,6 +63,7 @@ Created By: Travis Berthelot
         
         <xsl:variable name="quote" >"</xsl:variable>
         <xsl:variable name="typeValue" select="type/value" />
+        <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
         <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
         <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
         
@@ -162,7 +163,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
-                        if(gameLayer2.getCollidableInferface().isCollision(gameLayer)) {
+                        //Inverted
+                        if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameLayer2.getCollidableInferface().isCollision(gameLayer)) {
                     
                             <xsl:variable name="text" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>        </xsl:variable>
                             <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>

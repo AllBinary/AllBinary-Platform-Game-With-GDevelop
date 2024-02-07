@@ -247,6 +247,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                     
                                     <xsl:if test="$inverted = 'true'" >
+                                    //Inverted
                                     <xsl:if test="not(contains($press, 'found')) or contains($release, 'found')" >
                                         runnable.run();
                                     </xsl:if>
