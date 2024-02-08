@@ -61,12 +61,10 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Graphics;
 
-                import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.color.BasicColorFactory;
                 import org.allbinary.graphics.color.BasicColorSetUtil;
-                import org.allbinary.graphics.displayable.MyCanvas;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
                 
