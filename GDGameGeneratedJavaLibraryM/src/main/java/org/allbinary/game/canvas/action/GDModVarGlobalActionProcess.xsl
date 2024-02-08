@@ -56,6 +56,7 @@ Created By: Travis Berthelot
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                         
                         //objectInParam=<xsl:value-of select="$objectInParam" />
+                        <xsl:text>&#10;</xsl:text>
                         <xsl:if test="string-length($objectInParam) > 0" >
                             //Found object in param 3
                             <xsl:variable name="name" ><xsl:value-of select="$objectInParam" /></xsl:variable>
@@ -82,6 +83,8 @@ Created By: Travis Berthelot
                         super.processGDStats(gameLayer);
 
                         //objectInParam=<xsl:value-of select="$objectInParam" />
+                        <xsl:text>&#10;</xsl:text>
+                        
                         <xsl:if test="string-length($objectInParam) > 0" >
                             //Found object in param 3
                             <xsl:variable name="name" ><xsl:value-of select="$objectInParam" /></xsl:variable>
@@ -98,7 +101,9 @@ Created By: Travis Berthelot
                                 <xsl:if test="position() = 2" ><xsl:value-of select="text()" /><xsl:if test="text() = '-'" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if></xsl:if>
                                 <xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if>
                                 <xsl:if test="position() = last()" >;</xsl:if>
-                            </xsl:for-each>                        
+                            </xsl:for-each>
+                            
+                        return true;
                     }
     </xsl:template>
 
