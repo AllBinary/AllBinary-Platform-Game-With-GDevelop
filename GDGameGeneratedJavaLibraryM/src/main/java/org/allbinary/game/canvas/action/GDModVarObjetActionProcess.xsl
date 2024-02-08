@@ -348,6 +348,51 @@ Created By: Travis Berthelot
                         
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
+                                <xsl:variable name="collisionProcessGDParamOne" ><xsl:call-template name="collisionProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param></xsl:call-template></xsl:variable>
+                                <xsl:variable name="collisionProcessGDParamTwo" ><xsl:call-template name="collisionProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param></xsl:call-template></xsl:variable>
+                                <xsl:variable name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" ><xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param></xsl:call-template></xsl:variable>
+                                <xsl:variable name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" ><xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param></xsl:call-template></xsl:variable>
+
+                                <xsl:if test="contains($hasCollisionProcessGD, 'found')" >
+                                    <xsl:if test="$name = $collisionProcessGDParamOne" >
+                                //Child of CollisionNP - param 1
+                                    </xsl:if>
+                                    <xsl:if test="$name = $collisionProcessGDParamTwo" >
+                                //Child of CollisionNP - param 2
+                                    </xsl:if>
+                                </xsl:if>
+                                
+                                <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
+                                    <xsl:if test="$name = $linkedObjectsPickObjectsLinkedToProcessGDParamOne" >
+                                //Child of LinkedObjects::PickObjectsLinkedTo - param 1
+                                    </xsl:if>
+                                    <xsl:if test="$name = $linkedObjectsPickObjectsLinkedToProcessGDParamTwo" >
+                                //Child of LinkedObjects::PickObjectsLinkedTo - param 2
+                                    </xsl:if>
+                                </xsl:if>
+
+                                <xsl:if test="not(contains($hasCollisionProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
+                                //Defaulting to first param since no known association with prior sibling Create action or parent Condition
+                                </xsl:if>
+
+                                <xsl:if test="contains($hasCollisionProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
+                                <xsl:variable name="hasArgumentMatchWithParam" >
+                                    <xsl:if test="contains($hasCollisionProcessGD, 'found')" >
+                                        <xsl:if test="$name = $collisionProcessGDParamOne" >found</xsl:if>
+                                        <xsl:if test="$name = $collisionProcessGDParamTwo" >found</xsl:if>
+                                    </xsl:if>
+                                    <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
+                                        <xsl:if test="$name = $linkedObjectsPickObjectsLinkedToProcessGDParamOne" >found</xsl:if>
+                                        <xsl:if test="$name = $linkedObjectsPickObjectsLinkedToProcessGDParamTwo" >found</xsl:if>
+                                    </xsl:if>
+                                </xsl:variable>
+                                <xsl:if test="not(contains($hasArgumentMatchWithParam, 'found'))" >
+                                    //Arguments are from parent or sibling Create, but did not match any the param
+                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(0);
+                                </xsl:if>
+                                </xsl:if>
+
+
 <xsl:text>                        </xsl:text>
                         <xsl:if test="$paramTwoName != ''" >final GDGameLayer paramTwoGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$paramTwoName" />GDGameLayerList.get(0));</xsl:if>
                         <xsl:text>&#10;</xsl:text>
