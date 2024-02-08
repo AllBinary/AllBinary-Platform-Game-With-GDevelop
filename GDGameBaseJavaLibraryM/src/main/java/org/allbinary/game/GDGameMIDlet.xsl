@@ -266,7 +266,7 @@ public class GDGameMIDlet extends
 
         try {
 
-            //PreLogUtil.put(layoutName, this, "setGDLayout");
+            //PreLogUtil.put(command.getLabel(), this, "commandAction");
 
             final GDGameCommandFactory gdGameCommandFactory = GDGameCommandFactory.getInstance();
 
