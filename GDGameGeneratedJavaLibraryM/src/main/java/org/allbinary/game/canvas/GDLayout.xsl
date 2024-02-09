@@ -447,6 +447,8 @@ Created By: Travis Berthelot
                     
                         LogUtil.put(LogFactory.getInstance("TWB - reinitInstances", this, commonStrings.PROCESS));
 
+                    this.globals.reset();
+
                     <xsl:call-template name="addFromInstancesCache" >
                         <xsl:with-param name="layoutName" >
                             <xsl:value-of select="$layoutName" />

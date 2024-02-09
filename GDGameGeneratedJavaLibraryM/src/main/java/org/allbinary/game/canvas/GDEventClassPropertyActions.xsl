@@ -63,8 +63,8 @@ Created By: Travis Berthelot
     <xsl:template name="variablesStructures" >
         
         <xsl:for-each select="variables" >
+            //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
             <xsl:if test="name" >
-        //variable
 public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
 
     public GDStructure<xsl:value-of select="name" />() {

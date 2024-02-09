@@ -38,6 +38,7 @@ Created By: Travis Berthelot
             size = globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.size();
             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                 gameLayer = (GDGameLayer) globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.get(index);
+                gameLayer.gdObject.reset();
                 gameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
                 <xsl:if test="$type != 'TextObject::Text'" >
                 allBinaryGameLayerManager.insert(gameLayer);
@@ -62,6 +63,7 @@ Created By: Travis Berthelot
             size = globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.size();
             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                 gameLayer = (GDGameLayer) globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.get(index);
+                gameLayer.gdObject.reset();
                 gameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
                 <xsl:if test="$type != 'TextObject::Text'" >
                 allBinaryGameLayerManager.insert(gameLayer);

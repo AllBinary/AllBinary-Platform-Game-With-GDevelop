@@ -285,6 +285,8 @@ public class GDStructure {
 
                     //variables - START
                     <xsl:call-template name="variables" />
+                    
+                    <xsl:call-template name="resetVariables" />
                     //variables - END
 
                     //eventsClassProperty - START

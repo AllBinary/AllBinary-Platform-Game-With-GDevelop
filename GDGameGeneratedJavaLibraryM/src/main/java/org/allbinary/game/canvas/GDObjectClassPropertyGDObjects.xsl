@@ -40,7 +40,7 @@ Created By: Travis Berthelot
 
                     <xsl:if test="name = $objectName" >
                     <xsl:for-each select="variables" >
-                    //Variable - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
+                    //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                         <xsl:if test="type = 'string'" >
                             <xsl:if test="number(value) != value" >
                     public String <xsl:value-of select="name" /> = <xsl:if test="string-length(value) > 0" ><xsl:value-of select="value" /></xsl:if><xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if>;
@@ -97,6 +97,75 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:for-each>
 
+            public void reset() {
+            
+            <xsl:for-each select="objects" >
+                <xsl:if test="position() = 1" >
+                <xsl:variable name="objectName" select="name" />
+                
+            <xsl:for-each select="/game/layouts/objects" >
+                <xsl:variable name="name" select="name" />
+
+                    <xsl:if test="name = $objectName" >
+                    <xsl:for-each select="variables" >
+                    //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
+                        <xsl:if test="type = 'string'" >
+                            <xsl:if test="number(value) != value" >
+                    this.<xsl:value-of select="name" /> = <xsl:if test="string-length(value) > 0" ><xsl:value-of select="value" /></xsl:if><xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if>;
+                            </xsl:if>
+                            <xsl:if test="number(value) = value" >
+                    //This is supposed to be a string
+                    this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                            </xsl:if>
+                        </xsl:if>
+                        <xsl:if test="type = 'number'" >
+                            <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE'))" >
+                                this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                            </xsl:if>
+                            <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE')" >
+                                <xsl:if test="value != '9223372036854776000'" >
+                                this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                                </xsl:if>
+                                <xsl:if test="value = '9223372036854776000'" >
+                                //Long.MAX_VALUE = 9223372036854776000 GD does not like the real value 9223372036854775807L
+                                this.<xsl:value-of select="name" /> = 9223372036854775807L;
+                                </xsl:if>
+                            </xsl:if>
+                        </xsl:if>
+                        <xsl:if test="type = 'boolean'" >
+                    this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                        </xsl:if>
+                        <xsl:if test="type = 'array'" >
+                            <xsl:if test="contains(name, 'BoolArray')" >
+                    this.<xsl:value-of select="name" /> = new boolean[] {
+                            <xsl:for-each select="children" >
+                        "<xsl:value-of select="value" />",
+                            </xsl:for-each>
+                    };
+                            </xsl:if>
+                            <xsl:if test="contains(name, 'IntArray')" >
+                    this.<xsl:value-of select="name" /> = new int[] {
+                            <xsl:for-each select="children" >
+                        "<xsl:value-of select="value" />",
+                            </xsl:for-each>
+                    };
+                            </xsl:if>
+                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'BoolArray'))" >
+                    public String[] <xsl:value-of select="name" /> = {
+                            <xsl:for-each select="children" >
+                        "<xsl:value-of select="value" />",
+                            </xsl:for-each>
+                    };
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
+                    </xsl:if>
+
+            </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>
+
+            }
         }
         </xsl:for-each>
         
@@ -118,8 +187,9 @@ Created By: Travis Berthelot
                     <xsl:variable name="hasObjectInObjectsGroups" ><xsl:for-each select="/game/layouts/objectsGroups" ><xsl:variable name="objectsGroupsName" select="name" /><xsl:for-each select="objects" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
                     <xsl:if test="not(contains($hasObjectInObjectsGroups, 'found'))" >
+
                     <xsl:for-each select="variables" >
-                    //Variable - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
+                    //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                         <xsl:if test="type = 'string'" >
                             <xsl:if test="number(value) != value" >
                     public String <xsl:value-of select="name" /> = <xsl:if test="string-length(value) > 0" ><xsl:value-of select="value" /></xsl:if><xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if>;
@@ -170,6 +240,61 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
+
+                    public void reset() {
+                    <xsl:for-each select="variables" >
+                    //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
+                        <xsl:if test="type = 'string'" >
+                            <xsl:if test="number(value) != value" >
+                    this.<xsl:value-of select="name" /> = <xsl:if test="string-length(value) > 0" ><xsl:value-of select="value" /></xsl:if><xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if>;
+                            </xsl:if>
+                            <xsl:if test="number(value) = value" >
+                    //This is supposed to be a string
+                    this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                            </xsl:if>
+                        </xsl:if>
+                        <xsl:if test="type = 'number'" >
+                            <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE'))" >
+                                this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                            </xsl:if>
+                            <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE')" >
+                                <xsl:if test="value != '9223372036854776000'" >
+                                this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                                </xsl:if>
+                                <xsl:if test="value = '9223372036854776000'" >
+                                //Long.MAX_VALUE = 9223372036854776000 GD does not like the real value 9223372036854775807L
+                                this.<xsl:value-of select="name" /> = 9223372036854775807L;
+                                </xsl:if>
+                            </xsl:if>
+                        </xsl:if>
+                        <xsl:if test="type = 'boolean'" >
+                    this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                        </xsl:if>
+                        <xsl:if test="type = 'array'" >
+                            <xsl:if test="contains(name, 'BoolArray')" >
+                    this.<xsl:value-of select="name" /> = new boolean[] {
+                            <xsl:for-each select="children" >
+                        "<xsl:value-of select="value" />",
+                            </xsl:for-each>
+                    };
+                            </xsl:if>
+                            <xsl:if test="contains(name, 'IntArray')" >
+                    this.<xsl:value-of select="name" /> = new int[] {
+                            <xsl:for-each select="children" >
+                        "<xsl:value-of select="value" />",
+                            </xsl:for-each>
+                    };
+                            </xsl:if>
+                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'BoolArray'))" >
+                    this.<xsl:value-of select="name" /> = new String[] {
+                            <xsl:for-each select="children" >
+                        "<xsl:value-of select="value" />",
+                            </xsl:for-each>
+                    };
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
+                    }
                     </xsl:if>
 
                 <xsl:if test="animations" >
@@ -188,6 +313,7 @@ Created By: Travis Berthelot
                         
                     <xsl:if test="contains($hasObjectInObjectsGroups, 'found')" >
                     <xsl:for-each select="variables" >
+                    //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                         <xsl:if test="type = 'string'" >
                             <xsl:if test="number(value) != value" >
                     this.<xsl:value-of select="name" /> = <xsl:if test="string-length(value) > 0" ><xsl:value-of select="value" /></xsl:if><xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if>;

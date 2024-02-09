@@ -269,6 +269,10 @@ public class GDObject
         return this.name;
     }
     
+    public void reset() {
+        
+    }
+
     public String toShortString() {
         final CommonSeps commonSeps = CommonSeps.getInstance();
         final GDObjectStrings gdObjectStrings = GDObjectStrings.getInstance();
