@@ -51,6 +51,15 @@ Created By: Travis Berthelot
                         return true;
                     }
         
+                    @Override
+                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                        this.processGDStats(gameLayer);
+                            
+                        this.process();
+
+                        return false;
+                    }
+                            
     </xsl:template>
 
 </xsl:stylesheet>
