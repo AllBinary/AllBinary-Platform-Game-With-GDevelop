@@ -216,7 +216,6 @@ Created By: Travis Berthelot
                         
                         <xsl:if test="$paramOneNameObjectsGroups = ''" >
                         <xsl:for-each select="parameters" >
-                        //parameter1
                         <xsl:if test="position() = 1" >final GDGameLayer paramOneGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index));</xsl:if>
                         </xsl:for-each>
                         </xsl:if>
@@ -241,7 +240,6 @@ Created By: Travis Berthelot
                         
 <xsl:text>                        </xsl:text><xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" />) paramOneGameLayer.gdObject).</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '*'" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if></xsl:if>
-                        //parameter4
                         <xsl:if test="position() = 4" >
                             
                             <xsl:if test="$paramTwoName != ''" >
@@ -253,7 +251,7 @@ Created By: Travis Berthelot
                             <xsl:if test="$paramTwoName = ''" >
                                 
                                 <xsl:if test="$beforeSecondParam != ''" >
-                                    //<xsl:value-of select="$beforeSecondParam" /> - <xsl:value-of select="$hasObject" /><xsl:text>&#10;</xsl:text>
+<!--                                    //<xsl:value-of select="$beforeSecondParam" /> - <xsl:value-of select="$hasObject" /><xsl:text>&#10;</xsl:text>-->
                                     <xsl:if test="contains($hasObject, 'found')" >
                                     ((GD<xsl:call-template name="objectFactory" >
                                         <xsl:with-param name="name" >
