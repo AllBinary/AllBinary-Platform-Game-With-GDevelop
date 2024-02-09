@@ -423,7 +423,7 @@ Created By: Travis Berthelot
                                 </xsl:variable>
 
                                 <xsl:if test="$beforeSecondParam != ''" >
-                                    //<xsl:value-of select="$beforeSecondParam" /> - <xsl:value-of select="$hasObject" /><xsl:text>&#10;</xsl:text>
+<!--                                    //<xsl:value-of select="$beforeSecondParam" /> - <xsl:value-of select="$hasObject" /><xsl:text>&#10;</xsl:text>-->
                                     <xsl:if test="contains($hasObject, 'found')" >
                                     ((GD<xsl:call-template name="objectFactory" >
                                         <xsl:with-param name="name" >
