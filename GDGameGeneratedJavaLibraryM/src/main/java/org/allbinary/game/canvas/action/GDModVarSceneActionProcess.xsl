@@ -64,7 +64,14 @@ Created By: Travis Berthelot
                     <xsl:for-each select="parameters" >
                         <xsl:variable name="textTurnArrayToGet" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" >[</xsl:with-param><xsl:with-param name="replacementText" >.get(</xsl:with-param></xsl:call-template></xsl:variable>
                         <xsl:variable name="textTurnArrayToGet2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$textTurnArrayToGet" /></xsl:with-param><xsl:with-param name="find" >]</xsl:with-param><xsl:with-param name="replacementText" >)</xsl:with-param></xsl:call-template></xsl:variable>
+                        <xsl:if test="contains($textTurnArrayToGet2, '9223372036854776000')" >
                         //Long.MAX_VALUE = 9223372036854776000 GD does not like the real value 9223372036854775807L
+                        </xsl:if>
+                    </xsl:for-each>
+
+                    <xsl:for-each select="parameters" >
+                        <xsl:variable name="textTurnArrayToGet" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" >[</xsl:with-param><xsl:with-param name="replacementText" >.get(</xsl:with-param></xsl:call-template></xsl:variable>
+                        <xsl:variable name="textTurnArrayToGet2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$textTurnArrayToGet" /></xsl:with-param><xsl:with-param name="find" >]</xsl:with-param><xsl:with-param name="replacementText" >)</xsl:with-param></xsl:call-template></xsl:variable>
                         <xsl:variable name="textValue0" ><xsl:if test="contains($textTurnArrayToGet2, '9223372036854776000')" >9223372036854775807L</xsl:if><xsl:if test="not(contains($textTurnArrayToGet2, '9223372036854776000'))" ><xsl:value-of select="$textTurnArrayToGet2" /></xsl:if></xsl:variable>
                         <xsl:variable name="textValue" ><xsl:value-of select="$textValue0" /></xsl:variable>
                         <xsl:variable name="textValue3" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" >player_</xsl:with-param><xsl:with-param name="replacementText" >globals.player_</xsl:with-param></xsl:call-template></xsl:variable>
