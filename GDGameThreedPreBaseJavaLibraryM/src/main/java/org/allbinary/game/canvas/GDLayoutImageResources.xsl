@@ -91,11 +91,14 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources extends SpecialAnimation
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources instance;
+                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources instance = null;
 
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources create() throws Exception
+                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources getInstanceOrCreate() throws Exception
                         {
-                            instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources();
+                            if(instance == null) {
+                                instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources();
+                            }
+
                             return instance;
                         }
 

@@ -85,14 +85,15 @@ Created By: Travis Berthelot
                 public class GDGlobalsGDResources extends SpecialAnimation
                 {
 
-                    private static GDGlobalsGDResources instance;
-
-                        public static GDGlobalsGDResources getInstance(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
-                        {
-                            instance = new GDGlobalsGDResources(allBinaryGameLayerManager);
+                    private static GDGlobalsGDResources instance = null;
+                        
+                        public static GDGlobalsGDResources getInstanceOrCreate() throws Exception {
+                            if(instance == null) {
+                                instance = new GDGlobalsGDResources();
+                            }
                             return instance;
                         }
-                        
+                
                         public static GDGlobalsGDResources getInstance()
                         {
                             return instance;
@@ -147,19 +148,23 @@ Created By: Travis Berthelot
                             <xsl:variable name="name" select="name" />
                             public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
                         </xsl:if>
+                        <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
+                            <xsl:variable name="name" select="name" />
+                            public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
+                        </xsl:if>
                         <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
                             <xsl:variable name="name" select="name" />
                             public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
                         </xsl:if>
                     </xsl:for-each>
 
-                    public GDGlobalsGDResources(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
+                    private GDGlobalsGDResources() throws Exception {
                         
                         super(AnimationBehavior.getInstance());
 
                         //try {
                         
-                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR + allBinaryGameLayerManager, this, commonStrings.CONSTRUCTOR));
+                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
 
                     animationInterfaceFactoryInterfaceFactory.init(-1);
                                         

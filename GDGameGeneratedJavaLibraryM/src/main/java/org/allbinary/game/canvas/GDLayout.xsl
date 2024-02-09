@@ -101,16 +101,23 @@ Created By: Travis Berthelot
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimation extends GDSpecialAnimation
                 {
+                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation instance = null;
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation instance;
+                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation getInstance(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) 
+                        throws Exception {
 
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation getInstance(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager)
-                    {
-                        //For now lets recreate.
-                        //GDGameGlobals.create();
-                        //GDGlobalsSpecialAnimation.create();
-                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(abCanvas, allBinaryGameLayerManager);
+                        final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
+
+                        abToGBUtil.abCanvas = abCanvas;
+                        abToGBUtil.allBinaryGameLayerManager = allBinaryGameLayerManager;
+
+                        if(instance == null) {
+                            instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimation();
+                        } else {
+                            instance.reinitInstances();
+                        }
                         return instance;
+
                     }
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimation getInstance()
@@ -146,7 +153,9 @@ Created By: Travis Berthelot
                         
                     private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
 
-                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimation(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+                    private boolean clear = false;
+
+                    private GD<xsl:value-of select="$layoutIndex" />SpecialAnimation() {
 
                         LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
                     
@@ -154,9 +163,9 @@ Created By: Travis Berthelot
 
                         gdNodeStatsFactory.reset();
 
-                        globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.create();
-                        GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.create();
-                        builder = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(abCanvas, allBinaryGameLayerManager);
+                        globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstanceOrCreate();
+                        GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstanceOrCreate();
+                        builder = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder();
                     
 <!--                        try {
 
@@ -393,6 +402,8 @@ Created By: Travis Berthelot
 
                     public void open() {
                     
+                        LogUtil.put(LogFactory.getInstance("TWB - open", this, commonStrings.PROCESS));
+
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                     <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
                         BasicMotionGesturesHandler.getInstance().addListener(globals.eventListenerInterfaceLastPoint);
@@ -410,8 +421,11 @@ Created By: Travis Berthelot
 
                     public void close() {
                     
+                        LogUtil.put(LogFactory.getInstance("TWB - close", this, commonStrings.PROCESS));
+
                     <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
                         MovedMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterfaceLastPoint);
+                        BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterfaceLastPoint);
                     </xsl:if>
                     
                     //eventsClose - START
@@ -421,6 +435,120 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     //eventsClose - END
+                    }
+
+                    public void reinitInstances() throws Exception {
+                    
+                        if(!clear) {
+                            LogUtil.put(LogFactory.getInstance("TWB - reinitInstances - duplicate", this, commonStrings.PROCESS));
+                            //throw new RuntimeException();
+                            return;
+                        }
+                    
+                        LogUtil.put(LogFactory.getInstance("TWB - reinitInstances", this, commonStrings.PROCESS));
+
+                    <xsl:call-template name="addFromInstancesCache" >
+                        <xsl:with-param name="layoutName" >
+                            <xsl:value-of select="$layoutName" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                        builder.build();
+
+                        clear = false;
+                    }
+                    
+                    public void clear() {
+
+                        LogUtil.put(LogFactory.getInstance("TWB - clear", this, commonStrings.PROCESS));
+
+                        clear = true;
+
+            <xsl:for-each select="objects" >
+
+                <xsl:variable name="typeValue" select="type" />
+                <xsl:variable name="initialVariablesValue" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="initialVariables/value" /></xsl:with-param><xsl:with-param name="find" >-</xsl:with-param><xsl:with-param name="replacementText" >Neg</xsl:with-param></xsl:call-template></xsl:variable>
+
+                //objects - all
+            //<xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" />.clear();
+            globals.<xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" />.clear();
+            globals.<xsl:value-of select="name" />RectangleList<xsl:value-of select="$initialVariablesValue" />.clear();
+                
+            <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer'" >
+                //PrimitiveDrawing::Drawer
+                globals.<xsl:value-of select="name" />CacheGDGameLayerList.clear();
+            </xsl:if>
+            <xsl:if test="$typeValue = 'Sprite'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+
+                //Sprite
+                globals.<xsl:value-of select="name" />CacheGDGameLayerList.clear();
+            </xsl:if>
+
+            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+
+                //<xsl:value-of select="$typeValue" />
+                globals.<xsl:value-of select="name" />CacheGDGameLayerList.clear();
+            </xsl:if>
+
+            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+
+                //ParticleSystem::ParticleEmitter
+                globals.<xsl:value-of select="name" />CacheGDGameLayerList.clear();
+            </xsl:if>
+            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
+                <xsl:variable name="stringValue" select="string" />
+
+                //TextInput::TextInputObject
+                globals.<xsl:value-of select="name" />GDGameLayerDestroyedList.clear();
+            </xsl:if>
+            <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
+                <xsl:variable name="stringValue" select="string" />
+
+                //TextEntryObject::TextEntry
+                globals.<xsl:value-of select="name" />GDGameLayerDestroyedList.clear();
+            </xsl:if>
+            
+            <xsl:if test="type = 'Sprite'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                //Sprite - layerManagerEventListenerList
+                globals.<xsl:value-of select="name" />GDGameLayerDestroyedList.clear();
+            </xsl:if>
+            <xsl:if test="type = 'ParticleSystem::ParticleEmitter'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                //ParticleSystem::ParticleEmitter - layerManagerEventListenerList
+                globals.<xsl:value-of select="name" />GDGameLayerDestroyedList.clear();
+            </xsl:if>
+            <xsl:if test="type = 'TileMap::TileMap'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                //TileMap::TileMap - layerManagerEventListenerList
+                globals.<xsl:value-of select="name" />GDGameLayerDestroyedList.clear();
+            </xsl:if>
+
+            <xsl:if test="type = 'TileMap::CollisionMask'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                //TileMap::CollisionMask - layerManagerEventListenerList
+                globals.<xsl:value-of select="name" />GDGameLayerDestroyedList.clear();
+            </xsl:if>
+
+        </xsl:for-each>
+
                     }
 
                     public GDSceneGlobals getGlobals() {

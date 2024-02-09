@@ -39,6 +39,8 @@ Created By: Travis Berthelot
                                     ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
                             final BasicColor foregroundBasicColor = new BasicColor(255, 255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue, ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
 
+                            final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
+                            final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
                             allBinaryGameLayerManager.setBackgroundBasicColor(backgroundBasicColor);
                             allBinaryGameLayerManager.setForegroundBasicColor(foregroundBasicColor);
 

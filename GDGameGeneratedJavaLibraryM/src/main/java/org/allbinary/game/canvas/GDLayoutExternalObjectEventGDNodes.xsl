@@ -89,13 +89,8 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes extends SpecialAnimation
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes instance;
-
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes getInstance(final AllBinaryGameLayerManager allBinaryGameLayerManager)
-                    {
-                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes(allBinaryGameLayerManager);
-                        return instance;
-                    }
+                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes instance = 
+                       new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes();
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes getInstance()
                         {
@@ -110,7 +105,7 @@ Created By: Travis Berthelot
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
 
-                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+                    private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes() {
 
                         super(AnimationBehavior.getInstance());
 

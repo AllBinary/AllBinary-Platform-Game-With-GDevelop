@@ -112,11 +112,11 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals extends GDSceneGlobals
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals instance;
+                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals instance = 
+                        new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals();
 
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals create()
+                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals getInstanceOrCreate()
                     {
-                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals();
                         return instance;
                     }
 
@@ -224,6 +224,12 @@ public class GDStructure {
                     //objects class properties - END
 
                     <xsl:call-template name="externalEventsClassProperty" >
+                        <xsl:with-param name="layoutName" >
+                            <xsl:value-of select="$layoutName" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                    <xsl:call-template name="instancesCacheProperties" >
                         <xsl:with-param name="layoutName" >
                             <xsl:value-of select="$layoutName" />
                         </xsl:with-param>

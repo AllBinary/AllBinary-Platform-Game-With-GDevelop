@@ -75,12 +75,11 @@ Created By: Travis Berthelot
 
                     private static final GDGlobalsGDObjectsFactory instance = new GDGlobalsGDObjectsFactory();
 
-<!--                    public static GDGlobalsGDObjectsFactory create()
+                    public static GDGlobalsGDObjectsFactory getInstanceOrCreate()
                     {
-                        instance = new GDGlobalsGDObjectsFactory();
                         return instance;
-                    }-->
-                    
+                    }
+
                     public static GDGlobalsGDObjectsFactory getInstance()
                     {
                         return instance;

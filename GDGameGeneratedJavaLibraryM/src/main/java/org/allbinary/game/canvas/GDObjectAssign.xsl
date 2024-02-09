@@ -115,6 +115,16 @@ Created By: Travis Berthelot
 
             </xsl:if>
             
+            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
+                <xsl:variable name="stringValue" select="string" />
+
+                public AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = null;
+                public ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = null;
+                public final Rectangle <xsl:value-of select="name" />LayerInfo;
+                public final Rectangle[][] <xsl:value-of select="name" />RectangleArrayOfArrays;
+
+            </xsl:if>
+
             <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
                 <xsl:variable name="stringValue" select="string" />
 
@@ -305,6 +315,39 @@ Created By: Travis Berthelot
                 //this.<xsl:value-of select="name" />GDGameLayerFactory = new NullGDGameLayerFactory();
 
             </xsl:if>
+            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
+                <xsl:variable name="stringValue" select="string" />
+
+                this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[1];
+                this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray[0] = new RotationAnimationFactory();
+                this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[1];
+                this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray[0] = new RotationAnimationFactory();
+
+                this.<xsl:value-of select="name" />LayerInfo = new Rectangle(
+                                pointFactory.getInstance(0, 0),
+                                0, 0
+                                );
+                this.<xsl:value-of select="name" />RectangleArrayOfArrays = new Rectangle[0][0];
+
+                final BasicArrayList <xsl:value-of select="name" />BehaviorList = new BasicArrayList();
+                
+                this.<xsl:value-of select="name" />GDGameLayerFactory = new GDCustomGameLayerFactory(
+                    NullAnimationFactory.getFactoryInstance(),
+                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList,
+                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerDestroyedList,
+                    new Group[] {<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface},
+                    <xsl:value-of select="name" />BehaviorList,
+                    <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
+                    <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
+                    <xsl:value-of select="name" />LayerInfo,
+                    <xsl:value-of select="name" />RectangleArrayOfArrays);
+
+                //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
+
+                //this.<xsl:value-of select="name" />GDGameLayerFactory = new NullGDGameLayerFactory();
+
+            </xsl:if>
+
             <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
                 <xsl:variable name="stringValue" select="string" />
 
@@ -317,6 +360,7 @@ Created By: Travis Berthelot
                                 pointFactory.getInstance(0, 0),
                                 0, 0
                                 );
+                this.<xsl:value-of select="name" />RectangleArrayOfArrays = new Rectangle[0][0];
 
                 final BasicArrayList <xsl:value-of select="name" />BehaviorList = new BasicArrayList();
                 

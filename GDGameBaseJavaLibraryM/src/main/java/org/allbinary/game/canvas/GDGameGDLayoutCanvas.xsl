@@ -739,6 +739,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             super.end();
             musicManager.stop();
             this.cleanupManager();
+            GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance().clear();
             GDGameGlobals.getInstance().clear();
             LogUtil.put(LogFactory.getInstance(this.commonStrings.END, this, this.commonStrings.END));
         } catch (Exception e)

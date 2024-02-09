@@ -377,6 +377,40 @@ Created By: Travis Berthelot
                 };    
 
             </xsl:if>
+            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
+                <xsl:variable name="stringValue" select="string" />
+
+                //TextInput::TextInputObject - GDObject
+                public final class <xsl:value-of select="name" /> extends GDObject {
+                    
+                    public final StringMaker stringMaker = new StringMaker();
+
+                    public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
+                        super(unknown, x, y, z, width, height, name, null);
+                    }
+
+                    public int Width(final Graphics graphics) {
+                        return 0;
+                    }
+
+                    public int Height(final Graphics graphics) {
+                        return 0;
+                    }
+                    
+                    public String String() {
+                        return stringMaker.toString();
+                    }
+                };
+
+                public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new GDObjectFactory() {
+
+                    public GDObject get(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
+                        return new <xsl:value-of select="name" />(unknown, x, y, z, width, height, name);
+                    }
+
+                };    
+
+            </xsl:if>
             <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
                 <xsl:variable name="stringValue" select="string" />
 

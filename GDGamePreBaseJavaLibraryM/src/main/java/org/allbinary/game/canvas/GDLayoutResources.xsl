@@ -71,7 +71,7 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources extends SpecialAnimation
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources();
+                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources();
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources getInstance()
                         {

@@ -99,11 +99,12 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources extends SpecialAnimation
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources instance;
-
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources getInstance(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
-                        {
-                            instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources(allBinaryGameLayerManager);
+                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources instance = null;
+                        
+                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources getInstanceOrCreate() throws Exception {
+                            if(instance == null) {
+                                instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources();
+                            }
                             return instance;
                         }
                         
@@ -162,13 +163,17 @@ Created By: Travis Berthelot
                             <xsl:variable name="name" select="name" />
                             public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
                         </xsl:if>
+                        <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
+                            <xsl:variable name="name" select="name" />
+                            public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
+                        </xsl:if>
                         <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
                             <xsl:variable name="name" select="name" />
                             public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
                         </xsl:if>
                     </xsl:for-each>
 
-                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
+                    private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources() throws Exception {
 
                         super(AnimationBehavior.getInstance());
 

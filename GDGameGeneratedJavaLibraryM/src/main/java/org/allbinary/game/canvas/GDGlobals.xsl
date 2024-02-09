@@ -386,6 +386,12 @@ Created By: Travis Berthelot
                 //ParticleSystem::ParticleEmitter
                 <xsl:value-of select="name" />CacheGDGameLayerList.clear();
             </xsl:if>
+            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
+                <xsl:variable name="stringValue" select="string" />
+
+                //TextInput::TextInputObject
+                <xsl:value-of select="name" />GDGameLayerDestroyedList.clear();
+            </xsl:if>
             <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
                 <xsl:variable name="stringValue" select="string" />
 

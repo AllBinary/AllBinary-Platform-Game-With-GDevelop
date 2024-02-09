@@ -44,6 +44,8 @@ Created By: Travis Berthelot
                             </xsl:if>
                             
                             //player.start();
+                            final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
+                            final MyCanvas abCanvas = abToGBUtil.abCanvas;
                             abCanvas.nextSong(sound);
 
                         } catch(Exception e) {
@@ -52,7 +54,16 @@ Created By: Travis Berthelot
 
                         return true;
                     }
-        
+
+                    @Override
+                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                        this.processGDStats(gameLayer);
+                            
+                        this.process();
+
+                        return false;
+                    }
+
     </xsl:template>
 
 </xsl:stylesheet>

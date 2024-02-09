@@ -90,11 +90,14 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources extends SpecialAnimation
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources instance;
+                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources instance = null;
 
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources create() throws Exception
+                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources getInstanceOrCreate() throws Exception
                         {
-                            instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources();
+                            if(instance == null) {
+                                instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources();
+                            }
+
                             return instance;
                         }
 

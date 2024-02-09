@@ -73,6 +73,7 @@ public class GDDelete {
         
         final BasicArrayList exclusionList = new BasicArrayList();
         
+        exclusionList.add("ABToGBUtil.java");
         exclusionList.add("TouchButtonAndroidResources.java");
         exclusionList.add("StartRunnable.java");
         exclusionList.add("GeographicMapTopViewMaskGameLayerBehavior.java");

@@ -118,21 +118,6 @@ Created By: Travis Berthelot
                 //LayoutBuilder name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder extends SpecialAnimation
                 {
-                    <!--
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder instance;
-
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder getInstance(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager)
-                    {
-                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(abCanvas, allBinaryGameLayerManager);
-                        return instance;
-                    }
-
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder getInstance()
-                        {
-                            return instance;
-                        }
-                    -->
-
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final PointFactory pointFactory = PointFactory.getInstance();
@@ -148,27 +133,27 @@ Created By: Travis Berthelot
 
                         public boolean initialized = false;
                         
-                        public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources createSpecialAnimationImageResources() {
+                        private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources createSpecialAnimationImageResources() {
                             try {
-                                return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.create();
+                                return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstanceOrCreate();
                             } catch(Exception e) {
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources", this, commonStrings.CONSTRUCTOR, e));
                             }
                             return null;
                         }
 
-                        public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources createSpecialAnimationTouchImageResources() {
+                        private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources createSpecialAnimationTouchImageResources() {
                             try {
-                                return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.create();
+                                return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources.getInstanceOrCreate();
                             } catch(Exception e) {
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources", this, commonStrings.CONSTRUCTOR, e));
                             }
                             return null;
                         }
 
-                        public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources createSpecialAnimationGDResources(final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+                        private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources createSpecialAnimationGDResources() {
                             try {
-                                return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance(allBinaryGameLayerManager);
+                                return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstanceOrCreate();
                             } catch(Exception e) {
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                             }
@@ -184,16 +169,16 @@ Created By: Travis Berthelot
                             return null;
                         }
 
-                        public GDGlobalsGDResources createGlobalsSpecialAnimationGDResources(AllBinaryGameLayerManager allBinaryGameLayerManager) {
+                        public GDGlobalsGDResources createGlobalsSpecialAnimationGDResources() {
                             try {
-                                return GDGlobalsGDResources.getInstance(allBinaryGameLayerManager);
+                                return GDGlobalsGDResources.getInstanceOrCreate();
                             } catch(Exception e) {
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                             }
                             return null;
                         }
 
-                        public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+                        public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder() {
 
                             super(AnimationBehavior.getInstance());
 
@@ -277,19 +262,19 @@ Created By: Travis Berthelot
                         GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources touchImageResources = this.createSpecialAnimationTouchImageResources();
 
                     //GDNode processM calls in this class can load resources
-                    GDGlobalsGDResources globalResources = this.createGlobalsSpecialAnimationGDResources(allBinaryGameLayerManager);
-                    GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = this.createSpecialAnimationGDResources(allBinaryGameLayerManager);
+                    GDGlobalsGDResources globalResources = this.createGlobalsSpecialAnimationGDResources();
+                    GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = this.createSpecialAnimationGDResources();
 
                     //GDNode - START
-                    externalEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes.getInstance(allBinaryGameLayerManager);
-                    externalActionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes.getInstance(allBinaryGameLayerManager);
-                    externalConditionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes.getInstance(allBinaryGameLayerManager);
-                    externalOtherEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes.getInstance(allBinaryGameLayerManager); //GDNode processM calls in this class can load resources
-                    externalObjectEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes.getInstance(allBinaryGameLayerManager);
-                    actionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes.getInstance(abCanvas, allBinaryGameLayerManager);
-                    conditionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes.getInstance(allBinaryGameLayerManager); //GDNode processM calls in this class can load resources
-                    otherEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes.getInstance(allBinaryGameLayerManager); //GDNode processM calls in this class can load resources
-                    objectEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes.getInstance(allBinaryGameLayerManager);
+                    externalEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes.getInstance();
+                    externalActionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes.getInstance();
+                    externalConditionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes.getInstance();
+                    externalOtherEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes.getInstance(); //GDNode processM calls in this class can load resources
+                    externalObjectEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalObjectEventGDNodes.getInstance();
+                    actionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes.getInstance();
+                    conditionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes.getInstance(); //GDNode processM calls in this class can load resources
+                    otherEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes.getInstance(); //GDNode processM calls in this class can load resources
+                    objectEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationObjectEventGDNodes.getInstance();
                     //GDNode - END
 
                         try {
@@ -314,12 +299,12 @@ Created By: Travis Berthelot
                         <xsl:variable name="notTextObject" >
                             <xsl:for-each select="../objects" >
                                 <xsl:if test="$name = name" >
-                                    <xsl:if test="type != 'TextObject::Text'" >found</xsl:if>
+                                    <xsl:if test="type != 'TextObject::Text' and type != 'TextInput::TextInputObject'" >found</xsl:if>
                                 </xsl:if>
                             </xsl:for-each>
                             <xsl:for-each select="/game/objects" >
                                 <xsl:if test="$name = name" >
-                                    <xsl:if test="type != 'TextObject::Text'" >found</xsl:if>
+                                    <xsl:if test="type != 'TextObject::Text' and type != 'TextInput::TextInputObject'" >found</xsl:if>
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:variable>
@@ -453,9 +438,12 @@ Created By: Travis Berthelot
                 final int index = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size();
 
                 final GDGameLayer <xsl:value-of select="name" />GDGameLayer = resources.<xsl:value-of select="name" />GDGameLayerFactory.create(stringBuilder.append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME).append(CommonSeps.getInstance().UNDERSCORE).append(index).toString(), <xsl:value-of select="name" />GDobject2, null); //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDConditionWithGroupActions);
+                final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
+                final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
                 <xsl:value-of select="name" />GDGameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
 
                 <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
+                globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
                         
                             </xsl:if>                        
 
@@ -474,10 +462,14 @@ Created By: Travis Berthelot
                                                 
                         <xsl:if test="contains($notTextObject, 'found')" >
                         //Create - Instances
+                        final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
+                        final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
+                            
                         final GDGameLayer <xsl:value-of select="name" />GDGameLayer = <xsl:call-template name="globalResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerFactory.create(stringBuilder.append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME).append(CommonSeps.getInstance().UNDERSCORE).append(index).toString(), <xsl:value-of select="name" />GDobject2, null); //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDConditionWithGroupActions);
                         <xsl:value-of select="name" />GDGameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
                         LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeId" /> for <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer); at: 0", this, commonStrings.PROCESS));
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
+                        globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
 
                         //updateGDObject - 7
                         <xsl:value-of select="name" />GDGameLayer.updateGDObject(globals.timeDelta);
@@ -499,6 +491,18 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //instances create - END
 
+                        } catch(Exception e) {
+                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
+                        }
+
+                        this.build();
+
+                    }
+
+                    public void build() {
+                    
+                        try {
+                        
                     <xsl:for-each select="../externalEvents" >
                     <xsl:if test="$layoutName = associatedLayout" >
                     //externalEventsProcess - START
@@ -584,7 +588,7 @@ Created By: Travis Berthelot
                     //eventsLogicConstructionCollisionNP - END
 
                     <xsl:if test="$layoutIndex = 1" >
-                    //GameAreaBoxUtil.getInstance().append(allBinaryGameLayerManager);
+                    //GameAreaBoxUtil.getInstance().append();
                     </xsl:if>
 
                     //eventsKeyFromTextConditions - START                    
@@ -601,18 +605,19 @@ Created By: Travis Berthelot
                     GameInputProcessorUtil.init(globals.inputProcessorArray);
                     GameInputProcessorUtil.init(globals.unmappedInputProcessorArray);
 
-                        } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
-                        }
-
                         //allBinaryGameLayerManager.log();
                         //groupLayerManagerListener.log();
                         
                         LogUtil.put(LogFactory.getInstance("DepartScene - completed", this, commonStrings.PROCESS));
                         GDGlobalsFactory.getInstance().newScene = false;
                         initialized = true;
-                    }
 
+                        } catch(Exception e) {
+                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
+                        }
+                    
+                    }
+                    
                     public int SceneWindowWidth() {
                         return gameTickDisplayInfoSingleton.getLastWidth();
                     }

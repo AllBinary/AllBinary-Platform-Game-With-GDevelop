@@ -173,6 +173,8 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="text()" />GDGameLayer.setGDObject(gdObject);
                             }
 
+                            final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
+                            final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;                                
                             <xsl:value-of select="text()" />GDGameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
 
                             ////stringBuilder.append("<xsl:value-of select="$nodeId" /> for <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer); at: ").append(index);
@@ -219,6 +221,8 @@ Created By: Travis Berthelot
                                 
                                 //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$gameLayer" />.gdObject.zOrder" + <xsl:value-of select="$gameLayer" />.gdObject.zOrder, this, commonStrings.PROCESS));
                                 //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$gameLayer" />.getZ()" + <xsl:value-of select="$gameLayer" />.getZ(), this, commonStrings.PROCESS));
+                                final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
+                                final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;                                
                                 allBinaryGameLayerManager.insert(<xsl:value-of select="$gameLayer" />);
 
                                 //objectsGroupsGDGameLayer - START

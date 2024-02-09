@@ -120,13 +120,8 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes extends SpecialAnimation
                 {
 
-                    private static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes instance;
-
-                    public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes getInstance(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager)
-                    {
-                        instance = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes(abCanvas, allBinaryGameLayerManager);
-                        return instance;
-                    }
+                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes instance = 
+                        new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes();
 
                         public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes getInstance()
                         {
@@ -148,13 +143,9 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
 
-                        private final MyCanvas canvas;
-                        
-                    public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes(final MyCanvas abCanvas, final AllBinaryGameLayerManager allBinaryGameLayerManager) {
+                    private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes() {
 
                         super(AnimationBehavior.getInstance());
-
-                        this.canvas = abCanvas;
 
                         try {
                         

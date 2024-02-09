@@ -15,6 +15,100 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:template name="addFromInstancesCache" >
+        <xsl:param name="layoutName" />
+
+            final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
+            final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
+
+            int size;
+            GDGameLayer gameLayer;
+            
+        <xsl:for-each select="/game/objects" >
+            <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+            <xsl:variable name="type" ><xsl:value-of select="type" /></xsl:variable>
+            <xsl:for-each select="/game/layouts" >
+                <xsl:if test="$layoutName = name" >
+                    <xsl:for-each select="instances" >
+                        <xsl:if test="name = $name" >
+                        <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                        <xsl:variable name="hasPriorInstanceWithSameName" ><xsl:if test="../instances[name = $name and number(substring(generate-id(), 2) - 65536) &lt; $id]" >found</xsl:if></xsl:variable>
+                            <xsl:if test="not(contains($hasPriorInstanceWithSameName, 'found'))" >
+            //Global reinit instance
+            size = globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.size();
+            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                gameLayer = (GDGameLayer) globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.get(index);
+                gameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
+                <xsl:if test="$type != 'TextObject::Text'" >
+                allBinaryGameLayerManager.insert(gameLayer);
+                </xsl:if>
+            }
+                                
+            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.addAll(
+                globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList);
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>
+                        
+        <xsl:for-each select="objects" >
+            <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+            <xsl:variable name="type" ><xsl:value-of select="type" /></xsl:variable>
+                <xsl:for-each select="../instances" >
+                <xsl:if test="name = $name" >
+            //Layout reinit instance
+            size = globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.size();
+            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                gameLayer = (GDGameLayer) globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.get(index);
+                gameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
+                <xsl:if test="$type != 'TextObject::Text'" >
+                allBinaryGameLayerManager.insert(gameLayer);
+                </xsl:if>
+            }
+
+            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.addAll(
+                globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList);
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>
+    
+    </xsl:template>
+
+    <xsl:template name="instancesCacheProperties" >
+        <xsl:param name="layoutName" />
+    
+        <xsl:for-each select="/game/objects" >
+            <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+            <xsl:for-each select="/game/layouts" >
+                <xsl:if test="$layoutName = name" >
+                    <xsl:for-each select="instances" >
+                        <xsl:if test="name = $name" >
+                        <xsl:variable name="id" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                        <xsl:variable name="hasPriorInstanceWithSameName" ><xsl:if test="../instances[name = $name and number(substring(generate-id(), 2) - 65536) &lt; $id]" >found</xsl:if></xsl:variable>
+                            <xsl:if test="not(contains($hasPriorInstanceWithSameName, 'found'))" >
+            //Global specific objects
+            public final BasicArrayList <xsl:value-of select="name" />GDInstanceGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>
+                        
+        <xsl:for-each select="objects" >
+            <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+                <xsl:for-each select="../instances" >
+                <xsl:if test="name = $name" >
+            //Layout specific objects
+            public final BasicArrayList <xsl:value-of select="name" />GDInstanceGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>
+    
+    </xsl:template>
+    
     <xsl:template name="objectsClassProperty" >
         <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
 
@@ -24,7 +118,7 @@ Created By: Travis Berthelot
         <xsl:if test="contains($behaviorsAsString, 'DestroyOutsideBehavior::DestroyOutside,')" >
             public final GDBehavior destroyOutsideBehavior = new DestroyOutsideBehavior();
         </xsl:if>
-            
+        
         //objectsClassProperty - START
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
@@ -107,6 +201,14 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
 
                 //TextObject::Text
+                public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME = "<xsl:value-of select="name" />";
+                //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+                public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList();
+            </xsl:if>
+            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
+                <xsl:variable name="stringValue" select="string" />
+
+                //TextInput::TextInputObject
                 public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME = "<xsl:value-of select="name" />";
                 //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                 public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList();

@@ -199,7 +199,9 @@ Created By: Travis Berthelot
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
                                             //<xsl:value-of select="text()" /><xsl:text>&#10;</xsl:text>
-                                                                            
+                             
+                                            //final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
+                                            //final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
                                             //if(allBinaryGameLayerManager.getLayerManager().contains(<xsl:value-of select="text()" />GDGameLayer)) {
                                                 //allBinaryGameLayerManager.remove(<xsl:value-of select="text()" />GDGameLayer);
                                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + <xsl:value-of select="text()" />GDGameLayer, this, commonStrings.PROCESS));
