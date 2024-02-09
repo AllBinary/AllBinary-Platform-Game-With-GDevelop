@@ -94,6 +94,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.CollidableCompositeLayer;
                 import org.allbinary.game.layout.BaseGDNodeStats;
+                import org.allbinary.game.layout.GDInitialVariables;
                 import org.allbinary.game.layout.GDNodeStatsFactory;
                 import org.allbinary.game.layout.GDObjectStrings;
                 import org.allbinary.game.rand.MyRandomFactory;
@@ -447,11 +448,18 @@ Created By: Travis Berthelot
                         
                             </xsl:if>                        
 
+                            <xsl:if test="initialVariables" >
+                            <xsl:value-of select="$name" />GDobject2.initialVariables = new GDInitialVariables() {
+                                public void reset() {
                             <xsl:for-each select="initialVariables" >//initialVariables - //<xsl:value-of select="type" /> - //<xsl:value-of select="name" /> - //<xsl:value-of select="value" />
                             <xsl:text>&#10;</xsl:text>
 <xsl:text>                  </xsl:text><xsl:value-of select="$name" />GDobject2.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                             <xsl:text>&#10;</xsl:text>
                             </xsl:for-each>
+                                }
+                            };
+                            <xsl:value-of select="$name" />GDobject2.initialVariables.reset();
+                            </xsl:if>
 
                         <xsl:if test="contains(name, 'btn_')" >
                         final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(

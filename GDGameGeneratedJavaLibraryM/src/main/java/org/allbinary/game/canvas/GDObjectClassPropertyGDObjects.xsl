@@ -97,6 +97,7 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:for-each>
 
+            //objectsClassPropertyGDObjects
             public void reset() {
             
             <xsl:for-each select="objects" >
@@ -165,6 +166,7 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:for-each>
 
+                this.initialVariables.reset();
             }
         }
         </xsl:for-each>
@@ -241,6 +243,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
+                    //objectsClassPropertyGDObjects2
                     public void reset() {
                     <xsl:for-each select="variables" >
                     //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
@@ -294,6 +297,9 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
+                    
+                    this.initialVariables.reset();
+
                     }
                     </xsl:if>
 

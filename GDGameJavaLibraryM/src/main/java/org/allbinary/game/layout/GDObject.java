@@ -35,6 +35,8 @@ public class GDObject
 
     private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
     
+    public GDInitialVariables initialVariables = GDInitialVariables.getInstance();
+
     public final String name;
     public final String type;
     

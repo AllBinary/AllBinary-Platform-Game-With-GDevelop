@@ -148,6 +148,7 @@
     </xsl:template>
 
     <xsl:template name="resetVariables" >
+        //resetVariables
         public void reset() {
                         <xsl:for-each select="variables" >
                             //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
