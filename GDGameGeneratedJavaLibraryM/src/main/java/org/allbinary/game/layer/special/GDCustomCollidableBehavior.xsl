@@ -218,12 +218,15 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
                 if (indexOfGroup <xsl:text disable-output-escaping="yes" >&gt;</xsl:text>= 0) {
                     //LogUtil.put(LogFactory.getInstance("groupIndex: " + indexOfGroup, this, COLLIDE));
                     node = ((GDNode) this.conditionWIthGroupActions.actionForGroupsList.get(indexOfGroup));
-                    node.clear();
-                    node.gameLayerArray[0] = this.ownerLayer;
-                    node.gameLayerArray[1] = collisionLayer;
-                    //node.processM(node.gameLayerArray, null, null);
-                    node.processM(node.gameLayerArray);
-                    node.clear2();
+                    
+                    final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
+                    tempGameLayerUtil.clear();
+                    tempGameLayerUtil.gameLayerArray[0] = this.ownerLayer;
+                    tempGameLayerUtil.gameLayerArray[1] = collisionLayer;
+                    //node.processM(tempGameLayerUtil.gameLayerArray, null, null);
+                    node.processM(tempGameLayerUtil.gameLayerArray);
+                    tempGameLayerUtil.clear2();
+                    
                 }
             }
         } else {

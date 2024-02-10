@@ -805,6 +805,7 @@ Created By: Travis Berthelot
         import org.allbinary.game.layer.special.TempMapMovementBehavior;
         import org.allbinary.game.layer.special.TempMovementBehaviorFactory;        
         import org.allbinary.game.layout.GDNode;
+        import org.allbinary.game.layer.special.TempGameLayerUtil;
         import org.allbinary.game.layout.GDObject;        
         import org.allbinary.game.physics.acceleration.BasicAccelerationProperties;
         import org.allbinary.game.physics.velocity.VelocityProperties;

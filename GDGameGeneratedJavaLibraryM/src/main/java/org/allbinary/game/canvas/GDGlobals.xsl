@@ -74,6 +74,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
                 import org.allbinary.game.layout.GDNode;
+                import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layout.behavior.DestroyOutsideBehavior;
                 import org.allbinary.game.layout.behavior.GDBehavior;

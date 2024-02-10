@@ -71,6 +71,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDNode;
+                import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.game.layout.GDObjectStrings;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;

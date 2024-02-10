@@ -75,6 +75,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.BaseGDNodeStats;
                 import org.allbinary.game.layout.GDNode;
+                import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.layout.GDNodeStatsFactory;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.graphics.GPoint;
