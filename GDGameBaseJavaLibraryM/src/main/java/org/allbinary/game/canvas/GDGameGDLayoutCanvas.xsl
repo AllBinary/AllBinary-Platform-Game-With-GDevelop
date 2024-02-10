@@ -1,6 +1,9 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-    <xsl:output method="html" indent="yes" />
+    
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
 
+    <xsl:output method="html" indent="yes" />
+    
     <xsl:template match="/game">
 
 /*
@@ -39,6 +42,9 @@ import org.allbinary.game.GameInfo;
 import org.allbinary.game.GameTypeFactory;
 import org.allbinary.game.IntermissionFactory;
 import org.allbinary.canvas.FullScreenUtil;
+import org.allbinary.debug.DebugFactory;
+import org.allbinary.debug.NoDebug;
+import org.allbinary.game.GDGameCommandFactory;
 import org.allbinary.game.collision.OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer;
 import org.allbinary.game.configuration.GameSpeed;
 import org.allbinary.game.configuration.event.ChangedGameFeatureListener;
@@ -48,6 +54,7 @@ import org.allbinary.game.configuration.feature.GameFeatureFactory;
 import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
 import org.allbinary.game.combat.canvas.CombatGameCanvas;
+import org.allbinary.game.commands.GameCommandsFactory;
 import org.allbinary.game.displayable.canvas.BaseMenuBehavior;
 import org.allbinary.game.displayable.canvas.GamePerformanceInitUpdatePaintable;
 import org.allbinary.game.displayable.canvas.StartIntermissionPaintable;
@@ -204,6 +211,52 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         this.gameLayerManager.setForegroundBasicColor(foregroundBasicColor);
     }
 
+    public void addCommands()
+    {
+        final GDGameCommandFactory gdGameCommandFactory = GDGameCommandFactory.getInstance();
+        final GameCommandsFactory gameCommandsFactory = GameCommandsFactory.getInstance();
+        final MyCommandsFactory myCommandsFactory = MyCommandsFactory.getInstance();
+        //final HTMLFeatureFactory htmlFeatureFactory = HTMLFeatureFactory.getInstance();
+
+        if (DebugFactory.getInstance() != NoDebug.getInstance())
+        {
+            this.addCommand(gameCommandsFactory.START_TRACE);
+        }
+
+        this.addCommand(gameCommandsFactory.RESTART_COMMAND);
+
+        this.addCommand(myCommandsFactory.PAUSE_COMMAND);
+
+        this.addCommand(gameCommandsFactory.QUIT_COMMAND);
+
+        <xsl:for-each select="../layouts" >
+            <xsl:variable name="name2" ><xsl:value-of select="translate(name, '_', ' ')" /></xsl:variable>
+            <xsl:variable name="name3" >GDGame<xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
+            <xsl:variable name="name" ><xsl:value-of select="translate($name3, ' ', '')" /></xsl:variable>
+            <xsl:if test="contains(name, 'in_game_options')" >
+        this.addCommand(gdGameCommandFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_GD_LAYOUT);
+            </xsl:if>
+        </xsl:for-each>
+           
+
+        //boolean isOverScan = OperatingSystemFactory.getInstance().getOperatingSystemInstance().isOverScan();
+        
+        //final Features features = Features.getInstance();
+
+        //if(!features.isDefault(htmlFeatureFactory.HTML) and !isOverScan)
+        //{
+            //if (TouchScreenFactory.getInstance().isTouch() and new InGameFeatures().isAny())
+            //{
+            //    // System.out.println("InGameOptions");
+            //    this.addCommand(InGameOptionsForm.DISPLAY);
+            //}
+
+            //// this.addCommand(GameCommands.DISPLAY_SAVE_FORM);
+            //this.addCommand(gameCommandsFactory.SAVE);
+            //this.addCommand(gameCommandsFactory.DISPLAY_LOAD_FORM);
+        //}
+    }
+
     <!-- 
     public GDGame<GDLayout>Canvas(AllBinaryGameLayerManager allBinaryGameLayerManager)
     throws Exception
@@ -211,7 +264,8 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         this(null, allBinaryGameLayerManager);
     }-->
 
-    <xsl:if test="number($layoutIndex) = 0 or position() = last()" >
+    <xsl:variable name="name2" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+    <xsl:if test="number($layoutIndex) = 0 or position() = last() or contains($name2, 'in_game_options') or contains($name2, 'score') or contains($name2, 'over')" >
     public BaseMenuBehavior getInGameMenuBehavior() {
         return BaseMenuBehavior.getInstance();
     }

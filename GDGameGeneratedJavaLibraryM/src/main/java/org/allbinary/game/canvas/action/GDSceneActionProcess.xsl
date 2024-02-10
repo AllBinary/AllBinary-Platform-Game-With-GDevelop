@@ -34,7 +34,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="command" >
                             <xsl:if test="type/value = 'Scene'" >
                             <xsl:for-each select="parameters" >
-                            <xsl:if test="position() = 2" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '\&quot;', '')" /></xsl:with-param></xsl:call-template>_GD_LAYOUT</xsl:if>
+                            <xsl:if test="position() = 2" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), '\&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:if>
                             </xsl:for-each>
                             </xsl:if>
                             </xsl:variable>
@@ -46,7 +46,8 @@ Created By: Travis Berthelot
                                 if(!GDGlobalsFactory.getInstance().newScene) {
                                     final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                     final MyCanvas abCanvas = abToGBUtil.abCanvas;
-                                    <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="contains(text(), '(')" >//Invalid Scene - </xsl:if></xsl:if></xsl:for-each>abCanvas.getCustomCommandListener().commandAction(GDGameCommandFactory.getInstance().<xsl:value-of select="$command" />, ProgressCanvasFactory.getInstance());
+                                    <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="contains(text(), '(')" >//Invalid Scene - </xsl:if></xsl:if></xsl:for-each>abCanvas.getCustomCommandListener().commandAction(GDGameCommandFactory.getInstance().<xsl:value-of select="$command" />_GD_LAYOUT, ProgressCanvasFactory.getInstance());
+<!--                                    <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="contains(text(), '(')" >//Invalid Scene - </xsl:if></xsl:if></xsl:for-each>abCanvas.getCustomCommandListener().commandAction(<xsl:if test="$command = 'RESUME'" >MyCommandsFactory.getInstance().RESUME_COMMAND</xsl:if><xsl:if test="$command != 'RESUME'" >GDGameCommandFactory.getInstance().<xsl:value-of select="$command" />_GD_LAYOUT</xsl:if>, ProgressCanvasFactory.getInstance());-->
                                 }
 
                             } catch(Exception e) {

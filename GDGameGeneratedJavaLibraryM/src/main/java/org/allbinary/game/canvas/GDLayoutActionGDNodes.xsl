@@ -101,6 +101,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
                 import org.allbinary.graphics.displayable.MyCanvas;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
+                import org.allbinary.graphics.displayable.command.MyCommandsFactory;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.layer.AllBinaryLayerManager;
                 import org.allbinary.logic.string.CommonStrings;
