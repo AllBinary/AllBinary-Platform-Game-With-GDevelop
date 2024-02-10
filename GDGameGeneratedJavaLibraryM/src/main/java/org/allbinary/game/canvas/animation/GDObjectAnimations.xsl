@@ -40,10 +40,14 @@ Created By: Travis Berthelot
         <xsl:param name="platform" />
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
+        <xsl:param name="layoutName" />
 
         <xsl:call-template name="scaleTouchButtons" >
             <xsl:with-param name="layoutIndex" >
                 <xsl:value-of select="$layoutIndex" />
+            </xsl:with-param>
+            <xsl:with-param name="layoutName" >
+                <xsl:value-of select="$layoutName" />
             </xsl:with-param>
         </xsl:call-template>
         
