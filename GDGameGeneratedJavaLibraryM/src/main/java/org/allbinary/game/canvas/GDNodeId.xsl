@@ -192,7 +192,6 @@
             //caller=<xsl:value-of select="$caller" /> - //eventIds
             <xsl:if test="$caller = 'externalEventsProcess'" >
                 //Apparently the process below already calls this.
-                if(true) throw new RuntimeException();
                 tempGameLayerUtil.clear();
                 //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processM(tempGameLayerUtil.gameLayerArray, null, null);
                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processM(tempGameLayerUtil.gameLayerArray);
