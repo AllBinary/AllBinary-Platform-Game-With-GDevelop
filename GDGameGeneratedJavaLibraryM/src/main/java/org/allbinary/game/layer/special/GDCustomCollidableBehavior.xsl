@@ -219,6 +219,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
                     //LogUtil.put(LogFactory.getInstance("groupIndex: " + indexOfGroup, this, COLLIDE));
                     node = ((GDNode) this.conditionWIthGroupActions.actionForGroupsList.get(indexOfGroup));
                     
+                    if(true) throw new RuntimeException();
                     final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
                     tempGameLayerUtil.clear();
                     tempGameLayerUtil.gameLayerArray[0] = this.ownerLayer;

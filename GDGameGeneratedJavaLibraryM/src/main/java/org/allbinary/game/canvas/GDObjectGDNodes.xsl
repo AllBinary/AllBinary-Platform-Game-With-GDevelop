@@ -83,6 +83,7 @@ Created By: Travis Berthelot
                                 super.processStats();
 
                                 //0
+                                if(true) throw new RuntimeException();
                                 final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
                                 tempGameLayerUtil.clear();
                                 //this.processM(tempGameLayerUtil.gameLayerArray, null, null);
@@ -98,6 +99,7 @@ Created By: Travis Berthelot
                                 super.processNStats(gdNode, gdNodeList);
 
                                 //1
+                                if(true) throw new RuntimeException();
                                 final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
                                 tempGameLayerUtil.clear();
                                 //this.processM(tempGameLayerUtil.gameLayerArray, gdNode, gdNodeList);
@@ -244,6 +246,7 @@ Created By: Travis Berthelot
                                 super.processStats();
 
                                 //8
+                                if(true) throw new RuntimeException();
                                 final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
                                 tempGameLayerUtil.clear();
                                 //this.processM(tempGameLayerUtil.gameLayerArray, null, null);
@@ -259,6 +262,7 @@ Created By: Travis Berthelot
                                 super.processNStats(gdNode, gdNodeList);
 
                                 //9
+                                if(true) throw new RuntimeException();
                                 final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
                                 tempGameLayerUtil.clear();
                                 //this.processM(tempGameLayerUtil.gameLayerArray, gdNode, gdNodeList);
@@ -405,6 +409,7 @@ Created By: Travis Berthelot
                                 super.processStats();
                             
                                 //16
+                                if(true) throw new RuntimeException();
                                 final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
                                 tempGameLayerUtil.clear();
                                 //this.processM(tempGameLayerUtil.gameLayerArray, null, null);
@@ -420,6 +425,7 @@ Created By: Travis Berthelot
                                 super.processNStats(gdNode, gdNodeList);
 
                                 //17
+                                if(true) throw new RuntimeException();
                                 final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
                                 tempGameLayerUtil.clear();
                                 //this.processM(tempGameLayerUtil.gameLayerArray, gdNode, gdNodeList);
@@ -567,6 +573,7 @@ Created By: Travis Berthelot
                                 super.processStats();
 
                                 //23
+                                if(true) throw new RuntimeException();
                                 final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
                                 tempGameLayerUtil.clear();
                                 //this.processM(tempGameLayerUtil.gameLayerArray, null, null);
@@ -582,6 +589,7 @@ Created By: Travis Berthelot
                                 super.processNStats(gdNode, gdNodeList);
 
                                 //24
+                                if(true) throw new RuntimeException();
                                 final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
                                 tempGameLayerUtil.clear();
                                 //this.processM(tempGameLayerUtil.gameLayerArray, gdNode, gdNodeList);
@@ -699,6 +707,7 @@ Created By: Travis Berthelot
                                     if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
 
                                         //29
+                                        if(true) throw new RuntimeException();
                                         final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
                                         tempGameLayerUtil.clear();
                                         tempGameLayerUtil.gameLayerArray[0] = (CollidableCompositeLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0);

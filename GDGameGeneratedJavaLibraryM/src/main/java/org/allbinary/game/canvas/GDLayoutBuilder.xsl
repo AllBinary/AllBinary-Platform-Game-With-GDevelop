@@ -512,6 +512,8 @@ Created By: Travis Berthelot
                     
                         try {
                         
+                        final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
+
                     <xsl:for-each select="../externalEvents" >
                     <xsl:if test="$layoutName = associatedLayout" >
                     //externalEventsProcess - START

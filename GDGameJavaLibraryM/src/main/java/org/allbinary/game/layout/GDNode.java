@@ -14,8 +14,8 @@
 package org.allbinary.game.layout;
 
 import javax.microedition.lcdui.Graphics;
-import org.allbinary.game.input.event.GameKeyEvent;
 
+import org.allbinary.game.input.event.GameKeyEvent;
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.input.motion.gesture.MotionGestureInput;
@@ -117,19 +117,6 @@ public class GDNode
         this.nodeStatsFactory.push(7, name);
     }
     
-    /*
-    public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
-    }
-
-    public void processNStats(final GDNode gdNode, final BasicArrayList gdNodeList) {
-        this.nodeStatsFactory.push(8, name);
-    }
-
-    public void processNStatsE(final GDNode gdNode, final BasicArrayList gdNodeList) {
-        this.nodeStatsFactory.push(9, name);
-    }
-    */
-
     public boolean processCreate(final GDObject gdObject, final String createString, final int createIndex) throws Exception {
         return true;
     }
