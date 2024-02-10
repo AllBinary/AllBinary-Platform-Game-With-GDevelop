@@ -101,33 +101,6 @@ Created By: Travis Berthelot
         <xsl:param name="thisNodeIndex" />
         <xsl:param name="conditionPosition" />
         <xsl:param name="logString" />
-        
-                    //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //objectGDObjectAtIndex2 - START
-                    <xsl:call-template name="objectGDObjectAtIndex2" >
-                        <xsl:with-param name="caller" >
-                            <xsl:value-of select="$caller" />
-                        </xsl:with-param>
-                        <xsl:with-param name="thisNodeArray" >
-                            <xsl:value-of select="$thisNodeArray" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="parametersAsString" >
-                            <xsl:value-of select="$parametersAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="logString" >
-                            <xsl:value-of select="$logString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-                    <!--
-                <xsl:for-each select="actions" >
-                    <xsl:variable name="typeValue" select="type/value" />
-                    <xsl:if test="not(preceding-sibling::actions[type/value/text() = 'Create'])">
-                    </xsl:if>
-                </xsl:for-each>
-                    -->
-                    //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //objectGDObjectAtIndex2 - END
                     
                     try {
 

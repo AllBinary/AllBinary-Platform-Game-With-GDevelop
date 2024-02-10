@@ -93,22 +93,6 @@ Created By: Travis Berthelot
                                 return true;
                             }
 
-                            <!--
-                            @Override
-                            public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
-                                super.processNStats(gdNode, gdNodeList);
-
-                                //1
-                                if(true) throw new RuntimeException();
-                                final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
-                                tempGameLayerUtil.clear();
-                                //this.processM(tempGameLayerUtil.gameLayerArray, gdNode, gdNodeList);
-                                this.processM(tempGameLayerUtil.gameLayerArray);
-                                tempGameLayerUtil.clear2();
-
-                            }
-                            -->
-
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> = "Collision: " + ACTION_PARAMETER_ID_AS_STRING_<xsl:value-of select="$actionNodeId" />;
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE = ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + objectStrings.CALLING_GDNODE;
 
@@ -256,22 +240,6 @@ Created By: Travis Berthelot
                                 return true;
                             }
 
-                            <!--
-                            @Override
-                            public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
-                                super.processNStats(gdNode, gdNodeList);
-
-                                //9
-                                if(true) throw new RuntimeException();
-                                final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
-                                tempGameLayerUtil.clear();
-                                //this.processM(tempGameLayerUtil.gameLayerArray, gdNode, gdNodeList);
-                                this.processM(tempGameLayerUtil.gameLayerArray);
-                                tempGameLayerUtil.clear2();
-
-                            }
-                            -->
-
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> = "Collision: " + ACTION_PARAMETER_ID_AS_STRING_<xsl:value-of select="$actionNodeId" />;
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE = ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + objectStrings.CALLING_GDNODE;
 
@@ -418,22 +386,6 @@ Created By: Travis Berthelot
                                 
                                 return true;
                             }
-
-                            <!--
-                            @Override
-                            public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
-                                super.processNStats(gdNode, gdNodeList);
-
-                                //17
-                                if(true) throw new RuntimeException();
-                                final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
-                                tempGameLayerUtil.clear();
-                                //this.processM(tempGameLayerUtil.gameLayerArray, gdNode, gdNodeList);
-                                this.processM(tempGameLayerUtil.gameLayerArray);
-                                tempGameLayerUtil.clear2();
-
-                            }
-                            -->
 
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> = "Collision: " + ACTION_PARAMETER_ID_AS_STRING_<xsl:value-of select="$actionNodeId" />;
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE = ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + objectStrings.CALLING_GDNODE;
@@ -583,22 +535,6 @@ Created By: Travis Berthelot
                                 return true;
                             }
 
-                            <!--
-                            @Override
-                            public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
-                                super.processNStats(gdNode, gdNodeList);
-
-                                //24
-                                if(true) throw new RuntimeException();
-                                final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
-                                tempGameLayerUtil.clear();
-                                //this.processM(tempGameLayerUtil.gameLayerArray, gdNode, gdNodeList);
-                                this.processM(tempGameLayerUtil.gameLayerArray);
-                                tempGameLayerUtil.clear2();
-
-                            }
-                            -->
-
                             private final String ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> = "Collision: " + ACTION_ID_AS_STRING_<xsl:value-of select="$actionNodeId" />;
                             private final String ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE = ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + objectStrings.CALLING_GDNODE;
 
@@ -696,29 +632,6 @@ Created By: Travis Berthelot
 
                             </xsl:if>
                         </xsl:if>
-
-                            <!--
-                            @Override
-                            public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
-                                super.processNStats(gdNode, gdNodeList);
-
-                                //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList != null) {
-                                if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
-                                    if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
-
-                                        //29
-                                        if(true) throw new RuntimeException();
-                                        final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
-                                        tempGameLayerUtil.clear();
-                                        tempGameLayerUtil.gameLayerArray[0] = (CollidableCompositeLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0);
-                                        //this.processM(tempGameLayerUtil.gameLayerArray, gdNode, gdNodeList);
-                                        this.processM(tempGameLayerUtil.gameLayerArray);
-                                        tempGameLayerUtil.clear2();
-
-                                    }
-                                }
-                            }
-                            -->
 
                     </xsl:for-each>
 
