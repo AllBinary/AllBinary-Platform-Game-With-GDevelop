@@ -428,6 +428,12 @@ Created By: Travis Berthelot
                         BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterfaceLastPoint);
                     </xsl:if>
                     
+                        final int size = globals.motionEventListOfList.length;
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            final BasicArrayList motionEventList = (BasicArrayList) globals.motionEventListOfList[index];
+                            motionEventList.clear();
+                        }
+                    
                     //eventsClose - START
                     <xsl:call-template name="eventsClose" >
                         <xsl:with-param name="totalRecursions" >
@@ -553,11 +559,6 @@ Created By: Travis Berthelot
 
                         gdNodes.clear();
                         
-                        final int size = globals.motionEventListOfList.length;
-                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            final BasicArrayList motionEventList = (BasicArrayList) globals.motionEventListOfList[index];
-                            motionEventList.clear();
-                        }
                     }
 
                     public GDSceneGlobals getGlobals() {
