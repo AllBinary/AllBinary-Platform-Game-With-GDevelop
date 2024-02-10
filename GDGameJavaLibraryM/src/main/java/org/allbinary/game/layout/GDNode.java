@@ -56,11 +56,11 @@ public class GDNode
         return true;
     }
     
-    public void processStats() {
+    protected void processStats() {
         this.nodeStatsFactory.push(2, name);
     }
 
-    public void processStatsE() {
+    protected void processStatsE() {
         this.nodeStatsFactory.push(3, name);
     }
     
@@ -69,7 +69,7 @@ public class GDNode
         this.process();
     }
 
-    public void processReleasedStats() {
+    protected void processReleasedStats() {
         this.nodeStatsFactory.push(4, name);
     }
 
@@ -90,7 +90,7 @@ public class GDNode
         return false;
     }
 
-    public void processStats(final MotionGestureEvent motionGestureEvent) {
+    protected void processStats(final MotionGestureEvent motionGestureEvent) {
         this.nodeStatsFactory.push(5, name);
     }
 
@@ -102,7 +102,7 @@ public class GDNode
         return false;
     }
     
-    public void processStats(final int index) throws Exception {
+    protected void processStats(final int index) throws Exception {
         this.nodeStatsFactory.push(6, name);
     }
     
@@ -113,7 +113,7 @@ public class GDNode
         
     }
 
-    public void processEndStats(final int index) throws Exception {
+    protected void processEndStats(final int index) throws Exception {
         this.nodeStatsFactory.push(7, name);
     }
     
@@ -125,7 +125,7 @@ public class GDNode
         return true;
     }
 
-    public void processCreateStats(final GDObject gdObject) {
+    protected void processCreateStats(final GDObject gdObject) {
         this.nodeStatsFactory.push(10, name);
     }
 
@@ -133,7 +133,7 @@ public class GDNode
         return true;
     }
 
-    public void processReleasedStats(final GDObject gdObject) {
+    protected void processReleasedStats(final GDObject gdObject) {
         this.nodeStatsFactory.push(11, name);
     }
 
@@ -145,18 +145,18 @@ public class GDNode
         return false;
     }
     
-    public void processGStats(final GDObject gdObject, final Graphics graphics) {
+    protected void processGStats(final GDObject gdObject, final Graphics graphics) {
         this.nodeStatsFactory.push(12, name);
     }
 
     public void processM(final CollidableCompositeLayer[] gameLayerArray) {
     }
 
-    public void processMStats(final CollidableCompositeLayer[] gameLayerArray) {
+    protected void processMStats(final CollidableCompositeLayer[] gameLayerArray) {
         this.nodeStatsFactory.push(13, name);
     }
 
-    public void processMStatsE(final CollidableCompositeLayer[] gameLayerArray) {
+    protected void processMStatsE(final CollidableCompositeLayer[] gameLayerArray) {
         this.nodeStatsFactory.push(14, name);
     }
     
@@ -165,7 +165,7 @@ public class GDNode
         return false;
     }
     
-    public void processGDStats(final GDGameLayer gameLayer) {
+    protected void processGDStats(final GDGameLayer gameLayer) {
         this.nodeStatsFactory.push(15, name);
     }
 
