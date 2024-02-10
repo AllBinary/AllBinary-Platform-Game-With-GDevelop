@@ -433,6 +433,8 @@ Created By: Travis Berthelot
                             final BasicArrayList motionEventList = (BasicArrayList) globals.motionEventListOfList[index];
                             motionEventList.clear();
                         }
+                        
+                        globals.lastMotionGestureInput = null;
                     
                     //eventsClose - START
                     <xsl:call-template name="eventsClose" >
