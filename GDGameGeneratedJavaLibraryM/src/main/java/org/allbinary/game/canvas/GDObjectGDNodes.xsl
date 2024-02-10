@@ -82,10 +82,12 @@ Created By: Travis Berthelot
                             public boolean process() throws Exception {
                                 super.processStats();
 
-                                this.clear();
-                                //this.processM(this.gameLayerArray, null, null);
-                                this.processM(this.gameLayerArray);
-                                this.clear2();
+                                //0
+                                final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
+                                tempGameLayerUtil.clear();
+                                //this.processM(tempGameLayerUtil.gameLayerArray, null, null);
+                                this.processM(tempGameLayerUtil.gameLayerArray);
+                                tempGameLayerUtil.clear2();
                                 
                                 return true;
                             }
@@ -95,10 +97,13 @@ Created By: Travis Berthelot
                             public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
                                 super.processNStats(gdNode, gdNodeList);
 
-                                this.clear();
-                                //this.processM(this.gameLayerArray, gdNode, gdNodeList);
-                                this.processM(this.gameLayerArray);
-                                this.clear2();
+                                //1
+                                final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
+                                tempGameLayerUtil.clear();
+                                //this.processM(tempGameLayerUtil.gameLayerArray, gdNode, gdNodeList);
+                                this.processM(tempGameLayerUtil.gameLayerArray);
+                                tempGameLayerUtil.clear2();
+
                             }
                             -->
 
@@ -140,6 +145,7 @@ Created By: Travis Berthelot
                                         <xsl:if test="not($parentEventType = 'BuiltinCommonInstructions::ForEach' and contains($actionTypesAsString, 'AddForceAL'))" >
                                         node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                         //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                        //2
                                         node.clear();
                                         node.gameLayerArray[0] = gdGameLayer;
                                         //node.processM(node.gameLayerArray, gdNode, gdNodeList);
@@ -150,6 +156,7 @@ Created By: Travis Berthelot
                                         //if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
                                             node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                             //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                            //3
                                             node.clear();
                                             node.gameLayerArray[0] = gameLayerArray[0];
                                             node.gameLayerArray[1] = gdGameLayer;
@@ -169,6 +176,7 @@ Created By: Travis Berthelot
                                 if(indexOfGDNode == 1) {
                                     final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                     //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                    //4
                                     node.clear();
                                     //node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                     node.processM(node.gameLayerArray);
@@ -176,6 +184,7 @@ Created By: Travis Berthelot
                                 } else if(indexOfGDNode == 2) { //2
                                     final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                     //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                    //5
                                     node.clear();
                                     node.gameLayerArray[0] = gameLayerArray[0];
                                     node.gameLayerArray[1] = gameLayerArray[1];
@@ -191,6 +200,7 @@ Created By: Travis Berthelot
                             if(indexOfGDNode == 1) {
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                //6
                                 node.clear();
                                 //node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                 node.processM(node.gameLayerArray);
@@ -198,6 +208,7 @@ Created By: Travis Berthelot
                             } else if(indexOfGDNode == 2) { //3
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                //7
                                 node.clear();
                                 node.gameLayerArray[0] = gameLayerArray[0];
                                 node.gameLayerArray[1] = gameLayerArray[1];
@@ -232,10 +243,12 @@ Created By: Travis Berthelot
                             public boolean process() throws Exception {
                                 super.processStats();
 
-                                this.clear();
-                                //this.processM(this.gameLayerArray, null, null);
-                                this.processM(this.gameLayerArray);
-                                this.clear2();
+                                //8
+                                final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
+                                tempGameLayerUtil.clear();
+                                //this.processM(tempGameLayerUtil.gameLayerArray, null, null);
+                                this.processM(tempGameLayerUtil.gameLayerArray);
+                                tempGameLayerUtil.clear2();
                                 
                                 return true;
                             }
@@ -245,10 +258,13 @@ Created By: Travis Berthelot
                             public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
                                 super.processNStats(gdNode, gdNodeList);
 
-                                this.clear();
-                                //this.processM(this.gameLayerArray, gdNode, gdNodeList);
-                                this.processM(this.gameLayerArray);
-                                this.clear2();
+                                //9
+                                final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
+                                tempGameLayerUtil.clear();
+                                //this.processM(tempGameLayerUtil.gameLayerArray, gdNode, gdNodeList);
+                                this.processM(tempGameLayerUtil.gameLayerArray);
+                                tempGameLayerUtil.clear2();
+
                             }
                             -->
 
@@ -290,6 +306,7 @@ Created By: Travis Berthelot
                                         <xsl:if test="not($parentEventType = 'BuiltinCommonInstructions::ForEach' and contains($actionTypesAsString, 'AddForceAL'))" >
                                         node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                         //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                        //10
                                         node.clear();
                                         node.gameLayerArray[0] = gdGameLayer;
                                         //node.processM(node.gameLayerArray, gdNode, gdNodeList);
@@ -300,6 +317,7 @@ Created By: Travis Berthelot
                                         //if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
                                             node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                             //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                            //11
                                             node.clear();
                                             node.gameLayerArray[0] = gameLayerArray[0];
                                             node.gameLayerArray[1] = gdGameLayer;
@@ -319,6 +337,7 @@ Created By: Travis Berthelot
                                 if(indexOfGDNode == 1) {
                                     final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                     //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                    //12
                                     node.clear();
                                     //node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                     node.processM(node.gameLayerArray);
@@ -326,6 +345,7 @@ Created By: Travis Berthelot
                                 } else if(indexOfGDNode == 2) { //2
                                     final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                     //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                    //13
                                     node.clear();
                                     node.gameLayerArray[0] = gameLayerArray[0];
                                     node.gameLayerArray[1] = gameLayerArray[1];
@@ -341,6 +361,7 @@ Created By: Travis Berthelot
                             if(indexOfGDNode == 1) {
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                //14
                                 node.clear();
                                 //node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                 node.processM(node.gameLayerArray);
@@ -348,6 +369,7 @@ Created By: Travis Berthelot
                             } else if(indexOfGDNode == 2) { //3
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                //15
                                 node.clear();
                                 node.gameLayerArray[0] = gameLayerArray[0];
                                 node.gameLayerArray[1] = gameLayerArray[1];
@@ -381,11 +403,13 @@ Created By: Travis Berthelot
                             @Override
                             public boolean process() throws Exception {
                                 super.processStats();
-
-                                this.clear();
-                                //this.processM(this.gameLayerArray, null, null);
-                                this.processM(this.gameLayerArray);
-                                this.clear2();
+                            
+                                //16
+                                final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
+                                tempGameLayerUtil.clear();
+                                //this.processM(tempGameLayerUtil.gameLayerArray, null, null);
+                                this.processM(tempGameLayerUtil.gameLayerArray);
+                                tempGameLayerUtil.clear2();
                                 
                                 return true;
                             }
@@ -395,10 +419,13 @@ Created By: Travis Berthelot
                             public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
                                 super.processNStats(gdNode, gdNodeList);
 
-                                this.clear();
-                                //this.processM(this.gameLayerArray, gdNode, gdNodeList);
-                                this.processM(this.gameLayerArray);
-                                this.clear2();
+                                //17
+                                final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
+                                tempGameLayerUtil.clear();
+                                //this.processM(tempGameLayerUtil.gameLayerArray, gdNode, gdNodeList);
+                                this.processM(tempGameLayerUtil.gameLayerArray);
+                                tempGameLayerUtil.clear2();
+
                             }
                             -->
 
@@ -441,6 +468,7 @@ Created By: Travis Berthelot
                                         <xsl:if test="not($parentEventType = 'BuiltinCommonInstructions::ForEach' and contains($actionTypesAsString, 'AddForceAL'))" >
                                         node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                         //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                        //18
                                         node.clear();
                                         node.gameLayerArray[0] = gdGameLayer;
                                         //node.processM(node.gameLayerArray, gdNode, gdNodeList);
@@ -451,6 +479,7 @@ Created By: Travis Berthelot
                                         //if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
                                             node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                             //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                            //19
                                             node.clear();
                                             node.gameLayerArray[0] = gameLayerArray[0];
                                             node.gameLayerArray[1] = gdGameLayer;
@@ -477,6 +506,7 @@ Created By: Travis Berthelot
                                 } else if(indexOfGDNode == 2) { //2
                                     final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                     //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                    //20
                                     node.clear();
                                     node.gameLayerArray[0] = gameLayerArray[0];
                                     node.gameLayerArray[1] = gameLayerArray[1];
@@ -492,6 +522,7 @@ Created By: Travis Berthelot
                             if(indexOfGDNode == 1) {
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                //21
                                 node.clear();
                                 //node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                 node.processM(node.gameLayerArray);
@@ -499,6 +530,7 @@ Created By: Travis Berthelot
                             } else if(indexOfGDNode == 2) { //3
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                //22
                                 node.clear();
                                 node.gameLayerArray[0] = gameLayerArray[0];
                                 node.gameLayerArray[1] = gameLayerArray[1];
@@ -534,10 +566,12 @@ Created By: Travis Berthelot
                             public boolean process() throws Exception {
                                 super.processStats();
 
-                                this.clear();
-                                //this.processM(this.gameLayerArray, null, null);
-                                this.processM(this.gameLayerArray);
-                                this.clear2();
+                                //23
+                                final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
+                                tempGameLayerUtil.clear();
+                                //this.processM(tempGameLayerUtil.gameLayerArray, null, null);
+                                this.processM(tempGameLayerUtil.gameLayerArray);
+                                tempGameLayerUtil.clear2();
                                 
                                 return true;
                             }
@@ -547,10 +581,13 @@ Created By: Travis Berthelot
                             public void processN(final GDNode gdNode, final BasicArrayList gdNodeList) {
                                 super.processNStats(gdNode, gdNodeList);
 
-                                this.clear();
-                                //this.processM(this.gameLayerArray, gdNode, gdNodeList);
-                                this.processM(this.gameLayerArray);
-                                this.clear2();
+                                //24
+                                final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
+                                tempGameLayerUtil.clear();
+                                //this.processM(tempGameLayerUtil.gameLayerArray, gdNode, gdNodeList);
+                                this.processM(tempGameLayerUtil.gameLayerArray);
+                                tempGameLayerUtil.clear2();
+
                             }
                             -->
 
@@ -588,6 +625,8 @@ Created By: Travis Berthelot
                                     if(indexOfGDNode == 1) {
                                         node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                         //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                        
+                                        //25
                                         node.clear();
                                         node.gameLayerArray[0] = gdGameLayer;
                                         //node.processM(node.gameLayerArray, gdNode, gdNodeList);
@@ -597,6 +636,8 @@ Created By: Travis Berthelot
                                         //if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
                                             node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                             //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+
+                                            //26
                                             node.clear();
                                             node.gameLayerArray[0] = gameLayerArray[0];
                                             node.gameLayerArray[1] = gdGameLayer;
@@ -621,6 +662,7 @@ Created By: Travis Berthelot
                             if(indexOfGDNode == 1) {
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                //27
                                 node.clear();
                                 //node.processM(node.gameLayerArray, gdNode, gdNodeList);
                                 node.processM(node.gameLayerArray);
@@ -628,6 +670,7 @@ Created By: Travis Berthelot
                             } else if(indexOfGDNode == 2) { //5
                                 final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode + 1));
                                 //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                //28
                                 node.clear();
                                 node.gameLayerArray[0] = gameLayerArray[0];
                                 node.gameLayerArray[1] = gameLayerArray[1];
@@ -654,11 +697,15 @@ Created By: Travis Berthelot
                                 //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList != null) {
                                 if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                                     if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
-                                        this.clear();
-                                        this.gameLayerArray[0] = (CollidableCompositeLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0);
-                                        //this.processM(this.gameLayerArray, gdNode, gdNodeList);
-                                        this.processM(this.gameLayerArray);
-                                        this.clear2();
+
+                                        //29
+                                        final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
+                                        tempGameLayerUtil.clear();
+                                        tempGameLayerUtil.gameLayerArray[0] = (CollidableCompositeLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0);
+                                        //this.processM(tempGameLayerUtil.gameLayerArray, gdNode, gdNodeList);
+                                        this.processM(tempGameLayerUtil.gameLayerArray);
+                                        tempGameLayerUtil.clear2();
+
                                     }
                                 }
                             }

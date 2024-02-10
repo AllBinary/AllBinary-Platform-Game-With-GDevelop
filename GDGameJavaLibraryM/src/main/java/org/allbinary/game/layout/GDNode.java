@@ -31,15 +31,10 @@ public class GDNode
 {
     private final BaseGDNodeStats nodeStatsFactory = GDNodeStatsFactory.getInstance();
     
-    public final CollidableCompositeLayer[] gameLayerArray = new CollidableCompositeLayer[5];
-
-    public Runnable currentRunnable = NullRunnable.getInstance();
+    protected Runnable currentRunnable = NullRunnable.getInstance();
 
     private final int name;
-    
-    //BuiltinCommonInstructions::Once - only
-    public boolean firstTime = true;
-    
+        
     public GDNode(final int name) {
         
         //LogUtil.put(LogFactory.getInstance(commonStrings.START + name, this, commonStrings.CONSTRUCTOR));
@@ -52,17 +47,11 @@ public class GDNode
     public void init() {
         
     }
+    
+    public void reset() {
+        this.currentRunnable = NullRunnable.getInstance();
+    }
 
-    public void clear() {
-        for(int index = 0; index < 5; index++) {
-            gameLayerArray[index] = null;
-        }
-    }
-    
-    public void clear2() {
-        this.clear();
-    }
-    
     public boolean process() throws Exception {
         return true;
     }

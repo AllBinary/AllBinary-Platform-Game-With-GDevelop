@@ -23,12 +23,16 @@ Created By: Travis Berthelot
 
                         public void init() {
                             hasReleased = new boolean[InputFactory.getInstance().MAX];
+                            this.reset();
+                        }
+        
+                        public void reset() {
                             final int size = hasReleased.length;
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                 hasReleased[index] = true;
                             }
                         }
-        
+                        
                         //TextEntryObject::String - action
                         @Override
                         public boolean process() throws Exception {

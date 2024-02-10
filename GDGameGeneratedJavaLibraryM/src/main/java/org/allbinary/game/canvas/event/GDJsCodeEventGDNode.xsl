@@ -34,6 +34,7 @@ Created By: Travis Berthelot
                                 <xsl:text>&#10;</xsl:text>
 
                                 public void init() {
+                                    super.init();
                                     textToSpeech = new TextToSpeech();
                                     textToSpeech.init();
                                 }
