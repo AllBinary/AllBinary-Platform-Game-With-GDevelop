@@ -193,7 +193,6 @@
             <xsl:if test="$caller = 'externalEventsProcess'" >
                 //Apparently the process below already calls this.
                 tempGameLayerUtil.clear();
-                //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processM(tempGameLayerUtil.gameLayerArray, null, null);
                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processM(tempGameLayerUtil.gameLayerArray);
                 tempGameLayerUtil.clear2();
             </xsl:if>
@@ -234,7 +233,6 @@
             <xsl:if test="$caller = 'externalEventsProcess'" >
                 //Apparently the process below already calls this.
                 <xsl:if test="$totalRecursions > 0" >//TWB not called anymore <xsl:value-of select="$caller" />//</xsl:if>tempGameLayerUtil.clear();
-                //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processM(gameGlobals.nodeArray[tempGameLayerUtil.gameLayerArray, null, null);
                 <xsl:if test="$totalRecursions > 0" >//TWB not called anymore <xsl:value-of select="$caller" />//</xsl:if>gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processM(gameGlobals.nodeArray[tempGameLayerUtil.gameLayerArray);
                 <xsl:if test="$totalRecursions > 0" >//TWB not called anymore <xsl:value-of select="$caller" />//</xsl:if>tempGameLayerUtil.clear2();
             </xsl:if>

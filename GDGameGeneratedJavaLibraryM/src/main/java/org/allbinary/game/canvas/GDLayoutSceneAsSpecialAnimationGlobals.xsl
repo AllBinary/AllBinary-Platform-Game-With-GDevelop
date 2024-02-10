@@ -351,7 +351,6 @@ public class GDStructure {
                     public long timeDelta;
                     public long startTime = System.currentTimeMillis();
                     public long lastStartTime = startTime;
-                    //public final String FAKE_COLLISION_NODE_STRING = "FAKE_COLLISION_NODE_ID";
                  
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals() {
                     

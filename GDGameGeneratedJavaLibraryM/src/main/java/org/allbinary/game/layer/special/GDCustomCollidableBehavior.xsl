@@ -224,7 +224,6 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
                     tempGameLayerUtil.clear();
                     tempGameLayerUtil.gameLayerArray[0] = this.ownerLayer;
                     tempGameLayerUtil.gameLayerArray[1] = collisionLayer;
-                    //node.processM(tempGameLayerUtil.gameLayerArray, null, null);
                     node.processM(tempGameLayerUtil.gameLayerArray);
                     tempGameLayerUtil.clear2();
                     

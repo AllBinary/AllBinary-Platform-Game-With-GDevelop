@@ -319,7 +319,6 @@ Created By: Travis Berthelot
 
                     <!-- //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed -->
                     @Override
-                    //public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {  //event
                     public void processM(final CollidableCompositeLayer[] gameLayerArray) {  //event
                         super.processMStats(gameLayerArray);
 

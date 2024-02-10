@@ -86,7 +86,6 @@ Created By: Travis Berthelot
                                 if(true) throw new RuntimeException();
                                 final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
                                 tempGameLayerUtil.clear();
-                                //this.processM(tempGameLayerUtil.gameLayerArray, null, null);
                                 this.processM(tempGameLayerUtil.gameLayerArray);
                                 tempGameLayerUtil.clear2();
                                 
@@ -96,118 +95,6 @@ Created By: Travis Berthelot
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> = "Collision: " + ACTION_PARAMETER_ID_AS_STRING_<xsl:value-of select="$actionNodeId" />;
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE = ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + objectStrings.CALLING_GDNODE;
 
-                            //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //collide - //Sprite - //<xsl:value-of select="$name" /> - call
-                            <!--
-                            @Override
-                            //public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) { //collide - Sprite
-                            public void processM(final CollidableCompositeLayer[] gameLayerArray) { //collide - Sprite
-                                super.processMStats(gameLayerArray);
-
-                                //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
-                                
-                        //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList != null) {
-                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
-                            if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
-                                final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size();
-                                GDGameLayer gdGameLayer;
-                                GDNode node;
-                                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                    //<xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />
-                                    gdGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(index));
-                                    <xsl:if test="string-length($params) > 0" >
-                                    /*
-                                        <xsl:value-of select="$params" />
-                                    */
-                                    final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
-                                    //final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" />; indexOfGDNode: " + indexOfGDNode;
-                                    //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
-                                    if(indexOfGDNode == 1) {
-                        -->
-                                        <!-- 5179, 6129, 7079, 7856, 8256  contains($actionTypesAsString, 'AddForceAL') and not(contains($hasConditions, 'found')) and not(contains($hasParentConditions, 'found')) -->
-                        <!--
-                                        <xsl:if test="$parentEventType = 'BuiltinCommonInstructions::ForEach' and contains($actionTypesAsString, 'AddForceAL')" >
-                                        //TWB Skipping <xsl:value-of select="$actionNodeId" /><xsl:text> </xsl:text><xsl:value-of select="$actionTypesAsString" />
-                                        </xsl:if>
-                                        <xsl:if test="not($parentEventType = 'BuiltinCommonInstructions::ForEach' and contains($actionTypesAsString, 'AddForceAL'))" >
-                                        node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                        //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                        //2
-                                        node.clear();
-                                        node.gameLayerArray[0] = gdGameLayer;
-                                        //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                        node.processM(node.gameLayerArray);
-                                        node.clear2();
-                                        </xsl:if>
-                                    } else if(indexOfGDNode == 2) { //1
-                                        //if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
-                                            node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                            //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                            //3
-                                            node.clear();
-                                            node.gameLayerArray[0] = gameLayerArray[0];
-                                            node.gameLayerArray[1] = gdGameLayer;
-                                            //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                            node.processM(node.gameLayerArray);
-                                            node.clear2();
-                                        //} else {
-                                            //LogUtil.put(LogFactory.getInstance("Do not collide when the same group", this, commonStrings.PROCESS));
-                                        //}
-                                    }
-                                    </xsl:if>
-                                }
-                            } else {
-                                final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
-                                //final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: list size was 0; indexOfGDNode: " + indexOfGDNode;
-                                //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
-                                if(indexOfGDNode == 1) {
-                                    final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                    //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                    //4
-                                    node.clear();
-                                    //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                    node.processM(node.gameLayerArray);
-                                    node.clear2();
-                                } else if(indexOfGDNode == 2) { //2
-                                    final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                    //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                    //5
-                                    node.clear();
-                                    node.gameLayerArray[0] = gameLayerArray[0];
-                                    node.gameLayerArray[1] = gameLayerArray[1];
-                                    //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                    node.processM(node.gameLayerArray);
-                                    node.clear2();
-                                }
-                            }
-                        } else {
-                            final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
-                            //final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: was null; indexOfGDNode: " + indexOfGDNode;
-                            //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
-                            if(indexOfGDNode == 1) {
-                                final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                //6
-                                node.clear();
-                                //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                node.processM(node.gameLayerArray);
-                                node.clear2();
-                            } else if(indexOfGDNode == 2) { //3
-                                final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                //7
-                                node.clear();
-                                node.gameLayerArray[0] = gameLayerArray[0];
-                                node.gameLayerArray[1] = gameLayerArray[1];
-                                //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                node.processM(node.gameLayerArray);
-                                node.clear2();
-                            }
-                        }
-                        //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />.gdObject;
-
-                                super.processMStatsE(gameLayerArray);
-                            }
-                            -->
                         };
 
                             </xsl:if>
@@ -229,11 +116,10 @@ Created By: Travis Berthelot
                             public boolean process() throws Exception {
                                 super.processStats();
 
-                                //8
+                                //1
                                 if(true) throw new RuntimeException();
                                 final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
                                 tempGameLayerUtil.clear();
-                                //this.processM(tempGameLayerUtil.gameLayerArray, null, null);
                                 this.processM(tempGameLayerUtil.gameLayerArray);
                                 tempGameLayerUtil.clear2();
                                 
@@ -243,118 +129,6 @@ Created By: Travis Berthelot
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> = "Collision: " + ACTION_PARAMETER_ID_AS_STRING_<xsl:value-of select="$actionNodeId" />;
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE = ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + objectStrings.CALLING_GDNODE;
 
-                            //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //collide - //ParticleSystem::ParticleEmitter - //<xsl:value-of select="$name" /> - call
-                            <!--
-                            @Override
-                            //public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) { //collide - Sprite
-                            public void processM(final CollidableCompositeLayer[] gameLayerArray) { //collide - Sprite
-                                super.processMStats(gameLayerArray);
-
-                                //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
-                                
-                        //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList != null) {
-                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
-                            if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
-                                final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size();
-                                GDGameLayer gdGameLayer;
-                                GDNode node;
-                                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                    //<xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />
-                                    gdGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(index));
-                                    <xsl:if test="string-length($params) > 0" >
-                                    /*
-                                        <xsl:value-of select="$params" />
-                                    */
-                                    final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
-                                    //final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" />; indexOfGDNode: " + indexOfGDNode;
-                                    //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
-                                    if(indexOfGDNode == 1) {
-                        -->
-                                        <!-- 5179, 6129, 7079, 7856, 8256  contains($actionTypesAsString, 'AddForceAL') and not(contains($hasConditions, 'found')) and not(contains($hasParentConditions, 'found')) -->
-                        <!--
-                                        <xsl:if test="$parentEventType = 'BuiltinCommonInstructions::ForEach' and contains($actionTypesAsString, 'AddForceAL')" >
-                                        //TWB Skipping <xsl:value-of select="$actionNodeId" /><xsl:text> </xsl:text><xsl:value-of select="$actionTypesAsString" />
-                                        </xsl:if>
-                                        <xsl:if test="not($parentEventType = 'BuiltinCommonInstructions::ForEach' and contains($actionTypesAsString, 'AddForceAL'))" >
-                                        node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                        //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                        //10
-                                        node.clear();
-                                        node.gameLayerArray[0] = gdGameLayer;
-                                        //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                        node.processM(node.gameLayerArray);
-                                        node.clear2();
-                                        </xsl:if>
-                                    } else if(indexOfGDNode == 2) { //1
-                                        //if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
-                                            node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                            //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                            //11
-                                            node.clear();
-                                            node.gameLayerArray[0] = gameLayerArray[0];
-                                            node.gameLayerArray[1] = gdGameLayer;
-                                            //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                            node.processM(node.gameLayerArray);
-                                            node.clear2();
-                                        //} else {
-                                            //LogUtil.put(LogFactory.getInstance("Do not collide when the same group", this, commonStrings.PROCESS));
-                                        //}
-                                    }
-                                    </xsl:if>
-                                }
-                            } else {
-                                final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
-                                //final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: list size was 0; indexOfGDNode: " + indexOfGDNode;
-                                //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
-                                if(indexOfGDNode == 1) {
-                                    final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                    //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                    //12
-                                    node.clear();
-                                    //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                    node.processM(node.gameLayerArray);
-                                    node.clear2();
-                                } else if(indexOfGDNode == 2) { //2
-                                    final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                    //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                    //13
-                                    node.clear();
-                                    node.gameLayerArray[0] = gameLayerArray[0];
-                                    node.gameLayerArray[1] = gameLayerArray[1];
-                                    //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                    node.processM(node.gameLayerArray);
-                                    node.clear2();
-                                }
-                            }
-                        } else {
-                            final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
-                            //final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: was null; indexOfGDNode: " + indexOfGDNode;
-                            //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
-                            if(indexOfGDNode == 1) {
-                                final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                //14
-                                node.clear();
-                                //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                node.processM(node.gameLayerArray);
-                                node.clear2();
-                            } else if(indexOfGDNode == 2) { //3
-                                final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                //15
-                                node.clear();
-                                node.gameLayerArray[0] = gameLayerArray[0];
-                                node.gameLayerArray[1] = gameLayerArray[1];
-                                //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                node.processM(node.gameLayerArray);
-                                node.clear2();
-                            }
-                        }
-                        //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />.gdObject;
-
-                                super.processMStatsE(gameLayerArray);
-                            }
-                            -->
                         };
 
                             </xsl:if>                            
@@ -376,11 +150,10 @@ Created By: Travis Berthelot
                             public boolean process() throws Exception {
                                 super.processStats();
                             
-                                //16
+                                //2
                                 if(true) throw new RuntimeException();
                                 final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
                                 tempGameLayerUtil.clear();
-                                //this.processM(tempGameLayerUtil.gameLayerArray, null, null);
                                 this.processM(tempGameLayerUtil.gameLayerArray);
                                 tempGameLayerUtil.clear2();
                                 
@@ -389,119 +162,6 @@ Created By: Travis Berthelot
 
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> = "Collision: " + ACTION_PARAMETER_ID_AS_STRING_<xsl:value-of select="$actionNodeId" />;
                             private final String ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE = ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + objectStrings.CALLING_GDNODE;
-
-                            //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //collide - //TileMap::TileMap - //<xsl:value-of select="$name" /> - call
-
-                            <!--
-                            @Override
-                            //public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) { //collide - Sprite
-                            public void processM(final CollidableCompositeLayer[] gameLayerArray) { //collide - Sprite
-                                super.processMStats(gameLayerArray);
-
-                                //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
-                                
-                        //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList != null) {
-                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
-                            if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
-                                final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size();
-                                GDGameLayer gdGameLayer;
-                                GDNode node;
-                                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                    //<xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />
-                                    gdGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(index));
-                                    <xsl:if test="string-length($params) > 0" >
-                                    /*
-                                        <xsl:value-of select="$params" />
-                                    */
-                                    final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
-                                    //final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" />; indexOfGDNode: " + indexOfGDNode;
-                                    //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
-                                    if(indexOfGDNode == 1) {
-                        -->
-                                        <!-- 5179, 6129, 7079, 7856, 8256  contains($actionTypesAsString, 'AddForceAL') and not(contains($hasConditions, 'found')) and not(contains($hasParentConditions, 'found')) -->
-                        <!--
-                                        <xsl:if test="$parentEventType = 'BuiltinCommonInstructions::ForEach' and contains($actionTypesAsString, 'AddForceAL')" >
-                                        //TWB Skipping <xsl:value-of select="$actionNodeId" /><xsl:text> </xsl:text><xsl:value-of select="$actionTypesAsString" />
-                                        </xsl:if>
-                                        <xsl:if test="not($parentEventType = 'BuiltinCommonInstructions::ForEach' and contains($actionTypesAsString, 'AddForceAL'))" >
-                                        node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                        //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                        //18
-                                        node.clear();
-                                        node.gameLayerArray[0] = gdGameLayer;
-                                        //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                        node.processM(node.gameLayerArray);
-                                        node.clear2();
-                                        </xsl:if>
-                                    } else if(indexOfGDNode == 2) { //1
-                                        //if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
-                                            node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                            //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                            //19
-                                            node.clear();
-                                            node.gameLayerArray[0] = gameLayerArray[0];
-                                            node.gameLayerArray[1] = gdGameLayer;
-                                            //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                            node.processM(node.gameLayerArray);
-                                            node.clear2();
-                                        //} else {
-                                            //LogUtil.put(LogFactory.getInstance("Do not collide when the same group", this, commonStrings.PROCESS));
-                                        //}
-                                    }
-                                    </xsl:if>
-                                }
-                            } else {
-                                final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
-                                //final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: list size was 0; indexOfGDNode: " + indexOfGDNode;
-                                //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
-                                if(indexOfGDNode == 1) {
-                                    final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                    //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                    node.clear();
-                                    //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                    node.processM(node.gameLayerArray);
-                                    node.clear2();
-                                } else if(indexOfGDNode == 2) { //2
-                                    final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                    //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                    //20
-                                    node.clear();
-                                    node.gameLayerArray[0] = gameLayerArray[0];
-                                    node.gameLayerArray[1] = gameLayerArray[1];
-                                    //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                    node.processM(node.gameLayerArray);
-                                    node.clear2();
-                                }
-                            }
-                        } else {
-                            final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
-                            //final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: was null; indexOfGDNode: " + indexOfGDNode;
-                            //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
-                            if(indexOfGDNode == 1) {
-                                final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                //21
-                                node.clear();
-                                //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                node.processM(node.gameLayerArray);
-                                node.clear2();
-                            } else if(indexOfGDNode == 2) { //3
-                                final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                //LogUtil.put(LogFactory.getInstance(ACTION_PARAMETER_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                //22
-                                node.clear();
-                                node.gameLayerArray[0] = gameLayerArray[0];
-                                node.gameLayerArray[1] = gameLayerArray[1];
-                                //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                node.processM(node.gameLayerArray);
-                                node.clear2();
-                            }
-                        }
-                        //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />.gdObject;
-
-                                super.processMStatsE(gameLayerArray);
-                            }
-                            -->
 
                         };
 
@@ -524,11 +184,10 @@ Created By: Travis Berthelot
                             public boolean process() throws Exception {
                                 super.processStats();
 
-                                //23
+                                //3
                                 if(true) throw new RuntimeException();
                                 final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
                                 tempGameLayerUtil.clear();
-                                //this.processM(tempGameLayerUtil.gameLayerArray, null, null);
                                 this.processM(tempGameLayerUtil.gameLayerArray);
                                 tempGameLayerUtil.clear2();
                                 
@@ -538,96 +197,6 @@ Created By: Travis Berthelot
                             private final String ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> = "Collision: " + ACTION_ID_AS_STRING_<xsl:value-of select="$actionNodeId" />;
                             private final String ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE = ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" /> + objectStrings.CALLING_GDNODE;
 
-                            //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //collide - //TextObject::Text - //<xsl:value-of select="$name" />
-                            <!--
-                            @Override
-                            //public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) { //collide - TextObject::Text
-                            public void processM(final CollidableCompositeLayer[] gameLayerArray) { //collide - TextObject::Text
-                                super.processMStats(gameLayerArray);
-
-                                //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />, this, commonStrings.PROCESS));
-                                
-                                final CollidableCompositeLayer gameLayer = gameLayerArray[0];
-                                final CollidableCompositeLayer gameLayer2 = gameLayerArray[1];
-
-                        //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList != null) {
-                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
-                            if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size() != 0) {
-                                final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size();
-                                GDGameLayer gdGameLayer;
-                                GDNode node;
-                                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                    //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />
-                                    gdGameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(index));
-                                    <xsl:if test="string-length($params) > 0" >
-                                    /*
-                                        <xsl:value-of select="$params" />
-                                    */
-                                    final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
-                                    //final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" />; indexOfGDNode: " + indexOfGDNode;
-                                    //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
-                                    if(indexOfGDNode == 1) {
-                                        node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                        //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                        
-                                        //25
-                                        node.clear();
-                                        node.gameLayerArray[0] = gdGameLayer;
-                                        //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                        node.processM(node.gameLayerArray);
-                                        node.clear2();
-                                    } else if(indexOfGDNode == 2) { //4
-                                        //if(gameLayer.getGroupInterface()[0] != gameLayer.getGroupInterface()[0]) {
-                                            node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                            //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-
-                                            //26
-                                            node.clear();
-                                            node.gameLayerArray[0] = gameLayerArray[0];
-                                            node.gameLayerArray[1] = gdGameLayer;
-                                            //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                            node.processM(node.gameLayerArray);
-                                            node.clear2();
-                                        //} else {
-                                            LogUtil.put(LogFactory.getInstance("Do not collide when the same group", this, commonStrings.PROCESS));
-                                        //}
-                                    }
-                                    </xsl:if>
-                                }
-                            } else {
-                                final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
-                                //final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: list size was 0: " + indexOfGDNode;
-                                //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
-                            }
-                        } else {
-                            final int indexOfGDNode = gdNodeList.indexOf(this) + 1;
-                            //final String <xsl:value-of select="name" /> = "<xsl:value-of select="$actionNodeId" /> <xsl:value-of select="name" /> warning: was null: " + indexOfGDNode;
-                            //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />, this, commonStrings.PROCESS));
-                            if(indexOfGDNode == 1) {
-                                final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode));
-                                //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                //27
-                                node.clear();
-                                //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                node.processM(node.gameLayerArray);
-                                node.clear2();
-                            } else if(indexOfGDNode == 2) { //5
-                                final GDNode node = ((GDNode) gdNodeList.get(indexOfGDNode + 1));
-                                //LogUtil.put(LogFactory.getInstance(ACTION_ID_AS_STRING_COLLISION_<xsl:value-of select="$actionNodeId" />_CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
-                                //28
-                                node.clear();
-                                node.gameLayerArray[0] = gameLayerArray[0];
-                                node.gameLayerArray[1] = gameLayerArray[1];
-                                //node.processM(node.gameLayerArray, gdNode, gdNodeList);
-                                node.processM(node.gameLayerArray);
-                                node.clear2();
-                            }
-                        }
-                        //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />.gdObject;
-
-                                super.processMStatsE(gameLayerArray);
-                            }
-                            -->
                         };
 
                             </xsl:if>

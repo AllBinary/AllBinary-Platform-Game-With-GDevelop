@@ -149,7 +149,6 @@ public class GDNode
         this.nodeStatsFactory.push(12, name);
     }
 
-    //, final GDNode gdNode, final BasicArrayList gdNodeList
     public void processM(final CollidableCompositeLayer[] gameLayerArray) {
     }
 

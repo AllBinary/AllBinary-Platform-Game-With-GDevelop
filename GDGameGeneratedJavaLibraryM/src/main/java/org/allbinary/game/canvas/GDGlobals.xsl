@@ -159,9 +159,6 @@ Created By: Travis Berthelot
                     <xsl:variable name="total" ><xsl:call-template name="generateGDNodeTotal" ></xsl:call-template></xsl:variable>
                         private final int MAX_NODES = <xsl:value-of select="$total" />;
                         public final GDNode[] nodeArray = new GDNode[MAX_NODES];
-                        <!--
-                        public final int FAKE_COLLISION_NODE_ID = MAX_NODES - 1;
-                        -->
 
                         public final BasicArrayList[] channelSoundArray = new BasicArrayList[4];
 

@@ -240,25 +240,6 @@ Created By: Travis Berthelot
                         }
                         -->
 
-                        <!--
-                        gameGlobals.nodeArray[gameGlobals.FAKE_COLLISION_NODE_ID] = new GDNode(globals.FAKE_COLLISION_NODE_ID) {
-
-                            @Override
-                            //public void processM(final CollidableCompositeLayer[] gameLayerArray, final GDNode gdNode, final BasicArrayList gdNodeList) {  //builder
-                            public void processM(final CollidableCompositeLayer[] gameLayerArray) {  //builder
-                                super.processMStats(gameLayerArray);
-
-                                gdNode.gameLayerArray[0] = gameLayerArray[0];
-                                gdNode.gameLayerArray[1] = gameLayerArray[1];
-
-                                //LogUtil.put(LogFactory.getInstance(FAKE_COLLISION_NODE_STRING, this, commonStrings.PROCESS));
-                                gdNode.processM(gdNode.gameLayerArray, gdNode, gdNodeList);
-                                
-                                super.processMStatsE(gameLayerArray);
-                            }
-                        };
-                        -->
-
                         GDGlobalSpecialAnimationImageResources globalImageResources = this.createGlobalSpecialAnimationImageResources();
                         GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = this.createSpecialAnimationImageResources();
                         GD<xsl:value-of select="$layoutIndex" />SpecialAnimationTouchImageResources touchImageResources = this.createSpecialAnimationTouchImageResources();
