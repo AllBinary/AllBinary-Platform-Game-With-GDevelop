@@ -114,7 +114,7 @@ Created By: Travis Berthelot
                                             <xsl:with-param name="find" >
                                                 <xsl:value-of select="$objectName" />
                                             </xsl:with-param>
-                                            <xsl:with-param name="replacementText" >SceneInstancesCount(gameGlobals.<xsl:value-of select="$objectName" />GDGameLayerList.size())</xsl:with-param>
+                                            <xsl:with-param name="replacementText" >gameGlobals.<xsl:value-of select="$objectName" />GDGameLayerList.size()</xsl:with-param>
                                         </xsl:call-template>
                                     </xsl:if>
                                 </xsl:if>
