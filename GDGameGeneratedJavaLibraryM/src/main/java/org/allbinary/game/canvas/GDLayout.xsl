@@ -75,6 +75,8 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.BaseGDNodeStats;
                 import org.allbinary.game.layout.GDNode;
+                import org.allbinary.game.layout.GDNodes;
+                import org.allbinary.game.layout.GDNodeUtil;
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.layout.GDNodeStatsFactory;
                 import org.allbinary.game.layout.GDObject;
@@ -134,7 +136,9 @@ Created By: Travis Berthelot
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                         
                         private final StringMaker stringBuilder = new StringMaker();
-                        
+
+                        private final GDNodes gdNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />);
+                                                
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GDGlobalsSpecialAnimation gdGlobalsSpecialAnimation = GDGlobalsSpecialAnimation.getInstance();
 
@@ -241,12 +245,7 @@ Created By: Travis Berthelot
                     motionEventList.clear();
 
 
-                        GDNode gdNode;                        
-                        final int size2 = globals.gdNodeWithRunnableList.size();
-                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index++) {
-                            gdNode = (GDNode) globals.gdNodeWithRunnableList.get(index);
-                            gdNode.currentRunnable.run();
-                        }
+                    gdNodes.process();
 
                         gdGlobalsSpecialAnimation.process(globals.timeDelta);
 
@@ -552,6 +551,13 @@ Created By: Travis Berthelot
 
         </xsl:for-each>
 
+                        gdNodes.clear();
+                        
+                        final int size = globals.motionEventListOfList.length;
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            final BasicArrayList motionEventList = (BasicArrayList) globals.motionEventListOfList[index];
+                            motionEventList.clear();
+                        }
                     }
 
                     public GDSceneGlobals getGlobals() {

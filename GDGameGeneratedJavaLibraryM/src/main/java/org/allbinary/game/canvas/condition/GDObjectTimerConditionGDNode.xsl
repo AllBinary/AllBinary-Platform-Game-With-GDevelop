@@ -170,7 +170,7 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$eventsCreateProcessUsed" disable-output-escaping="yes" />
 
                     };
-                    globals.gdNodeWithRunnableList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    gdNodes.runnableList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
     </xsl:template>
 
 </xsl:stylesheet>

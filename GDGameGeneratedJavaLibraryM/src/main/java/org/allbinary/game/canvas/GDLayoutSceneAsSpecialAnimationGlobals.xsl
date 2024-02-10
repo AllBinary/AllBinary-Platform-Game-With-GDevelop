@@ -82,6 +82,8 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
                 import org.allbinary.game.layout.GDNode;
+                import org.allbinary.game.layout.GDNodes;
+                import org.allbinary.game.layout.GDNodeUtil;
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layout.behavior.DestroyOutsideBehavior;
@@ -136,7 +138,7 @@ Created By: Travis Berthelot
                         
                         public final String PROCESS_RELEASE = "processReleased";
                         
-                        public final BasicArrayList gdNodeWithRunnableList = new BasicArrayList();
+                        private final GDNodes gdNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />);
 
 public class GDStructure {
 

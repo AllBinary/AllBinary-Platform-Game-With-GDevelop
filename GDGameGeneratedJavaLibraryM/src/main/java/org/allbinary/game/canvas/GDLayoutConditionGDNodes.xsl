@@ -81,6 +81,8 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDCustomGameLayer;
                 import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.layout.GDNode;
+                import org.allbinary.game.layout.GDNodes;
+                import org.allbinary.game.layout.GDNodeUtil;
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.layout.BaseGDNodeStats;
                 import org.allbinary.game.layout.GDNodeStatsFactory;
@@ -130,6 +132,8 @@ Created By: Travis Berthelot
                         private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
                         private final RectangleCollisionUtil rectangleCollisionUtil = RectangleCollisionUtil.getInstance();
                         
+                        private final GDNodes gdNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />);
+
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                         private final GameTickTimeDelayHelperFactory gameTickTimeDelayHelperFactory = GameTickTimeDelayHelperFactory.getInstance();

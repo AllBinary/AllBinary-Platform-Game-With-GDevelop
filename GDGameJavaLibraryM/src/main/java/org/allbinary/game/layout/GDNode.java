@@ -31,7 +31,7 @@ public class GDNode
 {
     private final BaseGDNodeStats nodeStatsFactory = GDNodeStatsFactory.getInstance();
     
-    public Runnable currentRunnable = NullRunnable.getInstance();
+    protected Runnable currentRunnable = NullRunnable.getInstance();
 
     private final int name;
         

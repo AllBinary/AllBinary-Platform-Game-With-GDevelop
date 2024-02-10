@@ -266,7 +266,7 @@ Created By: Travis Berthelot
                     };
 
                     <xsl:if test="contains($press, 'found')" >
-                    globals.gdNodeWithRunnableList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    gdNodes.runnableList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                     </xsl:if>
 
     </xsl:template>
