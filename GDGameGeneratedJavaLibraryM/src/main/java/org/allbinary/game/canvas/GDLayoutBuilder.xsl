@@ -495,6 +495,16 @@ Created By: Travis Berthelot
                         
                         final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
 
+                            <xsl:call-template name="scale" >
+                                <xsl:with-param name="layoutIndex" >
+                                    <xsl:value-of select="$layoutIndex" />
+                                </xsl:with-param>
+                            </xsl:call-template>
+                            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("scale: ").append(scale).toString(), this, commonStrings.PROCESS));
+                            globals.scale = scale;
+                            globals.scaleNominator = scale;
+                            globals.scaleDenominator = 2;
+
                     <xsl:for-each select="../externalEvents" >
                     <xsl:if test="$layoutName = associatedLayout" >
                     //externalEventsProcess - START
