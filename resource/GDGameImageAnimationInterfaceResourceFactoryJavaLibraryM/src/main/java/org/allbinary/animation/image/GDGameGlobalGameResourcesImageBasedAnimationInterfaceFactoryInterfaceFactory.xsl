@@ -85,6 +85,9 @@ Created By: Travis Berthelot
 package org.allbinary.animation.image;
 
 import javax.microedition.lcdui.Image;
+
+import javax.microedition.lcdui.Font;
+
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
@@ -94,10 +97,10 @@ import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.image.ImageArrayRotationAnimationFactory;
 import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
+import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory;
 import org.allbinary.game.canvas.GDGlobalSpecialAnimationResources;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
-
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
 import org.allbinary.game.layer.special.GDConditionWithGroupActions;

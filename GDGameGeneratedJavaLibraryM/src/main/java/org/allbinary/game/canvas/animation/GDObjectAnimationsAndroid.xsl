@@ -337,7 +337,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
             </xsl:if>
-                                                                        
+
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
 
@@ -352,6 +352,56 @@ Created By: Travis Berthelot
                                 );
 
                 */
+
+                //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
+
+            </xsl:if>
+            
+            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
+                <xsl:variable name="stringValue" select="string" />
+
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    new CustomTextBoxIndexedAnimationFactory(Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, <xsl:value-of select="content/fontSize" />))
+                };
+                final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
+
+                this.add(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+
+                final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
+                                pointFactory.getInstance(0, 0),
+                                0, 0
+                                );
+
+                                <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
+
+                                <xsl:variable name="parentGroupIfAny" >
+                                <xsl:for-each select="/game">
+                                    <xsl:for-each select="layouts" >
+                                        <xsl:variable name="layoutIndex2" select="position() - 1" />
+                                        <xsl:if test="number($layoutIndex2) = $layoutIndex" >
+                                            <xsl:for-each select="objectsGroups" >
+                                                <xsl:variable name="groupName">
+                                                    <xsl:value-of select="name" />
+                                                </xsl:variable>
+                                                <xsl:for-each select="objects" >
+                                                    <xsl:if test="name = $layerName" >
+                                                        <xsl:value-of select="$groupName" />
+                                                    </xsl:if>
+                                                </xsl:for-each>
+                                            </xsl:for-each>
+                                        </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                                </xsl:variable>
+                this.addRectangle(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
+
+                //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
+
+            </xsl:if>
+
+            <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
+                <xsl:variable name="stringValue" select="string" />
 
                 //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
 

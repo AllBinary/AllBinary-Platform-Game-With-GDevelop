@@ -92,6 +92,9 @@ Created By: Travis Berthelot
 package org.allbinary.animation.image;
 
 import javax.microedition.lcdui.Image;
+
+import javax.microedition.lcdui.Font;
+
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
@@ -102,6 +105,7 @@ import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInt
 import org.allbinary.animation.image.AllBinaryHTMLImageRotationAnimationFactory;
 import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
 import org.allbinary.animation.image.sprite.OneRowHTMLSpriteIndexedAnimationFactory;
+import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;

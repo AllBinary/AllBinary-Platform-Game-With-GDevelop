@@ -280,16 +280,18 @@ Created By: Travis Berthelot
                         <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:variable name="colonName" >:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:variable name="notTextObject" >
+                            
                             <xsl:for-each select="../objects" >
                                 <xsl:if test="$name = name" >
-                                    <xsl:if test="type != 'TextObject::Text' and type != 'TextInput::TextInputObject'" >found</xsl:if>
+                                    <xsl:if test="type != 'TextObject::Text'" >found</xsl:if>
                                 </xsl:if>
                             </xsl:for-each>
                             <xsl:for-each select="/game/objects" >
                                 <xsl:if test="$name = name" >
-                                    <xsl:if test="type != 'TextObject::Text' and type != 'TextInput::TextInputObject'" >found</xsl:if>
+                                    <xsl:if test="type != 'TextObject::Text'" >found</xsl:if>
                                 </xsl:if>
                             </xsl:for-each>
+
                         </xsl:variable>
 
                         //name=<xsl:value-of select="name" /> layer=<xsl:value-of select="layer" />
@@ -343,11 +345,12 @@ Created By: Travis Berthelot
                         final int <xsl:value-of select="name" />X = centerCameraX != 0 ? centerCameraX - width / 2 : (int) (<xsl:value-of select="x" /> * baseLayerScale);
                         final int <xsl:value-of select="name" />Y =
                             <xsl:if test="contains(name, 'btn_')" >
-                                //Hack - for android orientation change.
+                                //btn_ - Hack - for android orientation change.
                                  (int) <xsl:if test="y = 506" >gameTickDisplayInfoSingleton.getLastHeight() - (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100));</xsl:if>
                                 <xsl:if test="y = 415" >gameTickDisplayInfoSingleton.getLastHeight() - (2 * (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100)));</xsl:if>
                             </xsl:if>
                             <xsl:if test="not(contains(name, 'btn_'))" >
+                                //btn_ - not
                                 centerCameraX != 0 ? centerCameraY - height / 2 :  (int) (<xsl:value-of select="y" /> * baseLayerScale);
                             </xsl:if>
                         </xsl:if>
@@ -400,10 +403,10 @@ Created By: Travis Berthelot
                         </xsl:if>
                         
                             <xsl:if test="not(contains($notTextObject, 'found'))" >
+                        //TextObject::Text - START
                         final int <xsl:value-of select="name" />X = (int) (<xsl:value-of select="x" /> * baseLayerScale);
                         final int <xsl:value-of select="name" />Y = (int) (<xsl:value-of select="y" /> * baseLayerScale);
 
-                        //TextObject::Text
                         final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="name" />GDobject2 = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectFactory.get(
                         null, <xsl:value-of select="name" />X, 
                         <xsl:value-of select="name" />Y, 
@@ -429,6 +432,7 @@ Created By: Travis Berthelot
                 <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
                 globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
                         
+                        //TextObject::Text - END
                             </xsl:if>                        
 
                             <xsl:if test="initialVariables" >
@@ -445,6 +449,7 @@ Created By: Travis Berthelot
                             </xsl:if>
 
                         <xsl:if test="contains(name, 'btn_')" >
+                        //btn_
                         final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
                             pointFactory.getInstance(<xsl:value-of select="name" />GDobject2.x, <xsl:value-of select="name" />GDobject2.y),
                             <xsl:value-of select="name" />GDobject2.Width(globals.graphics) * scale * scaleTouchButtons, <xsl:value-of select="name" />GDobject2.Height(globals.graphics) * scale * scaleTouchButtons);
@@ -452,7 +457,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                                                 
                         <xsl:if test="contains($notTextObject, 'found')" >
-                        //Create - Instances
+                        //Create - Instances - START
                         final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                         final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
                             
@@ -469,6 +474,7 @@ Created By: Travis Berthelot
                         //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$gameLayer" />.gdObject.zOrder" + <xsl:value-of select="$gameLayer" />.gdObject.zOrder, this, commonStrings.PROCESS));
                         //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$gameLayer" />.getZ()" + <xsl:value-of select="$gameLayer" />.getZ(), this, commonStrings.PROCESS));
                         allBinaryGameLayerManager.insert(<xsl:value-of select="name" />GDGameLayer);
+                        //Create - Instances - END
                         </xsl:if>
                         
                         <xsl:for-each select=".." >

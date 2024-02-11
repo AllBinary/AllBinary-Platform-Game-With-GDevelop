@@ -87,6 +87,8 @@ package org.allbinary.animation.image;
 
 import javax.microedition.lcdui.Image;
 
+import javax.microedition.lcdui.Font;
+
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
@@ -96,6 +98,7 @@ import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.animation.image.AllBinaryJ2SEImageRotationAnimationFactory;
 import org.allbinary.animation.image.sprite.OneRowJ2SESpriteIndexedAnimationFactory;
+import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory;
 import org.allbinary.game.canvas.GDGlobalSpecialAnimationResources;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;

@@ -37,7 +37,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
     
-            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:if test="$typeValue = 'Sprite'" >
                 
                 //Animation Total: <xsl:value-of select="count(animations)" /><xsl:text>&#10;</xsl:text>
                 
@@ -54,6 +54,31 @@ Created By: Travis Berthelot
 
                 public Image[] <xsl:value-of select="$name" />ImageArray;
 
+            </xsl:if>
+
+            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
+                
+                //Animation Total: <xsl:value-of select="count(animations)" /><xsl:text>&#10;</xsl:text>
+                
+                public Rectangle <xsl:value-of select="$name" />Rectangle;
+                
+                    <!--
+                <xsl:for-each select="animations" >
+                public final String[] <xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray;
+
+                public Image[] <xsl:value-of select="$name" /><xsl:value-of select="name" />ImageArray;
+                </xsl:for-each>
+                    -->
+                public final String[] <xsl:value-of select="$name" />ResourceArray;
+
+                public Image[] <xsl:value-of select="$name" />ImageArray;
+
+            </xsl:if>
+
+            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
+                
+                public Rectangle <xsl:value-of select="$name" />Rectangle;
+                
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
@@ -247,15 +272,19 @@ Created By: Travis Berthelot
 
                 //this.validateSprites(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ResourceArray, <xsl:value-of select="name" />ImageArray);
                 hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
-                <xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />ImageArray[0].getWidth(), <xsl:value-of select="name" />ImageArray[0].getHeight());
+                this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />ImageArray[0].getWidth(), <xsl:value-of select="name" />ImageArray[0].getHeight());
 
+            </xsl:if>
+
+            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
+                this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
                 <xsl:value-of select="$name" />ImageArray = new Image[] {
                 };
                 hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
-                <xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);
+                this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TileMap::TileMap'" >
