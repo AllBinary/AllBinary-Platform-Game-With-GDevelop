@@ -72,7 +72,7 @@ Created By: Travis Berthelot
                                                 //btn_ - not
                                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
                                                     <xsl:if test="contains($hasOriginPointX, 'found')" >
-                                                        //-<xsl:value-of select="$name" />ImageArray[0].getWidth(), -<xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                                        -<xsl:value-of select="$name" />ImageArray[0].getWidth(), -<xsl:value-of select="$name" />ImageArray[0].getHeight()
                                                     </xsl:if>
                                                 </xsl:if>
                                                 <xsl:if test="height != 0 and width != 0" >
