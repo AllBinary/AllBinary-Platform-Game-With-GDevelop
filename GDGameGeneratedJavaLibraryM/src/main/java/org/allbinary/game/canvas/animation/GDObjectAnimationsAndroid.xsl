@@ -363,10 +363,9 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
 
                 final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" />;
-                    //(<xsl:value-of select="content/fontSize" /> * gameTickDisplayInfoSingleton.getLastWidth()) / <xsl:value-of select="$windowWidth" />);
-                
+
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
-                    new CustomTextBoxIndexedAnimationFactory(Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, <xsl:value-of select="name" />TextInputAnimationSize))
+                    new CustomTextBoxIndexedAnimationFactory(Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, (<xsl:value-of select="name" />TextInputAnimationSize * gameTickDisplayInfoSingleton.getLastWidth()) / <xsl:value-of select="$windowWidth" />))
                 };
 
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
