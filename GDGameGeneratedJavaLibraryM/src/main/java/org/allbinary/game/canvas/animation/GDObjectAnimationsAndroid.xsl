@@ -19,6 +19,8 @@ Created By: Travis Berthelot
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
 
+        <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
+        
         <xsl:call-template name="scaleGlobal" >
             <xsl:with-param name="layoutIndex" >
                 <xsl:value-of select="$layoutIndex" />
@@ -360,9 +362,12 @@ Created By: Travis Berthelot
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
                 <xsl:variable name="stringValue" select="string" />
 
+                final int <xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="content/fontSize" /> * gameTickDisplayInfoSingleton.getLastWidth()) / <xsl:value-of select="$windowWidth" />;
+                
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
-                    new CustomTextBoxIndexedAnimationFactory(Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, <xsl:value-of select="content/fontSize" />))
+                    new CustomTextBoxIndexedAnimationFactory(Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, <xsl:value-of select="name" />TextAnimationSize))
                 };
+
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
 
                 this.add(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));

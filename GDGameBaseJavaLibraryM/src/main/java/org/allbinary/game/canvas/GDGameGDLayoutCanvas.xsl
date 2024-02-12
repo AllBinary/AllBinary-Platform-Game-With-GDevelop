@@ -80,6 +80,7 @@ import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
 import org.allbinary.game.gd.MusicManagerFactory;
+import org.allbinary.game.input.event.RawKeyEventHandler;
 import org.allbinary.graphics.opengles.CurrentDisplayableFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.graphics.paint.NullPaintable;
@@ -128,6 +129,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     
     private final GDGameInputProcessor gameInputProcessor = new GDGameInputProcessor();
 
+    private final RawKeyEventHandler rawKeyEventHandler = RawKeyEventHandler.getInstance();
     private final DownKeyEventHandler downKeyEventHandler = DownKeyEventHandler.getInstance();
     private final UpKeyEventHandler upKeyEventHandler = UpKeyEventHandler.getInstance();
     private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
@@ -719,9 +721,10 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     }
 
     public void handleRawKey(final int keyCode, final int deviceId, final boolean repeated) throws Exception {
-        final Integer keyCodeAsInteger = smallIntegerSingletonFactory.getInstance(keyCode);
-        this.upKeyEventHandler.fireEvent(keyCodeAsInteger);
-        this.upKeyEventHandler.getInstance(deviceId).fireEvent(keyCodeAsInteger);
+        this.rawKeyEventHandler.fireEvent(keyCode, deviceId, repeated);
+        //final Integer keyCodeAsInteger = smallIntegerSingletonFactory.getInstance(keyCode);
+        //this.upKeyEventHandler.fireEvent(keyCodeAsInteger);
+        //this.upKeyEventHandler.getInstance(deviceId).fireEvent(keyCodeAsInteger);
     }
 
     public void addKeyInputListener(final PlayerGameInput playerGameInput) {

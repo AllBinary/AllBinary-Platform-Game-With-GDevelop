@@ -20,6 +20,8 @@ import org.allbinary.animation.Animation;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.game.canvas.ABToGBUtil;
 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.string.StringUtil;
 
@@ -36,7 +38,7 @@ public class CustomTextBoxIndexedAnimationFactory
 
     public CustomTextBoxIndexedAnimationFactory(final Font font) {
         
-        //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.CONSTRUCTOR));
+        //LogUtil.put(LogFactory.getInstance(commonStrings.START + font.getSize(), this, commonStrings.CONSTRUCTOR));
         
         this.font = font;
     }
@@ -47,16 +49,15 @@ public class CustomTextBoxIndexedAnimationFactory
         
         final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
         final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
-
+        
         //this.getHighScoresArray(), highScore, 
-        final CustomTextBox customTextBox = new CustomTextBox(
+        final CustomTextBox customTextBox = new CustomTextBox2(
             abCanvas.getCustomCommandListener(),
             StringUtil.getInstance().EMPTY_STRING,
             StringUtil.getInstance().EMPTY_STRING,
             12, TextField.ANY, this.font,
             abCanvas.getLayerManager().getBackgroundBasicColor(),
             abCanvas.getLayerManager().getForegroundBasicColor());
-        customTextBox.getTextFieldItem().setFocus(true);
 
         return new CustomTextBoxIndexedAnimation(customTextBox);
     }

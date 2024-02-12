@@ -82,6 +82,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.input.GameInputProcessorUtil;
                 import org.allbinary.graphics.DisplayUtil;
+                import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.graphics.color.BasicColor;
@@ -487,7 +488,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                     //instances create - END
-
+                    
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                         }
@@ -610,6 +611,14 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     //eventsKeyFromTextConditions - END
+
+
+                    <xsl:variable name="hasTextInput" ><xsl:for-each select="objects" ><xsl:if test="type = 'TextInput::TextInputObject'" >found</xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:if test="contains($hasTextInput, 'found')" >
+                    final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
+                    final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
+                    abCanvas.setInputProcessor(abCanvas.getRawInputProcessor());
+                    </xsl:if>
 
                     GameInputProcessorUtil.init(globals.inputProcessorArray);
                     GameInputProcessorUtil.init(globals.unmappedInputProcessorArray);
