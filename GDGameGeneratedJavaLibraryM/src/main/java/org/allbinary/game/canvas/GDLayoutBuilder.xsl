@@ -454,7 +454,7 @@ Created By: Travis Berthelot
                             </xsl:if>
 
                         <xsl:if test="contains(name, 'btn_')" >
-                        //btn_
+                        //btn_ - //Rectangle
                         final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
                             pointFactory.getInstance(<xsl:value-of select="name" />GDobject2.x, <xsl:value-of select="name" />GDobject2.y),
                             <xsl:value-of select="name" />GDobject2.Width(globals.graphics) * scale * scaleTouchButtons, <xsl:value-of select="name" />GDobject2.Height(globals.graphics) * scale * scaleTouchButtons);

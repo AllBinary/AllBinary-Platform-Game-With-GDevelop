@@ -375,9 +375,10 @@ Created By: Travis Berthelot
                             final int <xsl:value-of select="name" />X = x + <xsl:value-of select="name" />GDobject2.x;
                             final int <xsl:value-of select="name" />Y = y + <xsl:value-of select="name" />GDobject2.y;
 
+                            //Rectangle 2
                             final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
                                 pointFactory.getInstance(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
-                                <xsl:value-of select="name" />GDobject2.Width(globals.graphics) * scale, <xsl:value-of select="name" />GDobject2.Height(globals.graphics) * scale);
+                                <xsl:value-of select="name" />GDobject2.Width(globals.graphics), <xsl:value-of select="name" />GDobject2.Height(globals.graphics));
                             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         }
                         </xsl:if>
