@@ -374,7 +374,7 @@ Created By: Travis Berthelot
 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.getInstance(0, 0),
-                                0, 0
+                                <xsl:value-of select="name" />TextAnimationSize * 12, <xsl:value-of select="name" />TextAnimationSize
                                 );
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
