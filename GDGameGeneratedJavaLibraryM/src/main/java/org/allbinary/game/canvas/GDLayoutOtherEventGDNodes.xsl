@@ -90,6 +90,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.CommonStrings;
                 import org.allbinary.logic.string.CommonSeps;
                 import org.allbinary.logic.string.StringUtil;
+                import org.allbinary.logic.string.StringMaker;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
                 

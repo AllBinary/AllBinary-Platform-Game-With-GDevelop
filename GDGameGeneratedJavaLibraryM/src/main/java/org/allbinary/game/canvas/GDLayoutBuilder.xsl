@@ -305,8 +305,6 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                         //<xsl:value-of select="name" /> - //notTextObject=<xsl:value-of select="$notTextObject" />
                         if(true) {
-                            <xsl:variable name="name2" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template></xsl:variable>
-                            final int scaleTouchButtons = <xsl:if test="number($layoutIndex) = 0 or contains($name2, 'in_game_options') or contains($name2, 'score') or contains($name2, 'over')" >1</xsl:if><xsl:if test="not(number($layoutIndex) = 0 or contains($name2, 'in_game_options') or contains($name2, 'score') or contains($name2, 'over'))" >3</xsl:if>;
                         <xsl:if test="contains($notTextObject, 'found')" >
                             //or contains($objectsAsString, $colonName)
                             //notTextObject = <xsl:value-of select="$notTextObject" /> or contains($objectsAsString, $colonName/<xsl:value-of select="$colonName" />) = <xsl:value-of select="contains($objectsAsString, $colonName)" />
