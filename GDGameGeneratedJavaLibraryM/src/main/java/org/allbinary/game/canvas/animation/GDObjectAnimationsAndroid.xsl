@@ -362,7 +362,7 @@ Created By: Travis Berthelot
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
                 <xsl:variable name="stringValue" select="string" />
 
-                final int <xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="content/fontSize" /> * gameTickDisplayInfoSingleton.getLastWidth()) / <xsl:value-of select="$windowWidth" />;
+                final int <xsl:value-of select="name" />TextInputAnimationSize = (<xsl:value-of select="content/fontSize" />; // * gameTickDisplayInfoSingleton.getLastWidth()) / <xsl:value-of select="$windowWidth" />
                 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                     new CustomTextBoxIndexedAnimationFactory(Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, <xsl:value-of select="name" />TextAnimationSize))
@@ -375,7 +375,7 @@ Created By: Travis Berthelot
 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.getInstance(0, 0),
-                                <xsl:value-of select="name" />TextAnimationSize * 12, <xsl:value-of select="name" />TextAnimationSize
+                                <xsl:value-of select="name" />TextInputAnimationSize * 12, <xsl:value-of select="name" />TextInputAnimationSize
                                 );
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>

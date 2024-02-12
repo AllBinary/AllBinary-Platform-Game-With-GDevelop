@@ -26,8 +26,9 @@ Created By: Travis Berthelot
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
                     <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
+                    <xsl:variable name="textInputName" >,TextInput::TextInputObject:<xsl:value-of select="$name" />,</xsl:variable>
 
-                    //createGDObject - <xsl:value-of select="$spriteName" />
+                    //createGDObject - <xsl:value-of select="$name" />
 
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() > 2" >
@@ -60,7 +61,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>                    
                     
 <!--
-                    <xsl:if test="contains($objectsAsString, $spriteName)" >
+                    <xsl:if test="contains($objectsAsString, $spriteName) or contains($objectsAsString, $textInputName)" >
                     LogUtil.put(LogFactory.getInstance(
                     "Sprite info: <xsl:value-of select="$name" /> l: " + ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray.length)) +
                     "w: " + ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth())) +
@@ -119,7 +120,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
-                    //Objects have sprite name - <xsl:value-of select="$spriteName" />
+                    //Objects have name - <xsl:value-of select="$name" />
                             <xsl:if test="contains($objectsAsString, $spriteName)" >
                                 //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f),
                                 //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f),
@@ -159,7 +160,6 @@ Created By: Travis Berthelot
                     </xsl:if>
                     
                     <xsl:if test="not(contains($objectsAsString, $spriteName) or contains($objectsGroupsAsString, $name))" >
-                        //objectsAsString=<xsl:value-of select="$objectsAsString" />
                         //LogUtil.put(LogFactory.getInstance("GDObject:<xsl:value-of select="$name" /> != <xsl:value-of select="$spriteName" />", this, commonStrings.PROCESS));
                     </xsl:if>
 
@@ -174,8 +174,9 @@ Created By: Travis Berthelot
         <xsl:variable name="quote" >"</xsl:variable>
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
+                    <xsl:variable name="textInputName" >,TextInput::TextInputObject:<xsl:value-of select="$name" />,</xsl:variable>
 
-                    //createByNameGDObject - <xsl:value-of select="$spriteName" />
+                    //createByNameGDObject - <xsl:value-of select="$name" />
                         
                     <xsl:variable name="hasGameLayer2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="contains(text(), '.')" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
@@ -236,7 +237,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
-                    //Objects have sprite name - <xsl:value-of select="$spriteName" />
+                    //Objects have name - <xsl:value-of select="$name" />
                             <xsl:if test="contains($objectsAsString, $spriteName)" >
                                 //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f),
                                 //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f),

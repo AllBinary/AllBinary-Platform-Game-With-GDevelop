@@ -278,7 +278,8 @@ Created By: Travis Berthelot
                     <xsl:for-each select="instances" >
                         <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
                         <xsl:variable name="name" select="name" />
-                        <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" /></xsl:variable>
+                        <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" />,</xsl:variable>
+                        <xsl:variable name="textInputName" >,TextInput::TextInputObject:<xsl:value-of select="$name" />,</xsl:variable>
                         <xsl:variable name="colonName" >:<xsl:value-of select="name" /></xsl:variable>
                         <xsl:variable name="notTextObject" >
                             
@@ -373,7 +374,10 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
                         width, height,
                         </xsl:if>
-                        <xsl:if test="not(contains($objectsAsString, $spriteName))" >
+                        <xsl:if test="contains($objectsAsString, $textInputName)" >
+                        width, height,
+                        </xsl:if>
+                        <xsl:if test="not(contains($objectsAsString, $spriteName) or contains($objectsAsString, $textInputName))" >
                         0, 0,
                         </xsl:if>
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME);
@@ -415,7 +419,10 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($objectsAsString, $spriteName)" >
                         width, height,
                         </xsl:if>
-                        <xsl:if test="not(contains($objectsAsString, $spriteName))" >
+                        <xsl:if test="contains($objectsAsString, $textInputName)" >
+                        width, height,
+                        </xsl:if>
+                        <xsl:if test="not(contains($objectsAsString, $spriteName) or contains($objectsAsString, $textInputName))" >
                         0, 0,
                         </xsl:if>
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME);
