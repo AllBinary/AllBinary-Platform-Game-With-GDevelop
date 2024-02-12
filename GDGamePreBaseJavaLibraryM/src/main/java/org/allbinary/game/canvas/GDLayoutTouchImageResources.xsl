@@ -138,12 +138,6 @@ Created By: Travis Berthelot
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
 
                             final PointFactory pointFactory = PointFactory.getInstance();
-                    
-                    <xsl:call-template name="scale" >
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                    </xsl:call-template>
 
                             final Hashtable hashTable = imageCache.getHashtable();
 

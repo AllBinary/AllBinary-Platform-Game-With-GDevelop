@@ -1005,12 +1005,6 @@ Created By: Travis Berthelot
             //LogUtil.put(LogFactory.getInstance("do not move", this, "moveAndLand"));
                     
             //CollisionNP
-<!--
-            <xsl:for-each select="layouts" >
-            <xsl:variable name="layoutIndex" select="position() - 1" />
-            //final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-            </xsl:for-each>
--->
             <xsl:for-each select=".." >
             <xsl:call-template name="mapCollisionMaskHack" />
             </xsl:for-each>
@@ -1039,12 +1033,6 @@ Created By: Travis Berthelot
             //LogUtil.put(LogFactory.getInstance("do not move", this, "moveAndLand"));
                     
             //CollisionNP
-<!--
-            <xsl:for-each select="layouts" >
-            <xsl:variable name="layoutIndex" select="position() - 1" />
-            //final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-            </xsl:for-each>
--->
             <xsl:for-each select=".." >
             <xsl:call-template name="mapCollisionMaskHack" />
             </xsl:for-each>
@@ -1068,9 +1056,9 @@ Created By: Travis Berthelot
                 
                 <xsl:if test="type = 'TileMap::TileMap'" >
                     
-                        //final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-                        //if(this.gdObject.type == globals.TILEMAP__COLLISIONMASK) {
-                        //} else if(this.gdObject.type == globals.TILEMAP__TILEMAP) {
+                        //final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                        //if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
+                        //} else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
                             //this.updatePosition();
                         //}
                     
@@ -1137,7 +1125,6 @@ Created By: Travis Berthelot
             
             //CollisionNP - processing for the specific game object
             final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals<xsl:value-of select="$layoutIndex" /> = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-            if(globals<xsl:value-of select="$layoutIndex" /> != null) {
             <xsl:call-template name="addCollisionList" >
                 <xsl:with-param name="layoutIndex" select="$layoutIndex" />
             </xsl:call-template>
@@ -1147,7 +1134,6 @@ Created By: Travis Berthelot
             <xsl:call-template name="addSubInstructionsCollisionList" >
                 <xsl:with-param name="layoutIndex" select="$layoutIndex" />
             </xsl:call-template>
-            }
             
         </xsl:for-each>
 
@@ -1234,6 +1220,7 @@ Created By: Travis Berthelot
                     = geographicMapCompositeInterface.getGeographicMapInterface();
 
             if(geographicMapInterfaceArray != null) {
+                final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                 if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
 
                 } else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
@@ -1301,7 +1288,7 @@ Created By: Travis Berthelot
                     = geographicMapCompositeInterface.getGeographicMapInterface();
 
             if(geographicMapInterfaceArray != null) {
-                
+                final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                 if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
 
                 } else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {

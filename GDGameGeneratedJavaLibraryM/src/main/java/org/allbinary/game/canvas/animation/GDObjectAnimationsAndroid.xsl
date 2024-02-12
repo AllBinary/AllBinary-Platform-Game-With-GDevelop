@@ -21,12 +21,6 @@ Created By: Travis Berthelot
 
         <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
         
-        <xsl:call-template name="scaleGlobal" >
-            <xsl:with-param name="layoutIndex" >
-                <xsl:value-of select="$layoutIndex" />
-            </xsl:with-param>
-        </xsl:call-template>
-        
         //objectsAssign - androidAnimationFactory - START
         final short angleIncrement = 1;
         <xsl:for-each select="objects" >
@@ -151,7 +145,7 @@ Created By: Travis Berthelot
                                                     </xsl:if>
                                                 </xsl:if>
                                                 <xsl:if test="height != 0 and width != 0" >
-                                                    <xsl:value-of select="width" /> * scale, <xsl:value-of select="height" /> * scale
+                                                    <xsl:value-of select="width" />, <xsl:value-of select="height" />
                                                 </xsl:if>
                                             </xsl:if>
                                         </xsl:if>
@@ -365,7 +359,7 @@ Created By: Travis Berthelot
                 final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" />;
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
-                    new CustomTextBoxIndexedAnimationFactory(Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, (<xsl:value-of select="name" />TextInputAnimationSize * gameTickDisplayInfoSingleton.getLastWidth()) / <xsl:value-of select="$windowWidth" />))
+                    new CustomTextBoxIndexedAnimationFactory(<xsl:value-of select="name" />TextInputAnimationSize)
                 };
 
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];

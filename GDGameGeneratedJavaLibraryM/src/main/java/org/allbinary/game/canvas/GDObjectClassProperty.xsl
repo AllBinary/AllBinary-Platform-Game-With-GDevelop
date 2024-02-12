@@ -278,12 +278,11 @@ Created By: Travis Berthelot
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 //TextObject::Text - create properties
                 <xsl:variable name="stringValue" select="string" />
-                public final int <xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="characterSize" /> * gameTickDisplayInfoSingleton.getLastWidth()) / <xsl:value-of select="$windowWidth" />;
+                public final int <xsl:value-of select="name" />TextAnimationSize;
                 <xsl:variable name="stringValue2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&quot;'" /></xsl:with-param><xsl:with-param name="replacementText" >\"</xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:variable name="multilineString" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue2" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&#10;'" /></xsl:with-param><xsl:with-param name="replacementText" >\n").append("</xsl:with-param></xsl:call-template></xsl:variable>
 
-                public final CustomTextAnimation <xsl:value-of select="name" />TextAnimation =
-                new CustomTextAnimation(new StringMaker().append("<xsl:value-of select="$multilineString" />").toString(), Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, <xsl:value-of select="name" />TextAnimationSize));
+                public final CustomTextAnimation <xsl:value-of select="name" />TextAnimation;
 
                 <xsl:variable name="name2" >,<xsl:value-of select="name" />,</xsl:variable>
 
@@ -295,6 +294,30 @@ Created By: Travis Berthelot
 
     </xsl:template>
 
+    <xsl:template name="objectsClassPropertyAssignment" >
+        <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
+
+        <xsl:for-each select="objects" >
+            <xsl:variable name="typeValue" select="type" />
+            
+            <xsl:if test="$typeValue = 'TextObject::Text'" >
+                //TextObject::Text - create properties
+                <xsl:variable name="stringValue" select="string" />
+                this.<xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="characterSize" /> * scale);
+                <xsl:variable name="stringValue2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&quot;'" /></xsl:with-param><xsl:with-param name="replacementText" >\"</xsl:with-param></xsl:call-template></xsl:variable>
+                <xsl:variable name="multilineString" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue2" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&#10;'" /></xsl:with-param><xsl:with-param name="replacementText" >\n").append("</xsl:with-param></xsl:call-template></xsl:variable>
+
+                this.<xsl:value-of select="name" />TextAnimation =
+                    new CustomTextAnimation(new StringMaker().append("<xsl:value-of select="$multilineString" />").toString(), <xsl:value-of select="name" />TextAnimationSize);
+
+                <xsl:variable name="name2" >,<xsl:value-of select="name" />,</xsl:variable>
+
+            </xsl:if>
+
+        </xsl:for-each>
+
+    </xsl:template>
+     
     <xsl:template name="layerManagerEventListenerList" >
 
         <xsl:variable name="behaviorsAsString" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:value-of select="type" />,</xsl:for-each></xsl:for-each></xsl:variable>

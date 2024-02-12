@@ -41,15 +41,6 @@ Created By: Travis Berthelot
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="layoutName" />
-
-        <xsl:call-template name="scaleTouchButtons" >
-            <xsl:with-param name="layoutIndex" >
-                <xsl:value-of select="$layoutIndex" />
-            </xsl:with-param>
-            <xsl:with-param name="layoutName" >
-                <xsl:value-of select="$layoutName" />
-            </xsl:with-param>
-        </xsl:call-template>
         
         //objectsAssign - touchAnimationFactory - START
         final short angleIncrement = 1;
@@ -142,7 +133,7 @@ Created By: Travis Berthelot
                                                     </xsl:if>
                                                 </xsl:if>
                                                 <xsl:if test="height != 0 and width != 0" >
-                                                    <xsl:value-of select="width" /> * scale, <xsl:value-of select="height" /> * scale
+                                                    <xsl:value-of select="width" />, <xsl:value-of select="height" />
                                                 </xsl:if>
                                             </xsl:if>
                                             <xsl:if test="not(contains(name, 'btn_'))" >
@@ -153,7 +144,7 @@ Created By: Travis Berthelot
                                                     </xsl:if>
                                                 </xsl:if>
                                                 <xsl:if test="height != 0 and width != 0" >
-                                                    <xsl:value-of select="width" /> * scale, <xsl:value-of select="height" /> * scale
+                                                    <xsl:value-of select="width" />, <xsl:value-of select="height" />
                                                 </xsl:if>
                                             </xsl:if>
                                         </xsl:if>

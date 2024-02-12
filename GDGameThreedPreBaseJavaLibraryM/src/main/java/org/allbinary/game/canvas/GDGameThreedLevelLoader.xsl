@@ -104,12 +104,6 @@ Created By: Travis Berthelot
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
 
-                        <xsl:call-template name="scale" >
-                            <xsl:with-param name="layoutIndex" >
-                                <xsl:value-of select="$layoutIndex" />
-                            </xsl:with-param>
-                        </xsl:call-template>
-
                             final Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
                                 Min3dSceneResourcesFactory.getInstance();
                             final ThreedLoaderFactory threedLoaderFactory = ThreedLoaderFactory.getInstance();

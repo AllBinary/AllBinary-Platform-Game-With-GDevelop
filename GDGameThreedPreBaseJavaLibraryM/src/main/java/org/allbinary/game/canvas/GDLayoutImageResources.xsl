@@ -140,12 +140,6 @@ Created By: Travis Berthelot
 
                             final PointFactory pointFactory = PointFactory.getInstance();
                     
-                    <xsl:call-template name="scale" >
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-                    
                             //final Hashtable hashTable = imageCache.getHashtable();
 
                     <xsl:call-template name="rectangleCache" >

@@ -100,6 +100,7 @@ import org.mapeditor.io.TiledJSONUtil;
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
+            <xsl:variable name="layoutName" select="name" />
             <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
 
                 <xsl:variable name="hasOneOrMoreTileMaps" >
@@ -142,13 +143,6 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
     };
 
     //private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
-
-    <xsl:call-template name="scale" >
-        <xsl:with-param name="layoutIndex" >
-            <xsl:value-of select="$layoutIndex" />
-        </xsl:with-param>
-    </xsl:call-template>
-    ////LogUtil.put(LogFactory.getInstance(new StringMaker().append("scale: ").append(scale).toString(), this, commonStrings.PROCESS));
         
     private final AllBinaryGameLayerManager layerManager;
 
@@ -174,6 +168,15 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         
     public TiledMap create<xsl:value-of select="name" />TiledMap(final TiledMap lastMap, final Image tileSetImage) {
 
+    <xsl:call-template name="scale" >
+        <xsl:with-param name="layoutIndex" >
+            <xsl:value-of select="$layoutIndex" />
+        </xsl:with-param>
+        <xsl:with-param name="layoutName" >
+            <xsl:value-of select="$layoutName" />
+        </xsl:with-param>
+    </xsl:call-template>
+    
         final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
         try {
@@ -301,7 +304,17 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         </xsl:for-each>
 
     public void init() throws Exception
-    {    
+    {
+    
+    <xsl:call-template name="scale" >
+        <xsl:with-param name="layoutIndex" >
+            <xsl:value-of select="$layoutIndex" />
+        </xsl:with-param>
+        <xsl:with-param name="layoutName" >
+            <xsl:value-of select="$layoutName" />
+        </xsl:with-param>
+    </xsl:call-template>
+    
         final LayerInterfaceFactory layerInterfaceFactory = LayerInterfaceFactory.getInstance();
 
         layerInterfaceFactory.init();
@@ -440,6 +453,15 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                 <xsl:if test="name = 'PlatformerMap'" >
 
     public void setStartPoint(final GeographicMapInterface[] geographicMapInterfaceArray) throws Exception {
+
+    <xsl:call-template name="scale" >
+        <xsl:with-param name="layoutIndex" >
+            <xsl:value-of select="$layoutIndex" />
+        </xsl:with-param>
+        <xsl:with-param name="layoutName" >
+            <xsl:value-of select="$layoutName" />
+        </xsl:with-param>
+    </xsl:call-template>
 
         final StringMaker stringMaker = new StringMaker();
         //final String F = "Finding Start Position: ";

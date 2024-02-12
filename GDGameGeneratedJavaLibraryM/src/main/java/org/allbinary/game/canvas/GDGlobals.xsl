@@ -21,6 +21,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
     
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
     
@@ -289,7 +290,19 @@ Created By: Travis Berthelot
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             channelSoundArray[index] = new BasicArrayList();
                         }
-                    
+
+                            <xsl:call-template name="scale" >
+                                <xsl:with-param name="layoutIndex" >
+                                    Globals
+                                </xsl:with-param>
+                                <xsl:with-param name="layoutName" >
+                                    Globals
+                                </xsl:with-param>
+                            </xsl:call-template>
+
+                    <xsl:call-template name="objectsClassPropertyAssignment" >
+                    </xsl:call-template>
+                                        
                         <xsl:for-each select="variables" >
                             <xsl:if test="type = 'boolean'" >
                                 <xsl:if test="name = 'RandomDungeon'" >

@@ -32,30 +32,36 @@ import org.allbinary.logic.string.StringUtil;
 public class CustomTextBoxIndexedAnimationFactory
     implements AnimationInterfaceFactoryInterface {
 
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
+    //private final CommonStrings commonStrings = CommonStrings.getInstance();
 
-    private final Font font;
+    private final int fontSize;
 
-    public CustomTextBoxIndexedAnimationFactory(final Font font) {
+    public CustomTextBoxIndexedAnimationFactory(final int fontSize) {
         
         //LogUtil.put(LogFactory.getInstance(commonStrings.START + font.getSize(), this, commonStrings.CONSTRUCTOR));
         
-        this.font = font;
+        this.fontSize = fontSize;
     }
 
     public Animation getInstance() throws Exception {
+        return this.getInstance(1);
+    }
+    
+    public Animation getInstance(final int scale) throws Exception {
 
         //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.PROCESS));
         
         final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
         final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
         
+        final Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, fontSize);
+        
         //this.getHighScoresArray(), highScore, 
         final CustomTextBox customTextBox = new CustomTextBox2(
             abCanvas.getCustomCommandListener(),
             StringUtil.getInstance().EMPTY_STRING,
             StringUtil.getInstance().EMPTY_STRING,
-            12, TextField.ANY, this.font,
+            12, TextField.ANY, font,
             abCanvas.getLayerManager().getBackgroundBasicColor(),
             abCanvas.getLayerManager().getForegroundBasicColor());
 

@@ -149,13 +149,7 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                         //behaviorsSharedData=<xsl:for-each select="behaviorsSharedData" >type=<xsl:value-of select="type" />,</xsl:for-each>
                         <xsl:text>&#10;</xsl:text>
-                        
-                        <xsl:call-template name="scale" >
-                            <xsl:with-param name="layoutIndex" >
-                                <xsl:value-of select="$layoutIndex" />
-                            </xsl:with-param>
-                        </xsl:call-template>
-                        
+                                                
                     private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
 
                     private boolean clear = false;
@@ -164,7 +158,14 @@ Created By: Travis Berthelot
 
                         LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
                     
-                        ////LogUtil.put(LogFactory.getInstance(new StringMaker().append("scale: ").append(scale).toString(), this, commonStrings.PROCESS));
+                        <xsl:call-template name="scale" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="layoutName" >
+                                <xsl:value-of select="$layoutName" />
+                            </xsl:with-param>
+                        </xsl:call-template>
 
                         gdNodeStatsFactory.reset();
 

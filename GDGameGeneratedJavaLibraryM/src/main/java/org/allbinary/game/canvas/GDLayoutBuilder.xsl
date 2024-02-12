@@ -189,13 +189,12 @@ Created By: Travis Berthelot
                                 <xsl:with-param name="layoutIndex" >
                                     <xsl:value-of select="$layoutIndex" />
                                 </xsl:with-param>
+                                <xsl:with-param name="layoutName" >
+                                    <xsl:value-of select="$layoutName" />
+                                </xsl:with-param>
                             </xsl:call-template>
-                            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("scale: ").append(scale).toString(), this, commonStrings.PROCESS));
-                            globals.scale = scale;
-                            globals.scaleNominator = scale;
-                            globals.scaleDenominator = 2;
                             
-                            LogUtil.put(LogFactory.getInstance(new StringMaker().append(commonStrings.CONSTRUCTOR).append(":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder scale: ").append(globals.scale).toString(), this, commonStrings.CONSTRUCTOR));
+                            LogUtil.put(LogFactory.getInstance(new StringMaker().append(commonStrings.CONSTRUCTOR).append(":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder scale: ").append(scale).toString(), this, commonStrings.CONSTRUCTOR));
 
                     <xsl:call-template name="findMousePositionNeeded" >
                         <xsl:with-param name="totalRecursions" >
@@ -507,18 +506,17 @@ Created By: Travis Berthelot
                     public void build() {
                     
                         try {
-                        
-                        final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
 
                             <xsl:call-template name="scale" >
                                 <xsl:with-param name="layoutIndex" >
                                     <xsl:value-of select="$layoutIndex" />
                                 </xsl:with-param>
+                                <xsl:with-param name="layoutName" >
+                                    <xsl:value-of select="$layoutName" />
+                                </xsl:with-param>
                             </xsl:call-template>
-                            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("scale: ").append(scale).toString(), this, commonStrings.PROCESS));
-                            globals.scale = scale;
-                            globals.scaleNominator = scale;
-                            globals.scaleDenominator = 2;
+                                                
+                        final TempGameLayerUtil tempGameLayerUtil = TempGameLayerUtil.getInstance();
 
                     <xsl:for-each select="../externalEvents" >
                     <xsl:if test="$layoutName = associatedLayout" >

@@ -21,6 +21,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/reverse.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/split.xsl" />
     
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDGlobalCalls.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDAction.xsl" />
     
@@ -251,19 +252,6 @@ public class GDStructure {
                     //more objects class properties - END
                     <xsl:text>&#10;</xsl:text>
 
-                    <xsl:variable name="hasScaleVariable" >
-                        <xsl:for-each select="variables" >
-                            <xsl:if test="name = 'scale'" >found</xsl:if>
-                        </xsl:for-each>
-                    </xsl:variable>
-                    <xsl:if test="not(contains($hasScaleVariable, 'found'))" >
-                    //variables - default - START
-                    public int scale;
-                    public int scaleNominator;
-                    public int scaleDenominator;
-                    //variables - default - END
-                    </xsl:if>
-
                     //variables - external - ModVarScene - START
                     <xsl:for-each select="../externalEvents" >
                     <xsl:call-template name="actionsWithUndefinedVariables" >
@@ -355,6 +343,26 @@ public class GDStructure {
                     public long lastStartTime = startTime;
                  
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals() {
+                    
+                    <xsl:call-template name="scale" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutName" >
+                            <xsl:value-of select="$layoutName" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:variable name="hasScaleVariable" >
+                        <xsl:for-each select="variables" >
+                            <xsl:if test="name = 'scale'" >found</xsl:if>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <xsl:if test="contains($hasScaleVariable, 'found')" >
+                    this.scale = scale;
+                    </xsl:if>
+                                        
+                    <xsl:call-template name="objectsClassPropertyAssignment" >
+                    </xsl:call-template>
                     
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >

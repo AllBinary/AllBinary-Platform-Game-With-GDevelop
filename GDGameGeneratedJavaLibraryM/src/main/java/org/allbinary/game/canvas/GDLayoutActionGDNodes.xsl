@@ -153,15 +153,17 @@ Created By: Travis Berthelot
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
                     
-                            final GDGlobalSpecialAnimationImageResources globalImageResources = GDGlobalSpecialAnimationImageResources.getInstanceOrCreate();
-                                            
                                     <xsl:call-template name="scale" >
                                         <xsl:with-param name="layoutIndex" >
                                             <xsl:value-of select="$layoutIndex" />
                                         </xsl:with-param>
+                                        <xsl:with-param name="layoutName" >
+                                            <xsl:value-of select="$layoutName" />
+                                        </xsl:with-param>
                                     </xsl:call-template>
-                                    ////LogUtil.put(LogFactory.getInstance(new StringMaker().append("scale: ").append(scale).toString(), this, commonStrings.PROCESS));
-                                            
+                    
+                            final GDGlobalSpecialAnimationImageResources globalImageResources = GDGlobalSpecialAnimationImageResources.getInstanceOrCreate();
+                                                                                        
                     //actionLayout - //eventsCreateAssignGDObjectGDNodesAction - START
                     <xsl:call-template name="eventsCreateAssignGDObjectGDNodesAction" >
                         <xsl:with-param name="caller" >actionLayout</xsl:with-param>

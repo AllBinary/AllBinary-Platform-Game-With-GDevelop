@@ -40,6 +40,7 @@ package org.allbinary.game.layer.special;
 
 import javax.microedition.lcdui.Graphics;
 
+import org.allbinary.game.canvas.GDGameGlobals;
 import org.allbinary.game.canvas.GD0SpecialAnimationGlobals;
 import org.allbinary.game.collision.CollidableBaseBehavior;
 import org.allbinary.game.collision.CollidableInterfaceCompositeInterface;
@@ -94,11 +95,11 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
 //            LogUtil.put(LogFactory.getInstance("isCollision: " + customGameLayer.toString(), this, commonStrings.PROCESS));
 //        }
         
-        final GD0SpecialAnimationGlobals globals = GD0SpecialAnimationGlobals.getInstance();
-        //if(((GDCustomGameLayer) this.ownerLayer).gdObject.type == globals.TILEMAP__COLLISIONMASK) {
+        final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+        //if(((GDCustomGameLayer) this.ownerLayer).gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
         final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) collisionLayer);
         <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
-        if(customGameLayer.gdObject.type == globals.TILEMAP__COLLISIONMASK) {
+        if(customGameLayer.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
             
             return this.isCollision3(customGameLayer);
         } else {
@@ -160,7 +161,8 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
 //                }
 
                 if(geographicMapCellPosition == null) {
-                    //LogUtil.put(LogFactory.getInstance(globals.TILEMAP__COLLISIONMASK, this, commonStrings.PROCESS));
+                    //final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                    //LogUtil.put(LogFactory.getInstance(gameGlobals.TILEMAP__COLLISIONMASK, this, commonStrings.PROCESS));
                     //LogUtil.put(LogFactory.getInstance(gdObject.toShortString(), this, commonStrings.PROCESS));
                     return true;
                 }
