@@ -521,6 +521,7 @@ Created By: Travis Berthelot
                         super(unknown, x, y, z, width, height, name, null);
                     }
 
+<!--           
                     public int Width(final Graphics graphics) {
                         return 0;
                     }
@@ -528,6 +529,7 @@ Created By: Travis Berthelot
                     public int Height(final Graphics graphics) {
                         return 0;
                     }
+-->
                     
                     public String String() {
                         return stringMaker.toString();

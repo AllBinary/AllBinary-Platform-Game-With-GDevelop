@@ -116,6 +116,7 @@ import org.allbinary.game.layer.special.GDConditionWithGroupActions;
 import org.allbinary.graphics.DisplayUtil;
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
+import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.image.ImageCache;
 import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.logic.string.CommonStrings;
@@ -164,6 +165,8 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
           //  ProgressCanvasFactory.getInstance();
 
                         try {
+    
+                    final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
     
                     <xsl:call-template name="htmlAnimationFactory" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
