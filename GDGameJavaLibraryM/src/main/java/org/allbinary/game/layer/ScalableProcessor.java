@@ -31,7 +31,10 @@ public class ScalableProcessor extends ScalableBaseProcessor {
         return instance;
     }
     
-    public void process(final GDObject gdObject, final IndexedAnimation initIndexedAnimationInterface) {
+    @Override
+    public void process(final GDGameLayer gameLayer, final IndexedAnimation initIndexedAnimationInterface) {
+        final GDObject gdObject = gameLayer.gdObject;
         initIndexedAnimationInterface.setScale(gdObject.scaleX, gdObject.scaleY);
     }
+    
 }

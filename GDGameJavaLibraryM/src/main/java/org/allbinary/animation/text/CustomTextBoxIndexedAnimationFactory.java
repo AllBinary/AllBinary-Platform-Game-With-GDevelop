@@ -34,27 +34,25 @@ public class CustomTextBoxIndexedAnimationFactory
 
     //private final CommonStrings commonStrings = CommonStrings.getInstance();
 
-    private final int fontSize;
+    //private int scaleWidth;
+    private int scaleHeight;
 
     public CustomTextBoxIndexedAnimationFactory(final int fontSize) {
         
         //LogUtil.put(LogFactory.getInstance(commonStrings.START + font.getSize(), this, commonStrings.CONSTRUCTOR));
         
-        this.fontSize = fontSize;
-    }
-
-    public Animation getInstance() throws Exception {
-        return this.getInstance(1);
+        this.scaleHeight = fontSize * 10 / 8;
     }
     
-    public Animation getInstance(final int scale) throws Exception {
+    @Override
+    public Animation getInstance() throws Exception {
 
         //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.PROCESS));
         
         final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
         final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
         
-        final Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, fontSize);
+        final Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, this.scaleHeight);
         
         //this.getHighScoresArray(), highScore, 
         final CustomTextBox customTextBox = new CustomTextBox2(
@@ -68,8 +66,10 @@ public class CustomTextBoxIndexedAnimationFactory
         return new CustomTextBoxIndexedAnimation(customTextBox);
     }
 
+    @Override
     public void setInitialSize(final int width, final int height) {
-
+        //this.scaleWidth = width;
+        this.scaleHeight = height * 10 / 9;
     }
 
 }

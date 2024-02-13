@@ -21,6 +21,7 @@ import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
 import org.allbinary.game.layer.special.GDWithAllBinaryCollidableBehavior;
 import org.allbinary.game.physics.velocity.VelocityProperties;
+import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -76,11 +77,17 @@ public class GDGameLayerFactory
         this.gameLayerDestroyedList = gameLayerDestroyedList;
     }
     
-    public GDGameLayer create(final String name, final GDObject gdObject, final GDConditionWithGroupActions collidableBehavior) throws Exception {
+    public GDGameLayer create(final String name, final GDObject gdObject, final float scaleX, final float scaleY, final GDConditionWithGroupActions collidableBehavior) throws Exception {
         
         if(!name.startsWith(gdObject.name)) {
             LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").append(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(this.animationInterfaceFactoryInterfaceArray.length > 0 ? this.animationInterfaceFactoryInterfaceArray[0] : "empty").toString(), this, "create", new Exception()));
         }
+        
+        final Rectangle rectangle = new Rectangle(
+            PointFactory.getInstance().ZERO_ZERO,
+            (int) (this.layerInfo.getWidth() * scaleX), 
+            (int) (this.layerInfo.getHeight() * scaleY)
+        );
         
         final GDGameLayer gameLayer = new GDGameLayer(
             NullAnimationFactory.getFactoryInstance().getInstance(), 
@@ -91,11 +98,13 @@ public class GDGameLayerFactory
                 this.groupInterface,
                 this.animationInterfaceFactoryInterfaceArray,
                 this.proceduralAnimationInterfaceFactoryInterfaceArray,
-                this.layerInfo, 
+                rectangle, 
                 this.rectangleArrayOfArrays,
                 new ViewPosition(), 
                 gdObject, this.animationBehavior);
         
+        //gameLayer.setInitialScale(scaleX, scaleY);
+
         gameLayer.setCollidableInferface(new GDWithAllBinaryCollidableBehavior(gameLayer, collidableBehavior, true));
 
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" w/h/d: ").append(gameLayer.getWidth()).append('/').append(gameLayer.getHeight()).append('/').append(gameLayer.getDepth()).toString(), this, "create"));

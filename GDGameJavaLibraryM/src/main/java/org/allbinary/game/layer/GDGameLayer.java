@@ -86,7 +86,10 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
     protected ScalableBaseProcessor scalableProcessor = ScalableBaseProcessor.getInstance();
     protected Processor processor = Processor.getInstance();
-    
+
+    private float lastScaleX = 1;
+    private float lastScaleY = 1;
+
     public GDGameLayer(final Animation primitiveDrawing, 
             final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
             final BasicArrayList behaviorList,
@@ -163,6 +166,19 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.setDestroyed(false);
     }
 
+    //Update main size when scaled.
+    public void setInitialScale(final float scaleX, final float scaleY) {
+        
+        if(this.lastScaleX != scaleX || this.lastScaleY != scaleY) {
+            
+            this.setWidth((int) (this.getInitWidth() * scaleX));
+            this.setHeight((int) (this.getInitHeight() * scaleY));
+            this.getCollidableInferface().update();
+            this.lastScaleX = scaleX;
+            this.lastScaleY = scaleY;
+        }
+    }
+        
     public void setAllBinaryGameLayerManager(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
         
     }
@@ -403,7 +419,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         for(int index = 0; index < size; index++) {
             //LogUtil.put(LogFactory.getInstance(this.getName(), this, "updateGDObject2"));
             this.initIndexedAnimationInterfaceArray[index].setAlpha(opacity);
-            this.scalableProcessor.process(this.gdObject, this.initIndexedAnimationInterfaceArray[index]);
+            this.scalableProcessor.process(this, this.initIndexedAnimationInterfaceArray[index]);
             if(this.gdObject.basicColor != null) {
                 //LogUtil.put(LogFactory.getInstance("setBasicColor: " + this.gdObject.basicColor, this, "updateGDObject"));
                 this.initIndexedAnimationInterfaceArray[index].changeBasicColor(this.gdObject.basicColor);

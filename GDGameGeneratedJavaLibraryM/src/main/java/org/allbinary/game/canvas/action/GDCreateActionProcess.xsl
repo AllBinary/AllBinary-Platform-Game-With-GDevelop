@@ -163,7 +163,9 @@ Created By: Travis Berthelot
                                     //LogUtil.put(LogFactory.getInstance(new StringMaker().append(<xsl:value-of select="text()" />GDGameLayer.getName()).append(" GDObject name: ").append(gdObject.name).toString(), this, "create", new Exception()));
                                 //}
                                 
+                                //<xsl:value-of select="text()" />GDGameLayer.setInitialScale(scale, scale);
                                 <xsl:value-of select="text()" />GDGameLayer.setGDObject(gdObject);
+                                
                             }
             
                             ////stringBuilder.append("<xsl:value-of select="$nodeId" /> for <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer); at: ").append(index);

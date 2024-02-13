@@ -29,6 +29,7 @@ import org.allbinary.game.layer.special.GDCustomCollidableBehavior;
 import org.allbinary.game.layer.special.GDCustomMaskCollidableBehavior;
 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
 import org.allbinary.game.layout.GDObject;
+import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -80,7 +81,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
     }
     
     @Override
-    public GDGameLayer create(final String name, final GDObject gdObject, final GDConditionWithGroupActions collidableBehavior) throws Exception {
+    public GDGameLayer create(final String name, final GDObject gdObject, final float scaleX, final float scaleY, final GDConditionWithGroupActions collidableBehavior) throws Exception {
         
         if(!name.startsWith(gdObject.name)) {
             LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" 0GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").append(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(this.animationInterfaceFactoryInterfaceArray[0]).toString(), this, "create", new Exception()));
@@ -99,6 +100,12 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             //LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" 3GDObject name: ").append(gdObject.name).append(' ').append(this.layerInfo).toString(), this, "create"));
         }
 
+        final Rectangle rectangle = new Rectangle(
+            PointFactory.getInstance().ZERO_ZERO,
+            (int) (this.layerInfo.getWidth() * scaleX), 
+            (int) (this.layerInfo.getHeight() * scaleY)
+        );
+
         final GDCustomGameLayer gameLayer = new GDCustomGameLayer(
                 this.primitiveDrawingAnimationFactory.getInstance(),
                 this.gameLayerList, this.gameLayerDestroyedList,
@@ -107,9 +114,11 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
                 this.groupInterface,
                 this.animationInterfaceFactoryInterfaceArray,
                 this.proceduralAnimationInterfaceFactoryInterfaceArray,
-                this.layerInfo,  
+                rectangle, 
                 this.rectangleArrayOfArrays,
                 gdObject, this.animationBehavior);
+
+        //gameLayer.setInitialScale(scaleX, scaleY);
 
         if(this.rectangleArrayOfArrays != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.rectangleArrayOfArrays.length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
             gameLayer.setCollidableInferface(new GDCustomMaskCollidableBehavior(gameLayer, collidableBehavior, true));

@@ -41,7 +41,6 @@ package org.allbinary.game.layer.special;
 import javax.microedition.lcdui.Graphics;
 
 import org.allbinary.game.canvas.GDGameGlobals;
-import org.allbinary.game.canvas.GD0SpecialAnimationGlobals;
 import org.allbinary.game.collision.CollidableBaseBehavior;
 import org.allbinary.game.collision.CollidableInterfaceCompositeInterface;
 import org.allbinary.game.identification.GroupInterface;
@@ -83,6 +82,11 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
         super(ownerLayer, collidable);
         
         this.conditionWIthGroupActions = collidableBehavior;
+    }
+    
+    @Override
+    public void update() {
+        throw new RuntimeException(commonStrings.NOT_IMPLEMENTED);
     }
     
     //private final String IS_COLLISION = "isCollision";

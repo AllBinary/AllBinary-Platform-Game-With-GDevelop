@@ -357,7 +357,7 @@ Created By: Travis Berthelot
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
                 <xsl:variable name="stringValue" select="string" />
 
-                final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" />;
+                final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> * 4;
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                     new CustomTextBoxIndexedAnimationFactory(<xsl:value-of select="name" />TextInputAnimationSize)

@@ -31,7 +31,7 @@ public class ScalableBaseProcessor {
         return instance;
     }
     
-    public void process(final GDObject gdObject, final IndexedAnimation initIndexedAnimationInterface) {
+    public void process(final GDGameLayer gameLayer, final IndexedAnimation initIndexedAnimationInterface) {
         
     }
 }

@@ -170,7 +170,10 @@ Created By: Travis Berthelot
                                 //if(!<xsl:value-of select="text()" />GDGameLayer.getName().startsWith(gdObject.name)) {
                                     //LogUtil.put(LogFactory.getInstance(new StringMaker().append(<xsl:value-of select="text()" />GDGameLayer.getName()).append(" GDObject name: ").append(gdObject.name).toString(), this, "create", new Exception()));
                                 //}
+                                
+                                //<xsl:value-of select="text()" />GDGameLayer.setInitialScale(scale, scale);
                                 <xsl:value-of select="text()" />GDGameLayer.setGDObject(gdObject);
+                                
                             }
 
                             final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
