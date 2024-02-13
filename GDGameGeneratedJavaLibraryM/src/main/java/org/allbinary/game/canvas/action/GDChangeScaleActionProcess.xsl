@@ -58,7 +58,7 @@ Created By: Travis Berthelot
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                                 final GDGameLayer gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template><xsl:value-of select="$paramOne" />GDGameLayerList.get(index);
-                                gameLayer.gdObject.scale = <xsl:value-of select="$paramThree" />;
+                                gameLayer.gdObject.scaleX = gameLayer.gdObject.scaleY = <xsl:value-of select="$paramThree" />;
                                 gameLayer.setScalable();
 
                             } catch(Exception e) {
