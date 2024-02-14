@@ -301,7 +301,7 @@ Created By: Travis Berthelot
             <xsl:variable name="typeValue" select="type" />
             
             <xsl:if test="$typeValue = 'TextObject::Text'" >
-                //TextObject::Text - create properties
+                //TextObject::Text - set properties
                 <xsl:variable name="stringValue" select="string" />
                 this.<xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="characterSize" /> * scale * 2);
                 <xsl:variable name="stringValue2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&quot;'" /></xsl:with-param><xsl:with-param name="replacementText" >\"</xsl:with-param></xsl:call-template></xsl:variable>
