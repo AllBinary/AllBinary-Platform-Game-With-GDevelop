@@ -107,9 +107,9 @@ Created By: Travis Berthelot
                             <xsl:for-each select="sprites" >
                     new Rectangle(pointFactory.ZERO_ZERO, 
                                 <xsl:if test="originPoint/x = 0" >0</xsl:if>
-                                <xsl:if test="originPoint/x != 0" ><xsl:value-of select="originPoint/x" /> * 2 * scale</xsl:if>, 
+                                <xsl:if test="originPoint/x != 0" ><xsl:value-of select="originPoint/x" /> * 2</xsl:if>, // * scale
                                 <xsl:if test="originPoint/y = 0" >0</xsl:if>
-                                <xsl:if test="originPoint/y != 0" ><xsl:value-of select="originPoint/y" /> * 2 * scale </xsl:if>
+                                <xsl:if test="originPoint/y != 0" ><xsl:value-of select="originPoint/y" /> * 2</xsl:if>  * scale
                                 ),
                             </xsl:for-each>
                         </xsl:for-each>
