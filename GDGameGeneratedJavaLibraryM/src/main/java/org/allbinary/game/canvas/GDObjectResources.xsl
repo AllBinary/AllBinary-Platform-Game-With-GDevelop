@@ -117,6 +117,15 @@ Created By: Travis Berthelot
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
         
+        <xsl:call-template name="scale" >
+            <xsl:with-param name="layoutIndex" >
+                <xsl:value-of select="$layoutIndex" />
+            </xsl:with-param>
+            <xsl:with-param name="layoutName" >
+                <xsl:value-of select="$layoutName" />
+            </xsl:with-param>
+        </xsl:call-template>
+        
 <!--
         <xsl:call-template name="globalZoomCameraActions" >
             <xsl:with-param name="baseLayer" >true</xsl:with-param>
@@ -245,8 +254,10 @@ Created By: Travis Berthelot
                     <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />,
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
+<!--
                     //imageCopyUtil.createImage(<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" />, 1.44f, true),
                     //(baseLayerScale != 1) ? imageScaleUtil.createImage(imageCache, <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, baseLayerScale, 1, baseLayerScale, 1, true) : <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />,
+-->
                     <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />,
                     </xsl:if>
                     <!--
@@ -269,8 +280,9 @@ Created By: Travis Berthelot
                     <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />,
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
+                    imageScaleUtil.createImage(imageCache, <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, scale, 1, scale, 1, true),
                     //imageScaleUtil.createImage(imageCache, <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, tileMapScale, 1, tileMapScale, 1, true),
-                     <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />,
+                    //<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />,
                     </xsl:if>
                 };  
                 </xsl:if>
