@@ -81,7 +81,7 @@
             </xsl:for-each>
         </xsl:for-each>
         </xsl:variable>
-        <xsl:if test="contains($isGlobal, 'found')" >Global</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" ><xsl:value-of select="$layoutIndex" /></xsl:if>
+        <xsl:if test="contains($isGlobal, 'found')" >Globals</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" ><xsl:value-of select="$layoutIndex" /></xsl:if>
     </xsl:template>
 
     <xsl:template name="objectFactoryFromProperty" >
