@@ -303,14 +303,14 @@ Created By: Travis Berthelot
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 //TextObject::Text - set properties
                 <xsl:variable name="stringValue" select="string" />
-                this.<xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="characterSize" /> * scale * 2);
+                this.<xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="characterSize" />);
                 <xsl:variable name="stringValue2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&quot;'" /></xsl:with-param><xsl:with-param name="replacementText" >\"</xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:variable name="multilineString" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue2" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&#10;'" /></xsl:with-param><xsl:with-param name="replacementText" >\n").append("</xsl:with-param></xsl:call-template></xsl:variable>
 
                 this.<xsl:value-of select="name" />TextAnimation =
-                    new CustomTextAnimation(new StringMaker().append("<xsl:value-of select="$multilineString" />").toString(), <xsl:value-of select="name" />TextAnimationSize);
+                    new CustomTextAnimation(new StringMaker().append("<xsl:value-of select="$multilineString" />").toString(), <xsl:value-of select="name" />TextAnimationSize * scale);
 
-                this.<xsl:value-of select="name" />TextAnimation.setScale(scale * 2, scale * 2);
+                //this.<xsl:value-of select="name" />TextAnimation.setScale(scale, scale);
 
                 <xsl:variable name="name2" >,<xsl:value-of select="name" />,</xsl:variable>
 
