@@ -41,7 +41,7 @@ public class CustomTextBoxIndexedAnimationFactory
         
         //LogUtil.put(LogFactory.getInstance(commonStrings.START + font.getSize(), this, commonStrings.CONSTRUCTOR));
         
-        this.scaleHeight = fontSize * 10 / 8;
+        this.scaleHeight = fontSize;
     }
     
     @Override
@@ -69,7 +69,7 @@ public class CustomTextBoxIndexedAnimationFactory
     @Override
     public void setInitialSize(final int width, final int height) {
         //this.scaleWidth = width;
-        this.scaleHeight = height * 10 / 9;
+        this.scaleHeight = height;
     }
 
 }

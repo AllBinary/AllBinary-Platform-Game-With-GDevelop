@@ -18,9 +18,10 @@ Created By: Travis Berthelot
     <xsl:template name="j2seAnimationFactory" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
+        <xsl:param name="layoutName" />
 
         <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
-        
+                
         //objectsAssign - j2seAnimationFactory - START
         final short angleIncrement = 1;
         <xsl:for-each select="objects" >
@@ -370,7 +371,7 @@ Created By: Travis Berthelot
 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.getInstance(0, 0),
-                                <xsl:value-of select="name" />TextInputAnimationSize * 12, <xsl:value-of select="name" />TextInputAnimationSize
+                                <xsl:value-of select="name" />TextInputAnimationSize * (12 - 1), <xsl:value-of select="name" />TextInputAnimationSize
                                 );
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>

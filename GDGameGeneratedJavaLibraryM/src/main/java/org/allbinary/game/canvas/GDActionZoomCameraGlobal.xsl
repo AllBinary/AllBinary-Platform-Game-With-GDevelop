@@ -40,8 +40,8 @@ Created By: Travis Berthelot
         </xsl:if>
         <xsl:if test="$baseLayer = 'true'" >
         <xsl:if test="string-length($baseLayerScale) = 0" >
-                    final float baseLayerScale = (float) 1f * 1.44f;
-                    //final float baseLayerScale = scale;
+                    //final float baseLayerScale = (float) 1f * 1.44f;
+                    final float baseLayerScale = scale;
         </xsl:if>
         </xsl:if>
         

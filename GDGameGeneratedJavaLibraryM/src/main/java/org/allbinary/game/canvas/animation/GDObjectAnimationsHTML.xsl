@@ -19,6 +19,7 @@ Created By: Travis Berthelot
     <xsl:template name="htmlAnimationFactory" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
+        <xsl:param name="layoutName" />
 
         <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
         
@@ -346,7 +347,7 @@ Created By: Travis Berthelot
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.getInstance(0, 0),
-                                <xsl:value-of select="name" />TextAnimationSize * 12, <xsl:value-of select="name" />TextAnimationSize
+                                <xsl:value-of select="name" />TextAnimationSize, <xsl:value-of select="name" />TextAnimationSize
                                 );
 
                 */
@@ -371,7 +372,7 @@ Created By: Travis Berthelot
 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.getInstance(0, 0),
-                                <xsl:value-of select="name" />TextInputAnimationSize * 12, <xsl:value-of select="name" />TextInputAnimationSize
+                                <xsl:value-of select="name" />TextInputAnimationSize * (12 - 1), <xsl:value-of select="name" />TextInputAnimationSize
                                 );
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>

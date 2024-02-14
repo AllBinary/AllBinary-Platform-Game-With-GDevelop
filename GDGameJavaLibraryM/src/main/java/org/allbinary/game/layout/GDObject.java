@@ -62,8 +62,8 @@ public class GDObject
 //    public int canvasWidth;
 //    public int canvasHeight;
     
-    private int width;
-    private int height;
+    public int width;
+    public int height;
     private int halfWidth;
     private int halfHeight;
         

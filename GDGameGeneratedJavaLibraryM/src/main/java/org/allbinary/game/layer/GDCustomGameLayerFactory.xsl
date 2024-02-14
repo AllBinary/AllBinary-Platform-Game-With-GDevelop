@@ -106,6 +106,9 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             (int) (this.layerInfo.getHeight() * scaleY)
         );
 
+        gdObject.width = (int) (gdObject.width * scaleX);
+        gdObject.height = (int) (gdObject.height * scaleX);
+
         final GDCustomGameLayer gameLayer = new GDCustomGameLayer(
                 this.primitiveDrawingAnimationFactory.getInstance(),
                 this.gameLayerList, this.gameLayerDestroyedList,

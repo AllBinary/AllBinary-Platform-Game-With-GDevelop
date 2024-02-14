@@ -113,13 +113,16 @@ Created By: Travis Berthelot
     <xsl:template name="imageCache" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
+        <xsl:param name="layoutName" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
-
+        
+<!--
         <xsl:call-template name="globalZoomCameraActions" >
             <xsl:with-param name="baseLayer" >true</xsl:with-param>
             <xsl:with-param name="tileMap" >true</xsl:with-param>
         </xsl:call-template>
+-->
         
         //objects - image - cache - START
         int size;
@@ -243,7 +246,8 @@ Created By: Travis Berthelot
                     </xsl:if>
                     <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
                     //imageCopyUtil.createImage(<xsl:value-of select="$name" /><xsl:value-of select="$animationName" />Image<xsl:value-of select="position() - 1" />, 1.44f, true),
-                    (baseLayerScale != 1) ? imageScaleUtil.createImage(imageCache, <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, baseLayerScale, 1, baseLayerScale, 1, true) : <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />,
+                    //(baseLayerScale != 1) ? imageScaleUtil.createImage(imageCache, <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />, baseLayerScale, 1, baseLayerScale, 1, true) : <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />,
+                    <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" />
                     </xsl:if>
                     <!--
                     </xsl:for-each>
@@ -276,9 +280,9 @@ Created By: Travis Berthelot
 
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
+            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >                
                 final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" />;
-                this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />TextInputAnimationSize * 12, <xsl:value-of select="name" />TextInputAnimationSize);
+                this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />TextInputAnimationSize * (12 - 1), <xsl:value-of select="name" />TextInputAnimationSize);
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >

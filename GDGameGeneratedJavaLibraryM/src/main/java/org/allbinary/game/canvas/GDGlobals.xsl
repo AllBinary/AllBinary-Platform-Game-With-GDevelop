@@ -237,7 +237,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
-                            Globals
+                            Global
                         </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
@@ -293,10 +293,10 @@ Created By: Travis Berthelot
 
                             <xsl:call-template name="scale" >
                                 <xsl:with-param name="layoutIndex" >
-                                    Globals
+                                    Global
                                 </xsl:with-param>
                                 <xsl:with-param name="layoutName" >
-                                    Globals
+                                    Global
                                 </xsl:with-param>
                             </xsl:call-template>
 
