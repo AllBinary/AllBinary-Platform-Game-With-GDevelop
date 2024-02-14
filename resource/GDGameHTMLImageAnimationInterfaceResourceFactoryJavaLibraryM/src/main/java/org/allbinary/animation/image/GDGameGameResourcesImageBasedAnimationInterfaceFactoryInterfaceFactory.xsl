@@ -49,6 +49,7 @@ Created By: Travis Berthelot
         
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
+            <xsl:variable name="layoutName" select="name" />
 
             <xsl:if test="number($layoutIndex) =
                 <GD_CURRENT_INDEX>" >
@@ -174,6 +175,9 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutName" >
+                            <xsl:value-of select="$layoutName" />
                         </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />

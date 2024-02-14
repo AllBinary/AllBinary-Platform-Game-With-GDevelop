@@ -48,6 +48,7 @@ Created By: Travis Berthelot
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
+            <xsl:variable name="layoutName" select="name" />
 
             <xsl:if test="number($layoutIndex) =
                 <GD_CURRENT_INDEX>" >
