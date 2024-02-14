@@ -78,7 +78,8 @@ Created By: Travis Berthelot
                                                     </xsl:if>
                                                 </xsl:if>
                                                 <xsl:if test="height != 0 and width != 0" >
-                                                    -(<xsl:value-of select="width" /> / 2), -(<xsl:value-of select="height" /> / 2)
+                                                    //-(<xsl:value-of select="width" /> / 2), -(<xsl:value-of select="height" /> / 2)
+                                                    0, 0
                                                 </xsl:if>
                                             </xsl:if>
                                         </xsl:if>
@@ -198,7 +199,8 @@ Created By: Travis Berthelot
                             <xsl:if test="position() = 1" >
                             <xsl:variable name="position" ><xsl:value-of select="position()" /></xsl:variable>
                             <xsl:for-each select="customCollisionMask" >
-                final float hackScale = ((float) scale) * 125.0f / 1000.0f;
+                //final float hackScale = ((float) scale) * 125.0f / 1000.0f;
+                final float hackScale = 125.0f / 1000.0f;
                 final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
                                 pointFactory.getInstance((int) (<xsl:value-of select="array[1]/x" /> * hackScale), (int) (<xsl:value-of select="array[1]/y" /> * hackScale)),
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale)
@@ -356,7 +358,7 @@ Created By: Travis Berthelot
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
                 <xsl:variable name="stringValue" select="string" />
 
-                final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> * 4;
+                final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" />;
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                     new CustomTextBoxIndexedAnimationFactory(<xsl:value-of select="name" />TextInputAnimationSize)

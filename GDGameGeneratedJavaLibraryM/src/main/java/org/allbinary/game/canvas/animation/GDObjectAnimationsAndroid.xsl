@@ -77,7 +77,8 @@ Created By: Travis Berthelot
                                                     </xsl:if>
                                                 </xsl:if>
                                                 <xsl:if test="height != 0 and width != 0" >
-                                                    -(<xsl:value-of select="width" /> / 2), -(<xsl:value-of select="height" /> / 2)
+                                                    //-(<xsl:value-of select="width" /> / 2), -(<xsl:value-of select="height" /> / 2)
+                                                    0, 0
                                                 </xsl:if>
                                             </xsl:if>
                                         </xsl:if>
@@ -357,7 +358,7 @@ Created By: Travis Berthelot
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
                 <xsl:variable name="stringValue" select="string" />
 
-                final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> * 4;
+                final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" />;
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                     new CustomTextBoxIndexedAnimationFactory(<xsl:value-of select="name" />TextInputAnimationSize)

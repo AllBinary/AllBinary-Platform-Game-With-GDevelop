@@ -319,8 +319,8 @@ Created By: Travis Berthelot
                                 <xsl:if test="height != 0 and width != 0" >
                         //final int width = (int) (<xsl:value-of select="width" /> * 1.44f);
                         //final int height = (int) (<xsl:value-of select="height" /> * 1.44f);
-                        final int width = (int) (<xsl:value-of select="width" /> * scaleTouchButtons);  // * scale
-                        final int height = (int) (<xsl:value-of select="height" /> * scaleTouchButtons); // * scale
+                        final int width = (int) (<xsl:value-of select="width" /> * scaleTouchButtons);
+                        final int height = (int) (<xsl:value-of select="height" /> * scaleTouchButtons);
                                 </xsl:if>
                             </xsl:if>                            
                             <xsl:if test="not(contains(name, 'btn_'))" >
@@ -328,14 +328,14 @@ Created By: Travis Berthelot
                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
                         //final int width = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth() / 1.44f);
                         //final int height = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight() / 1.44f);
-                        final int width = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth()); // * scale
-                        final int height = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight()); // * scale
+                        final int width = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth());
+                        final int height = (int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight());
                                 </xsl:if>
                                 <xsl:if test="height != 0 and width != 0" >
                         //final int width = (int) (<xsl:value-of select="width" /> * 1.44f);
                         //final int height = (int) (<xsl:value-of select="height" /> * 1.44f);
-                        final int width = (int) (<xsl:value-of select="width" />); // * scale
-                        final int height = (int) (<xsl:value-of select="height" />); // * scale
+                        final int width = (int) (<xsl:value-of select="width" />);
+                        final int height = (int) (<xsl:value-of select="height" />);
                                 </xsl:if>
 
                             </xsl:if>
@@ -457,7 +457,7 @@ Created By: Travis Berthelot
                         //btn_ - //Rectangle
                         final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
                             pointFactory.getInstance(<xsl:value-of select="name" />GDobject2.x, <xsl:value-of select="name" />GDobject2.y),
-                            <xsl:value-of select="name" />GDobject2.Width(globals.graphics) * scale * scaleTouchButtons, <xsl:value-of select="name" />GDobject2.Height(globals.graphics) * scale * scaleTouchButtons);
+                            <xsl:value-of select="name" />GDobject2.Width(globals.graphics) * scaleTouchButtons, <xsl:value-of select="name" />GDobject2.Height(globals.graphics) * scaleTouchButtons);
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         </xsl:if>
                                                 

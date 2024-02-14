@@ -277,7 +277,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
-                final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> * 4;
+                final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" />;
                 this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />TextInputAnimationSize * 12, <xsl:value-of select="name" />TextInputAnimationSize);
             </xsl:if>
 
