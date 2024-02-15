@@ -201,7 +201,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="position" ><xsl:value-of select="position()" /></xsl:variable>
                             <xsl:for-each select="customCollisionMask" >
                 //final float hackScale = ((float) scale) * 125.0f / 1000.0f;
-                final float hackScale = 125.0f / 1000.0f;
+                final float hackScale = 2.0f * 125.0f / 1000.0f;
                 final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
                                 pointFactory.getInstance((int) (<xsl:value-of select="array[1]/x" /> * hackScale), (int) (<xsl:value-of select="array[1]/y" /> * hackScale)),
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale)

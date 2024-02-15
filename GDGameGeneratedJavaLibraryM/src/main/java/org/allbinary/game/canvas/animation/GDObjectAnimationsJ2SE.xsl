@@ -346,7 +346,7 @@ Created By: Travis Berthelot
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.getInstance(0, 0),
-                                0, 0
+                                <xsl:value-of select="name" />TextAnimationSize, <xsl:value-of select="name" />TextAnimationSize
                                 );
 
                 */
