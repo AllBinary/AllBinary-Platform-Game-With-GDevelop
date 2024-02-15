@@ -168,7 +168,12 @@
                         this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                             </xsl:if>
                             <xsl:if test="type = 'number'" >
+                                <xsl:if test="contains(name, 'scale')" >
+                        //Skip resetting scale
+                                </xsl:if>
+                                <xsl:if test="not(contains(name, 'scale'))" >
                                 <xsl:if test="contains(name, 'speed')" >
+                        //TWB - speed hack
                         this.<xsl:value-of select="name" /> = <xsl:value-of select="value" /> * 3;
                                 </xsl:if>
                                 <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'speed'))" >
@@ -182,6 +187,7 @@
                         //Long.MAX_VALUE = 9223372036854776000 GD does not like the real value 9223372036854775807L
                         this.<xsl:value-of select="name" /> = 9223372036854775807L;
                                     </xsl:if>
+                                </xsl:if>
                                 </xsl:if>
                             </xsl:if>
                             <xsl:if test="type = 'array'" >
