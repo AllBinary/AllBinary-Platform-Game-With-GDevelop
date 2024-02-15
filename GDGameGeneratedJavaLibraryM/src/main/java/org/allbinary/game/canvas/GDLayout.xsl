@@ -60,6 +60,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="objectsAsString" >,<xsl:for-each select="/game/objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
+                //layoutName=<xsl:value-of select="$layoutName" />
                 //objectsGroupsAsString=<xsl:value-of select="$objectsGroupsAsString" />
                 //instancesAsString=<xsl:value-of select="$instancesAsString" />
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
@@ -404,7 +405,7 @@ Created By: Travis Berthelot
 
                     public void open() {
                     
-                        LogUtil.put(LogFactory.getInstance("TWB - open", this, commonStrings.PROCESS));
+                        //LogUtil.put(LogFactory.getInstance("scene - open", this, commonStrings.PROCESS));
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                     <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
@@ -423,7 +424,9 @@ Created By: Travis Berthelot
 
                     public void close() {
                     
-                        LogUtil.put(LogFactory.getInstance("TWB - close", this, commonStrings.PROCESS));
+                        //LogUtil.put(LogFactory.getInstance("scene - close", this, commonStrings.PROCESS));
+
+                        RawKeyEventHandler.getInstance().removeAllListeners();
 
                     <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
                         MovedMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterfaceLastPoint);
@@ -450,12 +453,12 @@ Created By: Travis Berthelot
                     public void reinitInstances() throws Exception {
                     
                         if(!clear) {
-                            LogUtil.put(LogFactory.getInstance("TWB - reinitInstances - duplicate", this, commonStrings.PROCESS));
+                            //LogUtil.put(LogFactory.getInstance("scene - reinitInstances - duplicate", this, commonStrings.PROCESS));
                             //throw new RuntimeException();
                             return;
                         }
                     
-                        LogUtil.put(LogFactory.getInstance("TWB - reinitInstances", this, commonStrings.PROCESS));
+                        //LogUtil.put(LogFactory.getInstance("scene - reinitInstances", this, commonStrings.PROCESS));
 
                     this.globals.reset();
 
@@ -472,7 +475,7 @@ Created By: Travis Berthelot
                     
                     public void clear() {
 
-                        LogUtil.put(LogFactory.getInstance("TWB - clear", this, commonStrings.PROCESS));
+                        //LogUtil.put(LogFactory.getInstance("scene - clear", this, commonStrings.PROCESS));
 
                         clear = true;
 

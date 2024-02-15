@@ -15,6 +15,7 @@ package org.allbinary.animation.text;
 
 import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.TextField;
+
 import org.allbinary.graphics.form.item.CustomTextBox;
 import org.allbinary.animation.Animation;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
