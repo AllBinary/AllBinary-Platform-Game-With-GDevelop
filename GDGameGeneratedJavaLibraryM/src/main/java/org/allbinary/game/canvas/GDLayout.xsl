@@ -71,6 +71,7 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Graphics;
 
+                import org.allbinary.game.input.event.RawKeyEventHandler;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.GDGameLayer;
