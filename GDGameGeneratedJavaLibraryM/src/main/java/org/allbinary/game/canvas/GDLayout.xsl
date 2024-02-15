@@ -136,8 +136,10 @@ Created By: Travis Berthelot
                         private final GameTickTimeDelayHelperFactory gameTickTimeDelayHelperFactory = GameTickTimeDelayHelperFactory.getInstance();
                         
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
-                        
+
                         private final StringMaker stringBuilder = new StringMaker();
+
+                        private final BasicArrayList rawKeyListenerList = new BasicArrayList();
 
                         private final GDNodes gdNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />);
                                                 
@@ -413,6 +415,8 @@ Created By: Travis Berthelot
                         BasicMotionGesturesHandler.getInstance().addListener(globals.eventListenerInterfaceLastPoint);
                         MovedMotionGesturesHandler.getInstance().addListener(globals.eventListenerInterfaceLastPoint);
                     </xsl:if>
+
+                        RawKeyEventHandler.getInstance().addListeners(rawKeyListenerList);
                     
                     //eventsOpen - START
                     <xsl:call-template name="eventsOpen" >
@@ -427,6 +431,7 @@ Created By: Travis Berthelot
                     
                         //LogUtil.put(LogFactory.getInstance("scene - close", this, commonStrings.PROCESS));
 
+                        rawKeyListenerList.addAll(RawKeyEventHandler.getInstance().getEventListenerInterfaceList());
                         RawKeyEventHandler.getInstance().removeAllListeners();
 
                     <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
