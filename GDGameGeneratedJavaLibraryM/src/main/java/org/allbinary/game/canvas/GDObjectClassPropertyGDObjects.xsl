@@ -40,7 +40,7 @@ Created By: Travis Berthelot
 
                     <xsl:if test="name = $objectName" >
                     <xsl:for-each select="variables" >
-                    //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
+                    //ObjectsGroups - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                         <xsl:if test="type = 'string'" >
                             <xsl:if test="number(value) != value" >
                     public String <xsl:value-of select="name" /> = <xsl:if test="string-length(value) > 0" ><xsl:value-of select="value" /></xsl:if><xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if>;
@@ -109,7 +109,7 @@ Created By: Travis Berthelot
 
                     <xsl:if test="name = $objectName" >
                     <xsl:for-each select="variables" >
-                    //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
+                    //ObjectsGroups - //reset - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                         <xsl:if test="type = 'string'" >
                             <xsl:if test="number(value) != value" >
                     this.<xsl:value-of select="name" /> = <xsl:if test="string-length(value) > 0" ><xsl:value-of select="value" /></xsl:if><xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if>;
@@ -191,7 +191,7 @@ Created By: Travis Berthelot
                     <xsl:if test="not(contains($hasObjectInObjectsGroups, 'found'))" >
 
                     <xsl:for-each select="variables" >
-                    //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
+                    //Object - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                         <xsl:if test="type = 'string'" >
                             <xsl:if test="number(value) != value" >
                     public String <xsl:value-of select="name" /> = <xsl:if test="string-length(value) > 0" ><xsl:value-of select="value" /></xsl:if><xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if>;
@@ -246,7 +246,7 @@ Created By: Travis Berthelot
                     //objectsClassPropertyGDObjects2
                     public void reset() {
                     <xsl:for-each select="variables" >
-                    //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
+                    //Object - //reset - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                         <xsl:if test="type = 'string'" >
                             <xsl:if test="number(value) != value" >
                     this.<xsl:value-of select="name" /> = <xsl:if test="string-length(value) > 0" ><xsl:value-of select="value" /></xsl:if><xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if>;
@@ -319,7 +319,7 @@ Created By: Travis Berthelot
                         
                     <xsl:if test="contains($hasObjectInObjectsGroups, 'found')" >
                     <xsl:for-each select="variables" >
-                    //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
+                    //animations - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                         <xsl:if test="type = 'string'" >
                             <xsl:if test="number(value) != value" >
                     this.<xsl:value-of select="name" /> = <xsl:if test="string-length(value) > 0" ><xsl:value-of select="value" /></xsl:if><xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if>;

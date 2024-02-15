@@ -98,7 +98,7 @@
 
     <xsl:template name="variables" >
                         <xsl:for-each select="variables" >
-                            //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
+                            //variable - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                             <xsl:if test="type = 'structure'" >
                         public final GDStructure<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = new GDStructure<xsl:value-of select="name" />();
                             </xsl:if>
@@ -151,7 +151,7 @@
         //resetVariables
         public void reset() {
                         <xsl:for-each select="variables" >
-                            //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
+                            //resetVariables - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
 
                             <xsl:if test="type = 'structure'" >
                         //this.<xsl:value-of select="name" /> = new GDStructure<xsl:value-of select="name" />();
