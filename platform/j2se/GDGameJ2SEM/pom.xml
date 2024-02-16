@@ -112,6 +112,24 @@
         </dependency>
 
         <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>YourXmlRpcJavaLibrary</artifactId>
+<!--
+            <artifactId>YourXmlRpcJavaLibrary</artifactId>
+            <artifactId>XmlRpcJavaLibrary</artifactId>
+-->
+            <exclusions>
+                <exclusion>
+                    <artifactId>SimpleCryptLibrary</artifactId>
+                    <groupId>org.allbinary</groupId>
+                </exclusion>
+            </exclusions>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
             <groupId>org.allbinary.game.multiplayer</groupId>
             <artifactId>AllBinaryGameClientBaseNullJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
