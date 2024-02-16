@@ -308,7 +308,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="multilineString" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue2" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&#10;'" /></xsl:with-param><xsl:with-param name="replacementText" >\n").append("</xsl:with-param></xsl:call-template></xsl:variable>
 
                 this.<xsl:value-of select="name" />TextAnimation =
-                    new CustomTextAnimation(new StringMaker().append("<xsl:value-of select="$multilineString" />").toString(), <xsl:value-of select="name" />TextAnimationSize + (scale - 1 * 4));
+                    new CustomTextAnimation(new StringMaker().append("<xsl:value-of select="$multilineString" />").toString(), <xsl:value-of select="name" />TextAnimationSize + (scale * 4));
 
                 //this.<xsl:value-of select="name" />TextAnimation.setScale(scale, scale);
 
