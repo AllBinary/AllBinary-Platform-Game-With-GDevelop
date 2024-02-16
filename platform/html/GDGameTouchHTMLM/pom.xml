@@ -125,6 +125,7 @@
             <!-- AllBinary Platform Version End -->
         </dependency>
 
+
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>NoGameLicensingJavaLibrary</artifactId>
@@ -136,12 +137,6 @@
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
-            <exclusions>
-                <exclusion>
-                    <artifactId>XmlRpcJavaLibrary</artifactId>
-                    <groupId>org.allbinary</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
