@@ -66,6 +66,7 @@ Created By: Travis Berthelot
                 import org.json.me.JSONObject;
                 import org.json.me.JSONTokener;
 
+                import org.allbinary.AndroidUtil;
                 import org.allbinary.animation.text.CustomTextAnimation;
                 import org.allbinary.game.identification.Group;
                 import org.allbinary.game.identification.GroupFactory;

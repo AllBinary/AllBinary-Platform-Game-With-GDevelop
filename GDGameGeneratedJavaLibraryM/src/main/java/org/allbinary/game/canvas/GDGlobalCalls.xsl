@@ -115,7 +115,8 @@
                             </xsl:if>
                             <xsl:if test="type = 'number'" >
                                 <xsl:if test="contains(name, 'speed')" >
-                        public int <xsl:value-of select="name" /> = <xsl:value-of select="value" /> * 3;
+                        //TWB - speed hack
+                        public int <xsl:value-of select="name" /> = <xsl:value-of select="value" /> * AndroidUtil.getInstance().isAndroid() ? 1 : 3;
                                 </xsl:if>
                                 <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'speed'))" >
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
@@ -174,7 +175,7 @@
                                 <xsl:if test="not(contains(name, 'scale'))" >
                                 <xsl:if test="contains(name, 'speed')" >
                         //TWB - speed hack
-                        this.<xsl:value-of select="name" /> = <xsl:value-of select="value" /> * 3;
+                        this.<xsl:value-of select="name" /> = <xsl:value-of select="value" /> * AndroidUtil.getInstance().isAndroid() ? 1 : 3;
                                 </xsl:if>
                                 <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'speed'))" >
                         this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
