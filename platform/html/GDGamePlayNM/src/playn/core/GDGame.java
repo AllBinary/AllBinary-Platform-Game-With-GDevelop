@@ -18,6 +18,8 @@ import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.audio.EarlySoundsFactory;
 import org.allbinary.media.audio.Sounds;
 import org.allbinary.game.init.DefaultGameInitializationListener;
+import org.allbinary.game.input.event.RawKeyEventHandler;
+import org.allbinary.logic.string.CommonLabels;
 import org.allbinary.media.audio.GDGameSoundsFactory;
 import org.allbinary.playn.input.PlayNToAllBinaryKeyInputUtil;
 
@@ -29,6 +31,7 @@ Pointer.Listener
 {
     private final int DEVICE_ID = 0;
     private final PlayNToAllBinaryKeyInputUtil playNToAllBinaryKeyInputUtil = PlayNToAllBinaryKeyInputUtil.getInstance();
+    private final RawKeyEventHandler rawKeyEventHandler = RawKeyEventHandler.getInstance();
     private AllMotionRecognizer motionRecognizer = new AllMotionRecognizer();
     
     public GDGame()
@@ -142,6 +145,12 @@ Pointer.Listener
     {
         //LogUtil.put(LogFactory.getInstance(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyDown"));
     
+        try {
+            rawKeyEventHandler.fireEvent(event.keyCode(), DEVICE_ID, true);
+        } catch(Exception e) {
+            LogUtil.put(LogFactory.getInstance(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyDown", e));
+        }
+        
         final Key key = event.key();        
         final int abKey = this.playNToAllBinaryKeyInputUtil.PLAYN_KEY_ORDINAL_TO_CANVAS_KEY[key.ordinal()];
         if(abKey != -1) {
