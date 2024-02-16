@@ -29,42 +29,6 @@
     </properties>
 
     <dependencies>         
-
-        <dependency>
-            <groupId>org.allbinary.game.resources</groupId>
-            <artifactId>AllBinaryGamesResourcesJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
-        </dependency>
-        
-        <dependency>
-            <groupId>org.allbinary.game.resources</groupId>
-            <artifactId>GameSoundsOggResourcesJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
-        </dependency>
-        
-        <!--
-        <dependency>
-            <groupId>org.allbinary.game.resources</groupId>
-            <artifactId>GameImageLowResourcesJavaLibrary</artifactId>
-            <version>${allbinary.platform.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.allbinary.game.resources</groupId>
-            <artifactId>GameImageMediumResourcesJavaLibrary</artifactId>
-            <version>${allbinary.platform.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.allbinary.game.resources</groupId>
-            <artifactId>GameOuyaImageResourcesJavaLibrary</artifactId>
-            <version>${allbinary.platform.version}</version>
-        </dependency>
-        -->
         
     </dependencies>
 
