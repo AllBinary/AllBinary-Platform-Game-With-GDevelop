@@ -20,6 +20,7 @@ import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.CommonLabels;
+import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.time.TimeDelayHelper;
 
 /**
@@ -458,7 +459,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                     
                     //LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.CONSTRUCTOR));
 
-                    LogUtil.put(LogFactory.getInstance(new StringMaker().append(index2).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+                    LogUtil.put(LogFactory.getInstance(new StringMaker().append(index).append(CommonSeps.getInstance().COMMA).append(index2).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
                 }
             }
 
