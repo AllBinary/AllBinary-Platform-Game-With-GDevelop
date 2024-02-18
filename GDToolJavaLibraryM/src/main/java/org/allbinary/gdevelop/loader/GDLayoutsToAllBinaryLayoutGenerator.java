@@ -53,11 +53,11 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             final StringMaker stringMaker = new StringMaker();
 
             final StreamUtil streamUtil = StreamUtil.getInstance();
-            final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
-            final byte[] byteArray = new byte[16384];
+            final SharedBytes sharedBytes = SharedBytes.getInstance();
+            sharedBytes.outputStream.reset();
             
             final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.GAME_XML_PATH);
-            String gameXmlAsString = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
+            String gameXmlAsString = new String(streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
             //final Replace replace2 = new Replace(".Width()", ".Width(globals.graphics)");
             final Replace replace2 = new Replace(".Width()", ".Width(null)");
             gameXmlAsString = replace2.all(gameXmlAsString);
@@ -151,9 +151,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             final int xslTotal0 = xslPathInputArray0.length;
             final String[] xslDocumentAsString0 = new String[xslTotal0];            
             for(int index = 0; index < xslTotal0; index++) {
-                outputStream.reset();
+                sharedBytes.outputStream.reset();
                 LogUtil.put(LogFactory.getInstance(xslPathInputArray0[index], this, commonStrings.PROCESS));
-                xslDocumentAsString0[index] = new String(streamUtil.getByteArray(new FileInputStream(xslPathInputArray0[index]), outputStream, byteArray));
+                xslDocumentAsString0[index] = new String(streamUtil.getByteArray(new FileInputStream(xslPathInputArray0[index]), sharedBytes.outputStream, sharedBytes.byteArray));
             }
             
             int startIndex = 0;
@@ -251,9 +251,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             final int xslTotal = xslPathInputArray.length;
             final String[] xslDocumentAsString = new String[xslTotal];            
             for(int index = 0; index < xslTotal; index++) {
-                outputStream.reset();
+                sharedBytes.outputStream.reset();
                 LogUtil.put(LogFactory.getInstance(xslPathInputArray[index], this, commonStrings.PROCESS));
-                xslDocumentAsString[index] = new String(streamUtil.getByteArray(new FileInputStream(xslPathInputArray[index]), outputStream, byteArray));
+                xslDocumentAsString[index] = new String(streamUtil.getByteArray(new FileInputStream(xslPathInputArray[index]), sharedBytes.outputStream, sharedBytes.byteArray));
             }
             
             final String[] START = {
@@ -483,9 +483,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             final int xslTotal2 = OUTPUT_FILE_PATHS.length;
             final String[] xslDocumentAsString2 = new String[xslTotal2];
             for(int index = 0; index < xslTotal2; index++) {
-                outputStream.reset();
+                sharedBytes.outputStream.reset();
                 LogUtil.put(LogFactory.getInstance(xslPathInputArray2[index], this, commonStrings.PROCESS));
-                xslDocumentAsString2[index] = new String(streamUtil.getByteArray(new FileInputStream(xslPathInputArray2[index]), outputStream, byteArray));
+                xslDocumentAsString2[index] = new String(streamUtil.getByteArray(new FileInputStream(xslPathInputArray2[index]), sharedBytes.outputStream, sharedBytes.byteArray));
             }
 
             //TWB - need to update to allow loading for every layout.

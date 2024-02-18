@@ -105,11 +105,11 @@ public class GDToAllBinaryResourcesGenerator
         
         final StringMaker stringMaker = new StringMaker();
         final StreamUtil streamUtil = StreamUtil.getInstance();
-        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
-        final byte[] byteArray = new byte[16384];
+        final SharedBytes sharedBytes = SharedBytes.getInstance();
+        sharedBytes.outputStream.reset();
         
         final FileInputStream fileInputStream = new FileInputStream(RESOURCE_ORIGINAL);        
-        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
+        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
         
         final String INDENT = "        ";
         final String JSON = ".json";

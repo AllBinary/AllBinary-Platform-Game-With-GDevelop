@@ -72,11 +72,11 @@ public class GDToAndroidResourcesGradleGenerator
         final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
         final StringMaker stringMaker = new StringMaker();        
         final StreamUtil streamUtil = StreamUtil.getInstance();
-        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
-        final byte[] byteArray = new byte[16384];
+        final SharedBytes sharedBytes = SharedBytes.getInstance();
+        sharedBytes.outputStream.reset();
         
         final FileInputStream fileInputStream = new FileInputStream(RESOURCE_ORIGINAL);        
-        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
+        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
         final Replace replace2 = new Replace(GD_KEY_NAME, camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase());
         final String newFileAsString2 = replace2.all(androidRFileAsString);

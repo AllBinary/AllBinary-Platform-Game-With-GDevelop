@@ -36,19 +36,19 @@ public class GDGetTotalLayouts
         try
         {
             final StreamUtil streamUtil = StreamUtil.getInstance();
-            final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
-            final byte[] byteArray = new byte[16384];
+            final SharedBytes sharedBytes = SharedBytes.getInstance();
+            sharedBytes.outputStream.reset();
 
             final StringMaker stringMaker = new StringMaker();
             
             final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.GAME_XML_PATH);
-            final String gameXmlAsString = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
+            final String gameXmlAsString = new String(streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
             final String xslPath = gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutCount.xsl";
             LogUtil.put(LogFactory.getInstance(xslPath, this, commonStrings.PROCESS));
             final FileInputStream fileInputStream = new FileInputStream(xslPath);
-            outputStream.reset();
-            final String xslAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
+            sharedBytes.outputStream.reset();
+            final String xslAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
             final String result = this.xslHelper.translate(new BasicUriResolver(),
                     new StreamSource(new StringBufferInputStream(xslAsString)),

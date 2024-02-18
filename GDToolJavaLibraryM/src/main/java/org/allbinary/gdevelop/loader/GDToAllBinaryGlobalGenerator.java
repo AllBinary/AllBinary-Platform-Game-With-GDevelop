@@ -74,11 +74,11 @@ public class GDToAllBinaryGlobalGenerator
         //final String MIDLET_XML = gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.xml";
         
         final StreamUtil streamUtil = StreamUtil.getInstance();
-        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
-        final byte[] byteArray = new byte[16384];
+        final SharedBytes sharedBytes = SharedBytes.getInstance();
+        sharedBytes.outputStream.reset();
 
         final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.GAME_XML_PATH);
-        final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
+        final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
         
         final String[] xslPathInputArray = {
             gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.xsl",
@@ -117,8 +117,8 @@ public class GDToAllBinaryGlobalGenerator
         {
             LogUtil.put(LogFactory.getInstance(xslPathInputArray[index2], this, commonStrings.PROCESS));
             final InputStream fileInputStream = new FileInputStream(xslPathInputArray[index2]);
-            outputStream.reset();
-            final String xslFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
+            sharedBytes.outputStream.reset();
+            final String xslFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
             final String newFileAsString = xslFileAsString;
             final String updatedXslDocumentStr = newFileAsString;

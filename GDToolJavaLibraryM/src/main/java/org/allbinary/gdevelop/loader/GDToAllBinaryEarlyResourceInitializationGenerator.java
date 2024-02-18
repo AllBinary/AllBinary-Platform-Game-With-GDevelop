@@ -64,12 +64,12 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
         this.appendMedia(stringMaker);
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
-        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
-        final byte[] byteArray = new byte[16384];
+        final SharedBytes sharedBytes = SharedBytes.getInstance();
+        sharedBytes.outputStream.reset();
 
         final FileInputStream fileInputStream = new FileInputStream(RESOURCE_INITIALIZATION_ORIGINAL);
         
-        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
+        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
         final Replace replace = new Replace(GD_KEY, stringMaker.toString());
         final String newFileAsString = replace.all(androidRFileAsString);

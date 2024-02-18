@@ -40,11 +40,11 @@ public class GDNameFileGenerator extends GDNameGenerator
         final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
         final StringMaker stringMaker = new StringMaker();
         final StreamUtil streamUtil = StreamUtil.getInstance();
-        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
-        final byte[] byteArray = new byte[16384];
+        final SharedBytes sharedBytes = SharedBytes.getInstance();
+        sharedBytes.outputStream.reset();
 
         final FileInputStream fileInputStream = new FileInputStream(this.originalFilePath);
-        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
+        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
         final Replace replace = new Replace(GD_KEY, camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase());
         final String newFileAsString = replace.all(androidRFileAsString);
 

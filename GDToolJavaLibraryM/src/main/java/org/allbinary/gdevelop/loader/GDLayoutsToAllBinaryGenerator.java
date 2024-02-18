@@ -78,19 +78,19 @@ public class GDLayoutsToAllBinaryGenerator
             final StringMaker stringMaker = new StringMaker();
             
             final StreamUtil streamUtil = StreamUtil.getInstance();
-            final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
-            final byte[] byteArray = new byte[16384];
+            final SharedBytes sharedBytes = SharedBytes.getInstance();
+            sharedBytes.outputStream.reset();
 
             final String xslPath = gdToolStrings.ROOT_PATH + this.xslPath;
             LogUtil.put(LogFactory.getInstance(xslPath, this, commonStrings.PROCESS));
             
             final InputStream inputStream = new FileInputStream(xslPath);
-            final String xslDocumentStr = new String(streamUtil.getByteArray(inputStream, outputStream, byteArray));
+            final String xslDocumentStr = new String(streamUtil.getByteArray(inputStream, sharedBytes.outputStream, sharedBytes.byteArray));
             
             final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.GAME_XML_PATH);
             
-            outputStream.reset();
-            final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
+            sharedBytes.outputStream.reset();
+            final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
             //final Replace replace2 = new Replace(".Width()", ".Width(graphics)");
             //xmlDocumentStr = replace2.all(xmlDocumentStr);

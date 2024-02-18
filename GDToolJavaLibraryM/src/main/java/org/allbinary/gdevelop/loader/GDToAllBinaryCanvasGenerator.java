@@ -77,11 +77,11 @@ public class GDToAllBinaryCanvasGenerator extends Processor
         final String CANVAS = stringMaker.append(gdToolStrings.ROOT_PATH + this.path).append(this.className).append(".java").toString();
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
-        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
-        final byte[] byteArray = new byte[16384];
-
+        final SharedBytes sharedBytes = SharedBytes.getInstance();
+        sharedBytes.outputStream.reset();
+        
         final FileInputStream fileInputStream = new FileInputStream(this.orig);        
-        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
+        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
         
         final Replace replace = new Replace(GD_LAYOUT, this.name);
         final Replace replace2 = new Replace(GD_CURRENT_LAYOUT_INDEX, Integer.toString(this.index));
@@ -90,8 +90,8 @@ public class GDToAllBinaryCanvasGenerator extends Processor
         updatedXslDocumentStr = replace2.all(updatedXslDocumentStr);
 
         final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.GAME_XML_PATH);
-        outputStream.reset();
-        final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
+        sharedBytes.outputStream.reset();
+        final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
         final String result = this.xslHelper.translate(new BasicUriResolver(),
                 new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),

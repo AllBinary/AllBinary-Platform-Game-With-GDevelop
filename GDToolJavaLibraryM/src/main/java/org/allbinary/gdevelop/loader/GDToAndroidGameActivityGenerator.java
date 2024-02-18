@@ -46,11 +46,11 @@ public class GDToAndroidGameActivityGenerator extends GDNameGenerator
         final String R = stringMaker.append("\\GDGameAndroidActivity.java").toString();
         
         final StreamUtil streamUtil = StreamUtil.getInstance();
-        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
-        final byte[] byteArray = new byte[16384];
+        final SharedBytes sharedBytes = SharedBytes.getInstance();
+        sharedBytes.outputStream.reset();
 
         final FileInputStream fileInputStream = new FileInputStream(R_ORIGINAL);        
-        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
+        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
         final Replace replace = new Replace(GD_KEY, name);
         final String newFileAsString = replace.all(androidRFileAsString);
 

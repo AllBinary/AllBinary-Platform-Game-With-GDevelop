@@ -41,8 +41,8 @@ public class GDTestLoadAll
     {
         final CommonStrings commonStrings = CommonStrings.getInstance();
         final StreamUtil streamUtil = StreamUtil.getInstance();
-        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
-        final byte[] byteArray = new byte[16384];
+        final SharedBytes sharedBytes = SharedBytes.getInstance();
+        sharedBytes.outputStream.reset();
 
         final StringMaker stringMaker = new StringMaker();
         
@@ -67,8 +67,8 @@ public class GDTestLoadAll
                 LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + jsonFileName, this, commonStrings.PROCESS));
 
                 final FileInputStream inputStream = new FileInputStream(jsonFileName);
-                outputStream.reset();
-                final String gameAsConfiguration = new String(streamUtil.getByteArray(inputStream, outputStream, byteArray));
+                sharedBytes.outputStream.reset();
+                final String gameAsConfiguration = new String(streamUtil.getByteArray(inputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
                 final JSONTokener jsonTokener = new JSONTokener(gameAsConfiguration);
                 final JSONObject gameAsConfigurationJSONObject = (JSONObject) jsonTokener.nextValue();

@@ -120,13 +120,13 @@ public class GDToAllBinaryGenerationTool
         timeDelayHelper.setStartTime();
         
         final StreamUtil streamUtil = StreamUtil.getInstance();
-        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
-        final byte[] byteArray = new byte[16384];
+        final SharedBytes sharedBytes = SharedBytes.getInstance();
+        sharedBytes.outputStream.reset();
 
         final StringMaker stringMaker = new StringMaker();
         
         final FileInputStream inputStream = new FileInputStream(gdToolStrings.ROOT_PATH + "game.json");
-        final String gameAsConfiguration = new String(streamUtil.getByteArray(inputStream, outputStream, byteArray));
+        final String gameAsConfiguration = new String(streamUtil.getByteArray(inputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
         final JSONTokener jsonTokener = new JSONTokener(gameAsConfiguration);
         final JSONObject gameAsConfigurationJSONObject = (JSONObject) jsonTokener.nextValue();
