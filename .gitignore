@@ -16,6 +16,7 @@ game.xml
 game.json
 R.java
 PlatformAssetManager.java
+GDGameSoftwareInfo.java
 GD*GamePlaynResources.java
 *GameCameraSetup.java
 *ThreedLevelBuilder.java
@@ -32,9 +33,6 @@ GDCustomCollidableBehavior.java
 GDCustomMaskCollidableBehavior.java
 GD*GameMusicFactory.java
 GD*GameSoundsFactory.java
-GD0GameSoundsFactory.java
-GD1GameSoundsFactory.java
-GD2GameSoundsFactory.java
 GDGame*LevelBuilder.java
 GDGame*Canvas.java
 *GDObjectsFactory*.java
