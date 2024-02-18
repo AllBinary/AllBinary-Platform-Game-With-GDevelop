@@ -44,7 +44,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
     {
     }
 
-    public void process(int size)
+    public void process(final int size)
     {
         try
         {
@@ -155,10 +155,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 LogUtil.put(LogFactory.getInstance(xslPathInputArray0[index], this, commonStrings.PROCESS));
                 xslDocumentAsString0[index] = new String(streamUtil.getByteArray(new FileInputStream(xslPathInputArray0[index]), sharedBytes.outputStream, sharedBytes.byteArray));
             }
-            
-            int startIndex = 0;
                             
-            for (int index2 = startIndex; index2 < xslTotal0; index2++) {
+            for (int index2 = 0; index2 < xslTotal0; index2++) {
 
                 timeDelayHelper.setStartTime();
 
@@ -310,16 +308,20 @@ public class GDLayoutsToAllBinaryLayoutGenerator
 
             };
             
-            startIndex = 0;
-            
             String indexAsString;
             for (int index = 0; index < size; index++)
             {
+                //stringMaker.delete(0, stringMaker.length());
+                //LogUtil.put(LogFactory.getInstance(stringMaker.append("layout:").append(index).toString(), this, commonStrings.PROCESS));
+                
                 indexAsString = Integer.toString(index);
                 final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, indexAsString);
                 
-                for(int index2 = startIndex; index2 < xslTotal; index2++) {
+                for(int index2 = 0; index2 < xslTotal; index2++) {
 
+                    //stringMaker.delete(0, stringMaker.length());
+                    //LogUtil.put(LogFactory.getInstance(stringMaker.append("xslt:").append(index2).toString(), this, commonStrings.PROCESS));
+                    
                     timeDelayHelper.setStartTime();
 
                     //LogUtil.put(LogFactory.getInstance("xsl index: " + index2, this, commonStrings.PROCESS));
@@ -341,7 +343,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                     LogUtil.put(LogFactory.getInstance(stringMaker.append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, commonStrings.PROCESS));
 
                     if(index2 == 0) {
-                        LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.PROCESS));
+                        stringMaker.delete(0, stringMaker.length());
+                        LogUtil.put(LogFactory.getInstance(stringMaker.append(RESULT).append(result).toString(), this, commonStrings.PROCESS));
                         stringMaker.delete(0, stringMaker.length());
                         final String formattedXml = XmlDocumentHelper.getInstance().format(stringMaker.append(GAME_START).append(result).append(GAME_END).toString());
                         this.bufferedWriterUtil.overwrite(fileName, formattedXml);
@@ -351,10 +354,6 @@ public class GDLayoutsToAllBinaryLayoutGenerator
 
                     stringMaker.delete(0, stringMaker.length());                    
                     LogUtil.put(LogFactory.getInstance(stringMaker.append(index).append(CommonSeps.getInstance().COMMA).append(index2).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
-                }
-
-                if(startIndex == 0) {
-                    startIndex = 1;
                 }
 
             }

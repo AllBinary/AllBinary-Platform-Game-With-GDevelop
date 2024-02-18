@@ -476,6 +476,7 @@ Created By: Travis Berthelot
 
                         builder.build();
 
+                        globals.highscoreSubmissionComplete = false;
                         clear = false;
                     }
                     

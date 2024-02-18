@@ -16,6 +16,7 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
+    <xsl:import href="./condition/GDLeaderboardsIsLeaderboardViewLoadedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDTextContainerCapabilityTextContainerBehaviorValueConditionGDNode.xsl" />
     <xsl:import href="./condition/GDOnceConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAlwaysConditionGDNode.xsl" />
@@ -83,6 +84,12 @@ Created By: Travis Berthelot
                 <xsl:variable name="conditionNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                 //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
 
+                <xsl:if test="$typeValue = 'Leaderboards::IsLeaderboardViewLoaded'" >
+                    
+                    <xsl:call-template name="leaderboardsIsLeaderboardViewLoadedConditionGDNode" />
+                    
+                </xsl:if>
+                
                 <xsl:if test="$typeValue = 'TextContainerCapability::TextContainerBehavior::Value'" >
 
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED

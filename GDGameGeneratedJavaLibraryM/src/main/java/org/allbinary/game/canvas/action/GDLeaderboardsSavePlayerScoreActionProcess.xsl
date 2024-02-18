@@ -199,9 +199,15 @@ Created By: Travis Berthelot
                                 final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                 final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
                                 final String name = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                                HighScoreNamePersistanceSingleton.getInstance().save(name);
-        
+                                
                                 LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + name, this, commonStrings.PROCESS));
+                                
+                                class SaveHighScoreRunnable implements Runnable {
+
+                                    public void run() {
+                                        try {
+
+                                HighScoreNamePersistanceSingleton.getInstance().save(name);
 
                                 final HighScores[] highScoresArray = abCanvas.getHighScoresArray();
                                 final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
@@ -209,6 +215,16 @@ Created By: Travis Berthelot
                                 highScoreUtil.update(name);
                                 highScoreUtil.saveHighScore();
                                 highScoreUtil.submit(abCanvas);
+                                
+                                globals.highscoreSubmissionComplete = true;
+    
+                                        } catch (Exception e) {
+                                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.RUN, e));
+                                        }
+                                    }
+                                }
+
+                                SecondaryThreadPool.getInstance().runTask(new SaveHighScoreRunnable());
 
                             } catch(Exception e) {
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));

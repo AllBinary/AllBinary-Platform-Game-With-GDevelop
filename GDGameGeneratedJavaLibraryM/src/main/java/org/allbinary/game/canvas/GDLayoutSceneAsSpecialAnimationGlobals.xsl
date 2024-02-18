@@ -141,6 +141,8 @@ Created By: Travis Berthelot
                         
                         private final GDNodes gdNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />);
 
+                        public boolean highscoreSubmissionComplete = false;
+                        
 public class GDStructure {
 
     public int Size = -1;
