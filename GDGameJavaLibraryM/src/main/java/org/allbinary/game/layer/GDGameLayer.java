@@ -20,6 +20,7 @@ import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.RotationAnimation;
+import org.allbinary.animation.text.CustomTextBoxIndexedAnimation;
 import org.allbinary.canvas.Processor;
 import org.allbinary.game.combat.CombatBaseBehavior;
 import org.allbinary.game.combat.damage.DamageableBaseBehavior;
@@ -684,6 +685,10 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
 //    public int c;
 //    public int r;
+    
+    public String Text() {
+        return ((CustomTextBoxIndexedAnimation) this.initIndexedAnimationInterfaceArray[0]).Text();
+    }
     
     public void toString(final StringMaker stringBuffer) {
 

@@ -54,6 +54,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDSetAngleActionProcess.xsl" />
     <xsl:import href="./action/GDChangePlanActionProcess.xsl" />
     <xsl:import href="./action/GDChangeColorActionProcess.xsl" />
+    <xsl:import href="./action/GDLeaderboardsSavePlayerScoreActionProcess.xsl" />
     <xsl:import href="./action/GDSceneActionProcess.xsl" />
     <xsl:import href="./action/GDMettreXActionProcess.xsl" />
     <xsl:import href="./action/GDMettreYActionProcess.xsl" />
@@ -1359,6 +1360,16 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'TopDownMovementBehavior::TopDownMovementBehavior::SetVelocityY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>                    
+                <xsl:if test="$typeValue = 'Leaderboards::SavePlayerScore'" >
+                    <xsl:call-template name="leaderboardsSavePlayerScoreActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                </xsl:if>
+                <xsl:if test="$typeValue = 'Leaderboards::DisplayLeaderboard'" >
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
 
                             <xsl:for-each select="../conditions" >
                                 <xsl:variable name="typeValue" select="type/value" />

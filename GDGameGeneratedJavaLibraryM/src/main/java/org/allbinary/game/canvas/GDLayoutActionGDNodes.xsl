@@ -77,6 +77,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.commands.GameCommandsFactory;
                 import org.allbinary.game.GDGameCommandFactory;
+                import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
                 import org.allbinary.game.input.GameInputProcessor;
                 import org.allbinary.game.input.InputFactory;
                 import org.allbinary.game.input.event.GameKeyEvent;
@@ -94,6 +95,10 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDPrimitiveDrawingAnimationFactory;
                 import org.allbinary.game.layer.GDRectOnlyPrimitiveDrawingAnimationFactory;
                 import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.game.score.HighScore;
+                import org.allbinary.game.score.HighScoreNamePersistanceSingleton;
+                import org.allbinary.game.score.HighScores;
+                import org.allbinary.game.score.displayable.HighScoreUtil;
                 import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.PointFactory;

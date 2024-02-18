@@ -46,4 +46,7 @@ public class CustomTextBoxIndexedAnimation extends IndexedAnimation {
 
     }    
     
+    public String Text() {
+        return this.customTextBox.getTextFieldItem().getString();
+    }
 }
