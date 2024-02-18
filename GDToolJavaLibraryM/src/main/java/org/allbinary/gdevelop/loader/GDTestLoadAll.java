@@ -39,7 +39,7 @@ public class GDTestLoadAll
 
     public void process() throws Exception
     {
-
+        final CommonStrings commonStrings = CommonStrings.getInstance();
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
         final byte[] byteArray = new byte[16384];
@@ -64,7 +64,7 @@ public class GDTestLoadAll
             abFile = ((AbFile) files[index]);
             jsonFileName = abFile.getAbsolutePath();
             if(!abFile.isDirectory() && jsonFileName.indexOf(".git") < 0) {
-                LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + jsonFileName, this, CommonStrings.getInstance().CONSTRUCTOR));
+                LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + jsonFileName, this, commonStrings.PROCESS));
 
                 final FileInputStream inputStream = new FileInputStream(jsonFileName);
                 outputStream.reset();
@@ -82,12 +82,12 @@ public class GDTestLoadAll
                 fixQuotes = replace2.all(fixQuotes);
                 
                 if(gameAsConfigurationJSONObject.has(GDProjectStrings.getInstance().TYPE) && gameAsConfigurationJSONObject.getString(GDProjectStrings.getInstance().TYPE).compareTo("map") == 0) {
-                    LogUtil.put(LogFactory.getInstance("Was a map and not a game", this, CommonStrings.getInstance().CONSTRUCTOR, new Exception()));
+                    LogUtil.put(LogFactory.getInstance("Was a map and not a game", this, commonStrings.PROCESS, new Exception()));
                     break;
                 }
 
                 //final String fileName = gdToolStrings.GAME_XML_PATH;
-                //LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
+                //LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS));
                 //this.bufferedWriterUtil.overwrite(fileName, fixQuotes);
                 //this.bufferedWriterUtil.overwrite(fileName, xml);
                 final GDProject gdProject = new GDProject();

@@ -44,7 +44,7 @@ public class GDToThreedAndroidResourceStringsXmlGenerator extends GDNameFileGene
         final Replace replace = new Replace(GD_KEY, this.name);
         final String newFileAsString = replace.all(androidRFileAsString);
 
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + this.newFilePath, this, CommonStrings.getInstance().CONSTRUCTOR));
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + this.newFilePath, this, commonStrings.PROCESS));
         
         this.bufferedWriterUtil.overwrite(this.newFilePath, newFileAsString);
     }

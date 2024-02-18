@@ -157,7 +157,7 @@ public class GDToAllBinaryResourcesGenerator
         final String newFileAsString = replace.all(androidRFileAsString);
 
         stringMaker.delete(0, stringMaker.length());
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE, this, CommonStrings.getInstance().CONSTRUCTOR));
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE, this, commonStrings.PROCESS));
         
         this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
         

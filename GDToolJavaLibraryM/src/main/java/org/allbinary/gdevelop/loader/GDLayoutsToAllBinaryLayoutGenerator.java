@@ -175,12 +175,12 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 stringMaker.delete(0, stringMaker.length());
                 String fileName = fileName = stringMaker.append(START0[index2]).append(END0[index2]).toString();
 
-                //LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.CONSTRUCTOR));
+                //LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.PROCESS));
                 stringMaker.delete(0, stringMaker.length());
-                LogUtil.put(LogFactory.getInstance(stringMaker.append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, commonStrings.CONSTRUCTOR));
+                LogUtil.put(LogFactory.getInstance(stringMaker.append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, commonStrings.PROCESS));
 
                 if (index2 == 0) {
-                    LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.CONSTRUCTOR));
+                    LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.PROCESS));
                     stringMaker.delete(0, stringMaker.length());
                     final String formattedXml = XmlDocumentHelper.getInstance().format(stringMaker.append(GAME_START).append(result).append(GAME_END).toString());
                     this.bufferedWriterUtil.overwrite(fileName, formattedXml);
@@ -335,13 +335,13 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                     stringMaker.delete(0, stringMaker.length());
                     String fileName = stringMaker.append(START[index2]).append(indexAsString).append(END[index2]).toString();
 
-                    //LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.CONSTRUCTOR));
+                    //LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.PROCESS));
                     
                     stringMaker.delete(0, stringMaker.length());
-                    LogUtil.put(LogFactory.getInstance(stringMaker.append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, commonStrings.CONSTRUCTOR));
+                    LogUtil.put(LogFactory.getInstance(stringMaker.append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, commonStrings.PROCESS));
 
                     if(index2 == 0) {
-                        LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.CONSTRUCTOR));
+                        LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.PROCESS));
                         stringMaker.delete(0, stringMaker.length());
                         final String formattedXml = XmlDocumentHelper.getInstance().format(stringMaker.append(GAME_START).append(result).append(GAME_END).toString());
                         this.bufferedWriterUtil.overwrite(fileName, formattedXml);
@@ -518,7 +518,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                     
                     this.bufferedWriterUtil.overwrite(outputFilePath, result);
                     
-                    //LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.CONSTRUCTOR));
+                    //LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.PROCESS));
 
                     stringMaker.delete(0, stringMaker.length());
                     LogUtil.put(LogFactory.getInstance(stringMaker.append(index).append(CommonSeps.getInstance().COMMA).append(index2).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));

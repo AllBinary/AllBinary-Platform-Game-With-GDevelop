@@ -123,16 +123,16 @@ public class GDToAllBinaryGlobalGenerator
             final String newFileAsString = xslFileAsString;
             final String updatedXslDocumentStr = newFileAsString;
 
-            LogUtil.put(LogFactory.getInstance(updatedXslDocumentStr, this, commonStrings.CONSTRUCTOR));
+            LogUtil.put(LogFactory.getInstance(updatedXslDocumentStr, this, commonStrings.PROCESS));
             //this.bufferedWriterUtil.overwrite(MIDLET_REPLACED, updatedXslDocumentStr);
 
-            //LogUtil.put(LogFactory.getInstance(xmlDocumentStr, this, commonStrings.CONSTRUCTOR));
+            //LogUtil.put(LogFactory.getInstance(xmlDocumentStr, this, commonStrings.PROCESS));
             //this.bufferedWriterUtil.overwrite(MIDLET_XML, xmlDocumentStr);
             final String result = this.xslHelper.translate(new BasicUriResolver(),
                     new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
                     new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
 
-            LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + outputArray[index2], this, this.commonStrings.CONSTRUCTOR));
+            LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + outputArray[index2], this, this.commonStrings.PROCESS));
             this.bufferedWriterUtil.overwrite(outputArray[index2], result);
         }
         
