@@ -39,24 +39,24 @@ public class GDToAllBinaryGlobalGenerator
 
     private final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
     
-    private final StringMaker stringBuilder = new StringMaker();
+    private final StringMaker stringMaker = new StringMaker();
     
     private BasicArrayList layoutNameList = new BasicArrayList();
     private BasicArrayList nameList = new BasicArrayList();
     private BasicArrayList classNameList = new BasicArrayList();
     
     public void loadLayout(final GDLayout layout, final int index, final int size) throws Exception {
-        final String name = this.camelCaseUtil.getAsCamelCase(layout.name, stringBuilder);
+        final String name = this.camelCaseUtil.getAsCamelCase(layout.name, stringMaker);
         
         //LogUtil.put(LogFactory.getInstance(name, this, "loadLayout"));
         
-        stringBuilder.delete(0, stringBuilder.length());
+        stringMaker.delete(0, stringMaker.length());
         
         String className;
 //        if(index == 1) {
-            className = stringBuilder.append("GDGame").append(name).append("Canvas").toString();
+            className = stringMaker.append("GDGame").append(name).append("Canvas").toString();
 //        } else {
-//            className = stringBuilder.append("GDGameStart").append(name).append("Canvas").toString();
+//            className = stringMaker.append("GDGameStart").append(name).append("Canvas").toString();
 //        }
         
         LogUtil.put(LogFactory.getInstance(className, this, "loadLayout"));
@@ -136,8 +136,8 @@ public class GDToAllBinaryGlobalGenerator
             this.bufferedWriterUtil.overwrite(outputArray[index2], result);
         }
         
-        stringBuilder.delete(0, stringBuilder.length());
-        LogUtil.put(LogFactory.getInstance(stringBuilder.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+        stringMaker.delete(0, stringMaker.length());
+        LogUtil.put(LogFactory.getInstance(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
     }
     
 }

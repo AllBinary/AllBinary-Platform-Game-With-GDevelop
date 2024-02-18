@@ -29,7 +29,7 @@ public class GDToThreedAndroidResourcesGradleGenerator
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
     
-    private final StringMaker resourceStringBuilder = new StringMaker();
+    private final StringMaker resourceStringMaker = new StringMaker();
     
     private final String GD_KEY = "//GD";
             
@@ -45,8 +45,8 @@ public class GDToThreedAndroidResourcesGradleGenerator
     private String packageName;
     
     public GDToThreedAndroidResourcesGradleGenerator() {
-        resourceStringBuilder.append(GD_KEY);
-        resourceStringBuilder.append('\n');
+        resourceStringMaker.append(GD_KEY);
+        resourceStringMaker.append('\n');
     }
     
     public void process(final GDProject gdProject) {
@@ -66,21 +66,21 @@ public class GDToThreedAndroidResourcesGradleGenerator
             isThreed = false;
         }
         
-        resourceStringBuilder.append(this.PUBLIC_FINAL_STRING);
-        resourceStringBuilder.append(resource);
+        resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
+        resourceStringMaker.append(resource);
         
         if(isThreed) {
-            resourceStringBuilder.append(this._OBJ);
+            resourceStringMaker.append(this._OBJ);
         }
         
-        resourceStringBuilder.append(this.VALUE_RESOURCE_START);
-        resourceStringBuilder.append(resource);
+        resourceStringMaker.append(this.VALUE_RESOURCE_START);
+        resourceStringMaker.append(resource);
         
         if(isThreed) {
-            resourceStringBuilder.append(this._OBJ);
+            resourceStringMaker.append(this._OBJ);
         }
         
-        resourceStringBuilder.append(this.VALUE_RESOURCE_END);
+        resourceStringMaker.append(this.VALUE_RESOURCE_END);
     }
     
     public void process() throws Exception {
@@ -106,15 +106,15 @@ public class GDToThreedAndroidResourcesGradleGenerator
             
             resource = (String) this.gdResources.playSoundAndroidResourceNameList.get(index);
             
-            resourceStringBuilder.append('\n');
-            resourceStringBuilder.append(this.PUBLIC_FINAL_STRING);
-            resourceStringBuilder.append(resource);
-            resourceStringBuilder.append(this.VALUE_RESOURCE_START);
-            resourceStringBuilder.append(resource);
-            resourceStringBuilder.append(this.VALUE_RESOURCE_END);
+            resourceStringMaker.append('\n');
+            resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
+            resourceStringMaker.append(resource);
+            resourceStringMaker.append(this.VALUE_RESOURCE_START);
+            resourceStringMaker.append(resource);
+            resourceStringMaker.append(this.VALUE_RESOURCE_END);
         }
 
-        final Replace replace = new Replace(GD_KEY, this.resourceStringBuilder.toString());
+        final Replace replace = new Replace(GD_KEY, this.resourceStringMaker.toString());
         final String newFileAsString = replace.all(newFileAsString2);
 
         LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE, this, commonStrings.PROCESS));

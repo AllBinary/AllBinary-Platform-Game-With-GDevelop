@@ -26,7 +26,7 @@ public class GDToAndroidRClassGenerator
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
-    private final StringMaker androidRFileStringBuilder = new StringMaker();
+    private final StringMaker androidRFileStringMaker = new StringMaker();
 
     final String GD_KEY = "//GD";
     
@@ -41,8 +41,8 @@ public class GDToAndroidRClassGenerator
     private final String SKIPPING = "Skipping: ";
     
     public GDToAndroidRClassGenerator() {
-        androidRFileStringBuilder.append(GD_KEY);
-        androidRFileStringBuilder.append('\n');
+        androidRFileStringMaker.append(GD_KEY);
+        androidRFileStringMaker.append('\n');
     }
     
     public void processResource(final String fileAsString) {
@@ -52,22 +52,22 @@ public class GDToAndroidRClassGenerator
             return;
         }
         
-        androidRFileStringBuilder.append(RESOURCE);
-        androidRFileStringBuilder.append(PUBLIC_STATIC_FINAL_INT);
-        androidRFileStringBuilder.append(fileAsString);
-        androidRFileStringBuilder.append(VALUE);
-        androidRFileStringBuilder.append('\n');
-        androidRFileStringBuilder.append(PUBLIC_STATIC_FINAL_INT);
-        androidRFileStringBuilder.append(fileAsString);
-        androidRFileStringBuilder.append(_OBJ);
-        androidRFileStringBuilder.append(VALUE);
+        androidRFileStringMaker.append(RESOURCE);
+        androidRFileStringMaker.append(PUBLIC_STATIC_FINAL_INT);
+        androidRFileStringMaker.append(fileAsString);
+        androidRFileStringMaker.append(VALUE);
+        androidRFileStringMaker.append('\n');
+        androidRFileStringMaker.append(PUBLIC_STATIC_FINAL_INT);
+        androidRFileStringMaker.append(fileAsString);
+        androidRFileStringMaker.append(_OBJ);
+        androidRFileStringMaker.append(VALUE);
     }
     
     public void processExpressionParam(final String param) {
-        androidRFileStringBuilder.append(EXPRESSION_PARAM);
-        androidRFileStringBuilder.append(PUBLIC_STATIC_FINAL_INT);
-        androidRFileStringBuilder.append(param);
-        androidRFileStringBuilder.append(VALUE);
+        androidRFileStringMaker.append(EXPRESSION_PARAM);
+        androidRFileStringMaker.append(PUBLIC_STATIC_FINAL_INT);
+        androidRFileStringMaker.append(param);
+        androidRFileStringMaker.append(VALUE);
     }
 
     public void process() throws Exception {
@@ -81,7 +81,7 @@ public class GDToAndroidRClassGenerator
 
         final FileInputStream fileInputStream = new FileInputStream(R_ORIGINAL);        
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
-        final Replace replace = new Replace(GD_KEY, androidRFileStringBuilder.toString());
+        final Replace replace = new Replace(GD_KEY, androidRFileStringMaker.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
         LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + R, this, commonStrings.PROCESS));

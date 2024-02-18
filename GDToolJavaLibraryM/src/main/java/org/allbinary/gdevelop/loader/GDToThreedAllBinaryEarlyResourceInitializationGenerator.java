@@ -53,9 +53,9 @@ public class GDToThreedAllBinaryEarlyResourceInitializationGenerator
         final String RESOURCE_INITIALIZATION_ORIGINAL = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDGameAndroidEarlyResourceInitialization.origin";
         final String RESOURCE_INITIALIZATION = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDGameAndroidEarlyResourceInitialization.java";
         
-        final StringMaker stringBuilder = new StringMaker();
+        final StringMaker stringMaker = new StringMaker();
 
-        this.appendSounds(soundsGenerator, stringBuilder);
+        this.appendSounds(soundsGenerator, stringMaker);
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
@@ -65,7 +65,7 @@ public class GDToThreedAllBinaryEarlyResourceInitializationGenerator
         
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
 
-        final Replace replace = new Replace(GD_KEY, stringBuilder.toString());
+        final Replace replace = new Replace(GD_KEY, stringMaker.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
         LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE_INITIALIZATION, this, commonStrings.PROCESS));
@@ -74,19 +74,19 @@ public class GDToThreedAllBinaryEarlyResourceInitializationGenerator
 
     }
     
-    public void appendSounds(final GDToAllBinarySoundsGenerator soundsGenerator, final StringMaker stringBuilder) {
+    public void appendSounds(final GDToAllBinarySoundsGenerator soundsGenerator, final StringMaker stringMaker) {
         final BasicArrayList playSoundResourceClassNameList = soundsGenerator.playSoundResourceClassNameList;
         final BasicArrayList playSoundAndroidResourceNameList = this.gdResources.playSoundAndroidResourceNameList;
         
         int size = playSoundResourceClassNameList.size();
         for(int index = 0; index < size; index++) {
-            stringBuilder.append(RESOURCE_0);
-            stringBuilder.append(playSoundResourceClassNameList.get(index));
-            stringBuilder.append(SOUND_RESOURCE);
-            stringBuilder.append(RESOURCE_1);
-            stringBuilder.append(playSoundAndroidResourceNameList.get(index));
-            stringBuilder.append(RESOURCE_2);
-            stringBuilder.append('\n');
+            stringMaker.append(RESOURCE_0);
+            stringMaker.append(playSoundResourceClassNameList.get(index));
+            stringMaker.append(SOUND_RESOURCE);
+            stringMaker.append(RESOURCE_1);
+            stringMaker.append(playSoundAndroidResourceNameList.get(index));
+            stringMaker.append(RESOURCE_2);
+            stringMaker.append('\n');
         }        
     }
     

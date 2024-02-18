@@ -92,28 +92,28 @@ public class GDToAllBinarySoundsGenerator
         
         LogUtil.put(LogFactory.getInstance("Sound Total: " + size, this, commonStrings.PROCESS));
         
-        final StringMaker stringBuilder = new StringMaker();
+        final StringMaker stringMaker = new StringMaker();
         
         for(int index = 0; index < size; index++) {
-            final String name = this.camelCaseUtil.getAsCamelCase((String) this.gdResources.playSoundAndroidResourceNameList.get(index), stringBuilder);
+            final String name = this.camelCaseUtil.getAsCamelCase((String) this.gdResources.playSoundAndroidResourceNameList.get(index), stringMaker);
             final Replace replace = new Replace(GD_NAME, name);
             String newFileAsString = replace.all(androidRFileAsString);
             final Replace replace2 = new Replace(GD_FILE_NAME, (String) this.gdResources.playSoundAndroidResourceNameList.get(index));
             newFileAsString = replace2.all(newFileAsString);
 
-            stringBuilder.delete(0, stringBuilder.length());
-            stringBuilder.append(GD).append(name).append(SOUND);
+            stringMaker.delete(0, stringMaker.length());
+            stringMaker.append(GD).append(name).append(SOUND);
             
-            playSoundResourceClassNameList.add(stringBuilder.toString());
+            playSoundResourceClassNameList.add(stringMaker.toString());
             
-            stringBuilder.append(_JAVA);
+            stringMaker.append(_JAVA);
             
-            final String fileName = stringBuilder.toString();
+            final String fileName = stringMaker.toString();
             //LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS));
             
-            stringBuilder.delete(0, stringBuilder.length());
+            stringMaker.delete(0, stringMaker.length());
             
-            final String fileName2 = stringBuilder.append(SOUND_PATH).append(fileName).toString();
+            final String fileName2 = stringMaker.append(SOUND_PATH).append(fileName).toString();
             LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName2, this, commonStrings.PROCESS));
             
             this.bufferedWriterUtil.overwrite(fileName2, newFileAsString);

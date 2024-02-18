@@ -38,7 +38,7 @@ public class GDToAllBinaryCanvasGenerator extends Processor
     private final String GD_LAYOUT = "<GDLayout>";
     private final String GD_CURRENT_LAYOUT_INDEX = "<GD_CURRENT_INDEX>";
 
-    private final StringMaker stringBuilder = new StringMaker();
+    private final StringMaker stringMaker = new StringMaker();
 
     private final String xslPath;
     private final String path;
@@ -56,15 +56,15 @@ public class GDToAllBinaryCanvasGenerator extends Processor
     public void loadLayout(final GDLayout layout, final int index, final int size) throws Exception
     {
         this.index = index;
-        name = this.camelCaseUtil.getAsCamelCase(layout.name, stringBuilder);
-        stringBuilder.delete(0, stringBuilder.length());
+        name = this.camelCaseUtil.getAsCamelCase(layout.name, stringMaker);
+        stringMaker.delete(0, stringMaker.length());
 //        if (index == 1 || size == 1)
 //        {
-            className = stringBuilder.append("GDGame").append(name).append("Canvas").toString();
+            className = stringMaker.append("GDGame").append(name).append("Canvas").toString();
             this.orig = gdToolStrings.ROOT_PATH + this.xslPath;
 //        } else
 //        {
-//            className = stringBuilder.append("GDGameStart").append(name).append("Canvas").toString();
+//            className = stringMaker.append("GDGameStart").append(name).append("Canvas").toString();
 //            this.orig = gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGameStartGDLayoutCanvas.xsl";
 //        }
     }
@@ -73,8 +73,8 @@ public class GDToAllBinaryCanvasGenerator extends Processor
     public void process() throws Exception
     {
         
-        stringBuilder.delete(0, stringBuilder.length());
-        final String CANVAS = stringBuilder.append(gdToolStrings.ROOT_PATH + this.path).append(this.className).append(".java").toString();
+        stringMaker.delete(0, stringMaker.length());
+        final String CANVAS = stringMaker.append(gdToolStrings.ROOT_PATH + this.path).append(this.className).append(".java").toString();
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);

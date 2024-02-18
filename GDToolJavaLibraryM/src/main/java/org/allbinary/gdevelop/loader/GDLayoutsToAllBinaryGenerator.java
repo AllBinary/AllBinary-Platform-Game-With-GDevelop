@@ -38,7 +38,7 @@ public class GDLayoutsToAllBinaryGenerator
 
     private final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
     
-    private final StringMaker stringBuilder = new StringMaker();
+    private final StringMaker stringMaker = new StringMaker();
         
     private final XslHelper xslHelper = XslHelper.getInstance();
 
@@ -60,8 +60,8 @@ public class GDLayoutsToAllBinaryGenerator
     
     
     public void loadLayout(final GDLayout layout, final int index, final int size) throws Exception {
-        final String name = this.camelCaseUtil.getAsCamelCase(layout.name, stringBuilder);
-        stringBuilder.delete(0, stringBuilder.length());
+        final String name = this.camelCaseUtil.getAsCamelCase(layout.name, stringMaker);
+        stringMaker.delete(0, stringMaker.length());
                 
         this.nameList.add(name);
     }
@@ -75,7 +75,7 @@ public class GDLayoutsToAllBinaryGenerator
             final String RESULT = "result: ";
 
             final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
-            final StringMaker stringBuilder = new StringMaker();
+            final StringMaker stringMaker = new StringMaker();
             
             final StreamUtil streamUtil = StreamUtil.getInstance();
             final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
@@ -112,8 +112,8 @@ public class GDLayoutsToAllBinaryGenerator
                         new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
                         new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
 
-                stringBuilder.delete(0, stringBuilder.length());
-                final String fileName = stringBuilder.append(START).append(this.nameList.get(index)).append(END).toString();
+                stringMaker.delete(0, stringMaker.length());
+                final String fileName = stringMaker.append(START).append(this.nameList.get(index)).append(END).toString();
 
                 LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS));
 
@@ -128,8 +128,8 @@ public class GDLayoutsToAllBinaryGenerator
             throw e;
         }
 
-        stringBuilder.delete(0, stringBuilder.length());
-        LogUtil.put(LogFactory.getInstance(stringBuilder.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+        stringMaker.delete(0, stringMaker.length());
+        LogUtil.put(LogFactory.getInstance(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
     }
 
 //    public static void main(String[] args) throws Exception

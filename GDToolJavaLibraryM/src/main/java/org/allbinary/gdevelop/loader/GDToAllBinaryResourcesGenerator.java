@@ -35,7 +35,7 @@ public class GDToAllBinaryResourcesGenerator
 
     private final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
     
-    private final StringMaker resourceStringBuilder = new StringMaker();
+    private final StringMaker resourceStringMaker = new StringMaker();
     
     private final String GD_KEY = "//GD";
     private final String TOUCH = "TOUCH";
@@ -52,8 +52,8 @@ public class GDToAllBinaryResourcesGenerator
     private final boolean hasRotationImages;
     public GDToAllBinaryResourcesGenerator() {
         hasRotationImages = this.hasRotationImages();
-        resourceStringBuilder.append(GD_KEY);
-        resourceStringBuilder.append('\n');
+        resourceStringMaker.append(GD_KEY);
+        resourceStringMaker.append('\n');
     }
     
     public boolean hasRotationImages() {
@@ -74,26 +74,26 @@ public class GDToAllBinaryResourcesGenerator
         this.gdResources.resourceList.add(resource);
         
         if(name.indexOf(BLANK) >= 0) {
-            resourceStringBuilder.append(COMMENT);
+            resourceStringMaker.append(COMMENT);
         }
         
         if (name.endsWith(UNDERSCORE_0) && name.indexOf(TOUCH) < 0) {
-            resourceStringBuilder.append(COMMENT);
+            resourceStringMaker.append(COMMENT);
         }
 
         //if(!this.hasRotationImages) {
             for (int index2 = 2; index2 < size2; index2++) {
                 if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
-                    resourceStringBuilder.append(COMMENT);
+                    resourceStringMaker.append(COMMENT);
                 }
             }
         //}
         
-        resourceStringBuilder.append(this.PUBLIC_FINAL_STRING);
-        resourceStringBuilder.append(name);
-        resourceStringBuilder.append(this.VALUE_RESOURCE_START);
-        resourceStringBuilder.append(resource);
-        resourceStringBuilder.append(this.VALUE_RESOURCE_END);
+        resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
+        resourceStringMaker.append(name);
+        resourceStringMaker.append(this.VALUE_RESOURCE_START);
+        resourceStringMaker.append(resource);
+        resourceStringMaker.append(this.VALUE_RESOURCE_END);
     }
     
     public void process() throws Exception {
@@ -103,7 +103,7 @@ public class GDToAllBinaryResourcesGenerator
         final String RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.origin";
         final String RESOURCE = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.java";
         
-        final StringMaker stringBuilder = new StringMaker();
+        final StringMaker stringMaker = new StringMaker();
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
         final byte[] byteArray = new byte[16384];
@@ -114,55 +114,55 @@ public class GDToAllBinaryResourcesGenerator
         final String INDENT = "        ";
         final String JSON = ".json";
         final String T = ".t";
-        resourceStringBuilder.append('\n');
-        resourceStringBuilder.append("    public final String[] resourceStringArray = {\nBLANK,\n");
+        resourceStringMaker.append('\n');
+        resourceStringMaker.append("    public final String[] resourceStringArray = {\nBLANK,\n");
         final int size = this.gdResources.resourceNameList.size();
         String name;
         String resource;
         for(int index = 0; index < size; index++) {
             name = (String) this.gdResources.resourceNameList.get(index);
             resource = (String) this.gdResources.resourceList.get(index);
-            resourceStringBuilder.append(INDENT);
+            resourceStringMaker.append(INDENT);
             if(resource.indexOf(JSON) >= 0 || resource.indexOf(T) >= 0) {
-                resourceStringBuilder.append(COMMENT);
+                resourceStringMaker.append(COMMENT);
             }
 
             if(resource.toUpperCase().indexOf(BLANK) >= 0) {
-                resourceStringBuilder.append(COMMENT);
+                resourceStringMaker.append(COMMENT);
             }
             
             if (name.endsWith(UNDERSCORE_0) && name.indexOf(TOUCH) < 0) {
-                resourceStringBuilder.append(COMMENT);
+                resourceStringMaker.append(COMMENT);
             }
             
             //if(!this.hasRotationImages) {
                 for (int index2 = 2; index2 < size2; index2++) {
                     if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
-                        resourceStringBuilder.append(COMMENT);
+                        resourceStringMaker.append(COMMENT);
                     }
                 }
             //}
             
-            resourceStringBuilder.append(name);
-            resourceStringBuilder.append(',');
-            resourceStringBuilder.append('\n');
+            resourceStringMaker.append(name);
+            resourceStringMaker.append(',');
+            resourceStringMaker.append('\n');
         }
         
-        resourceStringBuilder.append("    ");
-        resourceStringBuilder.append('}');
-        resourceStringBuilder.append(';');
-        resourceStringBuilder.append('\n');
+        resourceStringMaker.append("    ");
+        resourceStringMaker.append('}');
+        resourceStringMaker.append(';');
+        resourceStringMaker.append('\n');
         
-        final Replace replace = new Replace(GD_KEY, this.resourceStringBuilder.toString());
+        final Replace replace = new Replace(GD_KEY, this.resourceStringMaker.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
-        stringBuilder.delete(0, stringBuilder.length());
+        stringMaker.delete(0, stringMaker.length());
         LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE, this, CommonStrings.getInstance().CONSTRUCTOR));
         
         this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
         
-        stringBuilder.delete(0, stringBuilder.length());
-        LogUtil.put(LogFactory.getInstance(stringBuilder.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+        stringMaker.delete(0, stringMaker.length());
+        LogUtil.put(LogFactory.getInstance(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
     }
     
 }
