@@ -479,7 +479,7 @@ Created By: Travis Berthelot
                         clear = false;
                     }
                     
-                    public void clear() {
+                    public void reset() {
 
                         //LogUtil.put(LogFactory.getInstance("scene - clear", this, commonStrings.PROCESS));
 

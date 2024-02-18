@@ -356,7 +356,7 @@ Created By: Travis Berthelot
                         
                     }
                     
-                    public void clear() {
+                    public void reset() {
 
             <xsl:for-each select="objects" >
 
