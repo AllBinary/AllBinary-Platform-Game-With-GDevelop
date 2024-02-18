@@ -14,13 +14,16 @@
 package org.allbinary.gdevelop.loader;
 
 import org.allbinary.gdevelop.json.GDProject;
+import org.allbinary.logic.string.CommonStrings;
 
 /**
  *
  * @author User
  */
 public class GDNameGenerator {
- 
+
+    protected final CommonStrings commonStrings = CommonStrings.getInstance();
+
     protected final String GD_KEY = "<name>";
     
     protected String packageName;

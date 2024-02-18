@@ -77,13 +77,13 @@ public class GDToAllBinaryResourcesGenerator
             resourceStringBuilder.append(COMMENT);
         }
 
-        if(!this.hasRotationImages) {
+        //if(!this.hasRotationImages) {
             for (int index2 = 2; index2 < size2; index2++) {
                 if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
                     resourceStringBuilder.append(COMMENT);
                 }
             }
-        }
+        //}
         
         resourceStringBuilder.append(this.PUBLIC_FINAL_STRING);
         resourceStringBuilder.append(name);
@@ -128,13 +128,13 @@ public class GDToAllBinaryResourcesGenerator
                 resourceStringBuilder.append(COMMENT);
             }
             
-            if(!this.hasRotationImages) {
+            //if(!this.hasRotationImages) {
                 for (int index2 = 2; index2 < size2; index2++) {
                     if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
                         resourceStringBuilder.append(COMMENT);
                     }
                 }
-            }
+            //}
             
             resourceStringBuilder.append(name);
             resourceStringBuilder.append(',');

@@ -11,7 +11,6 @@ import java.util.Vector;
 import org.allbinary.data.tree.dom.document.XmlDocumentHelper;
 import org.allbinary.gdevelop.json.GDProject;
 import org.allbinary.gdevelop.json.GDProjectStrings;
-import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.logic.io.file.AbFile;
 import org.allbinary.logic.io.file.FileWrapperUtil;
@@ -31,7 +30,6 @@ import org.json.XML;
  */
 public class GDTestLoadAll
 {
-    private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
     public GDTestLoadAll()

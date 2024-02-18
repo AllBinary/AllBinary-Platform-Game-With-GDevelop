@@ -7,7 +7,6 @@ package org.allbinary.gdevelop.loader;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.StringBufferInputStream;
 import javax.xml.transform.stream.StreamSource;
 import org.allbinary.data.tree.dom.BasicUriResolver;
@@ -27,6 +26,7 @@ import org.allbinary.logic.communication.log.LogUtil;
  */
 public class GDLayoutsToAllBinaryLayoutGenerator
 {
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final XslHelper xslHelper = XslHelper.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
@@ -177,7 +177,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             final String[] xslDocumentAsString = new String[xslTotal];            
             for(int index = 0; index < xslTotal; index++) {
                 outputStream.reset();
-                LogUtil.put(LogFactory.getInstance(xslPathInputArray[index], this, CommonStrings.getInstance().PROCESS));
+                LogUtil.put(LogFactory.getInstance(xslPathInputArray[index], this, commonStrings.PROCESS));
                 xslDocumentAsString[index] = new String(streamUtil.getByteArray(new FileInputStream(xslPathInputArray[index]), outputStream, byteArray));
             }
 
@@ -258,8 +258,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 
                 for(int index2 = startIndex; index2 < xslTotal; index2++) {
 
-                    //LogUtil.put(LogFactory.getInstance("xsl index: " + index2, this, CommonStrings.getInstance().CONSTRUCTOR));
-                    LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + xslPathInputArray[index2], this, CommonStrings.getInstance().CONSTRUCTOR));
+                    //LogUtil.put(LogFactory.getInstance("xsl index: " + index2, this, commonStrings.CONSTRUCTOR));
+                    LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + xslPathInputArray[index2], this, commonStrings.CONSTRUCTOR));
                     
                     final String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
 
@@ -274,12 +274,12 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                         fileName = stringBuilder.append(START[index2]).append(END[index2]).toString();
                     }
 
-                    //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
+                    //LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.CONSTRUCTOR));
                     
-                    LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
+                    LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, commonStrings.CONSTRUCTOR));
 
                     if(index2 == 0 || index2 == 5) {
-                        LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
+                        LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.CONSTRUCTOR));
                         stringBuilder.delete(0, stringBuilder.length());
                         final String formattedXml = XmlDocumentHelper.getInstance().format(stringBuilder.append(GAME_START).append(result).append(GAME_END).toString());
                         this.bufferedWriterUtil.overwrite(fileName, formattedXml);
@@ -415,7 +415,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             final String[] xslDocumentAsString2 = new String[xslTotal2];
             for(int index = 0; index < xslTotal2; index++) {
                 outputStream.reset();
-                LogUtil.put(LogFactory.getInstance(xslPathInputArray2[index], this, CommonStrings.getInstance().PROCESS));
+                LogUtil.put(LogFactory.getInstance(xslPathInputArray2[index], this, commonStrings.PROCESS));
                 xslDocumentAsString2[index] = new String(streamUtil.getByteArray(new FileInputStream(xslPathInputArray2[index]), outputStream, byteArray));
             }
 
@@ -427,7 +427,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 
                 for(int index2 = 0; index2 < xslTotal2; index2++) {
                     
-                    //LogUtil.put(LogFactory.getInstance("xsl2 index: " + index2, this, CommonStrings.getInstance().CONSTRUCTOR));
+                    //LogUtil.put(LogFactory.getInstance("xsl2 index: " + index2, this, commonStrings.CONSTRUCTOR));
                     
                     final String updatedXslDocumentStr = replace.all(xslDocumentAsString2[index2]);
 
@@ -442,17 +442,17 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                         outputFilePath = stringBuilder.append(OUTPUT_FILE_PATHS[index2]).append(OUTPUT_FILE_PATH_END_ARRAY[index2]).toString();
                     }
 
-                    LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + outputFilePath, this, CommonStrings.getInstance().CONSTRUCTOR));
+                    LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + outputFilePath, this, commonStrings.PROCESS));
                     
                     this.bufferedWriterUtil.overwrite(outputFilePath, result);
                     
-                    //LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
+                    //LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.CONSTRUCTOR));
                 }
             }
 
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance("Is the game xml formatted when it is not we get an error from: gglobals.dVersion", this, CommonStrings.getInstance().CONSTRUCTOR, e));
+            LogUtil.put(LogFactory.getInstance("Is the game xml formatted when it is not we get an error from: gglobals.dVersion", this, commonStrings.PROCESS, e));
         }
 
     }

@@ -29,6 +29,7 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDLayoutsToAllBinaryGenerator
 {
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
@@ -75,7 +76,7 @@ public class GDLayoutsToAllBinaryGenerator
             final byte[] byteArray = new byte[16384];
 
             final String xslPath = gdToolStrings.ROOT_PATH + this.xslPath;
-            LogUtil.put(LogFactory.getInstance(xslPath, this, CommonStrings.getInstance().PROCESS));
+            LogUtil.put(LogFactory.getInstance(xslPath, this, commonStrings.PROCESS));
             
             final InputStream inputStream = new FileInputStream(xslPath);
             final String xslDocumentStr = new String(streamUtil.getByteArray(inputStream, outputStream, byteArray));
@@ -108,16 +109,16 @@ public class GDLayoutsToAllBinaryGenerator
                 stringBuilder.delete(0, stringBuilder.length());
                 final String fileName = stringBuilder.append(START).append(this.nameList.get(index)).append(END).toString();
 
-                LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().CONSTRUCTOR));
+                LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS));
 
                 this.bufferedWriterUtil.overwrite(fileName, result);
 
-                LogUtil.put(LogFactory.getInstance(RESULT + result, this, CommonStrings.getInstance().CONSTRUCTOR));
+                LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.PROCESS));
             }
 
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
             throw e;
         }
 

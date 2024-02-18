@@ -24,6 +24,7 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDToAllBinarySoundsGenerator
 {
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
@@ -46,7 +47,7 @@ public class GDToAllBinarySoundsGenerator
     private final String ERROR = "error";
     
     public void processExpressionParam(final String param, final String resourceString) {
-        LogUtil.put(LogFactory.getInstance(SOUND + param, this, CommonStrings.getInstance().PROCESS));
+        LogUtil.put(LogFactory.getInstance(SOUND + param, this, commonStrings.PROCESS));
         
         int startIndex = param.lastIndexOf('/');
         if (startIndex < 0) {
@@ -63,16 +64,16 @@ public class GDToAllBinarySoundsGenerator
         final String fileAsString = param.substring(startIndex);
         
         if(fileAsString.compareTo(SELECT) == 0) {
-            LogUtil.put(LogFactory.getInstance(SKIPPING_SOUND + fileAsString, this, CommonStrings.getInstance().PROCESS));
+            LogUtil.put(LogFactory.getInstance(SKIPPING_SOUND + fileAsString, this, commonStrings.PROCESS));
             return;
         }
 
         if(fileAsString.compareTo(ERROR) == 0) {
-            LogUtil.put(LogFactory.getInstance(SKIPPING_SOUND + fileAsString, this, CommonStrings.getInstance().PROCESS));
+            LogUtil.put(LogFactory.getInstance(SKIPPING_SOUND + fileAsString, this, commonStrings.PROCESS));
             return;
         }
 
-        LogUtil.put(LogFactory.getInstance(SOUND + fileAsString, this, CommonStrings.getInstance().PROCESS));
+        LogUtil.put(LogFactory.getInstance(SOUND + fileAsString, this, commonStrings.PROCESS));
         
         this.gdResources.playSoundAndroidResourceNameList.add(fileAsString);
         this.gdResources.playSoundResourcePathList.add(resourceString);
@@ -89,7 +90,7 @@ public class GDToAllBinarySoundsGenerator
         
         final int size = this.gdResources.playSoundAndroidResourceNameList.size();
         
-        LogUtil.put(LogFactory.getInstance("Sound Total: " + size, this, CommonStrings.getInstance().PROCESS));
+        LogUtil.put(LogFactory.getInstance("Sound Total: " + size, this, commonStrings.PROCESS));
         
         final StringMaker stringBuilder = new StringMaker();
         
@@ -108,12 +109,12 @@ public class GDToAllBinarySoundsGenerator
             stringBuilder.append(_JAVA);
             
             final String fileName = stringBuilder.toString();
-            //LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().PROCESS));
+            //LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS));
             
             stringBuilder.delete(0, stringBuilder.length());
             
             final String fileName2 = stringBuilder.append(SOUND_PATH).append(fileName).toString();
-            LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName2, this, CommonStrings.getInstance().PROCESS));
+            LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName2, this, commonStrings.PROCESS));
             
             this.bufferedWriterUtil.overwrite(fileName2, newFileAsString);
         }

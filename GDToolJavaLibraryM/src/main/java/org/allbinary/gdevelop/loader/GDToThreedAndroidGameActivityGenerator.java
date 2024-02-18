@@ -12,7 +12,6 @@ import java.io.FileInputStream;
 import org.allbinary.data.CamelCaseUtil;
 import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.logic.io.StreamUtil;
-import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -53,7 +52,7 @@ public class GDToThreedAndroidGameActivityGenerator extends GDNameGenerator
         final Replace replace = new Replace(GD_KEY, name);
         final String newFileAsString = replace.all(androidRFileAsString);
 
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + R, this, CommonStrings.getInstance().CONSTRUCTOR));
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + R, this, commonStrings.PROCESS));
         
         this.bufferedWriterUtil.overwrite(R, newFileAsString);        
     }

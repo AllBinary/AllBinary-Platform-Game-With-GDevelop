@@ -109,7 +109,7 @@ public class GDToAllBinaryGlobalGenerator
         final int size2 = xslPathInputArray.length;
         for (int index2 = 0; index2 < size2; index2++)
         {
-            LogUtil.put(LogFactory.getInstance(xslPathInputArray[index2], this, CommonStrings.getInstance().PROCESS));
+            LogUtil.put(LogFactory.getInstance(xslPathInputArray[index2], this, commonStrings.PROCESS));
             final InputStream fileInputStream = new FileInputStream(xslPathInputArray[index2]);
             outputStream.reset();
             final String xslFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
@@ -117,10 +117,10 @@ public class GDToAllBinaryGlobalGenerator
             final String newFileAsString = xslFileAsString;
             final String updatedXslDocumentStr = newFileAsString;
 
-            LogUtil.put(LogFactory.getInstance(updatedXslDocumentStr, this, CommonStrings.getInstance().CONSTRUCTOR));
+            LogUtil.put(LogFactory.getInstance(updatedXslDocumentStr, this, commonStrings.CONSTRUCTOR));
             //this.bufferedWriterUtil.overwrite(MIDLET_REPLACED, updatedXslDocumentStr);
 
-            //LogUtil.put(LogFactory.getInstance(xmlDocumentStr, this, CommonStrings.getInstance().CONSTRUCTOR));
+            //LogUtil.put(LogFactory.getInstance(xmlDocumentStr, this, commonStrings.CONSTRUCTOR));
             //this.bufferedWriterUtil.overwrite(MIDLET_XML, xmlDocumentStr);
             final String result = this.xslHelper.translate(new BasicUriResolver(),
                     new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),

@@ -39,6 +39,7 @@ import org.json.XML;
  */
 public class GDToAllBinaryGenerationTool
 {
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
@@ -142,7 +143,7 @@ public class GDToAllBinaryGenerationTool
         fixQuotes = replace5.all(fixQuotes);
 
         final String fileName = gdToolStrings.GAME_XML_PATH;
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, CommonStrings.getInstance().PROCESS));
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS));
 
         this.bufferedWriterUtil.overwrite(fileName, fixQuotes);
         //this.bufferedWriterUtil.overwrite(fileName, xml);
@@ -179,18 +180,18 @@ public class GDToAllBinaryGenerationTool
     public void xmlConversionHack(JSONObject gameAsConfigurationJSONObject) {
         final JSONArray layoutJSONArray = gameAsConfigurationJSONObject.getJSONArray(gdProjectStrings.LAYOUTS);
         final int size4 = layoutJSONArray.length();
-        LogUtil.put(LogFactory.getInstance(LAYOUT_TOTAL + size4, this, CommonStrings.getInstance().PROCESS));
+        LogUtil.put(LogFactory.getInstance(LAYOUT_TOTAL + size4, this, commonStrings.PROCESS));
         for(int index2 = 0; index2 < size4; index2++) {
 
             final JSONObject layoutJSONObject = layoutJSONArray.getJSONObject(index2);
             final JSONArray jsonArray = layoutJSONObject.getJSONArray(gdProjectStrings.OBJECTS);
             final int size3 = jsonArray.length();
-            LogUtil.put(LogFactory.getInstance(OBJECTS + size3, this, CommonStrings.getInstance().PROCESS));
+            LogUtil.put(LogFactory.getInstance(OBJECTS + size3, this, commonStrings.PROCESS));
             for (int index = 0; index < size3; index++) {
 
                 JSONObject jsonObject = jsonArray.getJSONObject(index);
                 if(jsonObject.has(this.gdProjectStrings.CONTENT)) {
-                    LogUtil.put(LogFactory.getInstance(CONTENT_REMOVE + index, this, CommonStrings.getInstance().PROCESS));
+                    LogUtil.put(LogFactory.getInstance(CONTENT_REMOVE + index, this, commonStrings.PROCESS));
                     Object object = jsonObject.remove(gdProjectStrings.CONTENT);
                     jsonObject.put(gdProjectStrings.CONTENT + X, object);
                 }

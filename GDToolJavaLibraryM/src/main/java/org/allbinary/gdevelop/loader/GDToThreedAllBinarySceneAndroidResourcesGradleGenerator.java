@@ -24,6 +24,7 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
 {
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final CommonSeps commonSeps = CommonSeps.getInstance();
     
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
@@ -78,7 +79,7 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
         final Replace replace = new Replace(GD_KEY, stringBuilder.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE_INITIALIZATION, this, CommonStrings.getInstance().CONSTRUCTOR));
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE_INITIALIZATION, this, commonStrings.PROCESS));
 
         this.bufferedWriterUtil.overwrite(RESOURCE_INITIALIZATION, newFileAsString);
 

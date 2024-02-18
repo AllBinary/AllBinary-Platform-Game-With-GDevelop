@@ -28,6 +28,7 @@ import org.allbinary.logic.communication.log.LogUtil;
  */
 public class GDToAllBinaryCanvasGenerator extends Processor
 {
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final XslHelper xslHelper = XslHelper.getInstance();
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
@@ -95,7 +96,7 @@ public class GDToAllBinaryCanvasGenerator extends Processor
                 new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
                 new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
 
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + CANVAS, this, CommonStrings.getInstance().CONSTRUCTOR));
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + CANVAS, this, commonStrings.PROCESS));
         
         this.bufferedWriterUtil.overwrite(CANVAS, result);
     }

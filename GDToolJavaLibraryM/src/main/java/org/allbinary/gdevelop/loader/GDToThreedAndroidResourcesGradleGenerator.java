@@ -24,6 +24,7 @@ import org.allbinary.logic.communication.log.LogUtil;
  */
 public class GDToThreedAndroidResourcesGradleGenerator
 {
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
@@ -116,7 +117,7 @@ public class GDToThreedAndroidResourcesGradleGenerator
         final Replace replace = new Replace(GD_KEY, this.resourceStringBuilder.toString());
         final String newFileAsString = replace.all(newFileAsString2);
 
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE, this, CommonStrings.getInstance().CONSTRUCTOR));
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE, this, commonStrings.PROCESS));
         
         this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
     }

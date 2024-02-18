@@ -22,6 +22,7 @@ import org.allbinary.logic.communication.log.LogUtil;
  */
 public class GDToAndroidRClassGenerator
 {
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
@@ -47,7 +48,7 @@ public class GDToAndroidRClassGenerator
     public void processResource(final String fileAsString) {
         
         if(fileAsString.compareTo(BLANK) == 0) {
-            LogUtil.put(LogFactory.getInstance(SKIPPING + fileAsString, this, CommonStrings.getInstance().PROCESS));
+            LogUtil.put(LogFactory.getInstance(SKIPPING + fileAsString, this, commonStrings.PROCESS));
             return;
         }
         
@@ -83,7 +84,7 @@ public class GDToAndroidRClassGenerator
         final Replace replace = new Replace(GD_KEY, androidRFileStringBuilder.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + R, this, CommonStrings.getInstance().CONSTRUCTOR));
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + R, this, commonStrings.PROCESS));
         
         this.bufferedWriterUtil.overwrite(R, newFileAsString);        
     }
