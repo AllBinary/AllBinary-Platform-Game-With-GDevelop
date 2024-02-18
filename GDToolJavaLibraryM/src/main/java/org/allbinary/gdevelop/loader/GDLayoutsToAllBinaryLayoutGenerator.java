@@ -47,8 +47,6 @@ public class GDLayoutsToAllBinaryLayoutGenerator
     {
         try
         {
-            timeDelayHelper.setStartTime();
-            
             final String RESULT = "result: ";
 
             final StringMaker stringBuilder = new StringMaker();
@@ -259,6 +257,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             String indexAsString;
             for (int index = 0; index < size; index++)
             {
+                timeDelayHelper.setStartTime();
+
                 indexAsString = Integer.toString(index);
                 final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, indexAsString);
                 
@@ -297,6 +297,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 if(startIndex == 0) {
                     startIndex = 1;
                 }
+                
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append(index).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
             }
 
             final String[] xslPathInputArray2 = 
@@ -428,6 +430,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             //TWB - need to update to allow loading for every layout.
             for (int index = 0; index < size; index++)
             {
+                timeDelayHelper.setStartTime();
+                
                 indexAsString = Integer.toString(index);
                 final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, indexAsString);
                 
@@ -453,6 +457,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                     this.bufferedWriterUtil.overwrite(outputFilePath, result);
                     
                     //LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.CONSTRUCTOR));
+
+                    LogUtil.put(LogFactory.getInstance(new StringMaker().append(index2).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
                 }
             }
 
@@ -461,7 +467,6 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             LogUtil.put(LogFactory.getInstance("Is the game xml formatted when it is not we get an error from: gglobals.dVersion", this, commonStrings.PROCESS, e));
         }
 
-        LogUtil.put(LogFactory.getInstance(new StringMaker().append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
     }
 
     public static void main(String[] args) throws Exception
