@@ -21,6 +21,8 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.CommonLabels;
+import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -34,6 +36,8 @@ public class GDLayoutsToAllBinaryGenerator
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
+    private final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
+    
     private final StringMaker stringBuilder = new StringMaker();
         
     private final XslHelper xslHelper = XslHelper.getInstance();
@@ -66,6 +70,8 @@ public class GDLayoutsToAllBinaryGenerator
     {
         try
         {
+            timeDelayHelper.setStartTime();
+            
             final String RESULT = "result: ";
 
             final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
@@ -122,6 +128,7 @@ public class GDLayoutsToAllBinaryGenerator
             throw e;
         }
 
+        LogUtil.put(LogFactory.getInstance(new StringMaker().append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
     }
 
 //    public static void main(String[] args) throws Exception

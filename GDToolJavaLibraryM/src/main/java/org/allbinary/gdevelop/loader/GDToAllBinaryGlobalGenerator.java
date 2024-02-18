@@ -21,6 +21,8 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.CommonLabels;
+import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -35,6 +37,8 @@ public class GDToAllBinaryGlobalGenerator
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
+    private final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
+    
     private final StringMaker stringBuilder = new StringMaker();
     
     private BasicArrayList layoutNameList = new BasicArrayList();
@@ -63,6 +67,8 @@ public class GDToAllBinaryGlobalGenerator
     }
 
     public void process() throws Exception {
+        
+        timeDelayHelper.setStartTime();
         
         //final String MIDLET_REPLACED = gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet_replaced.xsl";
         //final String MIDLET_XML = gdToolStrings.ROOT_PATH + "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\GDGameMIDlet.xml";
@@ -129,6 +135,8 @@ public class GDToAllBinaryGlobalGenerator
             LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + outputArray[index2], this, this.commonStrings.CONSTRUCTOR));
             this.bufferedWriterUtil.overwrite(outputArray[index2], result);
         }
+        
+        LogUtil.put(LogFactory.getInstance(new StringMaker().append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
     }
     
 }

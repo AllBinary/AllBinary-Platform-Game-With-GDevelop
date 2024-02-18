@@ -17,7 +17,9 @@ import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.io.file.FileUtil;
+import org.allbinary.logic.string.CommonLabels;
 import org.allbinary.logic.string.CommonSeps;
+import org.allbinary.time.TimeDelayHelper;
 
 /**
  *
@@ -25,12 +27,14 @@ import org.allbinary.logic.string.CommonSeps;
  */
 public class GDToAllBinaryResourcesGenerator
 {
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final CommonSeps commonSeps = CommonSeps.getInstance();
-    
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
-        
+
+    private final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
+    
     private final StringMaker resourceStringBuilder = new StringMaker();
     
     private final String GD_KEY = "//GD";
@@ -93,6 +97,8 @@ public class GDToAllBinaryResourcesGenerator
     }
     
     public void process() throws Exception {
+    
+        timeDelayHelper.setStartTime();
         
         final String RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.origin";
         final String RESOURCE = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.java";
@@ -152,6 +158,8 @@ public class GDToAllBinaryResourcesGenerator
         LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE, this, CommonStrings.getInstance().CONSTRUCTOR));
         
         this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
+        
+        LogUtil.put(LogFactory.getInstance(new StringMaker().append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
     }
     
 }

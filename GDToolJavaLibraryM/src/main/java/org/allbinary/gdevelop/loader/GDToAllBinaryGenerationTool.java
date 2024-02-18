@@ -27,6 +27,9 @@ import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.CommonLabels;
+import org.allbinary.logic.string.StringMaker;
+import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.util.BasicArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -43,7 +46,9 @@ public class GDToAllBinaryGenerationTool
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
-    
+
+    private final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
+
     private final BasicArrayList duplicateCheckList = new BasicArrayList();
 
     private final GDNameGenerator[] gdNameFileGeneratorArray = {
@@ -112,7 +117,8 @@ public class GDToAllBinaryGenerationTool
 
     public void process() throws Exception
     {
-
+        timeDelayHelper.setStartTime();
+        
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
         final byte[] byteArray = new byte[16384];
@@ -175,6 +181,8 @@ public class GDToAllBinaryGenerationTool
         }
 
         //"GDGameAndroidEarlyResourceInitialization"
+        
+        LogUtil.put(LogFactory.getInstance(new StringMaker().append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
     }
 
     public void xmlConversionHack(JSONObject gameAsConfigurationJSONObject) {

@@ -21,6 +21,8 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.CommonLabels;
+import org.allbinary.time.TimeDelayHelper;
 
 /**
  *
@@ -34,6 +36,8 @@ public class GDToAllBinaryCanvasGenerator extends Processor
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
+    private final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
+    
     private final String GD_LAYOUT = "<GDLayout>";
     private final String GD_CURRENT_LAYOUT_INDEX = "<GD_CURRENT_INDEX>";
 
@@ -71,7 +75,8 @@ public class GDToAllBinaryCanvasGenerator extends Processor
     @Override
     public void process() throws Exception
     {
-
+        timeDelayHelper.setStartTime();
+        
         stringBuilder.delete(0, stringBuilder.length());
         final String CANVAS = stringBuilder.append(gdToolStrings.ROOT_PATH + this.path).append(this.className).append(".java").toString();
 
@@ -99,6 +104,8 @@ public class GDToAllBinaryCanvasGenerator extends Processor
         LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + CANVAS, this, commonStrings.PROCESS));
         
         this.bufferedWriterUtil.overwrite(CANVAS, result);
+        
+        LogUtil.put(LogFactory.getInstance(new StringMaker().append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
     }
 
 }

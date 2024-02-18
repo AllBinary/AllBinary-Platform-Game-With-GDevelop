@@ -22,9 +22,10 @@ import org.allbinary.logic.communication.log.LogUtil;
  */
 public class GDGetTotalLayouts
 {
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final XslHelper xslHelper = XslHelper.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
-
+    
     public GDGetTotalLayouts()
     {
     }
@@ -32,7 +33,7 @@ public class GDGetTotalLayouts
     public int process()
     {
         try
-        {
+        {            
             final StreamUtil streamUtil = StreamUtil.getInstance();
             final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
             final byte[] byteArray = new byte[16384];
@@ -41,7 +42,7 @@ public class GDGetTotalLayouts
             final String gameXmlAsString = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
 
             final String xslPath = gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutCount.xsl";
-            LogUtil.put(LogFactory.getInstance(xslPath, this, CommonStrings.getInstance().PROCESS));
+            LogUtil.put(LogFactory.getInstance(xslPath, this, commonStrings.PROCESS));
             final FileInputStream fileInputStream = new FileInputStream(xslPath);
             outputStream.reset();
             final String xslAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
@@ -51,12 +52,13 @@ public class GDGetTotalLayouts
                     new StreamSource(new StringBufferInputStream(gameXmlAsString)));
 
             
-            LogUtil.put(LogFactory.getInstance("result: " + result, this, CommonStrings.getInstance().PROCESS));
+            LogUtil.put(LogFactory.getInstance("result: " + result, this, commonStrings.PROCESS));
+            
             return Integer.parseInt(result);
 
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance("Is the game xml formatted when it is not we get an error from: gglobals.dVersion", this, CommonStrings.getInstance().PROCESS, e));
+            LogUtil.put(LogFactory.getInstance("Is the game xml formatted when it is not we get an error from: gglobals.dVersion", this, commonStrings.PROCESS, e));
         }
 
         throw new RuntimeException();
