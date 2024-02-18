@@ -128,7 +128,8 @@ public class GDLayoutsToAllBinaryGenerator
             throw e;
         }
 
-        LogUtil.put(LogFactory.getInstance(new StringMaker().append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+        stringBuilder.delete(0, stringBuilder.length());
+        LogUtil.put(LogFactory.getInstance(stringBuilder.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
     }
 
 //    public static void main(String[] args) throws Exception

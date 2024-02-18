@@ -103,6 +103,7 @@ public class GDToAllBinaryResourcesGenerator
         final String RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.origin";
         final String RESOURCE = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.java";
         
+        final StringMaker stringBuilder = new StringMaker();
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
         final byte[] byteArray = new byte[16384];
@@ -155,11 +156,13 @@ public class GDToAllBinaryResourcesGenerator
         final Replace replace = new Replace(GD_KEY, this.resourceStringBuilder.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
+        stringBuilder.delete(0, stringBuilder.length());
         LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE, this, CommonStrings.getInstance().CONSTRUCTOR));
         
         this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
         
-        LogUtil.put(LogFactory.getInstance(new StringMaker().append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+        stringBuilder.delete(0, stringBuilder.length());
+        LogUtil.put(LogFactory.getInstance(stringBuilder.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
     }
     
 }

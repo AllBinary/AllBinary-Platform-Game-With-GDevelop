@@ -136,7 +136,8 @@ public class GDToAllBinaryGlobalGenerator
             this.bufferedWriterUtil.overwrite(outputArray[index2], result);
         }
         
-        LogUtil.put(LogFactory.getInstance(new StringMaker().append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+        stringBuilder.delete(0, stringBuilder.length());
+        LogUtil.put(LogFactory.getInstance(stringBuilder.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
     }
     
 }

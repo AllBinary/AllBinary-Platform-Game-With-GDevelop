@@ -119,6 +119,7 @@ public class GDToAllBinaryGenerationTool
     {
         timeDelayHelper.setStartTime();
         
+        final StringMaker stringBuilder = new StringMaker();
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
         final byte[] byteArray = new byte[16384];
@@ -182,7 +183,8 @@ public class GDToAllBinaryGenerationTool
 
         //"GDGameAndroidEarlyResourceInitialization"
         
-        LogUtil.put(LogFactory.getInstance(new StringMaker().append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+        stringBuilder.delete(0, stringBuilder.length());
+        LogUtil.put(LogFactory.getInstance(stringBuilder.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
     }
 
     public void xmlConversionHack(JSONObject gameAsConfigurationJSONObject) {
