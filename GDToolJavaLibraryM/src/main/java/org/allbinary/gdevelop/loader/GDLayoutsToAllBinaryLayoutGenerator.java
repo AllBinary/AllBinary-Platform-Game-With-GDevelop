@@ -258,12 +258,12 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             String indexAsString;
             for (int index = 0; index < size; index++)
             {
-                timeDelayHelper.setStartTime();
-
                 indexAsString = Integer.toString(index);
                 final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, indexAsString);
                 
                 for(int index2 = startIndex; index2 < xslTotal; index2++) {
+
+                    timeDelayHelper.setStartTime();
 
                     //LogUtil.put(LogFactory.getInstance("xsl index: " + index2, this, commonStrings.CONSTRUCTOR));
                     LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + xslPathInputArray[index2], this, commonStrings.CONSTRUCTOR));
@@ -293,15 +293,18 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                     } else {
                         this.bufferedWriterUtil.overwrite(fileName, result);
                     }
+                    
+                    LogUtil.put(LogFactory.getInstance(new StringMaker().append(index).append(CommonSeps.getInstance().COMMA).append(index2).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
                 }
 
                 if(startIndex == 0) {
                     startIndex = 1;
                 }
-                
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append(index).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+
             }
 
+            LogUtil.put(LogFactory.getInstance(new StringMaker().append(CommonLabels.getInstance().ELAPSED).append("Finished").toString(), this, commonStrings.PROCESS));
+            
             final String[] xslPathInputArray2 = 
             {
                 gdToolStrings.ROOT_PATH + "resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image\\GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.xsl",
