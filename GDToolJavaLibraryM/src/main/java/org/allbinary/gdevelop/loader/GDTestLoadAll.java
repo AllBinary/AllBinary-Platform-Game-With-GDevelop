@@ -20,6 +20,7 @@ import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringMaker;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.json.XML;
@@ -43,6 +44,8 @@ public class GDTestLoadAll
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
         final byte[] byteArray = new byte[16384];
 
+        final StringMaker stringMaker = new StringMaker();
+        
         //final Vector files = FileListFetcher.getInstance().getFiles(gdToolStrings.ROOT_PATH, "json");
         final String includeExtension = "json";
         final Vector includeExtensionVector = new Vector();
@@ -70,7 +73,8 @@ public class GDTestLoadAll
                 final JSONTokener jsonTokener = new JSONTokener(gameAsConfiguration);
                 final JSONObject gameAsConfigurationJSONObject = (JSONObject) jsonTokener.nextValue();
 
-                final String xml = "<game>" + XML.toString(gameAsConfigurationJSONObject) + "<variables><value>movement_angle</value><value>angle</value></variables></game>\n";
+                stringMaker.delete(0, stringMaker.length());
+                final String xml = stringMaker.append("<game>").append(XML.toString(gameAsConfigurationJSONObject)).append("<variables><value>movement_angle</value><value>angle</value></variables></game>\n").toString();
                 final String formattedXml = XmlDocumentHelper.getInstance().format(xml);
                 final Replace replace = new Replace("\"", "&quot;");
                 final Replace replace2 = new Replace("'", "&apos;");

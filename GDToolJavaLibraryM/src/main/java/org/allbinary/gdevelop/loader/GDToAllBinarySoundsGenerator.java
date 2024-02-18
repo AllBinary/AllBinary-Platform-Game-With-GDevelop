@@ -85,14 +85,15 @@ public class GDToAllBinarySoundsGenerator
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
         final byte[] byteArray = new byte[16384];        
 
+        final StringMaker stringMaker = new StringMaker();
+        
         final FileInputStream fileInputStream = new FileInputStream(SOUND_ORIGINAL);
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, outputStream, byteArray));
         
         final int size = this.gdResources.playSoundAndroidResourceNameList.size();
         
-        LogUtil.put(LogFactory.getInstance("Sound Total: " + size, this, commonStrings.PROCESS));
-        
-        final StringMaker stringMaker = new StringMaker();
+        stringMaker.delete(0, stringMaker.length());
+        LogUtil.put(LogFactory.getInstance(stringMaker.append("Sound Total: ").append(size).toString(), this, commonStrings.PROCESS));
         
         for(int index = 0; index < size; index++) {
             final String name = this.camelCaseUtil.getAsCamelCase((String) this.gdResources.playSoundAndroidResourceNameList.get(index), stringMaker);

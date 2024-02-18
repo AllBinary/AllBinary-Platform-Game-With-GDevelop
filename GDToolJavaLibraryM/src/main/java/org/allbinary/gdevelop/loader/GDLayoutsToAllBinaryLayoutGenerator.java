@@ -162,8 +162,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator
 
                 timeDelayHelper.setStartTime();
 
-                //LogUtil.put(LogFactory.getInstance("xsl index: " + index2, this, commonStrings.CONSTRUCTOR));
-                LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + xslPathInputArray0[index2], this, commonStrings.CONSTRUCTOR));
+                //LogUtil.put(LogFactory.getInstance("xsl index: " + index2, this, commonStrings.PROCESS));
+                stringMaker.delete(0, stringMaker.length());
+                LogUtil.put(LogFactory.getInstance(stringMaker.append(this.gdToolStrings.FILENAME).append(xslPathInputArray0[index2]).toString(), this, commonStrings.PROCESS));
 
                 final String updatedXslDocumentAsString = xslDocumentAsString0[index2];
 
@@ -321,9 +322,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator
 
                     timeDelayHelper.setStartTime();
 
-                    //LogUtil.put(LogFactory.getInstance("xsl index: " + index2, this, commonStrings.CONSTRUCTOR));
+                    //LogUtil.put(LogFactory.getInstance("xsl index: " + index2, this, commonStrings.PROCESS));
                     stringMaker.delete(0, stringMaker.length());
-                    LogUtil.put(LogFactory.getInstance(stringMaker.append(this.gdToolStrings.FILENAME).append(xslPathInputArray[index2]).toString(), this, commonStrings.CONSTRUCTOR));
+                    LogUtil.put(LogFactory.getInstance(stringMaker.append(this.gdToolStrings.FILENAME).append(xslPathInputArray[index2]).toString(), this, commonStrings.PROCESS));
                     
                     final String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
 
@@ -497,7 +498,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 
                 for(int index2 = 0; index2 < xslTotal2; index2++) {
                     
-                    //LogUtil.put(LogFactory.getInstance("xsl2 index: " + index2, this, commonStrings.CONSTRUCTOR));
+                    //LogUtil.put(LogFactory.getInstance("xsl2 index: " + index2, this, commonStrings.PROCESS));
                     
                     final String updatedXslDocumentStr = replace.all(xslDocumentAsString2[index2]);
 

@@ -48,7 +48,8 @@ public class GDNameFileGenerator extends GDNameGenerator
         final Replace replace = new Replace(GD_KEY, camelCaseUtil.getAsCamelCase(this.packageName, stringMaker).toLowerCase());
         final String newFileAsString = replace.all(androidRFileAsString);
 
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + this.newFilePath, this, commonStrings.PROCESS));
+        stringMaker.delete(0, stringMaker.length());
+        LogUtil.put(LogFactory.getInstance(stringMaker.append(this.gdToolStrings.FILENAME).append(this.newFilePath).toString(), this, commonStrings.PROCESS));
         
         this.bufferedWriterUtil.overwrite(this.newFilePath, newFileAsString);
     }

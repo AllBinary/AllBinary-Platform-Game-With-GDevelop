@@ -19,6 +19,7 @@ import org.allbinary.logic.io.file.FileListFetcher;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringMaker;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -30,6 +31,9 @@ public class GDDelete {
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     
     public void process(final Vector fileVector, final BasicArrayList exclusionList) throws Exception {
+        
+        final StringMaker stringMaker = new StringMaker();
+        
         final int size = fileVector.size();
         final int size2 = exclusionList.size();
         String exclusion;
@@ -46,7 +50,8 @@ public class GDDelete {
                     }
                 }
                 if (!exclude) {
-                    LogUtil.put(LogFactory.getInstance("Deleting: " + abFile.getAbsolutePath(), this, commonStrings.PROCESS));
+                    stringMaker.delete(0, stringMaker.length());
+                    LogUtil.put(LogFactory.getInstance(stringMaker.append("Deleting: ").append(abFile.getAbsolutePath()).toString(), this, commonStrings.PROCESS));
                     abFile.delete();
                 }
             }

@@ -119,11 +119,12 @@ public class GDToAllBinaryGenerationTool
     {
         timeDelayHelper.setStartTime();
         
-        final StringMaker stringMaker = new StringMaker();
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
         final byte[] byteArray = new byte[16384];
 
+        final StringMaker stringMaker = new StringMaker();
+        
         final FileInputStream inputStream = new FileInputStream(gdToolStrings.ROOT_PATH + "game.json");
         final String gameAsConfiguration = new String(streamUtil.getByteArray(inputStream, outputStream, byteArray));
 
@@ -134,7 +135,8 @@ public class GDToAllBinaryGenerationTool
         gdProject.load(gameAsConfigurationJSONObject);
         this.xmlConversionHack(gameAsConfigurationJSONObject);
 
-        final String xml = "<game>" + XML.toString(gameAsConfigurationJSONObject) + "<variables><value>movement_angle</value><value>angle</value></variables></game>\n";
+        stringMaker.delete(0, stringMaker.length());
+        final String xml = stringMaker.append("<game>").append(XML.toString(gameAsConfigurationJSONObject)).append("<variables><value>movement_angle</value><value>angle</value></variables></game>\n").toString();
         final String formattedXml = XmlDocumentHelper.getInstance().format(xml);
         final String QUOTE = "\"";
         final Replace replace = new Replace(QUOTE, "&quot;");

@@ -15,6 +15,7 @@ import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringMaker;
 
 /**
  *
@@ -33,11 +34,13 @@ public class GDGetTotalLayouts
     public int process()
     {
         try
-        {            
+        {
             final StreamUtil streamUtil = StreamUtil.getInstance();
             final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(16384);
             final byte[] byteArray = new byte[16384];
 
+            final StringMaker stringMaker = new StringMaker();
+            
             final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.GAME_XML_PATH);
             final String gameXmlAsString = new String(streamUtil.getByteArray(gameInputStream, outputStream, byteArray));
 
@@ -52,7 +55,8 @@ public class GDGetTotalLayouts
                     new StreamSource(new StringBufferInputStream(gameXmlAsString)));
 
             
-            LogUtil.put(LogFactory.getInstance("result: " + result, this, commonStrings.PROCESS));
+            stringMaker.delete(0, stringMaker.length());
+            LogUtil.put(LogFactory.getInstance(stringMaker.append("result: ").append(result).toString(), this, commonStrings.PROCESS));
             
             return Integer.parseInt(result);
 

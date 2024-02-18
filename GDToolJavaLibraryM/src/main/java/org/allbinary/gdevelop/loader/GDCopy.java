@@ -21,6 +21,7 @@ import org.allbinary.logic.io.path.AbPath;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringMaker;
 
 public class GDCopy {
 
@@ -32,21 +33,26 @@ public class GDCopy {
             final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
             final FileUtil fileUtil = FileUtil.getInstance();
 
+            final StringMaker stringMaker = new StringMaker();
+            
             final Vector files = FileListFetcher.getInstance().getFiles(
                     gdToolStrings.ROOT_PATH + "Resources\\2d\\images\\raw", "json");
 
             final String PATH = gdToolStrings.ROOT_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\";
 
             final int size = files.size();
-            LogUtil.put(LogFactory.getInstance("Total Files for Copying: " + size, this, commonStrings.PROCESS));
+            stringMaker.delete(0, stringMaker.length());
+            LogUtil.put(LogFactory.getInstance(stringMaker.append("Total Files for Copying: ").append(size).toString(), this, commonStrings.PROCESS));
             AbFile file;
             AbPath toAbPath;
             AbPath fromAbPath;
             for (int index = 0; index < size; index++) {
                 file = (AbFile) files.get(index);
-                LogUtil.put(LogFactory.getInstance("Copying From File: " + file.getPath(), this, commonStrings.PROCESS));
+                stringMaker.delete(0, stringMaker.length());
+                LogUtil.put(LogFactory.getInstance(stringMaker.append("Copying From File: ").append(file.getPath()).toString(), this, commonStrings.PROCESS));
                 //LogUtil.put(LogFactory.getInstance("File: " + file.isFile(), this, commonStrings.PROCESS));
-                LogUtil.put(LogFactory.getInstance("Copying To File: " + PATH + file.getName(), this, commonStrings.PROCESS));
+                stringMaker.delete(0, stringMaker.length());
+                LogUtil.put(LogFactory.getInstance(stringMaker.append("Copying To File: ").append(PATH).append(file.getName()).toString(), this, commonStrings.PROCESS));
                 fromAbPath = new AbPath(file.getPath());
                 toAbPath = new AbPath(PATH + file.getName());
                 fileUtil.copy(fromAbPath, toAbPath);
