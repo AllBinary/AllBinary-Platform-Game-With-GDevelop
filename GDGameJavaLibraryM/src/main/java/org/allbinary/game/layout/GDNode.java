@@ -173,6 +173,10 @@ public class GDNode
         
     }
 
+    public void delete() {
+        
+    }
+    
     public long getName() {
         return this.name;
     }    

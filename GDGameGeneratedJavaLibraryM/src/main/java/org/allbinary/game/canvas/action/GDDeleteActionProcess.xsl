@@ -72,6 +72,38 @@ Created By: Travis Berthelot
                         }
 
                         @Override
+                        public void delete() {
+                        
+                        <xsl:if test="contains($hasObjectGroup2, 'found')" >
+                            final int size3 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.size();
+                            for(int index3 = 0; index3 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; index3++) {
+                        
+                                final BasicArrayList gdGameLayerRemoveList = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerRemoveListOfList.get(index3));
+                                final BasicArrayList gdGameLayerList = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(index3));
+                        </xsl:if>
+                        
+                        <xsl:if test="not(contains($hasObjectGroup2, 'found'))" >
+                                final BasicArrayList gdGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList;
+                                final BasicArrayList gdGameLayerRemoveList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />RemoveList;
+                        </xsl:if>
+
+                            final int size = gdGameLayerList.size();
+                            GDGameLayer gdGameLayer;
+                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                        
+                                gdGameLayer = (GDGameLayer) gdGameLayerList.get(index);
+                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + gdGameLayer, this, commonStrings.PROCESS));
+                                gdGameLayer.setDestroyed(true);
+                                //gdGameLayerRemoveList.add(gdGameLayer);
+                            
+                            }
+
+                        <xsl:if test="contains($hasObjectGroup2, 'found')" >
+                            }
+                        </xsl:if>
+                        }
+
+                        @Override
                         public boolean process() throws Exception {
 
                         <xsl:if test="contains($hasObjectGroup2, 'found')" >
