@@ -135,10 +135,12 @@ Created By: Travis Berthelot
 
                     //PrimitiveDrawing::FillColor - START
                         <xsl:for-each select="//actions[type/value = 'PrimitiveDrawing::FillColor']" >
-                            public BasicColor <xsl:for-each select="parameters" ><xsl:if test="position() = 2" >RGB_<xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', '_')" />_BASIC_COLOR</xsl:if></xsl:for-each> = new BasicColor(255, 
-                                <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:if></xsl:for-each>,
-                                "<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >RGB_<xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', '_')" />_BASIC_COLOR</xsl:if></xsl:for-each>"
+                            
+                            public BasicColor <xsl:for-each select="parameters" ><xsl:if test="position() = 2" >RGB_<xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', '_')" />_BASIC_COLOR</xsl:if></xsl:for-each> = smallBasicColorCacheFactory.getInstance(
+                                basicColorUtil.get(255, 
+                                <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:if></xsl:for-each>)
                                 );
+                                //"<xsl:for-each select="parameters" ><xsl:if test="position() = 2" >RGB_<xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', '_')" />_BASIC_COLOR</xsl:if></xsl:for-each>"
                         </xsl:for-each>
                     //PrimitiveDrawing::FillColor - END              
 

@@ -90,7 +90,8 @@ public class <GDLayout> extends StartCanvas
 
         this.setDefaultPaintableInterface(
                 //ColorFillPaintableFactory.getInstance(BasicColorFactory.getInstance().RED)
-                ColorFillPaintableFactory.getInstance(new BasicColor(255,
+                ColorFillPaintableFactory.getInstance(smallBasicColorCacheFactory.getInstance(
+                                basicColorUtil.get(255,
                     <xsl:variable name="color" >
                         <xsl:for-each select="events" >
                             <xsl:for-each select="actions" >
@@ -99,7 +100,7 @@ public class <GDLayout> extends StartCanvas
                                     //SceneBackground - moved to actions
                                     <xsl:for-each select="parameters" >
                                         <xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" />
-                                    </xsl:for-each>,
+                                    </xsl:for-each>
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:for-each>
@@ -110,13 +111,13 @@ public class <GDLayout> extends StartCanvas
                     <xsl:if test="string-length($color) = 0" >
                         <xsl:if test="string-length(r) > 0" >
                         //Using Layout Color before any - //SceneBackground Action
-                        <xsl:value-of select="r" />, <xsl:value-of select="v" />, <xsl:value-of select="b" />,
+                        <xsl:value-of select="r" />, <xsl:value-of select="v" />, <xsl:value-of select="b" />
                         </xsl:if>
                         <xsl:if test="string-length(r) = 0" >
-                        255, 255, 255, 
+                        255, 255, 255
                         </xsl:if>
-                    </xsl:if>
-                    GD_LAYOUT_COLOR), false)
+                    </xsl:if>), false)
+                    //GD_LAYOUT_COLOR
                 );
         this.setPaintableInterface(this.getDefaultPaintableInterface());
     }

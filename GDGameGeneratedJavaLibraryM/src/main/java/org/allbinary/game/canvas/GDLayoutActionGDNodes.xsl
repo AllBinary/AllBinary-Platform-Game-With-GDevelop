@@ -100,10 +100,12 @@ Created By: Travis Berthelot
                 import org.allbinary.game.score.HighScores;
                 import org.allbinary.game.score.displayable.HighScoreUtil;
                 import org.allbinary.graphics.DisplayUtil;
-                import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
+                import org.allbinary.graphics.color.BasicColor;
+                import org.allbinary.graphics.color.SmallBasicColorCacheFactory;
+                import org.allbinary.graphics.color.BasicColorUtil;
                 import org.allbinary.graphics.displayable.MyCanvas;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
@@ -140,6 +142,8 @@ Created By: Travis Berthelot
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final PointFactory pointFactory = PointFactory.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
+                        private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
+                        private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
                         private final GameTickTimeDelayHelperFactory gameTickTimeDelayHelperFactory = GameTickTimeDelayHelperFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
 

@@ -34,11 +34,14 @@ Created By: Travis Berthelot
 
                             LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
-                            final BasicColor backgroundBasicColor = new BasicColor(255,
-                                    <xsl:value-of select="$rgbParam" />,
-                                    ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
-                            final BasicColor foregroundBasicColor = new BasicColor(255, 
-                                    255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue, ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+                            final BasicColor backgroundBasicColor = smallBasicColorCacheFactory.getInstance(
+                                basicColorUtil.get(255,
+                                    <xsl:value-of select="$rgbParam" />));
+                                    //ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />
+                            final BasicColor foregroundBasicColor = smallBasicColorCacheFactory.getInstance(
+                                basicColorUtil.get(255, 
+                                    255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue));
+                                    //ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />
 
                             final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                             final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
