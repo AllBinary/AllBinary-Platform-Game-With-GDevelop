@@ -129,11 +129,15 @@ Created By: Travis Berthelot
                             //    result = true;
                             //}
 
+                            GDGameLayer gdGameLayer;
+                            GDObject gdObject;
                             for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
                             //if(gdObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                                final GDObject gdObject = (GDObject) ((GDGameLayer) gdGameLayerList.get(index2)).gdObject;
+                                gdGameLayer = (GDGameLayer) gdGameLayerList.get(index2);
+                                gdObject = (GDObject) gdGameLayer.gdObject;
                                 //result = result <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> 
                                 this.processGI(gdObject, gdGameLayerList, index2, globals.graphics);
+                                gdGameLayer.updatePosition();
                             //}
                             }
 
