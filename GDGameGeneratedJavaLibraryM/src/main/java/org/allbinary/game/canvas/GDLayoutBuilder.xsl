@@ -543,7 +543,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:if test="$typeValue = 'TextObject::Text'" >
                             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />TextAnimation.setBasicColor(smallBasicColorCacheFactory.getInstance(
-                            basicColorUtil.get(255, <xsl:for-each select="color" ><xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />)
+                            basicColorUtil.get(255, <xsl:for-each select="color" ><xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />))
                             );
                             //, </xsl:for-each>"name=<xsl:value-of select="name" />;type=<xsl:value-of select="$typeValue" />")
 
