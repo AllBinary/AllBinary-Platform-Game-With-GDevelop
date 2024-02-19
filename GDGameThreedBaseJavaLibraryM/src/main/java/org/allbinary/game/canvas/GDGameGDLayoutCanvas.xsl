@@ -574,7 +574,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         this.clear(graphics);
 
-        this.getBasicColorUtil().setBasicColor(graphics, gameLayerManager.getForegroundBasicColor());
+        this.basicSetColorUtil.setBasicColor(graphics, gameLayerManager.getForegroundBasicColor());
 
         //final int halfHeight = GameTickDisplayInfoSingleton.getInstance().getLastHalfHeight();
         //graphics.drawString(TEXT, 0, halfHeight, 0);
