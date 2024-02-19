@@ -76,6 +76,8 @@ import org.allbinary.game.tick.OptimizedTickableLayerProcessor;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.color.BasicColor;
+import org.allbinary.graphics.color.SmallBasicColorCacheFactory;
+import org.allbinary.graphics.color.BasicColorUtil;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
@@ -114,8 +116,11 @@ import org.allbinary.logic.string.StringMaker;
             <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
 public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCanvas //AllBinaryGameCanvas
 {
+    private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
+    private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
+        
     private final String GD_LAYOUT_COLOR = "GDLayout<xsl:value-of select="position()" />Color";
-
+    
     private final int WAIT = GameSpeed.getInstance().getDelay();
 
     private final int portion = 4;
@@ -190,11 +195,11 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         //SceneBackground - this is probably better handled as gdnode.
         final BasicColor backgroundBasicColor = smallBasicColorCacheFactory.getInstance(
                                 basicColorUtil.get(255,
-                               <xsl:for-each select="parameters" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:for-each>);
+                               <xsl:for-each select="parameters" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:for-each>));
                                //GD_LAYOUT_COLOR
         final BasicColor foregroundBasicColor = smallBasicColorCacheFactory.getInstance(
                                 basicColorUtil.get(255,
-                               255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue);
+                               255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue));
                                //GD_LAYOUT_COLOR
                                </xsl:if>
                            </xsl:for-each>
@@ -207,11 +212,11 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         //Using Layout Color before any - //SceneBackground Action
         final BasicColor backgroundBasicColor = smallBasicColorCacheFactory.getInstance(
                                 basicColorUtil.get(255,
-                               <xsl:value-of select="r" />, <xsl:value-of select="v" />, <xsl:value-of select="b" />);
+                               <xsl:value-of select="r" />, <xsl:value-of select="v" />, <xsl:value-of select="b" />));
                                //GD_LAYOUT_COLOR
         final BasicColor foregroundBasicColor = smallBasicColorCacheFactory.getInstance(
                                 basicColorUtil.get(255,
-                               255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue);
+                               255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue));
                                //GD_LAYOUT_COLOR
         </xsl:if>
         
@@ -619,7 +624,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         this.clear(graphics);
 
-        this.getBasicColorUtil().setBasicColor(graphics, gameLayerManager.getForegroundBasicColor());
+        this.basicSetColorUtil.setBasicColor(graphics, gameLayerManager.getForegroundBasicColor());
 
         //graphics.drawString(TEXT, 0, halfHeight, 0);
 

@@ -82,6 +82,8 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.behavior.GDBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.color.BasicColor;
+                import org.allbinary.graphics.color.SmallBasicColorCacheFactory;
+                import org.allbinary.graphics.color.BasicColorUtil;
                 import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
@@ -122,7 +124,10 @@ Created By: Travis Berthelot
                     {
                         return instance;
                     }
-                     
+
+                        private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
+                        private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
+                                          
                     private final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
                            
                         <xsl:variable name="objectsWithOnceCondition" ><xsl:call-template name="gdNodeToOnceList" ><xsl:with-param name="iteration" >0</xsl:with-param></xsl:call-template></xsl:variable>
