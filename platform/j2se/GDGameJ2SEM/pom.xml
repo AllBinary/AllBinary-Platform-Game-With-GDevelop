@@ -111,7 +111,6 @@
             </exclusions>
         </dependency>
 
-
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>XmlRpcJavaLibrary</artifactId>

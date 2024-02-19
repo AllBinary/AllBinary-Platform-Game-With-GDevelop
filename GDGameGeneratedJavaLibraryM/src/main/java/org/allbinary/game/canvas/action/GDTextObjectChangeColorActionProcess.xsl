@@ -31,7 +31,12 @@ Created By: Travis Berthelot
                                         <xsl:if test="position() = 1" >
                                             final int colorAsInt = basicColorUtil.get(255, </xsl:if>
                                         <xsl:if test="position() = 2" >
-                                            <xsl:value-of select="translate(substring(text(), 2, string-length(text()) - 2), ';', ',')" />
+                                            <xsl:if test="contains(text(), ';')" >
+                                                <xsl:value-of select="translate(substring(text(), 2, string-length(text()) - 2), ';', ',')" />
+                                            </xsl:if>
+                                            <xsl:if test="not(contains(text(), ';'))" >
+                                                <xsl:value-of select="text()" />
+                                            </xsl:if>
                                         </xsl:if>
                                         <xsl:if test="position() = last()" >); //, "<xsl:value-of select="type/value" />"));</xsl:if>
                                     </xsl:for-each>
@@ -64,7 +69,12 @@ Created By: Travis Berthelot
                                         <xsl:if test="position() = 1" >
                                             final int colorAsInt = basicColorUtil.get(255, </xsl:if>
                                         <xsl:if test="position() = 2" >
-                                            <xsl:value-of select="translate(substring(text(), 2, string-length(text()) - 2), ';', ',')" />
+                                            <xsl:if test="contains(text(), ';')" >
+                                                <xsl:value-of select="translate(substring(text(), 2, string-length(text()) - 2), ';', ',')" />
+                                            </xsl:if>
+                                            <xsl:if test="not(contains(text(), ';'))" >
+                                                <xsl:value-of select="text()" />
+                                            </xsl:if>
                                         </xsl:if>
                                         <xsl:if test="position() = last()" >); //, "<xsl:value-of select="type/value" />"));</xsl:if>
                                     </xsl:for-each>

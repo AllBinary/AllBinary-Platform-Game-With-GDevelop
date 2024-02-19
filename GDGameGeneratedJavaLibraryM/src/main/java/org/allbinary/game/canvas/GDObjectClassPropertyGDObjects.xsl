@@ -177,13 +177,12 @@ Created By: Travis Berthelot
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
 
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'Sprite' or $typeValue = 'PrimitiveDrawing::Drawer'" >
+            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'Sprite' or $typeValue = 'PrimitiveDrawing::Drawer' or $typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
 
-                //animations/directions/sprites/originPoint/x <xsl:value-of select="animations/directions/sprites/originPoint/x" />
-                //animations/directions/sprites/originPoint/y <xsl:value-of select="animations/directions/sprites/originPoint/y" />
+                //<xsl:value-of select="$typeValue" /> - GDObject
                 public final class <xsl:value-of select="name" /> extends <xsl:call-template name="gdObject" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template> {
 
                     <xsl:variable name="hasObjectInObjectsGroups" ><xsl:for-each select="/game/layouts/objectsGroups" ><xsl:variable name="objectsGroupsName" select="name" /><xsl:for-each select="objects" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
@@ -304,18 +303,31 @@ Created By: Travis Berthelot
                     </xsl:if>
 
                 <xsl:if test="animations" >
-                public final String[] ANIMATION_NAMES = {
+                    //animations/directions/sprites/originPoint/x <xsl:value-of select="animations/directions/sprites/originPoint/x" />
+                    //animations/directions/sprites/originPoint/y <xsl:value-of select="animations/directions/sprites/originPoint/y" />                    
+                    public final String[] ANIMATION_NAMES = {
                 <xsl:for-each select="animations" >
                     <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
                     <xsl:if test="string-length($animationName) > 0" >
                     <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$animationName" />,
                     </xsl:if>
                 </xsl:for-each>
-                };
+                    };                
                 </xsl:if>
+                
+                    <xsl:if test="$typeValue = 'TextObject::Text'" >
+                    public int Width(final Graphics graphics) {
+                        return <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />TextAnimation.getWidth();
+                    }
+
+                    public int Height(final Graphics graphics) {
+                        return <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />TextAnimation.getHeight();
+                    }
+                    </xsl:if>
+
 
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
-                        super(unknown, x, y, z, width, height, name, <xsl:if test="string-length(type) = 0" >null</xsl:if><xsl:if test="string-length(type) > 0" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(type, ':', '_')" /></xsl:with-param></xsl:call-template></xsl:if>);
+                        super(unknown, x, y, z, width, height, name, <xsl:if test="string-length(type) = 0 or $typeValue = 'TextObject::Text'" >null</xsl:if><xsl:if test="not(string-length(type) = 0 or $typeValue = 'TextObject::Text')" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(type, ':', '_')" /></xsl:with-param></xsl:call-template></xsl:if>);
                         
                     <xsl:if test="contains($hasObjectInObjectsGroups, 'found')" >
                     <xsl:for-each select="variables" >
@@ -469,34 +481,6 @@ Created By: Travis Berthelot
                     
                     public String String() {
                         return stringMaker.toString();
-                    }
-                };
-
-                public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new GDObjectFactory() {
-
-                    public GDObject get(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
-                        return new <xsl:value-of select="name" />(unknown, x, y, z, width, height, name);
-                    }
-
-                };    
-
-            </xsl:if>
-            <xsl:if test="$typeValue = 'TextObject::Text'" >
-                <xsl:variable name="stringValue" select="string" />
-                
-                //TextObject::Text - GDObject
-                public final class <xsl:value-of select="name" /> extends GDObject {
-
-                    public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
-                        super(unknown, x, y, z, width, height, name, null);
-                    }
-
-                    public int Width(final Graphics graphics) {
-                        return <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />TextAnimation.getWidth();
-                    }
-
-                    public int Height(final Graphics graphics) {
-                        return <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />TextAnimation.getHeight();
                     }
                 };
 
