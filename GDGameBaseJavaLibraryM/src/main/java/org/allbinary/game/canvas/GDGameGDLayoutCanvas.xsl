@@ -191,7 +191,8 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         final BasicColor backgroundBasicColor = new BasicColor(255,
                                <xsl:for-each select="parameters" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:for-each>,
                                GD_LAYOUT_COLOR);
-        final BasicColor foregroundBasicColor = new BasicColor(255, 255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue,
+        final BasicColor foregroundBasicColor = new BasicColor(255, 
+                               255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue,
                                GD_LAYOUT_COLOR);
                                </xsl:if>
                            </xsl:for-each>
@@ -205,7 +206,8 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         final BasicColor backgroundBasicColor = new BasicColor(255,
                                <xsl:value-of select="r" />, <xsl:value-of select="v" />, <xsl:value-of select="b" />,
                                GD_LAYOUT_COLOR);
-        final BasicColor foregroundBasicColor = new BasicColor(255, 255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue,
+        final BasicColor foregroundBasicColor = new BasicColor(255, 
+                               255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue,
                                GD_LAYOUT_COLOR);
         </xsl:if>
         

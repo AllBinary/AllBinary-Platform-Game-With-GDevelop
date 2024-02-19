@@ -44,6 +44,31 @@ Created By: Travis Berthelot
                             return true;
                         }
 
+                        @Override
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                            this.processGDStats(gameLayer);
+
+                            try {
+
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
+                                    <xsl:for-each select="parameters" >
+                                        <xsl:if test="position() = 1" >
+                                            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />TextAnimation.setBasicColor(new BasicColor(255, </xsl:if>
+                                        <xsl:if test="position() = 2" >
+                                            <xsl:value-of select="translate(substring(text(), 2, string-length(text()) - 2), ';', ',')" />
+                                        </xsl:if>
+                                        <xsl:if test="position() = last()" >, "<xsl:value-of select="type/value" />"));</xsl:if>
+                                    </xsl:for-each>
+                                    <xsl:text>&#10;</xsl:text>
+
+                            } catch(Exception e) {
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                            }
+
+                            return true;
+                        }
+
     </xsl:template>
 
 </xsl:stylesheet>

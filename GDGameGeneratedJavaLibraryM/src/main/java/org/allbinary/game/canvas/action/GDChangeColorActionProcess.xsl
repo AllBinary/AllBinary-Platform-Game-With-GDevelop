@@ -25,8 +25,16 @@ Created By: Travis Berthelot
 
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                     <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" >(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index))).gdObject.basicColor = new BasicColor(</xsl:if>
-                            <xsl:if test="position() != 1" >255, <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate(text(), '\&quot;', ''), ';', ','), '+', '')" /></xsl:with-param><xsl:with-param name="find" >ToString(</xsl:with-param><xsl:with-param name="replacementText" >ToNotString(</xsl:with-param></xsl:call-template>, <xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >);</xsl:if>
+                        <xsl:if test="position() = 1" >(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index))).gdObject.basicColor = new BasicColor(</xsl:if><xsl:if test="position() != 1" >255, 
+                            <xsl:call-template name="string-replace-all" >
+                                <xsl:with-param name="text" >
+                                    <xsl:value-of select="translate(translate(translate(text(), '\&quot;', ''), ';', ','), '+', '')" />
+                                </xsl:with-param>
+                                <xsl:with-param name="find" >ToString(</xsl:with-param>
+                                <xsl:with-param name="replacementText" >ToNotString(</xsl:with-param>
+                            </xsl:call-template>, <xsl:value-of select="text()" />
+                        </xsl:if>
+                        <xsl:if test="position() = last()" >);</xsl:if>
                     </xsl:for-each>
                     <xsl:text>&#10;</xsl:text>
                         return true;
