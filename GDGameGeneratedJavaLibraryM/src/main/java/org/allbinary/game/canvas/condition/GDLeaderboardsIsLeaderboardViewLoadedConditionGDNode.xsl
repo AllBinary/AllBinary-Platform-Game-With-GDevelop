@@ -40,6 +40,23 @@ Created By: Travis Berthelot
 
                             if(globals.highscoreSubmissionComplete) {
 
+                                final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
+                                final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
+                                final HighScores[] highScoresArray = abCanvas.getHighScoresArray();
+                                
+                                final int size = highScoresArray.length;
+
+                                gameGlobals.highScoresNameArray = new String[size];
+                                gameGlobals.highScoresScoreIntArray = new int[size];
+                                
+                                HighScores highScores;
+                                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> size; index++) {
+                                    highScores = highScoresArray[index];
+                                    
+                                    gameGlobals.highScoresNameArray[index] = highScores.getName();
+                                    gameGlobals.highScoresScoreIntArray[index] = highScores.getTotal();
+                                }
+                            
                             <xsl:for-each select="preceding-sibling::conditions" >
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>

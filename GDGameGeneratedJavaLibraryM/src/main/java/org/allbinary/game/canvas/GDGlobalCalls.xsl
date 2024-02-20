@@ -131,8 +131,29 @@
                                     </xsl:if>
                                 </xsl:if>
                             </xsl:if>
-                            <xsl:if test="type = 'array'" >
                         //array
+                        <xsl:if test="type = 'array'" >
+                            <xsl:if test="contains(name, 'BoolArray')" >
+                        public boolean[] <xsl:value-of select="name" /> = {
+                            <xsl:for-each select="children" >
+                        <xsl:value-of select="value" />,
+                            </xsl:for-each>
+                        };
+                            </xsl:if>
+                            <xsl:if test="contains(name, 'IntArray')" >
+                        public int[] <xsl:value-of select="name" /> = {
+                            <xsl:for-each select="children" >
+                                <xsl:if test="contains(value, ';')" >
+                            basicColorUtil.get(<xsl:value-of select="translate(translate(value, '\&quot;', ''), ';', ',')" />),
+                                </xsl:if>
+                                <xsl:if test="not(contains(value, ';'))" >
+                            <xsl:value-of select="value" />,
+                                </xsl:if>
+                            </xsl:for-each>
+                        };
+                            </xsl:if>
+                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'BoolArray'))" >
+                                
                                 <xsl:for-each select="children" >
                         public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="value" />";
                                 </xsl:for-each>
@@ -142,7 +163,16 @@
                                         <xsl:text>&#10;</xsl:text>
                                         </xsl:for-each>                                        
                         };
-                        
+
+<!--                                
+                        public String[] <xsl:value-of select="name" /> = {
+                            <xsl:for-each select="children" >
+                            "<xsl:value-of select="value" />",
+                            </xsl:for-each>
+                        };
+-->
+
+                            </xsl:if>
                             </xsl:if>
 
                         </xsl:for-each>
@@ -193,6 +223,26 @@
                             </xsl:if>
                             <xsl:if test="type = 'array'" >
                         //array
+                            <xsl:if test="contains(name, 'BoolArray')" >
+                        this.<xsl:value-of select="name" /> = new boolean[] {
+                            <xsl:for-each select="children" >
+                            "<xsl:value-of select="value" />",
+                            </xsl:for-each>
+                        };
+                            </xsl:if>
+                            <xsl:if test="contains(name, 'IntArray')" >
+                        this.<xsl:value-of select="name" /> = new int[] {
+                            <xsl:for-each select="children" >
+                                <xsl:if test="contains(value, ';')" >
+                            basicColorUtil.get(<xsl:value-of select="translate(translate(value, '\&quot;', ''), ';', ',')" />),
+                                </xsl:if>
+                                <xsl:if test="not(contains(value, ';'))" >
+                            <xsl:value-of select="value" />,
+                                </xsl:if>
+                            </xsl:for-each>
+                        };
+                            </xsl:if>
+                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'BoolArray'))" >
                                 <xsl:for-each select="children" >
                         //this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="value" />";
                                 </xsl:for-each>
@@ -202,7 +252,15 @@
                                         <xsl:text>&#10;</xsl:text>
                                         </xsl:for-each>                                        
                         };
-                        
+
+<!--            
+                        this.<xsl:value-of select="name" /> = new String[] {
+                            <xsl:for-each select="children" >
+                        "<xsl:value-of select="value" />",
+                            </xsl:for-each>
+                    };
+-->
+                            </xsl:if>
                             </xsl:if>
 
                         </xsl:for-each>
