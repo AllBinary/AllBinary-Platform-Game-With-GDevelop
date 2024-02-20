@@ -218,6 +218,14 @@ Created By: Travis Berthelot
                         return value;
                     }
 
+                    public int VariableChildCount(final String[] array) {
+                        return array.length;
+                    }
+
+                    public int VariableChildCount(final int[] array) {
+                        return array.length;
+                    }
+
                     public long GlobalVariable(final long value) {
                         return value;
                     }

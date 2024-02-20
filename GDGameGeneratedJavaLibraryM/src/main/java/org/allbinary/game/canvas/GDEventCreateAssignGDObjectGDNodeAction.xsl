@@ -186,7 +186,9 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'TextObject::ChangeColor'" >
 
-                    <xsl:call-template name="textObjectChangeColorActionProcess" />
+                    <xsl:call-template name="textObjectChangeColorActionProcess" >
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                    </xsl:call-template>                        
                     
                 </xsl:if>
                 

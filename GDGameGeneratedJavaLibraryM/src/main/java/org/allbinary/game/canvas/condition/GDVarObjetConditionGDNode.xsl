@@ -340,7 +340,7 @@ Created By: Travis Berthelot
                                                     <xsl:with-param name="layoutIndex" >
                                                         <xsl:value-of select="$layoutIndex" />
                                                     </xsl:with-param>
-                                                </xsl:call-template>GDObjectsFactory.<xsl:value-of select="$before" />) <xsl:value-of select="$before" />).<xsl:value-of select="substring-after(text(), '.')" />
+                                                </xsl:call-template>GDObjectsFactory.<xsl:value-of select="$before" />) <xsl:value-of select="$before" />).<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="substring-after(text(), '.')" /></xsl:with-param><xsl:with-param name="find" >VariableChildCount(</xsl:with-param><xsl:with-param name="replacementText" >VariableChildCount(<xsl:value-of select="$before" />.</xsl:with-param></xsl:call-template>
                                             </xsl:if>
                                         </xsl:if>
                                         <xsl:if test="not(contains($hasObject, 'found'))" >

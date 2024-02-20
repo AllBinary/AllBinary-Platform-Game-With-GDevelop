@@ -17,7 +17,14 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="textObjectChangeColorActionProcess" >
-        
+        <xsl:param name="layoutIndex" />
+
+                    <xsl:variable name="hasBuiltinCommonInstructionsForEachToProcessGD" >
+                        <xsl:call-template name="hasBuiltinCommonInstructionsForEachToProcessGD" >
+                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:variable>
+
                         //TextObject::ChangeColor - action
                         @Override
                         public boolean process() throws Exception {
@@ -27,6 +34,11 @@ Created By: Travis Berthelot
 
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
+                                <xsl:if test="contains($hasBuiltinCommonInstructionsForEachToProcessGD, 'found')" >
+                                    if(true) throw new RuntimeException();
+                                </xsl:if>
+                                <xsl:if test="not(contains($hasBuiltinCommonInstructionsForEachToProcessGD, 'found'))" >
+                                
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
                                             final int colorAsInt = basicColorUtil.get(255, </xsl:if>
@@ -49,6 +61,8 @@ Created By: Travis Berthelot
                                     </xsl:for-each>
                                     <xsl:text>&#10;</xsl:text>
 
+                                </xsl:if>
+
 
                             } catch(Exception e) {
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
@@ -64,6 +78,17 @@ Created By: Travis Berthelot
                             try {
 
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                
+                                <xsl:if test="contains($hasBuiltinCommonInstructionsForEachToProcessGD, 'found')" >
+                                    <xsl:variable name="objectInForEach" >
+                                        <xsl:call-template name="objectBuiltinCommonInstructionsForEachToProcessGD" >
+                                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:variable>
+                                    //ForEach as parent with object=<xsl:value-of select="$objectInForEach" />
+                                    GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$objectInForEach" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$objectInForEach" /><xsl:text> </xsl:text><xsl:value-of select="$objectInForEach" /> = 
+                                        (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$objectInForEach" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$objectInForEach" />) gameLayer.gdObject;
+                                </xsl:if>
 
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >

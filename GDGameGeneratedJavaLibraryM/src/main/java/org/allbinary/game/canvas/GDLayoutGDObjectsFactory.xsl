@@ -68,6 +68,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layout.GDObjectFactory;
+                import org.allbinary.graphics.color.BasicColorUtil;
                 
                 import org.allbinary.logic.string.StringMaker;
                 
@@ -95,6 +96,7 @@ Created By: Travis Berthelot
                     }
 
                     private final StringUtil stringUtil = StringUtil.getInstance();
+                    private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
                     
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();

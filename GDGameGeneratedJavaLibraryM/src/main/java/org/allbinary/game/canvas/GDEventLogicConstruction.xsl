@@ -274,7 +274,43 @@ Created By: Travis Berthelot
         </xsl:for-each>
                 
     </xsl:template>
-    
+
+    <xsl:template name="hasBuiltinCommonInstructionsForEachToProcessGD" >
+        <xsl:param name="totalRecursions" />
+        
+        <xsl:for-each select=".." >
+            <xsl:if test="events[type = 'BuiltinCommonInstructions::ForEach']" >
+                found
+            </xsl:if>
+            
+            <xsl:call-template name="hasBuiltinCommonInstructionsForEachToProcessGD" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions + 1" />
+                </xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+                
+    </xsl:template>
+
+    <xsl:template name="objectBuiltinCommonInstructionsForEachToProcessGD" >
+        <xsl:param name="totalRecursions" />
+        
+        <xsl:for-each select=".." >
+            <xsl:if test="events[type = 'BuiltinCommonInstructions::ForEach']" >
+                <xsl:value-of select="events/object" />
+            </xsl:if>
+            
+            <xsl:call-template name="objectBuiltinCommonInstructionsForEachToProcessGD" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions + 1" />
+                </xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+                
+    </xsl:template>
+
     <xsl:template name="hasLinkedObjectsPickObjectsLinkedToProcessGD" >
         <xsl:param name="totalRecursions" />
         

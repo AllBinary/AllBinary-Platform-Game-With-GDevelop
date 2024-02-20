@@ -15,180 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <xsl:template name="gdObject" >
-        <xsl:param name="name" />
-        <xsl:variable name="hasObjectInObjectsGroups" ><xsl:for-each select="/game/layouts/objectsGroups" ><xsl:variable name="objectsGroupsName" select="name" /><xsl:for-each select="objects" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
-        <xsl:for-each select="/game/layouts/objectsGroups" ><xsl:variable name="objectsGroupsName" select="name" /><xsl:for-each select="objects" ><xsl:if test="name = $name" ><xsl:value-of select="$objectsGroupsName" /></xsl:if></xsl:for-each></xsl:for-each><xsl:if test="not(contains($hasObjectInObjectsGroups, 'found'))" >GDObject</xsl:if>
-    </xsl:template>
-    
-    <xsl:template name="objectsClassPropertyGDObjects" >
-
-        //ObjectsGroups - GDObject
-        <xsl:for-each select="/game/layouts/objectsGroups" >
-        public class <xsl:value-of select="name" /> extends GDObject {
-        
-            public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name, final String type) {
-                super(unknown, x, y, z, width, height, name, type);
-            }
-
-            <xsl:for-each select="objects" >
-                <xsl:if test="position() = 1" >
-                <xsl:variable name="objectName" select="name" />
-                
-            <xsl:for-each select="/game/layouts/objects" >
-                <xsl:variable name="name" select="name" />
-
-                    <xsl:if test="name = $objectName" >
-                    <xsl:for-each select="variables" >
-                    //ObjectsGroups - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
-                        <xsl:if test="type = 'string'" >
-                            <xsl:if test="number(value) != value" >
-                    public String <xsl:value-of select="name" /> = <xsl:if test="string-length(value) > 0" ><xsl:value-of select="value" /></xsl:if><xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if>;
-                            </xsl:if>
-                            <xsl:if test="number(value) = value" >
-                    //This is supposed to be a string
-                    public float <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                            </xsl:if>
-                        </xsl:if>
-                        <xsl:if test="type = 'number'" >
-                            <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE'))" >
-                                public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                            </xsl:if>
-                            <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE')" >
-                                <xsl:if test="value != '9223372036854776000'" >
-                                public long <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                                </xsl:if>
-                                <xsl:if test="value = '9223372036854776000'" >
-                                //Long.MAX_VALUE = 9223372036854776000 GD does not like the real value 9223372036854775807L
-                                public long <xsl:value-of select="name" /> = 9223372036854775807L;
-                                </xsl:if>
-                            </xsl:if>
-                        </xsl:if>
-                        <xsl:if test="type = 'boolean'" >
-                    public boolean <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                        </xsl:if>
-                        <xsl:if test="type = 'array'" >
-                            <xsl:if test="contains(name, 'BoolArray')" >
-                    public boolean[] <xsl:value-of select="name" /> = {
-                            <xsl:for-each select="children" >
-                        "<xsl:value-of select="value" />",
-                            </xsl:for-each>
-                    };
-                            </xsl:if>
-                            <xsl:if test="contains(name, 'IntArray')" >
-                    public int[] <xsl:value-of select="name" /> = {
-                            <xsl:for-each select="children" >
-                        "<xsl:value-of select="value" />",
-                            </xsl:for-each>
-                    };
-                            </xsl:if>
-                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'BoolArray'))" >
-                    public String[] <xsl:value-of select="name" /> = {
-                            <xsl:for-each select="children" >
-                        "<xsl:value-of select="value" />",
-                            </xsl:for-each>
-                    };
-                            </xsl:if>
-                        </xsl:if>
-                    </xsl:for-each>
-                    </xsl:if>
-
-            </xsl:for-each>
-                </xsl:if>
-            </xsl:for-each>
-
-            //objectsClassPropertyGDObjects
-            public void reset() {
-            
-            <xsl:for-each select="objects" >
-                <xsl:if test="position() = 1" >
-                <xsl:variable name="objectName" select="name" />
-                
-            <xsl:for-each select="/game/layouts/objects" >
-                <xsl:variable name="name" select="name" />
-
-                    <xsl:if test="name = $objectName" >
-                    <xsl:for-each select="variables" >
-                    //ObjectsGroups - //reset - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
-                        <xsl:if test="type = 'string'" >
-                            <xsl:if test="number(value) != value" >
-                    this.<xsl:value-of select="name" /> = <xsl:if test="string-length(value) > 0" ><xsl:value-of select="value" /></xsl:if><xsl:if test="string-length(value) = 0" >stringUtil.EMPTY_STRING</xsl:if>;
-                            </xsl:if>
-                            <xsl:if test="number(value) = value" >
-                    //This is supposed to be a string
-                    this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                            </xsl:if>
-                        </xsl:if>
-                        <xsl:if test="type = 'number'" >
-                            <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE'))" >
-                                this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                            </xsl:if>
-                            <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE')" >
-                                <xsl:if test="value != '9223372036854776000'" >
-                                this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                                </xsl:if>
-                                <xsl:if test="value = '9223372036854776000'" >
-                                //Long.MAX_VALUE = 9223372036854776000 GD does not like the real value 9223372036854775807L
-                                this.<xsl:value-of select="name" /> = 9223372036854775807L;
-                                </xsl:if>
-                            </xsl:if>
-                        </xsl:if>
-                        <xsl:if test="type = 'boolean'" >
-                    this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                        </xsl:if>
-                        <xsl:if test="type = 'array'" >
-                            <xsl:if test="contains(name, 'BoolArray')" >
-                    this.<xsl:value-of select="name" /> = new boolean[] {
-                            <xsl:for-each select="children" >
-                        "<xsl:value-of select="value" />",
-                            </xsl:for-each>
-                    };
-                            </xsl:if>
-                            <xsl:if test="contains(name, 'IntArray')" >
-                    this.<xsl:value-of select="name" /> = new int[] {
-                            <xsl:for-each select="children" >
-                        "<xsl:value-of select="value" />",
-                            </xsl:for-each>
-                    };
-                            </xsl:if>
-                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'BoolArray'))" >
-                    public String[] <xsl:value-of select="name" /> = {
-                            <xsl:for-each select="children" >
-                        "<xsl:value-of select="value" />",
-                            </xsl:for-each>
-                    };
-                            </xsl:if>
-                        </xsl:if>
-                    </xsl:for-each>
-                    </xsl:if>
-
-            </xsl:for-each>
-                </xsl:if>
-            </xsl:for-each>
-
-                this.initialVariables.reset();
-            }
-        }
-        </xsl:for-each>
-        
-        //objectsClassPropertyGDObjects - START
-        <xsl:for-each select="objects" >
-
-            <xsl:variable name="typeValue" select="type" />
-            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
-
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'Sprite' or $typeValue = 'PrimitiveDrawing::Drawer' or $typeValue = 'TextObject::Text'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
-                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-
-                //<xsl:value-of select="$typeValue" /> - GDObject
-                public final class <xsl:value-of select="name" /> extends <xsl:call-template name="gdObject" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template> {
-
-                    <xsl:variable name="hasObjectInObjectsGroups" ><xsl:for-each select="/game/layouts/objectsGroups" ><xsl:variable name="objectsGroupsName" select="name" /><xsl:for-each select="objects" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
-
-                    <xsl:if test="not(contains($hasObjectInObjectsGroups, 'found'))" >
-
+    <xsl:template name="variablesForGDObject" >
                     <xsl:for-each select="variables" >
                     //Object - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                         <xsl:if test="type = 'string'" >
@@ -221,14 +48,19 @@ Created By: Travis Berthelot
                             <xsl:if test="contains(name, 'BoolArray')" >
                     public boolean[] <xsl:value-of select="name" /> = {
                             <xsl:for-each select="children" >
-                        "<xsl:value-of select="value" />",
+                        <xsl:value-of select="value" />,
                             </xsl:for-each>
                     };
                             </xsl:if>
                             <xsl:if test="contains(name, 'IntArray')" >
                     public int[] <xsl:value-of select="name" /> = {
                             <xsl:for-each select="children" >
-                        "<xsl:value-of select="value" />",
+                                <xsl:if test="contains(value, ';')" >
+                        basicColorUtil.get(<xsl:value-of select="translate(translate(value, '\&quot;', ''), ';', ',')" />),
+                                </xsl:if>
+                                <xsl:if test="not(contains(value, ';'))" >
+                        <xsl:value-of select="value" />,
+                                </xsl:if>
                             </xsl:for-each>
                     };
                             </xsl:if>
@@ -241,9 +73,9 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
-
-                    //objectsClassPropertyGDObjects2
-                    public void reset() {
+    </xsl:template>
+    
+    <xsl:template name="variablesResetForGDObject" >
                     <xsl:for-each select="variables" >
                     //Object - //reset - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                         <xsl:if test="type = 'string'" >
@@ -283,7 +115,12 @@ Created By: Travis Berthelot
                             <xsl:if test="contains(name, 'IntArray')" >
                     this.<xsl:value-of select="name" /> = new int[] {
                             <xsl:for-each select="children" >
-                        "<xsl:value-of select="value" />",
+                                <xsl:if test="contains(value, ';')" >
+                        basicColorUtil.get(<xsl:value-of select="translate(translate(value, '\&quot;', ''), ';', ',')" />),
+                                </xsl:if>
+                                <xsl:if test="not(contains(value, ';'))" >
+                        <xsl:value-of select="value" />,
+                                </xsl:if>
                             </xsl:for-each>
                     };
                             </xsl:if>
@@ -296,8 +133,87 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template name="gdObject" >
+        <xsl:param name="name" />
+        <xsl:variable name="hasObjectInObjectsGroups" ><xsl:for-each select="/game/layouts/objectsGroups" ><xsl:variable name="objectsGroupsName" select="name" /><xsl:for-each select="objects" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+        <xsl:for-each select="/game/layouts/objectsGroups" ><xsl:variable name="objectsGroupsName" select="name" /><xsl:for-each select="objects" ><xsl:if test="name = $name" ><xsl:value-of select="$objectsGroupsName" /></xsl:if></xsl:for-each></xsl:for-each><xsl:if test="not(contains($hasObjectInObjectsGroups, 'found'))" >GDObject</xsl:if>
+    </xsl:template>
+    
+    <xsl:template name="objectsClassPropertyGDObjects" >
+
+        //ObjectsGroups - GDObject
+        <xsl:for-each select="/game/layouts/objectsGroups" >
+        public class <xsl:value-of select="name" /> extends GDObject {
+        
+            public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name, final String type) {
+                super(unknown, x, y, z, width, height, name, type);
+            }
+
+            <xsl:for-each select="objects" >
+                <xsl:if test="position() = 1" >
+                <xsl:variable name="objectName" select="name" />
+                
+            <xsl:for-each select="/game/layouts/objects" >
+                <xsl:variable name="name" select="name" />
+
+                    <xsl:if test="name = $objectName" >
+                    <xsl:call-template name="variablesForGDObject" />
+                    </xsl:if>
+
+            </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>
+
+            //objectsClassPropertyGDObjects
+            public void reset() {
+            
+            <xsl:for-each select="objects" >
+                <xsl:if test="position() = 1" >
+                <xsl:variable name="objectName" select="name" />
+                
+            <xsl:for-each select="/game/layouts/objects" >
+                <xsl:variable name="name" select="name" />
+
+                    <xsl:if test="name = $objectName" >
+                        <xsl:call-template name="variablesResetForGDObject" />
+                    </xsl:if>
+
+            </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>
+
+                this.initialVariables.reset();
+            }
+        }
+        </xsl:for-each>
+        
+        //objectsClassPropertyGDObjects - START
+        <xsl:for-each select="objects" >
+
+            <xsl:variable name="typeValue" select="type" />
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
+
+            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'Sprite' or $typeValue = 'PrimitiveDrawing::Drawer' or $typeValue = 'TextObject::Text'" >
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+
+                //<xsl:value-of select="$typeValue" /> - GDObject
+                public final class <xsl:value-of select="name" /> extends <xsl:call-template name="gdObject" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template> {
+
+                    <xsl:variable name="hasObjectInObjectsGroups" ><xsl:for-each select="/game/layouts/objectsGroups" ><xsl:variable name="objectsGroupsName" select="name" /><xsl:for-each select="objects" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+
+                    <xsl:if test="not(contains($hasObjectInObjectsGroups, 'found'))" >
+
+                        <xsl:call-template name="variablesForGDObject" />
+
+                    //objectsClassPropertyGDObjects2
+                    public void reset() {
+                        <xsl:call-template name="variablesResetForGDObject" />
                     
-                    this.initialVariables.reset();
+                        this.initialVariables.reset();
 
                     }
                     </xsl:if>
