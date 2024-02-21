@@ -103,7 +103,7 @@ Created By: Travis Berthelot
                                     <xsl:variable name="objectName" >
                                         <xsl:value-of select="substring-before(substring-after($param, 'SceneInstancesCount('), ')')" />
                                     </xsl:variable>
-                                    <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$objectName" /></xsl:with-param><xsl:with-param name="replacementText" >gameGlobals.<xsl:value-of select="$objectName" />GDGameLayerList.size()</xsl:with-param></xsl:call-template>,
+                                    <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$objectName" /></xsl:with-param><xsl:with-param name="replacementText" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectName" />GDGameLayerList.size()</xsl:with-param></xsl:call-template>,
                                 </xsl:if>
                             </xsl:if>
                         </xsl:if>
