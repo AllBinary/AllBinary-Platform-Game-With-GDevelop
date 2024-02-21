@@ -33,7 +33,7 @@ public class GDNodeUtil {
     public final BasicArrayList gdNodesList = new BasicArrayList();    
     
     public GDNodes getInstance(final int index) {
-        if(index > gdNodesList.size() - 1) {
+        while(index > gdNodesList.size() - 1) {
             gdNodesList.add(new GDNodes());
         }
         
