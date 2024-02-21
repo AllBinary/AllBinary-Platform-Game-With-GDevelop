@@ -228,12 +228,28 @@ Created By: Travis Berthelot
                         return array.length;
                     }
 
+                    public String GlobalVariable(final String value) {
+                        return value;
+                    }
+
                     public long GlobalVariable(final long value) {
                         return value;
                     }
 
                     public int GlobalVariable(final int value) {
                         return value;
+                    }
+
+                    public String GlobalVariableString(final String value) {
+                        return value;
+                    }
+
+                    public int GlobalVariableChildCount(final String[] array) {
+                        return array.length;
+                    }
+
+                    public int GlobalVariableChildCount(final int[] array) {
+                        return array.length;
                     }
 
                     public int MouseX() {

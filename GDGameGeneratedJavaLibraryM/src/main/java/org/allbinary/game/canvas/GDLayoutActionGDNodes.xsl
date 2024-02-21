@@ -279,6 +279,10 @@ Created By: Travis Berthelot
                         return array.length;
                     }
 
+                    public String GlobalVariable(final String value) {
+                        return value;
+                    }
+
                     public long GlobalVariable(final long value) {
                         return value;
                     }
@@ -370,6 +374,10 @@ Created By: Travis Berthelot
 
                     public int TouchY(final int touchId, final String name, final int unknown) {
                         return 0;
+                    }
+
+                    public String ToString(final String value) {
+                        return value;
                     }
 
                     public String ToString(final int value) {

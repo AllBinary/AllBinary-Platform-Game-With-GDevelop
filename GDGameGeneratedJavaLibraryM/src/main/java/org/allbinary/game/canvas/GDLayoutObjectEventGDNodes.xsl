@@ -164,7 +164,11 @@ Created By: Travis Berthelot
                     public double Variable(final double value) {
                         return value;
                     }
-                    
+
+                    public String GlobalVariable(final String value) {
+                        return value;
+                    }
+                                        
                     public long GlobalVariable(final long value) {
                         return value;
                     }

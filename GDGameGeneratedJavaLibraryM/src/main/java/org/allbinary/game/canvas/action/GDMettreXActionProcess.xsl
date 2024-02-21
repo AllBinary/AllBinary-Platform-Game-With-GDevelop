@@ -116,10 +116,8 @@ Created By: Travis Berthelot
                                             <xsl:with-param name="text" >
                                                 <xsl:value-of select="text()" />
                                             </xsl:with-param>
-                                            <xsl:with-param name="find" >
-                                                <xsl:value-of select="$objectName" />
-                                            </xsl:with-param>
-                                            <xsl:with-param name="replacementText" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectName" />GDGameLayerList.size()</xsl:with-param>
+                                            <xsl:with-param name="find" >SceneInstancesCount(<xsl:value-of select="$objectName" /></xsl:with-param>
+                                            <xsl:with-param name="replacementText" >SceneInstancesCount(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectName" />GDGameLayerList.size()</xsl:with-param>
                                         </xsl:call-template>
                                     </xsl:if>
                                 </xsl:if>
@@ -235,7 +233,7 @@ Created By: Travis Berthelot
                                 <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setX(</xsl:if>
                                 <xsl:if test="position() = 2" ><xsl:if test="text() = '+'" ><xsl:value-of select="$existingValue" /> + </xsl:if><xsl:if test="text() = '-'" ><xsl:value-of select="$existingValue" /> - </xsl:if></xsl:if>
-                                <xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if>
+                                <xsl:if test="position() = 3" ><xsl:value-of select="$param" /></xsl:if>
                                 </xsl:for-each>);
 
                                 //<xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.x</xsl:if></xsl:for-each>;

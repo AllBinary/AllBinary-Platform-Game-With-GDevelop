@@ -665,6 +665,10 @@ Created By: Travis Berthelot
                         return value;
                     }
                     
+                    public String GlobalVariable(final String value) {
+                        return value;
+                    }
+                    
                     public long GlobalVariable(final long value) {
                         return value;
                     }

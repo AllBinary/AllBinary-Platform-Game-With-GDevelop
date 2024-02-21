@@ -47,14 +47,14 @@ Created By: Travis Berthelot
                                 final int size = highScoresArray.length;
 
                                 gameGlobals.highScoresNameArray = new String[size];
-                                gameGlobals.highScoresScoreIntArray = new int[size];
+                                gameGlobals.highScoresIntArray = new int[size];
                                 
                                 HighScores highScores;
                                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> size; index++) {
                                     highScores = highScoresArray[index];
                                     
                                     gameGlobals.highScoresNameArray[index] = highScores.getName();
-                                    gameGlobals.highScoresScoreIntArray[index] = highScores.getTotal();
+                                    gameGlobals.highScoresIntArray[index] = highScores.getTotal();
                                 }
                             
                             <xsl:for-each select="preceding-sibling::conditions" >
