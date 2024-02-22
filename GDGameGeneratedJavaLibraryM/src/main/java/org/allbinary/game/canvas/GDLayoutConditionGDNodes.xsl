@@ -75,6 +75,7 @@ Created By: Travis Berthelot
                 
                 import org.allbinary.game.input.GDRGameInputProcessor;
 
+                import org.allbinary.game.score.HighScore;
                 import org.allbinary.game.score.HighScores;
                 import org.allbinary.game.input.GameInputProcessor;
                 import org.allbinary.game.input.InputFactory;

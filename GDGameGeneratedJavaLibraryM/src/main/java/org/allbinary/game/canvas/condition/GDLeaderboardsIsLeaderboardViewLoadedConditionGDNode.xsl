@@ -44,18 +44,29 @@ Created By: Travis Berthelot
                                 final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
                                 final HighScores[] highScoresArray = abCanvas.getHighScoresArray();
                                 
-                                final int size = highScoresArray.length;
-
-                                gameGlobals.highScoresNameArray = new String[size];
-                                gameGlobals.highScoresIntArray = new int[size];
+                                final int leaderBoardTotal = highScoresArray.length;
                                 
                                 HighScores highScores;
-                                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> size; index++) {
-                                    highScores = highScoresArray[index];
+                                final int index2 = 0;
+                                //for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> leaderBoardTotal; index2++) {
+                                    highScores = highScoresArray[index2];
+                                
+                                    gameGlobals.highScoresTitle = highScores.getHeading();
+                                    gameGlobals.highScoresColumnHeadingOne = highScores.getColumnOneHeading();
+                                    gameGlobals.highScoresColumnHeadingOne = highScores.getColumnTwoHeading();
                                     
-                                    gameGlobals.highScoresNameArray[index] = highScores.getName();
-                                    gameGlobals.highScoresIntArray[index] = highScores.getTotal();
-                                }
+                                    final BasicArrayList highScoreList = highScores.getList();
+                                    final int size = highScoreList.size();
+                                    gameGlobals.highScoresNameArray = new String[size];
+                                    gameGlobals.highScoresIntArray = new int[size];
+                                    HighScore highScore;
+                                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> size; index++) {
+
+                                        highScore = (HighScore) highScoreList.get(index);
+                                        gameGlobals.highScoresNameArray[index] = highScore.getName();
+                                        gameGlobals.highScoresIntArray[index] = (int) highScore.getScore();
+                                    }
+                                //}
                             
                             <xsl:for-each select="preceding-sibling::conditions" >
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>

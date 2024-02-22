@@ -28,6 +28,11 @@ Created By: Travis Berthelot
             
             <xsl:if test="type = 'BuiltinCommonInstructions::JsCode'" >
                 //Event - //BuiltinCommonInstructions::JsCode - call
+                //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+            </xsl:if>
+
+            <xsl:if test="type = 'BuiltinCommonInstructions::While'" >
+                //Event - //BuiltinCommonInstructions::While - call
                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
 

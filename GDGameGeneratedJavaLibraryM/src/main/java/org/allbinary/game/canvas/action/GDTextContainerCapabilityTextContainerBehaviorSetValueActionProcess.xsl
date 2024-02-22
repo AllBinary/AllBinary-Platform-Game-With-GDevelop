@@ -35,6 +35,22 @@ Created By: Travis Berthelot
                             
                             return true;
                         }
+
+                        @Override
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                            super.processGDStats(gameLayer);
+                        
+                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            
+                            <xsl:for-each select="parameters" >
+                                <xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />TextAnimation</xsl:if>
+                                <xsl:if test="position() = 3" ><xsl:if test="text() = '='" >.setText(</xsl:if></xsl:if>
+                                <xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if>
+                                <xsl:if test="position() = last()" >);</xsl:if>
+                            </xsl:for-each>
+                            
+                            return true;
+                        }
                         //TextContainerCapability::TextContainerBehavior::SetValue - action - END
 
     </xsl:template>
