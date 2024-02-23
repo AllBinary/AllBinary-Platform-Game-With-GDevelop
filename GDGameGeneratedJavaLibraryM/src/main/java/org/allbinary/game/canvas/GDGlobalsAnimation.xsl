@@ -233,20 +233,6 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //instances - END
 
-                    //objects - START
-                    <xsl:for-each select="objects" >
-                        <xsl:variable name="typeValue" select="type" />
-                        <xsl:if test="$typeValue = 'TextObject::Text'" >
-                            final int size<xsl:value-of select="name" />Size2 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size();
-                            GDObject <xsl:value-of select="name" />Size2;
-                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size<xsl:value-of select="name" />Size2; index++) {
-                                <xsl:value-of select="name" />Size2 = (GDObject) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(index)).gdObject;
-                                <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />TextAnimation.paint(graphics, <xsl:value-of select="name" />Size2.x, <xsl:value-of select="name" />Size2.y);
-                            }
-                        </xsl:if>
-                    </xsl:for-each>
-                    //objects - end
-
                     }
 
                 }

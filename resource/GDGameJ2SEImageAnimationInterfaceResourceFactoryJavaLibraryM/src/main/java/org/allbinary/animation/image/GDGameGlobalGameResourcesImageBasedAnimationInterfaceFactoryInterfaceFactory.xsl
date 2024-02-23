@@ -98,6 +98,7 @@ import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.animation.image.AllBinaryJ2SEImageRotationAnimationFactory;
 import org.allbinary.animation.image.sprite.OneRowJ2SESpriteIndexedAnimationFactory;
+import org.allbinary.animation.text.CustomTextAnimationFactory;
 import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory;
 import org.allbinary.game.canvas.GDGlobalSpecialAnimationResources;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;

@@ -307,9 +307,6 @@ Created By: Travis Berthelot
                                     Global
                                 </xsl:with-param>
                             </xsl:call-template>
-
-                    <xsl:call-template name="objectsClassPropertyAssignment" >
-                    </xsl:call-template>
                                         
                         <xsl:for-each select="variables" >
                             <xsl:if test="type = 'boolean'" >

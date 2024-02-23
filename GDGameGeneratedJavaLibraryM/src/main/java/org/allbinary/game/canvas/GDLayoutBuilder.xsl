@@ -539,13 +539,25 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     //eventsOnceConditionProcessActions - END
 
+                            int colorAsInt = 0;
+                            BasicColor basicColor = null;
+                            int size = 0;
+                            GDGameLayer gameLayer;
+
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:if test="$typeValue = 'TextObject::Text'" >
-                            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />TextAnimation.setBasicColor(smallBasicColorCacheFactory.getInstance(
-                            basicColorUtil.get(255, <xsl:for-each select="color" ><xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />))
-                            );
-                            //, </xsl:for-each>"name=<xsl:value-of select="name" />;type=<xsl:value-of select="$typeValue" />")
+                            
+                            colorAsInt = basicColorUtil.get(255, <xsl:for-each select="color" ><xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />);</xsl:for-each>
+                            basicColor = smallBasicColorCacheFactory.getInstance(colorAsInt);
+
+                            size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size();
+                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                                gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(index);
+                                gameLayer.setBasicColor(basicColor);
+                                //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />TextAnimation.setBasicColor(smallBasicColorCacheFactory.getInstance(basicColorUtil.get(255, <xsl:for-each select="color" ><xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />)));
+                                //, </xsl:for-each>"name=<xsl:value-of select="name" />;type=<xsl:value-of select="$typeValue" />")
+                            }
 
                             <xsl:variable name="name2" >:<xsl:value-of select="name" />,</xsl:variable>
 

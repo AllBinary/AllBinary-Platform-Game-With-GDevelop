@@ -339,18 +339,47 @@ Created By: Travis Berthelot
 
             <xsl:if test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="stringValue2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&quot;'" /></xsl:with-param><xsl:with-param name="replacementText" >\"</xsl:with-param></xsl:call-template></xsl:variable>
+                <xsl:variable name="multilineString" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue2" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&#10;'" /></xsl:with-param><xsl:with-param name="replacementText" >\n").append("</xsl:with-param></xsl:call-template></xsl:variable>
+                
+                final int <xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="characterSize" />);
 
-                /*
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
-                    NullRotationAnimationFactory.getFactoryInstance()
+                    new CustomTextAnimationFactory(new StringMaker().append("<xsl:value-of select="$multilineString" />").toString() , <xsl:value-of select="name" />TextAnimationSize)
                 };
+
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
+
+                this.add(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.getInstance(0, 0),
-                                0, 0
+                                <xsl:value-of select="name" />TextAnimationSize * (12 - 1), <xsl:value-of select="name" />TextAnimationSize
                                 );
 
-                */
+                                <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
+
+                                <xsl:variable name="parentGroupIfAny" >
+                                <xsl:for-each select="/game">
+                                    <xsl:for-each select="layouts" >
+                                        <xsl:variable name="layoutIndex2" select="position() - 1" />
+                                        <xsl:if test="number($layoutIndex2) = $layoutIndex" >
+                                            <xsl:for-each select="objectsGroups" >
+                                                <xsl:variable name="groupName">
+                                                    <xsl:value-of select="name" />
+                                                </xsl:variable>
+                                                <xsl:for-each select="objects" >
+                                                    <xsl:if test="name = $layerName" >
+                                                        <xsl:value-of select="$groupName" />
+                                                    </xsl:if>
+                                                </xsl:for-each>
+                                            </xsl:for-each>
+                                        </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                                </xsl:variable>
+                this.addRectangle(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
                 //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
 

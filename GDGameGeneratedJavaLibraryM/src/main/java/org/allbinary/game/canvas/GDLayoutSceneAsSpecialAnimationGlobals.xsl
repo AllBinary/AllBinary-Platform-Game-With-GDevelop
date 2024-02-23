@@ -362,9 +362,6 @@ public class GDStructure {
                     <xsl:if test="contains($hasScaleVariable, 'found')" >
                     this.scale = scale;
                     </xsl:if>
-                                        
-                    <xsl:call-template name="objectsClassPropertyAssignment" >
-                    </xsl:call-template>
                     
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >

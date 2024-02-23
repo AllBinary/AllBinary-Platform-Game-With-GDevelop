@@ -149,7 +149,7 @@ Created By: Travis Berthelot
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'Sprite' or $typeValue = 'TextInput::TextInputObject' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'Sprite' or $typeValue = 'TextObject::Text' or $typeValue = 'TextEntryObject::TextEntry' or $typeValue = 'TextInput::TextInputObject' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
@@ -247,7 +247,7 @@ Created By: Travis Berthelot
                     <xsl:value-of select="name" />LayerInfo,
                     <xsl:value-of select="name" />RectangleArrayOfArrays
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >, GDIndividualAnimationBehavior.getInstance()</xsl:if>
-                    <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >, GDAnimationBehaviorBase.getInstance()</xsl:if>
+                    <xsl:if test="$typeValue = 'TextObject::Text' or $typeValue = 'TextInput::TextInputObject'" >, GDAnimationBehaviorBase.getInstance()</xsl:if>
                     <xsl:if test="contains(name, 'btn_')" >, GDAnimationBehaviorBase.getInstance()</xsl:if>
                     );
 
@@ -285,37 +285,7 @@ Created By: Travis Berthelot
                 //this.<xsl:value-of select="name" />GDGameLayerFactory = new NullGDGameLayerFactory();
 
             </xsl:if>
-            <xsl:if test="$typeValue = 'TextObject::Text'" >
-                <xsl:variable name="stringValue" select="string" />
-
-                this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[] {
-                    NullRotationAnimationFactory.getFactoryInstance()
-                };
-                this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
-                this.<xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                pointFactory.getInstance(0, 0),
-                                0, 0
-                                );
-                this.<xsl:value-of select="name" />RectangleArrayOfArrays = new Rectangle[0][0];
-
-                final BasicArrayList <xsl:value-of select="name" />BehaviorList = new BasicArrayList();
-                
-                this.<xsl:value-of select="name" />GDGameLayerFactory = new GDCustomGameLayerFactory(
-                    NullAnimationFactory.getFactoryInstance(),
-                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList,
-                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerDestroyedList,
-                    new Group[] {<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface},
-                    <xsl:value-of select="name" />BehaviorList,
-                    <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
-                    <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
-                    <xsl:value-of select="name" />LayerInfo,
-                    <xsl:value-of select="name" />RectangleArrayOfArrays);
-
-                //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
-
-                //this.<xsl:value-of select="name" />GDGameLayerFactory = new NullGDGameLayerFactory();
-
-            </xsl:if>
+<!--
 
             <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
                 <xsl:variable name="stringValue" select="string" />
@@ -349,6 +319,7 @@ Created By: Travis Berthelot
                 //this.<xsl:value-of select="name" />GDGameLayerFactory = new NullGDGameLayerFactory();
 
             </xsl:if>
+            -->
 
         </xsl:for-each>
         //objectsAssign - END

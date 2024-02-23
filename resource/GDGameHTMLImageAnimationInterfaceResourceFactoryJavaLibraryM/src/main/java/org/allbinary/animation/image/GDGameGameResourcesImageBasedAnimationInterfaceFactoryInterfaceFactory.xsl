@@ -106,6 +106,7 @@ import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInt
 import org.allbinary.animation.image.AllBinaryHTMLImageRotationAnimationFactory;
 import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
 import org.allbinary.animation.image.sprite.OneRowHTMLSpriteIndexedAnimationFactory;
+import org.allbinary.animation.text.CustomTextAnimationFactory;
 import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;

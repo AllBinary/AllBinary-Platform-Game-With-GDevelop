@@ -96,10 +96,16 @@ Created By: Travis Berthelot
                             </xsl:variable>
                             
                             <xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />TextAnimation</xsl:if>
-                                <xsl:if test="position() = 2" ><xsl:if test="text() = '='" >.setText(</xsl:if></xsl:if>
+                                <xsl:if test="position() = 1" >
+                            final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size();
+                            GDGameLayer gameLayer;
+                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                                gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index);
+                                </xsl:if>
+                                <xsl:if test="position() = 2" ><xsl:if test="text() = '='" >gameLayer.setText(</xsl:if></xsl:if>
                                 <xsl:if test="position() = 3" ><xsl:value-of select="$thirdParam" /></xsl:if>
-                                <xsl:if test="position() = last()" >);</xsl:if>
+                                <xsl:if test="position() = last()" >);
+                            }</xsl:if>
                             </xsl:for-each>
                             
                             return true;

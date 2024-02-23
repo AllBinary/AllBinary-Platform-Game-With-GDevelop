@@ -47,7 +47,7 @@ Created By: Travis Berthelot
                                 final int leaderBoardTotal = highScoresArray.length;
                                 
                                 HighScores highScores;
-                                final int index2 = 0;
+                                final int index2 = leaderBoardTotal - 1;
                                 //for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> leaderBoardTotal; index2++) {
                                     highScores = highScoresArray[index2];
                                 
