@@ -191,24 +191,6 @@ public class GDStructure {
                     </xsl:for-each>
                     //objectsGroups - END
 
-<!--
-                    //instances class properties - START                    
-                    <xsl:for-each select="instances" >
-                        //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" /><xsl:text>&#10;</xsl:text>
-                        <xsl:variable name="initialVariablesValue" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="initialVariables/value" /></xsl:with-param><xsl:with-param name="find" >-</xsl:with-param><xsl:with-param name="replacementText" >Neg</xsl:with-param></xsl:call-template></xsl:variable>
-
-                        //public final BasicArrayList <xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
-                        <xsl:variable name="name" select="name" />
-                        <xsl:variable name="notTextObject" ><xsl:for-each select="../objects" ><xsl:if test="$name = name" ><xsl:if test="type != 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
-                        <xsl:if test="contains($notTextObject, 'found')" >
-                        public GDGameLayer <xsl:value-of select="name" />GDGameLayer;
-                        </xsl:if>
-                        public Rectangle <xsl:value-of select="name" />Rectangle<xsl:value-of select="$initialVariablesValue" /> = null;
-
-                    </xsl:for-each>
-                    //instances class properties - END
--->
-
                     //objects class properties - START                    
                     <xsl:for-each select="objects" >
                         //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" /><xsl:text>&#10;</xsl:text>

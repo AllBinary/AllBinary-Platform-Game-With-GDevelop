@@ -145,7 +145,8 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
     {
         super(commandListener, allBinaryGameLayerManager,
-                new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()),
+                //new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()),
+                NoHighScoresFactory.getInstance(),
                 new GDGameStaticInitializerFactory(),
            //new BasicBuildGameInitializerFactory(),
            false);

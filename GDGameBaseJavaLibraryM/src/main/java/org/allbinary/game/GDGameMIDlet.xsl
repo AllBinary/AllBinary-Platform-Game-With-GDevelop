@@ -189,7 +189,9 @@ public class GDGameMIDlet extends
        return new HighScoresCanvas(this,
                this.createGameLayerManager(),
                new HighScoresPaintable(),
-               new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()));
+               //new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance())
+               NoHighScoresFactory.getInstance()
+              );
    }
 
    public int getHighestLevel()

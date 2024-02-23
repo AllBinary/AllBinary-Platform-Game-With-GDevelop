@@ -59,7 +59,9 @@ public class <GDLayout> extends StartCanvas
 
     public <GDLayout>(final CommandListener commandListener) throws Exception
     {
-        super(commandListener, new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()),
+        super(commandListener, 
+                //new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()),
+                NoHighScoresFactory.getInstance(),
                 NullPaintable.getInstance(), NullInitUpdatePaintable.getInstance(),
                 new GDGameStaticInitializerFactory(), false);
 

@@ -40,9 +40,7 @@ Created By: Travis Berthelot
                 gameLayer = (GDGameLayer) globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.get(index);
                 gameLayer.gdObject.reset();
                 gameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
-                <xsl:if test="$type != 'TextObject::Text'" >
                 allBinaryGameLayerManager.insert(gameLayer);
-                </xsl:if>
             }
                                 
             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.addAll(
@@ -65,9 +63,7 @@ Created By: Travis Berthelot
                 gameLayer = (GDGameLayer) globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.get(index);
                 gameLayer.gdObject.reset();
                 gameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
-                <xsl:if test="$type != 'TextObject::Text'" >
                 allBinaryGameLayerManager.insert(gameLayer);
-                </xsl:if>
             }
 
             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.addAll(

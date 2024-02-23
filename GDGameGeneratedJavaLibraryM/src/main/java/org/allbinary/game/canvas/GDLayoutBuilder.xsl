@@ -284,20 +284,6 @@ Created By: Travis Berthelot
                         <xsl:variable name="spriteName" >Sprite:<xsl:value-of select="name" />,</xsl:variable>
                         <xsl:variable name="textInputName" >,TextInput::TextInputObject:<xsl:value-of select="$name" />,</xsl:variable>
                         <xsl:variable name="colonName" >:<xsl:value-of select="name" /></xsl:variable>
-                        <xsl:variable name="notTextObject" >
-                            
-                            <xsl:for-each select="../objects" >
-                                <xsl:if test="$name = name" >
-                                    <xsl:if test="type != 'TextObject::Text'" >found</xsl:if>
-                                </xsl:if>
-                            </xsl:for-each>
-                            <xsl:for-each select="/game/objects" >
-                                <xsl:if test="$name = name" >
-                                    <xsl:if test="type != 'TextObject::Text'" >found</xsl:if>
-                                </xsl:if>
-                            </xsl:for-each>
-
-                        </xsl:variable>
 
                         //name=<xsl:value-of select="name" /> layer=<xsl:value-of select="layer" />
                         
@@ -307,11 +293,10 @@ Created By: Travis Berthelot
                         <xsl:if test="not(contains($exclusionObjectsAsString, $colonName))" >
                             
                         <xsl:text>&#10;</xsl:text>
-                        //<xsl:value-of select="name" /> - //notTextObject=<xsl:value-of select="$notTextObject" />
                         if(true) {
-                        <xsl:if test="contains($notTextObject, 'found')" >
+<!--                        <xsl:if test="contains($notTextObject, 'found')" >
                             //or contains($objectsAsString, $colonName)
-                            //notTextObject = <xsl:value-of select="$notTextObject" /> or contains($objectsAsString, $colonName/<xsl:value-of select="$colonName" />) = <xsl:value-of select="contains($objectsAsString, $colonName)" />
+                            //notTextObject = <xsl:value-of select="$notTextObject" /> or contains($objectsAsString, $colonName/<xsl:value-of select="$colonName" />) = <xsl:value-of select="contains($objectsAsString, $colonName)" />-->
                             <xsl:if test="contains(name, 'btn_')" >
                         //btn_ - found
                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
@@ -382,33 +367,16 @@ Created By: Travis Berthelot
                         0, 0,
                         </xsl:if>
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME);
-                        
-                        
-<!--                    
-                        <xsl:if test="contains($objectsAsString, $spriteName)" >
-                        //instances //We may need to set a dimension for each image/animation.
-                        //Hack - the other 'btn_' cases need to look at the layer to see if it is touch or not.
-                            <xsl:if test="contains(name, 'btn_')" >
-                        <xsl:value-of select="name" />GDobject2.canvasWidth = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth();
-                        <xsl:value-of select="name" />GDobject2.canvasHeight = touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight();
-                            </xsl:if>
-                            <xsl:if test="not(contains(name, 'btn_'))" >
-                        <xsl:value-of select="name" />GDobject2.canvasWidth = <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getWidth();
-                        <xsl:value-of select="name" />GDobject2.canvasHeight = <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />Rectangle.getHeight();
-                            </xsl:if>
-                        //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="name" />GDobject2.toString(), this, commonStrings.PROCESS));
-                        </xsl:if>
--->
-                        
+                                                
                         final int index = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size();
 
                         final StringMaker stringBuilder = new StringMaker();
                         //stringBuilder.delete(0, stringBuilder.length());
                                                 
                         //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDObjectList.add(<xsl:value-of select="name" />GDobject2);
-                        </xsl:if>
+<!--                        </xsl:if>-->
                         
-                            <xsl:if test="not(contains($notTextObject, 'found'))" >
+<!--                            <xsl:if test="not(contains($notTextObject, 'found'))" >
                         //TextObject::Text - START
                         final int <xsl:value-of select="name" />X = (int) (<xsl:value-of select="x" /> * baseLayerScale);
                         final int <xsl:value-of select="name" />Y = (int) (<xsl:value-of select="y" /> * baseLayerScale);
@@ -442,7 +410,7 @@ Created By: Travis Berthelot
                 globals.<xsl:value-of select="name" />GDInstanceGDGameLayerList.add(<xsl:value-of select="name" />GDGameLayer);
                         
                         //TextObject::Text - END
-                            </xsl:if>                        
+                            </xsl:if>                        -->
 
                             <xsl:if test="initialVariables" >
                             <xsl:value-of select="$name" />GDobject2.initialVariables = new GDInitialVariables() {
@@ -465,7 +433,7 @@ Created By: Travis Berthelot
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         </xsl:if>
                                                 
-                        <xsl:if test="contains($notTextObject, 'found')" >
+<!--                        <xsl:if test="contains($notTextObject, 'found')" >-->
                         //Create - Instances - START
                         final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                         final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
@@ -484,7 +452,7 @@ Created By: Travis Berthelot
                         //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$gameLayer" />.getZ()" + <xsl:value-of select="$gameLayer" />.getZ(), this, commonStrings.PROCESS));
                         allBinaryGameLayerManager.insert(<xsl:value-of select="name" />GDGameLayer);
                         //Create - Instances - END
-                        </xsl:if>
+<!--                        </xsl:if>-->
                         
                         <xsl:for-each select=".." >
                             <xsl:call-template name="globalUpdateCentreCameraActions" >

@@ -75,7 +75,7 @@ Created By: Travis Berthelot
 
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
+            <xsl:if test="$typeValue = 'TextObject::Text' or $typeValue = 'TextInput::TextInputObject'" >
                 
                 public Rectangle <xsl:value-of select="$name" />Rectangle;
                 
@@ -291,6 +291,10 @@ Created By: Travis Berthelot
                 hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
                 this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />ImageArray[0].getWidth(), <xsl:value-of select="name" />ImageArray[0].getHeight());
 
+            </xsl:if>
+
+            <xsl:if test="$typeValue = 'TextObject::Text'" >
+                this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >                

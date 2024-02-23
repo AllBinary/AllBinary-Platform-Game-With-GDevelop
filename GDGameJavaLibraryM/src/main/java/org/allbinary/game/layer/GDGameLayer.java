@@ -20,6 +20,7 @@ import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.RotationAnimation;
+import org.allbinary.animation.text.CustomTextAnimation;
 import org.allbinary.animation.text.CustomTextBoxIndexedAnimation;
 import org.allbinary.canvas.Processor;
 import org.allbinary.game.combat.CombatBaseBehavior;
@@ -31,6 +32,7 @@ import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.game.physics.velocity.VelocityUtil;
 import org.allbinary.graphics.Rectangle;
+import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.image.opengles.OpenGLSurfaceChangedInterface;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -469,14 +471,20 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     }
     
     //private boolean isFirst = true;
-    //private final String PAINT = "paint";
+    private final String PAINT = "paint";
     //private final String W_ = "w ";
     public void paint(final Graphics graphics)
     {
         try
         {
+            //int x = this.x - quarterWidth;
+            //int y = this.y - quarterHeight;
+            final ViewPosition viewPosition = this.getViewPosition();
+            final int x = viewPosition.getX();
+            final int y = viewPosition.getY();
+            
             //if(animationBehaviorBase.getInstance() == this.animationBehavior) {
-                //final ViewPosition viewPosition = this.getViewPosition();
+            //if(this.indexedAnimationInterfaceArray[this.gdObject.animation] instanceof CustomTextAnimation) {
                 //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.gdObject.name).append(viewPosition.getX()).append(' ').append(viewPosition.getY()).toString(), this, PAINT));
 //            if(this.isFirst) {
 //                this.isFirst = false;
@@ -485,12 +493,6 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
                 //graphics.drawImage(img, this.x, this.y, Graphics.TOP | Graphics.LEFT);
             //}
             
-            //int x = this.x - quarterWidth;
-            //int y = this.y - quarterHeight;
-            final ViewPosition viewPosition = this.getViewPosition();
-            final int x = viewPosition.getX();
-            final int y = viewPosition.getY();
-
             //for (int index = 0; index < SIZE; index++) {
             this.indexedAnimationInterfaceArray[this.gdObject.animation].paint(graphics, x, y);
             //}
@@ -685,6 +687,14 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
 //    public int c;
 //    public int r;
+
+    public void setBasicColor(final BasicColor basicColor) {
+        ((CustomTextAnimation) this.initIndexedAnimationInterfaceArray[0]).setBasicColor(basicColor);
+    }
+
+    public void setText(final String string) {
+        ((CustomTextAnimation) this.initIndexedAnimationInterfaceArray[0]).setText(string);
+    }
     
     public String Text() {
         return ((CustomTextBoxIndexedAnimation) this.initIndexedAnimationInterfaceArray[0]).Text();
