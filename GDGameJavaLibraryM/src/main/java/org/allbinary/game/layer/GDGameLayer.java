@@ -691,8 +691,13 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         ((CustomTextAnimation) this.initIndexedAnimationInterfaceArray[0]).setBasicColor(basicColor);
     }
 
-    public void setText(final String string) {
-        ((CustomTextAnimation) this.initIndexedAnimationInterfaceArray[0]).setText(string);
+    public void setText(final String text) {
+        final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.initIndexedAnimationInterfaceArray[0]);
+        customTextAnimation.setText(text);
+        this.gdObject.width = customTextAnimation.getWidth();
+        this.gdObject.height = customTextAnimation.getHeight();
+        this.setWidth(this.gdObject.width);
+        this.setHeight(this.gdObject.height);
     }
     
     public String Text() {

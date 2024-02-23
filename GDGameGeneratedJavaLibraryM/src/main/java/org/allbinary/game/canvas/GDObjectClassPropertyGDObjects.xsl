@@ -231,29 +231,6 @@ Created By: Travis Berthelot
                     };                
                 </xsl:if>
 
-<!--
-                <xsl:if test="$typeValue = 'TextObject::Text'" >
-                    public int Width(final Graphics graphics) {
-                        return 16 * 10;
-                    }
-
-                    public int Height(final Graphics graphics) {
-                        return 16;
-                    }
-                </xsl:if>
-                                
-                <xsl:if test="$typeValue = 'TextObject::Text'" >
-                    public int Width(final Graphics graphics) {
-                        return <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />TextAnimation.getWidth();
-                    }
-
-                    public int Height(final Graphics graphics) {
-                        return <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />TextAnimation.getHeight();
-                    }
-                </xsl:if>
--->
-
-
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
                         super(unknown, x, y, z, width, height, name, <xsl:if test="string-length(type) = 0 or $typeValue = 'TextObject::Text'" >null</xsl:if><xsl:if test="not(string-length(type) = 0 or $typeValue = 'TextObject::Text')" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(type, ':', '_')" /></xsl:with-param></xsl:call-template></xsl:if>);
                         
