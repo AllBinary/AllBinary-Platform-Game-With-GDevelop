@@ -472,7 +472,6 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     
     //private boolean isFirst = true;
     private final String PAINT = "paint";
-    //private final String W_ = "w ";
     public void paint(final Graphics graphics)
     {
         try
@@ -485,11 +484,11 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             
             //if(animationBehaviorBase.getInstance() == this.animationBehavior) {
             //if(this.indexedAnimationInterfaceArray[this.gdObject.animation] instanceof CustomTextAnimation) {
-                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.gdObject.name).append(viewPosition.getX()).append(' ').append(viewPosition.getY()).toString(), this, PAINT));
+                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.gdObject.name).append(viewPosition.getX()).append(' ').append(viewPosition.getY()).append(this.getWidth()).toString(), this, PAINT));
 //            if(this.isFirst) {
 //                this.isFirst = false;
                 //LogUtil.put(LogFactory.getInstance(this.gdObject.name + indexedAnimationInterfaceArray[this.gdObject.animation], this, PAINT));
-                //graphics.drawString(W_ + this.getWidth(), x, y, 0);
+                //graphics.drawString(new StringMaker().append(this.gdObject.name).append(viewPosition.getX()).append(' ').append(viewPosition.getY()).append(this.getWidth()).toString(), x, y, 0);
                 //graphics.drawImage(img, this.x, this.y, Graphics.TOP | Graphics.LEFT);
             //}
             
