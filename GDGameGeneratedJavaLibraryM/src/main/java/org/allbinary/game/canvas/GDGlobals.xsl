@@ -81,6 +81,8 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.behavior.DestroyOutsideBehavior;
                 import org.allbinary.game.layout.behavior.GDBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.game.score.HighScoresHelper2;
+                import org.allbinary.game.score.HighScoresHelperBase;
                 import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.color.SmallBasicColorCacheFactory;
                 import org.allbinary.graphics.color.BasicColorUtil;
@@ -130,6 +132,8 @@ Created By: Travis Berthelot
                                           
                     private final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
                            
+                    public final HighScoresHelperBase highScoresHelper = new HighScoresHelper2();
+
                         <xsl:variable name="objectsWithOnceCondition" ><xsl:call-template name="gdNodeToOnceList" ><xsl:with-param name="iteration" >0</xsl:with-param></xsl:call-template></xsl:variable>
                         //objectsWithOnceCondition=<xsl:value-of select="$objectsWithOnceCondition" />
                         <xsl:for-each select="objects" >

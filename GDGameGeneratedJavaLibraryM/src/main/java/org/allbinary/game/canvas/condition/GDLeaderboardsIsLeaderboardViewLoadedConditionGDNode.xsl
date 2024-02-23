@@ -40,9 +40,7 @@ Created By: Travis Berthelot
 
                             if(globals.highscoreSubmissionComplete) {
 
-                                final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
-                                final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
-                                final HighScores[] highScoresArray = abCanvas.getHighScoresArray();
+                                final HighScores[] highScoresArray = gameGlobals.highScoresHelper.getHighScoresArray();
                                 
                                 final int leaderBoardTotal = highScoresArray.length;
                                 

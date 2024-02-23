@@ -71,6 +71,7 @@ import org.allbinary.game.layout.BaseGDNodeStats;
 import org.allbinary.game.layout.GDNodeStatsFactory;
 import org.allbinary.game.map.GDGeographicMap;
 import org.allbinary.game.score.BasicHighScoresFactory;
+import org.allbinary.game.score.NoHighScoresFactory;
 import org.allbinary.game.state.GameState;
 import org.allbinary.game.tick.OptimizedTickableLayerProcessor;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;

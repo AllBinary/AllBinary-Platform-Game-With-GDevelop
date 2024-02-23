@@ -66,6 +66,7 @@ import org.allbinary.game.midlet.LicenseLoadingTypeFactory;
 import org.allbinary.game.midlet.SpecialDemoGameMidlet;
 import org.allbinary.game.paint.help.HelpPaintable;
 import org.allbinary.game.score.BasicHighScoresFactory;
+import org.allbinary.game.score.NoHighScoresFactory;
 import org.allbinary.game.score.HighScoresPaintable;
 import org.allbinary.game.score.displayable.HighScoresCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;

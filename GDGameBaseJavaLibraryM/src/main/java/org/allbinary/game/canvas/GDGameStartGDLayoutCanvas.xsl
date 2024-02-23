@@ -33,6 +33,7 @@ import org.allbinary.game.displayable.canvas.StartCanvas;
 import org.allbinary.game.identification.GroupFactory;
 import org.allbinary.game.paint.ColorFillPaintableFactory;
 import org.allbinary.game.score.BasicHighScoresFactory;
+import org.allbinary.game.score.NoHighScoresFactory;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.form.FormPaintable;
 import org.allbinary.graphics.paint.NullInitUpdatePaintable;
