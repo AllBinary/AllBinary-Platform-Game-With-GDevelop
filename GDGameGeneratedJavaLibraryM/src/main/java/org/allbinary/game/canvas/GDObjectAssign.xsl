@@ -144,6 +144,10 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="instancesAsString" />
 
+                int colorAsInt = 0;
+                BasicColor basicColor = null;
+                int size = 0;
+        
         //objectsAssign - START
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
@@ -237,11 +241,17 @@ Created By: Travis Berthelot
                 <xsl:variable name="hasMoreThanOneImage" ><xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
                 <xsl:if test="$typeValue = 'TextObject::Text'" >
+                    
+                colorAsInt = basicColorUtil.get(255, <xsl:for-each select="color" ><xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />);</xsl:for-each>
+                basicColor = smallBasicColorCacheFactory.getInstance(colorAsInt);
+
                 //TextObject::Text - set the layer size from the initial text
                 final CustomTextAnimationFactory <xsl:value-of select="name" />CustomTextAnimationFactory = (CustomTextAnimationFactory) <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray[0];
+                <xsl:value-of select="name" />CustomTextAnimationFactory.basicColor = basicColor;
                 <xsl:value-of select="name" />LayerInfo.setWidth((int) (<xsl:value-of select="name" />CustomTextAnimationFactory.getWidth()));
                 <xsl:value-of select="name" />LayerInfo.setHeight((int) (<xsl:value-of select="name" />CustomTextAnimationFactory.getHeight()));
                 </xsl:if>
+
 
                 this.<xsl:value-of select="name" />GDGameLayerFactory = new GDCustomGameLayerFactory(
                     NullAnimationFactory.getFactoryInstance(),
