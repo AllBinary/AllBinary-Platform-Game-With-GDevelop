@@ -237,7 +237,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="hasMoreThanOneImage" ><xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
                 <xsl:if test="$typeValue = 'TextObject::Text'" >
-                LogUtil.put(LogFactory.getInstance("TWB - GDCustomGameLayerFactory", this, "assign"));
+                //TextObject::Text - set the layer size from the initial text
                 final CustomTextAnimationFactory <xsl:value-of select="name" />CustomTextAnimationFactory = (CustomTextAnimationFactory) <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray[0];
                 <xsl:value-of select="name" />LayerInfo.setWidth((int) (<xsl:value-of select="name" />CustomTextAnimationFactory.getWidth()));
                 <xsl:value-of select="name" />LayerInfo.setHeight((int) (<xsl:value-of select="name" />CustomTextAnimationFactory.getHeight()));
@@ -256,7 +256,19 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >, GDIndividualAnimationBehavior.getInstance()</xsl:if>
                     <xsl:if test="$typeValue = 'TextObject::Text' or $typeValue = 'TextInput::TextInputObject'" >, GDAnimationBehaviorBase.getInstance()</xsl:if>
                     <xsl:if test="contains(name, 'btn_')" >, GDAnimationBehaviorBase.getInstance()</xsl:if>
-                    );
+                    ) 
+                    <xsl:if test="$typeValue = 'TextObject::Text'" >
+                    {
+
+                        public void init(final GDObject gdObject) {
+                            //text animation sizing
+                            //LogUtil.put(LogFactory.getInstance("CustomTextAnimation", this, "init"));
+                            final CustomTextAnimationFactory customTextAnimationFactory = (CustomTextAnimationFactory) animationInterfaceFactoryInterfaceArray[0];
+                            gdObject.width = (int) (customTextAnimationFactory.getWidth());
+                            gdObject.height = (int) (customTextAnimationFactory.getHeight());
+                        }
+
+                    }</xsl:if>;
 
             </xsl:if>
 

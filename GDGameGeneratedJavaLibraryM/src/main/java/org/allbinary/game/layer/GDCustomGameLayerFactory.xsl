@@ -101,13 +101,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             //LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" 3GDObject name: ").append(gdObject.name).append(' ').append(this.layerInfo).toString(), this, "create"));
         }
 
-        //Temp hack for text animation sizing
-        if(this.animationInterfaceFactoryInterfaceArray[0] instanceof CustomTextAnimationFactory) {
-            LogUtil.put(LogFactory.getInstance("TWB Hack", this, "create"));
-            final CustomTextAnimationFactory customTextAnimationFactory = (CustomTextAnimationFactory) animationInterfaceFactoryInterfaceArray[0];
-            gdObject.width = (int) (customTextAnimationFactory.getWidth());
-            gdObject.height = (int) (customTextAnimationFactory.getHeight());
-        }
+        this.init(gdObject);
 
         gdObject.width = (int) (gdObject.width * scaleX);
         gdObject.height = (int) (gdObject.height * scaleX);
@@ -141,6 +135,9 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" w/h/d: ").append(gameLayer.getWidth()).append('/').append(gameLayer.getHeight()).append('/').append(gameLayer.getDepth()).toString(), this, "create"));
         
         return gameLayer;
+    }
+
+    public void init(final GDObject gdObject) {
     }
     
 }
