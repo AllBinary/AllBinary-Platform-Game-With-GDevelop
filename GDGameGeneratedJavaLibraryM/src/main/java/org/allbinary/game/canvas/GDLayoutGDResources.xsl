@@ -73,6 +73,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.animation.NullAnimationFactory;
                 import org.allbinary.animation.NullRotationAnimationFactory;
+                import org.allbinary.animation.text.CustomTextAnimationFactory;
                 import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.layer.GDCustomGameLayerFactory;
                 import org.allbinary.game.identification.Group;

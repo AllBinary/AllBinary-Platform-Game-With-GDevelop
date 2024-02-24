@@ -104,23 +104,13 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
         //Temp hack for text animation sizing
         if(this.animationInterfaceFactoryInterfaceArray[0] instanceof CustomTextAnimationFactory) {
             LogUtil.put(LogFactory.getInstance("TWB Hack", this, "create"));
-            final CustomTextAnimationFactory customTextAnimationFactory = (CustomTextAnimationFactory) this.animationInterfaceFactoryInterfaceArray[0];
-            this.layerInfo.setWidth((int) (customTextAnimationFactory.getWidth()));
-            this.layerInfo.setHeight((int) (customTextAnimationFactory.getHeight()));
-            
-            if(customTextAnimationFactory.getScale() != scaleX) {
-                customTextAnimationFactory.setScale(scaleX);
-                final int height = (int) (customTextAnimationFactory.getHeight() * scaleX);
-                customTextAnimationFactory.setInitialSize(customTextAnimationFactory.getWidth(), height);
-            }
-            
+            final CustomTextAnimationFactory customTextAnimationFactory = (CustomTextAnimationFactory) animationInterfaceFactoryInterfaceArray[0];
             gdObject.width = (int) (customTextAnimationFactory.getWidth());
             gdObject.height = (int) (customTextAnimationFactory.getHeight());
-
-        } else {
-            gdObject.width = (int) (gdObject.width * scaleX);
-            gdObject.height = (int) (gdObject.height * scaleX);
         }
+
+        gdObject.width = (int) (gdObject.width * scaleX);
+        gdObject.height = (int) (gdObject.height * scaleX);
 
         final Rectangle rectangle = new Rectangle(
             PointFactory.getInstance().ZERO_ZERO,
