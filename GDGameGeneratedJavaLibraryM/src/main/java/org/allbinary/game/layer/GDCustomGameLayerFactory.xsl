@@ -24,6 +24,7 @@ package org.allbinary.game.layer;
 import org.allbinary.animation.Animation;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
+import org.allbinary.animation.text.CustomTextAnimationFactory;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.GDCustomCollidableBehavior;
 import org.allbinary.game.layer.special.GDCustomMaskCollidableBehavior;
