@@ -530,7 +530,6 @@ Created By: Travis Berthelot
 
                     <xsl:for-each select="/game" >
                         <xsl:for-each select="objects" >
-<!--                    //global name=<xsl:value-of select="name" />-->
                             <xsl:variable name="nameWithCall" ><xsl:value-of select="name" />.</xsl:variable>
                             <xsl:if test="not((string-length($parentConditionObject) > 0 and name = $parentConditionObject) or (string-length($parentConditionObject) = 0 and name = $name))" >
                             <xsl:if test="contains($parametersAsString, $nameWithCall)" >
@@ -642,14 +641,45 @@ Created By: Travis Berthelot
                                 <xsl:variable name="mapPositionHackY0" ><xsl:for-each select="parameters" ><xsl:if test="position() = 5" ><xsl:if test="contains(text(), 'startY')" >(</xsl:if></xsl:if></xsl:for-each></xsl:variable>
                                 <xsl:variable name="mapPositionHackY" ><xsl:for-each select="parameters" ><xsl:if test="position() = 5" ><xsl:if test="contains(text(), 'startY')" >) + 36</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
-                                <xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setX(<xsl:value-of select="$paramX" /><xsl:value-of select="$mapPositionHackX" />);<xsl:text>&#10;</xsl:text></xsl:if>
-                                </xsl:for-each>
-                                <xsl:text>                                </xsl:text><xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setY(<xsl:value-of select="$mapPositionHackY0" /><xsl:value-of select="$paramY" /><xsl:value-of select="$mapPositionHackY" />);</xsl:if></xsl:for-each>
+                                <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
+                                <xsl:value-of select="$name" />.setX(<xsl:value-of select="$paramX" /><xsl:value-of select="$mapPositionHackX" />);<xsl:text>&#10;</xsl:text>
+                                <xsl:text>                                </xsl:text>
+                                <xsl:value-of select="$name" />.setY(<xsl:value-of select="$mapPositionHackY0" /><xsl:value-of select="$paramY" /><xsl:value-of select="$mapPositionHackY" />);
                                     
                         </xsl:if>
-                                
+
+                    <xsl:for-each select="/game" >
+                        <xsl:for-each select="objects" >
+                            <xsl:variable name="nameWithCall" ><xsl:value-of select="name" />.</xsl:variable>
+                            <xsl:if test="not((string-length($parentConditionObject) > 0 and name = $parentConditionObject) or (string-length($parentConditionObject) = 0 and name = $name))" >
+                            <xsl:if test="contains($parametersAsString, $nameWithCall)" >
+                            <xsl:value-of select="name" />GDGameLayer.updatePosition();
+                            </xsl:if>
+                            </xsl:if>
+                        </xsl:for-each>
+
+                        <xsl:for-each select="layouts" >
+                            <xsl:if test="$layoutIndex = position() -1" >
+
+                        <xsl:for-each select="objectsGroups" >                            
+                            <xsl:if test="not((string-length($parentConditionObject) > 0 and name = $parentConditionObject) or (string-length($parentConditionObject) = 0 and name = $name))" >
+
+                            </xsl:if>
+                        </xsl:for-each>
+
+                        <xsl:for-each select="objects" >
+                            <xsl:variable name="nameWithCall" ><xsl:value-of select="name" />.</xsl:variable>
+                            <xsl:if test="not((string-length($parentConditionObject) > 0 and name = $parentConditionObject) or (string-length($parentConditionObject) = 0 and name = $name))" >
+                            <xsl:if test="contains($parametersAsString, $nameWithCall)" >
+                            <xsl:value-of select="name" />GDGameLayer.updatePosition();
+                            </xsl:if>
+                            </xsl:if>
+                        </xsl:for-each>
+                            </xsl:if>
+                       </xsl:for-each>
+                    </xsl:for-each>
+                                                                
 
 <!--                                <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>-->
                                 <xsl:if test="contains($instancesAsString, $name2)" >
