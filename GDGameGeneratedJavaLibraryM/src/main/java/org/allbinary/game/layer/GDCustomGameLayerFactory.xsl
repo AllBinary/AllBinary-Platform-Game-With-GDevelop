@@ -108,10 +108,15 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             this.layerInfo.setWidth((int) (customTextAnimationFactory.getWidth()));
             this.layerInfo.setHeight((int) (customTextAnimationFactory.getHeight()));
             
-            final int height = (int) (customTextAnimationFactory.getHeight() * scaleX);
-            customTextAnimationFactory.setInitialSize(customTextAnimationFactory.getWidth(), height);
+            if(customTextAnimationFactory.getScale() != scaleX) {
+                customTextAnimationFactory.setScale(scaleX);
+                final int height = (int) (customTextAnimationFactory.getHeight() * scaleX);
+                customTextAnimationFactory.setInitialSize(customTextAnimationFactory.getWidth(), height);
+            }
+            
             gdObject.width = (int) (customTextAnimationFactory.getWidth());
             gdObject.height = (int) (customTextAnimationFactory.getHeight());
+
         } else {
             gdObject.width = (int) (gdObject.width * scaleX);
             gdObject.height = (int) (gdObject.height * scaleX);
