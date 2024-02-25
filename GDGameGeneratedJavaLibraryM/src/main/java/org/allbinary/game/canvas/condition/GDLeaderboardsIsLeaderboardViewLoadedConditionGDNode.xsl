@@ -50,8 +50,8 @@ Created By: Travis Berthelot
                                     highScores = highScoresArray[index2];
                                 
                                     gameGlobals.highScoresTitle = highScores.getHeading();
-                                    gameGlobals.highScoresColumnHeadingOne = highScores.getColumnOneHeading();
-                                    gameGlobals.highScoresColumnHeadingOne = highScores.getColumnTwoHeading();
+                                    //gameGlobals.highScoresColumnHeadingOne = highScores.getColumnOneHeading();
+                                    //gameGlobals.highScoresColumnHeadingOne = highScores.getColumnTwoHeading();
                                     
                                     final BasicArrayList highScoreList = highScores.getList();
                                     final int size = highScoreList.size();

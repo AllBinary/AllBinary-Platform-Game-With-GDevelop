@@ -66,7 +66,7 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($parametersAsString, $name) = text()" >
                             <xsl:if test="$typeValue = 'Sprite'" >
-                        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //Objects - //GDNode - //collide - //Sprite - //<xsl:value-of select="$name" />
+                        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectGDNodes - //Objects - //GDNode - //collide - //Sprite - //<xsl:value-of select="$name" />
                         if(gameGlobals.nodeArray[gameGlobals.PARAM_NODE_<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
@@ -77,7 +77,7 @@ Created By: Travis Berthelot
                             private final String ACTION_PARAMETER_ID_AS_STRING_<xsl:value-of select="$actionNodeId" /> = "Parameter - <xsl:value-of select="$actionNodeId" />";
                             <xsl:text>&#10;</xsl:text>
                             
-                            //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //Objects - //GDNode - //collide - //Sprite - //<xsl:value-of select="$name" />
+                            //caller=<xsl:value-of select="$caller" /> - //objectGDObjectGDNodes - //Objects - //GDNode - //collide - //Sprite - //<xsl:value-of select="$name" />
                             @Override
                             public boolean process() throws Exception {
                                 super.processStats();
@@ -100,7 +100,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                             
                             <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
-                        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //Objects - //GDNode - //collide - //ParticleSystem::ParticleEmitter - //<xsl:value-of select="$name" />
+                        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectGDNodes - //Objects - //GDNode - //collide - //ParticleSystem::ParticleEmitter - //<xsl:value-of select="$name" />
                         if(gameGlobals.nodeArray[gameGlobals.PARAM_NODE_<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
@@ -111,7 +111,7 @@ Created By: Travis Berthelot
                             private final String ACTION_PARAMETER_ID_AS_STRING_<xsl:value-of select="$actionNodeId" /> = "Parameter - <xsl:value-of select="$actionNodeId" />";
                             <xsl:text>&#10;</xsl:text>
                             
-                            //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //Objects - //GDNode - //collide - //ParticleSystem::ParticleEmitter - //<xsl:value-of select="$name" />
+                            //caller=<xsl:value-of select="$caller" /> - //objectGDObjectGDNodes - //Objects - //GDNode - //collide - //ParticleSystem::ParticleEmitter - //<xsl:value-of select="$name" />
                             @Override
                             public boolean process() throws Exception {
                                 super.processStats();
@@ -134,7 +134,7 @@ Created By: Travis Berthelot
                             </xsl:if>                            
 
                             <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap'" >
-                        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //Objects - //GDNode - //collide - //TileMap::TileMap - //<xsl:value-of select="$name" />
+                        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectGDNodes - //Objects - //GDNode - //collide - //TileMap::TileMap - //<xsl:value-of select="$name" />
                         if(gameGlobals.nodeArray[gameGlobals.PARAM_NODE_<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
@@ -145,7 +145,7 @@ Created By: Travis Berthelot
                             private final String ACTION_PARAMETER_ID_AS_STRING_<xsl:value-of select="$actionNodeId" /> = "Parameter - <xsl:value-of select="$actionNodeId" />";
                             <xsl:text>&#10;</xsl:text>
                             
-                            //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //Objects - //GDNode - //collide - //TileMap::TileMap - //<xsl:value-of select="$name" />
+                            //caller=<xsl:value-of select="$caller" /> - //objectGDObjectGDNodes - //Objects - //GDNode - //collide - //TileMap::TileMap - //<xsl:value-of select="$name" />
                             @Override
                             public boolean process() throws Exception {
                                 super.processStats();
@@ -168,7 +168,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                             
                             <xsl:if test="$typeValue = 'TextObject::Text'" >
-                        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //Objects - //GDNode - //collide - //TextObject::Text - //<xsl:value-of select="$name" />
+                        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectGDNodes - //Objects - //GDNode - //collide - //TextObject::Text - //<xsl:value-of select="$name" />
                         if(gameGlobals.nodeArray[gameGlobals.PARAM_NODE_<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");
                         }
@@ -179,7 +179,7 @@ Created By: Travis Berthelot
                             private final String ACTION_ID_AS_STRING_<xsl:value-of select="$actionNodeId" /> = "Parameter - <xsl:value-of select="$actionNodeId" />";
                             <xsl:text>&#10;</xsl:text>
                         
-                            //caller=<xsl:value-of select="$caller" /> - //objectGDObjectAtIndex - //Objects - //GDNode - //collide - //TextObject::Text - //<xsl:value-of select="$name" />
+                            //caller=<xsl:value-of select="$caller" /> - //objectGDObjectGDNodes - //Objects - //GDNode - //collide - //TextObject::Text - //<xsl:value-of select="$name" />
                             @Override
                             public boolean process() throws Exception {
                                 super.processStats();

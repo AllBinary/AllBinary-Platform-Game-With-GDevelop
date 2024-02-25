@@ -331,7 +331,11 @@ Created By: Travis Berthelot
                     public long TimerElapsedTime(final TimeDelayHelper timeDelayHelper) {
                         return timeDelayHelper.getElapsed(globals.lastStartTime) / 1000;
                     }
-                    
+
+                    public int floor(final int value) {
+                        return value;
+                    }
+                                        
                     public long round(final long value) {
                         return value;
                     }
