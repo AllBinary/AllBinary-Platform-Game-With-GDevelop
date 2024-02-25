@@ -273,6 +273,10 @@ Created By: Travis Berthelot
                         return gdGlobalsFactory.point.getY();
                     }
 
+                    public int floor(final int value) {
+                        return value;
+                    }
+
                     public int LastTouchId() {
                         return 0;
                     }
