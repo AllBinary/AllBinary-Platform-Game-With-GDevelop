@@ -55,6 +55,7 @@ Created By: Travis Berthelot
                                     
                                     final BasicArrayList highScoreList = highScores.getList();
                                     final int size = highScoreList.size();
+                                    LogUtil.put(LogFactory.getInstance("highScoreList.size(): " + size, this, commonStrings.PROCESS));
                                     gameGlobals.highScoresNameArray = new String[size];
                                     gameGlobals.highScoresIntArray = new int[size];
                                     HighScore highScore;
@@ -112,7 +113,7 @@ Created By: Travis Berthelot
                         
                         @Override
                         public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
-                            this.processGDStats(gameLayer);
+                            super.processGDStats(gameLayer);
 
                             if(globals.highscoreSubmissionComplete) {
 
