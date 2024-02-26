@@ -37,6 +37,8 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
                             
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
                             <xsl:variable name="hasSourisSurObjet" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'SourisSurObjet'" >found</xsl:if></xsl:for-each></xsl:variable>
 
                             <xsl:if test="not(contains($hasSourisSurObjet, 'found'))" >
@@ -56,6 +58,9 @@ Created By: Travis Berthelot
                         }
                         
                         public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                        
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
                             <xsl:for-each select=".." >
 
                             <xsl:for-each select="conditions" >
