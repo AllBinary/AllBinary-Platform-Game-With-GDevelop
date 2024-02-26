@@ -89,8 +89,6 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                         </xsl:variable>
 
-                        <xsl:variable name="isTextObject" ><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$name = name" ><xsl:if test="type = 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each><xsl:for-each select="layouts" ><xsl:for-each select="objects" ><xsl:if test="$name = name" ><xsl:if test="type = 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each></xsl:for-each></xsl:for-each></xsl:variable>
-
                             <xsl:variable name="hasObjectGroup" >
                                 <xsl:for-each select="/game">
                                     <xsl:for-each select="layouts" >

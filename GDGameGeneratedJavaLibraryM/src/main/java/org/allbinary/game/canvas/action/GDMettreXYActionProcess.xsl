@@ -94,8 +94,6 @@ Created By: Travis Berthelot
                         //parentConditionWithoutObjects=<xsl:value-of select="$parentConditionWithoutObjects" /> - logic is not correct
                         /*parametersAsString=<xsl:value-of select="$parametersAsString" />*/
 
-                        <xsl:variable name="isTextObject" ><xsl:for-each select="/game" ><xsl:for-each select="objects" ><xsl:if test="$name = name" ><xsl:if test="type = 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each><xsl:for-each select="layouts" ><xsl:for-each select="objects" ><xsl:if test="$name = name" ><xsl:if test="type = 'TextObject::Text'" >found</xsl:if></xsl:if></xsl:for-each></xsl:for-each></xsl:for-each></xsl:variable>
-
                         //MettreXY
                         public boolean process() {
 
@@ -157,16 +155,9 @@ Created By: Travis Berthelot
                         
                                 final boolean result = this.processGPaintI(gdObject, graphics);
                                 
-                                <xsl:if test="contains($isTextObject, 'found')" >
-                                    //TextObject::Text - does not currently have a GameLayer
-                                    //if(gdGameLayerList != null gdGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                                    //}
-                                </xsl:if>
-                                <xsl:if test="not(contains($isTextObject, 'found'))" >
-                                    final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(gdObjectIndex);
-                                    //final GDObject gdObject = gameLayer.gdObject;
-                                    gameLayer.updatePosition();
-                                </xsl:if>
+                                final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(gdObjectIndex);
+                                //final GDObject gdObject = gameLayer.gdObject;
+                                gameLayer.updatePosition();
                                 
                                 return result;
 
@@ -185,12 +176,7 @@ Created By: Travis Berthelot
                         
                                 final boolean result = this.processGPaintI(gameLayer.gdObject, graphics);
                                 
-                                <xsl:if test="contains($isTextObject, 'found')" >
-                                    //TextObject::Text - does not currently have a GameLayer
-                                </xsl:if>
-                                <xsl:if test="not(contains($isTextObject, 'found'))" >
-                                    gameLayer.updatePosition();
-                                </xsl:if>
+                                gameLayer.updatePosition();
                                 
                                 return result;
 
@@ -356,16 +342,9 @@ Created By: Travis Berthelot
                         
                                 final boolean result = this.processGPaint(gdObject, graphics);
                                 
-                                <xsl:if test="contains($isTextObject, 'found')" >
-                                    //TextObject::Text - does not currently have a GameLayer
-                                    //if(gdGameLayerList != null gdGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                                    //}
-                                </xsl:if>
-                                <xsl:if test="not(contains($isTextObject, 'found'))" >
-                                    final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(gdObjectIndex);
-                                    //final GDObject gdObject = gameLayer.gdObject;
-                                    gameLayer.updatePosition();
-                                </xsl:if>
+                                final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(gdObjectIndex);
+                                //final GDObject gdObject = gameLayer.gdObject;
+                                gameLayer.updatePosition();
                                 
                                 return result;
 
@@ -476,23 +455,13 @@ Created By: Travis Berthelot
                     <xsl:if test="$paramOneNameObjectsGroups != ''" >
                                 final boolean result = this.processGPaint(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject, graphics);
                                 
-                                <xsl:if test="contains($isTextObject, 'found')" >
-                                    //TextObject::Text - does not currently have a GameLayer
-                                </xsl:if>
-                                <xsl:if test="not(contains($isTextObject, 'found'))" >
-                                    <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.updatePosition();
-                                </xsl:if>
+                                <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.updatePosition();
                     </xsl:if>
 
                     <xsl:if test="$paramOneNameObjectsGroups = ''" >
                                 final boolean result = this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, graphics);
                                 
-                                <xsl:if test="contains($isTextObject, 'found')" >
-                                    //TextObject::Text - does not currently have a GameLayer
-                                </xsl:if>
-                                <xsl:if test="not(contains($isTextObject, 'found'))" >
-                                    <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.updatePosition();
-                                </xsl:if>
+                                <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.updatePosition();
                     </xsl:if>
                                 
                                 return result;
