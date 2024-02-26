@@ -118,7 +118,6 @@ Created By: Travis Berthelot
             <xsl:variable name="hasCreate" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="hasCollisionCondition" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = '(Used when using the AllBinary Collision Processing) CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
 
-<!--
 //alreadyUsedParentCondition=<xsl:value-of select="$alreadyUsedParentCondition" />
 //hasCondition=<xsl:value-of select="$hasCondition" />
 //hadConditionOtherThanThis=<xsl:value-of select="$hadConditionOtherThanThis" />
@@ -128,6 +127,8 @@ Created By: Travis Berthelot
 //hasNoConditionsButDoesHaveUsedAction=<xsl:value-of select="$hasNoConditionsButDoesHaveUsedAction" />
 //hasCreate=<xsl:value-of select="$hasCreate" />
 //hasCollisionCondition=<xsl:value-of select="$hasCollisionCondition" />
+
+<!--
 -->
 
             <xsl:if test="$caller = 'conditionLayout - //eventsCreateAssignGDObject'" >
@@ -211,14 +212,6 @@ Created By: Travis Berthelot
             //alreadyUsedCondition - not - //2 - START
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
-                <!--
-                <xsl:if test="number($thisNodeIndex) = number(substring(generate-id(), 2) - 65536)" >
-                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
-                //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
-                //Condition - call - hackProcessing - this
-                </xsl:if>
-                -->
                 <xsl:if test="($conditionPosition = '' and position() = 1) or position() = $conditionPosition + 1" >
                 <xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >
                 <xsl:if test="type/value != 'DepartScene' and type/value != 'SoundPlaying' and (not(contains($caller, 'eventsCreateAssignGDObject') and type/value = 'NbObjet'))" >

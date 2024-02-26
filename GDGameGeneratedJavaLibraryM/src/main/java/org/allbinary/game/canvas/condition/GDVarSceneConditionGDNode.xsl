@@ -91,46 +91,7 @@ Created By: Travis Berthelot
                                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                         </xsl:if>
                                     </xsl:for-each>
-                                    
 
-<!--
-                        <xsl:variable name="thisNodeArray" >this</xsl:variable>
-                        <xsl:variable name="conditionPosition" ><xsl:value-of select="position()" /></xsl:variable>
-                        //VarScene - hackProcessing - START
-                        <xsl:call-template name="hackProcessing" >
-                            <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //VarScene</xsl:with-param>
-                            <xsl:with-param name="thisNodeIndex" >
-                                <xsl:value-of select="$conditionNodeIndex" />
-                            </xsl:with-param>
-                            <xsl:with-param name="thisNodeArray" >
-                                <xsl:value-of select="$thisNodeArray" />
-                            </xsl:with-param>                    
-                            <xsl:with-param name="layoutIndex" >
-                                <xsl:value-of select="$layoutIndex" />
-                            </xsl:with-param>
-                            <xsl:with-param name="conditionPosition" >
-                                <xsl:value-of select="$conditionPosition" />
-                            </xsl:with-param>
-                            <xsl:with-param name="parametersAsString" >
-                                <xsl:value-of select="$parametersAsString" />
-                            </xsl:with-param>
-                            <xsl:with-param name="objectsAsString" >
-                                <xsl:value-of select="$objectsAsString" />
-                            </xsl:with-param>
-                            <xsl:with-param name="createdObjectsAsString" >
-                                <xsl:value-of select="$createdObjectsAsString" />
-                            </xsl:with-param>
-                            <xsl:with-param name="logString" >
-                                <xsl:value-of select="$logString" />
-                            </xsl:with-param>
-                        </xsl:call-template>
-                        //VarScene - hackProcessing - END-->
-                                    <!--
-                                    <xsl:call-template name="actionIds" >
-                                        <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                                        <xsl:with-param name="caller" >VarScene</xsl:with-param>
-                                    </xsl:call-template>
-                                    -->
                                     </xsl:if>
                                 </xsl:for-each>
                                 
