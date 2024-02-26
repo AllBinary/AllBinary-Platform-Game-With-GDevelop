@@ -232,6 +232,21 @@ Created By: Travis Berthelot
 
             //alreadyUsedParentCondition - not - START
             </xsl:if>
+                        
+            <xsl:if test="contains($alreadyUsedParentCondition, 'found')" >
+            <xsl:for-each select="conditions" >
+                <xsl:variable name="typeValue" select="type/value" />
+                <xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >
+                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
+                //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Condition - //not(BuiltinCommonInstructions::Once) - //<xsl:value-of select="type/value" /> - call - <xsl:value-of select="$thisNodeIndex" />
+                //other - //Condition - //<xsl:value-of select="type/value" /> - call
+                if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                </xsl:if>
+            </xsl:for-each>
+            </xsl:if>
+            
             //alreadyUsedCondition - not - END
             </xsl:if>
 
@@ -951,6 +966,25 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:for-each>
 
+            <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
+            <xsl:if test="not(contains($hasOnceCondition, 'found'))" >
+                
+            <xsl:if test="contains($alreadyUsedParentCondition, 'found')" >
+            <xsl:if test="conditions" >
+                        <xsl:for-each select="events" >
+                            <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                            //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                            //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Event - //<xsl:value-of select="type" /> - call
+                            //Was not called before 2b
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            </xsl:if>
+                        </xsl:for-each>
+            </xsl:if>
+            </xsl:if>
+            </xsl:if>
+
+            </xsl:if>
+
             <xsl:if test="not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene'" >
                 //maybe - not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' - START
                         <xsl:for-each select="events" >
@@ -958,7 +992,6 @@ Created By: Travis Berthelot
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Event - //<xsl:value-of select="type" /> - call
                             
-            <xsl:if test="events" >
                 <xsl:if test="contains($hasExcludedEventBefore, 'found')" >
                     //has excluded event before
                     <xsl:if test="contains($isInsideCondiion, 'found')" >
@@ -971,7 +1004,6 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:if>
                 </xsl:if>
-            </xsl:if>
 
                             //Was calling these, but maybe should not have been
                             //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
@@ -1006,8 +1038,15 @@ Created By: Travis Berthelot
 
             <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
             <xsl:if test="not(contains($hasOnceCondition, 'found'))" >
+                
+            <xsl:if test="contains($alreadyUsedParentCondition, 'found')" >
+            <xsl:if test="conditions" >
+                }
+            </xsl:if>
+            </xsl:if>
+                
             <xsl:if test="not(contains($alreadyUsedParentCondition, 'found'))" >
-
+                
             <xsl:if test="not(contains($hasOnceCondition, 'found'))" >
                 
             <xsl:variable name="hasActions" ><xsl:for-each select="actions" >found</xsl:for-each></xsl:variable>
