@@ -205,14 +205,9 @@ Created By: Travis Berthelot
                 <xsl:if test="not(contains($foundOtherCondition, 'found') or contains($foundTimerCondition, 'found') or (contains($foundVarSceneCondition, 'found') and contains($foundLinkEvent, 'found')))" >
                     //Does not have one of the special conditions.
                     <xsl:for-each select="conditions" >
-                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />                        
-<!--
-                        <xsl:if test="type/value = 'BuiltinCommonInstructions::And' or type/value = 'LinkedObjects::PickObjectsLinkedTo'" >
-                        </xsl:if>
--->
-                        <xsl:if test="type/value = 'SceneVariableAsBoolean'" >
+                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
+                        <xsl:if test="type/value = 'BuiltinCommonInstructions::And' or type/value = 'LinkedObjects::PickObjectsLinkedTo' or type/value = 'SceneVariableAsBoolean'" >
                     //other - //Condition - //<xsl:value-of select="type/value" /> - call
-                    //TWBDuplicate
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                         </xsl:if>
 
