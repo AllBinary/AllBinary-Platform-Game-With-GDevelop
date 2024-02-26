@@ -99,6 +99,8 @@ Created By: Travis Berthelot
                 public boolean process() throws Exception {
                     super.processStats();
 
+                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
                     <xsl:if test="contains($hasObjectGroup, 'found')" >
                     final int size3 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$object" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$object" />GDGameLayerListOfList.size();
                     for(int index3 = 0; index3 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; index3++) {
@@ -195,6 +197,8 @@ Created By: Travis Berthelot
                 public boolean process() throws Exception {
                     super.processStats();
                     
+                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
                 <xsl:if test="not(contains($foundOtherCondition, 'found') or contains($foundTimerCondition, 'found') or (contains($foundVarSceneCondition, 'found') and contains($foundLinkEvent, 'found')))" >
                     //Does not have one of the special conditions.
                     <xsl:for-each select="conditions" >
@@ -213,8 +217,6 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($foundOtherCondition, 'found') or contains($foundTimerCondition, 'found') or (contains($foundVarSceneCondition, 'found') and contains($foundLinkEvent, 'found'))" >
                     <xsl:if test="not(whileConditions)" >
                     //Found conditions that need processing.
-                    
-                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                     <xsl:for-each select="conditions" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
