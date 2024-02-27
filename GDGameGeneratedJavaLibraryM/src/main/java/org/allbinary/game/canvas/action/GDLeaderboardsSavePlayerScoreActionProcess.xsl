@@ -86,15 +86,17 @@ Created By: Travis Berthelot
         
                             try {
 
-                                //final GDGameLayer <xsl:value-of select="$beforeSecondParam" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$beforeSecondParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$beforeSecondParam" />GDGameLayerList.get(0);
-                                //final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeSecondParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeSecondParam" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="$beforeSecondParam" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeSecondParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeSecondParam" />) <xsl:value-of select="$beforeSecondParam" />GDGameLayer.gdObject;
-                                
+                                <xsl:if test="$beforeFourthParam != ''" >
                                 final GDGameLayer <xsl:value-of select="$beforeFourthParam" /> = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$beforeFourthParam" />GDGameLayerList.get(0);
                                 //final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeFourthParam" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="$beforeFourthParam" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeFourthParam" />) <xsl:value-of select="$beforeFourthParam" />GDGameLayer.gdObject;
-
+                                final String name = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                                </xsl:if>
+                                <xsl:if test="$beforeFourthParam = ''" >
+                                final String name = null;
+                                </xsl:if>
+                                
                                 final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                 final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
-                                final String name = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
                                 
                                 LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + name, this, commonStrings.PROCESS));
                                 
@@ -103,16 +105,25 @@ Created By: Travis Berthelot
                                     public void run() {
                                         try {
 
-                                HighScoreNamePersistanceSingleton.getInstance().save(name);
-
-                                final HighScores[] highScoresArray = 
-                                    new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()).createHighScores(abCanvas.getLayerManager().getGameInfo());
-                                gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
-                                final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
-                                final HighScoreUtil highScoreUtil = new HighScoreUtil(abCanvas.getCustomCommandListener(), name, highScoresArray, highScore);
-                                highScoreUtil.update(name);
-                                highScoreUtil.saveHighScore();
-                                highScoreUtil.submit(abCanvas);
+                                if(name != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> name.length() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                    LogUtil.put(LogFactory.getInstance("Submitting and Fetching remote leaderboard", this, commonStrings.RUN));
+                                    HighScoreNamePersistanceSingleton.getInstance().save(name);
+                                    final HighScores[] highScoresArray = 
+                                        new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()).createHighScores(abCanvas.getLayerManager().getGameInfo(), false);
+                                    gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
+                                    final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
+                                    final HighScoreUtil highScoreUtil = new HighScoreUtil(abCanvas.getCustomCommandListener(), name, highScoresArray, highScore);
+                                    highScoreUtil.update(name);
+                                    highScoreUtil.saveHighScore();
+                                    highScoreUtil.submit(abCanvas);
+                                } else {
+                                    LogUtil.put(LogFactory.getInstance("Fetching remote leaderboard", this, commonStrings.RUN));
+                                    final HighScores[] highScoresArray = 
+                                        new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()).createHighScores(abCanvas.getLayerManager().getGameInfo(), false);
+                                    gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
+                                    final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
+                                    final HighScoreUtil highScoreUtil = new HighScoreUtil(abCanvas.getCustomCommandListener(), name, highScoresArray, highScore);
+                                }
                                 
                                 globals.highscoreSubmissionComplete = true;
     
@@ -207,12 +218,17 @@ Created By: Travis Berthelot
 
                                 //final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeSecondParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeSecondParam" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="$beforeSecondParam" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeSecondParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeSecondParam" />) <xsl:value-of select="$beforeSecondParam" />GDGameLayer.gdObject;
                                 
+                                <xsl:if test="$beforeFourthParam != ''" >
                                 final GDGameLayer <xsl:value-of select="$beforeFourthParam" /> = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$beforeFourthParam" />GDGameLayerList.get(0);
                                 //final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeFourthParam" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="$beforeFourthParam" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeFourthParam" />) <xsl:value-of select="$beforeFourthParam" />GDGameLayer.gdObject;
+                                final String name = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                                </xsl:if>
+                                <xsl:if test="$beforeFourthParam = ''" >
+                                final String name = null;
+                                </xsl:if>
 
                                 final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                 final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
-                                final String name = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
                                 
                                 LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + name, this, commonStrings.PROCESS));
                                 
@@ -221,16 +237,25 @@ Created By: Travis Berthelot
                                     public void run() {
                                         try {
 
-                                HighScoreNamePersistanceSingleton.getInstance().save(name);
-
-                                final HighScores[] highScoresArray = 
-                                    new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()).createHighScores(abCanvas.getLayerManager().getGameInfo());
-                                gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
-                                final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
-                                final HighScoreUtil highScoreUtil = new HighScoreUtil(abCanvas.getCustomCommandListener(), name, highScoresArray, highScore);
-                                highScoreUtil.update(name);
-                                highScoreUtil.saveHighScore();
-                                highScoreUtil.submit(abCanvas);
+                                if(name != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> name.length() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                    LogUtil.put(LogFactory.getInstance("Submitting and Fetching remote leaderboard", this, commonStrings.RUN));
+                                    HighScoreNamePersistanceSingleton.getInstance().save(name);
+                                    final HighScores[] highScoresArray = 
+                                        new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()).createHighScores(abCanvas.getLayerManager().getGameInfo(), false);
+                                    gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
+                                    final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
+                                    final HighScoreUtil highScoreUtil = new HighScoreUtil(abCanvas.getCustomCommandListener(), name, highScoresArray, highScore);
+                                    highScoreUtil.update(name);
+                                    highScoreUtil.saveHighScore();
+                                    highScoreUtil.submit(abCanvas);
+                                } else {
+                                    LogUtil.put(LogFactory.getInstance("Fetching remote leaderboard", this, commonStrings.RUN));
+                                    final HighScores[] highScoresArray = 
+                                        new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()).createHighScores(abCanvas.getLayerManager().getGameInfo(), false);
+                                    gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
+                                    final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
+                                    final HighScoreUtil highScoreUtil = new HighScoreUtil(abCanvas.getCustomCommandListener(), name, highScoresArray, highScore);
+                                }
                                 
                                 globals.highscoreSubmissionComplete = true;
     
