@@ -119,7 +119,7 @@ Created By: Travis Berthelot
                                 } else {
                                     LogUtil.put(LogFactory.getInstance("Fetching remote leaderboard", this, commonStrings.RUN));
                                     final HighScores[] highScoresArray = 
-                                        new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()).createHighScores(abCanvas.getLayerManager().getGameInfo(), false);
+                                        new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()).createHighScores(abCanvas.getLayerManager().getGameInfo());
                                     gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
                                     final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
                                     final HighScoreUtil highScoreUtil = new HighScoreUtil(abCanvas.getCustomCommandListener(), name, highScoresArray, highScore);
@@ -251,7 +251,7 @@ Created By: Travis Berthelot
                                 } else {
                                     LogUtil.put(LogFactory.getInstance("Fetching remote leaderboard", this, commonStrings.RUN));
                                     final HighScores[] highScoresArray = 
-                                        new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()).createHighScores(abCanvas.getLayerManager().getGameInfo(), false);
+                                        new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()).createHighScores(abCanvas.getLayerManager().getGameInfo());
                                     gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
                                     final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
                                     final HighScoreUtil highScoreUtil = new HighScoreUtil(abCanvas.getCustomCommandListener(), name, highScoresArray, highScore);
