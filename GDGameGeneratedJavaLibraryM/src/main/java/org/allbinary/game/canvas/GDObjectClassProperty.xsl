@@ -148,11 +148,12 @@ Created By: Travis Berthelot
                 //TileMap::TileMap:content
             </xsl:if>
 
+            public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+
             <xsl:if test="type = 'PrimitiveDrawing::Drawer'" >
                 //PrimitiveDrawing::Drawer
                 public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="name" />";
                 //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
-                public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
             </xsl:if>
             <xsl:if test="type = 'Sprite' or type = 'TileMap::CollisionMask' or type = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
@@ -163,7 +164,6 @@ Created By: Travis Berthelot
                 //private BasicArrayList <xsl:value-of select="name" />List = ZERO_GD_OBJECT;
                 //private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
                 //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
-                public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                 //public final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
             </xsl:if>
 
@@ -173,13 +173,11 @@ Created By: Travis Berthelot
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
 
                 //ParticleSystem::ParticleEmitter
-                public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
             </xsl:if>
             <xsl:if test="type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'TextEntryObject::TextEntry'" >
                 <xsl:variable name="stringValue" select="string" />
 
                 //<xsl:value-of select="type" />
-                public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                 public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList();
             </xsl:if>
 
