@@ -192,15 +192,13 @@ Created By: Travis Berthelot
         //objects - all - //objectsClassPropertyGDObjects - START
         <xsl:for-each select="objects" >
 
-            <xsl:variable name="typeValue" select="type" />
-            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" />
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'Sprite' or $typeValue = 'PrimitiveDrawing::Drawer' or $typeValue = 'TextObject::Text'" >
+            <xsl:if test="type != 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
 
-                //<xsl:value-of select="$typeValue" /> - GDObject
                 public final class <xsl:value-of select="name" /> extends <xsl:call-template name="gdObject" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template> {
 
                     <xsl:variable name="hasObjectInObjectsGroups" ><xsl:for-each select="/game/layouts/objectsGroups" ><xsl:variable name="objectsGroupsName" select="name" /><xsl:for-each select="objects" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
@@ -232,7 +230,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
-                        super(unknown, x, y, z, width, height, name, <xsl:if test="string-length(type) = 0 or $typeValue = 'TextObject::Text'" >null</xsl:if><xsl:if test="not(string-length(type) = 0 or $typeValue = 'TextObject::Text')" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(type, ':', '_')" /></xsl:with-param></xsl:call-template></xsl:if>);
+                        super(unknown, x, y, z, width, height, name, <xsl:if test="string-length(type) = 0 or type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >null</xsl:if><xsl:if test="not(string-length(type) = 0 or type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider')" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(type, ':', '_')" /></xsl:with-param></xsl:call-template></xsl:if>);
                         
                     <xsl:if test="contains($hasObjectInObjectsGroups, 'found')" >
                     <xsl:for-each select="variables" >
@@ -362,15 +360,15 @@ Created By: Travis Berthelot
                     }
 
                 };    
-
+                        
             </xsl:if>
-            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:if test="type = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
 
                 //ParticleSystem::ParticleEmitter - GDObject
                 public final class <xsl:value-of select="name" /> extends GDObject {
                     
-                    public final StringMaker stringMaker = new StringMaker();
+                    //public final StringMaker stringMaker = new StringMaker();
 
                     public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
                         super(unknown, x, y, z, width, height, name, null);
@@ -385,77 +383,8 @@ Created By: Travis Berthelot
                     }
                     
                     public String String() {
-                        return stringMaker.toString();
-                    }
-                };
-
-                public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new GDObjectFactory() {
-
-                    public GDObject get(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
-                        return new <xsl:value-of select="name" />(unknown, x, y, z, width, height, name);
-                    }
-
-                };    
-
-            </xsl:if>
-            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
-                <xsl:variable name="stringValue" select="string" />
-
-                //TextInput::TextInputObject - GDObject
-                public final class <xsl:value-of select="name" /> extends GDObject {
-                    
-                    public final StringMaker stringMaker = new StringMaker();
-
-                    public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
-                        super(unknown, x, y, z, width, height, name, null);
-                    }
-
-<!--           
-                    public int Width(final Graphics graphics) {
-                        return 0;
-                    }
-
-                    public int Height(final Graphics graphics) {
-                        return 0;
-                    }
--->
-                    
-                    public String String() {
-                        return stringMaker.toString();
-                    }
-                };
-
-                public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new GDObjectFactory() {
-
-                    public GDObject get(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
-                        return new <xsl:value-of select="name" />(unknown, x, y, z, width, height, name);
-                    }
-
-                };    
-
-            </xsl:if>
-            <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
-                <xsl:variable name="stringValue" select="string" />
-
-                //TextEntryObject::TextEntry - GDObject
-                public final class <xsl:value-of select="name" /> extends GDObject {
-                    
-                    public final StringMaker stringMaker = new StringMaker();
-
-                    public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
-                        super(unknown, x, y, z, width, height, name, null);
-                    }
-
-                    public int Width(final Graphics graphics) {
-                        return 0;
-                    }
-
-                    public int Height(final Graphics graphics) {
-                        return 0;
-                    }
-                    
-                    public String String() {
-                        return stringMaker.toString();
+                        //return stringMaker.toString();
+                        return StringUtil.getInstance().EMPTY_STRING;
                     }
                 };
 

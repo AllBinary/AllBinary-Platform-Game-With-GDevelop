@@ -174,12 +174,6 @@ Created By: Travis Berthelot
 
                 //ParticleSystem::ParticleEmitter
             </xsl:if>
-            <xsl:if test="type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'TextEntryObject::TextEntry'" >
-                <xsl:variable name="stringValue" select="string" />
-
-                //<xsl:value-of select="type" />
-                public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList();
-            </xsl:if>
 
         </xsl:for-each>
         //objects - all - //objectsClassProperty - END
@@ -204,49 +198,13 @@ Created By: Travis Berthelot
 
         <xsl:variable name="behaviorsAsString" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:value-of select="type" />,</xsl:for-each></xsl:for-each></xsl:variable>
             
-        //layerManagerEventListenerList - START
+        //objects - all - //layerManagerEventListenerList - START
         <xsl:for-each select="objects" >
             
-            <xsl:if test="type = 'Sprite'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
-                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-                //Sprite - layerManagerEventListenerList
-                public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(arrayUtil.ZERO_OBJECT_ARRAY);
-            </xsl:if>
-            <xsl:if test="type = 'ParticleSystem::ParticleEmitter'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
-                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-                //ParticleSystem::ParticleEmitter - layerManagerEventListenerList
-                public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(arrayUtil.ZERO_OBJECT_ARRAY);
-            </xsl:if>
-            <xsl:if test="type = 'PrimitiveDrawing::Drawer'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
-                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-                //PrimitiveDrawing::Drawer - layerManagerEventListenerList
-                public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(arrayUtil.ZERO_OBJECT_ARRAY);
-            </xsl:if>
-            <xsl:if test="type = 'TileMap::TileMap'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
-                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-                //TileMap::TileMap - layerManagerEventListenerList
-                public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(arrayUtil.ZERO_OBJECT_ARRAY);
-            </xsl:if>
-
-            <xsl:if test="type = 'TileMap::CollisionMask'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
-                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-                //TileMap::CollisionMask - layerManagerEventListenerList
-                public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(arrayUtil.ZERO_OBJECT_ARRAY);
-            </xsl:if>
+            public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(arrayUtil.ZERO_OBJECT_ARRAY);
 
         </xsl:for-each>
-
-        //layerManagerEventListenerList - END
+        //objects - all - //layerManagerEventListenerList - END
 
     </xsl:template>
 

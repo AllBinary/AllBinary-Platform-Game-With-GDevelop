@@ -352,12 +352,10 @@ Created By: Travis Berthelot
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
 
-        //objectsAssign - animationNames - START
+        //objects - all - //objectsAssign - animationNames - START
         <xsl:for-each select="objects" >
-            <xsl:variable name="typeValue" select="type" />
-            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'Sprite' or $typeValue = 'PrimitiveDrawing::Drawer' or $typeValue = 'ParticleSystem::ParticleEmitter' or $typeValue = 'TextObject::Text' or $typeValue = 'TextInput::TextInputObject'" >
                 <xsl:variable name="stringValue" select="string" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
@@ -368,10 +366,9 @@ Created By: Travis Berthelot
                 public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_PROCEDURAL_ANIMATION_NAME = "<xsl:value-of select="name" />_procedural_animation";
                 
                 public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME = "<xsl:value-of select="name" />_rectangle";
-            </xsl:if>
 
         </xsl:for-each>
-        //objectsAssign - animationNames - END
+        //objects - all - //objectsAssign - animationNames - END
     </xsl:template>
 
 </xsl:stylesheet>
