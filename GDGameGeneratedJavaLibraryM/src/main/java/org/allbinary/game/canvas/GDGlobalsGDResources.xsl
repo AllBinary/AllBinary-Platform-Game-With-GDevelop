@@ -129,36 +129,10 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                         
+                        //objects - all - //resources - properties
                     <xsl:for-each select="objects" >
-                        <xsl:variable name="typeValue" select="type" />
-                        <xsl:if test="$typeValue = 'Sprite'" >
-                            <xsl:variable name="name" select="name" />
-                            public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
-                        </xsl:if>
-                        <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer'" >
-                            <xsl:variable name="name" select="name" />
-                            public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
-                        </xsl:if>
-                        <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap'" >
-                            <xsl:variable name="name" select="name" />
-                            public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
-                        </xsl:if>
-                        <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
-                            <xsl:variable name="name" select="name" />
-                            public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
-                        </xsl:if>
-                        <xsl:if test="$typeValue = 'TextObject::Text'" >
-                            <xsl:variable name="name" select="name" />
-                            public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
-                        </xsl:if>
-                        <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
-                            <xsl:variable name="name" select="name" />
-                            public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
-                        </xsl:if>
-                        <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
-                            <xsl:variable name="name" select="name" />
-                            public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
-                        </xsl:if>
+                        //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+                        public GDGameLayerFactory <xsl:value-of select="name" />GDGameLayerFactory = null;
                     </xsl:for-each>
 
                     private GDGlobalsGDResources() throws Exception {

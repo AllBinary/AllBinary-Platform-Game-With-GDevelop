@@ -189,7 +189,7 @@ Created By: Travis Berthelot
         }
         </xsl:for-each>
         
-        //objectsClassPropertyGDObjects - START
+        //objects - all - //objectsClassPropertyGDObjects - START
         <xsl:for-each select="objects" >
 
             <xsl:variable name="typeValue" select="type" />
@@ -470,8 +470,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
         </xsl:for-each>
-
-        //objectsClassPropertyGDObjects - END
+        //objects - all - //objectsClassPropertyGDObjects - END
 
     </xsl:template>
 

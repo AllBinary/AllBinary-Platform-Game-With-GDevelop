@@ -28,86 +28,39 @@ Created By: Travis Berthelot
         </xsl:for-each>
         //objectsGroups - START
         
-        //objects - START
+        //objects - all - touch - START
         <xsl:for-each select="objects" >
-            <xsl:variable name="typeValue" select="type" />
             <xsl:variable name="name" select="name" />
             <xsl:variable name="stringValue" select="string" />
-            //Object touch = <xsl:value-of select="$touch" /> name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each> - //touch = <xsl:value-of select="$touch" />
 
             <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
-    
-            <xsl:if test="$typeValue = 'Sprite'" >
-                
-                //Animation Total: <xsl:value-of select="count(animations)" /><xsl:text>&#10;</xsl:text>
-                
-                public Rectangle <xsl:value-of select="$name" />Rectangle;
-                
-                    <!--
-                <xsl:for-each select="animations" >
-                public final String[] <xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray;
-
-                public Image[] <xsl:value-of select="$name" /><xsl:value-of select="name" />ImageArray;
-                </xsl:for-each>
-                    -->
-                public final String[] <xsl:value-of select="$name" />ResourceArray;
-
-                public Image[] <xsl:value-of select="$name" />ImageArray;
-
-            </xsl:if>
-
-            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
-                
-                //Animation Total: <xsl:value-of select="count(animations)" /><xsl:text>&#10;</xsl:text>
-                
-                public Rectangle <xsl:value-of select="$name" />Rectangle;
-                
-                    <!--
-                <xsl:for-each select="animations" >
-                public final String[] <xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray;
-
-                public Image[] <xsl:value-of select="$name" /><xsl:value-of select="name" />ImageArray;
-                </xsl:for-each>
-                    -->
-                public final String[] <xsl:value-of select="$name" />ResourceArray;
-
-                public Image[] <xsl:value-of select="$name" />ImageArray;
-
-            </xsl:if>
-
-            <xsl:if test="$typeValue = 'TextObject::Text' or $typeValue = 'TextInput::TextInputObject'" >
-                
-                public Rectangle <xsl:value-of select="$name" />Rectangle;
-                
-            </xsl:if>
-
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
-                
-                //Animation Total: <xsl:value-of select="count(animations)" /><xsl:text>&#10;</xsl:text>
-                
-                public Rectangle <xsl:value-of select="$name" />Rectangle;
-
-                public Image[] <xsl:value-of select="$name" />ImageArray;
-
-            </xsl:if>
-
-            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
 
                 //Animation Total: <xsl:value-of select="count(animations)" /><xsl:text>&#10;</xsl:text>
-                
                 public Rectangle <xsl:value-of select="name" />Rectangle;
-                
-                public final String[] <xsl:value-of select="name" />ResourceArray;
-
                 public Image[] <xsl:value-of select="name" />ImageArray;
+                
+                    <!--
+                <xsl:for-each select="animations" >
+                public final String[] <xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray;
 
+                public Image[] <xsl:value-of select="$name" /><xsl:value-of select="name" />ImageArray;
+                </xsl:for-each>
+                    -->
+                <xsl:if test="type = 'Sprite'" >
+                public final String[] <xsl:value-of select="$name" />ResourceArray;
+                </xsl:if>
+
+                <xsl:if test="type = 'TileMap::TileMap'" >
+                public final String[] <xsl:value-of select="$name" />ResourceArray;
                 public final String[] <xsl:value-of select="name" />JSONResourceArray;
-            </xsl:if>
+                </xsl:if>
 
             </xsl:if>
 
         </xsl:for-each>
-        //objects - END
+        //objects - all - touch - END
+
     </xsl:template>
 
     <xsl:template name="imageCache" >

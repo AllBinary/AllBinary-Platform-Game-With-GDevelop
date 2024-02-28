@@ -161,10 +161,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         <xsl:variable name="isPlatformer" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
         
         <xsl:for-each select="objects" >
-            <xsl:variable name="typeValue" select="type" />
-            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+            <xsl:if test="type = 'TileMap::TileMap'" >
         
     public TiledMap create<xsl:value-of select="name" />TiledMap(final TiledMap lastMap, final Image tileSetImage) {
 
@@ -346,10 +345,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         TiledMap map = null;
         
         <xsl:for-each select="objects" >
-            <xsl:variable name="typeValue" select="type" />
-            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+            <xsl:if test="type = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
         if(true) {
                 //TileMap::TileMap - <xsl:value-of select="name" />
@@ -446,10 +444,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
     }
 
         <xsl:for-each select="objects" >
-            <xsl:variable name="typeValue" select="type" />
-            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+            <xsl:if test="type = 'TileMap::TileMap'" >
                 <xsl:if test="name = 'PlatformerMap'" >
 
     public void setStartPoint(final GeographicMapInterface[] geographicMapInterfaceArray) throws Exception {

@@ -20,12 +20,11 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="instancesAsString" />
 
-        //objectsAssign - objectsProperties - START
+        //objects - all - //objectsAssign - objectsProperties - START
         <xsl:for-each select="objects" >
-            <xsl:variable name="typeValue" select="type" />
-            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'Sprite'" >
+            <xsl:if test="type = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
@@ -85,58 +84,18 @@ Created By: Travis Berthelot
                 
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:if test="type != 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
 
                 public final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray;
                 public final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray;
-                public final Rectangle <xsl:value-of select="name" />LayerInfo;
-                public final Rectangle[][] <xsl:value-of select="name" />RectangleArrayOfArrays;
-
-            </xsl:if>
-
-            <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer'" >
-                <xsl:variable name="stringValue" select="string" />
-
-                public final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray;
-                public final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray;
-                public final Rectangle <xsl:value-of select="name" />LayerInfo;
-                public final Rectangle[][] <xsl:value-of select="name" />RectangleArrayOfArrays;
-
-            </xsl:if>
-
-            <xsl:if test="$typeValue = 'TextObject::Text'" >
-                <xsl:variable name="stringValue" select="string" />
-
-                public final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray;
-                public final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray;
-                public final Rectangle <xsl:value-of select="name" />LayerInfo;
-                public final Rectangle[][] <xsl:value-of select="name" />RectangleArrayOfArrays;
-
-            </xsl:if>
-            
-            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
-                <xsl:variable name="stringValue" select="string" />
-
-                public AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = null;
-                public ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = null;
-                public final Rectangle <xsl:value-of select="name" />LayerInfo;
-                public final Rectangle[][] <xsl:value-of select="name" />RectangleArrayOfArrays;
-
-            </xsl:if>
-
-            <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
-                <xsl:variable name="stringValue" select="string" />
-
-                public AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = null;
-                public ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = null;
                 public final Rectangle <xsl:value-of select="name" />LayerInfo;
                 public final Rectangle[][] <xsl:value-of select="name" />RectangleArrayOfArrays;
 
             </xsl:if>
 
         </xsl:for-each>
-        //objectsAssign - objectsProperties - END
+        //objects - all - //objectsAssign - objectsProperties - END
     </xsl:template>
 
     <xsl:template name="objectsAssign" >
@@ -148,12 +107,11 @@ Created By: Travis Berthelot
                 BasicColor basicColor = null;
                 int size = 0;
         
-        //objectsAssign - START
+        //objects - all - //objectsAssign - START
         <xsl:for-each select="objects" >
-            <xsl:variable name="typeValue" select="type" />
-            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'Sprite' or $typeValue = 'TextObject::Text' or $typeValue = 'TextEntryObject::TextEntry' or $typeValue = 'TextInput::TextInputObject' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:if test="type != 'PrimitiveDrawing::Drawer'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
@@ -240,7 +198,7 @@ Created By: Travis Berthelot
 
                 <xsl:variable name="hasMoreThanOneImage" ><xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
-                <xsl:if test="$typeValue = 'TextObject::Text'" >
+                <xsl:if test="type = 'TextObject::Text'" >
                     
                 colorAsInt = basicColorUtil.get(255, <xsl:for-each select="color" ><xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />);</xsl:for-each>
                 basicColor = smallBasicColorCacheFactory.getInstance(colorAsInt);
@@ -264,10 +222,10 @@ Created By: Travis Berthelot
                     <xsl:value-of select="name" />LayerInfo,
                     <xsl:value-of select="name" />RectangleArrayOfArrays
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >, GDIndividualAnimationBehavior.getInstance()</xsl:if>
-                    <xsl:if test="$typeValue = 'TextObject::Text' or $typeValue = 'TextInput::TextInputObject'" >, GDAnimationBehaviorBase.getInstance()</xsl:if>
+                    <xsl:if test="type = 'TextObject::Text' or type = 'TextInput::TextInputObject'" >, GDAnimationBehaviorBase.getInstance()</xsl:if>
                     <xsl:if test="contains(name, 'btn_')" >, GDAnimationBehaviorBase.getInstance()</xsl:if>
                     ) 
-                    <xsl:if test="$typeValue = 'TextObject::Text'" >
+                    <xsl:if test="type = 'TextObject::Text'" >
                     {
 
                         public void init(final GDObject gdObject) {
@@ -282,7 +240,7 @@ Created By: Travis Berthelot
 
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer'" >
+            <xsl:if test="type = 'PrimitiveDrawing::Drawer'" >
                 <xsl:variable name="stringValue" select="string" />
 
                 this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[] {
@@ -316,7 +274,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
         </xsl:for-each>
-        //objectsAssign - END
+        //objects - all - //objectsAssign - END
     </xsl:template>
 
 </xsl:stylesheet>

@@ -117,11 +117,10 @@ Created By: Travis Berthelot
             public final GDBehavior destroyOutsideBehavior = new DestroyOutsideBehavior();
         </xsl:if>
         
-        //objectsClassProperty - START
+        //objects - all - //objectsClassProperty - START
         <xsl:for-each select="objects" >
-            <xsl:variable name="typeValue" select="type" />
 
-            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
             <xsl:for-each select="behaviors" >
                 //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
             </xsl:for-each>
@@ -149,18 +148,18 @@ Created By: Travis Berthelot
                 //TileMap::TileMap:content
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer'" >
+            <xsl:if test="type = 'PrimitiveDrawing::Drawer'" >
                 //PrimitiveDrawing::Drawer
                 public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="name" />";
                 //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                 public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
             </xsl:if>
-            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap'" >
+            <xsl:if test="type = 'Sprite' or type = 'TileMap::CollisionMask' or type = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
 
-                //<xsl:value-of select="$typeValue" />
+                //<xsl:value-of select="type" />
                 //private BasicArrayList <xsl:value-of select="name" />List = ZERO_GD_OBJECT;
                 //private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
                 //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
@@ -168,7 +167,7 @@ Created By: Travis Berthelot
                 //public final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:if test="type = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
@@ -176,32 +175,30 @@ Created By: Travis Berthelot
                 //ParticleSystem::ParticleEmitter
                 public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
             </xsl:if>
-            <xsl:if test="$typeValue = 'TextObject::Text' or $typeValue = 'TextInput::TextInputObject' or $typeValue = 'TextEntryObject::TextEntry'" >
+            <xsl:if test="type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'TextEntryObject::TextEntry'" >
                 <xsl:variable name="stringValue" select="string" />
 
-                //<xsl:value-of select="$typeValue" />
+                //<xsl:value-of select="type" />
                 public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
                 public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList();
             </xsl:if>
 
         </xsl:for-each>
+        //objects - all - //objectsClassProperty - END
 
+        //objects - all - //objectsClassProperty2 - START
         <xsl:for-each select="objects" >
-            <xsl:variable name="typeValue" select="type" />
-            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'PrimitiveDrawing::Drawer' or $typeValue = 'ParticleSystem::ParticleEmitter' or $typeValue = 'TileMap::TileMap' or $typeValue = 'TileMap::CollisionMask' or $typeValue = 'TextObject::Text' or $typeValue = 'TextInput::TextInputObject' or $typeValue = 'TextEntryObject::TextEntry'" >
-                //<xsl:value-of select="$typeValue" /> - create properties
+                //<xsl:value-of select="type" /> - create properties
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                 public final String <xsl:value-of select="$NAME" />_OBJECT_NAME = "<xsl:value-of select="name" />";
-            </xsl:if>
-
-            //public Rectangle <xsl:value-of select="name" />Rectangle = null;
+                //public Rectangle <xsl:value-of select="name" />Rectangle = null;
 
         </xsl:for-each>
-        //objectsClassProperty - END
+        //objects - all - //objectsClassProperty2 - END
 
     </xsl:template>
      

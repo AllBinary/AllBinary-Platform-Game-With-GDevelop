@@ -82,8 +82,6 @@ Created By: Travis Berthelot
                 <xsl:variable name="index" select="position() - 1" />
                 <xsl:if test="number($index) = $layoutIndex" >
 
-                    //$typeValue = 'TileMap::CollisionMask' or
-                    //$typeValue = 'TileMap::TileMap' or 
                     <xsl:variable name="names" >
                         <xsl:for-each select="objects" >
                             <xsl:variable name="typeValue" select="type" />

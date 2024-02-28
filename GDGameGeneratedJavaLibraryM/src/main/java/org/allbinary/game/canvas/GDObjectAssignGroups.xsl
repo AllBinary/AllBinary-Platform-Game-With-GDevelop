@@ -20,43 +20,14 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="instancesAsString" />
 
-        //objectsAssignGroup - START
+        //objects - all - //objectsAssignGroup - START
         <xsl:for-each select="objects" >
-            <xsl:variable name="typeValue" select="type" />
-            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
-                <xsl:variable name="stringValue" select="string" />
-                
-                public final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME);
-            </xsl:if>
-            <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer'" >
-                <xsl:variable name="stringValue" select="string" />
-                
-                final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME);
-
-            </xsl:if>
-            <xsl:if test="$typeValue = 'TextObject::Text'" >
-                <xsl:variable name="stringValue" select="string" />
-                
-                final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME);
-
-            </xsl:if>
-            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
-                <xsl:variable name="stringValue" select="string" />
-
-                final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME);
-
-            </xsl:if>
-            <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
-                <xsl:variable name="stringValue" select="string" />
-
-                final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME);
-
-            </xsl:if>
+            final Group <xsl:value-of select="name" />GroupInterface = this.groupFactory.getNextGroup(this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME);
 
         </xsl:for-each>
-        //objectsAssignGroup - END
+        //objects - all - //objectsAssignGroup - END
     </xsl:template>
 
 </xsl:stylesheet>

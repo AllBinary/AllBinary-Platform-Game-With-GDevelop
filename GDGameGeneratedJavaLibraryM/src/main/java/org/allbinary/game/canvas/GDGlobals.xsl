@@ -366,90 +366,20 @@ Created By: Travis Berthelot
                     
                     public void reset() {
 
+                        //objects - all - Sprite, TileMap::CollisionMask, TileMap::TileMap, ParticleSystem::ParticleEmitter, PrimitiveDrawing::Drawer, TextObject::Text, TextInput::TextInputObject, TextEntryObject::TextEntry, PanelSpriteSlider::PanelSpriteSlider
             <xsl:for-each select="objects" >
 
-                <xsl:variable name="typeValue" select="type" />
                 <xsl:variable name="initialVariablesValue" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="initialVariables/value" /></xsl:with-param><xsl:with-param name="find" >-</xsl:with-param><xsl:with-param name="replacementText" >Neg</xsl:with-param></xsl:call-template></xsl:variable>
 
-                //objects - all
-            //<xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" />.clear();
-            <xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" />.clear();
-            <xsl:value-of select="name" />RectangleList<xsl:value-of select="$initialVariablesValue" />.clear();
-                
-            <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer'" >
-                //PrimitiveDrawing::Drawer
-                <xsl:value-of select="name" />CacheGDGameLayerList.clear();
-            </xsl:if>
-            <xsl:if test="$typeValue = 'Sprite'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
-                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+                        //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+                        //<xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" />.clear();
+                        <xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" />.clear();
+                        <xsl:value-of select="name" />RectangleList<xsl:value-of select="$initialVariablesValue" />.clear();
 
-                //Sprite
-                <xsl:value-of select="name" />CacheGDGameLayerList.clear();
-            </xsl:if>
+                        <xsl:value-of select="name" />CacheGDGameLayerList.clear();
+                        <xsl:value-of select="name" />GDGameLayerDestroyedList.clear();
 
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
-                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-
-                //<xsl:value-of select="$typeValue" />
-                <xsl:value-of select="name" />CacheGDGameLayerList.clear();
-            </xsl:if>
-
-            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
-                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-
-                //ParticleSystem::ParticleEmitter
-                <xsl:value-of select="name" />CacheGDGameLayerList.clear();
-            </xsl:if>
-            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
-                <xsl:variable name="stringValue" select="string" />
-
-                //TextInput::TextInputObject
-                <xsl:value-of select="name" />GDGameLayerDestroyedList.clear();
-            </xsl:if>
-            <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
-                <xsl:variable name="stringValue" select="string" />
-
-                //TextEntryObject::TextEntry
-                <xsl:value-of select="name" />GDGameLayerDestroyedList.clear();
-            </xsl:if>
-            
-            <xsl:if test="type = 'Sprite'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
-                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-                //Sprite - layerManagerEventListenerList
-                <xsl:value-of select="name" />GDGameLayerDestroyedList.clear();
-            </xsl:if>
-            <xsl:if test="type = 'ParticleSystem::ParticleEmitter'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
-                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-                //ParticleSystem::ParticleEmitter - layerManagerEventListenerList
-                <xsl:value-of select="name" />GDGameLayerDestroyedList.clear();
-            </xsl:if>
-            <xsl:if test="type = 'TileMap::TileMap'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
-                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-                //TileMap::TileMap - layerManagerEventListenerList
-                <xsl:value-of select="name" />GDGameLayerDestroyedList.clear();
-            </xsl:if>
-
-            <xsl:if test="type = 'TileMap::CollisionMask'" >
-                <xsl:variable name="stringValue" select="string" />
-                <xsl:variable name="name" select="name" />
-                <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-                //TileMap::CollisionMask - layerManagerEventListenerList
-                <xsl:value-of select="name" />GDGameLayerDestroyedList.clear();
-            </xsl:if>
-
-        </xsl:for-each>
+            </xsl:for-each>
 
                     }
                     

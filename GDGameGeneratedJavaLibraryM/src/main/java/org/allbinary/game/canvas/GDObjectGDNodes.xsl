@@ -31,25 +31,9 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="params" >
                     <xsl:for-each select="objects" >
-                        <xsl:variable name="typeValue" select="type" />
                         <xsl:variable name="name" ><xsl:value-of select="name" />.</xsl:variable>
-
                         <xsl:if test="contains($parametersAsString, $name) = text()" >
-                            <xsl:if test="$typeValue = 'Sprite'" >
                         <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />,
-                            </xsl:if>
-                            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
-                        <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />,
-                            </xsl:if>
-                            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
-                        <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />,
-                            </xsl:if>
-                            <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
-                        <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />,
-                            </xsl:if>
-                            <xsl:if test="$typeValue = 'TextObject::Text'" >
-                        <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />,
-                            </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
                     </xsl:variable>
