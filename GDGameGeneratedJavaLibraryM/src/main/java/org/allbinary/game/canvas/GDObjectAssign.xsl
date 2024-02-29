@@ -222,7 +222,7 @@ Created By: Travis Berthelot
                     <xsl:value-of select="name" />LayerInfo,
                     <xsl:value-of select="name" />RectangleArrayOfArrays
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >, GDIndividualAnimationBehavior.getInstance()</xsl:if>
-                    <xsl:if test="type = 'TextObject::Text' or type = 'TextInput::TextInputObject'" >, GDAnimationBehaviorBase.getInstance()</xsl:if>
+                    <xsl:if test="type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >, GDAnimationBehaviorBase.getInstance()</xsl:if>
                     <xsl:if test="contains(name, 'btn_')" >, GDAnimationBehaviorBase.getInstance()</xsl:if>
                     ) 
                     <xsl:if test="type = 'TextObject::Text'" >

@@ -29,7 +29,16 @@
             <scope>test</scope>
         </dependency>
 
+<!--
+        <dependency>
+            <groupId>com.sun</groupId>
+            <artifactId>LWUITForJ2MEJavaLibrary</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+-->
+
         <!--
+        -->
         <dependency>
             <groupId>org.mapgenerator</groupId>
             <artifactId>TileMapGeneratorJavaLibraryM</artifactId>
@@ -40,7 +49,6 @@
             <artifactId>DungeonGeneratorJavaLibrary</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
-        -->
         <!--
         -->
 

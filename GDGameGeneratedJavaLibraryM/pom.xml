@@ -28,6 +28,14 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+        
+<!--
+        <dependency>
+            <groupId>com.sun</groupId>
+            <artifactId>LWUITForJ2MEJavaLibrary</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+-->
 
         <dependency>
             <groupId>org.allbinary</groupId>

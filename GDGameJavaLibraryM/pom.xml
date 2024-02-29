@@ -40,6 +40,14 @@
 
 <!--
         <dependency>
+            <groupId>com.sun</groupId>
+            <artifactId>LWUITForJ2MEJavaLibrary</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+-->
+
+<!--
+        <dependency>
             <groupId>org.allbinary.game.behavior.platformer</groupId>
             <artifactId>PlatformerGameBehaviorJavaLibrary</artifactId>
             <version>1.0.0-SNAPSHOT</version>

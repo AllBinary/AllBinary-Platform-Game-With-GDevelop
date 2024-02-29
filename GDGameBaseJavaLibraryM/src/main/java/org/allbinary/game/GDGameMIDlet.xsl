@@ -58,9 +58,9 @@ import org.allbinary.game.GameTypeFactory;
 import org.allbinary.game.PlayerTypesFactory;
 import org.allbinary.game.displayable.canvas.GameCanvasRunnableInterface;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
-import org.allbinary.game.midlet.DemoGameMidletEvent;
-import org.allbinary.game.midlet.DemoGameMidletEventHandler;
-import org.allbinary.game.midlet.DemoGameMidletStateFactory;
+//import org.allbinary.game.midlet.DemoGameMidletEvent;
+//import org.allbinary.game.midlet.DemoGameMidletEventHandler;
+//import org.allbinary.game.midlet.DemoGameMidletStateFactory;
 import org.allbinary.game.midlet.LicenseLevelUtil;
 import org.allbinary.game.midlet.LicenseLoadingTypeFactory;
 import org.allbinary.game.midlet.SpecialDemoGameMidlet;
@@ -89,6 +89,8 @@ public class GDGameMIDlet extends
    {
        super(LicenseLoadingTypeFactory.getIntance().OTHER);
        //this.setSaveGameForm(SaveGameForm.getInstance(this, "Save Game"));
+       
+       //com.sun.lwuit.Display.init(this);
    }
 
    protected HelpPaintable getHelpPaintable()
