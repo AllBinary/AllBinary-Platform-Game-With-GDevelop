@@ -51,6 +51,10 @@ Created By: Travis Berthelot
                 public final String[] <xsl:value-of select="$name" />ResourceArray;
                 </xsl:if>
 
+                <xsl:if test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >
+                public final String[] <xsl:value-of select="$name" />ResourceArray;
+                </xsl:if>
+
                 <xsl:if test="type = 'TileMap::TileMap'" >
                 public final String[] <xsl:value-of select="$name" />ResourceArray;
                 public final String[] <xsl:value-of select="name" />JSONResourceArray;
@@ -91,18 +95,22 @@ Created By: Travis Berthelot
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             <xsl:variable name="name" select="name" />
-            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
             <xsl:text>&#10;</xsl:text>
 
             <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
     
-            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter' or $typeValue = 'TileMap::TileMap'" >
+                <xsl:variable name="hasMirrorFillBarBehavior" >
+                <xsl:for-each select="behaviors" ><xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >found</xsl:if></xsl:for-each>
+                </xsl:variable>
+                
+            <xsl:if test="type = 'Sprite' or type = 'ParticleSystem::ParticleEmitter' or type = 'TileMap::TileMap' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >
                 //type found
                 <xsl:variable name="stringValue" select="string" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
                 <xsl:text>&#10;</xsl:text>
 
-                <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+                <xsl:if test="type = 'Sprite' or type = 'ParticleSystem::ParticleEmitter' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >
                 this.<xsl:value-of select="$name" />ResourceArray = new String[] {
                 <xsl:for-each select="animations" >
                     <!--
@@ -125,10 +133,50 @@ Created By: Travis Berthelot
                 };
                     -->
                 </xsl:for-each>
+                
+                <xsl:for-each select="childrenContent" >
+                    //<xsl:value-of select="$typeValue" /> - childrenContent
+                    <xsl:for-each select="Background" >
+                    <xsl:variable name="imageWithExtension" select="texture" />
+                    <xsl:variable name="image2" select="substring-before($imageWithExtension, '.')" />
+                    <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:if test="string-length($image) > 0" >
+                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    </xsl:if>
+                    </xsl:for-each>
+                    <xsl:for-each select="FillBar" >
+                    <xsl:variable name="imageWithExtension" select="texture" />
+                    <xsl:variable name="image2" select="substring-before($imageWithExtension, '.')" />
+                    <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:if test="string-length($image) > 0" >
+                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    </xsl:if>
+                    <xsl:if test="contains($hasMirrorFillBarBehavior, 'found')" >
+                    gdResources.MIRROR_<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    </xsl:if>
+                    <xsl:if test="contains($hasMirrorFillBarBehavior, 'found')" >
+                    <xsl:variable name="imageWithExtension" select="texture" />
+                    <xsl:variable name="image2" select="substring-before($imageWithExtension, '.')" />
+                    <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:if test="string-length($image) > 0" >
+                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    </xsl:if>
+                    </xsl:if>
+                    </xsl:for-each>
+                    <xsl:for-each select="Thumb" >
+                    <xsl:variable name="imageWithExtension" select="texture" />
+                    <xsl:variable name="image2" select="substring-before($imageWithExtension, '.')" />
+                    <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:if test="string-length($image) > 0" >
+                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    </xsl:if>
+                    </xsl:for-each>
+                </xsl:for-each>
+                
                 };
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+                <xsl:if test="type = 'TileMap::TileMap'" >
                 this.<xsl:value-of select="name" />ResourceArray = new String[] {
                 <xsl:if test="content" >
                     //TileMap::TileMap:content
@@ -176,6 +224,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
 
+                <xsl:if test="type != 'PanelSpriteSlider::PanelSpriteSlider'" >
                 <xsl:if test="content" >
                     //TileMap::TileMap:content
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
@@ -192,11 +241,40 @@ Created By: Travis Berthelot
 //                    }
                     </xsl:if>
                 </xsl:if>
+                </xsl:if>
+
+                <xsl:variable name="mirrorFillBarBehaviorImage" >
+                        <xsl:if test="not(contains($hasMirrorFillBarBehavior, 'found'))" >
+                    null
+                        </xsl:if>
+                        <xsl:for-each select="behaviors" >
+                            <xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >
+                    <xsl:value-of select="$name" />MirrorFillBarImage
+                            </xsl:if>
+                        </xsl:for-each>
+                </xsl:variable>
+                                
+                <xsl:for-each select="childrenContent" >
+                    //<xsl:value-of select="$typeValue" /> - childrenContent
+                    <xsl:for-each select="Background" >
+                    final Image <xsl:value-of select="$name" />BackgroundImage = imageCache.get(<xsl:value-of select="$name" />ResourceArray[0]);
+                    </xsl:for-each>
+                    <xsl:for-each select="FillBar" >
+                    final Image <xsl:value-of select="$name" />FillBarImage = imageCache.get(<xsl:value-of select="$name" />ResourceArray[1]);
+                    <xsl:if test="contains($hasMirrorFillBarBehavior, 'found')" >
+                    final Image <xsl:value-of select="$mirrorFillBarBehaviorImage" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[2]);
+                    </xsl:if>
+                    </xsl:for-each>
+                    <xsl:for-each select="Thumb" >
+                    final Image <xsl:value-of select="$name" />ThumbImage = imageCache.get(<xsl:value-of select="$name" />ResourceArray[3]);
+                    </xsl:for-each>
+                </xsl:for-each>
 
                 <xsl:variable name="objectGroupForObject" ><xsl:for-each select="//objectsGroups" ><xsl:variable name="objectGroupName" ><xsl:value-of select="name" /></xsl:variable><xsl:for-each select="objects" ><xsl:if test="name = $name" ><xsl:value-of select="$objectGroupName" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
                 <xsl:value-of select="$name" />ImageArray = new Image[] {
                 <xsl:for-each select="animations" >
+                    //<xsl:value-of select="$typeValue" /> - animations
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                     <!--
@@ -218,6 +296,23 @@ Created By: Travis Berthelot
                 };
                     -->
                 </xsl:for-each>
+                
+                <xsl:for-each select="childrenContent" >
+                    //<xsl:value-of select="$typeValue" /> - childrenContent
+                    <xsl:for-each select="Background" >
+                    <xsl:value-of select="$name" />BackgroundImage,
+                    </xsl:for-each>
+                    <xsl:for-each select="FillBar" >
+                    <xsl:value-of select="$name" />FillBarImage,
+                    <xsl:value-of select="$mirrorFillBarBehaviorImage" />,
+                    </xsl:for-each>
+                    <xsl:for-each select="Label" >
+                    null,
+                    </xsl:for-each>
+                    <xsl:for-each select="Thumb" >
+                    <xsl:value-of select="$name" />ThumbImage,
+                    </xsl:for-each>
+                </xsl:for-each>
                 };
 
                 <xsl:if test="string-length($objectGroupForObject) > 0" >
@@ -225,6 +320,7 @@ Created By: Travis Berthelot
                     <xsl:value-of select="$objectGroupForObject" />ImageArrayList.add(<xsl:value-of select="$name" />ImageArray);
                 </xsl:if>
 
+                <xsl:if test="type != 'PanelSpriteSlider::PanelSpriteSlider'" >
                 <xsl:if test="content" >
                     //TileMap::TileMap:content
                 <xsl:value-of select="$name" />ImageArray = new Image[] {
@@ -239,6 +335,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                 };  
                 </xsl:if>
+                </xsl:if>
 
                 //this.validateSprites(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ResourceArray, <xsl:value-of select="name" />ImageArray);
                 hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
@@ -246,23 +343,23 @@ Created By: Travis Berthelot
 
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'TextObject::Text'" >
+            <xsl:if test="type = 'TextObject::Text'" >
                 this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >                
+            <xsl:if test="type = 'TextInput::TextInputObject'" >                
                 final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> / 2;
                 this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />TextInputAnimationSize * (12 - 1), <xsl:value-of select="name" />TextInputAnimationSize);
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
+            <xsl:if test="type = 'TileMap::CollisionMask'" >
                 <xsl:value-of select="$name" />ImageArray = new Image[] {
                 };
                 hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
                 this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+            <xsl:if test="type = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 //TileMap::TileMap - JSON

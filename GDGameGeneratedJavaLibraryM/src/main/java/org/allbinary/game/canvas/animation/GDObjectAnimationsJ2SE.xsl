@@ -377,7 +377,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                         <xsl:for-each select="../behaviors" >
                             <xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >
-                    new RightToLeftImageAnimationFactory(<xsl:value-of select="$name" />ImageArray[3]),
+                    new RightToLeftImageAnimationFactory(<xsl:value-of select="$name" />ImageArray[2]),
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:for-each>
