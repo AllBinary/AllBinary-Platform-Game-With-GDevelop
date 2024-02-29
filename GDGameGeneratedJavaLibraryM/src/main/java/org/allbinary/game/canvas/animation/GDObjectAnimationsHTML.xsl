@@ -25,6 +25,7 @@ Created By: Travis Berthelot
         
         //objectsAssign - htmlAnimationFactory - START
         final short angleIncrement = 1;
+        final int[] sequenceArray = {-1};
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             <xsl:variable name="name" select="name" />
@@ -335,6 +336,86 @@ Created By: Travis Berthelot
                 //objectsGroupsGDGameLayer - END
                 </xsl:if>
                 
+            </xsl:if>
+
+            <xsl:if test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider'" >
+
+                final Image[] <xsl:value-of select="$name" />ImageArray = (Image[]) imageCache.getHashtable().get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
+
+                if(<xsl:value-of select="$name" />ImageArray == null) {
+                    throw new Exception("<xsl:value-of select="$name" />ImageArray was null (This happens 1 time during the initial loading)");
+                } else {
+                    LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$name" />ImageArray found", this, commonStrings.INIT));
+                }
+                
+                <xsl:for-each select="childrenContent" >
+                    <xsl:for-each select="Label" >
+                final int <xsl:value-of select="$name" />TextAnimationSize = (<xsl:value-of select="characterSize" />);
+                    </xsl:for-each>
+                </xsl:for-each>
+
+                <xsl:variable name="hasMirrorFillBarBehavior" >
+                <xsl:for-each select="behaviors" ><xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >found</xsl:if></xsl:for-each>
+                </xsl:variable>
+
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray = {
+                <xsl:for-each select="childrenContent" >
+                    <xsl:variable name="position" ><xsl:value-of select="position() - 1" /></xsl:variable>
+                    <xsl:for-each select="Background" >
+                    new AllBinaryHTMLImageRotationAnimationFactory(
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="$position" />],
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="$position" />].getWidth(),
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="$position" />].getHeight(),
+                    angleIncrement,
+                    AnimationBehaviorFactory.getInstance()
+                    //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
+                    ),
+                    </xsl:for-each>
+                    <xsl:for-each select="FillBar" >
+                    new LeftToRightImageAnimationFactory(<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="$position" />], sequenceArray),
+                        <xsl:if test="not(contains($hasMirrorFillBarBehavior, 'found'))" >
+                    new NullRotationAnimationFactory(),
+                        </xsl:if>
+                        <xsl:for-each select="../behaviors" >
+                            <xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >
+                    new RightToLeftImageAnimationFactory(<xsl:value-of select="$name" />ImageArray[3]),
+                            </xsl:if>
+                        </xsl:for-each>
+                    </xsl:for-each>
+                    <xsl:for-each select="Label" >
+                    new CustomTextAnimationFactory(StringUtil.getInstance().EMPTY_STRING, <xsl:value-of select="$name" />TextAnimationSize),
+                    </xsl:for-each>
+                    <xsl:for-each select="Thumb" >
+                    new AllBinaryHTMLImageRotationAnimationFactory(
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="$position" />],
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="$position" />].getWidth(),
+                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="$position" />].getHeight(),
+                    angleIncrement,
+                    AnimationBehaviorFactory.getInstance()
+                    //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
+                    )
+                    </xsl:for-each>
+                </xsl:for-each>
+                };
+
+                final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="$name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
+
+                this.add(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="$name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+
+                final Rectangle <xsl:value-of select="$name" />LayerInfo = new Rectangle(
+                                pointFactory.getInstance(0, 0),
+                <xsl:for-each select="childrenContent" >
+                    <xsl:for-each select="Background" >
+                        <xsl:value-of select="width" />, <xsl:value-of select="height" />
+                    </xsl:for-each>
+               </xsl:for-each>
+                                );
+
+                this.addRectangle(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME, <xsl:value-of select="$name" />LayerInfo);
+
+                //final GDConditionWithGroupActions <xsl:value-of select="$name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
+
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TextObject::Text'" >

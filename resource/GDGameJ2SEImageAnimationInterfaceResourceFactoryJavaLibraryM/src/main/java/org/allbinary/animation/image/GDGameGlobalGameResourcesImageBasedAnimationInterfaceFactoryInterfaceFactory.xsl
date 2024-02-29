@@ -86,9 +86,9 @@ Created By: Travis Berthelot
 package org.allbinary.animation.image;
 
 import javax.microedition.lcdui.Image;
-
 import javax.microedition.lcdui.Font;
 
+import org.allbinary.animation.AnimationBehaviorFactory;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
@@ -116,6 +116,7 @@ import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringUtil;
 
 public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
