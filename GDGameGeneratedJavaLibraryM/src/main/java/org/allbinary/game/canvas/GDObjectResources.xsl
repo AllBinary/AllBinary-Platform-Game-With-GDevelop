@@ -151,15 +151,15 @@ Created By: Travis Berthelot
                     <xsl:if test="string-length($image) > 0" >
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>
-                    <xsl:if test="contains($hasMirrorFillBarBehavior, 'found')" >
-                    gdResources.MIRROR_<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    <xsl:if test="not(contains($hasMirrorFillBarBehavior, 'found'))" >
+                    null,
                     </xsl:if>
                     <xsl:if test="contains($hasMirrorFillBarBehavior, 'found')" >
                     <xsl:variable name="imageWithExtension" select="texture" />
                     <xsl:variable name="image2" select="substring-before($imageWithExtension, '.')" />
                     <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>
                     <xsl:if test="string-length($image) > 0" >
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    gdResources.MIRROR_<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>
                     </xsl:if>
                     </xsl:for-each>
