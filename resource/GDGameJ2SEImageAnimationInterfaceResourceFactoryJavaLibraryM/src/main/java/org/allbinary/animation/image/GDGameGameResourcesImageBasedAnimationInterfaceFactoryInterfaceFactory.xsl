@@ -100,6 +100,7 @@ import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.IndexedAnimationBehaviorFactory;
 import org.allbinary.animation.NullRotationAnimationFactory;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
+import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInterfaceFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.animation.image.AllBinaryJ2SEImageRotationAnimationFactory;
 import org.allbinary.animation.image.sprite.OneRowJ2SESpriteIndexedAnimationFactory;
