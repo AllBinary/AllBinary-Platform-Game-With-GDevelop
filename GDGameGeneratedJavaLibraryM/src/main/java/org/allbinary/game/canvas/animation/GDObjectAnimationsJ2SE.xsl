@@ -357,46 +357,49 @@ Created By: Travis Berthelot
                 <xsl:for-each select="behaviors" ><xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >found</xsl:if></xsl:for-each>
                 </xsl:variable>
 
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray = {
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray0 = {
                 <xsl:for-each select="childrenContent" >
-                    <xsl:variable name="position" ><xsl:value-of select="position() - 1" /></xsl:variable>
-                    <xsl:for-each select="Background" >
-                    new AllBinaryJ2SEImageRotationAnimationFactory(
-                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="$position" />],
-                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="$position" />].getWidth(),
-                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="$position" />].getHeight(),
-                    angleIncrement,
-                    AnimationBehaviorFactory.getInstance()
-                    //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
-                    ),
-                    </xsl:for-each>
-                    <xsl:for-each select="FillBar" >
-                    new LeftToRightImageAnimationFactory(<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="$position" />], sequenceArray),
-                        <xsl:if test="not(contains($hasMirrorFillBarBehavior, 'found'))" >
-                    new NullRotationAnimationFactory(),
-                        </xsl:if>
-                        <xsl:for-each select="../behaviors" >
-                            <xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >
-                    new RightToLeftImageAnimationFactory(<xsl:value-of select="$name" />ImageArray[2]),
-                            </xsl:if>
-                        </xsl:for-each>
-                    </xsl:for-each>
                     <xsl:for-each select="Label" >
                     new CustomTextAnimationFactory(StringUtil.getInstance().EMPTY_STRING, <xsl:value-of select="$name" />TextAnimationSize),
                     </xsl:for-each>
                     <xsl:for-each select="Thumb" >
                     new AllBinaryJ2SEImageRotationAnimationFactory(
-                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="$position" />],
-                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="$position" />].getWidth(),
-                    <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="$position" />].getHeight(),
+                    <xsl:value-of select="$name" />ImageArray[4],
+                    <xsl:value-of select="$name" />ImageArray[4].getWidth(),
+                    <xsl:value-of select="$name" />ImageArray[4].getHeight(),
                     angleIncrement,
                     AnimationBehaviorFactory.getInstance()
                     //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
+                    <xsl:for-each select="FillBar" >
+                    new LeftToRightImageAnimationFactory(<xsl:value-of select="$name" />ImageArray[1], sequenceArray),
+                        <xsl:if test="not(contains($hasMirrorFillBarBehavior, 'found'))" >
+                    new NullRotationAnimationFactory(),
+                        </xsl:if>
+                        <xsl:for-each select="../../behaviors" >
+                            <xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >
+                    new RightToLeftImageAnimationFactory(<xsl:value-of select="$name" />ImageArray[2]),
+                            </xsl:if>
+                        </xsl:for-each>
+                    </xsl:for-each>
+                    <xsl:for-each select="Background" >
+                    new AllBinaryJ2SEImageRotationAnimationFactory(
+                    <xsl:value-of select="$name" />ImageArray[0],
+                    <xsl:value-of select="$name" />ImageArray[0].getWidth(),
+                    <xsl:value-of select="$name" />ImageArray[0].getHeight(),
+                    angleIncrement,
+                    AnimationBehaviorFactory.getInstance()
+                    //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
+                    ),
+                    </xsl:for-each>
                     )
                     </xsl:for-each>
                 </xsl:for-each>
                 };
 
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray = {
+                    new SimultaneousCompoundIndexedAnimationInterfaceFactory(<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray0)
+                };
+                
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="$name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
 
                 this.add(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray));
