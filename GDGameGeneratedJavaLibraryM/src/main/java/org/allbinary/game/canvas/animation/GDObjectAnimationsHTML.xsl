@@ -360,45 +360,72 @@ Created By: Travis Berthelot
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray0 = {
                 <xsl:for-each select="childrenContent" >
-                    <xsl:for-each select="Label" >
-                    new CustomTextAnimationFactory(StringUtil.getInstance().EMPTY_STRING, <xsl:value-of select="$name" />TextAnimationSize),
-                    </xsl:for-each>
-                    <xsl:for-each select="Thumb" >
+                    <xsl:for-each select="Background" >
+                    //Background
                     new AllBinaryHTMLImageRotationAnimationFactory(
-                    <xsl:value-of select="$name" />ImageArray[4],
-                    <xsl:value-of select="$name" />ImageArray[4].getWidth(),
-                    <xsl:value-of select="$name" />ImageArray[4].getHeight(),
-                    angleIncrement,
-                    AnimationBehaviorFactory.getInstance()
-                    //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
+                        <xsl:value-of select="$name" />ImageArray[0],
+                        <xsl:value-of select="$name" />ImageArray[0].getWidth(),
+                        <xsl:value-of select="$name" />ImageArray[0].getHeight(),
+                        angleIncrement,
+                        AnimationBehaviorFactory.getInstance()
+                        //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
+                    ),
+                    </xsl:for-each>
                     <xsl:for-each select="FillBar" >
-                    new LeftToRightImageAnimationFactory(<xsl:value-of select="$name" />ImageArray[1], sequenceArray),
+                    //FillBar
+                    new LeftToRightImageAnimationFactory(
+                        <xsl:value-of select="$name" />ImageArray[1], 
+                        sequenceArray,
+                        (<xsl:value-of select="$name" />ImageArray[0].getWidth() - <xsl:value-of select="$name" />ImageArray[1].getWidth()) / 2,
+                        (<xsl:value-of select="$name" />ImageArray[0].getHeight() - <xsl:value-of select="$name" />ImageArray[1].getHeight()) / 2
+                    ),
                         <xsl:if test="not(contains($hasMirrorFillBarBehavior, 'found'))" >
+                    //MirrorFillBarExtension::MirrorFillBarBehavior
                     new NullRotationAnimationFactory(),
                         </xsl:if>
                         <xsl:for-each select="../../behaviors" >
                             <xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >
-                    new RightToLeftImageAnimationFactory(<xsl:value-of select="$name" />ImageArray[2]),
+                    new RightToLeftImageAnimationFactory(
+                        <xsl:value-of select="$name" />ImageArray[2],
+                        (<xsl:value-of select="$name" />ImageArray[0].getWidth() - <xsl:value-of select="$name" />ImageArray[2].getWidth()) / 2,
+                        (<xsl:value-of select="$name" />ImageArray[0].getHeight() - <xsl:value-of select="$name" />ImageArray[2].getHeight()) / 2
+                    ),
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:for-each>
-                    <xsl:for-each select="Background" >
+                    <xsl:for-each select="Thumb" >
+                    //Thumb
                     new AllBinaryHTMLImageRotationAnimationFactory(
-                    <xsl:value-of select="$name" />ImageArray[0],
-                    <xsl:value-of select="$name" />ImageArray[0].getWidth(),
-                    <xsl:value-of select="$name" />ImageArray[0].getHeight(),
-                    angleIncrement,
-                    AnimationBehaviorFactory.getInstance()
-                    //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
+                        <xsl:value-of select="$name" />ImageArray[4],
+                        <xsl:value-of select="$name" />ImageArray[4].getWidth(),
+                        <xsl:value-of select="$name" />ImageArray[4].getHeight(),
+                        (<xsl:value-of select="$name" />ImageArray[0].getWidth() - <xsl:value-of select="$name" />ImageArray[2].getWidth()) / 2,
+                        (<xsl:value-of select="$name" />ImageArray[0].getHeight() - <xsl:value-of select="$name" />ImageArray[4].getHeight()) / 2,
+                        angleIncrement,
+                        AnimationBehaviorFactory.getInstance()
+                        //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
                     ),
                     </xsl:for-each>
-                    )
+                    <xsl:for-each select="Label" >
+                    //Label
+                    new CustomTextAnimationFactory(StringUtil.getInstance().EMPTY_STRING, <xsl:value-of select="$name" />TextAnimationSize),
                     </xsl:for-each>
                 </xsl:for-each>
                 };
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray = {
-                    new SimultaneousCompoundIndexedAnimationInterfaceFactory(<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray0)
+                    new SliderAnimationInterfaceFactory(
+                        <xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray0,
+                        <xsl:value-of select="$name" />ImageArray[1].getWidth(),
+                        <xsl:value-of select="$name" />ImageArray[1].getHeight()
+                    ) {
+                        public void setInitialSize(final int width, final int height) {
+                            this.basicAnimationInterfaceFactoryInterfaceArray[0].setInitialSize(width, height);
+                            this.basicAnimationInterfaceFactoryInterfaceArray[1].setInitialSize(width * 253 / 265, height * 16 / 34);
+                            this.basicAnimationInterfaceFactoryInterfaceArray[2].setInitialSize(width * 253 / 265, height * 16 / 34);
+                            this.basicAnimationInterfaceFactoryInterfaceArray[3].setInitialSize(width * 22 / 265, height * 22 / 34);
+                        }                        
+                    }
                 };
                 
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="$name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
