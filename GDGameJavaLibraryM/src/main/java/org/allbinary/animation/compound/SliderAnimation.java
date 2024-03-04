@@ -36,6 +36,8 @@ public class SliderAnimation
     
     private int dx;
 
+    private int value;
+    
     public SliderAnimation(final IndexedAnimation[] animationInterfaceArray, final int width, final int height, final AnimationBehavior animationBehavior)
     {
         super(animationBehavior);
@@ -47,7 +49,6 @@ public class SliderAnimation
         this.width = width;
         this.height = height;
         
-        this.setValue(100);
     }
     
     public void setFrame(final int frameIndex)
@@ -129,5 +130,9 @@ public class SliderAnimation
     
     public void setValue(final int value) {
         this.animationInterfaceArray[3].setDx(dx + (value* width / 100));
+    }
+    
+    public int getValue() {
+        return value;
     }
 }

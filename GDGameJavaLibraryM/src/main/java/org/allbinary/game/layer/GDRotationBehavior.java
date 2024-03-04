@@ -51,7 +51,7 @@ public class GDRotationBehavior extends GDAnimationBehaviorBase {
         return initIndexedAnimationInterfaceArray;
     }
     
-    public void setRotationAnimationInterfaceArray(final IndexedAnimation[] rotationAnimationInterfaceArray)
+    public void setAnimationArray(final IndexedAnimation[] rotationAnimationInterfaceArray)
     {
         this.rotationAnimationInterfaceArray = (RotationAnimation[]) rotationAnimationInterfaceArray;
     }

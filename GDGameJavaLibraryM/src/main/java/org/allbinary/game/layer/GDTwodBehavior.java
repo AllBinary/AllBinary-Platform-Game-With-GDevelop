@@ -23,7 +23,7 @@ import org.allbinary.logic.string.StringMaker;
  */
 public class GDTwodBehavior {
     
-    public final GDAnimationBehaviorBase animationBehavior;
+    private final GDAnimationBehaviorBase animationBehavior;
     
     private float rotationRemainder;
     
@@ -73,6 +73,13 @@ public class GDTwodBehavior {
         } else {
             //LogUtil.put(LogFactory.getInstance("skip", this, "updateRotation"));
         }
+    }
+
+    /**
+     * @return the animationBehavior
+     */
+    public GDAnimationBehaviorBase getAnimationBehavior() {
+        return animationBehavior;
     }
     
 }

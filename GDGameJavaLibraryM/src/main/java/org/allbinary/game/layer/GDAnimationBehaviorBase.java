@@ -55,11 +55,15 @@ public class GDAnimationBehaviorBase {
         return initIndexedAnimationInterfaceArray;
     }
 
-    public void setRotationAnimationInterfaceArray(final IndexedAnimation[] rotationAnimationInterfaceArray)
+    public void setAnimationArray(final IndexedAnimation[] rotationAnimationInterfaceArray)
     {
         
     }
-    
+
+    public void add(final GDGameLayer gameLayer) {
+
+    }
+
     public void set(final GDObject gdObject) throws Exception {
         
     }
