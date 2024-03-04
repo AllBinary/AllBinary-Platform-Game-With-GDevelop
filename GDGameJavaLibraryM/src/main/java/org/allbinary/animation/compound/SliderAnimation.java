@@ -18,6 +18,7 @@ import javax.microedition.lcdui.Graphics;
 import org.allbinary.animation.AnimationBehavior;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.image.ImageBaseRotationAnimation;
+import org.allbinary.animation.text.CustomTextAnimation;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 
@@ -52,6 +53,7 @@ public class SliderAnimation
         this.width = width;
         this.height = height;
         
+        ((CustomTextAnimation) this.animationInterfaceArray[4]).setDy(-height / 4);
     }
     
     public void setFrame(final int frameIndex)
@@ -134,7 +136,13 @@ public class SliderAnimation
     public void setValue(final int value) {
         if(value >= 0 && value < 100) {
             this.value = value;
-            this.animationInterfaceArray[3].setDx(dx + (value * width / 100));
+            final int newDx = dx + (value * width / 100);
+            this.animationInterfaceArray[3].setDx(newDx);
+            
+            final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.animationInterfaceArray[4]);
+            customTextAnimation.setDx(newDx + this.getThumbWidth() / 2 - customTextAnimation.getWidth() / 2);
+            customTextAnimation.setText(Integer.toString(this.value - 1));
+        
         }
     }
 
@@ -155,6 +163,10 @@ public class SliderAnimation
         this.value = (100 * usedThumbX / width);
         LogUtil.put(LogFactory.getInstance("new value: " + this.value, this, "onMotionGestureEvent"));
         this.animationInterfaceArray[3].setDx(usedThumbX);
+
+        final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.animationInterfaceArray[4]);
+        customTextAnimation.setDx(usedThumbX + this.getThumbWidth() / 2 - customTextAnimation.getWidth() / 2);
+        customTextAnimation.setText(Integer.toString(this.value - 1));
     }
     
     public int getThumbDx() {
