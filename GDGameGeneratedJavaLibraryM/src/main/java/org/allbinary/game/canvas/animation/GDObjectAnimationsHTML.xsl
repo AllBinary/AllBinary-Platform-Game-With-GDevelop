@@ -408,7 +408,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     <xsl:for-each select="Label" >
                     //Label
-                    new CustomTextAnimationFactory(StringUtil.getInstance().EMPTY_STRING, <xsl:value-of select="$name" />TextAnimationSize),
+                    new CustomTextAnimationFactory(StringUtil.getInstance().EMPTY_STRING, 0, 0, <xsl:value-of select="$name" />TextAnimationSize),
                     </xsl:for-each>
                 </xsl:for-each>
                 };

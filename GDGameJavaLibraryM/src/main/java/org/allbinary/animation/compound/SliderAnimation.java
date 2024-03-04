@@ -53,7 +53,7 @@ public class SliderAnimation
         this.width = width;
         this.height = height;
         
-        ((CustomTextAnimation) this.animationInterfaceArray[4]).setDy(-height / 4);
+        ((CustomTextAnimation) this.animationInterfaceArray[4]).setDy(-height);
     }
     
     public void setFrame(final int frameIndex)
@@ -147,21 +147,21 @@ public class SliderAnimation
     }
 
     public void setValue2(final int thumbX) {
-        LogUtil.put(LogFactory.getInstance("old thumbX: " + this.animationInterfaceArray[3].getDx(), this, "onMotionGestureEvent"));
-        LogUtil.put(LogFactory.getInstance("thumbX: " + thumbX, this, "onMotionGestureEvent"));
+        //LogUtil.put(LogFactory.getInstance("old thumbX: " + this.animationInterfaceArray[3].getDx(), this, "onMotionGestureEvent"));
+        //LogUtil.put(LogFactory.getInstance("thumbX: " + thumbX, this, "onMotionGestureEvent"));
         int usedThumbX = thumbX;
         int maxX = dx + width - (width / 100);
         if(thumbX >= dx && thumbX < dx + width) {
         } else if(thumbX < dx) {
             usedThumbX = dx;
-            LogUtil.put(LogFactory.getInstance("min thumbX: " + usedThumbX, this, "onMotionGestureEvent"));
+            //LogUtil.put(LogFactory.getInstance("min thumbX: " + usedThumbX, this, "onMotionGestureEvent"));
         } else if(thumbX > maxX) {
             usedThumbX = maxX;
-            LogUtil.put(LogFactory.getInstance("max thumbX: " + usedThumbX, this, "onMotionGestureEvent"));
+            //LogUtil.put(LogFactory.getInstance("max thumbX: " + usedThumbX, this, "onMotionGestureEvent"));
         }
-        LogUtil.put(LogFactory.getInstance("old value: " + this.value, this, "onMotionGestureEvent"));
+        //LogUtil.put(LogFactory.getInstance("old value: " + this.value, this, "onMotionGestureEvent"));
         this.value = (100 * usedThumbX / width);
-        LogUtil.put(LogFactory.getInstance("new value: " + this.value, this, "onMotionGestureEvent"));
+        //LogUtil.put(LogFactory.getInstance("new value: " + this.value, this, "onMotionGestureEvent"));
         this.animationInterfaceArray[3].setDx(usedThumbX);
 
         final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.animationInterfaceArray[4]);
