@@ -419,6 +419,8 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$name" />ImageArray[1].getHeight()
                     ) {
                         public void setInitialSize(final int width, final int height) {
+                            super.setInitialSize((width * 253 / 265) - (width * 22 / 265), height);
+
                             this.basicAnimationInterfaceFactoryInterfaceArray[0].setInitialSize(width, height);
                             this.basicAnimationInterfaceFactoryInterfaceArray[1].setInitialSize(width * 253 / 265, height * 16 / 34);
                             this.basicAnimationInterfaceFactoryInterfaceArray[2].setInitialSize(width * 253 / 265, height * 16 / 34);
