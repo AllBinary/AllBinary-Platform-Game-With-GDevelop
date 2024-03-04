@@ -17,6 +17,9 @@ import javax.microedition.lcdui.Graphics;
 
 import org.allbinary.animation.AnimationBehavior;
 import org.allbinary.animation.IndexedAnimation;
+import org.allbinary.animation.image.ImageBaseRotationAnimation;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 
 import org.allbinary.logic.math.PrimitiveIntUtil;
 
@@ -129,10 +132,41 @@ public class SliderAnimation
     }
     
     public void setValue(final int value) {
-        this.animationInterfaceArray[3].setDx(dx + (value* width / 100));
+        if(value >= 0 && value < 100) {
+            this.value = value;
+            this.animationInterfaceArray[3].setDx(dx + (value * width / 100));
+        }
+    }
+
+    public void setValue2(final int thumbX) {
+        LogUtil.put(LogFactory.getInstance("old thumbX: " + this.animationInterfaceArray[3].getDx(), this, "onMotionGestureEvent"));
+        LogUtil.put(LogFactory.getInstance("thumbX: " + thumbX, this, "onMotionGestureEvent"));
+        int usedThumbX = thumbX;
+        int maxX = dx + width - (width / 100);
+        if(thumbX >= dx && thumbX < dx + width) {
+        } else if(thumbX < dx) {
+            usedThumbX = dx;
+            LogUtil.put(LogFactory.getInstance("min thumbX: " + usedThumbX, this, "onMotionGestureEvent"));
+        } else if(thumbX > maxX) {
+            usedThumbX = maxX;
+            LogUtil.put(LogFactory.getInstance("max thumbX: " + usedThumbX, this, "onMotionGestureEvent"));
+        }
+        LogUtil.put(LogFactory.getInstance("old value: " + this.value, this, "onMotionGestureEvent"));
+        this.value = (100 * usedThumbX / width);
+        LogUtil.put(LogFactory.getInstance("new value: " + this.value, this, "onMotionGestureEvent"));
+        this.animationInterfaceArray[3].setDx(usedThumbX);
+    }
+    
+    public int getThumbDx() {
+        return this.animationInterfaceArray[3].getDx();
+    }
+    
+    public int getThumbWidth() {
+        return ((ImageBaseRotationAnimation) this.animationInterfaceArray[3]).getWidth();
     }
     
     public int getValue() {
         return value;
     }
+
 }

@@ -3,6 +3,7 @@ package org.allbinary.game.layer.form;
 import org.allbinary.game.input.GameKey;
 import org.allbinary.game.input.GameKeyFactory;
 import org.allbinary.game.layer.GDAnimationBehaviorBase;
+import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
 
 public class GDItemAnimationBehavior extends GDAnimationBehaviorBase {
     
@@ -14,6 +15,10 @@ public class GDItemAnimationBehavior extends GDAnimationBehaviorBase {
 
     }
     
+    public void onMotionGestureEvent(final MotionGestureEvent motionGestureEvent) {
+    
+    }
+
     public void keyPressed(final int keyCode) {
         
     }
