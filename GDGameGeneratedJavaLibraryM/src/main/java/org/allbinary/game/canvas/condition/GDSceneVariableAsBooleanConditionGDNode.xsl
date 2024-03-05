@@ -2,7 +2,7 @@
 
 <!--
 AllBinary Open License Version 1
-Copyright (c) 2011 AllBinary
+Copyright (c) 2022 AllBinary
 
 By agreeing to this license you and any business entity you represent are
 legally bound to the AllBinary Open License Version 1 legal agreement.
@@ -46,7 +46,7 @@ Created By: Travis Berthelot
                             super.processStats();
                         
                             //final StringMaker stringBuilder = new StringMaker();
-                            //LogUtil.put(LogFactory.getInstance(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>: ").append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>).toString(), this, commonStrings.PROCESS));
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                             if(<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = 'False' or string-length(text()) = 0" >!</xsl:if></xsl:if></xsl:for-each><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /></xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
 

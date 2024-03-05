@@ -61,6 +61,8 @@
         <module>../GDGameWavSoundsJavaLibraryM</module>
         
         <module>../platform/android/GDGameThreedAndroidResourcesTempJavaLibraryM</module>
+        
+        <module>../replace_these_stub_projects/GDFormJavaLibraryM</module>
         <!--
         -->
     </modules>

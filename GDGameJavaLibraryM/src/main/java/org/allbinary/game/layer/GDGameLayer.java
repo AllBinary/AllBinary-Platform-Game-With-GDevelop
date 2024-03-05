@@ -501,7 +501,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             this.primitiveDrawing.paint(graphics, x, y);
             
             //this.paintPoints(graphics);
-            this.paintDebug(graphics);
+            //this.paintDebug(graphics);
         }
         catch (Exception e)
         {
@@ -708,6 +708,10 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
     public GDTwodBehavior getDimensionalBehavior() {
         return dimensionalBehavior;
+    }
+
+    public int Value() {
+        throw new RuntimeException();
     }
     
     public void toString(final StringMaker stringBuffer) {

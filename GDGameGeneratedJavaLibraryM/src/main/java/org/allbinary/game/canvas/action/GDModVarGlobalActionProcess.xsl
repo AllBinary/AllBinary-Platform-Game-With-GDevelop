@@ -2,7 +2,7 @@
 
 <!--
 AllBinary Open License Version 1
-Copyright (c) 2011 AllBinary
+Copyright (c) 2022 AllBinary
 
 By agreeing to this license you and any business entity you represent are
 legally bound to the AllBinary Open License Version 1 legal agreement.
@@ -69,7 +69,7 @@ Created By: Travis Berthelot
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /></xsl:if>
                                 <xsl:if test="position() = 2" ><xsl:value-of select="text()" /><xsl:if test="text() = '-'" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if></xsl:if>
-                                <xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if>
+                                <xsl:if test="position() = 3" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" >Slider.Value()</xsl:with-param><xsl:with-param name="replacementText" >SliderGDGameLayer.Value()</xsl:with-param></xsl:call-template></xsl:if>
                                 <xsl:if test="position() = last()" >;</xsl:if>
                             </xsl:for-each>
 
@@ -97,7 +97,7 @@ Created By: Travis Berthelot
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /></xsl:if>
                                 <xsl:if test="position() = 2" ><xsl:value-of select="text()" /><xsl:if test="text() = '-'" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if></xsl:if>
-                                <xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if>
+                                <xsl:if test="position() = 3" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" >Slider.Value()</xsl:with-param><xsl:with-param name="replacementText" >SliderGDGameLayer.Value()</xsl:with-param></xsl:call-template></xsl:if>
                                 <xsl:if test="position() = last()" >;</xsl:if>
                             </xsl:for-each>
                             

@@ -50,4 +50,7 @@ implements GDGameLayerItemStateListener {
     public void select(final GameKey gameKey) {
     }
     
+    public int Value() {
+        throw new RuntimeException();
+    }
 }

@@ -54,6 +54,7 @@ Created By: Travis Berthelot
         import org.allbinary.game.configuration.feature.Features;
         import org.allbinary.game.configuration.feature.InputFeatureFactory;
         import org.allbinary.game.identification.Group;
+        import org.allbinary.game.layer.form.GDSliderAnimationBehavior;
         import org.allbinary.game.input.GameInputProcessor;
         import org.allbinary.game.input.GameInputProcessorUtil;
         import org.allbinary.game.input.GameKeyEventSourceInterface;
@@ -979,7 +980,11 @@ Created By: Travis Berthelot
                 <xsl:with-param name="layoutIndex" select="$layoutIndex" />
             </xsl:call-template>
         </xsl:for-each>
-                
+
+    public int Value() {
+        return ((GDSliderAnimationBehavior) this.getDimensionalBehavior().getAnimationBehavior()).Value();
+    }
+                                
                 }
 
     </xsl:template>
