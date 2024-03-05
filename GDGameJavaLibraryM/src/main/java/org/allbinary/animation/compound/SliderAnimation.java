@@ -19,8 +19,7 @@ import org.allbinary.animation.AnimationBehavior;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.image.ImageBaseRotationAnimation;
 import org.allbinary.animation.text.CustomTextAnimation;
-import org.allbinary.logic.communication.log.LogFactory;
-import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.graphics.color.BasicColorFactory;
 
 import org.allbinary.logic.math.PrimitiveIntUtil;
 
@@ -41,7 +40,9 @@ public class SliderAnimation
     private int dx;
 
     private int value;
-    
+
+    protected boolean hasFocus;
+
     public SliderAnimation(final IndexedAnimation[] animationInterfaceArray, final int width, final int height, final AnimationBehavior animationBehavior)
     {
         super(animationBehavior);
@@ -53,7 +54,7 @@ public class SliderAnimation
         this.width = width;
         this.height = height;
         
-        ((CustomTextAnimation) this.animationInterfaceArray[4]).setDy(-height);
+        ((CustomTextAnimation) this.animationInterfaceArray[4]).setDy(-height + (height / 10));
     }
     
     public void setFrame(final int frameIndex)
@@ -106,6 +107,11 @@ public class SliderAnimation
         {
             this.animationInterfaceArray[index].paint(graphics, x, y);
         }
+        
+//        if(this.hasFocus) {
+//            graphics.setColor(BasicColorFactory.getInstance().YELLOW.intValue());
+//            graphics.drawRect(x - 1, y - 1, width + 1, height + 1);
+//        }
     }
 
     public void paintThreed(final Graphics graphics, final int x, final int y, final int z)
@@ -134,15 +140,15 @@ public class SliderAnimation
     }
     
     public void setValue(final int value) {
-        if(value >= 0 && value < 100) {
+        if(value >= 0 && value < 101) {
             this.value = value;
+            //LogUtil.put(LogFactory.getInstance("new value: " + this.value, this, "onMotionGestureEvent"));
             final int newDx = dx + (value * width / 100);
             this.animationInterfaceArray[3].setDx(newDx);
             
             final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.animationInterfaceArray[4]);
-            customTextAnimation.setDx(newDx + this.getThumbWidth() / 2 - customTextAnimation.getWidth() / 2);
-            customTextAnimation.setText(Integer.toString(this.value - 1));
-        
+            customTextAnimation.setDx(newDx + (this.getThumbWidth() / 2) - (customTextAnimation.getWidth() / 2));
+            customTextAnimation.setText(Integer.toString(this.value));
         }
     }
 
@@ -150,23 +156,22 @@ public class SliderAnimation
         //LogUtil.put(LogFactory.getInstance("old thumbX: " + this.animationInterfaceArray[3].getDx(), this, "onMotionGestureEvent"));
         //LogUtil.put(LogFactory.getInstance("thumbX: " + thumbX, this, "onMotionGestureEvent"));
         int usedThumbX = thumbX;
-        int maxX = dx + width - (width / 100);
+        final int maxX = width;
         if(thumbX >= dx && thumbX < dx + width) {
-        } else if(thumbX < dx) {
-            usedThumbX = dx;
+        } else if(thumbX < 0) {
+            usedThumbX = 0;
             //LogUtil.put(LogFactory.getInstance("min thumbX: " + usedThumbX, this, "onMotionGestureEvent"));
         } else if(thumbX > maxX) {
             usedThumbX = maxX;
             //LogUtil.put(LogFactory.getInstance("max thumbX: " + usedThumbX, this, "onMotionGestureEvent"));
         }
         //LogUtil.put(LogFactory.getInstance("old value: " + this.value, this, "onMotionGestureEvent"));
-        this.value = (100 * usedThumbX / width);
-        //LogUtil.put(LogFactory.getInstance("new value: " + this.value, this, "onMotionGestureEvent"));
-        this.animationInterfaceArray[3].setDx(usedThumbX);
+        int value = (100 * usedThumbX / width);
+        if(value > 100) {
+            value = 100;
+        }
 
-        final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.animationInterfaceArray[4]);
-        customTextAnimation.setDx(usedThumbX + this.getThumbWidth() / 2 - customTextAnimation.getWidth() / 2);
-        customTextAnimation.setText(Integer.toString(this.value - 1));
+        this.setValue(value);
     }
     
     public int getThumbDx() {
@@ -181,4 +186,7 @@ public class SliderAnimation
         return value;
     }
 
+    public void setFocus(final boolean hasFocus) {
+        this.hasFocus = hasFocus;
+    }
 }
