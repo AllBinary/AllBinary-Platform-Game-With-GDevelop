@@ -32,14 +32,22 @@ Created By: Travis Berthelot
 
                             final JSONPersistance jsonPersistance = new JSONPersistance(<xsl:value-of select="$param1" />);
                             jsonPersistance.loadAll();
-                            final JSONTokener jsonTokener = new JSONTokener(jsonPersistance.getJSONAsString());
-
-                            final JSONObject jsonObject = (JSONObject) jsonTokener.nextValue();
+                            
+                            final String jsonAsString = jsonPersistance.getJSONAsString();
+                            JSONObject jsonObject;
+                            if(jsonAsString != null) {
+                                final JSONTokener jsonTokener = new JSONTokener(jsonPersistance.getJSONAsString());
+                                jsonObject = (JSONObject) jsonTokener.nextValue();
+                            } else {
+                                jsonObject = new JSONObject();
+                            }
+                            
                             jsonObject.put(<xsl:value-of select="$param2" />, <xsl:value-of select="$param3" />);
-                            final String jsonAsString = jsonObject.toString(4);
-                            jsonPersistance.save(jsonAsString);
+                            final String jsonAsString2 = jsonObject.toString(4);
+                            jsonPersistance.deleteAll();
+                            jsonPersistance.save(jsonAsString2);
 
-                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "TWB" + jsonAsString, this, commonStrings.PROCESS));
+                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + jsonAsString, this, commonStrings.PROCESS));
                             
                             return true;
                         }
