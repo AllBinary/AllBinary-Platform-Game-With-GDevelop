@@ -981,6 +981,10 @@ Created By: Travis Berthelot
             </xsl:call-template>
         </xsl:for-each>
 
+    public void setValue(final int value) {
+        ((GDSliderAnimationBehavior) this.getDimensionalBehavior().getAnimationBehavior()).setValue(value);
+    }
+
     public int Value() {
         return ((GDSliderAnimationBehavior) this.getDimensionalBehavior().getAnimationBehavior()).Value();
     }

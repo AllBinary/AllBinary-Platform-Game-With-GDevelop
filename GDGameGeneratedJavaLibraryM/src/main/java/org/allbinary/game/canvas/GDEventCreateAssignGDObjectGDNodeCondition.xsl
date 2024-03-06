@@ -57,6 +57,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDPopEndedTouchConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVelocityConditionGDNode.xsl" />
     <xsl:import href="./condition/GDObjectVariableAsBooleanConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDPanelSpriteSliderPanelSpriteSliderValueConditionGDNode.xsl" />
 
     <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition2" >
         <xsl:param name="caller" />
@@ -1121,6 +1122,20 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'YVelocity'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider::Value'" >
+
+                    <xsl:call-template name="panelSpriteSliderPanelSpriteSliderValueConditionGDNode" >
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
+                        <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
+                        <xsl:with-param name="thisNodeIndex" ><xsl:value-of select="$thisNodeIndex" /></xsl:with-param>
+                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                    </xsl:call-template>
+                    
                 </xsl:if>
 
     </xsl:template>

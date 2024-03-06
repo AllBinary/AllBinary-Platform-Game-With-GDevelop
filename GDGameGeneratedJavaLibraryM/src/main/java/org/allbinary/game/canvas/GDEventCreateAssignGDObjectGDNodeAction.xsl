@@ -79,6 +79,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDSceneBackgroundActionProcess.xsl" />
     <xsl:import href="./action/GDPrimitiveDrawingFillColorActionProcess.xsl" />
     <xsl:import href="./action/GDPrimitiveDrawingRectangleActionProcess.xsl" />
+    <xsl:import href="./action/GDPanelSpriteSliderPanelSpriteSliderSetValueActionProcess.xsl" />
     
     <xsl:template name="eventsCreateAssignGDObjectGDNodesAction" >
         <xsl:param name="caller" />
@@ -1361,13 +1362,26 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'TopDownMovementBehavior::TopDownMovementBehavior::SetVelocityY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>                    
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider::SetValue'" >
+                    
+                    <xsl:call-template name="panelSpriteSliderPanelSpriteSliderSetValueActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:if>
+
                 <xsl:if test="$typeValue = 'Leaderboards::SavePlayerScore'" >
+
                     <xsl:call-template name="leaderboardsSavePlayerScoreActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
                     </xsl:call-template>
+
                 </xsl:if>
                 <xsl:if test="$typeValue = 'Leaderboards::DisplayLeaderboard'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED

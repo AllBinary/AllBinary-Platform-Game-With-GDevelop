@@ -710,6 +710,10 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         return dimensionalBehavior;
     }
 
+    public void setValue(final int value) {
+        throw new RuntimeException();
+    }
+    
     public int Value() {
         throw new RuntimeException();
     }
