@@ -77,6 +77,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.commands.GameCommandsFactory;
                 import org.allbinary.game.GDGameCommandFactory;
+                import org.allbinary.game.configuration.persistance.JSONPersistance;
                 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
                 import org.allbinary.game.input.GameInputProcessor;
                 import org.allbinary.game.input.InputFactory;
@@ -304,6 +305,14 @@ Created By: Travis Berthelot
                         return array.length;
                     }
 
+                    public String GlobalVarToJSON(final String value) {
+                        return value;
+                    }
+
+                    public String GlobalVarToJSON(final int value) {
+                        return Integer.toString(value);
+                    }
+                    
                     public int SceneInstancesCount(final int size) {
                         return size;
                     }

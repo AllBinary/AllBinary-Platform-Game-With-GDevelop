@@ -96,6 +96,9 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                 <xsl:if test="type/value = 'JSONToVariableStructure'" >
         public JSONObject <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>JSONObject = null;
                 </xsl:if>
+                <xsl:if test="type/value = 'JSONToGlobalVariableStructure'" >
+        public JSONObject <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>JSONObject = null;
+                </xsl:if>
             </xsl:for-each>
         
         <xsl:call-template name="jsonObjects">

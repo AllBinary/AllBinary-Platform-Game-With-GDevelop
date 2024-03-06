@@ -80,6 +80,9 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDPrimitiveDrawingFillColorActionProcess.xsl" />
     <xsl:import href="./action/GDPrimitiveDrawingRectangleActionProcess.xsl" />
     <xsl:import href="./action/GDPanelSpriteSliderPanelSpriteSliderSetValueActionProcess.xsl" />
+    <xsl:import href="./action/GDEcrireFichierTxtSaveJSONActionProcess.xsl" />
+    <xsl:import href="./action/GDLireFichierTxtLoadJSONActionProcess.xsl" />
+    <xsl:import href="./action/GDJSONToGlobalVariableStructureActionProcess.xsl" />
     
     <xsl:template name="eventsCreateAssignGDObjectGDNodesAction" >
         <xsl:param name="caller" />
@@ -809,6 +812,15 @@ Created By: Travis Berthelot
 
                 </xsl:if>
 
+                <xsl:if test="$typeValue = 'JSONToGlobalVariableStructure'" >
+                    //JSON to global variable from scene variable - JSONPersistance
+                    <xsl:call-template name="jsonToGlobalVariableStructureActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                </xsl:if>
+
                 <xsl:if test="$typeValue = 'RotateTowardPosition'" >
 
                     <xsl:call-template name="rotateTowardPositionActionProcess" >
@@ -1362,6 +1374,23 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'TopDownMovementBehavior::TopDownMovementBehavior::SetVelocityY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'EcrireFichierTxt'" >
+                    //Save JSON - JSONPersistance
+                    <xsl:call-template name="ecrireFichierTxtSaveJSONActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                </xsl:if>
+                <xsl:if test="$typeValue = 'LireFichierTxt'" >
+                    //Load JSON - JSONPersistance
+                    <xsl:call-template name="lireFichierTxtLoadJSONActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider::SetValue'" >

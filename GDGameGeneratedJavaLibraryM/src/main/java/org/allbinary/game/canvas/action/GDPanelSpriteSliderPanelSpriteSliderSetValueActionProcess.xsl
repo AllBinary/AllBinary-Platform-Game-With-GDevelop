@@ -37,21 +37,11 @@ Created By: Travis Berthelot
                                 <xsl:with-param name="replacementText" >VariableString(globals.</xsl:with-param>
                             </xsl:call-template>
                             </xsl:variable>
-                            
-                            <xsl:variable name="thirdParam2" >
-                            <xsl:call-template name="string-replace-all" >
-                                <xsl:with-param name="text" >
-                                    <xsl:value-of select="$thirdParam1" />
-                                </xsl:with-param>
-                                <xsl:with-param name="find" >[</xsl:with-param>
-                                <xsl:with-param name="replacementText" >JSONObject.get(</xsl:with-param>
-                            </xsl:call-template>
-                            </xsl:variable>
-                            
+                                                        
                             <xsl:variable name="thirdParam3" >
                             <xsl:call-template name="string-replace-all" >
                                 <xsl:with-param name="text" >
-                                    <xsl:value-of select="$thirdParam2" />
+                                    <xsl:value-of select="$thirdParam1" />
                                 </xsl:with-param>
                                 <xsl:with-param name="find" >TimerElapsedTime("</xsl:with-param>
                                 <xsl:with-param name="replacementText" >TimerElapsedTime(globals.</xsl:with-param>

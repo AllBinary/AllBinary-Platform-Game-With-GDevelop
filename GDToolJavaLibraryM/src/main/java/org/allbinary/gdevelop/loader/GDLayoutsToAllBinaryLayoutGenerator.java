@@ -72,6 +72,9 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             gameXmlAsString = replace6.all(gameXmlAsString);
             final Replace replace9 = new Replace("Time(&quot;timestamp&quot;)", "gameTickTimeDelayHelperFactory.getStartTime()");
             gameXmlAsString = replace9.all(gameXmlAsString);
+            final Replace replace10 = new Replace("GlobalVarToJSON(", "GlobalVarToJSON(gameGlobals.");
+            gameXmlAsString = replace10.all(gameXmlAsString);
+            
             
             String layoutGameXmlAsString = new String(gameXmlAsString);
             final String[] VARIABLE_ARRAY = {
