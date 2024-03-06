@@ -288,14 +288,6 @@ Created By: Travis Berthelot
                     <xsl:call-template name="variables" />
                     //variables - END
 
-                    //variablesStructures - START
-                    <xsl:call-template name="variablesStructures" >
-                        <xsl:with-param name="totalRecursions" >
-                            <xsl:value-of select="0" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-                    //variablesStructures - END
-                    
                     <xsl:text>&#10;</xsl:text>
                     public final GDGameLayer[] tempGameLayerArray = new GDGameLayer[<xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />];
                     public final int[] creationIndex = new int[<xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />];
