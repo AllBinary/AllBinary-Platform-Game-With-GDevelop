@@ -141,7 +141,16 @@ Created By: Travis Berthelot
                         
                         private final GDNodes gdNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />);
 
+                        <xsl:variable name="hasHighscoreSubmissionComplete" >
+                            <xsl:for-each select="variables" >
+                                <xsl:if test="name = 'highscoreSubmissionComplete'" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+                        
+                        <xsl:if test="not(contains($hasHighscoreSubmissionComplete, 'found'))" >
+                        //This layout should not be the scores layout
                         public boolean highscoreSubmissionComplete = false;
+                        </xsl:if>
                         
 public class GDStructure {
 

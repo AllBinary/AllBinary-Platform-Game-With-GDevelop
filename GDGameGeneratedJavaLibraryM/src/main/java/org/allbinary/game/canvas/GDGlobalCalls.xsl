@@ -118,10 +118,10 @@
                         //TWB - speed hack
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" /> * (AndroidUtil.isAndroid() ? 1 : 3);
                                 </xsl:if>
-                                <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'speed'))" >
+                                <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'speed') or contains(name, 'score'))" >
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                                 </xsl:if>
-                                <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE')" >
+                                <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'score')" >
                                     <xsl:if test="value != '9223372036854776000'" >
                         public long <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                                     </xsl:if>

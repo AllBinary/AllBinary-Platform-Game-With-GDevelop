@@ -28,16 +28,16 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="type = 'number'" >
-                            <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE'))" >
-                                public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                            </xsl:if>
-                            <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE')" >
+                                <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'score'))" >
+                    public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                                </xsl:if>
+                                <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'score')" >
                                 <xsl:if test="value != '9223372036854776000'" >
-                                public long <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                    public long <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                                 </xsl:if>
                                 <xsl:if test="value = '9223372036854776000'" >
-                                //Long.MAX_VALUE = 9223372036854776000 GD does not like the real value 9223372036854775807L
-                                public long <xsl:value-of select="name" /> = 9223372036854775807L;
+                    //Long.MAX_VALUE = 9223372036854776000 GD does not like the real value 9223372036854775807L
+                    public long <xsl:value-of select="name" /> = 9223372036854775807L;
                                 </xsl:if>
                             </xsl:if>
                         </xsl:if>

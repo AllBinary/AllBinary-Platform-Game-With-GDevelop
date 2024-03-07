@@ -463,7 +463,17 @@ Created By: Travis Berthelot
 
                         builder.build();
 
+                        <xsl:variable name="hasHighscoreSubmissionComplete" >
+                            <xsl:for-each select="variables" >
+                                <xsl:if test="name = 'highscoreSubmissionComplete'" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+                        
+                        <xsl:if test="not(contains($hasHighscoreSubmissionComplete, 'found'))" >
+                        //This layout should not be the scores layout
                         globals.highscoreSubmissionComplete = false;
+                        </xsl:if>
+
                         clear = false;
                     }
                     
