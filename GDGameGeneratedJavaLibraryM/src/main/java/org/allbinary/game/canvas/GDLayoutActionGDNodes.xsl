@@ -305,6 +305,10 @@ Created By: Travis Berthelot
                         return array.length;
                     }
 
+                    public int GlobalVariableChildCount(final long[] array) {
+                        return array.length;
+                    }
+
                     public String GlobalVarToJSON(final String value) {
                         return value;
                     }
