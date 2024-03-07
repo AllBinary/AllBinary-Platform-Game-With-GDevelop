@@ -58,13 +58,13 @@ Created By: Travis Berthelot
                                     final int size = highScoreList.size();
                                     LogUtil.put(LogFactory.getInstance("highScoreList.size(): " + size, this, commonStrings.PROCESS));
                                     gameGlobals.highScoresNameArray = new String[size];
-                                    gameGlobals.highScoresIntArray = new int[size];
+                                    gameGlobals.highScoresLongArray = new long[size];
                                     HighScore highScore;
                                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> size; index++) {
 
                                         highScore = (HighScore) highScoreList.get(index);
                                         gameGlobals.highScoresNameArray[index] = highScore.getName();
-                                        gameGlobals.highScoresIntArray[index] = (int) highScore.getScore();
+                                        gameGlobals.highScoresLongArray[index] = highScore.getScore();
                                     }
                                 //}
                             

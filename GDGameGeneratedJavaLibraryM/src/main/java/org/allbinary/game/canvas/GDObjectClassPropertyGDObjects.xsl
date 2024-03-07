@@ -64,7 +64,14 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                     };
                             </xsl:if>
-                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'BoolArray'))" >
+                            <xsl:if test="contains(name, 'LongArray')" >
+                        public long[] <xsl:value-of select="name" /> = {
+                            <xsl:for-each select="children" >
+                            <xsl:value-of select="value" />,
+                            </xsl:for-each>
+                        };
+                            </xsl:if>
+                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'LongArray') or contains(name, 'BoolArray'))" >
                     public String[] <xsl:value-of select="name" /> = {
                             <xsl:for-each select="children" >
                         "<xsl:value-of select="value" />",
@@ -124,7 +131,14 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                     };
                             </xsl:if>
-                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'BoolArray'))" >
+                            <xsl:if test="contains(name, 'LongArray')" >
+                    this.<xsl:value-of select="name" /> = new long[] {
+                            <xsl:for-each select="children" >
+                        <xsl:value-of select="value" />,
+                            </xsl:for-each>
+                    };
+                            </xsl:if>
+                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'LongArray') or contains(name, 'BoolArray'))" >
                     this.<xsl:value-of select="name" /> = new String[] {
                             <xsl:for-each select="children" >
                         "<xsl:value-of select="value" />",
@@ -272,11 +286,18 @@ Created By: Travis Berthelot
                             <xsl:if test="contains(name, 'IntArray')" >
                     this.<xsl:value-of select="name" /> = {
                             <xsl:for-each select="children" >
-                        "<xsl:value-of select="value" />",
+                        <xsl:value-of select="value" />,
                             </xsl:for-each>
                     };
                             </xsl:if>
-                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'BoolArray'))" >
+                            <xsl:if test="contains(name, 'LongArray')" >
+                    this.<xsl:value-of select="name" /> = {
+                            <xsl:for-each select="children" >
+                        <xsl:value-of select="value" />L,
+                            </xsl:for-each>
+                    };
+                            </xsl:if>
+                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'LongArray') or contains(name, 'BoolArray'))" >
                     this.<xsl:value-of select="name" /> = {
                             <xsl:for-each select="children" >
                         "<xsl:value-of select="value" />",
