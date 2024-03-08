@@ -45,9 +45,11 @@ public class JSONPersistance extends BasicPersitance
 
         final RecordEnumeration recordEnum = 
             recordStore.enumerateRecords(null, null,true);
-
+        
         final String LOADING_ID = "Loading id: ";
         final String METHOD_NAME = "loadAll";
+        
+        LogUtil.put(LogFactory.getInstance(new StringMaker().append("Number of records: ").append(recordEnum.numRecords()).toString(), this, METHOD_NAME));
         
         ByteArrayInputStream byteArrayInputStream;
         DataInputStream inputStream;
@@ -69,6 +71,7 @@ public class JSONPersistance extends BasicPersitance
             for (int index = 0; index < size; index++)
             {
                 value = inputStream.readUTF();
+                //LogUtil.put(LogFactory.getInstance(value, this, METHOD_NAME));
                 this.getList().add(value);
             }
 
