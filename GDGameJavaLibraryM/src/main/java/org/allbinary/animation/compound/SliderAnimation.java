@@ -147,8 +147,8 @@ public class SliderAnimation
             this.animationInterfaceArray[3].setDx(newDx);
             
             final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.animationInterfaceArray[4]);
-            customTextAnimation.setDx(newDx + (this.getThumbWidth() / 2) - (customTextAnimation.getWidth() / 2));
             customTextAnimation.setText(Integer.toString(this.value));
+            customTextAnimation.setDx(newDx + (this.getThumbWidth() / 2) - (customTextAnimation.getWidth() / 2));
         }
     }
 
