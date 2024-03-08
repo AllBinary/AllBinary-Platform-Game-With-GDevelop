@@ -459,7 +459,7 @@ Created By: Travis Berthelot
                 final int <xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="characterSize" />);
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
-                    new CustomTextAnimationFactory(new StringMaker().append("<xsl:value-of select="$multilineString" />").toString() , <xsl:value-of select="name" />TextAnimationSize)
+                    new CustomTextAnimationFactory(new StringMaker().append("<xsl:value-of select="$multilineString" />").toString(), <xsl:value-of select="name" />TextAnimationSize)
                 };
 
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
