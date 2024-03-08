@@ -67,6 +67,14 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
+            <artifactId>GameScoresLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
             <artifactId>MusicJ2MEJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
@@ -199,7 +207,7 @@
         
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDYourFormJavaLibrary</artifactId>
+            <artifactId>GDFormJavaLibrary</artifactId>
             <!--
             <artifactId>GDFormJavaLibrary</artifactId>
             <artifactId>GDYourFormJavaLibrary</artifactId>
