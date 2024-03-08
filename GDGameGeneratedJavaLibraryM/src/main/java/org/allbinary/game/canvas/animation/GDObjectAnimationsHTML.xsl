@@ -426,7 +426,7 @@ Created By: Travis Berthelot
                             this.basicAnimationInterfaceFactoryInterfaceArray[1].setInitialSize(width * 253 / 265, height * 16 / 34);
                             this.basicAnimationInterfaceFactoryInterfaceArray[2].setInitialSize(width * 253 / 265, height * 16 / 34);
                             this.basicAnimationInterfaceFactoryInterfaceArray[3].setInitialSize(width * 22 / 265, height * 22 / 34);
-                            this.basicAnimationInterfaceFactoryInterfaceArray[4].setInitialSize(width, height);
+                            this.basicAnimationInterfaceFactoryInterfaceArray[4].setInitialSize(width / 2, height / 2);
                         }                        
                     }
                 };
