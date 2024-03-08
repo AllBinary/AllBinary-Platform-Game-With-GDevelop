@@ -83,7 +83,7 @@ implements ColorChangeListener
             
             if (this.basicColorArray[index] != CLEAR_COLOR)
             {
-                this.basicColorUtil.setBasicColor(graphics, this.basicColorArray[index]);
+                this.basicSetColorUtil.setBasicColor(graphics, this.basicColorArray[index]);
             }
             //LogUtil.put(LogFactory.getInstance("deltaX: " + deltaX + " " + x, this, "paint"));
             this.animationInterfaceArray[index].paint(graphics, deltaX, deltaY);

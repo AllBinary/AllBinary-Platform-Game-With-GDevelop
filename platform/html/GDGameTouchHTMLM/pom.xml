@@ -189,10 +189,6 @@
                     <artifactId>AllBinaryGyroSensorJavaLibrary</artifactId>
                     <groupId>org.allbinary</groupId>
                 </exclusion>
-                <exclusion>
-                    <artifactId>GameScoresLibrary</artifactId>
-                    <groupId>org.allbinary</groupId>
-                </exclusion>
             </exclusions>
         </dependency>
 

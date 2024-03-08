@@ -66,10 +66,7 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>GameScoresJ2MEJavaLibrary</artifactId>
-            <!--
-            <artifactId>GameScoresLibrary</artifactId>
-            -->
+            <artifactId>GameScoresLocalJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
