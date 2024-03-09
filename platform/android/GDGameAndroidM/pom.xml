@@ -194,7 +194,7 @@
             <artifactId>GDYourFormJavaLibrary</artifactId>
             <!--
             <artifactId>GDFormJavaLibrary</artifactId>
-            
+            <artifactId>GDYourFormJavaLibrary</artifactId>
             -->            
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
