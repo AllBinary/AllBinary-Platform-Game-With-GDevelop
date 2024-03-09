@@ -19,6 +19,8 @@ import org.allbinary.animation.AnimationBehavior;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.image.ImageBaseRotationAnimation;
 import org.allbinary.animation.text.CustomTextAnimation;
+import org.allbinary.game.configuration.feature.Features;
+import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
 import org.allbinary.graphics.color.BasicColorFactory;
 
 import org.allbinary.logic.math.PrimitiveIntUtil;
@@ -54,7 +56,19 @@ public class SliderAnimation
         this.width = width;
         this.height = height;
         
-        ((CustomTextAnimation) this.animationInterfaceArray[4]).setDy(-height + (height / 10));
+        final int h = dxhack();
+        ((CustomTextAnimation) this.animationInterfaceArray[4]).setDy(-h + (h / 10));
+    }
+    
+    private int dxhack() {
+        //TWB - Hack for HTML5 build
+        final Features features = Features.getInstance();
+        final boolean isHTML = features.isDefault(HTMLFeatureFactory.getInstance().HTML);
+        if(isHTML) {
+            return this.height / 2;
+        } else {
+            return this.height;
+        }
     }
     
     public void setFrame(final int frameIndex)
