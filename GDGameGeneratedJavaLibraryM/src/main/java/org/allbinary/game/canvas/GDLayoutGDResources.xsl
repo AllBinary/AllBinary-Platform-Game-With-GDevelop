@@ -86,6 +86,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDPrimitiveDrawingAnimationFactory;
                 import org.allbinary.game.layer.GDRectOnlyPrimitiveDrawingAnimationFactory;
                 import org.allbinary.game.layer.form.GDSliderAnimationBehavior;
+                import org.allbinary.game.layer.form.GDTextInputAnimationBehavior;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.graphics.GPoint;

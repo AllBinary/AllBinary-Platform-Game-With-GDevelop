@@ -15,10 +15,11 @@ package org.allbinary.animation.text;
 
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Font;
-import org.allbinary.game.input.event.RawKeyEventHandler;
+
 import org.allbinary.game.input.event.RawKeyEventListener;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.form.item.CustomTextBox;
+import org.allbinary.input.event.VirtualKeyboardEventHandler;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 
@@ -29,23 +30,18 @@ import org.allbinary.logic.communication.log.LogUtil;
 public class CustomTextBox2 extends CustomTextBox 
     implements RawKeyEventListener
                //GameKeyEventListenerInterface 
-{
-    private final RawKeyEventHandler rawKeyEventHandler = RawKeyEventHandler.getInstance();
-    //private final GameKeyEventHandler gameKeyEventHandler = GameKeyEventHandler.getInstance();
-    
+{        
     public CustomTextBox2(final CommandListener cmdListener, final String label, final String text, 
         final int maxSize, final int constraints, final Font font, 
         final BasicColor backgroundBasicColor, final BasicColor foregroundBasicColor)
         throws Exception
     {
         super(cmdListener, label, text, maxSize, constraints, font, backgroundBasicColor, foregroundBasicColor);
-        
-        rawKeyEventHandler.addListener(this);
-        //gameKeyEventHandler.addListener(this);
 
 //        this.initMenu2();
         
         this.getTextFieldItem().setFocus(true);
+        
     }
     
 //    protected void initMenu() throws Exception
@@ -86,7 +82,7 @@ public class CustomTextBox2 extends CustomTextBox
     @Override
     public void onEvent(final int keyCode, final int deviceId, final boolean repeated) {
         LogUtil.put(LogFactory.getInstance(Integer.toString(keyCode), this, "onEvent"));
-        this.keyPressed(keyCode);
+        super.keyPressed(keyCode);        
     }
     
 //    @Override

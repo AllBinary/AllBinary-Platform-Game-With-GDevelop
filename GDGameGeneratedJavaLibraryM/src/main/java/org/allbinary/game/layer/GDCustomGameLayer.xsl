@@ -55,6 +55,7 @@ Created By: Travis Berthelot
         import org.allbinary.game.configuration.feature.InputFeatureFactory;
         import org.allbinary.game.identification.Group;
         import org.allbinary.game.layer.form.GDSliderAnimationBehavior;
+        import org.allbinary.game.layer.form.GDTextInputAnimationBehavior;
         import org.allbinary.game.input.GameInputProcessor;
         import org.allbinary.game.input.GameInputProcessorUtil;
         import org.allbinary.game.input.GameKeyEventSourceInterface;

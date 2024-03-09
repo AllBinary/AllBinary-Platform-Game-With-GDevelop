@@ -13,20 +13,21 @@
  */
 package org.allbinary.animation.text;
 
-import org.allbinary.graphics.form.item.CustomTextBox;
 import javax.microedition.lcdui.Graphics;
+
 import org.allbinary.animation.AnimationBehavior;
 import org.allbinary.animation.IndexedAnimation;
-import org.allbinary.logic.communication.log.LogFactory;
-import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.logic.string.CommonStrings;
-import org.allbinary.logic.string.StringMaker;
+import org.allbinary.game.input.event.RawKeyEventListener;
+import org.allbinary.graphics.form.item.CustomTextBox;
 
 /**
  *
  * @author User
  */
-public class CustomTextBoxIndexedAnimation extends IndexedAnimation {
+public class CustomTextBoxIndexedAnimation extends IndexedAnimation 
+    implements RawKeyEventListener
+               //GameKeyEventListenerInterface 
+{
     
     private final CustomTextBox customTextBox;
 
@@ -49,4 +50,10 @@ public class CustomTextBoxIndexedAnimation extends IndexedAnimation {
     public String Text() {
         return this.customTextBox.getTextFieldItem().getString();
     }
+
+    @Override
+    public void onEvent(final int keyCode, final int deviceId, final boolean repeated) {
+        this.customTextBox.onEvent(keyCode, deviceId, repeated);
+    }
+    
 }

@@ -3,20 +3,12 @@ package org.allbinary.game.layer.form;
 import org.allbinary.game.input.event.GameKeyEvent;
 import org.allbinary.game.input.event.RawKeyEventListener;
 import org.allbinary.game.layer.GDGameLayer;
+import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
 import org.allbinary.logic.util.event.AllBinaryEventObject;
 
 public class GDForm
     implements RawKeyEventListener //GameKeyEventListenerInterface 
 {
-
-    private static final GDForm instance = new GDForm();
-
-    /**
-     * @return the instance
-     */
-    public static GDForm getInstance() {
-        return instance;
-    }
 
     public GDForm() {
         
@@ -36,6 +28,10 @@ public class GDForm
     public void close() throws Exception {
     }
 
+    public void onMotionGestureEvent(final MotionGestureEvent motionGestureEvent) {
+        
+    }
+    
     public void onPressGameKeyEvent(GameKeyEvent gameKeyEvent) {
     }
 

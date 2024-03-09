@@ -75,7 +75,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.GDGameLayer;
-                import org.allbinary.game.layer.form.GDForm;
+                import org.allbinary.game.layer.form.GDFormInputProcessor;
                 import org.allbinary.game.layout.BaseGDNodeStats;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layout.GDNodes;
@@ -483,7 +483,7 @@ Created By: Travis Berthelot
 
                         clear = true;
 
-                        GDForm.getInstance().reset();
+                        GDFormInputProcessor.getInstance().reset();
 
                         //objects - all - //layout - reset
             <xsl:for-each select="objects" >
