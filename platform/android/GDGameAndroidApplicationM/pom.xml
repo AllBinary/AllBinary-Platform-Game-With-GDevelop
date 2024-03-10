@@ -338,7 +338,7 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>J2MEJavaUtilLibrary</artifactId>
+                    <artifactId>J2MEUtilJavaLibrary</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
