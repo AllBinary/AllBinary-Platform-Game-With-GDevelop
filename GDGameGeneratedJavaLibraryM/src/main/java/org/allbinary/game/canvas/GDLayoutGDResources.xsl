@@ -71,6 +71,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.RotationAnimationFactory;
                 import org.allbinary.animation.image.GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.animation.compound.SliderAnimationInterfaceFactory;
                 import org.allbinary.animation.NullAnimationFactory;
                 import org.allbinary.animation.NullRotationAnimationFactory;
                 import org.allbinary.animation.text.CustomTextAnimationFactory;

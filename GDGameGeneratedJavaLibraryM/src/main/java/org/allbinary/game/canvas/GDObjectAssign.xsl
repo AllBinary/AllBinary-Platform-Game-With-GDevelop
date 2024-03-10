@@ -210,6 +210,18 @@ Created By: Travis Berthelot
                 <xsl:value-of select="name" />LayerInfo.setHeight((int) (<xsl:value-of select="name" />CustomTextAnimationFactory.getHeight()));
                 </xsl:if>
 
+                <xsl:if test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >
+
+                colorAsInt = basicColorUtil.get(255, <xsl:for-each select="childrenContent" ><xsl:for-each select="Label" ><xsl:for-each select="color" ><xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />);</xsl:for-each></xsl:for-each></xsl:for-each>
+                basicColor = smallBasicColorCacheFactory.getInstance(colorAsInt);
+
+                //PanelSpriteSlider::PanelSpriteSlider - set the layer size from the initial text
+                final SliderAnimationInterfaceFactory <xsl:value-of select="name" />SliderAnimationInterfaceFactory = (SliderAnimationInterfaceFactory) <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray[0];
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = <xsl:value-of select="name" />SliderAnimationInterfaceFactory.getBasicAnimationInterfaceFactoryInterfaceArray();
+                final CustomTextAnimationFactory <xsl:value-of select="name" />CustomTextAnimationFactory = (CustomTextAnimationFactory) <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray[4];
+                <xsl:value-of select="name" />CustomTextAnimationFactory.basicColor = basicColor;
+                </xsl:if>
+
 
                 this.<xsl:value-of select="name" />GDGameLayerFactory = new GDCustomGameLayerFactory(
                     NullAnimationFactory.getFactoryInstance(),
@@ -217,8 +229,8 @@ Created By: Travis Berthelot
                     <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerDestroyedList,
                     <xsl:value-of select="$groupInterfaceArray" />,
                     <xsl:value-of select="name" />BehaviorList,
-                    <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
-                    <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
+                    this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray,
+                    this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />LayerInfo,
                     <xsl:value-of select="name" />RectangleArrayOfArrays
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >, GDIndividualAnimationBehavior.getInstance()</xsl:if>
