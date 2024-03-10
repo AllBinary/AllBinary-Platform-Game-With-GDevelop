@@ -214,7 +214,7 @@
         
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDFormJavaLibrary</artifactId>
+            <artifactId>GDYourFormJavaLibrary</artifactId>
             <!--
             <artifactId>GDFormJavaLibrary</artifactId>
             <artifactId>GDYourFormJavaLibrary</artifactId>

@@ -98,7 +98,7 @@
             <groupId>org.allbinary</groupId>
             <artifactId>GameScoresLocalJavaLibrary</artifactId>
 <!--
-            <artifactId>GameScoresRemoteAndLocalLibrary</artifactId>
+            <artifactId>GameScoresRemoteAndLocalJavaLibrary</artifactId>
             <artifactId>GameScoresLocalJavaLibrary</artifactId>
 -->
             <!-- AllBinary Platform Version Start -->

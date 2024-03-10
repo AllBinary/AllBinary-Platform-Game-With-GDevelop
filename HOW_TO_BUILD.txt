@@ -1,17 +1,55 @@
-1.  Make the AllBinary Game Plaform Client libraries accessable by following the 
+1.  Make the AllBinary Game Plaform Client libraries accessible with following the 
     instructions at the following page:
 
     https://github.com/AllBinary/AllBinary-Platform/blob/master/HOW_TO_BUILD_OR_ACCESS_GAME_PLATFORM_CLIENTS.txt
+
 
 2.  WTK must be installed and WTK_HOME path set for the J2ME build
 
     WTK 3.4 has been found at: 
 
-    http://www.oracle.com/technetwork/java/javame/javamobile/download/sdk/index.html
+    https://www.oracle.com/technetwork/java/javame/javamobile/download/sdk/index.html
 
     Warning: WTK/SDK 8 does not support a graphics API yet and is not supported.
 
 
 3.  Android SDK must be installed and ANDROID_HOME path set for the Android build.
 
-    You Can find the Android SDK at: http://developer.android.com/sdk/index.html
+    You Can find the Android SDK at: https://developer.android.com/sdk/index.html
+
+
+4. Clone: https://github.com/AllBinary/AllBinary-Platform-Game-With-GDevelop.git
+
+5. Build GDGameParent project with maven: 
+Change to the GDGameParent directory and run: mvn clean install
+
+6. Build GDToolJavaLibrary project with maven: 
+Change to the GDToolJavaLibrary directory and run: mvn clean install
+(Do the same for the dependencies of GDToolJavaLibrary that were not already built)
+
+7. Copy GDevelop JSON file to the root project and rename game.json
+
+8. Convert the game.json file with GDGenerator in the GDToolJavaLibrary maven project.  
+The POM file is configured to run it as the main class.
+
+Warning: This project does not support many events and will probably never support 
+Javascript events.  Most of the base templates from GDevelop convert and run as expected.
+
+9. Copy the game assets to the build specific resource folders.
+
+10. Build the game with GDGameAllPlatformsP POM: 
+Change to the GDGameAllPlatformsP directory and run: mvn clean install
+
+11. Test the game for the desired platforms.  The current platforms 
+are HTML5, J2SE, and Android.  J2ME is currently disabled.
+
+Optional for J2ME specific game builds:
+
+    Down and install antenna for the J2ME build: https://antenna.sourceforge.io
+
+        <dependency>
+            <groupId>net.sf.antenna</groupId>
+            <artifactId>antenna</artifactId>
+            <version>1.2.1-beta-SNAPSHOT</version>
+            <optional>true</optional>
+        </dependency>
