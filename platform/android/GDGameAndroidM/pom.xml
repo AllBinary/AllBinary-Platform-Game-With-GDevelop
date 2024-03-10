@@ -103,7 +103,7 @@
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>XmlRpcJavaLibrary</artifactId>
+            <artifactId>YourXmlRpcJavaLibrary</artifactId>
 <!--
             <artifactId>XmlRpcJavaLibrary</artifactId>
             <artifactId>YourXmlRpcJavaLibrary</artifactId>
@@ -121,7 +121,11 @@
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
+            <artifactId>YourSecurityJavaLibrary</artifactId>
+<!--
             <artifactId>BouncyCastleDESJavaLibrary</artifactId>
+            <artifactId>YourSecurityJavaLibrary</artifactId>
+-->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
