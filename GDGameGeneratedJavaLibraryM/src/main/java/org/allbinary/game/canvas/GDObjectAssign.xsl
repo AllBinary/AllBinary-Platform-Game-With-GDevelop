@@ -248,13 +248,13 @@ Created By: Travis Berthelot
                             //LogUtil.put(LogFactory.getInstance("CustomTextAnimation", this, "init"));
                             final CustomTextAnimationFactory customTextAnimationFactory = (CustomTextAnimationFactory) animationInterfaceFactoryInterfaceArray[0];
 
-                            gdObject.width = (int) (customTextAnimationFactory.getWidth() / scaleX);
-                            gdObject.height = (int) (customTextAnimationFactory.getHeight() / scaleY);
+                            gdObject.width = (int) (customTextAnimationFactory.getWidth());
+                            gdObject.height = (int) (customTextAnimationFactory.getHeight());
 
                             final Rectangle rectangle = new Rectangle(
                                 PointFactory.getInstance().ZERO_ZERO,
-                                (int) (this.layerInfo.getWidth() / scaleX), 
-                                (int) (this.layerInfo.getHeight() / scaleY)
+                                (int) (this.layerInfo.getWidth()), 
+                                (int) (this.layerInfo.getHeight())
                             );
                                                 
                             return rectangle;

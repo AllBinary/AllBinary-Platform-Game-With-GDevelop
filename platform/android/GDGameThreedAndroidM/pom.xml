@@ -90,10 +90,10 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>GameScoresLocalJavaLibrary</artifactId>
-<!--
             <artifactId>GameScoresRemoteAndLocalJavaLibrary</artifactId>
+<!--
             <artifactId>GameScoresLocalJavaLibrary</artifactId>
+            <artifactId>GameScoresRemoteAndLocalJavaLibrary</artifactId>
 -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
@@ -101,7 +101,7 @@
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>YourXmlRpcJavaLibrary</artifactId>
+            <artifactId>XmlRpcJavaLibrary</artifactId>
 <!--
             <artifactId>XmlRpcJavaLibrary</artifactId>
             <artifactId>YourXmlRpcJavaLibrary</artifactId>
@@ -111,15 +111,17 @@
             <!-- AllBinary Platform Version End -->
         </dependency>
 <!--
+-->
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>BasicSecurityJavaLibrary</artifactId>
             <version>${allbinary.platform.version}</version>
         </dependency>
+<!--
 -->
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>YourSecurityJavaLibrary</artifactId>
+            <artifactId>BouncyCastleDESJavaLibrary</artifactId>
 <!--
             <artifactId>BouncyCastleDESJavaLibrary</artifactId>
             <artifactId>YourSecurityJavaLibrary</artifactId>
@@ -132,6 +134,12 @@
             <groupId>sax</groupId>
             <artifactId>sax</artifactId>
             <version>2.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>sax</groupId>
+            <artifactId>sax</artifactId>
+            <version>2.0.1</version>
+            <classifier>sources</classifier>
         </dependency>        
 <!--
 -->
@@ -175,7 +183,7 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDYourFormJavaLibrary</artifactId>
+            <artifactId>GDFormJavaLibrary</artifactId>
             <!--
             <artifactId>GDFormJavaLibrary</artifactId>
             <artifactId>GDYourFormJavaLibrary</artifactId>

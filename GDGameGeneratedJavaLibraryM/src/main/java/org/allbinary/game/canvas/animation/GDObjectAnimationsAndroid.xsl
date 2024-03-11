@@ -350,7 +350,7 @@ Created By: Travis Berthelot
                 
                 <xsl:for-each select="childrenContent" >
                     <xsl:for-each select="Label" >
-                final int <xsl:value-of select="$name" />TextAnimationSize = (<xsl:value-of select="characterSize" />);
+                final int <xsl:value-of select="$name" />TextAnimationSize = (<xsl:value-of select="characterSize" /> * 3 / 2);
                     </xsl:for-each>
                 </xsl:for-each>
 
@@ -426,7 +426,7 @@ Created By: Travis Berthelot
                             this.basicAnimationInterfaceFactoryInterfaceArray[1].setInitialSize(width * 253 / 265, height * 16 / 34);
                             this.basicAnimationInterfaceFactoryInterfaceArray[2].setInitialSize(width * 253 / 265, height * 16 / 34);
                             this.basicAnimationInterfaceFactoryInterfaceArray[3].setInitialSize(width * 22 / 265, height * 22 / 34);
-                            this.basicAnimationInterfaceFactoryInterfaceArray[4].setInitialSize(width, height);
+                            this.basicAnimationInterfaceFactoryInterfaceArray[4].setInitialSize(width * 3 / 2, height * 3 / 2);
                         }                        
                     }
                 };
@@ -456,7 +456,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&quot;'" /></xsl:with-param><xsl:with-param name="replacementText" >\"</xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:variable name="multilineString" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue2" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&#10;'" /></xsl:with-param><xsl:with-param name="replacementText" >\n").append("</xsl:with-param></xsl:call-template></xsl:variable>
                 
-                final int <xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="characterSize" />);
+                final int <xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="characterSize" /> * 3 / 2);
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                     new CustomTextAnimationFactory(new StringMaker().append("<xsl:value-of select="$multilineString" />").toString(), <xsl:value-of select="name" />TextAnimationSize)

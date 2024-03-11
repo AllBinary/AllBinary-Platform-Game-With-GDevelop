@@ -49,7 +49,7 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDYourFormJavaLibrary</artifactId>
+            <artifactId>GDFormJavaLibrary</artifactId>
             <!--
             <artifactId>GDFormJavaLibrary</artifactId>
             <artifactId>GDYourFormJavaLibrary</artifactId>
