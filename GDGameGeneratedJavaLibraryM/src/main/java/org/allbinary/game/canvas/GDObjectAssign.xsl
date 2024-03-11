@@ -242,12 +242,22 @@ Created By: Travis Berthelot
                     <xsl:if test="type = 'TextObject::Text'" >
                     {
 
-                        public void init(final GDObject gdObject) {
+                        @Override
+                        public Rectangle init(final GDObject gdObject, final float scaleX, final float scaleY) {
                             //text animation sizing
                             //LogUtil.put(LogFactory.getInstance("CustomTextAnimation", this, "init"));
                             final CustomTextAnimationFactory customTextAnimationFactory = (CustomTextAnimationFactory) animationInterfaceFactoryInterfaceArray[0];
-                            gdObject.width = (int) (customTextAnimationFactory.getWidth());
-                            gdObject.height = (int) (customTextAnimationFactory.getHeight());
+
+                            gdObject.width = (int) (customTextAnimationFactory.getWidth() / scaleX);
+                            gdObject.height = (int) (customTextAnimationFactory.getHeight() / scaleY);
+
+                            final Rectangle rectangle = new Rectangle(
+                                PointFactory.getInstance().ZERO_ZERO,
+                                (int) (this.layerInfo.getWidth() / scaleX), 
+                                (int) (this.layerInfo.getHeight() / scaleY)
+                            );
+                                                
+                            return rectangle;
                         }
 
                     }</xsl:if>;

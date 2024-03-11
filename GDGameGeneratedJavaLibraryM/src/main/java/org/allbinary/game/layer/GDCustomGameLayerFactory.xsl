@@ -24,7 +24,6 @@ package org.allbinary.game.layer;
 import org.allbinary.animation.Animation;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
-import org.allbinary.animation.text.CustomTextAnimationFactory;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.GDCustomCollidableBehavior;
 import org.allbinary.game.layer.special.GDCustomMaskCollidableBehavior;
@@ -101,16 +100,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             //LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" 3GDObject name: ").append(gdObject.name).append(' ').append(this.layerInfo).toString(), this, "create"));
         }
 
-        this.init(gdObject);
-
-        gdObject.width = (int) (gdObject.width * scaleX);
-        gdObject.height = (int) (gdObject.height * scaleX);
-
-        final Rectangle rectangle = new Rectangle(
-            PointFactory.getInstance().ZERO_ZERO,
-            (int) (this.layerInfo.getWidth() * scaleX), 
-            (int) (this.layerInfo.getHeight() * scaleY)
-        );
+        final Rectangle rectangle = this.init(gdObject, scaleX, scaleY);
 
         final GDCustomGameLayer gameLayer = new GDCustomGameLayer(
                 this.primitiveDrawingAnimationFactory.getInstance(),
@@ -137,7 +127,18 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
         return gameLayer;
     }
 
-    public void init(final GDObject gdObject) {
+    public Rectangle init(final GDObject gdObject, final float scaleX, final float scaleY) {
+
+        gdObject.width = (int) (gdObject.width * scaleX);
+        gdObject.height = (int) (gdObject.height * scaleX);
+
+        final Rectangle rectangle = new Rectangle(
+            PointFactory.getInstance().ZERO_ZERO,
+            (int) (this.layerInfo.getWidth() * scaleX), 
+            (int) (this.layerInfo.getHeight() * scaleY)
+        );
+        
+        return rectangle;
     }
     
 }
