@@ -349,7 +349,7 @@ Created By: Travis Berthelot
                 
                 <xsl:for-each select="childrenContent" >
                     <xsl:for-each select="Label" >
-                final int <xsl:value-of select="$name" />TextAnimationSize = (<xsl:value-of select="characterSize" /> * 3 / 2);
+                final int <xsl:value-of select="$name" />TextAnimationSize = (<xsl:value-of select="characterSize" />);
                     </xsl:for-each>
                 </xsl:for-each>
 
@@ -407,7 +407,16 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     <xsl:for-each select="Label" >
                     //Label
-                    new CustomTextAnimationFactory(StringUtil.getInstance().EMPTY_STRING, 0, 0, <xsl:value-of select="$name" />TextAnimationSize),
+                    new CustomTextAnimationFactory(StringUtil.getInstance().EMPTY_STRING, 0, 0, <xsl:value-of select="$name" />TextAnimationSize) {
+                        public void setInitialSize(final int width, final int height) {
+                            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("setInitialSize - font: ").append(height).toString(), this, CommonStrings.getInstance().PROCESS));
+                            //this.scaleWidth = width;
+                            final int fontSize = height;
+                            this.scaleHeight = (int) fontSize - (fontSize / 4);
+                            this.font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, this.scaleHeight);
+                            LogUtil.put(LogFactory.getInstance(new StringMaker().append("setInitialSize - font: ").append(font.getSize()).toString(), this, CommonStrings.getInstance().PROCESS));
+                        }
+                    },
                     </xsl:for-each>
                 </xsl:for-each>
                 };
@@ -425,7 +434,7 @@ Created By: Travis Berthelot
                             this.basicAnimationInterfaceFactoryInterfaceArray[1].setInitialSize(width * 253 / 265, height * 16 / 34);
                             this.basicAnimationInterfaceFactoryInterfaceArray[2].setInitialSize(width * 253 / 265, height * 16 / 34);
                             this.basicAnimationInterfaceFactoryInterfaceArray[3].setInitialSize(width * 22 / 265, height * 22 / 34);
-                            this.basicAnimationInterfaceFactoryInterfaceArray[4].setInitialSize(width * 3 / 2, height * 3 / 2);
+                            this.basicAnimationInterfaceFactoryInterfaceArray[4].setInitialSize(width, height);
                         }                        
                     }
                 };
