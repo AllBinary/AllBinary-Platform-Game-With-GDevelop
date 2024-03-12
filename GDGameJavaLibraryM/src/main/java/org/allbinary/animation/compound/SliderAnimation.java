@@ -65,7 +65,7 @@ public class SliderAnimation
         final Features features = Features.getInstance();
         final boolean isHTML = features.isDefault(HTMLFeatureFactory.getInstance().HTML);
         if(isHTML) {
-            return this.height / 2;
+            return this.height * 2 / 3;
         } else {
             return this.height;
         }
