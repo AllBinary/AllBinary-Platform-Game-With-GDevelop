@@ -16,11 +16,8 @@ package org.allbinary.animation.text;
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Font;
 
-import org.allbinary.game.input.event.RawKeyEventListener;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.form.item.CustomTextBox;
-import org.allbinary.logic.communication.log.LogFactory;
-import org.allbinary.logic.communication.log.LogUtil;
 
 /**
  *
