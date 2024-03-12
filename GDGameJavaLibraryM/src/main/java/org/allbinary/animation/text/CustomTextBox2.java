@@ -19,7 +19,6 @@ import javax.microedition.lcdui.Font;
 import org.allbinary.game.input.event.RawKeyEventListener;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.form.item.CustomTextBox;
-import org.allbinary.input.event.VirtualKeyboardEventHandler;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 
@@ -81,7 +80,7 @@ public class CustomTextBox2 extends CustomTextBox
 
     @Override
     public void onEvent(final int keyCode, final int deviceId, final boolean repeated) {
-        LogUtil.put(LogFactory.getInstance(Integer.toString(keyCode), this, "onEvent"));
+        LogUtil.put(LogFactory.getInstance("keyPressed: " + Integer.toString(keyCode), this, "onEvent"));
         super.keyPressed(keyCode);        
     }
     
