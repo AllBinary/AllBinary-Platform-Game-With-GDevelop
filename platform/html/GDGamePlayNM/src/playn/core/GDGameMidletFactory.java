@@ -12,10 +12,9 @@ import org.allbinary.midlet.MidletFactoryInterface;
  * @author user
  */
 public class GDGameMidletFactory
-extends MidletFactoryInterface
-{
-	public MIDlet getInstance()
-	{
-	    return new GDGame();
-	}    
+    extends MidletFactoryInterface {
+
+    public MIDlet getInstance() {
+        return new GDGame();
+    }
 }

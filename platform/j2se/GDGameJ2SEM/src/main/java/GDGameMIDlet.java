@@ -4,6 +4,7 @@ import java.awt.event.MouseWheelEvent;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.data.resource.ResourceUtil;
+import org.allbinary.game.canvas.GDGameSoftwareInfo;
 import org.allbinary.game.configuration.GameConfigurationCentral;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GameFeatureFactory;
@@ -18,6 +19,7 @@ import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.audio.EarlySoundsFactory;
 import org.allbinary.media.audio.Sounds;
 import org.allbinary.game.init.DefaultGameInitializationListener;
+import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
 import org.allbinary.media.audio.GDGameSoundsFactory;
 
 public class GDGameMIDlet

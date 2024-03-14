@@ -1,5 +1,5 @@
 
-import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.game.canvas.GDGameSoftwareInfo;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.game.configuration.GameConfigurationCentral;
@@ -10,7 +10,9 @@ import org.allbinary.game.configuration.feature.InputFeatureFactory;
 import org.allbinary.game.configuration.feature.SensorFeatureFactory;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.game.init.DefaultGameInitializationListener;
+import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
 
+//Maybe GDGame is used instead of this - Can we delete?
 public class GDGameMIDlet
         extends org.allbinary.game.GDGameMIDlet
 {
