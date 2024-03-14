@@ -77,6 +77,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.commands.GameCommandsFactory;
                 import org.allbinary.game.GDGameCommandFactory;
+                import org.allbinary.game.GameInfo;
                 import org.allbinary.game.configuration.persistance.JSONPersistance;
                 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
                 import org.allbinary.game.input.GameInputProcessor;
@@ -119,6 +120,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
                 import org.allbinary.media.audio.Sound;
                 import org.allbinary.math.NoDecimalTrigTable;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
@@ -156,6 +158,8 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
+
+                        private final AbeClientInformationInterface abeClientInformation = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION;
 
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes() {
 

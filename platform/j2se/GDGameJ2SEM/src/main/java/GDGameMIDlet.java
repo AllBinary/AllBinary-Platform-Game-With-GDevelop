@@ -28,6 +28,9 @@ public class GDGameMIDlet
 
     public GDGameMIDlet()
     {
+        super(GDGameClientInformationInterfaceFactory.getInstance());
+        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getInstance();
+        
         BasicMotionGesturesHandler motionGesturesHandler =
             motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
 

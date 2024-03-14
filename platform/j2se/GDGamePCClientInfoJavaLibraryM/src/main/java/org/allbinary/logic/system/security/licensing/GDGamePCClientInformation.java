@@ -29,7 +29,8 @@ extends AbeClientInformation
                 GDGameSoftwareInfo.getInstance().getVersion(),
                 GDGameSoftwareInfo.getInstance().getName() + PC_DESC +
                 CommonSeps.getInstance().SPACE + 
-                GDGameSoftwareInfo.getInstance().getVersion()
+                GDGameSoftwareInfo.getInstance().getVersion(),
+                GDGameSoftwareInfo.getInstance().toShortString()
                 );
     }
 }

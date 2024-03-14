@@ -1,6 +1,6 @@
 package org.allbinary.logic.system.security.licensing;
 
-public class AbeClientInformationInterfaceFactory
+public class GDGameClientInformationInterfaceFactory
 {
     private static final AbeClientInformationInterface SINGLETON = 
         new GDGameAndroidMobileClientInformation();

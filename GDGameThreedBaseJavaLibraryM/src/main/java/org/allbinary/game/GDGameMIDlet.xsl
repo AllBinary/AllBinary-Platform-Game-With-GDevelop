@@ -58,19 +58,21 @@ import org.allbinary.game.GameTypeFactory;
 import org.allbinary.game.PlayerTypesFactory;
 import org.allbinary.game.displayable.canvas.GameCanvasRunnableInterface;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
-import org.allbinary.game.midlet.DemoGameMidletEvent;
-import org.allbinary.game.midlet.DemoGameMidletEventHandler;
-import org.allbinary.game.midlet.DemoGameMidletStateFactory;
+//import org.allbinary.game.midlet.DemoGameMidletEvent;
+//import org.allbinary.game.midlet.DemoGameMidletEventHandler;
+//import org.allbinary.game.midlet.DemoGameMidletStateFactory;
 import org.allbinary.game.midlet.LicenseLevelUtil;
 import org.allbinary.game.midlet.LicenseLoadingTypeFactory;
 import org.allbinary.game.midlet.SpecialDemoGameMidlet;
 import org.allbinary.game.paint.help.HelpPaintable;
 import org.allbinary.game.score.BasicHighScoresFactory;
+import org.allbinary.game.score.NoHighScoresFactory;
 import org.allbinary.game.score.HighScoresPaintable;
 import org.allbinary.game.score.displayable.HighScoresCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
+import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 import org.allbinary.media.audio.AllBinaryMediaManagerShutdown;
 import org.allbinary.media.audio.EarlySoundsFactory;
 import org.allbinary.midlet.MidletStrings;
@@ -84,10 +86,12 @@ public class GDGameMIDlet extends
    //DemoGameMidlet
 {
 
-   public GDGameMIDlet()
+   public GDGameMIDlet(final AbeClientInformationInterface abeClientInformation)
    {
-       super(LicenseLoadingTypeFactory.getIntance().OTHER);
+       super(abeClientInformation, LicenseLoadingTypeFactory.getIntance().OTHER);
        //this.setSaveGameForm(SaveGameForm.getInstance(this, "Save Game"));
+       
+       //com.sun.lwuit.Display.init(this);
    }
 
    protected HelpPaintable getHelpPaintable()
@@ -108,8 +112,8 @@ public class GDGameMIDlet extends
     <xsl:if test="position() = 1 and $totalLayouts > 1" >
    public GameCanvasRunnableInterface createDemoGameCanvasRunnableInterface() throws Exception
    {
-       return new <xsl:value-of select="$name" />(this);
-      //return new GDGameStartCanvas(this);
+       return new <xsl:value-of select="$name" />(this.abeClientInformation, this);
+      //return new GDGameStartCanvas(this.abeClientInformation, this);
    }
     </xsl:if>
     -->
@@ -117,15 +121,15 @@ public class GDGameMIDlet extends
     <xsl:if test="position() = 2 or $totalLayouts = 1" >
    public GameCanvasRunnableInterface createGameCanvasRunnableInterface(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
    {
-       return new <xsl:value-of select="$name" />(this, allBinaryGameLayerManager);
-       //return new GDGameGameCanvas(this, allBinaryGameLayerManager);
+       return new <xsl:value-of select="$name" />(this.abeClientInformation, this, allBinaryGameLayerManager);
+       //return new GDGameGameCanvas(this.abeClientInformation, this, allBinaryGameLayerManager);
    }    
     </xsl:if>
     <xsl:if test="position() != 1 and position() != 2" >
    public GameCanvasRunnableInterface create<xsl:value-of select="$name" />RunnableInterface() throws Exception
    {
-       return new <xsl:value-of select="$name" />(this);
-      //return new GDGameStartCanvas(this);
+       return new <xsl:value-of select="$name" />(this.abeClientInformation, this);
+      //return new GDGameStartCanvas(this.abeClientInformation, this);
    }
 
     public synchronized void set<xsl:value-of select="$name" />RunnableInterface() throws Exception
@@ -157,14 +161,14 @@ public class GDGameMIDlet extends
 
    public GameCanvasRunnableInterface create<xsl:value-of select="$name" />RunnableInterface() throws Exception
    {
-       return new <xsl:value-of select="$name" />(this, this.createGameLayerManager());
-       //return new GDGameGameCanvas(this, this.createGameLayerManager());
+       return new <xsl:value-of select="$name" />(this.abeClientInformation, this, this.createGameLayerManager());
+       //return new GDGameGameCanvas(this.abeClientInformation, this, this.createGameLayerManager());
    }    
 
    public GameCanvasRunnableInterface create<xsl:value-of select="$name" />RunnableInterface(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
    {
-       return new <xsl:value-of select="$name" />(this, allBinaryGameLayerManager);
-       //return new GDGameGameCanvas(this, allBinaryGameLayerManager);
+       return new <xsl:value-of select="$name" />(this.abeClientInformation, this, allBinaryGameLayerManager);
+       //return new GDGameGameCanvas(this.abeClientInformation, this, allBinaryGameLayerManager);
    }    
 
     public synchronized void set<xsl:value-of select="$name" />RunnableInterface() throws Exception
@@ -189,7 +193,9 @@ public class GDGameMIDlet extends
        return new HighScoresCanvas(this,
                this.createGameLayerManager(),
                new HighScoresPaintable(),
-               new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()));
+               //new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance())
+               NoHighScoresFactory.getInstance()
+              );
    }
 
    public int getHighestLevel()
@@ -266,7 +272,7 @@ public class GDGameMIDlet extends
 
         try {
 
-            //PreLogUtil.put(layoutName, this, "setGDLayout");
+            //PreLogUtil.put(command.getLabel(), this, "commandAction");
 
             final GDGameCommandFactory gdGameCommandFactory = GDGameCommandFactory.getInstance();
 

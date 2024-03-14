@@ -25,20 +25,21 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 
 public class JSONPersistance extends BasicPersitance
 {    
-    public JSONPersistance(String recordId)
+    public JSONPersistance(final String recordId)
     {
         super(recordId);
     }
         
-    public void loadAll() throws Exception
+    public void loadAll(final AbeClientInformationInterface abeClientInformation) throws Exception
     {
-        this.loadAll(1);
+        this.loadAll(abeClientInformation, 1);
     }
     
-    public void loadAll(int size) throws Exception
+    public void loadAll(final AbeClientInformationInterface abeClientInformation, int size) throws Exception
     {
         final RecordStore recordStore = RecordStore.openRecordStore(
                 this.getRecordStoreName(), true);
@@ -81,7 +82,7 @@ public class JSONPersistance extends BasicPersitance
         recordStore.closeRecordStore();
     }
     
-    public void save(final String stringAsJSON) throws Exception
+    public void save(final AbeClientInformationInterface abeClientInformation, final String stringAsJSON) throws Exception
     {
         LogUtil.put(LogFactory.getInstance(new StringMaker().append("Saving: ").append(stringAsJSON).toString(), this, "save"));
         

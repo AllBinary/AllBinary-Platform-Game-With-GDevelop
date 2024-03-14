@@ -13,7 +13,8 @@ public class GDGameAndroidMobileClientInformation extends
                 GDGameSoftwareInfo.getInstance().getVersion(),
                 GDGameSoftwareInfo.getInstance().getName() + ANDROID_DESC + 
                 CommonSeps.getInstance().SPACE + 
-                GDGameSoftwareInfo.getInstance().getVersion()
+                GDGameSoftwareInfo.getInstance().getVersion(),
+                GDGameSoftwareInfo.getInstance().toShortString()
                 );
     }
 }

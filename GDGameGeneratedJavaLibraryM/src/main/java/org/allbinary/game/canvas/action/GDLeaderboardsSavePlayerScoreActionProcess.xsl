@@ -105,25 +105,27 @@ Created By: Travis Berthelot
                                     public void run() {
                                         try {
 
+                                final GameInfo gameInfo = abCanvas.getLayerManager().getGameInfo();
                                 if(name != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> name.length() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                     final long score = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
                                     LogUtil.put(LogFactory.getInstance(new StringBuilder().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Submitting and Fetching remote leaderboard: ").append(score).toString(), this, commonStrings.RUN));
-                                    HighScoreNamePersistanceSingleton.getInstance().save(name);
+                                    
+                                    HighScoreNamePersistanceSingleton.getInstance().save(abeClientInformation, gameInfo, name);
                                     final HighScores[] highScoresArray = 
-                                        new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()).createHighScores(abCanvas.getLayerManager().getGameInfo(), false);
+                                        new BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance()).createHighScores(gameInfo, false);
                                     gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
                                     final HighScore highScore = abCanvas.createHighScore(score);
-                                    final HighScoreUtil highScoreUtil = new HighScoreUtil(abCanvas.getCustomCommandListener(), name, highScoresArray, highScore);
+                                    final HighScoreUtil highScoreUtil = new HighScoreUtil(abeClientInformation, gameInfo, abCanvas.getCustomCommandListener(), name, highScoresArray, highScore);
                                     highScoreUtil.update(name);
                                     highScoreUtil.saveHighScore();
                                     highScoreUtil.submit(abCanvas);
                                 } else {
                                     LogUtil.put(LogFactory.getInstance(new StringBuilder().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Fetching remote leaderboard: ").append(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>).toString(), this, commonStrings.RUN));
                                     final HighScores[] highScoresArray = 
-                                        new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()).createHighScores(abCanvas.getLayerManager().getGameInfo());
+                                        new BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance()).createHighScores(gameInfo);
                                     gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
                                     final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
-                                    final HighScoreUtil highScoreUtil = new HighScoreUtil(abCanvas.getCustomCommandListener(), name, highScoresArray, highScore);
+                                    final HighScoreUtil highScoreUtil = new HighScoreUtil(abeClientInformation, gameInfo, abCanvas.getCustomCommandListener(), name, highScoresArray, highScore);
                                 }
                                 
                                 globals.highscoreSubmissionComplete = true;
@@ -238,25 +240,27 @@ Created By: Travis Berthelot
                                     public void run() {
                                         try {
 
+                                final GameInfo gameInfo = abCanvas.getLayerManager().getGameInfo();
+                                
                                 if(name != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> name.length() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                     final long score = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
                                     LogUtil.put(LogFactory.getInstance(new StringBuilder().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Submitting and Fetching remote leaderboard: ").append(score).toString(), this, commonStrings.RUN));
-                                    HighScoreNamePersistanceSingleton.getInstance().save(name);
+                                    HighScoreNamePersistanceSingleton.getInstance().save(abeClientInformation, gameInfo, name);
                                     final HighScores[] highScoresArray = 
-                                        new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()).createHighScores(abCanvas.getLayerManager().getGameInfo(), false);
+                                        new BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance()).createHighScores(gameInfo, false);
                                     gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
                                     final HighScore highScore = abCanvas.createHighScore(score);
-                                    final HighScoreUtil highScoreUtil = new HighScoreUtil(abCanvas.getCustomCommandListener(), name, highScoresArray, highScore);
+                                    final HighScoreUtil highScoreUtil = new HighScoreUtil(abeClientInformation, gameInfo, abCanvas.getCustomCommandListener(), name, highScoresArray, highScore);
                                     highScoreUtil.update(name);
                                     highScoreUtil.saveHighScore();
                                     highScoreUtil.submit(abCanvas);
                                 } else {
                                     LogUtil.put(LogFactory.getInstance(new StringBuilder().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Fetching remote leaderboard: ").append(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>).toString(), this, commonStrings.RUN));
                                     final HighScores[] highScoresArray = 
-                                        new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()).createHighScores(abCanvas.getLayerManager().getGameInfo());
+                                        new BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance()).createHighScores(gameInfo);
                                     gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
                                     final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
-                                    final HighScoreUtil highScoreUtil = new HighScoreUtil(abCanvas.getCustomCommandListener(), name, highScoresArray, highScore);
+                                    final HighScoreUtil highScoreUtil = new HighScoreUtil(abeClientInformation, gameInfo, abCanvas.getCustomCommandListener(), name, highScoresArray, highScore);
                                 }
                                 
                                 globals.highscoreSubmissionComplete = true;

@@ -111,6 +111,7 @@ import org.allbinary.media.graphics.geography.map.BasicGeographicMapUtil;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
 import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -142,16 +143,21 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
  
     private final MusicManager musicManager;
        
-    public GDGame<GDLayout>Canvas(final CommandListener commandListener,
-            final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
+    private final AbeClientInformationInterface abeClientInformation;
+    
+    public GDGame<GDLayout>Canvas(final AbeClientInformationInterface abeClientInformation,
+        final CommandListener commandListener, final AllBinaryGameLayerManager allBinaryGameLayerManager) 
+        throws Exception
     {
         super(commandListener, allBinaryGameLayerManager,
-                //new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()),
+                //new BasicHighScoresFactory(abeClientInformation,, GDGameSoftwareInfo.getInstance()),
                 NoHighScoresFactory.getInstance(),
                 new GDGameStaticInitializerFactory(),
            //new BasicBuildGameInitializerFactory(),
            false);
 
+        this.abeClientInformation = abeClientInformation;
+        
         musicManager = MusicManagerFactory.create(GD<xsl:value-of select="$layoutIndex" />GameMusicFactory.getInstance().soundList);
 
         this.cleanupGame();
@@ -364,7 +370,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 //        }
     }
 
-    protected synchronized void initConfigurable()
+    protected synchronized void initConfigurable(final AbeClientInformationInterface abeClientInformation) throws Exception
     {
         try
         {
@@ -373,7 +379,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
             if (ChangedGameFeatureListener.getInstance().isChanged())
             {
-                super.initConfigurable();
+                super.initConfigurable(abeClientInformation);
 
                 //progressCanvas.addPortion(portion, "Group Manager");
                 //GroupLayerManagerListener.getInstance().init(SIZE);
@@ -406,7 +412,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "threadInit"));
 
             final int portion = 60;
-            super.init();
+            super.init(this.abeClientInformation);
 
             if (!this.isRunning())
             {

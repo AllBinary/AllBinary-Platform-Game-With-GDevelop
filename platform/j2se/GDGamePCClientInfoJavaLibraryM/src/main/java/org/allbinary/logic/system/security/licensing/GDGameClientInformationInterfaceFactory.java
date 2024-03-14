@@ -15,7 +15,7 @@ package org.allbinary.logic.system.security.licensing;
 
 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 
-public class AbeClientInformationInterfaceFactory
+public class GDGameClientInformationInterfaceFactory
 {
     private static final AbeClientInformationInterface SINGLETON = 
         new GDGamePCClientInformation();

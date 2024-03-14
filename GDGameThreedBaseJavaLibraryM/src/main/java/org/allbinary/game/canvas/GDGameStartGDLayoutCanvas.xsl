@@ -25,19 +25,23 @@ import javax.microedition.lcdui.CommandListener;
 import org.allbinary.animation.special.SpecialAnimation;
         
 import org.allbinary.game.init.GDGameStaticInitializerFactory;
+import org.allbinary.game.input.PlayerGameInput;
+import org.allbinary.game.input.event.DownKeyEventHandler;
+import org.allbinary.game.input.event.UpKeyEventHandler;
 import org.allbinary.game.configuration.GameSpeed;
-import org.allbinary.game.configuration.feature.Features;
-import org.allbinary.game.configuration.feature.GameFeatureFactory;
 import org.allbinary.game.displayable.canvas.StartCanvas;
 import org.allbinary.game.identification.GroupFactory;
 import org.allbinary.game.paint.ColorFillPaintableFactory;
 import org.allbinary.game.score.BasicHighScoresFactory;
+import org.allbinary.game.score.NoHighScoresFactory;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.form.FormPaintable;
 import org.allbinary.graphics.paint.NullInitUpdatePaintable;
 import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.logic.string.StringUtil;
+import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />
@@ -51,13 +55,28 @@ public class <GDLayout> extends StartCanvas
 
     private final GDGameInputProcessor gameInputProcessor = new GDGameInputProcessor();
 
-    public <GDLayout>(final CommandListener commandListener) throws Exception
+    private final DownKeyEventHandler downKeyEventHandler = DownKeyEventHandler.getInstance();
+    private final UpKeyEventHandler upKeyEventHandler = UpKeyEventHandler.getInstance();
+    private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+
+    public <GDLayout>(final AbeClientInformationInterface abeClientInformation, final CommandListener commandListener) throws Exception
     {
-        super(commandListener, new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()),
+        super(abeClientInformation, commandListener, 
+                //new BasicHighScoresFactory(abeClientInformation,, GDGameSoftwareInfo.getInstance()),
+                NoHighScoresFactory.getInstance(),
                 NullPaintable.getInstance(), NullInitUpdatePaintable.getInstance(),
                 new GDGameStaticInitializerFactory(), false);
 
         this.setWait(WAIT);
+
+        <!--
+            <xsl:variable name="layoutTotal" ><xsl:for-each select="../layouts" ><xsl:if test="position() = last()" ><xsl:value-of select="position()" /></xsl:if></xsl:for-each></xsl:variable>
+            //layoutTotal=<xsl:value-of select="$layoutTotal" />
+            <xsl:if test="number($layoutTotal) = 1" >
+        GroupFactory.getInstance().init((short) 10, new String[0]);
+            </xsl:if>
+        -->
+        </GDLayout>        
 
         GD<xsl:value-of select="$index" />SpecialAnimation.getInstance(this, null);
             
@@ -81,7 +100,8 @@ public class <GDLayout> extends StartCanvas
 
         this.setDefaultPaintableInterface(
                 //ColorFillPaintableFactory.getInstance(BasicColorFactory.getInstance().RED)
-                ColorFillPaintableFactory.getInstance(new BasicColor(255,
+                ColorFillPaintableFactory.getInstance(smallBasicColorCacheFactory.getInstance(
+                                basicColorUtil.get(255,
                     <xsl:variable name="color" >
                         <xsl:for-each select="events" >
                             <xsl:for-each select="actions" >
@@ -90,7 +110,7 @@ public class <GDLayout> extends StartCanvas
                                     //SceneBackground - moved to actions
                                     <xsl:for-each select="parameters" >
                                         <xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" />
-                                    </xsl:for-each>,
+                                    </xsl:for-each>
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:for-each>
@@ -101,13 +121,13 @@ public class <GDLayout> extends StartCanvas
                     <xsl:if test="string-length($color) = 0" >
                         <xsl:if test="string-length(r) > 0" >
                         //Using Layout Color before any - //SceneBackground Action
-                        <xsl:value-of select="r" />, <xsl:value-of select="v" />, <xsl:value-of select="b" />,
+                        <xsl:value-of select="r" />, <xsl:value-of select="v" />, <xsl:value-of select="b" />
                         </xsl:if>
                         <xsl:if test="string-length(r) = 0" >
-                        255, 255, 255, 
+                        255, 255, 255
                         </xsl:if>
-                    </xsl:if>
-                    GD_LAYOUT_COLOR), true)
+                    </xsl:if>), false)
+                    //GD_LAYOUT_COLOR
                 );
         this.setPaintableInterface(this.getDefaultPaintableInterface());
     }
@@ -139,6 +159,24 @@ public class <GDLayout> extends StartCanvas
     {
         this.gameInputProcessor.process(null, this.paintedSpecialAnimationInterface);
         super.processGame();
+    }
+
+    public void handleRawKey(final int keyCode, final int deviceId, final boolean repeated) throws Exception {
+        final Integer keyCodeAsInteger = smallIntegerSingletonFactory.getInstance(keyCode);
+        this.upKeyEventHandler.fireEvent(keyCodeAsInteger);
+        this.upKeyEventHandler.getInstance(deviceId).fireEvent(keyCodeAsInteger);
+    }
+
+    public void addKeyInputListener(final PlayerGameInput playerGameInput) {
+        super.addKeyInputListener(playerGameInput);
+
+        this.downKeyEventHandler.getInstanceForPlayer(playerGameInput.getPlayerInputId()).addListenerSingleThreaded(playerGameInput);
+    }
+            
+    public void removeKeyInputListener(final PlayerGameInput playerGameInput) {
+        super.removeKeyInputListener(playerGameInput);
+
+        this.downKeyEventHandler.removeListener(playerGameInput);
     }
 
 //    protected int getNextRandom()

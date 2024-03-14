@@ -13,7 +13,6 @@
 */
 package org.allbinary.game.canvas;
 
-import org.allbinary.game.canvas.GDGameSoftwareInfo;
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Graphics;
 
@@ -57,6 +56,7 @@ import org.allbinary.graphics.displayable.command.MyCommandsFactory;
 import org.allbinary.input.motion.button.BaseTouchInput;
 import org.allbinary.input.motion.button.GDGameNeededTouchButtonsBuilder;
 import org.allbinary.input.motion.button.GDGameTouchButtonsBuilder;
+import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 import org.allbinary.media.AllBinaryVibration;
 import org.allbinary.media.audio.AllBinaryMediaManager;
 import org.allbinary.media.audio.PlayerQueue;
@@ -70,20 +70,25 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
 
     private final int portion = 4;
     
-    public GDGameGameCanvas(CommandListener commandListener,
-            AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
+    private final AbeClientInformationInterface abeClientInformation;
+    
+    public GDGameGameCanvas(final AbeClientInformationInterface abeClientInformation,
+        final CommandListener commandListener,
+        final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
     {
         super(commandListener, allBinaryGameLayerManager, 
-                new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()),
+                new BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance()),
                 new GDGameStaticInitializerFactory(),
            //new BasicBuildGameInitializerFactory(),
            false);
+        
+        this.abeClientInformation = abeClientInformation;
     }
 
-    public GDGameGameCanvas(AllBinaryGameLayerManager allBinaryGameLayerManager)
+    public GDGameGameCanvas(final AbeClientInformationInterface abeClientInformation, final AllBinaryGameLayerManager allBinaryGameLayerManager)
     throws Exception
     {
-        this(null, allBinaryGameLayerManager);
+        this(abeClientInformation, null, allBinaryGameLayerManager);
     }
     
     protected void initSpecialPaint()
@@ -126,16 +131,16 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         }
     }
 
-    protected synchronized void initConfigurable()
+    protected synchronized void initConfigurable(final AbeClientInformationInterface abeClientInformation) throws Exception
     {
         try
         {
 
-        	ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
+            final ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
 
             if (ChangedGameFeatureListener.getInstance().isChanged())
             {
-                super.initConfigurable();
+                super.initConfigurable(abeClientInformation);
 
                 progressCanvas.addPortion(portion, "Group Manager");
                 GroupLayerManagerListener.getInstance().init(3);
@@ -166,7 +171,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         try
         {
             final int portion = 60;
-            super.init();
+            super.init(abeClientInformation);
 
             if (!this.isRunning())
             {

@@ -41,6 +41,7 @@ import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="index" select="position() - 1" />
@@ -58,10 +59,10 @@ public class <GDLayout> extends StartCanvas
     private final UpKeyEventHandler upKeyEventHandler = UpKeyEventHandler.getInstance();
     private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
 
-    public <GDLayout>(final CommandListener commandListener) throws Exception
+    public <GDLayout>(final AbeClientInformationInterface abeClientInformation, final CommandListener commandListener) throws Exception
     {
-        super(commandListener, 
-                //new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()),
+        super(abeClientInformation, commandListener, 
+                //new BasicHighScoresFactory(abeClientInformation,, GDGameSoftwareInfo.getInstance()),
                 NoHighScoresFactory.getInstance(),
                 NullPaintable.getInstance(), NullInitUpdatePaintable.getInstance(),
                 new GDGameStaticInitializerFactory(), false);

@@ -32,7 +32,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="param4" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
                             final JSONPersistance jsonPersistance = new JSONPersistance(<xsl:value-of select="$param1" />);
-                            jsonPersistance.loadAll();
+                            jsonPersistance.loadAll(abeClientInformation);
                             
                             final String jsonAsString = jsonPersistance.getJSONAsString();
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + jsonAsString, this, commonStrings.PROCESS));

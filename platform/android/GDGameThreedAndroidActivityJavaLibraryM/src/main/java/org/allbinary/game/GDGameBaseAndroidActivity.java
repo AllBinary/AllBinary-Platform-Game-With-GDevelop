@@ -4,6 +4,12 @@ import java.util.Hashtable;
 
 import javax.microedition.lcdui.Image;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.view.View;
+
 import org.allbinary.AllBinaryAndroidGameInitializationUtil;
 import org.allbinary.AndroidResources;
 import org.allbinary.android.AndroidStrings;
@@ -11,7 +17,6 @@ import org.allbinary.android.activity.InitEmulatorFactory;
 import org.allbinary.android.activity.game.GameMidletActivity;
 import org.allbinary.business.advertisement.GameAdStateFactory;
 import org.allbinary.configuration.ApplicationConfiguration;
-import org.allbinary.game.GameAdState;
 
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -25,11 +30,6 @@ import org.allbinary.graphics.canvas.transition.progress.AndroidBasicTitleProgre
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.view.View;
 import org.allbinary.android.device.OpenGLESGraphicsFactory;
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
 import org.allbinary.graphics.opengles.OpenGLConfiguration;
@@ -38,12 +38,16 @@ import org.microemu.android.device.AndroidDisplayOpenGLESGraphicsFactory;
 
 import org.allbinary.game.resource.GDGameThreedAndroidEarlyResourceInitialization;
 import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
+import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
 
 public class GDGameBaseAndroidActivity extends GameMidletActivity
 {
     public GDGameBaseAndroidActivity()
     {
+        super(GDGameClientInformationInterfaceFactory.getInstance());
         //super(new ProgressHelper(AndroidResources.id.progressbar));
+        
+        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getInstance();
 
         try
         {
