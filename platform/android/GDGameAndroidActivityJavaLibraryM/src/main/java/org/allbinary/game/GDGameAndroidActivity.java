@@ -31,17 +31,19 @@ import org.allbinary.graphics.canvas.transition.progress.AndroidBasicTitleProgre
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 
 import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
 
 public class GDGameAndroidActivity extends GameMidletActivity
 {
+    public AbeClientInformationInterface getClientInformation() {
+        return GDGameClientInformationInterfaceFactory.getInstance();
+    }
+    
     public GDGameAndroidActivity()
     {
-        super(GDGameClientInformationInterfaceFactory.getInstance());
         //super(new ProgressHelper(AndroidResources.id.progressbar));
-        
-        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getInstance();
         
         try
         {

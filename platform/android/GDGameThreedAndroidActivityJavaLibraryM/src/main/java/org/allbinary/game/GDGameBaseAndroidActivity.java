@@ -38,16 +38,18 @@ import org.microemu.android.device.AndroidDisplayOpenGLESGraphicsFactory;
 
 import org.allbinary.game.resource.GDGameThreedAndroidEarlyResourceInitialization;
 import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
+import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
 
 public class GDGameBaseAndroidActivity extends GameMidletActivity
 {
+    public AbeClientInformationInterface getClientInformation() {
+        return GDGameClientInformationInterfaceFactory.getInstance();
+    }
+    
     public GDGameBaseAndroidActivity()
     {
-        super(GDGameClientInformationInterfaceFactory.getInstance());
         //super(new ProgressHelper(AndroidResources.id.progressbar));
-        
-        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getInstance();
 
         try
         {

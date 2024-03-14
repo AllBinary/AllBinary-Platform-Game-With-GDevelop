@@ -25,7 +25,7 @@ import org.allbinary.logic.util.event.AllBinaryEventObject;
  * @author User
  */
 public class GDFormInput 
-    implements DownGameKeyEventListenerInterface, BaseMotionGestureEventListener //, RawKeyEventListener, UpGameKeyEventListenerInterface, GameKeyEventListenerInterface 
+    implements DownGameKeyEventListenerInterface, BaseMotionGestureEventListener, RawKeyEventListener //, UpGameKeyEventListenerInterface, GameKeyEventListenerInterface 
 {
     
     //@Override
