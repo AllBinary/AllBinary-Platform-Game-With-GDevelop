@@ -12,7 +12,7 @@ extends GDGameStaticInitializer
     private boolean platformGameInitialized;
     
     public GDGameAndroidStaticInitializer(
-            ResourceInitialization[] resourceInitializationArray, int portion)
+            final ResourceInitialization[] resourceInitializationArray, final int portion)
     {
         super(resourceInitializationArray, portion);
     }

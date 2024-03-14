@@ -5,6 +5,7 @@ import javax.microedition.lcdui.CommandListener;
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.game.configuration.GDGameGameFeatures;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
+import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 
 public class GDGameBaseAndroidStaticInitializer extends GDGameStaticInitializer
 {
@@ -24,9 +25,9 @@ public class GDGameBaseAndroidStaticInitializer extends GDGameStaticInitializer
         ProgressCanvasFactory.getInstance().addPortion(50, "Game Keys");        
     }
 
-    public void init(CommandListener commandListener, int level) throws Exception
+    public void init(final AbeClientInformationInterface abeClientInformation, final CommandListener commandListener, final int level) throws Exception
     {
-        super.init(commandListener, level);
+        super.init(abeClientInformation, commandListener, level);
 
         if(this.isAndroidGameInitialized())
         {
