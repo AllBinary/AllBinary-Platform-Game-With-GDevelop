@@ -11,8 +11,8 @@ public class GDItemAnimationBehavior extends GDAnimationBehaviorBase {
     
     protected boolean hasFocus;
     
-    public void select(final GameKey gameKey) {
-
+    public int select(final GameKey gameKey, final int keyCode) {
+        return 0;
     }
     
     public void onMotionGestureEvent(final MotionGestureEvent motionGestureEvent) {

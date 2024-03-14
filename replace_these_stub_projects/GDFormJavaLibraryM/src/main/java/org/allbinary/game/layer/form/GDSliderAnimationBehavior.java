@@ -15,7 +15,6 @@ package org.allbinary.game.layer.form;
 
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
-import org.allbinary.game.input.GameKey;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layout.GDObject;
 
@@ -45,9 +44,6 @@ implements GDGameLayerItemStateListener {
 
     public void itemStateChanged(GDGameLayer gameLayerAsItem) {
         
-    }
-
-    public void select(final GameKey gameKey) {
     }
     
     public int Value() {

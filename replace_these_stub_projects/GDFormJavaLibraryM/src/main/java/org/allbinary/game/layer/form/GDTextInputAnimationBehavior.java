@@ -15,7 +15,6 @@ package org.allbinary.game.layer.form;
 
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
-import org.allbinary.game.input.GameKey;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
@@ -48,9 +47,6 @@ public class GDTextInputAnimationBehavior extends GDItemAnimationBehavior
 
     public void onMotionGestureEvent(final MotionGestureEvent motionGestureEvent) {
 
-    }
-
-    public void select(final GameKey gameKey) {
     }
 
     public void keyPressed(final int keyCode) {
