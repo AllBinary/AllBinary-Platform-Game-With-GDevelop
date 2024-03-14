@@ -32,6 +32,12 @@ public class GDFormInputProcessor
     public void append(final GDFormInput gdFormInput) {
     }
     
+    public void open() {
+    }
+
+    public void close() {
+    }
+    
     public void reset() {
     }
     

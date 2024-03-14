@@ -13,6 +13,7 @@
  */
 package org.allbinary.game.layer.form;
 
+import org.allbinary.game.input.event.DownGameKeyEventListenerInterface;
 import org.allbinary.game.input.event.GameKeyEvent;
 import org.allbinary.game.input.event.RawKeyEventListener;
 import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
@@ -24,15 +25,15 @@ import org.allbinary.logic.util.event.AllBinaryEventObject;
  * @author User
  */
 public class GDFormInput 
-    implements RawKeyEventListener, BaseMotionGestureEventListener //GameKeyEventListenerInterface 
+    implements DownGameKeyEventListenerInterface, BaseMotionGestureEventListener //, RawKeyEventListener, UpGameKeyEventListenerInterface, GameKeyEventListenerInterface 
 {
     
-    @Override
+    //@Override
     public void onEvent(final int keyCode, final int deviceId, final boolean repeated) {
 
     }
 
-    @Override
+    //@Override
     public void onEvent(AllBinaryEventObject eventObject) {
 
     }

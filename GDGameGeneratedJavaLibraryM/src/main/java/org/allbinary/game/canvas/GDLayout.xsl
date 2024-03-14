@@ -140,8 +140,6 @@ Created By: Travis Berthelot
 
                         private final StringMaker stringBuilder = new StringMaker();
 
-                        private final BasicArrayList rawKeyListenerList = new BasicArrayList();
-
                         private final GDNodes gdNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />);
                                                 
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
@@ -403,7 +401,7 @@ Created By: Travis Berthelot
                         MovedMotionGesturesHandler.getInstance().addListener(globals.eventListenerInterfaceLastPoint);
                     </xsl:if>
 
-                        RawKeyEventHandler.getInstance().addListeners(rawKeyListenerList);
+                        GDFormInputProcessor.getInstance().open();
                     
                     //eventsOpen - START
                     <xsl:call-template name="eventsOpen" >
@@ -418,8 +416,7 @@ Created By: Travis Berthelot
                     
                         //LogUtil.put(LogFactory.getInstance("scene - close", this, commonStrings.PROCESS));
 
-                        rawKeyListenerList.addAll(RawKeyEventHandler.getInstance().getEventListenerInterfaceList());
-                        RawKeyEventHandler.getInstance().removeAllListeners();
+                        GDFormInputProcessor.getInstance().close();
 
                     <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
                         MovedMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterfaceLastPoint);
