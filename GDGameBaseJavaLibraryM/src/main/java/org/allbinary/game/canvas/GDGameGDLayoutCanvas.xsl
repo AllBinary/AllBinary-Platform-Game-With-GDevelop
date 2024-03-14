@@ -232,52 +232,6 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         this.gameLayerManager.setForegroundBasicColor(foregroundBasicColor);
     }
 
-    public void addCommands()
-    {
-        final GDGameCommandFactory gdGameCommandFactory = GDGameCommandFactory.getInstance();
-        final GameCommandsFactory gameCommandsFactory = GameCommandsFactory.getInstance();
-        final MyCommandsFactory myCommandsFactory = MyCommandsFactory.getInstance();
-        //final HTMLFeatureFactory htmlFeatureFactory = HTMLFeatureFactory.getInstance();
-
-        if (DebugFactory.getInstance() != NoDebug.getInstance())
-        {
-            this.addCommand(gameCommandsFactory.START_TRACE);
-        }
-
-        this.addCommand(gameCommandsFactory.RESTART_COMMAND);
-
-        this.addCommand(myCommandsFactory.PAUSE_COMMAND);
-
-        this.addCommand(gameCommandsFactory.QUIT_COMMAND);
-
-        <xsl:for-each select="../layouts" >
-            <xsl:variable name="name2" ><xsl:value-of select="translate(name, '_', ' ')" /></xsl:variable>
-            <xsl:variable name="name3" >GDGame<xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
-            <xsl:variable name="name" ><xsl:value-of select="translate($name3, ' ', '')" /></xsl:variable>
-            <xsl:if test="contains(name, 'in_game_options')" >
-        this.addCommand(gdGameCommandFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_GD_LAYOUT);
-            </xsl:if>
-        </xsl:for-each>
-           
-
-        //boolean isOverScan = OperatingSystemFactory.getInstance().getOperatingSystemInstance().isOverScan();
-        
-        //final Features features = Features.getInstance();
-
-        //if(!features.isDefault(htmlFeatureFactory.HTML) and !isOverScan)
-        //{
-            //if (TouchScreenFactory.getInstance().isTouch() and new InGameFeatures().isAny())
-            //{
-            //    // System.out.println("InGameOptions");
-            //    this.addCommand(InGameOptionsForm.DISPLAY);
-            //}
-
-            //// this.addCommand(GameCommands.DISPLAY_SAVE_FORM);
-            //this.addCommand(gameCommandsFactory.SAVE);
-            //this.addCommand(gameCommandsFactory.DISPLAY_LOAD_FORM);
-        //}
-    }
-
     <!-- 
     public GDGame<GDLayout>Canvas(AllBinaryGameLayerManager allBinaryGameLayerManager)
     throws Exception
@@ -491,7 +445,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         
         this.loadResources(gameLayerManager.getGameInfo().getCurrentLevel());
 
-        ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
+        final ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
 
         int portion = 30;
         if (isProgress <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.isMainCanvas())
@@ -523,7 +477,9 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         progressCanvas.addPortion(portion, "Building Game Level");
 
-        new GDGame<GDLayout>LevelBuilder(this.getLayerManager()).build();
+        final AllBinaryGameLayerManager layerManager = this.getLayerManager();
+
+        new GDGame<GDLayout>LevelBuilder(layerManager).build();
 
         progressCanvas.addPortion(portion, "Set Background");
 
@@ -532,7 +488,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         <xsl:if test="contains($hasOneOrMoreTileMaps, 'found')" >
         //Some games update backgrounds here
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
-            (GeographicMapCompositeInterface) this.getLayerManager();
+            (GeographicMapCompositeInterface) layerManager;
         
         final BasicGeographicMap[] geographicMapInterfaceArray = 
             geographicMapCompositeInterface.getGeographicMapInterface();
@@ -739,6 +695,65 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         gdNodeStatsFactory.log(stringBuilder, this);
     }
 
+    @Override
+    public void nextSong(final Sound nextSongSound) {
+        musicManager.nextSong(nextSongSound);
+    }
+
+    @Override
+    public void endGameThread() throws Exception
+    {
+    	super.endGameThread();
+    	
+    	musicManager.stop();
+    }
+
+    public void addCommands()
+    {
+        final GDGameCommandFactory gdGameCommandFactory = GDGameCommandFactory.getInstance();
+        final GameCommandsFactory gameCommandsFactory = GameCommandsFactory.getInstance();
+        final MyCommandsFactory myCommandsFactory = MyCommandsFactory.getInstance();
+        //final HTMLFeatureFactory htmlFeatureFactory = HTMLFeatureFactory.getInstance();
+
+        if (DebugFactory.getInstance() != NoDebug.getInstance())
+        {
+            this.addCommand(gameCommandsFactory.START_TRACE);
+        }
+
+        this.addCommand(gameCommandsFactory.RESTART_COMMAND);
+
+        this.addCommand(myCommandsFactory.PAUSE_COMMAND);
+
+        this.addCommand(gameCommandsFactory.QUIT_COMMAND);
+
+        <xsl:for-each select="../layouts" >
+            <xsl:variable name="name2" ><xsl:value-of select="translate(name, '_', ' ')" /></xsl:variable>
+            <xsl:variable name="name3" >GDGame<xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
+            <xsl:variable name="name" ><xsl:value-of select="translate($name3, ' ', '')" /></xsl:variable>
+            <xsl:if test="contains(name, 'in_game_options')" >
+        this.addCommand(gdGameCommandFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_GD_LAYOUT);
+            </xsl:if>
+        </xsl:for-each>
+           
+
+        //boolean isOverScan = OperatingSystemFactory.getInstance().getOperatingSystemInstance().isOverScan();
+        
+        //final Features features = Features.getInstance();
+
+        //if(!features.isDefault(htmlFeatureFactory.HTML) and !isOverScan)
+        //{
+            //if (TouchScreenFactory.getInstance().isTouch() and new InGameFeatures().isAny())
+            //{
+            //    // System.out.println("InGameOptions");
+            //    this.addCommand(InGameOptionsForm.DISPLAY);
+            //}
+
+            //// this.addCommand(GameCommands.DISPLAY_SAVE_FORM);
+            //this.addCommand(gameCommandsFactory.SAVE);
+            //this.addCommand(gameCommandsFactory.DISPLAY_LOAD_FORM);
+        //}
+    }
+
     public void handleRawKey(final int keyCode, final int deviceId, final boolean repeated) throws Exception {
         this.rawKeyEventHandler.fireEvent(keyCode, deviceId, repeated);
         //final Integer keyCodeAsInteger = smallIntegerSingletonFactory.getInstance(keyCode);
@@ -781,19 +796,6 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         {
             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, SET_RUNNING, e));
         }        
-    }
-
-    @Override
-    public void nextSong(final Sound nextSongSound) {
-        musicManager.nextSong(nextSongSound);
-    }
-
-    @Override
-    public void endGameThread() throws Exception
-    {
-    	super.endGameThread();
-    	
-    	musicManager.stop();
     }
 
     //Special end2 case for GDevelop

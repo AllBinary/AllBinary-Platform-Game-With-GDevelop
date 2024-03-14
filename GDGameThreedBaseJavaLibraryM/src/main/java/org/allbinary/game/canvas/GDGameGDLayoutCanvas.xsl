@@ -1,4 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
+
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -23,12 +26,16 @@ import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Graphics;
 
 import org.allbinary.game.init.GDGameStaticInitializerFactory;
-import org.allbinary.game.level.GDGameLevelBuilder;
+import org.allbinary.game.level.GDGame<GDLayout>LevelBuilder;
+import org.allbinary.graphics.opengles.CurrentDisplayableFactory;
+import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
+import org.allbinary.graphics.opengles.OpenGLFeatureUtil;
 import org.allbinary.input.accelerometer.AccelerometerSensorFactory;
 import org.allbinary.input.gyro.AllBinaryOrientationSensor;
 import org.allbinary.input.gyro.GyroSensorFactory;
 import org.allbinary.media.audio.GDGameSoundsFactory;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -39,41 +46,59 @@ import org.allbinary.game.GameInfo;
 import org.allbinary.game.GameTypeFactory;
 import org.allbinary.game.IntermissionFactory;
 import org.allbinary.canvas.FullScreenUtil;
+import org.allbinary.debug.DebugFactory;
+import org.allbinary.debug.NoDebug;
+import org.allbinary.game.GDGameCommandFactory;
 import org.allbinary.game.collision.OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer;
 import org.allbinary.game.configuration.GameSpeed;
 import org.allbinary.game.configuration.event.ChangedGameFeatureListener;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GameFeature;
 import org.allbinary.game.configuration.feature.GameFeatureFactory;
+import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
+import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
 import org.allbinary.game.combat.canvas.CombatGameCanvas;
+import org.allbinary.game.commands.GameCommandsFactory;
 import org.allbinary.game.displayable.canvas.BaseMenuBehavior;
 import org.allbinary.game.displayable.canvas.GamePerformanceInitUpdatePaintable;
 import org.allbinary.game.displayable.canvas.StartIntermissionPaintable;
 import org.allbinary.game.identification.GroupFactory;
+import org.allbinary.game.input.PlayerGameInput;
+import org.allbinary.game.input.event.DownKeyEventHandler;
+import org.allbinary.game.input.event.UpKeyEventHandler;
 import org.allbinary.game.input.OptimizedGameInputLayerProcessorForCollidableLayer;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.game.layer.GDGameLayerManager;
 import org.allbinary.game.layer.PaintableLayerComposite;
+import org.allbinary.game.layer.PlayerGameInputGameLayer;
 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
 import org.allbinary.game.layout.BaseGDNodeStats;
 import org.allbinary.game.layout.GDNodeStatsFactory;
+import org.allbinary.game.map.GDGeographicMap;
 import org.allbinary.game.score.BasicHighScoresFactory;
+import org.allbinary.game.score.NoHighScoresFactory;
 import org.allbinary.game.state.GameState;
 import org.allbinary.game.tick.OptimizedTickableLayerProcessor;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.color.BasicColor;
+import org.allbinary.graphics.color.SmallBasicColorCacheFactory;
+import org.allbinary.graphics.color.BasicColorUtil;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
 import org.allbinary.game.gd.MusicManagerFactory;
-import org.allbinary.graphics.opengles.OpenGLFeatureUtil;
+import org.allbinary.game.input.event.RawKeyEventHandler;
+import org.allbinary.graphics.opengles.CurrentDisplayableFactory;
+import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
+import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.graphics.paint.InitUpdatePaintable;
 import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.graphics.paint.Paintable;
 import org.allbinary.graphics.paint.PaintableInterface;
 import org.allbinary.graphics.threed.min3d.AllBinarySceneController;
 import org.allbinary.layer.event.LayerManagerEventHandler;
+import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.AllBinaryVibration;
 import org.allbinary.media.audio.AllBinaryMediaManager;
         <xsl:for-each select="layouts" >
@@ -92,12 +117,16 @@ import org.allbinary.media.graphics.geography.map.BasicGeographicMapUtil;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
 import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
             <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
 public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCanvas //AllBinaryGameCanvas
 {
+    private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
+    private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
+        
     private final String GD_LAYOUT_COLOR = "GDLayout<xsl:value-of select="position()" />Color";
 
     private final int WAIT = GameSpeed.getInstance().getDelay();
@@ -113,17 +142,28 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
     private final GDGameInputProcessor gameInputProcessor = new GDGameInputProcessor();
     
+    private final RawKeyEventHandler rawKeyEventHandler = RawKeyEventHandler.getInstance();
+    private final DownKeyEventHandler downKeyEventHandler = DownKeyEventHandler.getInstance();
+    private final UpKeyEventHandler upKeyEventHandler = UpKeyEventHandler.getInstance();
+    private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+ 
     private final MusicManager musicManager;
     
-    public GDGame<GDLayout>Canvas(final CommandListener commandListener,
-            final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception
+    private final AbeClientInformationInterface abeClientInformation;
+    
+    public GDGame<GDLayout>Canvas(final AbeClientInformationInterface abeClientInformation,
+        final CommandListener commandListener, final AllBinaryGameLayerManager allBinaryGameLayerManager) 
+        throws Exception
     {
         super(commandListener, allBinaryGameLayerManager,
-                new BasicHighScoresFactory(GDGameSoftwareInfo.getInstance()),
+                //new BasicHighScoresFactory(abeClientInformation,, GDGameSoftwareInfo.getInstance()),
+                NoHighScoresFactory.getInstance(),
                 new GDGameStaticInitializerFactory(),
            //new BasicBuildGameInitializerFactory(),
            false);
 
+        this.abeClientInformation = abeClientInformation;
+        
         musicManager = MusicManagerFactory.create(GD<xsl:value-of select="$layoutIndex" />GameMusicFactory.getInstance().soundList);
 
         this.cleanupGame();
@@ -167,11 +207,14 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
                                <xsl:variable name="typeValue" select="type/value" />
                                <xsl:if test="$typeValue = 'SceneBackground'" >
         //SceneBackground - this is probably better handled as gdnode.
-        final BasicColor backgroundBasicColor = new BasicColor(255,
-                               <xsl:for-each select="parameters" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:for-each>,
-                               GD_LAYOUT_COLOR);
-        final BasicColor foregroundBasicColor = new BasicColor(255, 255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue,
-                               GD_LAYOUT_COLOR);
+        final BasicColor backgroundBasicColor = smallBasicColorCacheFactory.getInstance(
+                                basicColorUtil.get(255,
+                               <xsl:for-each select="parameters" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:for-each>));
+                               //GD_LAYOUT_COLOR
+        final BasicColor foregroundBasicColor = smallBasicColorCacheFactory.getInstance(
+                                basicColorUtil.get(255,
+                               255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue));
+                               //GD_LAYOUT_COLOR
                                </xsl:if>
                            </xsl:for-each>
                        </xsl:for-each>
@@ -181,11 +224,14 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         <xsl:if test="not(contains($foundSceneBackground, 'found'))" >
         //Using Layout Color before any - //SceneBackground Action
-        final BasicColor backgroundBasicColor = new BasicColor(255,
-                               <xsl:value-of select="r" />, <xsl:value-of select="v" />, <xsl:value-of select="b" />,
-                               GD_LAYOUT_COLOR);
-        final BasicColor foregroundBasicColor = new BasicColor(255, 255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue,
-                               GD_LAYOUT_COLOR);
+        final BasicColor backgroundBasicColor = smallBasicColorCacheFactory.getInstance(
+                                basicColorUtil.get(255,
+                               <xsl:value-of select="r" />, <xsl:value-of select="v" />, <xsl:value-of select="b" />));
+                               //GD_LAYOUT_COLOR
+        final BasicColor foregroundBasicColor = smallBasicColorCacheFactory.getInstance(
+                                basicColorUtil.get(255,
+                               255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue));
+                               //GD_LAYOUT_COLOR
         </xsl:if>
         
         this.gameLayerManager.setBackgroundBasicColor(backgroundBasicColor);
@@ -205,7 +251,8 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     }
 -->
 
-    <xsl:if test="number($layoutIndex) = 0 or position() = last()" >
+    <xsl:variable name="name2" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+    <xsl:if test="number($layoutIndex) = 0 or position() = last() or contains($name2, 'in_game_options') or contains($name2, 'score') or contains($name2, 'over')" >
     public BaseMenuBehavior getInGameMenuBehavior() {
         return BaseMenuBehavior.getInstance();
     }
@@ -291,7 +338,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 //        }
     }
 
-    protected synchronized void initConfigurable()
+    protected synchronized void initConfigurable(final AbeClientInformationInterface abeClientInformation) throws Exception
     {
         try
         {
@@ -300,7 +347,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
             if (ChangedGameFeatureListener.getInstance().isChanged())
             {
-                super.initConfigurable();
+                super.initConfigurable(abeClientInformation);
 
                 //progressCanvas.addPortion(portion, "Group Manager");
                 //GroupLayerManagerListener.getInstance().init(SIZE);
@@ -330,8 +377,10 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     {
         try
         {
+            //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "threadInit"));
+
             final int portion = 60;
-            super.init();
+            super.init(this.abeClientInformation);
 
             if (!this.isRunning())
             {
@@ -403,6 +452,8 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
     public void buildGame(boolean isProgress) throws Exception
     {
+        //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "buildGame"));
+    
         this.specialAnimation = GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance(this, gameLayerManager);
         this.setPlayingGameState();
         
@@ -443,7 +494,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         final AllBinaryGameLayerManager layerManager = this.getLayerManager();
         final OpenGLFeatureUtil openGLFeatureUtil = OpenGLFeatureUtil.getInstance();
             
-        new GDGameLevelBuilder(layerManager).build();
+        new GDGame<GDLayout>LevelBuilder(layerManager).build();
 
         if (openGLFeatureUtil.isAnyThreed())
         {
@@ -460,9 +511,12 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         
         progressCanvas.addPortion(portion, "Set Background");
 
+        <xsl:variable name="hasOneOrMoreTileMaps" ><xsl:for-each select="objects" ><xsl:if test="type = 'TileMap::TileMap'" >found</xsl:if></xsl:for-each></xsl:variable>
+        
+        <xsl:if test="contains($hasOneOrMoreTileMaps, 'found')" >
         //Some games update backgrounds here
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
-            (GeographicMapCompositeInterface) this.getLayerManager();
+            (GeographicMapCompositeInterface) layerManager;
         
         final BasicGeographicMap[] geographicMapInterfaceArray = 
             geographicMapCompositeInterface.getGeographicMapInterface();
@@ -474,6 +528,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
                 //geographicMapInterface.getForegroundBasicColor());
 
         this.tileLayerPaintable = new PaintableLayerComposite(BasicGeographicMapUtil.getInstance().createAllBinaryTiledLayerArray(geographicMapInterfaceArray));
+        </xsl:if>
 
         //this.playerLayer = ((GDGameLayerManager) this.getLayerManager()).getPlayerLayer();
 
@@ -502,19 +557,6 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         // A canvas not in GameState.PLAYING_GAME_STATE will not appear in
         // democanvas
         this.setGameState(GameState.PLAYING_GAME_STATE);
-    }
-
-    protected void cleanupGame() throws Exception
-    {
-        super.cleanupGame();
-        
-        if (OpenGLFeatureUtil.getInstance().isAnyThreed())
-        {
-            AllBinarySceneController sceneController = GDGameAllBinarySceneControllerFactory.getInstance();
-            sceneController.clear();
-        }
-        
-        gameLayerManager.cleanup();
     }
 
     public void setGameState(GameState gameState) throws Exception
@@ -664,6 +706,24 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         super.processPlayingGame();
 
+        <xsl:if test="contains($hasOneOrMoreTileMaps, 'found')" >
+
+        //Some games update backgrounds here
+        final GeographicMapCompositeInterface geographicMapCompositeInterface = 
+            (GeographicMapCompositeInterface) this.getLayerManager();
+        
+        final BasicGeographicMap[] geographicMapInterfaceArray = 
+            geographicMapCompositeInterface.getGeographicMapInterface();
+            
+        GDGeographicMap geographicMapInterface;
+        final int size = geographicMapInterfaceArray.length;
+        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+            geographicMapInterface = (GDGeographicMap) geographicMapInterfaceArray[index];
+            geographicMapInterface.update();
+        }
+        
+        </xsl:if>
+
         this.specialAnimation.process();
         
         gdNodeStatsFactory.log(stringBuilder, this);
@@ -682,6 +742,96 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     	musicManager.stop();
     }
 
+    public void addCommands()
+    {
+        final GDGameCommandFactory gdGameCommandFactory = GDGameCommandFactory.getInstance();
+        final GameCommandsFactory gameCommandsFactory = GameCommandsFactory.getInstance();
+        final MyCommandsFactory myCommandsFactory = MyCommandsFactory.getInstance();
+        //final HTMLFeatureFactory htmlFeatureFactory = HTMLFeatureFactory.getInstance();
+
+        if (DebugFactory.getInstance() != NoDebug.getInstance())
+        {
+            this.addCommand(gameCommandsFactory.START_TRACE);
+        }
+
+        this.addCommand(gameCommandsFactory.RESTART_COMMAND);
+
+        this.addCommand(myCommandsFactory.PAUSE_COMMAND);
+
+        this.addCommand(gameCommandsFactory.QUIT_COMMAND);
+
+        <xsl:for-each select="../layouts" >
+            <xsl:variable name="name2" ><xsl:value-of select="translate(name, '_', ' ')" /></xsl:variable>
+            <xsl:variable name="name3" >GDGame<xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
+            <xsl:variable name="name" ><xsl:value-of select="translate($name3, ' ', '')" /></xsl:variable>
+            <xsl:if test="contains(name, 'in_game_options')" >
+        this.addCommand(gdGameCommandFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_GD_LAYOUT);
+            </xsl:if>
+        </xsl:for-each>
+           
+
+        //boolean isOverScan = OperatingSystemFactory.getInstance().getOperatingSystemInstance().isOverScan();
+        
+        //final Features features = Features.getInstance();
+
+        //if(!features.isDefault(htmlFeatureFactory.HTML) and !isOverScan)
+        //{
+            //if (TouchScreenFactory.getInstance().isTouch() and new InGameFeatures().isAny())
+            //{
+            //    // System.out.println("InGameOptions");
+            //    this.addCommand(InGameOptionsForm.DISPLAY);
+            //}
+
+            //// this.addCommand(GameCommands.DISPLAY_SAVE_FORM);
+            //this.addCommand(gameCommandsFactory.SAVE);
+            //this.addCommand(gameCommandsFactory.DISPLAY_LOAD_FORM);
+        //}
+    }
+
+    public void handleRawKey(final int keyCode, final int deviceId, final boolean repeated) throws Exception {
+        this.rawKeyEventHandler.fireEvent(keyCode, deviceId, repeated);
+        //final Integer keyCodeAsInteger = smallIntegerSingletonFactory.getInstance(keyCode);
+        //this.upKeyEventHandler.fireEvent(keyCodeAsInteger);
+        //this.upKeyEventHandler.getInstance(deviceId).fireEvent(keyCodeAsInteger);
+    }
+
+    public void addKeyInputListener(final PlayerGameInput playerGameInput) {
+        super.addKeyInputListener(playerGameInput);
+
+        this.downKeyEventHandler.getInstanceForPlayer(playerGameInput.getPlayerInputId()).addListenerSingleThreaded(playerGameInput);
+        this.upKeyEventHandler.getInstanceForPlayer(playerGameInput.getPlayerInputId()).addListenerSingleThreaded(playerGameInput);
+    }
+            
+    public void removeKeyInputListener(final PlayerGameInput playerGameInput) {
+        super.removeKeyInputListener(playerGameInput);
+
+        this.downKeyEventHandler.removeListener(playerGameInput);
+        this.upKeyEventHandler.removeListener(playerGameInput);
+    }
+
+    public void setRunning(final boolean running) 
+    {
+        super.setRunning(running);
+
+        try
+        {
+            final Features features = Features.getInstance();
+            
+            //If game thread is not actually running
+            if ((features.isDefault(OpenGLFeatureFactory.getInstance().OPENGL) ||
+                    features.isDefault(HTMLFeatureFactory.getInstance().HTML))
+                    <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> !running)
+            {
+                final CurrentDisplayableFactory currentDisplayableFactory = CurrentDisplayableFactory.getInstance();
+                currentDisplayableFactory.clearRunnable();
+                this.end();
+            }
+        } catch (Exception e)
+        {
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, SET_RUNNING, e));
+        }        
+    }
+        
     //Special end case for GDevelop
     public void end2() {
 //        try {
@@ -693,6 +843,35 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 //        {
 //            LogUtil.put(LogFactory.getInstance(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e));
 //        }
+    }
+
+    //Special end case for GDevelop
+    public void end() {
+        try {
+            super.end();
+            musicManager.stop();
+            this.cleanupManager();
+            this.specialAnimation.reset();
+            //GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance().clear();
+            GDGameGlobals.getInstance().reset();
+            LogUtil.put(LogFactory.getInstance(this.commonStrings.END, this, this.commonStrings.END));
+        } catch (Exception e)
+        {
+            LogUtil.put(LogFactory.getInstance(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e));
+        }
+    }
+
+    protected void cleanupGame() throws Exception
+    {
+        super.cleanupGame();
+        
+        if (OpenGLFeatureUtil.getInstance().isAnyThreed())
+        {
+            AllBinarySceneController sceneController = GDGameAllBinarySceneControllerFactory.getInstance();
+            sceneController.clear();
+        }
+        
+        gameLayerManager.cleanup();
     }
 
 }

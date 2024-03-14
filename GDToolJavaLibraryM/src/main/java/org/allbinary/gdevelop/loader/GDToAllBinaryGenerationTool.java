@@ -85,6 +85,9 @@ public class GDToAllBinaryGenerationTool
     private final GDLayoutsToAllBinaryGenerator runnableGenerator = new GDLayoutsToAllBinaryGenerator(
             "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\midlet\\GDLayoutRunnable.xsl", 
             "GDGameBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\midlet\\GDGame", "CanvasRunnable.java");
+    private final GDLayoutsToAllBinaryGenerator levelBuilderThreedGenerator = new GDLayoutsToAllBinaryGenerator(
+            "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\level\\GDGameLevelBuilder.xsl", 
+            "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\level\\GDGame", "LevelBuilder.java");
     private final GDLayoutsToAllBinaryGenerator runnableThreedGenerator = new GDLayoutsToAllBinaryGenerator(
             "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\midlet\\GDLayoutRunnable.xsl",
             "GDGameThreedBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\midlet\\GDGame", "CanvasRunnable.java");
@@ -175,6 +178,7 @@ public class GDToAllBinaryGenerationTool
         this.midletGenerator.process();
         this.levelBuilderGenerator.process();
         this.runnableGenerator.process();
+        this.levelBuilderThreedGenerator.process();
         this.runnableThreedGenerator.process();
 
         final int size = this.layoutList.size();
@@ -283,6 +287,7 @@ public class GDToAllBinaryGenerationTool
         this.midletGenerator.loadLayout(layout, index, size);
         this.levelBuilderGenerator.loadLayout(layout, index, size);
         this.runnableGenerator.loadLayout(layout, index, size);
+        this.levelBuilderThreedGenerator.loadLayout(layout, index, size);
         this.runnableThreedGenerator.loadLayout(layout, index, size);
 
         final GDToAllBinaryCanvasGenerator canvasGenerator = new GDToAllBinaryCanvasGenerator(
