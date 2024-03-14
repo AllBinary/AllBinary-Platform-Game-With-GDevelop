@@ -37,9 +37,10 @@ import org.allbinary.logic.system.security.licensing.GDGameClientInformationInte
 
 public class GDGameAndroidActivity extends GameMidletActivity
 {
-    public AbeClientInformationInterface getClientInformation() {
-        return GDGameClientInformationInterfaceFactory.getInstance();
-    }
+//    @Override
+//    public AbeClientInformationInterface getClientInformation() {
+//        return GDGameClientInformationInterfaceFactory.getInstance();
+//    }
     
     public GDGameAndroidActivity()
     {
