@@ -72,7 +72,7 @@ import org.allbinary.game.score.displayable.HighScoresCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
-import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
+import org.allbinary.logic.system.security.licensing.ClientInformationFactory;
 import org.allbinary.media.audio.AllBinaryMediaManagerShutdown;
 import org.allbinary.media.audio.EarlySoundsFactory;
 import org.allbinary.midlet.MidletStrings;
@@ -86,9 +86,9 @@ public class GDGameMIDlet extends
    //DemoGameMidlet
 {
 
-   public GDGameMIDlet(final AbeClientInformationInterface abeClientInformation)
+   public GDGameMIDlet(final ClientInformationFactory clientInformationFactory)
    {
-       super(abeClientInformation, LicenseLoadingTypeFactory.getIntance().OTHER);
+       super(clientInformationFactory, LicenseLoadingTypeFactory.getIntance().OTHER);
        //this.setSaveGameForm(SaveGameForm.getInstance(this, "Save Game"));
        
        //com.sun.lwuit.Display.init(this);

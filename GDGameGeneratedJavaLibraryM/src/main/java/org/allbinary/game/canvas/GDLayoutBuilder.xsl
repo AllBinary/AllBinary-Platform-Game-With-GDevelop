@@ -520,8 +520,8 @@ Created By: Travis Berthelot
                     //eventsKeyFromTextConditions - END
 
 
-                    <xsl:variable name="hasTextInput" ><xsl:for-each select="objects" ><xsl:if test="type = 'TextInput::TextInputObject'" >found</xsl:if></xsl:for-each></xsl:variable>
-                    <xsl:if test="contains($hasTextInput, 'found')" >
+                    <xsl:variable name="hasForm" ><xsl:for-each select="objects" ><xsl:if test="type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >found</xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:if test="contains($hasForm, 'found')" >
                     final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                     final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
                     abCanvas.setInputProcessor(abCanvas.getRawInputProcessor());
