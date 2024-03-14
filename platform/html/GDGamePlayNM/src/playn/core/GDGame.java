@@ -38,8 +38,8 @@ Pointer.Listener
     
     public GDGame()
     {
-        super(GDGameClientInformationInterfaceFactory.getInstance());
-        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getInstance();
+        super(GDGameClientInformationInterfaceFactory.getFactoryInstance());
+        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance();
 
         final BasicMotionGesturesHandler motionGesturesHandler =
             motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();

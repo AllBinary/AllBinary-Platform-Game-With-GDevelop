@@ -13,15 +13,24 @@
 */
 package org.allbinary.logic.system.security.licensing;
 
-import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
-
-public class GDGameClientInformationInterfaceFactory
+public class GDGameClientInformationInterfaceFactory extends ClientInformationFactory
 {
-    private static final AbeClientInformationInterface SINGLETON = 
-        new GDGamePCClientInformation();
+    private static final ClientInformationFactory instance = new GDGameClientInformationInterfaceFactory();
 
-    public static AbeClientInformationInterface getInstance()
+    /**
+     * @return the instance
+     */
+    public static ClientInformationFactory getFactoryInstance() {
+        return instance;
+    }
+    
+    private ClientInformation clientInformation;
+
+    public ClientInformation getInstance()
     {
-        return SINGLETON;
+        if(this.clientInformation == null) {
+            clientInformation = new GDGamePCClientInformation();
+        }
+        return clientInformation;
     }
 }

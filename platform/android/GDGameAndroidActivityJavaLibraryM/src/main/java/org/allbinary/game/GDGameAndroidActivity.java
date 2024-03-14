@@ -32,7 +32,6 @@ import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
-
 import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
 
 public class GDGameAndroidActivity extends GameMidletActivity

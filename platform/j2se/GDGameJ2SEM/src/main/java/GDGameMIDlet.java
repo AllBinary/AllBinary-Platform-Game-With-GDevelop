@@ -30,10 +30,10 @@ public class GDGameMIDlet
 
     public GDGameMIDlet()
     {
-        super(GDGameClientInformationInterfaceFactory.getInstance());
-        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getInstance();
+        super(GDGameClientInformationInterfaceFactory.getFactoryInstance());
+        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance();
         
-        BasicMotionGesturesHandler motionGesturesHandler =
+        final BasicMotionGesturesHandler motionGesturesHandler =
             motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
 
         motionGesturesHandler.addListener(
@@ -51,18 +51,18 @@ public class GDGameMIDlet
 
             ResourceUtil.getInstance().setClassLoader(this.getClass().getClassLoader());
 
-            Features features = Features.getInstance();
+            final Features features = Features.getInstance();
 
-            GameFeatureFactory gameFeatureFactory =
+            final GameFeatureFactory gameFeatureFactory =
                 GameFeatureFactory.getInstance();
 
-            InputFeatureFactory inputFeatureFactory =
+            final InputFeatureFactory inputFeatureFactory =
                 InputFeatureFactory.getInstance();
 
-            GraphicsFeatureFactory graphicsFeatureFactory =
+            final GraphicsFeatureFactory graphicsFeatureFactory =
                 GraphicsFeatureFactory.getInstance();
 
-            SensorFeatureFactory sensorFeatureFactory =
+            final SensorFeatureFactory sensorFeatureFactory =
                     SensorFeatureFactory.getInstance();
 
             features.removeDefault(sensorFeatureFactory.ORIENTATION_SENSORS);
@@ -86,10 +86,10 @@ public class GDGameMIDlet
             //features.addDefault(inputFeatureFactory.SINGLE_KEY_PRESS);
             features.addDefault(inputFeatureFactory.REMOVE_DUPLICATE_KEY_PRESSES);
 
-            GameConfigurationCentral gameConfigurationCentral =
+            final GameConfigurationCentral gameConfigurationCentral =
                     GameConfigurationCentral.getInstance();
 
-            SmallIntegerSingletonFactory smallIntegerSingletonFactory = 
+            final SmallIntegerSingletonFactory smallIntegerSingletonFactory = 
                     SmallIntegerSingletonFactory.getInstance();
 
             gameConfigurationCentral.VIBRATION.setDefaultValue(smallIntegerSingletonFactory.getInstance(0));

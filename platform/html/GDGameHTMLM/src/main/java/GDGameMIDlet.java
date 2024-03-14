@@ -18,8 +18,8 @@ public class GDGameMIDlet
 {
     public GDGameMIDlet()
     {
-        super(GDGameClientInformationInterfaceFactory.getInstance());
-        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getInstance();
+        super(GDGameClientInformationInterfaceFactory.getFactoryInstance());
+        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance();
         new DefaultGameInitializationListener();
     }
 
