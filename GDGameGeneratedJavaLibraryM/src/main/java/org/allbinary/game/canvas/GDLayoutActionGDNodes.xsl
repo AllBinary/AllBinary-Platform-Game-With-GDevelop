@@ -112,6 +112,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.displayable.MyCanvas;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
+                import org.allbinary.input.event.VirtualKeyboardEventHandler;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.layer.AllBinaryLayerManager;
                 import org.allbinary.logic.string.CommonStrings;
@@ -147,9 +148,10 @@ Created By: Travis Berthelot
                         private final PointFactory pointFactory = PointFactory.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
                         private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
+                        private final VirtualKeyboardEventHandler virtualKeyboardEventHandler = VirtualKeyboardEventHandler.getInstance();
                         private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
                         private final GameTickTimeDelayHelperFactory gameTickTimeDelayHelperFactory = GameTickTimeDelayHelperFactory.getInstance();
-                        private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
+                        private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();    
 
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GDGlobalsGDResources globalResources = GDGlobalsGDResources.getInstance();
