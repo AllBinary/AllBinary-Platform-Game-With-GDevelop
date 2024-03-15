@@ -60,7 +60,7 @@ public class CustomTextBoxIndexedAnimationFactory
             abCanvas.getCustomCommandListener(),
             StringUtil.getInstance().EMPTY_STRING,
             StringUtil.getInstance().EMPTY_STRING,
-            12, TextField.ANY, font,
+            8, TextField.ANY, font,
             abCanvas.getLayerManager().getBackgroundBasicColor(),
             abCanvas.getLayerManager().getForegroundBasicColor());
 

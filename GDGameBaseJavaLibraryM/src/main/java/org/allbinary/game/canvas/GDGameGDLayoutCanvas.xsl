@@ -238,7 +238,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     }-->
 
     <xsl:variable name="name2" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-    <xsl:if test="number($layoutIndex) = 0 or position() = last() or contains($name2, 'in_game_options') or contains($name2, 'score') or contains($name2, 'over')" >
+    <xsl:if test="number($layoutIndex) = 0 or position() = last() or contains($name2, 'game_options') or contains($name2, 'score') or contains($name2, 'over')" >
     public BaseMenuBehavior getInGameMenuBehavior() {
         return BaseMenuBehavior.getInstance();
     }
@@ -286,8 +286,17 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     {
         super.initSpecialPaint();
 
-        this.setStartIntermissionPaintable(new StartIntermissionPaintable(
-                this, new String[] {StringUtil.getInstance().EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED));
+        <xsl:if test="number($layoutIndex) = 0 or position() = last() or contains($name2, 'game_options') or contains($name2, 'score') or contains($name2, 'over')" >
+        this.setStartIntermissionPaintable(NullPaintable.getInstance());
+        </xsl:if>
+            
+        <xsl:if test="not(number($layoutIndex) = 0 or position() = last() or contains($name2, 'game_options') or contains($name2, 'score') or contains($name2, 'over'))" >
+        final Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, fontSize);        
+        this.setStartIntermissionPaintable(
+            new StartIntermissionPaintable(this, new String[] {StringUtil.getInstance().EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED, )
+            //new StartIntermissionPaintable(this, new String[] {StringUtil.getInstance().EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED)
+            );
+        </xsl:if>
     }
 
     public void mediaInit() throws Exception
@@ -728,7 +737,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             <xsl:variable name="name2" ><xsl:value-of select="translate(name, '_', ' ')" /></xsl:variable>
             <xsl:variable name="name3" >GDGame<xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
             <xsl:variable name="name" ><xsl:value-of select="translate($name3, ' ', '')" /></xsl:variable>
-            <xsl:if test="contains(name, 'in_game_options')" >
+            <xsl:if test="contains(name, 'game_options')" >
         this.addCommand(gdGameCommandFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_GD_LAYOUT);
             </xsl:if>
         </xsl:for-each>
