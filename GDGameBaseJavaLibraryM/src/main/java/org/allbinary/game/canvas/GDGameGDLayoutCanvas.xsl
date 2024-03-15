@@ -23,6 +23,7 @@
 package org.allbinary.game.canvas;
 
 import javax.microedition.lcdui.CommandListener;
+import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
 
 import org.allbinary.game.init.GDGameStaticInitializerFactory;
@@ -87,6 +88,7 @@ import org.allbinary.graphics.opengles.CurrentDisplayableFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.graphics.paint.InitUpdatePaintable;
+import org.allbinary.graphics.paint.NullInitUpdatePaintable;
 import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.graphics.paint.Paintable;
 import org.allbinary.graphics.paint.PaintableInterface;
@@ -287,13 +289,14 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         super.initSpecialPaint();
 
         <xsl:if test="number($layoutIndex) = 0 or position() = last() or contains($name2, 'game_options') or contains($name2, 'score') or contains($name2, 'over')" >
-        this.setStartIntermissionPaintable(NullPaintable.getInstance());
+        this.setStartIntermissionPaintable(NullInitUpdatePaintable.getInstance());
         </xsl:if>
             
         <xsl:if test="not(number($layoutIndex) = 0 or position() = last() or contains($name2, 'game_options') or contains($name2, 'score') or contains($name2, 'over'))" >
+        final int fontSize = 24;
         final Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, fontSize);        
         this.setStartIntermissionPaintable(
-            new StartIntermissionPaintable(this, new String[] {StringUtil.getInstance().EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED, )
+            new StartIntermissionPaintable(this, new String[] {StringUtil.getInstance().EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED, font)
             //new StartIntermissionPaintable(this, new String[] {StringUtil.getInstance().EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED)
             );
         </xsl:if>
@@ -737,7 +740,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             <xsl:variable name="name2" ><xsl:value-of select="translate(name, '_', ' ')" /></xsl:variable>
             <xsl:variable name="name3" >GDGame<xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>Canvas</xsl:variable>
             <xsl:variable name="name" ><xsl:value-of select="translate($name3, ' ', '')" /></xsl:variable>
-            <xsl:if test="contains(name, 'game_options')" >
+            <xsl:if test="contains(name, 'in_game_options')" >
         this.addCommand(gdGameCommandFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_GD_LAYOUT);
             </xsl:if>
         </xsl:for-each>

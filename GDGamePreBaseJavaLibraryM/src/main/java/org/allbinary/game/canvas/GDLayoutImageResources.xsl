@@ -66,6 +66,7 @@ Created By: Travis Berthelot
 
                 import javax.microedition.lcdui.Image;
 
+                import org.allbinary.AndroidUtil;
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
