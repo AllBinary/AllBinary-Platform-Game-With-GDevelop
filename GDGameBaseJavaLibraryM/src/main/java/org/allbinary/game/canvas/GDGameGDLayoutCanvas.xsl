@@ -84,6 +84,7 @@ import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
 import org.allbinary.game.gd.MusicManagerFactory;
+import org.allbinary.game.layer.hud.event.GameNotificationEventHandler;
 import org.allbinary.graphics.opengles.CurrentDisplayableFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.graphics.paint.NullPaintable;
@@ -289,10 +290,12 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         super.initSpecialPaint();
 
         <xsl:if test="number($layoutIndex) = 0 or position() = last() or contains($name2, 'game_options') or contains($name2, 'score') or contains($name2, 'over')" >
+        GameNotificationEventHandler.getInstance().enabled = false;
         this.setStartIntermissionPaintable(NullInitUpdatePaintable.getInstance());
         </xsl:if>
             
         <xsl:if test="not(number($layoutIndex) = 0 or position() = last() or contains($name2, 'game_options') or contains($name2, 'score') or contains($name2, 'over'))" >
+        GameNotificationEventHandler.getInstance().enabled = true;
         final int fontSize = 24;
         final Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, fontSize);        
         this.setStartIntermissionPaintable(
