@@ -81,13 +81,13 @@ public class GDToAllBinaryResourcesGenerator
             resourceStringMaker.append(COMMENT);
         }
 
-        //if(!this.hasRotationImages) {
+        if(!this.hasRotationImages) {
             for (int index2 = 2; index2 < size2; index2++) {
                 if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
                     resourceStringMaker.append(COMMENT);
                 }
             }
-        //}
+        }
         
         resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
         resourceStringMaker.append(name);
