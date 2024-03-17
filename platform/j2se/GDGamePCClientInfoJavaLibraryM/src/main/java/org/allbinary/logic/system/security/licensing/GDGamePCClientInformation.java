@@ -13,7 +13,6 @@
 */
 package org.allbinary.logic.system.security.licensing;
 
-import org.allbinary.logic.system.security.licensing.AbeClientInformation;
 import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
 
@@ -21,6 +20,8 @@ import org.allbinary.game.canvas.GDGameSoftwareInfo;
 public class GDGamePCClientInformation
 extends AbeClientInformation
 {
+    protected static final GDGamePCClientInformation instance = new GDGamePCClientInformation();
+    
     private final static String PC_DESC = "PC";
     public GDGamePCClientInformation()
     {

@@ -6,6 +6,8 @@ import org.allbinary.logic.string.CommonSeps;
 public class GDGameAndroidMobileClientInformation extends
     MobileClientInformation
 {
+    protected static final GDGameAndroidMobileClientInformation instance = new GDGameAndroidMobileClientInformation();
+
     public GDGameAndroidMobileClientInformation()
     {
         super(

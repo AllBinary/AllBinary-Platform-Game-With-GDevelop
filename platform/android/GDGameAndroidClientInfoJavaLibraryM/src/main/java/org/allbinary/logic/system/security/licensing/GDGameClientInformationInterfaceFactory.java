@@ -11,13 +11,8 @@ public class GDGameClientInformationInterfaceFactory extends ClientInformationFa
         return instance;
     }
     
-    private ClientInformation clientInformation;
-
     public ClientInformation getInstance()
     {
-        if(this.clientInformation == null) {
-            clientInformation = new GDGameAndroidMobileClientInformation();
-        }
-        return clientInformation;
+        return GDGameAndroidMobileClientInformation.instance;
     }
 }
