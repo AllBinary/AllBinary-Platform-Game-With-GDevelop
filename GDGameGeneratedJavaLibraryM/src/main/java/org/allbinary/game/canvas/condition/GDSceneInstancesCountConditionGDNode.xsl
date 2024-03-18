@@ -148,9 +148,11 @@ Created By: Travis Berthelot
                                         <xsl:if test="not(type = 'BuiltinCommonInstructions::Standard')" >
                                         //Was not including - <xsl:value-of select="type" /> before
                                         </xsl:if>
+                                        <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                                         //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> 
                                         //Event - <xsl:value-of select="type" /> - call
                                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                        </xsl:if>
                                     </xsl:for-each>
                                    
                                     <xsl:if test="not(contains($hasCondition, 'found'))" >

@@ -198,7 +198,7 @@ Created By: Travis Berthelot
                                 </xsl:with-param>
                             </xsl:call-template>
                             
-                            LogUtil.put(LogFactory.getInstance(new StringMaker().append(commonStrings.CONSTRUCTOR).append(":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder scale: ").append(scale).toString(), this, commonStrings.CONSTRUCTOR));
+                            LogUtil.put(LogFactory.getInstance(new StringMaker().append(commonStrings.START).append(":GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder scale: ").append(scale).toString(), this, commonStrings.CONSTRUCTOR));
 
                     <xsl:call-template name="findMousePositionNeeded" >
                         <xsl:with-param name="totalRecursions" >
@@ -541,6 +541,7 @@ Created By: Travis Berthelot
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                         }
                     
+                        LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
                     }
                     
                     public int SceneWindowWidth() {
