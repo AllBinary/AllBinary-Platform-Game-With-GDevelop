@@ -55,7 +55,10 @@ Created By: Travis Berthelot
                                         </xsl:for-each>
                                         </xsl:variable>
                                         <xsl:if test="not(contains($hasPriorDuplicate, 'found'))" >
-                                        final GDObject <xsl:value-of select="$name2" /> = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDGameLayerList.get(0)).gdObject;
+                                        GDObject <xsl:value-of select="$name2" /> = null;
+                                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                                            <xsl:value-of select="$name2" /> = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDGameLayerList.get(0)).gdObject;
+                                        }
                                         </xsl:if>
                                     </xsl:if>
                                 </xsl:if>
