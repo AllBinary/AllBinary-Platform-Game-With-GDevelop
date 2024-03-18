@@ -223,7 +223,6 @@ Created By: Travis Berthelot
                         
                                 return this.processGPaint(gameLayer.gdObject, graphics);
 
-                            return true;
                         }
 
                         @Override

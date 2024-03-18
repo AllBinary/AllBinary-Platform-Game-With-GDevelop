@@ -57,10 +57,10 @@ Created By: Travis Berthelot
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
                                         final BasicColor basicColor = smallBasicColorCacheFactory.getInstance(colorAsInt);
-                                        final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />GDGameLayerList.size();
+                                        final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size();
                                         GDGameLayer gameLayer;
                                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                            gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />GDGameLayerList.get(index);
+                                            gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index);
                                             gameLayer.setBasicColor(basicColor);
                                             //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />TextAnimation.setBasicColor(smallBasicColorCacheFactory.getInstance(colorAsInt));
                                         }

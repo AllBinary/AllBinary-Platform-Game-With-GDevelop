@@ -34,7 +34,7 @@ Created By: Travis Berthelot
                                 </xsl:with-param>
                                 <xsl:with-param name="find" >ToString(</xsl:with-param>
                                 <xsl:with-param name="replacementText" >ToNotString(</xsl:with-param>
-                            </xsl:call-template>, <xsl:value-of select="text()" />
+                            </xsl:call-template>
                         </xsl:if>
                         <xsl:if test="position() = last()" >));</xsl:if>
                     </xsl:for-each>
