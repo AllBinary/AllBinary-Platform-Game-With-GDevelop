@@ -182,6 +182,27 @@ Created By: Travis Berthelot
                 
     </xsl:template>
 
+    <xsl:template name="forEachProcessGD" >
+        <xsl:param name="totalRecursions" />
+        
+        <xsl:for-each select=".." >
+            <xsl:if test="events[type = 'BuiltinCommonInstructions::ForEach']" >
+                //From parent BuiltinCommonInstructions::ForEach
+                //totalRecursions=<xsl:value-of select="$totalRecursions" />
+                @Override
+                public boolean processGD(final GDGameLayer <xsl:value-of select="events[type = 'BuiltinCommonInstructions::ForEach']/object" />GDGameLayer, final GDGameLayer unusedGDGameLayer, final Graphics graphics) throws Exception {
+            </xsl:if>
+            
+            <xsl:call-template name="forEachProcessGD" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions + 1" />
+                </xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+                
+    </xsl:template>
+
     <xsl:template name="collisionProcessGD" >
         <xsl:param name="totalRecursions" />
         
@@ -320,6 +341,24 @@ Created By: Travis Berthelot
             </xsl:if>
             
             <xsl:call-template name="hasLinkedObjectsPickObjectsLinkedToProcessGD" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions + 1" />
+                </xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+                
+    </xsl:template>
+
+    <xsl:template name="hasForEachProcessGD" >
+        <xsl:param name="totalRecursions" />
+        
+        <xsl:for-each select=".." >
+            <xsl:if test="events[type = 'BuiltinCommonInstructions::ForEach']" >
+                found
+            </xsl:if>
+            
+            <xsl:call-template name="hasForEachProcessGD" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
