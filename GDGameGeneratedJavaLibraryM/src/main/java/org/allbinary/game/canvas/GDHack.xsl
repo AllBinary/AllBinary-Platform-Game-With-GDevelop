@@ -320,7 +320,7 @@ Created By: Travis Berthelot
                             if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> size) {
                                 //LogUtil.put(LogFactory.getInstance("A: Keep from creating again before last time: <xsl:value-of select="text()" />", this, commonStrings.PROCESS));
                                 //caller=<xsl:value-of select="$caller" />
-                                return <xsl:if test="contains($caller, 'hackProcessing2') or $caller = 'conditionLayout - //VarScene'" > true</xsl:if>;
+                                return <xsl:if test="contains($caller, 'hackProcessing2') or $caller = 'conditionLayout - //VarScene' or $caller = 'otherEventLayout - //eventsCreateAssignXGDObjectGDNodesOtherEvent' or $caller = 'externalEventsCreateAssignGDObject - //eventsCreateAssignXGDObjectGDNodesOtherEvent'" > true</xsl:if>;
                             }
                         </xsl:if>
                     </xsl:for-each>
@@ -441,19 +441,23 @@ Created By: Travis Berthelot
             </xsl:variable>
             
             <xsl:if test="$gameObjectNames != ''" >
+                <xsl:if test="not(contains($hasCreate, 'found'))" >
                 <xsl:variable name="gameObjectName" ><xsl:value-of select="substring-before($gameObjectNames, ',')" /></xsl:variable>
                 //This may need to loop through more than 1 game object found: <xsl:value-of select="$gameObjectName" /> 
                 //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Create - //<xsl:value-of select="$gameObjectName" />
                 if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameObjectName" />GDGameLayerList.size() == 0) {
                     //caller=<xsl:value-of select="$caller" />
-                    return <xsl:if test="contains($caller, 'hackProcessing2') or $caller = 'conditionLayout - //VarScene'" > false</xsl:if>;
+                    return <xsl:if test="contains($caller, 'hackProcessing2') or $caller = 'conditionLayout - //VarScene' or $caller = 'otherEventLayout - //eventsCreateAssignXGDObjectGDNodesOtherEvent' or $caller = 'externalEventsCreateAssignGDObject - //eventsCreateAssignXGDObjectGDNodesOtherEvent'" > true</xsl:if>;
                 }
 
-                GDObject <xsl:value-of select="$gameObjectName" /> = null;                
-                if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameObjectName" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                    <xsl:value-of select="$gameObjectName" /> = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameObjectName" />GDGameLayerList.get(0)).gdObject;
-                }
+                //GDObject <xsl:value-of select="$gameObjectName" /> = null;
+                //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameObjectName" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                    //<xsl:value-of select="$gameObjectName" /> = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameObjectName" />GDGameLayerList.get(0)).gdObject;
+                //}
+                final GDObject <xsl:value-of select="$gameObjectName" /> = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameObjectName" />GDGameLayerList.get(0)).gdObject;
+                </xsl:if>
             </xsl:if>
+
             </xsl:if>
 
             <!--  -->
@@ -1036,40 +1040,45 @@ Created By: Travis Berthelot
             </xsl:if>
             </xsl:if>
 
-            <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
-            <xsl:if test="not(contains($hasOnceCondition, 'found'))" >
-                
-            <xsl:if test="contains($alreadyUsedParentCondition, 'found')" >
-            <xsl:if test="conditions" >
-                }
-            </xsl:if>
-            </xsl:if>
-                
-            <xsl:if test="not(contains($alreadyUsedParentCondition, 'found'))" >
-                
-            <xsl:if test="not(contains($hasOnceCondition, 'found'))" >
-                
-            <xsl:variable name="hasActions" ><xsl:for-each select="actions" >found</xsl:for-each></xsl:variable>
 
+            <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
+            //condition ending - //alreadyUsedCondition - not - //1 - START
+
+            <xsl:if test="not(contains($alreadyUsedParentCondition, 'found'))" >
+            //condition ending - //alreadyUsedParentCondition - not - START
+
+            <xsl:if test="not(contains($hasOnceCondition, 'found'))" >
+            //condition ending - //alreadyUsedCondition - not - //2 - START
             <xsl:for-each select="conditions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:if test="($conditionPosition = '' and position() = 1) or position() = $conditionPosition + 1" >
                 <xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >
                 <xsl:if test="type/value != 'DepartScene' and type/value != 'SoundPlaying' and (not(contains($caller, 'eventsCreateAssignGDObject') and type/value = 'NbObjet'))" >
-                    
-                <xsl:if test="contains($hasActions, 'found')" >
                 //Condition - END
-                </xsl:if>   
                 }
                 </xsl:if>
                 </xsl:if>
                 </xsl:if>
             </xsl:for-each>
+            //condition ending - //alreadyUsedCondition - not - //2 - END
+            </xsl:if>
+
+            //condition ending - //alreadyUsedParentCondition - not - START
+            </xsl:if>
+                        
+            <xsl:if test="contains($alreadyUsedParentCondition, 'found')" >
+            <xsl:for-each select="conditions" >
+                <xsl:variable name="typeValue" select="type/value" />
+                <xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >
+                //Condition - END
+                }
+                </xsl:if>
+            </xsl:for-each>
             </xsl:if>
             
+            //condition ending - //alreadyUsedCondition - not - END
             </xsl:if>
-            </xsl:if>
-            </xsl:if>
+
 
                     } catch(Exception e) {
                     //1

@@ -16,6 +16,9 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
+    <xsl:import href="./GDNodeId.xsl" />
+    <xsl:import href="./GDEventLogicConstruction.xsl" />
+    
     <xsl:template name="createGDObject" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="objectsAsString" />
@@ -70,6 +73,7 @@ Created By: Travis Berthelot
                     </xsl:if>
 -->
                     
+                    //GDEventCreatedAssignGDObject
                     final GDObject <xsl:value-of select="$name" />GDobject2 = <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectFactory.get(
                     //parameters
                     <xsl:for-each select="parameters" >
@@ -115,7 +119,7 @@ Created By: Travis Berthelot
                             <xsl:if test="not(text())" >
                     6,
                             </xsl:if>
-                            <xsl:if test="contains(text(), 'Overlay')" >
+                            <xsl:if test="contains(text(), 'Overlay') or contains(text(), 'gui')" >
                     Integer.MAX_VALUE,
                             </xsl:if>
                         </xsl:if>
@@ -139,11 +143,12 @@ Created By: Travis Berthelot
                                 ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight()))
                                 ,
                             </xsl:if>
-                            <xsl:if test="contains($objectsGroupsAsString, $name)" >
+                            <xsl:variable name="name2" >:<xsl:value-of select="$name" />,</xsl:variable>
+                            <xsl:if test="contains($objectsGroupsAsString, $name2)" >
                                 (int) (((Image[]) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArrayList.get(createIndex))[0].getWidth()),
                                 (int) (((Image[]) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArrayList.get(createIndex))[0].getHeight()),
                             </xsl:if>
-                            <xsl:if test="not(contains($objectsAsString, $spriteName) or contains($objectsGroupsAsString, $name))" >
+                            <xsl:if test="not(contains($objectsAsString, $spriteName) or contains($objectsGroupsAsString, $name2))" >
                                 0, 0,
                             </xsl:if>
                     //parameters2
@@ -320,6 +325,16 @@ Created By: Travis Berthelot
 
         <xsl:variable name="quote" >"</xsl:variable>
 
+        <xsl:variable name="hasCollisionProcessGD" >
+            <xsl:call-template name="hasCollisionProcessGD" >
+                <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+            </xsl:call-template>
+        </xsl:variable>
+
+        <xsl:if test="not(contains($hasCollisionProcessGD, 'found'))" >
+            //TWB - Skipping collision process as GDNode never has a parent GDNode that is NPCollision.
+        </xsl:if>
+        <xsl:if test="contains($hasCollisionProcessGD, 'found')" >
                     private final String EVENT_AS_STRING_COLLISION_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "PossibleCollision: " + EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
                     <!-- //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed -->
@@ -337,7 +352,7 @@ Created By: Travis Berthelot
                                 //}
                             //}
         
-            <xsl:variable name="create" >
+            <xsl:variable name="listCreate" >
                 <xsl:for-each select="actions" >
                     <xsl:variable name="typeValue" select="type/value" />
                     <xsl:if test="$typeValue != 'Create'" >
@@ -352,6 +367,9 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                     <xsl:with-param name="parametersAsString" >
                         <xsl:value-of select="$parametersAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="caller" >
+                        <xsl:value-of select="$caller" />
                     </xsl:with-param>
                 </xsl:call-template>
 
@@ -741,7 +759,7 @@ Created By: Travis Berthelot
             //firstAction=<xsl:value-of select="$firstAction" />
             </xsl:if>
 
-            <xsl:if test="string-length($firstAction) and string-length($create) = 0" >
+            <xsl:if test="string-length($firstAction) and string-length($listCreate) = 0" >
                                 //updateGDObject - unused
                                 <xsl:value-of select="substring-before($firstAction, ',')" />GDGameLayer.updateGDObject(globals.timeDelta);
                                 <xsl:text>&#10;</xsl:text>
@@ -804,6 +822,7 @@ Created By: Travis Berthelot
                         }
 
                 }
+            </xsl:if>
 
     </xsl:template>
 

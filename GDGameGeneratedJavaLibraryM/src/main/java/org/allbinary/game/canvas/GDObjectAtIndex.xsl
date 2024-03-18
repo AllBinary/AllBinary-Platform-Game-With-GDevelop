@@ -73,7 +73,9 @@ Created By: Travis Berthelot
     <xsl:template name="objectGDObjectAtIndex" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
+        <xsl:param name="caller" />
         
+       <xsl:variable name="hasCreate" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" >found</xsl:if></xsl:for-each></xsl:variable>
         <!--
         //objectGDObjectAtIndex - START
         -->
@@ -100,7 +102,11 @@ Created By: Travis Berthelot
                     //objectGDObjectAtIndex - layoutIndex=<xsl:value-of select="$layoutIndex" /> parametersAsString=<xsl:value-of select="$parametersAsString" /> names=<xsl:value-of select="$names" />
                     <xsl:text>&#10;</xsl:text>
                     </xsl:if>
-                    //split - START
+                    //<xsl:value-of select="$caller" /> - //split - START
+                    <xsl:if test="contains($hasCreate, 'found')" >
+                    //<xsl:value-of select="$caller" /> - //split - TWB - skipping for create
+                    </xsl:if>
+                    <xsl:if test="not(contains($hasCreate, 'found'))" >
                     <xsl:call-template name="split" >
                         <xsl:with-param name="names" >
                             <xsl:value-of select="$names" />
@@ -110,7 +116,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="templateName" >gameLayer</xsl:with-param>
                     </xsl:call-template>
-                    //split - END
+                    </xsl:if>
+                    //<xsl:value-of select="$caller" /> - //split - END
 
                 </xsl:if>
             </xsl:for-each>

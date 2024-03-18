@@ -166,7 +166,7 @@ Created By: Travis Berthelot
         
         <xsl:for-each select=".." >
             <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
-                //From parent LinkedObjects::PickObjectsLinkedTo
+                //From parent LinkedObjects::PickObjectsLinkedTo - <xsl:for-each select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
                 public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[2]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[3]" />GDGameLayer, final Graphics graphics) throws Exception {
@@ -185,9 +185,10 @@ Created By: Travis Berthelot
     <xsl:template name="forEachProcessGD" >
         <xsl:param name="totalRecursions" />
         
+        <xsl:if test="not($totalRecursions >= 6)" >
         <xsl:for-each select=".." >
             <xsl:if test="events[type = 'BuiltinCommonInstructions::ForEach']" >
-                //From parent BuiltinCommonInstructions::ForEach
+                //From parent BuiltinCommonInstructions::ForEach - <xsl:for-each select="events[type = 'BuiltinCommonInstructions::ForEach']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
                 public boolean processGD(final GDGameLayer <xsl:value-of select="events[type = 'BuiltinCommonInstructions::ForEach']/object" />GDGameLayer, final GDGameLayer unusedGDGameLayer, final Graphics graphics) throws Exception {
@@ -200,6 +201,7 @@ Created By: Travis Berthelot
             </xsl:call-template>
             
         </xsl:for-each>
+        </xsl:if>
                 
     </xsl:template>
 
@@ -208,7 +210,7 @@ Created By: Travis Berthelot
         
         <xsl:for-each select=".." >
             <xsl:if test="conditions[type/value = 'CollisionNP']" >
-                //From parent CollisionNP
+                //From parent CollisionNP - <xsl:for-each select="conditions[type/value = 'CollisionNP']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
                 public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[2]" />GDGameLayer, final Graphics graphics) throws Exception {
@@ -299,6 +301,7 @@ Created By: Travis Berthelot
     <xsl:template name="hasBuiltinCommonInstructionsForEachToProcessGD" >
         <xsl:param name="totalRecursions" />
         
+        <xsl:if test="not($totalRecursions >= 6)" >
         <xsl:for-each select=".." >
             <xsl:if test="events[type = 'BuiltinCommonInstructions::ForEach']" >
                 found
@@ -311,6 +314,7 @@ Created By: Travis Berthelot
             </xsl:call-template>
             
         </xsl:for-each>
+        </xsl:if>
                 
     </xsl:template>
 
@@ -341,24 +345,6 @@ Created By: Travis Berthelot
             </xsl:if>
             
             <xsl:call-template name="hasLinkedObjectsPickObjectsLinkedToProcessGD" >
-                <xsl:with-param name="totalRecursions" >
-                    <xsl:value-of select="$totalRecursions + 1" />
-                </xsl:with-param>
-            </xsl:call-template>
-            
-        </xsl:for-each>
-                
-    </xsl:template>
-
-    <xsl:template name="hasForEachProcessGD" >
-        <xsl:param name="totalRecursions" />
-        
-        <xsl:for-each select=".." >
-            <xsl:if test="events[type = 'BuiltinCommonInstructions::ForEach']" >
-                found
-            </xsl:if>
-            
-            <xsl:call-template name="hasForEachProcessGD" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
