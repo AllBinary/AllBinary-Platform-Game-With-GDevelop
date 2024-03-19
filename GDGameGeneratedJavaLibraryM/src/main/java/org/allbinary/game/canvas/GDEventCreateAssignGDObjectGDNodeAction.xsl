@@ -570,9 +570,6 @@ Created By: Travis Berthelot
                         <xsl:with-param name="param" >
                             <xsl:value-of select="$param" />
                         </xsl:with-param>
-                        <xsl:with-param name="actionWithTextObjectString" >
-                            <xsl:value-of select="$actionWithTextObjectString" />
-                        </xsl:with-param>
                         <xsl:with-param name="nodeAsString" >
                             <xsl:value-of select="$nodeAsString" />
                         </xsl:with-param>
@@ -597,9 +594,6 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="param" >
                             <xsl:value-of select="$param" />
-                        </xsl:with-param>
-                        <xsl:with-param name="actionWithTextObjectString" >
-                            <xsl:value-of select="$actionWithTextObjectString" />
                         </xsl:with-param>
                         <xsl:with-param name="nodeAsString" >
                             <xsl:value-of select="$nodeAsString" />
@@ -640,7 +634,6 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'Create'" >
-                    <xsl:if test="not(contains($actionWithTextObjectString, $param))" >
                         
                         <xsl:call-template name="createEndActionProcess" >
                             <xsl:with-param name="layoutIndex" >
@@ -651,13 +644,10 @@ Created By: Travis Berthelot
                             </xsl:with-param>
                         </xsl:call-template>
 
-                    </xsl:if>
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'CreateByName'" >
 
-                    <xsl:if test="not(contains($actionWithTextObjectString, $param))" >
-                        
                         <xsl:call-template name="createByNameEndActionProcess" >
                             <xsl:with-param name="layoutIndex" >
                                 <xsl:value-of select="$layoutIndex" />
@@ -666,8 +656,6 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$nodeId" />
                             </xsl:with-param>
                         </xsl:call-template>
-
-                    </xsl:if>
 
                 </xsl:if>
 

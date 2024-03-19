@@ -19,42 +19,12 @@ Created By: Travis Berthelot
     <xsl:template name="createByNameActionProcess" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="param" />
-        <xsl:param name="actionWithTextObjectString" />
         <xsl:param name="nodeAsString" />
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="objectsAsString" />
         <xsl:param name="createdObjectsAsString" />
 
                     //param1=<xsl:value-of select="$param" />
-                        <xsl:if test="contains($actionWithTextObjectString, $param)" >
-                    //CreateByName - GDObject with TextObject::String - START
-                    @Override
-                    public boolean process() throws Exception {
-                        super.processStats();
-                                                        
-                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                    <xsl:call-template name="createByNameGDObject" >
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="objectsGroupsAsString" >
-                            <xsl:value-of select="$objectsGroupsAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="objectsAsString" >
-                            <xsl:value-of select="$objectsAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="nodeAsString" >
-                            <xsl:value-of select="$nodeAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-                    
-                        <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                        //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectList.add(<xsl:value-of select="$name" />GDobject2);
-                        
-                        return true;
-                    }
-                    //CreateByName - GDObject with TextObject::String - END
-                        </xsl:if>
 
                         <!-- Temp solution until I can remove duplicates -->
                         <xsl:variable name="hasObjectInParams" >
@@ -67,8 +37,8 @@ Created By: Travis Berthelot
 
                         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
-                        <xsl:if test="not(contains($hasObjectInParams, 'found')) and not(contains($actionWithTextObjectString, $param))" >
-                    //CreateByName - GDObject other than TextObject::String - START
+                        <xsl:if test="not(contains($hasObjectInParams, 'found'))" >
+                    //CreateByName - GDObject - START
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();
@@ -118,10 +88,9 @@ Created By: Travis Berthelot
 
                         return true;
                     }
-                    //CreateByName - GDObject other than TextObject::String - END
+                    //CreateByName - GDObject - END
                         </xsl:if>
-                                                
-                        <xsl:if test="not(contains($actionWithTextObjectString, $param))" >
+
                     //CreateByName
                     @Override
                     public boolean processCreate(final GDObject gdObject, final String createString, final int createIndex) throws Exception {
@@ -193,7 +162,6 @@ Created By: Travis Berthelot
                     
                         return false;
                     }
-                        </xsl:if>
         
     </xsl:template>
 
