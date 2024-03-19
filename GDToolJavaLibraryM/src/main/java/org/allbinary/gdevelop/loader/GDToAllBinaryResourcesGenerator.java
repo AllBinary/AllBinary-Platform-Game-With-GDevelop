@@ -6,8 +6,6 @@
 
 package org.allbinary.gdevelop.loader;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.logic.io.StreamUtil;
@@ -49,14 +47,12 @@ public class GDToAllBinaryResourcesGenerator
     private final String VALUE_RESOURCE_START = " = \"";
     private final String VALUE_RESOURCE_END = "\";\n";
     
-    private final boolean hasRotationImages;
     public GDToAllBinaryResourcesGenerator() {
-        hasRotationImages = this.hasRotationImages();
         resourceStringMaker.append(GD_KEY);
         resourceStringMaker.append('\n');
     }
     
-    public boolean hasRotationImages() {
+    private boolean hasRotationImages() {
         final FileUtil fileUtil = FileUtil.getInstance();
         final String filePath = gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\animation\\GDRotationAnimation.txt";
         final String fileAsString = fileUtil.readAsString(filePath);
@@ -72,6 +68,9 @@ public class GDToAllBinaryResourcesGenerator
         this.gdResources.resourceNameList.add(name);
         final String resource = resourceString.toLowerCase();
         this.gdResources.resourceList.add(resource);
+    }
+
+    public void appendResource(final boolean hasRotationImages, final String name, final String resource) {
         
         if(name.indexOf(BLANK) >= 0) {
             resourceStringMaker.append(COMMENT);
@@ -81,7 +80,7 @@ public class GDToAllBinaryResourcesGenerator
             resourceStringMaker.append(COMMENT);
         }
 
-        if(!this.hasRotationImages) {
+        if(!hasRotationImages) {
             for (int index2 = 2; index2 < size2; index2++) {
                 if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
                     resourceStringMaker.append(COMMENT);
@@ -96,8 +95,20 @@ public class GDToAllBinaryResourcesGenerator
         resourceStringMaker.append(this.VALUE_RESOURCE_END);
     }
     
+    public void appendResources() {
+        final boolean hasRotationImages = this.hasRotationImages();
+
+        final int size = this.gdResources.resourceNameList.size();
+        for(int index = 0; index < size; index++) {
+            this.appendResource(hasRotationImages, (String) this.gdResources.resourceNameList.get(index), (String) this.gdResources.resourceList.get(index));
+        }
+
+    }
+    
     public void process() throws Exception {
     
+        this.appendResources();
+        
         timeDelayHelper.setStartTime();
         
         final String RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.origin";

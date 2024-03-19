@@ -168,7 +168,6 @@ public class GDToAllBinaryGenerationTool
         }
 
         this.androidRClassGenerator.process();
-        this.allBinaryResourcesGenerator.process();
         this.allBinaryAndroidResourcesGenerator.process();
         this.allBinaryThreedAndroidResourcesGenerator.process();
         this.soundsGenerator.process();
@@ -176,6 +175,7 @@ public class GDToAllBinaryGenerationTool
         this.threedEarlyResourceInitializationGenerator.process(soundsGenerator);
         this.threedSceneEarlyResourceInitializationGenerator.process();
         this.midletGenerator.process();
+        this.allBinaryResourcesGenerator.process();
         this.levelBuilderGenerator.process();
         this.runnableGenerator.process();
         this.levelBuilderThreedGenerator.process();
