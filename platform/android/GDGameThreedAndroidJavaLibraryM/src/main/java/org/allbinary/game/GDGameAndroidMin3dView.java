@@ -25,7 +25,7 @@ extends AllBinaryMidletMin3dSurfaceView
         final SceneController sceneController = 
             GDGameAllBinarySceneControllerFactory.getInstance();
 
-        this.setRenderer(sceneController.getRenderer());
+        this.setRenderer((GLSurfaceView.Renderer) sceneController.getRenderer());
 
         this.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
 

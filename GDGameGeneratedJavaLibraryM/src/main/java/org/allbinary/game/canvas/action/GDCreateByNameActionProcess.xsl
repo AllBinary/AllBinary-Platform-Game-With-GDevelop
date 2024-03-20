@@ -207,7 +207,7 @@ Created By: Travis Berthelot
                                                 <xsl:for-each select="objects" >
                                                     <xsl:if test="name = $layerName" >
                                                         //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="$groupName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />); at: " + index, this, commonStrings.PROCESS));
-                                                        <xsl:value-of select="$groupName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />);
+                                                        //<xsl:value-of select="$groupName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />);
                                                     </xsl:if>
                                                 </xsl:for-each>
                                             </xsl:for-each>

@@ -47,7 +47,13 @@
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
-                
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>FreeTTSJ2SEJavaLibrary</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>AllBinaryOnAndroidPlatformJavaLibrary</artifactId>
@@ -182,6 +188,16 @@
         </dependency>
 
         <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>MusicJ2MEJavaLibrary</artifactId>
+            <!-- MusicJ2MEJavaLibrary -->
+            <!-- MusicAndroidJavaLibrary -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDFormJavaLibrary</artifactId>
             <!--
@@ -192,7 +208,12 @@
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
-                        
+   
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameAndroidJavaLibrary</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameTouchJavaLibrary</artifactId>

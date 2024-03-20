@@ -198,7 +198,7 @@
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>MusicJ2MEJavaLibrary</artifactId>
-            <!-- MusicAndroidJavaLibrary -->
+            <!-- MusicJ2MEJavaLibrary -->
             <!-- MusicAndroidJavaLibrary -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>

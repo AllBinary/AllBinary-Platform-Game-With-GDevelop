@@ -33,7 +33,7 @@ extends ResourceInitialization
         
         final GDResources gdResources = GDResources.getInstance();
 
-        resourceUtil.addResource(gdResources.BLANK, Integer.valueOf(androidResources.raw.blank));
+        //resourceUtil.addResource(gdResources.BLANK, Integer.valueOf(androidResources.raw.blank));
                 
         //GD
         

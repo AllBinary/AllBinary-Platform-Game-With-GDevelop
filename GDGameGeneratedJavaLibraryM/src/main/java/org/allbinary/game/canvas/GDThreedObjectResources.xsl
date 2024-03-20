@@ -30,6 +30,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
             //Animation Total: <xsl:value-of select="count(animations)" />
+            public Rectangle <xsl:value-of select="name" />Rectangle;
             public Rectangle[] <xsl:value-of select="name" />ImageArray;
             
             <xsl:if test="type = 'Sprite'" >
@@ -58,6 +59,7 @@ Created By: Travis Berthelot
         int size;
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
+            <xsl:variable name="name" select="name" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'TileMap::TileMap' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
@@ -126,6 +128,23 @@ Created By: Travis Berthelot
                 </xsl:if>
 
             </xsl:if>
+            
+           <xsl:if test="type = 'TextObject::Text'" >
+                this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);
+            </xsl:if>
+
+            <xsl:if test="type = 'TextInput::TextInputObject'" >                
+                final int <xsl:value-of select="name" />TextInputAnimationSize = AndroidUtil.isAndroid() ? (<xsl:value-of select="content/fontSize" />) : (<xsl:value-of select="content/fontSize" /> / 2);
+                this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />TextInputAnimationSize * (12 - 1), <xsl:value-of select="name" />TextInputAnimationSize);
+            </xsl:if>
+
+            <xsl:if test="type = 'TileMap::CollisionMask'" >
+                <xsl:value-of select="$name" />ImageArray = new Image[] {
+                };
+                hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
+                this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);
+            </xsl:if>
+                        
             <xsl:if test="$typeValue = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />

@@ -50,14 +50,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameThreedAndroidResourceJavaLibrary</artifactId>        
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
-        </dependency>
-
-        <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>AllBinaryOptionalBasePlatformJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
@@ -79,6 +71,37 @@
             <version>${allbinary.platform.version}</version>
             <optional>true</optional>
         </dependency> 
+
+        <dependency>
+            <groupId>org.allbinary.game.threed</groupId>
+            <artifactId>AndroidToMin3dJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>min3d</groupId>
+            <artifactId>Min3dForAndroidActivityJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameThreedAndroidResourcesTempJavaLibrary</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <optional>true</optional>            
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameThreedAndroidResourceJavaLibrary</artifactId>        
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
@@ -118,6 +141,13 @@
             <artifactId>microemu-midp</artifactId>
             <version>2.0.4</version>
             <optional>true</optional>
+        </dependency>
+                
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>        
+            <version>4.1.1.4</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
