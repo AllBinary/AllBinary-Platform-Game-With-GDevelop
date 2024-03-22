@@ -268,7 +268,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.combatBaseBehavior.getDestroyableBaseBehavior().setDestroyed(destroyed);
     }
         
-//    private final String BULLET = "bullet";
+//    private final String PLAYER = "player";
 //    private final String MOVE = "move";
     
     public void move()
@@ -350,9 +350,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.velocityInterface.setVelocity((long) length * SCALE_FACTOR, (short) adjustedAngle, (short) 0);
         //this.Force((int) (noDecimalTrigTable.cos((short) angle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) angle) * length) / SCALE, clearing);
         
-        //if(this.getName().equals(PLAYER)) {
+        //if(this.getName().equals(PLAYER_0)) {
 //        if(this.getName().startsWith(MEDIUM_ASTEROID)) {
-//        if(this.getName().indexOf(BULLET) > 0) {
 //            final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
 //            final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
 //            LogUtil.put(LogFactory.getInstance(new StringMaker()
