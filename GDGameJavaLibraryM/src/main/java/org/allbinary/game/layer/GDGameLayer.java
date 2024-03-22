@@ -93,7 +93,13 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     public Animation primitiveDrawing;
 
     protected ScalableBaseProcessor scalableProcessor = ScalableBaseProcessor.getInstance();
-    protected Processor processor = Processor.getInstance();
+    protected Processor moveProcessor = new Processor() {
+        public void process(final long timeDelta) throws Exception {
+            move();
+        }
+    };
+    protected Processor processor = moveProcessor;
+
     public VelocityBehaviorBase velocityBehavior = DragVelocityBehavior.instance;
 
     private float lastScaleX = 1;
@@ -368,8 +374,13 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
         //TWB - The ChangePlan might cause this logic instead.
         if(clearing == 1) {
-            if(this.processor == Processor.getInstance()) {
-                this.processor = new GDProcessor(this);
+            if(this.processor == this.moveProcessor) {
+                this.processor = new Processor() {
+                    public void process(final long timeDelta) throws Exception {
+                        move();
+                        updateGDObject(timeDelta);
+                    }
+                };
             }
         }
     }
@@ -416,7 +427,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 //            LogUtil.put(LogFactory.getInstance(this.getName(), this, "updateGDObject"));
 //        }
         
-        this.move();
+        //this.move();
      
         //this.gdObject.x = this.x;
         //this.gdObject.y = this.y;
