@@ -192,17 +192,17 @@
             //caller=<xsl:value-of select="$caller" /> - //eventIds
             <xsl:if test="$caller = 'externalEventsProcess'" >
                 //Apparently the process below already calls this.
-                tempGameLayerUtil.clear();
-                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processM(tempGameLayerUtil.gameLayerArray);
-                tempGameLayerUtil.clear2();
+                //tempGameLayerUtil.clear();
+                //eventIds not no longer called //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processM(tempGameLayerUtil.gameLayerArray);
+                //tempGameLayerUtil.clear2();
             </xsl:if>
             //eventIds - //Events - //<xsl:value-of select="type" /> - //<xsl:value-of select="name" /> - call
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+            //eventIds not no longer called //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
         </xsl:if>
         <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
             //Event - //BuiltinCommonInstructions::Link - call
-            globals.<xsl:value-of select="target" />GDNode.process();
+            //eventIds not no longer called //globals.<xsl:value-of select="target" />GDNode.process();
         </xsl:if>
         
         <xsl:for-each select="events" >
@@ -258,7 +258,7 @@
         </xsl:for-each>
         </xsl:if>
 
-        <xsl:if test="$caller = 'externalEventsProcess'" >
+     <xsl:if test="$caller = 'externalEventsProcess'" >
         <xsl:for-each select="events" >
             <xsl:call-template name="eventIds" >
                 <xsl:with-param name="totalRecursions" >
@@ -269,7 +269,7 @@
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
-        </xsl:if>
+     </xsl:if>
 
     </xsl:template>
 

@@ -96,6 +96,8 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.GDRectOnlyPrimitiveDrawing;
                 import org.allbinary.game.layer.GDPrimitiveDrawingAnimationFactory;
                 import org.allbinary.game.layer.GDRectOnlyPrimitiveDrawingAnimationFactory;
+                import org.allbinary.game.physics.velocity.DragVelocityBehavior;
+                import org.allbinary.game.physics.velocity.NoDragVelocityBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.game.score.BasicHighScoresFactory;
                 import org.allbinary.game.score.HighScore;

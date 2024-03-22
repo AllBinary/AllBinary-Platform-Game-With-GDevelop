@@ -76,7 +76,6 @@ Created By: Travis Berthelot
         import org.allbinary.game.layout.GDObject;        
         import org.allbinary.game.physics.acceleration.BasicAccelerationProperties;
         import org.allbinary.game.physics.velocity.VelocityProperties;
-        import org.allbinary.game.physics.velocity.VelocityUtil;
         import org.allbinary.game.view.StaticTileLayerIntoPositionViewPosition;
         import org.allbinary.graphics.GPoint;
         import org.allbinary.graphics.Rectangle;

@@ -104,6 +104,21 @@ Created By: Travis Berthelot
                                     final GDObject <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject;
                                     <xsl:text>&#10;</xsl:text>
 
+                                    <xsl:variable name="hasPermanentVelocity" >
+                                        <xsl:for-each select="parameters" >
+                                            <xsl:if test="position() = 4" >
+                                                <xsl:if test="text() = 1" >found</xsl:if>
+                                            </xsl:if>
+                                        </xsl:for-each>
+                                    </xsl:variable>
+                                    
+                                    <xsl:if test="contains($hasPermanentVelocity, 'found')" >
+                                        <xsl:for-each select="parameters" >
+                                            <xsl:if test="position() = 1" >
+                                                <xsl:value-of select="text()" />GDGameLayer.velocityBehavior = NoDragVelocityBehavior.instance;</xsl:if>
+                                        </xsl:for-each>
+                                    </xsl:if>
+
                                     <!--
                                     <xsl:variable name="length" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="substring-before(substring-after(text(), 'Variable('), ')')" /></xsl:if></xsl:for-each></xsl:variable>
                                     <xsl:if test="string-length($length) > 0" >
@@ -148,6 +163,7 @@ Created By: Travis Berthelot
                                             <xsl:value-of select="text()" />);
                                         </xsl:if>
                                     </xsl:for-each>
+
                                     <!--
                                     <xsl:if test="string-length($length) > 0" >
                                     }

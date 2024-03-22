@@ -72,6 +72,9 @@
                                 <xsl:with-param name="nodeAsString" >
                                     <xsl:value-of select="$nodeId" />
                                 </xsl:with-param>
+                                <xsl:with-param name="caller" >
+                                    <xsl:value-of select="$caller" /> - //actionsProcess
+                                </xsl:with-param>
                             </xsl:call-template>
                             //actionProcess - //createGDObject - END
                                         
