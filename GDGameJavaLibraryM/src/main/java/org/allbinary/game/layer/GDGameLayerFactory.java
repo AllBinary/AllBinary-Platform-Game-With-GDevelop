@@ -96,7 +96,7 @@ public class GDGameLayerFactory
             NullAnimationFactory.getFactoryInstance().getInstance(), 
                 this.gameLayerList, this.gameLayerDestroyedList,
                 this.behaviorList,
-                new VelocityProperties(3200, 3200),
+                new VelocityProperties(9600, 9600),
                 name,
                 this.groupInterface,
                 this.animationInterfaceFactoryInterfaceArray,

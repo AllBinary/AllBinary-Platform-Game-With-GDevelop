@@ -216,7 +216,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:for-each>
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
-                            new VelocityProperties(3200, 3200),
+                            new VelocityProperties(9600, 9600),
         </xsl:if>
                             gdName, groupInterface,
                             animationInterfaceFactoryInterfaceArray,

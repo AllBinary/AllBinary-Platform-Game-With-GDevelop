@@ -353,7 +353,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
         //angle *= Math.PI / 180.0;
         
-        this.velocityInterface.setVelocity((long) length * SCALE_FACTOR, (short) adjustedAngle, (short) 0);
+        this.velocityInterface.setVelocity((long) length * SCALE_FACTOR2, (short) adjustedAngle, (short) 0);
         //this.Force((int) (noDecimalTrigTable.cos((short) angle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) angle) * length) / SCALE, clearing);
         
         //if(this.getName().equals(PLAYER_0)) {
