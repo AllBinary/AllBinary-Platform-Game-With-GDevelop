@@ -15,6 +15,7 @@ package org.allbinary.game.layer;
 
 import javax.microedition.khronos.opengles.GL;
 import javax.microedition.lcdui.Graphics;
+
 import org.allbinary.animation.Animation;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
@@ -29,8 +30,10 @@ import org.allbinary.game.combat.destroy.GDDestroyableSimpleBehavior;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
+import org.allbinary.game.layout.GDObjectStrings;
 import org.allbinary.game.physics.velocity.VelocityProperties;
-import org.allbinary.game.physics.velocity.VelocityUtil;
+import org.allbinary.game.physics.velocity.DragVelocityBehavior;
+import org.allbinary.game.physics.velocity.VelocityBehaviorBase;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.image.opengles.OpenGLSurfaceChangedInterface;
@@ -38,6 +41,8 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.ScaleFactorFactory;
+import org.allbinary.logic.string.CommonSeps;
+import org.allbinary.math.PositionStrings;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.view.ViewPosition;
 
@@ -89,6 +94,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
     protected ScalableBaseProcessor scalableProcessor = ScalableBaseProcessor.getInstance();
     protected Processor processor = Processor.getInstance();
+    public VelocityBehaviorBase velocityBehavior = DragVelocityBehavior.instance;
 
     private float lastScaleX = 1;
     private float lastScaleY = 1;
@@ -262,6 +268,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.combatBaseBehavior.getDestroyableBaseBehavior().setDestroyed(destroyed);
     }
         
+//    private final String BULLET = "bullet";
+//    private final String MOVE = "move";
+    
     public void move()
     {
         //final int dx = velocityInterface.getVelocityXBasicDecimal().getScaled();
@@ -282,6 +291,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
         //if(this.getName().equals(PLAYER)) {
 //        if(this.getName().startsWith(MEDIUM_ASTEROID)) {
+//        if(this.getName().indexOf(BULLET) > 0) {
 //            final PositionStrings positionStrings = PositionStrings.getInstance();
 //            final StringMaker stringMaker = new StringMaker();
 //            LogUtil.put(LogFactory.getInstance(stringMaker
@@ -337,8 +347,12 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         
         //angle *= Math.PI / 180.0;
         
+        this.velocityInterface.setVelocity((long) length * SCALE_FACTOR, (short) adjustedAngle, (short) 0);
+        //this.Force((int) (noDecimalTrigTable.cos((short) angle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) angle) * length) / SCALE, clearing);
+        
         //if(this.getName().equals(PLAYER)) {
 //        if(this.getName().startsWith(MEDIUM_ASTEROID)) {
+//        if(this.getName().indexOf(BULLET) > 0) {
 //            final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
 //            final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
 //            LogUtil.put(LogFactory.getInstance(new StringMaker()
@@ -352,9 +366,6 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 //                .append(objectStrings.ANGLE).append(adjustedAngle)
 //                .append(gameLayerStrings.LENGTH).append(length).toString(), this, gameLayerStrings.ADD_FORCE_AL));
 //        }
-
-        this.velocityInterface.setVelocity((long) length * SCALE_FACTOR, (short) adjustedAngle, (short) 0);
-        //this.Force((int) (noDecimalTrigTable.cos((short) angle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) angle) * length) / SCALE, clearing);
         
         //TWB - The ChangePlan might cause this logic instead.
         if(clearing == 1) {
@@ -442,7 +453,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     
     public void animate(final long timeDelta) throws Exception {
         
-        VelocityUtil.reduce(this.velocityInterface, 30, 100);
+        velocityBehavior.reduce(this.velocityInterface, 30, 100);
 
         this.dimensionalBehavior.getAnimationBehavior().animate(this.gdObject, this.initIndexedAnimationInterfaceArray, timeDelta);
         this.primitiveDrawing.nextFrame();
