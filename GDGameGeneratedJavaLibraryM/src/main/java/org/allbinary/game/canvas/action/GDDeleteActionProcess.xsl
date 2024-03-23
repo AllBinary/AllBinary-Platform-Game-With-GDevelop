@@ -19,7 +19,6 @@ Created By: Travis Berthelot
     <xsl:template name="deleteActionProcess" >
         <xsl:param name="objectsGroupsAsString" />
 
-                        private final String ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "processGD - " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
                         <xsl:variable name="ACTION_AS_STRING_GD_" >ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
                                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>

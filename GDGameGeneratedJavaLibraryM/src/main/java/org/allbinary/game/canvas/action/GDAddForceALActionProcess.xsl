@@ -92,8 +92,6 @@ Created By: Travis Berthelot
                         return false;
                     }
 
-                        private final String ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "processGD - " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
-
                         @Override
                         public boolean processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                             super.processGDStats(<xsl:value-of select="$name" />GDGameLayer);
