@@ -230,7 +230,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="type = 'TileMap::CollisionMask'" >
-                <xsl:value-of select="$name" />ImageArray = new Image[] {
+                <xsl:value-of select="$name" />ImageArray = new Rectangle[] {
                 };
                 //hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
                 this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);

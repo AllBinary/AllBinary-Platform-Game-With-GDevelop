@@ -75,6 +75,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.media.image.ImageCopyUtil;
                 import org.allbinary.media.image.ImageScaleUtil;
+                import org.allbinary.logic.string.StringMaker;
                 import org.allbinary.logic.system.PlatformAssetManager;
 
                 //Game name=<xsl:value-of select="$gameName" />
