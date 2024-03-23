@@ -98,6 +98,7 @@
 
     <xsl:template name="variables" >
                         <xsl:for-each select="variables" >
+                            <xsl:variable name="name" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                             //variable - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                             <xsl:if test="type = 'structure'" >
                         public final GDStructure<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = new GDStructure<xsl:value-of select="name" />();
@@ -114,11 +115,11 @@
                         public boolean <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                             </xsl:if>
                             <xsl:if test="type = 'number'" >
-                                <xsl:if test="contains(name, 'speed')" >
+                                <xsl:if test="contains($name, 'speed')" >
                         //TWB - speed hack
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" /> * (AndroidUtil.isAndroid() ? 1 : 3);
                                 </xsl:if>
-                                <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'speed') or contains(name, 'score'))" >
+                                <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains($name, 'speed') or contains(name, 'score'))" >
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                                 </xsl:if>
                                 <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'score')" >
@@ -189,6 +190,7 @@
         //resetVariables
         public void reset() {
                         <xsl:for-each select="variables" >
+                            <xsl:variable name="name" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                             //resetVariables - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
 
                             <xsl:if test="type = 'structure'" >
@@ -210,11 +212,11 @@
                         //Skip resetting scale
                                 </xsl:if>
                                 <xsl:if test="not(contains(name, 'scale'))" >
-                                <xsl:if test="contains(name, 'speed')" >
+                                <xsl:if test="contains($name, 'speed')" >
                         //TWB - speed hack
                         this.<xsl:value-of select="name" /> = <xsl:value-of select="value" /> * (AndroidUtil.isAndroid() ? 1 : 3);
                                 </xsl:if>
-                                <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'speed'))" >
+                                <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains($name, 'speed'))" >
                         this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                                 </xsl:if>
                                 <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE')" >
