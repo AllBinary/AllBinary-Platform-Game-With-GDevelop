@@ -70,9 +70,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="nodeAsString" >
                             <xsl:value-of select="$nodeId" />
                         </xsl:with-param>
-                        <xsl:with-param name="caller" >
-                            <xsl:value-of select="$caller" /> - //sceneVariableAsBooleanConditionGDNode
-                        </xsl:with-param>
+                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //sceneVariableAsBooleanConditionGDNode</xsl:with-param>
                     </xsl:call-template>
                     //SceneVariableAsBoolean - //createGDObject - END
                                         

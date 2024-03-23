@@ -73,9 +73,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="nodeAsString" >
                             <xsl:value-of select="$nodeAsString" />
                         </xsl:with-param>
-                        <xsl:with-param name="caller" >
-                            createActionProcess
-                        </xsl:with-param>
+                        <xsl:with-param name="caller" >createActionProcess</xsl:with-param>
                     </xsl:call-template>
 
                         //createGDObject - process - END

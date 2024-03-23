@@ -143,7 +143,9 @@ Created By: Travis Berthelot
                     <xsl:if test="string-length($image) > 0" >
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>
+                    
                     </xsl:for-each>
+                    
                     <xsl:for-each select="FillBar" >
                     <xsl:variable name="imageWithExtension" select="texture" />
                     <xsl:variable name="image2" select="substring-before($imageWithExtension, '.')" />

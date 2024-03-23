@@ -63,7 +63,7 @@ Created By: Travis Berthelot
                                             
                                         if(<xsl:value-of select="$name2" /> == null) {
                                             //caller=<xsl:value-of select="$caller" />
-                                            return <xsl:if test="contains($caller, 'hackProcessing2') and not(contains($caller, 'conditionLayout - //eventsCreateAssignGDObject - //hackProcessing2'))" > true</xsl:if>;
+                                            return <xsl:if test="contains($caller, 'createActionProcess') or (contains($caller, 'hackProcessing2') and not(contains($caller, 'conditionLayout - //eventsCreateAssignGDObject - //hackProcessing2')))" > true</xsl:if>;
                                         }
                                         </xsl:if>
                                     </xsl:if>
@@ -670,9 +670,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="nodeAsString" >
                             <xsl:value-of select="$nodeId" />
                         </xsl:with-param>
-                        <xsl:with-param name="caller" >
-                            <xsl:value-of select="$caller" />
-                        </xsl:with-param>
+                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                     </xsl:call-template>
                     
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
