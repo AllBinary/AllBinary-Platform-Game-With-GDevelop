@@ -31,7 +31,21 @@ Created By: Travis Berthelot
 
                         return true;
                     }
-        
+
+                    @Override
+                    public boolean process(final int index) throws Exception {
+                        //this.processStats();
+                            
+                        return this.process();
+                    }
+
+                    @Override
+                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                        this.processGDStats(gameLayer);
+                            
+                        return this.process();
+                    }
+                
     </xsl:template>
 
 </xsl:stylesheet>
