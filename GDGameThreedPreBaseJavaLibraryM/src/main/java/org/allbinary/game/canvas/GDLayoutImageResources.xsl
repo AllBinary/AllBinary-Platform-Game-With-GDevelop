@@ -85,6 +85,7 @@ Created By: Travis Berthelot
                 import org.allbinary.media.image.ImageCopyUtil;
                 import org.allbinary.media.image.ImageScaleUtil;
                 import org.allbinary.logic.system.PlatformAssetManager;
+                import org.allbinary.logic.string.StringMaker;
                 import org.allbinary.util.BasicArrayList;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
