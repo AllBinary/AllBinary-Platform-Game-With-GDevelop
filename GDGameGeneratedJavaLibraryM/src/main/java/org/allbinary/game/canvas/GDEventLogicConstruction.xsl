@@ -261,7 +261,12 @@ Created By: Travis Berthelot
                 //From parent CollisionNP - <xsl:for-each select="conditions[type/value = 'CollisionNP']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
+                <xsl:if test="conditions[type/value = 'CollisionNP']/parameters[1] = conditions[type/value = 'CollisionNP']/parameters[2]" >
+                public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[2]" />2GDGameLayer, final Graphics graphics) throws Exception {
+                </xsl:if>
+                <xsl:if test="conditions[type/value = 'CollisionNP']/parameters[1] != conditions[type/value = 'CollisionNP']/parameters[2]" >
                 public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[2]" />GDGameLayer, final Graphics graphics) throws Exception {
+                </xsl:if>
                 </xsl:if>
             </xsl:if>
             
