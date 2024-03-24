@@ -334,6 +334,8 @@ Created By: Travis Berthelot
 
         <xsl:variable name="quote" >"</xsl:variable>
 
+        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+
         <xsl:variable name="hasCollisionProcessGD" >
             <xsl:call-template name="hasCollisionProcessGD" >
                 <xsl:with-param name="totalRecursions" >0</xsl:with-param>

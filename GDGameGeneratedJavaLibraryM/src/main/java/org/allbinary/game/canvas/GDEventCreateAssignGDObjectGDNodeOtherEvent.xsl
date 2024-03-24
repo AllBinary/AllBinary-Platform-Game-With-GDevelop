@@ -693,6 +693,7 @@ Created By: Travis Berthelot
                     //Condition - //<xsl:value-of select="type/value" /> - call
 
                     //List Siblings and Parents - START
+                    <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                     <xsl:call-template name="parentObjectsGroupsOrObjectOrCreateSibling" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
                     //List Siblings and Parents - END
                     
