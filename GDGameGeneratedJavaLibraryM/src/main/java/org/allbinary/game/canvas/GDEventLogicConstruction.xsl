@@ -461,7 +461,7 @@ Created By: Travis Berthelot
                 </xsl:call-template>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" >
-                <xsl:value-of select="events/object" />
+                <xsl:value-of select="object" />
                 </xsl:if>
             </xsl:if>
             </xsl:for-each>
