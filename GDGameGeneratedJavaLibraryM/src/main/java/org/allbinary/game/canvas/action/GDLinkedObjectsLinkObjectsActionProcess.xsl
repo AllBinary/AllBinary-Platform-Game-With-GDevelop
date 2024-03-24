@@ -21,7 +21,9 @@ Created By: Travis Berthelot
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
         <xsl:param name="instancesAsString" />
-        
+
+        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                
                         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
                         <xsl:variable name="parentConditionObject" >
@@ -221,24 +223,28 @@ Created By: Travis Berthelot
                     <xsl:variable name="hasCollisionProcessGD" >
                         <xsl:call-template name="hasCollisionProcessGD" >
                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                            <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                         </xsl:call-template>
                     </xsl:variable>
                     <xsl:variable name="hasLinkedObjectsPickObjectsLinkedToProcessGD" >
                         <xsl:call-template name="hasLinkedObjectsPickObjectsLinkedToProcessGD" >
                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                            <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                         </xsl:call-template>
                     </xsl:variable>
                     <xsl:call-template name="collisionProcessGD" >
                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                        <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                     </xsl:call-template>
                     <xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGD" >
                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                        <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                     </xsl:call-template>
                     <xsl:if test="contains($hasCollisionProcessGD, 'found')" >
-                        super.processGDStats(<xsl:call-template name="collisionProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param></xsl:call-template>GDGameLayer);
+                        super.processGDStats(<xsl:call-template name="collisionProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>GDGameLayer);
                     </xsl:if>
                     <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
-                        super.processGDStats(<xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param></xsl:call-template>GDGameLayer);
+                        super.processGDStats(<xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>GDGameLayer);
                     </xsl:if>
                     <xsl:if test="not(contains($hasCollisionProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
                     //LinkedObjects::LinkObjects - Not from parent collision

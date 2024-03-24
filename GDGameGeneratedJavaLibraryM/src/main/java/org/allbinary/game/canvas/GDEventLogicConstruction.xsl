@@ -43,6 +43,8 @@ Created By: Travis Berthelot
     -->
 
     <xsl:template name="firstParam" >
+        <xsl:param name="nodeId" />
+        
         <xsl:variable name="firstParam" >
             <xsl:for-each select="parameters" >
                 <xsl:if test="position() = 1" >
@@ -80,6 +82,7 @@ Created By: Travis Berthelot
         <xsl:variable name="collisionProcessGDParamOne" >
             <xsl:call-template name="collisionProcessGDParamOne" >
                 <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
         </xsl:variable>
 <!--
@@ -161,21 +164,49 @@ Created By: Travis Berthelot
                 
     </xsl:template>
 
+    <xsl:template name="hasChildNode" >
+        <xsl:param name="childNodeId" />
+        
+        <xsl:for-each select="*" >
+            <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+           
+            <xsl:if test="$childNodeId = $nodeId" >found</xsl:if>
+
+            <xsl:call-template name="hasChildNode" >
+                <xsl:with-param name="childNodeId" ><xsl:value-of select="$childNodeId" /></xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+
+    </xsl:template>
+
     <xsl:template name="linkedObjectsPickObjectsLinkedToProcessGD" >
         <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
+            
             <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
+                
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                
+                <xsl:if test="contains($hasChildNode, 'found')" >
                 //From parent LinkedObjects::PickObjectsLinkedTo - <xsl:for-each select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
                 public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[2]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[3]" />GDGameLayer, final Graphics graphics) throws Exception {
+                </xsl:if>
             </xsl:if>
-            
+
             <xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGD" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions" />
                 </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
             
         </xsl:for-each>
@@ -184,42 +215,61 @@ Created By: Travis Berthelot
 
     <xsl:template name="forEachProcessGD" >
         <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
         
-        <xsl:if test="not($totalRecursions >= 6)" >
         <xsl:for-each select=".." >
-            <xsl:if test="events[type = 'BuiltinCommonInstructions::ForEach']" >
+            <xsl:for-each select="events" >
+            <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >
                 //From parent BuiltinCommonInstructions::ForEach - <xsl:for-each select="events[type = 'BuiltinCommonInstructions::ForEach']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
                 public boolean processGD(final GDGameLayer <xsl:value-of select="events[type = 'BuiltinCommonInstructions::ForEach']/object" />GDGameLayer, final GDGameLayer unusedGDGameLayer, final Graphics graphics) throws Exception {
+                </xsl:if>
             </xsl:if>
+            </xsl:for-each>
             
             <xsl:call-template name="forEachProcessGD" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
             
         </xsl:for-each>
-        </xsl:if>
                 
     </xsl:template>
 
     <xsl:template name="collisionProcessGD" >
         <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
             <xsl:if test="conditions[type/value = 'CollisionNP']" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                
+                <xsl:if test="contains($hasChildNode, 'found')" >
                 //From parent CollisionNP - <xsl:for-each select="conditions[type/value = 'CollisionNP']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
                 public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[2]" />GDGameLayer, final Graphics graphics) throws Exception {
+                </xsl:if>
             </xsl:if>
             
             <xsl:call-template name="collisionProcessGD" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
             
         </xsl:for-each>
@@ -228,16 +278,25 @@ Created By: Travis Berthelot
 
     <xsl:template name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" >
         <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
             <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >
                 <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[2]" />
+                </xsl:if>
             </xsl:if>
             
             <xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamOne" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
             
         </xsl:for-each>
@@ -246,16 +305,25 @@ Created By: Travis Berthelot
 
     <xsl:template name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" >
         <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
             <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >
                 <xsl:value-of select="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']/parameters[3]" />
+                </xsl:if>
             </xsl:if>
             
             <xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
             
         </xsl:for-each>
@@ -264,16 +332,25 @@ Created By: Travis Berthelot
 
     <xsl:template name="collisionProcessGDParamOne" >
         <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
             <xsl:if test="conditions[type/value = 'CollisionNP']" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >
                 <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[1]" />
+                </xsl:if>
             </xsl:if>
             
             <xsl:call-template name="collisionProcessGDParamOne" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
             
         </xsl:for-each>
@@ -282,16 +359,25 @@ Created By: Travis Berthelot
 
     <xsl:template name="collisionProcessGDParamTwo" >
         <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
             <xsl:if test="conditions[type/value = 'CollisionNP']" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >
                 <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[2]" />
+                </xsl:if>
             </xsl:if>
             
             <xsl:call-template name="collisionProcessGDParamTwo" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
             
         </xsl:for-each>
@@ -300,36 +386,56 @@ Created By: Travis Berthelot
 
     <xsl:template name="hasBuiltinCommonInstructionsForEachToProcessGD" >
         <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
         
-        <xsl:if test="not($totalRecursions >= 6)" >
         <xsl:for-each select=".." >
-            <xsl:if test="events[type = 'BuiltinCommonInstructions::ForEach']" >
+            <xsl:for-each select="events" >
+            <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >
                 found
+                </xsl:if>
             </xsl:if>
+            </xsl:for-each>
             
             <xsl:call-template name="hasBuiltinCommonInstructionsForEachToProcessGD" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
             
         </xsl:for-each>
-        </xsl:if>
                 
     </xsl:template>
 
     <xsl:template name="objectBuiltinCommonInstructionsForEachToProcessGD" >
         <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
-            <xsl:if test="events[type = 'BuiltinCommonInstructions::ForEach']" >
+            <xsl:for-each select="events" >
+            <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >
                 <xsl:value-of select="events/object" />
+                </xsl:if>
             </xsl:if>
+            </xsl:for-each>
             
             <xsl:call-template name="objectBuiltinCommonInstructionsForEachToProcessGD" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
             
         </xsl:for-each>
@@ -338,16 +444,25 @@ Created By: Travis Berthelot
 
     <xsl:template name="hasLinkedObjectsPickObjectsLinkedToProcessGD" >
         <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
             <xsl:if test="conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >
                 found
+                </xsl:if>
             </xsl:if>
             
             <xsl:call-template name="hasLinkedObjectsPickObjectsLinkedToProcessGD" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
             
         </xsl:for-each>
@@ -356,16 +471,25 @@ Created By: Travis Berthelot
 
     <xsl:template name="hasCollisionProcessGD" >
         <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
             <xsl:if test="conditions[type/value = 'CollisionNP']" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >
                 found
+                </xsl:if>
             </xsl:if>
             
             <xsl:call-template name="hasCollisionProcessGD" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
             
         </xsl:for-each>
