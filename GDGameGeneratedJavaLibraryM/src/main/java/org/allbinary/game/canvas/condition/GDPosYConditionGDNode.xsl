@@ -40,6 +40,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="objectInForEach" >
                             <xsl:call-template name="objectBuiltinCommonInstructionsForEachToProcessGD" >
                                 <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                             </xsl:call-template>
                         </xsl:variable>
                         //ForEach as parent with object=<xsl:value-of select="$objectInForEach" />

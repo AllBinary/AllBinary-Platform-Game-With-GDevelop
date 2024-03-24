@@ -19,9 +19,12 @@ Created By: Travis Berthelot
     <xsl:template name="textObjectChangeColorActionProcess" >
         <xsl:param name="layoutIndex" />
 
+        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+        
                     <xsl:variable name="hasBuiltinCommonInstructionsForEachToProcessGD" >
                         <xsl:call-template name="hasBuiltinCommonInstructionsForEachToProcessGD" >
                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                            <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                         </xsl:call-template>
                     </xsl:variable>
 
@@ -90,6 +93,7 @@ Created By: Travis Berthelot
                                     <xsl:variable name="objectInForEach" >
                                         <xsl:call-template name="objectBuiltinCommonInstructionsForEachToProcessGD" >
                                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                                            <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                                         </xsl:call-template>
                                     </xsl:variable>
                                     //ForEach as parent with object=<xsl:value-of select="$objectInForEach" />

@@ -99,6 +99,7 @@ Created By: Travis Berthelot
 
     <xsl:template name="parentObjectsGroupsOrObjectOrCreateSibling" >
         <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
             <xsl:for-each select="conditions" >
@@ -119,13 +120,23 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($hasObjectsGroupsOrObjectInParameters, 'found')" >
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                    
                     <xsl:if test="$totalRecursions = 0" >
                     //Sibling - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                     </xsl:if>
                     <xsl:if test="$totalRecursions > 0" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                                
+                    <xsl:if test="contains($hasChildNode, 'found')" >                                    
                     //Parent - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                     </xsl:if>
-                    </xsl:if>
+                </xsl:if>
+                
+                </xsl:if>
                 </xsl:if>
                 </xsl:if>
             </xsl:for-each>
@@ -134,22 +145,40 @@ Created By: Travis Berthelot
                 <xsl:if test="type/value = 'Create' and type/value != 'CreateByName'" >
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+
                 <xsl:if test="$totalRecursions = 0" >
                 //Sibling - //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                 </xsl:if>
                 <xsl:if test="$totalRecursions > 0" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                                
+                <xsl:if test="contains($hasChildNode, 'found')" >
                 //Parent - //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
+                </xsl:if>
                 </xsl:if>
                 </xsl:if>
             </xsl:for-each>
 
             <xsl:for-each select="events" >
+                
                 <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >                    
                 <xsl:if test="$totalRecursions = 0" >
                 //Sibling - //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                 </xsl:if>
                 <xsl:if test="$totalRecursions > 0" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                                
+                <xsl:if test="contains($hasChildNode, 'found')" >                
                 //Parent - //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                </xsl:if>
                 </xsl:if>
                 </xsl:if>
             </xsl:for-each>
@@ -158,6 +187,7 @@ Created By: Travis Berthelot
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="$totalRecursions + 1" />
                 </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
             
         </xsl:for-each>

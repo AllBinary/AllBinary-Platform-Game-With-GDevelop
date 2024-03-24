@@ -337,6 +337,7 @@ Created By: Travis Berthelot
         <xsl:variable name="hasCollisionProcessGD" >
             <xsl:call-template name="hasCollisionProcessGD" >
                 <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
             </xsl:call-template>
         </xsl:variable>
 

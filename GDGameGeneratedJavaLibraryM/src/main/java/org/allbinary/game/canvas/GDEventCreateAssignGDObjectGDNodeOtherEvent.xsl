@@ -692,9 +692,9 @@ Created By: Travis Berthelot
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //Condition - //<xsl:value-of select="type/value" /> - call
 
-                    //List Parents - START
-                    <xsl:call-template name="parentObjectsGroupsOrObjectOrCreateSibling" ><xsl:with-param name="totalRecursions" >0</xsl:with-param></xsl:call-template>
-                    //List Parents - END
+                    //List Siblings and Parents - START
+                    <xsl:call-template name="parentObjectsGroupsOrObjectOrCreateSibling" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
+                    //List Siblings and Parents - END
                     
                     <xsl:variable name="text" ><xsl:value-of select="unknown" /></xsl:variable>
                     <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
