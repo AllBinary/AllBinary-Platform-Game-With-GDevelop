@@ -124,11 +124,6 @@ Created By: Travis Berthelot
                             </xsl:if>
                             <xsl:if test="$paramTwoName = ''" >
                                 <xsl:variable name="before" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
-                                <xsl:variable name="hasObject" >
-                                    <xsl:for-each select="//objects" >
-                                        <xsl:if test="name = $beforeSecondParam " >found</xsl:if>
-                                    </xsl:for-each>
-                                </xsl:variable>
 
                                 <xsl:if test="$beforeSecondParam != ''" >
                                     //<xsl:value-of select="$beforeSecondParam" /> - <xsl:value-of select="$hasObject" /><xsl:text>&#10;</xsl:text>
@@ -420,11 +415,6 @@ Created By: Travis Berthelot
                             </xsl:if>
                             <xsl:if test="$paramTwoName = ''" >
                                 <xsl:variable name="before" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
-                                <xsl:variable name="hasObject" >
-                                    <xsl:for-each select="//objects" >
-                                        <xsl:if test="name = $beforeSecondParam " >found</xsl:if>
-                                    </xsl:for-each>
-                                </xsl:variable>
 
                                 <xsl:if test="$beforeSecondParam != ''" >
 <!--                                    //<xsl:value-of select="$beforeSecondParam" /> - <xsl:value-of select="$hasObject" /><xsl:text>&#10;</xsl:text>-->
