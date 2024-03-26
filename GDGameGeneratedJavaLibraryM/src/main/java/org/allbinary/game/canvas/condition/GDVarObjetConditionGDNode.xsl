@@ -22,9 +22,11 @@ Created By: Travis Berthelot
         <xsl:param name="parametersAsString" />
         <xsl:param name="objectsGroupsAsString" />
 
-        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
         <xsl:variable name="quote" >"</xsl:variable>
         
+        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+        <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
+
                     //varObjetConditionGDNode - //Condition - //VarObjet - GDNode
                     if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
@@ -294,12 +296,12 @@ Created By: Travis Berthelot
 
 <!--                        <xsl:if test="not(contains($hasGameLayer, 'found'))" >
                                 //No GameLayer
-                                if(<xsl:for-each select="parameters" ><xsl:if test="text() = 'rotation'" >.</xsl:if><xsl:if test="position() != 1 and  text() != 'rotation'" ><xsl:text> </xsl:text></xsl:if><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="text() = '='" >=</xsl:if></xsl:for-each>) {
+                                if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="text() = 'rotation'" >.</xsl:if><xsl:if test="position() != 1 and  text() != 'rotation'" ><xsl:text> </xsl:text></xsl:if><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="text() = '='" >=</xsl:if></xsl:for-each>) {
                         </xsl:if>-->
 
 <!--                        <xsl:if test="contains($hasGameLayer, 'found')" >-->
                                 //Has GameLayer
-                                if(<xsl:for-each select="parameters" >
+                                if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.</xsl:if>
                                     <xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if>
                                     <xsl:if test="position() = 3" >

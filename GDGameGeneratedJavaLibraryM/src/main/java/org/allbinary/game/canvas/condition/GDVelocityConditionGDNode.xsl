@@ -21,6 +21,9 @@ Created By: Travis Berthelot
         <xsl:param name="parametersAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
+        
+        <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
+        
                     //velocityConditionGDNode - //Condition - //Vitesse - GDNode
                     if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
@@ -57,8 +60,8 @@ Created By: Travis Berthelot
                                     //.append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>GDGameLayer.getVelocityProperties().getVelocityYBasicDecimal())
                                     //.toString(), this, commonStrings.PROCESS));
 
-                                if(<xsl:for-each select="parameters" ><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" />GDGameLayer.getVelocityProperties().getVelocityXBasicDecimal().getScaled()</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
-                                if(<xsl:for-each select="parameters" ><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" />GDGameLayer.getVelocityProperties().getVelocityYBasicDecimal().getScaled()</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
+                                if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" />GDGameLayer.getVelocityProperties().getVelocityXBasicDecimal().getScaled()</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each> &&
+                                   <xsl:for-each select="parameters" ><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" />GDGameLayer.getVelocityProperties().getVelocityYBasicDecimal().getScaled()</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>)) {
                                     //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                     <xsl:for-each select=".." >
                                         <xsl:call-template name="actionIdsGDObjectPos" >
@@ -67,7 +70,7 @@ Created By: Travis Berthelot
                                             <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$gdObjectName" />GDGameLayer</xsl:with-param>
                                         </xsl:call-template>
                                     </xsl:for-each>
-                                }} //else {
+                                } //else {
                                     //LogUtil.put(LogFactory.getInstance(ELSE_CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 //}
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index).toString(), this, commonStrings.PROCESS));

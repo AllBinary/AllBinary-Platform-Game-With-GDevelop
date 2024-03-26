@@ -19,7 +19,7 @@ Created By: Travis Berthelot
 
     <xsl:template name="collisionNPConditionGDNodeUsingAllBinary" >
         <xsl:param name="nodeList" />
-        
+
 <!--                  
                         //CollisionNP - //collisionNPConditionGDNodeUsingAllBinary
                         if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeList" />] != null) {
@@ -161,7 +161,6 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
-                        //Inverted
                         if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameLayer2.getCollidableInferface().isCollision(gameLayer)) {
                     
                             <xsl:variable name="text" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>        </xsl:variable>

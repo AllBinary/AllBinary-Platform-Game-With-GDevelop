@@ -22,6 +22,8 @@ Created By: Travis Berthelot
         <xsl:param name="parametersAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
+
+        <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
         
                     //sceneInstancesCountConditionGDNode - //Condition - //SceneInstancesCount - GDNode
                     if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
