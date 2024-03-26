@@ -120,7 +120,7 @@ Created By: Travis Berthelot
 
                             gameLayer = (GDGameLayer) gdGameLayerList.get(index);
                             gameLayer2 = (GDGameLayer) gdGameLayerList2.get(index2);
-                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>this.layerDistanceUtil.getDistance(gameLayer, gameLayer2) <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$param3" />) {
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(this.layerDistanceUtil.getDistance(gameLayer, gameLayer2) <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$param3" />)) {
                         <xsl:for-each select="conditions" >
                             //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer, gameLayer2, null);

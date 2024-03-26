@@ -258,6 +258,10 @@ Created By: Travis Berthelot
                         return array.length;
                     }
 
+                    public int abs(final int value) {
+                        return Math.abs(value);
+                    }
+                    
                     public int MouseX() {
                         final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
                         return gdGlobalsFactory.point.getX();
