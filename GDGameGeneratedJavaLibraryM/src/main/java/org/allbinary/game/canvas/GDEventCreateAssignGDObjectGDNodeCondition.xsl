@@ -57,6 +57,8 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDPopEndedTouchConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVelocityConditionGDNode.xsl" />
     <xsl:import href="./condition/GDObjectVariableAsBooleanConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDDistanceConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDCompareNumbersConditionGDNode.xsl" />
     <xsl:import href="./condition/GDPanelSpriteSliderPanelSpriteSliderValueConditionGDNode.xsl" />
 
     <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition2" >
@@ -76,7 +78,7 @@ Created By: Travis Berthelot
         <xsl:param name="actionAsStringsStrings" />
         <xsl:param name="logString" />
         <xsl:param name="eventsCreateProcessUsed" />
-        
+
                 <xsl:variable name="nodeList" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
                 <xsl:variable name="typeValue" select="type/value" />
@@ -393,7 +395,13 @@ Created By: Travis Berthelot
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                     </xsl:if>
                     <xsl:if test="$typeValue = 'Distance'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        
+                        <xsl:call-template name="distanceConditionGDNode" >
+                            <xsl:with-param name="parametersAsString" >
+                                <xsl:value-of select="$parametersAsString" />
+                            </xsl:with-param>
+                        </xsl:call-template>
+                        
                     </xsl:if>
                     <xsl:if test="$typeValue = 'SeDirige'" >
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
@@ -501,7 +509,19 @@ Created By: Travis Berthelot
                     //xsl:if test="$typeValue = 'StrEqual'" 
                     
                     <xsl:if test="$typeValue = 'BuiltinCommonInstructions::CompareNumbers'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+
+                        <xsl:call-template name="compareNumbersConditionGDNode" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="parametersAsString" >
+                                <xsl:value-of select="$parametersAsString" />
+                            </xsl:with-param>
+                            <xsl:with-param name="objectsGroupsAsString" >
+                                <xsl:value-of select="$objectsGroupsAsString" />
+                            </xsl:with-param>
+                        </xsl:call-template>
+
                     </xsl:if>
   
                     <xsl:if test="$typeValue = 'BuiltinCommonInstructions::CompareStrings'" >
