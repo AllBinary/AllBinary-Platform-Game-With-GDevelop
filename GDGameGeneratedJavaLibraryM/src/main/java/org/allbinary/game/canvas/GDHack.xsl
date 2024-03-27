@@ -1117,6 +1117,7 @@ Created By: Travis Berthelot
                         LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />", this, commonStrings.PROCESS, e));
                     }
 
+//hackProcessing - END
     </xsl:template>
 
     <xsl:template name="addGameLayerToList" >
@@ -1134,7 +1135,6 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
-//hackProcessing - END
     </xsl:template>
 
 </xsl:stylesheet>
