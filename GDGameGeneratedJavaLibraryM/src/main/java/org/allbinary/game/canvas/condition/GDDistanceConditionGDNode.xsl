@@ -20,6 +20,8 @@ Created By: Travis Berthelot
         <xsl:param name="parametersAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
+        <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+        <xsl:variable name="hasOtherConditions" ><xsl:for-each select="preceding-sibling::conditions" >found</xsl:for-each></xsl:variable>
         <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
                     //distanceConditionGDNode - //Condition - //Distance - GDNode
                     if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
@@ -124,11 +126,14 @@ Created By: Travis Berthelot
 
                             //LogUtil.put(LogFactory.getInstance(new StringMaker().append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append("<xsl:if test="$inverted = 'true'" >!</xsl:if>").append(" d: ").append(this.layerDistanceUtil.getDistance(gameLayer, gameLayer2)).append(" lt ").append(<xsl:value-of select="$param3" />).toString(), this, commonStrings.PROCESS));
 
+                        <xsl:for-each select=".." >
                         <xsl:for-each select="conditions" >
+                            <xsl:if test="$nodeId != number(substring(generate-id(), 2) - 65536)" >
                             //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer, gameLayer2, null);
+                            </xsl:if>
                         </xsl:for-each>
-                        <xsl:if test="not(conditions)" >
+                        <xsl:if test="not(contains($hasOtherConditions, 'found'))" >
                             <xsl:for-each select="actions" >
                                 <xsl:variable name="parametersAsString0" >
                                     <xsl:for-each select="actions" >
@@ -160,6 +165,8 @@ Created By: Travis Berthelot
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:if>
+                        </xsl:for-each>
+
                             }
                         }
                         }
