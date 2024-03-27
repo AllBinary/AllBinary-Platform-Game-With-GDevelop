@@ -41,7 +41,6 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:variable>
 
-                        //Delete - action
                         @Override
                         public void addForDelete(final GDGameLayer gdGameLayer) {
                         
@@ -102,6 +101,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                         }
 
+                        //Delete - action
                         @Override
                         public boolean process() throws Exception {
 

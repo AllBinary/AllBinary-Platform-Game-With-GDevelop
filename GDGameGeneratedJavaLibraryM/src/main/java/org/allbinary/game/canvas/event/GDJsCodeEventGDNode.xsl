@@ -39,6 +39,7 @@ Created By: Travis Berthelot
                                     textToSpeech.init();
                                 }
 
+                                //BuiltinCommonInstructions::JsCode - event
                                 @Override
                                 public boolean process() throws Exception {
                                     
@@ -70,6 +71,7 @@ Created By: Travis Berthelot
 
                                 <xsl:if test="not(contains(inlineCode, 'SpeechSynthesisUtterance'))" >
 
+                                //BuiltinCommonInstructions::JsCode - event
                                 @Override
                                 public boolean process() throws Exception {
 

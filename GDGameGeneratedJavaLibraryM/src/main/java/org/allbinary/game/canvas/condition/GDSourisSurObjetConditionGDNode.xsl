@@ -37,6 +37,7 @@ Created By: Travis Berthelot
 
                         //private final DisplayPointScalar displayPointScalar = DisplayPointScalar.getInstance();
 
+                        //SourisSurObjet - runnable
                         private final Runnable runnable = new Runnable() {
                         
                             public void run() {
@@ -87,8 +88,9 @@ Created By: Travis Berthelot
                                 }
                             }
                         };
-                          
-                        @Override          
+
+                        //SourisSurObjet - condition
+                        @Override
                         public boolean process() throws Exception {
                             super.processStats();
 

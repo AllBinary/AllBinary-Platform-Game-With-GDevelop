@@ -27,6 +27,8 @@ Created By: Travis Berthelot
                                 //private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=-1 type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />";
                                 <xsl:text>&#10;</xsl:text>
                             
+                                
+                                //<xsl:value-of select="name" /> - externalEvents - event - //associatedLayout=<xsl:value-of select="associatedLayout" />
                                 @Override
                                 public boolean process() throws Exception {
                             

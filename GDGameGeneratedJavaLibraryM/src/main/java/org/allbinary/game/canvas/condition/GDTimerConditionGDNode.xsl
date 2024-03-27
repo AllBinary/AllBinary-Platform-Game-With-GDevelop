@@ -77,7 +77,7 @@ Created By: Travis Berthelot
                 
                 </xsl:for-each>
 
-                        //Timer - condition
+                        //Timer - runnable
                         private final Runnable runnable = new Runnable() {
                         
                             public void run() {
@@ -134,6 +134,7 @@ Created By: Travis Berthelot
                             }
                         };
                         
+                        //Timer - condition
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();

@@ -119,6 +119,7 @@ Created By: Travis Berthelot
             <xsl:variable name="hasCreate" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="hasCollisionCondition" ><xsl:for-each select="../conditions" ><xsl:if test="type/value = '(Used when using the AllBinary Collision Processing) CollisionNP'" >found</xsl:if></xsl:for-each></xsl:variable>
 
+//hackProcessing - START
 //alreadyUsedParentCondition=<xsl:value-of select="$alreadyUsedParentCondition" />
 //hasCondition=<xsl:value-of select="$hasCondition" />
 //hadConditionOtherThanThis=<xsl:value-of select="$hadConditionOtherThanThis" />
@@ -1133,6 +1134,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
 
+//hackProcessing - END
     </xsl:template>
 
 </xsl:stylesheet>

@@ -197,6 +197,7 @@ Created By: Travis Berthelot
             
             <!-- //foundOtherCondition=<xsl:value-of select="$foundOtherCondition" /> -->
                 
+                //<xsl:value-of select="type" /> - event
                 @Override
                 public boolean process() throws Exception {
                     super.processStats();
