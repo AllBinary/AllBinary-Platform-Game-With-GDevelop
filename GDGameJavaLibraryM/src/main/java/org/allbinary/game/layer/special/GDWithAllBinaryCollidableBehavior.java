@@ -60,7 +60,9 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
             if (this.ownerLayer.getGroupInterface()[0] != collisionLayer.getGroupInterface()[0]) {
                 //stringBuilder.delete(0, stringBuilder.length());
                 //LogUtil.put(LogFactory.getInstance(this.toString(collisionLayer, stringBuilder), this, "isCollision - super"));
-                return super.isCollision(collisionLayer);
+                if(this.ownerLayer != collisionLayer) {
+                    return super.isCollision(collisionLayer);
+                }
             }
         } else {
             //stringBuilder.delete(0, stringBuilder.length());

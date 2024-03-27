@@ -93,13 +93,17 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
             
             return this.isCollision3(collisionMaskCustomGameLayer);
         } else {
-            return super.isCollision(collisionLayer);
-            //return this.isCollision2(collisionLayer);
+            if(this.ownerLayer != collisionLayer) {
+                return super.isCollision(collisionLayer);
+                //return this.isCollision2(collisionLayer);
+            }            
         }
+        return false;
         </xsl:if>
         <xsl:if test="not(contains($hasLayoutWithTileMapAndIsTopView, 'found'))" >
         return super.isCollision(collisionLayer);
         </xsl:if>
+            
     }
     
     <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >

@@ -27,7 +27,7 @@ Created By: Travis Berthelot
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>        
         <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
         
-                    //compareNumbersConditionGDNode - //Condition - //CompareNumbers - GDNode
+                    //compareNumbersConditionGDNode - //Condition - //BuiltinCommonInstructions::CompareNumbers - //CompareNumbers - GDNode
                     if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -42,7 +42,7 @@ Created By: Travis Berthelot
                         //objectsGroupsAsString=<xsl:value-of select="$objectsGroupsAsString" />
                         //paramOneNameObjectsGroups=<xsl:value-of select="$paramOneNameObjectsGroups" />
                         //paramTwoNameObjectsGroups=<xsl:value-of select="$paramTwoNameObjectsGroups" />
-                        //CompareNumbers - condition
+                        //BuiltinCommonInstructions::CompareNumbers - //CompareNumbers - condition
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
@@ -161,6 +161,7 @@ Created By: Travis Berthelot
                             
                             
                             if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:if test="text() = '&gt;'" ><xsl:text disable-output-escaping="yes" >&gt;</xsl:text></xsl:if><xsl:if test="text() = '&lt;'" ><xsl:text disable-output-escaping="yes" >&lt;</xsl:text></xsl:if><xsl:if test="text() != '&gt;' and text() != '&lt;'" ><xsl:value-of select="text()" /></xsl:if></xsl:if><xsl:text> </xsl:text></xsl:for-each>)) {
+                                //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:if test="text() = '&gt;'" ><xsl:text disable-output-escaping="yes" >&gt;</xsl:text></xsl:if><xsl:if test="text() = '&lt;'" ><xsl:text disable-output-escaping="yes" >&lt;</xsl:text></xsl:if><xsl:if test="text() != '&gt;' and text() != '&lt;'" ><xsl:value-of select="text()" /></xsl:if></xsl:if><xsl:text> </xsl:text></xsl:for-each>", this, commonStrings.PROCESS));
                                 return true;
                             }
                             return false;
