@@ -3,11 +3,11 @@ package org.allbinary.animation.image;
 import min3d.core.Object3d;
 import min3d.vos.Number3d;
 
-import org.allbinary.animation.MultiThreedAnimationFactory;
-import org.allbinary.animation.MultiThreedAutoRotateAnimationFactory;
-import org.allbinary.animation.ThreedAnimationFactory;
-import org.allbinary.animation.ThreedAutoRotateAnimationFactory;
-import org.allbinary.animation.TireThreedAnimationFactory;
+import org.allbinary.animation.threed.MultiThreedAnimationFactory;
+import org.allbinary.animation.threed.MultiThreedAutoRotateAnimationFactory;
+import org.allbinary.animation.threed.ThreedAnimationFactory;
+import org.allbinary.animation.threed.ThreedAutoRotateAnimationFactory;
+import org.allbinary.animation.threed.TireThreedAnimationFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory;
 import org.allbinary.image.opengles.OpenGLImageCacheFactory;

@@ -70,6 +70,7 @@ public class GDToAllBinaryGenerationTool
     };
     
     private final GDToAndroidRClassGenerator androidRClassGenerator = new GDToAndroidRClassGenerator();
+    private final GDToThreedAndroidRClassGenerator threedAndroidRClassGenerator = new GDToThreedAndroidRClassGenerator();
     private final GDToAllBinaryResourcesGenerator allBinaryResourcesGenerator = new GDToAllBinaryResourcesGenerator();
     private final GDToAndroidResourcesGradleGenerator allBinaryAndroidResourcesGenerator = new GDToAndroidResourcesGradleGenerator();
     private final GDToThreedAndroidResourcesGradleGenerator allBinaryThreedAndroidResourcesGenerator = new GDToThreedAndroidResourcesGradleGenerator();
@@ -168,6 +169,7 @@ public class GDToAllBinaryGenerationTool
         }
 
         this.androidRClassGenerator.process();
+        this.threedAndroidRClassGenerator.process();
         this.allBinaryAndroidResourcesGenerator.process();
         this.allBinaryThreedAndroidResourcesGenerator.process();
         this.soundsGenerator.process();
@@ -271,6 +273,7 @@ public class GDToAllBinaryGenerationTool
                 duplicateCheckList.add(fileAsString);
 
                 this.androidRClassGenerator.processResource(fileAsString);
+                this.threedAndroidRClassGenerator.processResource(fileAsString);
                 this.allBinaryResourcesGenerator.processResource(fileAsString, resourceString);
                 this.allBinaryAndroidResourcesGenerator.processResource(fileAsString, resourceString);
                 this.allBinaryThreedAndroidResourcesGenerator.processResource(fileAsString, resourceString);
@@ -393,6 +396,7 @@ public class GDToAllBinaryGenerationTool
                 duplicateCheckList.add(param);
 
                 this.androidRClassGenerator.processExpressionParam(param);
+                this.threedAndroidRClassGenerator.processExpressionParam(param);
                 this.soundsGenerator.processExpressionParam(param, resourceString);
             }
 

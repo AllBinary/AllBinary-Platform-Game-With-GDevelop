@@ -18,7 +18,7 @@ package org.allbinary.animation.image;
 
 import javax.microedition.lcdui.Graphics;
 
-import org.allbinary.animation.ThreedAnimation;
+import org.allbinary.animation.threed.ThreedAnimation;
 
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.special.TitleAnimation;

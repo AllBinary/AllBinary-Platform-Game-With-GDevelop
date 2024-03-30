@@ -1,6 +1,6 @@
 package org.allbinary.animation.image;
 
-import org.allbinary.animation.ThreedAnimationSingletonFactory;
+import org.allbinary.animation.threed.ThreedAnimationSingletonFactory;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory;
