@@ -40,17 +40,18 @@ public class GDAnimationBehaviorBase {
         final int size = animationInterfaceFactoryInterfaceArray.length;
         final IndexedAnimation[] initIndexedAnimationInterfaceArray = new IndexedAnimation[size];
 
-        try {
             for (int index = 0; index < size; index++)
             {
+        try {
                 initIndexedAnimationInterfaceArray[index] = (IndexedAnimation) animationInterfaceFactoryInterfaceArray[index].getInstance();
-            }
         } catch(Exception e) {
             //final StringMaker stringMaker = new StringMaker();
             //super.toString(stringMaker);
             //stringMaker.toString()
+            LogUtil.put(LogFactory.getInstance(new StringMaker().append("Animation index: ").append(index).toString(), this, CommonStrings.getInstance().CONSTRUCTOR, e));
             LogUtil.put(LogFactory.getInstance(gdObject.toString(), this, CommonStrings.getInstance().CONSTRUCTOR, e));
         }
+            }
         
         return initIndexedAnimationInterfaceArray;
     }

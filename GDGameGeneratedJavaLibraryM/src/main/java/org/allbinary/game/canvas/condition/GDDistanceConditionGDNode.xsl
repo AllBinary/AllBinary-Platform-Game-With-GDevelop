@@ -32,6 +32,8 @@ Created By: Travis Berthelot
                     <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="param3" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="before" ><xsl:value-of select="substring-before($param3, '.')" /></xsl:variable>
+                    <xsl:variable name="gdObjectName" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" ><xsl:value-of select="$before" /></xsl:with-param><xsl:with-param name="char" select="' '" /></xsl:call-template></xsl:variable>
                     
                         <xsl:variable name="hasObject" >
                             <xsl:for-each select="//objects" >
@@ -122,6 +124,11 @@ Created By: Travis Berthelot
 
                             gameLayer = (GDGameLayer) gdGameLayerList.get(index);
                             gameLayer2 = (GDGameLayer) gdGameLayerList2.get(index2);
+                            
+                        <xsl:if test="contains($param3, '.')" >
+                            GDObject <xsl:value-of select="$gdObjectName" /> = gameLayer.gdObject;
+                        </xsl:if>
+                            
                             if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(this.layerDistanceUtil.getDistance(gameLayer, gameLayer2) <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$param3" />)) {
 
                             //LogUtil.put(LogFactory.getInstance(new StringMaker().append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append("<xsl:if test="$inverted = 'true'" >!</xsl:if>").append(" d: ").append(this.layerDistanceUtil.getDistance(gameLayer, gameLayer2)).append(" lt ").append(<xsl:value-of select="$param3" />).toString(), this, commonStrings.PROCESS));
@@ -185,7 +192,10 @@ Created By: Travis Berthelot
                         public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                         
                             super.processGDStats(gameLayer);
-                            
+
+                        <xsl:if test="contains($param3, '.')" >
+                            GDObject <xsl:value-of select="$gdObjectName" /> = gameLayer.gdObject;
+                        </xsl:if>
                             
                             if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(this.layerDistanceUtil.getDistance(gameLayer, gameLayer2) <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$param3" />)) {
 
