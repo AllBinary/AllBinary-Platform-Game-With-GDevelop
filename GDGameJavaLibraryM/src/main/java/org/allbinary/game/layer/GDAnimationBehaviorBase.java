@@ -48,7 +48,7 @@ public class GDAnimationBehaviorBase {
             //final StringMaker stringMaker = new StringMaker();
             //super.toString(stringMaker);
             //stringMaker.toString()
-            LogUtil.put(LogFactory.getInstance(new StringMaker().append("Animation index: ").append(index).toString(), this, CommonStrings.getInstance().CONSTRUCTOR, e));
+            LogUtil.put(LogFactory.getInstance(new StringMaker().append(animationInterfaceFactoryInterfaceArray[index].toString()).append(" index: ").append(index).toString(), this, CommonStrings.getInstance().CONSTRUCTOR, e));
             LogUtil.put(LogFactory.getInstance(gdObject.toString(), this, CommonStrings.getInstance().CONSTRUCTOR, e));
         }
             }
