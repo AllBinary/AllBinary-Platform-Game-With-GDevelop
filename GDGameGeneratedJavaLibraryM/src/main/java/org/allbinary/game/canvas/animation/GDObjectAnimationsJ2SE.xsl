@@ -430,6 +430,8 @@ Created By: Travis Berthelot
                     ) {
                         public void setInitialScale(final ScaleProperties scaleProperties) {
                             final ScaleProperties scaleProperties1 = new ScaleProperties();
+                            scaleProperties1.scaleX = scaleProperties.scaleX;
+                            scaleProperties1.scaleY = scaleProperties.scaleY;
                             scaleProperties1.scaleWidth = (scaleProperties.scaleWidth * 253 / 265) - (scaleProperties.scaleWidth * 22 / 265);
                             scaleProperties1.scaleHeight = scaleProperties.scaleHeight;
                             super.setInitialScale(scaleProperties1);
@@ -437,6 +439,8 @@ Created By: Travis Berthelot
                             this.basicAnimationInterfaceFactoryInterfaceArray[0].setInitialScale(scaleProperties);
                         
                             final ScaleProperties scaleProperties2 = new ScaleProperties();
+                            scaleProperties2.scaleX = scaleProperties.scaleX;
+                            scaleProperties2.scaleY = scaleProperties.scaleY;
                             scaleProperties2.scaleWidth = scaleProperties.scaleWidth * 253 / 265;
                             scaleProperties2.scaleHeight = scaleProperties.scaleHeight * 16 / 34;
                         
@@ -444,6 +448,8 @@ Created By: Travis Berthelot
                             this.basicAnimationInterfaceFactoryInterfaceArray[2].setInitialScale(scaleProperties2);
 
                             final ScaleProperties scaleProperties3 = new ScaleProperties();
+                            scaleProperties3.scaleX = scaleProperties.scaleX;
+                            scaleProperties3.scaleY = scaleProperties.scaleY;
                             scaleProperties3.scaleWidth = scaleProperties.scaleWidth * 22 / 265;
                             scaleProperties3.scaleHeight = scaleProperties.scaleHeight * 22 / 34;
                                                 

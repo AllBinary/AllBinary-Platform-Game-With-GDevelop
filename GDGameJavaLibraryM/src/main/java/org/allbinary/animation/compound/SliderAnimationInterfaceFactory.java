@@ -17,13 +17,16 @@ import org.allbinary.animation.Animation;
 import org.allbinary.animation.AnimationBehaviorFactory;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.IndexedAnimation;
+import org.allbinary.media.ScaleProperties;
 
 public class SliderAnimationInterfaceFactory
     extends CompoundAnimationInterfaceFactory {
 
     private int width;
     private int height;
-        
+
+    public ScaleProperties scaleProperties = ScaleProperties.instance;
+
     public SliderAnimationInterfaceFactory(
         final AnimationInterfaceFactoryInterface[] basicAnimationInterfaceFactoryInterfaceArray,
         final int width, final int height)
@@ -48,11 +51,12 @@ public class SliderAnimationInterfaceFactory
     
     //@Override
     protected Animation getInstance(final Animation[] animationInterfaceArray) {
-        return new SliderAnimation((IndexedAnimation[]) animationInterfaceArray, this.width, this.height, this.animationBehaviorFactory.getOrCreateInstance());
+        return new SliderAnimation((IndexedAnimation[]) animationInterfaceArray, this.scaleProperties.scaleWidth, this.scaleProperties.scaleWidth, this.animationBehaviorFactory.getOrCreateInstance());
     }
  
-    public void setInitialSize(final int width, final int height) {        
-        this.width = width;
-        this.height = height;
+    public void setInitialScale(final ScaleProperties scaleProperties) {
+        this.scaleProperties = scaleProperties;
+        //this.scaleProperties.scaleWidth = (int) (this.width * this.scaleProperties.scaleX);
+        //this.scaleProperties.scaleHeight = (int) (this.height * this.scaleProperties.scaleY);
     }
 }
