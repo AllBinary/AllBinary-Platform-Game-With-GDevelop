@@ -147,6 +147,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         final int size = animationInterfaceFactoryInterfaceArray.length;
         for(int index = 0; index < size; index++) {
             final ScaleProperties scaleProperties = new ScaleProperties();
+            scaleProperties.scaleX = this.gdObject.initScaleX;
+            scaleProperties.scaleY = this.gdObject.initScaleY;
             scaleProperties.scaleWidth = this.gdObject.Width(null);
             scaleProperties.scaleHeight = this.gdObject.Height(null);
             animationInterfaceFactoryInterfaceArray[index].setInitialScale(scaleProperties);
