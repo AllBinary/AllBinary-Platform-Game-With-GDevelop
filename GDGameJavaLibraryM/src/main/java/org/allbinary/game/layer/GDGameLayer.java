@@ -100,8 +100,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
     public VelocityBehaviorBase velocityBehavior = DragVelocityBehavior.instance;
 
-    private float lastScaleX = 1;
-    private float lastScaleY = 1;
+//    private float lastScaleX = 1;
+//    private float lastScaleY = 1;
 
     public GDGameLayer(final Animation primitiveDrawing, 
             final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
