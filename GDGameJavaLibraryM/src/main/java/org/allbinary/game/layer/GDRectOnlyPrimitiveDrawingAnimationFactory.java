@@ -16,6 +16,7 @@ package org.allbinary.game.layer;
 import org.allbinary.animation.Animation;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
+import org.allbinary.media.ScaleProperties;
 
 /**
  *
@@ -35,7 +36,7 @@ public class GDRectOnlyPrimitiveDrawingAnimationFactory  implements
        return new GDRectOnlyPrimitiveDrawing();
    }
    
-   public void setInitialSize(final int width, final int height) {
+   public void setInitialScale(final ScaleProperties scaleProperties) {
        
    }
     

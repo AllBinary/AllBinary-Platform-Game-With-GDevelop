@@ -56,6 +56,7 @@ Created By: Travis Berthelot
                     new OneRowJ2SESpriteIndexedAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
                     //)
+                    ,<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth() / <xsl:value-of select="count(directions/sprites)" />, <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight()
                     ,
                                 <xsl:for-each select=".." >
                                     <xsl:for-each select=".." >
@@ -408,13 +409,13 @@ Created By: Travis Berthelot
                     <xsl:for-each select="Label" >
                     //Label
                     new CustomTextAnimationFactory(StringUtil.getInstance().EMPTY_STRING, 0, 0, <xsl:value-of select="$name" />TextAnimationSize) {
-                        public void setInitialSize(final int width, final int height) {
-                            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("setInitialSize - font: ").append(height).toString(), this, CommonStrings.getInstance().PROCESS));
-                            //this.scaleWidth = width;
-                            final int fontSize = height;
-                            this.scaleHeight = (int) fontSize - (fontSize / 4);
-                            this.font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, this.scaleHeight);
-                            LogUtil.put(LogFactory.getInstance(new StringMaker().append("setInitialSize - font: ").append(font.getSize()).toString(), this, CommonStrings.getInstance().PROCESS));
+                        public void setInitialScale(final ScaleProperties scaleProperties) {
+                            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("setInitialScale - font: ").append(scaleProperties.scaleHeight).toString(), this, CommonStrings.getInstance().PROCESS));
+                            //this.scaleWidth = scaleProperties.scalwWidth;
+                            final int fontSize = scaleProperties.scaleHeight;
+                            scaleProperties.scaleHeight = (int) fontSize - (fontSize / 4);
+                            this.font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, scaleProperties.scaleHeight);
+                            LogUtil.put(LogFactory.getInstance(new StringMaker().append("setInitialScale - font: ").append(font.getSize()).toString(), this, CommonStrings.getInstance().PROCESS));
                         }
                     },
                     </xsl:for-each>
@@ -427,14 +428,28 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$name" />ImageArray[1].getWidth(),
                         <xsl:value-of select="$name" />ImageArray[1].getHeight()
                     ) {
-                        public void setInitialSize(final int width, final int height) {
-                            super.setInitialSize((width * 253 / 265) - (width * 22 / 265), height);
+                        public void setInitialScale(final ScaleProperties scaleProperties) {
+                            final ScaleProperties scaleProperties1 = new ScaleProperties();
+                            scaleProperties1.scaleWidth = (scaleProperties.scaleWidth * 253 / 265) - (scaleProperties.scaleWidth * 22 / 265);
+                            scaleProperties1.scaleHeight = scaleProperties.scaleHeight;
+                            super.setInitialScale(scaleProperties1);
 
-                            this.basicAnimationInterfaceFactoryInterfaceArray[0].setInitialSize(width, height);
-                            this.basicAnimationInterfaceFactoryInterfaceArray[1].setInitialSize(width * 253 / 265, height * 16 / 34);
-                            this.basicAnimationInterfaceFactoryInterfaceArray[2].setInitialSize(width * 253 / 265, height * 16 / 34);
-                            this.basicAnimationInterfaceFactoryInterfaceArray[3].setInitialSize(width * 22 / 265, height * 22 / 34);
-                            this.basicAnimationInterfaceFactoryInterfaceArray[4].setInitialSize(width, height);
+                            this.basicAnimationInterfaceFactoryInterfaceArray[0].setInitialScale(scaleProperties);
+                        
+                            final ScaleProperties scaleProperties2 = new ScaleProperties();
+                            scaleProperties2.scaleWidth = scaleProperties.scaleWidth * 253 / 265;
+                            scaleProperties2.scaleHeight = scaleProperties.scaleHeight * 16 / 34;
+                        
+                            this.basicAnimationInterfaceFactoryInterfaceArray[1].setInitialScale(scaleProperties2);
+                            this.basicAnimationInterfaceFactoryInterfaceArray[2].setInitialScale(scaleProperties2);
+
+                            final ScaleProperties scaleProperties3 = new ScaleProperties();
+                            scaleProperties3.scaleWidth = scaleProperties.scaleWidth * 22 / 265;
+                            scaleProperties3.scaleHeight = scaleProperties.scaleHeight * 22 / 34;
+                                                
+                            this.basicAnimationInterfaceFactoryInterfaceArray[3].setInitialScale(scaleProperties3);
+
+                            this.basicAnimationInterfaceFactoryInterfaceArray[4].setInitialScale(scaleProperties);
                         }                        
                     }
                 };

@@ -88,9 +88,11 @@ public class GDGameLayerFactory
             (int) (this.layerInfo.getWidth() * scaleX), 
             (int) (this.layerInfo.getHeight() * scaleY)
         );
-        
+
+        gdObject.initScaleX = scaleX;
+        gdObject.initScaleY = scaleY;
         gdObject.width = (int) (gdObject.width * scaleX);
-        gdObject.height = (int) (gdObject.height * scaleX);
+        gdObject.height = (int) (gdObject.height * scaleY);
         
         final GDGameLayer gameLayer = new GDGameLayer(
             NullAnimationFactory.getFactoryInstance().getInstance(), 

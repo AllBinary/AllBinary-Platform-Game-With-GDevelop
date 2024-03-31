@@ -53,6 +53,8 @@ public class GDObject
     
     public float scaleX = 1.0f;
     public float scaleY = 1.0f;
+    public float initScaleX = 1.0f;
+    public float initScaleY = 1.0f;
 
     public int animation;
     

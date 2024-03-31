@@ -30,7 +30,6 @@ import org.allbinary.game.combat.destroy.GDDestroyableSimpleBehavior;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
-import org.allbinary.game.layout.GDObjectStrings;
 import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.game.physics.velocity.DragVelocityBehavior;
 import org.allbinary.game.physics.velocity.VelocityBehaviorBase;
@@ -41,8 +40,7 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.ScaleFactorFactory;
-import org.allbinary.logic.string.CommonSeps;
-import org.allbinary.math.PositionStrings;
+import org.allbinary.media.ScaleProperties;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.view.ViewPosition;
 
@@ -148,7 +146,10 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //LogUtil.put(LogFactory.getInstance(this.gdObject.toShortString(), this, commonStrings.CONSTRUCTOR));
         final int size = animationInterfaceFactoryInterfaceArray.length;
         for(int index = 0; index < size; index++) {
-            animationInterfaceFactoryInterfaceArray[index].setInitialSize(this.gdObject.Width(null), this.gdObject.Height(null));
+            final ScaleProperties scaleProperties = new ScaleProperties();
+            scaleProperties.scaleWidth = this.gdObject.Width(null);
+            scaleProperties.scaleHeight = this.gdObject.Height(null);
+            animationInterfaceFactoryInterfaceArray[index].setInitialScale(scaleProperties);
         }
 
         this.initIndexedAnimationInterfaceArray = animationBehavior.init(this.gdObject, animationInterfaceFactoryInterfaceArray);
@@ -184,17 +185,17 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     }
 
     //Update main size when scaled.
-    public void setInitialScale(final float scaleX, final float scaleY) {
-        
-        if(this.lastScaleX != scaleX || this.lastScaleY != scaleY) {
-            
-            this.setWidth((int) (this.getInitWidth() * scaleX));
-            this.setHeight((int) (this.getInitHeight() * scaleY));
-            this.getCollidableInferface().update();
-            this.lastScaleX = scaleX;
-            this.lastScaleY = scaleY;
-        }
-    }
+//    public void setInitialScale(final float scaleX, final float scaleY) {
+//        
+//        if(this.lastScaleX != scaleX || this.lastScaleY != scaleY) {
+//            
+//            this.setWidth((int) (this.getInitWidth() * scaleX));
+//            this.setHeight((int) (this.getInitHeight() * scaleY));
+//            this.getCollidableInferface().update();
+//            this.lastScaleX = scaleX;
+//            this.lastScaleY = scaleY;
+//        }
+//    }
         
     public void setAllBinaryGameLayerManager(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
         

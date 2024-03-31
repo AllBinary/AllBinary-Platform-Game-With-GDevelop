@@ -129,8 +129,10 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
 
     public Rectangle init(final GDObject gdObject, final float scaleX, final float scaleY) {
 
+        gdObject.initScaleX = scaleX;
+        gdObject.initScaleY = scaleY;
         gdObject.width = (int) (gdObject.width * scaleX);
-        gdObject.height = (int) (gdObject.height * scaleX);
+        gdObject.height = (int) (gdObject.height * scaleY);
 
         final Rectangle rectangle = new Rectangle(
             PointFactory.getInstance().ZERO_ZERO,

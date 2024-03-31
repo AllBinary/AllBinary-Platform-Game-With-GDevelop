@@ -25,6 +25,7 @@ import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.string.StringUtil;
+import org.allbinary.media.ScaleProperties;
 
 /**
  *
@@ -35,14 +36,14 @@ public class CustomTextBoxIndexedAnimationFactory
 
     //private final CommonStrings commonStrings = CommonStrings.getInstance();
 
-    //private int scaleWidth;
-    private int scaleHeight;
+    public ScaleProperties scaleProperties;
 
     public CustomTextBoxIndexedAnimationFactory(final int fontSize) {
         
         //LogUtil.put(LogFactory.getInstance(commonStrings.START + font.getSize(), this, commonStrings.CONSTRUCTOR));
         
-        this.scaleHeight = fontSize;
+        this.scaleProperties = new ScaleProperties();
+        this.scaleProperties.scaleHeight = fontSize;
     }
     
     @Override
@@ -53,7 +54,7 @@ public class CustomTextBoxIndexedAnimationFactory
         final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
         final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
         
-        final Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, this.scaleHeight);
+        final Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, this.scaleProperties.scaleHeight);
         
         //this.getHighScoresArray(), highScore, 
         final CustomTextBox customTextBox = new CustomTextBox2(
@@ -68,9 +69,8 @@ public class CustomTextBoxIndexedAnimationFactory
     }
 
     @Override
-    public void setInitialSize(final int width, final int height) {
-        //this.scaleWidth = width;
-        this.scaleHeight = height;
+    public void setInitialScale(final ScaleProperties scaleProperties) {
+        this.scaleProperties = scaleProperties;
     }
 
 }
