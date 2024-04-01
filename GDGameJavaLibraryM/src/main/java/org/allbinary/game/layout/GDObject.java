@@ -55,6 +55,8 @@ public class GDObject
     public float scaleY = 1.0f;
     public float initScaleX = 1.0f;
     public float initScaleY = 1.0f;
+    
+    public float customScale = 1.0f;
 
     public int animation;
     
@@ -82,6 +84,10 @@ public class GDObject
         
         this.name = name;
         this.type = type;
+    }
+
+    public String getAnimationFromIndex(final int index) {
+        return null;
     }
 
     public String getAnimation(final String animationName) {

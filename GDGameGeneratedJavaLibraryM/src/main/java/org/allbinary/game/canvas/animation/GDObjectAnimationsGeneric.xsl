@@ -431,6 +431,7 @@ Created By: Travis Berthelot
                     ) {
                         public void setInitialScale(final ScaleProperties scaleProperties) {
                             final ScaleProperties scaleProperties1 = new ScaleProperties();
+                            scaleProperties1.shouldScale = scaleProperties.shouldScale;
                             scaleProperties1.scaleX = scaleProperties.scaleX;
                             scaleProperties1.scaleY = scaleProperties.scaleY;
                             scaleProperties1.scaleWidth = (scaleProperties.scaleWidth * 253 / 265) - (scaleProperties.scaleWidth * 22 / 265);
@@ -440,6 +441,7 @@ Created By: Travis Berthelot
                             this.basicAnimationInterfaceFactoryInterfaceArray[0].setInitialScale(scaleProperties);
                         
                             final ScaleProperties scaleProperties2 = new ScaleProperties();
+                            scaleProperties2.shouldScale = scaleProperties.shouldScale;
                             scaleProperties2.scaleX = scaleProperties.scaleX;
                             scaleProperties2.scaleY = scaleProperties.scaleY;
                             scaleProperties2.scaleWidth = scaleProperties.scaleWidth * 253 / 265;
@@ -449,6 +451,7 @@ Created By: Travis Berthelot
                             this.basicAnimationInterfaceFactoryInterfaceArray[2].setInitialScale(scaleProperties2);
                         
                             final ScaleProperties scaleProperties3 = new ScaleProperties();
+                            scaleProperties3.shouldScale = scaleProperties.shouldScale;
                             scaleProperties3.scaleX = scaleProperties.scaleX;
                             scaleProperties3.scaleY = scaleProperties.scaleY;
                             scaleProperties3.scaleWidth = scaleProperties.scaleWidth * 22 / 265;
@@ -456,7 +459,14 @@ Created By: Travis Berthelot
                                                 
                             this.basicAnimationInterfaceFactoryInterfaceArray[3].setInitialScale(scaleProperties3);
 
-                            this.basicAnimationInterfaceFactoryInterfaceArray[4].setInitialScale(scaleProperties);
+                            final ScaleProperties scaleProperties4 = new ScaleProperties();
+                            scaleProperties4.shouldScale = scaleProperties.shouldScale;
+                            scaleProperties4.scaleX = scaleProperties.scaleX;
+                            scaleProperties4.scaleY = scaleProperties.scaleY;
+                            scaleProperties4.scaleWidth = scaleProperties.scaleWidth;
+                            scaleProperties4.scaleHeight = scaleProperties.scaleHeight;
+                        
+                            this.basicAnimationInterfaceFactoryInterfaceArray[4].setInitialScale(scaleProperties4);
                         }                        
                     }
                 };

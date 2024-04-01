@@ -311,6 +311,10 @@ Created By: Travis Berthelot
                     }
 
                     <xsl:if test="animations" >
+                    public String getAnimationFromIndex(final int index) {
+                        return this.ANIMATION_NAMES[index];
+                    }
+
                     public String getAnimation(final String animationName) {
                         final int size = ANIMATION_NAMES.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {

@@ -306,6 +306,7 @@ Created By: Travis Berthelot
                         final int width = (int) (<xsl:value-of select="width" /> * scaleTouchButtons);
                         final int height = (int) (<xsl:value-of select="height" /> * scaleTouchButtons);
                                 </xsl:if>
+                        final float customScale = scaleTouchButtons;
                             </xsl:if>                            
                             <xsl:if test="not(contains(name, 'btn_'))" >
                         //btn_ - not
@@ -321,6 +322,7 @@ Created By: Travis Berthelot
                         final int width = (int) (<xsl:value-of select="width" />);
                         final int height = (int) (<xsl:value-of select="height" />);
                                 </xsl:if>
+                        final float customScale = 1.0f;
 
                             </xsl:if>
                             
@@ -354,7 +356,9 @@ Created By: Travis Berthelot
                         <xsl:value-of select="zOrder" />,
                         width, height,
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME);
-                                                
+                        
+                        <xsl:value-of select="name" />GDobject2.customScale = customScale;
+
                         final int index = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size();
 
                         final StringMaker stringBuilder = new StringMaker();

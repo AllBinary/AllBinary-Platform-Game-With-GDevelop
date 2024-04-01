@@ -102,7 +102,9 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 
 //    private float lastScaleX = 1;
 //    private float lastScaleY = 1;
-
+    
+    private static final String HACK_ANIMATION_NAME = "ttack";
+    
     public GDGameLayer(final Animation primitiveDrawing, 
             final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
             final BasicArrayList behaviorList,
@@ -146,11 +148,16 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         //LogUtil.put(LogFactory.getInstance(this.gdObject.toShortString(), this, commonStrings.CONSTRUCTOR));
         final int size = animationInterfaceFactoryInterfaceArray.length;
         for(int index = 0; index < size; index++) {
+            final String animationName = this.gdObject.getAnimationFromIndex(index);
             final ScaleProperties scaleProperties = new ScaleProperties();
-            scaleProperties.scaleX = this.gdObject.initScaleX;
-            scaleProperties.scaleY = this.gdObject.initScaleY;
+            scaleProperties.scaleX = this.gdObject.initScaleX * this.gdObject.customScale;
+            scaleProperties.scaleY = this.gdObject.initScaleY * this.gdObject.customScale;
             scaleProperties.scaleWidth = this.gdObject.Width(null);
             scaleProperties.scaleHeight = this.gdObject.Height(null);
+            if(animationName.indexOf(HACK_ANIMATION_NAME) >= 0) {
+                scaleProperties.shouldScale = true;
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.gdObject.toShortString()).append(scaleProperties.toString()).toString(), this, commonStrings.CONSTRUCTOR));
+            }
             animationInterfaceFactoryInterfaceArray[index].setInitialScale(scaleProperties);
         }
 
