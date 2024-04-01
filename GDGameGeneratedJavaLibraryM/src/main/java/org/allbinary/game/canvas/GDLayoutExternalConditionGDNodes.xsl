@@ -82,6 +82,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.DisplayUtil;
+                import org.allbinary.input.motion.gesture.MotionGestureInput;
                 import org.allbinary.logic.string.CommonStrings;
                 import org.allbinary.logic.string.CommonSeps;
                 import org.allbinary.logic.string.StringMaker;
@@ -89,6 +90,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
+                import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
 
