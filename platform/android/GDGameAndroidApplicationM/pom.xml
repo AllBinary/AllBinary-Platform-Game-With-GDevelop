@@ -135,6 +135,58 @@
                     <groupId>org.allbinary</groupId>
                     <artifactId>AllBinaryJ2MELibrary</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>ApplicationStatisticsJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary.cache</groupId>
+                    <artifactId>BaseCacheJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>BaseHardwareJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>BaseOperatingSystemJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>BasePreloaderJ2MEJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>BaseSystemJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>BasicMathLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>ClientInfoBaseJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>CommonJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>EventJ2MELibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>GameConfigurationJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>OpenGLESBaseJavaLibrary</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -193,6 +245,18 @@
                     <groupId>org.allbinary</groupId>
                     <artifactId>AndroidSystemJavaLibrary</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>GameConfigurationJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>OpenGLESAndroidImageJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>OpenGLESBaseJavaLibrary</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -229,6 +293,66 @@
                 <exclusion>
                     <groupId>org.allbinary</groupId>
                     <artifactId>MotionInputAndroidDynamicJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>AllBinaryJ2MELibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>BaseHardwareJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>BaseOperatingSystemJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>ApplicationStatisticsJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>BaseSystemJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>ClientInfoBaseJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>BasePreloaderJ2MEJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>BasicMathLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary.cache</groupId>
+                    <artifactId>BaseCacheJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>EventJ2MELibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>GameConfigurationJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>TokenizerJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>OpenGLESAndroidImageJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>OpenGLESBaseJavaLibrary</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -352,6 +476,44 @@
                 <exclusion>
                     <groupId>org.allbinary</groupId>
                     <artifactId>MotionGestureJavaLibrary</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.platform</groupId>
+            <artifactId>Null3dForAndroidJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>BasePreloaderJ2MEJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>BasicMathLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>CommonJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>J2MEUtilJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>min3d</groupId>
+                    <artifactId>Min3dBaseJavaLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>TrigBaseLibrary</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>OpenGLESBaseJavaLibrary</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
