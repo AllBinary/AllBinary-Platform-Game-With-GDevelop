@@ -410,7 +410,8 @@ Created By: Travis Berthelot
                     //Label
                     new CustomTextAnimationFactory(StringUtil.getInstance().EMPTY_STRING, <xsl:value-of select="$name" />TextAnimationSize, 0, -1) {
                         public void setInitialScale(final ScaleProperties scaleProperties) {
-                            super.setInitialScale(scaleProperties);
+                            //super.setInitialScale(scaleProperties);
+                            this.scaleProperties = scaleProperties;
                             //LogUtil.put(LogFactory.getInstance(new StringMaker().append("setInitialScale - font: ").append(scaleProperties.scaleHeight).toString(), this, CommonStrings.getInstance().PROCESS));
                             //this.scaleWidth = scaleProperties.scalwWidth;
                             final int fontSize = scaleProperties.scaleHeight;
