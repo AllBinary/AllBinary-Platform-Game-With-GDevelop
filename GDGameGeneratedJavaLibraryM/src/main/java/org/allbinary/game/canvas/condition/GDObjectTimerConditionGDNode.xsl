@@ -161,7 +161,7 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public void processReleased() throws Exception { //Timer
+                        public void processReleased() throws Exception { //ObjectTimer
                             super.processReleasedStats();
 
                             if(this.currentRunnable != NullRunnable.getInstance()) {

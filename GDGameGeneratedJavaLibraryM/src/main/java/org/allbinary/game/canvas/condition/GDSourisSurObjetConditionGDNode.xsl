@@ -107,7 +107,7 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public void processReleased() throws Exception { //Timer
+                        public void processReleased() throws Exception {
                             super.processReleasedStats();
 
                         <xsl:if test="contains($press, 'found') or contains($release, 'found')" >
@@ -151,7 +151,7 @@ Created By: Travis Berthelot
                                 //if (rectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY() - 2, <xsl:value-of select="text()" />Rectangle.getMaxX(), <xsl:value-of select="text()" />Rectangle.getMaxY() + 2, point.getX(), point.getY()))
                                 if (rectangleCollisionUtil.isInside(gameLayer.getX(), gameLayer.getY() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY()))
                                 {
-                                    //LogUtil.put(LogFactory.getInstance("Inside", this, commonStrings.PROCESS));
+                                    //LogUtil.put(LogFactory.getInstance("Inside: " + lastMotionGestureInput, this, commonStrings.PROCESS));
                                     <xsl:if test="$inverted != 'true'" >
                                     <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
                                         runnable.run();
