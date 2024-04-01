@@ -409,7 +409,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     <xsl:for-each select="Label" >
                     //Label
-                    new CustomTextAnimationFactory(StringUtil.getInstance().EMPTY_STRING, 0, 0, <xsl:value-of select="$name" />TextAnimationSize) {
+                    new CustomTextAnimationFactory(StringUtil.getInstance().EMPTY_STRING, <xsl:value-of select="$name" />TextAnimationSize, 0, -1) {
                         public void setInitialScale(final ScaleProperties scaleProperties) {
                             super.setInitialScale(scaleProperties);
                             //LogUtil.put(LogFactory.getInstance(new StringMaker().append("setInitialScale - font: ").append(scaleProperties.scaleHeight).toString(), this, CommonStrings.getInstance().PROCESS));

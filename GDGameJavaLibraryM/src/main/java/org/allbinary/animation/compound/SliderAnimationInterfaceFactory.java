@@ -51,7 +51,7 @@ public class SliderAnimationInterfaceFactory
     
     //@Override
     protected Animation getInstance(final Animation[] animationInterfaceArray) {
-        return new SliderAnimation((IndexedAnimation[]) animationInterfaceArray, this.scaleProperties.scaleWidth, this.scaleProperties.scaleWidth, this.animationBehaviorFactory.getOrCreateInstance());
+        return new SliderAnimation((IndexedAnimation[]) animationInterfaceArray, this.scaleProperties.scaleWidth, this.scaleProperties.scaleHeight, this.animationBehaviorFactory.getOrCreateInstance());
     }
  
     public void setInitialScale(final ScaleProperties scaleProperties) {
