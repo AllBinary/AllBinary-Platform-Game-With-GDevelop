@@ -154,7 +154,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             scaleProperties.scaleY = this.gdObject.initScaleY * this.gdObject.customScale;
             scaleProperties.scaleWidth = this.gdObject.Width(null);
             scaleProperties.scaleHeight = this.gdObject.Height(null);
-            if(animationName.indexOf(HACK_ANIMATION_NAME) >= 0) {
+            if(animationName != null && animationName.indexOf(HACK_ANIMATION_NAME) >= 0) {
                 scaleProperties.shouldScale = true;
                 LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.gdObject.toShortString()).append(scaleProperties.toString()).toString(), this, commonStrings.CONSTRUCTOR));
             }
