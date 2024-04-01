@@ -126,7 +126,13 @@ Created By: Travis Berthelot
                             return result;
                         }
 
-                        //VarObjet
+                        @Override
+                        public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                            super.processStats(motionGestureEvent);
+                            
+                            return this.process();
+                        }
+                        
                         @Override
                         public boolean processG(final GDObject <xsl:value-of select="$gdObjectName" />, final BasicArrayList gdGameLayerList, final int gdObjectIndex, final Graphics graphics) {
 
