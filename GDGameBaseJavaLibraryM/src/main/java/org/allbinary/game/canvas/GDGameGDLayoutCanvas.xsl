@@ -128,7 +128,9 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     private final int WAIT = GameSpeed.getInstance().getDelay();
 
     private final int portion = 4;
-    private final short SIZE = 50;
+    
+    //objectsGroups count=<xsl:value-of select="count(//objectsGroups)" /> + //object count=<xsl:value-of select="count(//objects)" /> + 1
+    private final short SIZE = <xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />;
 
     private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
     private final StringMaker stringBuilder = new StringMaker();

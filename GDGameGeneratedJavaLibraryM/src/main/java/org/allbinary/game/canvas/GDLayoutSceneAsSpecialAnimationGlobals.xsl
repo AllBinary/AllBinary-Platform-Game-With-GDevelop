@@ -306,7 +306,7 @@ Created By: Travis Berthelot
 -->
                     //eventsClassPropertyActions - END
                     
-                    <xsl:call-template name="objectsAssignGroup" >
+                    <xsl:call-template name="objectsGroup" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
@@ -347,6 +347,19 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($hasScaleVariable, 'found')" >
                     this.scale = scale;
                     </xsl:if>
+                    
+                    <xsl:call-template name="objectsAssignGroup" >
+                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
+                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:text>&#10;</xsl:text>
                     
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >

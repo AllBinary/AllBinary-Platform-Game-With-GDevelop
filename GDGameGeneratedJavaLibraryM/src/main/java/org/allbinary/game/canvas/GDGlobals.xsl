@@ -244,7 +244,7 @@ Created By: Travis Berthelot
 -->
                     //eventsClassPropertyActions - END
                     
-                    <xsl:call-template name="objectsAssignGroup" >
+                    <xsl:call-template name="objectsGroup" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
@@ -336,7 +336,20 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroups - END
-                                    
+
+                    <xsl:call-template name="objectsAssignGroup" >
+                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
+                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            Global
+                        </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:text>&#10;</xsl:text>
+
                     //eventsClassPropertyArrayActions - START
                     <xsl:call-template name="eventsClassPropertyArrayActions" >
                         <xsl:with-param name="totalRecursions" >
