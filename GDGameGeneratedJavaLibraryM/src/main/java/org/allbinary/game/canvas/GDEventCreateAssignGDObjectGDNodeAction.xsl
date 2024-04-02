@@ -571,6 +571,9 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'Create'" >
 
                     <xsl:call-template name="createActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
                         <xsl:with-param name="param" >
                             <xsl:value-of select="$param" />
                         </xsl:with-param>

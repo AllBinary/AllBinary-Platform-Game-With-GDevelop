@@ -33,11 +33,6 @@ Created By: Travis Berthelot
         import javax.microedition.lcdui.Graphics;
         import javax.microedition.lcdui.game.TiledLayer;
 
-        <xsl:for-each select="layouts" >
-            <xsl:variable name="layoutIndex" select="position() - 1" />
-        import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals;
-        </xsl:for-each>
-
         import org.allbinary.animation.Animation;
         import org.allbinary.animation.AnimationInterfaceFactoryInterface;
         import org.allbinary.animation.IndexedAnimationInterface;
@@ -191,6 +186,7 @@ Created By: Travis Berthelot
         </xsl:for-each>
 
                     public GDCustomGameLayer(
+                        final int layoutIndex, 
                         final Animation primitiveDrawing,
                         final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
                         final BasicArrayList behaviorList,
@@ -366,52 +362,13 @@ Created By: Travis Berthelot
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
-
-            <xsl:for-each select="objects" >
-
-                <xsl:for-each select="behaviors" >
-                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" />
-                    <xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >
-                        
-                        <xsl:if test="1" >
-                        this.playerGameInput = new PlayerGameInput(this.getGameKeyEventList(), 0);
-
-                        //if (allBinaryGameLayerManager.getGameInfo().getGameType() != GameTypeFactory.getInstance().BOT)
-                        //{   
-                            GameKeyEventHandler.getInstance().addListener(playerGameInput, playerGameInput.getPlayerInputId());
-                            //AllBinaryGameCanvas.addPlayerGameInput(((PlayerGameInputCompositeInterface) this.playerLayer).getPlayerGameInput());
-                        //}
-
-                        </xsl:if>
-
-                        this.initInputProcessors();               
-                    </xsl:if>
-                </xsl:for-each>
-            </xsl:for-each>
-
-            <xsl:variable name="hasCollisionListForLayout" ><xsl:call-template name="hasCollisionListForLayout" ><xsl:with-param name="layoutIndex" select="$layoutIndex" /></xsl:call-template></xsl:variable>
-            <xsl:variable name="hasWhileCollisionList" ><xsl:call-template name="hasWhileCollisionList" ><xsl:with-param name="layoutIndex" select="$layoutIndex" /></xsl:call-template></xsl:variable>
-            <xsl:variable name="hasSubInstructionsCollisionList" ><xsl:call-template name="hasSubInstructionsCollisionList" ><xsl:with-param name="layoutIndex" select="$layoutIndex" /></xsl:call-template></xsl:variable>
-            //CollisionNP - processing for the specific game object - //hasCollisionListForLayout=<xsl:if test="contains($hasCollisionListForLayout, 'found')" ></xsl:if> //hasWhileCollisionList=<xsl:if test="contains($hasWhileCollisionList, 'found')" ></xsl:if> //hasSubInstructionsCollisionList=<xsl:if test="contains($hasSubInstructionsCollisionList, 'found')" ></xsl:if>
-            <xsl:if test="contains($hasCollisionListForLayout, 'found') or contains($hasWhileCollisionList, 'found')  or contains($hasSubInstructionsCollisionList, 'found')" >
-            final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals<xsl:value-of select="$layoutIndex" /> = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-            </xsl:if>
-            //addCollisionList
-            <xsl:call-template name="addCollisionList" >
-                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-            </xsl:call-template>
-            //addWhileCollisionList
-            <xsl:call-template name="addWhileCollisionList" >
-                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-            </xsl:call-template>
-            //addSubInstructionsCollisionList
-            <xsl:call-template name="addSubInstructionsCollisionList" >
-                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
-            </xsl:call-template>
             
+            if(layoutIndex == <xsl:value-of select="$layoutIndex" />) {
+                this.handleLayout<xsl:value-of select="$layoutIndex" />();
+            }
         </xsl:for-each>
 
-                    }
+        }
 
         <xsl:if test="not(contains($hasLayoutWithTileMapAndIsTopView, 'found') or contains($foundOtherViewPosition, 'found'))" >
     public void upp()
@@ -988,7 +945,58 @@ Created By: Travis Berthelot
     public int Value() {
         return ((GDSliderAnimationBehavior) this.getDimensionalBehavior().getAnimationBehavior()).Value();
     }
-                                
+
+        <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+                        
+            public void handleLayout<xsl:value-of select="$layoutIndex" />() {
+
+            <xsl:for-each select="objects" >
+
+                <xsl:for-each select="behaviors" >
+                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" />
+                    <xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >
+                        
+                        <xsl:if test="1" >
+                        this.playerGameInput = new PlayerGameInput(this.getGameKeyEventList(), 0);
+
+                        //if (allBinaryGameLayerManager.getGameInfo().getGameType() != GameTypeFactory.getInstance().BOT)
+                        //{   
+                            GameKeyEventHandler.getInstance().addListener(playerGameInput, playerGameInput.getPlayerInputId());
+                            //AllBinaryGameCanvas.addPlayerGameInput(((PlayerGameInputCompositeInterface) this.playerLayer).getPlayerGameInput());
+                        //}
+
+                        </xsl:if>
+
+                        this.initInputProcessors();               
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:for-each>
+
+            <xsl:variable name="hasCollisionListForLayout" ><xsl:call-template name="hasCollisionListForLayout" ><xsl:with-param name="layoutIndex" select="$layoutIndex" /></xsl:call-template></xsl:variable>
+            <xsl:variable name="hasWhileCollisionList" ><xsl:call-template name="hasWhileCollisionList" ><xsl:with-param name="layoutIndex" select="$layoutIndex" /></xsl:call-template></xsl:variable>
+            <xsl:variable name="hasSubInstructionsCollisionList" ><xsl:call-template name="hasSubInstructionsCollisionList" ><xsl:with-param name="layoutIndex" select="$layoutIndex" /></xsl:call-template></xsl:variable>
+            //CollisionNP - processing for the specific game object - //hasCollisionListForLayout=<xsl:if test="contains($hasCollisionListForLayout, 'found')" ></xsl:if> //hasWhileCollisionList=<xsl:if test="contains($hasWhileCollisionList, 'found')" ></xsl:if> //hasSubInstructionsCollisionList=<xsl:if test="contains($hasSubInstructionsCollisionList, 'found')" ></xsl:if>
+            <xsl:if test="contains($hasCollisionListForLayout, 'found') or contains($hasWhileCollisionList, 'found')  or contains($hasSubInstructionsCollisionList, 'found')" >
+            final org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals<xsl:value-of select="$layoutIndex" /> = 
+                org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+            </xsl:if>
+            //addCollisionList
+            <xsl:call-template name="addCollisionList" >
+                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
+            </xsl:call-template>
+            //addWhileCollisionList
+            <xsl:call-template name="addWhileCollisionList" >
+                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
+            </xsl:call-template>
+            //addSubInstructionsCollisionList
+            <xsl:call-template name="addSubInstructionsCollisionList" >
+                <xsl:with-param name="layoutIndex" select="$layoutIndex" />
+            </xsl:call-template>
+            
+            }            
+        </xsl:for-each>
+                                                                
                 }
 
     </xsl:template>
