@@ -160,13 +160,24 @@
                             </xsl:for-each>
                         };
                             </xsl:if>
-                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'LongArray') or contains(name, 'BoolArray'))" >
+                            <xsl:if test="contains(name, 'highScoresNameArray')" >
+                                                        
+                        public String[] <xsl:value-of select="name" /> = {
+<!--                                        <xsl:for-each select="children" >
+                                        <xsl:value-of select="value" />,
+                                        <xsl:text>&#10;</xsl:text>
+                                        </xsl:for-each>                                        -->
+                        };
+
+                            </xsl:if>
+
+                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'LongArray') or contains(name, 'BoolArray') or contains(name, 'highScoresNameArray'))" >
                                 
                                 <xsl:for-each select="children" >
                         public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="value" />";
                                 </xsl:for-each>
                         
-                        public String[] <xsl:value-of select="name" /> = {
+                        public final String[] <xsl:value-of select="name" /> = {
                                         <xsl:for-each select="children" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template>,
                                         <xsl:text>&#10;</xsl:text>
                                         </xsl:for-each>                                        
@@ -258,16 +269,16 @@
                             </xsl:for-each>
                         };
                             </xsl:if>
-                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'LongArray') or contains(name, 'BoolArray'))" >
+<!--                            <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'LongArray') or contains(name, 'BoolArray'))" >
                                 <xsl:for-each select="children" >
-                        //this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="value" />";
+                        this.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="value" />";
                                 </xsl:for-each>
                         
                         this.<xsl:value-of select="name" /> = new String[] {
                                         <xsl:for-each select="children" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template>,
                                         <xsl:text>&#10;</xsl:text>
                                         </xsl:for-each>                                        
-                        };
+                        };-->
 
 <!--            
                         this.<xsl:value-of select="name" /> = new String[] {
@@ -276,7 +287,7 @@
                             </xsl:for-each>
                     };
 -->
-                            </xsl:if>
+<!--                            </xsl:if>-->
                             </xsl:if>
 
                         </xsl:for-each>
