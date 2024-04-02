@@ -171,7 +171,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
+                            LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.CONSTRUCTOR));
                     
                                     <xsl:call-template name="scale" >
                                         <xsl:with-param name="layoutIndex" >
@@ -212,6 +212,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     //actionLayout - //eventsCreateAssignGDObjectGDNodesAction - END                    
                     
+                            LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
 
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));

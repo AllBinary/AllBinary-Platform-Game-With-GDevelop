@@ -110,7 +110,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
+                            LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.CONSTRUCTOR));
 
                             <xsl:for-each select="../externalEvents" >
                                 <xsl:if test="$layoutName = associatedLayout" >
@@ -118,6 +118,8 @@ Created By: Travis Berthelot
                                     <xsl:call-template name="externalLinkEventGDNode" />
                                 </xsl:if>
                             </xsl:for-each>
+                            
+                            LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
 
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));

@@ -422,12 +422,14 @@ Created By: Travis Berthelot
                         }
 
                         this.build();
-
+                        
+                        LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
                     }
 
                     public void build() {
                     
                         try {
+                            LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.PROCESS));
 
                             <xsl:call-template name="scale" >
                                 <xsl:with-param name="layoutIndex" >
@@ -542,10 +544,10 @@ Created By: Travis Berthelot
                         initialized = true;
 
                         } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
+                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
                         }
                     
-                        LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
+                        LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.PROCESS));
                     }
                     
                     public int SceneWindowWidth() {

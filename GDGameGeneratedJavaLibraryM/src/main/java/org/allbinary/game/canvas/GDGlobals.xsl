@@ -296,7 +296,7 @@ Created By: Travis Berthelot
                                      
                     private GDGameGlobals() {
                     
-                        LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
+                        LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.CONSTRUCTOR));
 
                         final int size = channelSoundArray.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -362,6 +362,7 @@ Created By: Travis Berthelot
 
                         layerManagerEventHandler.addListener(layerManagerEventListener);
                         
+                        LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
                     }
                     
                     public void reset() {

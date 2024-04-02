@@ -141,7 +141,7 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
+                            LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.CONSTRUCTOR));
 
                     animationInterfaceFactoryInterfaceFactory.init(-1);
                                         
@@ -166,6 +166,8 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroups - END
+
+                    LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
 
                         //} catch(Exception e) {
                             //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));

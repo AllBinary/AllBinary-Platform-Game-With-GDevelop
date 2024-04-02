@@ -166,7 +166,7 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
+                            LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.CONSTRUCTOR));
 
                     animationInterfaceFactoryInterfaceFactory.init(-1);
                                         
@@ -195,6 +195,8 @@ Created By: Travis Berthelot
                     <xsl:if test="$layoutIndex = 1" >
                     //GameAreaBoxUtil.getInstance().addGameLayerFactories(animationInterfaceFactoryInterfaceFactory);
                     </xsl:if>
+
+                    LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
 
                         //} catch(Exception e) {
                             //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));

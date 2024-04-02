@@ -24,13 +24,13 @@
                             final int scale = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
                             final int scaleNominator = scale;
                             final int scaleDenominator = 2;
-                            LogUtil.put(LogFactory.getInstance(new StringMaker().append("scale: ").append(scale).toString(), this, commonStrings.PROCESS));
+                            LogUtil.put(LogFactory.getInstance(new StringMaker().append("scale: ").append(scale).toString(), this, commonStrings.CONSTRUCTOR));
 
                             final int scaleLayout = <xsl:if test="not(contains($layoutName, 'Scaled')) or contains($layoutIndex, 'Global')" >1</xsl:if><xsl:if test="contains($layoutName, 'Scaled')" >2</xsl:if>;
                             <xsl:variable name="name2" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template></xsl:variable>
                             final int scaleTouchButtons = <xsl:if test="number($layoutIndex) = 0 or contains($name2, 'options') or contains($name2, 'score') or contains($name2, 'over')" >1</xsl:if><xsl:if test="not(number($layoutIndex) = 0 or contains($name2, 'options') or contains($name2, 'score') or contains($name2, 'over'))" >3</xsl:if>;
 <!--                            final int scaleTouch = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth * scaleTouchButtons : scaleHeight * scaleTouchButtons;-->
-                            LogUtil.put(LogFactory.getInstance(new StringMaker().append("scaleTouchButtons - scale: ").append(scaleTouchButtons).toString(), this, commonStrings.PROCESS));
+                            LogUtil.put(LogFactory.getInstance(new StringMaker().append("scaleTouchButtons - scale: ").append(scaleTouchButtons).toString(), this, commonStrings.CONSTRUCTOR));
     </xsl:template>
 
 </xsl:stylesheet>

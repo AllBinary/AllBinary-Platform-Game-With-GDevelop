@@ -159,7 +159,7 @@ Created By: Travis Berthelot
 
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimation() {
 
-                        LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
+                        LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.CONSTRUCTOR));
                     
                         <xsl:call-template name="scale" >
                             <xsl:with-param name="layoutIndex" >
@@ -186,6 +186,8 @@ Created By: Travis Berthelot
                         //groupLayerManagerListener.log();
                         
                         gdNodeStatsFactory.log(stringBuilder, this);
+                        
+                        LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
                     }
 
                     public void process() {
