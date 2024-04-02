@@ -19,8 +19,9 @@ Created By: Travis Berthelot
     <xsl:template name="variablesStructuresChildren" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="parentName" />
-        //children - totalRecursions=<xsl:value-of select="$totalRecursions" />
         
+        //children - totalRecursions=<xsl:value-of select="$totalRecursions" />
+                
         <xsl:for-each select="children" >
             <xsl:if test="type = 'structure'" >
                 //structure
@@ -61,9 +62,20 @@ Created By: Travis Berthelot
     </xsl:template>
 
     <xsl:template name="variablesStructures" >
+
+        <xsl:variable name="hasStructure" ><xsl:for-each select="variables" ><xsl:if test="type = 'structure'" >found</xsl:if></xsl:for-each></xsl:variable>
+                
+        <xsl:if test="contains($hasStructure, 'found')" >
+public class GDStructure {
+
+    public int Size = -1;
+
+}
+        </xsl:if>
         
         <xsl:for-each select="variables" >
             //variablesStructures - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
+            <xsl:if test="type = 'structure'" >
             <xsl:if test="name" >
 public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
 
@@ -77,6 +89,7 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
         </xsl:call-template>
     
 }
+            </xsl:if>
             </xsl:if>
         </xsl:for-each>
         

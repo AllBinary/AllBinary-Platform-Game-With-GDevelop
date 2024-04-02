@@ -151,13 +151,7 @@ Created By: Travis Berthelot
                         //This layout should not be the scores layout
                         public boolean highscoreSubmissionComplete = false;
                         </xsl:if>
-                        
-public class GDStructure {
-
-    public int Size = -1;
-
-}                    
-                                                            
+                                                                                    
                     //variablesStructures - START
                     <xsl:call-template name="variablesStructures" >
                         <xsl:with-param name="totalRecursions" >
