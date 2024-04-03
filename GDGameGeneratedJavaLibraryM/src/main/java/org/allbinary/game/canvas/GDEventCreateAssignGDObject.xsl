@@ -25,6 +25,7 @@ Created By: Travis Berthelot
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="nodeAsString" />
         <xsl:param name="caller" />
+        <xsl:param name="gameLayer" />
 
         <xsl:variable name="quote" >"</xsl:variable>
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
@@ -56,10 +57,15 @@ Created By: Travis Berthelot
                                         </xsl:for-each>
                                         </xsl:variable>
                                         <xsl:if test="not(contains($hasPriorDuplicate, 'found'))" >
+                                            <xsl:if test="string-length($gameLayer) = 0" >
                                         GDObject <xsl:value-of select="$name2" /> = null;
                                         if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                             <xsl:value-of select="$name2" /> = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDGameLayerList.get(0)).gdObject;
                                         }
+                                            </xsl:if>
+                                            <xsl:if test="string-length($gameLayer) > 0" >
+                                        final GDObject <xsl:value-of select="$name2" /> = <xsl:value-of select="$gameLayer" />.gdObject;
+                                            </xsl:if>
                                             
                                         if(<xsl:value-of select="$name2" /> == null) {
                                             //caller=<xsl:value-of select="$caller" />
