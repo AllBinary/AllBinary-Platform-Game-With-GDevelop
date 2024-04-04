@@ -64,6 +64,7 @@ Created By: Travis Berthelot
                         </xsl:variable>
 
                         <xsl:if test="contains($hasObject, 'found') or contains($hasObjectGroup, 'found')" >
+                        <xsl:if test="string-length($beforeSecondParam2)" >//beforeSecondParam2=<xsl:value-of select="$beforeSecondParam2" /></xsl:if>
                         //beforeSecondParam=<xsl:value-of select="$beforeSecondParam" />
                         </xsl:if>
 
@@ -427,7 +428,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="$beforeSecondParam != ''" >
 <!--                                    //<xsl:value-of select="$beforeSecondParam" /> - <xsl:value-of select="$hasObject" /><xsl:text>&#10;</xsl:text>-->
                                     <xsl:if test="contains($hasObject, 'found')" >
-                                    ((GD<xsl:call-template name="objectFactory" >
+                                    <xsl:value-of select="$beforeSecondParam2" />((GD<xsl:call-template name="objectFactory" >
                                         <xsl:with-param name="name" >
                                             <xsl:value-of select="$beforeSecondParam" />
                                         </xsl:with-param>
