@@ -17,6 +17,7 @@ Created By: Travis Berthelot
 
     <xsl:template name="variablesForGDObject" >
                     <xsl:for-each select="variables" >
+                        <xsl:variable name="name" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                     //Object - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                         <xsl:if test="type = 'string'" >
                             <xsl:if test="number(value) != value" >
@@ -28,10 +29,14 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="type = 'number'" >
-                                <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'score'))" >
+                            <xsl:if test="contains($name, 'speed')" >
+                    //TWB - speed hack
+                    public int <xsl:value-of select="name" /> = <xsl:value-of select="value" /> * (AndroidUtil.isAndroid() ? 1 : 3);
+                            </xsl:if>
+                            <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains($name, 'speed') or contains(name, 'score'))" >
                     public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
-                                </xsl:if>
-                                <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'score')" >
+                            </xsl:if>
+                            <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'score')" >
                                 <xsl:if test="value != '9223372036854776000'" >
                     public long <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                                 </xsl:if>
@@ -84,6 +89,7 @@ Created By: Travis Berthelot
     
     <xsl:template name="variablesResetForGDObject" >
                     <xsl:for-each select="variables" >
+                        <xsl:variable name="name" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                     //Object - //reset - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                         <xsl:if test="type = 'string'" >
                             <xsl:if test="number(value) != value" >
@@ -95,17 +101,26 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="type = 'number'" >
-                            <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE'))" >
-                                this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                            <xsl:if test="contains(name, 'scale')" >
+                    //Skip resetting scale
+                            </xsl:if>
+                            <xsl:if test="not(contains(name, 'scale'))" >
+                            <xsl:if test="contains($name, 'speed')" >
+                    //TWB - speed hack
+                    this.<xsl:value-of select="name" /> = <xsl:value-of select="value" /> * (AndroidUtil.isAndroid() ? 1 : 3);
+                            </xsl:if>
+                            <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains($name, 'speed'))" >
+                    this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                             </xsl:if>
                             <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE')" >
                                 <xsl:if test="value != '9223372036854776000'" >
-                                this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                    this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                                 </xsl:if>
                                 <xsl:if test="value = '9223372036854776000'" >
-                                //Long.MAX_VALUE = 9223372036854776000 GD does not like the real value 9223372036854775807L
-                                this.<xsl:value-of select="name" /> = 9223372036854775807L;
+                    //Long.MAX_VALUE = 9223372036854776000 GD does not like the real value 9223372036854775807L
+                    this.<xsl:value-of select="name" /> = 9223372036854775807L;
                                 </xsl:if>
+                            </xsl:if>
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="type = 'boolean'" >
@@ -248,6 +263,7 @@ Created By: Travis Berthelot
                         
                     <xsl:if test="contains($hasObjectInObjectsGroups, 'found')" >
                     <xsl:for-each select="variables" >
+                        <xsl:variable name="name" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
                     //animations - //variable - //<xsl:value-of select="type" /> - name=<xsl:value-of select="name" /> - value=<xsl:value-of select="value" />
                         <xsl:if test="type = 'string'" >
                             <xsl:if test="number(value) != value" >
@@ -259,19 +275,28 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="type = 'number'" >
-                            <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE'))" >
-                                this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                            <xsl:if test="contains(name, 'scale')" >
+                    //Skip resetting scale
+                            </xsl:if>
+                            <xsl:if test="not(contains(name, 'scale'))" >
+                            <xsl:if test="contains($name, 'speed')" >
+                   //TWB - speed hack
+                    this.<xsl:value-of select="name" /> = <xsl:value-of select="value" /> * (AndroidUtil.isAndroid() ? 1 : 3);
+                            </xsl:if>
+                            <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains($name, 'speed'))" >
+                    this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                             </xsl:if>
                             <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE')" >
                                 <xsl:if test="value != '9223372036854776000'" >
-                                this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                    this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                                 </xsl:if>
                                 <xsl:if test="value = '9223372036854776000'" >
-                                //Long.MAX_VALUE = 9223372036854776000 GD does not like the real value 9223372036854775807L
-                                this.<xsl:value-of select="name" /> = 9223372036854775807L;
+                    //Long.MAX_VALUE = 9223372036854776000 GD does not like the real value 9223372036854775807L
+                    this.<xsl:value-of select="name" /> = 9223372036854775807L;
                                 </xsl:if>
                             </xsl:if>
-                        </xsl:if>
+                            </xsl:if>
+                         </xsl:if>
                         <xsl:if test="type = 'boolean'" >
                     this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                         </xsl:if>
