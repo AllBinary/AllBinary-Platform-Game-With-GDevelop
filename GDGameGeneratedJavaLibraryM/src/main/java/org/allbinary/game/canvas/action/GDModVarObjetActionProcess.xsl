@@ -47,7 +47,10 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                         </xsl:variable>
                                                 
-                        <xsl:variable name="beforeSecondParam" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
+                        <xsl:variable name="beforeSecondParam0" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
+                        <xsl:variable name="beforeSecondParam" ><xsl:if test="contains($beforeSecondParam0, '-')" ><xsl:value-of select="substring-after($beforeSecondParam0, '-')" /></xsl:if><xsl:if test="not(contains($beforeSecondParam0, '-'))" ><xsl:value-of select="$beforeSecondParam0" /></xsl:if></xsl:variable>
+                        <xsl:variable name="beforeSecondParam2" ><xsl:if test="contains($beforeSecondParam0, '-')" >-</xsl:if></xsl:variable>
+                        
 
                         <xsl:variable name="hasObject" >
                             <xsl:for-each select="//objects" >
@@ -120,7 +123,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="substring-before($param, '.') = ''" >
                                     <xsl:value-of select="$param" />
                                 </xsl:if>
-                                <xsl:if test="substring-before($param, '.') != ''" >paramTwoGameLayer.gdObject.<xsl:value-of select="substring-after($param, '.')" /></xsl:if>
+                                <xsl:if test="substring-before($param, '.') != ''" ><xsl:value-of select="$beforeSecondParam2" />((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeSecondParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeSecondParam" />) paramTwoGameLayer.gdObject).<xsl:value-of select="substring-after($param, '.')" /></xsl:if>
                             </xsl:if>
                             <xsl:if test="$paramTwoName = ''" >
                                 <xsl:variable name="before" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
@@ -128,7 +131,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="$beforeSecondParam != ''" >
                                     //<xsl:value-of select="$beforeSecondParam" /> - <xsl:value-of select="$hasObject" /><xsl:text>&#10;</xsl:text>
                                     <xsl:if test="contains($hasObject, 'found')" >
-                                    ((GD<xsl:call-template name="objectFactory" >
+                                    <xsl:value-of select="$beforeSecondParam2" />((GD<xsl:call-template name="objectFactory" >
                                         <xsl:with-param name="name" >
                                             <xsl:value-of select="$beforeSecondParam" />
                                         </xsl:with-param>
@@ -241,14 +244,16 @@ Created By: Travis Berthelot
                                 <xsl:if test="substring-before($param, '.') = ''" >
                                     <xsl:value-of select="$param" />
                                 </xsl:if>
-                                <xsl:if test="substring-before($param, '.') != ''" >paramTwoGameLayer.gdObject.<xsl:value-of select="substring-after($param, '.')" /></xsl:if>
+                                <xsl:if test="substring-before($param, '.') != ''" >
+                                    <xsl:value-of select="$beforeSecondParam2" />((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeSecondParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeSecondParam" />) paramTwoGameLayer.gdObject).<xsl:value-of select="substring-after($param, '.')" />
+                                </xsl:if>
                             </xsl:if>
                             <xsl:if test="$paramTwoName = ''" >
                                 
                                 <xsl:if test="$beforeSecondParam != ''" >
 <!--                                    //<xsl:value-of select="$beforeSecondParam" /> - <xsl:value-of select="$hasObject" /><xsl:text>&#10;</xsl:text>-->
                                     <xsl:if test="contains($hasObject, 'found')" >
-                                    ((GD<xsl:call-template name="objectFactory" >
+                                    <xsl:value-of select="$beforeSecondParam2" />((GD<xsl:call-template name="objectFactory" >
                                         <xsl:with-param name="name" >
                                             <xsl:value-of select="$beforeSecondParam" />
                                         </xsl:with-param>
@@ -414,7 +419,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="substring-before($param, '.') = ''" >
                                     <xsl:value-of select="$param" />
                                 </xsl:if>
-                                <xsl:if test="substring-before($param, '.') != ''" >paramTwoGameLayer.gdObject.<xsl:value-of select="substring-after($param, '.')" /></xsl:if>
+                                <xsl:if test="substring-before($param, '.') != ''" ><xsl:value-of select="$beforeSecondParam2" />((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeSecondParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeSecondParam" />) paramTwoGameLayer.gdObject).<xsl:value-of select="substring-after($param, '.')" /></xsl:if>
                             </xsl:if>
                             <xsl:if test="$paramTwoName = ''" >
                                 <xsl:variable name="before" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
