@@ -110,9 +110,11 @@ Created By: Travis Berthelot
                         }
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
+                        private final PointFactory pointFactory = PointFactory.getInstance();
                         //private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
                         //private final ImageScaleUtil imageScaleUtil = ImageScaleUtil.getInstance();
                         //private final ImageCache imageCache = OpenGLImageCacheFactory.getInstance(); //ImageCacheFactory.getInstance();
+                        
                         private final GDResources gdResources = GDResources.getInstance();
 
                         private final GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
@@ -139,8 +141,6 @@ Created By: Travis Berthelot
                         //try {
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
-
-                            final PointFactory pointFactory = PointFactory.getInstance();
                     
                             //final Hashtable hashTable = imageCache.getHashtable();
 
@@ -169,6 +169,24 @@ Created By: Travis Berthelot
                         //}
 
                     }
+
+                    <xsl:call-template name="rectangleCacheCreate" >
+                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
+                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutName" >
+                            <xsl:value-of select="$layoutName" />
+                        </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="touch" >
+                            <xsl:value-of select="'false'" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 }
             </xsl:if>

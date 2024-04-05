@@ -181,38 +181,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 //Duplicate logic of the AnimationFactory
-                <xsl:value-of select="name" />ImageArray = new Rectangle[] {
-                <xsl:for-each select="animations" >
-                    <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
-                    <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
-                    <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
-                        //TWB - int the future add image dimensions to the game.xml.
-                        <xsl:for-each select="directions" >
-                            <xsl:for-each select="sprites" >
-                    new Rectangle(pointFactory.ZERO_ZERO, 
-                                <xsl:if test="originPoint/x = 0" >0</xsl:if>
-                                <xsl:if test="originPoint/x != 0" ><xsl:value-of select="originPoint/x" /> * 2</xsl:if>, // * scale
-                                <xsl:if test="originPoint/y = 0" >0</xsl:if>
-                                <xsl:if test="originPoint/y != 0" ><xsl:value-of select="originPoint/y" /> * 2</xsl:if>  * scale
-                                ),
-                            </xsl:for-each>
-                        </xsl:for-each>
-                    </xsl:if>
-                    <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
-                        <xsl:for-each select="directions" >
-                            <xsl:for-each select="sprites" >
-                    //new Rectangle(pointFactory.ZERO_ZERO, (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f), (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f)),
-                    new Rectangle(pointFactory.ZERO_ZERO, 
-                                <xsl:if test="originPoint/x = 0" >0</xsl:if>
-                                <xsl:if test="originPoint/x != 0" ><xsl:value-of select="originPoint/x" /> * 2</xsl:if>,
-                                <xsl:if test="originPoint/y = 0" >0</xsl:if>
-                                <xsl:if test="originPoint/y != 0" ><xsl:value-of select="originPoint/y" /> * 2</xsl:if>
-                               ),
-                            </xsl:for-each>
-                        </xsl:for-each>
-                    </xsl:if>
-                </xsl:for-each>
-                };
+                <xsl:value-of select="name" />ImageArray = this.get<xsl:value-of select="name" />RectangleArray();
 
                 //animationInterfaceFactoryInterfaceFactory.addRectangle(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME, <xsl:value-of select="name" />ImageArray[0]);
                 //hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
@@ -267,6 +236,68 @@ Created By: Travis Berthelot
 
             </xsl:if>
 
+        </xsl:for-each>
+        //objects - threed object - cache - END
+    </xsl:template>
+
+    <xsl:template name="rectangleCacheCreate" >
+        <xsl:param name="enlargeTheImageBackgroundForRotation" />
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="layoutName" />
+        <xsl:param name="instancesAsString" />
+        <xsl:param name="touch" />
+
+        //objects - threed object - cache - START
+        <xsl:for-each select="objects" >
+            <xsl:variable name="typeValue" select="type" />
+            <xsl:variable name="name" select="name" />
+            //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+            <xsl:text>&#10;</xsl:text>
+
+            <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
+    
+                <xsl:variable name="hasMirrorFillBarBehavior" >
+                <xsl:for-each select="behaviors" ><xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >found</xsl:if></xsl:for-each>
+                </xsl:variable>
+                
+                //Duplicate logic of the AnimationFactory
+                public Rectangle[] get<xsl:value-of select="name" />RectangleArray() {
+                    return new Rectangle[] {
+                <xsl:for-each select="animations" >
+                    <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
+                    <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
+                    <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
+                        //TWB - int the future add image dimensions to the game.xml.
+                        <xsl:for-each select="directions" >
+                            <xsl:for-each select="sprites" >
+                    new Rectangle(pointFactory.ZERO_ZERO, 
+                                <xsl:if test="originPoint/x = 0" >0</xsl:if>
+                                <xsl:if test="originPoint/x != 0" ><xsl:value-of select="originPoint/x" /> * 2</xsl:if>, // * scale
+                                <xsl:if test="originPoint/y = 0" >0</xsl:if>
+                                <xsl:if test="originPoint/y != 0" ><xsl:value-of select="originPoint/y" /> * 2</xsl:if>  * scale
+                                ),
+                            </xsl:for-each>
+                        </xsl:for-each>
+                    </xsl:if>
+                    <xsl:if test="not(contains($instancesAsString, $name2)) and $enlargeTheImageBackgroundForRotation = 'true'" >
+                        <xsl:for-each select="directions" >
+                            <xsl:for-each select="sprites" >
+                    //new Rectangle(pointFactory.ZERO_ZERO, (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f), (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f)),
+                    new Rectangle(pointFactory.ZERO_ZERO, 
+                                <xsl:if test="originPoint/x = 0" >0</xsl:if>
+                                <xsl:if test="originPoint/x != 0" ><xsl:value-of select="originPoint/x" /> * 2</xsl:if>,
+                                <xsl:if test="originPoint/y = 0" >0</xsl:if>
+                                <xsl:if test="originPoint/y != 0" ><xsl:value-of select="originPoint/y" /> * 2</xsl:if>
+                               ),
+                            </xsl:for-each>
+                        </xsl:for-each>
+                    </xsl:if>
+                </xsl:for-each>
+                };
+
+                }
+                </xsl:if>
+            
         </xsl:for-each>
         //objects - threed object - cache - END
     </xsl:template>
