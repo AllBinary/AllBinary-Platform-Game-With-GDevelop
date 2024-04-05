@@ -215,6 +215,8 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                             </xsl:if>
                         </xsl:variable>
+                        //firstOrBeforeFourthParam=<xsl:value-of select="$firstOrBeforeFourthParam" />
+                        //firstParam=<xsl:value-of select="$name" />
 
                     <xsl:variable name="hasForEachProcessGD" >
                         <xsl:call-template name="hasBuiltinCommonInstructionsForEachToProcessGD" >
@@ -244,6 +246,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                         <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                         <xsl:with-param name="secondGameLayer" ><xsl:value-of select="$firstOrBeforeFourthParam" /></xsl:with-param>
+                        <xsl:with-param name="secondGameLayer2" ><xsl:value-of select="$name" /></xsl:with-param>
                     </xsl:call-template>
                     <xsl:if test="contains($hasCollisionProcessGD, 'found')" >
                         <xsl:variable name="collisionProcessGDParamOne" ><xsl:call-template name="collisionProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>

@@ -214,6 +214,7 @@ Created By: Travis Berthelot
         <xsl:param name="totalRecursions" />
         <xsl:param name="nodeId" />
         <xsl:param name="secondGameLayer" />
+        <xsl:param name="secondGameLayer2" />
         
         <xsl:for-each select=".." >
             <xsl:for-each select="events" >
@@ -227,7 +228,7 @@ Created By: Travis Berthelot
                 //From parent BuiltinCommonInstructions::ForEach - <xsl:for-each select="text()" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
-                public boolean processGD(final GDGameLayer <xsl:value-of select="object" />GDGameLayer, final GDGameLayer <xsl:if test="object != $secondGameLayer" ><xsl:value-of select="$secondGameLayer" /></xsl:if>GDGameLayer, final Graphics graphics) throws Exception {
+                public boolean processGD(final GDGameLayer <xsl:value-of select="object" />GDGameLayer, final GDGameLayer <xsl:if test="object != $secondGameLayer" ><xsl:value-of select="$secondGameLayer" /></xsl:if><xsl:if test="object = $secondGameLayer and object != $secondGameLayer2" ><xsl:value-of select="$secondGameLayer2" /></xsl:if>GDGameLayer, final Graphics graphics) throws Exception {
 
                     super.processGDStats(<xsl:value-of select="object" />GDGameLayer);
                 </xsl:if>
@@ -357,6 +358,7 @@ Created By: Travis Berthelot
                 </xsl:with-param>
                 <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 <xsl:with-param name="secondGameLayer" ><xsl:value-of select="$secondGameLayer" /></xsl:with-param>
+                <xsl:with-param name="secondGameLayer2" ><xsl:value-of select="$secondGameLayer2" /></xsl:with-param>
             </xsl:call-template>
             </xsl:if>
             

@@ -329,6 +329,168 @@ Created By: Travis Berthelot
 
     </xsl:template>
 
+    <xsl:template name="createByNameGDObject2" >
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="objectsAsString" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="nodeAsString" />
+
+        <xsl:variable name="quote" >"</xsl:variable>
+                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
+                    <xsl:variable name="textInputName" >,TextInput::TextInputObject:<xsl:value-of select="$name" />,</xsl:variable>
+
+                    //createByNameGDObject - <xsl:value-of select="$name" />
+                        
+                    <xsl:variable name="hasGameLayer2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="contains(text(), '.')" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+
+                    <xsl:variable name="gameLayerName3" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:if></xsl:for-each></xsl:variable>
+                    //gameLayerName3=<xsl:value-of select="$gameLayerName3" />
+                    <xsl:variable name="gameLayerName4" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4 and contains(text(), '-')" ><xsl:value-of select="substring-after($gameLayerName3, '-')" /></xsl:if><xsl:if test="position() = 4 and not(contains($gameLayerName3, '-'))" ><xsl:value-of select="$gameLayerName3" /></xsl:if></xsl:for-each></xsl:variable>
+                    //gameLayerName4=<xsl:value-of select="$gameLayerName4" />
+                    <xsl:variable name="gameLayerName" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" ><xsl:value-of select="$gameLayerName4" /></xsl:with-param><xsl:with-param name="char" select="' '" /></xsl:call-template></xsl:variable>
+                    //gameLayerName=<xsl:value-of select="$gameLayerName" />
+
+                    <xsl:if test="contains($hasGameLayer2, 'found')" >
+                    final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="$gameLayerName" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" />)<xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
+                    </xsl:if>
+
+    </xsl:template>
+
+    <xsl:template name="createByNameGDObject3" >
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="objectsAsString" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="nodeAsString" />
+
+        <xsl:variable name="quote" >"</xsl:variable>
+                    <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
+                    <xsl:variable name="textInputName" >,TextInput::TextInputObject:<xsl:value-of select="$name" />,</xsl:variable>
+
+                    //createByNameGDObject - <xsl:value-of select="$name" />
+                        
+                    <xsl:variable name="hasGameLayer2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="contains(text(), '.')" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+
+                    <xsl:variable name="gameLayerName3" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:if></xsl:for-each></xsl:variable>
+                    //gameLayerName3=<xsl:value-of select="$gameLayerName3" />
+                    <xsl:variable name="gameLayerName4" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4 and contains(text(), '-')" ><xsl:value-of select="substring-after($gameLayerName3, '-')" /></xsl:if><xsl:if test="position() = 4 and not(contains($gameLayerName3, '-'))" ><xsl:value-of select="$gameLayerName3" /></xsl:if></xsl:for-each></xsl:variable>
+                    //gameLayerName4=<xsl:value-of select="$gameLayerName4" />
+                    <xsl:variable name="gameLayerName" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" ><xsl:value-of select="$gameLayerName4" /></xsl:with-param><xsl:with-param name="char" select="' '" /></xsl:call-template></xsl:variable>
+                    //gameLayerName=<xsl:value-of select="$gameLayerName" />
+                        
+                        final GDObject <xsl:value-of select="$name" />GDobject2 = ((GDObjectFactory) gdObjectsFactory.gdObjectFactoryList.get(createIndex)).get(
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() != 2 and position() != 3" >
+                            <xsl:if test="position() != last()" >
+                                <xsl:if test="string-length(text()) = 0" >
+                                    null
+                                </xsl:if>
+                                <xsl:if test="string-length(text()) > 0" >
+                                    <xsl:call-template name="string-replace-all" >
+                                        <xsl:with-param name="text" >
+                                    <xsl:call-template name="string-replace-all" >
+                                        <xsl:with-param name="text" >
+                                    <!-- //TWB - Hack -->
+                                    <xsl:call-template name="string-replace-all" >
+                                        <xsl:with-param name="text" >
+                                            <xsl:value-of select="text()" />
+                                        </xsl:with-param>                                
+                                        <xsl:with-param name="find" >.placementIndex]]</xsl:with-param>
+                                        <xsl:with-param name="replacementText" >.placementIndex]]</xsl:with-param>
+                                    </xsl:call-template>
+                                        </xsl:with-param>                                
+                                        <xsl:with-param name="find" >&quot;&quot;</xsl:with-param>
+                                        <xsl:with-param name="replacementText" >stringUtil.EMPTY_STRING</xsl:with-param>
+                                    </xsl:call-template>
+                                        </xsl:with-param>
+                                        <xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param>
+                                        <xsl:with-param name="replacementText" ></xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:if>,
+                            </xsl:if>                            
+                        </xsl:if>
+                    </xsl:for-each>
+                            //zOrder is not available for create by name - <xsl:value-of select="zOrder" />
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = last()" >
+                            //last=<xsl:value-of select="text()" />
+                            <xsl:if test="not(text())" >
+                    6,
+                            </xsl:if>
+                            <xsl:if test="contains(text(), 'Overlay')" >
+                    Integer.MAX_VALUE,
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
+                    //Objects have name - <xsl:value-of select="$name" />
+                            <xsl:if test="contains($objectsAsString, $spriteName)" >
+                                //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f),
+                                //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f),
+                                ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth())) ==
+                                ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight())) ? 
+                                ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight())) :
+                                ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight()) * scale)
+                                ,
+                                ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth())) ==
+                                ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight())) ? 
+                                ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight())) :
+                                ((int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight()) * scale)
+                                ,
+                            </xsl:if>
+                            <xsl:if test="contains($objectsGroupsAsString, $name)" >
+                                (int) (((Image[]) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArrayList.get(createIndex))[0].getHeight()),
+                                (int) (((Image[]) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArrayList.get(createIndex))[0].getHeight()),
+                            </xsl:if>
+                    
+                            <xsl:if test="not(contains($objectsAsString, $spriteName) or contains($objectsGroupsAsString, $name))" >
+                                0, 0,
+                            </xsl:if>
+                    <xsl:for-each select="parameters" >
+                        <xsl:if test="position() != 2 and position() != 3" >
+                            <xsl:if test="position() = last()" >
+                                <xsl:if test="string-length(text()) = 0" >
+                                    //globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>
+                                    createString
+                                </xsl:if>
+                                <xsl:if test="string-length(text()) > 0" >
+                                    <xsl:value-of select="text()" />
+                                </xsl:if>
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
+                    );
+
+                    <xsl:if test="$name = 'player_bullet'" >
+                    //TWB - Hack
+                    //stringBuilder.delete(0, stringBuilder.length());
+                    //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeAsString" />").append(' ').append(<xsl:value-of select="$name" />GDobject2.name)<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:if test="position() != last()" ><xsl:if test="string-length(text()) > 0" >.append("<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" >'</xsl:with-param></xsl:call-template>: ").append(<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template>)</xsl:if></xsl:if><xsl:if test="position() = last()" ><xsl:if test="string-length(text()) = 0" >.toString()</xsl:if><xsl:if test="string-length(text()) > 0" >.append("<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" >'</xsl:with-param></xsl:call-template>: ").append(<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="$quote" /></xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template>).toString()</xsl:if></xsl:if></xsl:if></xsl:for-each>, this, commonStrings.PROCESS));
+                    //final int size2 = globals.player_bulletGDGameLayerList.size();
+                    //for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
+                        //stringBuilder.delete(0, stringBuilder.length());
+                        //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeAsString" />").append(' ').append(<xsl:value-of select="$name" />GDobject2.name).append(' ').append(index2).append('\"').append(globals.player_bulletGDGameLayerList.get(index2)).toString(), this, commonStrings.PROCESS));
+                    //}
+                    </xsl:if>
+                    
+                    <xsl:if test="contains($objectsAsString, $spriteName)" >
+                    //We may need to set a dimension for each image/animation. CreateAssign 
+                    //<xsl:value-of select="$name" />GDobject2.canvasWidth = <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth();
+                    //<xsl:value-of select="$name" />GDobject2.canvasHeight = <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight();
+                    </xsl:if>
+                    <xsl:if test="contains($objectsGroupsAsString, $name)" >
+                    //We may need to set a dimension for each image/animation. CreateAssign 
+                    //<xsl:value-of select="$name" />GDobject2.canvasWidth = ((Image[]) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArrayList.get(createIndex))[0].getHeight();
+                    //<xsl:value-of select="$name" />GDobject2.canvasHeight = ((Image[]) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArrayList.get(createIndex))[0].getHeight();
+                    </xsl:if>
+
+                    //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />GDobject2.toString(), this, commonStrings.PROCESS));
+                    <xsl:if test="not(contains($objectsAsString, $spriteName) or contains($objectsGroupsAsString, $name))" >
+                        //objectsAsString=<xsl:value-of select="$objectsAsString" />
+                        //LogUtil.put(LogFactory.getInstance("GDObject:<xsl:value-of select="$name" /> != <xsl:value-of select="$spriteName" />", this, commonStrings.PROCESS));
+                    </xsl:if>
+
+    </xsl:template>
+
     <xsl:template name="eventsCreateProcessUsed" >
         <xsl:param name="caller" />
         <xsl:param name="thisNodeIndex" />
