@@ -107,10 +107,10 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
                     
-                    <xsl:variable name="hasObjectsGroup" ><xsl:for-each select="objectsGroups" >found</xsl:for-each></xsl:variable>
-                    <xsl:if test="contains($hasObjectsGroup, 'found')" >
-                    public final BasicArrayList gdObjectFactoryList = new BasicArrayList();
-                    </xsl:if>
+                    <xsl:for-each select="objectsGroups" >
+                        <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
+                    public final BasicArrayList <xsl:value-of select="$name" />GDObjectFactoryList = new BasicArrayList();
+                    </xsl:for-each>
                     
                     private GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory() {
                     
@@ -120,7 +120,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
                         <xsl:for-each select="objects" >
-                        gdObjectFactoryList.add(<xsl:value-of select="name" />GDObjectFactory);
+                        <xsl:value-of select="$name" />GDObjectFactoryList.add(<xsl:value-of select="name" />GDObjectFactory);
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroups - END

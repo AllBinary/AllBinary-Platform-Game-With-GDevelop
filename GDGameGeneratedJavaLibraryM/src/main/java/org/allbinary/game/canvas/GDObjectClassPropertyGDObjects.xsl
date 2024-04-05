@@ -348,7 +348,7 @@ Created By: Travis Berthelot
                                 return this.ANIMATION_NAMES[index];
                             }
                         }
-                        throw new RuntimeException();
+                        throw new RuntimeException(animationName);
                     }
                     
                     public boolean setAnimation(final String animationName) {
