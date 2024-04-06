@@ -183,6 +183,12 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     }
 
     public void setGDObject(final GDObject gdObject) throws Exception {
+        
+        final int size = this.initIndexedAnimationInterfaceArray.length;
+        for(int index = 0; index < size; index++) {
+            this.initIndexedAnimationInterfaceArray[index].setFrame(0);
+        }
+        
         this.dimensionalBehavior.getAnimationBehavior().setAnimationArray(this.initIndexedAnimationInterfaceArray);
         this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
         this.dimensionalBehavior.reset(gdObject);
