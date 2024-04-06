@@ -293,6 +293,7 @@ Created By: Travis Berthelot
                                             <xsl:if test="type/value = 'Delete'" >
                                                 //VarObjet - //Has Delete Action
                                                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].addForDelete(<xsl:value-of select="$gdObjectName" />GDGameLayer);
+                                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdObjectName" />GDGameLayer, null, null);
                                             </xsl:if>
                                         </xsl:for-each>
                                         </xsl:if>
