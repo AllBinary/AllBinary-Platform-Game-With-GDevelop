@@ -327,13 +327,15 @@ Created By: Travis Berthelot
                     <xsl:variable name="gameLayerName" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" ><xsl:value-of select="$gameLayerName4" /></xsl:with-param><xsl:with-param name="char" select="' '" /></xsl:call-template></xsl:variable>
                     //gameLayerName=<xsl:value-of select="$gameLayerName" />
 
-                    final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gdObjectName" /><xsl:text> </xsl:text><xsl:value-of select="$gdObjectName" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gdObjectName" />) gdObject;
+                    <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gdObjectName" /></xsl:variable>
+                    final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$gdObjectName" /> = (<xsl:value-of select="$gdObjectFactory" />) gdObject;
 
                     <xsl:if test="contains($hasGameLayer2, 'found')" >
                     <xsl:if test="not($gameLayerName = $gameLayerName2 or substring($gameLayerName, 2, string-length($gameLayerName)) = $gameLayerName2)" >
                     final GDGameLayer <xsl:value-of select="$gameLayerName" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(0);
                     //final GDObject <xsl:value-of select="$gameLayerName" /> = <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
-                    final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="$gameLayerName" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" />)<xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
+                    <xsl:variable name="gdObjectFactory2" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" /></xsl:variable>
+                    final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="$gameLayerName" /> = (<xsl:value-of select="$gdObjectFactory2" />)<xsl:text> </xsl:text><xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
                     </xsl:if>
                     </xsl:if>
 
@@ -375,14 +377,7 @@ Created By: Travis Berthelot
                                             //<xsl:value-of select="$before" /> - <xsl:value-of select="$hasObject" />
                                             <xsl:text>&#10;</xsl:text>
                                             <xsl:if test="contains($hasObject, 'found')" >
-                                                ((GD<xsl:call-template name="objectFactory" >
-                                                    <xsl:with-param name="name" >
-                                                        <xsl:value-of select="$before" />
-                                                    </xsl:with-param>
-                                                    <xsl:with-param name="layoutIndex" >
-                                                        <xsl:value-of select="$layoutIndex" />
-                                                    </xsl:with-param>
-                                                </xsl:call-template>GDObjectsFactory.<xsl:value-of select="$before" />) <xsl:value-of select="$before" />).<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="substring-after(text(), '.')" /></xsl:with-param><xsl:with-param name="find" >VariableChildCount(</xsl:with-param><xsl:with-param name="replacementText" >VariableChildCount(<xsl:value-of select="$before" />.</xsl:with-param></xsl:call-template>
+                                                ((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$before" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$before" />) <xsl:value-of select="$before" />).<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="substring-after(text(), '.')" /></xsl:with-param><xsl:with-param name="find" >VariableChildCount(</xsl:with-param><xsl:with-param name="replacementText" >VariableChildCount(<xsl:value-of select="$before" />.</xsl:with-param></xsl:call-template>
                                             </xsl:if>
                                         </xsl:if>
                                         <xsl:if test="not(contains($hasObject, 'found'))" >

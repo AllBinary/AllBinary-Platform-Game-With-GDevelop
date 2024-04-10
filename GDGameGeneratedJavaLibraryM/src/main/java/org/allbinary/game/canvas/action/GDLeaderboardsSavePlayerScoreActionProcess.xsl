@@ -88,9 +88,12 @@ Created By: Travis Berthelot
         
                             try {
 
+                                
+                                <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeFourthParam" /></xsl:variable>
+
                                 <xsl:if test="$beforeFourthParam != ''" >
                                 final GDGameLayer <xsl:value-of select="$beforeFourthParam" /> = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$beforeFourthParam" />GDGameLayerList.get(0);
-                                //final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeFourthParam" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="$beforeFourthParam" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeFourthParam" />) <xsl:value-of select="$beforeFourthParam" />GDGameLayer.gdObject;
+                                //final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$beforeFourthParam" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$beforeFourthParam" />GDGameLayer.gdObject;
                                 final String name = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
                                 </xsl:if>
                                 <xsl:if test="$beforeFourthParam = ''" >
@@ -228,11 +231,13 @@ Created By: Travis Berthelot
 
                             try {
 
-                                //final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeSecondParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeSecondParam" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="$beforeSecondParam" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeSecondParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeSecondParam" />) <xsl:value-of select="$beforeSecondParam" />GDGameLayer.gdObject;
+                                <xsl:variable name="gdObjectFactory2" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeSecondParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeSecondParam" /></xsl:variable>
+                                
+                                //final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="$beforeSecondParam" /> = (<xsl:value-of select="$gdObjectFactory2" />) <xsl:value-of select="$beforeSecondParam" />GDGameLayer.gdObject;
                                 
                                 <xsl:if test="$beforeFourthParam != ''" >
                                 final GDGameLayer <xsl:value-of select="$beforeFourthParam" /> = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$beforeFourthParam" />GDGameLayerList.get(0);
-                                //final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeFourthParam" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="$beforeFourthParam" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeFourthParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeFourthParam" />) <xsl:value-of select="$beforeFourthParam" />GDGameLayer.gdObject;
+                                //final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="$beforeFourthParam" /> = (<xsl:value-of select="$gdObjectFactory2" />) <xsl:value-of select="$beforeFourthParam" />GDGameLayer.gdObject;
                                 final String name = <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
                                 </xsl:if>
                                 <xsl:if test="$beforeFourthParam = ''" >

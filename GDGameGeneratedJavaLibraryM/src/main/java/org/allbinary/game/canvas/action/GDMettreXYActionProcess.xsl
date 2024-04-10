@@ -200,7 +200,8 @@ Created By: Travis Berthelot
                                 //}
                             
                                 //Param not from parent
-                                final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) gdObject;
+                                <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
+                                final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gdObject;
 
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS));
 
@@ -216,7 +217,8 @@ Created By: Travis Berthelot
 
                     final GDGameLayer <xsl:value-of select="name" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0);
                     //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer.gdObject;
-                    final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="name" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" />)<xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="name" />GDGameLayer.gdObject;
+                    <xsl:variable name="gdObjectFactory2" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /></xsl:variable>
+                    final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = (<xsl:value-of select="$gdObjectFactory2" />)<xsl:text> </xsl:text><xsl:value-of select="name" />GDGameLayer.gdObject;
                             </xsl:if>
                             </xsl:if>
                         </xsl:for-each>
@@ -236,7 +238,8 @@ Created By: Travis Berthelot
 
                     final GDGameLayer <xsl:value-of select="name" />GDGameLayer = (GDGameLayer) gdGameLayerList.get(0);
                     //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer.gdObject;
-                    final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="name" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" />)<xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="name" />GDGameLayer.gdObject;
+                    <xsl:variable name="gdObjectFactory2" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /></xsl:variable>
+                    final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = (<xsl:value-of select="$gdObjectFactory2" />)<xsl:text> </xsl:text><xsl:value-of select="name" />GDGameLayer.gdObject;
 -->
                             </xsl:if>
                         </xsl:for-each>
@@ -252,7 +255,8 @@ Created By: Travis Berthelot
 
                     final GDGameLayer <xsl:value-of select="name" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0);
                     //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer.gdObject;
-                    final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="name" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" />)<xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="name" />GDGameLayer.gdObject;
+                    <xsl:variable name="gdObjectFactory2" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /></xsl:variable>
+                    final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = (<xsl:value-of select="$gdObjectFactory2" />)<xsl:text> </xsl:text><xsl:value-of select="name" />GDGameLayer.gdObject;
                             </xsl:if>
                             </xsl:if>
                         </xsl:for-each>
@@ -498,7 +502,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                             <xsl:if test="string-length($parentConditionObject) = 0" >
                                 //Param not from parent
-                                final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) gdObject;
+                                final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gdObject;
                             </xsl:if>
 
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS));
@@ -514,7 +518,8 @@ Created By: Travis Berthelot
 
                     final GDGameLayer <xsl:value-of select="name" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0);
                     //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer.gdObject;
-                    final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="name" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" />)<xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="name" />GDGameLayer.gdObject;
+                    <xsl:variable name="gdObjectFactory2" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /></xsl:variable>
+                    final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = (<xsl:value-of select="$gdObjectFactory2" />)<xsl:text> </xsl:text><xsl:value-of select="name" />GDGameLayer.gdObject;
                             </xsl:if>
                             </xsl:if>
                             <xsl:if test="name = $parentConditionObject" >
@@ -537,7 +542,8 @@ Created By: Travis Berthelot
 
                     final GDGameLayer <xsl:value-of select="name" />GDGameLayer = (GDGameLayer) gdGameLayerList.get(0);
                     //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer.gdObject;
-                    final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="name" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" />)<xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="name" />GDGameLayer.gdObject;
+                    <xsl:variable name="gdObjectFactory2" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /></xsl:variable>
+                    final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = (<xsl:value-of select="$gdObjectFactory2" />)<xsl:text> </xsl:text><xsl:value-of select="name" />GDGameLayer.gdObject;
 -->
                             </xsl:if>
                         </xsl:for-each>
@@ -553,7 +559,8 @@ Created By: Travis Berthelot
 
                     final GDGameLayer <xsl:value-of select="name" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0);
                     //final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GDGameLayer.gdObject;
-                    final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /><xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="name" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" />)<xsl:text disable-output-escaping="yes" > </xsl:text><xsl:value-of select="name" />GDGameLayer.gdObject;
+                    <xsl:variable name="gdObjectFactory2" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /></xsl:variable>
+                    final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = (<xsl:value-of select="$gdObjectFactory2" />)<xsl:text> </xsl:text><xsl:value-of select="name" />GDGameLayer.gdObject;
                             </xsl:if>
                             </xsl:if>
                             <xsl:if test="name = $parentConditionObject" >
