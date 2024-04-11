@@ -260,10 +260,17 @@ Created By: Travis Berthelot
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = last()" >
                             //last=<xsl:value-of select="text()" />
-                            <xsl:if test="not(text())" >
+                            //last=<xsl:value-of select="text()" /> (Base Layer is emtpy)
+                            <xsl:if test="contains(text(), 'Below')" >
+                    5,
+                            </xsl:if>
+                            <xsl:if test="not(text()) or contains(text(), 'Base Layer')" >
                     6,
                             </xsl:if>
-                            <xsl:if test="contains(text(), 'Overlay')" >
+                            <xsl:if test="contains(text(), 'Above')" >
+                    7,
+                            </xsl:if>
+                            <xsl:if test="contains(text(), 'Overlay') or contains(text(), 'gui')" >
                     Integer.MAX_VALUE,
                             </xsl:if>
                         </xsl:if>
@@ -423,10 +430,17 @@ Created By: Travis Berthelot
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = last()" >
                             //last=<xsl:value-of select="text()" />
-                            <xsl:if test="not(text())" >
+                            //last=<xsl:value-of select="text()" /> (Base Layer is emtpy)
+                            <xsl:if test="contains(text(), 'Below')" >
+                    5,
+                            </xsl:if>
+                            <xsl:if test="not(text()) or contains(text(), 'Base Layer')" >
                     6,
                             </xsl:if>
-                            <xsl:if test="contains(text(), 'Overlay')" >
+                            <xsl:if test="contains(text(), 'Above')" >
+                    7,
+                            </xsl:if>
+                            <xsl:if test="contains(text(), 'Overlay') or contains(text(), 'gui')" >
                     Integer.MAX_VALUE,
                             </xsl:if>
                         </xsl:if>
