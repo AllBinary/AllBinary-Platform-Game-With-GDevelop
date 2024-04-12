@@ -95,11 +95,12 @@ Created By: Travis Berthelot
                 </xsl:variable>
 
 
-                <xsl:if test="disabled = 'true'" >
+                <xsl:if test="contains(disabled, 'true')" >
                 //Disabled so not call anything.
                 </xsl:if>
                 
-                <xsl:if test="disabled != 'true'" >
+                
+                <xsl:if test="not(contains(disabled, 'true'))" >
                 //BuiltinCommonInstructions::ForEach - condition
                 @Override
                 public boolean process() throws Exception {
@@ -219,11 +220,11 @@ Created By: Travis Berthelot
             
             <!-- //foundOtherCondition=<xsl:value-of select="$foundOtherCondition" /> -->
 
-                <xsl:if test="disabled = 'true'" >
+                <xsl:if test="contains(disabled, 'true')" >
                 //Disabled so not call anything.
                 </xsl:if>
                 
-                <xsl:if test="disabled != 'true'" >                                
+                <xsl:if test="not(contains(disabled, 'true'))" >
                 //<xsl:value-of select="type" /> - event
                 @Override
                 public boolean process() throws Exception {
