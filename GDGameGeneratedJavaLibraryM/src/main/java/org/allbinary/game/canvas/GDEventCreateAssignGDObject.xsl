@@ -298,19 +298,7 @@ Created By: Travis Berthelot
                             <xsl:if test="not(contains($objectsAsString, $spriteName) or contains($objectsGroupsAsString, $name))" >
                                 0, 0,
                             </xsl:if>
-                    <xsl:for-each select="parameters" >
-                        <xsl:if test="position() != 2 and position() != 3" >
-                            <xsl:if test="position() = last()" >
-                                <xsl:if test="string-length(text()) = 0" >
-                                    //globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>
-                                    createString
-                                </xsl:if>
-                                <xsl:if test="string-length(text()) > 0" >
-                                    <xsl:value-of select="text()" />
-                                </xsl:if>
-                            </xsl:if>
-                        </xsl:if>
-                    </xsl:for-each>
+                            createString
                     );
 
                     <xsl:if test="$name = 'player_bullet'" >
@@ -468,19 +456,7 @@ Created By: Travis Berthelot
                             <xsl:if test="not(contains($objectsAsString, $spriteName) or contains($objectsGroupsAsString, $name))" >
                                 0, 0,
                             </xsl:if>
-                    <xsl:for-each select="parameters" >
-                        <xsl:if test="position() != 2 and position() != 3" >
-                            <xsl:if test="position() = last()" >
-                                <xsl:if test="string-length(text()) = 0" >
-                                    //globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>
-                                    createString
-                                </xsl:if>
-                                <xsl:if test="string-length(text()) > 0" >
-                                    <xsl:value-of select="text()" />
-                                </xsl:if>
-                            </xsl:if>
-                        </xsl:if>
-                    </xsl:for-each>
+                            createString
                     );
 
                     <xsl:if test="$name = 'player_bullet'" >
