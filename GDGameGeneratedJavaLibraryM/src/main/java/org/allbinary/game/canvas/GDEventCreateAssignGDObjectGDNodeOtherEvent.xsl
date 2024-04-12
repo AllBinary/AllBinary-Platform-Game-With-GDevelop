@@ -94,6 +94,12 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                 </xsl:variable>
 
+
+                <xsl:if test="disabled = 'true'" >
+                //Disabled so not call anything.
+                </xsl:if>
+                
+                <xsl:if test="disabled != 'true'" >
                 //BuiltinCommonInstructions::ForEach - condition
                 @Override
                 public boolean process() throws Exception {
@@ -156,9 +162,11 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($hasObjectGroup, 'found')" >
                     }
                     </xsl:if>
+
                     return true;
 
-                }                
+                }
+                </xsl:if>
             };
 
             </xsl:if>
@@ -210,7 +218,12 @@ Created By: Travis Berthelot
             <!-- <xsl:if test="type/value != 'Timer' and type/value != '(Used when using the AllBinary Collision Processing) CollisionNP' and type/value != 'VarObjet' and type/value = 'NbObjet' and type/value = 'DepartScene' and type/value = 'SourisSurObjet' and type/value = 'MouseButtonReleased' and type/value = 'SourisBouton' and type/value = 'MouseButtonPressed'" >found</xsl:if> -->
             
             <!-- //foundOtherCondition=<xsl:value-of select="$foundOtherCondition" /> -->
+
+                <xsl:if test="disabled = 'true'" >
+                //Disabled so not call anything.
+                </xsl:if>
                 
+                <xsl:if test="disabled != 'true'" >                                
                 //<xsl:value-of select="type" /> - event
                 @Override
                 public boolean process() throws Exception {
@@ -847,6 +860,8 @@ Created By: Travis Berthelot
                 
                 </xsl:if>
                 </xsl:if>
+                </xsl:if>
+
                 </xsl:if>
 
             };

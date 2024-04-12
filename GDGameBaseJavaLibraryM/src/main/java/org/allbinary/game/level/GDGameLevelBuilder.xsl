@@ -453,28 +453,28 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final int[][] mapArray, final int index, final int index2, final int recursionIndex) {
 
         if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index + 1][index2])) {
-            if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index + 1, index2, 0);
+            if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index + 1, index2, recursionIndex - 1);
                     
             if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index + 1][index2 + 1])) {
-                if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index + 1, index2 + 1, 0);
+                if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index + 1, index2 + 1, recursionIndex - 1);
                     
                 if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index][index2 + 1])) {
-                    if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index, index2 + 1, 0);
+                    if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index, index2 + 1, recursionIndex - 1);
                     
                     if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index - 1][index2])) {
-                        if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index - 1, index2, 0);
+                        if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index - 1, index2, recursionIndex - 1);
                     
                         if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index][index2 - 1])) {
-                            if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index, index2 - 1, 0);
+                            if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index, index2 - 1, recursionIndex - 1);
 
                             if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index - 1][index2 - 1])) {
-                                if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index - 1, index2 - 1, 0);
+                                if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index - 1, index2 - 1, recursionIndex - 1);
                     
                                 if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index - 1][index2 + 1])) {
-                                    if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index - 1, index2 + 1, 0);
+                                    if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index - 1, index2 + 1, recursionIndex - 1);
 
                                     if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index + 1][index2 - 1])) {
-                                        if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index + 1, index2 - 1, 0);
+                                        if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index + 1, index2 - 1, recursionIndex - 1);
                                         return true;
                                     }
                                 }
@@ -566,7 +566,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                         placed = false;
                         //Exclude placement next to something that is not a floor tile
                         if(index <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> index2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray.length <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray[0].length) {
-                            if(isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index, index2, 1)) {
+                            if(isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index, index2, 2)) {
                                 placementXIntArray[placementTotal] = ((geographicMapCellPosition.getColumn()) * map.getTileWidth()) + (map.getTileWidth() / 2);
                                 placementYIntArray[placementTotal] = ((geographicMapCellPosition.getRow()) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 //placementCellXIntArray[placementTotal] = geographicMapCellPosition.getColumn();
