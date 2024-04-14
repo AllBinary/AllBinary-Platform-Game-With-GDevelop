@@ -499,6 +499,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
         final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject);
         int placementTotal = 0;
+        int placementTotal1 = 0;
+        int placementTotal2 = 0;
+        int placementTotal3 = 0;
         int placementMax = 0;
         GDGeographicMap gdGeographicMap;
         TiledMap map;
@@ -563,21 +566,23 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                             //placementCellXIntArray[placementTotal] = geographicMapCellPosition.getColumn();
                             //placementCellYIntArray[placementTotal] = geographicMapCellPosition.getRow();
                             placementTotal++;
+                            placementTotal3++;
                             placed = true;
                         }
 
                         if(!placed) {
-                        result = true;
-                        isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, indexX, indexY,  1);
-                        if(result) {
-                            placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                            placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
-                            placementSizeIntArray[placementTotal] = 2;
-                            //placementCellXIntArray[placementTotal] = geographicMapCellPosition.getColumn();
-                            //placementCellYIntArray[placementTotal] = geographicMapCellPosition.getRow();
-                            placementTotal++;
-                            placed = true;
-                        }
+                            result = true;
+                            isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, indexX, indexY,  1);
+                            if(result) {
+                                placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                                placementSizeIntArray[placementTotal] = 2;
+                                //placementCellXIntArray[placementTotal] = geographicMapCellPosition.getColumn();
+                                //placementCellYIntArray[placementTotal] = geographicMapCellPosition.getRow();
+                                placementTotal++;
+                                placementTotal2++;
+                                placed = true;
+                            }
                         }
 
                         if(!placed) {
@@ -585,6 +590,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                             placementXIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
                             placementSizeIntArray[placementTotal] = 1;
                             placementTotal++;
+                            placementTotal1++;
                         }
 
                     }

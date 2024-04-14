@@ -571,18 +571,18 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                         }
 
                         if(!placed) {
-                        result = true;
-                        isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, indexX, indexY,  1);
-                        if(result) {
-                            placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                            placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
-                            placementSizeIntArray[placementTotal] = 2;
-                            //placementCellXIntArray[placementTotal] = geographicMapCellPosition.getColumn();
-                            //placementCellYIntArray[placementTotal] = geographicMapCellPosition.getRow();
-                            placementTotal++;
-                            placementTotal2++;
-                            placed = true;
-                        }
+                            result = true;
+                            isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, indexX, indexY,  1);
+                            if(result) {
+                                placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                                placementSizeIntArray[placementTotal] = 2;
+                                //placementCellXIntArray[placementTotal] = geographicMapCellPosition.getColumn();
+                                //placementCellYIntArray[placementTotal] = geographicMapCellPosition.getRow();
+                                placementTotal++;
+                                placementTotal2++;
+                                placed = true;
+                            }
                         }
 
                         if(!placed) {
