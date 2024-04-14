@@ -15,8 +15,6 @@ package org.allbinary.game.layer;
 
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.game.TiledLayer;
-import org.allbinary.game.canvas.GD1GDObjectsFactory;
-import org.allbinary.game.canvas.GD1SpecialAnimationGlobals;
 
 /**
  *
@@ -36,21 +34,27 @@ public class PlacementAllBinaryJ2METiledLayer extends AllBinaryJ2METiledLayer {
     public void paint(final Graphics graphics)
     {
         super.paint(graphics);
-        
-        final GD1SpecialAnimationGlobals globals = GD1SpecialAnimationGlobals.getInstance();
-        final GD1GDObjectsFactory.PlatformerMap platformerMap = ((GD1GDObjectsFactory.PlatformerMap) ((GDGameLayer) globals.PlatformerMapGDGameLayerList.get(0)).gdObject);
-               
-        this.paintDebug(graphics);
+                       
+        //this.paintDebug(graphics);
 
-        //graphics.setColor(debugColor);
-        final int x = this.tiledLayer.getX();
-        final int y = this.tiledLayer.getY();
-
-        final int size = platformerMap.placementXIntArray.length;
-        for(int index = 0; index < size; index++) {
-            graphics.drawRect(x + platformerMap.placementXIntArray[index], y + platformerMap.placementYIntArray[index], 2, 2);
-        }
+        //this.paintPlacementDebug(graphics);
          
     }
 
+//    public void paintPlacementDebug(final Graphics graphics) {
+//        
+//        graphics.setColor(debugColor);
+//
+//        final int x = this.tiledLayer.getX();
+//        final int y = this.tiledLayer.getY();
+//
+//        final org.allbinary.game.canvas.GD1SpecialAnimationGlobals globals = org.allbinary.game.canvas.GD1SpecialAnimationGlobals.getInstance();
+//        final org.allbinary.game.canvas.GD1GDObjectsFactory.PlatformerMap platformerMap = ((org.allbinary.game.canvas.GD1GDObjectsFactory.PlatformerMap) ((GDGameLayer) globals.PlatformerMapGDGameLayerList.get(0)).gdObject);
+//        
+//        final int size = platformerMap.placementXIntArray.length;
+//        for(int index = 0; index < size; index++) {
+//            graphics.drawRect(x + platformerMap.placementXIntArray[index], y + platformerMap.placementYIntArray[index], 2, 2);
+//        }
+//    }
+    
 }
