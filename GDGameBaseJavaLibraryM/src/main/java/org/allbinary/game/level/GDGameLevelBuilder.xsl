@@ -449,43 +449,35 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             <xsl:if test="type = 'TileMap::TileMap'" >
                 <xsl:if test="name = 'PlatformerMap'" >
 
-    public boolean isGoodForPlacement(final org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory, 
-        final int[][] mapArray, final int index, final int index2, final int recursionIndex) {
+    private final int[][] ADJACENT = {
+        {0, -1},
+        {0, 1},
+        {1, -1},
+        {1, 0},
+        {1, 1},
+        {-1, -1},
+        {-1, 0},
+        {-1, 1}
+    };
 
-        if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index + 1][index2])) {
-            if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index + 1, index2, recursionIndex - 1);
-                    
-            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index + 1][index2 + 1])) {
-                if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index + 1, index2 + 1, recursionIndex - 1);
-                    
-                if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index][index2 + 1])) {
-                    if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index, index2 + 1, recursionIndex - 1);
-                    
-                    if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index - 1][index2])) {
-                        if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index - 1, index2, recursionIndex - 1);
-                    
-                        if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index][index2 - 1])) {
-                            if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index, index2 - 1, recursionIndex - 1);
+    boolean result = true;
+    public void isGoodForPlacement(final org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory, 
+        final int[][] mapArray, final int indexX, final int indexY, final int recursionIndex) {
 
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index - 1][index2 - 1])) {
-                                if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index - 1, index2 - 1, recursionIndex - 1);
-                    
-                                if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index - 1][index2 + 1])) {
-                                    if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index - 1, index2 + 1, recursionIndex - 1);
-
-                                    if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index + 1][index2 - 1])) {
-                                        if(recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) return this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index + 1, index2 - 1, recursionIndex - 1);
-                                        return true;
-                                    }
-                                }
-                            }
-                        }
+        final int size = this.ADJACENT.length;
+        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+            final int adjacentIndexX = indexX + ADJACENT[index][1];
+            final int adjacentIndexY = indexY + ADJACENT[index][0];
+            if(adjacentIndexY <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> adjacentIndexX <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> adjacentIndexY <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray.length <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> adjacentIndexX <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray[0].length) {
+                if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[adjacentIndexY][adjacentIndexX])) {
+                    if (recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                        this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, adjacentIndexX, adjacentIndexY, recursionIndex - 1);
                     }
+                } else {
+                    result = false;
                 }
             }
         }
-        return false;
-
     }
 
     public void setStartPoint(final GeographicMapInterface[] geographicMapInterfaceArray) throws Exception {
@@ -553,86 +545,85 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             final int[][] mapArray = tileLayer.getMapArray();
             final int size4 = mapArray.length;
             final int size2 = mapArray[0].length;
-            for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size4; index++) {
-                for (int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
+            for (int indexY = 0; indexY <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size4; indexY++) {
+                for (int indexX = 0; indexX <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; indexX++) {
                 
                     //stringMaker.delete(0, stringMaker.length());
-                    //LogUtil.put(LogFactory.getInstance(stringMaker.append(F).append(index).append(CommonSeps.getInstance().SPACE).append(index2).toString(), this, commonStrings.PROCESS));
+                    //LogUtil.put(LogFactory.getInstance(stringMaker.append(F).append(indexY).append(CommonSeps.getInstance().SPACE).append(indexX).toString(), this, commonStrings.PROCESS));
                     //LogUtil.put(LogFactory.getInstance(basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.toString(), this, commonStrings.PROCESS));
-                
-                    geographicMapCellPosition = geographicMapCellPositionFactory.getInstance(index2, index);
 
-                    if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index][index2])) {
-                        placed = false;
+                    if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY][indexX])) {
                         //Exclude placement next to something that is not a floor tile
-                        if(index <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> index2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray.length <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray[0].length) {
-                            if(isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, index, index2, 2)) {
-                                placementXIntArray[placementTotal] = ((geographicMapCellPosition.getColumn()) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((geographicMapCellPosition.getRow()) * map.getTileHeight()) + (map.getTileHeight() / 2);
-                                //placementCellXIntArray[placementTotal] = geographicMapCellPosition.getColumn();
-                                //placementCellYIntArray[placementTotal] = geographicMapCellPosition.getRow();
-                                placementTotal++;
-                                placed = true;
-                            }
+                        placed = false;
+                        result = true;
+                        isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, indexX, indexY,  2);
+                        if(result) {
+                            placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                            placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                            //placementCellXIntArray[placementTotal] = geographicMapCellPosition.getColumn();
+                            //placementCellYIntArray[placementTotal] = geographicMapCellPosition.getRow();
+                            placementTotal++;
+                            placed = true;
                         }
 
                         if(!placed) {
-                            otherPlacementXIntArray[placementTotal] = ((index2) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                            otherPlacementYIntArray[placementTotal] = ((index) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                            otherPlacementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                            otherPlacementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
                             otherPlacementTotal++;
                         }
                     }
 
-                    if (basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.isType(mapArray[index][index2])) {
+                    if (basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.isType(mapArray[indexY][indexX])) {
                     
 <!--
-                        if(index > 0 && index2 > 0 && index < mapArray.length && index2 < mapArray[0].length) {
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index + 1][index2])) {
-                                placementXIntArray[placementTotal] = ((index2) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((index + 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                        if(indexY > 0 && indexX > 0 && indexY < mapArray.length && indexX < mapArray[0].length) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY + 1][indexX])) {
+                                placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY + 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index + 1][index2 + 1])) {
-                                placementXIntArray[placementTotal] = ((index2 + 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((index + 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY + 1][indexX + 1])) {
+                                placementXIntArray[placementTotal] = ((indexX + 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY + 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index][index2 + 1])) {
-                                placementXIntArray[placementTotal] = ((index2 + 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((index) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY][indexX + 1])) {
+                                placementXIntArray[placementTotal] = ((indexX + 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index - 1][index2])) {
-                                placementXIntArray[placementTotal] = ((index2) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((index - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY - 1][indexX])) {
+                                placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index][index2 - 1])) {
-                                placementXIntArray[placementTotal] = ((index2 - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((index) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY][indexX - 1])) {
+                                placementXIntArray[placementTotal] = ((indexX - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index - 1][index2 - 1])) {
-                                placementXIntArray[placementTotal] = ((index2 - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((index - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY - 1][indexX - 1])) {
+                                placementXIntArray[placementTotal] = ((indexX - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index - 1][index2 + 1])) {
-                                placementXIntArray[placementTotal] = ((index2 - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((index - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY - 1][indexX + 1])) {
+                                placementXIntArray[placementTotal] = ((indexX - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index + 1][index2 - 1])) {
-                                placementXIntArray[placementTotal] = ((index2 - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((index - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY + 1][indexX - 1])) {
+                                placementXIntArray[placementTotal] = ((indexX - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
                         }
 -->
 
                         stringMaker.delete(0, stringMaker.length());
-                        LogUtil.put(LogFactory.getInstance(stringMaker.append("Planned Start Position c: ").append(allBinaryTiledLayer.getColumns()).append(CommonSeps.getInstance().FORWARD_SLASH).append(index2 * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).append(index2).append(" r: ").append(allBinaryTiledLayer.getRows()).append(CommonSeps.getInstance().FORWARD_SLASH).append(index * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).append(index).toString(), this, commonStrings.PROCESS));
+                        LogUtil.put(LogFactory.getInstance(stringMaker.append("Planned Start Position c: ").append(allBinaryTiledLayer.getColumns()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexX * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexX).append(" r: ").append(allBinaryTiledLayer.getRows()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexY * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexY).toString(), this, commonStrings.PROCESS));
                                                 
+                        geographicMapCellPosition = geographicMapCellPositionFactory.getInstance(indexX, indexY);
                         //(SceneWindowWidth() / 2) - (Player.Width() / 2)
                         this.setStartPosition(geographicMapInterfaceArray, geographicMapCellPosition, layerIndex, stringMaker);
 

@@ -100,6 +100,7 @@ public class GDDelete {
         exclusionList2.add("GDGameStartCanvas.java");        
         exclusionList2.add("GDGameSoftwareInfo.java");
         exclusionList2.add("GDGeographicMap.java");
+        exclusionList2.add("PlacementAllBinaryJ2METiledLayer.java");
         exclusionList2.add("GDTiledMapProperties");
         
         final Vector files2 = fileListFetcher.getFiles(

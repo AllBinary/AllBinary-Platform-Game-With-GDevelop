@@ -20,6 +20,7 @@ import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.TiledLayer;
 import org.allbinary.game.layer.AllBinaryJ2METiledLayer;
 import org.allbinary.game.layer.AllBinaryTiledLayer;
+import org.allbinary.game.layer.PlacementAllBinaryJ2METiledLayer;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.logic.string.CommonStrings;
@@ -55,7 +56,7 @@ public class GDGeographicMap extends BasicGeographicMap {
         super(SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()),
                 SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()).toString(),
                 cellTypeIdToGeographicMapCellType,
-                new AllBinaryJ2METiledLayer(
+                new PlacementAllBinaryJ2METiledLayer(
                         SmallIntegerSingletonFactory.getInstance().getInstance(-1),
                         new TiledLayer(
                                 map.getWidth(),
