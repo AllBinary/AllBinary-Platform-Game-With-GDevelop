@@ -15,6 +15,7 @@ package org.allbinary.game.layer;
 
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.game.TiledLayer;
+import org.allbinary.graphics.color.BasicColorFactory;
 
 /**
  *
@@ -37,13 +38,18 @@ public class PlacementAllBinaryJ2METiledLayer extends AllBinaryJ2METiledLayer {
                        
         //this.paintDebug(graphics);
 
-        //this.paintPlacementDebug(graphics);
+//        this.paintPlacementDebug(graphics);
          
     }
 
+//    private final int[] colorArray = new int[] {
+//        BasicColorFactory.getInstance().RED.intValue(),
+//        BasicColorFactory.getInstance().GREEN.intValue(),
+//        BasicColorFactory.getInstance().YELLOW.intValue(),
+//        BasicColorFactory.getInstance().BLUE.intValue()
+//    };
+//
 //    public void paintPlacementDebug(final Graphics graphics) {
-//        
-//        graphics.setColor(debugColor);
 //
 //        final int x = this.tiledLayer.getX();
 //        final int y = this.tiledLayer.getY();
@@ -53,7 +59,9 @@ public class PlacementAllBinaryJ2METiledLayer extends AllBinaryJ2METiledLayer {
 //        
 //        final int size = platformerMap.placementXIntArray.length;
 //        for(int index = 0; index < size; index++) {
-//            graphics.drawRect(x + platformerMap.placementXIntArray[index], y + platformerMap.placementYIntArray[index], 2, 2);
+//            int placementSize = platformerMap.placementSizeIntArray[index];
+//            graphics.setColor(colorArray[placementSize]);
+//            graphics.drawRect(x + platformerMap.placementXIntArray[index], y + platformerMap.placementYIntArray[index], placementSize, placementSize);
 //        }
 //    }
     
