@@ -185,7 +185,14 @@ Created By: Travis Berthelot
                         return true;
                     }
                     </xsl:if>
-
+                    <xsl:if test="not(contains($hasObject, 'found') or contains($hasObjectGroup, 'found'))" >
+                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                        super.processGDStats(gameLayer);
+                        
+                        return this.process();
+                    }
+                    </xsl:if>
+                    
                     //CreateByName
                     @Override
                     public boolean processCreate(final GDObject gdObject, final String createString, final int createIndex) throws Exception {

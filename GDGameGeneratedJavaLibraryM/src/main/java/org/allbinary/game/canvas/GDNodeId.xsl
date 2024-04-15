@@ -333,13 +333,18 @@
                 //process without params was called before.
                 </xsl:if>
 
-                <xsl:if test="string-length($hasCreateOrCreateByName) > 0 and $hasCreateOrCreateByName &lt; number(substring(generate-id(), 2) - 65536)" >
-                    <xsl:if test="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id]) != 0" >
+                //hasCreateOrCreateByName=<xsl:value-of select="$hasCreateOrCreateByName" />
+                <xsl:if test="string-length($hasCreateOrCreateByName) > 0" >
+                    <xsl:if test="$hasCreateOrCreateByName &lt; number(substring(generate-id(), 2) - 65536)" >
             //Using specific param2 - <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
-                    </xsl:if>
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdGameLayer" />, gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />], globals.graphics);
+                    </xsl:if>
+                    <xsl:if test="not($hasCreateOrCreateByName &lt; number(substring(generate-id(), 2) - 65536))" >
+            //Using newly created layer as param2
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdGameLayer" />, gameGlobals.tempGameLayerArray[0], globals.graphics);
+                    </xsl:if>
                 </xsl:if>
-                <xsl:if test="not(string-length($hasCreateOrCreateByName) > 0 and $hasCreateOrCreateByName &lt; number(substring(generate-id(), 2) - 65536))" >
+                <xsl:if test="not(string-length($hasCreateOrCreateByName) > 0)" >
             //Using null param
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdGameLayer" />, null, globals.graphics);
                 </xsl:if>

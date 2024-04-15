@@ -464,11 +464,11 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
     public void isGoodForPlacement(final org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory, 
         final int[][] mapArray, final int indexX, final int indexY, final int recursionIndex) {
 
-        final int size = this.ADJACENT.length;
-        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-            final int adjacentIndexX = indexX + ADJACENT[index][1];
-            final int adjacentIndexY = indexY + ADJACENT[index][0];
-            if(adjacentIndexY <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> adjacentIndexX <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> adjacentIndexY <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray.length <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> adjacentIndexX <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray[0].length) {
+        if(indexY <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexY <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray.length <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray[0].length) {
+            final int size = this.ADJACENT.length;
+            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                final int adjacentIndexX = indexX + ADJACENT[index][1];
+                final int adjacentIndexY = indexY + ADJACENT[index][0];
                 if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[adjacentIndexY][adjacentIndexX])) {
                     if (recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                         this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, adjacentIndexX, adjacentIndexY, recursionIndex - 1);
@@ -477,7 +477,10 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                     result = false;
                 }
             }
+        } else {
+            result = false;
         }
+        
     }
                     
     public void setStartPoint(final GeographicMapInterface[] geographicMapInterfaceArray) throws Exception {
@@ -585,13 +588,15 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                             }
                         }
 
-                        if(!placed) {
-                            placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                            placementXIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
-                            placementSizeIntArray[placementTotal] = 1;
-                            placementTotal++;
-                            placementTotal1++;
-                        }
+<!--                        if(!placed) {
+                            if(indexY <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexY <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray.length <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray[0].length) {
+                                placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementXIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                                placementSizeIntArray[placementTotal] = 1;
+                                placementTotal++;
+                                placementTotal1++;
+                            }
+                        }-->
 
                     }
 
