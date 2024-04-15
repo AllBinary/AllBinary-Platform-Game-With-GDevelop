@@ -449,6 +449,21 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             <xsl:if test="type = 'TileMap::TileMap'" >
                 <xsl:if test="name = 'PlatformerMap'" >
 
+    public boolean isAlreadyIncluded(final int[][] placementCellXIntArray, final int[][] placementCellYIntArray, final int[] placementCellTotal, final int indexX, final int indexY) {
+
+        for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 4; index++) {
+            final int size = placementCellTotal[index];
+            for (int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index2++) {
+                if(placementCellXIntArray[index][index2] + 4 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> indexX <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> 
+                placementCellYIntArray[index][index2] + 4 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> indexY) {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
+
     private final int[][] ADJACENT = {
         {0, -1},
         {0, 1},
@@ -462,16 +477,18 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
     boolean result = true;
     public void isGoodForPlacement(final org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory, 
-        final int[][] mapArray, final int indexX, final int indexY, final int recursionIndex) {
+        final int[][] mapArray, final int[][] propsMapArray, final int indexX, final int indexY, final int recursionIndex) {
 
         if(indexY <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexY <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray.length <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> mapArray[0].length) {
             final int size = this.ADJACENT.length;
             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                 final int adjacentIndexX = indexX + ADJACENT[index][1];
                 final int adjacentIndexY = indexY + ADJACENT[index][0];
-                if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[adjacentIndexY][adjacentIndexX])) {
+
+                if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[adjacentIndexY][adjacentIndexX]) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> 
+                    propsMapArray[adjacentIndexY][adjacentIndexX] != 49)) {
                     if (recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                        this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, adjacentIndexX, adjacentIndexY, recursionIndex - 1);
+                        this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, propsMapArray, adjacentIndexX, adjacentIndexY, recursionIndex - 1);
                     }
                 } else {
                     result = false;
@@ -482,7 +499,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         }
         
     }
-                    
+
     public void setStartPoint(final GeographicMapInterface[] geographicMapInterfaceArray) throws Exception {
 
     <xsl:call-template name="scale" >
@@ -506,14 +523,13 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         int placementTotal2 = 0;
         int placementTotal3 = 0;
         int placementMax = 0;
-        GDGeographicMap gdGeographicMap;
-        TiledMap map;
+
         if(true) {
-        int layerIndex = 0;
+        final int layerIndex = 0;
         //for (int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
             //LogUtil.put(LogFactory.getInstance("Find Start Position on map layer: " + layerIndex, this, commonStrings.PROCESS));
-            gdGeographicMap = (GDGeographicMap) geographicMapInterfaceArray[layerIndex];
-            map = gdGeographicMap.getMap();
+            final GDGeographicMap gdGeographicMap = (GDGeographicMap) geographicMapInterfaceArray[layerIndex];
+            final TiledMap map = gdGeographicMap.getMap();
             final TileLayer tileLayer = ((TileLayer) map.getLayer(layerIndex));
             final int[][] mapArray = tileLayer.getMapArray();
             final int size = mapArray.length * mapArray[0].length;
@@ -524,8 +540,6 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final int[] placementXIntArray = new int[placementMax];
         final int[] placementYIntArray = new int[placementMax];
         final int[] placementSizeIntArray = new int[placementMax];
-        //final int[] placementCellXIntArray = new int[placementMax];
-        //final int[] placementCellYIntArray = new int[placementMax];
 
         boolean placed;
 
@@ -534,40 +548,62 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         BasicGeographicMapCellPositionFactory geographicMapCellPositionFactory;
         GeographicMapCellPosition geographicMapCellPosition;
 
+        int currentY = 0;
+        final int MAX_HISTORY_Y = 4;
+
         if(true) {
-        int layerIndex = 0;
+        final int layerIndex = 0;
+        final int propsLayerIndex = 1;
         //for (int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
             //LogUtil.put(LogFactory.getInstance("Find Start Position on map layer: " + layerIndex, this, commonStrings.PROCESS));
 
-            gdGeographicMap = (GDGeographicMap) geographicMapInterfaceArray[layerIndex];
-            basicTopViewGeographicMapCellTypeFactory = (org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory) gdGeographicMap.getGeographicMapCellTypeFactory();
-            allBinaryTiledLayer = gdGeographicMap.getAllBinaryTiledLayer();
-            map = gdGeographicMap.getMap();    
-            geographicMapCellPositionFactory = gdGeographicMap.getGeographicMapCellPositionFactory();
-
+            final GDGeographicMap gdGeographicMap = (GDGeographicMap) geographicMapInterfaceArray[layerIndex];
+            final TiledMap map = gdGeographicMap.getMap();
             final TileLayer tileLayer = ((TileLayer) map.getLayer(layerIndex));
             final int[][] mapArray = tileLayer.getMapArray();
+            
+            final GDGeographicMap propsGDGeographicMap = (GDGeographicMap) geographicMapInterfaceArray[propsLayerIndex];
+            final TiledMap propsMap = propsGDGeographicMap.getMap();
+            final TileLayer propsTileLayer = ((TileLayer) propsMap.getLayer(0));
+            final int[][] propsMapArray = propsTileLayer.getMapArray();
+            
+            basicTopViewGeographicMapCellTypeFactory = (org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory) gdGeographicMap.getGeographicMapCellTypeFactory();
+            allBinaryTiledLayer = gdGeographicMap.getAllBinaryTiledLayer();
+            geographicMapCellPositionFactory = gdGeographicMap.getGeographicMapCellPositionFactory();
+
             final int size4 = mapArray.length;
             final int size2 = mapArray[0].length;
+            
+            final int[][] placementCellXIntArray = new int[MAX_HISTORY_Y][size2];
+            final int[][] placementCellYIntArray = new int[MAX_HISTORY_Y][size2];
+            final int[] placementCellTotal = new int[MAX_HISTORY_Y];
+
             for (int indexY = 0; indexY <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size4; indexY++) {
+                placementCellTotal[currentY] = 0;
                 for (int indexX = 0; indexX <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; indexX++) {
                 
                     //stringMaker.delete(0, stringMaker.length());
-                    //LogUtil.put(LogFactory.getInstance(stringMaker.append(F).append(index).append(CommonSeps.getInstance().SPACE).append(index2).toString(), this, commonStrings.PROCESS));
+                    //LogUtil.put(LogFactory.getInstance(stringMaker.append(F).append(indexY).append(CommonSeps.getInstance().SPACE).append(indexX).toString(), this, commonStrings.PROCESS));
                     //LogUtil.put(LogFactory.getInstance(basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.toString(), this, commonStrings.PROCESS));
 
                     if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY][indexX])) {
                         //Exclude placement next to something that is not a floor tile
                         placed = false;
                         
+                        final boolean isFarEnoughFromLastPlacement = !this.isAlreadyIncluded(placementCellXIntArray, placementCellYIntArray, placementCellTotal, indexX, indexY);
+                        if(isFarEnoughFromLastPlacement) {
                         result = true;
-                        isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, indexX, indexY,  3);
+                        isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, propsMapArray, indexX, indexY,  3);
                         if(result) {
+                            //stringMaker.delete(0, stringMaker.length());
+                            //LogUtil.put(LogFactory.getInstance(stringMaker.append("3placement: ").append(indexX).append(CommonSeps.getInstance().SPACE).append(indexY).append(" index: ").append(placementTotal).toString(), this, commonStrings.PROCESS));
+
                             placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
                             placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
                             placementSizeIntArray[placementTotal] = 3;
-                            //placementCellXIntArray[placementTotal] = geographicMapCellPosition.getColumn();
-                            //placementCellYIntArray[placementTotal] = geographicMapCellPosition.getRow();
+                            placementCellXIntArray[currentY][placementCellTotal[currentY]] = indexX;
+                            placementCellYIntArray[currentY][placementCellTotal[currentY]] = indexY;
+                            placementCellTotal[currentY]++;
                             placementTotal++;
                             placementTotal3++;
                             placed = true;
@@ -575,13 +611,17 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
                         if(!placed) {
                             result = true;
-                            isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, indexX, indexY,  1);
+                            isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, propsMapArray, indexX, indexY,  1);
                             if(result) {
+                                //stringMaker.delete(0, stringMaker.length());
+                                //LogUtil.put(LogFactory.getInstance(stringMaker.append("2placement: ").append(indexX).append(CommonSeps.getInstance().SPACE).append(indexY).append(" index: ").append(placementTotal).toString(), this, commonStrings.PROCESS));
+
                                 placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
                                 placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementSizeIntArray[placementTotal] = 2;
-                                //placementCellXIntArray[placementTotal] = geographicMapCellPosition.getColumn();
-                                //placementCellYIntArray[placementTotal] = geographicMapCellPosition.getRow();
+                                placementCellXIntArray[currentY][placementCellTotal[currentY]] = indexX;
+                                placementCellYIntArray[currentY][placementCellTotal[currentY]] = indexY;
+                                placementCellTotal[currentY]++;
                                 placementTotal++;
                                 placementTotal2++;
                                 placed = true;
@@ -597,51 +637,52 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                                 placementTotal1++;
                             }
                         }-->
+                        }
 
                     }
 
                     if (basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.isType(mapArray[indexY][indexX])) {
                     
 <!--
-                        if(index > 0 && index2 > 0 && index < mapArray.length && index2 < mapArray[0].length) {
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index + 1][index2])) {
-                                placementXIntArray[placementTotal] = ((index2) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((index + 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                        if(indexY > 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX > 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexY < mapArray.length <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX < mapArray[0].length) {
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY + 1][indexX])) {
+                                placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY + 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index + 1][index2 + 1])) {
-                                placementXIntArray[placementTotal] = ((index2 + 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((index + 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY + 1][indexX + 1])) {
+                                placementXIntArray[placementTotal] = ((indexX + 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY + 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index][index2 + 1])) {
-                                placementXIntArray[placementTotal] = ((index2 + 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((index) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY][indexX + 1])) {
+                                placementXIntArray[placementTotal] = ((indexX + 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index - 1][index2])) {
-                                placementXIntArray[placementTotal] = ((index2) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((index - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY - 1][indexX])) {
+                                placementXIntArray[placementTotal] = ((indexX) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index][index2 - 1])) {
-                                placementXIntArray[placementTotal] = ((index2 - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((index) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY][indexX - 1])) {
+                                placementXIntArray[placementTotal] = ((indexX - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index - 1][index2 - 1])) {
-                                placementXIntArray[placementTotal] = ((index2 - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((index - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY - 1][indexX - 1])) {
+                                placementXIntArray[placementTotal] = ((indexX - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index - 1][index2 + 1])) {
-                                placementXIntArray[placementTotal] = ((index2 - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((index - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY - 1][indexX + 1])) {
+                                placementXIntArray[placementTotal] = ((indexX - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
-                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[index + 1][index2 - 1])) {
-                                placementXIntArray[placementTotal] = ((index2 - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
-                                placementYIntArray[placementTotal] = ((index - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
+                            if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY + 1][indexX - 1])) {
+                                placementXIntArray[placementTotal] = ((indexX - 1) * map.getTileWidth()) + (map.getTileWidth() / 2);
+                                placementYIntArray[placementTotal] = ((indexY - 1) * map.getTileHeight()) + (map.getTileHeight() / 2);
                                 placementTotal++;
                             }
                         }
@@ -666,6 +707,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
                     }
                 }
+                currentY++;
+                if(currentY <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> MAX_HISTORY_Y - 1) currentY = 0;
             }
         }
 
@@ -674,8 +717,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         platformerMap.placementXIntArray = arrayUtil.copyOf(placementXIntArray, placementTotal);
         platformerMap.placementYIntArray = arrayUtil.copyOf(placementYIntArray, placementTotal);
-        //platformerMap.placementCellXIntArray = arrayUtil.copyOf(placementCellXIntArray, placementTotal);
-        //platformerMap.placementCellYIntArray = arrayUtil.copyOf(placementCellYIntArray, placementTotal);
+        platformerMap.placementSizeIntArray = arrayUtil.copyOf(placementSizeIntArray, placementTotal);
         platformerMap.placementIntArray = new int[placementTotal];
         final int size = platformerMap.placementIntArray.length;
         for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
