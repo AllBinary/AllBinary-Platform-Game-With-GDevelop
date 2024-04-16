@@ -486,7 +486,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                 final int adjacentIndexY = indexY + ADJACENT[index][0];
 
                 if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[adjacentIndexY][adjacentIndexX]) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> 
-                    propsMapArray[adjacentIndexY][adjacentIndexX] != 49)) {
+                    propsMapArray[adjacentIndexY][adjacentIndexX] != 49) {
                     if (recursionIndex <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                         this.isGoodForPlacement(basicTopViewGeographicMapCellTypeFactory, mapArray, propsMapArray, adjacentIndexX, adjacentIndexY, recursionIndex - 1);
                     }
