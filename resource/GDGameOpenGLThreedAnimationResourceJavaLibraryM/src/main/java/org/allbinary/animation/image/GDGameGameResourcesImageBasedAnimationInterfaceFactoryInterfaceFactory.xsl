@@ -174,7 +174,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
 
                         try {
 
-                    <xsl:call-template name="threedAnimationFactory" >
+                    <xsl:call-template name="threedAnimationFactoryCalls" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
@@ -199,6 +199,21 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
 
         super.init(level);
     }
+    
+                    <xsl:call-template name="threedAnimationFactory" >
+                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
+                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutName" >
+                            <xsl:value-of select="$layoutName" />
+                        </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
     
     public boolean isLoadingLevel(int level)
     {
