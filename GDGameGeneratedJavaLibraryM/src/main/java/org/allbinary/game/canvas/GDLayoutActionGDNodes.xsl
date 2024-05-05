@@ -103,6 +103,8 @@ Created By: Travis Berthelot
                 import org.allbinary.game.score.HighScore;
                 import org.allbinary.game.score.HighScoreNamePersistanceSingleton;
                 import org.allbinary.game.score.HighScores;
+                import org.allbinary.game.score.HighScoresHelperBase;
+                import org.allbinary.game.score.HighScoresResultsListener;
                 import org.allbinary.game.score.displayable.HighScoreUtil;
                 import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.PointFactory;

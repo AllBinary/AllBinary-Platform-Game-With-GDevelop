@@ -1,5 +1,3 @@
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
 
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -126,7 +124,9 @@ public class GDGameMIDlet
         }
     }
     
-    public void mouseClicked(MouseEvent mouseEvent)
+
+    //public void mouseClicked(MouseEvent mouseEvent)
+    public void mouseClicked(final int x, final int y, final int button)
     {
         /*
         try
@@ -143,15 +143,14 @@ public class GDGameMIDlet
          */
     }
 
-    public void mousePressed(MouseEvent mouseEvent)
+    //public void mousePressed(MouseEvent mouseEvent)
+    public void mousePressed(final int x, final int y, final int button)
     {
         try
         {
             //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "mousePressed"));
             this.motionRecognizer.processStartMotionEvent(
-                mouseEvent.getX(), mouseEvent.getY(),
-                DEVICE_ID,
-                mouseEvent.getButton());
+                x, y, this.DEVICE_ID, button);
         }
         catch (Exception e)
         {
@@ -159,15 +158,14 @@ public class GDGameMIDlet
         }
     }
 
-    public void mouseReleased(MouseEvent mouseEvent)
+    //public void mouseReleased(MouseEvent mouseEvent)
+    public void mouseReleased(final int x, final int y, final int button)
     {
         try
         {
             //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "mouseReleased"));
             this.motionRecognizer.processEndMotionEvent(
-                mouseEvent.getX(), mouseEvent.getY(),
-                    DEVICE_ID,
-                mouseEvent.getButton());
+                x, y, this.DEVICE_ID, button);
         }
         catch (Exception e)
         {
@@ -175,38 +173,29 @@ public class GDGameMIDlet
         }
     }
 
-    public void mouseEntered(MouseEvent mouseEvent)
+    //public void mouseEntered(MouseEvent mouseEvent)
     {
         //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "mouseEntered"));
     }
 
-    public void mouseExited(MouseEvent mouseEvent)
+    //public void mouseExited(MouseEvent mouseEvent)
     {
         //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "mouseExited"));
     }
 
-    public void mouseMoved(MouseEvent mouseEvent)
+    //public void mouseMoved(MouseEvent mouseEvent)
     {
-        try
-        {
-            //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "mouseMoved"));
-            this.motionRecognizer.processMovedMotionEvent(mouseEvent.getX(), mouseEvent.getY(), DEVICE_ID, 0);
-        }
-        catch (Exception e)
-        {
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "mouseMoved", e));
-        }
+        //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "mouseMoved"));
     }
 
-    public void mouseDragged(MouseEvent mouseEvent)
+    //public void mouseDragged(MouseEvent mouseEvent)
+    public void mouseDragged(final int x, final int y, final int button)
     {
         try
         {
             //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "mouseDragged"));
             this.motionRecognizer.processDraggedMotionEvent(
-                mouseEvent.getX(), mouseEvent.getY(),
-                    DEVICE_ID,
-                mouseEvent.getButton());
+                x, y, this.DEVICE_ID, button);
         }
         catch (Exception e)
         {
@@ -214,7 +203,8 @@ public class GDGameMIDlet
         }
     }
 
-    public void mouseWheelMoved(MouseWheelEvent mouseEvent)
+    //public void mouseWheelMoved(MouseWheelEvent mouseEvent)
+    public void mouseWheelMoved(final int x, final int y, final int button)
     {
         //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "mouseWheelMoved"));
     }
