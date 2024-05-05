@@ -49,7 +49,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
-                this.add<xsl:value-of select="name" />TextInputAnimations(imageCache);
+                this.add<xsl:value-of select="name" />TextInputObjectAnimations(imageCache);
             </xsl:if>
 
 <!-- 
@@ -245,7 +245,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap'" >
-            private void add<xsl:value-of select="name" />TileMapAnimations(imageCache) throws Exception {
+            private void add<xsl:value-of select="name" />TileMapAnimations(final ImageCache imageCache) throws Exception {
             }
             </xsl:if>
 
@@ -352,7 +352,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
-            private void add<xsl:value-of select="name" />TextInputAnimations(final ImageCache imageCache) throws Exception {
+            private void add<xsl:value-of select="name" />TextInputObjectAnimations(final ImageCache imageCache) throws Exception {
             }
             </xsl:if>
 
@@ -481,7 +481,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
-            private void add<xsl:value-of select="name" />TileMapAnimations(imageCache) throws Exception {
+            private void add<xsl:value-of select="name" />TileMapAnimations(final ImageCache imageCache) throws Exception {
 
                 //Animation Total: <xsl:value-of select="count(animations)" />
 

@@ -46,7 +46,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
-                this.add<xsl:value-of select="name" />TextInputAnimations(imageCache);
+                this.add<xsl:value-of select="name" />TextInputObjectAnimations(imageCache);
             </xsl:if>
 
 <!-- 
@@ -595,7 +595,7 @@ Created By: Travis Berthelot
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
                 <xsl:variable name="stringValue" select="string" />
 
-            private void add<xsl:value-of select="name" />TextInputAnimations(final ImageCache imageCache) throws Exception {
+            private void add<xsl:value-of select="name" />TextInputObjectAnimations(final ImageCache imageCache) throws Exception {
 
                 final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> * 3 / 2;
 

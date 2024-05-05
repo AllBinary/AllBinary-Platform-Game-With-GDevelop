@@ -153,6 +153,8 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
     
         super.init(OpenGLImageCacheFactory.getInstance(), level);        
         
+        final ImageCache imageCache = OpenGLImageCacheFactory.getInstance();
+
         final String loadingString = this.toString() + " Loading: ";
     
         //final int portion = 120;

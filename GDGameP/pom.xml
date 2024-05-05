@@ -63,8 +63,8 @@
         <module>../platform/android/GDGameThreedAndroidResourcesTempJavaLibraryM</module>
         
         <!--
-        <module>../../work/gd/GDFormJavaLibraryM</module>
         -->
+        <module>../../work/gd/GDFormJavaLibraryM</module>
         <module>../replace_these_stub_projects/GDFormJavaLibraryM</module>
     </modules>
 

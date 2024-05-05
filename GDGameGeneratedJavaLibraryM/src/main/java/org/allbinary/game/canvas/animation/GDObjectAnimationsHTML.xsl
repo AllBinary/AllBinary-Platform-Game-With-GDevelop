@@ -46,7 +46,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
-                this.add<xsl:value-of select="name" />TextInputAnimations(imageCache);
+                this.add<xsl:value-of select="name" />TextInputObjectAnimations(imageCache);
             </xsl:if>
 
 <!-- 
@@ -536,7 +536,7 @@ Created By: Travis Berthelot
                 this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="$name" />LayerInfo);
 
                 //final GDConditionWithGroupActions <xsl:value-of select="$name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
-
+            }
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TextObject::Text'" >
@@ -586,12 +586,13 @@ Created By: Travis Berthelot
                 this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
                 //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
-
+            }
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
                 <xsl:variable name="stringValue" select="string" />
-
+            private void add<xsl:value-of select="name" />TextInputObjectAnimations(final ImageCache imageCache) throws Exception {
+            
                 final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> / 2;
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
@@ -632,7 +633,7 @@ Created By: Travis Berthelot
                 this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
                 //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
-
+            }
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >

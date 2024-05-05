@@ -159,6 +159,8 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
         }
     
         super.init(OpenGLImageCacheFactory.getInstance(), level);        
+    
+        final ImageCache imageCache = OpenGLImageCacheFactory.getInstance();
         
         final String loadingString = this.toString() + " Loading: ";
     
