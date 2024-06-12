@@ -39,7 +39,7 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>AllBinaryAndroidProgressJavaLibrary</artifactId>
+            <artifactId>ProgressAndroidJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->

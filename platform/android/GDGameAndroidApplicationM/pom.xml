@@ -280,7 +280,7 @@
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>
-                    <artifactId>AllBinaryAndroidProgressJavaLibrary</artifactId>
+                    <artifactId>ProgressAndroidJavaLibrary</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.allbinary</groupId>

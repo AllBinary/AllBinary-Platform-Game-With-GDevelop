@@ -42,7 +42,7 @@ public class JSONPersistance extends BasicPersitance
     public void loadAll(final AbeClientInformationInterface abeClientInformation, int size) throws Exception
     {
         final RecordStore recordStore = RecordStore.openRecordStore(
-                this.getRecordStoreName(), true);
+                this.getRecordId(abeClientInformation), true);
 
         final RecordEnumeration recordEnum = 
             recordStore.enumerateRecords(null, null,true);
@@ -87,7 +87,7 @@ public class JSONPersistance extends BasicPersitance
         LogUtil.put(LogFactory.getInstance(new StringMaker().append("Saving: ").append(stringAsJSON).toString(), this, "save"));
         
         final RecordStore recordStore = RecordStore.openRecordStore(
-                this.getRecordStoreName(), true);
+                this.getRecordId(abeClientInformation), true);
 
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream outputStream = new DataOutputStream(

@@ -31,9 +31,14 @@
         <!--
         <module>../GDGameTouchJ2M=SE</module>
         -->
+        <module>../GDGameJ2SEJavaLibraryM</module>
+        
         <module>../GDGameJ2SEM</module>
         <module>../GDGameJ2SEApplicationM</module>
-        <module>../GDGameJ2SEJavaLibraryM</module>
+
+        <module>../GDGameJ2SEWithSWTM</module>
+        <module>../GDGameJ2SEWithSWTApplicationM</module>
+
     </modules>
 
 </project>

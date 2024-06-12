@@ -10,10 +10,10 @@
         <!-- Game Version Start -->
     </parent>
 
-    <artifactId>GDGameJ2SEApplication</artifactId>
+    <artifactId>GDGameJ2SEWithSWTApplication</artifactId>
     <packaging>jar</packaging>
 
-    <name>GDGameJ2SEApplication</name>
+    <name>GDGameJ2SEWithSWTApplication</name>
     <url>http://www.allbinary.com/</url>
 
     <properties>
@@ -34,12 +34,6 @@
             <artifactId>ScreenCaptureNoneJavaLibrary</artifactId>
             <version>${allbinary.platform.version}</version>
             <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>MicroemulatorSkinJavaLibrary</artifactId>
-            <version>${allbinary.platform.version}</version>
         </dependency>
 
         <dependency>
@@ -69,6 +63,12 @@
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
             <scope>provided</scope>
+        </dependency>        
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>MicroemulatorSkinJavaLibrary</artifactId>
+            <version>${allbinary.platform.version}</version>
         </dependency>
 
         <dependency>
@@ -83,21 +83,21 @@
 
         <dependency>
             <groupId>org.microemu</groupId>
-            <artifactId>microemu-javase-swing</artifactId>
+            <artifactId>microemu-javase-swt</artifactId>
 <!--        
             <artifactId>microemu-javase-swing</artifactId>
             <artifactId>microemu-javase-swt</artifactId>
 -->
             <version>3.0.0-SNAPSHOT</version>
-<!--      
-            <exclusions>
-                <exclusion>
-                    <groupId>org.eclipse.swt</groupId>
-                    <artifactId>org.eclipse.swt.win32.win32.x86</artifactId>
-                </exclusion>
-            </exclusions>
--->
         </dependency>
+        
+<!--    
+        <dependency>
+            <groupId>org.eclipse.swt</groupId>
+            <artifactId>org.eclipse.swt.win32.win32.x86_64</artifactId>
+            <version>4.4.2.0</version>
+        </dependency>
+-->
 
     </dependencies>
  
@@ -122,6 +122,41 @@
                 </configuration>
             </plugin>
                         
+            <!-- Delete output directory
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-clean-plugin</artifactId>
+            <version>2.4.1</version>
+            <configuration>
+                <followSymLinks>false</followSymLinks>
+                <filesets>
+                    <fileset>
+                        <directory>.\tmp7624</directory>
+                    </fileset>
+                </filesets>
+            </configuration>
+            </plugin>
+            -->
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includes>**\/*.wav, **\/*.png</includes>
+                            <outputDirectory>${project.build.directory}/resources</outputDirectory>
+                            <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -131,7 +166,7 @@
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                             <addClasspath>true</addClasspath>
-                            <mainClass>org.microemu.app.BareMain</mainClass>
+                            <mainClass>org.microemu.app.NativeBareMain</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
