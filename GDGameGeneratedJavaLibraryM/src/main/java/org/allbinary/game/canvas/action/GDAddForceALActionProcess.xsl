@@ -199,7 +199,7 @@ Created By: Travis Berthelot
                                     
                                     <xsl:text>&#10;</xsl:text>
                                     //updateGDObject - 4
-                                    <xsl:value-of select="$name" />GDGameLayer.updateGDObject(globals.timeDelta);
+                                    <xsl:value-of select="$name" />GDGameLayer.updateGDObject(globals.gameTickTimeDelayHelper.timeDelta);
                                     <xsl:text>&#10;</xsl:text>
                                 
                             return true;

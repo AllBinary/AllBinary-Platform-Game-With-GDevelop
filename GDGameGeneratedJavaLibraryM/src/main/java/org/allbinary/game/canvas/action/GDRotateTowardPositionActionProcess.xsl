@@ -33,7 +33,7 @@ Created By: Travis Berthelot
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >final GDGameLayer gameLayer = (((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index)));</xsl:if></xsl:for-each>
                             this.processGD(gameLayer, null, globals.graphics);
-                            gameLayer.updateGDObject(globals.timeDelta);
+                            gameLayer.updateGDObject(globals.gameTickTimeDelayHelper.timeDelta);
                         }
 
                         return true;

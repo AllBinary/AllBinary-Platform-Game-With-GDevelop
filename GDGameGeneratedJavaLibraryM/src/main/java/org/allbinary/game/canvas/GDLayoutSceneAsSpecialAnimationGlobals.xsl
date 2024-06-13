@@ -108,6 +108,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.media.audio.Sound;
+                import org.allbinary.time.GameTickTimeDelayHelper;
                 import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
@@ -325,9 +326,7 @@ Created By: Travis Berthelot
 
                     private final LayerManagerEventListener layerManagerEventListener;
                     
-                    public long timeDelta;
-                    public long startTime = System.currentTimeMillis();
-                    public long lastStartTime = startTime;
+                    public final GameTickTimeDelayHelper gameTickTimeDelayHelper = new GameTickTimeDelayHelper();
                  
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals() {
                     

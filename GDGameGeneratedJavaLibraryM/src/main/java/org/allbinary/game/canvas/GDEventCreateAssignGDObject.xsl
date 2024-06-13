@@ -738,12 +738,12 @@ Created By: Travis Berthelot
                                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gameLayerName" /><xsl:value-of select="$typeValue" />GameLayerAtIndex, null, globals.graphics);
                             }
                         
-                            <xsl:value-of select="$gameLayerName" /><xsl:value-of select="$typeValue" />GameLayerAtIndex.updateGDObject(globals.timeDelta);
+                            <xsl:value-of select="$gameLayerName" /><xsl:value-of select="$typeValue" />GameLayerAtIndex.updateGDObject(globals.gameTickTimeDelayHelper.timeDelta);
                             -->
 
                             final GDGameLayer gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(index);
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(gameLayer, null, globals.graphics);
-                            gameLayer.updateGDObject(globals.timeDelta);
+                            gameLayer.updateGDObject(globals.gameTickTimeDelayHelper.timeDelta);
                         }
                 </xsl:if>
             </xsl:for-each>
@@ -940,7 +940,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="string-length($firstAction) and string-length($listCreate) = 0" >
                                 //updateGDObject - unused
-                                <xsl:value-of select="substring-before($firstAction, ',')" />GDGameLayer.updateGDObject(globals.timeDelta);
+                                <xsl:value-of select="substring-before($firstAction, ',')" />GDGameLayer.updateGDObject(globals.gameTickTimeDelayHelper.timeDelta);
                                 <xsl:text>&#10;</xsl:text>
             </xsl:if>
                         }            

@@ -128,6 +128,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
                 import org.allbinary.media.audio.Sound;
                 import org.allbinary.math.NoDecimalTrigTable;
+                import org.allbinary.time.GameTickTimeDelayHelper;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.ArrayUtil;
@@ -154,7 +155,7 @@ Created By: Travis Berthelot
                         private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
                         private final VirtualKeyboardEventHandler virtualKeyboardEventHandler = VirtualKeyboardEventHandler.getInstance();
                         private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
-                        private final GameTickTimeDelayHelperFactory gameTickTimeDelayHelperFactory = GameTickTimeDelayHelperFactory.getInstance();
+                        private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();    
 
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
@@ -223,7 +224,7 @@ Created By: Travis Berthelot
                     }
 
                     public double TimeDelta() {
-                        return globals.timeDelta * .001;
+                        return globals.gameTickTimeDelayHelper.timeDelta * .001;
                     }
 
                     public int SceneWindowWidth() {
@@ -353,7 +354,7 @@ Created By: Travis Berthelot
                     }
                     
                     public long TimerElapsedTime(final TimeDelayHelper timeDelayHelper) {
-                        return timeDelayHelper.getElapsed(globals.lastStartTime) / 1000;
+                        return timeDelayHelper.getElapsed(globals.gameTickTimeDelayHelper.lastStartTime) / 1000;
                     }
 
                     public int floor(final int value) {
@@ -382,7 +383,7 @@ Created By: Travis Berthelot
                     }
                     
                     public long TimeFromStart() {
-                        return (globals.startTime - globals.lastStartTime) / 100;
+                        return globals.gameTickTimeDelayHelper.getTimeFromStart() / 100;
                     }
 
                     public String NewLine() {

@@ -114,6 +114,7 @@ Created By: Travis Berthelot
                 import org.allbinary.math.LayerDistanceUtil;
                 import org.allbinary.math.RectangleCollisionUtil;
                 import org.allbinary.thread.NullRunnable;
+                import org.allbinary.time.GameTickTimeDelayHelper;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.BasicArrayList;
@@ -141,7 +142,7 @@ Created By: Travis Berthelot
 
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
-                        private final GameTickTimeDelayHelperFactory gameTickTimeDelayHelperFactory = GameTickTimeDelayHelperFactory.getInstance();
+                        private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
 
                         private final String INDEX = "index: ";

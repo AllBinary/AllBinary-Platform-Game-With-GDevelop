@@ -732,7 +732,7 @@ Created By: Travis Berthelot
                                     if(size2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                         for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
                                             //updateGDObject - 0
-                                            ((GDGameLayer) gameLayerList.get(index2)).updateGDObject(globals.timeDelta);
+                                            ((GDGameLayer) gameLayerList.get(index2)).updateGDObject(globals.gameTickTimeDelayHelper.timeDelta);
                                         }
                                     } else {
                                         LogUtil.put(LogFactory.getInstance("updateGDObject failed: <xsl:for-each select="actions" ><xsl:if test="type/value = 'MettreX' or type/value = 'MettreY' or type/value = 'MettreXY' or type/value = 'SetAngle' or type/value = 'ChangePlan' or type/value = 'ChangeAnimation' or type/value = 'ModVarObjet'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />GDGameLayer </xsl:if></xsl:for-each></xsl:if></xsl:for-each>was null", this, commonStrings.PROCESS, new Exception()));

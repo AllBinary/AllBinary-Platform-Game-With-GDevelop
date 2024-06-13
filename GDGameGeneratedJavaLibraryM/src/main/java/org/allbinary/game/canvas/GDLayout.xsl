@@ -100,6 +100,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.logic.string.CommonStrings;
                 import org.allbinary.logic.string.StringMaker;
+                import org.allbinary.time.GameTickTimeDelayHelper;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
@@ -134,7 +135,7 @@ Created By: Travis Berthelot
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final PointFactory pointFactory = PointFactory.getInstance();
-                        private final GameTickTimeDelayHelperFactory gameTickTimeDelayHelperFactory = GameTickTimeDelayHelperFactory.getInstance();
+                        private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
                         
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
 
@@ -194,11 +195,7 @@ Created By: Travis Berthelot
                         
                         try {
 
-                        if(globals.lastStartTime == Long.MIN_VALUE) {
-                            globals.timeDelta = 0;
-                        } else {
-                            globals.timeDelta = System.currentTimeMillis() - globals.lastStartTime;
-                        }
+                        gameTickTimeDelayHelper.loop();
 
                         if(globals.processingMotionEventListIndex == 0) {
                             globals.processingMotionEventListIndex = 1;
@@ -262,7 +259,7 @@ Created By: Travis Berthelot
 
                     gdNodes.process();
 
-                        gdGlobalsSpecialAnimation.process(globals.timeDelta);
+                        gdGlobalsSpecialAnimation.process(globals.gameTickTimeDelayHelper.timeDelta);
 
                     <!--
                     <xsl:for-each select="../externalEvents" >
@@ -325,14 +322,14 @@ Created By: Travis Berthelot
                            GDGameLayer gameLayer;
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                gameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(index));
-                               gameLayer.process(globals.timeDelta);
-                               gameLayer.animate(globals.timeDelta);
+                               gameLayer.process(globals.gameTickTimeDelayHelper.timeDelta);
+                               gameLayer.animate(globals.gameTickTimeDelayHelper.timeDelta);
                            }
 
                         }
                     </xsl:for-each>
 
-                        globals.lastStartTime = gameTickTimeDelayHelperFactory.getStartTime();
+                        globals.gameTickTimeDelayHelper.lastStartTime = gameTickTimeDelayHelper.getStartTime();
                     
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
