@@ -209,8 +209,9 @@ Created By: Travis Berthelot
                         }
 
                         final BasicArrayList motionEventList = (BasicArrayList) globals.motionEventListOfList[globals.processingMotionEventListIndex];
-                        final int size10 = motionEventList.size();
+                        int size10 = motionEventList.size();
                         MotionGestureEvent motionGestureEvent;
+                        boolean pressedAlready = false;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size10; index++) {
                         
                             motionGestureEvent = (MotionGestureEvent) motionEventList.get(index);
@@ -218,7 +219,12 @@ Created By: Travis Berthelot
                             final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
                             if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
                                 globals.lastMotionGestureInput = motionGestureInput;
+                                pressedAlready = true;
                             } else if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
+                                if(pressedAlready) {
+                                    size10 = index;
+                                    break;
+                                }
                                 globals.lastMotionGestureInput = motionGestureInput;
                             }
 
@@ -248,7 +254,10 @@ Created By: Travis Berthelot
 
         </xsl:for-each>
                     }
-                    motionEventList.clear();
+                    
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size10; index++) {
+                        motionEventList.remove(0);
+                    }
 
 
                     gdNodes.process();

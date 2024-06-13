@@ -124,7 +124,6 @@ public class GDGameMIDlet
         }
     }
     
-
     //public void mouseClicked(MouseEvent mouseEvent)
     public void mouseClicked(final int x, final int y, final int button)
     {
@@ -148,7 +147,7 @@ public class GDGameMIDlet
     {
         try
         {
-            //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "mousePressed"));
+            //LogUtil.put(LogFactory.getInstance(commonStrings.START + button, this, "mousePressed"));
             this.motionRecognizer.processStartMotionEvent(x, y, this.DEVICE_ID, button);
         }
         catch (Exception e)
@@ -162,7 +161,8 @@ public class GDGameMIDlet
     {
         try
         {
-            //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "mouseReleased"));
+            //LogUtil.put(LogFactory.getInstance(commonStrings.START + button, this, "mouseReleased"));
+            this.dragged = false;
             this.motionRecognizer.processEndMotionEvent(x, y, this.DEVICE_ID, button);
         }
         catch (Exception e)
@@ -187,7 +187,11 @@ public class GDGameMIDlet
         try
         {
             //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "mouseMoved"));
-            this.motionRecognizer.processDraggedMotionEvent(x, y, this.DEVICE_ID, button);
+            if(this.dragged) {
+                this.motionRecognizer.processDraggedMotionEvent(x, y, this.DEVICE_ID, button);
+            } else {
+                this.motionRecognizer.processMovedMotionEvent(x, y, DEVICE_ID, button);
+            }
         }
         catch (Exception e)
         {
@@ -195,12 +199,15 @@ public class GDGameMIDlet
         }
     }
 
+    private boolean dragged = false;
+    
     //public void mouseDragged(MouseEvent mouseEvent)
     public void mouseDragged(final int x, final int y, final int button)
     {
         try
         {
             //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "mouseDragged"));
+            this.dragged = true;
             this.motionRecognizer.processDraggedMotionEvent(x, y, this.DEVICE_ID, button);
         }
         catch (Exception e)
