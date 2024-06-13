@@ -21,7 +21,7 @@ import org.allbinary.animation.image.ImageBaseRotationAnimation;
 import org.allbinary.animation.text.CustomTextAnimation;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
-import org.allbinary.graphics.color.BasicColorFactory;
+import org.allbinary.game.layer.SWTUtil;
 
 import org.allbinary.logic.math.PrimitiveIntUtil;
 
@@ -56,8 +56,15 @@ public class SliderAnimation
         this.width = width;
         this.height = height;
         
-        final int h = dxhack();
-        ((CustomTextAnimation) this.animationInterfaceArray[4]).setDy(-h + (h / 10));
+        final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.animationInterfaceArray[4]);
+        if(SWTUtil.isSWT) {
+            //customTextAnimation.setDy(-customTextAnimation.getSize());
+            final int h = dxhack();
+            customTextAnimation.setDy(-h / 3 * 2);
+        } else {
+            final int h = dxhack();
+            customTextAnimation.setDy(-h + (h / 10));
+        }
     }
     
     private int dxhack() {

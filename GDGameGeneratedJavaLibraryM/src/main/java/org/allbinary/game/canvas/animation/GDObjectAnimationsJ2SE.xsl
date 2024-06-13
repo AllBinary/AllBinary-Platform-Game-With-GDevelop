@@ -465,7 +465,7 @@ Created By: Travis Berthelot
                             //LogUtil.put(LogFactory.getInstance(new StringMaker().append("setInitialScale - font: ").append(scaleProperties.scaleHeight).toString(), this, CommonStrings.getInstance().PROCESS));
                             //this.scaleWidth = scaleProperties.scalwWidth;
                             final int fontSize = scaleProperties.scaleHeight;
-                            scaleProperties.scaleHeight = (int) fontSize - (fontSize / 4);
+                            scaleProperties.scaleHeight = (int) fontSize - (fontSize / 2);
                             this.font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, scaleProperties.scaleHeight);
                             LogUtil.put(LogFactory.getInstance(new StringMaker().append("setInitialScale - font: ").append(font.getSize()).toString(), this, CommonStrings.getInstance().PROCESS));
                         }
