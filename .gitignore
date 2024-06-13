@@ -9,6 +9,8 @@ gen/
 
 Resources/**
 
+*.dll
+
 strings.xml
 build.gradle
 gd_icon.png
@@ -65,7 +67,7 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/j2se/GDGameJ2SEApplicationM/src/**/*.html
 /platform/j2se/GDGameJ2SEApplicationM/src/**/*.txt
 /platform/j2se/GDGameJ2SEApplicationM/src/**/*.ogg
-/platform/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.java
+/platform/j2se/GDGameJ2SEWithSWTApplicationM/src/main/java/**
 /platform/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.svg
 /platform/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.png
 /platform/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.xsl
@@ -77,6 +79,20 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.html
 /platform/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.txt
 /platform/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.ogg
+/platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/main/java/**
+/platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.svg
+/platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.png
+/platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.xsl
+/platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.xml
+/platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.dat
+/platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.properties
+/platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.MF
+/platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.origin
+/platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.html
+/platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.txt
+/platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.ogg
+/platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.c
+/platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.h
 /platform/j2me/GDGameJ2MEApplicationM/src/**/*.java
 /platform/j2me/GDGameJ2MEApplicationM/src/**/*.svg
 /platform/j2me/GDGameJ2MEApplicationM/src/**/*.png
