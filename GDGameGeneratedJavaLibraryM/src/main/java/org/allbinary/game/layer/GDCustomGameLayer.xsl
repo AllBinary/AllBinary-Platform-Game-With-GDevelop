@@ -668,7 +668,7 @@ Created By: Travis Berthelot
         //this.updateSpecialAnimation();
 //      }
 
-        //updateGDObject(globals.gameTickTimeDelayHelper.timeDelta);
+        //updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
         updateGDObject(1000);
         VelocityUtil.reduceX(this.velocityInterface, 90, 100);
     }

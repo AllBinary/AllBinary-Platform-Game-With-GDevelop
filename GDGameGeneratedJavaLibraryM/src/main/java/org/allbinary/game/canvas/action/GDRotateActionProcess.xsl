@@ -104,7 +104,7 @@ Created By: Travis Berthelot
                                 this.processGD(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)), null, globals.graphics);
         </xsl:if>
                                 //updateGDObject - 5
-                                gameLayer.updateGDObject(globals.gameTickTimeDelayHelper.timeDelta);
+                                gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
                                 }
                             } else {
                                 //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> <xsl:value-of select="$gdObjectName" />GDGameLayerList was null", this, commonStrings.PROCESS));
@@ -194,7 +194,7 @@ Created By: Travis Berthelot
                                 this.processReleased(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index)).gdObject);
         </xsl:if>
                                 //updateGDObject - 6
-                                gameLayer.updateGDObject(globals.gameTickTimeDelayHelper.timeDelta);
+                                gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
                                 }
                             } else {
                                 //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> <xsl:value-of select="$gdObjectName" />GDGameLayerList was null", this, commonStrings.PROCESS));

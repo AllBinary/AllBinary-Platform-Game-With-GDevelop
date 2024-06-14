@@ -31,7 +31,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                         <xsl:text>&#10;</xsl:text>
                         <xsl:for-each select="parameters" >
-                            <xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />ObjectTimeDelayHelper.setStartTime(globals.gameTickTimeDelayHelper.lastStartTime);</xsl:if>
+                            <xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />ObjectTimeDelayHelper.setStartTime(globals.globalsGameTickTimeDelayHelper.lastStartTime);</xsl:if>
                         </xsl:for-each>
 
                         return true;
@@ -62,7 +62,7 @@ Created By: Travis Berthelot
 
                         ((TimeDelayHelper) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template><xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList.get(index)).delay = 0;
                         <xsl:text>&#10;</xsl:text>
-<xsl:text>                        </xsl:text>((TimeDelayHelper) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template><xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList.get(index)).setStartTime(globals.gameTickTimeDelayHelper.lastStartTime);
+<xsl:text>                        </xsl:text>((TimeDelayHelper) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template><xsl:value-of select="$paramOne" />ObjectTimeDelayHelperList.get(index)).setStartTime(globals.globalsGameTickTimeDelayHelper.lastStartTime);
 
 
                         return true;

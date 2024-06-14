@@ -177,7 +177,7 @@ Created By: Travis Berthelot
                     }
 
                     //public long TimeDelta() {
-                        //return globals.gameTickTimeDelayHelper.timeDelta;
+                        //return globals.globalsGameTickTimeDelayHelper.timeDelta;
                     //}
 
                     public int SceneWindowWidth() {

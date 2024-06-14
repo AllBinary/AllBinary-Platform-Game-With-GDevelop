@@ -224,7 +224,7 @@ Created By: Travis Berthelot
                     }
 
                     public double TimeDelta() {
-                        return globals.gameTickTimeDelayHelper.timeDelta * .001;
+                        return globals.globalsGameTickTimeDelayHelper.timeDelta * .001;
                     }
 
                     public int SceneWindowWidth() {
@@ -354,7 +354,7 @@ Created By: Travis Berthelot
                     }
                     
                     public long TimerElapsedTime(final TimeDelayHelper timeDelayHelper) {
-                        return timeDelayHelper.getElapsed(globals.gameTickTimeDelayHelper.lastStartTime) / 1000;
+                        return timeDelayHelper.getElapsed(globals.globalsGameTickTimeDelayHelper.lastStartTime) / 1000;
                     }
 
                     public int floor(final int value) {
@@ -383,7 +383,7 @@ Created By: Travis Berthelot
                     }
                     
                     public long TimeFromStart() {
-                        return globals.gameTickTimeDelayHelper.getTimeFromStart() / 100;
+                        return globals.globalsGameTickTimeDelayHelper.getTimeFromStart() / 100;
                     }
 
                     public String NewLine() {

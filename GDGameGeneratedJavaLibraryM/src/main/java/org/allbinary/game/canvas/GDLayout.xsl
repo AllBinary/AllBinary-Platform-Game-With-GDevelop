@@ -195,7 +195,7 @@ Created By: Travis Berthelot
                         
                         try {
 
-                        gameTickTimeDelayHelper.loop();
+                        globals.globalsGameTickTimeDelayHelper.loop();
 
                         if(globals.processingMotionEventListIndex == 0) {
                             globals.processingMotionEventListIndex = 1;
@@ -259,7 +259,7 @@ Created By: Travis Berthelot
 
                     gdNodes.process();
 
-                        gdGlobalsSpecialAnimation.process(globals.gameTickTimeDelayHelper.timeDelta);
+                        gdGlobalsSpecialAnimation.process(globals.globalsGameTickTimeDelayHelper.timeDelta);
 
                     <!--
                     <xsl:for-each select="../externalEvents" >
@@ -322,14 +322,14 @@ Created By: Travis Berthelot
                            GDGameLayer gameLayer;
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                gameLayer = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(index));
-                               gameLayer.process(globals.gameTickTimeDelayHelper.timeDelta);
-                               gameLayer.animate(globals.gameTickTimeDelayHelper.timeDelta);
+                               gameLayer.process(globals.globalsGameTickTimeDelayHelper.timeDelta);
+                               gameLayer.animate(globals.globalsGameTickTimeDelayHelper.timeDelta);
                            }
 
                         }
                     </xsl:for-each>
 
-                        globals.gameTickTimeDelayHelper.lastStartTime = gameTickTimeDelayHelper.getStartTime();
+                        globals.globalsGameTickTimeDelayHelper.lastStartTime = gameTickTimeDelayHelper.getStartTime();
                     
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
