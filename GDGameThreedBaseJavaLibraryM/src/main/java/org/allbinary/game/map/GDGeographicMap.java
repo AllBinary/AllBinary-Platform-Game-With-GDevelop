@@ -128,7 +128,7 @@ public class GDGeographicMap extends BasicGeographicMap {
     }
     
     public void update() {
-        final long startTime = GameTickTimeDelayHelperFactory.getInstance().getStartTime();
+        final long startTime = GameTickTimeDelayHelperFactory.getInstance().startTime;
         final int size = this.animationArray.length;;
         Animation animation;
         Frame frame;

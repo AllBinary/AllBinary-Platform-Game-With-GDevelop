@@ -128,6 +128,7 @@ Created By: Travis Berthelot
                                             highScoreUtil.update(name);
                                             highScoreUtil.saveHighScore();
                                             highScoreUtil.submit(abCanvas);
+                                            globals.highscoreSubmissionComplete = true;
                                             } catch(Exception e) {
                                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                                             }
@@ -148,6 +149,7 @@ Created By: Travis Berthelot
                                                 gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
                                                 final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
                                                 final HighScoreUtil highScoreUtil = new HighScoreUtil(basicHighScoresFactory, highScoresHelperBase, abeClientInformation, gameInfo, abCanvas.getCustomCommandListener(), name, highScore);
+                                                globals.highscoreSubmissionComplete = true;
                                             } catch(Exception e) {
                                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                                             }
@@ -156,8 +158,6 @@ Created By: Travis Berthelot
                                                                         
                                     basicHighScoresFactory.fetchHighScores(gameInfo, highScoresResultsListener);                                    
                                 }
-                                
-                                globals.highscoreSubmissionComplete = true;
     
                                         } catch (Exception e) {
                                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.RUN, e));
@@ -317,6 +317,7 @@ Created By: Travis Berthelot
                                                 gameGlobals.highScoresHelper.setHighScoresArray(highScoresArray);
                                                 final HighScore highScore = abCanvas.createHighScore(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
                                                 final HighScoreUtil highScoreUtil = new HighScoreUtil(basicHighScoresFactory, highScoresHelperBase, abeClientInformation, gameInfo, abCanvas.getCustomCommandListener(), name, highScore);
+                                                globals.highscoreSubmissionComplete = true;
                                             } catch(Exception e) {
                                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                                             }
@@ -326,8 +327,7 @@ Created By: Travis Berthelot
                                     basicHighScoresFactory.fetchHighScores(gameInfo, highScoresResultsListener);                                    
 
                                 }
-                                
-                                globals.highscoreSubmissionComplete = true;
+                               
     
                                         } catch (Exception e) {
                                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.RUN, e));

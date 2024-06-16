@@ -46,15 +46,17 @@ Created By: Travis Berthelot
                                 
                                 HighScores highScores;
                                 //final int index2 = leaderBoardTotal - 1;
+                                //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB " + leaderBoardTotal + " s:" + gameGlobals.selectedLeaderboardIndex, this, commonStrings.PROCESS));
                                 final int index2 = leaderBoardTotal <xsl:text disable-output-escaping="yes" >&gt; </xsl:text> gameGlobals.selectedLeaderboardIndex ? gameGlobals.selectedLeaderboardIndex : leaderBoardTotal - 1;
-                                //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB " + leaderBoardTotal + " s:" + gameGlobals.selectedLeaderboardIndex + "c: " + index2, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB c: " + index2, this, commonStrings.PROCESS));                            
                                 //for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> leaderBoardTotal; index2++) {
+                                if(index2 <xsl:text disable-output-escaping="yes" >&gt; </xsl:text> 0) {
                                     highScores = highScoresArray[index2];
-                                
+                                                                
                                     gameGlobals.highScoresTitle = highScores.getHeading();
                                     //gameGlobals.highScoresColumnHeadingOne = highScores.getColumnOneHeading();
                                     //gameGlobals.highScoresColumnHeadingOne = highScores.getColumnTwoHeading();
-                                    
+
                                     final BasicArrayList highScoreList = highScores.getList();
                                     final int size = highScoreList.size();
                                     LogUtil.put(LogFactory.getInstance("highScoreList.size(): " + size, this, commonStrings.PROCESS));
@@ -67,7 +69,7 @@ Created By: Travis Berthelot
                                         gameGlobals.highScoresNameArray[index] = highScore.getName();
                                         gameGlobals.highScoresLongArray[index] = highScore.getScore();
                                     }
-                                //}
+                                }
                             
                             <xsl:for-each select="preceding-sibling::conditions" >
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>

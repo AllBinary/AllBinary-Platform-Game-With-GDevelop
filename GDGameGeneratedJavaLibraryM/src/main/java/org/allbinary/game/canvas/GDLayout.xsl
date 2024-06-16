@@ -329,7 +329,7 @@ Created By: Travis Berthelot
                         }
                     </xsl:for-each>
 
-                        globals.globalsGameTickTimeDelayHelper.lastStartTime = gameTickTimeDelayHelper.getStartTime();
+                        globals.globalsGameTickTimeDelayHelper.lastStartTime = gameTickTimeDelayHelper.startTime;
                     
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
