@@ -92,8 +92,6 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
 
-                import org.allbinary.media.voice.TextToSpeech;
-
                 import org.allbinary.thread.SecondaryThreadPool;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.ArrayUtil;

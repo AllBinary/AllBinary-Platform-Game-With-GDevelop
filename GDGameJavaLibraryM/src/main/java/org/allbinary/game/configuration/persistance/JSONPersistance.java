@@ -72,7 +72,7 @@ public class JSONPersistance extends BasicPersitance
             for (int index = 0; index < size; index++)
             {
                 value = inputStream.readUTF();
-                //LogUtil.put(LogFactory.getInstance(value, this, METHOD_NAME));
+                LogUtil.put(LogFactory.getInstance(value, this, METHOD_NAME));
                 this.getList().add(value);
             }
 
@@ -95,7 +95,8 @@ public class JSONPersistance extends BasicPersitance
 
         outputStream.writeUTF((String) stringAsJSON);
 
-        final byte[] savedGameBytes = byteArrayOutputStream.toString().getBytes();
+        //final byte[] savedGameBytes = byteArrayOutputStream.toString().getBytes();
+        final byte[] savedGameBytes = byteArrayOutputStream.toByteArray();
 
         recordStore.addRecord(savedGameBytes, 0, savedGameBytes.length);
 

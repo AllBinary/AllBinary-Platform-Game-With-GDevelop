@@ -30,12 +30,12 @@ Created By: Travis Berthelot
                                                         
                                 <xsl:if test="contains(inlineCode, 'SpeechSynthesisUtterance')" >
 
-                                private TextToSpeech textToSpeech;
+                                private org.allbinary.media.voice.TextToSpeech textToSpeech;
                                 <xsl:text>&#10;</xsl:text>
 
                                 public void init() {
                                     super.init();
-                                    textToSpeech = new TextToSpeech();
+                                    textToSpeech = new org.allbinary.media.voice.TextToSpeech();
                                     textToSpeech.init();
                                 }
 
