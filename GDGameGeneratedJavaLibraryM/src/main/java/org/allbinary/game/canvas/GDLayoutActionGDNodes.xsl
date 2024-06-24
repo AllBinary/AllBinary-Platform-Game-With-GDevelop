@@ -106,7 +106,6 @@ Created By: Travis Berthelot
                 import org.allbinary.game.score.HighScoresHelperBase;
                 import org.allbinary.game.score.HighScoresResultsListener;
                 import org.allbinary.game.score.displayable.HighScoreUtil;
-                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;

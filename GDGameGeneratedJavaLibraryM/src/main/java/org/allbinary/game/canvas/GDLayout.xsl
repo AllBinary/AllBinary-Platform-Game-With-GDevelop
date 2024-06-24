@@ -84,7 +84,6 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDNodeStatsFactory;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.graphics.GPoint;
-                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.color.BasicColor;

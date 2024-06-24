@@ -77,7 +77,6 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.logic.string.CommonStrings;
                 import org.allbinary.logic.string.CommonSeps;
                 import org.allbinary.logic.string.StringUtil;

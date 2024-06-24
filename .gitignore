@@ -55,6 +55,18 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 
 /platform/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/**/*.xml
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/**/*.xml
+/platform/avian/GDGameAvianApplicationM/src/main/java/**
+/platform/avian/GDGameAvianApplicationM/src/**/*.svg
+/platform/avian/GDGameAvianApplicationM/src/**/*.png
+/platform/avian/GDGameAvianApplicationM/src/**/*.xsl
+/platform/avian/GDGameAvianApplicationM/src/**/*.xml
+/platform/avian/GDGameAvianApplicationM/src/**/*.dat
+/platform/avian/GDGameAvianApplicationM/src/**/*.properties
+/platform/avian/GDGameAvianApplicationM/src/**/*.MF
+/platform/avian/GDGameAvianApplicationM/src/**/*.origin
+/platform/avian/GDGameAvianApplicationM/src/**/*.html
+/platform/avian/GDGameAvianApplicationM/src/**/*.txt
+/platform/avian/GDGameAvianApplicationM/src/**/*.ogg
 /platform/j2se/GDGameJ2SEApplicationM/src/**/*.java
 /platform/j2se/GDGameJ2SEApplicationM/src/**/*.svg
 /platform/j2se/GDGameJ2SEApplicationM/src/**/*.png

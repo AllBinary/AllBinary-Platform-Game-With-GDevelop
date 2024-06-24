@@ -71,7 +71,6 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
                 import org.allbinary.game.resource.GDResources;
-                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.image.ImageCache;

@@ -61,7 +61,6 @@ import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.map.GDGeographicMap;
 import org.allbinary.game.rand.MyRandomFactory;
 import org.allbinary.game.resource.GDResources;
-import org.allbinary.graphics.DisplayUtil;
 import org.allbinary.game.view.StaticTileLayerIntoPositionViewPosition;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;

@@ -90,7 +90,6 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.behavior.DestroyOutsideBehavior;
                 import org.allbinary.game.layout.behavior.GDBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;

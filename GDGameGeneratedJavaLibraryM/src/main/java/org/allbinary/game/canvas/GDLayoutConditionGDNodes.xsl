@@ -95,7 +95,6 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
                 import org.allbinary.game.layout.GDObjectStrings;
                 import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;

@@ -81,7 +81,6 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.input.GameInputProcessorUtil;
-                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
@@ -99,7 +98,6 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDNodeStatsFactory;
                 import org.allbinary.game.layout.GDObjectStrings;
                 import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.graphics.color.BasicColor;

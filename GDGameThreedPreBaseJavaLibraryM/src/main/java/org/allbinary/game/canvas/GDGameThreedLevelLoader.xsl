@@ -72,7 +72,6 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.image.GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.resource.GDResources;
-                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.threed.min3d.ThreedLoaderFactory;
                 import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory;
                 import org.allbinary.graphics.PointFactory;

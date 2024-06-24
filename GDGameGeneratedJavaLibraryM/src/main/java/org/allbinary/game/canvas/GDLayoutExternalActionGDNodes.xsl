@@ -80,7 +80,6 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.rand.MyRandomFactory;
-                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;

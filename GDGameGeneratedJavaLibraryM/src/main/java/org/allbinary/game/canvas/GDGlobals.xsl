@@ -86,7 +86,6 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.graphics.color.SmallBasicColorCacheFactory;
                 import org.allbinary.graphics.color.BasicColorUtil;
-                import org.allbinary.graphics.DisplayUtil;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
