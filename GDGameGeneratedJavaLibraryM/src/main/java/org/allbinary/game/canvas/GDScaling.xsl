@@ -15,7 +15,6 @@
         <xsl:param name="layoutIndex" />
         <xsl:param name="layoutName" />
         
-                            //final DisplayUtil displayUtil = DisplayUtil.getInstance();
                             //<xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
                             //<xsl:variable name="windowHeight" select="/game/properties/windowHeight" />
                             //final int scaleWidth = (displayUtil.width2 / <xsl:value-of select="$windowWidth" />);
