@@ -1,21 +1,24 @@
 package org.allbinary.graphics.threed.min3d;
 
-import org.allbinary.data.resource.ResourceUtil;
-import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
+
 import min3d.core.SceneController;
+
 import org.allbinary.AndroidResources;
 import org.allbinary.android.AndroidStrings;
-import org.allbinary.android.device.OpenGLESGraphicsFactory;
-import org.allbinary.android.view.OptimizedGLSurfaceView;
+import org.allbinary.data.resource.ResourceUtil;
+import org.allbinary.device.OpenGLESGraphicsCompositeFactory;
+import org.allbinary.device.OpenGLESGraphicsFactory;
+import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
-import org.microemu.android.device.AndroidDisplayOpenGLESGraphicsFactory;
+import org.allbinary.view.OptimizedGLSurfaceView;
+import org.microemu.opengles.device.PlatformOpenGLESGraphicsFactory;
 
 /**
  * Extend this class when creating your min3d-based Activity. 
@@ -60,7 +63,7 @@ public class RendererActivity extends Activity //implements ISceneController
             //features.addDefault(openGLFeatureFactory.OPENGL_SIMPLE_OBJECT3D_PROCESSOR);
             //features.addDefault(openGLFeatureFactory.OPENGL_SIMPLE_TEXTURE_PROCESSOR);
 
-            OpenGLESGraphicsFactory.getInstance().set(new AndroidDisplayOpenGLESGraphicsFactory());
+            OpenGLESGraphicsCompositeFactory.getInstance().set(new PlatformOpenGLESGraphicsFactory());
             //OpenGLESGraphicsFactory.getInstance().set(new AndroidDisplayMin3dGraphicsFactory());
             
             //_glSurfaceView = new GLSurfaceView(this);

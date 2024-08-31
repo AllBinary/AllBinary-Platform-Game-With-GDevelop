@@ -13,7 +13,6 @@ import android.view.View;
 import org.allbinary.AllBinaryAndroidGameInitializationUtil;
 import org.allbinary.AndroidResources;
 import org.allbinary.android.AndroidStrings;
-import org.allbinary.android.activity.InitEmulatorFactory;
 import org.allbinary.android.activity.game.GameMidletActivity;
 import org.allbinary.business.advertisement.GameAdStateFactory;
 import org.allbinary.configuration.ApplicationConfiguration;
@@ -30,16 +29,15 @@ import org.allbinary.graphics.canvas.transition.progress.AndroidBasicTitleProgre
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
-import org.allbinary.android.device.OpenGLESGraphicsFactory;
+import org.allbinary.device.OpenGLESGraphicsCompositeFactory;
+import org.allbinary.device.OpenGLESGraphicsFactory;
+import org.allbinary.emulator.InitEmulatorFactory;
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
 import org.allbinary.graphics.opengles.OpenGLConfiguration;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
-import org.microemu.android.device.AndroidDisplayOpenGLESGraphicsFactory;
-
 import org.allbinary.game.resource.GDGameThreedAndroidEarlyResourceInitialization;
 import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
-import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
-import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
+import org.microemu.opengles.device.PlatformOpenGLESGraphicsFactory;
 
 public class GDGameBaseAndroidActivity extends GameMidletActivity
 {
@@ -98,7 +96,7 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
         //features.addDefault(openGLFeatureFactory.OPENGL_SIMPLE_OBJECT3D_PROCESSOR);
         //features.addDefault(openGLFeatureFactory.OPENGL_SIMPLE_TEXTURE_PROCESSOR);
         
-        OpenGLESGraphicsFactory.getInstance().set(new AndroidDisplayOpenGLESGraphicsFactory());
+        OpenGLESGraphicsCompositeFactory.getInstance().set(new PlatformOpenGLESGraphicsFactory());
         //OpenGLESGraphicsFactory.getInstance().set(new AndroidDisplayMin3dGraphicsFactory());
         
         GDThreedEarlyResourceInitializationFactory.getInstance().list.add(new GDGameThreedAndroidEarlyResourceInitialization());

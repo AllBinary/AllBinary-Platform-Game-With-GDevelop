@@ -117,6 +117,7 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
 
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final PointFactory pointFactory = PointFactory.getInstance();
+    private final Min3dSceneResourcesFactory min3dSceneResourcesFactory = Min3dSceneResourcesFactory.getInstance();
 
     private final GDGlobalSpecialAnimationResources specialAnimationResources = GDGlobalSpecialAnimationResources.getInstance();
 
@@ -136,8 +137,6 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
     {
         ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
 
-        Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
-            Min3dSceneResourcesFactory.getInstance();
     }
 
     private boolean[] isInitialized = new boolean[11];

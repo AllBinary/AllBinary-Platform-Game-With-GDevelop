@@ -6,10 +6,11 @@ import min3d.core.SceneController;
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
-import org.allbinary.android.view.AllBinaryMidletMin3dSurfaceView;
+
 import org.allbinary.graphics.opengles.OpenGLThreadUtil;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.PreLogUtil;
+import org.allbinary.view.AllBinaryMidletMin3dSurfaceView;
 
 public class GDGameAndroidMin3dView 
 extends AllBinaryMidletMin3dSurfaceView

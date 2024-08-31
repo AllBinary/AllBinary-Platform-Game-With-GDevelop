@@ -82,7 +82,7 @@
 
         <dependency>
             <groupId>min3d</groupId>
-            <artifactId>Min3dForAndroidActivityJavaLibrary</artifactId>
+            <artifactId>Min3dForAndroidPlatformJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
