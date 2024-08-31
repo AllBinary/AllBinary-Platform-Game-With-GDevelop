@@ -1,10 +1,11 @@
 package org.allbinary.game;
 
-import org.allbinary.android.view.AllBinaryMidletOpenGLSurfaceView;
 import android.content.Context;
 import android.util.AttributeSet;
+
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.PreLogUtil;
+import org.allbinary.view.AllBinaryMidletOpenGLSurfaceView;
 
 public class GDGameAndroidOpenGLESView 
 extends AllBinaryMidletOpenGLSurfaceView

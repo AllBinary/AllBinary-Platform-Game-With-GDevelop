@@ -19,9 +19,11 @@ import org.allbinary.media.audio.Sounds;
 import org.allbinary.game.init.DefaultGameInitializationListener;
 import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
 import org.allbinary.media.audio.GDGameSoundsFactory;
+import org.microemu.app.MidletJOGLInterface;
 
 public class GDGameMIDlet
         extends org.allbinary.game.GDGameMIDlet
+    implements MidletJOGLInterface
 {
     private final int DEVICE_ID = 0;
     private AllMotionRecognizer motionRecognizer = new AllMotionRecognizer();

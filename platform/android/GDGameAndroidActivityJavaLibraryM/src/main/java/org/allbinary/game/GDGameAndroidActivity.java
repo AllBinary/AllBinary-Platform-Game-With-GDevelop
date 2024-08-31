@@ -13,10 +13,10 @@ import android.view.View;
 import org.allbinary.AllBinaryAndroidGameInitializationUtil;
 import org.allbinary.AndroidResources;
 import org.allbinary.android.AndroidStrings;
-import org.allbinary.android.activity.InitEmulatorFactory;
 import org.allbinary.android.activity.game.GameMidletActivity;
 import org.allbinary.business.advertisement.GameAdStateFactory;
 import org.allbinary.configuration.ApplicationConfiguration;
+import org.allbinary.emulator.InitEmulatorFactory;
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
 
 import org.allbinary.logic.string.CommonStrings;
@@ -31,8 +31,6 @@ import org.allbinary.graphics.canvas.transition.progress.AndroidBasicTitleProgre
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
-import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
-import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
 
 public class GDGameAndroidActivity extends GameMidletActivity
 {
