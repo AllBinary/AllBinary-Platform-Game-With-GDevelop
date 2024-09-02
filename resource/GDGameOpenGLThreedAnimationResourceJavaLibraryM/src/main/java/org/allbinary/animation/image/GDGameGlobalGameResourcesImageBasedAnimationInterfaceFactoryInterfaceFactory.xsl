@@ -117,6 +117,7 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
 
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final PointFactory pointFactory = PointFactory.getInstance();
+                
     private final Min3dSceneResourcesFactory min3dSceneResourcesFactory = Min3dSceneResourcesFactory.getInstance();
 
     private final GDGlobalSpecialAnimationResources specialAnimationResources = GDGlobalSpecialAnimationResources.getInstance();
@@ -158,9 +159,6 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
         //final int portion = 120;
         
         //int index = 0;
-
-        final Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
-            Min3dSceneResourcesFactory.getInstance();
     
         //ProgressCanvas progressCanvas = 
           //  ProgressCanvasFactory.getInstance();

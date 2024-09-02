@@ -125,6 +125,8 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final PointFactory pointFactory = PointFactory.getInstance();
 
+    private final Min3dSceneResourcesFactory min3dSceneResourcesFactory = Min3dSceneResourcesFactory.getInstance();
+
     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
 
     private final int portion = 120;
@@ -142,9 +144,6 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
     public void loadDayTrack(final String loadingString) throws Exception
     {
         ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
-
-        Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
-            Min3dSceneResourcesFactory.getInstance();
     }
 
     private boolean[] isInitialized = new boolean[11];

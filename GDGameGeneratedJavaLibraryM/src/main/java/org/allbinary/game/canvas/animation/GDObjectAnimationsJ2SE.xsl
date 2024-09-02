@@ -70,8 +70,8 @@ Created By: Travis Berthelot
         //objectsAssign - j2seAnimationFactory - START
         private final short angleIncrement = 1;
         private final int[] sequenceArray = {-1};
-        //private final float hackScale = ((float) scale) * 125.0f / 1000.0f;
-        private final float hackScale = 3.0f * 125.0f / 1000.0f;
+        private final float hackScale = ((float) scale) * 125.0f / 1000.0f;
+        //private final float hackScale = 3.0f * 125.0f / 1000.0f;
 
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />

@@ -127,6 +127,15 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
 
     private final GDGlobalSpecialAnimationResources specialAnimationResources = GDGlobalSpecialAnimationResources.getInstance();
 
+        <xsl:call-template name="scaleProperty" >
+            <xsl:with-param name="layoutIndex" >
+                Global
+            </xsl:with-param>
+            <xsl:with-param name="layoutName" >
+                <xsl:value-of select="$layoutName" />
+            </xsl:with-param>
+        </xsl:call-template>
+    
     public GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
         super("Game Image Animations");

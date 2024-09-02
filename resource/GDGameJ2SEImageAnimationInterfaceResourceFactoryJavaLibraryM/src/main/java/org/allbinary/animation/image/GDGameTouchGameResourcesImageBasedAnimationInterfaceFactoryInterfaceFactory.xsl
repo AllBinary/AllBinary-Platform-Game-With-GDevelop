@@ -112,7 +112,16 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
     private final PointFactory pointFactory = PointFactory.getInstance();
     
     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
-        
+    
+        <xsl:call-template name="scaleProperty" >
+            <xsl:with-param name="layoutIndex" >
+                <xsl:value-of select="$layoutIndex" />
+            </xsl:with-param>
+            <xsl:with-param name="layoutName" >
+                <xsl:value-of select="$layoutName" />
+            </xsl:with-param>
+        </xsl:call-template>
+
     public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(final Hashtable hashtable, final Hashtable rectangleHashtable, final Hashtable rectangleArrayHashtable)
     {
         super("Game Image Animations", hashtable, rectangleHashtable, rectangleArrayHashtable);
@@ -152,7 +161,6 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
 
                         try {
 
-                    
                     <xsl:call-template name="touchAnimationFactory" >
                         <xsl:with-param name="platform" >J2SE</xsl:with-param>
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >

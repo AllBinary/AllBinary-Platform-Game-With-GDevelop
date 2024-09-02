@@ -37,4 +37,10 @@
                             LogUtil.put(LogFactory.getInstance(new StringMaker().append("scaleTouchButtons - scale: ").append(scaleTouchButtons).toString(), this, commonStrings.CONSTRUCTOR));
     </xsl:template>
 
+    <xsl:template name="scaleProperty" >
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="layoutName" />
+                            private final int scale = 2;
+    </xsl:template>
+
 </xsl:stylesheet>
