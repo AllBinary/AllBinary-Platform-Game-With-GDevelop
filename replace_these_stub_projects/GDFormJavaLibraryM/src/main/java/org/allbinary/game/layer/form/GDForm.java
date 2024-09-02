@@ -1,5 +1,6 @@
 package org.allbinary.game.layer.form;
 
+import org.allbinary.game.input.event.DownKeyEventListenerInterface;
 import org.allbinary.game.input.event.GameKeyEvent;
 import org.allbinary.game.input.event.RawKeyEventListener;
 import org.allbinary.game.layer.GDGameLayer;
@@ -7,7 +8,7 @@ import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
 import org.allbinary.logic.util.event.AllBinaryEventObject;
 
 public class GDForm
-    implements RawKeyEventListener //GameKeyEventListenerInterface 
+    implements RawKeyEventListener, DownKeyEventListenerInterface //GameKeyEventListenerInterface 
 {
 
     public GDForm() {
@@ -38,6 +39,14 @@ public class GDForm
     public void onDownGameKeyEvent(GameKeyEvent gameKeyEvent) {
     }
 
+    public void onDownKeyEvent(final GameKeyEvent keyInteger) throws Exception {
+        
+    }
+    
+    public void onDownKeyEvent(final Integer keyInteger) throws Exception {
+        
+    }
+    
     public void onUpGameKeyEvent(GameKeyEvent gameKeyEvent) {
     }
 

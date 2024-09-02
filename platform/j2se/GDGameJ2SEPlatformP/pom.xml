@@ -39,6 +39,9 @@
         <module>../GDGameJ2SEWithSWTM</module>
         <module>../GDGameJ2SEWithSWTApplicationM</module>
 
+        <module>../GDGameJ2SEWithSWTJOGLM</module>
+        <module>../GDGameJ2SEWithSWTJOGLApplicationM</module>
+
     </modules>
 
 </project>

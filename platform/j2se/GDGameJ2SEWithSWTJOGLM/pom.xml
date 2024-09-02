@@ -396,9 +396,10 @@
                 
         <dependency>
             <groupId>org.allbinary.media.image</groupId>
-            <artifactId>ImageSwtJ2SEJavaLibrary</artifactId>
+            <artifactId>ImageSwtJOGLJ2SEJavaLibrary</artifactId>
 <!--        
             <artifactId>ImageJ2SEJavaLibrary</artifactId>
+            <artifactId>ImageSwtJOGLJ2SEJavaLibrary</artifactId>
             <artifactId>ImageSwtJ2SEJavaLibrary</artifactId>
 -->
             <!-- AllBinary Platform Version Start -->
