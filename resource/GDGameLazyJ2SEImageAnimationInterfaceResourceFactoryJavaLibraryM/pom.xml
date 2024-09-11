@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <parent>
         <groupId>org.allbinary.game.gd</groupId>
         <artifactId>GDGameParent</artifactId>
@@ -10,10 +10,10 @@
         <!-- Game Version Start -->
     </parent>
 
-    <artifactId>GDGameJ2SEJavaLibrary</artifactId>
+    <artifactId>GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
     <packaging>jar</packaging>
 
-    <name>GDGameJ2SEJavaLibrary</name>
+    <name>GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibrary</name>
     <url>http://www.allbinary.com/</url>
 
     <properties>
@@ -40,28 +40,37 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>MusicJ2MEJavaLibrary</artifactId>
+            <artifactId>J2SEForJ2MEJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
+            <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
+
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLNoneOtherJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>ImageCacheLazyJ2MEJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+
             <optional>true</optional>
         </dependency>
 
         <dependency>
-            <groupId>org.allbinary.input</groupId>
-            <artifactId>TouchButtonResourceAnimationJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGamePreBaseJavaLibrary</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
             <optional>true</optional>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.allbinary.input</groupId>
-            <artifactId>TouchButtonResourceOpenGLESAnimationJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
         </dependency>
 
         <dependency>
@@ -70,43 +79,59 @@
         </dependency>
 
         <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameTouchJavaLibrary</artifactId>
-            <!--
-            <artifactId>GDGameTouchJavaLibrary</artifactId>
-            <artifactId>GDGameNoTouchJavaLibrary</artifactId>
-            -->
-            <optional>true</optional>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <!--
-            <artifactId>GDGameImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
-            <artifactId>GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
-            <artifactId>GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
-            -->
-            <artifactId>GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
+            <groupId>org.allbinary.animation</groupId>
+            <artifactId>LazyImageAnimationRotationJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
+            <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
 
         <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
+            <groupId>org.allbinary.animation</groupId>
+            <artifactId>AllBinaryJ2SEImageAnimationRotationJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
 
         <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameWavSoundsJavaLibrary</artifactId>
+            <groupId>org.allbinary.animation</groupId>
+            <artifactId>AllBinarySpriteAnimationJavaLibrary</artifactId>      
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
         </dependency>
-                
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLNoneJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+        
+        <!--
+            <groupId>org.allbinary.animation</groupId>
+            <artifactId>AllBinaryImageAnimationRotationJavaLibrary</artifactId>
+                <dependency>
+                    <groupId>org.allbinary.animation</groupId>
+                    <artifactId>AllBinarySpriteAnimationJavaLibrary</artifactId>
+                </dependency>
+        -->
+        
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-midp</artifactId>
+            <version>2.0.4</version>
+            <optional>true</optional>
+        </dependency>
+        
     </dependencies>
 
     <build>
         <plugins>
-            
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -142,3 +167,4 @@
     </build>
 
 </project>
+

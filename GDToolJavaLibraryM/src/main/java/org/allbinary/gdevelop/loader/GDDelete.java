@@ -218,7 +218,12 @@ public class GDDelete {
               gdToolStrings.ROOT_PATH + "resource\\GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", "java");
         
         this.process(files9, exclusionList9);
-
+        
+        final Vector files19 = fileListFetcher.getFiles(
+              gdToolStrings.ROOT_PATH + "resource\\GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", "java");
+        
+        this.process(files19, exclusionList9);
+        
         final BasicArrayList exclusionList10 = new BasicArrayList();
         
         exclusionList10.add("GDGameEarlyResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory.java");

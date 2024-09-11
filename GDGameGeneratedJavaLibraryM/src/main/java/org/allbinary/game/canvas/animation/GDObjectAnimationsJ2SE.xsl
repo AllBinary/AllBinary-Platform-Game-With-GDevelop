@@ -64,6 +64,7 @@ Created By: Travis Berthelot
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="layoutName" />
+        <xsl:param name="lazy" />
 
         <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
                 
@@ -104,7 +105,10 @@ Created By: Travis Berthelot
                     
                     //<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray[<xsl:value-of select="position() - 1" />] = ;
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
-                    new OneRowJ2SESpriteIndexedAnimationFactory(
+                        <xsl:if test="contains($lazy, 'true')" >
+                    new LazyImageRotationAnimationFactory(
+                        </xsl:if>
+                        new OneRowJ2SESpriteIndexedAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
                     //)
                     ,<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth() / <xsl:value-of select="count(directions/sprites)" />, <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight()
@@ -142,6 +146,9 @@ Created By: Travis Berthelot
                     //angleIncrement
                     </xsl:if>
                     <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
+                        <xsl:if test="contains($lazy, 'true')" >
+                    new LazyImageRotationAnimationFactory(
+                        </xsl:if>
                     new AllBinaryJ2SEImageRotationAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth(),
@@ -151,7 +158,11 @@ Created By: Travis Berthelot
                     <xsl:for-each select="directions" >,
                     new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
                     </xsl:for-each>
-                    )<xsl:if test="position() != last()" >,</xsl:if>
+                    )
+                        <xsl:if test="contains($lazy, 'true')" >
+                    )
+                        </xsl:if>
+                    <xsl:if test="position() != last()" >,</xsl:if>
                 </xsl:for-each>
                 };
 
