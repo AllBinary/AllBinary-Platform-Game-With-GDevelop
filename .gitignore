@@ -9,6 +9,16 @@ gen/
 
 Resources/**
 
+**/com/sun/speech/**
+package.html
+*.Manifest
+Manifest
+*.tsj
+*.tmj
+
+font.png
+gd_icon.ico
+
 *.dll
 
 strings.xml
