@@ -386,8 +386,9 @@ Created By: Travis Berthelot
                 };
                 
                 size = this.<xsl:value-of select="name" />JSONResourceArray.length;
+                final PlatformAssetManager platformAssetManager = PlatformAssetManager.getInstance();
                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                    PlatformAssetManager.getInstance().getResourceAsStream(this.<xsl:value-of select="name" />JSONResourceArray[index]);
+                    platformAssetManager.getResourceAsStream(this.<xsl:value-of select="name" />JSONResourceArray[index]);
                 }                
                 
             </xsl:if>
