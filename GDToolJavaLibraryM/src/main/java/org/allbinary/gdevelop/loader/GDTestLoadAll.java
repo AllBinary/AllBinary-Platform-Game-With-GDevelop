@@ -5,9 +5,8 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.util.Vector;
+
 import org.allbinary.data.tree.dom.document.XmlDocumentHelper;
 import org.allbinary.gdevelop.json.GDProject;
 import org.allbinary.gdevelop.json.GDProjectStrings;
@@ -21,6 +20,8 @@ import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.util.BasicArrayList;
+
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.json.XML;
@@ -46,12 +47,12 @@ public class GDTestLoadAll
 
         final StringMaker stringMaker = new StringMaker();
         
-        //final Vector files = FileListFetcher.getInstance().getFiles(gdToolStrings.ROOT_PATH, "json");
+        //final BasicArrayList files = FileListFetcher.getInstance().getFiles(gdToolStrings.ROOT_PATH, "json");
         final String includeExtension = "json";
-        final Vector includeExtensionVector = new Vector();
-        includeExtensionVector.add(includeExtension);
+        final BasicArrayList includeExtensionBasicArrayList = new BasicArrayList();
+        includeExtensionBasicArrayList.add(includeExtension);
         final VisitorFileFilter visitorFileFilter = new VisitorFileFilter(
-                new DirectoryOrIncludeFileExtensionBooleanFileVisitor(includeExtensionVector));
+                new DirectoryOrIncludeFileExtensionBooleanFileVisitor(includeExtensionBasicArrayList));
         
         final AbFile[] files = FileWrapperUtil.wrapFiles(new AbFile(gdToolStrings.ROOT_PATH).listFiles(visitorFileFilter));
         //final int size = files.size();

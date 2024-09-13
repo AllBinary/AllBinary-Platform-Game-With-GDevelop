@@ -18,6 +18,7 @@ import org.allbinary.logic.io.file.FileUtil;
 import org.allbinary.logic.string.CommonLabels;
 import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.time.TimeDelayHelper;
+import org.allbinary.util.BasicArrayList;
 
 /**
  *
@@ -40,6 +41,7 @@ public class GDToAllBinaryResourcesGenerator
     private final String COMMENT = "//";
     private final String UNDERSCORE_0 = commonSeps.UNDERSCORE + "0";
     private final String BLANK = "BLANK";
+    private final String INDENT = "        ";
             
     private final int size2 = 100;
     
@@ -103,26 +105,8 @@ public class GDToAllBinaryResourcesGenerator
         }
 
     }
-    
-    public void process() throws Exception {
-    
-        final boolean hasRotationImages = this.hasRotationImages();
-        this.appendResources(hasRotationImages);
-        
-        timeDelayHelper.setStartTime();
-        
-        final String RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.origin";
-        final String RESOURCE = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.java";
-        
-        final StringMaker stringMaker = new StringMaker();
-        final StreamUtil streamUtil = StreamUtil.getInstance();
-        final SharedBytes sharedBytes = SharedBytes.getInstance();
-        sharedBytes.outputStream.reset();
-        
-        final FileInputStream fileInputStream = new FileInputStream(RESOURCE_ORIGINAL);        
-        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
-        
-        final String INDENT = "        ";
+
+    private void appendResourceStringArray(final boolean hasRotationImages) {
         final String JSON = ".json";
         final String T = ".t";
         resourceStringMaker.append('\n');
@@ -163,6 +147,107 @@ public class GDToAllBinaryResourcesGenerator
         resourceStringMaker.append('}');
         resourceStringMaker.append(';');
         resourceStringMaker.append('\n');
+        resourceStringMaker.append('\n');
+    }
+
+    private void appendResourceWidthArray(final BasicArrayList gdResourceList) {
+        resourceStringMaker.append("    public final int[] imageResourceWidthArray = {\n32,\n");
+        
+        final int size = this.gdResources.resourceNameList.size();
+        String name;
+        GDResource gdResource;
+        
+        for(int index = 0; index < size; index++) {
+            name = (String) this.gdResources.resourceNameList.get(index);
+                        
+            gdResource = this.getGDResourceForName(name, gdResourceList);
+            
+            if(gdResource != null) {
+                resourceStringMaker.append(INDENT);
+                resourceStringMaker.append(gdResource.width);
+                resourceStringMaker.append(',');
+                resourceStringMaker.append('\n');
+            } else {
+                //resourceStringMaker.append(-1);
+            }
+            
+        }
+        
+        resourceStringMaker.append("    ");
+        resourceStringMaker.append('}');
+        resourceStringMaker.append(';');
+        resourceStringMaker.append('\n');
+        resourceStringMaker.append('\n');
+    }
+
+    private void appendResourceHeightArray(final BasicArrayList gdResourceList) {
+        resourceStringMaker.append("    public final int[] imageResourceHeightArray = {\n32,\n");
+        
+        final int size = this.gdResources.resourceNameList.size();
+        String name;
+        GDResource gdResource;
+        
+        for(int index = 0; index < size; index++) {
+            name = (String) this.gdResources.resourceNameList.get(index);
+                        
+            gdResource = this.getGDResourceForName(name, gdResourceList);
+            
+            if(gdResource != null) {
+                resourceStringMaker.append(INDENT);
+                resourceStringMaker.append(gdResource.height);
+                resourceStringMaker.append(',');
+                resourceStringMaker.append('\n');
+            } else {
+                //resourceStringMaker.append(-1);
+            }
+            
+        }
+        
+        resourceStringMaker.append("    ");
+        resourceStringMaker.append('}');
+        resourceStringMaker.append(';');
+        resourceStringMaker.append('\n');
+        resourceStringMaker.append('\n');
+    }
+    
+    private GDResource getGDResourceForName(final String name, final BasicArrayList gdResourceList) {
+        final int size = gdResourceList.size();
+        GDResource gdResource;
+        for(int index = 0; index < size; index++) {
+            gdResource = (GDResource) gdResourceList.get(index);
+            
+            if(name.compareTo(gdResource.name) == 0) {
+                return gdResource;
+            }
+        }
+        
+        return null;
+    }
+
+    public void process() throws Exception {
+    
+        final GDImageSizeGenerator gdImageSizeGenerator = new GDImageSizeGenerator();
+        final BasicArrayList gdResourceList = gdImageSizeGenerator.process();
+        
+        final boolean hasRotationImages = this.hasRotationImages();
+        this.appendResources(hasRotationImages);
+        
+        timeDelayHelper.setStartTime();
+        
+        final String RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.origin";
+        final String RESOURCE = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.java";
+        
+        final StringMaker stringMaker = new StringMaker();
+        final StreamUtil streamUtil = StreamUtil.getInstance();
+        final SharedBytes sharedBytes = SharedBytes.getInstance();
+        sharedBytes.outputStream.reset();
+        
+        final FileInputStream fileInputStream = new FileInputStream(RESOURCE_ORIGINAL);        
+        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
+        
+        this.appendResourceStringArray(hasRotationImages);
+        this.appendResourceWidthArray(gdResourceList);
+        this.appendResourceHeightArray(gdResourceList);
         
         final Replace replace = new Replace(GD_KEY, this.resourceStringMaker.toString());
         final String newFileAsString = replace.all(androidRFileAsString);

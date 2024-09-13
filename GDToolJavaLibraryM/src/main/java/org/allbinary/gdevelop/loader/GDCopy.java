@@ -13,7 +13,6 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import java.util.Vector;
 import org.allbinary.logic.io.file.AbFile;
 import org.allbinary.logic.io.file.FileListFetcher;
 import org.allbinary.logic.io.file.FileUtil;
@@ -22,6 +21,7 @@ import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.util.BasicArrayList;
 
 public class GDCopy {
 
@@ -35,7 +35,7 @@ public class GDCopy {
 
             final StringMaker stringMaker = new StringMaker();
             
-            final Vector files = FileListFetcher.getInstance().getFiles(
+            final BasicArrayList files = FileListFetcher.getInstance().getFiles(
                     gdToolStrings.ROOT_PATH + "Resources\\2d\\images\\raw", "json");
 
             final String PATH = gdToolStrings.ROOT_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\";

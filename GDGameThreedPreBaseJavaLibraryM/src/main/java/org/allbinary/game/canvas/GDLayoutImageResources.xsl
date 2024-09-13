@@ -113,6 +113,7 @@ Created By: Travis Berthelot
                         //private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
                         //private final ImageScaleUtil imageScaleUtil = ImageScaleUtil.getInstance();
                         //private final ImageCache imageCache = OpenGLImageCacheFactory.getInstance(); //ImageCacheFactory.getInstance();
+                        private final PlatformAssetManager platformAssetManager = PlatformAssetManager.getInstance();
                         
                         private final GDResources gdResources = GDResources.getInstance();
 

@@ -519,7 +519,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
 
                     stringMaker.delete(0, stringMaker.length());
                     String outputFilePath = stringMaker.append(OUTPUT_FILE_PATHS[index2]).append(index).append(OUTPUT_FILE_PATH_END_ARRAY[index2]).toString();
-                    if(index2 < 9) {
+                    if(index2 < 10) {
                         stringMaker.delete(0, stringMaker.length());
                         outputFilePath = stringMaker.append(OUTPUT_FILE_PATHS[index2]).append(OUTPUT_FILE_PATH_END_ARRAY[index2]).toString();
                     }

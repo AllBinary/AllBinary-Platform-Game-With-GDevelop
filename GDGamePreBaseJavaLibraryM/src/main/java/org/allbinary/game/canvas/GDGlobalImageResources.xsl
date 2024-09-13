@@ -94,6 +94,7 @@ Created By: Travis Berthelot
                         private final ImageScaleUtil imageScaleUtil = ImageScaleUtil.getInstance();
                         private final ImageCache imageCache = ImageCacheFactory.getInstance();
                         private final GDResources gdResources = GDResources.getInstance();
+                        private final PlatformAssetManager platformAssetManager = PlatformAssetManager.getInstance();
 
                         private final GDGlobalSpecialAnimationResources animationInterfaceFactoryInterfaceFactory = GDGlobalSpecialAnimationResources.getInstance();
 
