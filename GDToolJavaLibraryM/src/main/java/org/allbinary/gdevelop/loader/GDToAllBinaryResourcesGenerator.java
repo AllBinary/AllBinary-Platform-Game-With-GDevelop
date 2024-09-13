@@ -149,7 +149,7 @@ public class GDToAllBinaryResourcesGenerator
             resourceStringMaker.append(name);
             resourceStringMaker.append(',');
             
-            resourceStringMaker.append(CommonSeps.getInstance().SPACE);
+            resourceStringMaker.append(commonSeps.SPACE);
             resourceStringMaker.append(COMMENT);
 
             resourceStringMaker.append(arrayIndex);
@@ -185,10 +185,10 @@ public class GDToAllBinaryResourcesGenerator
                 resourceStringMaker.append(INDENT);
                 resourceStringMaker.append(gdResource.width);
                 resourceStringMaker.append(',');
-                resourceStringMaker.append(CommonSeps.getInstance().SPACE);
+                resourceStringMaker.append(commonSeps.SPACE);
                 resourceStringMaker.append(COMMENT);
-                resourceStringMaker.append(gdResource.name);                
-                resourceStringMaker.append(CommonSeps.getInstance().SPACE);
+                resourceStringMaker.append(name);                
+                resourceStringMaker.append(commonSeps.SPACE);
                 resourceStringMaker.append(arrayIndex);
                 resourceStringMaker.append('\n');
                 arrayIndex++;
@@ -196,7 +196,7 @@ public class GDToAllBinaryResourcesGenerator
                 resourceStringMaker.append(-1);
                 resourceStringMaker.append(',');
                 resourceStringMaker.append(COMMENT);
-                resourceStringMaker.append(gdResource.name);
+                resourceStringMaker.append(name);
                 resourceStringMaker.append('\n');
             }
             
