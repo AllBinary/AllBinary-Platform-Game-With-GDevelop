@@ -191,7 +191,6 @@ public class GDToAllBinaryResourcesGenerator
                 resourceStringMaker.append(commonSeps.SPACE);
                 resourceStringMaker.append(arrayIndex);
                 resourceStringMaker.append('\n');
-                arrayIndex++;
             } else {
                 resourceStringMaker.append(-1);
                 resourceStringMaker.append(',');
@@ -207,6 +206,7 @@ public class GDToAllBinaryResourcesGenerator
         resourceStringMaker.append(';');
         resourceStringMaker.append('\n');
         resourceStringMaker.append('\n');
+        arrayIndex++;
     }
 
     private void appendResourceHeightArray(final BasicArrayList gdResourceList, final BasicArrayList usedList) {
