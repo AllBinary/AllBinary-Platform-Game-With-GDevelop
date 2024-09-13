@@ -42,6 +42,7 @@ public class GDToAllBinaryResourcesGenerator
     private final String UNDERSCORE_0 = commonSeps.UNDERSCORE + "0";
     private final String BLANK = "BLANK";
     private final String INDENT = "        ";
+    private final String SPACING = "    ";
             
     private final int size2 = 100;
     
@@ -106,7 +107,7 @@ public class GDToAllBinaryResourcesGenerator
 
     }
 
-    private void appendResourceStringArray(final boolean hasRotationImages) {
+    private void appendResourceStringArray(final boolean hasRotationImages, final BasicArrayList usedList) {
         final String JSON = ".json";
         final String T = ".t";
         resourceStringMaker.append('\n');
@@ -114,25 +115,32 @@ public class GDToAllBinaryResourcesGenerator
         final int size = this.gdResources.resourceNameList.size();
         String name;
         String resource;
+        int arrayIndex = 1;
+        boolean used;
         for(int index = 0; index < size; index++) {
             name = (String) this.gdResources.resourceNameList.get(index);
             resource = (String) this.gdResources.resourceList.get(index);
             resourceStringMaker.append(INDENT);
+            used = true;
             if(resource.indexOf(JSON) >= 0 || resource.indexOf(T) >= 0) {
+                used = false;
                 resourceStringMaker.append(COMMENT);
             }
 
             if(resource.toUpperCase().indexOf(BLANK) >= 0) {
+                used = false;
                 resourceStringMaker.append(COMMENT);
             }
             
             if (name.endsWith(UNDERSCORE_0) && name.indexOf(TOUCH) < 0) {
+                used = false;
                 resourceStringMaker.append(COMMENT);
             }
             
             if(!hasRotationImages) {
                 for (int index2 = 2; index2 < size2; index2++) {
                     if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
+                        used = false;
                         resourceStringMaker.append(COMMENT);
                     }
                 }
@@ -140,25 +148,36 @@ public class GDToAllBinaryResourcesGenerator
             
             resourceStringMaker.append(name);
             resourceStringMaker.append(',');
+            
+            resourceStringMaker.append(CommonSeps.getInstance().SPACE);
+            resourceStringMaker.append(COMMENT);
+
+            resourceStringMaker.append(arrayIndex);
+            
             resourceStringMaker.append('\n');
+            if(used) {
+                usedList.add(name);
+                arrayIndex++;
+            }
         }
         
-        resourceStringMaker.append("    ");
+        resourceStringMaker.append(SPACING);
         resourceStringMaker.append('}');
         resourceStringMaker.append(';');
         resourceStringMaker.append('\n');
         resourceStringMaker.append('\n');
     }
 
-    private void appendResourceWidthArray(final BasicArrayList gdResourceList) {
+    private void appendResourceWidthArray(final BasicArrayList gdResourceList, final BasicArrayList usedList) {
         resourceStringMaker.append("    public final int[] imageResourceWidthArray = {\n32,\n");
         
-        final int size = this.gdResources.resourceNameList.size();
+        final int size = usedList.size();
         String name;
         GDResource gdResource;
         
+        int arrayIndex = 1;
         for(int index = 0; index < size; index++) {
-            name = (String) this.gdResources.resourceNameList.get(index);
+            name = (String) usedList.get(index);
                         
             gdResource = this.getGDResourceForName(name, gdResourceList);
             
@@ -166,29 +185,35 @@ public class GDToAllBinaryResourcesGenerator
                 resourceStringMaker.append(INDENT);
                 resourceStringMaker.append(gdResource.width);
                 resourceStringMaker.append(',');
+                resourceStringMaker.append(CommonSeps.getInstance().SPACE);
+                resourceStringMaker.append(COMMENT);
+                resourceStringMaker.append(gdResource.name);                
+                resourceStringMaker.append(CommonSeps.getInstance().SPACE);
+                resourceStringMaker.append(arrayIndex);
                 resourceStringMaker.append('\n');
+                arrayIndex++;
             } else {
                 //resourceStringMaker.append(-1);
             }
             
         }
         
-        resourceStringMaker.append("    ");
+        resourceStringMaker.append(SPACING);
         resourceStringMaker.append('}');
         resourceStringMaker.append(';');
         resourceStringMaker.append('\n');
         resourceStringMaker.append('\n');
     }
 
-    private void appendResourceHeightArray(final BasicArrayList gdResourceList) {
+    private void appendResourceHeightArray(final BasicArrayList gdResourceList, final BasicArrayList usedList) {
         resourceStringMaker.append("    public final int[] imageResourceHeightArray = {\n32,\n");
         
-        final int size = this.gdResources.resourceNameList.size();
+        final int size = usedList.size();
         String name;
         GDResource gdResource;
         
         for(int index = 0; index < size; index++) {
-            name = (String) this.gdResources.resourceNameList.get(index);
+            name = (String) usedList.get(index);
                         
             gdResource = this.getGDResourceForName(name, gdResourceList);
             
@@ -203,7 +228,7 @@ public class GDToAllBinaryResourcesGenerator
             
         }
         
-        resourceStringMaker.append("    ");
+        resourceStringMaker.append(SPACING);
         resourceStringMaker.append('}');
         resourceStringMaker.append(';');
         resourceStringMaker.append('\n');
@@ -245,9 +270,10 @@ public class GDToAllBinaryResourcesGenerator
         final FileInputStream fileInputStream = new FileInputStream(RESOURCE_ORIGINAL);        
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
         
-        this.appendResourceStringArray(hasRotationImages);
-        this.appendResourceWidthArray(gdResourceList);
-        this.appendResourceHeightArray(gdResourceList);
+        final BasicArrayList usedList = new BasicArrayList();
+        this.appendResourceStringArray(hasRotationImages, usedList);
+        this.appendResourceWidthArray(gdResourceList, usedList);
+        this.appendResourceHeightArray(gdResourceList, usedList);
         
         final Replace replace = new Replace(GD_KEY, this.resourceStringMaker.toString());
         final String newFileAsString = replace.all(androidRFileAsString);

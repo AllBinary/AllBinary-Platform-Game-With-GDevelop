@@ -42,6 +42,7 @@ public class GDImageSizeGenerator {
         AbFile abFile;
         BufferedImage bufferedImage;
         final int size = files.size();
+        int arrayIndex = 0;
         for(int index = 0; index < size; index++) {
             abFile = (AbFile) files.get(index);
             if(abFile.isDirectory()) {
@@ -49,9 +50,10 @@ public class GDImageSizeGenerator {
             } else {
                 bufferedImage = ImageIO.read(AbFileNativeUtil.get(abFile));
                 final String name = abFile.getName().substring(0, abFile.getName().length() - 4).toUpperCase();
-                stringMaker.append(name).append(CommonSeps.getInstance().SPACE).append(bufferedImage.getWidth()).append(", ").append(bufferedImage.getHeight()).append('\n');
+                stringMaker.append(arrayIndex).append(name).append(CommonSeps.getInstance().SPACE).append(bufferedImage.getWidth()).append(", ").append(bufferedImage.getHeight()).append('\n');
                 final GDResource gdResource = new GDResource(name, bufferedImage.getWidth(), bufferedImage.getHeight());
                 list.add(gdResource);
+                arrayIndex++;
             }
         }
         
