@@ -227,7 +227,11 @@ public class GDToAllBinaryResourcesGenerator
                 resourceStringMaker.append(',');
                 resourceStringMaker.append('\n');
             } else {
-                //resourceStringMaker.append(-1);
+                resourceStringMaker.append(-1);
+                resourceStringMaker.append(',');
+                resourceStringMaker.append(COMMENT);
+                resourceStringMaker.append(name);
+                resourceStringMaker.append('\n');
             }
             
         }
