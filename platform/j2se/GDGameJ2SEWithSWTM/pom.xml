@@ -80,7 +80,19 @@
                 </exclusion>
             </exclusions>
         </dependency>        
-        
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>ImageCacheLazyJ2MEJavaLibrary</artifactId>
+            
+<!--
+            <artifactId>ImageCacheJ2MEJavaLibrary</artifactId>
+            <artifactId>ImageCacheLazyJ2MEJavaLibrary</artifactId>
+-->
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+                
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>PersonalComputerSystemJavaLibrary</artifactId>
@@ -127,6 +139,13 @@
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>OpenGLESNullImageJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLNoneJavaLibrary</artifactId>        
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
@@ -379,7 +398,7 @@
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 -->
-                
+
         <dependency>
             <groupId>org.allbinary.media.image</groupId>
             <artifactId>ImageSwtJ2SEJavaLibrary</artifactId>
@@ -391,7 +410,6 @@
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
-
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>GameInputSwtJavaLibrary</artifactId>

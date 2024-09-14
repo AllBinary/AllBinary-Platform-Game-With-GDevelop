@@ -40,29 +40,22 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClose.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/animation/GDObjectAnimationsJ2SE.xsl" />
-
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/animation/GDObjectAnimations.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/animation/GDObjectAnimationsGeneric.xsl" />
+    
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
 
-        <xsl:for-each select="layouts" >
-            <xsl:variable name="layoutIndex" select="position() - 1" />
-            <xsl:variable name="layoutName" select="name" />
-
-            <xsl:if test="number($layoutIndex) =
-                <GD_CURRENT_INDEX>" >
                 <!-- Android images assets need to be enlarged if they are not setup to be inside the cirle area needed -->
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
-                <xsl:variable name="layoutName" select="name" />
+                <xsl:variable name="gameName" select="properties/name" />
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="objectsAsString" >,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
-                <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
-                <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
+                <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 //instancesAsString=<xsl:value-of select="$instancesAsString" />
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
-                //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
 
                 //showAll - START
                 <!--
@@ -92,64 +85,50 @@ Created By: Travis Berthelot
 package org.allbinary.animation.image;
 
 import javax.microedition.lcdui.Image;
+
 import javax.microedition.lcdui.Font;
 
-import org.allbinary.animation.AnimationBehaviorFactory;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.IndexedAnimationBehaviorFactory;
 import org.allbinary.animation.NullRotationAnimationFactory;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
-import org.allbinary.animation.compound.SliderAnimationInterfaceFactory;
-import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInterfaceFactory;
+import org.allbinary.animation.image.ImageArrayRotationAnimationFactory;
+import org.allbinary.animation.image.LazyImageRotationAnimationFactory;
+import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
-import org.allbinary.animation.image.AllBinaryJ2SEImageRotationAnimationFactory;
-import org.allbinary.animation.image.sprite.OneRowJ2SESpriteIndexedAnimationFactory;
 import org.allbinary.animation.text.CustomTextAnimationFactory;
 import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory;
-import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
+import org.allbinary.game.canvas.GDGlobalSpecialAnimationResources;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
-
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
-import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.image.ImageCache;
 import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.logic.string.StringUtil;
-import org.allbinary.media.ScaleProperties;
 
-public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
+public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final PointFactory pointFactory = PointFactory.getInstance();
 
-    private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
+    private final GDGlobalSpecialAnimationResources specialAnimationResources = GDGlobalSpecialAnimationResources.getInstance();
 
-        <xsl:call-template name="scaleProperty" >
-            <xsl:with-param name="layoutIndex" >
-                <xsl:value-of select="$layoutIndex" />
-            </xsl:with-param>
-            <xsl:with-param name="layoutName" >
-                <xsl:value-of select="$layoutName" />
-            </xsl:with-param>
-        </xsl:call-template>
-
-    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
+    public GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
         super("Game Image Animations");
     }
 
-    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
+    public GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
         super(name);
     }
@@ -178,17 +157,13 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
 
                         try {
 
-                    final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
-    
-                    <xsl:call-template name="j2seAnimationFactoryCalls" >
+                    <xsl:call-template name="animationFactoryCalls" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >Global</xsl:with-param>
                         <xsl:with-param name="layoutName" >
-                            <xsl:value-of select="$layoutName" />
+                            Global
                         </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
@@ -196,9 +171,6 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
 
-                    <xsl:text>&#10;</xsl:text>
-                    new GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable(), this.getRectangleArrayOfArraysHashtable()).init(-1);
-                    
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                         }
@@ -206,21 +178,20 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
         super.init(level);
     }
 
-                    <xsl:call-template name="j2seAnimationFactory" >
+                    <xsl:call-template name="animationFactory" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >Global</xsl:with-param>
                         <xsl:with-param name="layoutName" >
-                            <xsl:value-of select="$layoutName" />
+                            Global
                         </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
+                        <xsl:with-param name="lazy" >true</xsl:with-param>
                     </xsl:call-template>
-
+        
     public boolean isLoadingLevel(int level)
     {
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
@@ -259,8 +230,6 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
     }
 }
 
-            </xsl:if>
-        </xsl:for-each>
     </xsl:template>
 
 </xsl:stylesheet>

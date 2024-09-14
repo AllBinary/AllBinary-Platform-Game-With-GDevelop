@@ -40,7 +40,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClose.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/animation/GDObjectAnimationsJ2SE.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/animation/GDObjectAnimations.xsl" />
 
     <xsl:output method="html" indent="yes" />
 
@@ -63,18 +63,6 @@ Created By: Travis Berthelot
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
-
-                //showAll - START
-                <!--
-                    <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>root<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
-                    <xsl:call-template name="showAll" >
-                        <xsl:with-param name="totalRecursions" >
-                            <xsl:value-of select="0" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-                    <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>/root<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
-                -->                
-                //showAll - END
                 
 /*
 * AllBinary Open License Version 1
@@ -91,25 +79,18 @@ Created By: Travis Berthelot
 */
 package org.allbinary.animation.image;
 
+import java.util.Hashtable;
 import javax.microedition.lcdui.Image;
-import javax.microedition.lcdui.Font;
 
-import org.allbinary.animation.AnimationBehaviorFactory;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.IndexedAnimationBehaviorFactory;
-import org.allbinary.animation.NullRotationAnimationFactory;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
-import org.allbinary.animation.compound.SliderAnimationInterfaceFactory;
-import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInterfaceFactory;
+import org.allbinary.animation.image.LazyImageRotationAnimationFactory;
+import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
-import org.allbinary.animation.image.AllBinaryJ2SEImageRotationAnimationFactory;
-import org.allbinary.animation.image.sprite.OneRowJ2SESpriteIndexedAnimationFactory;
-import org.allbinary.animation.text.CustomTextAnimationFactory;
-import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
-import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 
 import org.allbinary.game.configuration.feature.Features;
@@ -117,39 +98,33 @@ import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
-import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.image.ImageCache;
 import org.allbinary.image.ImageCacheFactory;
+import org.allbinary.image.opengles.OpenGLImageCacheFactory;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.logic.string.StringUtil;
-import org.allbinary.media.ScaleProperties;
 
-public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
+public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final PointFactory pointFactory = PointFactory.getInstance();
-
+    
     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
-
-        <xsl:call-template name="scaleProperty" >
-            <xsl:with-param name="layoutIndex" >
-                <xsl:value-of select="$layoutIndex" />
-            </xsl:with-param>
-            <xsl:with-param name="layoutName" >
-                <xsl:value-of select="$layoutName" />
-            </xsl:with-param>
-        </xsl:call-template>
-
-    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
+        
+    public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(final Hashtable hashtable, final Hashtable rectangleHashtable, final Hashtable rectangleArrayHashtable)
+    {
+        super("Game Image Animations", hashtable, rectangleHashtable, rectangleArrayHashtable);
+    }
+            
+    public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
         super("Game Image Animations");
     }
 
-    public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
+    public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
     {
         super(name);
     }
@@ -178,9 +153,9 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
 
                         try {
 
-                    final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
-    
-                    <xsl:call-template name="j2seAnimationFactoryCalls" >
+                    
+                    <xsl:call-template name="touchAnimationFactory" >
+                        <xsl:with-param name="platform" ></xsl:with-param>
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
@@ -193,60 +168,53 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
+                        <xsl:with-param name="lazy" >true</xsl:with-param>
                     </xsl:call-template>
-                    <xsl:text>&#10;</xsl:text>
 
-                    <xsl:text>&#10;</xsl:text>
-                    new GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable(), this.getRectangleArrayOfArraysHashtable()).init(-1);
-                    
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                         }
 
         super.init(level);
     }
-
-                    <xsl:call-template name="j2seAnimationFactory" >
-                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
-                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="layoutName" >
-                            <xsl:value-of select="$layoutName" />
-                        </xsl:with-param>
-                        <xsl:with-param name="instancesAsString" >
-                            <xsl:value-of select="$instancesAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-
+    
     public boolean isLoadingLevel(int level)
     {
-        if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
-        {
+        if(level == 1) {
             return true;
         }
-        else
-        {
-            return super.isLoadingLevel(level);
-        }
+        //final ResourceLoadingLevelFactory resourceLoadingLevelFactory = 
+            //ResourceLoadingLevelFactory.getInstance();
+
+        //if (level == resourceLoadingLevelFactory.LOAD_TOUCH.getLevel())
+        //{
+            //return true;
+        //}
+        //else
+        //{
+            //return super.isLoadingLevel(level);
+        //}
+        return false;
     }
     
     public boolean isFeature()
     {
-        Features features = Features.getInstance();
-        
-        if (features.isFeature(
-                GraphicsFeatureFactory.getInstance().IMAGE_GRAPHICS) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
-            features.isFeature(
-                GraphicsFeatureFactory.getInstance().IMAGE_TO_ARRAY_GRAPHICS) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
-            !features.isDefault(
-                OpenGLFeatureFactory.getInstance().OPENGL))
+        final Features features = Features.getInstance();
+
+        final GraphicsFeatureFactory graphicsFeatureFactory = 
+            GraphicsFeatureFactory.getInstance();
+
+        final OpenGLFeatureFactory openGLFeatureFactory = 
+            OpenGLFeatureFactory.getInstance();
+
+        if (features.isFeature(graphicsFeatureFactory.IMAGE_GRAPHICS) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
+            features.isFeature(graphicsFeatureFactory.IMAGE_TO_ARRAY_GRAPHICS) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
+            features.isDefault(openGLFeatureFactory.OPENGL) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text>
+            (features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D))
+            )
         {
             return true;
-        }
-        else
+        } else
         {
             return false;
         }

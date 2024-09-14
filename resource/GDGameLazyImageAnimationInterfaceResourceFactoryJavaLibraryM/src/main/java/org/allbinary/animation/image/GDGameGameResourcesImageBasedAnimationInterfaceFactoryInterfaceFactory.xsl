@@ -40,8 +40,9 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventClose.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src\main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
 
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/animation/GDObjectAnimationsJ2SE.xsl" />
-
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/animation/GDObjectAnimations.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/animation/GDObjectAnimationsGeneric.xsl" />
+    
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
@@ -103,9 +104,10 @@ import org.allbinary.animation.NullRotationAnimationFactory;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.compound.SliderAnimationInterfaceFactory;
 import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInterfaceFactory;
+import org.allbinary.animation.image.ImageArrayRotationAnimationFactory;
+import org.allbinary.animation.image.LazyImageRotationAnimationFactory;
+import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
-import org.allbinary.animation.image.AllBinaryJ2SEImageRotationAnimationFactory;
-import org.allbinary.animation.image.sprite.OneRowJ2SESpriteIndexedAnimationFactory;
 import org.allbinary.animation.text.CustomTextAnimationFactory;
 import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
@@ -134,15 +136,6 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
     private final PointFactory pointFactory = PointFactory.getInstance();
 
     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
-
-        <xsl:call-template name="scaleProperty" >
-            <xsl:with-param name="layoutIndex" >
-                <xsl:value-of select="$layoutIndex" />
-            </xsl:with-param>
-            <xsl:with-param name="layoutName" >
-                <xsl:value-of select="$layoutName" />
-            </xsl:with-param>
-        </xsl:call-template>
 
     public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
@@ -179,8 +172,8 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                         try {
 
                     final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
-    
-                    <xsl:call-template name="j2seAnimationFactoryCalls" >
+
+                    <xsl:call-template name="animationFactoryCalls" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
@@ -195,18 +188,18 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                         </xsl:with-param>
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
-
+                    
                     <xsl:text>&#10;</xsl:text>
                     new GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable(), this.getRectangleArrayOfArraysHashtable()).init(-1);
-                    
+
                         } catch(Exception e) {
                             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                         }
 
         super.init(level);
     }
-
-                    <xsl:call-template name="j2seAnimationFactory" >
+    
+                    <xsl:call-template name="animationFactory" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
@@ -219,8 +212,9 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
+                        <xsl:with-param name="lazy" >true</xsl:with-param>
                     </xsl:call-template>
-
+                    
     public boolean isLoadingLevel(int level)
     {
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
