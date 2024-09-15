@@ -84,7 +84,6 @@
             <artifactId>GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
             
             <!--
-            <artifactId>GDGameImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
             <artifactId>GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
             <artifactId>GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
             -->
@@ -95,12 +94,7 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameLazyOpenGLESImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
-            
-            <!--
             <artifactId>GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
-            <artifactId>GDGameLazyOpenGLESImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
-            -->
             
         </dependency>
 
