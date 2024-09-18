@@ -63,6 +63,7 @@ Created By: Travis Berthelot
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="layoutName" />
+        <xsl:param name="lazy" />
         
         <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
                 
@@ -413,6 +414,9 @@ Created By: Travis Berthelot
                 <xsl:for-each select="childrenContent" >
                     <xsl:for-each select="Background" >
                     //Background
+                        <xsl:if test="contains($lazy, 'true')" >
+                    new LazyImageRotationAnimationFactory(
+                        </xsl:if>
                     new ImageRotationAnimationFactory(
                         <xsl:value-of select="$name" />ImageArray[0],
                         <xsl:value-of select="$name" />ImageArray[0].getWidth(),
@@ -420,32 +424,53 @@ Created By: Travis Berthelot
                         angleIncrement,
                         AnimationBehaviorFactory.getInstance()
                         //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
-                    ),
+                    )
+                        <xsl:if test="contains($lazy, 'true')" >
+                    )
+                        </xsl:if>
+                    ,
                     </xsl:for-each>
                     <xsl:for-each select="FillBar" >
                     //FillBar
+                        <xsl:if test="contains($lazy, 'true')" >
+                    new LazyImageRotationAnimationFactory(
+                        </xsl:if>
                     new LeftToRightImageAnimationFactory(
                         <xsl:value-of select="$name" />ImageArray[1], 
                         sequenceArray,
                         (<xsl:value-of select="$name" />ImageArray[0].getWidth() - <xsl:value-of select="$name" />ImageArray[1].getWidth()) / 2,
                         (<xsl:value-of select="$name" />ImageArray[0].getHeight() - <xsl:value-of select="$name" />ImageArray[1].getHeight()) / 2
-                    ),
+                    )
+                        <xsl:if test="contains($lazy, 'true')" >
+                    )
+                        </xsl:if>
+                    ,
                         <xsl:if test="not(contains($hasMirrorFillBarBehavior, 'found'))" >
                     //MirrorFillBarExtension::MirrorFillBarBehavior
                     new NullRotationAnimationFactory(),
                         </xsl:if>
                         <xsl:for-each select="../../behaviors" >
                             <xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >
+                        <xsl:if test="contains($lazy, 'true')" >
+                    new LazyImageRotationAnimationFactory(
+                        </xsl:if>                        
                     new RightToLeftImageAnimationFactory(
                         <xsl:value-of select="$name" />ImageArray[2],
                         (<xsl:value-of select="$name" />ImageArray[0].getWidth() - <xsl:value-of select="$name" />ImageArray[2].getWidth()) / 2,
                         (<xsl:value-of select="$name" />ImageArray[0].getHeight() - <xsl:value-of select="$name" />ImageArray[2].getHeight()) / 2
-                    ),
+                    )
+                        <xsl:if test="contains($lazy, 'true')" >
+                    )
+                        </xsl:if>
+                    ,
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:for-each>
                     <xsl:for-each select="Thumb" >
                     //Thumb
+                        <xsl:if test="contains($lazy, 'true')" >
+                    new LazyImageRotationAnimationFactory(
+                        </xsl:if>                        
                     new ImageRotationAnimationFactory(
                         <xsl:value-of select="$name" />ImageArray[4],
                         <xsl:value-of select="$name" />ImageArray[4].getWidth(),
@@ -455,7 +480,11 @@ Created By: Travis Berthelot
                         angleIncrement,
                         AnimationBehaviorFactory.getInstance()
                         //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
-                    ),
+                    )
+                        <xsl:if test="contains($lazy, 'true')" >
+                    )
+                        </xsl:if>
+                    ,
                     </xsl:for-each>
                     <xsl:for-each select="Label" >
                     //Label
