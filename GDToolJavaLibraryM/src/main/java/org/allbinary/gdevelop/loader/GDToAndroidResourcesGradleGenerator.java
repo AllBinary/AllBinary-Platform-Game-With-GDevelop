@@ -17,6 +17,7 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.CommonSeps;
 
 /**
  *
@@ -25,6 +26,7 @@ import org.allbinary.logic.communication.log.LogUtil;
 public class GDToAndroidResourcesGradleGenerator
 {
     private final CommonStrings commonStrings = CommonStrings.getInstance();
+    private final CommonSeps commonSeps = CommonSeps.getInstance();
     
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
@@ -44,7 +46,7 @@ public class GDToAndroidResourcesGradleGenerator
     
     public GDToAndroidResourcesGradleGenerator() {
         resourceStringMaker.append(GD_KEY);
-        resourceStringMaker.append('\n');
+        resourceStringMaker.append(this.commonSeps.NEW_LINE);
     }
     
     public void process(final GDProject gdProject) {
@@ -87,7 +89,7 @@ public class GDToAndroidResourcesGradleGenerator
             
             resource = (String) this.gdResources.playSoundAndroidResourceNameList.get(index);
             
-            resourceStringMaker.append('\n');
+            resourceStringMaker.append(this.commonSeps.NEW_LINE);
             resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
             resourceStringMaker.append(resource);
             resourceStringMaker.append(this.VALUE_RESOURCE_START);

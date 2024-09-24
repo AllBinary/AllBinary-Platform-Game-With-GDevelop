@@ -30,6 +30,8 @@ import org.allbinary.time.TimeDelayHelper;
 public class GDLayoutsToAllBinaryLayoutGenerator
 {
     private final CommonStrings commonStrings = CommonStrings.getInstance();
+    private final CommonSeps commonSeps = CommonSeps.getInstance();
+    
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final XslHelper xslHelper = XslHelper.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
@@ -356,7 +358,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                     }
 
                     stringMaker.delete(0, stringMaker.length());                    
-                    LogUtil.put(LogFactory.getInstance(stringMaker.append(index).append(CommonSeps.getInstance().COMMA).append(index2).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+                    LogUtil.put(LogFactory.getInstance(stringMaker.append(index).append(this.commonSeps.COMMA).append(index2).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
                 }
 
             }
@@ -550,7 +552,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                     //LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.PROCESS));
 
                     stringMaker.delete(0, stringMaker.length());
-                    LogUtil.put(LogFactory.getInstance(stringMaker.append(index).append(CommonSeps.getInstance().COMMA).append(index2).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+                    LogUtil.put(LogFactory.getInstance(stringMaker.append(index).append(this.commonSeps.COMMA).append(index2).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
                 }
             }
 

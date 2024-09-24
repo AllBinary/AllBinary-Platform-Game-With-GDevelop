@@ -14,6 +14,7 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.CommonSeps;
 
 /**
  *
@@ -22,6 +23,7 @@ import org.allbinary.logic.communication.log.LogUtil;
 public class GDToThreedAndroidRClassGenerator
 {
     private final CommonStrings commonStrings = CommonStrings.getInstance();
+    private final CommonSeps commonSeps = CommonSeps.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
@@ -41,7 +43,7 @@ public class GDToThreedAndroidRClassGenerator
     
     public GDToThreedAndroidRClassGenerator() {
         androidRFileStringMaker.append(GD_KEY);
-        androidRFileStringMaker.append('\n');
+        androidRFileStringMaker.append(this.commonSeps.NEW_LINE);
     }
     
     public void processResource(final String fileAsString) {
@@ -55,7 +57,7 @@ public class GDToThreedAndroidRClassGenerator
         androidRFileStringMaker.append(PUBLIC_STATIC_FINAL_INT);
         androidRFileStringMaker.append(fileAsString);
         androidRFileStringMaker.append(VALUE);
-        androidRFileStringMaker.append('\n');
+        androidRFileStringMaker.append(this.commonSeps.NEW_LINE);
         androidRFileStringMaker.append(PUBLIC_STATIC_FINAL_INT);
         androidRFileStringMaker.append(fileAsString);
         androidRFileStringMaker.append(_OBJ);

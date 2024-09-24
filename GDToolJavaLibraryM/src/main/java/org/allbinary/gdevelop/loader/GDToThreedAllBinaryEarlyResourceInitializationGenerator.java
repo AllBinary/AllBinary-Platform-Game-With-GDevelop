@@ -15,6 +15,7 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -24,6 +25,7 @@ import org.allbinary.util.BasicArrayList;
 public class GDToThreedAllBinaryEarlyResourceInitializationGenerator
 {
     private final CommonStrings commonStrings = CommonStrings.getInstance();
+    private final CommonSeps commonSeps = CommonSeps.getInstance();
 
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
@@ -86,7 +88,7 @@ public class GDToThreedAllBinaryEarlyResourceInitializationGenerator
             stringMaker.append(RESOURCE_1);
             stringMaker.append(playSoundAndroidResourceNameList.get(index));
             stringMaker.append(RESOURCE_2);
-            stringMaker.append('\n');
+            stringMaker.append(this.commonSeps.NEW_LINE);
         }        
     }
     

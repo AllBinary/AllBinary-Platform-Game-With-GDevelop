@@ -31,7 +31,6 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
 
-    private final String NEW_LINE = "\n";
     private final String COMMENT = "//";
     private final String UNDERSCORE_0 = commonSeps.UNDERSCORE + "0";
     
@@ -96,7 +95,7 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
 
             resource = (String) resourceList.get(index);
 
-            stringMaker.append(NEW_LINE);
+            stringMaker.append(this.commonSeps.NEW_LINE);
             
             if (resource.endsWith(UNDERSCORE_0) && 
                     (resource.indexOf(_TOUCH) < 0 || resource.indexOf(_BLANK) < 0)) {

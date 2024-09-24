@@ -31,7 +31,6 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
     
-    private final String NEW_LINE = "\n";
     private final String COMMENT = "//";
     private final String TOUCH = "TOUCH";
     private final String UNDERSCORE_0 = commonSeps.UNDERSCORE + "0";
@@ -92,7 +91,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
             stringMaker.append(RESOURCE_1);
             stringMaker.append(playSoundAndroidResourceNameList.get(index));
             stringMaker.append(RESOURCE_2);
-            stringMaker.append('\n');
+            stringMaker.append(this.commonSeps.NEW_LINE);
         }        
     }
 
@@ -109,7 +108,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
             
             resource = (String) resourceList.get(index);
 
-            stringMaker.append(NEW_LINE);
+            stringMaker.append(this.commonSeps.NEW_LINE);
             
             if (resource.endsWith(UNDERSCORE_0) && resource.indexOf(TOUCH) < 0) {
                 stringMaker.append(COMMENT);
@@ -129,7 +128,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
             stringMaker.append(RESOURCE_1);
             stringMaker.append(androidResourceList.get(index));
             stringMaker.append(RESOURCE_2);
-            stringMaker.append('\n');
+            stringMaker.append(this.commonSeps.NEW_LINE);
         }        
     }
     
