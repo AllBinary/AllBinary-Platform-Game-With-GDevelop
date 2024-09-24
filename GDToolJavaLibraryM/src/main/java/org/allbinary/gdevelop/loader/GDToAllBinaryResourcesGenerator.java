@@ -56,6 +56,7 @@ public class GDToAllBinaryResourcesGenerator
 
     private final String TSJ = ".tsj";
     private final String IMAGE = "image";
+    private final String RELATIVE_RESOURCES_PATH = "..\\platform\\j2se\\GDGameJ2SEApplicationM\\src\\main\\resources\\";
     
     public GDToAllBinaryResourcesGenerator() {
         resourceStringMaker.append(GD_KEY);
@@ -272,26 +273,24 @@ public class GDToAllBinaryResourcesGenerator
         String name;
         String resource;
         for(int index = 0; index < size; index++) {
-            name = (String) this.gdResources.resourceNameList.get(index);
             resource = (String) this.gdResources.resourceList.get(index);
             if(resource.endsWith(TSJ)) {
                 
                 LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.gdToolStrings.FILENAME).append(resource).toString(), this, commonStrings.PROCESS));
-                this.appendImmediatelyLoadedImages(name, resource);
+                this.appendImmediatelyLoadedImages(resource);
             }
         }
         
         resourceStringMaker.append("    };\n");
     }
     
-    private void appendImmediatelyLoadedImages(final String name, final String path) throws Exception {
+    private void appendImmediatelyLoadedImages(final String path) throws Exception {
         
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         sharedBytes.outputStream.reset();
         
-        //"G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\j2se\\GDGameJ2SEApplicationM\\src\\main\\resources\\"
-        final FileInputStream inputStream = new FileInputStream("..\\platform\\j2se\\GDGameJ2SEApplicationM\\src\\main\\resources\\" + path);
+        final FileInputStream inputStream = new FileInputStream(RELATIVE_RESOURCES_PATH + path);
         sharedBytes.outputStream.reset();
         final String gameAsConfiguration = new String(streamUtil.getByteArray(inputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
@@ -300,6 +299,10 @@ public class GDToAllBinaryResourcesGenerator
         final String imagePath = jsonObject.getString(IMAGE);
         
         LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.gdToolStrings.FILENAME).append(imagePath).toString(), this, commonStrings.PROCESS));
+        
+        final int endIndex = imagePath.lastIndexOf('.');
+        final String imageName = imagePath.substring(0, endIndex);
+        final String name = imageName.toUpperCase();
         
         resourceStringMaker.append(name);
         resourceStringMaker.append(this.commonSeps.COMMA);
