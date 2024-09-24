@@ -5,22 +5,12 @@
 package playn.core;
 
 import org.allbinary.canvas.Processor;
-import org.allbinary.game.layer.resources.OnDemandResources;
 import org.allbinary.game.resource.GDResources;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
-import org.allbinary.input.motion.button.TouchButtonBlankResource;
-import org.allbinary.input.motion.button.TouchButtonDownResource;
-import org.allbinary.input.motion.button.TouchButtonGenericActionResource;
-import org.allbinary.input.motion.button.TouchButtonStartResource;
-import org.allbinary.input.motion.button.TouchButtonStrafeLeftResource;
-import org.allbinary.input.motion.button.TouchButtonStrafeRightResource;
-import org.allbinary.input.motion.button.TouchButtonTurnLeftResource;
-import org.allbinary.input.motion.button.TouchButtonTurnRightResource;
-import org.allbinary.input.motion.button.TouchButtonUpResource;
 import org.allbinary.input.motion.button.TouchScreenFactory;
+import org.allbinary.media.image.ImageCompleteUtil;
 import org.allbinary.playn.processors.GameHtmlHasLoadedResourcesProcessor;
 import org.allbinary.playn.processors.GameHtmlLoadResourcesProcessor;
-import org.allbinary.playn.processors.HtmlLoadOnDemandResourcesProcessor;
 import org.allbinary.playn.processors.MidletStartupProcessor;
 import org.allbinary.util.BasicArrayList;
 
@@ -59,8 +49,16 @@ public class GDGameProcessor
 //            };
 //
 
-            final GDResources gdResources = GDResources.getInstance();
-            list.add(new GameHtmlLoadResourcesProcessor(list, gdResources.resourceStringArray));
+            final ImageCompleteUtil imageCompleteUtil = ImageCompleteUtil.getInstance();
+
+            final GDResources gdResources = GDResources.getInstance();            
+            String[] resourceStringArray = gdResources.requiredResourcesBeforeLoadingArray;
+            if(imageCompleteUtil.isLazy()) {
+            } else {
+                resourceStringArray = gdResources.resourceStringArray;
+            }
+            
+            list.add(new GameHtmlLoadResourcesProcessor(list, resourceStringArray));
 
 //        OnDemandResources[] onDemandResourcesArray =
 //                MiniSpaceWarImageOnDemandResourcesFactory.getInstance().getOnDemandResourcesArray();
@@ -74,9 +72,10 @@ public class GDGameProcessor
 //        }
             
             final Processor gameHtmlHasLoadedResourcesProcessor
-                    = new GameHtmlHasLoadedResourcesProcessor(list, gdResources.resourceStringArray);
+                    = new GameHtmlHasLoadedResourcesProcessor(list, resourceStringArray);
 
             list.add(gameHtmlHasLoadedResourcesProcessor);
+            
         }
 
         list.add(new MidletStartupProcessor(list));
