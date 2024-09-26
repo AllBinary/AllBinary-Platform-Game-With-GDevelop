@@ -95,7 +95,7 @@ public class GDGameLayerFactory
         gdObject.height = (int) (gdObject.height * scaleY);
         
         final GDGameLayer gameLayer = new GDGameLayer(
-            NullAnimationFactory.getFactoryInstance().getInstance(), 
+            NullAnimationFactory.getFactoryInstance().getInstance(0), 
                 this.gameLayerList, this.gameLayerDestroyedList,
                 this.behaviorList,
                 new VelocityProperties(9600, 9600),

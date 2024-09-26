@@ -50,7 +50,7 @@ extends BaseTouchInput
             CommonButtons commonButtons = CommonButtons.getInstance();
             
             Animation animationInterface = 
-                NullAnimationFactory.getFactoryInstance().getInstance();
+                NullAnimationFactory.getFactoryInstance().getInstance(0);
             Animation hintAnimationInterface = animationInterface;
             
             BasicTouchInputFactory basicTouchInputFactory = BasicTouchInputFactory.getInstance();

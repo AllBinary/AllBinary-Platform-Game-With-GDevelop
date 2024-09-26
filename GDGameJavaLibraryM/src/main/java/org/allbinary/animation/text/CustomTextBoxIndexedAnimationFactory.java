@@ -47,7 +47,7 @@ public class CustomTextBoxIndexedAnimationFactory
     }
     
     @Override
-    public Animation getInstance() throws Exception {
+    public Animation getInstance(final int instanceId) throws Exception {
 
         //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.PROCESS));
         

@@ -48,7 +48,7 @@ extends BaseTouchInput
                 new BasicTouchButtonCellPositionFactory();
             
             Animation animationInterface = 
-                NullAnimationFactory.getFactoryInstance().getInstance();
+                NullAnimationFactory.getFactoryInstance().getInstance(0);
             Animation hintAnimationInterface = animationInterface;
             
             CommonButtons commonButtons = CommonButtons.getInstance();

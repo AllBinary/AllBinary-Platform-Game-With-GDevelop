@@ -156,8 +156,7 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
         
         //int index = 0;
 
-        //ProgressCanvas progressCanvas = 
-          //  ProgressCanvasFactory.getInstance();
+        //ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
 
                         try {
 

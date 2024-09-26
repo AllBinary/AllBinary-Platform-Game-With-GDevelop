@@ -166,8 +166,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
         
         //int index = 0;
 
-        //ProgressCanvas progressCanvas = 
-          //  ProgressCanvasFactory.getInstance();
+        //ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
 
                         try {
     

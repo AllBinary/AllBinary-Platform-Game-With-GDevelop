@@ -44,8 +44,10 @@ Created By: Travis Berthelot
         <xsl:param name="lazy" />
         
         //objectsAssign - touchAnimationFactory - START
+        final int NaN = 0;
         final short angleIncrement = 1;
         <xsl:for-each select="objects" >
+            <xsl:variable name="objectIndex" select="position() - 1" />
             <xsl:variable name="typeValue" select="type" />
             <xsl:variable name="name" select="name" />
             <xsl:variable name="nameInUpperCase" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
@@ -74,7 +76,7 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray[<xsl:value-of select="position() - 1" />] = ;
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                         <xsl:if test="contains($lazy, 'true')" >
-                    new LazyImageRotationAnimationFactory(
+                    new LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>
                     new OneRow<xsl:value-of select="$platform" />SpriteIndexedAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
@@ -85,7 +87,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                     <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
                         <xsl:if test="contains($lazy, 'true')" >
-                    new LazyImageRotationAnimationFactory(
+                    new LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>                        
                     new AllBinary<xsl:value-of select="$platform" />ImageRotationAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],

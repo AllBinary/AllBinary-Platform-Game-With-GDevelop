@@ -38,7 +38,7 @@ public class GDRotationBehavior extends GDAnimationBehaviorBase {
             for (int index = 0; index < size; index++)
             {
         try {
-                initIndexedAnimationInterfaceArray[index] = (RotationAnimation) animationInterfaceFactoryInterfaceArray[index].getInstance();
+                initIndexedAnimationInterfaceArray[index] = (RotationAnimation) animationInterfaceFactoryInterfaceArray[index].getInstance(0);
         } catch(Exception e) {
             //final StringMaker stringMaker = new StringMaker();
             //super.toString(stringMaker);

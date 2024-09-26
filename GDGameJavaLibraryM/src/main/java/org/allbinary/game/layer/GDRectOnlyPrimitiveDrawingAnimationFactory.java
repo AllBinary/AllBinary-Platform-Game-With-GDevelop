@@ -25,7 +25,7 @@ import org.allbinary.media.ScaleProperties;
 public class GDRectOnlyPrimitiveDrawingAnimationFactory  implements 
     AnimationInterfaceFactoryInterface, ProceduralAnimationInterfaceFactoryInterface {
     
-   public Animation getInstance()
+   public Animation getInstance(final int instanceId) throws Exception
    {
        return new GDRectOnlyPrimitiveDrawing();
    }

@@ -104,7 +104,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
 
         final GDCustomGameLayer gameLayer = new GDCustomGameLayer(
                 layoutIndex, 
-                this.primitiveDrawingAnimationFactory.getInstance(),
+                this.primitiveDrawingAnimationFactory.getInstance(0),
                 this.gameLayerList, this.gameLayerDestroyedList,
                 this.behaviorList,
                 name,

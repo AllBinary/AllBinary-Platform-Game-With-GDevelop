@@ -43,7 +43,7 @@ public class GDAnimationBehaviorBase {
             for (int index = 0; index < size; index++)
             {
         try {
-                initIndexedAnimationInterfaceArray[index] = (IndexedAnimation) animationInterfaceFactoryInterfaceArray[index].getInstance();
+                initIndexedAnimationInterfaceArray[index] = (IndexedAnimation) animationInterfaceFactoryInterfaceArray[index].getInstance(gdObject.hashCode());
         } catch(Exception e) {
             //final StringMaker stringMaker = new StringMaker();
             //super.toString(stringMaker);

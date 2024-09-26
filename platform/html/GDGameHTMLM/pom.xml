@@ -99,7 +99,7 @@
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>ProgressJ2MEJavaLibrary</artifactId>
+            <artifactId>ProgressLazyJ2MEJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->

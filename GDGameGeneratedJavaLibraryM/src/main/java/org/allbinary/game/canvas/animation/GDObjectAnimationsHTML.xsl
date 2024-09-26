@@ -68,12 +68,14 @@ Created By: Travis Berthelot
         <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
         
         //objectsAssign - htmlAnimationFactory - START
+        final int NaN = 0;
         private final short angleIncrement = 1;
         private final int[] sequenceArray = {-1};
         //private final float hackScale = ((float) scale) * 125.0f / 1000.0f;
         private final float hackScale = 2.0f * 125.0f / 1000.0f;
         
         <xsl:for-each select="objects" >
+            <xsl:variable name="objectIndex" select="position() - 1" />
             <xsl:variable name="typeValue" select="type" />
             <xsl:variable name="name" select="name" />
             <xsl:variable name="nameInUpperCase" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
@@ -104,7 +106,7 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray[<xsl:value-of select="position() - 1" />] = ;
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                         <xsl:if test="contains($lazy, 'true')" >
-                    new LazyImageRotationAnimationFactory(
+                    new LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>
                     new OneRowHTMLSpriteIndexedAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
@@ -145,7 +147,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                     <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
                         <xsl:if test="contains($lazy, 'true')" >
-                    new LazyImageRotationAnimationFactory(
+                    new LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>
                     new AllBinaryHTMLImageRotationAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />],
@@ -421,7 +423,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="Background" >
                     //Background
                         <xsl:if test="contains($lazy, 'true')" >
-                    new LazyImageRotationAnimationFactory(
+                    new LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>                        
                     new AllBinaryHTMLImageRotationAnimationFactory(
                         <xsl:value-of select="$name" />ImageArray[0],
@@ -439,7 +441,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="FillBar" >
                     //FillBar
                         <xsl:if test="contains($lazy, 'true')" >
-                    new LazyImageRotationAnimationFactory(
+                    new LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>                        
                     new LeftToRightImageAnimationFactory(
                         <xsl:value-of select="$name" />ImageArray[1], 
@@ -458,7 +460,7 @@ Created By: Travis Berthelot
                         <xsl:for-each select="../../behaviors" >
                             <xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >
                         <xsl:if test="contains($lazy, 'true')" >
-                    new LazyImageRotationAnimationFactory(
+                    new LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>                        
                     new RightToLeftImageAnimationFactory(
                         <xsl:value-of select="$name" />ImageArray[2],
@@ -475,7 +477,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="Thumb" >
                     //Thumb
                         <xsl:if test="contains($lazy, 'true')" >
-                    new LazyImageRotationAnimationFactory(
+                    new LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>                        
                     new AllBinaryHTMLImageRotationAnimationFactory(
                         <xsl:value-of select="$name" />ImageArray[4],
