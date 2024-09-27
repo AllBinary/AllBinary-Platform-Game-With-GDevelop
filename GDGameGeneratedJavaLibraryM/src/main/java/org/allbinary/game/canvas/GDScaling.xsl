@@ -25,7 +25,7 @@
                             //int scale2 = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
                             //if(scale2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 2) scale2 = 2;
                             //final int scale = scale2;
-                            final int scale = 2;
+                            final int scale = org.allbinary.AndroidUtil.isAndroid() ? 1 : 2;
                             final int scaleNominator = scale;
                             final int scaleDenominator = 2;
                             LogUtil.put(LogFactory.getInstance(new StringMaker().append("scale: ").append(scale).toString(), this, commonStrings.CONSTRUCTOR));
@@ -40,7 +40,8 @@
     <xsl:template name="scaleProperty" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="layoutName" />
-                            private final int scale = 2;
+                            //scaleProperty
+                            private final int scale = org.allbinary.AndroidUtil.isAndroid() ? 1 : 2;
     </xsl:template>
 
 </xsl:stylesheet>
