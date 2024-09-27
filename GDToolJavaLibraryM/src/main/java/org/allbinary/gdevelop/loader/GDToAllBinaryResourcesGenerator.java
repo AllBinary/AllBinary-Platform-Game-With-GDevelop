@@ -15,7 +15,6 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.logic.io.file.FileUtil;
 import org.allbinary.logic.string.CommonLabels;
 import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.time.TimeDelayHelper;
@@ -40,15 +39,11 @@ public class GDToAllBinaryResourcesGenerator
     
     private final StringMaker resourceStringMaker = new StringMaker();
     
+    private final GDResourceSelection gdResourceSelection = GDResourceSelection.getInstance();
+    
     private final String GD_KEY = "//GD";
-    private final String TOUCH = "TOUCH";
-    private final String COMMENT = "//";
-    private final String UNDERSCORE_0 = commonSeps.UNDERSCORE + "0";
-    private final String BLANK = "BLANK";
     private final String INDENT = "        ";
     private final String SPACING = "    ";
-            
-    private final int size2 = 100;
     
     private final String PUBLIC_FINAL_STRING = "    public final String ";
     private final String VALUE_RESOURCE_START = " = \"";
@@ -62,17 +57,7 @@ public class GDToAllBinaryResourcesGenerator
         resourceStringMaker.append(GD_KEY);
         resourceStringMaker.append(this.commonSeps.NEW_LINE);
     }
-    
-    private boolean hasRotationImages() {
-        final FileUtil fileUtil = FileUtil.getInstance();
-        final String filePath = gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\animation\\GDRotationAnimation.txt";
-        final String fileAsString = fileUtil.readAsString(filePath);
-        if(fileAsString.indexOf("found") >= 0) {
-            return true;
-        }
-        return false;
-    }
-    
+        
     public void processResource(final String nameAsString, final String resourceString) {
         this.gdResources.androidResourceList.add(nameAsString);
         final String name = nameAsString.toUpperCase();
@@ -83,21 +68,7 @@ public class GDToAllBinaryResourcesGenerator
 
     public void appendResource(final boolean hasRotationImages, final String name, final String resource) {
         
-        if(name.indexOf(BLANK) >= 0) {
-            resourceStringMaker.append(COMMENT);
-        }
-        
-        if (name.endsWith(UNDERSCORE_0) && name.indexOf(TOUCH) < 0) {
-            resourceStringMaker.append(COMMENT);
-        }
-
-        if(!hasRotationImages) {
-            for (int index2 = 2; index2 < size2; index2++) {
-                if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
-                    resourceStringMaker.append(COMMENT);
-                }
-            }
-        }
+        this.gdResourceSelection.appendCommentIfNeeded0(name, resource, resourceStringMaker, hasRotationImages);
         
         resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
         resourceStringMaker.append(name);
@@ -116,8 +87,6 @@ public class GDToAllBinaryResourcesGenerator
     }
 
     private void appendResourceStringArray(final boolean hasRotationImages, final BasicArrayList usedList) {
-        final String JSON = ".json";
-        final String T = ".t";
         resourceStringMaker.append(this.commonSeps.NEW_LINE);
         resourceStringMaker.append("    public final String[] resourceStringArray = {\nBLANK,\n");
         final int size = this.gdResources.resourceNameList.size();
@@ -129,36 +98,14 @@ public class GDToAllBinaryResourcesGenerator
             name = (String) this.gdResources.resourceNameList.get(index);
             resource = (String) this.gdResources.resourceList.get(index);
             resourceStringMaker.append(INDENT);
-            used = true;
-            if(resource.indexOf(JSON) >= 0 || resource.indexOf(T) >= 0) {
-                used = false;
-                resourceStringMaker.append(COMMENT);
-            }
-
-            if(resource.toUpperCase().indexOf(BLANK) >= 0) {
-                used = false;
-                resourceStringMaker.append(COMMENT);
-            }
             
-            if (name.endsWith(UNDERSCORE_0) && name.indexOf(TOUCH) < 0) {
-                used = false;
-                resourceStringMaker.append(COMMENT);
-            }
-            
-            if(!hasRotationImages) {
-                for (int index2 = 2; index2 < size2; index2++) {
-                    if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
-                        used = false;
-                        resourceStringMaker.append(COMMENT);
-                    }
-                }
-            }
+            used = this.gdResourceSelection.appendCommentIfNeeded(name, resource, resourceStringMaker, hasRotationImages);
             
             resourceStringMaker.append(name);
             resourceStringMaker.append(',');
             
             resourceStringMaker.append(commonSeps.SPACE);
-            resourceStringMaker.append(COMMENT);
+            resourceStringMaker.append(this.commonSeps.COMMENT);
 
             resourceStringMaker.append(arrayIndex);
             
@@ -194,7 +141,7 @@ public class GDToAllBinaryResourcesGenerator
                 resourceStringMaker.append(gdResource.width);
                 resourceStringMaker.append(',');
                 resourceStringMaker.append(commonSeps.SPACE);
-                resourceStringMaker.append(COMMENT);
+                resourceStringMaker.append(this.commonSeps.COMMENT);
                 resourceStringMaker.append(name);                
                 resourceStringMaker.append(commonSeps.SPACE);
                 resourceStringMaker.append(arrayIndex);
@@ -202,7 +149,7 @@ public class GDToAllBinaryResourcesGenerator
             } else {
                 resourceStringMaker.append(-1);
                 resourceStringMaker.append(',');
-                resourceStringMaker.append(COMMENT);
+                resourceStringMaker.append(this.commonSeps.COMMENT);
                 resourceStringMaker.append(name);
                 resourceStringMaker.append(this.commonSeps.NEW_LINE);
             }
@@ -237,7 +184,7 @@ public class GDToAllBinaryResourcesGenerator
             } else {
                 resourceStringMaker.append(-1);
                 resourceStringMaker.append(',');
-                resourceStringMaker.append(COMMENT);
+                resourceStringMaker.append(this.commonSeps.COMMENT);
                 resourceStringMaker.append(name);
                 resourceStringMaker.append(this.commonSeps.NEW_LINE);
             }
@@ -330,7 +277,7 @@ public class GDToAllBinaryResourcesGenerator
         final GDImageSizeGenerator gdImageSizeGenerator = new GDImageSizeGenerator();
         final BasicArrayList gdResourceList = gdImageSizeGenerator.process();
         
-        final boolean hasRotationImages = this.hasRotationImages();
+        final boolean hasRotationImages = this.gdResourceSelection.hasRotationImages();
         this.appendResources(hasRotationImages);
         
         timeDelayHelper.setStartTime();

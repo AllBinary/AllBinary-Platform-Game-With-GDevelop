@@ -31,7 +31,9 @@ public class GDToAndroidResourcesGradleGenerator
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
-    
+
+    private final GDResourceSelection gdResourceSelection = GDResourceSelection.getInstance();
+
     private final StringMaker resourceStringMaker = new StringMaker();
     
     private final String GD_KEY = "//GD";
@@ -58,7 +60,11 @@ public class GDToAndroidResourcesGradleGenerator
     }
     
     public void processResource(final String fileAsString, final String resourceString) {
-        final String resource = resourceString.substring(1, resourceString.length() - 4).toLowerCase();
+        final String resource = resourceString.substring(0, resourceString.length() - 4).toLowerCase();
+        
+        final boolean hasRotationImages = this.gdResourceSelection.hasRotationImages();
+        this.gdResourceSelection.appendCommentIfNeeded2(resource.toUpperCase(), resource, resourceStringMaker, hasRotationImages);
+        
         resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
         resourceStringMaker.append(resource);
         resourceStringMaker.append(this.VALUE_RESOURCE_START);

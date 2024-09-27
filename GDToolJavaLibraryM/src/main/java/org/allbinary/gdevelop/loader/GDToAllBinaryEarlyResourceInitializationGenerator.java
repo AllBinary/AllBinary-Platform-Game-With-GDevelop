@@ -31,7 +31,6 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
     
-    private final String COMMENT = "//";
     private final String TOUCH = "TOUCH";
     private final String UNDERSCORE_0 = commonSeps.UNDERSCORE + "0";
     
@@ -111,12 +110,12 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
             stringMaker.append(this.commonSeps.NEW_LINE);
             
             if (resource.endsWith(UNDERSCORE_0) && resource.indexOf(TOUCH) < 0) {
-                stringMaker.append(COMMENT);
+                stringMaker.append(this.commonSeps.COMMENT);
             }
             
             for(int index2 = 2; index2 < size2; index2++) {
                 if(resource.endsWith(commonSeps.UNDERSCORE + index2) && resource.indexOf(TOUCH) < 0) {
-                    stringMaker.append(COMMENT);
+                    stringMaker.append(this.commonSeps.COMMENT);
                 }
             }            
                         
