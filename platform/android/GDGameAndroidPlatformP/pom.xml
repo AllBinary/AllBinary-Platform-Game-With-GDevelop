@@ -29,10 +29,13 @@
         <module>../GDGameAndroidResourceJavaLibraryM</module>
         <module>../GDGameAndroidResourcesTempJavaLibraryM</module>
         <module>../GDGameAndroidSoundsJavaLibraryM</module>
+        
+        <module>../GDGameAndroidGradleM</module>
         <!--
         <module>../GDGameAndroidApplicationM</module>
         -->
         <module>../GDGameThreedAndroidPlatformP</module>
+        
     </modules>
 
 </project>
