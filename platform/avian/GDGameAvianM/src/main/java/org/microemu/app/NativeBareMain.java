@@ -20,7 +20,7 @@ package org.microemu.app;
 public class NativeBareMain {
 
     public static void main(final String args[]) {
-        BareMain.main2(args, "GDGameMIDlet", "/gd_icon.ico", 1366, 768, true, false);
+        BareMain.main2(args, "GDGameMIDlet", "/gd_icon.ico", 1366, 768, false, false);
     }
 
 }

@@ -2,6 +2,7 @@
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.data.resource.ResourceUtil;
+import org.allbinary.emulator.InitEmulatorFactory;
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
 import org.allbinary.game.configuration.GameConfigurationCentral;
 import org.allbinary.game.configuration.feature.Features;
@@ -9,6 +10,7 @@ import org.allbinary.game.configuration.feature.GameFeatureFactory;
 import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
 import org.allbinary.game.configuration.feature.InputFeatureFactory;
 import org.allbinary.game.configuration.feature.SensorFeatureFactory;
+import org.allbinary.game.gd.GDGameJOGLOpenGLESView;
 import org.allbinary.input.motion.AllMotionRecognizer;
 import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
 import org.allbinary.input.motion.gesture.observer.GameMotionGestureListener;
@@ -17,8 +19,12 @@ import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.audio.EarlySoundsFactory;
 import org.allbinary.media.audio.Sounds;
 import org.allbinary.game.init.DefaultGameInitializationListener;
+import org.allbinary.graphics.opengles.OpenGLConfiguration;
+import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
 import org.allbinary.media.audio.GDGameSoundsFactory;
+import org.allbinary.view.EmulatorViewInterface;
+import org.allbinary.view.OptimizedGLSurfaceView;
 import org.microemu.app.MidletJOGLInterface;
 
 public class GDGameMIDlet
@@ -28,6 +34,8 @@ public class GDGameMIDlet
     private final int DEVICE_ID = 0;
     private AllMotionRecognizer motionRecognizer = new AllMotionRecognizer();
 
+    private OptimizedGLSurfaceView glSurfaceView;
+    
     public GDGameMIDlet()
     {
         super(GDGameClientInformationInterfaceFactory.getFactoryInstance());
@@ -107,10 +115,43 @@ public class GDGameMIDlet
             gameConfigurationCentral.SCALE.setDefaultValue(smallIntegerSingletonFactory.getInstance(3));
             gameConfigurationCentral.SCALE.setDefault();
 
-        } catch (Exception e)
+            this.initOpenGL();
+
+            InitEmulatorFactory.getInstance().setInitEmulator(true);
+
+            final OpenGLFeatureFactory openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
+            
+            if(features.isFeature(openGLFeatureFactory.OPENGL_2D)) {
+                this.glSurfaceView = new GDGameJOGLOpenGLESView();
+            } else if(features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || 
+                features.isFeature(openGLFeatureFactory.OPENGL_3D)) {
+                //this.testGameDemoView = new MiniSpaceWarJOGLMin3dView();
+                throw new RuntimeException();
+            }
+            
+        }
+        catch (Exception e)
         {
             LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
         }
+    }
+    
+    protected void initOpenGL()
+    throws Exception
+    {
+        final OpenGLConfiguration openGLConfiguration = OpenGLConfiguration.getInstance();
+        openGLConfiguration.setOpenGL(true);
+        openGLConfiguration.init();
+        openGLConfiguration.write();
+    }
+    
+    public void initView() {
+        ((EmulatorViewInterface) this.glSurfaceView).setMidlet(this);
+    }
+
+    protected void exit(boolean isProgress) {
+        this.glSurfaceView.onDetachedFromWindow();
+        super.exit(isProgress);
     }
     
     public void stopAll()
