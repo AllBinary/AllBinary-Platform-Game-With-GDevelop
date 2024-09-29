@@ -212,6 +212,7 @@ public class GDToAllBinaryResourcesGenerator
         return null;
     }
 
+    private final String SLIDER = "_slider_";
     private void appendImmediatelyLoadedImages() throws Exception {
         
         resourceStringMaker.append("    public final String[] requiredResourcesBeforeLoadingArray = {\n");
@@ -225,6 +226,10 @@ public class GDToAllBinaryResourcesGenerator
                 
                 LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.gdToolStrings.FILENAME).append(resource).toString(), this, commonStrings.PROCESS));
                 this.appendImmediatelyLoadedImages(resource);
+                
+            //PanelSpriteSlider::PanelSpriteSlider -> texture must not lazy load textures                
+            } else if(resource.indexOf(SLIDER) >= 0) {
+                this.appendImmediatelyLoadedImage(resource);
             }
         }
         
@@ -247,14 +252,7 @@ public class GDToAllBinaryResourcesGenerator
         
         LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.gdToolStrings.FILENAME).append(imagePath).toString(), this, commonStrings.PROCESS));
         
-        final int endIndex = imagePath.lastIndexOf('.');
-        final String imageName = imagePath.substring(0, endIndex);
-        final String name = imageName.toUpperCase();
-        
-        resourceStringMaker.append(name);
-        resourceStringMaker.append(this.commonSeps.COMMA);
-        resourceStringMaker.append(this.commonSeps.NEW_LINE);
-        
+        this.appendImmediatelyLoadedImage(imagePath);
         
 //        final PlatformAssetManager platformAssetManager = PlatformAssetManager.getInstance();
 //        final InputStream tileMapInputStream = platformAssetManager.getResourceAsStream(tmj);
@@ -272,6 +270,15 @@ public class GDToAllBinaryResourcesGenerator
 
     }
 
+    private void appendImmediatelyLoadedImage(final String imagePath) {
+        final int endIndex = imagePath.lastIndexOf('.');
+        final String imageName = imagePath.substring(0, endIndex);
+        final String name = imageName.toUpperCase();
+        resourceStringMaker.append(name);
+        resourceStringMaker.append(this.commonSeps.COMMA);
+        resourceStringMaker.append(this.commonSeps.NEW_LINE);
+    }
+    
     public void process() throws Exception {
     
         final GDImageSizeGenerator gdImageSizeGenerator = new GDImageSizeGenerator();
