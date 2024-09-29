@@ -466,7 +466,6 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$name" />ImageArray[4].getWidth(),
                         <xsl:value-of select="$name" />ImageArray[4].getHeight(),
                         (<xsl:value-of select="$name" />ImageArray[0].getWidth() - <xsl:value-of select="$name" />ImageArray[2].getWidth()) / 2,
-                        //(<xsl:value-of select="$name" />ImageArray[0].getHeight()) / 2,
                         (<xsl:value-of select="$name" />ImageArray[0].getHeight() - <xsl:value-of select="$name" />ImageArray[4].getHeight()) / 2,
                         angleIncrement,
                         AnimationBehaviorFactory.getInstance()
