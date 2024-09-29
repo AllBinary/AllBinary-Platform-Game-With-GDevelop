@@ -200,7 +200,8 @@ public class SliderAnimation
     }
     
     public int getThumbWidth() {
-        return ((ImageBaseRotationAnimation) this.animationInterfaceArray[3]).getWidth();
+        //TWB - ImageBaseRotationAnimation only
+        return this.animationInterfaceArray[3].getWidth();
     }
     
     public int getValue() {

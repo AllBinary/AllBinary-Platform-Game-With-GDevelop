@@ -54,7 +54,8 @@ public class NativeBareMain {
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, features, CommonStrings.getInstance().PROCESS, e));
         }
         
-        BareMain.main2(args, "GDGameMIDlet", "/gd_icon.ico", 1366, 768, false, false);
+        //BareMain.main2(args, "GDGameMIDlet", "/gd_icon.ico", 1366, 768, false, false);
+        BareMain.main2(args, "GDGameMIDlet", "/gd_icon.ico", 1280, 720, false, false);
     }
 
 }
