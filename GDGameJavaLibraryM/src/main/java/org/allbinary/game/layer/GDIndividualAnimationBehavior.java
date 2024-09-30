@@ -48,7 +48,7 @@ public class GDIndividualAnimationBehavior extends GDAnimationBehaviorBase {
                 indexedAnimationBehavior.elapsedTime += timeDelta;
                 //animations/directions/timeBetweenFrames
                 if (indexedAnimationBehavior.elapsedTime > indexedAnimationBehavior.frameDelayTime) {
-                    indexedAnimationBehavior.elapsedTime = indexedAnimationBehavior.elapsedTime - indexedAnimationBehavior.frameDelayTime;
+                    indexedAnimationBehavior.elapsedTime = 0; //indexedAnimationBehavior.elapsedTime - indexedAnimationBehavior.frameDelayTime;
                     indexedAnimation.nextFrame();
                 }
             }
