@@ -36,6 +36,8 @@ Created By: Travis Berthelot
                             super.processStats();
                             LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             
+                            <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
+                            
                             //TWB - This is not implemented the same as GDevelop.  Currently it is just inverse Android.
                             <xsl:if test="$inverted = 'true'" >
                                 //Inverted

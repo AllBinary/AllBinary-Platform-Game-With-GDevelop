@@ -290,6 +290,7 @@ Created By: Travis Berthelot
                             
                         <xsl:text>&#10;</xsl:text>
                         if(true) {
+                            //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$name" />", this, commonStrings.CONSTRUCTOR));
                             <xsl:if test="contains(name, 'btn_')" >
                         //btn_ - found
                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
