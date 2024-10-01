@@ -32,6 +32,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDObjectVariablePushNumberActionProcess.xsl" />
 
     <xsl:import href="./action/GDHideLayerActionProcess.xsl" />
+    <xsl:import href="./action/GDCacheToHideActionProcess.xsl" />
     
     <xsl:import href="./action/GDPlayMusicActionProcess.xsl" />
     <xsl:import href="./action/GDPlayMusicCanalActionProcess.xsl" />
@@ -67,6 +68,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDAddForceXYActionProcess.xsl" />
     <xsl:import href="./action/GDQuitActionProcess.xsl" />
     <xsl:import href="./action/GDSetGlobalVariableAsBooleanActionProcess.xsl" />
+    <xsl:import href="./action/SetFullScreenActionProcess.xsl" />
     <xsl:import href="./action/GDSetObjectVariableAsBooleanActionProcess.xsl" />
     <xsl:import href="./action/GDSetSceneVariableAsBooleanActionProcess.xsl" />
     <xsl:import href="./action/GDJSONToVariableStructureActionProcess.xsl" />
@@ -85,7 +87,6 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDPanelSpriteSliderPanelSpriteSliderSetValueActionProcess.xsl" />
     <xsl:import href="./action/GDTextInputVirtualKeyboardTextInputVirtualKeyboardOpenKeyboardActionProcess.xsl" />
     <xsl:import href="./action/GDTextInputVirtualKeyboardTextInputVirtualKeyboardCloseKeyboardActionProcess.xsl" />
-    
     
     <xsl:template name="eventsCreateAssignGDObjectGDNodesAction" >
         <xsl:param name="caller" />
@@ -491,6 +492,11 @@ Created By: Travis Berthelot
                     <xsl:call-template name="hideLayerActionProcess" />
 
                 </xsl:if>
+                <xsl:if test="$typeValue = 'Cache'" >
+
+                    <xsl:call-template name="cacheAsHideActionProcess" />
+
+                </xsl:if>
                 <xsl:if test="$typeValue = 'TextEntryObject::String'" >
 
                     <xsl:call-template name="textEntryObjectAsStringActionProcess" >
@@ -669,6 +675,12 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'Scene'" >
 
                     <xsl:call-template name="sceneActionProcess" />
+
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'SetFullScreen'" >
+
+                    <xsl:call-template name="setFullScreenActionProcess" />
 
                 </xsl:if>
 

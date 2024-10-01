@@ -60,6 +60,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDDistanceConditionGDNode.xsl" />
     <xsl:import href="./condition/GDCompareNumbersConditionGDNode.xsl" />
     <xsl:import href="./condition/GDPanelSpriteSliderPanelSpriteSliderValueConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDSystemInfoIsNativeDesktopAppConditionGDNode.xsl" />
 
     <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition2" >
         <xsl:param name="caller" />
@@ -121,7 +122,9 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
                 <xsl:if test="$typeValue = 'SystemInfo::IsNativeDesktopApp'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    
+                    <xsl:call-template name="systemInfoIsNativeDesktopAppConditionGDNode" />
+                    
                 </xsl:if>
                 <xsl:if test="$typeValue = 'SystemInfo::IsWebGLSupported'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
