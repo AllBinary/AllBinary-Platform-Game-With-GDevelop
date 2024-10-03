@@ -40,7 +40,7 @@ public class GDImageSizeGenerator {
         
         final StringMaker stringMaker = new StringMaker();
         final FileListFetcher fileListFetcher = FileListFetcher.getInstance();
-        final BasicArrayList files = fileListFetcher.getFiles("G:\\mnt\\bc\\mydev\\GDGamesP\\platform\\j2se\\GDGameJ2SEWithSWTApplicationM\\src\\main\\resources\\", "png");
+        final BasicArrayList files = fileListFetcher.getFiles("G:\\mnt\\bc\\mydev\\GDGamesP\\Resources\\2d\\images\\raw\\", "png");
         AbFile abFile;
         BufferedImage bufferedImage;
         final int size = files.size();
