@@ -34,7 +34,8 @@ Created By: Travis Berthelot
 
                 GDObject <xsl:value-of select="$name2" /> = null;
                                         
-                <xsl:if test="contains($hasObjectGroup, 'found')" >
+                //gameLayer=<xsl:value-of select="$gameLayer" />
+                <xsl:if test="contains($hasObjectGroup, 'found') and not($gameLayer)" >
                     //This code should probably never be used - it is here to compile with at least some possible logic
                     final BasicArrayList gdGameLayerList = (BasicArrayList) <xsl:call-template name="globals" >
                         <xsl:with-param name="name" >
@@ -42,7 +43,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>.<xsl:value-of select="$name2" />GDGameLayerListOfList.get(0);
                     if(gdGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                    <xsl:value-of select="$name2" /> = ((GDGameLayer) gdGameLayerList.get(0)).gdObject;
+                        <xsl:value-of select="$name2" /> = ((GDGameLayer) gdGameLayerList.get(0)).gdObject;
                     }
                 </xsl:if>
                                        
