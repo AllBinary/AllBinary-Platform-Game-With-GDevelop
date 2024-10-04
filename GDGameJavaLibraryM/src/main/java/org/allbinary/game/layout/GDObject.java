@@ -84,6 +84,16 @@ public class GDObject
         
         this.name = name;
         this.type = type;
+        
+        //TWB - validate name only occurs 1 time here
+//            final org.allbinary.game.canvas.GD1SpecialAnimationGlobals globals1 = 
+//                org.allbinary.game.canvas.GD1SpecialAnimationGlobals.getInstance();
+//            if(name.compareTo(globals1.NAME) == 0) {
+//                if(name != globals1._NAME) {
+//                    throw new RuntimeException();
+//                }
+//            }
+        
     }
 
     public String getAnimationFromIndex(final int index) {
