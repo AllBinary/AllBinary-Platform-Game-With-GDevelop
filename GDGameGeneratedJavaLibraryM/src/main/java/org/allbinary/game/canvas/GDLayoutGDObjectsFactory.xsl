@@ -160,6 +160,7 @@ Created By: Travis Berthelot
                             <xsl:if test="position() != 1" >} else </xsl:if>if(name.equals(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME)) {
                             return globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME;
                         </xsl:for-each>
+                        }
                         </xsl:if>
                         throw new RuntimeException("Missing Name: " + name);
                     }
