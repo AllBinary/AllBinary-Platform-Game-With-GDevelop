@@ -57,7 +57,7 @@
                                 <xsl:for-each select="actions" >
                                     <xsl:if test="type/value = 'Create'" >
                                         
-                                        <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
+                                        <xsl:variable name="nodeIdAsString" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
                             //actionProcess - //createGDObject - START
                             <xsl:call-template name="createGDObject" >
                                 <xsl:with-param name="layoutIndex" >
@@ -70,7 +70,7 @@
                                     <xsl:value-of select="$objectsAsString" />
                                 </xsl:with-param>
                                 <xsl:with-param name="nodeAsString" >
-                                    <xsl:value-of select="$nodeId" />
+                                    <xsl:value-of select="$nodeIdAsString" />
                                 </xsl:with-param>
                                 <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //actionsProcess</xsl:with-param>
                             </xsl:call-template>

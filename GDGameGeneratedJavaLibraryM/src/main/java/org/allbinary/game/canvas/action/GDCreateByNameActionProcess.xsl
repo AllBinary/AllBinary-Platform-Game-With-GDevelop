@@ -268,7 +268,7 @@ Created By: Travis Berthelot
 
     <xsl:template name="createByNameEndActionProcess" >
         <xsl:param name="layoutIndex" />
-        <xsl:param name="nodeId" />
+        <xsl:param name="nodeIdAsString" />
 
                     //CreateByName End
                     @Override
@@ -307,7 +307,7 @@ Created By: Travis Berthelot
                                                 <xsl:variable name="groupName"><xsl:value-of select="name" /></xsl:variable>
                                                 <xsl:for-each select="objects" >
                                                     <xsl:if test="name = $layerName" >
-                                                        //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeId" /> for globals.<xsl:value-of select="$groupName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />); at: " + index, this, commonStrings.PROCESS));
+                                                        //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeIdAsString" /> for globals.<xsl:value-of select="$groupName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />); at: " + index, this, commonStrings.PROCESS));
                                                         //<xsl:value-of select="$groupName" />GDGameLayerList.add(<xsl:value-of select="$gameLayer" />);
                                                     </xsl:if>
                                                 </xsl:for-each>
@@ -319,7 +319,7 @@ Created By: Travis Berthelot
                                 //objectsGroupsGDGameLayer - END
 
                             } else {
-                                //final String message = "<xsl:value-of select="$nodeId" /> <xsl:value-of select="$gameLayer" /> warning: not initialized";
+                                //final String message = "<xsl:value-of select="$nodeIdAsString" /> <xsl:value-of select="$gameLayer" /> warning: not initialized";
                                 //LogUtil.put(LogFactory.getInstance(message, this, message));
                             }
 

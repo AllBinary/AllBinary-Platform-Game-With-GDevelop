@@ -149,7 +149,7 @@ Created By: Travis Berthelot
 
             <!-- actions - START -->
             <xsl:for-each select="actions" >
-                <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
+                <xsl:variable name="nodeIdAsString" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
@@ -652,8 +652,8 @@ Created By: Travis Berthelot
                             <xsl:with-param name="layoutIndex" >
                                 <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
-                            <xsl:with-param name="nodeId" >
-                                <xsl:value-of select="$nodeId" />
+                            <xsl:with-param name="nodeIdAsString" >
+                                <xsl:value-of select="$nodeIdAsString" />
                             </xsl:with-param>
                         </xsl:call-template>
 
@@ -665,8 +665,8 @@ Created By: Travis Berthelot
                             <xsl:with-param name="layoutIndex" >
                                 <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
-                            <xsl:with-param name="nodeId" >
-                                <xsl:value-of select="$nodeId" />
+                            <xsl:with-param name="nodeIdAsString" >
+                                <xsl:value-of select="$nodeIdAsString" />
                             </xsl:with-param>
                         </xsl:call-template>
 

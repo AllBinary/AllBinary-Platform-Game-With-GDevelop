@@ -796,7 +796,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
             </xsl:if>
 
-                <xsl:variable name="nodeId" ><xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                <xsl:variable name="nodeIdAsString" ><xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                 <xsl:variable name="hasDelete" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Delete'" >found</xsl:if></xsl:for-each></xsl:variable>
                 <xsl:variable name="hasCreate" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" >found</xsl:if></xsl:for-each></xsl:variable>
                 <xsl:variable name="listSize" ><xsl:for-each select="actions" ><xsl:variable name="typeValue" select="type/value" /><xsl:if test="$typeValue = 'SetAngle' or $typeValue = 'Delete' or $typeValue = 'AddForceAL'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size();</xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
@@ -894,11 +894,11 @@ Created By: Travis Berthelot
                         <xsl:variable name="text" select="substring-before($createParamsAsString, ',')" />
                         //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Create Loop - //Create
                         //final StringMaker stringBuilder = new StringMaker();
-                        //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" size: ").append(size).append(" <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$text" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$text" />List.size(): ").append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$text" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$text" />List.size()).append(" <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$text" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$text" />GDGameLayerList.size(): ").append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$text" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$text" />GDGameLayerList.size()).toString(), this, commonStrings.PROCESS));
+                        //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeIdAsString" />").append(" size: ").append(size).append(" <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$text" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$text" />List.size(): ").append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$text" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$text" />List.size()).append(" <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$text" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$text" />GDGameLayerList.size(): ").append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$text" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$text" />GDGameLayerList.size()).toString(), this, commonStrings.PROCESS));
                         final int startIndex = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$text" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$text" />GDGameLayerList.size();
                         final int endIndex = startIndex + size;
                         //stringBuilder.delete(0, stringBuilder.length());
-                        //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeId" />").append(" layer <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), this, commonStrings.PROCESS, new Exception()));
+                        //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="$nodeIdAsString" />").append(" layer <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), this, commonStrings.PROCESS, new Exception()));
 
 
                         for(int index = startIndex; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> endIndex; index++) {
@@ -929,7 +929,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$objectsAsString" />
                         </xsl:with-param>
                         <xsl:with-param name="nodeAsString" >
-                            <xsl:value-of select="$nodeId" />
+                            <xsl:value-of select="$nodeIdAsString" />
                         </xsl:with-param>
                         <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                     </xsl:call-template>

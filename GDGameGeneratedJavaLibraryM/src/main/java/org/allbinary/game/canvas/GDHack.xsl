@@ -355,7 +355,7 @@ Created By: Travis Berthelot
                            </xsl:for-each>
                         </xsl:variable>
 
-                        <xsl:variable name="nodeId" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" ><xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="nodeIdAsString" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" ><xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
 
                         //caller=<xsl:value-of select="$caller" /> - //hackProcessing
                         <xsl:for-each select="actions" >
@@ -364,7 +364,7 @@ Created By: Travis Berthelot
                                     <xsl:if test="position() = 2" >
 
                         if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.objectArray == arrayUtil.ZERO_OBJECT_ARRAY) {
-                            LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeId" /><xsl:value-of select="text()" />GDGameLayerList = new BasicArrayList(size);", this, commonStrings.PROCESS));
+                            LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$nodeIdAsString" /><xsl:value-of select="text()" />GDGameLayerList = new BasicArrayList(size);", this, commonStrings.PROCESS));
                             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.ensureCapacity(size);
                         }
 
@@ -531,7 +531,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$objectsAsString" />
                         </xsl:with-param>
                         <xsl:with-param name="nodeAsString" >
-                            <xsl:value-of select="$nodeId" />
+                            <xsl:value-of select="$nodeIdAsString" />
                         </xsl:with-param>
                         <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //hackProcessing2</xsl:with-param>
                     </xsl:call-template>
@@ -726,7 +726,7 @@ Created By: Travis Berthelot
 
             //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Action - 2
             <xsl:for-each select="actions" >
-                <xsl:variable name="nodeId" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>
+<!--                <xsl:variable name="nodeIdAsString" >nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> </xsl:variable>-->
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:if test="$typeValue = 'Create'" >
                     //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Action - //Create - call - end
