@@ -343,6 +343,7 @@ Created By: Travis Berthelot
                     public String getAnimation(final String animationName) {
                         final int size = ANIMATION_NAMES.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            //TWB - This is slow please fix me.
                             if(this.ANIMATION_NAMES[index].compareTo(animationName) == 0) {
                                 //LogUtil.put(LogFactory.getInstance(animationName, this, "getAnimation"));
                                 return this.ANIMATION_NAMES[index];
