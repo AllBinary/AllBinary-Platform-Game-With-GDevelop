@@ -52,7 +52,7 @@ Created By: Travis Berthelot
                         </xsl:variable>
 
                         <xsl:if test="not(contains($hasObjectInParams, 'found'))" >
-                    //CreateByName - GDObject - START
+                    //createByNameActionProcess //CreateByName - GDObject - START
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();
@@ -73,7 +73,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                         -->
                         
-                        //createGDObject - process - START
+                        //createByNameActionProcess - //CreateByName - process - START
                     
                         <xsl:if test="contains($hasObject, 'found') or contains($hasObjectGroup, 'found')" >
                             throw new RuntimeException();
@@ -98,8 +98,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                        //createGDObject - process - END
-                        //createGDObject - //CreateByName - call
+                        //createByNameActionProcess - //CreateByName - process - END
+                        //createByNameActionProcess - //CreateByName - call
                         this.processCreate(<xsl:value-of select="$name" />GDobject2, createString, createIndex);
                         
                         this.processEnd(((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
@@ -108,7 +108,7 @@ Created By: Travis Berthelot
                         return true;
                         </xsl:if>
                     }
-                    //CreateByName - GDObject - END
+                    //createByNameActionProcess - //CreateByName - GDObject - END
                         </xsl:if>
 
                     <xsl:if test="contains($hasObject, 'found') or contains($hasObjectGroup, 'found')" >
@@ -175,8 +175,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                        //createGDObject - process - END
-                        //createGDObject - //CreateByName - call
+                        //createByNameActionProcess - //CreateByName - process - END
+                        //createByNameActionProcess - //CreateByName - call
                         this.processCreate(<xsl:value-of select="$name" />GDobject2, createString, createIndex);
                         
                         this.processEnd(((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(createIndex)).size() - 1, createIndex);
@@ -193,7 +193,7 @@ Created By: Travis Berthelot
                     }
                     </xsl:if>
                     
-                    //CreateByName
+                    //createByNameActionProcess - //CreateByName
                     @Override
                     public boolean processCreate(final GDObject gdObject, final String createString, final int createIndex) throws Exception {
                         super.processCreateStats(gdObject);
