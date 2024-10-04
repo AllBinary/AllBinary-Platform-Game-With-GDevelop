@@ -80,7 +80,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                         <xsl:if test="not(contains($hasObject, 'found') or contains($hasObjectGroup, 'found'))" >
                             
-                        final String createString = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                        final String createString = gdObjectsFactory.get<xsl:value-of select="$name" />Name(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
                         final int createIndex = gdObjectsFactory.get<xsl:value-of select="$name" />Index(createString);
                         
                     <xsl:call-template name="createByNameGDObject" >
@@ -157,7 +157,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                        final String createString = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                        final String createString = gdObjectsFactory.get<xsl:value-of select="$name" />Name(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
                         final int createIndex = gdObjectsFactory.get<xsl:value-of select="$name" />Index(createString);
 
                     <xsl:call-template name="createByNameGDObject3" >
