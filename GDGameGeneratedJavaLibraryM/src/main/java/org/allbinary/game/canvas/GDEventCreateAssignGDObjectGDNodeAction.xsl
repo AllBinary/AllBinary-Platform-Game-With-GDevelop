@@ -23,6 +23,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDTextEntryObjectActionProcess.xsl" />
 
     <xsl:import href="./action/GDChangeAnimationActionProcess.xsl" />
+    <xsl:import href="./action/GDAnimationSetIndexActionProcess.xsl" />
     <xsl:import href="./action/GDAnimationSetNameActionProcess.xsl" />
     <xsl:import href="./action/GDModVarObjetActionProcess.xsl" />
     <xsl:import href="./action/GDModVarSceneTxtActionProcess.xsl" />
@@ -860,9 +861,6 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'ChangeLayer'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
-                <xsl:if test="$typeValue = 'Cache'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
                 <xsl:if test="$typeValue = 'Montre'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
@@ -939,7 +937,9 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
                 <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetIndex'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetIndexActionProcess" >
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                    </xsl:call-template>
                 </xsl:if>
   
                 <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetName'" >

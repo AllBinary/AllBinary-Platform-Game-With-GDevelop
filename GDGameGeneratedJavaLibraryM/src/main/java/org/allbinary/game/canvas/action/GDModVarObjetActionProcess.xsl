@@ -112,13 +112,16 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
 
                         <xsl:if test="$paramTwoNameObjectsGroups != ''" >
-                            //final GDGameLayer <xsl:value-of select="$paramTwoNameObjectsGroups" />GameLayer = gameLayer2;
+                            <xsl:if test="$paramOneNameObjectsGroups != $paramTwoNameObjectsGroups" >
+                            //This should fail
+                            final GDGameLayer <xsl:value-of select="$paramTwoNameObjectsGroups" />GDGameLayer = null;
+                            </xsl:if>
                         <xsl:text>&#10;</xsl:text>
                             final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$paramTwoNameObjectsGroups" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$paramTwoNameObjectsGroups" />GDGameLayer.gdObject;
                         </xsl:if>
                         <xsl:text>&#10;</xsl:text>
                         <xsl:text>&#10;</xsl:text>
-                                                
+                                                                                            
 <xsl:text>                        </xsl:text><xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             <xsl:if test="text() != $firstParam" >//orignalFirstParam=<xsl:value-of select="text()" />

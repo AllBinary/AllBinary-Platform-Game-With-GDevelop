@@ -63,6 +63,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDSystemInfoIsNativeDesktopAppConditionGDNode.xsl" />
 
     <xsl:import href="./condition/GDAnimationHasAnimationEndedConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDAnimationElapsedTimeConditionGDNode.xsl" />
     
     <xsl:template name="eventsCreateAssignGDObjectGDNodesCondition2" >
         <xsl:param name="caller" />
@@ -1165,6 +1166,12 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::HasAnimationEnded'" >
                     <xsl:call-template name="animatableCapabilityAnimatableBehaviorHasAnimationEndedConditionGDNode" >
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                    </xsl:call-template>
+                </xsl:if>
+                <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::ElapsedTime'" >
+                    <xsl:call-template name="animatableCapabilityAnimatableBehaviorElapsedTimeConditionGDNode" >
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
                     </xsl:call-template>
