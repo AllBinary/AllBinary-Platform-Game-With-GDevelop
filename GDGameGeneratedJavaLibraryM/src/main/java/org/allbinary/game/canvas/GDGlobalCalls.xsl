@@ -173,9 +173,14 @@
 
                             <xsl:if test="not(contains(name, 'IntArray') or contains(name, 'LongArray') or contains(name, 'BoolArray') or contains(name, 'highScoresNameArray'))" >
                                 
+                                <xsl:if test="contains(name, 'Size2') or contains(name, 'Size3')" >
+                                    //TWB - Hack skipping strings that should be defined already.
+                                </xsl:if>
+                                <xsl:if test="not(contains(name, 'Size2') or contains(name, 'Size3'))" >
                                 <xsl:for-each select="children" >
                         public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="value" />";
                                 </xsl:for-each>
+                                </xsl:if>
                         
                         public final String[] <xsl:value-of select="name" /> = {
                                         <xsl:for-each select="children" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template>,

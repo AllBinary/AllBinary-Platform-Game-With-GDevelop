@@ -49,8 +49,21 @@ public class ReduceObjectsForTesting {
 
     public ReduceObjectsForTesting() {
         list.add("AdultRedDragon");
+        list.add("BatEnemy");
     }
+
+    private boolean contains(final String value) {
         
+        final int size = this.list.size();
+        for(int index = 0; index < size; index++) {
+            if(value.indexOf((String) this.list.get(index)) >= 0) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
     private void reduceObjectsInObjectGroups(final JSONArray jsonArray, final String inclusion) {
 //        System.out.println(jsonArray.length());
         //final int size = jsonArray.length();
@@ -59,7 +72,7 @@ public class ReduceObjectsForTesting {
         for(int index = 0; index < jsonArray.length(); index++) {
             jsonObject = jsonArray.getJSONObject(index);
             value = jsonObject.getString(this.gdProjectStrings.NAME);
-            if(value.indexOf((String) this.list.get(0)) >= 0) {
+            if(this.contains(value)) {
                 
             } else if(value.indexOf(inclusion) >= 0) {
                 System.out.println(REMOVING_FROM_OBJECT_GROUP + value);
