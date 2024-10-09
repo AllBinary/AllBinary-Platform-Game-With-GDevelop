@@ -37,6 +37,8 @@ public class ReduceObjectsForTesting {
     private final String PROJECTILES = "Projectiles";
 
     private final String ENEMY_ARRAY = "enemyArray";
+    private final String ENEMY_SIZE2_ARRAY = "enemySize2Array";
+    private final String ENEMY_SIZE3_ARRAY = "enemySize3Array";
     
     private final String LAYOUT = "Layout: ";
     
@@ -147,7 +149,11 @@ public class ReduceObjectsForTesting {
         JSONObject jsonObject;
         for(int index = 0; index < size; index++) {
             jsonObject = jsonArray.getJSONObject(index);
-            if(jsonObject.getString(gdProjectStrings.NAME).compareTo(ENEMY_ARRAY) == 0) {
+            if(jsonObject.getString(gdProjectStrings.NAME).compareTo(this.ENEMY_ARRAY) == 0) {
+                this.reduceVariableArray(jsonObject.getJSONArray(this.gdProjectStrings.CHILDREN));
+            } else if(jsonObject.getString(gdProjectStrings.NAME).compareTo(this.ENEMY_SIZE2_ARRAY) == 0) {
+                this.reduceVariableArray(jsonObject.getJSONArray(this.gdProjectStrings.CHILDREN));
+            } else if(jsonObject.getString(gdProjectStrings.NAME).compareTo(this.ENEMY_SIZE3_ARRAY) == 0) {
                 this.reduceVariableArray(jsonObject.getJSONArray(this.gdProjectStrings.CHILDREN));
             }
         }
