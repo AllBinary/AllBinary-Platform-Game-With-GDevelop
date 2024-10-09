@@ -365,7 +365,7 @@ Created By: Travis Berthelot
                         <xsl:for-each select="objects" >
                             //<xsl:value-of select="$name" />GDObjectListOfList.add(<xsl:value-of select="name" />GDObjectList);
                             <xsl:value-of select="$name" />GDGameLayerListOfList.add(<xsl:value-of select="name" />GDGameLayerList);
-                            <xsl:value-of select="$name" />GDGameLayerRemoveListOfList.add(<xsl:value-of select="name" />GDGameLayerList);
+                            <xsl:value-of select="$name" />GDGameLayerRemoveListOfList.add(<xsl:value-of select="name" />RemoveList);
                             <xsl:value-of select="$name" />CacheGDGameLayerListOfList.add(<xsl:value-of select="name" />CacheGDGameLayerList);
                             //<xsl:value-of select="$name" />GDConditionWithGroupActionsList.add(<xsl:value-of select="name" />GDConditionWithGroupActions);
                         </xsl:for-each>
