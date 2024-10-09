@@ -111,7 +111,7 @@ public class ReduceObjectsForTesting {
         for(int index = 0; index < jsonArray.length(); index++) {
             jsonObject = jsonArray.getJSONObject(index);
             value = jsonObject.getString(this.gdProjectStrings.VALUE);
-            if(value.indexOf((String) this.list.get(0)) >= 0) {
+            if(this.contains(value)) {
 
             } else {
                 System.out.println(REMOVING_FROM_VARIABLE_ARRAY + value);
@@ -139,7 +139,7 @@ public class ReduceObjectsForTesting {
         for(int index = 0; index < jsonArray.length(); index++) {
             jsonObject = jsonArray.getJSONObject(index);
             value = jsonObject.getString(this.gdProjectStrings.NAME);
-            if(value.indexOf((String) this.list.get(0)) >= 0) {
+            if(this.contains(value)) {
                 
             } else if(value.indexOf(ENEMY) >= 0 || value.indexOf(ATTACK) >= 0) {
                 System.out.println(REMOVING_FROM_OBJECTS + value);
