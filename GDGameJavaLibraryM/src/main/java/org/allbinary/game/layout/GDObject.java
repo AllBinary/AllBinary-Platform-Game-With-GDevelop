@@ -77,10 +77,7 @@ public class GDObject
         this.x = x;
         this.y = y;
         this.zOrder = zOrder;
-        this.width = width;
-        this.height = height;
-        this.halfWidth = width / 2;
-        this.halfHeight = height / 2;
+        this.updateSize(width, height);
         
         this.name = name;
         this.type = type;
@@ -94,6 +91,19 @@ public class GDObject
 //                }
 //            }
         
+    }
+
+    public void updateScale(final float scaleX, final float scaleY) {
+        this.initScaleX = scaleX;
+        this.initScaleY = scaleY;
+        this.updateSize((int) (this.width * scaleX), (int) (this.height * scaleY));
+    }
+    
+    public void updateSize(final int width, final int height) {
+        this.width = width;
+        this.height = height;
+        this.halfWidth = width / 2;
+        this.halfHeight = height / 2;
     }
 
     public String getAnimationFromIndex(final int index) {
