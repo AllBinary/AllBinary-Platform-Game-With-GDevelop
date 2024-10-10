@@ -229,7 +229,7 @@ public class GDProjectStrings
     public final String CENTER_POINTS = "centerPoint";
     public final String CUSTOM_COLLISION_MASK = "customCollisionMask";
 
-    public final String SPRITE = "sprite";
+    public final String SPRITE = "Sprite";
     public final String SPRITES = "sprites";
     
     public final String AUTOMATIC = "automatic";

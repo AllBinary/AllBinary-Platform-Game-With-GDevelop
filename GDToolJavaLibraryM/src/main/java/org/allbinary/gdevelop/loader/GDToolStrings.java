@@ -25,12 +25,16 @@ public class GDToolStrings {
 
     public final String GAME_XML_PATH = this.ROOT_PATH + "game.xml";
     
-    public final String GAME_JSON_PATH = this.ROOT_PATH + "game.xml";
+    public final String GAME_JSON_PATH = this.ROOT_PATH + "game.json";
     
-    public final String RESOURCES_PATH = "..\\GDGamesP\\Resources\\2d\\images\\raw\\";
+    public final String RESOURCES_PATH = "..\\Resources\\2d\\images\\raw\\";
+    public final String ASSETS_PATH = "..\\Resources\\assets\\";
+    
+    public final String ASSET_PREFIX = "assets\\";
     
     public final String JSON = "json";
     public final String JAVA = "java";
     public final String PNG = "png";
     public final String XML = "xml";
+    
 }

@@ -57,7 +57,8 @@ public class ReduceObjectsForTesting extends GDJSONGeneratorBase {
     }
 
     private void reduceObjectsInObjectGroups(final JSONArray jsonArray, final String inclusion) {
-//        System.out.println(jsonArray.length());
+        System.out.println("Object Total: " + jsonArray.length());
+
         //final int size = jsonArray.length();
         JSONObject jsonObject;
         String value;
@@ -72,7 +73,7 @@ public class ReduceObjectsForTesting extends GDJSONGeneratorBase {
                 index--;
             }
         }
-        System.out.println(jsonArray.length());
+        
 //        for(int index = 0; index < jsonArray.length(); index++) {
 //            jsonObject = jsonArray.getJSONObject(index);
 //            value = jsonObject.getString(this.gdProjectStrings.NAME);

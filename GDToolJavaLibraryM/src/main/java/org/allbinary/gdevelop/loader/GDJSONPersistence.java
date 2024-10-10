@@ -14,6 +14,7 @@
 package org.allbinary.gdevelop.loader;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import org.allbinary.logic.io.StreamUtil;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -22,14 +23,14 @@ import org.json.JSONTokener;
  *
  * @author User
  */
-public class GDJSONLoader {
+public class GDJSONPersistence {
     
-    private static final GDJSONLoader instance = new GDJSONLoader();
+    private static final GDJSONPersistence instance = new GDJSONPersistence();
 
     /**
      * @return the instance
      */
-    public static GDJSONLoader getInstance() {
+    public static GDJSONPersistence getInstance() {
         return instance;
     }
     
@@ -48,5 +49,20 @@ public class GDJSONLoader {
         final JSONObject gameAsConfigurationJSONObject = (JSONObject) jsonTokener.nextValue();
         
         return gameAsConfigurationJSONObject;
-    }    
+    }
+    
+    public void save(final JSONObject gameAsConfigurationJSONObject) throws Exception {
+        
+        final byte[] byteArray = gameAsConfigurationJSONObject.toString().getBytes();
+        System.out.println("Saving bytes: " + byteArray.length);
+        
+        final FileOutputStream outputStream = new FileOutputStream(gdToolStrings.ROOT_PATH + "game_generated_collision_mask.json");
+                
+        outputStream.write(byteArray);
+        
+        outputStream.flush();
+        
+        outputStream.close();
+    }
+
 }

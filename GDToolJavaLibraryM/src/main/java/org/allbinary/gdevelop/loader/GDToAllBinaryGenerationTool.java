@@ -125,7 +125,7 @@ public class GDToAllBinaryGenerationTool
         
         final StringMaker stringMaker = new StringMaker();
 
-        final JSONObject gameAsConfigurationJSONObject = GDJSONLoader.getInstance().load();
+        final JSONObject gameAsConfigurationJSONObject = GDJSONPersistence.getInstance().load();
         
 //        new ReduceObjectsForTesting().process(gameAsConfigurationJSONObject);
 

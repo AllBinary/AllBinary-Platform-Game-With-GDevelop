@@ -29,13 +29,13 @@ public class GDJSONGeneratorBase {
     
     private final String LAYOUT = "Layout: ";
     
-    private final String REMOVING_FROM_LAYOUT = "Removing from Layout: ";
+    private final String PROCESSING_LAYOUT = "Processing Layout: ";
     
-    public void processLayout(final JSONObject jsonObject) {
+    public void processLayout(final JSONObject jsonObject) throws Exception {
         
     }
     
-    public void process(final JSONObject gameAsConfigurationJSONObject) {
+    public void process(final JSONObject gameAsConfigurationJSONObject) throws Exception {
         
         final JSONArray jsonArray = gameAsConfigurationJSONObject.getJSONArray(gdProjectStrings.LAYOUTS);
         
@@ -47,7 +47,7 @@ public class GDJSONGeneratorBase {
             value = jsonObject.getString(this.gdProjectStrings.NAME);
             System.out.println(LAYOUT + value);
             if(value.indexOf(LEVEL) >= 0) {
-                System.out.println(REMOVING_FROM_LAYOUT + value);
+                System.out.println(PROCESSING_LAYOUT + value);
                 this.processLayout(jsonObject);
             }
         }
