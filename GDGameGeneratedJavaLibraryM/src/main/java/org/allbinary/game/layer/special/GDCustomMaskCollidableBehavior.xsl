@@ -94,6 +94,11 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
 
     public boolean isCollision(final CollidableCompositeLayer collisionLayer) 
     {
+    
+        if(this.ownerLayer == collisionLayer) {
+            return false;
+        }
+    
 //        final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) this.ownerLayer);
 //        if (customGameLayer.gdObject.name.compareTo(B) == 0) {
 //            LogUtil.put(LogFactory.getInstance("isCollision: " + customGameLayer.toString(), this, commonStrings.PROCESS));
@@ -202,6 +207,10 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
     {
         //final StringMaker stringBuilder = new StringMaker();
         //LogUtil.put(LogFactory.getInstance(stringBuilder.append(':').append(this.ownerLayer.getName()).append(':').append(collisionLayer.getName()).toString(), this, IS_COLLISION));
+        
+        if(this.ownerLayer == collisionLayer) {
+            return false;
+        }
         
 //        if(!this.ownerLayer.getName().startsWith("player_bullet") || !collisionLayer.getName().startsWith("player_bullet")) {
 //            final StringMaker stringBuilder = new StringMaker();
