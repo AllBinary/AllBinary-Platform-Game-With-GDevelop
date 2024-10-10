@@ -57,14 +57,16 @@ public class GDTestLoadAll
         final AbFile[] files = FileWrapperUtil.wrapFiles(new AbFile(gdToolStrings.ROOT_PATH).listFiles(visitorFileFilter));
         //final int size = files.size();
         final int size = files.length;
-        String jsonFileName = gdToolStrings.ROOT_PATH + "game.json";
+        String jsonFileName = gdToolStrings.GAME_JSON_PATH;
         AbFile abFile;
+
+        final String GIT = ".git";
 
         for(int index = 0; index < size; index++) {
             //abFile = ((AbFile) files.get(index));
             abFile = ((AbFile) files[index]);
             jsonFileName = abFile.getAbsolutePath();
-            if(!abFile.isDirectory() && jsonFileName.indexOf(".git") < 0) {
+            if(!abFile.isDirectory() && jsonFileName.indexOf(GIT) < 0) {
                 LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + jsonFileName, this, commonStrings.PROCESS));
 
                 final FileInputStream inputStream = new FileInputStream(jsonFileName);

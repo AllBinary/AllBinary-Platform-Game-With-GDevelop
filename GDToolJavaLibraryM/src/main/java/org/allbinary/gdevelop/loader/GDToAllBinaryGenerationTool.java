@@ -123,17 +123,11 @@ public class GDToAllBinaryGenerationTool
     {
         timeDelayHelper.setStartTime();
         
-        final StreamUtil streamUtil = StreamUtil.getInstance();
-        final SharedBytes sharedBytes = SharedBytes.getInstance();
-        sharedBytes.outputStream.reset();
-
         final StringMaker stringMaker = new StringMaker();
-        
-        final FileInputStream inputStream = new FileInputStream(gdToolStrings.ROOT_PATH + "game.json");
-        final String gameAsConfiguration = new String(streamUtil.getByteArray(inputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
-        final JSONTokener jsonTokener = new JSONTokener(gameAsConfiguration);
-        final JSONObject gameAsConfigurationJSONObject = (JSONObject) jsonTokener.nextValue();
+        final JSONObject gameAsConfigurationJSONObject = GDJSONLoader.getInstance().load();
+        
+//        new ReduceObjectsForTesting().process(gameAsConfigurationJSONObject);
 
         final GDProject gdProject = new GDProject();
         gdProject.load(gameAsConfigurationJSONObject);

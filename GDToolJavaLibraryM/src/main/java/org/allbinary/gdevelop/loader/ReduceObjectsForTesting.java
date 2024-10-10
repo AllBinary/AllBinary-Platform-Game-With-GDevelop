@@ -13,7 +13,6 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import org.allbinary.gdevelop.json.GDProjectStrings;
 import org.allbinary.util.BasicArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,13 +21,9 @@ import org.json.JSONObject;
  *
  * @author User
  */
-public class ReduceObjectsForTesting {
-    
-    private final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
+public class ReduceObjectsForTesting extends GDJSONGeneratorBase {
     
     private final BasicArrayList list = new BasicArrayList();
-   
-    private final String LEVEL = "Level";
     
     private final String ENEMY = "Enemy";
     private final String ATTACK = "Attack";
@@ -40,9 +35,6 @@ public class ReduceObjectsForTesting {
     private final String ENEMY_SIZE2_ARRAY = "enemySize2Array";
     private final String ENEMY_SIZE3_ARRAY = "enemySize3Array";
     
-    private final String LAYOUT = "Layout: ";
-    
-    private final String REMOVING_FROM_LAYOUT = "Removing from Layout: ";
     private final String REMOVING_FROM_OBJECT_GROUP = "Removing from ObjectGroup: ";
     private final String REMOVING_FROM_OBJECTS = "Removing from Objects: ";
     private final String REMOVING_FROM_VARIABLE_ARRAY = "Removing from Variable Array: ";
@@ -171,25 +163,11 @@ public class ReduceObjectsForTesting {
             }
         }
     }
-    
-    public void process(final JSONObject gameAsConfigurationJSONObject) {
-        
-        final JSONArray jsonArray = gameAsConfigurationJSONObject.getJSONArray(gdProjectStrings.LAYOUTS);
-        
-        final int size = jsonArray.length();
-        JSONObject jsonObject;
-        String value;
-        for(int index = 0; index < size; index++) {
-            jsonObject = jsonArray.getJSONObject(index);
-            value = jsonObject.getString(this.gdProjectStrings.NAME);
-            System.out.println(LAYOUT + value);
-            if(value.indexOf(LEVEL) >= 0) {
-                System.out.println(REMOVING_FROM_LAYOUT + value);
-                this.reduceObjectGroups(jsonObject);
-                this.reduceObjects(jsonObject);
-                this.reduceVariables(jsonObject);
-            }
-        }
-        
+
+    public void processLayout(final JSONObject jsonObject) {
+        this.reduceObjectGroups(jsonObject);
+        this.reduceObjects(jsonObject);
+        this.reduceVariables(jsonObject);
     }
+
 }
