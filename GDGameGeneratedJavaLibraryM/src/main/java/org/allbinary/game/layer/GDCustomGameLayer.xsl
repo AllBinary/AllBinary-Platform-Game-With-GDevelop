@@ -169,6 +169,14 @@ Created By: Travis Berthelot
 
                     protected final Rectangle[][] rectangleArrayOfArrays;
 
+                    public boolean hasCollisionMask() {
+                        if(this.rectangleArrayOfArrays != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.rectangleArrayOfArrays.length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                    
                     protected AllBinaryGameLayerManager allBinaryGameLayerManager;
 
                     protected BasicAccelerationProperties acceleration;
@@ -249,7 +257,7 @@ Created By: Travis Berthelot
                 <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
                     org.allbinary.game.behavior.topview.GeographicMapTopViewLayerBehavior topViewGameBehavior;
                     
-                    if(this.rectangleArrayOfArrays != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.rectangleArrayOfArrays.length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                    if(this.hasCollisionMask()) {
                     
                     topViewGameBehavior = new org.allbinary.game.behavior.topview.GeographicMapTopViewMaskGameLayerBehavior(64, false, 6) {
 
