@@ -127,11 +127,11 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
             if(customGameLayer.hasCollisionMask()) {
 
                 final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
-                final GPoint maskPoint = ownerMaskRectangle.getPoint();
+                final GPoint maskPoint = maskRectangle.getPoint();
                         
                 return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskPoint.getX() + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskPoint.getY( )+ ownerMaskRectangle.getHeight(), 
                     //viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskRectangle.getWidth(), viewY + maskRectangle.getHeight());
-                    viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskPoint.getX() + maskRectangle.getWidth(), viewY + maskPoint.getY( )+ maskRectangle.getHeight());
+                    viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskPoint.getX() + maskRectangle.getWidth(), viewY + maskPoint.getY() + maskRectangle.getHeight());
             
             } else {
 
@@ -236,11 +236,11 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
             if(customGameLayer.hasCollisionMask()) {
             
                 final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
-                final GPoint maskPoint = ownerMaskRectangle.getPoint();
+                final GPoint maskPoint = maskRectangle.getPoint();
 
                 return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskPoint.getX() + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskPoint.getY( )+ ownerMaskRectangle.getHeight(), 
                     //viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskRectangle.getWidth(), viewY + maskRectangle.getHeight());
-                    viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskPoint.getX() + maskRectangle.getWidth(), viewY + maskPoint.getY( )+ maskRectangle.getHeight());
+                    viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskPoint.getX() + maskRectangle.getWidth(), viewY + maskPoint.getY() + maskRectangle.getHeight());
                         
             } else {
 

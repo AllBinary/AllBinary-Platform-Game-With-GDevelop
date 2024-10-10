@@ -169,6 +169,7 @@ Created By: Travis Berthelot
 
                     protected final Rectangle[][] rectangleArrayOfArrays;
 
+<!--
                     public boolean hasCollisionMask() {
                         if(this.rectangleArrayOfArrays != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.rectangleArrayOfArrays.length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                             return true;
@@ -176,6 +177,7 @@ Created By: Travis Berthelot
                             return false;
                         }
                     }
+-->
                     
                     protected AllBinaryGameLayerManager allBinaryGameLayerManager;
 
