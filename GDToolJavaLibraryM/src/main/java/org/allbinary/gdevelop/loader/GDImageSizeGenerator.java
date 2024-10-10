@@ -33,6 +33,7 @@ import org.allbinary.util.BasicArrayList;
 public class GDImageSizeGenerator {
 
     private final CommonSeps commonSeps = CommonSeps.getInstance();
+    private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
     public BasicArrayList process() throws IOException {
         
@@ -40,7 +41,7 @@ public class GDImageSizeGenerator {
         
         final StringMaker stringMaker = new StringMaker();
         final FileListFetcher fileListFetcher = FileListFetcher.getInstance();
-        final BasicArrayList files = fileListFetcher.getFiles("G:\\mnt\\bc\\mydev\\GDGamesP\\Resources\\2d\\images\\raw\\", "png");
+        final BasicArrayList files = fileListFetcher.getFiles(this.gdToolStrings.RESOURCES_PATH, this.gdToolStrings.PNG);
         AbFile abFile;
         BufferedImage bufferedImage;
         final int size = files.size();

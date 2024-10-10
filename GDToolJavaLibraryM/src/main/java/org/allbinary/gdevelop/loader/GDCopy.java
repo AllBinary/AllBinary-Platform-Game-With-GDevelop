@@ -36,7 +36,7 @@ public class GDCopy {
             final StringMaker stringMaker = new StringMaker();
             
             final BasicArrayList files = FileListFetcher.getInstance().getFiles(
-                    gdToolStrings.ROOT_PATH + "Resources\\2d\\images\\raw", "json");
+                    gdToolStrings.ROOT_PATH + "Resources\\2d\\images\\raw", gdToolStrings.JSON);
 
             final String PATH = gdToolStrings.ROOT_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\";
 

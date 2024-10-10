@@ -51,7 +51,6 @@ public class GDToAllBinaryResourcesGenerator
 
     private final String TSJ = ".tsj";
     private final String IMAGE = "image";
-    private final String RELATIVE_RESOURCES_PATH = "..\\platform\\j2se\\GDGameJ2SEApplicationM\\src\\main\\resources\\";
     
     public GDToAllBinaryResourcesGenerator() {
         resourceStringMaker.append(GD_KEY);
@@ -242,7 +241,7 @@ public class GDToAllBinaryResourcesGenerator
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         sharedBytes.outputStream.reset();
         
-        final FileInputStream inputStream = new FileInputStream(RELATIVE_RESOURCES_PATH + path);
+        final FileInputStream inputStream = new FileInputStream(this.gdToolStrings.RESOURCES_PATH + path);
         sharedBytes.outputStream.reset();
         final String gameAsConfiguration = new String(streamUtil.getByteArray(inputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
