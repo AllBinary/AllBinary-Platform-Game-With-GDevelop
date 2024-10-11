@@ -171,7 +171,7 @@ Created By: Travis Berthelot
 
 <!--
                     public boolean hasCollisionMask() {
-                        if(this.rectangleArrayOfArrays != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.rectangleArrayOfArrays.length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                        if(this.rectangleArrayOfArrays != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.rectangleArrayOfArrays.length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.rectangleArrayOfArrays[0].length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                             return true;
                         } else {
                             return false;

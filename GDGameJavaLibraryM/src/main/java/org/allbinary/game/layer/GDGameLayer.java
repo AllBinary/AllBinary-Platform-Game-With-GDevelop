@@ -156,7 +156,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             scaleProperties.scaleHeight = this.gdObject.Height(null);
             if(animationName != null && animationName.indexOf(HACK_ANIMATION_NAME) >= 0) {
                 scaleProperties.shouldScale = true;
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.gdObject.toShortString()).append(scaleProperties.toString()).toString(), this, commonStrings.CONSTRUCTOR));
+                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.gdObject.toShortString()).append(scaleProperties.toString()).toString(), this, commonStrings.CONSTRUCTOR));
             }
             animationInterfaceFactoryInterfaceArray[index].setInitialScale(scaleProperties);
         }
@@ -182,6 +182,14 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
         this.rectangleArrayOfArrays = rectangleArrayOfArrays;
     }
 
+    public boolean hasCollisionMask() {
+        if (this.rectangleArrayOfArrays != null && this.rectangleArrayOfArrays.length > 0 && this.rectangleArrayOfArrays[0].length > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public void setGDObject(final GDObject gdObject) throws Exception {
         
         final int size = this.initIndexedAnimationInterfaceArray.length;
@@ -510,11 +518,13 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     }
     
     //private boolean isFirst = true;
-    private final String PAINT = "paint";
+    //private final String PAINT = "paint";
     public void paint(final Graphics graphics)
     {
         try
         {
+            super.paintFirst(graphics);
+
             //int x = this.x - quarterWidth;
             //int y = this.y - quarterHeight;
             final ViewPosition viewPosition = this.getViewPosition();
@@ -707,7 +717,7 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
 //        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().PINK);
 //        graphics.drawRect(viewX - this.getHalfWidth(), viewY - this.getHalfHeight(), this.getWidth() * 2, this.getHeight() * 2);
 
-        super.paint(graphics);
+        super.paintDebug(graphics);
 
 //        final StringMaker stringMaker = new StringMaker();
 //        final CommonSeps commonSeps = CommonSeps.getInstance();
