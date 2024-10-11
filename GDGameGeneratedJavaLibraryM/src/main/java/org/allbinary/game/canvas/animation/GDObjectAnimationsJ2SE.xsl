@@ -255,9 +255,10 @@ Created By: Travis Berthelot
                                 </xsl:variable>
                 this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
+                <xsl:variable name="animationName1" ><xsl:for-each select="animations" ><xsl:if test="position() = 1" ><xsl:value-of select="$name" /><xsl:value-of select="name" />1</xsl:if></xsl:for-each></xsl:variable>
+                
                 <xsl:for-each select="animations" >
                     <xsl:if test="string-length(name) > 0" >
-                    <xsl:if test="position() = 1" >
                     <xsl:if test="not(contains($name, 'Attack') or contains($name, 'Projectile') or contains($name, 'MaskEnemy'))" >
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:variable name="animationPosition" ><xsl:value-of select="position()" /></xsl:variable>
@@ -276,7 +277,50 @@ Created By: Travis Berthelot
                     <xsl:if test="$animationPosition = 1 and contains($hasCustomCollisionMask, 'found')" >
                 final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][0];
                     </xsl:if>
-                                        
+                    
+                    <xsl:if test="position() = 1" >
+
+                    <xsl:for-each select="directions" >
+                        <xsl:for-each select="sprites" >
+                                                        
+                            <xsl:variable name="image" ><xsl:value-of select="image" /></xsl:variable>
+                            <xsl:variable name="position" ><xsl:value-of select="position()" /></xsl:variable>
+                            <xsl:variable name="last" ><xsl:value-of select="last()" /></xsl:variable>
+                            <xsl:if test="hasCustomCollisionMask = 'true'" >
+
+                            <xsl:for-each select="customCollisionMask" >
+                                <xsl:if test="$name != 'Player'" >
+                //customCollisionMask - <xsl:value-of select="$image" /> - non Player
+                                    <xsl:if test="$position = 1" >
+                final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
+                                pointFactory.getInstance((int) (<xsl:value-of select="array[1]/x" /> * scale), (int) (<xsl:value-of select="array[1]/y" /> * scale)),
+                                    (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * scale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * scale)
+                                );
+
+//                LogUtil.put(LogFactory.getInstance("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS));
+
+                                    </xsl:if>
+                                </xsl:if>
+                                <xsl:if test="$name = 'Player'" >
+                                    <xsl:if test="$position = 1" >
+                //customCollisionMask - <xsl:value-of select="$image" /> - Player
+                final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
+                                pointFactory.getInstance((int) (<xsl:value-of select="array[1]/x" /> * hackScale), (int) (<xsl:value-of select="array[1]/y" /> * hackScale)),
+                                    (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale)
+                                );
+
+//                LogUtil.put(LogFactory.getInstance("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS));
+
+                                    </xsl:if>
+                                </xsl:if>
+                
+                            </xsl:for-each>
+                            </xsl:if>
+                        </xsl:for-each>
+                    </xsl:for-each>
+
+                    </xsl:if>
+
                     <xsl:for-each select="directions" >
                         <xsl:for-each select="sprites" >
                                                         
@@ -290,32 +334,7 @@ Created By: Travis Berthelot
                             </xsl:if>
 
                             <xsl:for-each select="customCollisionMask" >
-                                <xsl:if test="$name != 'Player'" >
-                //customCollisionMask - <xsl:value-of select="image" /> - non Player
-                                    <xsl:if test="$position = 1" >
-                final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
-                                pointFactory.getInstance((int) (<xsl:value-of select="array[1]/x" /> * scale), (int) (<xsl:value-of select="array[1]/y" /> * scale)),
-                                    (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * scale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * scale)
-                                );
-
-//                LogUtil.put(LogFactory.getInstance("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS));
-
-                                    </xsl:if>
-                                </xsl:if>
-                                <xsl:if test="$name = 'Player'" >
-                                    <xsl:if test="$position = 1" >
-                //customCollisionMask - <xsl:value-of select="image" /> - Player
-                final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
-                                pointFactory.getInstance((int) (<xsl:value-of select="array[1]/x" /> * hackScale), (int) (<xsl:value-of select="array[1]/y" /> * hackScale)),
-                                    (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale)
-                                );
-
-//                LogUtil.put(LogFactory.getInstance("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS));
-
-                                    </xsl:if>
-                                </xsl:if>
-                
-                rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][<xsl:value-of select="$position - 1" />] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" />1CollisionMask;
+                rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][<xsl:value-of select="$position - 1" />] = <xsl:value-of select="$animationName1" />CollisionMask;
                             </xsl:for-each>
                             </xsl:if>
                         </xsl:for-each>
@@ -326,7 +345,6 @@ Created By: Travis Berthelot
                     </xsl:if>
 
                     </xsl:if>           
-                    </xsl:if>
                     </xsl:if>
                 </xsl:for-each>
 
