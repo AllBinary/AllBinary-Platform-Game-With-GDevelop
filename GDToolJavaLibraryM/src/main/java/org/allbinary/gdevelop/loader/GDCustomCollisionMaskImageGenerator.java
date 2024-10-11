@@ -32,94 +32,23 @@ import org.json.JSONObject;
  *
  * @author User
  */
-public class GDCustomCollisionMaskImageGenerator extends GDJSONGeneratorBase {
+public class GDCustomCollisionMaskImageGenerator extends GDCustomCollisionMaskRemoval {
     
     //private final CommonSeps commonSeps = CommonSeps.getInstance();
     private final PositionStrings positionStrings = PositionStrings.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
-    private final String UPDATE_SPRITE = "Update Sprite: ";
     private final String LOAD_IMAGE = "Load Image: ";
     private final String LOAD_SPRITE = "Load Sprite: ";
     private final String ADJUSTING_HEIGHT = "Adjusting Height from Sprite: ";
     private final String SKIPPING_IMAGE = "Skipping Image: ";
-    
-    public void process() throws Exception {
-        final JSONObject gameAsConfigurationJSONObject = GDJSONPersistence.getInstance().load();
-        this.process(gameAsConfigurationJSONObject);
-        
-        GDJSONPersistence.getInstance().save(gameAsConfigurationJSONObject);
-    }
 
-    public void processLayout(final JSONObject jsonObject) throws Exception {
-        this.processObjects(jsonObject);
+    public boolean processObjects(final String name) {
+        return true;
     }
     
-    private void processObjects(final JSONObject layoutJSONObject) throws Exception {
-
-        final JSONArray jsonArray = layoutJSONObject.getJSONArray(this.gdProjectStrings.OBJECTS);
-
-        System.out.println("Object Total: " + jsonArray.length());
-        
-        final int size = jsonArray.length();
-        JSONObject jsonObject;
-        String type;
-        for(int index = 0; index < size; index++) {
-            jsonObject = jsonArray.getJSONObject(index);
-            type = jsonObject.getString(this.gdProjectStrings.TYPE);
-            //System.out.println("Type: " + type);
-            if(type.compareTo(this.gdProjectStrings.SPRITE) == 0) {
-                System.out.println(UPDATE_SPRITE + jsonObject.getString(this.gdProjectStrings.NAME));
-                this.processSprite(jsonObject);
-            } 
-//            else {
-//                System.out.println("Other Type: " + type);
-//            }
-        }
-
-//        for(int index = 0; index < jsonArray.length(); index++) {
-//            jsonObject = jsonArray.getJSONObject(index);
-//            value = jsonObject.getString(this.gdProjectStrings.NAME);
-//            System.out.println(value);
-//        }
-    }
-    
-    public void processSprite(final JSONObject jsonObject) throws Exception {
-        final JSONArray jsonArray = jsonObject.getJSONArray(this.gdProjectStrings.ANIMATIONS);
-        this.processAnimations(jsonArray);            
-    }    
-
-    public void processAnimations(final JSONArray jsonArray) throws Exception {
-        final int size = jsonArray.length();
-        JSONObject jsonObject;
-        JSONArray animationsJSONArray;
-        for(int index = 0; index < size; index++) {
-            jsonObject = jsonArray.getJSONObject(index);
-            animationsJSONArray = jsonObject.getJSONArray(this.gdProjectStrings.DIRECTIONS);
-            this.processDirections(animationsJSONArray);
-        }
-    }
-    
-    public void processDirections(final JSONArray jsonArray) throws Exception {
-        final int size = jsonArray.length();
-        JSONObject jsonObject;
-        JSONArray spritesJSONArray;
-        for(int index = 0; index < size; index++) {
-            jsonObject = jsonArray.getJSONObject(index);
-            spritesJSONArray = jsonObject.getJSONArray(this.gdProjectStrings.SPRITES);
-            this.processSprites(spritesJSONArray);
-        }
-        
-        //this.gdProjectStrings.CUSTOM_COLLISION_MASK
-    }
-
-    public void processSprites(final JSONArray jsonArray) throws Exception {
-        final int size = jsonArray.length();
-        JSONObject jsonObject;
-        for(int index = 0; index < size; index++) {
-            jsonObject = jsonArray.getJSONObject(index);
-            this.addOrReplaceCollisionMask(jsonObject);
-        }   
+    public void updateSprite(final JSONObject jsonObject) throws Exception {
+        this.addOrReplaceCollisionMask(jsonObject);
     }
 
     public Rectangle getRectangle(final BufferedImage bufferedImage) {

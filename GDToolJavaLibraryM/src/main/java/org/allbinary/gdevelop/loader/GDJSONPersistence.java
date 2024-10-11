@@ -56,7 +56,7 @@ public class GDJSONPersistence {
         final byte[] byteArray = gameAsConfigurationJSONObject.toString().getBytes();
         System.out.println("Saving bytes: " + byteArray.length);
         
-        final FileOutputStream outputStream = new FileOutputStream(gdToolStrings.ROOT_PATH + "game_generated_collision_mask.json");
+        final FileOutputStream outputStream = new FileOutputStream(gdToolStrings.ROOT_PATH + "game_updated.json");
                 
         outputStream.write(byteArray);
         
