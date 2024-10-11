@@ -269,6 +269,11 @@ Created By: Travis Berthelot
                                         
                     <xsl:for-each select="directions" >
                         <xsl:for-each select="sprites" >
+                            
+                            <xsl:if test="position() = 1" >
+                rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />] = new Rectangle[<xsl:value-of select="last()" />];
+                            </xsl:if>
+                            
                             <xsl:variable name="image" ><xsl:value-of select="image" /></xsl:variable>
                             <xsl:variable name="position" ><xsl:value-of select="position()" /></xsl:variable>
                             <xsl:variable name="last" ><xsl:value-of select="last()" /></xsl:variable>
@@ -282,15 +287,8 @@ Created By: Travis Berthelot
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * scale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * scale)
                                 );
 
-//               LogUtil.put(LogFactory.getInstance("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS));
+//                LogUtil.put(LogFactory.getInstance("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS));
 
-                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> rectangleArrayOfArrays.length; index++) {
-                    rectangleArrayOfArrays[index] = new Rectangle[<xsl:value-of select="$last" />];
-                    for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$last" />; index2++) {
-                        rectangleArrayOfArrays[index][index2] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
-                    }
-                }
-                this.addRectangleArrayOfArrays(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
                                     </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="$name = 'Player'" >
@@ -301,21 +299,20 @@ Created By: Travis Berthelot
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale)
                                 );
 
-//               LogUtil.put(LogFactory.getInstance("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS));
+//                LogUtil.put(LogFactory.getInstance("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS));
 
-                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> rectangleArrayOfArrays.length; index++) {
-                    rectangleArrayOfArrays[index] = new Rectangle[<xsl:value-of select="$last" />];
-                    for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$last" />; index2++) {
-                        rectangleArrayOfArrays[index][index2] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
-                    }
-                }
-                this.addRectangleArrayOfArrays(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
                                     </xsl:if>
                                 </xsl:if>
+                
+                rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][<xsl:value-of select="$position - 1" />] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" />1CollisionMask;
                             </xsl:for-each>
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:for-each>
+
+                    <xsl:if test="$animationPosition = last()" >
+                this.addRectangleArrayOfArrays(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
+                    </xsl:if>
 
                     </xsl:if>           
                     </xsl:if>
