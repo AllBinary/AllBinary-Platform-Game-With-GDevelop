@@ -117,13 +117,14 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
             //return super.isCollision(collisionLayer);
             //return this.isCollision2(collisionLayer);
             final GDCustomGameLayer collisionMaskCustomGameLayer2 = (GDCustomGameLayer) this.ownerLayer;
-            final Rectangle ownerMaskRectangle = collisionMaskCustomGameLayer2.rectangleArrayOfArrays[0][0];
+            final int frame = collisionMaskCustomGameLayer2.getIndexedAnimationInterface().getFrame();
+            final Rectangle ownerMaskRectangle = collisionMaskCustomGameLayer2.rectangleArrayOfArrays[collisionMaskCustomGameLayer2.gdObject.animation][frame];
             final GPoint ownerMaskPoint = ownerMaskRectangle.getPoint();
             final ViewPosition ownerViewPosition = this.ownerLayer.getViewPosition();
             final int ownerViewX = ownerViewPosition.getX();
             final int ownerViewY = ownerViewPosition.getY();
             
-//            final Rectangle maskRectangle = collisionMaskCustomGameLayer.rectangleArrayOfArrays[0][0];
+//            final Rectangle maskRectangle = collisionMaskCustomGameLayer.rectangleArrayOfArrays[.gdObject.animation][frame3];
 //            final GPoint maskPoint = maskRectangle.getPoint();
             final ViewPosition viewPosition = customGameLayer.getViewPosition();
             final int viewX = viewPosition.getX();
@@ -131,7 +132,8 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
 
             if(customGameLayer.hasCollisionMask()) {
 
-                final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
+                final int frame2 = customGameLayer.getIndexedAnimationInterface().getFrame();
+                final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame2];
                 final GPoint maskPoint = maskRectangle.getPoint();
                         
                 return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskPoint.getX() + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskPoint.getY( )+ ownerMaskRectangle.getHeight(), 
@@ -230,13 +232,14 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
                 //LogUtil.put(LogFactory.getInstance(this.toString(collisionLayer, stringBuilder), this, "isCollision - super"));
                 //return super.isCollision(collisionLayer);
             final GDCustomGameLayer collisionMackCustomGameLayer = (GDCustomGameLayer) this.ownerLayer;
-            final Rectangle ownerMaskRectangle = collisionMackCustomGameLayer.rectangleArrayOfArrays[0][0];
+            final int frame = collisionMackCustomGameLayer.getIndexedAnimationInterface().getFrame();
+            final Rectangle ownerMaskRectangle = collisionMackCustomGameLayer.rectangleArrayOfArrays[collisionMackCustomGameLayer.gdObject.animation][frame];
             final GPoint ownerMaskPoint = ownerMaskRectangle.getPoint();
             final ViewPosition ownerViewPosition = this.ownerLayer.getViewPosition();
             final int ownerViewX = ownerViewPosition.getX();
             final int ownerViewY = ownerViewPosition.getY();
             
-//            final Rectangle maskRectangle = collisionMaskCustomGameLayer.rectangleArrayOfArrays[0][0];
+//            final Rectangle maskRectangle = collisionMaskCustomGameLayer.rectangleArrayOfArrays[.gdObject.animation][frame3];
 //            final GPoint maskPoint = maskRectangle.getPoint();
             final ViewPosition viewPosition = customGameLayer.getViewPosition();
             final int viewX = viewPosition.getX();
@@ -244,7 +247,8 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
 
             if(customGameLayer.hasCollisionMask()) {
             
-                final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
+                final int frame2 = customGameLayer.getIndexedAnimationInterface().getFrame();
+                final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame2];
                 final GPoint maskPoint = maskRectangle.getPoint();
 
                 return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskPoint.getX() + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskPoint.getY( )+ ownerMaskRectangle.getHeight(), 
@@ -334,32 +338,37 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
         ForcedLogUtil.log("No Longer Used", this);
     }
 
-    private final BasicColor PURPLE = BasicColorFactory.getInstance().PURPLE;
+    private final BasicColor COLLISION_MASK_COLOR = BasicColorFactory.getInstance().YELLOW;
     
     protected final BasicColorSetUtil basicColorUtil = 
         BasicColorSetUtil.getInstance();
     
     public void paint(final Graphics graphics)
     {
-        final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) this.ownerLayer;
-        final Rectangle ownerMaskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
-        final GPoint ownerMaskPoint = ownerMaskRectangle.getPoint();
-        
-        final ViewPosition viewPosition = this.ownerLayer.getViewPosition();
-        final int viewX = viewPosition.getX();
-        final int viewY = viewPosition.getY();
+        try {
+            
+            final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) this.ownerLayer;
+            final int frame = customGameLayer.getIndexedAnimationInterface().getFrame();
+            final Rectangle ownerMaskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame];
+            final GPoint ownerMaskPoint = ownerMaskRectangle.getPoint();
 
-        //LogUtil.put(LogFactory.getInstance("viewX: ").append(viewX).append(" viewY: ").append(viewY, this, "paint"));
+            final ViewPosition viewPosition = this.ownerLayer.getViewPosition();
+            final int viewX = viewPosition.getX();
+            final int viewY = viewPosition.getY();
 
-        this.basicColorUtil.setBasicColor(graphics, PURPLE);
+            //LogUtil.put(LogFactory.getInstance("viewX: ").append(viewX).append(" viewY: ").append(viewY, this, "paint"));
+            this.basicColorUtil.setBasicColor(graphics, COLLISION_MASK_COLOR);
 
-        graphics.drawRect(viewX + ownerMaskPoint.getX(), viewY + ownerMaskPoint.getY(), ownerMaskRectangle.getWidth(), ownerMaskRectangle.getHeight());
-        //this.getViewPosition().getX2() - viewX,
-        //this.getViewPosition().getY2() - viewY);
+            graphics.drawRect(viewX + ownerMaskPoint.getX(), viewY + ownerMaskPoint.getY(), ownerMaskRectangle.getWidth(), ownerMaskRectangle.getHeight());
+            //this.getViewPosition().getX2() - viewX,
+            //this.getViewPosition().getY2() - viewY);
 
-        //graphics.drawRect(viewX, viewY, width, height);
+            //graphics.drawRect(viewX, viewY, width, height);
+            //super.paint(graphics);
 
-        //super.paint(graphics);
+        } catch(Exception e) {
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION + this.ownerLayer.getName(), this, commonStrings.CONSTRUCTOR, e));
+        }
     }
     
     public String toString(final CollidableCompositeLayer collisionLayer, final StringMaker stringBuilder) {

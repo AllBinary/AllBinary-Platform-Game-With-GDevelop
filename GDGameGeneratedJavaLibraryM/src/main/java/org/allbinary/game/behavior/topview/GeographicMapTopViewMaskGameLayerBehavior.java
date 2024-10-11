@@ -97,7 +97,8 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     private BasicArrayList get(final BasicGeographicMap[] geographicMapInterfaceArray, final BasicArrayList geographicMapCellPositionList, final AllBinaryLayer layer, final int x, final int y) throws Exception {
         
         final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) layer;
-        final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
+        final int frame = customGameLayer.getIndexedAnimationInterface().getFrame();
+        final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame];
         final GPoint maskPoint = maskRectangle.getPoint();
         final ViewPosition viewPosition = customGameLayer.getViewPosition();
         final int viewX = viewPosition.getX();
@@ -119,7 +120,8 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     private GeographicMapCellPosition getLeftPosition(final BasicGeographicMap[] geographicMapInterfaceArray, final AllBinaryLayer layer) throws Exception {
 
         final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) layer;
-        final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
+        final int frame = customGameLayer.getIndexedAnimationInterface().getFrame();
+        final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame];
         final GPoint maskPoint = maskRectangle.getPoint();
         final ViewPosition viewPosition = customGameLayer.getViewPosition();
         final int viewX = viewPosition.getX();
@@ -134,7 +136,8 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
     private GeographicMapCellPosition getRightPosition(final BasicGeographicMap[] geographicMapInterfaceArray, final AllBinaryLayer layer) throws Exception {
 
         final GDCustomGameLayer customGameLayer = (GDCustomGameLayer) layer;
-        final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[0][0];
+        final int frame = customGameLayer.getIndexedAnimationInterface().getFrame();
+        final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame];
         final GPoint maskPoint = maskRectangle.getPoint();
         final ViewPosition viewPosition = customGameLayer.getViewPosition();
         final int viewX = viewPosition.getX();
