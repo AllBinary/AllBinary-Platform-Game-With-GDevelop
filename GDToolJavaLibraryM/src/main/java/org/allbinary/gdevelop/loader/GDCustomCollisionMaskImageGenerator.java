@@ -22,6 +22,7 @@ import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.logic.io.file.AbFile;
 import org.allbinary.logic.io.file.AbFileNativeUtil;
+import org.allbinary.logic.string.StringMaker;
 import org.allbinary.math.PositionStrings;
 
 import org.json.JSONArray;
@@ -39,6 +40,8 @@ public class GDCustomCollisionMaskImageGenerator extends GDJSONGeneratorBase {
     
     private final String UPDATE_SPRITE = "Update Sprite: ";
     private final String LOAD_IMAGE = "Load Image: ";
+    private final String LOAD_SPRITE = "Load Sprite: ";
+    private final String ADJUSTING_HEIGHT = "Adjusting Height from Sprite: ";
     private final String SKIPPING_IMAGE = "Skipping Image: ";
     
     public void process() throws Exception {
@@ -165,6 +168,7 @@ public class GDCustomCollisionMaskImageGenerator extends GDJSONGeneratorBase {
         return rectangle;
     }
     
+    private final String ONE = "1";
     public void addOrReplaceCollisionMask(final JSONObject jsonObject) throws Exception {
         final String assetPath = jsonObject.getString(this.gdProjectStrings.IMAGE);
         final String imagePath = assetPath.substring(this.gdToolStrings.ASSET_PREFIX.length(), assetPath.length());
@@ -173,7 +177,31 @@ public class GDCustomCollisionMaskImageGenerator extends GDJSONGeneratorBase {
             System.out.println(LOAD_IMAGE + imagePath);
             final BufferedImage bufferedImage = ImageIO.read(AbFileNativeUtil.get(abFile));
 
+            //Hack for make sprites shorter than original asset.
+            int adjustMaxY = bufferedImage.getHeight();
+            final int underScoreIndex = imagePath.lastIndexOf('_');
+            String imagePath2 = null;
+            if (underScoreIndex >= 0) {
+                final int periodIndex = imagePath.lastIndexOf('.');
+                imagePath2 = new StringMaker().append(imagePath.substring(0, underScoreIndex + 1)).append(ONE).append(imagePath.substring(periodIndex)).toString();
+                final AbFile abFile2 = new AbFile(this.gdToolStrings.RESOURCES_PATH + imagePath2);
+                if (abFile2.isFile()) {
+                    //System.out.println(LOAD_SPRITE + imagePath2);
+                    final BufferedImage bufferedImage2 = ImageIO.read(AbFileNativeUtil.get(abFile2));
+                    if(adjustMaxY > bufferedImage2.getHeight()) {
+                        //System.out.println(ADJUSTING_HEIGHT + imagePath2);
+                        adjustMaxY = bufferedImage2.getHeight();
+                    }
+                }
+            }
+            
             final Rectangle rectangle = this.getRectangle(bufferedImage);
+            final int height = adjustMaxY - rectangle.getPoint().getY();
+            if(rectangle.getHeight() > height) {
+                System.out.println(ADJUSTING_HEIGHT + imagePath2);
+                rectangle.setHeight(height);
+            }
+            
             final JSONArray customCollisionMaskJSONArray = this.getCustomCollisionMask(rectangle);
             jsonObject.put(this.gdProjectStrings.CUSTOM_COLLISION_MASK, customCollisionMaskJSONArray);
         } else {
