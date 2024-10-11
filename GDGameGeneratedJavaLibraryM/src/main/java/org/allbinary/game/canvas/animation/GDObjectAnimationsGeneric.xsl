@@ -252,21 +252,32 @@ Created By: Travis Berthelot
                     <xsl:variable name="animationPosition" ><xsl:value-of select="position()" /></xsl:variable>
                     <xsl:variable name="animationTotal" ><xsl:value-of select="last()" /></xsl:variable>
 
-                    <xsl:if test="$animationPosition = 1" >
+                    <xsl:variable name="hasCustomCollisionMask" >
+                        <xsl:for-each select="directions" >
+                            <xsl:for-each select="sprites" >                                                        
+                                <xsl:if test="hasCustomCollisionMask = 'true'" >
+                                    <xsl:if test="position() = 1" >found</xsl:if>
+                                </xsl:if>
+                            </xsl:for-each>
+                        </xsl:for-each>
+                    </xsl:variable>
+
+                    <xsl:if test="$animationPosition = 1 and contains($hasCustomCollisionMask, 'found')" >
                 final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][0];
                     </xsl:if>
                                         
                     <xsl:for-each select="directions" >
                         <xsl:for-each select="sprites" >
-                            
-                            <xsl:if test="position() = 1" >
-                rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />] = new Rectangle[<xsl:value-of select="last()" />];
-                            </xsl:if>
-                            
+                                                        
                             <xsl:variable name="image" ><xsl:value-of select="image" /></xsl:variable>
                             <xsl:variable name="position" ><xsl:value-of select="position()" /></xsl:variable>
                             <xsl:variable name="last" ><xsl:value-of select="last()" /></xsl:variable>
                             <xsl:if test="hasCustomCollisionMask = 'true'" >
+                                
+                            <xsl:if test="position() = 1" >
+                rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />] = new Rectangle[<xsl:value-of select="last()" />];
+                            </xsl:if>
+
                             <xsl:for-each select="customCollisionMask" >
                                 <xsl:if test="$name != 'Player'" >
                 //customCollisionMask - <xsl:value-of select="image" /> - non Player
@@ -299,7 +310,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:for-each>
 
-                    <xsl:if test="$animationPosition = last()" >
+                    <xsl:if test="$animationPosition = last() and contains($hasCustomCollisionMask, 'found')" >
                 this.addRectangleArrayOfArrays(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
                     </xsl:if>
 
