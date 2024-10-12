@@ -58,6 +58,7 @@ GD*GameGlobal*.java
 GDGameBaseJavaLibraryM/src/main/java/org/allbinary/game/GDGameMIDlet.java
 GDGameThreedBaseJavaLibraryM/src/main/java/org/allbinary/game/GDGameMIDlet.java
 GDResources.java
+GDLazyResources.java
 GDGameCommandFactory.java
 GDGame*CanvasRunnable.java
 GD*GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java

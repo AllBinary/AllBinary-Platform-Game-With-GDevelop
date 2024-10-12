@@ -273,16 +273,14 @@ public class GDToAllBinaryResourcesGenerator
         final int endIndex = imagePath.lastIndexOf('.');
         final String imageName = imagePath.substring(0, endIndex);
         final String name = imageName.toUpperCase();
+        resourceStringMaker.append("gdResources.");
         resourceStringMaker.append(name);
         resourceStringMaker.append(this.commonSeps.COMMA);
         resourceStringMaker.append(this.commonSeps.NEW_LINE);
     }
     
-    public void process() throws Exception {
+    public BasicArrayList process1() throws Exception {
     
-        final GDImageSizeGenerator gdImageSizeGenerator = new GDImageSizeGenerator();
-        final BasicArrayList gdResourceList = gdImageSizeGenerator.process();
-        
         final boolean hasRotationImages = this.gdResourceSelection.hasRotationImages();
         this.appendResources(hasRotationImages);
         
@@ -301,9 +299,6 @@ public class GDToAllBinaryResourcesGenerator
         
         final BasicArrayList usedList = new BasicArrayList();
         this.appendResourceStringArray(hasRotationImages, usedList);
-        this.appendResourceWidthArray(gdResourceList, usedList);
-        this.appendResourceHeightArray(gdResourceList, usedList);
-        this.appendImmediatelyLoadedImages();
         
         final Replace replace = new Replace(GD_KEY, this.resourceStringMaker.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
@@ -315,6 +310,54 @@ public class GDToAllBinaryResourcesGenerator
         
         stringMaker.delete(0, stringMaker.length());
         LogUtil.put(LogFactory.getInstance(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+        
+        return usedList;
+    }
+
+    public void process2(final BasicArrayList usedList) throws Exception {
+    
+        this.resourceStringMaker.delete(0, this.resourceStringMaker.length());
+        resourceStringMaker.append(GD_KEY);
+        resourceStringMaker.append(this.commonSeps.NEW_LINE);
+        resourceStringMaker.append("final GDResources gdResources = GDResources.getInstance();");
+        resourceStringMaker.append(this.commonSeps.NEW_LINE);
+        resourceStringMaker.append(this.commonSeps.NEW_LINE);
+        
+        final GDImageSizeGenerator gdImageSizeGenerator = new GDImageSizeGenerator();
+        final BasicArrayList gdResourceList = gdImageSizeGenerator.process();
+        
+        timeDelayHelper.setStartTime();
+        
+        final String LAZY_RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDLazyResources.origin";
+        final String LAZY_RESOURCE = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDLazyResources.java";
+        
+        final StringMaker stringMaker = new StringMaker();
+        final StreamUtil streamUtil = StreamUtil.getInstance();
+        final SharedBytes sharedBytes = SharedBytes.getInstance();
+        sharedBytes.outputStream.reset();
+        
+        final FileInputStream fileInputStream = new FileInputStream(LAZY_RESOURCE_ORIGINAL);        
+        final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
+        
+        this.appendResourceWidthArray(gdResourceList, usedList);
+        this.appendResourceHeightArray(gdResourceList, usedList);
+        this.appendImmediatelyLoadedImages();
+        
+        final Replace replace = new Replace(GD_KEY, this.resourceStringMaker.toString());
+        final String newFileAsString = replace.all(androidRFileAsString);
+
+        stringMaker.delete(0, stringMaker.length());
+        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + LAZY_RESOURCE, this, commonStrings.PROCESS));
+        
+        this.bufferedWriterUtil.overwrite(LAZY_RESOURCE, newFileAsString);        
+        
+        stringMaker.delete(0, stringMaker.length());
+        LogUtil.put(LogFactory.getInstance(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+        
     }
     
+    public void process() throws Exception {
+        final BasicArrayList usedList = this.process1();
+        this.process2(usedList);
+    }
 }

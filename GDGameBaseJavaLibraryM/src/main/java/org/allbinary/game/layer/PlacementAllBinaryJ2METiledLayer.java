@@ -38,31 +38,31 @@ public class PlacementAllBinaryJ2METiledLayer extends AllBinaryJ2METiledLayer {
                        
         //this.paintDebug(graphics);
 
-//        this.paintPlacementDebug(graphics);
+        //this.paintPlacementDebug(graphics);
          
     }
 
-//    private final int[] colorArray = new int[] {
-//        BasicColorFactory.getInstance().RED.intValue(),
-//        BasicColorFactory.getInstance().GREEN.intValue(),
-//        BasicColorFactory.getInstance().YELLOW.intValue(),
-//        BasicColorFactory.getInstance().BLUE.intValue()
-//    };
-//
-//    public void paintPlacementDebug(final Graphics graphics) {
-//
-//        final int x = this.tiledLayer.getX();
-//        final int y = this.tiledLayer.getY();
-//
-//        final org.allbinary.game.canvas.GD1SpecialAnimationGlobals globals = org.allbinary.game.canvas.GD1SpecialAnimationGlobals.getInstance();
-//        final org.allbinary.game.canvas.GD1GDObjectsFactory.PlatformerMap platformerMap = ((org.allbinary.game.canvas.GD1GDObjectsFactory.PlatformerMap) ((GDGameLayer) globals.PlatformerMapGDGameLayerList.get(0)).gdObject);
-//        
-//        final int size = platformerMap.placementXIntArray.length;
-//        for(int index = 0; index < size; index++) {
-//            int placementSize = platformerMap.placementSizeIntArray[index];
-//            graphics.setColor(colorArray[placementSize]);
-//            graphics.drawRect(x + platformerMap.placementXIntArray[index], y + platformerMap.placementYIntArray[index], placementSize, placementSize);
-//        }
-//    }
+    private final int[] colorArray = new int[] {
+        BasicColorFactory.getInstance().RED.intValue(),
+        BasicColorFactory.getInstance().GREEN.intValue(),
+        BasicColorFactory.getInstance().YELLOW.intValue(),
+        BasicColorFactory.getInstance().BLUE.intValue()
+    };
+
+    public void paintPlacementDebug(final Graphics graphics) {
+
+        final int x = this.tiledLayer.getX();
+        final int y = this.tiledLayer.getY();
+
+        final org.allbinary.game.canvas.GD1SpecialAnimationGlobals globals = org.allbinary.game.canvas.GD1SpecialAnimationGlobals.getInstance();
+        final org.allbinary.game.canvas.GD1GDObjectsFactory.PlatformerMap platformerMap = ((org.allbinary.game.canvas.GD1GDObjectsFactory.PlatformerMap) ((GDGameLayer) globals.PlatformerMapGDGameLayerList.get(0)).gdObject);
+        
+        final int size = platformerMap.placementXIntArray.length;
+        for(int index = 0; index < size; index++) {
+            int placementSize = platformerMap.placementSizeIntArray[index];
+            graphics.setColor(colorArray[placementSize]);
+            graphics.drawRect(x + platformerMap.placementXIntArray[index], y + platformerMap.placementYIntArray[index], placementSize, placementSize);
+        }
+    }
     
 }
