@@ -5,8 +5,6 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
 import org.allbinary.canvas.Processor;
 import org.allbinary.data.tree.dom.document.XmlDocumentHelper;
 import org.allbinary.gdevelop.json.GDLayout;
@@ -21,7 +19,6 @@ import org.allbinary.gdevelop.json.event.builtin.GDGroupEvent;
 import org.allbinary.gdevelop.json.event.builtin.GDStandardEvent;
 import org.allbinary.gdevelop.json.resource.GDResource;
 import org.allbinary.logic.io.BufferedWriterUtil;
-import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.string.regex.replace.Replace;
@@ -31,9 +28,9 @@ import org.allbinary.logic.string.CommonLabels;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.util.BasicArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 import org.json.XML;
 
 /**
@@ -127,7 +124,7 @@ public class GDToAllBinaryGenerationTool
 
         final JSONObject gameAsConfigurationJSONObject = GDJSONPersistence.getInstance().load();
         
-//        new ReduceObjectsForTesting().process(gameAsConfigurationJSONObject);
+        //new ReduceObjectsForTesting().process(gameAsConfigurationJSONObject);
 
         final GDProject gdProject = new GDProject();
         gdProject.load(gameAsConfigurationJSONObject);

@@ -14,6 +14,7 @@
 package org.allbinary.gdevelop.loader;
 
 import org.allbinary.util.BasicArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 

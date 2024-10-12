@@ -15,6 +15,7 @@ package org.allbinary.game.layer;
 
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.game.TiledLayer;
+
 import org.allbinary.graphics.color.BasicColorFactory;
 
 /**
