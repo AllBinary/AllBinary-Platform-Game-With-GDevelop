@@ -22,7 +22,7 @@ import org.json.JSONObject;
  */
 public class GDCustomCollisionMaskRemoval extends GDJSONGeneratorBase {
     
-    protected final String[] inclusionArray = {
+    protected final String[] inclusionExclusionArray = {
         "BloodSplatter"
     };
     
@@ -43,9 +43,9 @@ public class GDCustomCollisionMaskRemoval extends GDJSONGeneratorBase {
     
     public boolean processObjects(final String name) {
         
-        final int size = inclusionArray.length;
+        final int size = inclusionExclusionArray.length;
         for(int index = 0; index < size; index++) {
-            if(inclusionArray[index].compareTo(name) == 0) {
+            if(inclusionExclusionArray[index].compareTo(name) == 0) {
                 return true;
             }
         }

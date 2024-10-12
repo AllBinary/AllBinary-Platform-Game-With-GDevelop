@@ -34,6 +34,11 @@ import org.json.JSONObject;
  */
 public class GDCustomCollisionMaskImageGenerator extends GDCustomCollisionMaskRemoval {
     
+    protected final String[] exclusionArray = {
+        "AdultRedDragon",
+        "Bat"
+    };
+    
     //private final CommonSeps commonSeps = CommonSeps.getInstance();
     private final PositionStrings positionStrings = PositionStrings.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
@@ -45,9 +50,15 @@ public class GDCustomCollisionMaskImageGenerator extends GDCustomCollisionMaskRe
 
     public boolean processObjects(final String name) {
         
-        final int size = inclusionArray.length;
+        final int size = inclusionExclusionArray.length;
         for(int index = 0; index < size; index++) {
-            if(inclusionArray[index].compareTo(name) == 0) {
+            if(inclusionExclusionArray[index].compareTo(name) == 0) {
+                return false;
+            }
+        }
+        final int size2 = exclusionArray.length;
+        for(int index = 0; index < size2; index++) {
+            if(exclusionArray[index].compareTo(name) == 0) {
                 return false;
             }
         }
