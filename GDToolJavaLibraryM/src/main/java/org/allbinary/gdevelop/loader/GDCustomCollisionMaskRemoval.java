@@ -22,7 +22,7 @@ import org.json.JSONObject;
  */
 public class GDCustomCollisionMaskRemoval extends GDJSONGeneratorBase {
     
-    private final String[] inclusionArray = {
+    protected final String[] inclusionArray = {
         "BloodSplatter"
     };
     

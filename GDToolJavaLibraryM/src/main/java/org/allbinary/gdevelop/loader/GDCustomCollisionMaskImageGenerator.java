@@ -44,6 +44,13 @@ public class GDCustomCollisionMaskImageGenerator extends GDCustomCollisionMaskRe
     private final String SKIPPING_IMAGE = "Skipping Image: ";
 
     public boolean processObjects(final String name) {
+        
+        final int size = inclusionArray.length;
+        for(int index = 0; index < size; index++) {
+            if(inclusionArray[index].compareTo(name) == 0) {
+                return false;
+            }
+        }
         return true;
     }
     

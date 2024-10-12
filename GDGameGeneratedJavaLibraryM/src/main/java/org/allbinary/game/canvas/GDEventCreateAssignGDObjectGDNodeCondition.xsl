@@ -43,7 +43,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDOpacityConditionGDNode.xsl" />
     <xsl:import href="./condition/GDObjectVariableChildCountConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVarGlobalConditionGDNode.xsl" />
-    <xsl:import href="./condition/GDVarObjetConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDNumberObjectVariableConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSceneInstancesCountConditionGDNode.xsl" />
     <xsl:import href="./condition/GDGlobalVariableAsBooleanConditionGDNode.xsl" />
     <xsl:import href="./condition/GDVarSceneConditionGDNode.xsl" />
@@ -1071,10 +1071,11 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>                                                                                             
 
-                <xsl:if test="$typeValue = 'VarObjet'" >
+                //Was VarObjet
+                <xsl:if test="$typeValue = 'NumberObjectVariable'" >
 
-                    //VarObjet - some are processed from eventsProcess
-                    <xsl:call-template name="varObjetConditionGDNode" >
+                    //NumberObjectVariable - some are processed from eventsProcess
+                    <xsl:call-template name="numberObjectVariableConditionGDNode" >
                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                         <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
                         <xsl:with-param name="objectsGroupsAsString" >

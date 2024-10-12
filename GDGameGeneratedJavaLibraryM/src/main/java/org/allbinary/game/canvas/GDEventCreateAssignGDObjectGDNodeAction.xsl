@@ -25,7 +25,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDChangeAnimationActionProcess.xsl" />
     <xsl:import href="./action/GDAnimationSetIndexActionProcess.xsl" />
     <xsl:import href="./action/GDAnimationSetNameActionProcess.xsl" />
-    <xsl:import href="./action/GDModVarObjetActionProcess.xsl" />
+    <xsl:import href="./action/GDSetNumberObjectVariableActionProcess.xsl" />
     <xsl:import href="./action/GDModVarSceneTxtActionProcess.xsl" />
     
     <xsl:import href="./action/GDLinkedObjectsLinkObjectsActionProcess.xsl" />
@@ -173,7 +173,7 @@ Created By: Travis Berthelot
                         <xsl:if test="$typeValue != 'ModVarScene' and $typeValue != 'AddForceAL' and $typeValue != 'AddForceXY' and $typeValue != 'StopSoundCanal'" >
                         //private final String ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "B: <xsl:value-of select="translate($actionAsString, $quote, ' ')" /> at: ";
                         </xsl:if>
-                        <xsl:if test="$typeValue = 'ModVarObjet' or $typeValue = 'Opacity'" >
+                        <xsl:if test="$typeValue = 'SetNumberObjectVariable' or $typeValue = 'Opacity'" >
                         //private final String ACTION_AS_STRING_IS_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "B: <xsl:value-of select="translate($actionAsString, $quote, ' ')" /> is: ";
                         </xsl:if>
                         //private final String ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "G: " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
@@ -215,9 +215,11 @@ Created By: Travis Berthelot
                     <xsl:call-template name="changeAnimationActionProcess" />
 
                 </xsl:if>
-                <xsl:if test="$typeValue = 'ModVarObjet'" >
+                
+                //Was ModVarObjet
+                <xsl:if test="$typeValue = 'SetNumberObjectVariable'" >
                     
-                    <xsl:call-template name="modVarObjetActionProcess" >
+                    <xsl:call-template name="setNumberObjectVariableActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -236,7 +238,7 @@ Created By: Travis Berthelot
 
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'ModVarObjetTxt'" >
+                <xsl:if test="$typeValue = 'SetNumberObjectVariableTxt'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
 

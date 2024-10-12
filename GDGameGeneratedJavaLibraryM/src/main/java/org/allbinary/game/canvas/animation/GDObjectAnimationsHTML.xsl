@@ -257,7 +257,7 @@ Created By: Travis Berthelot
                 
                 <xsl:for-each select="animations" >
                     <xsl:if test="string-length(name) > 0" >
-                    <xsl:if test="not(contains($name, 'Attack') or contains($name, 'Projectile') or contains($name, 'MaskEnemy'))" >
+                    <xsl:if test="not(contains($name, 'Attack') or contains($name, 'Projectile'))" >
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:variable name="animationPosition" ><xsl:value-of select="position()" /></xsl:variable>
                     <xsl:variable name="animationTotal" ><xsl:value-of select="last()" /></xsl:variable>
@@ -349,7 +349,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="animations" >
                     <xsl:if test="string-length(name) > 0" >
                     <xsl:if test="$name != 'Player'" >
-                    <xsl:if test="contains($name, 'Attack') or contains($name, 'Projectile') or contains($name, 'MaskEnemy')" >
+                    <xsl:if test="contains($name, 'Attack') or contains($name, 'Projectile')" >
                                                 
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:variable name="animationPosition" ><xsl:value-of select="position()" /></xsl:variable>

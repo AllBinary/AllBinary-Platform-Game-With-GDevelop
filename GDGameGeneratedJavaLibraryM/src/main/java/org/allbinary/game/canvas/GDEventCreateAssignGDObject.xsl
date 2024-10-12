@@ -1007,10 +1007,10 @@ Created By: Travis Berthelot
                             <xsl:text>&#10;</xsl:text>
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'ModVarObjet'" >
+                <xsl:if test="$typeValue = 'SetNumberObjectVariable'" >
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                     <xsl:text>&#10;</xsl:text>
-                            //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //ModVarObjet - call - //<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
+                            //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //SetNumberObjectVariable - call - //<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
                             <xsl:text>&#10;</xsl:text>
                 </xsl:if>
@@ -1049,7 +1049,7 @@ Created By: Travis Berthelot
             <xsl:variable name="firstAction" >
                 <xsl:for-each select="actions" >
                     <xsl:variable name="typeValue" select="type/value" />
-                    <xsl:if test="$typeValue = 'SetAngle' or $typeValue = 'ChangePlan' or $typeValue = 'ChangeAnimation' or $typeValue = 'ModVarObjet'" >
+                    <xsl:if test="$typeValue = 'SetAngle' or $typeValue = 'ChangePlan' or $typeValue = 'ChangeAnimation' or $typeValue = 'SetNumberObjectVariable'" >
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >
                                 <xsl:value-of select="text()" />,</xsl:if>

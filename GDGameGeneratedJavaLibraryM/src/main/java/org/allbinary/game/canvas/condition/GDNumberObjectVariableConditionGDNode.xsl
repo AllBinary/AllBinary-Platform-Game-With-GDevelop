@@ -17,7 +17,7 @@ Created By: Travis Berthelot
 
     <xsl:output method="html" indent="yes" />
 
-    <xsl:template name="varObjetConditionGDNode" >
+    <xsl:template name="numberObjectVariableConditionGDNode" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="parametersAsString" />
         <xsl:param name="objectsGroupsAsString" />
@@ -27,7 +27,7 @@ Created By: Travis Berthelot
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
         <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
 
-                    //varObjetConditionGDNode - //Condition - //VarObjet - GDNode
+                    //numberObjectVariableConditionGDNode - //Condition - //NumberObjectVariable - GDNode
                     if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -56,7 +56,7 @@ Created By: Travis Berthelot
                                     </xsl:for-each>
                                 </xsl:variable>
                         
-                        //VarObjet - condition
+                        //NumberObjectVariable - condition
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
@@ -230,7 +230,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
                     <xsl:if test="$paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != ''" >
-                    //Not from parent collision - //VarObjet
+                    //Not from parent collision - //NumberObjectVariable
                     public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
@@ -291,7 +291,7 @@ Created By: Travis Berthelot
                                             <xsl:text>&#10;</xsl:text>
                                             //actionIdsGDObject - //<xsl:value-of select="type/value" />
                                             <xsl:if test="type/value = 'Delete'" >
-                                                //VarObjet - //Has Delete Action
+                                                //NumberObjectVariable - //Has Delete Action
                                                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].addForDelete(<xsl:value-of select="$gdObjectName" />GDGameLayer);
                                                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdObjectName" />GDGameLayer, null, null);
                                             </xsl:if>
@@ -339,7 +339,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                     </xsl:if>
 
-                                //VarObjet - //Has GameLayer
+                                //NumberObjectVariable - //Has GameLayer
                                 if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.</xsl:if>
                                     <xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if>
@@ -387,7 +387,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 </xsl:for-each>) {
                                                                 
-                                    //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "VarObjet processing", this, commonStrings.PROCESS));
+                                    //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "NumberObjectVariable processing", this, commonStrings.PROCESS));
                                     return true;
                                 }
 
