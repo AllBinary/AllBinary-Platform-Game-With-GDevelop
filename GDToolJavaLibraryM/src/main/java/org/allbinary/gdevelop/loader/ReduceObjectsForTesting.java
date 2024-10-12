@@ -42,7 +42,7 @@ public class ReduceObjectsForTesting extends GDJSONGeneratorBase {
 
     public ReduceObjectsForTesting() {
         list.add("AdultRedDragon");
-        list.add("BatEnemy");
+        list.add("Bat");
     }
 
     private boolean contains(final String value) {
