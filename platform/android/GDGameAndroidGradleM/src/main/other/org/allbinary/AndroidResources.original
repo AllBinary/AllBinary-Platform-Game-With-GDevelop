@@ -52,7 +52,7 @@ public class AndroidResources
         public final int locked_demo_game_feature_64_by_64 = R.raw.locked_demo_game_feature_64_by_64;
         public final int locked_demo_game_feature_128_by_128 = R.raw.locked_demo_game_feature_128_by_128;
         public final int partner = R.raw.partner;
-        public final int select = R.raw.select;
+        //public final int select = R.raw.select;
         public final int error = R.raw.error;
 
         //GD

@@ -62,9 +62,11 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
+            <artifactId>MusicAndroidJavaLibrary</artifactId>
+            <!-- 
             <artifactId>MusicJ2MEJavaLibrary</artifactId>
-            <!-- MusicAndroidJavaLibrary -->
-            <!-- MusicAndroidJavaLibrary -->
+            <artifactId>MusicAndroidJavaLibrary</artifactId>
+            -->
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->

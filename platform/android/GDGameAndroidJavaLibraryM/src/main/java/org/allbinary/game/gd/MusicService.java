@@ -13,12 +13,12 @@
  */
 package org.allbinary.game.gd;
 
-//import org.allbinary.media.audio.music.BaseMusicService;
+import org.allbinary.media.audio.music.BaseMusicService;
 
 /**
  *
  * @author User
  */
-public class MusicService //extends BaseMusicService
+public class MusicService extends BaseMusicService
 {
 }

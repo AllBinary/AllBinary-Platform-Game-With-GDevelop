@@ -89,7 +89,11 @@
             android:name="org.allbinary.android.activity.WebViewActivity"
             android:exported="true" >
         </activity>
-        
+
+        <service android:enabled="true"
+            android:process=":MusicService"
+            android:name="org.allbinary.game.gd.MusicService" />
+
     </application>
     
 </manifest> 
