@@ -6,9 +6,12 @@
 
 package org.allbinary.gdevelop.loader;
 
-import org.allbinary.data.CamelCaseUtil;
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+
+import org.allbinary.data.CamelCaseUtil;
+import org.allbinary.data.resource.ResourceUtil;
+import org.allbinary.game.configuration.feature.Features;
+import org.allbinary.game.configuration.feature.GameFeatureFactory;
 import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.logic.string.CommonStrings;
@@ -16,6 +19,8 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.media.audio.AllBinaryMediaManager;
+import org.allbinary.media.audio.PCClipWavPlayer;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -34,6 +39,7 @@ public class GDToAllBinarySoundsGenerator
     
     private final String GD_NAME = "<GDNAME>";
     private final String GD_FILE_NAME = "<GD_FILE_NAME>";
+    private final String GD_DURATION = "<GD_DURATION>";
     
     private final String SOUND_ORIGINAL = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDSound.origin";
     private final String SOUND_PATH = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\";
@@ -80,7 +86,10 @@ public class GDToAllBinarySoundsGenerator
     }
 
     public void process() throws Exception {
-                
+
+        ResourceUtil.getInstance().setLoadingPaths("G:\\mnt\\bc\\mydev\\GDGamesP\\Resources\\sounds\\release\\wav\\", ".wav");
+        Features.getInstance().add(GameFeatureFactory.getInstance().SOUND);
+
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         sharedBytes.outputStream.reset();
@@ -95,13 +104,22 @@ public class GDToAllBinarySoundsGenerator
         stringMaker.delete(0, stringMaker.length());
         LogUtil.put(LogFactory.getInstance(stringMaker.append("Sound Total: ").append(size).toString(), this, commonStrings.PROCESS));
         
+        String resource;
         for(int index = 0; index < size; index++) {
-            final String name = this.camelCaseUtil.getAsCamelCase((String) this.gdResources.playSoundAndroidResourceNameList.get(index), stringMaker);
+            resource = (String) this.gdResources.playSoundAndroidResourceNameList.get(index);
+            
+            //final Player player = AllBinaryMediaManager.createPlayer(resource);
+            final PCClipWavPlayer player = (PCClipWavPlayer) AllBinaryMediaManager.createPlayer(resource);
+            final long duration = player.getDuration();
+            
+            final String name = this.camelCaseUtil.getAsCamelCase(resource, stringMaker);
             final Replace replace = new Replace(GD_NAME, name);
             String newFileAsString = replace.all(androidRFileAsString);
-            final Replace replace2 = new Replace(GD_FILE_NAME, (String) this.gdResources.playSoundAndroidResourceNameList.get(index));
+            final Replace replace2 = new Replace(GD_FILE_NAME, resource);
             newFileAsString = replace2.all(newFileAsString);
-
+            final Replace replace3 = new Replace(GD_DURATION, Long.toString(duration));
+            newFileAsString = replace3.all(newFileAsString);
+            
             stringMaker.delete(0, stringMaker.length());
             stringMaker.append(GD).append(name).append(SOUND);
             
@@ -115,6 +133,7 @@ public class GDToAllBinarySoundsGenerator
             stringMaker.delete(0, stringMaker.length());
             
             final String fileName2 = stringMaker.append(SOUND_PATH).append(fileName).toString();
+                        
             LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName2, this, commonStrings.PROCESS));
             
             this.bufferedWriterUtil.overwrite(fileName2, newFileAsString);

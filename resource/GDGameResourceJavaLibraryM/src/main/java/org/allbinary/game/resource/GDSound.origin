@@ -30,4 +30,10 @@ public class GD<GDNAME>Sound extends CompositeSound
    {
       return soundInterface;
    }
+
+   public int getDuration()
+   {
+	   return <GD_DURATION>;
+   }
+
 }
