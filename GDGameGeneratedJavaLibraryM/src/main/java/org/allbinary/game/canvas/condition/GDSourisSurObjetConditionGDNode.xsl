@@ -82,6 +82,21 @@ Created By: Travis Berthelot
                                         </xsl:for-each>
 
                                     gdNodeStatsFactory.push(1, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+
+                                    <xsl:variable name="processOneTimePerPress" >
+                                    <xsl:if test="contains($press, 'found')" >
+                                    <xsl:for-each select=".." >
+                                        <xsl:for-each select="actions" >
+                                            <xsl:if test="type/value = 'LaunchFile' or type/value = 'Scene'" >found</xsl:if>
+                                        </xsl:for-each>
+                                    </xsl:for-each>
+                                    </xsl:if>
+                                    </xsl:variable>
+    
+                                    <xsl:if test="contains($processOneTimePerPress, 'found')" >
+                                    //This button only processes one time per press
+                                    currentRunnable = NullRunnable.getInstance();
+                                    </xsl:if>
                 
                                 } catch(Exception e) {
                                     LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable", this, commonStrings.RUN, e));
