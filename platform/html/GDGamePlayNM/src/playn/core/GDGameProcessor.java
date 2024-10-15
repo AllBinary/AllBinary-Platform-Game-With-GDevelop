@@ -5,6 +5,7 @@
 package playn.core;
 
 import org.allbinary.canvas.Processor;
+import org.allbinary.game.resource.GDLazyResources;
 import org.allbinary.game.resource.GDResources;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.input.motion.button.TouchScreenFactory;
@@ -51,8 +52,9 @@ public class GDGameProcessor
 
             final ImageCompleteUtil imageCompleteUtil = ImageCompleteUtil.getInstance();
 
-            final GDResources gdResources = GDResources.getInstance();            
-            String[] resourceStringArray = gdResources.requiredResourcesBeforeLoadingArray;
+            final GDResources gdResources = GDResources.getInstance();
+            final GDLazyResources gdLazyResources = GDLazyResources.getInstance();
+            String[] resourceStringArray = gdLazyResources.requiredResourcesBeforeLoadingArray;
             if(imageCompleteUtil.isLazy()) {
             } else {
                 resourceStringArray = gdResources.resourceStringArray;
