@@ -31,6 +31,28 @@ Created By: Travis Berthelot
                         return true;
                     }
 
+                    @Override
+                    public boolean process(final int index3) throws Exception {
+                        super.processStats();
+
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
+                        <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /> = </xsl:if><xsl:if test="position() = 2" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
+
+                        return true;
+                    }
+
+                    @Override
+                    public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                        super.processGDStats(gameLayer);
+
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
+                        <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /> = </xsl:if><xsl:if test="position() = 2" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
+
+                        return true;
+                    }
+
     </xsl:template>
 
 </xsl:stylesheet>
