@@ -120,6 +120,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
             <xsl:with-param name="layoutName" >
                 <xsl:value-of select="$layoutName" />
             </xsl:with-param>
+            <xsl:with-param name="type" >touch</xsl:with-param>
         </xsl:call-template>
     
     public GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(final Hashtable hashtable, final Hashtable rectangleHashtable, final Hashtable rectangleArrayHashtable)
