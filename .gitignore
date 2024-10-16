@@ -102,6 +102,7 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/j2se/GDGameJ2SEApplicationM/src/**/*.html
 /platform/j2se/GDGameJ2SEApplicationM/src/**/*.txt
 /platform/j2se/GDGameJ2SEApplicationM/src/**/*.ogg
+/platform/j2se/GDGameJ2SEApplicationM/src/**/*.wav
 /platform/j2se/GDGameJ2SEWithSWTApplicationM/src/main/java/**
 /platform/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.svg
 /platform/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.png

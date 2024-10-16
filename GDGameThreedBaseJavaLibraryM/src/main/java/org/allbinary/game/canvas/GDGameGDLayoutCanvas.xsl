@@ -728,8 +728,8 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     }
 
     @Override
-    public void nextSong(final Sound nextSongSound) {
-        musicManager.nextSong(nextSongSound);
+    public void nextSong(final Sound nextSongSound, final int leftVolume, final int rightVolume) {
+        musicManager.nextSong(nextSongSound, leftVolume, rightVolume);
     }
 
     @Override
