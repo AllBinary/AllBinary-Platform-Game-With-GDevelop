@@ -41,7 +41,7 @@ Created By: Travis Berthelot
                             <xsl:if test="string-length($volume) > 0" >
                             final int volume = <xsl:value-of select="$volume" />;
                             leftVolume = volume;
-                            int rightVolume = volume;
+                            rightVolume = volume;
                             player.setVolume(leftVolume, rightVolume);
                             </xsl:if>
                             
