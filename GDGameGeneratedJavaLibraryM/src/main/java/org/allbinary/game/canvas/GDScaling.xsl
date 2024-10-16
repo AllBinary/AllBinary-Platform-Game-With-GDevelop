@@ -25,14 +25,20 @@
                             //int scale2 = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth : scaleHeight;
                             //if(scale2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 2) scale2 = 2;
                             //final int scale = scale2;
+                            <xsl:if test="$layoutIndex = 1" >
+                            final int scale = org.allbinary.AndroidUtil.isAndroid() ? 2 : 2;
+                            </xsl:if>
+                            <xsl:if test="$layoutIndex != 1" >
                             final int scale = org.allbinary.AndroidUtil.isAndroid() ? 1 : 2;
+                            </xsl:if>
                             final int scaleNominator = scale;
                             final int scaleDenominator = 2;
                             LogUtil.put(LogFactory.getInstance(new StringMaker().append("scale: ").append(scale).toString(), this, commonStrings.CONSTRUCTOR));
 
                             final int scaleLayout = <xsl:if test="not(contains($layoutName, 'Scaled')) or contains($layoutIndex, 'Global')" >1</xsl:if><xsl:if test="contains($layoutName, 'Scaled')" >2</xsl:if>;
                             <xsl:variable name="name2" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template></xsl:variable>
-                            final int scaleTouchButtons = <xsl:if test="number($layoutIndex) = 0 or contains($name2, 'options')  or contains($name2, 'about') or contains($name2, 'score') or contains($name2, 'over')" >1</xsl:if><xsl:if test="not(number($layoutIndex) = 0 or contains($name2, 'options') or contains($name2, 'about') or contains($name2, 'score') or contains($name2, 'over'))" >scale + 1</xsl:if>;
+<!--                            number($layoutIndex) = 0 or contains($name2, 'options')  or contains($name2, 'about') or contains($name2, 'score') or contains($name2, 'over')-->
+                            final int scaleTouchButtons = <xsl:if test="not(number($layoutIndex) = 1)" >1</xsl:if><xsl:if test="number($layoutIndex) = 1" >org.allbinary.AndroidUtil.isAndroid() ? scale : scale + 1</xsl:if>;
 <!--                            final int scaleTouch = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth * scaleTouchButtons : scaleHeight * scaleTouchButtons;-->
                             LogUtil.put(LogFactory.getInstance(new StringMaker().append("scaleTouchButtons - scale: ").append(scaleTouchButtons).toString(), this, commonStrings.CONSTRUCTOR));
     </xsl:template>
@@ -40,8 +46,14 @@
     <xsl:template name="scaleProperty" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="layoutName" />
+        <xsl:param name="type" />
                             //scaleProperty
+                            <xsl:if test="$layoutIndex = 1 and $type != 'touch'" >
+                            private final int scale = org.allbinary.AndroidUtil.isAndroid() ? 2 : 2;
+                            </xsl:if>
+                            <xsl:if test="not($layoutIndex = 1 and $type != 'touch')" >
                             private final int scale = org.allbinary.AndroidUtil.isAndroid() ? 1 : 2;
+                            </xsl:if>
     </xsl:template>
 
 </xsl:stylesheet>
