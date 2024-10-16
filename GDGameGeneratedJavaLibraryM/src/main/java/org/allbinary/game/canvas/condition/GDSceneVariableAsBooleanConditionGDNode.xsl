@@ -33,7 +33,7 @@ Created By: Travis Berthelot
         <xsl:variable name="quote" >"</xsl:variable>
         
         <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
-                    //sceneVariableAsBooleanConditionGDNode - //Condition - //SceneVariableAsBoolean - GDNode
+                    //sceneVariableAsBooleanConditionGDNode - //Condition - //BooleanVariable was //SceneVariableAsBoolean - GDNode
                     if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }

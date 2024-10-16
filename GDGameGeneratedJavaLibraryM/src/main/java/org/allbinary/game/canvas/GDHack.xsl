@@ -919,7 +919,7 @@ Created By: Travis Berthelot
                             <xsl:if test="($conditionPosition = '' and position() = 1) or position() = $conditionPosition + 1" >
                                 <xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >
                                     <xsl:if test="type/value != 'DepartScene' and type/value != 'SoundPlaying' and (not(contains($caller, 'eventsCreateAssignGDObject') and type/value = 'NbObjet'))" >
-                                        <xsl:if test="type/value = 'SceneVariableAsBoolean'" >
+                                        <xsl:if test="type/value = 'VariableAsBoolean'" >
                                         found
                                         </xsl:if>
                                     </xsl:if>

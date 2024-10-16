@@ -976,7 +976,7 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'SceneVariableAsBoolean'" >
+                <xsl:if test="$typeValue = 'BooleanVariable'" >
                     
                     <xsl:call-template name="sceneVariableAsBooleanConditionGDNode" >
                         <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
