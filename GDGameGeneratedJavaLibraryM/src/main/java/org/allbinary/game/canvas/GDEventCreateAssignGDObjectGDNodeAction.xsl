@@ -813,7 +813,7 @@ Created By: Travis Berthelot
 
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'SetSceneVariableAsBoolean'" >
+                <xsl:if test="$typeValue = 'SetBooleanVariable'" >
 
                     <xsl:call-template name="setSceneVariableAsBooleanActionProcess" />
 
