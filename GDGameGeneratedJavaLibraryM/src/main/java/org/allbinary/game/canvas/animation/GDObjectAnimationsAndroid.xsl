@@ -71,9 +71,7 @@ Created By: Travis Berthelot
         final int NaN = 0;
         private final short angleIncrement = 1;
         private final int[] sequenceArray = {-1};
-        private final float hackScale = 125.0f / 1000.0f;
-        //private final float hackScale = ((float) scale) * 125.0f / 1000.0f;
-        //private final float hackScale = 3.0f * 125.0f / 1000.0f;
+        private final float hackScale = ((float) (scale + 1)) * 125.0f / 1000.0f;
         
         <xsl:for-each select="objects" >
             <xsl:variable name="objectIndex" select="position() - 1" />
