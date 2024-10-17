@@ -194,7 +194,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //objectsGroups - END
 
-                    //objects class properties - START                    
+                    //objects class properties - START
                     <xsl:for-each select="objects" >
                         //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" /><xsl:text>&#10;</xsl:text>
                         <xsl:variable name="initialVariablesValue" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="initialVariables/value" /></xsl:with-param><xsl:with-param name="find" >-</xsl:with-param><xsl:with-param name="replacementText" >Neg</xsl:with-param></xsl:call-template></xsl:variable>
