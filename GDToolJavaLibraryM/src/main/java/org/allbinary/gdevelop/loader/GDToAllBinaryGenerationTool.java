@@ -109,6 +109,7 @@ public class GDToAllBinaryGenerationTool
     private final String PARAMETERS_EXPRESSION_LIST = "parametersExpressionList size: ";
     private final String LOAD_EXPRESSION = "loadExpressions";
     
+    private final String PRELOAD_SOUND = "PreloadSound";
     private final String PLAY_SOUND = "PlaySound";
     private final String PLAY_MUSIC = "PlayMusic";
 
@@ -343,7 +344,11 @@ public class GDToAllBinaryGenerationTool
 
             LogUtil.put(LogFactory.getInstance(INSTRUCTION_TYPE_VALUE + instruction.typeValue, this, LOAD_ACTIONS));
 
-            if (instruction.typeValue.indexOf(this.PLAY_SOUND) >= 0)
+            if (instruction.typeValue.indexOf(this.PRELOAD_SOUND) >= 0)
+            {
+                this.loadExpressions(instruction.parametersExpressionList);
+                
+            } else if (instruction.typeValue.indexOf(this.PLAY_SOUND) >= 0)
             {
                 this.loadExpressions(instruction.parametersExpressionList);
             } else if (instruction.typeValue.indexOf(this.PLAY_MUSIC) >= 0)
