@@ -178,6 +178,9 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 <xsl:if test="$musicOrSound = 'sound'" >
+                <xsl:if test="$typeValue = 'PreloadSound'" >
+                    //PreloadSound - <xsl:value-of select="$file" />
+                </xsl:if>
                 <xsl:if test="$typeValue = 'PlaySound'" >
                     //PlaySound - <xsl:value-of select="$file" />
                 </xsl:if>
@@ -219,7 +222,7 @@ Created By: Travis Berthelot
                     <xsl:if test="contains(file, '.ogg') or contains(file, '.wav') or contains(file, '.mp3')" >
                     //Audio File - <xsl:value-of select="file" />
                         <xsl:variable name="thisLayoutHasThisSoundResource" >
-                            <xsl:call-template name="findSoundInAction" >                        
+                            <xsl:call-template name="findSoundInAction" >       
                                 <xsl:with-param name="layoutIndex" >
                                     <xsl:value-of select="$layoutIndex" />
                                 </xsl:with-param>
@@ -232,7 +235,7 @@ Created By: Travis Berthelot
                             </xsl:call-template>
                         </xsl:variable>
 <!--                    /*thisLayoutHasThisSoundResource=<xsl:value-of select="$thisLayoutHasThisSoundResource" />*/-->
-                        <xsl:if test="contains($thisLayoutHasThisSoundResource, 'Play')" >
+                        <xsl:if test="contains($thisLayoutHasThisSoundResource, 'Play') or contains($thisLayoutHasThisSoundResource, 'Preload')" >
                     <xsl:variable name="fileName" ><xsl:call-template name="after-lastIndexOf"><xsl:with-param name="string" ><xsl:value-of select="file" /></xsl:with-param><xsl:with-param name="char" >/</xsl:with-param></xsl:call-template></xsl:variable>
                     <xsl:variable name="fileName2" ><xsl:value-of select="translate(substring-before($fileName, '.'), '_', ' ')" /></xsl:variable>
                     <xsl:variable name="fileName3" ><xsl:call-template name="camelcase" ><xsl:with-param name="text" ><xsl:value-of select="$fileName2" /></xsl:with-param></xsl:call-template></xsl:variable>
