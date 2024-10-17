@@ -449,7 +449,7 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'SetObjectVariableAsBoolean'" >
+                <xsl:if test="$typeValue = 'SetBooleanObjectVariable'" >
                     <xsl:call-template name="setObjectVariableAsBooleanActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />

@@ -32,7 +32,7 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                         </xsl:variable>
         
-                        //SetObjectVariableAsBoolean - action - START
+                        //SetBooleanObjectVariable was //SetObjectVariableAsBoolean - action - START
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();

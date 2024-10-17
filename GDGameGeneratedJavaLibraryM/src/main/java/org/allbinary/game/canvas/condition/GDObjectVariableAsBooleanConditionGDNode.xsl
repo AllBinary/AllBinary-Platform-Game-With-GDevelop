@@ -26,7 +26,7 @@ Created By: Travis Berthelot
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
         <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
 
-                    //objectVariableAsBooleanConditionGDNode - //Condition - //ObjectVariableAsBoolean - GDNode
+                    //objectVariableAsBooleanConditionGDNode - //Condition - //BooleanObjectVariable was //ObjectVariableAsBoolean - GDNode
                     if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -42,7 +42,8 @@ Created By: Travis Berthelot
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
-                        
+
+                            boolean result = true;                        
                         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         
                         <xsl:variable name="hasObject" >
@@ -103,9 +104,10 @@ Created By: Travis Berthelot
                                     
                             </xsl:if>
                                     </xsl:for-each>
-                                } //else {
+                                } else {
                                     //LogUtil.put(LogFactory.getInstance(ELSE_CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                                //}
+                                    result = false;
+                                }
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />GDGameLayerList.get(index).toString(), this, commonStrings.PROCESS));
                             }
 
@@ -115,7 +117,7 @@ Created By: Travis Berthelot
                                                                 
                             super.processStatsE();
 
-                            return true;
+                            return result;
                         }
 
                         @Override

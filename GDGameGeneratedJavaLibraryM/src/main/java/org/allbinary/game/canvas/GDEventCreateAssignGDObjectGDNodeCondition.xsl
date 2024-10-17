@@ -420,7 +420,7 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'ObjectVariableAsBoolean'" >
+                <xsl:if test="$typeValue = 'BooleanObjectVariable'" >
                         <xsl:call-template name="objectVariableAsBooleanConditionGDNode" >
                             <xsl:with-param name="layoutIndex" >
                                 <xsl:value-of select="$layoutIndex" />
