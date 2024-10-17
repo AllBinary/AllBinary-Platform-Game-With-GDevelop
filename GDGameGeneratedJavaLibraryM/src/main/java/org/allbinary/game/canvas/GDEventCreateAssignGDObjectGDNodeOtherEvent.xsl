@@ -820,13 +820,27 @@ Created By: Travis Berthelot
                 </xsl:call-template>
                 </xsl:if>
 
-                <xsl:if test="contains($foundTimerCondition, 'found')" >
-                //Found used conditions so calling them before actions.
+                </xsl:if>
+                </xsl:if>
+                </xsl:if>
+
                 @Override
-                public void processReleased() throws Exception { //Event
+                public void processReleased() throws Exception { 
                     super.processReleasedStats();
-                
+
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
+
+                <xsl:if test="not(whileConditions)" >
+                <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
+                <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
+                //processReleased - before
+                </xsl:if>
+                </xsl:if>
+                </xsl:if>
+                    
+                <xsl:if test="contains($foundTimerCondition, 'found')" >
+                //processReleased - now from timer
+                //Found used conditions so calling them before actions.
 
                     <xsl:for-each select="conditions" >
                     <xsl:variable name="typeValue" select="type/value" />
@@ -836,19 +850,14 @@ Created By: Travis Berthelot
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                     </xsl:if>
                     </xsl:for-each>
-                }
                 
                 </xsl:if>
-                 
+
                 <xsl:if test="contains($foundOtherCondition, 'found') and not(contains($foundTimerCondition, 'found')) or (contains($foundVarSceneCondition, 'found') and contains($foundLinkEvent, 'found'))" >
                     <xsl:if test="not(whileConditions)" >
-                //Found conditions that need processing.
-                @Override
-                public void processReleased() throws Exception {
-                    super.processReleasedStats();
+                //processReleased - now other
+                     //Found conditions that need processing.
                     
-                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
-
                     <xsl:for-each select="conditions" >
                     <xsl:variable name="typeValue" select="type/value" />
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -862,15 +871,12 @@ Created By: Travis Berthelot
                     //eventsCreateAssignGDObjectGDNodes - //Condition - call - more ifs
                         </xsl:if>
                     </xsl:for-each>
-                    
-                }
+
                     </xsl:if>
                 </xsl:if>
+                                        
+                }
                 
-                </xsl:if>
-                </xsl:if>
-                </xsl:if>
-
                 </xsl:if>
 
             };

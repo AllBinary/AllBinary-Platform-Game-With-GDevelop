@@ -147,7 +147,11 @@ Created By: Travis Berthelot
                         public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                             super.processStats(motionGestureEvent);
                             
-                            return this.process();
+                            final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
+                            if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
+                                return this.process();
+                            }
+                            return false;
                         }
  
                         @Override

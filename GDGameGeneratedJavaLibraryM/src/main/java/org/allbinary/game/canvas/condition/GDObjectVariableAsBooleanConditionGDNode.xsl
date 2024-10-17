@@ -118,6 +118,15 @@ Created By: Travis Berthelot
                             return true;
                         }
 
+                        @Override
+                        public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                            super.processStats(motionGestureEvent);
+
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
+                            return this.process();
+                        }
+
                     <xsl:variable name="hasForEachProcessGD" >
                         <xsl:call-template name="hasBuiltinCommonInstructionsForEachToProcessGD" >
                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
@@ -253,6 +262,15 @@ Created By: Travis Berthelot
                                 //}
 
                             return false;
+                        }
+
+                        @Override
+                        public void processReleased() throws Exception { 
+                            super.processReleasedStats();
+
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
+                            this.process();
+                            
                         }
 
                     };
