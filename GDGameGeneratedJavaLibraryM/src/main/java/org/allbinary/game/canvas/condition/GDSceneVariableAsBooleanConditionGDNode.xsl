@@ -148,10 +148,11 @@ Created By: Travis Berthelot
                             super.processStats(motionGestureEvent);
                             
                             final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
-                            if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
+                            if (motionGestureInput == touchMotionGestureFactory.PRESSED || motionGestureInput == touchMotionGestureFactory.RELEASED) {
                                 return this.process();
                             }
                             return false;
+
                         }
  
                         @Override
