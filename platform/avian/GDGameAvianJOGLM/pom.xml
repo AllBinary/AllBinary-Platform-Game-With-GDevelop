@@ -21,6 +21,7 @@
         <inputPath7>src\main\resources\</inputPath7>
         <inputPath>target\dependency\</inputPath>
         <outputPath>..\GDGameAvianJOGLApplicationM\src\main\java\</outputPath>
+        <outputPath3>..\..\..\..\..\..\..\avian\gd_gl\org.allbinary\src\</outputPath3>
         
         <inputPath3>..\..\..\Resources\2d\images\raw\</inputPath3>
 <!--    
@@ -715,6 +716,33 @@
                         </goals>
                         <configuration>
                             <outputDirectory>${outputPath}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath2}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath3}</outputDirectory>
                             <resources>          
                                 <resource>
                                     <directory>${inputPath}</directory>

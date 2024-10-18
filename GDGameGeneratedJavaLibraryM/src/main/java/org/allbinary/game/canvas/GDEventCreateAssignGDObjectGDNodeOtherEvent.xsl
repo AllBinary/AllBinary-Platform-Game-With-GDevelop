@@ -245,13 +245,16 @@ Created By: Travis Berthelot
                 <xsl:if test="not(whileConditions)" >
                 <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
                 <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
-                    <xsl:variable name="hasParentConditionVarGlobal" >
+                    <xsl:variable name="hasSiblingConditionVarGlobal" >
                         <xsl:for-each select="conditions" >
                             <xsl:if test="type/value = 'VarGlobal'" >found</xsl:if>
                         </xsl:for-each>
                     </xsl:variable>
+                    <xsl:variable name="hasSiblingCondition" >
+                        <xsl:for-each select="conditions" >found</xsl:for-each>
+                    </xsl:variable>
                 
-                <xsl:if test="not(contains($hasParentConditionVarGlobal, 'found'))" >
+                <xsl:if test="not(contains($hasSiblingConditionVarGlobal, 'found'))" >
                 <xsl:for-each select="actions" >
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
@@ -273,9 +276,11 @@ Created By: Travis Berthelot
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                     </xsl:if>
                     <xsl:if test="not(string-length($hasCreateOrCreateByName) > 0 and $hasCreateOrCreateByName &lt; number(substring(generate-id(), 2) - 65536))" >
-                    //TWB - Action was not called before
+                    <xsl:if test="not(contains($hasSiblingCondition, 'found'))" >
+                    //TWB - Action was not called before 2
                     //Using unknown param
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                    </xsl:if>
                     </xsl:if>
                 </xsl:for-each>
                 </xsl:if>
@@ -416,13 +421,16 @@ Created By: Travis Berthelot
                 <xsl:if test="not(whileConditions)" >
                 <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
                 <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
-                    <xsl:variable name="hasParentConditionVarGlobal" >
+                    <xsl:variable name="hasSiblingConditionVarGlobal" >
                         <xsl:for-each select="conditions" >
                             <xsl:if test="type/value = 'VarGlobal'" >found</xsl:if>
                         </xsl:for-each>
                     </xsl:variable>
+                    <xsl:variable name="hasSiblingCondition" >
+                        <xsl:for-each select="conditions" >found</xsl:for-each>
+                    </xsl:variable>
                 
-                <xsl:if test="not(contains($hasParentConditionVarGlobal, 'found'))" >
+                <xsl:if test="not(contains($hasSiblingConditionVarGlobal, 'found'))" >
                 <xsl:for-each select="actions" >
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
@@ -440,13 +448,15 @@ Created By: Travis Berthelot
                     <xsl:if test="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id]) != 0" >
                     //Using specific param - <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
                     </xsl:if>
-                    //TWB - Action was not called before
+                    //TWB - Action was not called before 3
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index3);
                     </xsl:if>
                     <xsl:if test="not(string-length($hasCreateOrCreateByName) > 0 and $hasCreateOrCreateByName &lt; number(substring(generate-id(), 2) - 65536))" >
-                    //TWB - Action was not called before
+                    <xsl:if test="not(contains($hasSiblingCondition, 'found'))" >
+                    //TWB - Action was not called before 4
                     //Using unknown param
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index3);
+                    </xsl:if>
                     </xsl:if>
                 </xsl:for-each>
                 </xsl:if>
