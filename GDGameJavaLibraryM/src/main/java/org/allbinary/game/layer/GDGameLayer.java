@@ -767,8 +767,10 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
     
     public void toString(final StringMaker stringBuffer) {
 
-        super.toString(stringBuffer);        
-        this.dimensionalBehavior.getAnimationBehavior().toString(this.gdObject, stringBuffer);
+        super.toString(stringBuffer);
+        if(this.dimensionalBehavior != null) {
+            this.dimensionalBehavior.getAnimationBehavior().toString(this.gdObject, stringBuffer);
+        }
         stringBuffer.append(this.gdObject.toString());
     }    
     
