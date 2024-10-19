@@ -50,7 +50,7 @@ Created By: Travis Berthelot
                                 final int index2 = leaderBoardTotal <xsl:text disable-output-escaping="yes" >&gt; </xsl:text> gameGlobals.selectedLeaderboardIndex ? gameGlobals.selectedLeaderboardIndex : leaderBoardTotal - 1;
                                 //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB c: " + index2, this, commonStrings.PROCESS));                            
                                 //for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> leaderBoardTotal; index2++) {
-                                if(index2 <xsl:text disable-output-escaping="yes" >&gt; </xsl:text> 0) {
+                                if(org.allbinary.game.score.BasicHighScoresFactory.loaded(index2)) {
                                     highScores = highScoresArray[index2];
                                                                 
                                     gameGlobals.highScoresTitle = highScores.getHeading();
