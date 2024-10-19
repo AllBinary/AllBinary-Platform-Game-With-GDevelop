@@ -166,7 +166,13 @@ public class <GDLayout> extends StartCanvas
 
         this.downKeyEventHandler.getInstanceForPlayer(playerGameInput.getPlayerInputId()).addListenerSingleThreaded(playerGameInput);
     }
-            
+
+    <xsl:if test="number($layoutIndex) != 1" >
+    //Do not remove on build for this layout
+    protected void removeAllGameKeyInputListenersOnBuild() {
+    }
+    </xsl:if>
+
     public void removeKeyInputListener(final PlayerGameInput playerGameInput) {
         super.removeKeyInputListener(playerGameInput);
 

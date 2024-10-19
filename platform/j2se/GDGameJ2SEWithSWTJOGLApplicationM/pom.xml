@@ -38,7 +38,7 @@
 
         <dependency>
             <groupId>org.allbinary.game.resources</groupId>
-            <artifactId>GameSoundsJ2SEOggResourcesJavaLibrary</artifactId>
+            <artifactId>GameSoundsWavResourcesJavaLibrary</artifactId>
             <!-- 
             <artifactId>GameSoundsWavResourcesJavaLibrary</artifactId>
             <artifactId>GameSoundsJ2SEOggResourcesJavaLibrary</artifactId>

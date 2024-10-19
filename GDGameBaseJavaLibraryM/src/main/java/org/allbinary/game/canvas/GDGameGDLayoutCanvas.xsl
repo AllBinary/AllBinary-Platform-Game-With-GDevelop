@@ -749,7 +749,6 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         this.addCommand(gdGameCommandFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_GD_LAYOUT);
             </xsl:if>
         </xsl:for-each>
-           
 
         //boolean isOverScan = OperatingSystemFactory.getInstance().getOperatingSystemInstance().isOverScan();
         
@@ -781,7 +780,13 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         this.downKeyEventHandler.getInstanceForPlayer(playerGameInput.getPlayerInputId()).addListenerSingleThreaded(playerGameInput);
         this.upKeyEventHandler.getInstanceForPlayer(playerGameInput.getPlayerInputId()).addListenerSingleThreaded(playerGameInput);
     }
-            
+
+    <xsl:if test="number($layoutIndex) != 1" >
+    //Do not remove on build for this layout
+    protected void removeAllGameKeyInputListenersOnBuild() {
+    }
+    </xsl:if>
+
     public void removeKeyInputListener(final PlayerGameInput playerGameInput) {
         super.removeKeyInputListener(playerGameInput);
 
