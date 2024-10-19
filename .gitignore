@@ -115,6 +115,7 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.html
 /platform/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.txt
 /platform/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.ogg
+/platform/j2se/GDGameJ2SEWithSWTApplicationM/src/**/*.wav
 /platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/main/java/**
 /platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.svg
 /platform/j2se/GDGameJ2SEWithSWTApplication_3_115_100M/src/**/*.png
@@ -141,6 +142,7 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/j2se/GDGameJ2SEWithSWTJOGLApplicationM/src/**/*.html
 /platform/j2se/GDGameJ2SEWithSWTJOGLApplicationM/src/**/*.txt
 /platform/j2se/GDGameJ2SEWithSWTJOGLApplicationM/src/**/*.ogg
+/platform/j2se/GDGameJ2SEWithSWTJOGLApplicationM/src/**/*.wav
 /platform/j2me/GDGameJ2MEApplicationM/src/**/*.java
 /platform/j2me/GDGameJ2MEApplicationM/src/**/*.svg
 /platform/j2me/GDGameJ2MEApplicationM/src/**/*.png

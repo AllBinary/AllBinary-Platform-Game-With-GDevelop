@@ -471,7 +471,8 @@ Created By: Travis Berthelot
                         </xsl:variable>
                         
                         <xsl:if test="not(contains($hasHighscoreSubmissionComplete, 'found'))" >
-                        //This layout should not be the scores layout
+                        //This layout should not be the highscore layout
+                        LogUtil.put(LogFactory.getInstance("This layout should not be the highscore layout", this, commonStrings.PROCESS));
                         globals.highscoreSubmissionComplete = false;
                         </xsl:if>
 

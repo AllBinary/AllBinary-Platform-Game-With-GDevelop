@@ -28,7 +28,7 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                     <xsl:variable name="hasOtherConditions" ><xsl:for-each select="preceding-sibling::conditions" >found</xsl:for-each></xsl:variable>
-                        private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
+                        private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "highscores <xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
 
                         //Leaderboards::IsLeaderboardViewLoaded - condition
                         @Override
@@ -59,7 +59,7 @@ Created By: Travis Berthelot
 
                                     final BasicArrayList highScoreList = highScores.getList();
                                     final int size = highScoreList.size();
-                                    LogUtil.put(LogFactory.getInstance("highScoreList.size(): " + size, this, commonStrings.PROCESS));
+                                    //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "highScoreList.size(): " + size, this, commonStrings.PROCESS));
                                     gameGlobals.highScoresNameArray = new String[size];
                                     gameGlobals.highScoresLongArray = new long[size];
                                     HighScore highScore;
@@ -118,6 +118,8 @@ Created By: Travis Berthelot
                         @Override
                         public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                             super.processGDStats(gameLayer);
+
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                             if(globals.highscoreSubmissionComplete) {
 

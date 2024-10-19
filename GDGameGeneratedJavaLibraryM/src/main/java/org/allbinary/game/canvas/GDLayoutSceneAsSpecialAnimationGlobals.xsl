@@ -148,7 +148,7 @@ Created By: Travis Berthelot
                         </xsl:variable>
                         
                         <xsl:if test="not(contains($hasHighscoreSubmissionComplete, 'found'))" >
-                        //This layout should not be the scores layout
+                        //This layout should not be the highscore layout
                         public boolean highscoreSubmissionComplete = false;
                         </xsl:if>
                                                                                     
