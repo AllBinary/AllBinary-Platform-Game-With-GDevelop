@@ -26,6 +26,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDAnimationSetIndexActionProcess.xsl" />
     <xsl:import href="./action/GDAnimationSetNameActionProcess.xsl" />
     <xsl:import href="./action/GDSetNumberObjectVariableActionProcess.xsl" />
+    <xsl:import href="./action/GDModVarObjetTxtActionProcess.xsl" />
     <xsl:import href="./action/GDModVarSceneTxtActionProcess.xsl" />
     
     <xsl:import href="./action/GDLinkedObjectsLinkObjectsActionProcess.xsl" />
@@ -235,6 +236,11 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'ModVarSceneTxt'" >
 
                     <xsl:call-template name="modVarSceneTxtActionProcess" />
+
+                </xsl:if>
+                <xsl:if test="$typeValue = 'ModVarObjetTxt'" >
+
+                    <xsl:call-template name="modVarObjetTxtActionProcess" />
 
                 </xsl:if>
 
