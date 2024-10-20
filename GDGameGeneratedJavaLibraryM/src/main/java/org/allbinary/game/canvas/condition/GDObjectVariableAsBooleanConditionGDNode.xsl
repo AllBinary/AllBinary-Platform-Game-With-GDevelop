@@ -189,11 +189,9 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                         </xsl:variable>                        
 
-                        <xsl:for-each select=".." >
-                        <xsl:for-each select="actions" >
-                            <xsl:if test="type/value = 'Create' and type/value != 'CreateByName'" >
-                                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                        <xsl:if test="contains($hasSiblingActionWithObjectsGroupsOrObject, 'found')" >
+                            <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                            <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                     //Sibling - //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                                                     <xsl:value-of select="$name" /><xsl:text> = </xsl:text><xsl:value-of select="$name" />GDGameLayer.gdObject;
                                     
@@ -201,9 +199,7 @@ Created By: Travis Berthelot
                     public boolean processGD(final GDGameLayer gdGameLayer, final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final Graphics graphics) throws Exception {
                     
                         super.processGDStats(<xsl:value-of select="$name" />GDGameLayer);
-                            </xsl:if>
-                        </xsl:for-each>
-                        </xsl:for-each>
+                        </xsl:if>
                         
                         <xsl:if test="not(contains($hasSiblingActionWithObjectsGroupsOrObject, 'found') or contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
                     //Not from parent collision - //BooleanObjectVariable
