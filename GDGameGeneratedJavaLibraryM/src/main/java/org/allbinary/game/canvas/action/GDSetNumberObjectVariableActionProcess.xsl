@@ -121,7 +121,28 @@ Created By: Travis Berthelot
                         </xsl:if>
                         <xsl:text>&#10;</xsl:text>
                         <xsl:text>&#10;</xsl:text>
-                                                                                            
+                        
+                        <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 4" >
+
+                            <xsl:text>&#10;</xsl:text>
+                            <xsl:if test="$paramTwoName = ''" >
+                                <xsl:variable name="before" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
+
+                                <xsl:if test="$beforeSecondParam != ''" >
+                                    //<xsl:value-of select="$beforeSecondParam" /> - <xsl:value-of select="$hasObject" /><xsl:text>&#10;</xsl:text>
+                                    <xsl:if test="contains($hasObject, 'found')" >
+                                    //param4
+                                    <xsl:variable name="gameLayerName" ><xsl:value-of select="$beforeSecondParam" /></xsl:variable>
+                                    final GDGameLayer <xsl:value-of select="$gameLayerName" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(0);
+                                    final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="$gameLayerName" /> = (<xsl:value-of select="$gdObjectFactory2" />) <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
+                                    </xsl:if>                                    
+                                </xsl:if>
+                            </xsl:if>
+                        </xsl:if>
+                        </xsl:for-each>
+                        <xsl:text>&#10;</xsl:text>
+                                                  
 <xsl:text>                        </xsl:text><xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             <xsl:if test="text() != $firstParam" >//orignalFirstParam=<xsl:value-of select="text()" />
@@ -146,11 +167,7 @@ Created By: Travis Berthelot
                                 <xsl:variable name="before" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
 
                                 <xsl:if test="$beforeSecondParam != ''" >
-                                    //<xsl:value-of select="$beforeSecondParam" /> - <xsl:value-of select="$hasObject" /><xsl:text>&#10;</xsl:text>
-                                    <xsl:if test="contains($hasObject, 'found')" >
-                                    //<xsl:value-of select="$gdObjectFactory2" /> <xsl:value-of select="$beforeSecondParam" /> = (<xsl:value-of select="$gdObjectFactory2" />) <xsl:value-of select="$beforeSecondParam" />GDGameLayer.gdObject;
-                                    </xsl:if>
-                                    
+                                    //<xsl:value-of select="$beforeSecondParam" /> - <xsl:value-of select="$hasObject" /><xsl:text>&#10;</xsl:text>                                    
                                     <xsl:if test="contains($hasObject, 'found')" >
                                     <xsl:value-of select="$beforeSecondParam2" /><xsl:value-of select="$beforeSecondParam" />.<xsl:value-of select="substring-after($param, '.')" />
                                     </xsl:if>
@@ -432,7 +449,29 @@ Created By: Travis Berthelot
                         </xsl:if>
                         <xsl:text>&#10;</xsl:text>
                         <xsl:text>&#10;</xsl:text>
-                                                
+
+                        <xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
+                        <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 4" >
+
+                            <xsl:text>&#10;</xsl:text>
+                            <xsl:if test="$paramTwoName = ''" >
+                                <xsl:variable name="before" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
+
+                                <xsl:if test="$beforeSecondParam != ''" >
+                                    //<xsl:value-of select="$beforeSecondParam" /> - <xsl:value-of select="$hasObject" /><xsl:text>&#10;</xsl:text>
+                                    <xsl:if test="contains($hasObject, 'found')" >
+                                    //param4c
+                                    <xsl:variable name="gameLayerName" ><xsl:value-of select="$beforeSecondParam" /></xsl:variable>
+                                    final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="$gameLayerName" /> = (<xsl:value-of select="$gdObjectFactory2" />) <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
+                                    </xsl:if>                                    
+                                </xsl:if>
+                            </xsl:if>
+                        </xsl:if>
+                        </xsl:for-each>
+                        </xsl:if>
+                        <xsl:text>&#10;</xsl:text>
+
 <xsl:text>                        </xsl:text><xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             <xsl:if test="text() != $firstParam" >//orignalFirstParam=<xsl:value-of select="text()" />
@@ -458,9 +497,6 @@ Created By: Travis Berthelot
 
                                 <xsl:if test="$beforeSecondParam != ''" >
                                     //<xsl:value-of select="$beforeSecondParam" /> - <xsl:value-of select="$hasObject" /><xsl:text>&#10;</xsl:text>
-                                    <xsl:if test="contains($hasObject, 'found')" >
-                                    //<xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="$beforeSecondParam" /> = (<xsl:value-of select="$gdObjectFactory2" />) <xsl:value-of select="$beforeSecondParam" />GDGameLayer.gdObject;
-                                    </xsl:if>
                                     
                                     <xsl:if test="contains($hasObject, 'found')" >
                                     <xsl:value-of select="$beforeSecondParam2" /><xsl:value-of select="$beforeSecondParam" />.<xsl:value-of select="substring-after($param, '.')" />
