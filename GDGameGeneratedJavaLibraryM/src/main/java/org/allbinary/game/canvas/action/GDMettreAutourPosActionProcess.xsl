@@ -58,7 +58,7 @@ Created By: Travis Berthelot
                             try {
                                 super.processGStats(gdObject, graphics);
                         
-                                final boolean result = this.processGPaint(gdObject, graphics);
+                                final boolean result = this.processGPaint(gdObject, null, graphics);
                                 
                                 final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(gdObjectIndex);
                                 //final GDObject gdObject = gameLayer.gdObject;
@@ -78,7 +78,7 @@ Created By: Travis Berthelot
 
                                 super.processGDStats(gameLayer);
                         
-                                final boolean result = this.processGPaint(gameLayer.gdObject, graphics);
+                                final boolean result = this.processGPaint(gameLayer.gdObject, null, graphics);
                                 
                                 gameLayer.updatePosition();
                                 
@@ -86,7 +86,7 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public boolean processGPaint(final GDObject gdObject, final Graphics graphics) {
+                        public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2, final Graphics graphics) {
 
                             try {
 

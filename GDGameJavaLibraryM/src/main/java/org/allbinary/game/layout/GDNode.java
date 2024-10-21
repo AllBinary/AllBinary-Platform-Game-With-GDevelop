@@ -141,7 +141,7 @@ public class GDNode
         return false;
     }
     
-    public boolean processGPaint(final GDObject gdObject, final Graphics graphics) {
+    public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2, final Graphics graphics) {
         return false;
     }
     

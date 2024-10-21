@@ -208,7 +208,7 @@ Created By: Travis Berthelot
                             try {
                                 super.processGStats(<xsl:value-of select="$name" />, graphics);
                         
-                                return this.processGPaint(<xsl:value-of select="$name" />, graphics);
+                                return this.processGPaint(<xsl:value-of select="$name" />, null, graphics);
                             } catch(Exception e) {
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
@@ -221,12 +221,12 @@ Created By: Travis Berthelot
 
                                 super.processGDStats(gameLayer);
                         
-                                return this.processGPaint(gameLayer.gdObject, graphics);
+                                return this.processGPaint(gameLayer.gdObject, null, graphics);
 
                         }
 
                         @Override
-                        public boolean processGPaint(final GDObject <xsl:value-of select="$name" />, final Graphics graphics) {
+                        public boolean processGPaint(final GDObject <xsl:value-of select="$name" />, final GDObject gdObject2, final Graphics graphics) {
                         
                             try {
                             <xsl:if test="$name = 'player'" >

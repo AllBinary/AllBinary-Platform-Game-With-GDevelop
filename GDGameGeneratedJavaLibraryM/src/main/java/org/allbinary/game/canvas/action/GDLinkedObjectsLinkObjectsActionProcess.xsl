@@ -149,7 +149,7 @@ Created By: Travis Berthelot
                         
                                 if(true) throw new RuntimeException();
                                 final boolean result = true;
-                                    //this.processGPaint(gdObject, graphics);
+                                    //this.processGPaint(gdObject, null, graphics);
                                                                 
                                 return result;
 

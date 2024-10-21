@@ -140,7 +140,7 @@ Created By: Travis Berthelot
                             try {
                                 super.processGStats(<xsl:value-of select="$gdObjectName" />, graphics);
                         
-                                return this.processGPaint(<xsl:value-of select="$gdObjectName" />, graphics);
+                                return this.processGPaint(<xsl:value-of select="$gdObjectName" />, null, graphics);
                             } catch(Exception e) {
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
                             }
@@ -271,7 +271,7 @@ Created By: Travis Berthelot
                                 //Defaulting to first param since no known association with prior sibling Create action or parent Condition
                                 </xsl:if>
 
-                                if(this.processGPaint(<xsl:value-of select="$gdObjectName" />GDGameLayer.gdObject, graphics)) {
+                                if(this.processGPaint(<xsl:value-of select="$gdObjectName" />GDGameLayer.gdObject, null, graphics)) {
                                 
                                 <xsl:if test="contains($hasSiblingWithDuplicateProcessing, 'found')" >
                                     //Skipping duplicate processing
@@ -309,7 +309,7 @@ Created By: Travis Berthelot
                         }
                                 
                         @Override
-                        public boolean processGPaint(final GDObject gdObject, final Graphics graphics) {
+                        public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2, final Graphics graphics) {
 
                             try {
 

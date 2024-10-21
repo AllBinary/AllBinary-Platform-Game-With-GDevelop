@@ -82,7 +82,7 @@ Created By: Travis Berthelot
                             try {
                                 super.processGStats(gdObject, graphics);
                         
-                                final boolean result = this.processGPaint(gdObject, graphics);
+                                final boolean result = this.processGPaint(gdObject, null, graphics);
                                 
                                 final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(gdObjectIndex);
                                 //final GDObject gdObject = gameLayer.gdObject;
@@ -193,13 +193,13 @@ Created By: Travis Berthelot
                     </xsl:if>
 
                     <xsl:if test="$paramOneNameObjectsGroups != ''" >
-                                final boolean result = this.processGPaint(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject, graphics);
+                                final boolean result = this.processGPaint(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject, null, graphics);
                                 
                                 <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.updatePosition();
                     </xsl:if>
 
                     <xsl:if test="$paramOneNameObjectsGroups = ''" >
-                                final boolean result = this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, graphics);
+                                final boolean result = this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, null, graphics);
                                 
                                 <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.updatePosition();
                     </xsl:if>
@@ -208,7 +208,7 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public boolean processGPaint(final GDObject gdObject, final Graphics graphics) {
+                        public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2, final Graphics graphics) {
 
                             try {
 
@@ -220,11 +220,11 @@ Created By: Travis Berthelot
                                 //}
                                 
                             <xsl:if test="not(contains($hasObjectGroup, 'found'))" >   
-                                final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) gdObject;
+                                final GDObject <xsl:value-of select="$name" /> = gdObject;
                             </xsl:if>
                             
                             <xsl:if test="contains($hasObjectGroup, 'found')" >
-                                final GDObject <xsl:value-of select="$name" /> = gdObject;
+                                final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) gdObject;
                             </xsl:if>
                                 
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS));

@@ -344,7 +344,7 @@ Created By: Travis Berthelot
                             try {
                                 super.processGStats(gdObject, graphics);
                         
-                                final boolean result = this.processGPaint(gdObject, graphics);
+                                final boolean result = this.processGPaint(gdObject, null, graphics);
                                 
                                 final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(gdObjectIndex);
                                 //final GDObject gdObject = gameLayer.gdObject;
@@ -463,13 +463,19 @@ Created By: Travis Berthelot
 -->
                     
                     <xsl:if test="$paramOneNameObjectsGroups != ''" >
-                                final boolean result = this.processGPaint(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject, graphics);
+                        final boolean result = this.processGPaint(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject, 
+                        <xsl:if test="contains($hasDistanceProcessGD, 'found')" >
+                            <xsl:variable name="distanceProcessGDParamTwo" ><xsl:call-template name="distanceProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            <xsl:value-of select="$distanceProcessGDParamTwo" />GDGameLayer.gdObject
+                        </xsl:if>
+                        <xsl:if test="not(contains($hasDistanceProcessGD, 'found'))" >null</xsl:if>, 
+                        graphics);
                                 
                                 <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.updatePosition();
                     </xsl:if>
 
                     <xsl:if test="$paramOneNameObjectsGroups = ''" >
-                                final boolean result = this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, graphics);
+                                final boolean result = this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, null, graphics);
                                 
                                 <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.updatePosition();
                     </xsl:if>
@@ -479,7 +485,7 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public boolean processGPaint(final GDObject gdObject, final Graphics graphics) {
+                        public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2, final Graphics graphics) {
 
                             try {
 
@@ -489,7 +495,20 @@ Created By: Travis Berthelot
                                 //    LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "gdObject was null", this, commonStrings.PROCESS));
                                 //    return;
                                 //}
+
+                            <xsl:if test="contains($hasDistanceProcessGD, 'found')" >
+                                <xsl:variable name="distanceProcessGDParamTwo" ><xsl:call-template name="distanceProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                                //Param2 from distanceProcessGDParamTwo
+                                final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$distanceProcessGDParamTwo" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$distanceProcessGDParamTwo" /><xsl:text> </xsl:text><xsl:value-of select="$distanceProcessGDParamTwo" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$distanceProcessGDParamTwo" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$distanceProcessGDParamTwo" />) gdObject;
+                            </xsl:if>
+                                                            
+                            <xsl:if test="$paramOneNameObjectsGroups != ''" >
+                                //Param from paramOne
+                                final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$paramOneNameObjectsGroups" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$paramOneNameObjectsGroups" /><xsl:text> </xsl:text><xsl:value-of select="$paramOneNameObjectsGroups" /> = (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$paramOneNameObjectsGroups" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$paramOneNameObjectsGroups" />) gdObject;
+                            </xsl:if>
                             
+                            <xsl:if test="$paramOneNameObjectsGroups = ''" >
+                                
                             <xsl:if test="string-length($parentConditionObject) > 0" >
                             <xsl:if test="not(contains($parentObjectHasObjectGroup, 'found'))" >
                                 //Param from parent
@@ -503,6 +522,8 @@ Created By: Travis Berthelot
                             <xsl:if test="string-length($parentConditionObject) = 0" >
                                 //Param not from parent
                                 final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gdObject;
+                            </xsl:if>
+                            
                             </xsl:if>
 
                                 //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS));

@@ -49,7 +49,7 @@ Created By: Travis Berthelot
                     GDObject <xsl:value-of select="$name2" />;
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size<xsl:value-of select="$name2" />; index++) {
                         <xsl:value-of select="$name2" /> = (GDObject) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDGameLayerList.get(index)).gdObject;
-                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGPaint(<xsl:value-of select="$name2" />, graphics);
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGPaint(<xsl:value-of select="$name2" />, null, graphics);
                     }
                     }
                     </xsl:if>
@@ -73,7 +73,7 @@ Created By: Travis Berthelot
                     GDObject <xsl:value-of select="$name2" />;
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size<xsl:value-of select="$name2" />; index++) {
                         <xsl:value-of select="$name2" /> = (GDObject) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name2" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name2" />GDGameLayerList.get(index)).gdObject;
-                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGPaint(<xsl:value-of select="$name2" />, graphics);
+                        gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGPaint(<xsl:value-of select="$name2" />, null, graphics);
                     }
                     </xsl:if>
                     <!--

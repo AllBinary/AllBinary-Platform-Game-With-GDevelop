@@ -341,8 +341,29 @@ Created By: Travis Berthelot
                     //gameLayerName=<xsl:value-of select="$gameLayerName" />
 
                     <xsl:if test="contains($hasGameLayer2, 'found')" >
-                    <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" /></xsl:variable>
+
+                <xsl:variable name="hasObjectGroup" >
+                    <xsl:for-each select="//objectsGroups" >
+                        <xsl:if test="name = $gameLayerName" >found</xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                                                
+                        <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" /></xsl:variable>
+
+                <xsl:if test="contains($hasObjectGroup, 'found')" >
+                    //This code should probably never be used - it is here to compile with at least some possible logic 2
+                    final BasicArrayList gdGameLayerList = (BasicArrayList) <xsl:call-template name="globals" >
+                        <xsl:with-param name="name" >
+                            <xsl:value-of select="$gameLayerName" />
+                        </xsl:with-param>
+                    </xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerListOfList.get(0);
+                    final GDGameLayer <xsl:value-of select="$gameLayerName" />GDGameLayer = (GDGameLayer) gdGameLayerList.get(0);
+                </xsl:if>
+                                       
+                <xsl:if test="not(contains($hasObjectGroup, 'found'))" >
                     final GDGameLayer <xsl:value-of select="$gameLayerName" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(0);
+                </xsl:if>
+                        
                     final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$gameLayerName" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
                     </xsl:if>
                         
