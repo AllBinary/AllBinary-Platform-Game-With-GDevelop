@@ -330,8 +330,6 @@ Created By: Travis Berthelot
                     <xsl:variable name="textInputName" >,TextInput::TextInputObject:<xsl:value-of select="$name" />,</xsl:variable>
 
                     //createByNameGDObject - <xsl:value-of select="$name" />
-                        
-                    <xsl:variable name="hasGameLayer2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="contains(text(), '.')" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
                     <xsl:variable name="gameLayerName3" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:if></xsl:for-each></xsl:variable>
                     //gameLayerName3=<xsl:value-of select="$gameLayerName3" />
@@ -340,6 +338,8 @@ Created By: Travis Berthelot
                     <xsl:variable name="gameLayerName" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" ><xsl:value-of select="$gameLayerName4" /></xsl:with-param><xsl:with-param name="char" select="' '" /></xsl:call-template></xsl:variable>
                     //gameLayerName=<xsl:value-of select="$gameLayerName" />
 
+                    <xsl:variable name="hasGameLayer2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="contains(text(), '.')" ><xsl:if test="not(contains($gameLayerName, 'Variable('))" >found</xsl:if></xsl:if></xsl:if></xsl:for-each></xsl:variable>
+                    
                     <xsl:if test="contains($hasGameLayer2, 'found')" >
 
                 <xsl:variable name="hasObjectGroup" >
@@ -485,7 +485,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:variable name="textInputName" >,TextInput::TextInputObject:<xsl:value-of select="$name" />,</xsl:variable>
 
-                    //createByNameGDObject - <xsl:value-of select="$name" />
+                    //createByNameGDObject2 - <xsl:value-of select="$name" />
                         
                     <xsl:variable name="hasGameLayer2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="contains(text(), '.')" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
@@ -514,7 +514,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:variable name="textInputName" >,TextInput::TextInputObject:<xsl:value-of select="$name" />,</xsl:variable>
 
-                    //createByNameGDObject - <xsl:value-of select="$name" />
+                    //createByNameGDObject3 - <xsl:value-of select="$name" />
                         
                     <xsl:variable name="hasGameLayer2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="contains(text(), '.')" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
 
