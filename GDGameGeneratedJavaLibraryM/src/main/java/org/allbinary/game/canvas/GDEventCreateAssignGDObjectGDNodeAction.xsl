@@ -25,6 +25,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDChangeAnimationActionProcess.xsl" />
     <xsl:import href="./action/GDAnimationSetIndexActionProcess.xsl" />
     <xsl:import href="./action/GDAnimationSetNameActionProcess.xsl" />
+    <xsl:import href="./action/GDAnimationSetSpeedScaleActionProcess.xsl" />
     <xsl:import href="./action/GDSetNumberObjectVariableActionProcess.xsl" />
     <xsl:import href="./action/GDModVarObjetTxtActionProcess.xsl" />
     <xsl:import href="./action/GDModVarSceneTxtActionProcess.xsl" />
@@ -957,7 +958,9 @@ Created By: Travis Berthelot
                 </xsl:if>
   
                 <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetSpeedScale'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetSpeedScaleActionProcess" >
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                    </xsl:call-template>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::PauseAnimation'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED

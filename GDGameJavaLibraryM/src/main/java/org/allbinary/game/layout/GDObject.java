@@ -59,6 +59,7 @@ public class GDObject
     public float customScale = 1.0f;
 
     public int animation;
+    public float timeScale = 1.0f;
     
     public float opacity = 255;
     public BasicColor basicColor;
