@@ -24,7 +24,7 @@
                 <xsl:if test="name = $name" >found</xsl:if>
             </xsl:for-each>
         </xsl:for-each>
-        <xsl:if test="//actions[type/value/text() = 'ModVarGlobal']/parameters[1]/text() = $name" >found</xsl:if>
+        <xsl:if test="//actions[type/value/text() = 'SetNumberVariable']/parameters[1]/text() = $name" >found</xsl:if>
         </xsl:variable>
 
 <!-- 

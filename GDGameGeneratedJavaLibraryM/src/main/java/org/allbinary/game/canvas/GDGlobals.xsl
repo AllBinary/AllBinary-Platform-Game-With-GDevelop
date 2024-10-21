@@ -262,17 +262,17 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>
 
 
-                    //variables - ModVarGlobal - START
+                    //variables - SetNumberVariable - START
                     <xsl:call-template name="actionsWithUndefinedGlobalVariables" >
                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                         <xsl:with-param name="variables" >
                             <xsl:value-of select="$variables" />
                         </xsl:with-param>
                     </xsl:call-template>    
-                    //variables - ModVarGlobal - END
+                    //variables - SetNumberVariable - END
                     <xsl:text>&#10;</xsl:text>
 
-                    //variables - layouts - ModVarGlobal - START
+                    //variables - layouts - SetNumberVariable - START
                     <xsl:for-each select="layouts" >
                     <xsl:call-template name="actionsWithUndefinedGlobalVariables" >
                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
@@ -281,7 +281,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     </xsl:for-each>
-                    //variables - layouts - ModVarGlobal - END
+                    //variables - layouts - SetNumberVariable - END
                     <xsl:text>&#10;</xsl:text>
 
                     //variables - START

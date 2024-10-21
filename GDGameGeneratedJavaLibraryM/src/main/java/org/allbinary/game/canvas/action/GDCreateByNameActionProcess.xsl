@@ -28,6 +28,8 @@ Created By: Travis Berthelot
 
         //param1=<xsl:value-of select="$param" />
 
+        <xsl:variable name="actionAsString" >ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+
                         <!-- Temp solution until I can remove duplicates -->
                         <xsl:variable name="hasObjectInParams" >
                         <xsl:for-each select="parameters" >
@@ -56,7 +58,7 @@ Created By: Travis Berthelot
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();
-                            
+
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                         <!--
@@ -253,7 +255,15 @@ Created By: Travis Berthelot
                             //stringBuilder.append(<xsl:value-of select="text()" />GDGameLayer.toString());
 
                             //CreateByName - <xsl:value-of select="$text" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
+                            //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$actionAsString" /> + gameGlobals.tempGameLayerArray[0], this, commonStrings.PROCESS));
+                            //name=<xsl:value-of select="$name" />
+                            <xsl:if test="$name != 'Items'" >
                             gameGlobals.tempGameLayerArray[0] = <xsl:value-of select="text()" />GDGameLayer;
+                            </xsl:if>
+                            <xsl:if test="$name = 'Items'" >
+                            //Do not pass Items as the second layer - hack
+                            //gameGlobals.tempGameLayerArray[0] = <xsl:value-of select="text()" />GDGameLayer;
+                            </xsl:if>
                             //if(gameGlobals.tempGameLayerArray[0] != null) LogUtil.put(LogFactory.getInstance(gameGlobals.tempGameLayerArray[0].toString(), this, commonStrings.PROCESS));
                             <xsl:value-of select="text()" />GDGameLayerList.add(<xsl:value-of select="text()" />GDGameLayer);
                         </xsl:if>

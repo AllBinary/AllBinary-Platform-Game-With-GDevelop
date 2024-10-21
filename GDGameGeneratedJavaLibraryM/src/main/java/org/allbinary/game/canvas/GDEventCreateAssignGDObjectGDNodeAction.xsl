@@ -780,7 +780,7 @@ Created By: Travis Berthelot
 
                 </xsl:if>
                 
-                <xsl:if test="$typeValue = 'ModVarGlobal'" >
+                <xsl:if test="$typeValue = 'SetNumberVariable'" >
 
                     <xsl:call-template name="modVarGlobalActionProcess" >
                         <xsl:with-param name="layoutIndex" >

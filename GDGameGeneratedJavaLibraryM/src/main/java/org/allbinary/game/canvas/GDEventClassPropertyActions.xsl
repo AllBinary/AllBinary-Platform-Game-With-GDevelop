@@ -346,8 +346,8 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                                 <!-- //public boolean <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />_updated<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > = true;</xsl:if></xsl:for-each> -->
                             </xsl:if>
                         </xsl:if>
-                        <xsl:if test="$typeValue = 'ModVarGlobal'" >
-                            //eventsClassPropertyActions - //ModVarGlobal
+                        <xsl:if test="$typeValue = 'SetNumberVariable'" >
+                            //eventsClassPropertyActions - //SetNumberVariable
                             <xsl:if test="parameters[2]/text() = '='" >public int <xsl:for-each select="parameters" >
                                     <xsl:value-of select="text()" />
                                     <xsl:if test="position() != last()" >
@@ -410,8 +410,8 @@ public class GDStructure<xsl:value-of select="name" /> extends GDStructure {
                                         <!-- public boolean <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />_updated<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > = true;</xsl:if></xsl:for-each> -->
                                     </xsl:if>
                                 </xsl:if>
-                                <xsl:if test="$typeValue = 'ModVarGlobal'" >
-                                    //eventsClassPropertyActions - //ModVarGlobal - 2
+                                <xsl:if test="$typeValue = 'SetNumberVariable'" >
+                                    //eventsClassPropertyActions - //SetNumberVariable - 2
                                     <xsl:if test="parameters[2]/text() = '='" >public int <xsl:for-each select="parameters" >
                                             <xsl:value-of select="text()" />
                                             <xsl:if test="position() != last()" >
