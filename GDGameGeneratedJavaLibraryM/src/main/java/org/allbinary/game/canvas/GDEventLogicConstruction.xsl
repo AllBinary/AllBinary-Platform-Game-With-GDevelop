@@ -524,6 +524,62 @@ Created By: Travis Berthelot
                     </xsl:if>
 -->
 
+    <xsl:template name="forEachGDParamOne" >
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
+        
+        <xsl:for-each select=".." >
+            <xsl:for-each select="events" >
+            <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" ><xsl:value-of select="object" /></xsl:if>
+            </xsl:if>
+            </xsl:for-each>
+            
+            <xsl:call-template name="forEachGDParamOne" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+    </xsl:template>
+
+    <xsl:template name="forEachGDParamTwo" >
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
+        <xsl:param name="secondGameLayer" />
+        <xsl:param name="secondGameLayer2" />
+        
+        <xsl:for-each select=".." >
+            <xsl:for-each select="events" >
+            <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" ><xsl:if test="object != $secondGameLayer" ><xsl:value-of select="$secondGameLayer" /></xsl:if><xsl:if test="object = $secondGameLayer and object != $secondGameLayer2" ><xsl:value-of select="$secondGameLayer2" /></xsl:if></xsl:if>
+            </xsl:if>
+            </xsl:for-each>
+            
+            <xsl:call-template name="forEachGDParamTwo" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                <xsl:with-param name="secondGameLayer" ><xsl:value-of select="$secondGameLayer" /></xsl:with-param>
+                <xsl:with-param name="secondGameLayer2" ><xsl:value-of select="$secondGameLayer2" /></xsl:with-param>
+            </xsl:call-template>
+            
+        </xsl:for-each>
+    </xsl:template>
+
     <xsl:template name="distanceProcessGDParamOne" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="nodeId" />
