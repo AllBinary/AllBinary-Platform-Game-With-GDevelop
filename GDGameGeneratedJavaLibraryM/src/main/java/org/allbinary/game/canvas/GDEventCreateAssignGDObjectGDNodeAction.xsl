@@ -218,7 +218,6 @@ Created By: Travis Berthelot
 
                 </xsl:if>
                 
-                //Was ModVarObjet
                 <xsl:if test="$typeValue = 'SetNumberObjectVariable'" >
                     
                     <xsl:call-template name="setNumberObjectVariableActionProcess" >

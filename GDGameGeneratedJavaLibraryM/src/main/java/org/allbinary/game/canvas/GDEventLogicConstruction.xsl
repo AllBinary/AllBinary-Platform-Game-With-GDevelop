@@ -42,7 +42,7 @@ Created By: Travis Berthelot
             </xsl:choose>
     -->
 
-    <xsl:template name="firstParam" >
+    <xsl:template name="firstParamFound" >
         <xsl:param name="nodeId" />
         
         <xsl:variable name="firstParam" >

@@ -92,12 +92,13 @@ Created By: Travis Berthelot
                     //paramOneNameObjectsGroups=<xsl:value-of select="$paramOneNameObjectsGroups" />
                     //paramTwoName=<xsl:value-of select="$paramTwoName" />
                     //paramTwoNameObjectsGroups=<xsl:value-of select="$paramTwoNameObjectsGroups" />
+                    //SetNumberObjectVariable - was //ModVarObjet
                     //SetNumberObjectVariable - //<xsl:value-of select="$secondParam" />
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();
 
-                    <xsl:variable name="firstParam" ><xsl:call-template name="firstParam" ><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:variable name="firstParamFound" ><xsl:call-template name="firstParamFound" ><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
                     
                         <xsl:if test="$paramOneNameObjectsGroups != ''" >
 
@@ -145,14 +146,14 @@ Created By: Travis Berthelot
                                                   
 <xsl:text>                        </xsl:text><xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
-                            <xsl:if test="text() != $firstParam" >//orignalFirstParam=<xsl:value-of select="text()" />
+                            <xsl:if test="text() != $firstParamFound" >//orignalFirstParam=<xsl:value-of select="text()" />
                                 <xsl:text>&#10;</xsl:text>
                             </xsl:if>
-                            <xsl:variable name="gdObjectFactory3" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$firstParam" /></xsl:variable>
+                            <xsl:variable name="gdObjectFactory3" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$firstParamFound" /></xsl:variable>
                             <xsl:if test="$paramTwoNameObjectsGroups != text()" >
-                            <xsl:value-of select="$gdObjectFactory3" /><xsl:text> </xsl:text><xsl:value-of select="$firstParam" /> = (<xsl:value-of select="$gdObjectFactory3" />) <xsl:value-of select="$firstParam" />GDGameLayer.gdObject;
+                            <xsl:value-of select="$gdObjectFactory3" /><xsl:text> </xsl:text><xsl:value-of select="$firstParamFound" /> = (<xsl:value-of select="$gdObjectFactory3" />) <xsl:value-of select="$firstParamFound" />GDGameLayer.gdObject;
                             </xsl:if>
-                            <xsl:value-of select="$firstParam" />.</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '*'" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if>
+                            <xsl:value-of select="$firstParamFound" />.</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '*'" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if>
                         </xsl:if>
                         <xsl:if test="position() = 4" >
 
@@ -273,12 +274,12 @@ Created By: Travis Berthelot
                         
 <xsl:text>                        </xsl:text><xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
-                            <xsl:if test="text() != $firstParam" >//orignalFirstParam=<xsl:value-of select="text()" />
+                            <xsl:if test="text() != $firstParamFound" >//orignalFirstParam=<xsl:value-of select="text()" />
                                 <xsl:text>&#10;</xsl:text>
                             </xsl:if>
-                            <xsl:variable name="gdObjectFactory3" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$firstParam" /></xsl:variable>
-                            //<xsl:value-of select="$gdObjectFactory3" /><xsl:text> </xsl:text><xsl:value-of select="$firstParam" /> = (<xsl:value-of select="$gdObjectFactory3" />) <xsl:value-of select="$firstParam" />;
-                            <xsl:value-of select="$firstParam" />.</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '*'" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if>
+                            <xsl:variable name="gdObjectFactory3" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$firstParamFound" /></xsl:variable>
+                            //<xsl:value-of select="$gdObjectFactory3" /><xsl:text> </xsl:text><xsl:value-of select="$firstParamFound" /> = (<xsl:value-of select="$gdObjectFactory3" />) <xsl:value-of select="$firstParamFound" />;
+                            <xsl:value-of select="$firstParamFound" />.</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '*'" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if>
                         </xsl:if>
                         <xsl:if test="position() = 4" >
 
@@ -447,6 +448,22 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
 
                         <xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
+
+                            <xsl:if test="contains($hasDistanceProcessGD, 'found')" >
+                            <xsl:variable name="distanceProcessGDParamOne" ><xsl:call-template name="distanceProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            <xsl:variable name="distanceProcessGDParamTwo" ><xsl:call-template name="distanceProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+                            <xsl:variable name="gameLayerName" ><xsl:value-of select="$firstParamFound" /></xsl:variable>
+                            <xsl:if test="string-length($gameLayerName) > 0 and not($gameLayerName = $distanceProcessGDParamOne or $gameLayerName = $distanceProcessGDParamTwo)" >
+                                //SetNumberObjectVariable - //gameLayerName=<xsl:value-of select="$gameLayerName" />
+                                <xsl:if test="not(contains($gameLayerName, 'Variable('))" >
+                                <xsl:variable name="text" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                                <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
+                                //SetNumberObjectVariable - //Using param that is not from the first 2 GameLayers - get
+                                final GDGameLayer <xsl:value-of select="$gameLayerName" />GDGameLayer = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />];
+                                </xsl:if>
+                            </xsl:if>
+                            </xsl:if>
+                        
                         <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 4" >
 
@@ -457,8 +474,8 @@ Created By: Travis Berthelot
                                 <xsl:if test="$beforeSecondParam != ''" >
                                     //<xsl:value-of select="$beforeSecondParam" /> - <xsl:value-of select="$hasObject" /><xsl:text>&#10;</xsl:text>
                                     <xsl:if test="contains($hasObject, 'found')" >
+                                        <xsl:variable name="gameLayerName" ><xsl:value-of select="$beforeSecondParam" /></xsl:variable>
                                     //param4c
-                                    <xsl:variable name="gameLayerName" ><xsl:value-of select="$beforeSecondParam" /></xsl:variable>
                                     final <xsl:value-of select="$gdObjectFactory2" /><xsl:text> </xsl:text><xsl:value-of select="$gameLayerName" /> = (<xsl:value-of select="$gdObjectFactory2" />) <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
                                     </xsl:if>                                    
                                 </xsl:if>
@@ -470,14 +487,14 @@ Created By: Travis Berthelot
 
 <xsl:text>                        </xsl:text><xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
-                            <xsl:if test="text() != $firstParam" >//orignalFirstParam=<xsl:value-of select="text()" />
+                            <xsl:if test="text() != $firstParamFound" >//orignalFirstParam=<xsl:value-of select="text()" />
                                 <xsl:text>&#10;</xsl:text>
                             </xsl:if>
-                            <xsl:variable name="gdObjectFactory3" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$firstParam" /></xsl:variable>
+                            <xsl:variable name="gdObjectFactory3" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$firstParamFound" /></xsl:variable>
                             <xsl:if test="$paramTwoNameObjectsGroups != text()" >
-                            <xsl:value-of select="$gdObjectFactory3" /><xsl:text> </xsl:text><xsl:value-of select="$firstParam" /> = (<xsl:value-of select="$gdObjectFactory3" />) <xsl:value-of select="$firstParam" />GDGameLayer.gdObject;
+                            <xsl:value-of select="$gdObjectFactory3" /><xsl:text> </xsl:text><xsl:value-of select="$firstParamFound" /> = (<xsl:value-of select="$gdObjectFactory3" />) <xsl:value-of select="$firstParamFound" />GDGameLayer.gdObject;
                             </xsl:if>
-                            <xsl:value-of select="$firstParam" />.</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '*'" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if>
+                            <xsl:value-of select="$firstParamFound" />.</xsl:if><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /><xsl:if test="text() = '*'" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if>
                         </xsl:if>
                         <xsl:if test="position() = 4" >
 

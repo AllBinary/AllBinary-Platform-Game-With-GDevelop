@@ -337,6 +337,7 @@
                 <xsl:if test="string-length($hasCreateOrCreateByName) > 0" >
                     <xsl:if test="$hasCreateOrCreateByName &lt; number(substring(generate-id(), 2) - 65536)" >
             //Using specific param2 - <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
+            //Using param that is not from the first 2 GameLayers - get
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(<xsl:value-of select="$gdGameLayer" />, gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />], globals.graphics);
                     </xsl:if>
                     <xsl:if test="not($hasCreateOrCreateByName &lt; number(substring(generate-id(), 2) - 65536))" >
