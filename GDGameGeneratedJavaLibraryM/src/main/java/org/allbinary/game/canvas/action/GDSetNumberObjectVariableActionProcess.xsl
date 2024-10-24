@@ -503,10 +503,6 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 </xsl:if>
 
-                                <xsl:if test="not(contains($hasCollisionProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
-                                //Defaulting to first param since no known association with prior sibling Create action or parent Condition
-                                </xsl:if>
-
                                 <xsl:if test="contains($hasCollisionProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
                                 <xsl:variable name="hasArgumentMatchWithParam" >
                                     <xsl:if test="contains($hasCollisionProcessGD, 'found')" >
@@ -602,7 +598,7 @@ Created By: Travis Berthelot
                                     </xsl:for-each>
                                 </xsl:variable>
                                                                 
-                            //Since foreach does not use the second param we must use the first from the list for now for any other params - index
+                            //Since foreach does not use the second param we must use the first from the list for now for any other params - 2
                             //beforeSecondParam=<xsl:value-of select="$beforeSecondParam" /> - <xsl:value-of select="$hasObjectGroup2" />
                             //beforeSecondParam2=<xsl:value-of select="$beforeSecondParam2" /> - <xsl:value-of select="$hasObject" /><xsl:text>&#10;</xsl:text>
                                                     

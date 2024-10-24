@@ -210,6 +210,20 @@ Created By: Travis Berthelot
 
     </xsl:template>
 
+    <xsl:template name="hasChildActionThatSetsSecondParam" >
+        <xsl:param name="secondParam" />
+        
+        <xsl:for-each select="actions" >
+            <xsl:if test="type/value = 'Create'" >found</xsl:if>
+            <xsl:if test="type/value = 'CreateByName'" >found</xsl:if>
+        </xsl:for-each>
+        
+        <xsl:for-each select="events" >
+            <xsl:call-template name="hasChildActionThatSetsSecondParam" ><xsl:with-param name="secondParam" ><xsl:value-of select="$secondParam" /></xsl:with-param></xsl:call-template>
+        </xsl:for-each>
+        
+    </xsl:template>
+
     <xsl:template name="parentSelectionNodeProcessGD" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="nodeId" />
@@ -225,10 +239,17 @@ Created By: Travis Berthelot
                 </xsl:call-template>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" >
-                //From parent BuiltinCommonInstructions::ForEach - <xsl:for-each select="text()" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
-                //totalRecursions=<xsl:value-of select="$totalRecursions" />
+                <xsl:variable name="secondParam" ><xsl:if test="object != $secondGameLayer" ><xsl:value-of select="$secondGameLayer" /></xsl:if><xsl:if test="object = $secondGameLayer and object != $secondGameLayer2" ><xsl:value-of select="$secondGameLayer2" /></xsl:if></xsl:variable>
+                <xsl:variable name="hasChildActionThatSetsSecondParam" ><xsl:call-template name="hasChildActionThatSetsSecondParam" ><xsl:with-param name="secondParam" ><xsl:value-of select="$secondParam" /></xsl:with-param></xsl:call-template></xsl:variable>
+
+                //secondGameLayer=<xsl:value-of select="$secondGameLayer" />, //secondGameLayer2=<xsl:value-of select="$secondGameLayer2" />
+                //hasChildActionThatSetsSecondParam=<xsl:value-of select="$hasChildActionThatSetsSecondParam" />
+                
+                //From parent BuiltinCommonInstructions::ForEach - <xsl:for-each select="text()" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each><xsl:text>&#10;</xsl:text>
+                <xsl:if test="contains($hasChildActionThatSetsSecondParam, 'found')" >//Using second param from child action (this should be sibling, but for now it is any child action)</xsl:if>
+                //totalRecursions=<xsl:value-of select="$totalRecursions" />                
                 @Override
-                public boolean processGD(final GDGameLayer <xsl:value-of select="object" />GDGameLayer, final GDGameLayer <xsl:if test="object != $secondGameLayer" ><xsl:value-of select="$secondGameLayer" /></xsl:if><xsl:if test="object = $secondGameLayer and object != $secondGameLayer2" ><xsl:value-of select="$secondGameLayer2" /></xsl:if>GDGameLayer, final Graphics graphics) throws Exception {
+                public boolean processGD(final GDGameLayer <xsl:value-of select="object" />GDGameLayer, final GDGameLayer <xsl:if test="contains($hasChildActionThatSetsSecondParam, 'found') and string-length($secondParam) > 0" ><xsl:value-of select="$secondParam" />GDGameLayer</xsl:if><xsl:if test="not(contains($hasChildActionThatSetsSecondParam, 'found') and string-length($secondParam) > 0)" >gdGameLayer</xsl:if>, final Graphics graphics) throws Exception {
 
                     super.processGDStats(<xsl:value-of select="object" />GDGameLayer);
                 </xsl:if>
@@ -564,7 +585,9 @@ Created By: Travis Berthelot
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
             </xsl:variable>
-                <xsl:if test="contains($hasChildNode, 'found')" ><xsl:if test="object != $secondGameLayer" ><xsl:value-of select="$secondGameLayer" /></xsl:if><xsl:if test="object = $secondGameLayer and object != $secondGameLayer2" ><xsl:value-of select="$secondGameLayer2" /></xsl:if></xsl:if>
+            <xsl:variable name="secondParam" ><xsl:if test="object != $secondGameLayer" ><xsl:value-of select="$secondGameLayer" /></xsl:if><xsl:if test="object = $secondGameLayer and object != $secondGameLayer2" ><xsl:value-of select="$secondGameLayer2" /></xsl:if></xsl:variable>
+            <xsl:variable name="hasChildActionThatSetsSecondParam" ><xsl:call-template name="hasChildActionThatSetsSecondParam" ><xsl:with-param name="secondParam" ><xsl:value-of select="$secondParam" /></xsl:with-param></xsl:call-template></xsl:variable>
+                <xsl:if test="contains($hasChildActionThatSetsSecondParam, 'found')" ><xsl:if test="contains($hasChildNode, 'found')" ><xsl:value-of select="$secondParam" /></xsl:if></xsl:if>
             </xsl:if>
             </xsl:for-each>
             
