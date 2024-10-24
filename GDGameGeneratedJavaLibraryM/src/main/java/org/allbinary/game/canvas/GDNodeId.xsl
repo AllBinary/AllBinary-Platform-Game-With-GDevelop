@@ -358,8 +358,7 @@
                 </xsl:if>
 
                 <xsl:if test="not((contains($parametersHasGDObjectName, 'found') and contains($hasCreate, 'found')) or contains($parametersAsString0, $gdObjectName))" >
-            //Not processing the on the same GDGameLayer2
-            //Action - //<xsl:value-of select="type/value" /> - call
+            //Action - //<xsl:value-of select="type/value" /> - call //Not processing the on the same GDGameLayer2
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
 
@@ -425,8 +424,7 @@
             //}
             </xsl:if>
             <xsl:if test="not(contains($parametersAsString0, $gdObjectName))" >
-            //Not processing the on the same GDGameLayer
-            //Action - //<xsl:value-of select="type/value" /> - call
+            //Action - //<xsl:value-of select="type/value" /> - call //Not processing the on the same GDGameLayer2
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
             
