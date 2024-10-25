@@ -93,9 +93,10 @@ Created By: Travis Berthelot
                             </xsl:if>
 
                             <xsl:if test="not(contains($hasSiblingWithDuplicateProcessing, 'found'))" >
-                            if(result) {
-                                this.processSub(gameLayer, gameLayer2, graphics);
-                            }
+                              //This should already be called
+//                            if(result) {
+//                                this.processSub(gameLayer, gameLayer2, graphics);
+//                            }
                             </xsl:if>
 
 
