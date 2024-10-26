@@ -112,13 +112,13 @@ Created By: Travis Berthelot
                     <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:variable name="textInputName" >,TextInput::TextInputObject:<xsl:value-of select="$name" />,</xsl:variable>
 
-                    //createGDObject - <xsl:value-of select="$name" />
+                    //createGDObject - <xsl:value-of select="$name" /> - parameters=<xsl:for-each select="parameters" ><xsl:value-of select="position()" />=<xsl:value-of select="text()" /></xsl:for-each>
 
                     <xsl:variable name="paramTwoAsObject" >
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 3" >
                                 <xsl:if test="contains(text(), '.')" >
-                                    <xsl:variable name="name2" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:variable>
+                                    <xsl:variable name="name2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:with-param><xsl:with-param name="find" >(</xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template></xsl:variable>
                                     <xsl:if test="$name != $name2" >
                                         <xsl:variable name="objectNameWithSeps" >:<xsl:value-of select="$name2" />,</xsl:variable>
                                         <xsl:variable name="hasObjectGroup" >
@@ -140,7 +140,7 @@ Created By: Travis Berthelot
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 4" >
                                 <xsl:if test="contains(text(), '.')" >
-                                    <xsl:variable name="name2" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:variable>
+                                    <xsl:variable name="name2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:with-param><xsl:with-param name="find" >(</xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template></xsl:variable>
                                     <xsl:if test="$name != $name2" >
                                         <xsl:variable name="objectNameWithSeps" >:<xsl:value-of select="$name2" />,</xsl:variable>
                                         <xsl:variable name="hasObjectGroup" >
