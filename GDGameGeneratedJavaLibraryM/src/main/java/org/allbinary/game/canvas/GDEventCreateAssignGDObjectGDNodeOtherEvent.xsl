@@ -196,7 +196,7 @@ Created By: Travis Berthelot
             }
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
 
-                //<xsl:value-of select="type" /> - //BuiltinCommonInstructions - //Event
+                //<xsl:value-of select="type" /> - //BuiltinCommonInstructions - //Event - //repeatExpression=<xsl:value-of select="repeatExpression" />
                 private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />";
                 <xsl:text>&#10;</xsl:text>
 
@@ -245,7 +245,11 @@ Created By: Travis Berthelot
                     super.processStats();
                     
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-   
+
+                    <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="repeatExpression" />; index++) {
+                    </xsl:if>
+
                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                 <xsl:if test="$caller = 'externalEventsCreateAssignGDObject'" >
                 <xsl:if test="not(whileConditions)" >
@@ -411,7 +415,11 @@ Created By: Travis Berthelot
                 </xsl:if>
                 </xsl:if>
                 </xsl:if>
-
+                
+                <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
+                    }
+                </xsl:if>
+                    
                     return true;
 
                 }                
@@ -421,7 +429,11 @@ Created By: Travis Berthelot
                     super.processStats();
                     
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-   
+
+                    <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="repeatExpression" />; index++) {
+                    </xsl:if>
+                       
                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
                 <xsl:if test="$caller = 'externalEventsCreateAssignGDObject'" >
                 <xsl:if test="not(whileConditions)" >
@@ -589,6 +601,10 @@ Created By: Travis Berthelot
                 </xsl:if>
                 </xsl:if>
 
+                <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
+                    }
+                </xsl:if>
+
                     return true;
 
                 }                
@@ -603,6 +619,10 @@ Created By: Travis Berthelot
                     
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
+                    <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="repeatExpression" />; index++) {
+                    </xsl:if>
+                    
                     <xsl:for-each select="conditions" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                         <xsl:if test="position() = 1" >
@@ -731,6 +751,11 @@ Created By: Travis Berthelot
 
                 </xsl:if>
                 </xsl:if>
+                
+                <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
+                    }
+                </xsl:if>
+
                     return true;                           
                 }
 
@@ -740,6 +765,10 @@ Created By: Travis Berthelot
 
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
+                    <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="repeatExpression" />; index++) {
+                    </xsl:if>
+                    
                 <xsl:for-each select="conditions" >
                     <xsl:variable name="typeValue" select="type/value" />
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
@@ -810,6 +839,10 @@ Created By: Travis Berthelot
                     }
                 </xsl:for-each>
 
+                <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >           
+                }
+                </xsl:if>
+
                     return true;                
                 }
 
@@ -851,6 +884,10 @@ Created By: Travis Berthelot
                     super.processReleasedStats();
 
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
+
+                    <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="repeatExpression" />; index++) {
+                    </xsl:if>
 
                 <xsl:if test="not(whileConditions)" >
                 <xsl:if test="not(contains($foundOtherCondition, 'found'))" >
@@ -896,8 +933,12 @@ Created By: Travis Berthelot
 
                     </xsl:if>
                 </xsl:if>
-                                        
+
+                    }
+                             
+                <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >           
                 }
+                </xsl:if>
                 
                 </xsl:if>
 
