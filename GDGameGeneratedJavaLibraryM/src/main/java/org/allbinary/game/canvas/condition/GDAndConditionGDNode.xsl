@@ -134,6 +134,7 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                         }
 
+<!--
                         public void processSub(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                             <xsl:for-each select=".." >
                                 <xsl:for-each select="actions" >
@@ -163,6 +164,8 @@ Created By: Travis Berthelot
                                 
                             </xsl:for-each>
                         }
+-->
+
                         </xsl:if>
 
                     };
