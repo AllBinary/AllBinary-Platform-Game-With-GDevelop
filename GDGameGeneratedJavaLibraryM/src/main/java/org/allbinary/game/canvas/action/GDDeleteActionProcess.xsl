@@ -101,7 +101,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                         }
 
-                        //Delete - action
+                        //Delete - action - <xsl:value-of select="$name" />
                         @Override
                         public boolean process() throws Exception {
 

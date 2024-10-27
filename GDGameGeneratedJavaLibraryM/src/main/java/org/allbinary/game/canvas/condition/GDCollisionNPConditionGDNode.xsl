@@ -149,6 +149,7 @@ Created By: Travis Berthelot
 
                     //for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />Size</xsl:if></xsl:for-each>; index2++) {
                     for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList2.size(); index2++) {
+                    final int initialSize2 = gdGameLayerList2.size();
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                         final GDGameLayer gameLayer2 = (GDGameLayer) gdGameLayerList2.get(index2);
@@ -156,6 +157,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" />Size2</xsl:if></xsl:for-each>; index++) {
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size(); index++) {
+                    final int initialSize = gdGameLayerList.size();
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                         final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(index);
@@ -214,9 +216,17 @@ Created By: Travis Berthelot
                             result = true;
          
                         }
-                    
+
+                            if(initialSize <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gdGameLayerList.size()) {
+                                index--;
+                            }
+                                        
                     <xsl:text>&#10;</xsl:text>
                     }
+
+                        if(initialSize2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gdGameLayerList2.size()) {
+                            index2--;
+                        }
 
                     }
                                 
