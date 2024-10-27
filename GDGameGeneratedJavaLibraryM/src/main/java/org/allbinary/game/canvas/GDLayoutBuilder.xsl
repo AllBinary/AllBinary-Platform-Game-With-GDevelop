@@ -353,7 +353,28 @@ Created By: Travis Berthelot
                         final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="name" />GDobject2 = (<xsl:value-of select="$gdObjectFactory" />) <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectFactory.get(
                         null, <xsl:value-of select="name" />X, 
                         <xsl:value-of select="name" />Y, 
-                        <xsl:value-of select="zOrder" />,
+                    //zOrder - <xsl:value-of select="zOrder" />
+                    //layer=<xsl:value-of select="layer" /> (Base Layer is emtpy)
+                            <xsl:if test="not(layer)" >
+                    <xsl:value-of select="zOrder" />,
+                            </xsl:if>
+                            <xsl:if test="layer" >
+                            <xsl:if test="contains(layer, 'Below')" >
+                    5,
+                            </xsl:if>
+                            <xsl:if test="string-length(layer) = 0 or contains(layer, 'Base Layer')" >
+                    6,
+                            </xsl:if>
+                            <xsl:if test="contains(layer, 'Above')" >
+                    7,
+                            </xsl:if>
+                            <xsl:if test="contains(layer, 'Overlay') or contains(text(), 'gui')" >
+                    100,
+                            </xsl:if>
+                            <xsl:if test="contains(layer, 'Top')" >
+                    Integer.MAX_VALUE,
+                            </xsl:if>
+                            </xsl:if>
                         width, height,
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME);
                         
