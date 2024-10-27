@@ -265,6 +265,9 @@ Created By: Travis Berthelot
                     7,
                             </xsl:if>
                             <xsl:if test="contains(text(), 'Overlay') or contains(text(), 'gui')" >
+                    Integer.MAX_VALUE - 1,
+                            </xsl:if>
+                            <xsl:if test="contains(text(), 'Top')" >
                     Integer.MAX_VALUE,
                             </xsl:if>
                         </xsl:if>
@@ -417,6 +420,9 @@ Created By: Travis Berthelot
                     7,
                             </xsl:if>
                             <xsl:if test="contains(text(), 'Overlay') or contains(text(), 'gui')" >
+                    Integer.MAX_VALUE - 1,
+                            </xsl:if>
+                            <xsl:if test="contains(text(), 'Top')" >
                     Integer.MAX_VALUE,
                             </xsl:if>
                         </xsl:if>
@@ -579,6 +585,9 @@ Created By: Travis Berthelot
                     7,
                             </xsl:if>
                             <xsl:if test="contains(text(), 'Overlay') or contains(text(), 'gui')" >
+                    Integer.MAX_VALUE - 1,
+                            </xsl:if>
+                            <xsl:if test="contains(text(), 'Top')" >
                     Integer.MAX_VALUE,
                             </xsl:if>
                         </xsl:if>

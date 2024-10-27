@@ -94,6 +94,45 @@ Created By: Travis Berthelot
                         //parentConditionWithoutObjects=<xsl:value-of select="$parentConditionWithoutObjects" /> - logic is not correct
                         /*parametersAsString=<xsl:value-of select="$parametersAsString" />*/
 
+                        <xsl:variable name="param" >
+                            <xsl:for-each select="parameters" >
+                                <xsl:if test="position() = 3" >
+                                    <xsl:if test="not(contains(text(), 'SceneInstancesCount('))" >
+                                        <xsl:value-of select="text()" />
+                                    </xsl:if>
+                                    <xsl:if test="contains(text(), 'SceneInstancesCount(')" >
+                                        <xsl:variable name="objectName" >
+                                            <xsl:value-of select="substring-before(substring-after(text(), 'SceneInstancesCount('), ')')" />
+                                        </xsl:variable>
+                                        <xsl:call-template name="string-replace-all" >
+                                            <xsl:with-param name="text" >
+                                                <xsl:value-of select="text()" />
+                                            </xsl:with-param>
+                                            <xsl:with-param name="find" >SceneInstancesCount(<xsl:value-of select="$objectName" /></xsl:with-param>
+                                            <xsl:with-param name="replacementText" >SceneInstancesCount(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectName" />GDGameLayerList.size()</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:if>
+                                </xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+                                                
+                        <xsl:variable name="beforeSecondParam" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
+
+                        <xsl:variable name="hasObject3" >
+                            <xsl:for-each select="//objects" >
+                                <xsl:if test="name = $beforeSecondParam" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+                        <xsl:variable name="hasObjectGroup3" >
+                            <xsl:for-each select="//objectsGroups" >
+                                <xsl:if test="name = $beforeSecondParam" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+
+                        <xsl:if test="contains($hasObject3, 'found') or contains($hasObjectGroup3, 'found')" >
+                        //beforeSecondParam=<xsl:value-of select="$beforeSecondParam" />
+                        </xsl:if>
+                        
                         //MettreXY
                         public boolean process() {
 
@@ -283,7 +322,7 @@ Created By: Travis Berthelot
                                                                         
                             //hasObjectVariable - not
                                 <xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setX(</xsl:if><xsl:if test="position() = 2" ><xsl:if test="text() = '+'" ><xsl:value-of select="$existingValueX" /> + </xsl:if><xsl:if test="text() = '-'" ><xsl:value-of select="$existingValueX" /> - </xsl:if></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >);
+                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setX(</xsl:if><xsl:if test="position() = 2" ><xsl:if test="text() = '+'" ><xsl:value-of select="$existingValueX" /> + </xsl:if><xsl:if test="text() = '-'" ><xsl:value-of select="$existingValueX" /> - </xsl:if></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="$param" /></xsl:if><xsl:if test="position() = last()" >);
                                 <xsl:text>&#10;</xsl:text>
                                 </xsl:if>
                                 </xsl:for-each>
@@ -358,45 +397,6 @@ Created By: Travis Berthelot
 
                             return true;
                         }
-
-                        <xsl:variable name="param" >
-                            <xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 3" >
-                                    <xsl:if test="not(contains(text(), 'SceneInstancesCount('))" >
-                                        <xsl:value-of select="text()" />
-                                    </xsl:if>
-                                    <xsl:if test="contains(text(), 'SceneInstancesCount(')" >
-                                        <xsl:variable name="objectName" >
-                                            <xsl:value-of select="substring-before(substring-after(text(), 'SceneInstancesCount('), ')')" />
-                                        </xsl:variable>
-                                        <xsl:call-template name="string-replace-all" >
-                                            <xsl:with-param name="text" >
-                                                <xsl:value-of select="text()" />
-                                            </xsl:with-param>
-                                            <xsl:with-param name="find" >SceneInstancesCount(<xsl:value-of select="$objectName" /></xsl:with-param>
-                                            <xsl:with-param name="replacementText" >SceneInstancesCount(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectName" />GDGameLayerList.size()</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:if>
-                                </xsl:if>
-                            </xsl:for-each>
-                        </xsl:variable>
-                                                
-                        <xsl:variable name="beforeSecondParam" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
-
-                        <xsl:variable name="hasObject3" >
-                            <xsl:for-each select="//objects" >
-                                <xsl:if test="name = $beforeSecondParam" >found</xsl:if>
-                            </xsl:for-each>
-                        </xsl:variable>
-                        <xsl:variable name="hasObjectGroup3" >
-                            <xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $beforeSecondParam" >found</xsl:if>
-                            </xsl:for-each>
-                        </xsl:variable>
-
-                        <xsl:if test="contains($hasObject3, 'found') or contains($hasObjectGroup3, 'found')" >
-                        //beforeSecondParam=<xsl:value-of select="$beforeSecondParam" />
-                        </xsl:if>
 
                         <xsl:variable name="firstOrBeforeFourthParam" >
                             <xsl:if test="contains($hasObject3, 'found') or contains($hasObjectGroup3, 'found')" >
@@ -615,7 +615,7 @@ Created By: Travis Berthelot
                                                                         
                             //hasObjectVariable - not
                                 <xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setX(</xsl:if><xsl:if test="position() = 2" ><xsl:if test="text() = '+'" ><xsl:value-of select="$existingValueX" /> + </xsl:if><xsl:if test="text() = '-'" ><xsl:value-of select="$existingValueX" /> - </xsl:if></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >);
+                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setX(</xsl:if><xsl:if test="position() = 2" ><xsl:if test="text() = '+'" ><xsl:value-of select="$existingValueX" /> + </xsl:if><xsl:if test="text() = '-'" ><xsl:value-of select="$existingValueX" /> - </xsl:if></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="$param" /></xsl:if><xsl:if test="position() = last()" >);
                                 <xsl:text>&#10;</xsl:text>
                                 </xsl:if>
                                 </xsl:for-each>
