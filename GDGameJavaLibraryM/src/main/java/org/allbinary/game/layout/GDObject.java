@@ -40,6 +40,8 @@ public class GDObject
     public final String name;
     public final String type;
     
+    public boolean[] isBehaviorEnabledArray = new boolean[10]; //BEHAVIOR_MAX
+    
     public int x;
     public int y;
 
@@ -63,7 +65,7 @@ public class GDObject
     
     public float opacity = 255;
     public BasicColor basicColor;
-    
+
 //    public int canvasWidth;
 //    public int canvasHeight;
     
@@ -91,7 +93,12 @@ public class GDObject
 //                    throw new RuntimeException();
 //                }
 //            }
-        
+
+        //All Behaviors are enabled by default.
+        final int size = isBehaviorEnabledArray.length;
+        for(int index = 0; index < size; index++) {
+            isBehaviorEnabledArray[index] = true;
+        }
     }
 
     public void updateScale(final float scaleX, final float scaleY) {

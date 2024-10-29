@@ -29,6 +29,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDSoundStoppedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSoundPausedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDLayerVisibleConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDBehaviorActivatedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDKeyFromTextPressedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDKeyFromTextReleasedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAnyKeyReleasedConditionGDNodeConditionGDNode.xsl" />
@@ -432,7 +433,11 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
                 <xsl:if test="$typeValue = 'BehaviorActivated'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        <xsl:call-template name="behaviorActivatedConditionGDNode" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                        </xsl:call-template>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'CollisionPoint'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED

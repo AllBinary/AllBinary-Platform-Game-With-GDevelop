@@ -79,8 +79,8 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.layout.GDObject;
-                import org.allbinary.game.layout.behavior.DestroyOutsideBehavior;
-                import org.allbinary.game.layout.behavior.GDBehavior;
+                import org.allbinary.game.layer.behavior.DestroyOutsideBehavior;
+                import org.allbinary.game.layer.behavior.GDBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.game.score.HighScoresHelper2;
                 import org.allbinary.game.score.HighScoresHelperBase;

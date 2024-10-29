@@ -12,7 +12,7 @@
 *
 */
 
-package org.allbinary.game.layout.behavior;
+package org.allbinary.game.layer.behavior;
 
 import javax.microedition.lcdui.Graphics;
 import org.allbinary.util.BasicArrayList;

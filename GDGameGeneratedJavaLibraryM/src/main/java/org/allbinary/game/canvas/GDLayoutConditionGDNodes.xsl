@@ -119,6 +119,7 @@ Created By: Travis Berthelot
                 import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.ArrayUtil;
+                import org.allbinary.game.layer.behavior.GDBehaviorUtil;
 
                 //LayoutCondition name=<xsl:value-of select="$layoutName" /> - GDNode processM calls in this class can load resources
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes extends SpecialAnimation
@@ -144,6 +145,7 @@ Created By: Travis Berthelot
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                         private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
+                        private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance(); 
 
                         private final String INDEX = "index: ";
 
