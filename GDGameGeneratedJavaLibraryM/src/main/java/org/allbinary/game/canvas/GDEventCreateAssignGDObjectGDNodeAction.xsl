@@ -81,6 +81,8 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDScalableBehaviorSetValueActionProcess.xsl" />
     <xsl:import href="./action/GDScalableBehaviorSetXActionProcess.xsl" />
     <xsl:import href="./action/GDScalableBehaviorSetYActionProcess.xsl" />
+    <xsl:import href="./action/GDActivateBehaviorActionProcess.xsl" />
+    <xsl:import href="./action/GDPathfindingBehaviorSetDestinationActionProcess.xsl" />
     <xsl:import href="./action/GDSceneBackgroundActionProcess.xsl" />
     <xsl:import href="./action/GDPrimitiveDrawingFillColorActionProcess.xsl" />
     <xsl:import href="./action/GDPrimitiveDrawingRectangleActionProcess.xsl" />
@@ -909,7 +911,13 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ActivateBehavior'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    
+                    <xsl:call-template name="activateBehaviorActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ObjectVariableRemoveChild'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
@@ -1302,7 +1310,13 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'PathfindingBehavior::SetDestination'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+
+                    <xsl:call-template name="pathfindingBehaviorSetDestinationActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PathfindingBehavior::CellWidth'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED

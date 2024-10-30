@@ -133,7 +133,7 @@ Created By: Travis Berthelot
                             
                         <xsl:variable name="fourthParamBeforePeriod" ><xsl:value-of select="substring-before($fourthParam, '.')" /></xsl:variable>
                         <xsl:if test="string-length($fourthParamBeforePeriod) > 0" >
-                            //fourthParamBeforePeriod=<xsl:value-of select="$fourthParamBeforePeriod" />
+                            //fourthParamBeforePeriod=<xsl:value-of select="$fourthParamBeforePeriod" /> - We will get the first and hopefully only GameLayer
                             <xsl:variable name="gameLayerName" ><xsl:value-of select="$fourthParamBeforePeriod" /></xsl:variable>
                             <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" /></xsl:variable>
                             final GDGameLayer <xsl:value-of select="$gameLayerName" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(0);

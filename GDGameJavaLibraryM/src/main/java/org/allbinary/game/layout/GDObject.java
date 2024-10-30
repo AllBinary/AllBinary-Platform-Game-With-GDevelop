@@ -16,6 +16,8 @@ package org.allbinary.game.layout;
 import javax.microedition.lcdui.Graphics;
 
 import org.allbinary.game.layer.GDGameLayer;
+import org.allbinary.game.layer.behavior.GDBehavior;
+import org.allbinary.game.layer.behavior.GDBehaviorUtil;
 import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.SpacialStrings;
 import org.allbinary.graphics.color.BasicColor;
@@ -40,7 +42,8 @@ public class GDObject
     public final String name;
     public final String type;
     
-    public boolean[] isBehaviorEnabledArray = new boolean[10]; //BEHAVIOR_MAX
+    public final GDBehavior[] behaviorArray = new GDBehavior[GDBehaviorUtil.getInstance().MAX];
+    public final boolean[] isBehaviorEnabledArray = new boolean[10]; //BEHAVIOR_MAX
     
     public int x;
     public int y;
@@ -309,6 +312,10 @@ public class GDObject
     
     public void reset() {
         
+    }
+
+    public GDBehavior getBehavior(final int index) {
+        return (GDBehavior) this.behaviorArray[index];
     }
 
     public String toShortString() {

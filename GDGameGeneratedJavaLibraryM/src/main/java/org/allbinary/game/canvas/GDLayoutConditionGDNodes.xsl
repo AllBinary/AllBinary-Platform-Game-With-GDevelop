@@ -145,7 +145,7 @@ Created By: Travis Berthelot
                         private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                         private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
-                        private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance(); 
+                        private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
 
                         private final String INDEX = "index: ";
 

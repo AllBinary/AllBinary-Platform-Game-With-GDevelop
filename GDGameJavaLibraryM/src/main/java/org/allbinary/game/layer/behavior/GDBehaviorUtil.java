@@ -28,22 +28,31 @@ public class GDBehaviorUtil {
         return instance;
     }
 
-    public final String DESTROY_OUTSIDE_BEHAVIOR = "DestroyOutsideBehavior::DestroyOutside";
-    public final String PATHFINDING_BEHAVIOR = "PathfindingBehavior::PathfindingBehavior";
+    //Only GD instance specific behaviors
+    //public final String PATHFINDING_BEHAVIOR = "PathfindingBehavior::PathfindingBehavior";
 
-    
-    public final int DESTROY_OUTSIDE_BEHAVIOR_INDEX = 1;
-    public final int PATHFINDING_BEHAVIOR_INDEX = 2;
+    public final int PATHFINDING_BEHAVIOR_INDEX = 0;
 
-    public int getIndex(final String behavior) {
+    public final int MAX = 0;
+
+    public GDBehavior getInstance(final int index) {
         
-        if(behavior == PATHFINDING_BEHAVIOR) {
-            return PATHFINDING_BEHAVIOR_INDEX;
-        } else if(behavior == DESTROY_OUTSIDE_BEHAVIOR) {
-            return DESTROY_OUTSIDE_BEHAVIOR_INDEX;
+        if(index == PATHFINDING_BEHAVIOR_INDEX) {
+            return new PathFindingBehavior();
         } else {
-            return 0;
+            throw new RuntimeException();
         }
-   
+
     }
+
+//    public int getIndex(final String behavior) {
+//        
+//        if(behavior == PATHFINDING_BEHAVIOR) {
+//            return PATHFINDING_BEHAVIOR_INDEX;
+//        } else {
+//            throw new RuntimeException();
+//        }
+//   
+//    }
+
 }

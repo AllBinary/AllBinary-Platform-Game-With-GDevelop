@@ -134,6 +134,8 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.media.audio.PlayerComposite;
                 import org.allbinary.thread.SecondaryThreadPool;
+                import org.allbinary.game.layer.behavior.GDBehaviorUtil;
+                import org.allbinary.game.layer.behavior.PathFindingBehavior;
                 
                 //LayoutAction name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes extends SpecialAnimation
@@ -155,7 +157,8 @@ Created By: Travis Berthelot
                         private final VirtualKeyboardEventHandler virtualKeyboardEventHandler = VirtualKeyboardEventHandler.getInstance();
                         private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
                         private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
-                        private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();    
+                        private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
+                        private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
 
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GDGlobalsGDResources globalResources = GDGlobalsGDResources.getInstance();

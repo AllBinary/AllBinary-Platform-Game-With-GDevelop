@@ -71,7 +71,7 @@ Created By: Travis Berthelot
                                 //stringBuilder.delete(0, stringBuilder.length());
                                 //LogUtil.put(LogFactory.getInstance(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(' ').append((((GDGameLayer) gdGameLayerList.get(index))).gdObject.).toString(), this, commonStrings.PROCESS));
                                 <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >final GDGameLayer gdGameLayer = (((GDGameLayer) gdGameLayerList.get(index)));</xsl:if></xsl:for-each>
-                                if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >gdGameLayer.gdObject.isBehaviorEnabledArray[</xsl:if><xsl:if test="position() != 1" >gdBehaviorUtil.getIndex(gdBehaviorUtil.<xsl:text> </xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template></xsl:if></xsl:for-each>_BEHAVIOR)]) {
+                                if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >gdGameLayer.gdObject.isBehaviorEnabledArray[</xsl:if><xsl:if test="position() != 1" >gdBehaviorUtil.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if></xsl:for-each>_BEHAVIOR_INDEX]) {
                                     <xsl:for-each select=".." >
                                         <xsl:call-template name="actionIdsGDObject" >
                                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
@@ -86,13 +86,6 @@ Created By: Travis Berthelot
                             }
                             </xsl:if>
 
-                                    <xsl:for-each select=".." >
-                                        <xsl:call-template name="delete" >
-                                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                                            <xsl:with-param name="gdGameLayer" >gdGameLayer</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:for-each>
-                                    
                             return true;
                         }
                         
@@ -100,9 +93,11 @@ Created By: Travis Berthelot
                     
                             super.processGDStats(gdGameLayer);
                         
-                                if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >gdGameLayer.gdObject.isBehaviorEnabledArray[</xsl:if><xsl:if test="position() != 1" >gdBehaviorUtil.getIndex(gdBehaviorUtil.<xsl:text> </xsl:text><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template></xsl:if></xsl:for-each>_BEHAVIOR)]) {
-                                    return true;
-                                }
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >gdGameLayer.gdObject.isBehaviorEnabledArray[</xsl:if><xsl:if test="position() != 1" >gdBehaviorUtil.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if></xsl:for-each>_BEHAVIOR_INDEX]) {
+                                return true;
+                            }
                             
                             return false;
 

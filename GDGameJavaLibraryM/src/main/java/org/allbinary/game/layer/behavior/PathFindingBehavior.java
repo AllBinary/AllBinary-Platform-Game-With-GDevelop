@@ -25,6 +25,9 @@ import org.allbinary.util.BasicArrayList;
  */
 public class PathFindingBehavior extends GDBehavior {
     
+    private int x;
+    private int y;
+    
     public boolean process(final BasicArrayList gameLayerList, final int index, final Graphics graphics) {
 
         final GDGameLayer gameLayer = (GDGameLayer) gameLayerList.get(index);
@@ -36,6 +39,11 @@ public class PathFindingBehavior extends GDBehavior {
 
         return false;
 
+    }
+    
+    public void setTarget(final int x, final int y) {
+        this.x = x;
+        this.y = y;
     }
     
 }
