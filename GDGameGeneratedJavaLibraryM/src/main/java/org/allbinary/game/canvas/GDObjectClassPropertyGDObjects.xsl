@@ -264,7 +264,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="behaviors" >
                         //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
                         <xsl:if test="type = 'PathfindingBehavior::PathfindingBehavior'" >
-                        this.behaviorArray[gdBehaviorUtil.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_BEHAVIOR_INDEX] = gdBehaviorUtil.getInstance(<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_BEHAVIOR_INDEX);
+                        this.behaviorArray[gdBehaviorUtil.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_BEHAVIOR_INDEX] = gdBehaviorUtil.getInstance(gdBehaviorUtil.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_BEHAVIOR_INDEX);
                         </xsl:if>
                     </xsl:for-each>
 

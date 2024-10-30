@@ -79,6 +79,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.CommonStrings;
                 import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.game.layer.behavior.GDBehaviorUtil;
                 
                 //LayoutGDObjects name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory
@@ -101,6 +102,7 @@ Created By: Travis Berthelot
                     private final StringUtil stringUtil = StringUtil.getInstance();
                     private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
                     
+                    private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                     
