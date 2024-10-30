@@ -33,7 +33,7 @@ public class GDBehaviorUtil {
 
     public final int PATHFINDING_BEHAVIOR_INDEX = 0;
 
-    public final int MAX = 0;
+    public final int MAX = 1;
 
     public GDBehavior getInstance(final int index) {
         
