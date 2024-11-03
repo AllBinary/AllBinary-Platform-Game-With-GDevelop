@@ -29,7 +29,8 @@ import org.allbinary.game.combat.damage.DamageableBaseBehavior;
 import org.allbinary.game.combat.destroy.GDDestroyableSimpleBehavior;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
-import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
+import org.allbinary.game.multiplayer.layer.MultiPlayerGameLayer;
+import org.allbinary.game.multiplayer.layer.RemoteInfo;
 import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.game.physics.velocity.DragVelocityBehavior;
 import org.allbinary.game.physics.velocity.VelocityBehaviorBase;
@@ -48,7 +49,7 @@ import org.allbinary.view.ViewPosition;
  *
  * @author User
  */
-public class GDGameLayer extends CollidableDestroyableDamageableLayer 
+public class GDGameLayer extends MultiPlayerGameLayer 
         //implements //RotationAnimationInterfaceCompositeInterface, DirectionalCompositeInterface,
         //ArtificialIntelligenceCompositeInterface, GameInputInterface,
         //VelocityInterfaceCompositeInterface 
@@ -109,14 +110,16 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
             final BasicArrayList behaviorList,
             final VelocityProperties velocityInterface,
-            final String gdName, final Group[] groupInterface,
+            final RemoteInfo remoteInfo,
+            final Group[] groupInterface,
+            final String gdName, 
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo, 
             final Rectangle[][] rectangleArrayOfArrays,
             final ViewPosition viewPosition,
             final GDObject gdObject, final GDAnimationBehaviorBase animationBehavior) throws Exception {
-        super(groupInterface, gdName, layerInfo, viewPosition);
+        super(remoteInfo, groupInterface, gdName, layerInfo, viewPosition);
 
         this.primitiveDrawing = primitiveDrawing;
         
@@ -549,6 +552,8 @@ public class GDGameLayer extends CollidableDestroyableDamageableLayer
             
             //this.paintPoints(graphics);
             //this.paintDebug(graphics);
+            
+            //if(this.gdObject instanceof GD1GDObjectsFactory.Icons) graphics.drawString(Integer.toString(((GD1GDObjectsFactory.Icons)this.gdObject).itemIndex), x, y, 0);
         }
         catch (Exception e)
         {

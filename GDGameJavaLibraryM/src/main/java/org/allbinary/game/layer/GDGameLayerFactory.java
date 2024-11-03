@@ -20,12 +20,14 @@ import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
 import org.allbinary.game.layer.special.GDWithAllBinaryCollidableBehavior;
+import org.allbinary.game.multiplayer.layer.RemoteInfo;
 import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.view.ViewPosition;
 
@@ -96,8 +98,9 @@ public class GDGameLayerFactory
                 this.gameLayerList, this.gameLayerDestroyedList,
                 this.behaviorList,
                 new VelocityProperties(9600, 9600),
-                name,
+                RemoteInfo.REMOTE_INFO,
                 this.groupInterface,
+                name,
                 this.animationInterfaceFactoryInterfaceArray,
                 this.proceduralAnimationInterfaceFactoryInterfaceArray,
                 rectangle, 

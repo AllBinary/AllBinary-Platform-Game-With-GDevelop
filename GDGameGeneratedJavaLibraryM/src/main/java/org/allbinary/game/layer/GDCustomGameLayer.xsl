@@ -68,7 +68,8 @@ Created By: Travis Berthelot
         import org.allbinary.game.layer.special.TempMovementBehaviorFactory;        
         import org.allbinary.game.layout.GDNode;
         import org.allbinary.game.layer.special.TempGameLayerUtil;
-        import org.allbinary.game.layout.GDObject;        
+        import org.allbinary.game.layout.GDObject;
+        import org.allbinary.game.multiplayer.layer.RemoteInfo;
         import org.allbinary.game.physics.acceleration.BasicAccelerationProperties;
         import org.allbinary.game.physics.velocity.VelocityProperties;
         import org.allbinary.game.view.StaticTileLayerIntoPositionViewPosition;
@@ -200,7 +201,9 @@ Created By: Travis Berthelot
                         final Animation primitiveDrawing,
                         final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
                         final BasicArrayList behaviorList,
-                        final String gdName, final Group[] groupInterface,
+                        final RemoteInfo remoteInfo,
+                        final Group[] groupInterface,
+                        final String gdName, 
                         final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
                         final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
                         final Rectangle layerInfo, 
@@ -224,7 +227,9 @@ Created By: Travis Berthelot
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
                             new VelocityProperties(9600, 9600),
         </xsl:if>
-                            gdName, groupInterface,
+                            remoteInfo,
+                            groupInterface,
+                            gdName, 
                             animationInterfaceFactoryInterfaceArray,
                             proceduralAnimationInterfaceFactoryInterfaceArray,
                             layerInfo, 

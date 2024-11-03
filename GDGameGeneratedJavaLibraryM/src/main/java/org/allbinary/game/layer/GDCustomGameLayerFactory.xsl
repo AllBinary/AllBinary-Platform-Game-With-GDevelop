@@ -29,11 +29,13 @@ import org.allbinary.game.layer.special.GDCustomCollidableBehavior;
 import org.allbinary.game.layer.special.GDCustomMaskCollidableBehavior;
 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
 import org.allbinary.game.layout.GDObject;
+import org.allbinary.game.multiplayer.layer.RemoteInfo;
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.BasicArrayList;
 
 public class GDCustomGameLayerFactory extends GDGameLayerFactory
@@ -107,8 +109,9 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
                 this.primitiveDrawingAnimationFactory.getInstance(0),
                 this.gameLayerList, this.gameLayerDestroyedList,
                 this.behaviorList,
-                name,
+                RemoteInfo.REMOTE_INFO,
                 this.groupInterface,
+                name,
                 this.animationInterfaceFactoryInterfaceArray,
                 this.proceduralAnimationInterfaceFactoryInterfaceArray,
                 rectangle, 
