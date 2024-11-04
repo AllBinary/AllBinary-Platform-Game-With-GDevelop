@@ -49,7 +49,9 @@ import org.allbinary.view.ViewPosition;
  *
  * @author User
  */
-public class GDGameLayer extends MultiPlayerGameLayer 
+public class GDGameLayer 
+    //extends UnitLayer
+    extends MultiPlayerGameLayer 
         //implements //RotationAnimationInterfaceCompositeInterface, DirectionalCompositeInterface,
         //ArtificialIntelligenceCompositeInterface, GameInputInterface,
         //VelocityInterfaceCompositeInterface 
@@ -120,7 +122,37 @@ public class GDGameLayer extends MultiPlayerGameLayer
             final ViewPosition viewPosition,
             final GDObject gdObject, final GDAnimationBehaviorBase animationBehavior) throws Exception {
         super(remoteInfo, groupInterface, gdName, layerInfo, viewPosition);
-
+//        super(remoteInfo, 
+//            null,
+//            //final AdvancedRTSGameLayer parentLayer,
+//            groupInterface, gdObject.name, gdName, 
+//
+//               new VehicleProperties(new VelocityProperties(0,0),
+//                   new VehicleFrictionProperties(0, 0, 0, 0)),
+//               new Health(500 + UnitTechnologySingletonFactory.getInstance().getHealth()),
+//               SmallIntegerSingletonFactory.getInstance().getInstance(50),
+//            //final Integer maxLoad,
+//               NoSound.getInstance(),
+//            //final Sound moveSoundInterface,
+//               GDFlagLayerInterfaceFactory.getInstance(),
+//            //final LayerInterfaceFactoryInterface waypointLayerInterfaceFactoryInterface,
+//            NullRotationAnimationFactory.getFactoryInstance(),
+//            NullRotationAnimationFactory.getFactoryInstance(),
+//            NullRotationAnimationFactory.getFactoryInstance(),
+//            NullRotationAnimationFactory.getFactoryInstance(),
+//            NullRotationAnimationFactory.getFactoryInstance(),
+//            NullRotationAnimationFactory.getFactoryInstance(),
+//            NullRotationAnimationFactory.getFactoryInstance(),
+//            layerInfo, 
+//            null,
+//            //final BasicGeographicMap geographicMapInterface,
+//            DirectionFactory.getInstance().LEFT,
+//            0, 
+//            0, 
+//            0
+////            viewPosition
+//            );
+                
         this.primitiveDrawing = primitiveDrawing;
         
         this.gameLayerList = gameLayerList;
@@ -295,7 +327,9 @@ public class GDGameLayer extends MultiPlayerGameLayer
     }
 
     public void setDestroyed(final boolean destroyed)
+        throws Exception
     {
+        //super.setDestroyed(destroyed);
         this.gameLayerList.remove(this);
         this.gameLayerDestroyedList.add(this);
         this.combatBaseBehavior.getDestroyableBaseBehavior().setDestroyed(destroyed);
