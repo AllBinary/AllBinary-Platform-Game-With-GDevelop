@@ -77,6 +77,30 @@
 
 <!--
         <dependency>
+            <groupId>org.allbinary.game.strategy.realtime</groupId>
+            <artifactId>AdvancedRTSGameJavaLibrary</artifactId>
+            <version>${allbinary.platform.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary.media.graphics.geography.map</groupId>
+            <artifactId>DynamicPathFindingRaceTrackJavaLibrary_1_4_2</artifactId>
+            <version>${allbinary.platform.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary.media.graphics.geography.pathfinding</groupId>
+            <artifactId>GeographicPathFinderJGraphTJavaLibrary_1_4_2</artifactId>
+            <version>${allbinary.platform.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameLicensingBaseJavaLibrary</artifactId>
+            <version>${allbinary.platform.version}</version>
+        </dependency>
+-->
+        
+
+<!--
+        <dependency>
             <groupId>com.sun</groupId>
             <artifactId>GDLWUITJavaLibrary</artifactId>
             <version>1.0.0-SNAPSHOT</version>
