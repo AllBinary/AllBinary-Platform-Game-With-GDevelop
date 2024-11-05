@@ -77,14 +77,8 @@
 
 <!--
         <dependency>
-            <groupId>org.allbinary.game.strategy.realtime</groupId>
-            <artifactId>AdvancedRTSGameJavaLibrary</artifactId>
-            <version>${allbinary.platform.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.allbinary</groupId>
-            <artifactId>GameLicensingBaseJavaLibrary</artifactId>
-            <version>${allbinary.platform.version}</version>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameRTSJavaLibrary</artifactId>
         </dependency>
         <dependency>
             <groupId>org.allbinary.media.graphics.geography.map</groupId>
