@@ -254,10 +254,6 @@ public class GDGameLayer
 //            this.lastScaleY = scaleY;
 //        }
 //    }
-        
-    public void setAllBinaryGameLayerManager(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
-        
-    }
 
     public void set(final GL gl) throws Exception
     {

@@ -131,6 +131,22 @@ import org.mapgenerator.dungeon.DungeonGenerator;
 import org.mapgenerator.dungeon.Tunneller;
                 </xsl:if>
 
+    <xsl:variable name="foundPathFindingBehavior" >
+        <xsl:for-each select="//behaviorsSharedData" >
+            <xsl:if test="contains($hasOneOrMoreTileMaps, 'found')" >
+            <xsl:if test="type = 'PathfindingBehavior::PathfindingBehavior'" >found</xsl:if>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:variable>
+
+
+    <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
+import org.allbinary.media.graphics.geography.map.GeographicMapCellPositionFactoryInitVisitorInterface;
+import org.allbinary.media.graphics.geography.map.NoGeographicMapCellPositionFactoryInitVisitor;
+import org.allbinary.media.graphics.geography.pathfinding.PathGenerator;
+//import org.allbinary.game.layer.geological.resources.GeologicalGeographicMapCellPositionFactoryInitVisitor;
+    </xsl:if>
+
 public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 {
     private final CommonStrings commonStrings = CommonStrings.getInstance();
@@ -147,7 +163,14 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
     private int generatedWidth;
     private int generatedHeight;
-    
+
+    <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
+    //if path findingbehavior
+    private final GeographicMapCellPositionFactoryInitVisitorInterface geographicMapCelPositionFactoryInitVisitorInterface =
+        new NoGeographicMapCellPositionFactoryInitVisitor();
+        //new GeologicalGeographicMapCellPositionFactoryInitVisitor();
+    </xsl:if>
+        
     public GDGame<GDLayout>LevelBuilder(final AllBinaryGameLayerManager layerManager)
     		throws Exception
     {
@@ -437,8 +460,22 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             (GeographicMapCompositeInterface) this.layerManager;
         
         geographicMapCompositeInterface.setGeographicMapInterface(geographicMapInterfaceArray);
-                
+        
         </xsl:if>
+        
+        <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
+        //if path findingbehavior
+        final BasicGeographicMap geographicMap = 
+            geographicMapCompositeInterface.getGeographicMapInterface()[0];
+
+        //Reset resources
+        geographicMap.getGeographicMapCellPositionFactory().visit(
+            geographicMapCelPositionFactoryInitVisitorInterface
+           );
+
+        PathGenerator.getInstance().init(geographicMap, 2);
+        </xsl:if>
+        
 
     }
 

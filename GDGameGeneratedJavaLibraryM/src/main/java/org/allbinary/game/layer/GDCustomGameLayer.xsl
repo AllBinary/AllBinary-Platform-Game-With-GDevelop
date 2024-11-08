@@ -92,12 +92,27 @@ Created By: Travis Berthelot
         import org.allbinary.util.BasicArrayList;
         import org.allbinary.view.ViewPosition;
 
+    <xsl:variable name="foundPathFindingBehavior" >
+        <xsl:for-each select="//behaviorsSharedData" >
+            <xsl:if test="type = 'PathfindingBehavior::PathfindingBehavior'" >found</xsl:if>
+        </xsl:for-each>
+    </xsl:variable>
+
+        <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
+        import org.allbinary.game.layer.waypoint.WaypointRunnableLogHelper;
+        </xsl:if>
+
                 public class GDCustomGameLayer extends GDGameLayer 
         <xsl:if test="contains($foundOtherViewPosition, 'found')" >implements GameKeyEventSourceInterface, org.allbinary.game.behavior.platformer.PlatformCharacterInterface </xsl:if>
-        <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >implements org.allbinary.game.behavior.topview.TopViewCharacterInterface </xsl:if>
+        <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >implements org.allbinary.game.behavior.topview.TopViewCharacterInterface </xsl:if>        
+        <xsl:if test="contains($foundPathFindingBehavior, 'found')" >, org.allbinary.game.layer.PathFindingLayerInterface </xsl:if>
                 {
                     private final BasicGeographicMapUtil basicGeographicMapUtil = BasicGeographicMapUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+
+        <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
+                    public final GeographicMapCellPositionArea geographicMapCellPositionArea;
+        </xsl:if>
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -129,8 +144,6 @@ Created By: Travis Berthelot
                     protected final org.allbinary.game.behavior.topview.TopViewCharacterBehavior topViewCharacterBehavior = 
                         <xsl:if test="1" >new org.allbinary.game.behavior.topview.PlayerTopViewCharacterBehavior();</xsl:if>
                         <xsl:if test="0" >new org.allbinary.game.behavior.topview.NonPlayerTopViewCharacterBehavior();</xsl:if>
-
-                    public AllBinaryGameLayerManager allBinaryGameLayerManager;
 
                 </xsl:if>
 
@@ -179,8 +192,6 @@ Created By: Travis Berthelot
                         }
                     }
 -->
-                    
-                    protected AllBinaryGameLayerManager allBinaryGameLayerManager;
 
                     protected BasicAccelerationProperties acceleration;
 
@@ -325,6 +336,10 @@ Created By: Travis Berthelot
                     this.topViewGameBehavior = topViewGameBehavior;
                 </xsl:if>
 
+                <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
+                    this.geographicMapCellPositionArea = new GeographicMapCellPositionArea(this);
+                </xsl:if>
+
 <!--
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
         <xsl:for-each select="layouts" >
@@ -411,16 +426,6 @@ Created By: Travis Berthelot
             final GeographicMapCellPosition geographicMapCellPosition) throws Exception {
     }
 
-        </xsl:if>
-
-        <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
-        public void setAllBinaryGameLayerManager(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
-            this.allBinaryGameLayerManager = allBinaryGameLayerManager;
-            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(commonStrings.START).append(this.getName()).append(CommonSeps.getInstance().SPACE).append(allBinaryGameLayerManager).toString(), this, commonStrings.PROCESS));
-            if(this.allBinaryGameLayerManager == null) {
-                throw new RuntimeException();
-            }
-        }
         </xsl:if>
         
         <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
@@ -960,6 +965,42 @@ Created By: Travis Berthelot
     public int Value() {
         return ((GDSliderAnimationBehavior) this.getDimensionalBehavior().getAnimationBehavior()).Value();
     }
+
+        <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
+            
+    public SelectionHudPaintable getHudPaintable()
+    {
+        return null;
+    }
+
+    public BasicArrayList getEndGeographicMapCellPositionList() {
+        return this.geographicMapCellPositionArea.getOccupyingGeographicMapCellPositionList();
+    }
+
+    public GeographicMapCellPositionArea getGeographicMapCellPositionArea() {
+        return geographicMapCellPositionArea;
+    }
+
+    public boolean shouldHandleStartSameAsEnd() {
+        return false;
+    }
+
+    public void handleCost(PathFindingLayerInterface ownerLayer) throws Exception {
+    }
+
+    public WaypointBehaviorBase getWaypointBehavior() {
+        return null;
+    }
+
+    public PathFindingLayerInterface getParentLayer() {
+        return null;
+    }
+
+    public WaypointRunnableLogHelper getWaypointRunnableLogHelper() {
+        return null;
+    }   
+        </xsl:if>
+
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
