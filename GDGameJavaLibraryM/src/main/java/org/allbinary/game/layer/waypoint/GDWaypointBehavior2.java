@@ -8,6 +8,7 @@ import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.layer.AllBinaryLayerManager;
+import org.allbinary.logic.communication.log.ForcedLogUtil;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.CommonSeps;
@@ -282,12 +283,15 @@ extends GDWaypointBehavior
             final GeographicMapCellPosition geographicMapCellPosition =
                 associatedAdvancedRTSGameLayer.getCurrentGeographicMapCellPosition();
 
-            //this.waypointPathsList =
-            //  this.currentTargetLayerInterface.getWaypoint().getPathsList(geographicMapCellPosition);
-
             final WaypointBase waypoint = ((PathFindingLayerInterface) 
                 this.currentTargetLayerInterface).getWaypointBehavior().getWaypoint();
-            this.setWaypointPathsList(waypoint.getPathsListFromCacheOnly(geographicMapCellPosition));
+            
+            final BasicArrayList list = 
+                waypoint.getPathsList(geographicMapCellPosition);
+                //waypoint.getPathsListFromCacheOnly(geographicMapCellPosition);
+                
+            ForcedLogUtil.log("waypointPathsList: " + list, this);
+            this.setWaypointPathsList(list);
 
             if (this.waypointPathsList == null)
             {
@@ -410,9 +414,9 @@ extends GDWaypointBehavior
                 if (this.currentTargetLayerInterface == null ||
                     this.waypointOverridesAttacking)
                 {
-                    this.setWaypointPathsList(
-                            targetLayer.getWaypointBehavior().getWaypoint().getPathsListFromCacheOnly(
-                                    geographicMapCellPosition));
+                    final BasicArrayList list = targetLayer.getWaypointBehavior().getWaypoint().getPathsListFromCacheOnly(geographicMapCellPosition);
+                    ForcedLogUtil.log("waypointPathsList2: " + list, this);
+                    this.setWaypointPathsList(list);
 
                     if (this.waypointPathsList == null)
                     {

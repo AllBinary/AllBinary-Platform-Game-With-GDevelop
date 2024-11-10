@@ -1082,11 +1082,11 @@ Created By: Travis Berthelot
                                 hashtable, x, y, z))
                 );
 
+        this.updateWaypointBehavior2(geographicMapInterface);
+            
         final Waypoint waypoint = new Waypoint(this, AttackSound.getInstance(), false);
         waypoint.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
         this.waypointBehaviorBase.setWaypoint(waypoint);
-        
-        this.updateWaypointBehavior2(geographicMapInterface);
         
         //this.initRangeHack();
     }
