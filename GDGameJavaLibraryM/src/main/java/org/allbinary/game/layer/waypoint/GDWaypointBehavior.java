@@ -1,24 +1,24 @@
-package org.allbinary.game.layer.gd;
+package org.allbinary.game.layer.waypoint;
 
-import org.allbinary.logic.string.StringMaker;
 import org.allbinary.game.input.form.PrimaryWaypointHelper;
 import org.allbinary.game.layer.PathFindingLayerInterface;
 import org.allbinary.game.layer.RTSLayerEvent;
-import org.allbinary.game.layer.WaypointBehaviorBase;
-import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.game.layer.SensorAction;
 import org.allbinary.game.layer.SensorActionFactory;
+import org.allbinary.game.layer.WaypointBehaviorBase;
+import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.game.layer.waypoint.event.WaypointEventListenerInterface;
-import org.allbinary.util.BasicArrayList;
-import org.allbinary.util.BasicArrayListUtil;
-import org.allbinary.logic.communication.log.ForcedLogUtil;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.layer.AllBinaryLayer;
+import org.allbinary.logic.communication.log.ForcedLogUtil;
+import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.util.event.AllBinaryEventObject;
 import org.allbinary.logic.util.event.EventStrings;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellHistory;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.time.TimeDelayHelper;
+import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListUtil;
 
 public class GDWaypointBehavior 
     extends WaypointBehaviorBase

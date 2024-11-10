@@ -1,25 +1,23 @@
-package org.allbinary.game.layer.gd;
+package org.allbinary.game.layer.waypoint;
 
-import org.allbinary.game.layer.waypoint.WaypointPathRunnable;
-import org.allbinary.util.BasicArrayList;
-import org.allbinary.logic.string.CommonSeps;
-import org.allbinary.logic.string.CommonStrings;
-import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.communication.log.LogFactory;
-import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.game.layer.PathFindingLayerInterface;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.game.layer.unit.SteeringVisitor;
-import org.allbinary.game.layer.waypoint.WaypointBase;
 import org.allbinary.game.tracking.TrackingEventHandler;
 import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.layer.AllBinaryLayerManager;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.CommonSeps;
+import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.logic.string.StringMaker;
 import org.allbinary.math.LayerDistanceUtil;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.thread.SecondaryThreadPool;
 import org.allbinary.time.TimeDelayHelper;
+import org.allbinary.util.BasicArrayList;
 
 public class GDWaypointBehavior2 
 extends GDWaypointBehavior

@@ -17,7 +17,7 @@ import javax.microedition.lcdui.Graphics;
 
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layer.PathFindingLayerInterface;
-import org.allbinary.game.layer.gd.GDWaypointBehavior2;
+import org.allbinary.game.layer.waypoint.GDWaypointBehavior2;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.math.LayerDistanceUtil;
 import org.allbinary.util.BasicArrayList;
