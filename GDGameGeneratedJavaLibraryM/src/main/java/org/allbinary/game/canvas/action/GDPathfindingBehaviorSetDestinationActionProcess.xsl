@@ -73,7 +73,9 @@ Created By: Travis Berthelot
                             //if(gdObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                 gdGameLayer = (GDGameLayer) gdGameLayerList.get(index2);
                                 
-                                ((PathFindingBehavior) gdGameLayer.gdObject.getBehavior(gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX)).setTarget(<xsl:value-of select="$param4" />, <xsl:value-of select="$param5" />);
+                                ((PathFindingBehavior) gdGameLayer.gdObject.getBehavior(gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX)).setTarget(gdGameLayer, 
+                                    <xsl:if test="string-length($fourthParamBeforePeriod) > 0" ><xsl:variable name="gameLayerName" ><xsl:value-of select="$fourthParamBeforePeriod" /></xsl:variable><xsl:value-of select="$gameLayerName" />GDGameLayer</xsl:if>,
+                                    <xsl:value-of select="$param4" />, <xsl:value-of select="$param5" />);
                                 //gdObject = (GDObject) gdGameLayer.gdObject;
                                 //result = result <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> 
                             //}
@@ -101,7 +103,9 @@ Created By: Travis Berthelot
                             final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$gameLayerName" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
                         </xsl:if>
                                                 
-                        ((PathFindingBehavior) gdGameLayer.gdObject.getBehavior(gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX)).setTarget(<xsl:value-of select="$param4" />, <xsl:value-of select="$param5" />);
+                            ((PathFindingBehavior) gdGameLayer.gdObject.getBehavior(gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX)).setTarget(gdGameLayer, 
+                                <xsl:if test="string-length($fourthParamBeforePeriod) > 0" ><xsl:variable name="gameLayerName" ><xsl:value-of select="$fourthParamBeforePeriod" /></xsl:variable><xsl:value-of select="$gameLayerName" />GDGameLayer</xsl:if>,
+                                <xsl:value-of select="$param4" />, <xsl:value-of select="$param5" />);
                             
                         return true;
 

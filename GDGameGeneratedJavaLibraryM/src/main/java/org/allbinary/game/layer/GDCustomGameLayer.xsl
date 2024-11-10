@@ -29,6 +29,8 @@ Created By: Travis Berthelot
         
                 package org.allbinary.game.layer;
 
+        import java.util.Hashtable;
+
         import javax.microedition.lcdui.Canvas;
         import javax.microedition.lcdui.Graphics;
         import javax.microedition.lcdui.game.TiledLayer;
@@ -99,7 +101,23 @@ Created By: Travis Berthelot
     </xsl:variable>
 
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
+
+        import org.allbinary.animation.NullAnimationFactory;
+        import org.allbinary.animation.caption.CaptionAnimationHelper;
+        import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
+        import org.allbinary.game.layer.gd.GDWaypointBehavior2;
+        import org.allbinary.game.layer.waypoint.Waypoint;
+        import org.allbinary.game.view.TileLayerPositionIntoViewPosition;
+        import org.allbinary.game.layer.waypoint.Waypoint2LogHelper;
+        import org.allbinary.game.layer.waypoint.WaypointLogHelper;
         import org.allbinary.game.layer.waypoint.WaypointRunnableLogHelper;
+        import org.allbinary.game.tracking.TrackingEvent;
+        import org.allbinary.game.view.TileLayerPositionIntoViewPosition;
+        import org.allbinary.media.audio.AttackSound;
+        import org.allbinary.media.graphics.geography.map.GeographicMapCellHistory;
+
+        import org.allbinary.layer.Layer;
+        import org.allbinary.layer.LayerInterfaceFactoryInterface;
         </xsl:if>
 
                 public class GDCustomGameLayer extends GDGameLayer 
@@ -111,6 +129,25 @@ Created By: Travis Berthelot
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
+            
+                    protected final boolean debug = true;
+                    public final boolean showMoreCaptionStates = debug;
+                    private final LayerInterfaceFactoryInterface waypointLayerInterfaceFactoryInterface;
+
+                    private final CaptionAnimationHelper captionAnimationHelper = new CaptionAnimationHelper(
+                        NullAnimationFactory.getFactoryInstance().getInstance(0),
+                        -23, -25, 6, 0);    
+                        
+                    private boolean selected = false;
+
+                    private WaypointBehaviorBase waypointBehaviorBase;
+            
+                    public Unit2LogHelper unit2LogHelper = Unit2LogHelper.getInstance();
+
+                    public WaypointLogHelper waypointLogHelper = WaypointLogHelper.getInstance();
+                    public Waypoint2LogHelper waypoint2LogHelper = Waypoint2LogHelper.getInstance();
+                    public WaypointRunnableLogHelper waypointRunnableLogHelper = WaypointRunnableLogHelper.getInstance();
+
                     public final GeographicMapCellPositionArea geographicMapCellPositionArea;
         </xsl:if>
 
@@ -337,6 +374,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
+                    this.waypointLayerInterfaceFactoryInterface = org.allbinary.game.layer.GDFlagLayerInterfaceFactory.getInstance(); //waypointLayerInterfaceFactoryInterface;
                     this.geographicMapCellPositionArea = new GeographicMapCellPositionArea(this);
                 </xsl:if>
 
@@ -967,12 +1005,79 @@ Created By: Travis Berthelot
     }
 
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
+
+    protected void setSelected(boolean selected)
+    {
+        this.selected = selected;
+    }
+
+    public boolean isSelected()
+    {
+        return this.selected;
+    }
+
+    public void setAllBinaryGameLayerManager(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
+
+        super.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
+
+        final GeographicMapCompositeInterface geographicMapCompositeInterface = 
+            (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+        final BasicGeographicMap[] basicGeographicMapArray = geographicMapCompositeInterface.getGeographicMapInterface();
+
+        if(basicGeographicMapArray != null) {
+            final BasicGeographicMap geographicMapInterface = basicGeographicMapArray[0];
+
+//            final AllBinaryTiledLayer tiledLayer = geographicMapInterface.getAllBinaryTiledLayer();
+//            final TileLayerPositionIntoViewPosition viewPosition2
+//                = (TileLayerPositionIntoViewPosition) this.getViewPosition();
+//            viewPosition2.setTiledLayer(tiledLayer);
+
+            this.updateWaypointBehavior(geographicMapInterface);
+            //System.out.println("TWB map: " + this);
+        } else {
+            //System.out.println("TWB no map: " + this);
+        }
+        
+    }
+
+    public void updateWaypointBehavior(final BasicGeographicMap geographicMapInterface) throws Exception {
+        
+        final Hashtable hashtable = new Hashtable();
+        hashtable.put(Group.ID, this.getGroupInterface());
+        hashtable.put(Layer.ID, this);
+        hashtable.put(AllBinaryGameLayerManager.ID, allBinaryGameLayerManager);
+        
+        this.setWaypointBehavior(
+                new GDWaypointBehavior2(
+                        this, 
+                        (CollidableDestroyableDamageableLayer) 
+                        waypointLayerInterfaceFactoryInterface.getInstance(
+                                hashtable, x, y, z))
+                );
+
+        final Waypoint waypoint = new Waypoint(this, AttackSound.getInstance(), false);
+        waypoint.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
+        this.getWaypointBehavior().setWaypoint(waypoint);
+        
+        this.updateWaypointBehavior2(geographicMapInterface);
+        
+        //this.initRangeHack();
+    }
+    
+    public void updateWaypointBehavior2(final BasicGeographicMap geographicMapInterface) throws Exception {
+        this.geographicMapCellPositionArea.update(geographicMapInterface);
+    }
             
     public SelectionHudPaintable getHudPaintable()
     {
         return null;
     }
 
+    public int getSourceId()
+    {
+        return -1;
+    }
+            
     public BasicArrayList getEndGeographicMapCellPositionList() {
         return this.geographicMapCellPositionArea.getOccupyingGeographicMapCellPositionList();
     }
@@ -982,23 +1087,131 @@ Created By: Travis Berthelot
     }
 
     public boolean shouldHandleStartSameAsEnd() {
-        return false;
+        return true;
     }
 
     public void handleCost(PathFindingLayerInterface ownerLayer) throws Exception {
     }
 
-    public WaypointBehaviorBase getWaypointBehavior() {
-        return null;
+    public WaypointBehaviorBase getWaypointBehavior()
+    {
+        return this.waypointBehaviorBase;
+    }
+
+    protected void setWaypointBehavior(WaypointBehaviorBase unitWaypointHelper)
+    {
+        this.waypointBehaviorBase = unitWaypointHelper;
     }
 
     public PathFindingLayerInterface getParentLayer() {
         return null;
     }
 
+    public Unit2LogHelper getUnit2LogHelper() {
+        return this.unit2LogHelper;
+    }
+    
+    public WaypointLogHelper getWaypointLogHelper() {
+        return this.waypointLogHelper;
+    }
+
+    public Waypoint2LogHelper getWaypoint2LogHelper() {
+        return this.waypoint2LogHelper;
+    }
+    
     public WaypointRunnableLogHelper getWaypointRunnableLogHelper() {
+        return this.waypointRunnableLogHelper;
+    }
+
+    public boolean shouldAddWaypointFromBuilding() {
+        return false;
+    }
+
+    public CaptionAnimationHelper getCaptionAnimationHelper() {
+        return captionAnimationHelper;
+    }
+
+    public boolean isShowMoreCaptionStates() {
+        return this.showMoreCaptionStates;
+    }
+    
+    public void init(final GeographicMapCellHistory geographicMapCellHistory,
+        final BasicArrayList geographicMapCellPositionBasicArrayList) { 
+        
+    }
+    
+    public GeographicMapCellPosition getCurrentGeographicMapCellPosition()
+    throws Exception
+    {
+        final GeographicMapCompositeInterface geographicMapCompositeInterface
+            = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+        final BasicGeographicMap geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
+        
+        final GeographicMapCellPosition geographicMapCellPosition =
+            geographicMapInterface.getCellPositionAt(
+            this.x + this.getHalfWidth(),
+            this.y + this.getHalfHeight());
+
+        //This should never happen remove when bug is found
+//        final RTSRaceTrackGeographicMap raceTrackGeographicMap =
+//            (RTSRaceTrackGeographicMap) geographicMapInterface;
+//        
+//        if(!raceTrackGeographicMap.isValid(geographicMapCellPosition))
+//        {
+//            throw new Exception("Position is not really on the map: " + geographicMapCellPosition);
+//        }
+
+        return geographicMapCellPosition;
+    }
+            
+    public BasicArrayList getMoveOutOfBuildAreaPath(
+        final GeographicMapCellPosition geographicMapCellPosition) {
         return null;
     }   
+
+    public void setClosestGeographicMapCellHistory(final BasicArrayList pathsList)
+        throws Exception
+    {
+    }
+    
+    public void teleportTo(final GeographicMapCellPosition geographicMapCellPosition) {
+        
+    }
+    
+    public void setLoad(short resource) throws Exception {
+        
+    }
+
+    public BasicArrayList getSurroundingGeographicMapCellPositionList() 
+        throws Exception {
+        return null;
+    }
+    
+    public void trackTo(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition, final String reason) 
+        throws Exception {
+        
+    }
+
+    public void trackTo(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition, final int dx, final int dy) 
+        throws Exception {
+        
+    }
+    
+    public boolean isWaypointListEmptyOrOnlyTargets() {
+        return false;
+    }
+
+    public TrackingEvent getTrackingEvent() {
+        return null;
+    }
+
+    public boolean buildingChase(final AllBinaryLayer allbinaryLayer, final GeographicMapCellPosition cellPosition) throws Exception {
+        return false;
+    }
+    
+    public void allStop() {
+        
+    }
         </xsl:if>
 
 

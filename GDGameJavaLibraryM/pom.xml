@@ -75,10 +75,15 @@
             <optional>true</optional>
         </dependency>
 
-<!--
         <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameRTSJavaLibrary</artifactId>
+            <groupId>org.allbinary</groupId>
+            <artifactId>GameLicensingBaseJavaLibrary</artifactId>
+            <version>${allbinary.platform.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary.game.strategy.realtime</groupId>
+            <artifactId>AdvancedRTSGameJavaLibrary</artifactId>
+            <version>${allbinary.platform.version}</version>
         </dependency>
         <dependency>
             <groupId>org.allbinary.media.graphics.geography.map</groupId>
@@ -90,6 +95,7 @@
             <artifactId>GeographicPathFinderJGraphTJavaLibrary_1_4_2</artifactId>
             <version>${allbinary.platform.version}</version>
         </dependency>
+<!--
 -->
         
 

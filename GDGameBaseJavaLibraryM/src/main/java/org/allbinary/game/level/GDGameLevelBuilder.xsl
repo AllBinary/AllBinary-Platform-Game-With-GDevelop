@@ -459,6 +459,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
             (GeographicMapCompositeInterface) this.layerManager;
         
+        //System.out.println("TWB set map");
         geographicMapCompositeInterface.setGeographicMapInterface(geographicMapInterfaceArray);
         
         </xsl:if>
