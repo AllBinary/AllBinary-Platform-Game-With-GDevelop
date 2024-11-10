@@ -41,7 +41,7 @@ public class GDWaypointBehavior
 
     private boolean moving = false;
     private boolean movingFromStopped = false;
-    private BasicArrayList waypointPathsList;
+    protected BasicArrayList waypointPathsList;
     
     private final BasicArrayList possibleTargetList;
     

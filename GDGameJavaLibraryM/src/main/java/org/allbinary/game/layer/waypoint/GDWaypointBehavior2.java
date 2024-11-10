@@ -93,7 +93,7 @@ extends GDWaypointBehavior
         if (this.waypointPathRunnable.isRunning())
         {
             //thread is done
-            if (getWaypointPathsList() != runningWaypointPathList)
+            if (waypointPathsList != runningWaypointPathList)
             {
                 this.waypointPathRunnable.setRunning(false);
 
@@ -289,14 +289,14 @@ extends GDWaypointBehavior
                 this.currentTargetLayerInterface).getWaypointBehavior().getWaypoint();
             this.setWaypointPathsList(waypoint.getPathsListFromCacheOnly(geographicMapCellPosition));
 
-            if (this.getWaypointPathsList() == null)
+            if (this.waypointPathsList == null)
             {
                 this.targetWithoutCachedPathLayerInterface =
                     this.currentTargetLayerInterface;
                 
                 this.geographicMapCellPosition = geographicMapCellPosition;
             }
-            else if (this.getWaypointPathsList().size() != 0)
+            else if (this.waypointPathsList.size() != 0)
             {
                 this.setTargetPath();
             }
@@ -329,7 +329,7 @@ extends GDWaypointBehavior
                 this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().setTargetPath(this);
                 
                 this.insertWaypoint(0, this.currentTargetLayerInterface);
-                this.setRandomGeographicMapCellHistory(this.getWaypointPathsList());
+                this.setRandomGeographicMapCellHistory(this.waypointPathsList);
             }
 
         }
@@ -414,7 +414,7 @@ extends GDWaypointBehavior
                             targetLayer.getWaypointBehavior().getWaypoint().getPathsListFromCacheOnly(
                                     geographicMapCellPosition));
 
-                    if (this.getWaypointPathsList() == null)
+                    if (this.waypointPathsList == null)
                     {
                         this.waitingOnWaypointPath = true;
 
@@ -697,12 +697,12 @@ extends GDWaypointBehavior
     private void setWaypointPath(final PathFindingLayerInterface waypointLayer)
         throws Exception
     {
-        if (getWaypointPathsList().size() != 0)
+        if (waypointPathsList.size() != 0)
         {
             this.setCurrentTargetLayerInterface((CollidableDestroyableDamageableLayer) waypointLayer);
             this.setCurrentTargetDistance(Integer.MAX_VALUE);
 
-            this.setRandomGeographicMapCellHistory(getWaypointPathsList());
+            this.setRandomGeographicMapCellHistory(waypointPathsList);
         }
         else
         {
