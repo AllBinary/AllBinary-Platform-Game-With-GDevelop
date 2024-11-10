@@ -30,14 +30,14 @@ public class GDWaypointBehavior
 
     private final TimeDelayHelper completeTimeDelayHelper;
     
-    private GeographicMapCellHistory currentGeographicMapCellHistory;
+    protected GeographicMapCellHistory currentGeographicMapCellHistory;
     
     private GeographicMapCellPosition lastPathGeographicMapCellPosition;
     private GeographicMapCellPosition currentPathGeographicMapCellPosition;
 
     private final CollidableDestroyableDamageableLayer FAKE_WAYPOINT_LAYER;
     
-    private final BasicArrayList targetList;
+    protected final BasicArrayList targetList;
 
     private boolean moving = false;
     private boolean movingFromStopped = false;
@@ -115,7 +115,7 @@ public class GDWaypointBehavior
         if (advancedRTSGameLayer == PrimaryWaypointHelper.getInstance().getWaypointLayer()
                 || advancedRTSGameLayer.getParentLayer() == associatedAdvancedRTSGameLayer.getParentLayer())
         {
-            if (!this.getTargetList().contains(advancedRTSGameLayer))
+            if (!this.targetList.contains(advancedRTSGameLayer))
             {
                 this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().addWaypointFromBuilding(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer);
                 
@@ -124,9 +124,9 @@ public class GDWaypointBehavior
                     throw new Exception("Trying to add a dead: " + advancedRTSGameLayer);
                 }
 
-                this.getTargetList().add(advancedRTSGameLayer);
+                this.targetList.add(advancedRTSGameLayer);
 
-                this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().addWaypointFromBuilding(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer, this.getTargetList());
+                this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().addWaypointFromBuilding(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer, this.targetList);
             }
         }
     }
@@ -148,7 +148,7 @@ public class GDWaypointBehavior
                 throw new Exception("Trying to add a dead: " + rtsLayer);
             }
             
-            this.getTargetList().add(index, rtsLayer);
+            this.targetList.add(index, rtsLayer);
 
             this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().insertWaypoint(index, rtsLayer, this.getName(), this.targetList);
 
@@ -196,9 +196,9 @@ public class GDWaypointBehavior
                     PATHING, BasicColorFactory.getInstance().GREEN);
         }
         
-        this.getCurrentGeographicMapCellHistory().init();
+        this.currentGeographicMapCellHistory.init();
 
-        this.associatedAdvancedRTSGameLayer.init(this.getCurrentGeographicMapCellHistory(),
+        this.associatedAdvancedRTSGameLayer.init(this.currentGeographicMapCellHistory,
                 geographicMapCellPositionBasicArrayList);
 
         this.setTrackingWaypoint(true);
@@ -207,13 +207,13 @@ public class GDWaypointBehavior
         
     protected boolean canInsertWaypoint(final int index, final CollidableDestroyableDamageableLayer rtsLayer)
     {
-        if (this.getTargetList().size() > 4)
+        if (this.targetList.size() > 4)
         {
             //LogUtil.put(LogFactory.getInstance(
             //  this.getName() + " has Too Many Waypoints of: " +
             //rtsLayer.getName(), this, "insertWaypoint"));
         }
-        else if (this.getTargetList().contains(rtsLayer))
+        else if (this.targetList.contains(rtsLayer))
         {
             //LogUtil.put(LogFactory.getInstance(
             //  this.getName() + " Already Contains Same Waypoint: " +

@@ -250,8 +250,8 @@ extends GDWaypointBehavior
             if (this.getCompleteTimeDelayHelper().isTime())
             {
                 final GeographicMapCellPosition geographicMapCellPosition =
-                    (GeographicMapCellPosition) this.getCurrentGeographicMapCellHistory().getTracked().get(
-                    this.getCurrentGeographicMapCellHistory().getSize() - 1);
+                    (GeographicMapCellPosition) this.currentGeographicMapCellHistory.getTracked().get(
+                    this.currentGeographicMapCellHistory.getSize() - 1);
 
                 this.associatedAdvancedRTSGameLayer.teleportTo(geographicMapCellPosition);
             }
@@ -274,7 +274,7 @@ extends GDWaypointBehavior
         this.setTrackingWaypoint(false);
 
         //Hmm one target at a time
-        this.getTargetList().clear();
+        this.targetList.clear();
 
         if (!this.isCloseRange((CollidableDestroyableDamageableLayer) layerInterface, anotherTargetDistance) &&
             this.canInsertWaypoint(0, this.currentTargetLayerInterface))
@@ -348,12 +348,12 @@ extends GDWaypointBehavior
     
     private void processWaypoint() throws Exception
     {
-        final int size = this.getTargetList().size();
+        final int size = this.targetList.size();
 
         if (size > 0)
         {
             final PathFindingLayerInterface targetLayer =
-                (PathFindingLayerInterface) this.getTargetList().get(0);
+                (PathFindingLayerInterface) this.targetList.get(0);
 
             this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processWaypoint(this, targetLayer, size);
 
@@ -384,7 +384,7 @@ extends GDWaypointBehavior
                         this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processWaypointTracked(geographicMapCellPosition);
                     }
 
-                    if (this.getCurrentGeographicMapCellHistory().isAllVisited2() &&
+                    if (this.currentGeographicMapCellHistory.isAllVisited2() &&
                         this.currentTargetLayerInterface != null)
                     {
                         final PathFindingLayerInterface oldWaypointLayer = (PathFindingLayerInterface)
@@ -450,7 +450,7 @@ extends GDWaypointBehavior
 
     private void wander() throws Exception
     {
-        if (this.getCurrentGeographicMapCellHistory().isAllVisited2())
+        if (this.currentGeographicMapCellHistory.isAllVisited2())
         {
             this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().wander();
             
@@ -506,7 +506,7 @@ extends GDWaypointBehavior
             }
             
             if (beyondMidPoint) {
-                return this.getCurrentGeographicMapCellHistory().visit(geographicMapCellPosition);
+                return this.currentGeographicMapCellHistory.visit(geographicMapCellPosition);
             }
         }
         
@@ -684,9 +684,9 @@ extends GDWaypointBehavior
         this.setCurrentPathGeographicMapCellPosition(this.nextUnvisitedPathGeographicMapCellPosition);
 
         this.nextUnvisitedPathGeographicMapCellPosition =
-            this.getCurrentGeographicMapCellHistory().getFirstUnvisited();
+            this.currentGeographicMapCellHistory.getFirstUnvisited();
         this.afterNextUnvisitedPathGeographicMapCellPosition = 
-            this.getCurrentGeographicMapCellHistory().getAfterIfNotLast(this.nextUnvisitedPathGeographicMapCellPosition);
+            this.currentGeographicMapCellHistory.getAfterIfNotLast(this.nextUnvisitedPathGeographicMapCellPosition);
 
         if (this.getCurrentPathGeographicMapCellPosition() != this.nextUnvisitedPathGeographicMapCellPosition)
         {
@@ -741,9 +741,9 @@ extends GDWaypointBehavior
     {
         this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().removeWaypoint(this, waypointLayer, reason);
 
-        this.getTargetList().remove(waypointLayer);
+        this.targetList.remove(waypointLayer);
 
-        this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().removeWaypoint(this, this.getTargetList());
+        this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().removeWaypoint(this, this.targetList);
         
         if (this.currentTargetLayerInterface == waypointLayer)
         {
@@ -770,7 +770,7 @@ extends GDWaypointBehavior
     //Only public for logging
     public boolean isWaypointListEmptyOrOnlyTargets()
     {
-        final BasicArrayList list = this.getTargetList();
+        final BasicArrayList list = this.targetList;
         if (list.size() == 0)
         {
             //LogUtil.put(LogFactory.getInstance("No Waypoints", this, "isWaypointListEmptyOrOnlyTargets"));
@@ -837,8 +837,8 @@ extends GDWaypointBehavior
         this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().addWaypointFromUser(this.associatedAdvancedRTSGameLayer, advancedRTSGameLayer);
 
         // clear waypoints and use player created waypoint
-        this.getTargetList().clear();
-        this.getTargetList().add(advancedRTSGameLayer);
+        this.targetList.clear();
+        this.targetList.add(advancedRTSGameLayer);
 
         // must be reassigned to building to follow buildings order/waypoint
         this.clearTarget();
