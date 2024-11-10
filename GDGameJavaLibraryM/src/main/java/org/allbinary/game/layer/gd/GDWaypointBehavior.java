@@ -8,7 +8,6 @@ import org.allbinary.game.layer.WaypointBehaviorBase;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.game.layer.SensorAction;
 import org.allbinary.game.layer.SensorActionFactory;
-import org.allbinary.game.layer.unit.UnitLayer;
 import org.allbinary.game.layer.waypoint.event.WaypointEventListenerInterface;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListUtil;
@@ -47,7 +46,7 @@ public class GDWaypointBehavior
     private final BasicArrayList possibleTargetList;
     
     private int currentTargetDistance = Integer.MAX_VALUE;
-    private CollidableDestroyableDamageableLayer currentTargetLayerInterface;
+    protected CollidableDestroyableDamageableLayer currentTargetLayerInterface;
     
     private boolean trackingWaypoint;
     
@@ -114,8 +113,7 @@ public class GDWaypointBehavior
     throws Exception
     {
         if (advancedRTSGameLayer == PrimaryWaypointHelper.getInstance().getWaypointLayer()
-                || advancedRTSGameLayer.getParentLayer() == associatedAdvancedRTSGameLayer
-                        .getParentLayer())
+                || advancedRTSGameLayer.getParentLayer() == associatedAdvancedRTSGameLayer.getParentLayer())
         {
             if (!this.getTargetList().contains(advancedRTSGameLayer))
             {
@@ -269,9 +267,9 @@ public class GDWaypointBehavior
         
         if(this.isTrackingWaypoint() ||
                 this.sensorAction == SensorActionFactory.getInstance().EVADE ||
-                (this.getCurrentTargetLayerInterface() != null &&
+                (this.currentTargetLayerInterface != null &&
                 this.getCurrentTargetDistance() >= this.longWeaponRange +
-                this.getCurrentTargetLayerInterface().getHalfHeight()))
+                this.currentTargetLayerInterface.getHalfHeight()))
         {
             repeatedToLong.setStartTime();
             return true;
@@ -295,13 +293,13 @@ public class GDWaypointBehavior
         stringBuffer.append(" sensorAction: ");
         stringBuffer.append(this.sensorAction.name);
         stringBuffer.append(" getCurrentTargetLayerInterface: ");
-        stringBuffer.append(this.getCurrentTargetLayerInterface());
+        stringBuffer.append(this.currentTargetLayerInterface);
 
-        if (this.getCurrentTargetLayerInterface() != null) {
+        if (this.currentTargetLayerInterface != null) {
             stringBuffer.append(" Target Range: ");
             stringBuffer.append(this.getCurrentTargetDistance());
             stringBuffer.append(" >= ");
-            stringBuffer.append(this.longWeaponRange + this.getCurrentTargetLayerInterface().getHalfHeight());
+            stringBuffer.append(this.longWeaponRange + this.currentTargetLayerInterface.getHalfHeight());
         }
         return stringBuffer.toString();
 
@@ -349,7 +347,7 @@ public class GDWaypointBehavior
     /**
      * @return the trackingWaypoint
      */
-    protected boolean isTrackingWaypoint()
+    public boolean isTrackingWaypoint()
     {
         return trackingWaypoint;
     }
@@ -404,7 +402,7 @@ public class GDWaypointBehavior
         this.currentTargetLayerInterface = currentTargetLayerInterface;
     }
 
-    protected CollidableDestroyableDamageableLayer getCurrentTargetLayerInterface()
+    public CollidableDestroyableDamageableLayer getCurrentTargetLayerInterface()
     {
         return currentTargetLayerInterface;
     }

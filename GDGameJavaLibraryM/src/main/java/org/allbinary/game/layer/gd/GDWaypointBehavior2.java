@@ -89,7 +89,7 @@ extends GDWaypointBehavior
     
     //this could become somewhat event driven with a seperate waypoint processor
     //making it more performant and less polling like
-    public void processTick(AllBinaryLayerManager allBinaryLayerManager)
+    public void processTick(final AllBinaryLayerManager allBinaryLayerManager)
     throws Exception
     {
         if (this.waypointPathRunnable.isRunning())
@@ -180,7 +180,7 @@ extends GDWaypointBehavior
         // this, "onMovementFound"));
 
         // Update Distance Of Current Target
-        if (layerInterface == this.getCurrentTargetLayerInterface())
+        if (layerInterface == this.currentTargetLayerInterface)
         {
             this.setCurrentTargetDistance(anotherTargetDistance);
         }
@@ -197,8 +197,7 @@ extends GDWaypointBehavior
             this.getCurrentTargetDistance() > anotherTargetDistance;
             
         boolean isCurrentTargetDestroyed = 
-            this.getCurrentTargetLayerInterface() != null && this
-                .getCurrentTargetLayerInterface().isDestroyed();
+            this.currentTargetLayerInterface != null && this.currentTargetLayerInterface.isDestroyed();
 
         this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processPossibleTarget(this, layerInterface, anotherTargetDistance, isShorterThanCurrentTargetDistance, isCurrentTargetDestroyed);
 
@@ -237,8 +236,9 @@ extends GDWaypointBehavior
     private void teleportIfNoProgress()
         throws Exception
     {
-        if (this.isTrackingWaypoint() || 
-                this.associatedAdvancedRTSGameLayer.getParentLayer().isDestroyed())
+        if (this.isTrackingWaypoint() //|| 
+                //this.associatedAdvancedRTSGameLayer.getParentLayer().isDestroyed()
+            )
         {
             //If not progressing move to next position
             if (this.progressTimeDelayHelper.isTime() && 
@@ -279,7 +279,7 @@ extends GDWaypointBehavior
         this.getTargetList().clear();
 
         if (!this.isCloseRange((CollidableDestroyableDamageableLayer) layerInterface, anotherTargetDistance) &&
-            this.canInsertWaypoint(0, this.getCurrentTargetLayerInterface()))
+            this.canInsertWaypoint(0, this.currentTargetLayerInterface))
         {
             final GeographicMapCellPosition geographicMapCellPosition =
                 associatedAdvancedRTSGameLayer.getCurrentGeographicMapCellPosition();
@@ -288,13 +288,13 @@ extends GDWaypointBehavior
             //  this.currentTargetLayerInterface.getWaypoint().getPathsList(geographicMapCellPosition);
 
             final WaypointBase waypoint = ((PathFindingLayerInterface) 
-                this.getCurrentTargetLayerInterface()).getWaypointBehavior().getWaypoint();
+                this.currentTargetLayerInterface).getWaypointBehavior().getWaypoint();
             this.setWaypointPathsList(waypoint.getPathsListFromCacheOnly(geographicMapCellPosition));
 
             if (this.getWaypointPathsList() == null)
             {
                 this.targetWithoutCachedPathLayerInterface =
-                    this.getCurrentTargetLayerInterface();
+                    this.currentTargetLayerInterface;
                 
                 this.geographicMapCellPosition = geographicMapCellPosition;
             }
@@ -312,9 +312,9 @@ extends GDWaypointBehavior
     private void setTargetPath()
         throws Exception
     {
-        if(this.getCurrentTargetLayerInterface() != null)
+        if(this.currentTargetLayerInterface != null)
         {
-            if(this.getCurrentTargetLayerInterface().isDestroyed())
+            if(this.currentTargetLayerInterface.isDestroyed())
             {
                 this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().setTargetPath();
                 
@@ -326,11 +326,11 @@ extends GDWaypointBehavior
             }
             
             // Ignore new path if target changed - this shouldn't happen but?
-            if (this.getCurrentTargetLayerInterface() == this.waypointPathRunnable.getTargetLayer())
+            if (this.currentTargetLayerInterface == this.waypointPathRunnable.getTargetLayer())
             {
                 this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().setTargetPath(this);
                 
-                this.insertWaypoint(0, this.getCurrentTargetLayerInterface());
+                this.insertWaypoint(0, this.currentTargetLayerInterface);
                 this.setRandomGeographicMapCellHistory(this.getWaypointPathsList());
             }
 
@@ -387,10 +387,10 @@ extends GDWaypointBehavior
                     }
 
                     if (this.getCurrentGeographicMapCellHistory().isAllVisited2() &&
-                        this.getCurrentTargetLayerInterface() != null)
+                        this.currentTargetLayerInterface != null)
                     {
                         final PathFindingLayerInterface oldWaypointLayer = (PathFindingLayerInterface)
-                            this.getCurrentTargetLayerInterface();
+                            this.currentTargetLayerInterface;
 
                         // Get next waypoint if any
                         oldWaypointLayer.getWaypointBehavior().getWaypoint().visit(
@@ -399,7 +399,7 @@ extends GDWaypointBehavior
                         this.associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(
                                 ALL_VISITED_SHORT, BasicColorFactory.getInstance().GREEN);
                         
-                        this.removeWaypoint((PathFindingLayerInterface) this.getCurrentTargetLayerInterface(), ALL_VISITED);
+                        this.removeWaypoint((PathFindingLayerInterface) this.currentTargetLayerInterface, ALL_VISITED);
                     }
                 }
                 else // If close to waypoint and not getting closer then
@@ -409,7 +409,7 @@ extends GDWaypointBehavior
                 // this.removeWaypoint(waypointLayer);
                 // Otherwise Move towards waypoint
                 // If currentlyTargeting enemy then check priority
-                if (this.getCurrentTargetLayerInterface() == null ||
+                if (this.currentTargetLayerInterface == null ||
                     this.waypointOverridesAttacking)
                 {
                     this.setWaypointPathsList(
@@ -592,7 +592,7 @@ extends GDWaypointBehavior
 
             //TWBAdvancedRTSGameLayer
             this.runWaypointPathTask(
-                (PathFindingLayerInterface) this.getCurrentTargetLayerInterface(),
+                (PathFindingLayerInterface) this.currentTargetLayerInterface,
                 geographicMapCellPosition);
         }
 
@@ -601,8 +601,8 @@ extends GDWaypointBehavior
     
     private void processTargeting() throws Exception
     {
-        if (this.getCurrentTargetLayerInterface() != null &&
-            (this.isInSensorRange(this.getCurrentTargetLayerInterface(), this.getCurrentTargetDistance()) ||
+        if (this.currentTargetLayerInterface != null &&
+            (this.isInSensorRange(this.currentTargetLayerInterface, this.getCurrentTargetDistance()) ||
             this.isTrackingWaypoint()))
         {
             /*
@@ -612,7 +612,7 @@ extends GDWaypointBehavior
             }
             */
             
-            if (this.getCurrentTargetLayerInterface().isDestroyed())
+            if (this.currentTargetLayerInterface.isDestroyed())
             {
                 this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().targetDestroyed();
                 
@@ -626,8 +626,8 @@ extends GDWaypointBehavior
             // If current target is waypoint then follow path therwise target
             // layer
 
-            //int dx = getOwnerAdvancedRTSGameLayer().getX() - this.getCurrentTargetLayerInterface().getX();
-            //int dy = getOwnerAdvancedRTSGameLayer().getY() - this.getCurrentTargetLayerInterface().getY();
+            //int dx = getOwnerAdvancedRTSGameLayer().getX() - this.currentTargetLayerInterface.getX();
+            //int dy = getOwnerAdvancedRTSGameLayer().getY() - this.currentTargetLayerInterface.getY();
 
             int dx = 0;
             int dy = 0;
@@ -650,12 +650,12 @@ extends GDWaypointBehavior
 
                 dx = (associatedAdvancedRTSGameLayer2.getX() +
                         associatedAdvancedRTSGameLayer2.getHalfWidth()) -
-                    (this.getCurrentTargetLayerInterface().getX() +
-                            this.getCurrentTargetLayerInterface().getHalfWidth());
+                    (this.currentTargetLayerInterface.getX() +
+                            this.currentTargetLayerInterface.getHalfWidth());
                 dy = (associatedAdvancedRTSGameLayer2.getY() + 
                         associatedAdvancedRTSGameLayer2.getHalfHeight())-
-                    (this.getCurrentTargetLayerInterface().getY() +
-                    this.getCurrentTargetLayerInterface().getHalfHeight());
+                    (this.currentTargetLayerInterface.getY() +
+                    this.currentTargetLayerInterface.getHalfHeight());
             }
 
             this.associatedAdvancedRTSGameLayer.trackTo(this.nextUnvisitedPathGeographicMapCellPosition, dx, dy);
@@ -663,19 +663,19 @@ extends GDWaypointBehavior
         else
         {
             // If owner is dead then track and move
-            if (this.associatedAdvancedRTSGameLayer.getParentLayer().isDestroyed())
-            {
-                this.wander();
-            }
-            else
-            {
+//            if (this.associatedAdvancedRTSGameLayer.getParentLayer().isDestroyed())
+//            {
+//                this.wander();
+//            }
+//            else
+//            {
                 if(this.associatedAdvancedRTSGameLayer.isShowMoreCaptionStates())
                 {
                     this.associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(
                             STOP, BasicColorFactory.getInstance().YELLOW);
                 }
                 this.associatedAdvancedRTSGameLayer.allStop();
-            }
+//            }
         }
     }
 
@@ -747,7 +747,7 @@ extends GDWaypointBehavior
 
         this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().removeWaypoint(this, this.getTargetList());
         
-        if (this.getCurrentTargetLayerInterface() == waypointLayer)
+        if (this.currentTargetLayerInterface == waypointLayer)
         {
             
             this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().removeWaypointClear();
@@ -799,7 +799,7 @@ extends GDWaypointBehavior
         return targetDistance < this.closeRange + layerInterface.getHalfHeight();
     }
 
-    protected boolean isInSensorRange(final CollidableDestroyableDamageableLayer layerInterface, final int targetDistance)
+    public boolean isInSensorRange(final CollidableDestroyableDamageableLayer layerInterface, final int targetDistance)
     {
         return targetDistance < this.sensorRange + layerInterface.getHalfHeight();
     }
@@ -807,15 +807,15 @@ extends GDWaypointBehavior
     private static final String TARGET_DISTANCE = "Target Distance";
     private static final String TARGET_LAYER = "Target Layer";
 
-    protected String getCurrentTargetingStateString()
+    public String getCurrentTargetingStateString()
     {
         final StringMaker stringBuffer = new StringMaker();
 
-        if (this.getCurrentTargetLayerInterface() != null)
+        if (this.currentTargetLayerInterface != null)
         {
             stringBuffer.append(TARGET_LAYER);
             stringBuffer.append(CommonSeps.getInstance().SPACE);
-            stringBuffer.append(getCurrentTargetLayerInterface().getName());
+            stringBuffer.append(this.currentTargetLayerInterface.getName());
 
             stringBuffer.append(" with");
             stringBuffer.append(CommonSeps.getInstance().SPACE);

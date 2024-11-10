@@ -108,9 +108,16 @@ Created By: Travis Berthelot
         import org.allbinary.game.layer.gd.GDWaypointBehavior2;
         import org.allbinary.game.layer.waypoint.Waypoint;
         import org.allbinary.game.view.TileLayerPositionIntoViewPosition;
+        import org.allbinary.game.layer.behavior.GDBehaviorUtil;
+        import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
+        import org.allbinary.game.layer.gd.GDWaypointBehavior2;
+        import org.allbinary.game.layer.waypoint.Waypoint;
         import org.allbinary.game.layer.waypoint.Waypoint2LogHelper;
         import org.allbinary.game.layer.waypoint.WaypointLogHelper;
         import org.allbinary.game.layer.waypoint.WaypointRunnableLogHelper;
+        import org.allbinary.game.layer.unit.Waypoint2SelectedLogHelper;
+        import org.allbinary.game.layer.unit.WaypointSelectedLogHelper;
+        import org.allbinary.game.layer.waypoint.WaypointRunnableSelectedLogHelper;
         import org.allbinary.game.tracking.TrackingEvent;
         import org.allbinary.game.view.TileLayerPositionIntoViewPosition;
         import org.allbinary.media.audio.AttackSound;
@@ -144,9 +151,12 @@ Created By: Travis Berthelot
             
                     public Unit2LogHelper unit2LogHelper = Unit2LogHelper.getInstance();
 
-                    public WaypointLogHelper waypointLogHelper = WaypointLogHelper.getInstance();
-                    public Waypoint2LogHelper waypoint2LogHelper = Waypoint2LogHelper.getInstance();
-                    public WaypointRunnableLogHelper waypointRunnableLogHelper = WaypointRunnableLogHelper.getInstance();
+                    //public WaypointLogHelper waypointLogHelper = WaypointLogHelper.getInstance();
+                    //public Waypoint2LogHelper waypoint2LogHelper = Waypoint2LogHelper.getInstance();
+                    //public WaypointRunnableLogHelper waypointRunnableLogHelper = WaypointRunnableLogHelper.getInstance();
+                    public WaypointLogHelper waypointLogHelper = WaypointSelectedLogHelper.getInstance();
+                    public Waypoint2LogHelper waypoint2LogHelper = Waypoint2SelectedLogHelper.getInstance();
+                    public WaypointRunnableLogHelper waypointRunnableLogHelper = WaypointRunnableSelectedLogHelper.getInstance();
 
                     public final GeographicMapCellPositionArea geographicMapCellPositionArea;
         </xsl:if>
@@ -1016,6 +1026,23 @@ Created By: Travis Berthelot
         return this.selected;
     }
 
+    public boolean implmentsTickableInterface()
+    {
+        return true;
+    }
+
+    public void processTick(final AllBinaryLayerManager allBinaryLayerManager)
+        throws Exception
+    {
+        final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
+        if(this.gdObject.isBehaviorEnabledArray[gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX]) {
+            this.captionAnimationHelper.tick();
+            if (this.waypointBehaviorBase != null) {
+                this.waypointBehaviorBase.processTick(allBinaryLayerManager);
+            }
+        }
+    }
+    
     public void setAllBinaryGameLayerManager(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
 
         super.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
@@ -1057,7 +1084,7 @@ Created By: Travis Berthelot
 
         final Waypoint waypoint = new Waypoint(this, AttackSound.getInstance(), false);
         waypoint.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
-        this.getWaypointBehavior().setWaypoint(waypoint);
+        this.waypointBehaviorBase.setWaypoint(waypoint);
         
         this.updateWaypointBehavior2(geographicMapInterface);
         
