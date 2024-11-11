@@ -412,14 +412,17 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         for(int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
             final TileSet tileSet = (TileSet) map.getTileSets().get(0);
             final Hashtable tileTypeToTileIdsMap = TileSetToGeographicMapUtil.getInstance().convert(tileSet);
+            
+            final int maxTileId = tileSet.getMaxTileId() + 1;
+            
             final GeographicMapCellTypeFactory geographicMapCellTypeFactory = 
             <xsl:if test="contains($isPlatformer, 'found')" >
-            new org.allbinary.media.graphics.geography.map.platform.BasicPlatormGeographicMapCellTypeFactory(tileTypeToTileIdsMap);
+            new org.allbinary.media.graphics.geography.map.platform.BasicPlatormGeographicMapCellTypeFactory(tileTypeToTileIdsMap, maxTileId);
             </xsl:if>
             <xsl:if test="not(contains($isPlatformer, 'found'))" >
-            new org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory(tileTypeToTileIdsMap);
+            new org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory(tileTypeToTileIdsMap, maxTileId);
             </xsl:if>
-            final int maxTileId = tileSet.getMaxTileId() + 1;
+
             stringMaker.delete(0, stringMaker.length());
             LogUtil.put(LogFactory.getInstance(stringMaker.append(MAX_TILE_ID).append(maxTileId).toString(), this, commonStrings.PROCESS));
             final int[] cellTypeMapping = new int[maxTileId];

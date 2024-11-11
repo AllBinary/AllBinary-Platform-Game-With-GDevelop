@@ -123,13 +123,33 @@ import org.mapeditor.io.TiledJSONUtil;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellTypeFactory;
 import org.allbinary.game.behavior.topview.placement.TileMapPlacementVisitor;
 import org.mapgenerator.TileMapGenerator;
+import org.allbinary.media.graphics.geography.map.racetrack.CustomMapGeneratorBaseFactory;
                 </xsl:if>
                 <xsl:if test="contains($tileMapGenerator, 'DungeonGenerator')" >
 import org.allbinary.media.graphics.geography.map.GeographicMapCellTypeFactory;
 import org.allbinary.game.behavior.topview.placement.TileMapPlacementVisitor;
 import org.mapgenerator.dungeon.DungeonGenerator;
 import org.mapgenerator.dungeon.Tunneller;
+import org.allbinary.media.graphics.geography.map.racetrack.CustomMapGeneratorBaseFactory;
                 </xsl:if>
+
+    <xsl:variable name="foundPathFindingBehavior" >
+        <xsl:for-each select="//behaviorsSharedData" >
+            <xsl:if test="contains($hasOneOrMoreTileMaps, 'found')" >
+            <xsl:if test="type = 'PathfindingBehavior::PathfindingBehavior'" >found</xsl:if>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:variable>
+
+
+    <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
+import org.allbinary.media.graphics.geography.map.GeographicMapCellPositionFactoryInitVisitorInterface;
+import org.allbinary.media.graphics.geography.map.NoGeographicMapCellPositionFactoryInitVisitor;
+import org.allbinary.media.graphics.geography.pathfinding.PathGenerator;
+//import org.allbinary.game.layer.geological.resources.GeologicalGeographicMapCellPositionFactoryInitVisitor;
+import org.allbinary.media.graphics.geography.map.racetrack.CustomMapGeneratorFactory;
+import org.allbinary.game.media.graphics.geography.map.racetrack.PathFindingInfoFactory;
+    </xsl:if>
 
 public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 {
@@ -148,6 +168,13 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
     private int generatedWidth;
     private int generatedHeight;
     
+    <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
+    //if path findingbehavior
+    private final GeographicMapCellPositionFactoryInitVisitorInterface geographicMapCelPositionFactoryInitVisitorInterface =
+        new NoGeographicMapCellPositionFactoryInitVisitor();
+        //new GeologicalGeographicMapCellPositionFactoryInitVisitor();
+    </xsl:if>
+        
     public GDGame<GDLayout>LevelBuilder(final AllBinaryGameLayerManager layerManager)
     		throws Exception
     {
@@ -385,14 +412,17 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         for(int layerIndex = 0; layerIndex <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; layerIndex++) {
             final TileSet tileSet = (TileSet) map.getTileSets().get(0);
             final Hashtable tileTypeToTileIdsMap = TileSetToGeographicMapUtil.getInstance().convert(tileSet);
+            
+            final int maxTileId = tileSet.getMaxTileId() + 1;
+            
             final GeographicMapCellTypeFactory geographicMapCellTypeFactory = 
             <xsl:if test="contains($isPlatformer, 'found')" >
-            new org.allbinary.media.graphics.geography.map.platform.BasicPlatormGeographicMapCellTypeFactory(tileTypeToTileIdsMap);
+            new org.allbinary.media.graphics.geography.map.platform.BasicPlatormGeographicMapCellTypeFactory(tileTypeToTileIdsMap, maxTileId);
             </xsl:if>
             <xsl:if test="not(contains($isPlatformer, 'found'))" >
-            new org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory(tileTypeToTileIdsMap);
+            new org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory(tileTypeToTileIdsMap, maxTileId);
             </xsl:if>
-            final int maxTileId = tileSet.getMaxTileId() + 1;
+
             stringMaker.delete(0, stringMaker.length());
             LogUtil.put(LogFactory.getInstance(stringMaker.append(MAX_TILE_ID).append(maxTileId).toString(), this, commonStrings.PROCESS));
             final int[] cellTypeMapping = new int[maxTileId];
@@ -402,7 +432,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
             final TileLayer tileLayer = ((TileLayer) map.getLayer(layerIndex));
             final BasicColor color = COLORS[geographicMapList.size()];
-            geographicMapList.add(new GDGeographicMap(tileLayer, cellTypeMapping, map, tileSetImage, geographicMapCellTypeFactory, BLACK, BLACK, color));
+            geographicMapList.add(new GDGeographicMap(tileLayer, cellTypeMapping, map, tileSetImage, geographicMapCellTypeFactory, BLACK, BLACK, color,
+                <xsl:if test="contains($foundPathFindingBehavior, 'found')" >new CustomMapGeneratorFactory()</xsl:if><xsl:if test="not(contains($foundPathFindingBehavior, 'found'))" >new CustomMapGeneratorBaseFactory()</xsl:if>));
         }
 
         }
@@ -436,9 +467,26 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
             (GeographicMapCompositeInterface) this.layerManager;
         
+        //System.out.println("TWB set map");
         geographicMapCompositeInterface.setGeographicMapInterface(geographicMapInterfaceArray);
                 
         </xsl:if>
+
+        <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
+        //if path findingbehavior
+        final BasicGeographicMap geographicMap = 
+            geographicMapCompositeInterface.getGeographicMapInterface()[0];
+
+        //Reset resources
+        geographicMap.getGeographicMapCellPositionFactory().visit(
+            geographicMapCelPositionFactoryInitVisitorInterface
+           );
+
+        PathGenerator.getInstance().init(geographicMap, 2);
+            
+        PathFindingInfoFactory.init(145);
+        </xsl:if>
+        
 
     }
 
