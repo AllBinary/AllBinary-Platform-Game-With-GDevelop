@@ -48,19 +48,23 @@ public class PathFindingBehavior extends GDBehavior {
     }
     
     public void setTarget(final GDGameLayer sourceGameLayer, final GDGameLayer targetGameLayer, final int x, final int y) throws Exception {
-        this.targetGameLayer = targetGameLayer;
-        this.x = x;
-        this.y = y;
         
-        //TWB - remove me at some point
-        targetGameLayer.setAllBinaryGameLayerManager(sourceGameLayer.allBinaryGameLayerManager);
+        if(this.targetGameLayer != targetGameLayer) {
+            this.targetGameLayer = targetGameLayer;
+            this.x = x;
+            this.y = y;
+
+            //TWB - remove me at some point
+            targetGameLayer.setAllBinaryGameLayerManager(sourceGameLayer.allBinaryGameLayerManager);
+
+            final int anotherTargetDistance = layerDistanceUtil.getDistance(
+                sourceGameLayer, targetGameLayer);
+
+            final PathFindingLayerInterface pathFindingLayerInterface = (PathFindingLayerInterface) sourceGameLayer;
+            final GDWaypointBehavior2 gdWaypointBehavior2 = (GDWaypointBehavior2) pathFindingLayerInterface.getWaypointBehavior();
+            gdWaypointBehavior2.setTarget((PathFindingLayerInterface) targetGameLayer, anotherTargetDistance);
+        }
         
-        final int anotherTargetDistance = layerDistanceUtil.getDistance(
-            sourceGameLayer ,targetGameLayer);
-        
-        final PathFindingLayerInterface pathFindingLayerInterface = (PathFindingLayerInterface) sourceGameLayer;
-        final GDWaypointBehavior2 gdWaypointBehavior2 = (GDWaypointBehavior2) pathFindingLayerInterface.getWaypointBehavior();
-        gdWaypointBehavior2.setTarget((PathFindingLayerInterface) targetGameLayer, anotherTargetDistance);
     }
     
 }
