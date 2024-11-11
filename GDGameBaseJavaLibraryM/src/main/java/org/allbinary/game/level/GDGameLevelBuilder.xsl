@@ -123,12 +123,14 @@ import org.mapeditor.io.TiledJSONUtil;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellTypeFactory;
 import org.allbinary.game.behavior.topview.placement.TileMapPlacementVisitor;
 import org.mapgenerator.TileMapGenerator;
+import org.allbinary.media.graphics.geography.map.racetrack.CustomMapGeneratorBaseFactory;
                 </xsl:if>
                 <xsl:if test="contains($tileMapGenerator, 'DungeonGenerator')" >
 import org.allbinary.media.graphics.geography.map.GeographicMapCellTypeFactory;
 import org.allbinary.game.behavior.topview.placement.TileMapPlacementVisitor;
 import org.mapgenerator.dungeon.DungeonGenerator;
 import org.mapgenerator.dungeon.Tunneller;
+import org.allbinary.media.graphics.geography.map.racetrack.CustomMapGeneratorBaseFactory;
                 </xsl:if>
 
     <xsl:variable name="foundPathFindingBehavior" >
@@ -145,6 +147,8 @@ import org.allbinary.media.graphics.geography.map.GeographicMapCellPositionFacto
 import org.allbinary.media.graphics.geography.map.NoGeographicMapCellPositionFactoryInitVisitor;
 import org.allbinary.media.graphics.geography.pathfinding.PathGenerator;
 //import org.allbinary.game.layer.geological.resources.GeologicalGeographicMapCellPositionFactoryInitVisitor;
+import org.allbinary.media.graphics.geography.map.racetrack.CustomMapGeneratorFactory;
+import org.allbinary.game.media.graphics.geography.map.racetrack.PathFindingInfoFactory;
     </xsl:if>
 
 public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
@@ -425,7 +429,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
             final TileLayer tileLayer = ((TileLayer) map.getLayer(layerIndex));
             final BasicColor color = COLORS[geographicMapList.size()];
-            geographicMapList.add(new GDGeographicMap(tileLayer, cellTypeMapping, map, tileSetImage, geographicMapCellTypeFactory, BLACK, BLACK, color));
+            geographicMapList.add(new GDGeographicMap(tileLayer, cellTypeMapping, map, tileSetImage, geographicMapCellTypeFactory, BLACK, BLACK, color,
+                <xsl:if test="contains($foundPathFindingBehavior, 'found')" >new CustomMapGeneratorFactory()</xsl:if><xsl:if test="not(contains($foundPathFindingBehavior, 'found'))" >new CustomMapGeneratorBaseFactory()</xsl:if>));
         }
 
         }
@@ -475,6 +480,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
            );
 
         PathGenerator.getInstance().init(geographicMap, 2);
+            
+        PathFindingInfoFactory.init(145);
         </xsl:if>
         
 

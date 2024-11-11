@@ -27,10 +27,15 @@ import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
-import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPositionBaseFactory;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellTypeFactory;
 import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositionFactory;
+import org.allbinary.media.graphics.geography.map.racetrack.AllBinaryTiledLayerFactoryInterface;
+import org.allbinary.media.graphics.geography.map.racetrack.CustomMapGeneratorBaseFactory;
+import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackData;
+import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackFrictionProperties;
+import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackGeographicMap;
+import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackInfo;
 import org.allbinary.time.GameTickTimeDelayHelperFactory;
 import org.allbinary.util.BasicArrayList;
 import org.mapeditor.core.Animation;
@@ -40,40 +45,59 @@ import org.mapeditor.core.TileLayer;
 import org.mapeditor.core.TileSet;
 import org.mapeditor.core.TiledMap;
 
-public class GDGeographicMap extends BasicGeographicMap {
+public class GDGeographicMap extends RaceTrackGeographicMap {
 
     protected final CommonStrings commonStrings = CommonStrings.getInstance();
     
     private final TiledMap map;
-    private final TiledLayer tiledLayer;
     
     private final int[] animationTileIndexArray;
     private final long[] startTimeFrameArray;
     private final int[] currentFrameArray;
     private final Animation[] animationArray;
     
-    public GDGeographicMap(final TileLayer tileLayer, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final GeographicMapCellTypeFactory geographicMapCellTypeFactory, final BasicColor foregroundColor, final BasicColor backGroundColor, final BasicColor debugColor) throws Exception {
-        super(SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()),
-                SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()).toString(),
-                cellTypeIdToGeographicMapCellType,
-                new PlacementAllBinaryJ2METiledLayer(
-                        SmallIntegerSingletonFactory.getInstance().getInstance(-1),
-                        new TiledLayer(
+    public GDGeographicMap(final TileLayer tileLayer, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final GeographicMapCellTypeFactory geographicMapCellTypeFactory, final BasicColor foregroundColor, final BasicColor backgroundColor, final BasicColor debugColor, final CustomMapGeneratorBaseFactory customMapGeneratorBaseFactory) throws Exception {
+        super(
+            new RaceTrackInfo(
+                SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()),
+                SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()).toString(), 
+                new RaceTrackFrictionProperties(0, 0), foregroundColor, backgroundColor, 0, 0, 0),
+                new RaceTrackData(SmallIntegerSingletonFactory.getInstance().getInstance(0), map.getTileWidth(), map.getTileHeight(), map.getTileWidth() / 4, map.getTileHeight() / 4, cellTypeIdToGeographicMapCellType, tileLayer.getMapArray()),
+                //cellTypeIdToGeographicMapCellType,
+                //AllBinaryTiledLayerFactory
+                new AllBinaryTiledLayerFactoryInterface() {
+                    
+                    private AllBinaryTiledLayer useAsMiniAllBinaryTiledLayer;
+                    public AllBinaryTiledLayer getInstance(final RaceTrackInfo raceTrackInfo, final RaceTrackData raceTrackData) 
+                        throws Exception {
+                        
+                        useAsMiniAllBinaryTiledLayer =  new PlacementAllBinaryJ2METiledLayer(
+                            SmallIntegerSingletonFactory.getInstance().getInstance(-1),
+                            new TiledLayer(
                                 map.getWidth(),
                                 map.getHeight(),
                                 tileSetImage,
                                 (int) (map.getTileWidth()),
                                 (int) (map.getTileHeight())),
-                        tileLayer.getMapArray(),
-                        debugColor.intValue()),
-                foregroundColor, backGroundColor,
+                            tileLayer.getMapArray(),
+                            debugColor.intValue());
+                        
+                        return useAsMiniAllBinaryTiledLayer;
+                    }
+                    
+                    public AllBinaryTiledLayer getMiniInstance(final RaceTrackData raceTrackData) throws Exception
+                    {
+                        return useAsMiniAllBinaryTiledLayer;
+                    }
+                                
+                },
                 new SimpleGeographicMapCellPositionFactory(),
                 new GeographicMapCellPositionBaseFactory(),
-                geographicMapCellTypeFactory);
-
-        this.map = map;
-        this.tiledLayer = ((AllBinaryJ2METiledLayer) this.getAllBinaryTiledLayer()).getTiledLayer();
+                geographicMapCellTypeFactory,
+                customMapGeneratorBaseFactory);
         
+        this.map = map;
+
         final BasicArrayList tileList = new BasicArrayList();
         this.createAnimationTiles(tileList);
 
@@ -118,9 +142,10 @@ public class GDGeographicMap extends BasicGeographicMap {
         final String CREATING_ANIMATION_TILE = "Creating AnimationTile: ";
         Tile tile;
         Animation animation;
+        final TiledLayer tiledLayer = ((AllBinaryJ2METiledLayer) this.getAllBinaryTiledLayer()).getTiledLayer();
         for(int index = 0; index < size; index++) {
             tile = (Tile) tileList.get(index);
-            animationTileIndex = tiledLayer.createAnimatedTile(tile.getId());
+            animationTileIndex =  tiledLayer.createAnimatedTile(tile.getId());
             LogUtil.put(LogFactory.getInstance(CREATING_ANIMATION_TILE + animationTileIndex, this, commonStrings.PROCESS));
             this.animationArray[index] = animation = tile.getAnimation();
             this.animationTileIndexArray[index] = animationTileIndex;
@@ -133,6 +158,7 @@ public class GDGeographicMap extends BasicGeographicMap {
         final int size = this.animationArray.length;;
         Animation animation;
         Frame frame;
+        final TiledLayer tiledLayer = ((AllBinaryJ2METiledLayer) this.getAllBinaryTiledLayer()).getTiledLayer();
         for(int index = 0; index < size; index++) {
             animation = (Animation) this.animationArray[index];
             frame = (Frame) animation.getFrame().get(this.currentFrameArray[index]);
