@@ -484,7 +484,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         PathGenerator.getInstance().init(geographicMap, 2);
             
-        PathFindingInfoFactory.init(145);
+        //PathFindingInfoFactory.init(145); //This should be the max map height x width for all maps in a game
         </xsl:if>
         
 

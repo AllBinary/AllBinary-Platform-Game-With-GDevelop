@@ -127,6 +127,8 @@ public class GDDelete {
         exclusionList3.add("GDGameCameraSetup.java");
         exclusionList3.add("GDGameLevelBuilder.java");
         exclusionList3.add("GDGeographicMap.java");
+        exclusionList2.add("PlacementAllBinaryJ2METiledLayer.java");
+        exclusionList2.add("GDTiledMapProperties");
         exclusionList3.add("TitleVectorData.java");
         
         final BasicArrayList files3 = fileListFetcher.getFiles(

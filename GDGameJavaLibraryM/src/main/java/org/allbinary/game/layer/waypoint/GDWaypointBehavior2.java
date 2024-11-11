@@ -290,7 +290,7 @@ extends GDWaypointBehavior
                 waypoint.getPathsList(geographicMapCellPosition);
                 //waypoint.getPathsListFromCacheOnly(geographicMapCellPosition);
                 
-            ForcedLogUtil.log("waypointPathsList: " + list, this);
+            //ForcedLogUtil.log("waypointPathsList: " + list, this);
             this.setWaypointPathsList(list);
 
             if (this.waypointPathsList == null)
