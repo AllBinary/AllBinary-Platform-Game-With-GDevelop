@@ -103,14 +103,14 @@ Created By: Travis Berthelot
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
 
         import org.allbinary.animation.NullAnimationFactory;
+        import org.allbinary.animation.RotationAnimation;
         import org.allbinary.animation.caption.CaptionAnimationHelper;
+        import org.allbinary.game.input.event.GameKeyEventFactory;
+        import org.allbinary.game.layer.behavior.GDBehaviorUtil;
         import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
         import org.allbinary.game.layer.waypoint.GDWaypointBehavior;
         import org.allbinary.game.layer.waypoint.GDWaypointBehavior2;
         import org.allbinary.game.layer.waypoint.Waypoint;
-        import org.allbinary.game.view.TileLayerPositionIntoViewPosition;
-        import org.allbinary.game.layer.behavior.GDBehaviorUtil;
-        import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
         import org.allbinary.game.layer.waypoint.Waypoint;
         import org.allbinary.game.layer.waypoint.Waypoint2LogHelper;
         import org.allbinary.game.layer.waypoint.WaypointLogHelper;
@@ -119,12 +119,19 @@ Created By: Travis Berthelot
         import org.allbinary.game.layer.waypoint.WaypointSelectedLogHelper;
         import org.allbinary.game.layer.waypoint.WaypointRunnableSelectedLogHelper;
         import org.allbinary.game.tracking.TrackingEvent;
+        import org.allbinary.game.tracking.TrackingEventHandler;
         import org.allbinary.game.view.TileLayerPositionIntoViewPosition;
+        import org.allbinary.game.view.TileLayerPositionIntoViewPosition;
+        import org.allbinary.graphics.GPoint;
         import org.allbinary.media.audio.AttackSound;
         import org.allbinary.media.graphics.geography.map.GeographicMapCellHistory;
-
         import org.allbinary.layer.Layer;
         import org.allbinary.layer.LayerInterfaceFactoryInterface;
+        import org.allbinary.math.AngleFactory;
+        import org.allbinary.math.AngleInfo;
+        import org.allbinary.math.FrameUtil;
+        import org.allbinary.string.CommonPhoneStrings;
+            
         </xsl:if>
 
                 public class GDCustomGameLayer extends GDGameLayer 
@@ -136,7 +143,10 @@ Created By: Travis Berthelot
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
-            
+                    private final BasicColorFactory basicColorFactory = BasicColorFactory.getInstance();
+                    protected RTSLayerLogHelper rtsLogHelper = RTSLayerLogHelper.getInstance();
+                    private final AngleFactory angleFactory = AngleFactory.getInstance();
+
                     protected final boolean debug = true;
                     public final boolean showMoreCaptionStates = debug;
                     private final LayerInterfaceFactoryInterface waypointLayerInterfaceFactoryInterface;
@@ -149,16 +159,18 @@ Created By: Travis Berthelot
 
                     private WaypointBehaviorBase waypointBehaviorBase;
             
-                    public Unit2LogHelper unit2LogHelper = Unit2LogHelper.getInstance();
-
+                    //public RTSLayer2LogHelper rtsLayer2LogHelper = RTSLayer2LogHelper.getInstance();
                     //public WaypointLogHelper waypointLogHelper = WaypointLogHelper.getInstance();
                     //public Waypoint2LogHelper waypoint2LogHelper = Waypoint2LogHelper.getInstance();
                     //public WaypointRunnableLogHelper waypointRunnableLogHelper = WaypointRunnableLogHelper.getInstance();
+                    public RTSLayer2LogHelper rtsLayer2LogHelper = RTSLayer2SelectedLogHelper.getInstance();
                     public WaypointLogHelper waypointLogHelper = WaypointSelectedLogHelper.getInstance();
                     public Waypoint2LogHelper waypoint2LogHelper = Waypoint2SelectedLogHelper.getInstance();
                     public WaypointRunnableLogHelper waypointRunnableLogHelper = WaypointRunnableSelectedLogHelper.getInstance();
 
                     public final GeographicMapCellPositionArea geographicMapCellPositionArea;
+                    private int movementAngle = -1;
+                    private GeographicMapCellPosition steeringInsideGeographicMapCellPosition;
         </xsl:if>
 
         <xsl:for-each select="layouts" >
@@ -1102,7 +1114,7 @@ Created By: Travis Berthelot
 
     public int getSourceId()
     {
-        return -1;
+        return 0;
     }
             
     public BasicArrayList getEndGeographicMapCellPositionList() {
@@ -1134,8 +1146,8 @@ Created By: Travis Berthelot
         return null;
     }
 
-    public Unit2LogHelper getUnit2LogHelper() {
-        return this.unit2LogHelper;
+    public RTSLayer2LogHelper getRTSLayer2LogHelper() {
+        return this.rtsLayer2LogHelper;
     }
     
     public WaypointLogHelper getWaypointLogHelper() {
@@ -1216,14 +1228,262 @@ Created By: Travis Berthelot
     
     public void trackTo(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition, final String reason) 
         throws Exception {
+
+        final GPoint point = nextUnvisitedPathGeographicMapCellPosition.getMidPoint();
+
+        final int dx = (this.getX() + this.getHalfWidth()) - point.getX();
+        final int dy = (this.getY() + this.getHalfHeight()) - point.getY();
+
+        this.rtsLogHelper.trackTo(nextUnvisitedPathGeographicMapCellPosition, dx, dy, reason);
+        
+        this.trackTo(nextUnvisitedPathGeographicMapCellPosition, dx, dy);
         
     }
 
     public void trackTo(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition, final int dx, final int dy) 
         throws Exception {
+
+        final int angleOfTarget = 0;
+        this.trackTo(nextUnvisitedPathGeographicMapCellPosition, dx, dy, angleOfTarget);
         
     }
     
+    private void trackTo(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition, final int dx, final int dy, final int targetAngle)
+        throws Exception
+    {
+        //If colliding with a game object then don't try to turn since in chase mode
+        final BasicArrayList list = this.getWaypointBehavior().getSteeringVisitorList();
+
+        if(list.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0)
+        {
+            //LogUtil.put(LogFactory.getInstance("Chasing", this, "trackTo"));
+
+            for(int index = list.size() - 1; index <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> 0; index--)
+            {
+                final SteeringVisitor steeringVisitor = (SteeringVisitor) list.get(index);
+                
+                final Object object = steeringVisitor.visit(null);
+                
+                if(object == null)
+                {
+                    list.remove(index);
+                }
+            }
+
+            this.fireOrMove();
+        }
+        else if(!this.turnTo(nextUnvisitedPathGeographicMapCellPosition, dx, dy, targetAngle))
+        {
+            this.fireOrMove();
+        }
+    }
+
+    private static final String MOVE = "Moving";
+    
+    protected void fireOrMove()
+        throws Exception
+    {
+        //LogUtil.put(LogFactory.getInstance("Move/Attack: " +
+        //  " trackingWaypoint: " + this.trackingWaypoint +
+        //" sensorAction: " + this.sensorAction +
+        //" currentTargetDistance >= longWeaponRange " +
+        //this.currentTargetDistance + ">=" + this.longWeaponRange
+        //  , this, "trackTo"));
+
+        final GameKeyEventFactory gameKeyEventFactory = GameKeyEventFactory.getInstance();
+        
+        // Move if going to waypoint, evading, or towards target
+        if (this.getWaypointBehavior().needToMove())
+        {
+            this.rtsLayer2LogHelper.steeringUp();
+
+            if(this.showMoreCaptionStates <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> !this.captionAnimationHelper.isShowing())
+            {
+                this.captionAnimationHelper.update(MOVE, this.basicColorFactory.GREEN);
+            }
+
+            this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.UP));
+        }
+        else
+        {
+            this.captionAnimationHelper.update(CommonPhoneStrings.getInstance().FIRE, this.basicColorFactory.RED);
+            
+            // int anotherTargetDistance = DistanceUtil.getDistance(this, this.currentTargetLayerInterface);
+
+            this.rtsLayer2LogHelper.steeringFireOrStop();
+            
+            //LogUtil.put(LogFactory.getInstance(
+            //  "Attacking: " + this.currentTargetLayerInterface.getName() +
+            //" anotherTargetDistance: " + anotherTargetDistance +
+            //" Range: " + this.currentTargetDistance, this, "trackTo"));
+
+            // LogUtil.put(LogFactory.getInstance(
+            // TrackingEventHandler.getInstance().toString(), this,
+            // "processTargeting"));
+
+            // LogUtil.put(LogFactory.getInstance("Attacking: " +
+            // this.currentTargetLayerInterface.getName() + " X: " +
+            // this.currentTargetLayerInterface.getX() + " ? " + this.x +
+            // " Y: " + this.currentTargetLayerInterface.getY() + " ? " +
+            // this.y, this, "processTargeting"));
+            // LogUtil.put(LogFactory.getInstance("Attacking: " +
+            // this.currentTargetLayerInterface.getName() + " at Range: " +
+            // this.currentTargetDistance + ">=" + this.longWeaponRange,
+            // this, "processTargeting"));
+            this.allStop();
+            this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.KEY_NUM0));
+            TrackingEventHandler.getInstance().fireEvent(this.getTrackingEvent());
+        }
+    }
+
+    private void handleDeltalX(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition, final int dx, final int dy) {
+        if (dx <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+            this.movementAngle = this.angleFactory.LEFT.getValue();
+            this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
+            
+            this.rtsLogHelper.handleLeft(this.movementAngle);
+            
+        } else {
+            this.movementAngle = this.angleFactory.RIGHT.getValue();
+            this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
+            
+            this.rtsLogHelper.handleRight(this.movementAngle);
+            
+        }
+    }
+    
+    private void handleDeltalY(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition, final int dx, final int dy) {
+        if (dy <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+            this.movementAngle = this.angleFactory.UP.getValue();
+            this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
+            
+            this.rtsLogHelper.handleUp(this.movementAngle);
+            
+        } else {
+            this.movementAngle = this.angleFactory.DOWN.getValue();
+            this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
+            
+            this.rtsLogHelper.handleDown(this.movementAngle);
+            
+        }
+    }
+
+    private boolean turnTo(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition, final int dx, final int dy, int targetAngle)
+    throws Exception
+    {
+        // int angleOfTarget = NoDecimalTrigTable.antiTan(dx, dy);
+
+        boolean evading = false;
+        
+        // Run until out of sensor range
+//        if (this.getUnitWaypointBehavior().getSensorAction() == SensorActionFactory.getInstance().EVADE)
+//        {
+//            this.rtsLogHelper.evade();
+//            
+//            evading = true;
+//            targetAngle += 180;
+//        }
+
+        //final int angleOfTarget = FrameUtil.getInstance().adjustAngleToFrameAngle(targetAngle);
+        //final int angleOfTarget2 = angleOfTarget;
+        //final int angleOfTarget2 = angleOfTarget / 10 * 10;
+        //final int angleOfTarget2 = AngleFactory.getInstance().getClosestDirection(angleOfTarget).getValue();
+        
+        //final AngleInfo angleInfo = this.rotationAnimationInterface.getAngleInfo();
+        //final AngleInfo angleInfo = ((RotationAnimation) this.indexedAnimationInterfaceArray[0]).getAngleInfo();
+        //final int angle = FrameUtil.getInstance().adjustAngleToFrameAngle(angleInfo.getAngle() - 270);
+        
+        final int angle = gdObject.angle;
+        
+        //final int angle = angleInfo.getAngle();
+
+        //if (this.getUnitWaypointBehavior().isWaypointListEmptyOrOnlyTargets())
+        
+        this.rtsLogHelper.turnTo(nextUnvisitedPathGeographicMapCellPosition, dx, dy, null, angle, movementAngle, evading, targetAngle);
+
+        final GameKeyEventFactory gameKeyEventFactory = GameKeyEventFactory.getInstance();
+        
+        //int deltaAngle = closestDirectionAngle.getValue() - angle;
+//        int deltaAngle = angleOfTarget2 - angle;
+//        int absoluteDeltaAngle = Math.abs(deltaAngle);
+          //absoluteDeltaAngle == 0 || 
+          //() || 
+        if(dx == 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> dy == 0) {
+            
+            this.rtsLogHelper.doneMoving();
+            
+            return true;
+        } else if(this.movementAngle == angle) {
+
+            if(dx <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.LEFT.getValue()) {
+                this.rtsLogHelper.movingLeft();
+                return false;
+            }
+            if(dx <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.RIGHT.getValue()) {
+                this.rtsLogHelper.movingRight();
+                return false;
+            }
+            if(dy <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.UP.getValue()) {
+                this.rtsLogHelper.movingUp();
+                return false;
+            }
+            if(dy <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.DOWN.getValue()) {
+                this.rtsLogHelper.movingDown();
+                return false;
+            }
+
+            this.rtsLogHelper.currentMoveEnded();
+            
+            if(this.movementAngle == this.angleFactory.LEFT.getValue() || 
+                this.movementAngle == this.angleFactory.RIGHT.getValue()) {
+                this.handleDeltalY(nextUnvisitedPathGeographicMapCellPosition, dx, dy);
+            } else if(this.movementAngle == this.angleFactory.UP.getValue() || 
+                this.movementAngle == this.angleFactory.DOWN.getValue()) {
+                this.handleDeltalX(nextUnvisitedPathGeographicMapCellPosition, dx, dy);
+            }
+            
+            return true;
+        //} else if(absoluteDeltaAngle <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> ANGLE_INCREMENT) {
+
+            //return false;
+        } else {
+            //this.slightAngle = angleOfTarget - angle;
+     
+            if(nextUnvisitedPathGeographicMapCellPosition != null) {
+                
+                if(this.steeringInsideGeographicMapCellPosition != nextUnvisitedPathGeographicMapCellPosition) {
+                    
+                    if (Math.abs(dx) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> Math.abs(dy) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> dy != 0) {
+                        this.handleDeltalY(nextUnvisitedPathGeographicMapCellPosition, dx, dy);
+                    } else if (dx != 0) {
+                        this.handleDeltalX(nextUnvisitedPathGeographicMapCellPosition, dx, dy);
+                    } else {
+                        this.handleDeltalY(nextUnvisitedPathGeographicMapCellPosition, dx, dy);
+                        //throw new RuntimeException();
+                    }
+                    
+                }
+
+                int deltaAngle2 = this.movementAngle - angle;
+                if (deltaAngle2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                    this.rtsLogHelper.rotateRight();
+                    this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.RIGHT));
+                } else {
+                    this.rtsLogHelper.rotateLeft();
+                    this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.LEFT));
+                }
+                
+                return true;
+                
+            } else {
+                this.rtsLogHelper.noRotation();
+            }
+            
+            return false;
+        }
+
+    }
+            
     public boolean isWaypointListEmptyOrOnlyTargets() {
         return false;
     }

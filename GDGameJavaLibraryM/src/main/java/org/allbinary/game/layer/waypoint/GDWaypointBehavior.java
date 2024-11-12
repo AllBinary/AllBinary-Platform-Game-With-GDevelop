@@ -261,7 +261,7 @@ public class GDWaypointBehavior
 
     private final TimeDelayHelper repeatedToLong = new TimeDelayHelper(22000);
     
-    protected boolean needToMove()
+    public boolean needToMove()
     {
         this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().needToMove(this);
         
