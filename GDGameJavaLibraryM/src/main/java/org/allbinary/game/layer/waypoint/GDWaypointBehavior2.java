@@ -24,6 +24,8 @@ public class GDWaypointBehavior2
 extends GDWaypointBehavior
 {
     private final LayerDistanceUtil layerDistanceUtil = LayerDistanceUtil.getInstance();
+
+    private final boolean targetWithoutSensors = true;
     
     private int sensorRange = 0;
     private int closeRange = 0;
@@ -603,9 +605,10 @@ extends GDWaypointBehavior
     
     private void processTargeting() throws Exception
     {
+        
         if (this.currentTargetLayerInterface != null &&
             (this.isInSensorRange(this.currentTargetLayerInterface, this.getCurrentTargetDistance()) ||
-            this.isTrackingWaypoint()))
+            this.isTrackingWaypoint() || targetWithoutSensors))
         {
             /*
             if(this.getOwnerAdvancedRTSGameLayer().isSelected())
