@@ -2,7 +2,7 @@ package org.allbinary.game.layer.waypoint;
 
 import org.allbinary.game.layer.PathFindingLayerInterface;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
-import org.allbinary.game.layer.unit.SteeringVisitor;
+import org.allbinary.game.layer.SteeringVisitor;
 import org.allbinary.game.tracking.TrackingEventHandler;
 import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.color.BasicColorFactory;
