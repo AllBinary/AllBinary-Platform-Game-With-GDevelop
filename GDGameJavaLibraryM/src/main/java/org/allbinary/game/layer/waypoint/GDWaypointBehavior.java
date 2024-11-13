@@ -324,6 +324,11 @@ public class GDWaypointBehavior
         this.waypointPathsList = waypointPathsList;
     }
 
+    public BasicArrayList getWaypointPathsList()
+    {
+        return waypointPathsList;
+    }
+    
     /**
      * @return the moving
      */

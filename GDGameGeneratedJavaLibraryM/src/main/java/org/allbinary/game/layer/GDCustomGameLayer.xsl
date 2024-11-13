@@ -155,6 +155,7 @@ Created By: Travis Berthelot
                     private final CaptionAnimationHelper captionAnimationHelper = new CaptionAnimationHelper(
                         NullAnimationFactory.getFactoryInstance().getInstance(0),
                         -23, -25, 6, 0);    
+                    private Animation captionAnimation  = NullAnimationFactory.getFactoryInstance().getInstance(0);
                         
                     private boolean selected = false;
 
@@ -691,7 +692,7 @@ Created By: Travis Berthelot
         final int x = viewPosition.getX();
         final int y = viewPosition.getY();
         
-        this.captionAnimationHelper.paint(graphics, x, y);
+        this.captionAnimation.paint(graphics, x, y);
 
         this.pathAnimation.paint(graphics, x, y);
 
@@ -1097,11 +1098,21 @@ Created By: Travis Berthelot
         }
         
         this.initPathAnimation.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
-        this.pathAnimation = this.initPathAnimation;
-        //this.pathAnimation = NullAnimationFactory.getFactoryInstance().getInstance(0);
 
     }
 
+    private final LayerDistanceUtil layerDistanceUtil = LayerDistanceUtil.getInstance();
+    public void setTarget(final PathFindingLayerInterface targetGameLayer) throws Exception {
+        this.pathAnimation = this.initPathAnimation;
+        this.captionAnimation = this.captionAnimationHelper;
+        
+        final int anotherTargetDistance = layerDistanceUtil.getDistance(
+            (AllBinaryLayer) this, (AllBinaryLayer) targetGameLayer);
+
+        final WaypointBehaviorBase waypointBehaviorBase = this.getWaypointBehavior();
+        waypointBehaviorBase.setTarget((PathFindingLayerInterface) targetGameLayer, anotherTargetDistance);
+    }
+            
     public void updateWaypointBehavior(final BasicGeographicMap geographicMapInterface) throws Exception {
         
         final Hashtable hashtable = new Hashtable();
@@ -1140,7 +1151,14 @@ Created By: Travis Berthelot
         return 0;
     }
             
-    public BasicArrayList getEndGeographicMapCellPositionList() {
+    public BasicArrayList getEndGeographicMapCellPositionList() throws Exception {
+        
+        final GeographicMapCompositeInterface geographicMapCompositeInterface
+            = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+        final BasicGeographicMap geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
+
+        geographicMapCellPositionArea.update(geographicMapInterface);
+        
         return this.geographicMapCellPositionArea.getOccupyingGeographicMapCellPositionList();
     }
 
@@ -1249,7 +1267,13 @@ Created By: Travis Berthelot
 
     public BasicArrayList getSurroundingGeographicMapCellPositionList() 
         throws Exception {
-        return null;
+        final GeographicMapCompositeInterface geographicMapCompositeInterface = 
+            (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+        final BasicGeographicMap geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
+
+        geographicMapCellPositionArea.update(geographicMapInterface);
+
+        return geographicMapCellPositionArea.getSurroundingGeographicMapCellPositionList();
     }
     
     public void trackTo(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition, final String reason) 
@@ -1525,6 +1549,30 @@ Created By: Travis Berthelot
     public void allStop() {
         
     }
+    
+    public boolean isDestination(final GDGameLayer gdGameLayer) throws Exception {
+        
+        final WaypointBehaviorBase waypointBehaviorBase = this.getWaypointBehavior();
+        
+        if(waypointBehaviorBase.isRunning()) {
+            return true;
+        }
+        
+        final BasicArrayList waypointPathList = waypointBehaviorBase.getWaypointPathsList();
+        
+        if(waypointPathList == null || waypointPathList.size() == 0) {
+            return false;
+        }
+
+        final GDCustomGameLayer destinationGDCustomGameLayer = (GDCustomGameLayer) gdGameLayer;
+        final BasicArrayList occupyPathList = destinationGDCustomGameLayer.getEndGeographicMapCellPositionList();
+        final GeographicMapCellPosition lastCellPosition = (GeographicMapCellPosition) waypointPathList.get(waypointPathList.size() - 1);
+        if(occupyPathList.contains(lastCellPosition)) {
+            return true;
+        }
+        return false;
+    }
+    
         </xsl:if>
 
 

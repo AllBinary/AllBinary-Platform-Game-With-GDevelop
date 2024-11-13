@@ -9,7 +9,6 @@ import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.layer.AllBinaryLayerManager;
-import org.allbinary.logic.communication.log.ForcedLogUtil;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.CommonSeps;
@@ -87,6 +86,14 @@ extends GDWaypointBehavior
         this.sensorRange = weaponRange * 4;
         
         this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().initRange(this.closeRange, this.sensorRange);
+    }
+    
+    public boolean isRunning() {
+        if (this.waypointPathRunnable.isRunning()) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     //this could become somewhat event driven with a seperate waypoint processor
@@ -291,7 +298,7 @@ extends GDWaypointBehavior
             final BasicArrayList list = 
                 waypoint.getPathsListFromCacheOnly(geographicMapCellPosition);
                 
-            ForcedLogUtil.log("waypointPathsList: " + list, this);
+            //"waypointPathsList: " + list, this);
             this.setWaypointPathsList(list);
 
             if (this.waypointPathsList == null)
@@ -416,7 +423,7 @@ extends GDWaypointBehavior
                     this.waypointOverridesAttacking)
                 {
                     final BasicArrayList list = targetLayer.getWaypointBehavior().getWaypoint().getPathsListFromCacheOnly(geographicMapCellPosition);
-                    ForcedLogUtil.log("waypointPathsList2: " + list, this);
+                    //"waypointPathsList2: " + list, this);
                     this.setWaypointPathsList(list);
 
                     if (this.waypointPathsList == null)
