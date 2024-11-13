@@ -106,6 +106,7 @@ Created By: Travis Berthelot
         import org.allbinary.animation.RotationAnimation;
         import org.allbinary.animation.caption.CaptionAnimationHelper;
         import org.allbinary.game.input.event.GameKeyEventFactory;
+        import org.allbinary.game.layer.SteeringVisitor;
         import org.allbinary.game.layer.behavior.GDBehaviorUtil;
         import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
         import org.allbinary.game.layer.waypoint.GDWaypointBehavior;
@@ -168,6 +169,9 @@ Created By: Travis Berthelot
                     public Waypoint2LogHelper waypoint2LogHelper = Waypoint2SelectedLogHelper.getInstance();
                     public WaypointRunnableLogHelper waypointRunnableLogHelper = WaypointRunnableSelectedLogHelper.getInstance();
 
+                    private final PathAnimation initPathAnimation;
+                    private Animation pathAnimation = NullAnimationFactory.getFactoryInstance().getInstance(0);
+            
                     public final GeographicMapCellPositionArea geographicMapCellPositionArea;
                     private int movementAngle = -1;
                     private GeographicMapCellPosition steeringInsideGeographicMapCellPosition;
@@ -458,6 +462,10 @@ Created By: Travis Berthelot
             }
         </xsl:for-each>
 
+        <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
+            this.initPathAnimation = new PathAnimation(this);            
+        </xsl:if>
+
         }
 
         <xsl:if test="not(contains($hasLayoutWithTileMapAndIsTopView, 'found') or contains($foundOtherViewPosition, 'found'))" >
@@ -675,14 +683,25 @@ Created By: Travis Berthelot
     {
     }
                     
-//    public void paint(final Graphics graphics) {
-//        super.paint(graphics);
+        <xsl:if test="contains($foundPathFindingBehavior, 'found')" >                    
+    public void paint(final Graphics graphics) {
+        super.paint(graphics);
+        
+        final ViewPosition viewPosition = this.getViewPosition();
+        final int x = viewPosition.getX();
+        final int y = viewPosition.getY();
+        
+        this.captionAnimationHelper.paint(graphics, x, y);
+
+        this.pathAnimation.paint(graphics, x, y);
+
 //        if(this.topViewGameBehavior.blockGeographicMapCellPosition != null) {
 //        graphics.setColor(BasicColorFactory.getInstance().RED.intValue());
 //        graphics.drawString(this.topViewGameBehavior.blockGeographicMapCellPosition.toString(), 10, 10, 0);
 //        }
-//    }
-
+    }
+        </xsl:if>
+    
         </xsl:if>
 
         <xsl:for-each select="layouts" >
@@ -1072,11 +1091,15 @@ Created By: Travis Berthelot
 //            viewPosition2.setTiledLayer(tiledLayer);
 
             this.updateWaypointBehavior(geographicMapInterface);
-            //System.out.println("TWB map: " + this);
+            //System.out.println("map: " + this);
         } else {
-            //System.out.println("TWB no map: " + this);
+            //System.out.println("no map: " + this);
         }
         
+        this.initPathAnimation.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
+        this.pathAnimation = this.initPathAnimation;
+        //this.pathAnimation = NullAnimationFactory.getFactoryInstance().getInstance(0);
+
     }
 
     public void updateWaypointBehavior(final BasicGeographicMap geographicMapInterface) throws Exception {
@@ -1177,6 +1200,9 @@ Created By: Travis Berthelot
     public void init(final GeographicMapCellHistory geographicMapCellHistory,
         final BasicArrayList geographicMapCellPositionBasicArrayList) { 
         
+        System.out.println("geographicMapCellPositionBasicArrayList: " + geographicMapCellPositionBasicArrayList.size());
+        geographicMapCellHistory.track(geographicMapCellPositionBasicArrayList);
+            
     }
     
     public GeographicMapCellPosition getCurrentGeographicMapCellPosition()

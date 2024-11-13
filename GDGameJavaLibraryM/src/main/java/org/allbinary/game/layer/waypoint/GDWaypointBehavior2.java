@@ -1,5 +1,6 @@
 package org.allbinary.game.layer.waypoint;
 
+import org.allbinary.game.layer.WaypointPathRunnable;
 import org.allbinary.game.layer.PathFindingLayerInterface;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.game.layer.SteeringVisitor;
@@ -107,8 +108,7 @@ extends GDWaypointBehavior
                 else if (this.waitingOnWaypointPath)
                 {
                     //TWBAdvancedRTSGameLayer
-                    this.setWaypointPath(
-                        this.waypointPathRunnable.getTargetLayer());
+                    this.setWaypointPath(this.waypointPathRunnable.getTargetLayer());
                 }
                 else
                 {
@@ -289,10 +289,9 @@ extends GDWaypointBehavior
                 this.currentTargetLayerInterface).getWaypointBehavior().getWaypoint();
             
             final BasicArrayList list = 
-                waypoint.getPathsList(geographicMapCellPosition);
-                //waypoint.getPathsListFromCacheOnly(geographicMapCellPosition);
+                waypoint.getPathsListFromCacheOnly(geographicMapCellPosition);
                 
-            //ForcedLogUtil.log("waypointPathsList: " + list, this);
+            ForcedLogUtil.log("waypointPathsList: " + list, this);
             this.setWaypointPathsList(list);
 
             if (this.waypointPathsList == null)
@@ -568,7 +567,7 @@ extends GDWaypointBehavior
     private void processTargetList()
         throws Exception
     {
-        this.targetWithoutCachedPathLayerInterface = null;
+        //this.targetWithoutCachedPathLayerInterface = null;
 
         for (int index = this.getPossibleTargetList().size() - 1; index >= 0; index--)
         {
@@ -587,6 +586,7 @@ extends GDWaypointBehavior
             }
         }
 
+        //TWB - I don't think this is called currently
         if (this.targetWithoutCachedPathLayerInterface != null)
         {
             this.waitingOnTargetPath = true;
@@ -598,6 +598,8 @@ extends GDWaypointBehavior
             this.runWaypointPathTask(
                 (PathFindingLayerInterface) this.currentTargetLayerInterface,
                 geographicMapCellPosition);
+            
+            this.targetWithoutCachedPathLayerInterface = null;
         }
 
         this.getPossibleTargetList().clear();
@@ -610,6 +612,7 @@ extends GDWaypointBehavior
             (this.isInSensorRange(this.currentTargetLayerInterface, this.getCurrentTargetDistance()) ||
             this.isTrackingWaypoint() || targetWithoutSensors))
         {
+            
             /*
             if(this.getOwnerAdvancedRTSGameLayer().isSelected())
             {
@@ -736,6 +739,11 @@ extends GDWaypointBehavior
             throw new Exception("Should never be running here");
         }
 
+        if (geographicMapCellPosition == null)
+        {
+            throw new Exception("Should never be running here");
+        }
+        
         this.waypointPathRunnable.setRunning(true);
         this.waypointPathRunnable.setUnitLayer(this.associatedAdvancedRTSGameLayer);
         this.waypointPathRunnable.setTargetLayer(waypointLayer);

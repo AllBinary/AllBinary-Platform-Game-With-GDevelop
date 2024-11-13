@@ -55,8 +55,8 @@ public class GDWaypointBehavior
     private static final String PATHING = "Pathing";
     
     protected GDWaypointBehavior(
-            PathFindingLayerInterface associatedAdvancedRTSGameLayer,
-            CollidableDestroyableDamageableLayer fakeWaypoint) 
+            final PathFindingLayerInterface associatedAdvancedRTSGameLayer,
+            final CollidableDestroyableDamageableLayer fakeWaypoint) 
     throws Exception
     {
         this.associatedAdvancedRTSGameLayer = associatedAdvancedRTSGameLayer;
@@ -198,6 +198,7 @@ public class GDWaypointBehavior
         
         this.currentGeographicMapCellHistory.init();
 
+        //System.out.println("geographicMapCellPositionBasicArrayList: " + geographicMapCellPositionBasicArrayList.size());
         this.associatedAdvancedRTSGameLayer.init(this.currentGeographicMapCellHistory,
                 geographicMapCellPositionBasicArrayList);
 
@@ -321,11 +322,6 @@ public class GDWaypointBehavior
     public void setWaypointPathsList(BasicArrayList waypointPathsList)
     {
         this.waypointPathsList = waypointPathsList;
-    }
-
-    protected BasicArrayList getWaypointPathsList()
-    {
-        return waypointPathsList;
     }
 
     /**
