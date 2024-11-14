@@ -25,10 +25,6 @@ import org.allbinary.util.BasicArrayList;
  * @author User
  */
 public class PathFindingBehavior extends GDBehavior {
-
-    private GDGameLayer targetGameLayer;
-    private int x;
-    private int y;
     
     public boolean process(final BasicArrayList gameLayerList, final int index, final Graphics graphics) {
 
@@ -46,17 +42,11 @@ public class PathFindingBehavior extends GDBehavior {
     public void setTarget(final GDGameLayer sourceGameLayer, final GDGameLayer targetGameLayer, final int x, final int y) throws Exception {
         
         //Maybe update target when target moves or target is reached?
-        if(this.targetGameLayer != targetGameLayer || !sourceGameLayer.isDestination(targetGameLayer)) {
-            this.targetGameLayer = targetGameLayer;
-            this.x = x;
-            this.y = y;
 
-            //TWB - remove me at some point
-            targetGameLayer.setAllBinaryGameLayerManager(sourceGameLayer.allBinaryGameLayerManager);
+        //TWB - remove me at some point
+        targetGameLayer.setAllBinaryGameLayerManager(sourceGameLayer.allBinaryGameLayerManager);
 
-            ((PathFindingLayerInterface) sourceGameLayer).setTarget((PathFindingLayerInterface) targetGameLayer);
-            
-        }
+        ((PathFindingLayerInterface) sourceGameLayer).setTarget((PathFindingLayerInterface) targetGameLayer);
         
     }
     

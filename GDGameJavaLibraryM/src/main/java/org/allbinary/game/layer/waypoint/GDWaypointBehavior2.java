@@ -433,8 +433,7 @@ extends GDWaypointBehavior
                         this.associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(
                                 THINKING, BasicColorFactory.getInstance().GREEN);
 
-                        this.runWaypointPathTask(
-                            targetLayer,
+                        this.runWaypointPathTask(targetLayer,
                             geographicMapCellPosition);
 
                         return;
