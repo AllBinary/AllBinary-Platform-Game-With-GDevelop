@@ -97,11 +97,6 @@ public class GDObject
 //                }
 //            }
 
-        //All Behaviors are enabled by default.
-        final int size = isBehaviorEnabledArray.length;
-        for(int index = 0; index < size; index++) {
-            isBehaviorEnabledArray[index] = true;
-        }
     }
 
     public void updateScale(final float scaleX, final float scaleY) {
