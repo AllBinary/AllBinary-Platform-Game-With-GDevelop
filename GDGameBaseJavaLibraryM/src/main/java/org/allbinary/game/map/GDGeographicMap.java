@@ -18,6 +18,7 @@ package org.allbinary.game.map;
 
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.TiledLayer;
+
 import org.allbinary.game.layer.AllBinaryJ2METiledLayer;
 import org.allbinary.game.layer.AllBinaryTiledLayer;
 import org.allbinary.game.layer.PlacementAllBinaryJ2METiledLayer;
@@ -27,6 +28,7 @@ import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPositionBaseFactory;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellTypeFactory;
 import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositionFactory;
@@ -186,4 +188,13 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
         allBinaryTiledLayer.setPosition(0, -y, allBinaryTiledLayer.getZ());
     }
 
+    //TWB temp hack for the strange positioning I use for GD builds.
+    public GeographicMapCellPosition getCellPositionAt(final int x, final int y) throws Exception
+    {
+        final AllBinaryTiledLayer allBinaryTiledLayer = this.getAllBinaryTiledLayer();
+        //ForcedLogUtil.log(new StringMaker().append("getCellPositionAt").append(x + allBinaryTiledLayer.getX()).append(',').append(y + allBinaryTiledLayer.getY()).toString(), this);
+        return super.getCellPositionAt(x + allBinaryTiledLayer.getX(), y + allBinaryTiledLayer.getY());
+        //return super.getCellPositionAt(x, y);
+    }
+    
 }

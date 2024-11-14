@@ -550,9 +550,9 @@ public class GDGameLayer
         this.scalableProcessor = ScalableProcessor.getInstance();
     }
 
-//    public boolean isDestination(final GDGameLayer gdGameLayer) throws Exception {
-//        throw new RuntimeException();
-//    }
+    public boolean isDestination(final GDGameLayer gdGameLayer) throws Exception {
+        throw new RuntimeException();
+    }
     
     //private boolean isFirst = true;
     //private final String PAINT = "paint";

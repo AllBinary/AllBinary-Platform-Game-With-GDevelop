@@ -1,5 +1,6 @@
 package org.allbinary.game.layer.waypoint;
 
+import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layer.WaypointPathRunnable;
 import org.allbinary.game.layer.PathFindingLayerInterface;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
@@ -266,7 +267,7 @@ extends GDWaypointBehavior
                 this.associatedAdvancedRTSGameLayer.teleportTo(geographicMapCellPosition);
             }
         }
-    }    
+    }
     
     public void setTarget(final PathFindingLayerInterface layerInterface, final int anotherTargetDistance)
         throws Exception
