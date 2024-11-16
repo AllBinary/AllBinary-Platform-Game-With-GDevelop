@@ -146,7 +146,6 @@ Created By: Travis Berthelot
 
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
                     private final BasicColorFactory basicColorFactory = BasicColorFactory.getInstance();
-                    protected RTSLayerLogHelper rtsLogHelper = RTSLayerLogHelper.getInstance();
                     private final AngleFactory angleFactory = AngleFactory.getInstance();
 
                     protected final boolean debug = true;
@@ -162,10 +161,12 @@ Created By: Travis Berthelot
 
                     private WaypointBehaviorBase waypointBehaviorBase = new WaypointBehaviorBase();
             
+                    //protected RTSLayerLogHelper rtsLogHelper = RTSLayerLogHelper.getInstance();
                     //public RTSLayer2LogHelper rtsLayer2LogHelper = RTSLayer2LogHelper.getInstance();
                     //public WaypointLogHelper waypointLogHelper = WaypointLogHelper.getInstance();
                     //public Waypoint2LogHelper waypoint2LogHelper = Waypoint2LogHelper.getInstance();
                     //public WaypointRunnableLogHelper waypointRunnableLogHelper = WaypointRunnableLogHelper.getInstance();
+                    protected RTSLayerLogHelper rtsLogHelper = RTSLayerSelectedLogHelper.getInstance();
                     public RTSLayer2LogHelper rtsLayer2LogHelper = RTSLayer2SelectedLogHelper.getInstance();
                     public WaypointLogHelper waypointLogHelper = WaypointSelectedLogHelper.getInstance();
                     public Waypoint2LogHelper waypoint2LogHelper = Waypoint2SelectedLogHelper.getInstance();
@@ -1337,12 +1338,7 @@ Created By: Travis Berthelot
     protected void fireOrMove()
         throws Exception
     {
-        //LogUtil.put(LogFactory.getInstance("Move/Attack: " +
-        //  " trackingWaypoint: " + this.trackingWaypoint +
-        //" sensorAction: " + this.sensorAction +
-        //" currentTargetDistance >= longWeaponRange " +
-        //this.currentTargetDistance + ">=" + this.longWeaponRange
-        //  , this, "trackTo"));
+        //LogUtil.put(LogFactory.getInstance("Move/Attack: trackingWaypoint: " + this.trackingWaypoint + " sensorAction: " + this.sensorAction + " currentTargetDistance &gt;= longWeaponRange " + this.currentTargetDistance + "&gt;=" + this.longWeaponRange, this, "trackTo"));
 
         final GameKeyEventFactory gameKeyEventFactory = GameKeyEventFactory.getInstance();
         
@@ -1356,7 +1352,8 @@ Created By: Travis Berthelot
                 this.captionAnimationHelper.update(MOVE, this.basicColorFactory.GREEN);
             }
 
-            this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.UP));
+            //this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.UP));
+            this.forward();
         }
         else
         {
@@ -1366,26 +1363,15 @@ Created By: Travis Berthelot
 
             this.rtsLayer2LogHelper.steeringFireOrStop();
             
-            //LogUtil.put(LogFactory.getInstance(
-            //  "Attacking: " + this.currentTargetLayerInterface.getName() +
-            //" anotherTargetDistance: " + anotherTargetDistance +
-            //" Range: " + this.currentTargetDistance, this, "trackTo"));
+            //LogUtil.put(LogFactory.getInstance("Attacking: " + this.currentTargetLayerInterface.getName() + " anotherTargetDistance: " + anotherTargetDistance + " Range: " + this.currentTargetDistance, this, "trackTo"));
 
-            // LogUtil.put(LogFactory.getInstance(
-            // TrackingEventHandler.getInstance().toString(), this,
-            // "processTargeting"));
+            //LogUtil.put(LogFactory.getInstance(TrackingEventHandler.getInstance().toString(), this, "processTargeting"));
 
-            // LogUtil.put(LogFactory.getInstance("Attacking: " +
-            // this.currentTargetLayerInterface.getName() + " X: " +
-            // this.currentTargetLayerInterface.getX() + " ? " + this.x +
-            // " Y: " + this.currentTargetLayerInterface.getY() + " ? " +
-            // this.y, this, "processTargeting"));
-            // LogUtil.put(LogFactory.getInstance("Attacking: " +
-            // this.currentTargetLayerInterface.getName() + " at Range: " +
-            // this.currentTargetDistance + ">=" + this.longWeaponRange,
-            // this, "processTargeting"));
+            //LogUtil.put(LogFactory.getInstance("Attacking: " + this.currentTargetLayerInterface.getName() + " X: " + this.currentTargetLayerInterface.getX() + " ? " + this.x + " Y: " + this.currentTargetLayerInterface.getY() + " ? " + this.y, this, "processTargeting"));
+            //LogUtil.put(LogFactory.getInstance("Attacking: " + this.currentTargetLayerInterface.getName() + " at Range: " + this.currentTargetDistance + "&gt;=" + this.longWeaponRange, this, "processTargeting"));
+
             this.allStop();
-            this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.KEY_NUM0));
+            //this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.KEY_NUM0));
             TrackingEventHandler.getInstance().fireEvent(this.getTrackingEvent());
         }
     }
@@ -1521,10 +1507,12 @@ Created By: Travis Berthelot
                 int deltaAngle2 = this.movementAngle - angle;
                 if (deltaAngle2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                     this.rtsLogHelper.rotateRight();
-                    this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.RIGHT));
+                    //this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.RIGHT));
+                    this.right();
                 } else {
                     this.rtsLogHelper.rotateLeft();
-                    this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.LEFT));
+                    //this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.LEFT));
+                    this.left();
                 }
                 
                 return true;
@@ -1585,7 +1573,71 @@ Created By: Travis Berthelot
         //System.out.println("isDestination not target - false");
         return false;
     }
-    
+
+    public void forward()
+    throws Exception
+    {
+        //TWB - temp hack for path finding to work
+        final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
+        if (Enemies.direction == 0) {
+            Enemies.setX(Enemies.x + -(gameGlobals.speed / 4));
+        } else if (Enemies.direction == 1) {
+            Enemies.setX(Enemies.x + (gameGlobals.speed / 4));
+        } else if (Enemies.direction == 2) {
+            Enemies.setY(Enemies.y + -(gameGlobals.speed / 4));
+        } else if (Enemies.direction == 3) {
+            Enemies.setY(Enemies.y + (gameGlobals.speed / 4));
+        }
+        this.updatePosition();
+
+    }
+
+    public void right()
+    throws Exception
+    {
+        //TWB - temp hack for path finding to work
+        final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
+        if(Enemies.direction < 3) Enemies.direction++;
+        else Enemies.direction = 0;
+        final String animationName = gdObject.getAnimation(this.gdObject.ObjectName() + gameGlobals.walkAnimationArray[Enemies.direction]);
+        if(gdObject.setAnimation(animationName)) this.resetAnimation();
+        
+        final AngleFactory angleFactory = AngleFactory.getInstance();
+        if (Enemies.direction == 0) {
+            Enemies.setAngle(angleFactory.LEFT.getValue(), this);
+        } else if (Enemies.direction == 1) {
+            Enemies.setAngle(angleFactory.RIGHT.getValue(), this);
+        } else if (Enemies.direction == 2) {
+            Enemies.setAngle(angleFactory.UP.getValue(), this);
+        } else if (Enemies.direction == 3) {
+            Enemies.setAngle(angleFactory.DOWN.getValue(), this);
+        }
+
+    }
+
+    public void left()
+    throws Exception
+    {
+        //TWB - temp hack for path finding to work
+        final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
+        if(Enemies.direction > 0) Enemies.direction--;
+        else Enemies.direction = 3;
+        final String animationName = gdObject.getAnimation(this.gdObject.ObjectName() + gameGlobals.walkAnimationArray[Enemies.direction]);
+        if(gdObject.setAnimation(animationName)) this.resetAnimation();
+        
+        final AngleFactory angleFactory = AngleFactory.getInstance();
+        if (Enemies.direction == 0) {
+            Enemies.setAngle(angleFactory.LEFT.getValue(), this);
+        } else if (Enemies.direction == 1) {
+            Enemies.setAngle(angleFactory.RIGHT.getValue(), this);
+        } else if (Enemies.direction == 2) {
+            Enemies.setAngle(angleFactory.UP.getValue(), this);
+        } else if (Enemies.direction == 3) {
+            Enemies.setAngle(angleFactory.DOWN.getValue(), this);
+        }
+        
+    }
+        
         </xsl:if>
 
 

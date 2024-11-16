@@ -1,6 +1,5 @@
 package org.allbinary.game.layer.waypoint;
 
-import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layer.WaypointPathRunnable;
 import org.allbinary.game.layer.PathFindingLayerInterface;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
@@ -368,6 +367,7 @@ extends GDWaypointBehavior
             final PathFindingLayerInterface targetLayer =
                 (PathFindingLayerInterface) this.targetList.get(0);
 
+            //
             this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processWaypoint(this, targetLayer, size);
 
             // If waypoint was destroyed
@@ -390,6 +390,7 @@ extends GDWaypointBehavior
 
                 if (this.isTrackingWaypoint())
                 {
+                    //
                     this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processWaypointTracked(this);
 
                     if (this.visitIfAtMidPoint(geographicMapCellPosition))
@@ -657,6 +658,7 @@ extends GDWaypointBehavior
                 dx = associatedAdvancedRTSGameLayer2.getX() + associatedAdvancedRTSGameLayer2.getHalfWidth() - point.getX();
                 dy = associatedAdvancedRTSGameLayer2.getY() + associatedAdvancedRTSGameLayer2.getHalfHeight() - point.getY();
                 
+                //
                 this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processTargeting(dx, dy);
             }
             else
