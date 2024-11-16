@@ -1289,7 +1289,7 @@ Created By: Travis Berthelot
         final int dx = (this.getX() + this.getHalfWidth()) - point.getX();
         final int dy = (this.getY() + this.getHalfHeight()) - point.getY();
 
-        this.rtsLogHelper.trackTo(nextUnvisitedPathGeographicMapCellPosition, dx, dy, reason);
+        this.rtsLogHelper.trackTo(this, nextUnvisitedPathGeographicMapCellPosition, dx, dy, reason);
         
         this.trackTo(nextUnvisitedPathGeographicMapCellPosition, dx, dy);
         
@@ -1345,7 +1345,7 @@ Created By: Travis Berthelot
         // Move if going to waypoint, evading, or towards target
         if (this.getWaypointBehavior().needToMove())
         {
-            this.rtsLayer2LogHelper.steeringUp();
+            this.rtsLayer2LogHelper.steeringUp(this);
 
             if(this.showMoreCaptionStates <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> !this.captionAnimationHelper.isShowing())
             {
@@ -1361,7 +1361,7 @@ Created By: Travis Berthelot
             
             // int anotherTargetDistance = DistanceUtil.getDistance(this, this.currentTargetLayerInterface);
 
-            this.rtsLayer2LogHelper.steeringFireOrStop();
+            this.rtsLayer2LogHelper.steeringFireOrStop(this);
             
             //LogUtil.put(LogFactory.getInstance("Attacking: " + this.currentTargetLayerInterface.getName() + " anotherTargetDistance: " + anotherTargetDistance + " Range: " + this.currentTargetDistance, this, "trackTo"));
 
@@ -1381,13 +1381,13 @@ Created By: Travis Berthelot
             this.movementAngle = this.angleFactory.LEFT.getValue();
             this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
             
-            this.rtsLogHelper.handleLeft(this.movementAngle);
+            this.rtsLogHelper.handleLeft(this, this.movementAngle);
             
         } else {
             this.movementAngle = this.angleFactory.RIGHT.getValue();
             this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
             
-            this.rtsLogHelper.handleRight(this.movementAngle);
+            this.rtsLogHelper.handleRight(this, this.movementAngle);
             
         }
     }
@@ -1397,28 +1397,33 @@ Created By: Travis Berthelot
             this.movementAngle = this.angleFactory.UP.getValue();
             this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
             
-            this.rtsLogHelper.handleUp(this.movementAngle);
+            this.rtsLogHelper.handleUp(this, this.movementAngle);
             
         } else {
             this.movementAngle = this.angleFactory.DOWN.getValue();
             this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
             
-            this.rtsLogHelper.handleDown(this.movementAngle);
+            this.rtsLogHelper.handleDown(this, this.movementAngle);
             
         }
     }
 
     private boolean turnTo(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition, final int dx, final int dy, int targetAngle)
     throws Exception
-    {
+    {    
         // int angleOfTarget = NoDecimalTrigTable.antiTan(dx, dy);
+
+        if(nextUnvisitedPathGeographicMapCellPosition == null) {
+            LogUtil.put(LogFactory.getInstance("TWB - do not turn or move until we have the first unvisited cell position", this, "turnTo"));
+            return true;
+        }
 
         boolean evading = false;
         
         // Run until out of sensor range
 //        if (this.getUnitWaypointBehavior().getSensorAction() == SensorActionFactory.getInstance().EVADE)
 //        {
-//            this.rtsLogHelper.evade();
+//            this.rtsLogHelper.evade(this);
 //            
 //            evading = true;
 //            targetAngle += 180;
@@ -1439,9 +1444,9 @@ Created By: Travis Berthelot
 
         //if (this.getUnitWaypointBehavior().isWaypointListEmptyOrOnlyTargets())
         
-        this.rtsLogHelper.turnTo(nextUnvisitedPathGeographicMapCellPosition, dx, dy, null, angle, movementAngle, evading, targetAngle);
+        this.rtsLogHelper.turnTo(this, nextUnvisitedPathGeographicMapCellPosition, dx, dy, null, angle, movementAngle, evading, targetAngle);
 
-        final GameKeyEventFactory gameKeyEventFactory = GameKeyEventFactory.getInstance();
+        //final GameKeyEventFactory gameKeyEventFactory = GameKeyEventFactory.getInstance();
         
         //int deltaAngle = closestDirectionAngle.getValue() - angle;
 //        int deltaAngle = angleOfTarget2 - angle;
@@ -1450,29 +1455,36 @@ Created By: Travis Berthelot
           //() || 
         if(dx == 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> dy == 0) {
             
-            this.rtsLogHelper.doneMoving();
+            this.rtsLogHelper.doneMoving(this);
             
             return true;
         } else if(this.movementAngle == angle) {
 
+            final BasicArrayList occupyingList = this.getEndGeographicMapCellPositionList();
+            if(occupyingList.contains(nextUnvisitedPathGeographicMapCellPosition)) {
+
             if(dx <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.LEFT.getValue()) {
-                this.rtsLogHelper.movingLeft();
+                this.rtsLogHelper.movingLeft(this);
                 return false;
             }
             if(dx <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.RIGHT.getValue()) {
-                this.rtsLogHelper.movingRight();
+                this.rtsLogHelper.movingRight(this);
                 return false;
             }
             if(dy <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.UP.getValue()) {
-                this.rtsLogHelper.movingUp();
+                this.rtsLogHelper.movingUp(this);
                 return false;
             }
             if(dy <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.DOWN.getValue()) {
-                this.rtsLogHelper.movingDown();
+                this.rtsLogHelper.movingDown(this);
                 return false;
             }
 
-            this.rtsLogHelper.currentMoveEnded();
+            } else {
+                System.out.println("TWB - trying to move but not on path: " + occupyingList);
+            }
+
+            this.rtsLogHelper.currentMoveEnded(this);
             
             if(this.movementAngle == this.angleFactory.LEFT.getValue() || 
                 this.movementAngle == this.angleFactory.RIGHT.getValue()) {
@@ -1506,11 +1518,11 @@ Created By: Travis Berthelot
 
                 int deltaAngle2 = this.movementAngle - angle;
                 if (deltaAngle2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                    this.rtsLogHelper.rotateRight();
+                    this.rtsLogHelper.rotateRight(this);
                     //this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.RIGHT));
                     this.right();
                 } else {
-                    this.rtsLogHelper.rotateLeft();
+                    this.rtsLogHelper.rotateLeft(this);
                     //this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.LEFT));
                     this.left();
                 }
@@ -1518,10 +1530,12 @@ Created By: Travis Berthelot
                 return true;
                 
             } else {
-                this.rtsLogHelper.noRotation();
+                this.rtsLogHelper.noRotation(this);
             }
             
-            return false;
+            //System.out.println(allowing movement outside of logic?");
+            return true;
+            //return false;
         }
 
     }

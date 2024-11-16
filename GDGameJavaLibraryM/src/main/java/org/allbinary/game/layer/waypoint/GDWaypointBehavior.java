@@ -11,6 +11,8 @@ import org.allbinary.game.layer.waypoint.event.WaypointEventListenerInterface;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.logic.communication.log.ForcedLogUtil;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.util.event.AllBinaryEventObject;
 import org.allbinary.logic.util.event.EventStrings;
@@ -141,7 +143,7 @@ public class GDWaypointBehavior
     {
         if (this.canInsertWaypoint(index, rtsLayer))
         {
-            this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().insertWaypoint(index, rtsLayer, this.getName());
+            this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().insertWaypoint(this.associatedAdvancedRTSGameLayer, index, rtsLayer, this.getName());
 
             if(rtsLayer.isDestroyed())
             {
@@ -150,7 +152,7 @@ public class GDWaypointBehavior
             
             this.targetList.add(index, rtsLayer);
 
-            this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().insertWaypoint(index, rtsLayer, this.getName(), this.targetList);
+            this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().insertWaypoint(this.associatedAdvancedRTSGameLayer, index, rtsLayer, this.getName(), this.targetList);
 
             return true;
         }
@@ -173,7 +175,7 @@ public class GDWaypointBehavior
     {
         final int size = pathsList.size();
         
-        this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().setRandomGeographicMapCellHistory(pathsList);
+        this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().setRandomGeographicMapCellHistory(this.associatedAdvancedRTSGameLayer, pathsList);
 
         if (size > 0)
         {
@@ -246,7 +248,7 @@ public class GDWaypointBehavior
 
             if (this.insertWaypoint(0, this.FAKE_WAYPOINT_LAYER))
             {
-                this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().moveAwayFromBuilding();
+                this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().moveAwayFromBuilding(this.associatedAdvancedRTSGameLayer);
 
                 this.setCurrentTargetLayerInterface((CollidableDestroyableDamageableLayer) this.FAKE_WAYPOINT_LAYER);
 
@@ -264,7 +266,7 @@ public class GDWaypointBehavior
     
     public boolean needToMove()
     {
-        this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().needToMove(this);
+        this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().needToMove(this.associatedAdvancedRTSGameLayer, this);
         
         if(this.isTrackingWaypoint() ||
                 this.sensorAction == SensorActionFactory.getInstance().EVADE ||
@@ -367,11 +369,11 @@ public class GDWaypointBehavior
     {
         return lastPathGeographicMapCellPosition;
     }
-
     
     protected void setCurrentPathGeographicMapCellPosition(
-            GeographicMapCellPosition currentPathGeographicMapCellPosition)
+            final GeographicMapCellPosition currentPathGeographicMapCellPosition)
     {
+        if(this.currentPathGeographicMapCellPosition == null) LogUtil.put(LogFactory.getInstance("currentPathGeographicMapCellPosition: " + currentPathGeographicMapCellPosition, this, "setCurrentPathGeographicMapCellPosition"));
         this.currentPathGeographicMapCellPosition = currentPathGeographicMapCellPosition;
     }
 
