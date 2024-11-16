@@ -1464,6 +1464,7 @@ Created By: Travis Berthelot
             
             this.rtsLogHelper.doneMoving(this);
             
+            //TWB - This is probably covering up and issue with the existing visit logic.
             this.waypointBehaviorBase.getCurrentGeographicMapCellHistory().visit(currentGeographicMapCellPosition);
             this.waypoint2LogHelper.processWaypointTracked(this, currentGeographicMapCellPosition);
 
@@ -1471,7 +1472,6 @@ Created By: Travis Berthelot
         } else if(this.movementAngle == angle) {
 
             //final BasicArrayList occupyingList = this.getEndGeographicMapCellPositionList();
-            //occupyingList.contains(geographicMapCellPosition
             final BasicArrayList pathList = this.waypointBehaviorBase.getCurrentGeographicMapCellHistory().getTracked();
             if(pathList.contains(currentGeographicMapCellPosition)) {
             
@@ -1493,7 +1493,7 @@ Created By: Travis Berthelot
             }
 
             } else {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(" - trying to move but not on path: ").append(occupyingList).toString(), this, "turnTo"));
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(" - trying to move but not on path: ").append(pathList).toString(), this, "turnTo"));
             }
 
             this.rtsLogHelper.currentMoveEnded(this);
