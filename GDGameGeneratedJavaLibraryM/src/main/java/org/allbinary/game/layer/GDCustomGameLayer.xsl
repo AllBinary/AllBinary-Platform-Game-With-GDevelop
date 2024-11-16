@@ -1423,6 +1423,8 @@ Created By: Travis Berthelot
             return true;
         }
 
+        final GeographicMapCellPosition currentGeographicMapCellPosition = this.getCurrentGeographicMapCellPosition();
+
         boolean evading = false;
         
         // Run until out of sensor range
@@ -1462,14 +1464,16 @@ Created By: Travis Berthelot
             
             this.rtsLogHelper.doneMoving(this);
             
+            this.waypointBehaviorBase.getCurrentGeographicMapCellHistory().visit(currentGeographicMapCellPosition);
+            this.waypoint2LogHelper.processWaypointTracked(this, currentGeographicMapCellPosition);
+
             return true;
         } else if(this.movementAngle == angle) {
 
             //final BasicArrayList occupyingList = this.getEndGeographicMapCellPositionList();
             //occupyingList.contains(geographicMapCellPosition
             final BasicArrayList pathList = this.waypointBehaviorBase.getCurrentGeographicMapCellHistory().getTracked();
-            final GeographicMapCellPosition geographicMapCellPosition = this.getCurrentGeographicMapCellPosition();
-            if(pathList.contains(geographicMapCellPosition)) {
+            if(pathList.contains(currentGeographicMapCellPosition)) {
             
             if(dx <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.LEFT.getValue()) {
                 this.rtsLogHelper.movingLeft(this);
@@ -1602,13 +1606,13 @@ Created By: Travis Berthelot
         //TWB - temp hack for path finding to work
         final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
         if (Enemies.direction == 0) {
-            Enemies.setX(Enemies.x + -(gameGlobals.speed / 4));
+            Enemies.setX(Enemies.x + -(gameGlobals.speed / 2));
         } else if (Enemies.direction == 1) {
-            Enemies.setX(Enemies.x + (gameGlobals.speed / 4));
+            Enemies.setX(Enemies.x + (gameGlobals.speed / 2));
         } else if (Enemies.direction == 2) {
-            Enemies.setY(Enemies.y + -(gameGlobals.speed / 4));
+            Enemies.setY(Enemies.y + -(gameGlobals.speed / 2));
         } else if (Enemies.direction == 3) {
-            Enemies.setY(Enemies.y + (gameGlobals.speed / 4));
+            Enemies.setY(Enemies.y + (gameGlobals.speed / 2));
         }
         this.updatePosition();
 

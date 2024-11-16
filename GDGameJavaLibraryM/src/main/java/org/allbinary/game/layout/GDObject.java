@@ -254,11 +254,11 @@ public class GDObject
             adjustedAngle += 360;
         }
         
-        //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-        //LogUtil.put(LogFactory.getInstance(new StringMaker()
-            //.append(this.name)
-            //.append(objectStrings.ANGLE).append(angle)
-            //.append(objectStrings.ANGLE).append(adjustedAngle).toString(), this, objectStrings.ANGLE));
+//        final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
+//        LogUtil.put(LogFactory.getInstance(new StringMaker()
+//            .append(gameLayer.getName())
+//            .append(objectStrings.ANGLE).append(angle)
+//            .append(objectStrings.ANGLE).append(adjustedAngle).toString(), this, objectStrings.ANGLE));
 
         this.angle = adjustedAngle;
 
