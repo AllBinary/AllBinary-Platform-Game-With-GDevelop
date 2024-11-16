@@ -1281,9 +1281,10 @@ Created By: Travis Berthelot
         return geographicMapCellPositionArea.getSurroundingGeographicMapCellPositionList();
     }
     
-    public void trackTo(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition, final String reason) 
+    public void trackTo(final String reason) 
         throws Exception {
 
+        final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition = this.waypointBehaviorBase.getNextUnvisitedPathGeographicMapCellPosition();
         final GPoint point = nextUnvisitedPathGeographicMapCellPosition.getMidPoint();
 
         final int dx = (this.getX() + this.getHalfWidth()) - point.getX();
@@ -1291,19 +1292,19 @@ Created By: Travis Berthelot
 
         this.rtsLogHelper.trackTo(this, nextUnvisitedPathGeographicMapCellPosition, dx, dy, reason);
         
-        this.trackTo(nextUnvisitedPathGeographicMapCellPosition, dx, dy);
+        this.trackTo(dx, dy);
         
     }
 
-    public void trackTo(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition, final int dx, final int dy) 
+    public void trackTo(final int dx, final int dy) 
         throws Exception {
 
         final int angleOfTarget = 0;
-        this.trackTo(nextUnvisitedPathGeographicMapCellPosition, dx, dy, angleOfTarget);
+        this.trackTo(dx, dy, angleOfTarget);
         
     }
     
-    private void trackTo(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition, final int dx, final int dy, final int targetAngle)
+    private void trackTo(final int dx, final int dy, final int targetAngle)
         throws Exception
     {
         //If colliding with a game object then don't try to turn since in chase mode
@@ -1327,7 +1328,7 @@ Created By: Travis Berthelot
 
             this.fireOrMove();
         }
-        else if(!this.turnTo(nextUnvisitedPathGeographicMapCellPosition, dx, dy, targetAngle))
+        else if(!this.turnTo(dx, dy, targetAngle))
         {
             this.fireOrMove();
         }
@@ -1376,7 +1377,8 @@ Created By: Travis Berthelot
         }
     }
 
-    private void handleDeltalX(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition, final int dx, final int dy) {
+    private void handleDeltalX(final int dx, final int dy) {
+        final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition = this.waypointBehaviorBase.getNextUnvisitedPathGeographicMapCellPosition();
         if (dx <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
             this.movementAngle = this.angleFactory.LEFT.getValue();
             this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
@@ -1392,7 +1394,8 @@ Created By: Travis Berthelot
         }
     }
     
-    private void handleDeltalY(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition, final int dx, final int dy) {
+    private void handleDeltalY(final int dx, final int dy) {
+        final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition = this.waypointBehaviorBase.getNextUnvisitedPathGeographicMapCellPosition();
         if (dy <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
             this.movementAngle = this.angleFactory.UP.getValue();
             this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
@@ -1408,13 +1411,15 @@ Created By: Travis Berthelot
         }
     }
 
-    private boolean turnTo(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition, final int dx, final int dy, int targetAngle)
+    private boolean turnTo(final int dx, final int dy, int targetAngle)
     throws Exception
     {    
         // int angleOfTarget = NoDecimalTrigTable.antiTan(dx, dy);
 
+        final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition = this.waypointBehaviorBase.getNextUnvisitedPathGeographicMapCellPosition();
+
         if(nextUnvisitedPathGeographicMapCellPosition == null) {
-            LogUtil.put(LogFactory.getInstance("TWB - do not turn or move until we have the first unvisited cell position", this, "turnTo"));
+            LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(" - do not turn or move until we have the first unvisited cell position").toString(), this, "turnTo"));
             return true;
         }
 
@@ -1481,17 +1486,17 @@ Created By: Travis Berthelot
             }
 
             } else {
-                System.out.println("TWB - trying to move but not on path: " + occupyingList);
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(" - trying to move but not on path: ").append(occupyingList).toString(), this, "turnTo"));
             }
 
             this.rtsLogHelper.currentMoveEnded(this);
             
             if(this.movementAngle == this.angleFactory.LEFT.getValue() || 
                 this.movementAngle == this.angleFactory.RIGHT.getValue()) {
-                this.handleDeltalY(nextUnvisitedPathGeographicMapCellPosition, dx, dy);
+                this.handleDeltalY(dx, dy);
             } else if(this.movementAngle == this.angleFactory.UP.getValue() || 
                 this.movementAngle == this.angleFactory.DOWN.getValue()) {
-                this.handleDeltalX(nextUnvisitedPathGeographicMapCellPosition, dx, dy);
+                this.handleDeltalX(dx, dy);
             }
             
             return true;
@@ -1506,11 +1511,11 @@ Created By: Travis Berthelot
                 if(this.steeringInsideGeographicMapCellPosition != nextUnvisitedPathGeographicMapCellPosition) {
                     
                     if (Math.abs(dx) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> Math.abs(dy) <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> dy != 0) {
-                        this.handleDeltalY(nextUnvisitedPathGeographicMapCellPosition, dx, dy);
+                        this.handleDeltalY(dx, dy);
                     } else if (dx != 0) {
-                        this.handleDeltalX(nextUnvisitedPathGeographicMapCellPosition, dx, dy);
+                        this.handleDeltalX(dx, dy);
                     } else {
-                        this.handleDeltalY(nextUnvisitedPathGeographicMapCellPosition, dx, dy);
+                        this.handleDeltalY(dx, dy);
                         //throw new RuntimeException();
                     }
                     
@@ -1611,21 +1616,19 @@ Created By: Travis Berthelot
     {
         //TWB - temp hack for path finding to work
         final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
-        if(Enemies.direction <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 3) Enemies.direction++;
-        else Enemies.direction = 0;
+        if(Enemies.direction == 0) {
+            Enemies.direction = 2;
+        } else if(Enemies.direction == 1) {
+            Enemies.direction = 3;
+        } else if(Enemies.direction == 2) {
+            Enemies.direction = 1;
+        } else if(Enemies.direction == 3) {
+            Enemies.direction = 0;
+        }
         final String animationName = gdObject.getAnimation(this.gdObject.ObjectName() + gameGlobals.walkAnimationArray[Enemies.direction]);
         if(gdObject.setAnimation(animationName)) this.resetAnimation();
         
-        final AngleFactory angleFactory = AngleFactory.getInstance();
-        if (Enemies.direction == 0) {
-            Enemies.setAngle(angleFactory.LEFT.getValue(), this);
-        } else if (Enemies.direction == 1) {
-            Enemies.setAngle(angleFactory.RIGHT.getValue(), this);
-        } else if (Enemies.direction == 2) {
-            Enemies.setAngle(angleFactory.UP.getValue(), this);
-        } else if (Enemies.direction == 3) {
-            Enemies.setAngle(angleFactory.DOWN.getValue(), this);
-        }
+        this.updateAngle();
 
     }
 
@@ -1634,11 +1637,24 @@ Created By: Travis Berthelot
     {
         //TWB - temp hack for path finding to work
         final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
-        if(Enemies.direction <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) Enemies.direction--;
-        else Enemies.direction = 3;
+        if(Enemies.direction == 0) {
+            Enemies.direction = 3;
+        } else if(Enemies.direction == 1) {
+            Enemies.direction = 2;
+        } else if(Enemies.direction == 2) {
+            Enemies.direction = 0;
+        } else if(Enemies.direction == 3) {
+            Enemies.direction = 1;
+        }
         final String animationName = gdObject.getAnimation(this.gdObject.ObjectName() + gameGlobals.walkAnimationArray[Enemies.direction]);
         if(gdObject.setAnimation(animationName)) this.resetAnimation();
+
+        this.updateAngle();
         
+    }
+    
+    public void updateAngle() {
+        final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
         final AngleFactory angleFactory = AngleFactory.getInstance();
         if (Enemies.direction == 0) {
             Enemies.setAngle(angleFactory.LEFT.getValue(), this);
@@ -1649,7 +1665,6 @@ Created By: Travis Berthelot
         } else if (Enemies.direction == 3) {
             Enemies.setAngle(angleFactory.DOWN.getValue(), this);
         }
-        
     }
         
         </xsl:if>

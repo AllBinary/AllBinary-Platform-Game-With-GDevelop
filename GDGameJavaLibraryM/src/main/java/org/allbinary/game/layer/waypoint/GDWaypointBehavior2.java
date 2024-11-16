@@ -23,6 +23,7 @@ import org.allbinary.util.BasicArrayList;
 public class GDWaypointBehavior2 
 extends GDWaypointBehavior
 {
+
     private final LayerDistanceUtil layerDistanceUtil = LayerDistanceUtil.getInstance();
 
     private final boolean targetWithoutSensors = true;
@@ -34,8 +35,6 @@ extends GDWaypointBehavior
     
     protected GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition;
     private GeographicMapCellPosition afterNextUnvisitedPathGeographicMapCellPosition;
-    
-    protected boolean waypointOverridesAttacking = true;
     
     private final BasicArrayList wanderPathsList;
     
@@ -481,8 +480,7 @@ extends GDWaypointBehavior
 
         this.updateCurrentPathGeographicMapCellPosition();
 
-        this.associatedAdvancedRTSGameLayer.trackTo(
-                this.nextUnvisitedPathGeographicMapCellPosition, NEXT_PATH_NODE);
+        this.associatedAdvancedRTSGameLayer.trackTo(NEXT_PATH_NODE);
     }
 
     private boolean visitIfAtMidPoint(final GeographicMapCellPosition geographicMapCellPosition) {
@@ -675,7 +673,7 @@ extends GDWaypointBehavior
                     this.currentTargetLayerInterface.getHalfHeight());
             }
 
-            this.associatedAdvancedRTSGameLayer.trackTo(this.nextUnvisitedPathGeographicMapCellPosition, dx, dy);
+            this.associatedAdvancedRTSGameLayer.trackTo(dx, dy);
         }
         else
         {
@@ -936,8 +934,12 @@ extends GDWaypointBehavior
         return this.associatedAdvancedRTSGameLayer.buildingChase(allbinaryLayer, cellPosition);
     }
 
+    public GeographicMapCellPosition getNextUnvisitedPathGeographicMapCellPosition() {
+        return nextUnvisitedPathGeographicMapCellPosition;
+    }
+    
     public void setNextUnvisitedPathGeographicMapCellPosition(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition) {
-        if(this.nextUnvisitedPathGeographicMapCellPosition != nextUnvisitedPathGeographicMapCellPosition) LogUtil.put(LogFactory.getInstance("nextUnvisitedPathGeographicMapCellPosition: " + nextUnvisitedPathGeographicMapCellPosition, this, "setNextUnvisitedPathGeographicMapCellPosition"));
+        if(this.nextUnvisitedPathGeographicMapCellPosition != nextUnvisitedPathGeographicMapCellPosition) LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" nextUnvisitedPathGeographicMapCellPosition: ").append(nextUnvisitedPathGeographicMapCellPosition).toString(), this, "setNextUnvisitedPathGeographicMapCellPosition"));
         this.nextUnvisitedPathGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
     }
 }
