@@ -1,5 +1,6 @@
 package org.allbinary.game.layer.waypoint;
 
+import org.allbinary.game.layer.AllBinaryTiledLayer;
 import org.allbinary.game.layer.WaypointPathRunnable;
 import org.allbinary.game.layer.PathFindingLayerInterface;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
@@ -15,7 +16,9 @@ import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.math.LayerDistanceUtil;
+import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
+import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
 import org.allbinary.thread.SecondaryThreadPool;
 import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.util.BasicArrayList;
@@ -652,9 +655,14 @@ extends GDWaypointBehavior
                 this.updateCurrentPathGeographicMapCellPosition();
 
                 final GPoint point = this.nextUnvisitedPathGeographicMapCellPosition.getMidPoint();
-
-                dx = associatedAdvancedRTSGameLayer2.getX() + associatedAdvancedRTSGameLayer2.getHalfWidth() - point.getX();
-                dy = associatedAdvancedRTSGameLayer2.getY() + associatedAdvancedRTSGameLayer2.getHalfHeight() - point.getY();
+                
+                final GeographicMapCompositeInterface geographicMapCompositeInterface
+                    = (GeographicMapCompositeInterface) associatedAdvancedRTSGameLayer2.allBinaryGameLayerManager;
+                final BasicGeographicMap geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
+                final AllBinaryTiledLayer tiledLayer = geographicMapInterface.getAllBinaryTiledLayer();
+                        
+                dx = associatedAdvancedRTSGameLayer2.getX() + associatedAdvancedRTSGameLayer2.getHalfWidth() - point.getX() + tiledLayer.getX();
+                dy = associatedAdvancedRTSGameLayer2.getY() + associatedAdvancedRTSGameLayer2.getHalfHeight() - point.getY() + tiledLayer.getY();
                 
                 //
                 this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processTargeting(this.associatedAdvancedRTSGameLayer, dx, dy);

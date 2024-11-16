@@ -1223,7 +1223,7 @@ Created By: Travis Berthelot
     public void init(final GeographicMapCellHistory geographicMapCellHistory,
         final BasicArrayList geographicMapCellPositionBasicArrayList) { 
         
-        System.out.println("geographicMapCellPositionBasicArrayList: " + geographicMapCellPositionBasicArrayList.size());
+        //System.out.println("geographicMapCellPositionBasicArrayList: " + geographicMapCellPositionBasicArrayList.size());
         geographicMapCellHistory.track(geographicMapCellPositionBasicArrayList);
             
     }
@@ -1283,12 +1283,12 @@ Created By: Travis Berthelot
     
     public void trackTo(final String reason) 
         throws Exception {
-
+        
         final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition = this.waypointBehaviorBase.getNextUnvisitedPathGeographicMapCellPosition();
         final GPoint point = nextUnvisitedPathGeographicMapCellPosition.getMidPoint();
-
-        final int dx = (this.getX() + this.getHalfWidth()) - point.getX();
-        final int dy = (this.getY() + this.getHalfHeight()) - point.getY();
+        
+        final int dx = (this.getX() + this.getHalfWidth()) + point.getX();
+        final int dy = (this.getY() + this.getHalfHeight()) + point.getY();
 
         this.rtsLogHelper.trackTo(this, nextUnvisitedPathGeographicMapCellPosition, dx, dy, reason);
         
@@ -1465,9 +1465,12 @@ Created By: Travis Berthelot
             return true;
         } else if(this.movementAngle == angle) {
 
-            final BasicArrayList occupyingList = this.getEndGeographicMapCellPositionList();
-            if(occupyingList.contains(nextUnvisitedPathGeographicMapCellPosition)) {
-
+            //final BasicArrayList occupyingList = this.getEndGeographicMapCellPositionList();
+            //occupyingList.contains(geographicMapCellPosition
+            final BasicArrayList pathList = this.waypointBehaviorBase.getCurrentGeographicMapCellHistory().getTracked();
+            final GeographicMapCellPosition geographicMapCellPosition = this.getCurrentGeographicMapCellPosition();
+            if(pathList.contains(geographicMapCellPosition)) {
+            
             if(dx <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.LEFT.getValue()) {
                 this.rtsLogHelper.movingLeft(this);
                 return false;
