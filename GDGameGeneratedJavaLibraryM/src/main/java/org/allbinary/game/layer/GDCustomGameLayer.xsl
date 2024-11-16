@@ -1597,7 +1597,7 @@ Created By: Travis Berthelot
     {
         //TWB - temp hack for path finding to work
         final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
-        if(Enemies.direction < 3) Enemies.direction++;
+        if(Enemies.direction <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 3) Enemies.direction++;
         else Enemies.direction = 0;
         final String animationName = gdObject.getAnimation(this.gdObject.ObjectName() + gameGlobals.walkAnimationArray[Enemies.direction]);
         if(gdObject.setAnimation(animationName)) this.resetAnimation();
@@ -1620,7 +1620,7 @@ Created By: Travis Berthelot
     {
         //TWB - temp hack for path finding to work
         final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
-        if(Enemies.direction > 0) Enemies.direction--;
+        if(Enemies.direction <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) Enemies.direction--;
         else Enemies.direction = 3;
         final String animationName = gdObject.getAnimation(this.gdObject.ObjectName() + gameGlobals.walkAnimationArray[Enemies.direction]);
         if(gdObject.setAnimation(animationName)) this.resetAnimation();
