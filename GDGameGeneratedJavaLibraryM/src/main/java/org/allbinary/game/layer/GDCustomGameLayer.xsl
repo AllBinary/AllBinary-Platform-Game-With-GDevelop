@@ -1220,10 +1220,24 @@ Created By: Travis Berthelot
         return this.showMoreCaptionStates;
     }
     
+    private static final String REMOVING_LAST_CELLPOSITION = "Removing last cell position in path: ";
     public void init(final GeographicMapCellHistory geographicMapCellHistory,
-        final BasicArrayList geographicMapCellPositionBasicArrayList) { 
+        final BasicArrayList geographicMapCellPositionBasicArrayList) throws Exception { 
         
         //System.out.println("geographicMapCellPositionBasicArrayList: " + geographicMapCellPositionBasicArrayList.size());
+        final GeographicMapCompositeInterface geographicMapCompositeInterface
+            = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+        final BasicGeographicMap geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
+        
+        final GeographicMapCellPosition geographicMapCellPosition = (GeographicMapCellPosition) 
+            geographicMapCellPositionBasicArrayList.get(geographicMapCellPositionBasicArrayList.size() - 1);
+        final RaceTrackGeographicMapCellType geographicMapCellType = (RaceTrackGeographicMapCellType) geographicMapInterface.getCellTypeAt(geographicMapCellPosition);
+        final BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory = (BasicTopViewGeographicMapCellTypeFactory) geographicMapInterface.getGeographicMapCellTypeFactory();
+        if(geographicMapCellType.getTravelCost() == basicTopViewGeographicMapCellTypeFactory.BLOCK_CELL_TYPE.cost) {
+            geographicMapCellPositionBasicArrayList.remove(geographicMapCellPosition);
+            LogUtil.put(LogFactory.getInstance(REMOVING_LAST_CELLPOSITION + geographicMapCellPosition, this, CommonStrings.getInstance().INIT));
+        }
+        
         geographicMapCellHistory.track(geographicMapCellPositionBasicArrayList);
             
     }
