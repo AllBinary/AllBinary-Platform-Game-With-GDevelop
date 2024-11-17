@@ -356,18 +356,23 @@ Created By: Travis Berthelot
                     //zOrder - <xsl:value-of select="zOrder" />
                     //layer=<xsl:value-of select="layer" /> (Base Layer is emtpy)
                             <xsl:if test="contains(layer, 'Below')" >
+                    //Below - zOrder
                     <xsl:value-of select="zOrder" />,
                             </xsl:if>
                             <xsl:if test="not(layer) or string-length(layer) = 0 or contains(layer, 'Base Layer')" >
+                    //Base Layer - zOrder + 200
                     <xsl:value-of select="zOrder + 200" />,
                             </xsl:if>
                             <xsl:if test="contains(layer, 'Above')" >
+                    //Above - zOrder + 400
                     <xsl:value-of select="zOrder + 400" />,
                             </xsl:if>
                             <xsl:if test="contains(layer, 'Overlay') or contains(text(), 'gui')" >
+                    //Overlay - zOrder + 600
                     <xsl:value-of select="zOrder + 600" />,
                             </xsl:if>
                             <xsl:if test="contains(layer, 'Top')" >
+                    //Top - zOrder + 800
                     <xsl:value-of select="zOrder + 800" />,
                             </xsl:if>
                         width, height,
