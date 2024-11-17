@@ -355,25 +355,20 @@ Created By: Travis Berthelot
                         <xsl:value-of select="name" />Y, 
                     //zOrder - <xsl:value-of select="zOrder" />
                     //layer=<xsl:value-of select="layer" /> (Base Layer is emtpy)
-                            <xsl:if test="not(layer)" >
+                            <xsl:if test="contains(layer, 'Below')" >
                     <xsl:value-of select="zOrder" />,
                             </xsl:if>
-                            <xsl:if test="layer" >
-                            <xsl:if test="contains(layer, 'Below')" >
-                    5,
-                            </xsl:if>
-                            <xsl:if test="string-length(layer) = 0 or contains(layer, 'Base Layer')" >
-                    6,
+                            <xsl:if test="not(layer) or string-length(layer) = 0 or contains(layer, 'Base Layer')" >
+                    <xsl:value-of select="zOrder + 200" />,
                             </xsl:if>
                             <xsl:if test="contains(layer, 'Above')" >
-                    7,
+                    <xsl:value-of select="zOrder + 400" />,
                             </xsl:if>
                             <xsl:if test="contains(layer, 'Overlay') or contains(text(), 'gui')" >
-                    100,
+                    <xsl:value-of select="zOrder + 600" />,
                             </xsl:if>
                             <xsl:if test="contains(layer, 'Top')" >
-                    Integer.MAX_VALUE,
-                            </xsl:if>
+                    <xsl:value-of select="zOrder + 800" />,
                             </xsl:if>
                         width, height,
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME);
