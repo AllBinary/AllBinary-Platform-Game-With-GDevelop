@@ -71,7 +71,7 @@ public class GDWaypointBehavior
 
         this.setWaypointPathsList(BasicArrayListUtil.getInstance().getImmutableInstance());
 
-        this.setCurrentGeographicMapCellHistory(new GeographicMapCellHistory());
+        this.currentGeographicMapCellHistory = new GeographicMapCellHistory();
 
         this.FAKE_WAYPOINT_LAYER = fakeWaypoint;
     }
@@ -423,12 +423,6 @@ public class GDWaypointBehavior
     protected TimeDelayHelper getCompleteTimeDelayHelper()
     {
         return completeTimeDelayHelper;
-    }
-
-    protected void setCurrentGeographicMapCellHistory(
-            GeographicMapCellHistory currentGeographicMapCellHistory)
-    {
-        this.currentGeographicMapCellHistory = currentGeographicMapCellHistory;
     }
 
     public GeographicMapCellHistory getCurrentGeographicMapCellHistory()
