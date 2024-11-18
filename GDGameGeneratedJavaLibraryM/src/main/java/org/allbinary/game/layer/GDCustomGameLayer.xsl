@@ -1492,7 +1492,7 @@ Created By: Travis Berthelot
             final BasicArrayList pathList = geographicMapCellHistory.getTracked();
             if(pathList.contains(currentGeographicMapCellPosition) 
 //                ||
-//                geographicMapCellHistory.getTotalVisited() == 0 && GeographicMapDirectionUtil.getInstance().getEightDirectionFromCellPositionToAdjacentCellPosition(currentGeographicMapCellPosition, (GeographicMapCellPosition) pathList.get(0)) != DirectionFactory.getInstance().NOT_BORDERED_WITH
+//                geographicMapCellHistory.getTotalVisited() == 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> GeographicMapDirectionUtil.getInstance().getEightDirectionFromCellPositionToAdjacentCellPosition(currentGeographicMapCellPosition, (GeographicMapCellPosition) pathList.get(0)) != DirectionFactory.getInstance().NOT_BORDERED_WITH
                 ) {
             
             if(dx <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.LEFT.getValue()) {
