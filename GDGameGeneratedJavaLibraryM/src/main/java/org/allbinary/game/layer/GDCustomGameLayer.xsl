@@ -1087,6 +1087,8 @@ Created By: Travis Berthelot
 
         if(this.gdObject.hasBehaviorArray[gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX]) {
 
+            PathFindingThreadPool.getInstance().clear();
+            
             final GeographicMapCompositeInterface geographicMapCompositeInterface
                 = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
             final BasicGeographicMap[] basicGeographicMapArray = geographicMapCompositeInterface.getGeographicMapInterface();

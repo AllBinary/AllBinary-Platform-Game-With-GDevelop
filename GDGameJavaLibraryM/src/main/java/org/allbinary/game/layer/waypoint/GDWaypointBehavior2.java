@@ -287,6 +287,9 @@ extends GDWaypointBehavior
                 this.setWaypointPathsList(BasicArrayListUtil.getInstance().getImmutableInstance());
                 this.setTarget((PathFindingLayerInterface) currentTargetLayerInterface);
             }
+//            else {
+//                LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target has not moved").toString(), this, "turnTo"));
+//            }
         }
     }
     
@@ -442,7 +445,8 @@ extends GDWaypointBehavior
                         this.associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(
                                 ALL_VISITED_SHORT, BasicColorFactory.getInstance().GREEN);
                         
-                        this.removeWaypoint((PathFindingLayerInterface) this.currentTargetLayerInterface, ALL_VISITED);
+                        this.updatePathOnTargetMove();
+                        //this.removeWaypoint((PathFindingLayerInterface) this.currentTargetLayerInterface, ALL_VISITED);
                     }
                 }
                 else // If close to waypoint and not getting closer then
@@ -766,7 +770,9 @@ extends GDWaypointBehavior
 
             this.associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(
                     ALREADY_THERE_SHORT, BasicColorFactory.getInstance().YELLOW);
-            this.removeWaypoint(waypointLayer, ALREADY_THERE);
+            
+            this.updatePathOnTargetMove();
+            //this.removeWaypoint(waypointLayer, ALREADY_THERE);
         }
     }
     private static final BasicArrayList runningWaypointPathList = new BasicArrayList();
