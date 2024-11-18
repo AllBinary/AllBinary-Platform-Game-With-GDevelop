@@ -131,7 +131,7 @@ Created By: Travis Berthelot
         import org.allbinary.math.AngleFactory;
         import org.allbinary.math.AngleInfo;
         import org.allbinary.math.FrameUtil;
-        import org.allbinary.math.LayerDistanceUtil;
+        //import org.allbinary.math.LayerDistanceUtil;
         import org.allbinary.string.CommonPhoneStrings;
         import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackGeographicMapCellType;
         import org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory;
@@ -1106,18 +1106,14 @@ Created By: Travis Berthelot
 
     }
 
-    private final LayerDistanceUtil layerDistanceUtil = LayerDistanceUtil.getInstance();
     private GDGameLayer targetGDGameLayer = null;    
     public void setTarget(final PathFindingLayerInterface targetGameLayer) throws Exception {
         this.targetGDGameLayer = (GDGameLayer) targetGameLayer;
         this.pathAnimation = this.initPathAnimation;
         this.captionAnimation = this.captionAnimationHelper;
         
-        final int anotherTargetDistance = layerDistanceUtil.getDistance(
-            (AllBinaryLayer) this, (AllBinaryLayer) targetGameLayer);
-
         final WaypointBehaviorBase waypointBehaviorBase = this.getWaypointBehavior();
-        waypointBehaviorBase.setTarget((PathFindingLayerInterface) targetGameLayer, anotherTargetDistance);
+        waypointBehaviorBase.setTarget((PathFindingLayerInterface) targetGameLayer);
     }
             
     public void updateWaypointBehavior(final BasicGeographicMap geographicMapInterface) throws Exception {

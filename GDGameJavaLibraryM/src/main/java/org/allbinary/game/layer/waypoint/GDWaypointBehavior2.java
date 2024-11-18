@@ -269,6 +269,15 @@ extends GDWaypointBehavior
             }
         }
     }
+
+    public void setTarget(final PathFindingLayerInterface layerInterface)
+        throws Exception
+    {
+        final int anotherTargetDistance = layerDistanceUtil.getDistance(
+            (AllBinaryLayer) this.associatedAdvancedRTSGameLayer, (AllBinaryLayer) layerInterface);
+        
+        this.setTarget(layerInterface, anotherTargetDistance);
+    }
     
     public void setTarget(final PathFindingLayerInterface layerInterface, final int anotherTargetDistance)
         throws Exception
