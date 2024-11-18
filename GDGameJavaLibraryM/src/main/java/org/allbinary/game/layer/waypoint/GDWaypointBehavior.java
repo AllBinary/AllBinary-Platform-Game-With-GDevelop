@@ -173,6 +173,11 @@ public class GDWaypointBehavior
     
     protected void setRandomGeographicMapCellHistory(final BasicArrayList pathsList) throws Exception
     {
+        if(pathsList == null) {
+            LogUtil.put(LogFactory.getInstance(this.getName() + " pathsList is null", this, "setRandomGeographicMapCellHistory"));
+            return;
+        }
+
         final int size = pathsList.size();
         
         this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().setRandomGeographicMapCellHistory(this.associatedAdvancedRTSGameLayer, pathsList);
@@ -218,9 +223,7 @@ public class GDWaypointBehavior
         }
         else if (this.targetList.contains(rtsLayer))
         {
-            //LogUtil.put(LogFactory.getInstance(
-            //  this.getName() + " Already Contains Same Waypoint: " +
-            //rtsLayer.getName(), this, "insertWaypoint"));
+            //LogUtil.put(LogFactory.getInstance(this.getName() + " Already Contains Same Waypoint: " + rtsLayer.getName(), this, "insertWaypoint"));
         }
         else
         {
