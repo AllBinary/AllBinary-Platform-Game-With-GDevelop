@@ -702,11 +702,12 @@ extends GDWaypointBehavior
         }
     }
 
-    private void updateCurrentPathGeographicMapCellPosition()
+    private void updateCurrentPathGeographicMapCellPosition() throws Exception
     {
         this.setLastPathGeographicMapCellPosition(this.getCurrentPathGeographicMapCellPosition());
 
-        this.setCurrentPathGeographicMapCellPosition(this.nextUnvisitedPathGeographicMapCellPosition);
+        //this.setCurrentPathGeographicMapCellPosition(this.nextUnvisitedPathGeographicMapCellPosition);
+        this.setCurrentPathGeographicMapCellPosition(this.associatedAdvancedRTSGameLayer.getCurrentGeographicMapCellPosition());
 
         this.setNextUnvisitedPathGeographicMapCellPosition(this.currentGeographicMapCellHistory.getFirstUnvisited());
         this.afterNextUnvisitedPathGeographicMapCellPosition = 
@@ -783,10 +784,15 @@ extends GDWaypointBehavior
         }
     }
     
-    private void clearTarget() throws Exception
+    public void clearTarget() throws Exception
     {
         this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().clearTarget(this.associatedAdvancedRTSGameLayer);
 
+//        this.currentGeographicMapCellHistory.init();
+//        this.setCurrentPathGeographicMapCellPosition(null);
+//        this.setNextUnvisitedPathGeographicMapCellPosition(null);
+//        this.waitingOnWaypointPath = false;
+        
         //this.waypointPathsList = BasicArrayListUtil.getImmutableInstance();
         this.setCurrentTargetLayerInterface(null);
         this.setTrackingWaypoint(false);
