@@ -19,9 +19,10 @@ import org.allbinary.math.LayerDistanceUtil;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
-import org.allbinary.thread.SecondaryThreadPool;
+import org.allbinary.thread.PathFindingThreadPool;
 import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.BasicArrayListUtil;
 
 public class GDWaypointBehavior2 
 extends GDWaypointBehavior
@@ -103,6 +104,11 @@ extends GDWaypointBehavior
     public void processTick(final AllBinaryLayerManager allBinaryLayerManager)
     throws Exception
     {
+
+        if(this.getCurrentGeographicMapCellHistory().getTotalVisited() > this.getCurrentGeographicMapCellHistory().getTotalNotVisited()) {
+            this.updatePathOnTargetMove();
+        }
+        
         if (this.waypointPathRunnable.isRunning())
         {
             //thread is done
@@ -270,6 +276,20 @@ extends GDWaypointBehavior
         }
     }
 
+    public void updatePathOnTargetMove() throws Exception {
+        
+        final CollidableDestroyableDamageableLayer currentTargetLayerInterface = this.currentTargetLayerInterface;
+        if(currentTargetLayerInterface != null) {
+            final GeographicMapCellPosition geographicMapCellPosition = ((PathFindingLayerInterface) currentTargetLayerInterface).getCurrentGeographicMapCellPosition();
+
+            if (this.currentTargetGeographicMapCellPosition != geographicMapCellPosition) {
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target moved so retargeting").toString(), this, "turnTo"));
+                this.setWaypointPathsList(BasicArrayListUtil.getInstance().getImmutableInstance());
+                this.setTarget((PathFindingLayerInterface) currentTargetLayerInterface);
+            }
+        }
+    }
+    
     public void setTarget(final PathFindingLayerInterface layerInterface)
         throws Exception
     {
@@ -773,7 +793,7 @@ extends GDWaypointBehavior
         this.waypointPathRunnable.setTargetLayer(waypointLayer);
         this.waypointPathRunnable.setGeographicMapCellPosition(geographicMapCellPosition);
 
-        SecondaryThreadPool.getInstance().runTask(this.waypointPathRunnable);
+        PathFindingThreadPool.getInstance().runTask(this.waypointPathRunnable);
     }
 
     private void removeWaypoint(final PathFindingLayerInterface waypointLayer, final String reason) throws Exception

@@ -44,6 +44,7 @@ public class GDObject
     
     public final GDBehavior[] behaviorArray = new GDBehavior[GDBehaviorUtil.getInstance().MAX];
     public final boolean[] isBehaviorEnabledArray = new boolean[10]; //BEHAVIOR_MAX
+    public final boolean[] hasBehaviorArray = new boolean[10]; //BEHAVIOR_MAX
     
     public int x;
     public int y;

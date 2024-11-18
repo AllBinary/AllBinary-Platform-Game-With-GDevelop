@@ -49,6 +49,7 @@ public class GDWaypointBehavior
     
     private int currentTargetDistance = Integer.MAX_VALUE;
     protected CollidableDestroyableDamageableLayer currentTargetLayerInterface;
+    protected GeographicMapCellPosition currentTargetGeographicMapCellPosition;
     
     private boolean trackingWaypoint;
     
@@ -403,9 +404,14 @@ public class GDWaypointBehavior
         return targetList;
     }
 
-    protected void setCurrentTargetLayerInterface(CollidableDestroyableDamageableLayer currentTargetLayerInterface)
+    protected void setCurrentTargetLayerInterface(CollidableDestroyableDamageableLayer currentTargetLayerInterface) throws Exception
     {
         this.currentTargetLayerInterface = currentTargetLayerInterface;
+        if(this.currentTargetLayerInterface != null) {
+            this.currentTargetGeographicMapCellPosition = ((PathFindingLayerInterface) this.currentTargetLayerInterface).getCurrentGeographicMapCellPosition();            
+        } else {
+            this.currentTargetGeographicMapCellPosition = null;
+        }
     }
 
     public CollidableDestroyableDamageableLayer getCurrentTargetLayerInterface()

@@ -1080,29 +1080,33 @@ Created By: Travis Berthelot
         }
     }
     
+    private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();    
     public void setAllBinaryGameLayerManager(final AllBinaryGameLayerManager allBinaryGameLayerManager) throws Exception {
 
         super.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
 
-        final GeographicMapCompositeInterface geographicMapCompositeInterface = 
-            (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
-        final BasicGeographicMap[] basicGeographicMapArray = geographicMapCompositeInterface.getGeographicMapInterface();
+        if(this.gdObject.hasBehaviorArray[gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX]) {
 
-        if(basicGeographicMapArray != null) {
-            final BasicGeographicMap geographicMapInterface = basicGeographicMapArray[0];
+            final GeographicMapCompositeInterface geographicMapCompositeInterface
+                = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+            final BasicGeographicMap[] basicGeographicMapArray = geographicMapCompositeInterface.getGeographicMapInterface();
+
+            if (basicGeographicMapArray != null) {
+                final BasicGeographicMap geographicMapInterface = basicGeographicMapArray[0];
 
 //            final AllBinaryTiledLayer tiledLayer = geographicMapInterface.getAllBinaryTiledLayer();
 //            final TileLayerPositionIntoViewPosition viewPosition2
 //                = (TileLayerPositionIntoViewPosition) this.getViewPosition();
 //            viewPosition2.setTiledLayer(tiledLayer);
+                this.updateWaypointBehavior(geographicMapInterface);
+                //System.out.println("map: " + this);
+            } else {
+                //System.out.println("no map: " + this);
+            }
 
-            this.updateWaypointBehavior(geographicMapInterface);
-            //System.out.println("map: " + this);
-        } else {
-            //System.out.println("no map: " + this);
+            this.initPathAnimation.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
+
         }
-        
-        this.initPathAnimation.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
 
     }
 
@@ -1513,6 +1517,7 @@ Created By: Travis Berthelot
             } else {
                 LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(' ').append(geographicMapCellHistory.getTotalVisited()).append(' ').append(currentGeographicMapCellPosition).append(" - trying to move but not on path: ").append(pathList).toString(), this, "turnTo"));
                 //this.getWaypointBehavior().clearTarget();
+                this.getWaypointBehavior().updatePathOnTargetMove();
                 return true;
             }
 

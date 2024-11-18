@@ -61,6 +61,7 @@ Created By: Travis Berthelot
                 import org.allbinary.AndroidUtil;
                 import org.allbinary.game.layer.SWTUtil;
                 import org.allbinary.game.layer.GDGameLayer;
+                import org.allbinary.game.layer.behavior.GDBehaviorUtil;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layout.GDObjectFactory;
                 
@@ -89,6 +90,8 @@ Created By: Travis Berthelot
 
                     private final StringUtil stringUtil = StringUtil.getInstance();
                     
+                    private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
+
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                     
                     <xsl:call-template name="objectsClassPropertyGDObjects" >

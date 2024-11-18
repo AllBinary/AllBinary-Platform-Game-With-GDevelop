@@ -70,6 +70,7 @@ Created By: Travis Berthelot
                 
                 import org.allbinary.logic.string.CommonStrings;
                 import org.allbinary.util.ArrayUtil;
+                import org.allbinary.util.BasicArrayList;
 
                 //Game name=<xsl:value-of select="$gameName" />
                 public class GDGlobalsSpecialAnimation extends GDSpecialAnimation
