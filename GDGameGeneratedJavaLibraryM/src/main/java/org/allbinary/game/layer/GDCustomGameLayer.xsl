@@ -133,6 +133,8 @@ Created By: Travis Berthelot
         import org.allbinary.math.FrameUtil;
         import org.allbinary.math.LayerDistanceUtil;
         import org.allbinary.string.CommonPhoneStrings;
+        import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackGeographicMapCellType;
+        import org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory;
             
         </xsl:if>
 
