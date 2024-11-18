@@ -1476,7 +1476,7 @@ Created By: Travis Berthelot
 //        int absoluteDeltaAngle = Math.abs(deltaAngle);
           //absoluteDeltaAngle == 0 || 
           //() || 
-        if(Math.abs(dx) < 3 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> Math.abs(dy) < 3) {
+        if(Math.abs(dx) <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 3 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> Math.abs(dy) <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 3) {
         //if(dx == 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> dy == 0) {
             
             this.rtsLogHelper.doneMoving(this);
