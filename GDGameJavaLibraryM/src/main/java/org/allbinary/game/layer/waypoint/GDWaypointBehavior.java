@@ -408,7 +408,8 @@ public class GDWaypointBehavior
     {
         this.currentTargetLayerInterface = currentTargetLayerInterface;
         if(this.currentTargetLayerInterface != null) {
-            this.currentTargetGeographicMapCellPosition = ((PathFindingLayerInterface) this.currentTargetLayerInterface).getCurrentGeographicMapCellPosition();            
+            this.currentTargetGeographicMapCellPosition = ((PathFindingLayerInterface) this.currentTargetLayerInterface).getCurrentGeographicMapCellPosition();
+            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target? ").append(this.currentTargetGeographicMapCellPosition).append(' ').append(this.currentTargetLayerInterface).toString(), this, "updatePathOnTargetMove"));            
         } else {
             this.currentTargetGeographicMapCellPosition = null;
         }

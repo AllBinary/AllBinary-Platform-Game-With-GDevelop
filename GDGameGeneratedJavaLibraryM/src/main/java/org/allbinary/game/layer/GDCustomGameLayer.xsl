@@ -112,13 +112,14 @@ Created By: Travis Berthelot
         import org.allbinary.game.layer.waypoint.GDWaypointBehavior;
         import org.allbinary.game.layer.waypoint.GDWaypointBehavior2;
         import org.allbinary.game.layer.waypoint.Waypoint;
-        import org.allbinary.game.layer.waypoint.Waypoint;
+        import org.allbinary.game.layer.waypoint.NoCacheWaypoint;
         import org.allbinary.game.layer.waypoint.Waypoint2LogHelper;
         import org.allbinary.game.layer.waypoint.WaypointLogHelper;
         import org.allbinary.game.layer.waypoint.WaypointRunnableLogHelper;
         import org.allbinary.game.layer.waypoint.Waypoint2SelectedLogHelper;
         import org.allbinary.game.layer.waypoint.WaypointSelectedLogHelper;
         import org.allbinary.game.layer.waypoint.WaypointRunnableSelectedLogHelper;
+        import org.allbinary.game.layer.waypoint.WaypointBase;
         import org.allbinary.game.tracking.TrackingEvent;
         import org.allbinary.game.tracking.TrackingEventHandler;
         import org.allbinary.game.view.TileLayerPositionIntoViewPosition;
@@ -164,16 +165,16 @@ Created By: Travis Berthelot
 
                     private WaypointBehaviorBase waypointBehaviorBase = new WaypointBehaviorBase();
             
-                    //protected RTSLayerLogHelper rtsLogHelper = RTSLayerLogHelper.getInstance();
-                    //public RTSLayer2LogHelper rtsLayer2LogHelper = RTSLayer2LogHelper.getInstance();
-                    //public WaypointLogHelper waypointLogHelper = WaypointLogHelper.getInstance();
-                    //public Waypoint2LogHelper waypoint2LogHelper = Waypoint2LogHelper.getInstance();
-                    //public WaypointRunnableLogHelper waypointRunnableLogHelper = WaypointRunnableLogHelper.getInstance();
-                    protected RTSLayerLogHelper rtsLogHelper = RTSLayerSelectedLogHelper.getInstance();
-                    public RTSLayer2LogHelper rtsLayer2LogHelper = RTSLayer2SelectedLogHelper.getInstance();
-                    public WaypointLogHelper waypointLogHelper = WaypointSelectedLogHelper.getInstance();
-                    public Waypoint2LogHelper waypoint2LogHelper = Waypoint2SelectedLogHelper.getInstance();
-                    public WaypointRunnableLogHelper waypointRunnableLogHelper = WaypointRunnableSelectedLogHelper.getInstance();
+                    protected RTSLayerLogHelper rtsLogHelper = RTSLayerLogHelper.getInstance();
+                    public RTSLayer2LogHelper rtsLayer2LogHelper = RTSLayer2LogHelper.getInstance();
+                    public WaypointLogHelper waypointLogHelper = WaypointLogHelper.getInstance();
+                    public Waypoint2LogHelper waypoint2LogHelper = Waypoint2LogHelper.getInstance();
+                    public WaypointRunnableLogHelper waypointRunnableLogHelper = WaypointRunnableLogHelper.getInstance();
+                    //protected RTSLayerLogHelper rtsLogHelper = RTSLayerSelectedLogHelper.getInstance();
+                    //public RTSLayer2LogHelper rtsLayer2LogHelper = RTSLayer2SelectedLogHelper.getInstance();
+                    //public WaypointLogHelper waypointLogHelper = WaypointSelectedLogHelper.getInstance();
+                    //public Waypoint2LogHelper waypoint2LogHelper = Waypoint2SelectedLogHelper.getInstance();
+                    //public WaypointRunnableLogHelper waypointRunnableLogHelper = WaypointRunnableSelectedLogHelper.getInstance();
 
                     private final PathAnimation initPathAnimation;
                     private Animation pathAnimation = NullAnimationFactory.getFactoryInstance().getInstance(0);
@@ -1074,9 +1075,9 @@ Created By: Travis Berthelot
         final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
         if(this.gdObject.isBehaviorEnabledArray[gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX]) {
             this.captionAnimationHelper.tick();
-            if(!this.isDestination(this.targetGDGameLayer)) {
+            //if(!this.isDestination(this.targetGDGameLayer)) {
                 //this.pathAnimation = NullAnimationFactory.getFactoryInstance().getInstance(0);
-            }
+            //}
             this.waypointBehaviorBase.processTick(allBinaryLayerManager);
         }
     }
@@ -1140,7 +1141,7 @@ Created By: Travis Berthelot
 
         this.updateWaypointBehavior2(geographicMapInterface);
             
-        final Waypoint waypoint = new Waypoint(this, AttackSound.getInstance(), false);
+        final WaypointBase waypoint = new NoCacheWaypoint(this, AttackSound.getInstance());
         waypoint.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
         this.waypointBehaviorBase.setWaypoint(waypoint);
         
@@ -1225,7 +1226,7 @@ Created By: Travis Berthelot
         return this.showMoreCaptionStates;
     }
     
-    private static final String REMOVING_LAST_CELLPOSITION = "Removing last cell position in path: ";
+    //private static final String REMOVING_LAST_CELLPOSITION = "Removing last cell position in path: ";
     public void init(final GeographicMapCellHistory geographicMapCellHistory,
         final BasicArrayList geographicMapCellPositionBasicArrayList) throws Exception { 
         
@@ -1240,7 +1241,7 @@ Created By: Travis Berthelot
         final BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory = (BasicTopViewGeographicMapCellTypeFactory) geographicMapInterface.getGeographicMapCellTypeFactory();
         if(geographicMapCellType.getTravelCost() == basicTopViewGeographicMapCellTypeFactory.BLOCK_CELL_TYPE.cost) {
             geographicMapCellPositionBasicArrayList.remove(geographicMapCellPosition);
-            LogUtil.put(LogFactory.getInstance(REMOVING_LAST_CELLPOSITION + geographicMapCellPosition, this, CommonStrings.getInstance().INIT));
+            //LogUtil.put(LogFactory.getInstance(REMOVING_LAST_CELLPOSITION + geographicMapCellPosition, this, CommonStrings.getInstance().INIT));
         }
         
         geographicMapCellHistory.track(geographicMapCellPositionBasicArrayList);
@@ -1487,8 +1488,12 @@ Created By: Travis Berthelot
             this.rtsLogHelper.doneMoving(this);
             
             //TWB - This is probably covering up and issue with the existing visit logic.
-            geographicMapCellHistory.visit(currentGeographicMapCellPosition);
-            this.waypoint2LogHelper.processWaypointTracked(this, currentGeographicMapCellPosition);
+            if(geographicMapCellHistory.visit(currentGeographicMapCellPosition)) {
+                this.waypoint2LogHelper.processWaypointTracked(this, currentGeographicMapCellPosition);
+            } else {
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(" - finished moving without progress: ").append(geographicMapCellHistory.getVisited()).toString(), this, "turnTo"));
+                this.getWaypointBehavior().updatePathOnTargetMove();
+            }
 
             return true;
         } else if(this.movementAngle == angle) {
@@ -1518,8 +1523,7 @@ Created By: Travis Berthelot
             }
 
             } else {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(' ').append(geographicMapCellHistory.getTotalVisited()).append(' ').append(currentGeographicMapCellPosition).append(" - trying to move but not on path: ").append(pathList).toString(), this, "turnTo"));
-                //this.getWaypointBehavior().clearTarget();
+                this.rtsLogHelper.notOnPath(this, geographicMapCellHistory, currentGeographicMapCellPosition, pathList);
                 this.getWaypointBehavior().updatePathOnTargetMove();
                 return true;
             }
@@ -1596,7 +1600,7 @@ Created By: Travis Berthelot
         
     }
     
-    public boolean isDestination(final GDGameLayer gdGameLayer) throws Exception {
+<!--    public boolean isDestination(final GDGameLayer gdGameLayer) throws Exception {
         
         if(gdGameLayer == null) {
             return false;
@@ -1626,7 +1630,7 @@ Created By: Travis Berthelot
         }
         //System.out.println("isDestination not target - false");
         return false;
-    }
+    }-->
 
     public void forward()
     throws Exception
