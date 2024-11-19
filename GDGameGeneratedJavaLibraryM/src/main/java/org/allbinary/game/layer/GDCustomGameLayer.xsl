@@ -135,6 +135,7 @@ Created By: Travis Berthelot
         import org.allbinary.string.CommonPhoneStrings;
         import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackGeographicMapCellType;
         import org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory;
+        import org.allbinary.thread.PathFindingThreadPool;
             
         </xsl:if>
 
