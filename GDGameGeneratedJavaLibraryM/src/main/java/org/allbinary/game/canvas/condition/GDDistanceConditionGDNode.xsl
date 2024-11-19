@@ -129,7 +129,7 @@ Created By: Travis Berthelot
                             final int initialSize2 = gdGameLayerList2.size();
                             gameLayer2 = (GDGameLayer) gdGameLayerList2.get(index2);
                             
-                        <xsl:if test="contains($param3, '.') and not(contains($gdObjectName, 'GlobalVariable(gameGlobals'))" >
+                        <xsl:if test="contains($param3, '.') and not(contains($gdObjectName, 'Variable('))" >
                             GDObject <xsl:value-of select="$gdObjectName" /> = gameLayer.gdObject;
                         </xsl:if>
                             
@@ -207,7 +207,7 @@ Created By: Travis Berthelot
                         
                             super.processGDStats(gameLayer);
 
-                        <xsl:if test="contains($param3, '.') and not(contains($gdObjectName, 'GlobalVariable(gameGlobals'))" >
+                        <xsl:if test="contains($param3, '.') and not(contains($gdObjectName, 'Variable('))" >
                             GDObject <xsl:value-of select="$gdObjectName" /> = gameLayer.gdObject;
                         </xsl:if>
                             
