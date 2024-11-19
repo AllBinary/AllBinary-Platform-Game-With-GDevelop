@@ -1164,8 +1164,8 @@ Created By: Travis Berthelot
             
     public BasicArrayList getEndGeographicMapCellPositionList() throws Exception {
         
-        final GeographicMapCompositeInterface geographicMapCompositeInterface
-            = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+        final GeographicMapCompositeInterface geographicMapCompositeInterface = 
+            (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
         final BasicGeographicMap geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
 
         geographicMapCellPositionArea.update(geographicMapInterface);
@@ -1256,7 +1256,7 @@ Created By: Travis Berthelot
         final BasicGeographicMap geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
         
         final GeographicMapCellPosition geographicMapCellPosition =
-            geographicMapInterface.getCellPositionAt(
+            geographicMapInterface.getCellPositionAtNoThrow(
             this.x + this.getHalfWidth(),
             this.y + this.getHalfHeight());
 
@@ -1271,7 +1271,22 @@ Created By: Travis Berthelot
 
         return geographicMapCellPosition;
     }
-            
+
+    public GeographicMapCellPosition getTopLeftGeographicMapCellPosition()
+    throws Exception
+    {
+        final GeographicMapCompositeInterface geographicMapCompositeInterface
+            = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+        final BasicGeographicMap geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
+        
+        final GeographicMapCellPosition geographicMapCellPosition =
+            geographicMapInterface.getCellPositionAtNoThrow(
+            this.x,
+            this.y);
+
+        return geographicMapCellPosition;
+    }
+
     public BasicArrayList getMoveOutOfBuildAreaPath(
         final GeographicMapCellPosition geographicMapCellPosition) {
         return null;

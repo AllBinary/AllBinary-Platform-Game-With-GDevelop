@@ -189,12 +189,22 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
     }
 
     //TWB temp hack for the strange positioning I use for GD builds.
+    @Override
     public GeographicMapCellPosition getCellPositionAt(final int x, final int y) throws Exception
     {
         final AllBinaryTiledLayer allBinaryTiledLayer = this.getAllBinaryTiledLayer();
         //ForcedLogUtil.log(new StringMaker().append("getCellPositionAt").append(x + allBinaryTiledLayer.getX()).append(',').append(y + allBinaryTiledLayer.getY()).toString(), this);
         return super.getCellPositionAt(x + allBinaryTiledLayer.getX(), y + allBinaryTiledLayer.getY());
         //return super.getCellPositionAt(x, y);
+    }
+
+    @Override
+    public GeographicMapCellPosition getCellPositionAtNoThrow(final int x, final int y) throws Exception
+    {
+        final AllBinaryTiledLayer allBinaryTiledLayer = this.getAllBinaryTiledLayer();
+        //ForcedLogUtil.log(new StringMaker().append("getCellPositionAt").append(x + allBinaryTiledLayer.getX()).append(',').append(y + allBinaryTiledLayer.getY()).toString(), this);
+        return super.getCellPositionAtNoThrow(x + allBinaryTiledLayer.getX(), y + allBinaryTiledLayer.getY());
+        //return super.getCellPositionAtNoThrow(x, y);
     }
     
 }

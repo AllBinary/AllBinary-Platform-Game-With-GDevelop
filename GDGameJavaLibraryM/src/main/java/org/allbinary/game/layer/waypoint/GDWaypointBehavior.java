@@ -244,6 +244,10 @@ public class GDWaypointBehavior
         final GeographicMapCellPosition geographicMapCellPosition = 
             this.associatedAdvancedRTSGameLayer.getCurrentGeographicMapCellPosition();
 
+        if(geographicMapCellPosition == null) {
+            return;
+        }
+        
         final BasicArrayList list = buildingLayer.getGeographicMapCellPositionArea()
                 .getOccupyingGeographicMapCellPositionList();
 

@@ -284,15 +284,19 @@ extends GDWaypointBehavior
             if (currentTargetLayerInterface != null) {
                 final GeographicMapCellPosition geographicMapCellPosition = ((PathFindingLayerInterface) currentTargetLayerInterface).getCurrentGeographicMapCellPosition();
 
+                if (geographicMapCellPosition == null) {
+                    return;
+                }
+                
                 //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - retarget? ").append(this.currentTargetGeographicMapCellPosition).append(' ').append(geographicMapCellPosition).toString(), this, "updatePathOnTargetMove"));
                 if (this.currentTargetGeographicMapCellPosition != geographicMapCellPosition) {
                     this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().targetMovedSoRetarget(this.associatedAdvancedRTSGameLayer);
                     this.setWaypointPathsList(BasicArrayListUtil.getInstance().getImmutableInstance());
                     this.setTarget((PathFindingLayerInterface) currentTargetLayerInterface);
                 }
-//            else {
-//                LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target has not moved").toString(), this, "turnTo"));
-//            }
+            else {
+                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target has not moved").toString(), this, "turnTo"));
+            }
             } else {
                 throw new RuntimeException();
             }
@@ -332,6 +336,10 @@ extends GDWaypointBehavior
             final GeographicMapCellPosition geographicMapCellPosition =
                 associatedAdvancedRTSGameLayer.getCurrentGeographicMapCellPosition();
 
+            if (geographicMapCellPosition == null) {
+                return;
+            }
+            
             final WaypointBase waypoint = ((PathFindingLayerInterface) 
                 this.currentTargetLayerInterface).getWaypointBehavior().getWaypoint();
             
@@ -426,6 +434,10 @@ extends GDWaypointBehavior
                 final GeographicMapCellPosition geographicMapCellPosition =
                     this.associatedAdvancedRTSGameLayer.getCurrentGeographicMapCellPosition();
 
+                if (geographicMapCellPosition == null) {
+                    return;
+                }
+                
                 if (this.isTrackingWaypoint())
                 {
                     //
@@ -638,10 +650,7 @@ extends GDWaypointBehavior
 
             this.associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(
                     THINKING_ABOUT_TARGET, BasicColorFactory.getInstance().GREEN);
-
-            final GeographicMapCellPosition geographicMapCellPosition =
-                this.associatedAdvancedRTSGameLayer.getCurrentGeographicMapCellPosition();
-            
+                        
             //TWBAdvancedRTSGameLayer
             this.runWaypointPathTask(
                 (PathFindingLayerInterface) this.currentTargetLayerInterface);
