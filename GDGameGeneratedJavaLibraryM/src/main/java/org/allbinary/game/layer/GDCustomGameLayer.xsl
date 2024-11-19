@@ -1647,18 +1647,19 @@ Created By: Travis Berthelot
         return false;
     }-->
 
+    public int direction = 0;
     public void forward()
     throws Exception
     {
         //TWB - temp hack for path finding to work
         final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
-        if (Enemies.direction == 0) {
+        if (this.direction == 0) {
             Enemies.setX(Enemies.x + -(gameGlobals.speed / 2));
-        } else if (Enemies.direction == 1) {
+        } else if (this.direction == 1) {
             Enemies.setX(Enemies.x + (gameGlobals.speed / 2));
-        } else if (Enemies.direction == 2) {
+        } else if (this.direction == 2) {
             Enemies.setY(Enemies.y + -(gameGlobals.speed / 2));
-        } else if (Enemies.direction == 3) {
+        } else if (this.direction == 3) {
             Enemies.setY(Enemies.y + (gameGlobals.speed / 2));
         }
         this.updatePosition();
@@ -1670,16 +1671,17 @@ Created By: Travis Berthelot
     {
         //TWB - temp hack for path finding to work
         final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
-        if(Enemies.direction == 0) {
-            Enemies.direction = 2;
-        } else if(Enemies.direction == 1) {
-            Enemies.direction = 3;
-        } else if(Enemies.direction == 2) {
-            Enemies.direction = 1;
-        } else if(Enemies.direction == 3) {
-            Enemies.direction = 0;
+        if(this.direction == 0) {
+            this.direction = 2;
+        } else if(this.direction == 1) {
+            this.direction = 3;
+        } else if(this.direction == 2) {
+            this.direction = 1;
+        } else if(this.direction == 3) {
+            this.direction = 0;
         }
-        final String animationName = gdObject.getAnimation(this.gdObject.ObjectName() + gameGlobals.walkAnimationArray[Enemies.direction]);
+        Enemies.direction = this.direction;
+        final String animationName = gdObject.getAnimation(this.gdObject.ObjectName() + gameGlobals.walkAnimationArray[this.direction]);
         if(gdObject.setAnimation(animationName)) this.resetAnimation();
         
         this.updateAngle();
@@ -1691,16 +1693,17 @@ Created By: Travis Berthelot
     {
         //TWB - temp hack for path finding to work
         final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
-        if(Enemies.direction == 0) {
-            Enemies.direction = 3;
-        } else if(Enemies.direction == 1) {
-            Enemies.direction = 2;
-        } else if(Enemies.direction == 2) {
-            Enemies.direction = 0;
-        } else if(Enemies.direction == 3) {
-            Enemies.direction = 1;
+        if(this.direction == 0) {
+            this.direction = 3;
+        } else if(this.direction == 1) {
+            this.direction = 2;
+        } else if(this.direction == 2) {
+            this.direction = 0;
+        } else if(this.direction == 3) {
+            this.direction = 1;
         }
-        final String animationName = gdObject.getAnimation(this.gdObject.ObjectName() + gameGlobals.walkAnimationArray[Enemies.direction]);
+        Enemies.direction = this.direction;
+        final String animationName = gdObject.getAnimation(this.gdObject.ObjectName() + gameGlobals.walkAnimationArray[this.direction]);
         if(gdObject.setAnimation(animationName)) this.resetAnimation();
 
         this.updateAngle();
@@ -1710,13 +1713,13 @@ Created By: Travis Berthelot
     public void updateAngle() {
         final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
         final AngleFactory angleFactory = AngleFactory.getInstance();
-        if (Enemies.direction == 0) {
+        if (this.direction == 0) {
             Enemies.setAngle(angleFactory.LEFT.getValue(), this);
-        } else if (Enemies.direction == 1) {
+        } else if (this.direction == 1) {
             Enemies.setAngle(angleFactory.RIGHT.getValue(), this);
-        } else if (Enemies.direction == 2) {
+        } else if (this.direction == 2) {
             Enemies.setAngle(angleFactory.UP.getValue(), this);
-        } else if (Enemies.direction == 3) {
+        } else if (this.direction == 3) {
             Enemies.setAngle(angleFactory.DOWN.getValue(), this);
         }
     }
