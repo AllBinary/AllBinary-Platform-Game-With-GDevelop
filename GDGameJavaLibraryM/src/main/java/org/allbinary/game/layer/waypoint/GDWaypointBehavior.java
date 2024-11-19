@@ -175,7 +175,7 @@ public class GDWaypointBehavior
     protected void setRandomGeographicMapCellHistory(final BasicArrayList pathsList) throws Exception
     {
         if(pathsList == null) {
-            LogUtil.put(LogFactory.getInstance(this.getName() + " pathsList is null", this, "setRandomGeographicMapCellHistory"));
+            this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().setRandomGeographicMapCellHistory(this.associatedAdvancedRTSGameLayer);
             return;
         }
 
