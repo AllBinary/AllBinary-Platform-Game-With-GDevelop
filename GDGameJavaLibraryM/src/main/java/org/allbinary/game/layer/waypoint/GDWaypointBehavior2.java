@@ -988,7 +988,7 @@ extends GDWaypointBehavior
     }
     
     public void setNextUnvisitedPathGeographicMapCellPosition(final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition) {
-        if(this.nextUnvisitedPathGeographicMapCellPosition != nextUnvisitedPathGeographicMapCellPosition) LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" nextUnvisitedPathGeographicMapCellPosition: ").append(nextUnvisitedPathGeographicMapCellPosition).toString(), this, "setNextUnvisitedPathGeographicMapCellPosition"));
+        this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().setNextUnvisitedPathGeographicMapCellPosition(this.associatedAdvancedRTSGameLayer, this.nextUnvisitedPathGeographicMapCellPosition, nextUnvisitedPathGeographicMapCellPosition);
         this.nextUnvisitedPathGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
     }
 }
