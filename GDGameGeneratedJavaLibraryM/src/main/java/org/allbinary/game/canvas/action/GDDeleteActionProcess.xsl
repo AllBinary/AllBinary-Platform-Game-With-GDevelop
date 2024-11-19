@@ -58,7 +58,7 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                             if(gdGameLayerList.contains(gdGameLayer)) {
-                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + gdGameLayer, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + gdGameLayer, this, commonStrings.PROCESS));
                                 gdGameLayerRemoveList.add(gdGameLayer);
                             } //else {
                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " Already added for deletion from LayerManager: " + gdGameLayer, this, commonStrings.PROCESS));
@@ -91,7 +91,7 @@ Created By: Travis Berthelot
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                         
                                 gdGameLayer = (GDGameLayer) gdGameLayerList.get(index);
-                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + gdGameLayer, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + gdGameLayer, this, commonStrings.PROCESS));
                                 gdGameLayer.setDestroyed(true);
                                 //gdGameLayerRemoveList.add(gdGameLayer);
                             

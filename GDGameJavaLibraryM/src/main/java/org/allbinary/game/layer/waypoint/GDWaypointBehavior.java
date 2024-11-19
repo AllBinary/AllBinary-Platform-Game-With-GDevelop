@@ -377,7 +377,7 @@ public class GDWaypointBehavior
     protected void setCurrentPathGeographicMapCellPosition(
             final GeographicMapCellPosition currentPathGeographicMapCellPosition)
     {
-        if(this.currentPathGeographicMapCellPosition == null) LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" currentPathGeographicMapCellPosition: ").append(currentPathGeographicMapCellPosition).toString(), this, "setCurrentPathGeographicMapCellPosition"));
+        this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().setCurrentPathGeographicMapCellPosition(this.associatedAdvancedRTSGameLayer, this.currentPathGeographicMapCellPosition, currentPathGeographicMapCellPosition);
         this.currentPathGeographicMapCellPosition = currentPathGeographicMapCellPosition;
     }
 

@@ -49,12 +49,11 @@ public class GDFlagLayerInterfaceFactory
     public AllBinaryLayer getInstance(final Hashtable hashtable, final int x, final int y, final int z)
         throws Exception
     {
-        LogUtil.put(LogFactory.getInstance(
-                LayerUtil.toString(hashtable, x, y, z), this, CommonStrings.getInstance().GET_INSTANCE));
+        //LogUtil.put(LogFactory.getInstance(LayerUtil.toString(hashtable, x, y, z), this, CommonStrings.getInstance().GET_INSTANCE));
 
-        final FeaturedAnimationInterfaceFactoryInterfaceFactory 
-        featuredAnimationInterfaceFactoryInterfaceFactory = 
-            FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance();
+        //final FeaturedAnimationInterfaceFactoryInterfaceFactory 
+        //featuredAnimationInterfaceFactoryInterfaceFactory = 
+            //FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance();
         
 //        final VisualWaypointLayer layer = new VisualWaypointLayer(
 //            RemoteInfo.REMOTE_INFO,
