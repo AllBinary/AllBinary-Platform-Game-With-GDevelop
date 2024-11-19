@@ -283,7 +283,7 @@ extends GDWaypointBehavior
             final GeographicMapCellPosition geographicMapCellPosition = ((PathFindingLayerInterface) currentTargetLayerInterface).getCurrentGeographicMapCellPosition();
 
             if (this.currentTargetGeographicMapCellPosition != geographicMapCellPosition) {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target moved so retargeting").toString(), this, "turnTo"));
+                this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().targetMovedSoRetarget(this.associatedAdvancedRTSGameLayer);
                 this.setWaypointPathsList(BasicArrayListUtil.getInstance().getImmutableInstance());
                 this.setTarget((PathFindingLayerInterface) currentTargetLayerInterface);
             }
