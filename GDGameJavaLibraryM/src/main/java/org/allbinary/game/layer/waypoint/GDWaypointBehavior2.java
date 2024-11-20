@@ -1,6 +1,5 @@
 package org.allbinary.game.layer.waypoint;
 
-import org.allbinary.game.GameStrings;
 import org.allbinary.game.layer.AllBinaryTiledLayer;
 import org.allbinary.game.layer.WaypointPathRunnable;
 import org.allbinary.game.layer.PathFindingLayerInterface;
@@ -67,6 +66,9 @@ extends GDWaypointBehavior
     private static final String ALREADY_THERE = "Already There";
     private static final String NEXT_PATH_NODE = "Next Path Node";
 
+    private static final String VISITED_MOST_OF_THE_PATH = " visited most of the path";
+    private static final String RETURNING_AS_WAYPOINT_PATH_LIST = " returning as waypointPathsList was runningWaypointPathList";
+    
     public GDWaypointBehavior2(
             final PathFindingLayerInterface ownerAdvancedRTSGameLayer,
             final CollidableDestroyableDamageableLayer fakeWaypoint)
@@ -103,7 +105,6 @@ extends GDWaypointBehavior
     
     //this could become somewhat event driven with a seperate waypoint processor
     //making it more performant and less polling like
-    private static final String VISITED_MOST_OF_THE_PATH = " visited most of the path";
     public void processTick(final AllBinaryLayerManager allBinaryLayerManager)
     throws Exception
     {
@@ -135,9 +136,8 @@ extends GDWaypointBehavior
             }
             else
             {
-                final String reason = " returning as waypointPathsList was runningWaypointPathList";
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(reason).toString(), this, GameStrings.getInstance().PROCESS_TICK));
-                this.updatePathOnTargetMove(reason);
+                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(reason).toString(), this, GameStrings.getInstance().PROCESS_TICK));
+                this.updatePathOnTargetMove(RETURNING_AS_WAYPOINT_PATH_LIST);
                 return;
             }
         }
@@ -301,7 +301,7 @@ extends GDWaypointBehavior
                 
                 //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - retarget? ").append(this.currentTargetGeographicMapCellPosition).append(' ').append(geographicMapCellPosition).toString(), this, UPDATE_PATH_ON_TARGET_MOVE));
                 if (this.currentTargetGeographicMapCellPosition != geographicMapCellPosition) {
-                    LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(reason).toString(), this, UPDATE_PATH_ON_TARGET_MOVE));
+                    //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(reason).toString(), this, UPDATE_PATH_ON_TARGET_MOVE));
                     
                     this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().targetMovedSoRetarget(this.associatedAdvancedRTSGameLayer);
                     this.setWaypointPathsList(BasicArrayListUtil.getInstance().getImmutableInstance());
