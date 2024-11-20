@@ -1123,9 +1123,7 @@ Created By: Travis Berthelot
 
     }
 
-    private GDGameLayer targetGDGameLayer = null;    
     public void setTarget(final PathFindingLayerInterface targetGameLayer) throws Exception {
-        this.targetGDGameLayer = (GDGameLayer) targetGameLayer;
         this.pathAnimation = this.initPathAnimation;
         this.captionAnimation = this.captionAnimationHelper;
         
