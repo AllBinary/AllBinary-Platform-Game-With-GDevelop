@@ -1513,10 +1513,10 @@ Created By: Travis Berthelot
             if(geographicMapCellHistory.visit(currentGeographicMapCellPosition)) {
                 this.waypoint2LogHelper.processWaypointTracked(this, currentGeographicMapCellPosition);
             } else {
-                final StringMaker stringMaker = new StringMaker();
-                final String reason = stringMaker.append(" - finished moving without progress: ").append(geographicMapCellHistory.getVisited()).toString();
-                stringMaker.delete(0, stringMaker.length());
-                LogUtil.put(LogFactory.getInstance(stringMaker.append(this.getName()).append(reason).toString(), this, "turnTo"));
+                final String reason = 
+                    StringUtil.getInstance().EMPTY_STRING;
+                    //new StringMaker().append(" - finished moving without progress: ").append(geographicMapCellHistory.getVisited()).toString();
+                this.waypoint2LogHelper.processWaypointTrackedWithoutProgress(this, reason);
                 this.getWaypointBehavior().updatePathOnTargetMove(reason);
             }
 
@@ -1548,7 +1548,9 @@ Created By: Travis Berthelot
             }
 
             } else {
-                final String reason = new StringMaker().append(' ').append(geographicMapCellHistory.getTotalVisited()).append(' ').append(currentGeographicMapCellPosition).append(" - trying to move but not on path: ").append(pathList).toString();
+                final String reason = 
+                    StringUtil.getInstance().EMPTY_STRING;
+                    //new StringMaker().append(' ').append(geographicMapCellHistory.getTotalVisited()).append(' ').append(currentGeographicMapCellPosition).append(" - trying to move but not on path: ").append(pathList).toString();
                 this.rtsLogHelper.notOnPath(this, geographicMapCellHistory, currentGeographicMapCellPosition, pathList);
                 this.getWaypointBehavior().updatePathOnTargetMove(reason);
                 return true;
