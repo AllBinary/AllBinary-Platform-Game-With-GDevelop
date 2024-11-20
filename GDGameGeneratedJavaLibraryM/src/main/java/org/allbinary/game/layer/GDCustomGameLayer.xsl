@@ -129,6 +129,7 @@ Created By: Travis Berthelot
         import org.allbinary.media.graphics.geography.map.GeographicMapCellHistory;
         import org.allbinary.layer.Layer;
         import org.allbinary.layer.LayerInterfaceFactoryInterface;
+        import org.allbinary.logic.string.StringUtil;
         import org.allbinary.math.AngleFactory;
         import org.allbinary.math.AngleInfo;
         import org.allbinary.math.FrameUtil;
