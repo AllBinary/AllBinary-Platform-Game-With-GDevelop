@@ -141,6 +141,15 @@ import org.allbinary.media.graphics.geography.map.racetrack.CustomMapGeneratorBa
         </xsl:for-each>
     </xsl:variable>
 
+    <xsl:variable name="hasPathFindingBehaviorInOtherLayouts" >
+        <xsl:for-each select="//behaviorsSharedData" >
+            <xsl:if test="type = 'PathfindingBehavior::PathfindingBehavior'" >found</xsl:if>
+        </xsl:for-each>
+    </xsl:variable>
+                
+    <xsl:if test="contains($hasPathFindingBehaviorInOtherLayouts, 'found')" >
+import org.allbinary.thread.PathFindingThreadPool;
+    </xsl:if>
 
     <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPositionFactoryInitVisitorInterface;
@@ -486,12 +495,6 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             
         PathFindingInfoFactory.init(32768); //This should be the max map height x width for all maps in a game and/or max vertices in a path
         </xsl:if>
-
-        <xsl:variable name="hasPathFindingBehaviorInOtherLayouts" >
-            <xsl:for-each select="//behaviorsSharedData" >
-                <xsl:if test="type = 'PathfindingBehavior::PathfindingBehavior'" >found</xsl:if>
-            </xsl:for-each>
-        </xsl:variable>
                 
         <xsl:if test="contains($hasPathFindingBehaviorInOtherLayouts, 'found')" >
         PathFindingThreadPool.getInstance().clear();
