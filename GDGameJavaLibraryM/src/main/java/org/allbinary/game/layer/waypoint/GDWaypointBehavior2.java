@@ -1,5 +1,6 @@
 package org.allbinary.game.layer.waypoint;
 
+import org.allbinary.game.GameStrings;
 import org.allbinary.game.layer.AllBinaryTiledLayer;
 import org.allbinary.game.layer.WaypointPathRunnable;
 import org.allbinary.game.layer.PathFindingLayerInterface;
@@ -59,8 +60,10 @@ extends GDWaypointBehavior
     private static final String WAYPOINT_DESTROYED_SHORT = "Uh Oh";
     private static final String WAYPOINT_DESTROYED = "Waypoint Destroyed";
     private static final String ALL_VISITED_SHORT = "Arrived";
+    private static final String _ALL_VISITED_SHORT = " Arrived";
     private static final String ALL_VISITED = "All Visited";
     private static final String ALREADY_THERE_SHORT = "Again?";
+    private static final String _ALREADY_THERE_SHORT = " Again?";
     private static final String ALREADY_THERE = "Already There";
     private static final String NEXT_PATH_NODE = "Next Path Node";
 
@@ -100,12 +103,13 @@ extends GDWaypointBehavior
     
     //this could become somewhat event driven with a seperate waypoint processor
     //making it more performant and less polling like
+    private static final String VISITED_MOST_OF_THE_PATH = " visited most of the path";
     public void processTick(final AllBinaryLayerManager allBinaryLayerManager)
     throws Exception
     {
 
         if(this.currentTargetLayerInterface != null && this.getCurrentGeographicMapCellHistory().getTotalVisited() > this.getCurrentGeographicMapCellHistory().getTotalNotVisited()) {
-            this.updatePathOnTargetMove();
+            this.updatePathOnTargetMove(VISITED_MOST_OF_THE_PATH);
         }
         
         if (this.waypointPathRunnable.isRunning())
@@ -131,6 +135,9 @@ extends GDWaypointBehavior
             }
             else
             {
+                final String reason = " returning as waypointPathsList was runningWaypointPathList";
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(reason).toString(), this, GameStrings.getInstance().PROCESS_TICK));
+                this.updatePathOnTargetMove(reason);
                 return;
             }
         }
@@ -143,6 +150,7 @@ extends GDWaypointBehavior
         }
         else
         {
+            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" returning without waypoint processing").toString(), this, GameStrings.getInstance().PROCESS_TICK));
             return;
         }
 
@@ -152,6 +160,7 @@ extends GDWaypointBehavior
         }
         else
         {
+            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" returning without targeting processing").toString(), this, GameStrings.getInstance().PROCESS_TICK));
             return;
         }
 
@@ -161,6 +170,7 @@ extends GDWaypointBehavior
         }
         else
         {
+            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" returning without teleport processing").toString(), this, GameStrings.getInstance().PROCESS_TICK));
             return;
         }
     }
@@ -275,10 +285,11 @@ extends GDWaypointBehavior
         }
     }
 
-    public void updatePathOnTargetMove() throws Exception {
+    private static final String UPDATE_PATH_ON_TARGET_MOVE = "updatePathOnTargetMove";
+    public void updatePathOnTargetMove(final String reason) throws Exception {
         
-        if(this.waypointPathRunnable.isRunning()) {
-            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - already runnning").toString(), this, "updatePathOnTargetMove"));
+        if(this.waypointPathRunnable.isActuallyRunning()) {
+            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - already running in background").toString(), this, UPDATE_PATH_ON_TARGET_MOVE));
         } else {
             final CollidableDestroyableDamageableLayer currentTargetLayerInterface = this.currentTargetLayerInterface;
             if (currentTargetLayerInterface != null) {
@@ -288,14 +299,16 @@ extends GDWaypointBehavior
                     return;
                 }
                 
-                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - retarget? ").append(this.currentTargetGeographicMapCellPosition).append(' ').append(geographicMapCellPosition).toString(), this, "updatePathOnTargetMove"));
+                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - retarget? ").append(this.currentTargetGeographicMapCellPosition).append(' ').append(geographicMapCellPosition).toString(), this, UPDATE_PATH_ON_TARGET_MOVE));
                 if (this.currentTargetGeographicMapCellPosition != geographicMapCellPosition) {
+                    LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(reason).toString(), this, UPDATE_PATH_ON_TARGET_MOVE));
+                    
                     this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().targetMovedSoRetarget(this.associatedAdvancedRTSGameLayer);
                     this.setWaypointPathsList(BasicArrayListUtil.getInstance().getImmutableInstance());
                     this.setTarget((PathFindingLayerInterface) currentTargetLayerInterface);
                 }
             else {
-                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target has not moved").toString(), this, "turnTo"));
+                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target has not moved").toString(), this, UPDATE_PATH_ON_TARGET_MOVE));
             }
             } else {
                 throw new RuntimeException();
@@ -461,7 +474,7 @@ extends GDWaypointBehavior
                         this.associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(
                                 ALL_VISITED_SHORT, BasicColorFactory.getInstance().GREEN);
                         
-                        this.updatePathOnTargetMove();
+                        this.updatePathOnTargetMove(_ALL_VISITED_SHORT);
                         //this.removeWaypoint((PathFindingLayerInterface) this.currentTargetLayerInterface, ALL_VISITED);
                     }
                 }
@@ -785,7 +798,7 @@ extends GDWaypointBehavior
             this.associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(
                     ALREADY_THERE_SHORT, BasicColorFactory.getInstance().YELLOW);
             
-            this.updatePathOnTargetMove();
+            this.updatePathOnTargetMove(_ALREADY_THERE_SHORT);
             //this.removeWaypoint(waypointLayer, ALREADY_THERE);
         }
     }

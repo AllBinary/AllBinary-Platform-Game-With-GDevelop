@@ -486,6 +486,16 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             
         PathFindingInfoFactory.init(32768); //This should be the max map height x width for all maps in a game and/or max vertices in a path
         </xsl:if>
+
+        <xsl:variable name="hasPathFindingBehaviorInOtherLayouts" >
+            <xsl:for-each select="//behaviorsSharedData" >
+                <xsl:if test="type = 'PathfindingBehavior::PathfindingBehavior'" >found</xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
+                
+        <xsl:if test="contains($hasPathFindingBehaviorInOtherLayouts, 'found')" >
+        PathFindingThreadPool.getInstance().clear();
+        </xsl:if>
         
 
     }

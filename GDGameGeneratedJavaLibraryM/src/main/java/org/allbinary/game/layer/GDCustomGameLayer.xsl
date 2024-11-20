@@ -1069,11 +1069,20 @@ Created By: Travis Berthelot
         return true;
     }
 
+<!--    int ox = Integer.MAX_VALUE;
+    int oy = Integer.MAX_VALUE;-->            
     public void processTick(final AllBinaryLayerManager allBinaryLayerManager)
         throws Exception
     {
         final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
         if(this.gdObject.isBehaviorEnabledArray[gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX]) {
+            
+<!--            if(this.x != this.ox || this.y != this.oy) {
+                this.ox = this.x;
+                this.oy = this.y;
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(' ').append(this.x).append(' ').append(this.y).toString(), this, GameStrings.getInstance().PROCESS_TICK));
+            }-->
+            
             this.captionAnimationHelper.tick();
             //if(!this.isDestination(this.targetGDGameLayer)) {
                 //this.pathAnimation = NullAnimationFactory.getFactoryInstance().getInstance(0);
@@ -1506,8 +1515,11 @@ Created By: Travis Berthelot
             if(geographicMapCellHistory.visit(currentGeographicMapCellPosition)) {
                 this.waypoint2LogHelper.processWaypointTracked(this, currentGeographicMapCellPosition);
             } else {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(" - finished moving without progress: ").append(geographicMapCellHistory.getVisited()).toString(), this, "turnTo"));
-                this.getWaypointBehavior().updatePathOnTargetMove();
+                final StringMaker stringMaker = new StringMaker();
+                final String reason = stringMaker.append(" - finished moving without progress: ").append(geographicMapCellHistory.getVisited()).toString();
+                stringMaker.delete(0, stringMaker.length());
+                LogUtil.put(LogFactory.getInstance(stringMaker.append(this.getName()).append(reason).toString(), this, "turnTo"));
+                this.getWaypointBehavior().updatePathOnTargetMove(reason);
             }
 
             return true;
@@ -1538,8 +1550,9 @@ Created By: Travis Berthelot
             }
 
             } else {
+                final String reason = new StringMaker().append(' ').append(geographicMapCellHistory.getTotalVisited()).append(' ').append(currentGeographicMapCellPosition).append(" - trying to move but not on path: ").append(pathList).toString();
                 this.rtsLogHelper.notOnPath(this, geographicMapCellHistory, currentGeographicMapCellPosition, pathList);
-                this.getWaypointBehavior().updatePathOnTargetMove();
+                this.getWaypointBehavior().updatePathOnTargetMove(reason);
                 return true;
             }
 
@@ -1669,8 +1682,6 @@ Created By: Travis Berthelot
     public void right()
     throws Exception
     {
-        //TWB - temp hack for path finding to work
-        final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
         if(this.direction == 0) {
             this.direction = 2;
         } else if(this.direction == 1) {
@@ -1680,6 +1691,8 @@ Created By: Travis Berthelot
         } else if(this.direction == 3) {
             this.direction = 0;
         }
+        //TWB - temp hack for path finding to work
+        final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
         Enemies.direction = this.direction;
         final String animationName = gdObject.getAnimation(this.gdObject.ObjectName() + gameGlobals.walkAnimationArray[this.direction]);
         if(gdObject.setAnimation(animationName)) this.resetAnimation();
@@ -1691,8 +1704,6 @@ Created By: Travis Berthelot
     public void left()
     throws Exception
     {
-        //TWB - temp hack for path finding to work
-        final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
         if(this.direction == 0) {
             this.direction = 3;
         } else if(this.direction == 1) {
@@ -1702,6 +1713,8 @@ Created By: Travis Berthelot
         } else if(this.direction == 3) {
             this.direction = 1;
         }
+        //TWB - temp hack for path finding to work
+        final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
         Enemies.direction = this.direction;
         final String animationName = gdObject.getAnimation(this.gdObject.ObjectName() + gameGlobals.walkAnimationArray[this.direction]);
         if(gdObject.setAnimation(animationName)) this.resetAnimation();
