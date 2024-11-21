@@ -15,6 +15,30 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
+    <xsl:template name="threedResourceLoadingCalls" >
+        <xsl:param name="enlargeTheImageBackgroundForRotation" />
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="instancesAsString" />
+        <xsl:param name="touch" />
+
+        //objects - threed loading - cache - START
+        <xsl:for-each select="objects" >
+            <xsl:variable name="typeValue" select="type" />
+            <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+
+                <xsl:variable name="stringValue" select="string" />
+                <xsl:variable name="name" select="name" />
+                <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
+            //Animation Total: <xsl:value-of select="count(animations)" />
+            this.add<xsl:value-of select="name" />SpriteAnimations();
+                </xsl:if>
+
+            </xsl:if>
+
+        </xsl:for-each>
+        //objects - threed loading - cache - END
+    </xsl:template>
+    
     <xsl:template name="threedResourceLoading" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
@@ -29,10 +53,12 @@ Created By: Travis Berthelot
 
             //3d TiledLayer?  or $typeValue = 'TileMap::TileMap'
             <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
-                //Animation Total: <xsl:value-of select="count(animations)" />
+            //Animation Total: <xsl:value-of select="count(animations)" />
+            private void add<xsl:value-of select="name" />SpriteAnimations() throws Exception {
 
                 <xsl:for-each select="animations" >
                     <xsl:variable name="resourceWithExtension" select="directions/sprites/image" />
@@ -65,6 +91,7 @@ Created By: Travis Berthelot
 
                 min3dSceneResourcesFactory.add(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME, <xsl:value-of select="$name" />Object3dContainerArray);
 
+            }
                 </xsl:if>
 
             </xsl:if>

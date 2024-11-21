@@ -108,7 +108,7 @@ Created By: Travis Berthelot
                             final ModelType OBJ = modelTypeFactory.OBJ;
                             final Boolean FALSE = BooleanFactory.getInstance().FALSE;
 
-                    <xsl:call-template name="threedResourceLoading" >
+                    <xsl:call-template name="threedResourceLoadingCalls" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
@@ -130,6 +130,23 @@ Created By: Travis Berthelot
                         //}
 
                     }
+
+                    <xsl:call-template name="threedResourceLoading" >
+                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
+                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="touch" >
+                            <xsl:value-of select="'false'" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                    <xsl:text>&#10;</xsl:text>                    
 
                 }
             </xsl:if>
