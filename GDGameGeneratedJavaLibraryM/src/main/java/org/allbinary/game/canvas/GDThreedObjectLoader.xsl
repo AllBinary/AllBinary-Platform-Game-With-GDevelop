@@ -30,7 +30,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="name" select="name" />
                 <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
             //Animation Total: <xsl:value-of select="count(animations)" />
-            this.add<xsl:value-of select="name" />SpriteAnimations();
+            this.add<xsl:value-of select="name" />SpriteAnimations(gl, glInstanceVersion);
                 </xsl:if>
 
             </xsl:if>
@@ -58,7 +58,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="name" select="name" />
                 <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
             //Animation Total: <xsl:value-of select="count(animations)" />
-            private void add<xsl:value-of select="name" />SpriteAnimations() throws Exception {
+            private void add<xsl:value-of select="name" />SpriteAnimations(final GL10 gl, final String glInstanceVersion) throws Exception {
 
                 <xsl:for-each select="animations" >
                     <xsl:variable name="resourceWithExtension" select="directions/sprites/image" />

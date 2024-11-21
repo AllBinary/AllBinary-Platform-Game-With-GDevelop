@@ -95,18 +95,18 @@ Created By: Travis Berthelot
                 
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources animationInterfaceFactoryInterfaceFactory = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
 
+                        private final Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
+                            Min3dSceneResourcesFactory.getInstance();
+                        private final ThreedLoaderFactory threedLoaderFactory = ThreedLoaderFactory.getInstance();
+                        private final ModelTypeFactory modelTypeFactory = ModelTypeFactory.getInstance();
+                        private final ModelType OBJ = modelTypeFactory.OBJ;
+                        private final Boolean FALSE = BooleanFactory.getInstance().FALSE;
+                        
                     public void build(final GL10 gl, final String glInstanceVersion) throws Exception {
 
                         //try {
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
-
-                            final Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
-                                Min3dSceneResourcesFactory.getInstance();
-                            final ThreedLoaderFactory threedLoaderFactory = ThreedLoaderFactory.getInstance();
-                            final ModelTypeFactory modelTypeFactory = ModelTypeFactory.getInstance();
-                            final ModelType OBJ = modelTypeFactory.OBJ;
-                            final Boolean FALSE = BooleanFactory.getInstance().FALSE;
 
                     <xsl:call-template name="threedResourceLoadingCalls" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
