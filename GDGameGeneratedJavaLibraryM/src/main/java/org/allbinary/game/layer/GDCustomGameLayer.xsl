@@ -1668,13 +1668,13 @@ Created By: Travis Berthelot
         //TWB - temp hack for path finding to work
         final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
         if (this.direction == 0) {
-            Enemies.setX(Enemies.x + -(gameGlobals.speed / 2));
+            Enemies.setX(Enemies.x + -(Enemies.speed));
         } else if (this.direction == 1) {
-            Enemies.setX(Enemies.x + (gameGlobals.speed / 2));
+            Enemies.setX(Enemies.x + (Enemies.speed));
         } else if (this.direction == 2) {
-            Enemies.setY(Enemies.y + -(gameGlobals.speed / 2));
+            Enemies.setY(Enemies.y + -(Enemies.speed));
         } else if (this.direction == 3) {
-            Enemies.setY(Enemies.y + (gameGlobals.speed / 2));
+            Enemies.setY(Enemies.y + (Enemies.speed));
         }
         this.updatePosition();
 
