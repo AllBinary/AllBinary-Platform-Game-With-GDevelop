@@ -555,7 +555,7 @@ public class GDGameLayer
     }
 
     public int AnimationFrameCount() throws Exception {
-        return this.getIndexedAnimationInterface().getAnimationSize();
+        return this.getIndexedAnimationInterface().getSize();
     }
 
     //private boolean isFirst = true;
