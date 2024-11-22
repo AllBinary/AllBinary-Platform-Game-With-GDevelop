@@ -553,7 +553,11 @@ public class GDGameLayer
     public boolean isDestination(final GDGameLayer gdGameLayer) throws Exception {
         throw new RuntimeException();
     }
-    
+
+    public int AnimationFrameCount() throws Exception {
+        return this.getIndexedAnimationInterface().getAnimationSize();
+    }
+
     //private boolean isFirst = true;
     //private final String PAINT = "paint";
     public void paint(final Graphics graphics)

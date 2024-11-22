@@ -16,7 +16,7 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:template name="animatableCapabilityAnimatableBehaviorSetSpeedScaleActionProcess" >
+    <xsl:template name="changeSpriteActionProcess" >
         <xsl:param name="layoutIndex" />
         
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
@@ -39,7 +39,7 @@ Created By: Travis Berthelot
         
         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
         
-                    //AnimatableCapability::AnimatableBehavior::SetSpeedScale
+                    //ChangeSprite
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();
@@ -59,13 +59,11 @@ Created By: Travis Berthelot
 
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             
-                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             //.ObjectName()
                             //fourthParam=<xsl:value-of select="$fourthParam" />
                             
-                            <xsl:variable name="fourthParam2" >
-                                <xsl:if test="number($fourthParam)" ><xsl:value-of select="$fourthParam" /></xsl:if><xsl:if test="not(number($fourthParam))" >gameLayer.gdObject.<xsl:value-of select="substring-after($fourthParam, '.')" /></xsl:if>
-                            </xsl:variable>
+                            <xsl:variable name="fourthParam2" >gameLayer.gdObject.<xsl:value-of select="substring-after($fourthParam, '.')" /></xsl:variable>
                             
                             gameLayer = (GDGameLayer) <xsl:value-of select="$name" />GDGameLayerList.get(index);
                             <xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gameLayer.gdObject;
@@ -73,11 +71,9 @@ Created By: Travis Berthelot
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >
                                 //1a
-                                final GDObject gdObject = gameLayer.gdObject;
-                                gdObject.timeScale = </xsl:if>
-                                <xsl:if test="position() = last()" >
-                                    <xsl:value-of select="$fourthParam2" />;
-                                </xsl:if>
+                                //final GDObject gdObject = gameLayer.gdObject;
+                                gameLayer.getIndexedAnimationInterface().setFrame(gameLayer.<xsl:value-of select="substring-after($fourthParam, '.')" />);
+                            </xsl:if>
                         </xsl:for-each>
                         
                             }
@@ -103,31 +99,14 @@ Created By: Travis Berthelot
                         
                         <xsl:if test="not(contains($hasObjectVariable, 'found') or contains($hasObjectGroup2, 'found'))" >
                             
-                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         //fourthParam=<xsl:value-of select="$fourthParam" />
                         <xsl:if test="contains($fourthParam, 'Variable')" >
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >
                                 //2a
-                                final GDObject gdObject = gameLayer.gdObject;
-                                gdObject.timeScale = </xsl:if>
-                                <xsl:if test="position() = last()" >
-                                    <xsl:value-of select="text()" />
-<!--                                    <xsl:variable name="animationName" >
-                                        <xsl:if test="not(contains(text(), 'Variable'))" >
-                                        <xsl:call-template name="upper-case" >
-                                            <xsl:with-param name="text" >
-                                                <xsl:value-of select="translate(text(), '&quot;', '')" />
-                                            </xsl:with-param>
-                                        </xsl:call-template>
-                                        </xsl:if>
-                                        <xsl:if test="contains(text(), 'Variable')" >
-                                            <xsl:value-of select="translate(text(), '&quot;', '')" />
-                                        </xsl:if>
-                                    </xsl:variable>
-                                    <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.
-                                    <xsl:value-of select="$animationName" />-->
-                                    ;
+                                //final GDObject gdObject = gameLayer.gdObject;
+                                gameLayer.getIndexedAnimationInterface().setFrame(gameLayer.<xsl:value-of select="substring-after($fourthParam, '.')" />);
                             </xsl:if>
                         </xsl:for-each>
                         </xsl:if>
@@ -135,7 +114,7 @@ Created By: Travis Berthelot
                             
                         <xsl:variable name="fourthParamBeforePeriod" ><xsl:value-of select="substring-before($fourthParam, '.')" /></xsl:variable>
                         <xsl:if test="string-length($fourthParamBeforePeriod) > 0" >
-                            //fourthParamBeforePeriod=<xsl:value-of select="$fourthParamBeforePeriod" />
+                            //fourthParamBeforePeriod=<xsl:value-of select="$fourthParamBeforePeriod" /> - We will get the first and hopefully only GameLayer
                             <xsl:variable name="gameLayerName" ><xsl:value-of select="$fourthParamBeforePeriod" /></xsl:variable>
                             <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" /></xsl:variable>
                             final GDGameLayer <xsl:value-of select="$gameLayerName" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(0);
@@ -145,8 +124,9 @@ Created By: Travis Berthelot
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >
                                 //3a
-                                gameLayer.gdObject.timeScale = </xsl:if>
-                                <xsl:if test="position() = last()" ><xsl:value-of select="text()" />;</xsl:if>
+                                //final GDObject gdObject = gameLayer.gdObject;
+                                gameLayer.getIndexedAnimationInterface().setFrame(gameLayer.<xsl:value-of select="substring-after($fourthParam, '.')" />);
+                            </xsl:if>
                         </xsl:for-each>
                         </xsl:if>
 
@@ -155,10 +135,9 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($hasObjectVariable, 'found')" >
 
                         final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = ((<xsl:value-of select="$gdObjectFactory" />) gameLayer.gdObject);<xsl:text>&#10;</xsl:text>
-                        final int offset = (<xsl:value-of select="$name" />.animation_name_array.length * <xsl:value-of select="$name" />.animation_direction_array.length * <xsl:value-of select="$name" />.character);<xsl:text>&#10;</xsl:text>
                         
                         //4a
-                        gameLayer.gdObject.timeScale = <xsl:value-of select="$name" />.ANIMATION_NAMES[offset + <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="translate($fourthParam, ')', '')" /></xsl:with-param><xsl:with-param name="find" >VariableString(</xsl:with-param><xsl:with-param name="replacementText" ></xsl:with-param></xsl:call-template>Index]);<xsl:text>&#10;</xsl:text>
+                        gameLayer.getIndexedAnimationInterface().setFrame(gameLayer.<xsl:value-of select="substring-after($fourthParam, '.')" />);<xsl:text>&#10;</xsl:text>
                         </xsl:if>                        
                         <xsl:if test="not(contains($hasObjectGroup2, 'found'))" >
                         }                            
@@ -286,14 +265,14 @@ Created By: Travis Berthelot
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                     //Sibling - //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
-                    //AnimatableCapability::AnimatableBehavior::SetSpeedScale - From sibling action
+                    //ChangeSprite - From sibling action
                     public boolean processGD(final GDGameLayer gdGameLayer, final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final Graphics graphics) throws Exception {
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
                         </xsl:if>
                         
                         <xsl:if test="not(contains($hasSiblingActionWithObjectsGroupsOrObject, 'found') or contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
-                    //Not from parent collision - //AnimatableCapability::AnimatableBehavior::SetSpeedScale
+                    //Not from parent collision - //ChangeSprite
                     public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
@@ -326,7 +305,7 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($hasObjectGroup2, 'found')" >
                             
-                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             //.ObjectName()
                             //fourthParam=<xsl:value-of select="$fourthParam" />
                             <xsl:variable name="fourthParam2" ><xsl:value-of select="$name" />.<xsl:value-of select="substring-after($fourthParam, '.')" /></xsl:variable>
@@ -334,10 +313,8 @@ Created By: Travis Berthelot
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >
                                 //1
-                                <xsl:value-of select="$name" />.timeScale = </xsl:if>
-                                <xsl:if test="position() = last()" >
-                                    <xsl:value-of select="text()" />;
-                                </xsl:if>
+                                <xsl:value-of select="$name" />GDGameLayer.getIndexedAnimationInterface().setFrame(<xsl:value-of select="$name" />GDGameLayer.<xsl:value-of select="substring-after($fourthParam, '.')" />);
+                            </xsl:if>
                         </xsl:for-each>
 
                         </xsl:if>
@@ -349,9 +326,7 @@ Created By: Travis Berthelot
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >
                                 //2
-                                <xsl:value-of select="$name" />.timeScale = </xsl:if>
-                                <xsl:if test="position() = last()" >
-                                    <xsl:value-of select="text()" />;
+                                gameLayer.getIndexedAnimationInterface().setFrame(gameLayer.<xsl:value-of select="substring-after($fourthParam, '.')" />);
                             </xsl:if>
                         </xsl:for-each>
                         </xsl:if>
@@ -359,16 +334,22 @@ Created By: Travis Berthelot
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >
                                 //3
-                                <xsl:value-of select="$name" />.timeScale = </xsl:if>
-                                <xsl:if test="position() = last()" ><xsl:value-of select="text()" />;</xsl:if>
+                                gameLayer.getIndexedAnimationInterface().setFrame(gameLayer.<xsl:value-of select="substring-after($fourthParam, '.')" />);
+                            </xsl:if>
                         </xsl:for-each>
                         </xsl:if>
 
                         </xsl:if>
                         
                         <xsl:if test="contains($hasObjectVariable, 'found')" >
+
+                        <xsl:for-each select="parameters" >
+                        <xsl:if test="position() = 1" >
                             //4
-                            ...
+                            gameLayer.getIndexedAnimationInterface().setFrame(gameLayer.<xsl:value-of select="substring-after($fourthParam, '.')" />);<xsl:text>&#10;</xsl:text>
+                        </xsl:if>
+                        </xsl:for-each>
+                        
                         </xsl:if>
                         
                         return true;
@@ -390,13 +371,11 @@ Created By: Travis Berthelot
 
                         for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index2++) {
                                                         
-                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             //.ObjectName()
                             //fourthParam=<xsl:value-of select="$fourthParam" />
                             
-                            <xsl:variable name="fourthParam2" >
-                                <xsl:if test="number($fourthParam)" ><xsl:value-of select="$fourthParam" /></xsl:if><xsl:if test="not(number($fourthParam))" >gameLayer.gdObject.<xsl:value-of select="substring-after($fourthParam, '.')" /></xsl:if>
-                            </xsl:variable>
+                            <xsl:variable name="fourthParam2" >gameLayer.gdObject.<xsl:value-of select="substring-after($fourthParam, '.')" /></xsl:variable>
                             
                             gameLayer = (GDGameLayer) <xsl:value-of select="$name" />GDGameLayerList.get(index2);
                             <xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gameLayer.gdObject;
@@ -404,11 +383,9 @@ Created By: Travis Berthelot
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >
                                 //1b
-                                final GDObject gdObject = gameLayer.gdObject;
-                                gdObject.timeScale = </xsl:if>
-                                <xsl:if test="position() = last()" >
-                                    <xsl:value-of select="$fourthParam2" />;
-                                </xsl:if>
+                                //final GDObject gdObject = gameLayer.gdObject;
+                                gameLayer.getIndexedAnimationInterface().setFrame(gameLayer.<xsl:value-of select="substring-after($fourthParam, '.')" />);
+                            </xsl:if>
                         </xsl:for-each>
                         }
                         </xsl:if>
@@ -426,16 +403,14 @@ Created By: Travis Berthelot
                         </xsl:if>
                         <xsl:if test="not(contains($hasObjectVariable, 'found') or contains($hasObjectGroup2, 'found'))" >
 
-                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="fourthParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                         //fourthParam=<xsl:value-of select="$fourthParam" />
                         <xsl:if test="contains($fourthParam, 'Variable')" >
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >
                                 //2b
-                                final GDObject gdObject = gameLayer.gdObject;
-                                gdObject.timeScale = </xsl:if>
-                                <xsl:if test="position() = last()" >
-                                    <xsl:value-of select="text()" />;
+                                //final GDObject gdObject = gameLayer.gdObject;
+                                gameLayer.getIndexedAnimationInterface().setFrame(gameLayer.<xsl:value-of select="substring-after($fourthParam, '.')" />);
                             </xsl:if>
                         </xsl:for-each>
                         </xsl:if>
@@ -453,16 +428,21 @@ Created By: Travis Berthelot
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >
                                 //3b
-                                gameLayer.gdObject.timeScale = </xsl:if>
-                                <xsl:if test="position() = last()" ><xsl:value-of select="text()" />;</xsl:if>
+                                //final GDObject gdObject = gameLayer.gdObject;
+                                gameLayer.getIndexedAnimationInterface().setFrame(gameLayer.<xsl:value-of select="substring-after($fourthParam, '.')" />);
+                            </xsl:if>
                         </xsl:for-each>
                         </xsl:if>
 
                         </xsl:if>
                         
                         <xsl:if test="contains($hasObjectVariable, 'found')" >
+
+                        final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = ((<xsl:value-of select="$gdObjectFactory" />) gameLayer.gdObject);<xsl:text>&#10;</xsl:text>
+                        
                         //4c
-                        ...
+                        gameLayer.getIndexedAnimationInterface().setFrame(gameLayer.<xsl:value-of select="substring-after($fourthParam, '.')" />);<xsl:text>&#10;</xsl:text>
+
                         </xsl:if>
 
                         return true;

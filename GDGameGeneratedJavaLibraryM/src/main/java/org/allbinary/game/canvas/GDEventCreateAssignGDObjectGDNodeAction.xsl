@@ -26,6 +26,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDAnimationSetIndexActionProcess.xsl" />
     <xsl:import href="./action/GDAnimationSetNameActionProcess.xsl" />
     <xsl:import href="./action/GDAnimationSetSpeedScaleActionProcess.xsl" />
+    <xsl:import href="./action/GDAnimationSetFrameActionProcess.xsl" />
     <xsl:import href="./action/GDSetNumberObjectVariableActionProcess.xsl" />
     <xsl:import href="./action/GDModVarObjetTxtActionProcess.xsl" />
     <xsl:import href="./action/GDModVarSceneTxtActionProcess.xsl" />
@@ -1139,7 +1140,13 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ChangeSprite'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    
+                    <xsl:call-template name="changeSpriteActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PauseAnimation'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED

@@ -1462,7 +1462,7 @@ Created By: Travis Berthelot
         final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition = this.waypointBehaviorBase.getNextUnvisitedPathGeographicMapCellPosition();
 
         if(nextUnvisitedPathGeographicMapCellPosition == null) {
-            LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(" - do not turn or move until we have the first unvisited cell position").toString(), this, "turnTo"));
+            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(" - do not turn or move until we have the first unvisited cell position").toString(), this, "turnTo"));
             return true;
         }
 
