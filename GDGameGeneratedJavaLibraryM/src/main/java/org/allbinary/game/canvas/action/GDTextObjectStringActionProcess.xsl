@@ -18,14 +18,7 @@ Created By: Travis Berthelot
 
     <xsl:template name="textObjectStringActionProcess" >
         <xsl:param name="layoutIndex" />
-        
-                        //TextObject::String - action - START
-                        @Override
-                        public boolean process() throws Exception {
-                            super.processStats();
-                        
-                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-                            //Parameters - 2
+
                             <xsl:variable name="thirdParam0" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                            
                             <xsl:variable name="thirdParam1" >
@@ -94,7 +87,23 @@ Created By: Travis Berthelot
                                 <xsl:with-param name="replacementText" >)</xsl:with-param>
                             </xsl:call-template>
                             </xsl:variable>
-                            
+        
+                            <xsl:for-each select="parameters" >
+                                <xsl:if test="position() = 3" >
+                                    <xsl:if test="contains($thirdParam, '&quot;') and $thirdParam != '&quot;&quot;'" >
+                                        //GDStringLiteral
+                                        private final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate($thirdParam, '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template> = <xsl:value-of select="$thirdParam" />;
+                                    </xsl:if>
+                                </xsl:if>
+                            </xsl:for-each>
+                
+                        //TextObject::String - action - START
+                        @Override
+                        public boolean process() throws Exception {
+                            super.processStats();
+                        
+                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            //Parameters - 2                            
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 1" >
                             final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size();
@@ -105,7 +114,14 @@ Created By: Travis Berthelot
                                 <xsl:if test="position() = 2" ><xsl:if test="text() = '='" >gameLayer.setText(</xsl:if></xsl:if>
                                 <xsl:if test="position() = 3" >
                                     <xsl:if test="$thirdParam = '&quot;&quot;'" >stringUtil.EMPTY_STRING</xsl:if>
-                                    <xsl:if test="$thirdParam != '&quot;&quot;'" ><xsl:value-of select="$thirdParam" /></xsl:if>
+                                    <xsl:if test="$thirdParam != '&quot;&quot;'" >
+                                        <xsl:if test="contains($thirdParam, '&quot;') and not(contains($thirdParam, '+'))" >
+                                            <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate($thirdParam, '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template>
+                                        </xsl:if>
+                                        <xsl:if test="not(contains($thirdParam, '&quot;') and not(contains($thirdParam, '+')))" >
+                                            <xsl:value-of select="$thirdParam" />
+                                        </xsl:if>
+                                    </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="position() = last()" >);
                             }</xsl:if>

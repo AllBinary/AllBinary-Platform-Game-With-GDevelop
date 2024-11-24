@@ -18,7 +18,16 @@ Created By: Travis Berthelot
 
     <xsl:template name="textContainerCapabilityTextContainerBehaviorSetValueActionProcess" >
         <xsl:param name="layoutIndex" />
-        
+
+                            <xsl:for-each select="parameters" >
+                                <xsl:if test="position() = 4" >
+                                    <xsl:if test="contains(text(), '&quot;') and not(contains(text(), '+')) and text() != '&quot;&quot;'" >
+                                        //GDStringLiteral
+                                        private final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(text(), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template> = <xsl:value-of select="text()" />;
+                                    </xsl:if>
+                                </xsl:if>
+                            </xsl:for-each>
+                
                         //TextContainerCapability::TextContainerBehavior::SetValue - action - START
                         @Override
                         public boolean process() throws Exception {
@@ -111,7 +120,14 @@ Created By: Travis Berthelot
                                 </xsl:if>
                                 <xsl:if test="position() = 4" >
                                     <xsl:if test="text() = '&quot;&quot;'" >stringUtil.EMPTY_STRING</xsl:if>
-                                    <xsl:if test="text() != '&quot;&quot;'" ><xsl:value-of select="text()" /></xsl:if>
+                                    <xsl:if test="text() != '&quot;&quot;'" >
+                                        <xsl:if test="contains(text(), '&quot;') and not(contains(text(), '+'))" >
+                                            <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(text(), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template>
+                                        </xsl:if>
+                                        <xsl:if test="not(contains(text(), '&quot;') and not(contains(text(), '+')))" >
+                                            <xsl:value-of select="text()" />
+                                        </xsl:if>
+                                    </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="position() = last()" >);
                             }</xsl:if>
@@ -156,7 +172,14 @@ Created By: Travis Berthelot
                                 <xsl:if test="position() = 3" ><xsl:if test="text() = '='" >gameLayer.setText(</xsl:if></xsl:if>
                                 <xsl:if test="position() = 4" >
                                     <xsl:if test="text() = '&quot;&quot;'" >stringUtil.EMPTY_STRING</xsl:if>
-                                    <xsl:if test="text() != '&quot;&quot;'" ><xsl:value-of select="text()" /></xsl:if>
+                                    <xsl:if test="text() != '&quot;&quot;'" >
+                                        <xsl:if test="contains(text(), '&quot;') and not(contains(text(), '+'))" >
+                                            <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(text(), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template>
+                                        </xsl:if>
+                                        <xsl:if test="not(contains(text(), '&quot;') and not(contains(text(), '+')))" >
+                                            <xsl:value-of select="text()" />
+                                        </xsl:if>
+                                    </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="position() = last()" >);</xsl:if>
                             </xsl:for-each>
