@@ -146,6 +146,7 @@ Created By: Travis Berthelot
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >implements org.allbinary.game.behavior.topview.TopViewCharacterInterface </xsl:if>        
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >, org.allbinary.game.layer.PathFindingLayerInterface </xsl:if>
                 {
+                    private final StringUtil stringUtil = StringUtil.getInstance();
                     private final BasicGeographicMapUtil basicGeographicMapUtil = BasicGeographicMapUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
@@ -1515,7 +1516,7 @@ Created By: Travis Berthelot
                 this.waypoint2LogHelper.processWaypointTracked(this, currentGeographicMapCellPosition);
             } else {
                 final String reason = 
-                    StringUtil.getInstance().EMPTY_STRING;
+                    stringUtil.EMPTY_STRING;
                     //new StringMaker().append(" - finished moving without progress: ").append(geographicMapCellHistory.getVisited()).toString();
                 this.waypoint2LogHelper.processWaypointTrackedWithoutProgress(this, reason);
                 this.getWaypointBehavior().updatePathOnTargetMove(reason);
@@ -1550,7 +1551,7 @@ Created By: Travis Berthelot
 
             } else {
                 final String reason = 
-                    StringUtil.getInstance().EMPTY_STRING;
+                    stringUtil.EMPTY_STRING;
                     //new StringMaker().append(' ').append(geographicMapCellHistory.getTotalVisited()).append(' ').append(currentGeographicMapCellPosition).append(" - trying to move but not on path: ").append(pathList).toString();
                 this.rtsLogHelper.notOnPath(this, geographicMapCellHistory, currentGeographicMapCellPosition, pathList);
                 this.getWaypointBehavior().updatePathOnTargetMove(reason);

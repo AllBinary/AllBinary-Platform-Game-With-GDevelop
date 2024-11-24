@@ -123,6 +123,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
 
     private final CommonStrings commonStrings = CommonStrings.getInstance();
+    private final StringUtil stringUtil = StringUtil.getInstance();
     private final PointFactory pointFactory = PointFactory.getInstance();
 
     private final Min3dSceneResourcesFactory min3dSceneResourcesFactory = Min3dSceneResourcesFactory.getInstance();

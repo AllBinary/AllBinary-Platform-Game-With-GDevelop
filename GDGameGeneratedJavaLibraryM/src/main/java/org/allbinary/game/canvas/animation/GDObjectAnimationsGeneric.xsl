@@ -574,7 +574,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     <xsl:for-each select="Label" >
                     //Label
-                    new CustomTextAnimationFactory(StringUtil.getInstance().EMPTY_STRING, <xsl:value-of select="$name" />TextAnimationSize, 0, -1) {
+                    new CustomTextAnimationFactory(stringUtil.EMPTY_STRING, <xsl:value-of select="$name" />TextAnimationSize, 0, -1) {
                         public void setInitialScale(final ScaleProperties scaleProperties) {
                             //super.setInitialScale(scaleProperties);
                             this.scaleProperties = scaleProperties;
@@ -669,7 +669,10 @@ Created By: Travis Berthelot
                 final int <xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="characterSize" /> * 3 / 2);
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
-                    new CustomTextAnimationFactory(new StringMaker().append("<xsl:value-of select="$multilineString" />").toString(), <xsl:value-of select="name" />TextAnimationSize)
+                    new CustomTextAnimationFactory(new StringMaker().append(
+                        <xsl:if test="$multilineString = ''" >stringUtil.EMPTY_STRING</xsl:if>
+                        <xsl:if test="$multilineString != ''" >"<xsl:value-of select="$multilineString" />"</xsl:if>
+                        ).toString(), <xsl:value-of select="name" />TextAnimationSize)
                 };
 
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];

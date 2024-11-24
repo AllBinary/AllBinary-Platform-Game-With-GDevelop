@@ -105,7 +105,7 @@
                             </xsl:if>
                             <xsl:if test="type = 'string'" >
                                 <xsl:if test="number(value) != value" >
-                                    public String <xsl:value-of select="name" /> = <xsl:if test="value = ''" >StringUtil.getInstance().EMPTY_STRING</xsl:if><xsl:if test="value != ''" >"<xsl:value-of select="value" />"</xsl:if>;
+                                    public String <xsl:value-of select="name" /> = <xsl:if test="value = ''" >stringUtil.EMPTY_STRING</xsl:if><xsl:if test="value != ''" >"<xsl:value-of select="value" />"</xsl:if>;
                                 </xsl:if>
                                 <xsl:if test="number(value) = value" >
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
@@ -214,7 +214,7 @@
                             </xsl:if>
                             <xsl:if test="type = 'string'" >
                                 <xsl:if test="number(value) != value" >
-                        this.<xsl:value-of select="name" /> = <xsl:if test="value = ''" >StringUtil.getInstance().EMPTY_STRING</xsl:if><xsl:if test="value != ''" >"<xsl:value-of select="value" />"</xsl:if>;
+                        this.<xsl:value-of select="name" /> = <xsl:if test="value = ''" >stringUtil.EMPTY_STRING</xsl:if><xsl:if test="value != ''" >"<xsl:value-of select="value" />"</xsl:if>;
                                 </xsl:if>
                                 <xsl:if test="number(value) = value" >
                         this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;

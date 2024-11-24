@@ -109,7 +109,10 @@ Created By: Travis Berthelot
                                 <xsl:if test="position() = 3" >                                    
                                     <xsl:if test="text() = '='" >gameLayer.setText(</xsl:if>
                                 </xsl:if>
-                                <xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if>
+                                <xsl:if test="position() = 4" >
+                                    <xsl:if test="text() = ''" >stringUtil.EMPTY_STRING</xsl:if>
+                                    <xsl:if test="text() != ''" ><xsl:value-of select="text()" /></xsl:if>
+                                </xsl:if>
                                 <xsl:if test="position() = last()" >);
                             }</xsl:if>
                             </xsl:for-each>
@@ -151,7 +154,10 @@ Created By: Travis Berthelot
 
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 3" ><xsl:if test="text() = '='" >gameLayer.setText(</xsl:if></xsl:if>
-                                <xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if>
+                                <xsl:if test="position() = 4" >
+                                    <xsl:if test="text() = ''" >stringUtil.EMPTY_STRING</xsl:if>
+                                    <xsl:if test="text() != ''" ><xsl:value-of select="text()" /></xsl:if>
+                                </xsl:if>
                                 <xsl:if test="position() = last()" >);</xsl:if>
                             </xsl:for-each>
                             
