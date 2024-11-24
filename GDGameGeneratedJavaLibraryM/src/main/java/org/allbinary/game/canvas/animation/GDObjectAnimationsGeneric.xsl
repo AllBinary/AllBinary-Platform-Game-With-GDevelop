@@ -670,8 +670,8 @@ Created By: Travis Berthelot
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                     new CustomTextAnimationFactory(new StringMaker().append(
-                        <xsl:if test="$multilineString = ''" >stringUtil.EMPTY_STRING</xsl:if>
-                        <xsl:if test="$multilineString != ''" >"<xsl:value-of select="$multilineString" />"</xsl:if>
+                        <xsl:if test="$multilineString = '&quot;&quot;'" >stringUtil.EMPTY_STRING</xsl:if>
+                        <xsl:if test="$multilineString != '&quot;&quot;'" >"<xsl:value-of select="$multilineString" />"</xsl:if>
                         ).toString(), <xsl:value-of select="name" />TextAnimationSize)
                 };
 

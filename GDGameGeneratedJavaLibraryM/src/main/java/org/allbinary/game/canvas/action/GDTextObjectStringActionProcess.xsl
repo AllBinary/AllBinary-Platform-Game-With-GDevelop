@@ -104,8 +104,8 @@ Created By: Travis Berthelot
                                 </xsl:if>
                                 <xsl:if test="position() = 2" ><xsl:if test="text() = '='" >gameLayer.setText(</xsl:if></xsl:if>
                                 <xsl:if test="position() = 3" >
-                                    <xsl:if test="$thirdParam = ''" >stringUtil.EMPTY_STRING</xsl:if>
-                                    <xsl:if test="$thirdParam != ''" ><xsl:value-of select="$thirdParam" /></xsl:if>
+                                    <xsl:if test="$thirdParam = '&quot;&quot;'" >stringUtil.EMPTY_STRING</xsl:if>
+                                    <xsl:if test="$thirdParam != '&quot;&quot;'" ><xsl:value-of select="$thirdParam" /></xsl:if>
                                 </xsl:if>
                                 <xsl:if test="position() = last()" >);
                             }</xsl:if>
