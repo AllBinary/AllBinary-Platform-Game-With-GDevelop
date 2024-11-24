@@ -120,6 +120,7 @@ import org.allbinary.logic.system.security.licensing.AbeClientInformationInterfa
             <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
 public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCanvas //AllBinaryGameCanvas
 {
+    private final StringUtil stringUtil = StringUtil.getInstance();
     private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
     private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
         
@@ -301,8 +302,8 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         final int fontSize = 24;
         final Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, fontSize);        
         this.setStartIntermissionPaintable(
-            new StartIntermissionPaintable(this, new String[] {StringUtil.getInstance().EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED, font)
-            //new StartIntermissionPaintable(this, new String[] {StringUtil.getInstance().EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED)
+            new StartIntermissionPaintable(this, new String[] {stringUtil.EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED, font)
+            //new StartIntermissionPaintable(this, new String[] {stringUtil.EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED)
             );
         </xsl:if>
     }
