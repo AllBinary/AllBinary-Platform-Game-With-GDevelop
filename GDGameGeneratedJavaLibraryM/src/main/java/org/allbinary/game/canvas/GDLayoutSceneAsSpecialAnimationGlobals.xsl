@@ -111,6 +111,7 @@ Created By: Travis Berthelot
                 import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 
                 //LayoutGlobals name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals extends GDSceneGlobals
@@ -134,6 +135,7 @@ Created By: Travis Berthelot
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
+                        private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
                         //private final PointFactory pointFactory = PointFactory.getInstance();
                         
                         //private final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
@@ -453,8 +455,8 @@ Created By: Travis Berthelot
                     }
                     
                     public String ToString(final int value) {
-                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
-                        return Integer.toString(value);
+                        //return Integer.toString(value);
+                        return smallIntegerSingletonFactory.getString(value);
                     }
 
                 }

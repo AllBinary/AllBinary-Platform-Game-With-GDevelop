@@ -93,9 +93,9 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.StringMaker;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
-
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.ArrayUtil;
+                import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 
                 //LayoutOtherEvent name=<xsl:value-of select="$layoutName" /> - GDNode processM calls in this class can load resources
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes extends SpecialAnimation
@@ -112,6 +112,7 @@ Created By: Travis Berthelot
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
+                        private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
 
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
@@ -210,8 +211,8 @@ Created By: Travis Berthelot
                     }
                     
                     public String ToString(final int value) {
-                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
-                        return Integer.toString(value);
+                        //return Integer.toString(value);
+                        return smallIntegerSingletonFactory.getString(value);
                     }
 
                 }

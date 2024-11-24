@@ -136,6 +136,7 @@ Created By: Travis Berthelot
                 import org.allbinary.thread.SecondaryThreadPool;
                 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
                 import org.allbinary.game.layer.behavior.PathFindingBehavior;
+                import org.allbinary.logic.math.SmallIntegerSingletonFactory;
                 
                 //LayoutAction name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes extends SpecialAnimation
@@ -158,6 +159,7 @@ Created By: Travis Berthelot
                         private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
                         private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
+                        private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
                         
                         private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
@@ -413,8 +415,8 @@ Created By: Travis Berthelot
                     }
 
                     public String ToString(final int value) {
-                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
-                        return Integer.toString(value);
+                        //return Integer.toString(value);
+                        return smallIntegerSingletonFactory.getString(value);
                     }
 
                     public String ToString(final long value) {

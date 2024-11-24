@@ -117,6 +117,7 @@ Created By: Travis Berthelot
                 import org.allbinary.thread.NullRunnable;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.util.ArrayUtil;
+                import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 
                 //LayoutBuilder name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder extends SpecialAnimation
@@ -127,6 +128,7 @@ Created By: Travis Berthelot
                         private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
                         private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
+                        private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
                         
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
 
@@ -604,8 +606,8 @@ Created By: Travis Berthelot
                     }
                     
                     public String ToString(final int value) {
-                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
-                        return Integer.toString(value);
+                        //return Integer.toString(value);
+                        return smallIntegerSingletonFactory.getString(value);
                     }
 
                 }
