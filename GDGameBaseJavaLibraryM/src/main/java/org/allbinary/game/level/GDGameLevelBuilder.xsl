@@ -790,7 +790,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         LogUtil.put(LogFactory.getInstance("placementTotal2: " + placementTotal2, this, commonStrings.PROCESS));
         LogUtil.put(LogFactory.getInstance("placementTotal1: " + placementTotal1, this, commonStrings.PROCESS));
         LogUtil.put(LogFactory.getInstance("placementTotal: " + placementTotal, this, commonStrings.PROCESS));
-        globals.placementMax = placementTotal - 1;
+        globals.placementMax = placementTotal - 2;
     }
 
 //    private int lastWidthUsed = 0;
