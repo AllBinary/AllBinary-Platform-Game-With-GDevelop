@@ -30,7 +30,7 @@ import org.allbinary.util.BasicArrayList;
  *
  * @author User
  */
-public class GDImageSizeGenerator {
+public class GDImageValidationGenerator {
 
     private final CommonSeps commonSeps = CommonSeps.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
@@ -53,10 +53,10 @@ public class GDImageSizeGenerator {
             } else {
                 bufferedImage = ImageIO.read(AbFileNativeUtil.get(abFile));
                 final String name = abFile.getName().substring(0, abFile.getName().length() - 4).toUpperCase();
-                stringMaker.append(arrayIndex).append(name).append(this.commonSeps.SPACE).append(bufferedImage.getWidth())
-                    .append(this.commonSeps.COMMA).append(this.commonSeps.SPACE).append(bufferedImage.getHeight()).append(this.commonSeps.NEW_LINE);
-                final GDResource gdResource = new GDResource(name, bufferedImage.getWidth(), bufferedImage.getHeight());
-                list.add(gdResource);
+                if(bufferedImage.getWidth() % 16 != 0 || bufferedImage.getHeight() % 16 != 0) {
+                    stringMaker.append(arrayIndex).append(name).append(this.commonSeps.SPACE).append(bufferedImage.getWidth())
+                        .append(this.commonSeps.COMMA).append(this.commonSeps.SPACE).append(bufferedImage.getHeight()).append(this.commonSeps.NEW_LINE);
+                }
                 arrayIndex++;
             }
         }
@@ -70,7 +70,7 @@ public class GDImageSizeGenerator {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        final GDImageSizeGenerator gdImageSizeGenerator = new GDImageSizeGenerator();
+        final GDImageValidationGenerator gdImageSizeGenerator = new GDImageValidationGenerator();
         
         gdImageSizeGenerator.process();
     }
