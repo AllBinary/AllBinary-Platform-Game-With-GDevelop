@@ -347,10 +347,15 @@ Created By: Travis Berthelot
 
                     <xsl:if test="animations" >
                     public String getAnimationFromIndex(final int index) {
-                        <xsl:if test="count(animations) > 0" >
+                        <xsl:variable name="hasAnimationWithName" >
+                            <xsl:for-each select="animations" >
+                                <xsl:if test="string-length(name) > 0" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+                        <xsl:if test="contains($hasAnimationWithName, 'found')" >
                         return this.ANIMATION_NAMES[index];
                         </xsl:if>
-                        <xsl:if test="count(animations) = 0" >
+                        <xsl:if test="not(contains($hasAnimationWithName, 'found'))" >
                         return null;
                         </xsl:if>
                     }
