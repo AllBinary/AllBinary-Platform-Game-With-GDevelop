@@ -251,7 +251,8 @@ Created By: Travis Berthelot
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                     <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
-                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="repeatExpression" />; index++) {
+                    final int eSize = <xsl:value-of select="repeatExpression" />;
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> eSize; index++) {
                     </xsl:if>
 
                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
@@ -435,7 +436,8 @@ Created By: Travis Berthelot
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                     <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
-                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="repeatExpression" />; index++) {
+                    final int eSize = <xsl:value-of select="repeatExpression" />;
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> eSize; index++) {
                     </xsl:if>
                        
                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
@@ -617,16 +619,16 @@ Created By: Travis Berthelot
                 public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                     super.processStats(motionGestureEvent);
 
+                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                    <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
+                    final int eSize = <xsl:value-of select="repeatExpression" />;
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> eSize; index++) {
+                    </xsl:if>
+
                 <xsl:if test="contains($foundOtherCondition, 'found') or contains($foundTimerCondition, 'found') or (contains($foundVarSceneCondition, 'found') and contains($foundLinkEvent, 'found'))" >
                     <xsl:if test="not(whileConditions)" >
                 //Found conditions that need processing.
-                    
-                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
-                    <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
-                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="repeatExpression" />; index++) {
-                    </xsl:if>
-                    
                     <xsl:for-each select="conditions" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                         <xsl:if test="position() = 1" >
@@ -770,7 +772,8 @@ Created By: Travis Berthelot
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                     <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
-                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="repeatExpression" />; index++) {
+                    final int eSize = <xsl:value-of select="repeatExpression" />;
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> eSize; index++) {
                     </xsl:if>
                     
                 <xsl:for-each select="conditions" >
@@ -890,7 +893,8 @@ Created By: Travis Berthelot
                     //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
 
                     <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
-                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="repeatExpression" />; index++) {
+                    final int eSize = <xsl:value-of select="repeatExpression" />;
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> eSize; index++) {
                     </xsl:if>
 
                 <xsl:if test="not(whileConditions)" >

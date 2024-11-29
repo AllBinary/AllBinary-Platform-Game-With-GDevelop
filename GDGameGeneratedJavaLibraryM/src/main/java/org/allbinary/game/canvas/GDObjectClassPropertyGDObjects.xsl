@@ -347,7 +347,12 @@ Created By: Travis Berthelot
 
                     <xsl:if test="animations" >
                     public String getAnimationFromIndex(final int index) {
+                        <xsl:if test="count(animations) > 0" >
                         return this.ANIMATION_NAMES[index];
+                        </xsl:if>
+                        <xsl:if test="count(animations) = 0" >
+                        return null;
+                        </xsl:if>
                     }
 
                     public String getAnimation(final String animationName) {

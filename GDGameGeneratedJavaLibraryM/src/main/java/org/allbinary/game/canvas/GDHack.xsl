@@ -403,7 +403,7 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($timerActions, 'Timer,')" >
                         </xsl:if>
                         //TWB - loop hack - 1
-                        for(int index = startIndex; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> endIndex; index++) {
+                        for(int index2 = startIndex; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> endIndex; index2++) {
                         </xsl:if>
 
                         <xsl:if test="string-length($createParamsAsString) = 0" >
