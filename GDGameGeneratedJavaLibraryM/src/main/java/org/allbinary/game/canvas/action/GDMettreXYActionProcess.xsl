@@ -463,6 +463,7 @@ Created By: Travis Berthelot
 -->
                     
                     <xsl:if test="$paramOneNameObjectsGroups != ''" >
+
                         final boolean result = this.processGPaint(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject, 
                         <xsl:if test="contains($hasDistanceProcessGD, 'found')" >
                             <xsl:variable name="distanceProcessGDParamTwo" ><xsl:call-template name="distanceProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
@@ -475,9 +476,19 @@ Created By: Travis Berthelot
                     </xsl:if>
 
                     <xsl:if test="$paramOneNameObjectsGroups = ''" >
-                                final boolean result = this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, null, graphics);
-                                
-                                <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.updatePosition();
+                        
+                        <xsl:if test="contains($hasForEachProcessGD, 'found')" >
+                        <xsl:variable name="forEachGDParamOne" ><xsl:call-template name="forEachGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param><xsl:with-param name="secondGameLayer" ><xsl:value-of select="$firstOrBeforeFourthParam" /></xsl:with-param></xsl:call-template></xsl:variable>
+                        //forEachGDParamOne=<xsl:value-of select="$forEachGDParamOne" /><xsl:text>&#10;</xsl:text>
+                        final boolean result = this.processGPaint(<xsl:value-of select="$forEachGDParamOne" />GDGameLayer.gdObject, null, graphics);        
+                        <xsl:value-of select="$forEachGDParamOne" />GDGameLayer.updatePosition();
+                        </xsl:if>
+                        
+                        <xsl:if test="not(contains($hasForEachProcessGD, 'found'))" >
+                        final boolean result = this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, null, graphics);        
+                        <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.updatePosition();
+                        </xsl:if>
+                        
                     </xsl:if>
                                 
                                 return result;

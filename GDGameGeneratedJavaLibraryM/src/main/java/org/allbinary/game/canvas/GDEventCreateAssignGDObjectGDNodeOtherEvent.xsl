@@ -410,7 +410,8 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                     <xsl:with-param name="thisNodeIndex" >
                         <xsl:value-of select="$thisNodeIndex" />
-                    </xsl:with-param>                    
+                    </xsl:with-param>
+                    <xsl:with-param name="repeat" ><xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >found</xsl:if></xsl:with-param>
                 </xsl:call-template>
 
                 <xsl:if test="actions" >
@@ -597,6 +598,7 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$thisNodeIndex" />
                     </xsl:with-param>                    
                     <xsl:with-param name="index" >index3</xsl:with-param>
+                    <xsl:with-param name="repeat" ><xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >found</xsl:if></xsl:with-param>
                 </xsl:call-template>
 
                 <xsl:if test="actions" >

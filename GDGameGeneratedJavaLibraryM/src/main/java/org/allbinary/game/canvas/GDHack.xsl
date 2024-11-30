@@ -102,6 +102,7 @@ Created By: Travis Berthelot
         <xsl:param name="conditionPosition" />
         <xsl:param name="logString" />
         <xsl:param name="index" />
+        <xsl:param name="repeat" />
                     
                     try {
 
@@ -402,8 +403,14 @@ Created By: Travis Berthelot
                         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />").append(" Timer - size <xsl:value-of select="$text" />List startIndex: ").append(startIndex).append(" endIndex: ").append(endIndex).toString(), this, commonStrings.PROCESS, new Exception()));
                         <xsl:if test="contains($timerActions, 'Timer,')" >
                         </xsl:if>
-                        //TWB - loop hack - 1
+                        //TWB - loop hack - 1 index=<xsl:value-of select="$index" /> repeat=<xsl:value-of select="$repeat" />
+                        <xsl:if test="contains($repeat, 'found')" >
                         for(int index2 = startIndex; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> endIndex; index2++) {
+                        </xsl:if>
+                        <xsl:if test="not(contains($repeat, 'found'))" >
+                        for(int index = startIndex; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> endIndex; index++) {
+                        </xsl:if>
+
                         </xsl:if>
 
                         <xsl:if test="string-length($createParamsAsString) = 0" >
