@@ -92,7 +92,7 @@ Created By: Travis Berthelot
                                             
             if(<xsl:value-of select="$name2" /> == null) {
                 //caller=<xsl:value-of select="$caller" />
-                return <xsl:if test="contains($caller, 'createActionProcess') or (contains($caller, 'hackProcessing2') and not(contains($caller, 'conditionLayout - //eventsCreateAssignGDObject - //hackProcessing2')))" > true</xsl:if>;
+                return <xsl:if test="contains($caller, 'createActionProcess') or (contains($caller, 'hackProcessing2') or contains($caller, 'externalEventsCreateAssignGDObject - //sceneVariableAsBooleanConditionGDNode') and not(contains($caller, 'conditionLayout - //eventsCreateAssignGDObject - //hackProcessing2')))" > true</xsl:if>;
             }
         </xsl:if>                                    
 
@@ -1039,7 +1039,7 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'SetNumberVariable'" >
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                             //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //SetNumberVariable - call - NOT_IMPLEMENTED
-                            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
                             <xsl:text>&#10;</xsl:text>
                 </xsl:if>
 
