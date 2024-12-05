@@ -567,7 +567,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
     {
         //System.setProperty("jdk.xml.xpathExprGrpLimit", "0");
         //System.setProperty("jdk.xml.xpathExprOpLimit", "0");
-        //System.setProperty("jdk.xml.xpathTotalOpLimit", "0");
+        System.setProperty("jdk.xml.xpathTotalOpLimit", "0");
 
         //Generate Layout 1
         new GDLayoutsToAllBinaryLayoutGenerator().process(1, 2);

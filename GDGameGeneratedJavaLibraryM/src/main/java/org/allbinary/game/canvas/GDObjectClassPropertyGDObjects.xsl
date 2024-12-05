@@ -388,6 +388,8 @@ Created By: Travis Berthelot
                                 if(this.animation != index) {
                                     this.animation = index;
                                     return true;
+                                } else if(this.ANIMATION_NAMES.lenght == 1) {
+                                    return true;
                                 } else {
                                     return false;
                                 }
