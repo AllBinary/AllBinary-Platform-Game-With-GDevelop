@@ -16,14 +16,15 @@ import org.json.JSONObject;
 public class GDImageResource extends GDResource
 {
     public final boolean smooth;
-    public final boolean alwaysLoaded;
+    //Removed in GD 5.4.29
+    //public final boolean alwaysLoaded;
     
     public GDImageResource(final String kind, final JSONObject jsonObject) {
         super(kind, jsonObject);
         
         final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
         
-        this.alwaysLoaded = jsonObject.getBoolean(gdProjectStrings.ALWAYS_LOADED);
+        //this.alwaysLoaded = jsonObject.getBoolean(gdProjectStrings.ALWAYS_LOADED);
         this.smooth = jsonObject.getBoolean(gdProjectStrings.SMOOTHED);
     }
 }

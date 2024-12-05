@@ -319,7 +319,7 @@ Created By: Travis Berthelot
                         final int size = <xsl:if test="string-length($listSize) = 0 and not(repeatExpression or ../../events/type = 'BuiltinCommonInstructions::ForEach')" >1;</xsl:if>
                         <xsl:if test="string-length($listSize) > 0 and not(repeatExpression or ../../events/type = 'BuiltinCommonInstructions::ForEach')" ><xsl:value-of select="$listSize" />; //MettreY //MettreXY</xsl:if>
                         <xsl:if test="../../events/type = 'BuiltinCommonInstructions::ForEach'" >globals.<xsl:value-of select="substring-before(substring-after($parametersAsString, ':'), ',')" />GDGameLayerList.size();</xsl:if>
-                        <xsl:if test="repeatExpression" ><xsl:value-of select="repeatExpression" />;</xsl:if>
+                        <xsl:if test="repeatExpression" >eSize;</xsl:if>
             
             <xsl:if test="contains($hadConditionOtherThanThis, 'found') and ($caller = 'conditionLayout - //eventsCreateAssignGDObject' and contains($hasCreate, 'found'))" >
             //Skip size limit logic
