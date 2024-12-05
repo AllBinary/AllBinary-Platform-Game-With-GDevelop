@@ -46,7 +46,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
     {
     }
 
-    public void process(final int size)
+    public void process(final int startIndex, final int size)
     {
         try
         {
@@ -314,7 +314,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             };
             
             String indexAsString;
-            for (int index = 0; index < size; index++)
+            for (int index = startIndex; index < size; index++)
             {
                 //stringMaker.delete(0, stringMaker.length());
                 //LogUtil.put(LogFactory.getInstance(stringMaker.append("layout:").append(index).toString(), this, commonStrings.PROCESS));
@@ -520,7 +520,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             }
 
             //TWB - need to update to allow loading for every layout.
-            for (int index = 0; index < size; index++)
+            for (int index = startIndex; index < size; index++)
             {
                 timeDelayHelper.setStartTime();
                 
@@ -568,7 +568,11 @@ public class GDLayoutsToAllBinaryLayoutGenerator
         //System.setProperty("jdk.xml.xpathExprGrpLimit", "0");
         //System.setProperty("jdk.xml.xpathExprOpLimit", "0");
         //System.setProperty("jdk.xml.xpathTotalOpLimit", "0");
-        new GDLayoutsToAllBinaryLayoutGenerator().process(new GDGetTotalLayouts().process());
+
+        //Generate Layout 1
+        new GDLayoutsToAllBinaryLayoutGenerator().process(1, 2);
+        
+        //new GDLayoutsToAllBinaryLayoutGenerator().process(0, new GDGetTotalLayouts().process());
     }
 
 }

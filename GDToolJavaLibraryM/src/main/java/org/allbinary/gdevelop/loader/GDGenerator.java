@@ -29,7 +29,7 @@ public class GDGenerator {
         new GDDelete().process();
         new GDCopy().copy();
         new GDToAllBinaryGenerationTool().process();
-        new GDLayoutsToAllBinaryLayoutGenerator().process(new GDGetTotalLayouts().process());
+        new GDLayoutsToAllBinaryLayoutGenerator().process(0, new GDGetTotalLayouts().process());
     }
     
 }
