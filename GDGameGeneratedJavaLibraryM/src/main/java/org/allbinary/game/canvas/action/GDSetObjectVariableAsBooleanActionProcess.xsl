@@ -127,7 +127,6 @@ Created By: Travis Berthelot
                             return true;
                         }
                         
-                        @Override
                         public boolean processGD2(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                             super.processGDStats(gameLayer);
 
