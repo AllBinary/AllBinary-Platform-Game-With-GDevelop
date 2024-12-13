@@ -675,10 +675,13 @@ Created By: Travis Berthelot
                 final int <xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="characterSize" />);
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
-                    new CustomTextAnimationFactory(new StringMaker().append(
+                    new CustomTextAnimationFactory(
+                        <xsl:if test="$multilineString = ''" >stringUtil.EMPTY_STRING</xsl:if>
                         <xsl:if test="$multilineString = '&quot;&quot;'" >stringUtil.EMPTY_STRING</xsl:if>
-                        <xsl:if test="$multilineString != '&quot;&quot;'" >"<xsl:value-of select="$multilineString" />"</xsl:if>
-                        ).toString(), <xsl:value-of select="name" />TextAnimationSize)
+                        <xsl:if test="not($multilineString = '' or $multilineString = '&quot;&quot;') and not(contains($multilineString, '.append('))" >"<xsl:value-of select="$multilineString" />"</xsl:if>
+                        <xsl:if test="not($multilineString = '' or $multilineString = '&quot;&quot;') and contains($multilineString, '.append(')" >new StringMaker().append("<xsl:value-of select="$multilineString" />").toString()</xsl:if>
+                        , 
+                        <xsl:value-of select="name" />TextAnimationSize)
                 };
 
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
