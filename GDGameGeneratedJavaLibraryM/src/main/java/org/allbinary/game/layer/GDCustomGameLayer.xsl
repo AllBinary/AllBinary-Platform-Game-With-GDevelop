@@ -181,7 +181,7 @@ Created By: Travis Berthelot
                     //public Waypoint2LogHelper waypoint2LogHelper = Waypoint2SelectedLogHelper.getInstance();
                     //public WaypointRunnableLogHelper waypointRunnableLogHelper = WaypointRunnableSelectedLogHelper.getInstance();
 
-                    private final PathAnimation initPathAnimation;
+                    private final Animation initPathAnimation;
                     private Animation pathAnimation = NullAnimationFactory.getFactoryInstance().getInstance(0);
             
                     public final GeographicMapCellPositionArea geographicMapCellPositionArea;
@@ -475,7 +475,9 @@ Created By: Travis Berthelot
         </xsl:for-each>
 
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
-            this.initPathAnimation = new PathAnimation(this, LinePathRelativeAnimation.getInstance());
+            //this.initPathAnimation = new PathAnimation(this, LinePathRelativeAnimation.getInstance());
+            //this.initPathAnimation.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
+            this.initPathAnimation = NullAnimationFactory.getFactoryInstance().getInstance(0);
         </xsl:if>
 
         }
@@ -1122,7 +1124,7 @@ Created By: Travis Berthelot
                 //System.out.println("no map: " + this);
             }
 
-            this.initPathAnimation.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
+            //this.initPathAnimation.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
 
         }
 
