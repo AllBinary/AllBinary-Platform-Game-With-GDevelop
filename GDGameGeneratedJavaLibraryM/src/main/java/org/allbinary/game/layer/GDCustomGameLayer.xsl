@@ -105,6 +105,7 @@ Created By: Travis Berthelot
         import org.allbinary.animation.NullAnimationFactory;
         import org.allbinary.animation.RotationAnimation;
         import org.allbinary.animation.caption.CaptionAnimationHelper;
+        import org.allbinary.animation.caption.CaptionAnimationHelperBase;
         import org.allbinary.game.input.event.GameKeyEventFactory;
         import org.allbinary.game.layer.SteeringVisitor;
         import org.allbinary.game.layer.behavior.GDBehaviorUtil;
@@ -158,9 +159,11 @@ Created By: Travis Berthelot
                     public final boolean showMoreCaptionStates = debug;
                     private final LayerInterfaceFactoryInterface waypointLayerInterfaceFactoryInterface;
 
-                    private final CaptionAnimationHelper captionAnimationHelper = new CaptionAnimationHelper(
-                        NullAnimationFactory.getFactoryInstance().getInstance(0),
-                        -23, -25, 6, 0);    
+                    private final CaptionAnimationHelperBase captionAnimationHelper = 
+                        CaptionAnimationHelperBase.INSTANCE;
+                        //new CaptionAnimationHelper(
+                            //NullAnimationFactory.getFactoryInstance().getInstance(0),
+                            //-23, -25, 6, 0);    
                     private Animation captionAnimation  = NullAnimationFactory.getFactoryInstance().getInstance(0);
                         
                     private boolean selected = false;
@@ -1227,7 +1230,7 @@ Created By: Travis Berthelot
         return false;
     }
 
-    public CaptionAnimationHelper getCaptionAnimationHelper() {
+    public CaptionAnimationHelperBase getCaptionAnimationHelper() {
         return captionAnimationHelper;
     }
 
