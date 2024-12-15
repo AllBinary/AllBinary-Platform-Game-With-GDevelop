@@ -190,17 +190,13 @@ Created By: Travis Berthelot
                     </xsl:if>
 
                     <xsl:if test="$paramOneNameObjectsGroups != ''" >
-                                final boolean result = this.processGPaint(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject, 
-                                    <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >EnemiesGDGameLayer.gdObject</xsl:if><xsl:if test="not(contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >null</xsl:if>, 
-                                    graphics);
+                                final boolean result = this.processGPaint(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject, , null, graphics);
                                 
                                 <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.updatePosition();
                     </xsl:if>
 
                     <xsl:if test="$paramOneNameObjectsGroups = ''" >
-                                final boolean result = this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, 
-                                    <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >EnemiesGDGameLayer.gdObject</xsl:if><xsl:if test="not(contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >null</xsl:if>,
-                                    graphics);
+                                final boolean result = this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, , null, graphics);
                                 
                                 <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.updatePosition();
                     </xsl:if>
@@ -233,9 +229,11 @@ Created By: Travis Berthelot
                                 <xsl:variable name="parameters" ><xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                                 <xsl:if test="contains($parameters, 'Player')" >
                             //TWB - temp hack for LinkedObjects::PickObjectsLinkedTo for //MettreX
-                            final GDObject Enemies = gdObject2;
+                            final GDObject Enemies = gdObject;
                             final GDGameLayer PlayerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
                             final GDObject Player = PlayerGDGameLayer.gdObject;
+                            final GDGameLayer PlatformerMapGDGameLayer = (GDGameLayer) globals.PlatformerMapGDGameLayerList.get(0);
+                            final GD1GDObjectsFactory.PlatformerMap PlatformerMap = (GD1GDObjectsFactory.PlatformerMap) PlatformerMapGDGameLayer.gdObject;
                                 </xsl:if>
                             </xsl:if>
 
