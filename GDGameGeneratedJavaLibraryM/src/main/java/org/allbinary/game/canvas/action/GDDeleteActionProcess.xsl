@@ -236,7 +236,15 @@ Created By: Travis Berthelot
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
                                             //<xsl:value-of select="text()" /><xsl:text>&#10;</xsl:text>
-                             
+
+                            <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
+                            <xsl:if test="text() = 'OffScreenLocationIndicator'" >
+                            //TWB - temp hack for LinkedObjects::PickObjectsLinkedTo for //Delete
+                            final int index = EnemiesGDGameLayer.linkedGDGameLayerList.indexOf(HealthBarGDGameLayer);
+                            final GDGameLayer OffScreenLocationIndicatorGDGameLayer = (GDGameLayer) EnemiesGDGameLayer.linkedGDGameLayerList.get(index + 1);
+                            </xsl:if>
+                            </xsl:if>
+
                                             //final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                             //final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
                                             //if(allBinaryGameLayerManager.getLayerManager().contains(<xsl:value-of select="text()" />GDGameLayer)) {

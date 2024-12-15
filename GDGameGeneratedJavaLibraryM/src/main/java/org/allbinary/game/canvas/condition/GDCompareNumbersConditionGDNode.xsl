@@ -138,8 +138,8 @@ Created By: Travis Berthelot
                             </xsl:if>
                             
                             
-                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:if test="text() = '&gt;'" ><xsl:text disable-output-escaping="yes" >&gt;</xsl:text></xsl:if><xsl:if test="text() = '&lt;'" ><xsl:text disable-output-escaping="yes" >&lt;</xsl:text></xsl:if><xsl:if test="text() != '&gt;' and text() != '&lt;'" ><xsl:value-of select="text()" /></xsl:if></xsl:if><xsl:text> </xsl:text></xsl:for-each>)) {
-                                //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:if test="text() = '&gt;'" ><xsl:text disable-output-escaping="yes" >&gt;</xsl:text></xsl:if><xsl:if test="text() = '&lt;'" ><xsl:text disable-output-escaping="yes" >&lt;</xsl:text></xsl:if><xsl:if test="text() != '&gt;' and text() != '&lt;'" ><xsl:value-of select="text()" /></xsl:if></xsl:if><xsl:text> </xsl:text></xsl:for-each>", this, commonStrings.PROCESS));
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:call-template name="replace-escaped-conditionals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if><xsl:text> </xsl:text></xsl:for-each>)) {
+                                //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:call-template name="replace-escaped-conditionals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if><xsl:text> </xsl:text></xsl:for-each>", this, commonStrings.PROCESS));
                                 return true;
                             }
                             return false;
@@ -186,9 +186,19 @@ Created By: Travis Berthelot
                                 final GDObject <xsl:value-of select="$distanceProcessGDParamTwo" /> = <xsl:value-of select="$distanceProcessGDParamTwo" />GDGameLayer.gdObject;
                             </xsl:if>
                             
+                            <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
+                                <xsl:variable name="parameters" ><xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                                <xsl:if test="contains($parameters, 'Player')" >
+                            //TWB - temp hack for LinkedObjects::PickObjectsLinkedTo for //BuiltinCommonInstructions::CompareNumbers
+                            final GDObject Enemies = EnemiesGDGameLayer.gdObject;
+                            final GDGameLayer PlayerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
+                            final GDObject Player = PlayerGDGameLayer.gdObject;
+                                </xsl:if>
+                            </xsl:if>
                             
-                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:if test="text() = '&gt;'" ><xsl:text disable-output-escaping="yes" >&gt;</xsl:text></xsl:if><xsl:if test="text() = '&lt;'" ><xsl:text disable-output-escaping="yes" >&lt;</xsl:text></xsl:if><xsl:if test="text() != '&gt;' and text() != '&lt;'" ><xsl:value-of select="text()" /></xsl:if></xsl:if><xsl:text> </xsl:text></xsl:for-each>)) {
-                                //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:if test="text() = '&gt;'" ><xsl:text disable-output-escaping="yes" >&gt;</xsl:text></xsl:if><xsl:if test="text() = '&lt;'" ><xsl:text disable-output-escaping="yes" >&lt;</xsl:text></xsl:if><xsl:if test="text() != '&gt;' and text() != '&lt;'" ><xsl:value-of select="text()" /></xsl:if></xsl:if><xsl:text> </xsl:text></xsl:for-each>", this, commonStrings.PROCESS));
+                            
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:call-template name="replace-escaped-conditionals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if><xsl:text> </xsl:text></xsl:for-each>)) {
+                                //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:call-template name="replace-escaped-conditionals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if><xsl:text> </xsl:text></xsl:for-each>", this, commonStrings.PROCESS));
                                 return true;
                             }
                             return false;

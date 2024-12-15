@@ -376,24 +376,7 @@ Created By: Travis Berthelot
                                     <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.</xsl:if>
                                     <xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if>
                                     <xsl:if test="position() = 3" >
-                                        <xsl:if test="text() != '>' and text() != '&lt;' and text() != '&lt;=' and text() != '&gt;' and text() != '&gt;='" >
-                                            <xsl:value-of select="text()" />
-                                        </xsl:if>
-                                        <xsl:if test="text() = '&lt;'" >
-                                            <xsl:text disable-output-escaping="yes" > &lt; </xsl:text>
-                                        </xsl:if>
-                                        <xsl:if test="text() = '&lt;='" >
-                                            <xsl:text disable-output-escaping="yes" > &lt;= </xsl:text>
-                                        </xsl:if>
-                                        <xsl:if test="text() = '>' or text() = '&gt;'" >
-                                            <xsl:text disable-output-escaping="yes" > &gt; </xsl:text>
-                                        </xsl:if>
-                                        <xsl:if test="text() = '&gt;='" >
-                                            <xsl:text disable-output-escaping="yes" > &gt;= </xsl:text>
-                                        </xsl:if>
-                                        <xsl:if test="text() = '='" >=</xsl:if>
-                                        <xsl:if test="text() = '+'" >=</xsl:if>
-                                        <xsl:if test="text() = '-'" >=</xsl:if>
+                                        <xsl:call-template name="replace-escaped-conditionals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>
                                     </xsl:if>
                                     <xsl:if test="position() = 4" >
                                         <xsl:variable name="before" >

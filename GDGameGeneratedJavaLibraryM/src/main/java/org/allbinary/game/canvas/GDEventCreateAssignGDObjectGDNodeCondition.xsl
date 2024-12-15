@@ -53,6 +53,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDMouseButtonPressedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDMouseButtonReleasedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDDepartSceneConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDNumberVariableConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSceneVariableAsBooleanConditionGDNode.xsl" />
     <xsl:import href="./condition/GDPopStartedTouchConditionGDNode.xsl" />
     <xsl:import href="./condition/GDPopEndedTouchConditionGDNode.xsl" />
@@ -999,6 +1000,18 @@ Created By: Travis Berthelot
 
                     </xsl:call-template>
                     
+                </xsl:if>
+                
+                <xsl:if test="$typeValue = 'NumberVariable'" >
+                    <xsl:call-template name="numberVariableConditionGDNode" >
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
+                        <xsl:with-param name="conditionNodeIndex" ><xsl:value-of select="$conditionNodeIndex" /></xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                        <xsl:with-param name="actionAsStringsStrings" ><xsl:value-of select="$actionAsStringsStrings" /></xsl:with-param>
+                    </xsl:call-template>
                 </xsl:if>
                 
                 <xsl:if test="$typeValue = 'VarGlobal'" >

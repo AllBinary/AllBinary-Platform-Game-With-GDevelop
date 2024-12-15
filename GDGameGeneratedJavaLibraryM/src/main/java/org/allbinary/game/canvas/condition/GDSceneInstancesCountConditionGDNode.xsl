@@ -74,7 +74,9 @@ Created By: Travis Berthelot
                                 //Has GameLayer
                                 if(<xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 2" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size() - <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RemoveList.size()</xsl:if>
-                                    <xsl:if test="position() = 3" ><xsl:if test="text() != '>' and text() != '&lt;'" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="text() = '>'" ><xsl:text disable-output-escaping="yes" > &gt; </xsl:text></xsl:if><xsl:if test="text() = '&lt;'" ><xsl:text disable-output-escaping="yes" > &lt; </xsl:text></xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if></xsl:if>
+                                    <xsl:if test="position() = 3" >
+                                        <xsl:call-template name="replace-escaped-conditionals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>
+                                    </xsl:if>
                                     <xsl:if test="position() = 4" >
                                         <xsl:variable name="before" >
                                             <xsl:value-of select="substring-before(text(), '.')" />
@@ -206,7 +208,9 @@ Created By: Travis Berthelot
                                 //Has GameLayer
                                 if(<xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 2" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size() - <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RemoveList.size()</xsl:if>
-                                    <xsl:if test="position() = 3" ><xsl:if test="text() != '>' and text() != '&lt;'" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="text() = '>'" ><xsl:text disable-output-escaping="yes" > &gt; </xsl:text></xsl:if><xsl:if test="text() = '&lt;'" ><xsl:text disable-output-escaping="yes" > &lt; </xsl:text></xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if><xsl:if test="text() = '-'" >=</xsl:if></xsl:if>
+                                    <xsl:if test="position() = 3" >
+                                        <xsl:call-template name="replace-escaped-conditionals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>
+                                    </xsl:if>
                                     <xsl:if test="position() = 4" >
                                         <xsl:variable name="before" >
                                             <xsl:value-of select="substring-before(text(), '.')" />
