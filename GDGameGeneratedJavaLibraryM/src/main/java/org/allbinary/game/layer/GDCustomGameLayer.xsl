@@ -476,7 +476,7 @@ Created By: Travis Berthelot
 
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
             //this.initPathAnimation = new PathAnimation(this, LinePathRelativeAnimation.getInstance());
-            //this.initPathAnimation.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
+            ////Unremark as well in setAllBinaryGameLayerManager - ((PathAnimation) this.initPathAnimation).setAllBinaryGameLayerManager(allBinaryGameLayerManager);
             this.initPathAnimation = NullAnimationFactory.getFactoryInstance().getInstance(0);
         </xsl:if>
 
@@ -1124,7 +1124,7 @@ Created By: Travis Berthelot
                 //System.out.println("no map: " + this);
             }
 
-            //this.initPathAnimation.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
+            //((PathAnimation) this.initPathAnimation).setAllBinaryGameLayerManager(allBinaryGameLayerManager);
 
         }
 
