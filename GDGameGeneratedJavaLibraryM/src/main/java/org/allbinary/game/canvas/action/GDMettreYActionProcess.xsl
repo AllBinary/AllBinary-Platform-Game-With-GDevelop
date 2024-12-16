@@ -232,7 +232,7 @@ Created By: Travis Berthelot
                             <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
                                 <xsl:variable name="parameters" ><xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                                 <xsl:if test="$name != $firstOrBeforeFourthParam" >
-                            //LinkedObjects::PickObjectsLinkedTo for //MettreX - needs more logic for handling Object variables that are not params
+                            //LinkedObjects::PickObjectsLinkedTo for //MettreY - needs more logic for handling Object variables that are not params
                             final GDObject Enemies = gdObject2;
                             final GDGameLayer PlayerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
                             final GDObject Player = PlayerGDGameLayer.gdObject;
