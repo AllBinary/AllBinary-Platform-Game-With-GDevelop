@@ -97,10 +97,11 @@ Created By: Travis Berthelot
 
                 <xsl:if test="contains(disabled, 'true')" >
                 //Disabled so not call anything.
+                /*
                 </xsl:if>
                 
                 
-                <xsl:if test="not(contains(disabled, 'true'))" >
+<!--                <xsl:if test="not(contains(disabled, 'true'))" >-->
                 //BuiltinCommonInstructions::ForEach - condition
                 @Override
                 public boolean process() throws Exception {
@@ -185,7 +186,12 @@ Created By: Travis Berthelot
                     return true;
 
                 }
+<!--                </xsl:if>-->
+                
+                <xsl:if test="contains(disabled, 'true')" >
+                */
                 </xsl:if>
+                
             };
 
             </xsl:if>
@@ -240,9 +246,10 @@ Created By: Travis Berthelot
 
                 <xsl:if test="contains(disabled, 'true')" >
                 //Disabled so not call anything.
+                /*
                 </xsl:if>
                 
-                <xsl:if test="not(contains(disabled, 'true'))" >
+<!--                <xsl:if test="not(contains(disabled, 'true'))" >-->
                 //<xsl:value-of select="type" /> - event
                 @Override
                 public boolean process() throws Exception {
@@ -950,6 +957,10 @@ Created By: Travis Berthelot
                 }
                 </xsl:if>
                 
+<!--                </xsl:if>-->
+
+                <xsl:if test="contains(disabled, 'true')" >
+                */
                 </xsl:if>
 
             };
