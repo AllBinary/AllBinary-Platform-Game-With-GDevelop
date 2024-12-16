@@ -150,6 +150,8 @@ Created By: Travis Berthelot
                     <xsl:variable name="secondParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="paramTwoName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template></xsl:if></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="paramTwoNameObjectsGroups" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$objectsGroupsAsString" /></xsl:with-param></xsl:call-template></xsl:if></xsl:if></xsl:for-each></xsl:variable>                    
+                    //name=<xsl:value-of select="$name" />
+                    //firstOrBeforeFourthParam=<xsl:value-of select="$firstOrBeforeFourthParam" />
                     //paramOneNameObjectsGroups=<xsl:value-of select="$paramOneNameObjectsGroups" />
                     //paramTwoName=<xsl:value-of select="$paramTwoName" />
                     //paramTwoNameObjectsGroups=<xsl:value-of select="$paramTwoNameObjectsGroups" />
@@ -229,7 +231,7 @@ Created By: Travis Berthelot
 
                             <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
                                 <xsl:variable name="parameters" ><xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                                <xsl:if test="$name != $firstOrBeforeFourthParam" >
+                                <xsl:if test="contains($parameters, 'Player')" >
                             //LinkedObjects::PickObjectsLinkedTo for //MettreX - needs more logic for handling Object variables that are not params
                             final GDObject Enemies = gdObject2;
                             final GDGameLayer PlayerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
