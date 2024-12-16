@@ -861,6 +861,13 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         platformerMap.startX = platformerMap.startX - (allBinaryTiledLayer.getCellWidth() / 2);
         platformerMap.startY = platformerMap.startY - (allBinaryTiledLayer.getCellHeight() / 2);
 
+        platformerMap.mapWidth = allBinaryTiledLayer.getColumns() * allBinaryTiledLayer.getCellWidth();
+        platformerMap.mapHeight = allBinaryTiledLayer.getRows() * allBinaryTiledLayer.getCellHeight();
+        LogUtil.put(LogFactory.getInstance("TWBw: " + platformerMap.mapWidth, this, commonStrings.PROCESS));
+        LogUtil.put(LogFactory.getInstance("TWBh: " + platformerMap.mapHeight, this, commonStrings.PROCESS));
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append(OffScreenLocationIndicator.getClass().getName()).append("TWBpx: ").append(Enemies.X()).append("-").append(Player.X()).append("+").append(PlatformerMap.mapWidth).toString(), this, commonStrings.PROCESS));
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append(OffScreenLocationIndicator.getClass().getName()).append("TWBpy: ").append(Enemies.Y()).append("-").append(Player.Y()).append("+").append(PlatformerMap.mapHeight).toString(), this, commonStrings.PROCESS));
+        
         //Temp hack for RPG game.
         final GDGeographicMap gdGeographicMap = (GDGeographicMap) geographicMapInterfaceArray[layerIndex];
         final org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory = 

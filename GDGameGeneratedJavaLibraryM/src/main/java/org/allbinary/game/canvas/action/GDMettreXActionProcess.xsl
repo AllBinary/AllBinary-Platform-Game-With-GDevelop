@@ -190,13 +190,15 @@ Created By: Travis Berthelot
                     </xsl:if>
 
                     <xsl:if test="$paramOneNameObjectsGroups != ''" >
-                                final boolean result = this.processGPaint(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject, null, graphics);
+                                final boolean result = this.processGPaint(
+                                    <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found') and $name != $paramOneNameObjectsGroups" ><xsl:value-of select="$name" />GDGameLayer.gdObject<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject, </xsl:if><xsl:if test="not(contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found') and $name != $paramOneNameObjectsGroups)" ><xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.gdObject, null</xsl:if>, graphics);
                                 
                                 <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer.updatePosition();
                     </xsl:if>
 
                     <xsl:if test="$paramOneNameObjectsGroups = ''" >
-                                final boolean result = this.processGPaint(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, null, graphics);
+                                final boolean result = this.processGPaint(
+                                    <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found') and $name != $firstOrBeforeFourthParam" ><xsl:value-of select="$name" />GDGameLayer.gdObject, <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject</xsl:if><xsl:if test="not(contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found') and $name != $firstOrBeforeFourthParam)" ><xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject, null</xsl:if>, graphics);
                                 
                                 <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.updatePosition();
                     </xsl:if>
@@ -227,9 +229,9 @@ Created By: Travis Berthelot
 
                             <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
                                 <xsl:variable name="parameters" ><xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                                <xsl:if test="contains($parameters, 'Player')" >
-                            //TWB - temp hack for LinkedObjects::PickObjectsLinkedTo for //MettreX
-                            final GDObject Enemies = gdObject;
+                                <xsl:if test="$name != $firstOrBeforeFourthParam" >
+                            //LinkedObjects::PickObjectsLinkedTo for //MettreX - needs more logic for handling Object variables that are not params
+                            final GDObject Enemies = gdObject2;
                             final GDGameLayer PlayerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
                             final GDObject Player = PlayerGDGameLayer.gdObject;
                             final GDGameLayer PlatformerMapGDGameLayer = (GDGameLayer) globals.PlatformerMapGDGameLayerList.get(0);
