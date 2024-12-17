@@ -865,8 +865,12 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         platformerMap.mapHeight = allBinaryTiledLayer.getRows() * allBinaryTiledLayer.getCellHeight();
         LogUtil.put(LogFactory.getInstance("TWBw: " + platformerMap.mapWidth, this, commonStrings.PROCESS));
         LogUtil.put(LogFactory.getInstance("TWBh: " + platformerMap.mapHeight, this, commonStrings.PROCESS));
-        //LogUtil.put(LogFactory.getInstance(new StringMaker().append(OffScreenLocationIndicator.getClass().getName()).append("TWBpx: ").append(Enemies.X()).append("-").append(Player.X()).append("+").append(PlatformerMap.mapWidth).toString(), this, commonStrings.PROCESS));
-        //LogUtil.put(LogFactory.getInstance(new StringMaker().append(OffScreenLocationIndicator.getClass().getName()).append("TWBpy: ").append(Enemies.Y()).append("-").append(Player.Y()).append("+").append(PlatformerMap.mapHeight).toString(), this, commonStrings.PROCESS));
+        //.append(OffScreenLocationIndicator.getClass().getName())
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("TWBpx: ").append((SceneWindowWidth() / 2) + ((Enemies.X() - Player.X()) * SceneWindowWidth() / PlatformerMap.mapWidth)).append(CommonSeps.getInstance().SPACE).append(Enemies.X() - Player.X()).append(CommonSeps.getInstance().SPACE).append(SceneWindowWidth()).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.mapWidth).toString(), this, commonStrings.PROCESS));
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("TWBpy: ").append((SceneWindowHeight() / 2) + ((Enemies.Y() - Player.Y()) * SceneWindowHeight() / PlatformerMap.mapHeight)).append(CommonSeps.getInstance().SPACE).append(Enemies.Y() - Player.Y()).append(CommonSeps.getInstance().SPACE).append(SceneWindowHeight()).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.mapHeight).toString(), this, commonStrings.PROCESS));
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append(" TWBpx: ").append((((double) SceneWindowHeight() / 2) / (Enemies.Y() - Player.Y())) * (Enemies.X() - Player.X())).append(CommonSeps.getInstance().SPACE).append(((double) SceneWindowHeight() / 2) / (Enemies.Y() - Player.Y())).append(CommonSeps.getInstance().SPACE).append(Enemies.X()).toString(), this, commonStrings.PROCESS));
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append(" TWBpy: ").append((((double) SceneWindowWidth() / 2) / (Enemies.X() - Player.X())) * (Enemies.Y() - Player.Y())).append(CommonSeps.getInstance().SPACE).append(((double) SceneWindowWidth() / 2) / (Enemies.X() - Player.X())).append(CommonSeps.getInstance().SPACE).append(Enemies.Y()).toString(), this, commonStrings.PROCESS));
+        //((100 *SceneWindowWidth() / 2) / (Enemies.X() - Player.X())) * (Enemies.Y() - Player.Y()) / 100
         
         //Temp hack for RPG game.
         final GDGeographicMap gdGeographicMap = (GDGeographicMap) geographicMapInterfaceArray[layerIndex];
