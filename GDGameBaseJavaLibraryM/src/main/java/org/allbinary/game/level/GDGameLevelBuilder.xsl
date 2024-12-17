@@ -872,14 +872,24 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         platformerMap.mapWidth = allBinaryTiledLayer.getColumns() * allBinaryTiledLayer.getCellWidth();
         platformerMap.mapHeight = allBinaryTiledLayer.getRows() * allBinaryTiledLayer.getCellHeight();
-        LogUtil.put(LogFactory.getInstance("TWBw: " + platformerMap.mapWidth, this, commonStrings.PROCESS));
-        LogUtil.put(LogFactory.getInstance("TWBh: " + platformerMap.mapHeight, this, commonStrings.PROCESS));
+        //LogUtil.put(LogFactory.getInstance("TWBw: " + platformerMap.mapWidth, this, commonStrings.PROCESS));
+        //LogUtil.put(LogFactory.getInstance("TWBh: " + platformerMap.mapHeight, this, commonStrings.PROCESS));
+        
+<!--
+
         //.append(OffScreenLocationIndicator.getClass().getName())
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append("TWBpx: ").append((SceneWindowWidth() / 2) + ((Enemies.X() - Player.X()) * SceneWindowWidth() / PlatformerMap.mapWidth)).append(CommonSeps.getInstance().SPACE).append(Enemies.X() - Player.X()).append(CommonSeps.getInstance().SPACE).append(SceneWindowWidth()).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.mapWidth).toString(), this, commonStrings.PROCESS));
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append("TWBpy: ").append((SceneWindowHeight() / 2) + ((Enemies.Y() - Player.Y()) * SceneWindowHeight() / PlatformerMap.mapHeight)).append(CommonSeps.getInstance().SPACE).append(Enemies.Y() - Player.Y()).append(CommonSeps.getInstance().SPACE).append(SceneWindowHeight()).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.mapHeight).toString(), this, commonStrings.PROCESS));
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append(" TWBpx: ").append((((double) SceneWindowHeight() / 2) / (Enemies.Y() - Player.Y())) * (Enemies.X() - Player.X())).append(CommonSeps.getInstance().SPACE).append(((double) SceneWindowHeight() / 2) / (Enemies.Y() - Player.Y())).append(CommonSeps.getInstance().SPACE).append(Enemies.X()).toString(), this, commonStrings.PROCESS));
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append(" TWBpy: ").append((((double) SceneWindowWidth() / 2) / (Enemies.X() - Player.X())) * (Enemies.Y() - Player.Y())).append(CommonSeps.getInstance().SPACE).append(((double) SceneWindowWidth() / 2) / (Enemies.X() - Player.X())).append(CommonSeps.getInstance().SPACE).append(Enemies.Y()).toString(), this, commonStrings.PROCESS));
         //((100 *SceneWindowWidth() / 2) / (Enemies.X() - Player.X())) * (Enemies.Y() - Player.Y()) / 100
+        final GDGameLayer PlayerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
+        final GDObject Player = PlayerGDGameLayer.gdObject;                                
+        final GDGameLayer PlatformerMapGDGameLayer = (GDGameLayer) globals.PlatformerMapGDGameLayerList.get(0);
+        final GD1GDObjectsFactory.PlatformerMap PlatformerMap = (GD1GDObjectsFactory.PlatformerMap) PlatformerMapGDGameLayer.gdObject;
+        LogUtil.put(LogFactory.getInstance(new StringMaker().append("TWBpx: ").append(PlatformerMap.X() - PlatformerMap.endX - Player.X()).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.endX).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.X()).append(CommonSeps.getInstance().SPACE).append(Player.X()).toString(), this, commonStrings.PROCESS));
+        LogUtil.put(LogFactory.getInstance(new StringMaker().append("TWBpy: ").append(PlatformerMap.Y() - PlatformerMap.endY - Player.Y()).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.endY).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.Y()).append(CommonSeps.getInstance().SPACE).append(Player.Y()).toString(), this, commonStrings.PROCESS));
+-->
         
         //Temp hack for RPG game.
         final GDGeographicMap gdGeographicMap = (GDGeographicMap) geographicMapInterfaceArray[layerIndex];
@@ -925,6 +935,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         //platformerMap.endY = platformerMap.endY + (displayInfoSingleton / 2);
         platformerMap.endX = platformerMap.endX - (allBinaryTiledLayer.getCellWidth() / 2);
         platformerMap.endY = platformerMap.endY - (allBinaryTiledLayer.getCellHeight() / 2);
+        
+        stringMaker.delete(0, stringMaker.length());
+        LogUtil.put(LogFactory.getInstance(stringMaker.append("PlatformerMap end: ").append(platformerMap.endX).append(CommonSeps.getInstance().SPACE).append(platformerMap.endY).toString(), this, commonStrings.PROCESS));
     }
                 
     public void setPosition(final GeographicMapCompositeInterface geographicMapCompositeInterface)

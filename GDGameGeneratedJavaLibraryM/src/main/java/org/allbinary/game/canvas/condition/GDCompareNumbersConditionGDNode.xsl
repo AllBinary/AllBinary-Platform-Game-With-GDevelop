@@ -194,13 +194,15 @@ Created By: Travis Berthelot
                                 //linkedObjectsPickObjectsLinkedToProcessGDParamTwo=<xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamTwo" />-->
                                 
                                 <xsl:variable name="parameters" ><xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                                <xsl:if test="contains($parameters, 'Player')" >
                             //TWB - temp hack for LinkedObjects::PickObjectsLinkedTo for //BuiltinCommonInstructions::CompareNumbers
                                 <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
                             final GDObject Enemies = EnemiesGDGameLayer.gdObject;
                                 </xsl:if>
+                                <xsl:if test="contains($parameters, 'Player')" >
                             final GDGameLayer PlayerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
                             final GDObject Player = PlayerGDGameLayer.gdObject;
+                                </xsl:if>
+                                <xsl:if test="contains($parameters, 'PlatformerMap')" >
                             final GDGameLayer PlatformerMapGDGameLayer = (GDGameLayer) globals.PlatformerMapGDGameLayerList.get(0);
                             final GD1GDObjectsFactory.PlatformerMap PlatformerMap = (GD1GDObjectsFactory.PlatformerMap) PlatformerMapGDGameLayer.gdObject;
                                 </xsl:if>
