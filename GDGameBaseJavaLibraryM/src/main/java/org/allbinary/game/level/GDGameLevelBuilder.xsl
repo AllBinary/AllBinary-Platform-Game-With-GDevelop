@@ -765,7 +765,16 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 //                            LogUtil.put(LogFactory.getInstance("Display not ready to set start position", this, commonStrings.PROCESS));
 //                        }
 
+                    } else if (basicTopViewGeographicMapCellTypeFactory.STAIRS_DOWN_CELL_TYPE.isType(mapArray[indexY][indexX])) {
+                    
+                        stringMaker.delete(0, stringMaker.length());
+                        LogUtil.put(LogFactory.getInstance(stringMaker.append("Planned End Position c: ").append(allBinaryTiledLayer.getColumns()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexX * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexX).append(" r: ").append(allBinaryTiledLayer.getRows()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexY * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexY).toString(), this, commonStrings.PROCESS));
+                                                
+                        geographicMapCellPosition = geographicMapCellPositionFactory.getInstance(indexX, indexY);
+                        this.setEndPosition(geographicMapInterfaceArray, geographicMapCellPosition, layerIndex, stringMaker);
+
                     }
+
                 }
                 currentY++;
                 if(currentY <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> MAX_HISTORY_Y - 1) currentY = 0;
@@ -895,7 +904,29 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         <xsl:value-of select="name" />GDGameLayer.updatePosition2();
     }
-        
+
+    public void setEndPosition(final GeographicMapInterface[] geographicMapInterfaceArray, final GeographicMapCellPosition geographicMapCellPosition, final int layerIndex, final StringMaker stringMaker) {
+
+        final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+
+        final GDCustomGameLayer <xsl:value-of select="name" />GDGameLayer = (GDCustomGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0);
+        final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) <xsl:value-of select="name" />GDGameLayer.gdObject;
+        //final GDObject Wall = (GDObject) ((GDGameLayer) globals.WallGDGameLayerList.get(0)).gdObject;
+        //final GDGameLayer wallGDGameLayer = (GDGameLayer) globals.WallGDGameLayerList.get(0);
+
+        final AllBinaryTiledLayer allBinaryTiledLayer = geographicMapInterfaceArray[layerIndex].getAllBinaryTiledLayer();
+
+        //final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+        //final GDGameLayer PlayerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
+
+        platformerMap.endX = -( ((geographicMapCellPosition.getColumn()) * allBinaryTiledLayer.getCellWidth()) );
+        platformerMap.endY = -( ((geographicMapCellPosition.getRow()) * allBinaryTiledLayer.getCellHeight()) );
+        //platformerMap.endX = platformerMap.endX + (displayInfoSingleton / 2);
+        //platformerMap.endY = platformerMap.endY + (displayInfoSingleton / 2);
+        platformerMap.endX = platformerMap.endX - (allBinaryTiledLayer.getCellWidth() / 2);
+        platformerMap.endY = platformerMap.endY - (allBinaryTiledLayer.getCellHeight() / 2);
+    }
+                
     public void setPosition(final GeographicMapCompositeInterface geographicMapCompositeInterface)
     {
         final AllBinaryLayer layer = StaticTileLayerIntoPositionViewPosition.layer;
