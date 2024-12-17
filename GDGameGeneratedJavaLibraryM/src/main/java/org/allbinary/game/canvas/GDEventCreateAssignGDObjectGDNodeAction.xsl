@@ -36,6 +36,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDObjectVariablePushNumberActionProcess.xsl" />
 
     <xsl:import href="./action/GDHideLayerActionProcess.xsl" />
+    <xsl:import href="./action/GDMontreToShowActionProcess.xsl" />
     <xsl:import href="./action/GDCacheToHideActionProcess.xsl" />
     
     <xsl:import href="./action/GDPlayMusicActionProcess.xsl" />
@@ -873,7 +874,9 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
                 <xsl:if test="$typeValue = 'Montre'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+
+                    <xsl:call-template name="montreAsShowActionProcess" />
+
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MettreAutour'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED

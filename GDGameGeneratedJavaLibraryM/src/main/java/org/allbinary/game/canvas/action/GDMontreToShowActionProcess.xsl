@@ -16,8 +16,8 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:template name="cacheAsHideActionProcess" >
-                    //Cache - action - Release to cache to hide
+    <xsl:template name="montreAsShowActionProcess" >
+                    //Montre - action - Release to cache to hide
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();
@@ -59,7 +59,7 @@ Created By: Travis Berthelot
                             for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
                             //if(gdObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                 gdGameLayer = (GDGameLayer) gdGameLayerList.get(index2);
-                                gdGameLayer.setVisible(false);
+                                gdGameLayer.setVisible(true);
                                 //gdObject = (GDObject) gdGameLayer.gdObject;
                                 //result = result <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> 
                             //}
@@ -80,11 +80,11 @@ Created By: Travis Berthelot
                     
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                         
-                        gdGameLayer.setVisible(false);
+                        gdGameLayer.setVisible(true);
                         
                         return true;
     
-                    }
+                    }                    
                     
     </xsl:template>
 
