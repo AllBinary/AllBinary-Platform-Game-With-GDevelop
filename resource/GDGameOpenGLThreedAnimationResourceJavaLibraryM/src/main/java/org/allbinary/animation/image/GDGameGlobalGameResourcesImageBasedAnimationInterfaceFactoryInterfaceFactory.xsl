@@ -122,6 +122,15 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
 
     private final GDGlobalSpecialAnimationResources specialAnimationResources = GDGlobalSpecialAnimationResources.getInstance();
 
+        <xsl:call-template name="scaleProperty" >
+            <xsl:with-param name="layoutIndex" >
+                Global
+            </xsl:with-param>
+            <xsl:with-param name="layoutName" >
+                Global
+            </xsl:with-param>
+        </xsl:call-template>
+
     private final int portion = 120;
 
     public GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
