@@ -65,13 +65,15 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.RotationAnimationFactory;
                 import org.allbinary.animation.image.GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.animation.text.CustomTextAnimationFactory;
+                import org.allbinary.game.identification.Group;
                 import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.layer.GDCustomGameLayerFactory;
-                import org.allbinary.game.identification.Group;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layer.GDIndividualAnimationBehavior;
                 import org.allbinary.game.layer.GDAnimationBehaviorBase;
                 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
+                import org.allbinary.game.layout.GDObject;
                 import org.allbinary.graphics.GPoint;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
@@ -103,6 +105,8 @@ Created By: Travis Berthelot
                         }
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
+                        private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
+                        private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
 
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
        
