@@ -935,6 +935,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         //platformerMap.endY = platformerMap.endY + (displayInfoSingleton / 2);
         platformerMap.endX = platformerMap.endX - (allBinaryTiledLayer.getCellWidth() / 2);
         platformerMap.endY = platformerMap.endY - (allBinaryTiledLayer.getCellHeight() / 2);
+        platformerMap.cellWidth = allBinaryTiledLayer.getCellWidth();
+        platformerMap.cellHeight = allBinaryTiledLayer.getCellHeight();
         
         stringMaker.delete(0, stringMaker.length());
         LogUtil.put(LogFactory.getInstance(stringMaker.append("PlatformerMap end: ").append(platformerMap.endX).append(CommonSeps.getInstance().SPACE).append(platformerMap.endY).toString(), this, commonStrings.PROCESS));
