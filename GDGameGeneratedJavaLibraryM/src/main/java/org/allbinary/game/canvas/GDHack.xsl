@@ -949,7 +949,7 @@ Created By: Travis Berthelot
                             <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            globals.<xsl:value-of select="target" />GDNode.process(<xsl:value-of select="$index" />);
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process(<xsl:value-of select="$index" />);
                             </xsl:if>
                         </xsl:for-each>
                 //not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' - END
@@ -966,7 +966,7 @@ Created By: Travis Berthelot
                             <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            //globals.<xsl:value-of select="target" />GDNode.process(<xsl:value-of select="$index" />);
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>//globals.<xsl:value-of select="target" />GDNode.process(<xsl:value-of select="$index" />);
                             </xsl:if>
                         </xsl:for-each>
                 //contains($caller, 'eventsCreateAssignGDObject') - END
@@ -992,7 +992,7 @@ Created By: Travis Berthelot
                             <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            globals.<xsl:value-of select="target" />GDNode.process(<xsl:value-of select="$index" />);
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process(<xsl:value-of select="$index" />);
                             </xsl:if>
                         </xsl:for-each>
                 //maybe - not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' - END
@@ -1010,7 +1010,7 @@ Created By: Travis Berthelot
                             <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            globals.<xsl:value-of select="target" />GDNode.process(<xsl:value-of select="$index" />);
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process(<xsl:value-of select="$index" />);
                             </xsl:if>
                         </xsl:for-each>
                 //maybe - contains($caller, 'eventsCreateAssignGDObject') - END
@@ -1065,7 +1065,7 @@ Created By: Travis Berthelot
                             <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            //globals.<xsl:value-of select="target" />GDNode.process(<xsl:value-of select="$index" />);
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>//globals.<xsl:value-of select="target" />GDNode.process(<xsl:value-of select="$index" />);
                             </xsl:if>
                         </xsl:for-each>
                 //maybe - not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' - END
@@ -1083,7 +1083,7 @@ Created By: Travis Berthelot
                             <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call
-                            //globals.<xsl:value-of select="target" />GDNode.process(<xsl:value-of select="$index" />);
+                            <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>//globals.<xsl:value-of select="target" />GDNode.process(<xsl:value-of select="$index" />);
                             </xsl:if>
                         </xsl:for-each>
                 //maybe - contains($caller, 'eventsCreateAssignGDObject') - END

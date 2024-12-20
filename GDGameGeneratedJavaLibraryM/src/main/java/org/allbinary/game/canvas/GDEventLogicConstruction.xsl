@@ -165,7 +165,7 @@ Created By: Travis Berthelot
 
             <xsl:for-each select="events" >
                 
-                <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >                    
+                <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
                 <xsl:if test="$totalRecursions = 0" >
                 //Sibling - //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                 </xsl:if>
