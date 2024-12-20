@@ -92,7 +92,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="position() = 3" >
                                     <xsl:if test="contains($thirdParam, '&quot;') and $thirdParam != '&quot;&quot;'" >
                                         //GDStringLiteral
-                                        private final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate($thirdParam, '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template> = <xsl:value-of select="$thirdParam" />;
+                                        private final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate($thirdParam, '?', '_'), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template> = <xsl:value-of select="$thirdParam" />;
                                     </xsl:if>
                                 </xsl:if>
                             </xsl:for-each>
@@ -116,7 +116,7 @@ Created By: Travis Berthelot
                                     <xsl:if test="$thirdParam = '&quot;&quot;'" >stringUtil.EMPTY_STRING</xsl:if>
                                     <xsl:if test="$thirdParam != '&quot;&quot;'" >
                                         <xsl:if test="contains($thirdParam, '&quot;') and not(contains($thirdParam, '+'))" >
-                                            <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate($thirdParam, '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template>
+                                            <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate($thirdParam, '?', '_'), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template>
                                         </xsl:if>
                                         <xsl:if test="not(contains($thirdParam, '&quot;') and not(contains($thirdParam, '+')))" >
                                             <xsl:value-of select="$thirdParam" />

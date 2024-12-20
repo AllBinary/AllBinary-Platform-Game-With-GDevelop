@@ -23,7 +23,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="position() = 4" >
                                     <xsl:if test="contains(text(), '&quot;') and not(contains(text(), '+')) and text() != '&quot;&quot;'" >
                                         //GDStringLiteral
-                                        private final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(text(), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template> = <xsl:value-of select="text()" />;
+                                        private final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate(text(), '?', '_'), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template> = <xsl:value-of select="text()" />;
                                     </xsl:if>
                                 </xsl:if>
                             </xsl:for-each>
@@ -122,7 +122,7 @@ Created By: Travis Berthelot
                                     <xsl:if test="text() = '&quot;&quot;'" >stringUtil.EMPTY_STRING</xsl:if>
                                     <xsl:if test="text() != '&quot;&quot;'" >
                                         <xsl:if test="contains(text(), '&quot;') and not(contains(text(), '+'))" >
-                                            <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(text(), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template>
+                                            <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate(text(), '?', '_'), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template>
                                         </xsl:if>
                                         <xsl:if test="not(contains(text(), '&quot;') and not(contains(text(), '+')))" >
                                             <xsl:value-of select="text()" />
@@ -174,7 +174,7 @@ Created By: Travis Berthelot
                                     <xsl:if test="text() = '&quot;&quot;'" >stringUtil.EMPTY_STRING</xsl:if>
                                     <xsl:if test="text() != '&quot;&quot;'" >
                                         <xsl:if test="contains(text(), '&quot;') and not(contains(text(), '+'))" >
-                                            <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(text(), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template>
+                                            <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate(text(), '?', '_'), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template>
                                         </xsl:if>
                                         <xsl:if test="not(contains(text(), '&quot;') and not(contains(text(), '+')))" >
                                             <xsl:value-of select="text()" />
