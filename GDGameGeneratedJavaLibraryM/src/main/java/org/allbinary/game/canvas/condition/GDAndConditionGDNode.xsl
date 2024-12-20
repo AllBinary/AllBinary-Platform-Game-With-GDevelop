@@ -20,6 +20,8 @@ Created By: Travis Berthelot
         <xsl:param name="parametersAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
+
+        <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
         
         <xsl:variable name="hasSiblingWithDuplicateProcessing" >
             <xsl:for-each select=".." >
@@ -61,13 +63,13 @@ Created By: Travis Berthelot
                             </xsl:if>
 
                             <xsl:if test="not(contains($hasSiblingWithDuplicateProcessing, 'found'))" >
-                            if(result) {
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>result) {
                                 this.processSub();
                             }
                             </xsl:if>
 
 
-                            return result;
+                            return <xsl:if test="$inverted = 'true'" >!</xsl:if>result;
                         }
 
                         @Override
@@ -94,13 +96,13 @@ Created By: Travis Berthelot
 
                             <xsl:if test="not(contains($hasSiblingWithDuplicateProcessing, 'found'))" >
                               //This should already be called
-//                            if(result) {
+//                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>result) {
 //                                this.processSub(gameLayer, gameLayer2, graphics);
 //                            }
                             </xsl:if>
 
 
-                            return result;
+                            return <xsl:if test="$inverted = 'true'" >!</xsl:if>result;
                         }
                                                     
                         <xsl:if test="not(contains($hasSiblingWithDuplicateProcessing, 'found'))" >
