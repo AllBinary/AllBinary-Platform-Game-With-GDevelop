@@ -31,7 +31,7 @@ public class GDGameLayerManager extends AllBinaryGameLayerManager
     private GeographicMapCellType[] geographicMapCellTypeArray;
    //private PlayerLayer playerLayer;
    
-   public static int MAX_LEVEL = 1; //Integer.MAX_VALUE;
+   public static int MAX_LEVEL = 7; //Integer.MAX_VALUE;
    
    public int layout = 0;
    
