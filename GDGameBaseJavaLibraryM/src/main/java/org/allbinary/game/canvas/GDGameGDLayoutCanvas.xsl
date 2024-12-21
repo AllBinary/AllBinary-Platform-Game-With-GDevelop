@@ -129,9 +129,6 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
     private final int portion = 4;
     
-    //objectsGroups count=<xsl:value-of select="count(//objectsGroups)" /> + //object count=<xsl:value-of select="count(//objects)" /> + 1
-    private final short SIZE = <xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />;
-
     private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
     private final StringMaker stringBuilder = new StringMaker();
 
@@ -165,18 +162,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         this.cleanupGame();
 
-        final String[] groupNames = new String[SIZE];
-        final String GROUP_ = "Group ";
-        final StringMaker stringBuilder = new StringMaker();
-        for(short index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> SIZE; index++) {
-            stringBuilder.delete(0, stringBuilder.length());
-            groupNames[index] = stringBuilder.append(GROUP_).append(index).toString();
-        }
-        GroupFactory.getInstance().init(SIZE, groupNames);
-
         LayerManagerEventHandler.getInstance().addListener(GroupLayerManagerListener.getInstance());
-
-        GroupLayerManagerListener.getInstance().init(SIZE);
 
         //this.specialAnimation = GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance(this, allBinaryGameLayerManager);
 

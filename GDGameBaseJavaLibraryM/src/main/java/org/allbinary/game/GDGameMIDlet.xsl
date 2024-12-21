@@ -57,7 +57,9 @@ import org.allbinary.game.GameMode;
 import org.allbinary.game.GameTypeFactory;
 import org.allbinary.game.PlayerTypesFactory;
 import org.allbinary.game.displayable.canvas.GameCanvasRunnableInterface;
+import org.allbinary.game.identification.GroupFactory;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
+import org.allbinary.game.layer.identification.GroupLayerManagerListener;
 //import org.allbinary.game.midlet.DemoGameMidletEvent;
 //import org.allbinary.game.midlet.DemoGameMidletEventHandler;
 //import org.allbinary.game.midlet.DemoGameMidletStateFactory;
@@ -72,6 +74,7 @@ import org.allbinary.game.score.displayable.HighScoresCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
+import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.system.security.licensing.ClientInformationFactory;
 import org.allbinary.media.audio.AllBinaryMediaManagerShutdown;
 import org.allbinary.media.audio.EarlySoundsFactory;
@@ -92,6 +95,19 @@ public class GDGameMIDlet extends
        //this.setSaveGameForm(SaveGameForm.getInstance(this, "Save Game"));
        
        //com.sun.lwuit.Display.init(this);
+       
+       //objectsGroups count=<xsl:value-of select="count(//objectsGroups)" /> + //object count=<xsl:value-of select="count(//objects)" /> + 1
+       final short SIZE = <xsl:value-of select="count(//objectsGroups) + count(//objects) + 1" />;
+       final String[] groupNames = new String[SIZE];
+       final String GROUP_ = "Group ";
+       final StringMaker stringBuilder = new StringMaker();
+       for(short index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> SIZE; index++) {
+           stringBuilder.delete(0, stringBuilder.length());
+           groupNames[index] = stringBuilder.append(GROUP_).append(index).toString();
+       }
+       GroupFactory.getInstance().init(SIZE, groupNames);
+       GroupLayerManagerListener.getInstance().init(SIZE);
+
    }
 
    protected HelpPaintable getHelpPaintable()
