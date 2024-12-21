@@ -239,6 +239,7 @@ Created By: Travis Berthelot
                         return gameTickDisplayInfoSingleton.getLastHeight();
                     }
 
+
                     public int Random(final int range) {
                         return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
                     }
@@ -371,6 +372,10 @@ Created By: Travis Berthelot
                     
                     public long abs(final long value) {
                         return Math.abs(value);
+                    }
+
+                    public double log2(final int value) {
+                        return Math.log(value);
                     }
 
                     public double sin(final double angle) {

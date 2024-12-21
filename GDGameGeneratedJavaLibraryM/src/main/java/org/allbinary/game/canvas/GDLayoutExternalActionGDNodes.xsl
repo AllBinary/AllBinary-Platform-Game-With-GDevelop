@@ -172,6 +172,10 @@ Created By: Travis Berthelot
                         return gameTickDisplayInfoSingleton.getLastHeight();
                     }
 
+                    public double log2(final int value) {
+                        return Math.log(value);
+                    }
+
                     public int Random(final int range) {
                         return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
                     }

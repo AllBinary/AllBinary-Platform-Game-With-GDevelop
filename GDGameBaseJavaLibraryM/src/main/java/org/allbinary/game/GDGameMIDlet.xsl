@@ -209,7 +209,7 @@ public class GDGameMIDlet extends
        final GameInfo gameInfo = new GameInfo(
                GameTypeFactory.getInstance().SINGLE_PLAYER, GameMode.SERVER,
                PlayerTypesFactory.getInstance().PLAYER_TYPE_ONE,
-               this.getHighestLevel(), 1);
+               this.getHighestLevel(), <xsl:if test="//variables[name/text() = 'level']" >org.allbinary.game.canvas.GDGameGlobals.getInstance().level</xsl:if><xsl:if test="not(//variables[name/text() = 'level'])" >1</xsl:if>);
 
        final BasicColorFactory basicColorFactory = BasicColorFactory.getInstance();
        final BasicColor backgroundBasicColor = basicColorFactory.BLACK;
