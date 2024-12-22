@@ -27,6 +27,7 @@ Created By: Travis Berthelot
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             <xsl:variable name="name" select="name" />
+            
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="$typeValue = 'Sprite'" >
@@ -78,11 +79,11 @@ Created By: Travis Berthelot
             <xsl:variable name="typeValue" select="type" />
             <xsl:variable name="name" select="name" />
             <xsl:variable name="nameInUpperCase" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+            
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
-
             private void add<xsl:value-of select="name" />SpriteAnimations(final ImageCache imageCache) throws Exception {
                 <xsl:if test="not(contains($name, 'btn_'))" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
@@ -205,7 +206,7 @@ Created By: Travis Berthelot
                                                 <xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()
                                             </xsl:if>
                                             <xsl:if test="not(contains(name, 'btn_'))" >
-                                                //btn_ - not
+                                                //btn_ - not 2
                                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
                                                     <xsl:if test="contains($hasOriginPointX, 'found')" >
                                                         <xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()
@@ -257,6 +258,7 @@ Created By: Travis Berthelot
 
                 <xsl:for-each select="animations" >
                     <xsl:if test="string-length(name) > 0" >
+<!--                         or contains($name, 'MaskEnemy')-->
                     <xsl:if test="not(contains($name, 'Attack') or contains($name, 'Projectile'))" >
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:variable name="animationPosition" ><xsl:value-of select="position()" /></xsl:variable>
@@ -349,6 +351,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="animations" >
                     <xsl:if test="string-length(name) > 0" >
                     <xsl:if test="$name != 'Player'" >
+<!--                         or contains($name, 'MaskEnemy')-->
                     <xsl:if test="contains($name, 'Attack') or contains($name, 'Projectile')" >
                                                 
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
@@ -723,7 +726,6 @@ Created By: Travis Berthelot
             
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
                 <xsl:variable name="stringValue" select="string" />
-
             private void add<xsl:value-of select="name" />TextInputObjectAnimations(final ImageCache imageCache) throws Exception {
 
                 final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> * 3 / 2;
