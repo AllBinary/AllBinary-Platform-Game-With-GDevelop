@@ -336,7 +336,7 @@ Created By: Travis Berthelot
                                 <xsl:if test="y = 415" >gameTickDisplayInfoSingleton.getLastHeight() - (2 * (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100)));</xsl:if>
                             </xsl:if>
                             <xsl:if test="not(contains(name, 'btn_'))" >
-                                //btn_ - not
+                                //btn_ - not 2
                                 centerCameraX != 0 ? centerCameraY - height / 2 :  (int) (<xsl:value-of select="y" /> * baseLayerScale);
                             </xsl:if>
                         </xsl:if>
