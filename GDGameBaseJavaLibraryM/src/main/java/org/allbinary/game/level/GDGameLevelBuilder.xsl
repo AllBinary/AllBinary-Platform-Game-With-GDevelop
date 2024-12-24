@@ -638,15 +638,24 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             final int[][] placementCellYIntArray = new int[MAX_HISTORY_Y][size2];
             final int[] placementCellTotal = new int[MAX_HISTORY_Y];
 
+            int type;
             for (int indexY = 0; indexY <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size4; indexY++) {
                 placementCellTotal[currentY] = 0;
                 for (int indexX = 0; indexX <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; indexX++) {
                 
+                    type = mapArray[indexY][indexX];
+
+//                    if (basicTopViewGeographicMapCellTypeFactory.BLOCK_CELL_TYPE.isType(type) || basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(type)) {
+//                    } else {
+//                        stringMaker.delete(0, stringMaker.length());
+//                        LogUtil.put(LogFactory.getInstance(stringMaker.append("type: ").append(type).toString(), this, commonStrings.PROCESS));
+//                    }
+
                     //stringMaker.delete(0, stringMaker.length());
                     //LogUtil.put(LogFactory.getInstance(stringMaker.append(F).append(indexY).append(CommonSeps.getInstance().SPACE).append(indexX).toString(), this, commonStrings.PROCESS));
                     //LogUtil.put(LogFactory.getInstance(basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.toString(), this, commonStrings.PROCESS));
 
-                    if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY][indexX])) {
+                    if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(type)) {
                         //Exclude placement next to something that is not a floor tile
                         placed = false;
                         
@@ -699,9 +708,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                         }-->
                         }
 
-                    }
-
-                    if (basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.isType(mapArray[indexY][indexX])) {
+                    } else if (basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.isType(type)) {
                     
 <!--
                         if(indexY > 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX > 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexY < mapArray.length <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX < mapArray[0].length) {
@@ -765,7 +772,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 //                            LogUtil.put(LogFactory.getInstance("Display not ready to set start position", this, commonStrings.PROCESS));
 //                        }
 
-                    } else if (basicTopViewGeographicMapCellTypeFactory.STAIRS_DOWN_CELL_TYPE.isType(mapArray[indexY][indexX])) {
+                    } else if (basicTopViewGeographicMapCellTypeFactory.STAIRS_DOWN_CELL_TYPE.isType(type)) {
                     
                         stringMaker.delete(0, stringMaker.length());
                         LogUtil.put(LogFactory.getInstance(stringMaker.append("Planned End Position c: ").append(allBinaryTiledLayer.getColumns()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexX * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexX).append(" r: ").append(allBinaryTiledLayer.getRows()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexY * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexY).toString(), this, commonStrings.PROCESS));
