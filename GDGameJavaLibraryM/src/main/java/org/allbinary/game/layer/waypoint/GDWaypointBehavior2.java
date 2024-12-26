@@ -1,10 +1,10 @@
 package org.allbinary.game.layer.waypoint;
 
 import org.allbinary.game.layer.AllBinaryTiledLayer;
-import org.allbinary.game.layer.WaypointPathRunnable;
 import org.allbinary.game.layer.PathFindingLayerInterface;
-import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.game.layer.SteeringVisitor;
+import org.allbinary.game.layer.WaypointPathRunnable;
+import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.game.tracking.TrackingEventHandler;
 import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.color.BasicColorFactory;
@@ -20,6 +20,9 @@ import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
 import org.allbinary.thread.PathFindingThreadPool;
+import org.allbinary.thread.ThreadPool;
+import org.allbinary.time.GameTickTimeDelayHelper;
+import org.allbinary.time.GameTickTimeDelayHelperFactory;
 import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListUtil;
@@ -27,8 +30,9 @@ import org.allbinary.util.BasicArrayListUtil;
 public class GDWaypointBehavior2 
 extends GDWaypointBehavior
 {
-
     private final LayerDistanceUtil layerDistanceUtil = LayerDistanceUtil.getInstance();
+    private final ThreadPool pathFindingThreadPool = PathFindingThreadPool.getInstance();
+    private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
 
     private final boolean targetWithoutSensors = true;
     
@@ -46,6 +50,7 @@ extends GDWaypointBehavior
     
     private boolean waitingOnTargetPath;
     private boolean waitingOnWaypointPath;
+    private long lastPathRunnableTime = Long.MAX_VALUE;
     
     private CollidableDestroyableDamageableLayer targetWithoutCachedPathLayerInterface;
 
@@ -80,7 +85,7 @@ extends GDWaypointBehavior
         
         this.wanderPathsList = new BasicArrayList();
         
-        this.waypointPathRunnable = new WaypointPathRunnable();        
+        this.waypointPathRunnable = new WaypointPathRunnable();
     }
     
     protected void initRange(int weaponRange)
@@ -803,7 +808,7 @@ extends GDWaypointBehavior
         }
     }
     private static final BasicArrayList runningWaypointPathList = new BasicArrayList();
-
+    
     private void runWaypointPathTask(
         final PathFindingLayerInterface waypointLayer)
         throws Exception
@@ -819,7 +824,11 @@ extends GDWaypointBehavior
         this.waypointPathRunnable.setUnitLayer(this.associatedAdvancedRTSGameLayer);
         this.waypointPathRunnable.setTargetLayer(waypointLayer);
 
-        PathFindingThreadPool.getInstance().runTask(this.waypointPathRunnable);
+        if(this.waypointPathRunnable.getPriority() < 14 || lastPathRunnableTime < gameTickTimeDelayHelper.startTime - 100) {
+            this.lastPathRunnableTime = gameTickTimeDelayHelper.startTime;
+            this.pathFindingThreadPool.runTaskWithPriority(this.waypointPathRunnable);
+        }
+
     }
 
     private void removeWaypoint(final PathFindingLayerInterface waypointLayer, final String reason) throws Exception
