@@ -827,7 +827,7 @@ extends GDWaypointBehavior
         
         //LogUtil.put(LogFactory.getInstance(new StringMaker().append(lastPathRunnableTime).append(' ').append(gameTickTimeDelayHelper.startTime).toString(), this, RUN_WAYPOINT_PATH_TASK));
 
-        if(this.waypointPathRunnable.getPriority() < 14 || lastPathRunnableTime < gameTickTimeDelayHelper.startTime - 100) {
+        if(this.waypointPathRunnable.getPriority() < 10 || lastPathRunnableTime < gameTickTimeDelayHelper.startTime - 100) {
             this.waypointPathRunnable.setRunning(true);
             this.lastPathRunnableTime = gameTickTimeDelayHelper.startTime;
             this.pathFindingThreadPool.runTaskWithPriority(this.waypointPathRunnable);
