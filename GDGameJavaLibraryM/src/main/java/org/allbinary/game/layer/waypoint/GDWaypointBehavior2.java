@@ -32,7 +32,6 @@ extends GDWaypointBehavior
 {
     private final LayerDistanceUtil layerDistanceUtil = LayerDistanceUtil.getInstance();
     private final ThreadPool pathFindingThreadPool = PathFindingThreadPool.getInstance();
-    private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
 
     private final boolean targetWithoutSensors = true;
     
@@ -50,7 +49,6 @@ extends GDWaypointBehavior
     
     private boolean waitingOnTargetPath;
     private boolean waitingOnWaypointPath;
-    private static long lastPathRunnableTime = Long.MAX_VALUE;
     
     private CollidableDestroyableDamageableLayer targetWithoutCachedPathLayerInterface;
 
@@ -822,16 +820,11 @@ extends GDWaypointBehavior
             throw new Exception("Should never be running here");
         }
         
+        this.waypointPathRunnable.setRunning(true);
         this.waypointPathRunnable.setUnitLayer(this.associatedAdvancedRTSGameLayer);
         this.waypointPathRunnable.setTargetLayer(waypointLayer);
-        
-        //LogUtil.put(LogFactory.getInstance(new StringMaker().append(lastPathRunnableTime).append(' ').append(gameTickTimeDelayHelper.startTime).toString(), this, RUN_WAYPOINT_PATH_TASK));
 
-        if(this.waypointPathRunnable.getPriority() < 12 || lastPathRunnableTime < gameTickTimeDelayHelper.startTime - 250) {
-            this.waypointPathRunnable.setRunning(true);
-            this.lastPathRunnableTime = gameTickTimeDelayHelper.startTime;
-            this.pathFindingThreadPool.runTaskWithPriority(this.waypointPathRunnable);
-        }
+        this.pathFindingThreadPool.runTaskWithPriority(this.waypointPathRunnable);
 
     }
 
