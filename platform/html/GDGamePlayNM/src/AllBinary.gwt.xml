@@ -49,5 +49,9 @@
     <!-- Exclude non-GWT-compatible classes -->
     <exclude name='**/*Test.java' />
   </source>
+  <source path='org/jgrapht'>
+    <!-- Exclude non-GWT-compatible classes -->
+    <exclude name='**/*Test.java' />
+  </source>
 
 </module>

@@ -110,7 +110,7 @@
                 <artifactId>gwt-maven-plugin</artifactId>
                 <version>${gwt.version}</version>
                 <configuration>
-                    <extraJvmArgs>-Xmx512m</extraJvmArgs>
+                    <extraJvmArgs>-Xmx768m</extraJvmArgs>
 <!--                    -Xms512m -->
 <!--                    -Dgwt.jjs.permutationWorkerFactory=com.google.gwt.dev.ThreadedPermutationWorkerFactory-->
 <!--                    <localWorkers>3</localWorkers>-->
