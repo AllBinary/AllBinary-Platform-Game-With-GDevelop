@@ -4,6 +4,7 @@ import org.allbinary.game.layer.AllBinaryTiledLayer;
 import org.allbinary.game.layer.PathFindingLayerInterface;
 import org.allbinary.game.layer.SteeringVisitor;
 import org.allbinary.game.layer.WaypointPathRunnable;
+import org.allbinary.game.layer.WaypointPathRunnableBase;
 import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.game.tracking.TrackingEventHandler;
 import org.allbinary.graphics.GPoint;
@@ -21,8 +22,6 @@ import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
 import org.allbinary.thread.PathFindingThreadPool;
 import org.allbinary.thread.ThreadPool;
-import org.allbinary.time.GameTickTimeDelayHelper;
-import org.allbinary.time.GameTickTimeDelayHelperFactory;
 import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListUtil;
@@ -45,7 +44,7 @@ extends GDWaypointBehavior
     
     private final BasicArrayList wanderPathsList;
     
-    private final WaypointPathRunnable waypointPathRunnable;
+    private final WaypointPathRunnableBase waypointPathRunnable;
     
     private boolean waitingOnTargetPath;
     private boolean waitingOnWaypointPath;
@@ -84,6 +83,7 @@ extends GDWaypointBehavior
         this.wanderPathsList = new BasicArrayList();
         
         this.waypointPathRunnable = new WaypointPathRunnable();
+        
     }
     
     protected void initRange(int weaponRange)
@@ -291,32 +291,28 @@ extends GDWaypointBehavior
     private static final String UPDATE_PATH_ON_TARGET_MOVE = "updatePathOnTargetMove";
     public void updatePathOnTargetMove(final String reason) throws Exception {
         
-        if(this.waypointPathRunnable.isActuallyRunning()) {
-            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - already running in background").toString(), this, UPDATE_PATH_ON_TARGET_MOVE));
-        } else {
-            final CollidableDestroyableDamageableLayer currentTargetLayerInterface = this.currentTargetLayerInterface;
-            if (currentTargetLayerInterface != null) {
-                final GeographicMapCellPosition geographicMapCellPosition = ((PathFindingLayerInterface) currentTargetLayerInterface).getCurrentGeographicMapCellPosition();
+        final CollidableDestroyableDamageableLayer currentTargetLayerInterface = this.currentTargetLayerInterface;
+        if (currentTargetLayerInterface != null) {
+            final GeographicMapCellPosition geographicMapCellPosition = ((PathFindingLayerInterface) currentTargetLayerInterface).getCurrentGeographicMapCellPosition();
 
-                if (geographicMapCellPosition == null) {
-                    return;
-                }
-                
-                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - retarget? ").append(this.currentTargetGeographicMapCellPosition).append(' ').append(geographicMapCellPosition).toString(), this, UPDATE_PATH_ON_TARGET_MOVE));
-                if (this.currentTargetGeographicMapCellPosition != geographicMapCellPosition) {
-                    //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(reason).toString(), this, UPDATE_PATH_ON_TARGET_MOVE));
-                    
-                    this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().targetMovedSoRetarget(this.associatedAdvancedRTSGameLayer);
-                    this.setWaypointPathsList(BasicArrayListUtil.getInstance().getImmutableInstance());
-                    this.setTarget((PathFindingLayerInterface) currentTargetLayerInterface);
-                }
-            else {
+            if (geographicMapCellPosition == null) {
+                return;
+            }
+
+            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - retarget? ").append(this.currentTargetGeographicMapCellPosition).append(' ').append(geographicMapCellPosition).toString(), this, UPDATE_PATH_ON_TARGET_MOVE));
+            if (this.currentTargetGeographicMapCellPosition != geographicMapCellPosition) {
+                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(reason).toString(), this, UPDATE_PATH_ON_TARGET_MOVE));
+
+                this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().targetMovedSoRetarget(this.associatedAdvancedRTSGameLayer);
+                this.setWaypointPathsList(BasicArrayListUtil.getInstance().getImmutableInstance());
+                this.setTarget((PathFindingLayerInterface) currentTargetLayerInterface);
+            } else {
                 //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target has not moved").toString(), this, UPDATE_PATH_ON_TARGET_MOVE));
             }
-            } else {
-                throw new RuntimeException();
-            }
+        } else {
+            throw new RuntimeException();
         }
+        
     }
     
     public void setTarget(final PathFindingLayerInterface layerInterface)
