@@ -106,6 +106,7 @@ Created By: Travis Berthelot
         import org.allbinary.animation.RotationAnimation;
         import org.allbinary.animation.caption.CaptionAnimationHelper;
         import org.allbinary.animation.caption.CaptionAnimationHelperBase;
+        import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
         import org.allbinary.game.input.event.GameKeyEventFactory;
         import org.allbinary.game.layer.SteeringVisitor;
         import org.allbinary.game.layer.behavior.GDBehaviorUtil;
@@ -113,6 +114,7 @@ Created By: Travis Berthelot
         import org.allbinary.game.layer.waypoint.GDWaypointBehavior;
         import org.allbinary.game.layer.waypoint.GDWaypointBehavior2;
         import org.allbinary.game.layer.waypoint.Waypoint;
+        import org.allbinary.game.layer.waypoint.MultipassNoCacheWaypoint;
         import org.allbinary.game.layer.waypoint.NoCacheWaypoint;
         import org.allbinary.game.layer.waypoint.Waypoint2LogHelper;
         import org.allbinary.game.layer.waypoint.WaypointLogHelper;
@@ -1155,7 +1157,11 @@ Created By: Travis Berthelot
 
         this.updateWaypointBehavior2(geographicMapInterface);
             
-        final WaypointBase waypoint = new NoCacheWaypoint(this, AttackSound.getInstance());
+        final Features features = Features.getInstance();
+        final boolean isHTML = features.isDefault(HTMLFeatureFactory.getInstance().HTML);
+            
+        final WaypointBase waypoint = isHTML ? 
+            new NoCacheWaypoint(this, AttackSound.getInstance()): new MultipassNoCacheWaypoint(this, AttackSound.getInstance());
         waypoint.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
         this.waypointBehaviorBase.setWaypoint(waypoint);
         
