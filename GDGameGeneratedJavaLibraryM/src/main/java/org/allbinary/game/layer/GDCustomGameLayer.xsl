@@ -1161,7 +1161,7 @@ Created By: Travis Berthelot
         final boolean isHTML = features.isDefault(HTMLFeatureFactory.getInstance().HTML);
             
         final WaypointBase waypoint = isHTML ? 
-            new NoCacheWaypoint(this, AttackSound.getInstance()): new MultipassNoCacheWaypoint(this, AttackSound.getInstance());
+            new MultipassNoCacheWaypoint(this, AttackSound.getInstance()) : new NoCacheWaypoint(this, AttackSound.getInstance());
         waypoint.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
         this.waypointBehaviorBase.setWaypoint(waypoint);
         
