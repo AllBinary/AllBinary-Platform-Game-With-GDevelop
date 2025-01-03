@@ -1105,9 +1105,9 @@ Created By: Travis Berthelot
 
         super.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
 
-        if(this.gdObject.hasBehaviorArray[gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX]) {
+        PathFindingThreadPool.getInstance().clear();
 
-            PathFindingThreadPool.getInstance().clear();
+        if(this.gdObject.hasBehaviorArray[gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX]) {
             
             final GeographicMapCompositeInterface geographicMapCompositeInterface
                 = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;

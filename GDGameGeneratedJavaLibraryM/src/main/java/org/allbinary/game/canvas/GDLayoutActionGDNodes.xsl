@@ -136,6 +136,7 @@ Created By: Travis Berthelot
                 import org.allbinary.thread.SecondaryThreadPool;
                 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
                 import org.allbinary.game.layer.behavior.PathFindingBehavior;
+                import org.allbinary.thread.PathFindingThreadPool;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
                 
                 //LayoutAction name=<xsl:value-of select="$layoutName" />

@@ -94,7 +94,8 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.media.audio.PlayerComposite;
                 import org.allbinary.media.audio.Sound;
-                import org.allbinary.logic.math.SmallIntegerSingletonFactory;                
+                import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+                import org.allbinary.thread.PathFindingThreadPool;
 
                 //LayoutExternalAction name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes extends SpecialAnimation
