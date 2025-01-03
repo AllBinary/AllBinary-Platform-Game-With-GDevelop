@@ -323,6 +323,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         }
         //LogUtil.put(LogFactory.getInstance("Processing Tiled Map", this, commonStrings.PROCESS));
         final TiledMap map = TiledMapLoaderFromJSONFactory.getInstance().process(new GDJSONMapReader(), tileMapInputStream, tileSetInputStreamArray, size, sizeArray2, new Image[] {tileSetImage});
+        if(map == null) {
+            throw new Exception();
+        }
         map.setTileWidth(map.getTileWidth()* scale);
         map.setTileHeight(map.getTileHeight() * scale);
         map.getLayers().size();

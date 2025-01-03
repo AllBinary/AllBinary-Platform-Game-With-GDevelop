@@ -120,9 +120,9 @@ extends GDWaypointBehavior
     public void processTick(final AllBinaryLayerManager allBinaryLayerManager)
     throws Exception
     {
-//        if(this.waypointPathsList == BasicArrayListUtil.getInstance().getImmutableInstance()) {
-//            return;
-//        }
+        if(this.waypointPathsList == BasicArrayListUtil.getInstance().getImmutableInstance()) {
+            return;
+        }
 
         if(this.currentTargetLayerInterface != null && this.getCurrentGeographicMapCellHistory().getTotalVisited() > this.getCurrentGeographicMapCellHistory().getTotalNotVisited()) {
             this.updatePathOnTargetMove(VISITED_MOST_OF_THE_PATH);
@@ -300,7 +300,7 @@ extends GDWaypointBehavior
         }
     }
 
-    private static final String UPDATE_PATH_ON_TARGET_MOVE = "updatePathOnTargetMove";
+    //private static final String UPDATE_PATH_ON_TARGET_MOVE = "updatePathOnTargetMove";
     public void updatePathOnTargetMove(final String reason) throws Exception {
         
         final CollidableDestroyableDamageableLayer currentTargetLayerInterface = this.currentTargetLayerInterface;
