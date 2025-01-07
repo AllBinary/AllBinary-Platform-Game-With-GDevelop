@@ -212,12 +212,14 @@ public class GDToAllBinaryResourcesGenerator
     }
 
     private final String SLIDER = "_slider_";
+    private final String BATTERY = "battery_";
+    private final String HEART = "heart_";
+    private final String _0 = "_0";
     private void appendImmediatelyLoadedImages() throws Exception {
         
         resourceStringMaker.append("    public final String[] requiredResourcesBeforeLoadingArray = {\n");
         
         final int size = this.gdResources.resourceNameList.size();
-        String name;
         String resource;
         for(int index = 0; index < size; index++) {
             resource = (String) this.gdResources.resourceList.get(index);
@@ -228,6 +230,10 @@ public class GDToAllBinaryResourcesGenerator
                 
             //PanelSpriteSlider::PanelSpriteSlider -> texture must not lazy load textures                
             } else if(resource.indexOf(SLIDER) >= 0) {
+                this.appendImmediatelyLoadedImage(resource);
+            } else if(resource.indexOf(BATTERY) >= 0 && !resource.contains(_0)) {
+                this.appendImmediatelyLoadedImage(resource);
+            } else if(resource.indexOf(HEART) >= 0) {
                 this.appendImmediatelyLoadedImage(resource);
             }
         }
