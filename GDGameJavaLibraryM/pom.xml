@@ -95,17 +95,15 @@
             <version>${allbinary.platform.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.allbinary.media.graphics.geography.map</groupId>
-            <artifactId>DynamicPathFindingRaceTrackJavaLibrary_1_4_2</artifactId>
-            <version>${allbinary.platform.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.allbinary.media.graphics.geography.pathfinding</groupId>
-            <artifactId>GeographicPathFinderJGraphTJavaLibrary_1_4_2</artifactId>
+            <artifactId>GeographicPathFinderPriorityQueueJavaLibrary</artifactId>
+<!--
+            <artifactId>DynamicPathFindingRaceTrackJavaLibrary_1_4_2</artifactId>
+            //uses GeographicPathFinderJGraphTJavaLibrary_1_4_2
+            <artifactId>GeographicPathFinderPriorityQueueJavaLibrary</artifactId>
+-->
             <version>${allbinary.platform.version}</version>
         </dependency>
-<!--
--->
         
 
 <!--

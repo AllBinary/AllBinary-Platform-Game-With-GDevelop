@@ -1157,11 +1157,13 @@ Created By: Travis Berthelot
 
         this.updateWaypointBehavior2(geographicMapInterface);
             
-        final Features features = Features.getInstance();
-        final boolean isHTML = features.isDefault(HTMLFeatureFactory.getInstance().HTML);
+        //final Features features = Features.getInstance();
+        //final boolean isHTML = features.isDefault(HTMLFeatureFactory.getInstance().HTML);
             
-        final WaypointBase waypoint = isHTML ? 
-            new MultipassNoCacheWaypoint(this, AttackSound.getInstance()) : new NoCacheWaypoint(this, AttackSound.getInstance());
+        final WaypointBase waypoint = 
+            //isHTML ? new MultipassNoCacheWaypoint(this, AttackSound.getInstance()) : 
+            new NoCacheWaypoint(this, AttackSound.getInstance());
+
         waypoint.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
         this.waypointBehaviorBase.setWaypoint(waypoint);
         
