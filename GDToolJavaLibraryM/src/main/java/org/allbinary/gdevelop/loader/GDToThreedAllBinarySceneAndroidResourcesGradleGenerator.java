@@ -6,7 +6,6 @@
 
 package org.allbinary.gdevelop.loader;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.logic.io.StreamUtil;
@@ -31,23 +30,9 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
 
-    private final String UNDERSCORE_0 = commonSeps.UNDERSCORE + "0";
-    
-    private final String RESOURCE_0 = "        resourceUtil.addResource(";
-    
-    //private final String SOUND_RESOURCE = ".getInstance().getResource(), ";
-
-    private final String GD_RESOURCE = "gdResources.";
-    private final String _RESOURCE = ", ";
-    
-    private final String RESOURCE_1 = "Integer.valueOf(androidResources.raw.";
-    private final String RESOURCE_2 = "));";
-
     private final String _OBJ = "_obj";
     
-    private final String _TOUCH = "TOUCH";
     private final String TOUCH = "touch";
-    private final String _BLANK = "BLANK";
     private final String BLANK = "blank";
     
     public GDToThreedAllBinarySceneAndroidResourcesGradleGenerator()
@@ -96,29 +81,29 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
 
             stringMaker.append(this.commonSeps.NEW_LINE);
             
-            if (resource.endsWith(UNDERSCORE_0) && 
-                    (resource.indexOf(_TOUCH) < 0 || resource.indexOf(_BLANK) < 0)) {
+            if (resource.endsWith(gdToolStrings.UNDERSCORE_0) && 
+                    (resource.indexOf(gdToolStrings._TOUCH_) < 0 || resource.indexOf(gdToolStrings._BLANK_) < 0)) {
                 stringMaker.append(this.commonSeps.COMMENT);
             }
             
             for(int index2 = 2; index2 < size2; index2++) {
                 if(resource.endsWith(commonSeps.UNDERSCORE + index2) && 
-                        (resource.indexOf(_TOUCH) < 0 || resource.indexOf(_BLANK) < 0)) {
+                        (resource.indexOf(gdToolStrings._TOUCH_) < 0 || resource.indexOf(gdToolStrings._BLANK_) < 0)) {
                     stringMaker.append(this.commonSeps.COMMENT);
                 }
             }            
             
-            stringMaker.append(RESOURCE_0);
-            stringMaker.append(GD_RESOURCE);
+            stringMaker.append(gdToolStrings.RESOURCE_0);
+            stringMaker.append(gdToolStrings.GD_RESOURCE);
             stringMaker.append(resource);
-            stringMaker.append(_RESOURCE);
-            stringMaker.append(RESOURCE_1);
+            stringMaker.append(gdToolStrings._RESOURCE);
+            stringMaker.append(gdToolStrings.RESOURCE_1);
             stringMaker.append(androidResourceList.get(index));
             if(((String) androidResourceList.get(index)).indexOf(TOUCH) < 0 && 
                     ((String) androidResourceList.get(index)).indexOf(BLANK) < 0) {
                 stringMaker.append(_OBJ);
             }
-            stringMaker.append(RESOURCE_2);
+            stringMaker.append(gdToolStrings.RESOURCE_2);
         }        
     }
     

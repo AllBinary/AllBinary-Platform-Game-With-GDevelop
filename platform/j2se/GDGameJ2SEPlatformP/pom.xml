@@ -32,6 +32,8 @@
         <module>../GDGameTouchJ2M=SE</module>
         -->
         <module>../GDGameJ2SEJavaLibraryM</module>
+        <module>../GDGameJ2SEWithSWTJOGLJavaLibraryM</module>
+        
         
         <module>../GDGameJ2SEM</module>
         <module>../GDGameJ2SEApplicationM</module>

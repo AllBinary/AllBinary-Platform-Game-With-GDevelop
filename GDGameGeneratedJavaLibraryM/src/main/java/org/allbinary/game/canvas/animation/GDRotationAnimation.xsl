@@ -53,7 +53,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
-                <xsl:if test="not(contains($name, 'btn_'))" >
+                <xsl:if test="not(contains($name, 'btn_') or contains($name, 'PlayerSlot1Icon') or contains($name, 'Inventory') or contains($name, 'NextLevelOffScreenLocationIndicator'))" >
                     <xsl:variable name="hasMoreThanOneImage" >
                         <xsl:for-each select="animations" >
                             <xsl:for-each select="directions/sprites/image" >
@@ -62,7 +62,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:variable>
                     <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
-
+                        
                         <xsl:variable name="isProjectile" >
                             <xsl:for-each select="//objectsGroups" >
                                 <xsl:if test="name = 'Projectiles'" >
@@ -70,7 +70,14 @@ Created By: Travis Berthelot
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:variable>
-                        <xsl:if test="not(contains($isProjectile, 'found'))" >
+                        <xsl:variable name="isSpecialSkill" >
+                            <xsl:for-each select="//objectsGroups" >
+                                <xsl:if test="name = 'SpecialSkill'" >
+                                    <xsl:for-each select="objects" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each>
+                                </xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+                        <xsl:if test="not(contains($isProjectile, 'found') or contains($isSpecialSkill, 'found'))" >
                             <xsl:value-of select="name" />:found
                         </xsl:if>
 

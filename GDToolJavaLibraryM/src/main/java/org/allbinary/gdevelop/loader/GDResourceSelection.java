@@ -35,13 +35,7 @@ public class GDResourceSelection {
     private final CommonSeps commonSeps = CommonSeps.getInstance();
 
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
-    
-    private final String BLANK = "BLANK";
-    private final String TOUCH = "TOUCH";
-    private final String UNDERSCORE_0 = commonSeps.UNDERSCORE + "0";
-    private final String JSON = ".json";
-    private final String T = ".t";
-    
+
     private final String FOUND = "found";
     
     private final int SIZE = 100;
@@ -50,19 +44,19 @@ public class GDResourceSelection {
                 
         boolean used = true;
 
-        if (resource.toUpperCase().indexOf(BLANK) >= 0) {
+        if (resource.toUpperCase().indexOf(gdToolStrings._BLANK_) >= 0) {
             used = false;
             resourceStringMaker.append(this.commonSeps.COMMENT);
         }
 
-        if (name.endsWith(UNDERSCORE_0) && name.indexOf(TOUCH) < 0) {
+        if (name.endsWith(gdToolStrings.UNDERSCORE_0) && name.indexOf(gdToolStrings._TOUCH_) < 0) {
             used = false;
             resourceStringMaker.append(this.commonSeps.COMMENT);
         }
 
         if (!hasRotationImages) {
             for (int index2 = 2; index2 < SIZE; index2++) {
-                if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
+                if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(gdToolStrings._TOUCH_) < 0) {
                     used = false;
                     resourceStringMaker.append(this.commonSeps.COMMENT);
                 }
@@ -75,24 +69,24 @@ public class GDResourceSelection {
     public boolean appendCommentIfNeeded(final String name, final String resource, final StringMaker resourceStringMaker, final boolean hasRotationImages) {
                 
         boolean used = true;
-        if (resource.indexOf(JSON) >= 0 || resource.indexOf(T) >= 0) {
+        if (resource.indexOf(gdToolStrings._JSON) >= 0 || resource.indexOf(gdToolStrings._T) >= 0) {
             used = false;
             resourceStringMaker.append(this.commonSeps.COMMENT);
         }
 
-        if (resource.toUpperCase().indexOf(BLANK) >= 0) {
+        if (resource.toUpperCase().indexOf(gdToolStrings._BLANK_) >= 0) {
             used = false;
             resourceStringMaker.append(this.commonSeps.COMMENT);
         }
 
-        if (name.endsWith(UNDERSCORE_0) && name.indexOf(TOUCH) < 0) {
+        if (name.endsWith(gdToolStrings.UNDERSCORE_0) && name.indexOf(gdToolStrings._TOUCH_) < 0) {
             used = false;
             resourceStringMaker.append(this.commonSeps.COMMENT);
         }
 
         if (!hasRotationImages) {
             for (int index2 = 2; index2 < SIZE; index2++) {
-                if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
+                if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(gdToolStrings._TOUCH_) < 0) {
                     used = false;
                     resourceStringMaker.append(this.commonSeps.COMMENT);
                 }
@@ -105,19 +99,19 @@ public class GDResourceSelection {
     public boolean appendCommentIfNeeded2(final String name, final String resource, final StringMaker resourceStringMaker, final boolean hasRotationImages) {
                 
         boolean used = true;
-        if (resource.indexOf(JSON) >= 0 || resource.indexOf(T) >= 0) {
+        if (resource.indexOf(gdToolStrings._JSON) >= 0 || resource.indexOf(gdToolStrings._T) >= 0) {
             used = false;
             resourceStringMaker.append(this.commonSeps.COMMENT);
         }
 
-        if (name.endsWith(UNDERSCORE_0) && name.indexOf(TOUCH) < 0) {
+        if (name.endsWith(gdToolStrings.UNDERSCORE_0) && name.indexOf(gdToolStrings._TOUCH_) < 0) {
             used = false;
             resourceStringMaker.append(this.commonSeps.COMMENT);
         }
 
         if (!hasRotationImages) {
             for (int index2 = 2; index2 < SIZE; index2++) {
-                if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(TOUCH) < 0) {
+                if (name.endsWith(commonSeps.UNDERSCORE + index2) && name.indexOf(gdToolStrings._TOUCH_) < 0) {
                     used = false;
                     resourceStringMaker.append(this.commonSeps.COMMENT);
                 }
@@ -129,8 +123,7 @@ public class GDResourceSelection {
     
     public boolean hasRotationImages() {
         final FileUtil fileUtil = FileUtil.getInstance();
-        final String filePath = gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\animation\\GDRotationAnimation.txt";
-        final String fileAsString = fileUtil.readAsString(filePath);
+        final String fileAsString = fileUtil.readAsString(gdToolStrings.ROTATION_ANIMATION_FILE_PATH);
         if(fileAsString.indexOf(FOUND) >= 0) {
             return true;
         }
