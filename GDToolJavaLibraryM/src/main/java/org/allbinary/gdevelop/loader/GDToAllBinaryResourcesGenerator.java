@@ -231,9 +231,9 @@ public class GDToAllBinaryResourcesGenerator
             //PanelSpriteSlider::PanelSpriteSlider -> texture must not lazy load textures                
             } else if(resource.indexOf(SLIDER) >= 0) {
                 this.appendImmediatelyLoadedImage(resource);
-            } else if(resource.indexOf(BATTERY) >= 0 && resource.contains(_1)) {
+            } else if(resource.indexOf(BATTERY) >= 0 && resource.endsWith(_1)) {
                 this.appendImmediatelyLoadedImage(resource);
-            } else if(resource.indexOf(HEART) >= 0 && resource.contains(_1)) {
+            } else if(resource.indexOf(HEART) >= 0 && resource.endsWith(_1)) {
                 this.appendImmediatelyLoadedImage(resource);
             }
         }
