@@ -53,7 +53,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
-                <xsl:if test="not(contains($name, 'btn_') or contains($name, 'PlayerSlot1Icon') or contains($name, 'Inventory') or contains($name, 'NextLevelOffScreenLocationIndicator'))" >
+                <xsl:if test="not(contains($name, 'btn_') or contains($name, 'PlayerSlot1Icon') or contains($name, 'Inventory') or contains($name, 'Indicator'))" >
                     <xsl:variable name="hasMoreThanOneImage" >
                         <xsl:for-each select="animations" >
                             <xsl:for-each select="directions/sprites/image" >
