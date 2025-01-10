@@ -80,6 +80,7 @@ Created By: Travis Berthelot
                 
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.canvas.GameGlobalsFactory;
                 import org.allbinary.game.input.GameInputProcessorUtil;
                 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
                 import org.allbinary.game.layout.GDNode;
@@ -129,6 +130,7 @@ Created By: Travis Berthelot
                         private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
                         private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+                        private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
                         
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
 
@@ -563,7 +565,7 @@ Created By: Travis Berthelot
                         //groupLayerManagerListener.log();
                         
                         LogUtil.put(LogFactory.getInstance("DepartScene - completed", this, commonStrings.PROCESS));
-                        GDGlobalsFactory.getInstance().newScene = false;
+                        gameGlobalsFactory.newCanvas = false;
                         initialized = true;
 
                         } catch(Exception e) {

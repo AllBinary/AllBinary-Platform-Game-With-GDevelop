@@ -75,6 +75,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.animation.AnimationBehavior;                
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.canvas.GameGlobalsFactory;
                 import org.allbinary.game.commands.GameCommandsFactory;
                 import org.allbinary.game.GDGameCommandFactory;
                 import org.allbinary.game.GameInfo;
@@ -161,6 +162,7 @@ Created By: Travis Berthelot
                         private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
                         private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+                        private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
                         
                         private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
@@ -340,23 +342,23 @@ Created By: Travis Berthelot
                     }
 
                     public int MouseX() {
-                        final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
-                        return gdGlobalsFactory.point.getX();
+                        
+                        return gameGlobalsFactory.point.getX();
                     }
 
                     public int MouseY() {
-                        final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
-                        return gdGlobalsFactory.point.getY();
+                        
+                        return gameGlobalsFactory.point.getY();
                     }
 
                     public int MouseX(final String string, int value) {
-                        final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
-                        return gdGlobalsFactory.point.getX();
+                        
+                        return gameGlobalsFactory.point.getX();
                     }
 
                     public int MouseY(final String string, int value) {
-                        final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
-                        return gdGlobalsFactory.point.getY();
+                        
+                        return gameGlobalsFactory.point.getY();
                     }
                     
                     public long TimerElapsedTime(final TimeDelayHelper timeDelayHelper) {

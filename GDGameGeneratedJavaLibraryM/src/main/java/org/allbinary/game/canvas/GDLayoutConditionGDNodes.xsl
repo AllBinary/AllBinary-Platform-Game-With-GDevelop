@@ -70,6 +70,7 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Graphics;
                 
                 import org.allbinary.AndroidUtil;
+                import org.allbinary.canvas.GameGlobalsFactory;
                 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
@@ -140,6 +141,7 @@ Created By: Travis Berthelot
                         private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
                         private final RectangleCollisionUtil rectangleCollisionUtil = RectangleCollisionUtil.getInstance();
                         private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+                        private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
                         
                         private final GDNodes gdNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />);
 
@@ -274,23 +276,23 @@ Created By: Travis Berthelot
                     }
                     
                     public int MouseX() {
-                        final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
-                        return gdGlobalsFactory.point.getX();
+                        
+                        return gameGlobalsFactory.point.getX();
                     }
 
                     public int MouseY() {
-                        final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
-                        return gdGlobalsFactory.point.getY();
+                        
+                        return gameGlobalsFactory.point.getY();
                     }
 
                     public int MouseX(final String string, int value) {
-                        final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
-                        return gdGlobalsFactory.point.getX();
+                        
+                        return gameGlobalsFactory.point.getX();
                     }
 
                     public int MouseY(final String string, int value) {
-                        final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
-                        return gdGlobalsFactory.point.getY();
+                        
+                        return gameGlobalsFactory.point.getY();
                     }
 
                     public int floor(final int value) {

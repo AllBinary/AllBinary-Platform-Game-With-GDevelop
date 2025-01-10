@@ -970,8 +970,8 @@ Created By: Travis Berthelot
                                 return;
                             }
                         
-                            final GDGlobalsFactory gdGlobalsFactory = GDGlobalsFactory.getInstance();
-                            gdGlobalsFactory.point = motionGestureEvent.getCurrentPoint();
+                            
+                            gameGlobalsFactory.point = motionGestureEvent.getCurrentPoint();
 
                             globals.motionEventListOfList[globals.inUseMotionEventListIndex].add(motionGestureEvent);
 

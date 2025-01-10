@@ -43,7 +43,7 @@ Created By: Travis Berthelot
 
                                 LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
-                                if(!GDGlobalsFactory.getInstance().newScene) {
+                                if(!gameGlobalsFactory.newCanvas) {
                                     PathFindingThreadPool.getInstance().clear();
                                     final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                     final MyCanvas abCanvas = abToGBUtil.abCanvas;

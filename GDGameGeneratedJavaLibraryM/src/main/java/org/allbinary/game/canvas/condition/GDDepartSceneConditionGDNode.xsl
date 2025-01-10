@@ -34,7 +34,7 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
                             
-                            if(GDGlobalsFactory.getInstance().newScene) {
+                            if(gameGlobalsFactory.newCanvas) {
                               LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                             <xsl:for-each select=".." >

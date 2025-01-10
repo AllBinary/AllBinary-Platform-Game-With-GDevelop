@@ -51,7 +51,7 @@ import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.communication.log.PreLogUtil;
-import org.allbinary.game.canvas.GDGlobalsFactory;
+import org.allbinary.canvas.GameGlobalsFactory;
 import org.allbinary.game.GameInfo;
 import org.allbinary.game.GameMode;
 import org.allbinary.game.GameTypeFactory;
@@ -85,6 +85,7 @@ public class GDGameMIDlet extends
    SpecialDemoGameMidlet
    //DemoGameMidlet
 {
+   private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
 
    public GDGameMIDlet(final ClientInformationFactory clientInformationFactory)
    {
@@ -264,7 +265,7 @@ public class GDGameMIDlet extends
     
        //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "startGameCanvasRunnableInterface"));
 
-        GDGlobalsFactory.getInstance().newScene = true;
+        gameGlobalsFactory.newCanvas = true;
         super.startGameCanvasRunnableInterface();
     }
 
