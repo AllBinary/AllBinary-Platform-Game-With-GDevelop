@@ -93,6 +93,8 @@ import org.allbinary.graphics.paint.NullInitUpdatePaintable;
 import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.graphics.paint.Paintable;
 import org.allbinary.graphics.paint.PaintableInterface;
+import org.allbinary.image.ImageCache;
+import org.allbinary.image.ImageCacheFactory;    
 import org.allbinary.layer.event.LayerManagerEventHandler;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.AllBinaryVibration;
@@ -122,6 +124,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 {
     private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
     private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
+    private final ImageCache imageCache = ImageCacheFactory.getInstance();
         
     private final String GD_LAYOUT_COLOR = "GDLayout<xsl:value-of select="position()" />Color";
     
@@ -156,6 +159,10 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
            //new BasicBuildGameInitializerFactory(),
            false);
 
+        <xsl:if test="number($layoutIndex) = 1" >
+        this.imageCache.initProgress();
+        </xsl:if>
+        
         this.abeClientInformation = abeClientInformation;
         
         musicManager = MusicManagerFactory.create(GD<xsl:value-of select="$layoutIndex" />GameMusicFactory.getInstance().soundList);
