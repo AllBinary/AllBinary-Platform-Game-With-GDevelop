@@ -107,10 +107,19 @@ Created By: Travis Berthelot
  
                                     </xsl:if>
                                 </xsl:for-each>) {
+                                
+                                <xsl:variable name="hasCreate" >
+                                    <xsl:for-each select=".." >
+                                    <xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" >found</xsl:if></xsl:for-each>
+                                    </xsl:for-each>
+                                </xsl:variable>
+
+                                <xsl:if test="not(contains($hasCreate, 'found'))" >
 
                                 <xsl:for-each select=".." >
                                     <xsl:for-each select="actions" >
                                         <xsl:if test="type/value = 'Create'" >
+                                            //Create - nested
                                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                                         </xsl:if>
                                     </xsl:for-each>
@@ -172,6 +181,11 @@ Created By: Travis Berthelot
                                 </xsl:if>
 
                             </xsl:for-each>
+                            
+                            </xsl:if>
+                            <xsl:if test="contains($hasCreate, 'found')" >
+                                //This case uses the return value to process other events.
+                            </xsl:if>
 
                                 } else {
                                     result = false;

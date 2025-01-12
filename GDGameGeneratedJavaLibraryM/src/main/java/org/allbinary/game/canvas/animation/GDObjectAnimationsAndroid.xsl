@@ -159,7 +159,18 @@ Created By: Travis Berthelot
                     <xsl:for-each select="directions" >,
                     new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
                     </xsl:for-each>
-                    )
+                    ) 
+                    <xsl:if test="$name = 'DialogBox'" >{
+                        public void setInitialScale(final ScaleProperties scaleProperties) {
+                            scaleProperties.scaleX = scaleProperties.scaleX * 2 / 3;
+                            scaleProperties.scaleY = scaleProperties.scaleY * 2 / 3;
+                            scaleProperties.scaleWidth = scaleProperties.scaleWidth * 2 / 3;
+                            scaleProperties.scaleHeight = scaleProperties.scaleHeight * 2 / 3;
+                            super.setInitialScale(scaleProperties);
+                        }
+                    }        
+                    </xsl:if>
+
                         <xsl:if test="contains($lazy, 'true')" >
                     )
                         </xsl:if>
