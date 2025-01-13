@@ -583,7 +583,7 @@ Created By: Travis Berthelot
                 <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
 
                 <xsl:if test="actions" >
-                //Was not being called before - START
+                //Was not being called before - START2
                 </xsl:if>
 
                 //caller=<xsl:value-of select="$caller" /> - //No used conditions so calling actions from event directly.
@@ -867,6 +867,7 @@ Created By: Travis Berthelot
                 <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
 
                 <xsl:if test="actions" >
+                //Was not being called before - START3
                 //caller=<xsl:value-of select="$caller" /> - //processGD - //No used conditions so calling actions from event directly.
                 <xsl:call-template name="eventsCreateProcessUsed" >
                     <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignXGDObjectGDNodesOtherEvent</xsl:with-param>
@@ -890,8 +891,9 @@ Created By: Travis Berthelot
                     </xsl:with-param>
                 </xsl:call-template>
                 </xsl:if>
-
+                
                 </xsl:if>
+                
                 </xsl:if>
                 </xsl:if>
 
