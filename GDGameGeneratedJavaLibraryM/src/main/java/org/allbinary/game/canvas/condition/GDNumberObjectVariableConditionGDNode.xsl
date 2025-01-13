@@ -393,10 +393,15 @@ Created By: Travis Berthelot
                                             <xsl:text>&#10;</xsl:text>
                                             <xsl:if test="contains($hasObject, 'found')" >
                                                 ((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$before" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$before" />) <xsl:value-of select="$before" />).<xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="substring-after(text(), '.')" /></xsl:with-param><xsl:with-param name="find" >VariableChildCount(</xsl:with-param><xsl:with-param name="replacementText" >VariableChildCount(<xsl:value-of select="$before" />.</xsl:with-param></xsl:call-template>
-                                            </xsl:if>
+                                            </xsl:if>                                            
                                         </xsl:if>
                                         <xsl:if test="not(contains($hasObject, 'found'))" >
+                                            <xsl:if test="contains(text(), 'SceneInstancesCount(')" >
+                                                <xsl:value-of select="$param" />
+                                            </xsl:if>
+                                            <xsl:if test="not(contains(text(), 'SceneInstancesCount('))" >
                                             <xsl:value-of select="text()" />
+                                            </xsl:if>
                                         </xsl:if>
  
                                     </xsl:if>

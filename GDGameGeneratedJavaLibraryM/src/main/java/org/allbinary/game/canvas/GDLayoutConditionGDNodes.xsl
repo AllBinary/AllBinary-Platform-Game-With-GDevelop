@@ -243,6 +243,10 @@ Created By: Travis Berthelot
                         return array.length;
                     }
 
+                    public int SceneInstancesCount(final int size) {
+                        return size;
+                    }
+
                     public String GlobalVariable(final String value) {
                         return value;
                     }
