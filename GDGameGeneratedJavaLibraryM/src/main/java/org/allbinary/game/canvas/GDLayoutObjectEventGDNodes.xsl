@@ -69,6 +69,7 @@ Created By: Travis Berthelot
                 
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.game.configuration.persistance.JSONPersistance;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
@@ -99,6 +100,7 @@ Created By: Travis Berthelot
                         }
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
+                        private final StringUtil stringUtil = StringUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
                         private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();

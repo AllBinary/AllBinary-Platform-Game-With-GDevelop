@@ -71,6 +71,7 @@ Created By: Travis Berthelot
                 
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.game.configuration.persistance.JSONPersistance;
                 import org.allbinary.game.input.GDRGameInputProcessor;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
@@ -109,6 +110,7 @@ Created By: Travis Berthelot
                         }
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
+                        private final StringUtil stringUtil = StringUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();

@@ -74,6 +74,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.game.configuration.persistance.JSONPersistance;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
@@ -88,6 +89,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.CommonStrings;
                 import org.allbinary.logic.string.CommonSeps;
                 import org.allbinary.logic.string.StringMaker;
+                import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.time.GameTickTimeDelayHelper;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.util.BasicArrayList;
@@ -96,6 +98,7 @@ Created By: Travis Berthelot
                 import org.allbinary.media.audio.Sound;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
                 import org.allbinary.thread.PathFindingThreadPool;
+                import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 
                 //LayoutExternalAction name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes extends SpecialAnimation
@@ -109,6 +112,7 @@ Created By: Travis Berthelot
                         }
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
+                        private final StringUtil stringUtil = StringUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
@@ -120,6 +124,8 @@ Created By: Travis Berthelot
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
+
+                        private final AbeClientInformationInterface abeClientInformation = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION;
                         
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes() {
 
@@ -219,6 +225,14 @@ Created By: Travis Berthelot
 
                     public int GlobalVariableChildCount(final long[] array) {
                         return array.length;
+                    }
+
+                    public String GlobalVarToJSON(final String value) {
+                        return value;
+                    }
+
+                    public String GlobalVarToJSON(final int value) {
+                        return Integer.toString(value);
                     }
 
                     public String ToString(final int value) {

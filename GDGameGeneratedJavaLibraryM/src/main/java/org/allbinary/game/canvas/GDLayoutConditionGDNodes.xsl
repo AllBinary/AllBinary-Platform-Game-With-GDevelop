@@ -74,6 +74,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.game.configuration.persistance.JSONPersistance;
                 
                 import org.allbinary.game.input.GDRGameInputProcessor;
 

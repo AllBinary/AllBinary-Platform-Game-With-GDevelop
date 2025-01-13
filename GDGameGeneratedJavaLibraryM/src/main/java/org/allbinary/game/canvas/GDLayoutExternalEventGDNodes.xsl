@@ -72,6 +72,7 @@ Created By: Travis Berthelot
                 
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.game.configuration.persistance.JSONPersistance;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
                 import org.allbinary.game.layout.GDNode;
@@ -97,6 +98,7 @@ Created By: Travis Berthelot
                     }
 
                     private final CommonStrings commonStrings = CommonStrings.getInstance();
+                    private final StringUtil stringUtil = StringUtil.getInstance();
                     private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                     
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
