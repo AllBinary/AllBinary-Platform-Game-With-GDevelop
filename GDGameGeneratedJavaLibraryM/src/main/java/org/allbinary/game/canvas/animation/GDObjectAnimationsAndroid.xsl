@@ -162,10 +162,10 @@ Created By: Travis Berthelot
                     ) 
                     <xsl:if test="$name = 'DialogBox'" >{
                         public void setInitialScale(final ScaleProperties scaleProperties) {
-                            scaleProperties.scaleX = scaleProperties.scaleX * 2 / 3;
-                            scaleProperties.scaleY = scaleProperties.scaleY * 2 / 3;
-                            scaleProperties.scaleWidth = scaleProperties.scaleWidth * 2 / 3;
-                            scaleProperties.scaleHeight = scaleProperties.scaleHeight * 2 / 3;
+                            scaleProperties.scaleX = scaleProperties.scaleX * 75 / 100;
+                            scaleProperties.scaleY = scaleProperties.scaleY * 75 / 100;
+                            scaleProperties.scaleWidth = scaleProperties.scaleWidth * 75 / 100;
+                            scaleProperties.scaleHeight = scaleProperties.scaleHeight * 75 / 100;
                             super.setInitialScale(scaleProperties);
                         }
                     }        
