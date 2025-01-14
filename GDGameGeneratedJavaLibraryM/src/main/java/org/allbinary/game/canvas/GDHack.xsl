@@ -261,11 +261,18 @@ Created By: Travis Berthelot
             <xsl:text>&#10;</xsl:text>
             //Action - //<xsl:value-of select="type/value" /> - call h1
 
+            <xsl:if test="type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue'" >
             <xsl:if test="contains($alreadyUsedCondition, 'found')" >
             //Skipping Action since a alreadyUsedCondition is used
             </xsl:if>
             <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
+            </xsl:if>
+            </xsl:if>
+            <xsl:if test="not(type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue')" >
+            <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
+            //Could I call this - //<xsl:value-of select="type/value" />
+            </xsl:if>
             </xsl:if>
             
             <xsl:if test="contains($hasOnceCondition, 'found')" >
@@ -864,13 +871,6 @@ Created By: Travis Berthelot
                 </xsl:if>
                 </xsl:if>
 
-<!--
-remove me
-                <xsl:if test="type/value = 'PlaySoundCanal'" >
-                //Action - //PlaySoundCanal - call
-                //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
-                </xsl:if>
--->
             </xsl:for-each>
             //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Actions - 2 - END
             
