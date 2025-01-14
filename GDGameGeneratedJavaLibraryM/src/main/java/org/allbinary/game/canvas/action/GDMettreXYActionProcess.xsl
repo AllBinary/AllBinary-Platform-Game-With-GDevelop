@@ -268,7 +268,7 @@ Created By: Travis Berthelot
                         <xsl:for-each select="objectsGroups" >
                             
                             <xsl:if test="not(name = $name)" >
-                                //objectsGroups - <xsl:value-of select="name" />
+<!--                                //objectsGroups - <xsl:value-of select="name" />-->
 <!--
                     final BasicArrayList gdGameLayerList = ((BasicArrayList) globals.<xsl:value-of select="$name" />GDGameLayerListOfList.get(index));
                     if(gdGameLayerList.size() == 0) {
@@ -284,7 +284,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
 
                         <xsl:for-each select="objects" >
-                    //name=<xsl:value-of select="name" />
+<!--                    //name=<xsl:value-of select="name" />-->
                             <xsl:variable name="nameWithCall" ><xsl:value-of select="name" />.</xsl:variable>
                             <xsl:if test="not(name = $name)" >
                             <xsl:if test="contains($parametersAsString, $nameWithCall)" >
@@ -565,7 +565,7 @@ Created By: Travis Berthelot
                         <xsl:for-each select="objectsGroups" >
                             
                             <xsl:if test="not((string-length($parentConditionObject) > 0 and name = $parentConditionObject) or (string-length($parentConditionObject) = 0 and name = $name))" >
-                                //objectsGroups - <xsl:value-of select="name" />
+<!--                                //objectsGroups - <xsl:value-of select="name" />-->
 <!--
                     final BasicArrayList gdGameLayerList = ((BasicArrayList) globals.<xsl:value-of select="$name" />GDGameLayerListOfList.get(index));
                     if(gdGameLayerList.size() == 0) {
@@ -581,7 +581,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
 
                         <xsl:for-each select="objects" >
-                    //name=<xsl:value-of select="name" />
+<!--                    //name=<xsl:value-of select="name" />-->
                             <xsl:variable name="nameWithCall" ><xsl:value-of select="name" />.</xsl:variable>
                             <xsl:if test="not((string-length($parentConditionObject) > 0 and name = $parentConditionObject) or (string-length($parentConditionObject) = 0 and name = $name))" >
                             <xsl:if test="contains($parametersAsString, $nameWithCall)" >
