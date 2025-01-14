@@ -89,10 +89,10 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                         </xsl:variable>
 
-                        /*<xsl:for-each select="../conditions" ><xsl:value-of select="type" /><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:for-each>*/
-                        //parentConditionObject=<xsl:value-of select="$parentConditionObject" />
-                        //parentConditionWithoutObjects=<xsl:value-of select="$parentConditionWithoutObjects" /> - logic is not correct
-                        /*parametersAsString=<xsl:value-of select="$parametersAsString" />*/
+<!--                        <xsl:for-each select="../conditions" ><xsl:value-of select="type" /><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:for-each>-->
+<!--                        //parentConditionObject=<xsl:value-of select="$parentConditionObject" />-->
+<!--                        //parentConditionWithoutObjects=<xsl:value-of select="$parentConditionWithoutObjects" /> - logic is not correct-->
+<!--                        parametersAsString=<xsl:value-of select="$parametersAsString" />-->
 
                         <xsl:variable name="param" >
                             <xsl:for-each select="parameters" >

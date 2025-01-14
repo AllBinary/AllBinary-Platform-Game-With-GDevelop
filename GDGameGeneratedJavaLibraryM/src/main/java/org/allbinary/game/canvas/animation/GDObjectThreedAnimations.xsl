@@ -451,7 +451,7 @@ Created By: Travis Berthelot
             private void add<xsl:value-of select="name" />TextObjectAnimations(final ImageCache imageCache) throws Exception {
             
                 /*
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+<!--                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                     NullRotationAnimationFactory.getFactoryInstance()
                 };
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
@@ -459,7 +459,7 @@ Created By: Travis Berthelot
                                 pointFactory.getInstance(0, 0),
                                 0, 0
                                 );
-
+-->
                 */
 
                 //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
@@ -758,7 +758,7 @@ Created By: Travis Berthelot
             private void add<xsl:value-of select="name" />TextObjectAnimations(final ImageCache imageCache) throws Exception {
 
                 /*
-                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+<!--                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                     NullRotationAnimationFactory.getFactoryInstance()
                 };
                 final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
@@ -766,7 +766,7 @@ Created By: Travis Berthelot
                                 pointFactory.getInstance(0, 0),
                                 0, 0
                                 );
-
+-->
                 */
 
             }
