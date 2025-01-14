@@ -829,7 +829,6 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ModVarScene'" >
                     <xsl:if test="not(contains($caller, 'external'))" >
-                    //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));                    
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />                                                
                     //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Action - //ModVarScene - call
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
@@ -1010,41 +1009,35 @@ Created By: Travis Berthelot
                 <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
                 <xsl:if test="$typeValue = 'SetAngle'" >
-                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                             //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //Action - //SetAngle - call
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'ChangePlan'" >
-                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                             //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //ChangePlan - call
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
                             <xsl:text>&#10;</xsl:text>
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'ChangeColor'" >
-                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                             //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //ChangeColor - call
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
                             <xsl:text>&#10;</xsl:text>
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'ChangeAnimation'" >
-                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                             //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //ChangeAnimation - call
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
                             <xsl:text>&#10;</xsl:text>
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'SetNumberVariable'" >
-                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                             //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //SetNumberVariable - call - NOT_IMPLEMENTED
                             //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
                             <xsl:text>&#10;</xsl:text>
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'SetNumberObjectVariable'" >
-                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
                     <xsl:text>&#10;</xsl:text>
                             //caller=<xsl:value-of select="$caller" /> - //eventsCreateProcessUsed - //SetNumberObjectVariable - call - //<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
