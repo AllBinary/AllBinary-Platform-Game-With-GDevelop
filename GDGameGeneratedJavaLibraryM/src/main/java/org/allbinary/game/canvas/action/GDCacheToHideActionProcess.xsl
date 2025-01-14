@@ -41,28 +41,28 @@ Created By: Travis Berthelot
                             <xsl:if test="string-length($hasObjectGroup) > 0" >
                             final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.size();
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            //final BasicArrayList gdObjectList = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectListOfList.get(index));
+<!--                            //final BasicArrayList gdObjectList = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectListOfList.get(index));-->
                             final BasicArrayList gdGameLayerList = ((BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(index));
                             </xsl:if>
                             <xsl:if test="string-length($hasObjectGroup) = 0" >
-                            //final BasicArrayList gdObjectList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectList;
+<!--                            //final BasicArrayList gdObjectList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectList;-->
                             final BasicArrayList gdGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList;
                             </xsl:if>
 
                             final int size2 = gdGameLayerList.size();
-                            //if(size2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+<!--                            //if(size2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                             //    result = true;
-                            //}
+                            //}-->
 
                             GDGameLayer gdGameLayer;
-                            //GDObject gdObject;
+<!--                            //GDObject gdObject;-->
                             for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
-                            //if(gdObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+<!--                            //if(gdObjectList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {-->
                                 gdGameLayer = (GDGameLayer) gdGameLayerList.get(index2);
                                 gdGameLayer.setVisible(false);
-                                //gdObject = (GDObject) gdGameLayer.gdObject;
+<!--                                //gdObject = (GDObject) gdGameLayer.gdObject;
                                 //result = result <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> 
-                            //}
+                            //}-->
                             }
 
                             <xsl:if test="string-length($hasObjectGroup) > 0" >
