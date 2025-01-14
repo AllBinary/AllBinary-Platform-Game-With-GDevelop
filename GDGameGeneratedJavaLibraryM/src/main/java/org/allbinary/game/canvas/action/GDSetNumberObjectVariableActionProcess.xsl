@@ -213,7 +213,7 @@ Created By: Travis Berthelot
                         }
                     
                             /*
-                            final int size2 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayerListOfList.size();
+<!--                            final int size2 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayerListOfList.size();
                             for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
                             final BasicArrayList <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayerList = ((BasicArrayList) <xsl:call-template name="globals" >
                                 <xsl:with-param name="name" >
@@ -223,7 +223,7 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >final int size = <xsl:value-of select="text()" />GDGameLayerList.size();</xsl:if>
-                        </xsl:for-each>
+                        </xsl:for-each>-->
                         </xsl:if>
                         
                         <xsl:if test="$paramOneNameObjectsGroups = ''" >
@@ -265,7 +265,7 @@ Created By: Travis Berthelot
                         }
                         
                         <xsl:if test="$paramOneNameObjectsGroups != ''" >
-                        }
+<!--                        }-->
                         */
                         </xsl:if>
                         
@@ -281,7 +281,7 @@ Created By: Travis Berthelot
                         
                         <xsl:if test="$paramOneNameObjectsGroups != ''" >
                             /*
-                            final int size2 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayerListOfList.size();
+<!--                            final int size2 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayerListOfList.size();
                             for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
                             final BasicArrayList <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayerList = ((BasicArrayList) <xsl:call-template name="globals" >
                                 <xsl:with-param name="name" >
@@ -291,7 +291,7 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                         <xsl:for-each select="parameters" >
                             <xsl:if test="position() = 1" >final GDGameLayer <xsl:value-of select="text()" />GDGameLayer = ((GDGameLayer) <xsl:value-of select="text()" />GDGameLayerList.get(index));</xsl:if>
-                        </xsl:for-each>
+                        </xsl:for-each>-->
                         </xsl:if>
                         
                         <xsl:if test="$paramOneNameObjectsGroups = ''" >
@@ -427,7 +427,7 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                         
                         <xsl:if test="$paramOneNameObjectsGroups != ''" >
-                            }
+<!--                            }-->
                             */
                             //Needs Impl
                             if(true) throw new RuntimeException();
