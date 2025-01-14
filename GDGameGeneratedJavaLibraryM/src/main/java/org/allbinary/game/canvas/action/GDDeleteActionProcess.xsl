@@ -245,15 +245,15 @@ Created By: Travis Berthelot
                             </xsl:if>
                             </xsl:if>
 
-                                            //final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
+<!--                                            //final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                             //final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
                                             //if(allBinaryGameLayerManager.getLayerManager().contains(<xsl:value-of select="text()" />GDGameLayer)) {
-                                                //allBinaryGameLayerManager.remove(<xsl:value-of select="text()" />GDGameLayer);
+                                                //allBinaryGameLayerManager.remove(<xsl:value-of select="text()" />GDGameLayer);-->
                                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + <xsl:value-of select="text()" />GDGameLayer, this, commonStrings.PROCESS));
                                                 <xsl:value-of select="text()" />GDGameLayer.setDestroyed(true);
-                                            //} else {
+<!--                                            //} else {
                                                 //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + " LayerManager does not have (probably already removed/destroyed): " + <xsl:value-of select="text()" />GDGameLayer, this, commonStrings.PROCESS));
-                                            //}
+                                            //}-->
                                                         
                                         </xsl:if>
                                     </xsl:for-each>
