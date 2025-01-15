@@ -148,29 +148,33 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             layoutGameXmlAsString,
             layoutGameXmlAsString,
             layoutGameXmlAsString,
+            layoutGameXmlAsString,
+            layoutGameXmlAsString,
             gameXmlAsString,
             layoutGameXmlAsString,
             gameXmlAsString,
         };
 
-        final String[] xslPathInputArray
-            = {
+        final String[] xslPathInputArray = {
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutAsXml.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayout.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutBuilder.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalEventGDNodes.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalActionGDNodes.xsl",
+                gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDExternalActionGDNodes.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalConditionGDNodes.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalObjectEventGDNodes.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalOtherEventGDNodes.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutActionGDNodes.xsl",
+                gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDActionGDNodes.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutConditionGDNodes.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutObjectEventGDNodes.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutOtherEventGDNodes.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDResources.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutSceneAsSpecialAnimationGlobals.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutGDObjectsFactory.xsl",
-                gdToolStrings.ROOT_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\GDGamePlaynResources.xsl",};
+                gdToolStrings.ROOT_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\GDGamePlaynResources.xsl",
+        };
 
         final int xslTotal = xslPathInputArray.length;
         final String[] xslDocumentAsString = new String[xslTotal];
@@ -196,7 +200,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             GENERATED_START_WITH_PATH,
             GENERATED_START_WITH_PATH,
             GENERATED_START_WITH_PATH,
-            gdToolStrings.ROOT_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\GD",};
+            GENERATED_START_WITH_PATH,
+            GENERATED_START_WITH_PATH,
+            gdToolStrings.ROOT_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\GD",
+        };
 
         final String[] END = {
             "SpecialAnimation.xml",
@@ -204,10 +211,12 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             "SpecialAnimationBuilder.java",
             "SpecialAnimationExternalEventGDNodes.java",
             "SpecialAnimationExternalActionGDNodes.java",
+            "ExternalActionGDNodes.java",
             "SpecialAnimationExternalConditionGDNodes.java",
             "SpecialAnimationExternalObjectEventGDNodes.java",
             "SpecialAnimationExternalOtherEventGDNodes.java",
             "SpecialAnimationActionGDNodes.java",
+            "ActionGDNodes.java",
             "SpecialAnimationConditionGDNodes.java",
             "SpecialAnimationObjectEventGDNodes.java",
             "SpecialAnimationOtherEventGDNodes.java",

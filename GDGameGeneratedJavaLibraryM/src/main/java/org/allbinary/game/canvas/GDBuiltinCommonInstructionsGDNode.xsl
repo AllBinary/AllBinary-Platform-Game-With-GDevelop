@@ -41,11 +41,30 @@ package org.allbinary.game.canvas.node;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
-import org.allbinary.animation.AnimationBehavior;
-import org.allbinary.animation.special.SpecialAnimation;
+<!--import org.allbinary.animation.AnimationBehavior;
+import org.allbinary.animation.special.SpecialAnimation;-->
 import org.allbinary.game.canvas.GDGameGlobals;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals;
-import org.allbinary.game.configuration.persistance.JSONPersistance;
+
+import org.allbinary.game.layer.GDGameLayer;
+import org.allbinary.game.layer.CollidableCompositeLayer;
+import org.allbinary.game.layout.GDNode;
+import org.allbinary.game.layout.GDObjectStrings;
+import org.allbinary.game.rand.MyRandomFactory;
+import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
+import org.allbinary.input.motion.gesture.MotionGestureInput;
+import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
+import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.logic.string.CommonSeps;
+import org.allbinary.logic.string.StringUtil;
+import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.ArrayUtil;
+
+<!--import org.allbinary.game.configuration.persistance.JSONPersistance;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layer.GDGameLayerFactory;
 import org.allbinary.game.layout.GDNode;
@@ -67,29 +86,23 @@ import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.ArrayUtil;
-import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+import org.allbinary.logic.math.SmallIntegerSingletonFactory;-->
 
 //nodeId=<xsl:value-of select="$selectedNodeId" />
 public class GD<xsl:value-of select="$selectedNodeId" />GDNode extends GDNode
 {
 
-<!--    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes instance = 
-       new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationOtherEventGDNodes();-->
-
     private final CommonStrings commonStrings = CommonStrings.getInstance();
+<!--
     private final StringUtil stringUtil = StringUtil.getInstance();
     private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
     private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
     private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
 
     private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
+-->
     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-<!--    
-    private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
-    private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
-    private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
--->
         
     public GD<xsl:value-of select="$selectedNodeId" />GDNode() {
 

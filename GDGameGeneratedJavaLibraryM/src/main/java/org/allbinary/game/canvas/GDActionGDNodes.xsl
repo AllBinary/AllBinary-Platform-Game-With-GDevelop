@@ -26,7 +26,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDScaling.xsl" />
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDNodeId.xsl" />
-    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventCreateAssignGDObjectGDNodeAction.xsl" />
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDActionGDNodeAction.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDExternalEvents.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassProperty.xsl" />
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDObjectClassPropertyGDObjects.xsl" />
@@ -141,46 +141,53 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
                 
                 //LayoutAction name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes extends SpecialAnimation
+                public class GD<xsl:value-of select="$layoutIndex" />ActionGDNodes
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes instance = 
-                        new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes();
+                    private static final GD<xsl:value-of select="$layoutIndex" />ActionGDNodes instance = 
+                        new GD<xsl:value-of select="$layoutIndex" />ActionGDNodes();
 
-                        public static GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes getInstance()
+                        public static GD<xsl:value-of select="$layoutIndex" />ActionGDNodes getInstance()
                         {
                             return instance;
                         }
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();                        
-
+                        private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        private final PointFactory pointFactory = PointFactory.getInstance();
+                        private final StringUtil stringUtil = StringUtil.getInstance();
+                        private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
+                        private final VirtualKeyboardEventHandler virtualKeyboardEventHandler = VirtualKeyboardEventHandler.getInstance();
+                        private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
+                        private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
+                        private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
+                        private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+                        private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
+                        
+                        private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                        private final GDGlobalsGDResources globalResources = GDGlobalsGDResources.getInstance();
+                        private final GDGlobalsGDObjectsFactory gdGlobalsObjectsFactory = GDGlobalsGDObjectsFactory.getInstance();
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+                        private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstance();
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources resources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources.getInstance();
 
-                        private final GD<xsl:value-of select="$layoutIndex" />ActionGDNodes gd<xsl:value-of select="$layoutIndex" />ActionGDNodes = GD<xsl:value-of select="$layoutIndex" />ActionGDNodes.getInstance();
-                        
                         private final AbeClientInformationInterface abeClientInformation = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION;
-
-                    private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationActionGDNodes() {
-
-                        super(AnimationBehavior.getInstance());
-
-                        try {
-                        
-                            LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.CONSTRUCTOR));
                     
-                                    <xsl:call-template name="scale" >
-                                        <xsl:with-param name="layoutIndex" >
-                                            <xsl:value-of select="$layoutIndex" />
-                                        </xsl:with-param>
-                                        <xsl:with-param name="layoutName" >
-                                            <xsl:value-of select="$layoutName" />
-                                        </xsl:with-param>
-                                    </xsl:call-template>
-                    
-                            final GDGlobalSpecialAnimationImageResources globalImageResources = GDGlobalSpecialAnimationImageResources.getInstanceOrCreate();
-                                                                                        
+                        //private final GDGlobalSpecialAnimationImageResources globalImageResources = GDGlobalSpecialAnimationImageResources.getInstanceOrCreate();
+                                                                
+        <xsl:call-template name="scaleProperty" >
+            <xsl:with-param name="layoutIndex" >
+                <xsl:value-of select="$layoutIndex" />
+            </xsl:with-param>
+            <xsl:with-param name="layoutName" >
+                <xsl:value-of select="$layoutName" />
+            </xsl:with-param>
+        </xsl:call-template>
+                                                
                     //actionLayout - //eventsCreateAssignGDObjectGDNodesAction - START
-                    <xsl:call-template name="eventsCreateAssignGDObjectGDNodesAction" >
+                    <xsl:call-template name="actionGDNodes" >
                         <xsl:with-param name="caller" >actionLayout</xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
@@ -206,16 +213,8 @@ Created By: Travis Berthelot
 
                     </xsl:call-template>
                     //actionLayout - //eventsCreateAssignGDObjectGDNodesAction - END                    
-                    
-                            LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
 
-                        } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
-                        }
-
-                    }
-
-<!--                    public double TimeDelta() {
+                    public double TimeDelta() {
                         return globals.globalsGameTickTimeDelayHelper.timeDelta * .001;
                     }
 
@@ -419,7 +418,7 @@ Created By: Travis Berthelot
 
                     public int ToNotString(final int value) {
                         return value;
-                    }-->
+                    }
 
                 }
             </xsl:if>

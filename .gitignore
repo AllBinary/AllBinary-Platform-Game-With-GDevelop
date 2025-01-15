@@ -27,6 +27,7 @@ gd_icon.png
 game.xml
 game.json
 R.java
+GD*ActionGDNodes.java
 GD*GDNode.java
 PlatformAssetManager.java
 GDGameSoftwareInfo.java
