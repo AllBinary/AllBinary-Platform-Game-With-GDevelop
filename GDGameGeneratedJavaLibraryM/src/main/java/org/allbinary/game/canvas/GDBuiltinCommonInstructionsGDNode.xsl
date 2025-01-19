@@ -19,7 +19,7 @@ Created By: Travis Berthelot
     <xsl:template name="builtinCommonInstructionsGDNode" >
         <xsl:param name="caller" />
         <xsl:param name="totalRecursions" />
-        <xsl:param name="selectedNodeId" />
+        <xsl:param name="selectedNodeIds" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="layoutName" />
         <xsl:param name="thisNodeIndex" />
@@ -34,80 +34,23 @@ Created By: Travis Berthelot
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
             
-            <xsl:if test="$selectedNodeId = number(substring(generate-id(), 2) - 65536)" >
+            <xsl:variable name="selectedNodeId" select="number(substring(generate-id(), 2) - 65536)" />
+            <xsl:variable name="selectedNodeIdWithSep" >,<xsl:value-of select="$selectedNodeId" />,</xsl:variable>
+            
+            <xsl:if test="contains($selectedNodeIds, ',4715')" >
+            //selectedNodeIds=<xsl:value-of select="$selectedNodeIds" />
+            //selectedNodeIdWithSep=<xsl:value-of select="$selectedNodeIdWithSep" />
+            </xsl:if>
+            <xsl:if test="contains($selectedNodeIds, $selectedNodeIdWithSep)" >
 
-package org.allbinary.game.canvas.node;
+        //nodeId=<xsl:value-of select="$selectedNodeId" />
+        public class GD<xsl:value-of select="$selectedNodeId" />GDNode extends GDNode
+        {
+            public GD<xsl:value-of select="$selectedNodeId" />GDNode() {
 
-import javax.microedition.lcdui.Graphics;
-import javax.microedition.lcdui.Image;
+                super(<xsl:value-of select="$selectedNodeId" />);
 
-<!--import org.allbinary.animation.AnimationBehavior;
-import org.allbinary.animation.special.SpecialAnimation;-->
-import org.allbinary.game.canvas.GDGameGlobals;
-import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals;
-
-import org.allbinary.game.layer.GDGameLayer;
-import org.allbinary.game.layer.CollidableCompositeLayer;
-import org.allbinary.game.layout.GDNode;
-import org.allbinary.game.layout.GDObjectStrings;
-import org.allbinary.game.rand.MyRandomFactory;
-import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
-import org.allbinary.input.motion.gesture.MotionGestureInput;
-import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
-import org.allbinary.logic.math.SmallIntegerSingletonFactory;
-import org.allbinary.logic.string.CommonStrings;
-import org.allbinary.logic.string.CommonSeps;
-import org.allbinary.logic.string.StringUtil;
-import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.communication.log.LogFactory;
-import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.util.BasicArrayList;
-import org.allbinary.util.ArrayUtil;
-
-<!--import org.allbinary.game.configuration.persistance.JSONPersistance;
-import org.allbinary.game.layer.GDGameLayer;
-import org.allbinary.game.layer.GDGameLayerFactory;
-import org.allbinary.game.layout.GDNode;
-import org.allbinary.game.layer.special.TempGameLayerUtil;
-import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
-import org.allbinary.game.layout.GDObject;
-import org.allbinary.game.layout.GDObjectStrings;
-import org.allbinary.game.layer.AllBinaryGameLayerManager;
-import org.allbinary.game.layer.CollidableCompositeLayer;
-import org.allbinary.game.layer.identification.GroupLayerManagerListener;
-import org.allbinary.game.rand.MyRandomFactory;
-import org.allbinary.input.motion.gesture.MotionGestureInput;
-import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
-import org.allbinary.logic.string.CommonStrings;
-import org.allbinary.logic.string.CommonSeps;
-import org.allbinary.logic.string.StringUtil;
-import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.communication.log.LogFactory;
-import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.util.BasicArrayList;
-import org.allbinary.util.ArrayUtil;
-import org.allbinary.logic.math.SmallIntegerSingletonFactory;-->
-
-//nodeId=<xsl:value-of select="$selectedNodeId" />
-public class GD<xsl:value-of select="$selectedNodeId" />GDNode extends GDNode
-{
-
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
-<!--
-    private final StringUtil stringUtil = StringUtil.getInstance();
-    private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
-    private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
-    private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
-
-    private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
--->
-    private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-    private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-        
-    public GD<xsl:value-of select="$selectedNodeId" />GDNode() {
-
-        super(<xsl:value-of select="$selectedNodeId" />);
-    }    
+            }
 
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
 
@@ -1025,11 +968,9 @@ public class GD<xsl:value-of select="$selectedNodeId" />GDNode extends GDNode
             </xsl:if>
             <!-- other events - END -->
 
-                public int Random(final int range) {
-                    return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
-                }
-
-            }
+        }
+        
+        public GD<xsl:value-of select="$selectedNodeId" />GDNode gd<xsl:value-of select="$selectedNodeId" />GDNode = new GD<xsl:value-of select="$selectedNodeId" />GDNode();
 
             </xsl:if>
 
@@ -1043,8 +984,8 @@ public class GD<xsl:value-of select="$selectedNodeId" />GDNode extends GDNode
                 <xsl:with-param name="layoutName" >
                     <xsl:value-of select="$layoutName" />
                 </xsl:with-param>
-                <xsl:with-param name="selectedNodeId" >
-                    <xsl:value-of select="$selectedNodeId" />
+                <xsl:with-param name="selectedNodeIds" >
+                    <xsl:value-of select="$selectedNodeIds" />
                 </xsl:with-param>
                 <xsl:with-param name="thisNodeIndex" >
                     <xsl:value-of select="$thisNodeIndex" />

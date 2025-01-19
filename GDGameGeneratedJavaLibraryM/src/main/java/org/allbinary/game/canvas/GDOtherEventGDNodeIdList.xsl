@@ -48,9 +48,15 @@ Created By: Travis Berthelot
 
     <xsl:template match="/game">
 
+        <xsl:variable name="selectedLayoutIndex" ><GD_CURRENT_INDEX></xsl:variable>
+
         <xsl:for-each select="externalEvents" >
 
-            <xsl:variable name="layoutIndex" select="null" />
+            <xsl:variable name="associatedLayout" select="associatedLayout" />
+            
+            <xsl:variable name="layoutIndex" ><xsl:for-each select="../layouts" ><xsl:variable name="layoutIndex" select="position() - 1" /><xsl:if test="name = $associatedLayout" ><xsl:value-of select="$layoutIndex" /></xsl:if></xsl:for-each></xsl:variable>
+            
+            <xsl:if test="$selectedLayoutIndex = $layoutIndex" >
 
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
                 <xsl:variable name="layoutName" select="null" />
@@ -88,12 +94,16 @@ Created By: Travis Berthelot
                         </xsl:with-param>
 
                     </xsl:call-template>
-            
+
+            </xsl:if>
+                        
         </xsl:for-each>
 
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
 
+            <xsl:if test="$selectedLayoutIndex = $layoutIndex" >
+                
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
                 <xsl:variable name="layoutName" select="name" />
                 <xsl:variable name="objectsGroupsAsString" >,<xsl:for-each select="objectsGroups" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
@@ -130,6 +140,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
 
                     </xsl:call-template>
+
+            </xsl:if>
 
         </xsl:for-each>
     </xsl:template>

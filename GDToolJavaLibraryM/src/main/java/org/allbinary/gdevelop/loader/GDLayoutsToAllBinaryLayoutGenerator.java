@@ -5,7 +5,6 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.StringBufferInputStream;
 import javax.xml.transform.stream.StreamSource;
@@ -19,6 +18,8 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.math.PrimitiveLongSingleton;
+import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.logic.string.CommonLabels;
 import org.allbinary.logic.string.CommonSeps;
 import org.allbinary.logic.string.tokens.Tokenizer;
@@ -43,7 +44,6 @@ public class GDLayoutsToAllBinaryLayoutGenerator
     private final SharedBytes sharedBytes = SharedBytes.getInstance();
     private final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(Integer.MAX_VALUE);
     
-    private final String GD_CURRENT_LAYOUT_INDEX = "<GD_CURRENT_INDEX>";
     private final String GAME_START = "<game>";
     private final String GAME_END = "</game>";
 
@@ -52,9 +52,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator
     private final String GENERATED_START_WITH_ROOT_PATH = gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas";
     private final String GENERATED_START_WITH_PATH = GENERATED_START_WITH_ROOT_PATH + "\\GD";
     private final String GDNODE_START_WITH_PATH = GENERATED_START_WITH_ROOT_PATH + "\\node\\GD";
-
+    
     public GDLayoutsToAllBinaryLayoutGenerator()
     {
+        smallIntegerSingletonFactory.init();
     }
 
     private void generateXMLAndGlobals(final String gameXmlAsString, final StringMaker stringMaker) throws Exception {
@@ -231,7 +232,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             //LogUtil.put(LogFactory.getInstance(stringMaker.append("layout:").append(index).toString(), this, commonStrings.PROCESS));
 
             indexAsString = Integer.toString(index);
-            final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, indexAsString);
+            final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, indexAsString);
 
             for (int index2 = 0; index2 < xslTotal; index2++) {
 
@@ -277,8 +278,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator
         
     }
 
-    private String getGDNodeList(final String gameXmlAsString) 
+    private String getGDNodeListAsString(final String gameXmlAsString, final int layoutIndex) 
     throws Exception {
+        
+        final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, smallIntegerSingletonFactory.getString(layoutIndex));
         
         final String[] xmlStringArray = {
             gameXmlAsString,
@@ -291,106 +294,138 @@ public class GDLayoutsToAllBinaryLayoutGenerator
         
         final int xslTotal = gdNodeXSLPathInputArray.length;
         final String[] xslDocumentAsString = new String[xslTotal];
+        String updatedXslDocumentAsString = null;
         for (int index = 0; index < xslTotal; index++) {
             sharedBytes.outputStream.reset();
             LogUtil.put(LogFactory.getInstance(gdNodeXSLPathInputArray[index], this, commonStrings.PROCESS));
             xslDocumentAsString[index] = new String(streamUtil.getByteArray(new FileInputStream(gdNodeXSLPathInputArray[index]), sharedBytes.outputStream, sharedBytes.byteArray));
+            updatedXslDocumentAsString = replace.all(xslDocumentAsString[index]);
         }
 
         final String result = this.xslHelper.translate(new BasicUriResolver(),
-            new StreamSource(new StringBufferInputStream(xslDocumentAsString[0])),
+            new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
             new StreamSource(new StringBufferInputStream(xmlStringArray[0])));
 
         return result;
                 
     }
     
-    private void generateGDNodes(final String gameXmlAsString, final StringMaker stringMaker) 
+    private BasicArrayList getGDNodeList(final String gameXmlAsString, final int layoutIndex) throws Exception {
+        
+        final String nodeListAsString = this.getGDNodeListAsString(gameXmlAsString, layoutIndex);
+        final Tokenizer tokenizer = new Tokenizer(commonSeps.SPACE);
+        return tokenizer.getTokens(nodeListAsString, new BasicArrayList());
+
+    }
+
+    private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+    private final String BUILT_IN = "BuiltIn";
+
+    private void generateGDNodes(final String gameXmlAsString, final int layoutTotal, final StringMaker stringMaker) 
     throws Exception {
 
-        final String nodeListAsString = this.getGDNodeList(gameXmlAsString);
+        for(int layoutIndex = 0; layoutIndex < layoutTotal; layoutIndex++) {
 
-        final String PACKAGE = "package org.allbinary.game.canvas.node;";
-        
-        final String[] xmlStringArray = {
-            gameXmlAsString,
-        };
-        
-        final String[] gdNodeXSLPathInputArray = 
-        {
-            gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDOtherEventGDNodes.xsl"
-        };
+            final BasicArrayList list = this.getGDNodeList(gameXmlAsString, layoutIndex);
 
-        final String[] END = {
-            "GDNode.java",
-        };
-        
-        final int xslTotal = gdNodeXSLPathInputArray.length;
-        final String[] xslDocumentAsString = new String[xslTotal];
-        for (int index = 0; index < xslTotal; index++) {
-            sharedBytes.outputStream.reset();
-            LogUtil.put(LogFactory.getInstance(gdNodeXSLPathInputArray[index], this, commonStrings.PROCESS));
-            xslDocumentAsString[index] = new String(streamUtil.getByteArray(new FileInputStream(gdNodeXSLPathInputArray[index]), sharedBytes.outputStream, sharedBytes.byteArray));
-        }
+            final String PACKAGE = "package org.allbinary.game.canvas.node;";
 
-        final String[] START = {
-            GDNODE_START_WITH_PATH,
-        };
+            final String[] xmlStringArray = {
+                gameXmlAsString,};
 
-        final Tokenizer tokenizer = new Tokenizer(commonSeps.SPACE);
-        final BasicArrayList list = tokenizer.getTokens(nodeListAsString, new BasicArrayList());
-        
-        final int size = list.size();
-        String indexAsString;
-        for (int index = 0; index < size; index++) {
+            final String[] gdNodeXSLPathInputArray
+                = {
+                    gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDOtherEventGDNodes.xsl"
+                };
 
-            indexAsString = (String) list.get(index);            
-            final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, indexAsString);
-            
-//            stringMaker.delete(0, stringMaker.length());
-//            LogUtil.put(LogFactory.getInstance(stringMaker.append("indexAsString:").append(indexAsString).toString(), this, commonStrings.PROCESS));
-            
-            for (int index2 = 0; index2 < xslTotal; index2++) {
+            final String[] END = {
+                "GDNodes.java",};
 
-                //stringMaker.delete(0, stringMaker.length());
-                //LogUtil.put(LogFactory.getInstance(stringMaker.append("xslt:").append(index2).toString(), this, commonStrings.PROCESS));
-                timeDelayHelper.setStartTime();
+            final int xslTotal = gdNodeXSLPathInputArray.length;
+            final String[] xslDocumentAsString = new String[xslTotal];
+            for (int index = 0; index < xslTotal; index++) {
+                sharedBytes.outputStream.reset();
+                LogUtil.put(LogFactory.getInstance(gdNodeXSLPathInputArray[index], this, commonStrings.PROCESS));
+                xslDocumentAsString[index] = new String(streamUtil.getByteArray(new FileInputStream(gdNodeXSLPathInputArray[index]), sharedBytes.outputStream, sharedBytes.byteArray));
+            }
 
-                //LogUtil.put(LogFactory.getInstance("xsl index: " + index2, this, commonStrings.PROCESS));
+            final String[] START = {
+                GDNODE_START_WITH_PATH,};
 
-                final String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
+            final PrimitiveLongSingleton primitiveLongSingleton = PrimitiveLongSingleton.getInstance();
 
-                final String result = this.xslHelper.translate(new BasicUriResolver(),
-                    new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
-                    new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
+            int charIndex = 0;
+            final int size = list.size();
+            String indexAsString;
+            while (charIndex < primitiveLongSingleton.NUMBER_CHAR_ARRAY.length) {
 
-                stringMaker.delete(0, stringMaker.length());
-                String fileName = stringMaker.append(START[index2]).append(indexAsString).append(END[index2]).toString();
+                final StringMaker nodeIdStringMaker = new StringMaker();
 
-                if(result.indexOf(PACKAGE) < 0) {
+                //Not very efficient, but better than creating a file for each and every GDNode.
+                for (int index3 = 0; index3 < size; index3++) {
+                    indexAsString = (String) list.get(index3);
+                    if (indexAsString.charAt(indexAsString.length() - 1) == primitiveLongSingleton.NUMBER_CHAR_ARRAY[charIndex]) {
+                        nodeIdStringMaker.append(commonSeps.COMMA).append(indexAsString).append(commonSeps.COMMA);
+                    }
+                }
+                charIndex++;
+
+                indexAsString = nodeIdStringMaker.toString();
+                                
+                if(indexAsString.isEmpty()) {
                     stringMaker.delete(0, stringMaker.length());
-                    LogUtil.put(LogFactory.getInstance(stringMaker.append("No GDNode: ").append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, commonStrings.PROCESS));
+                    LogUtil.put(LogFactory.getInstance(stringMaker.append("skipping indexAsString:").append(indexAsString).toString(), this, commonStrings.PROCESS));
                     continue;
                 }
 
-                stringMaker.delete(0, stringMaker.length());
-                LogUtil.put(LogFactory.getInstance(stringMaker.append(this.gdToolStrings.FILENAME).append(gdNodeXSLPathInputArray[index2]).toString(), this, commonStrings.PROCESS));
-               
-                //LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.PROCESS));
-                stringMaker.delete(0, stringMaker.length());
-                LogUtil.put(LogFactory.getInstance(stringMaker.append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, commonStrings.PROCESS));
+                final Replace replace = new Replace(this.gdToolStrings.GD_NODE_IDS, indexAsString);
+                final Replace replace2 = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, smallIntegerSingletonFactory.getString(layoutIndex));
 
-                this.bufferedWriterUtil.overwrite(fileName, result);
+//            stringMaker.delete(0, stringMaker.length());
+//            LogUtil.put(LogFactory.getInstance(stringMaker.append("indexAsString:").append(indexAsString).toString(), this, commonStrings.PROCESS));
+                for (int index2 = 0; index2 < xslTotal; index2++) {
 
-                stringMaker.delete(0, stringMaker.length());
-                LogUtil.put(LogFactory.getInstance(stringMaker.append(index).append(this.commonSeps.COMMA).append(index2).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+                    //stringMaker.delete(0, stringMaker.length());
+                    //LogUtil.put(LogFactory.getInstance(stringMaker.append("xslt:").append(index2).toString(), this, commonStrings.PROCESS));
+                    timeDelayHelper.setStartTime();
+
+                    //LogUtil.put(LogFactory.getInstance("xsl index: " + index2, this, commonStrings.PROCESS));
+                    String updatedXslDocumentAsString = replace.all(xslDocumentAsString[index2]);
+                    updatedXslDocumentAsString = replace2.all(updatedXslDocumentAsString);
+
+                    //LogUtil.put(LogFactory.getInstance("updated xsl: " + updatedXslDocumentAsString, this, commonStrings.PROCESS));
+                    final String result = this.xslHelper.translate(new BasicUriResolver(),
+                        new StreamSource(new StringBufferInputStream(updatedXslDocumentAsString)),
+                        new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
+
+                    stringMaker.delete(0, stringMaker.length());
+                    String fileName = stringMaker.append(START[index2]).append(layoutIndex).append(BUILT_IN).append(indexAsString.substring(indexAsString.length() - 2, indexAsString.length() - 1)).append(END[index2]).toString();
+
+                    if (result.indexOf(PACKAGE) < 0) {
+                        stringMaker.delete(0, stringMaker.length());
+                        LogUtil.put(LogFactory.getInstance(stringMaker.append("No GDNode: ").append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, commonStrings.PROCESS));
+                        continue;
+                    }
+
+                    stringMaker.delete(0, stringMaker.length());
+                    LogUtil.put(LogFactory.getInstance(stringMaker.append(this.gdToolStrings.FILENAME).append(gdNodeXSLPathInputArray[index2]).toString(), this, commonStrings.PROCESS));
+
+                    //LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.PROCESS));
+                    stringMaker.delete(0, stringMaker.length());
+                    LogUtil.put(LogFactory.getInstance(stringMaker.append(this.gdToolStrings.FILENAME).append(fileName).toString(), this, commonStrings.PROCESS));
+
+                    this.bufferedWriterUtil.overwrite(fileName, result);
+
+                    stringMaker.delete(0, stringMaker.length());
+                    LogUtil.put(LogFactory.getInstance(stringMaker.append(charIndex).append(this.commonSeps.COMMA).append(index2).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+                }
+
             }
 
+            stringMaker.delete(0, stringMaker.length());
+            LogUtil.put(LogFactory.getInstance(stringMaker.append(CommonLabels.getInstance().ELAPSED).append("Finished").toString(), this, commonStrings.PROCESS));
+
         }
-        
-        stringMaker.delete(0, stringMaker.length());
-        LogUtil.put(LogFactory.getInstance(stringMaker.append(CommonLabels.getInstance().ELAPSED).append("Finished").toString(), this, commonStrings.PROCESS));
-        
     }
     
     private void generateResourcesLoadersSetup(final int startIndex, final int size, final String gameXmlAsString, final StringMaker stringMaker)
@@ -533,7 +568,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             timeDelayHelper.setStartTime();
 
             indexAsString = Integer.toString(index);
-            final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, indexAsString);
+            final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, indexAsString);
 
             for (int index2 = 0; index2 < xslTotal2; index2++) {
 
@@ -563,7 +598,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
         }
     }
     
-    public void process(final int startIndex, final int size)
+    public void process(final int startIndex, final int layoutTotal)
     {
         try
         {
@@ -633,54 +668,21 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             final String gameXmlAsString2 = gameXmlAsString;
             final String layoutGameXmlAsString2 = layoutGameXmlAsString;
             
+            generateXMLAndGlobals(gameXmlAsString2, new StringMaker());
+            generateLayouts(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, new StringMaker());
+            generateGDNodes(gameXmlAsString2, layoutTotal, new StringMaker());
+            generateResourcesLoadersSetup(startIndex, layoutTotal, gameXmlAsString2, new StringMaker());
+            
 //            final Runnable runnable = new Runnable() {
 //                public void run() {
 //                    try {
-                        generateXMLAndGlobals(gameXmlAsString2, new StringMaker());
-//                    } catch(Exception e) {
-//                        LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.RUN, e));
-//                    }
-//                }
-//            };
-            
-//            final Runnable runnable2 = new Runnable() {
-//                public void run() {
-//                    try {
-                        generateLayouts(startIndex, size, gameXmlAsString2, layoutGameXmlAsString2, new StringMaker());
 //                    } catch(Exception e) {
 //                        LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.RUN, e));
 //                    }
 //                }
 //            };
                         
-//            final Runnable runnable3 = new Runnable() {
-//                public void run() {
-//                    try {
-                        generateGDNodes(gameXmlAsString2, new StringMaker());
-//                    } catch(Exception e) {
-//                        LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.RUN, e));
-//                    }
-//                }
-//            };
-
-//            final Runnable runnable4 = new Runnable() {
-//                public void run() {
-//                    try {
-                        generateResourcesLoadersSetup(startIndex, size, gameXmlAsString2, new StringMaker());
-//                    } catch(Exception e) {
-//                        LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.RUN, e));            runnable.run();
-//            runnable2.run();
-//            runnable3.run();
-//            runnable4.run();
-
-//                    }
-//                }
-//            };
-            
-////            new Thread(runnable).start();
-//            new Thread(runnable2).start();
-//            new Thread(runnable3).start();
-//            new Thread(runnable4).start();
+//            new Thread(runnable).start();
 
         } catch (Exception e)
         {
@@ -696,7 +698,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
         System.setProperty("jdk.xml.xpathTotalOpLimit", "0");
 
         //Generate Layout 1
-        new GDLayoutsToAllBinaryLayoutGenerator().process(1, 2);
+        new GDLayoutsToAllBinaryLayoutGenerator().process(1, new GDGetTotalLayouts().process());
         
         //new GDLayoutsToAllBinaryLayoutGenerator().process(0, new GDGetTotalLayouts().process());
     }

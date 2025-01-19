@@ -35,9 +35,6 @@ public class GDToAllBinaryCanvasGenerator extends Processor
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
-    private final String GD_LAYOUT = "<GDLayout>";
-    private final String GD_CURRENT_LAYOUT_INDEX = "<GD_CURRENT_INDEX>";
-
     private final StringMaker stringMaker = new StringMaker();
 
     private final String xslPath;
@@ -83,8 +80,8 @@ public class GDToAllBinaryCanvasGenerator extends Processor
         final FileInputStream fileInputStream = new FileInputStream(this.orig);        
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
         
-        final Replace replace = new Replace(GD_LAYOUT, this.name);
-        final Replace replace2 = new Replace(GD_CURRENT_LAYOUT_INDEX, Integer.toString(this.index));
+        final Replace replace = new Replace(this.gdToolStrings.GD_LAYOUT, this.name);
+        final Replace replace2 = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, Integer.toString(this.index));
 
         String updatedXslDocumentStr = replace.all(androidRFileAsString);
         updatedXslDocumentStr = replace2.all(updatedXslDocumentStr);

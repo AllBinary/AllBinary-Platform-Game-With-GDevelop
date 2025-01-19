@@ -47,14 +47,97 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">
+        
+        <xsl:variable name="selectedLayoutIndex" ><GD_CURRENT_INDEX></xsl:variable>
+        <xsl:variable name="selectedNodeIds" ><GD_NODE_IDS></xsl:variable>
 
-        <xsl:variable name="selectedNodeId" select="<GD_CURRENT_INDEX>" />
+package org.allbinary.game.canvas.node;
+
+import javax.microedition.lcdui.Graphics;
+import javax.microedition.lcdui.Image;
+
+<!--import org.allbinary.animation.AnimationBehavior;
+import org.allbinary.animation.special.SpecialAnimation;-->
+import org.allbinary.game.canvas.GDGameGlobals;
+
+import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals;
+
+import org.allbinary.game.layer.GDGameLayer;
+import org.allbinary.game.layer.CollidableCompositeLayer;
+import org.allbinary.game.layout.GDNode;
+import org.allbinary.game.layout.GDObjectStrings;
+import org.allbinary.game.rand.MyRandomFactory;
+import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
+import org.allbinary.input.motion.gesture.MotionGestureInput;
+import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
+import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.logic.string.CommonSeps;
+import org.allbinary.logic.string.StringUtil;
+import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.ArrayUtil;
+
+<!--import org.allbinary.game.configuration.persistance.JSONPersistance;
+import org.allbinary.game.layer.GDGameLayer;
+import org.allbinary.game.layer.GDGameLayerFactory;
+import org.allbinary.game.layout.GDNode;
+import org.allbinary.game.layer.special.TempGameLayerUtil;
+import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
+import org.allbinary.game.layout.GDObject;
+import org.allbinary.game.layout.GDObjectStrings;
+import org.allbinary.game.layer.AllBinaryGameLayerManager;
+import org.allbinary.game.layer.CollidableCompositeLayer;
+import org.allbinary.game.layer.identification.GroupLayerManagerListener;
+import org.allbinary.game.rand.MyRandomFactory;
+import org.allbinary.input.motion.gesture.MotionGestureInput;
+import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
+import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.logic.string.CommonSeps;
+import org.allbinary.logic.string.StringUtil;
+import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.util.BasicArrayList;
+import org.allbinary.util.ArrayUtil;
+import org.allbinary.logic.math.SmallIntegerSingletonFactory;-->
+
+<xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />
+//nodeIdRange=<xsl:value-of select="$selectedNodeIdSet" />
+public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$selectedNodeIdSet" />GDNodes
+{
+
+    private static final GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$selectedNodeIdSet" />GDNodes instance = new GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$selectedNodeIdSet" />GDNodes();
+
+    public static final GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$selectedNodeIdSet" />GDNodes getInstance() {
+        return instance;
+    }
+
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
+<!--
+    private final StringUtil stringUtil = StringUtil.getInstance();
+    private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+    private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
+    private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+
+    private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
+-->
+    private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+    private final GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals.getInstance();
+    
+    public GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$selectedNodeIdSet" />GDNodes() {
+
+    }    
 
         <xsl:for-each select="externalEvents" >
 
             <xsl:variable name="associatedLayout" select="associatedLayout" />
             
             <xsl:variable name="layoutIndex" ><xsl:for-each select="../layouts" ><xsl:variable name="layoutIndex" select="position() - 1" /><xsl:if test="name = $associatedLayout" ><xsl:value-of select="$layoutIndex" /></xsl:if></xsl:for-each></xsl:variable>
+
+            <xsl:if test="$selectedLayoutIndex = $layoutIndex" >
 
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
                 <xsl:variable name="layoutName" select="null" />
@@ -66,8 +149,8 @@ Created By: Travis Berthelot
                         
                     <xsl:call-template name="builtinCommonInstructionsGDNode" >
                         <xsl:with-param name="caller" >otherEventLayout</xsl:with-param>
-                        <xsl:with-param name="selectedNodeId" >
-                            <xsl:value-of select="$selectedNodeId" />
+                        <xsl:with-param name="selectedNodeIds" >
+                            <xsl:value-of select="$selectedNodeIds" />
                         </xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
@@ -95,12 +178,16 @@ Created By: Travis Berthelot
                         </xsl:with-param>
 
                     </xsl:call-template>
-            
+                    
+            </xsl:if>
+
         </xsl:for-each>
         
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
-
+            
+            <xsl:if test="$selectedLayoutIndex = $layoutIndex" >
+                
                 <!-- Android images assets need to be enlarged if they are not setup to be inside the cirle area needed -->
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
                 <xsl:variable name="layoutName" select="name" />
@@ -117,8 +204,8 @@ Created By: Travis Berthelot
                     //builtinCommonInstructionsGDNode - START
                     <xsl:call-template name="builtinCommonInstructionsGDNode" >
                         <xsl:with-param name="caller" >otherEventLayout</xsl:with-param>
-                        <xsl:with-param name="selectedNodeId" >
-                            <xsl:value-of select="$selectedNodeId" />
+                        <xsl:with-param name="selectedNodeIds" >
+                            <xsl:value-of select="$selectedNodeIds" />
                         </xsl:with-param>
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
@@ -148,7 +235,15 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     //builtinCommonInstructionsGDNode - END
 
+            </xsl:if>
+
         </xsl:for-each>
+
+    public int Random(final int range) {
+        return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
+    }
+}
+
     </xsl:template>
 
 </xsl:stylesheet>

@@ -170,6 +170,7 @@ Created By: Travis Berthelot
                     if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
+
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = gd<xsl:value-of select="$layoutIndex" /><xsl:if test="$caller = 'externalEventsCreateAssignGDObject'" >External</xsl:if>ActionGDNodes.gd<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode;
 
             </xsl:for-each>

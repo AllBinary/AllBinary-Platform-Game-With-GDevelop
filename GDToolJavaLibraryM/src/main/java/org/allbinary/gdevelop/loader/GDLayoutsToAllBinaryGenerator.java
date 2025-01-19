@@ -42,9 +42,6 @@ public class GDLayoutsToAllBinaryGenerator
         
     private final XslHelper xslHelper = XslHelper.getInstance();
 
-    private final String GD_LAYOUT = "<GDLayout>";
-    private final String GD_CURRENT_LAYOUT_INDEX = "<GD_CURRENT_INDEX>";
-
     private final String xslPath;
     private final String start;
     private final String end;
@@ -103,8 +100,8 @@ public class GDLayoutsToAllBinaryGenerator
             final int size = this.nameList.size();
             for (int index = 0; index < size; index++)
             {
-                final Replace replace2 = new Replace(this.GD_LAYOUT, (String) this.nameList.get(index));
-                final Replace replace = new Replace(GD_CURRENT_LAYOUT_INDEX, Integer.toString(index));
+                final Replace replace2 = new Replace(this.gdToolStrings.GD_LAYOUT, (String) this.nameList.get(index));
+                final Replace replace = new Replace(this.gdToolStrings.GD_CURRENT_LAYOUT_INDEX, Integer.toString(index));
                 final String updatedXslDocumentStr2 = replace.all(xslDocumentStr);
                 final String updatedXslDocumentStr = replace2.all(updatedXslDocumentStr2);
 
