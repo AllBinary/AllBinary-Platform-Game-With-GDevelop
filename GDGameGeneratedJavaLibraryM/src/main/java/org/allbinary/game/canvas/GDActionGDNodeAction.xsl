@@ -99,6 +99,7 @@ Created By: Travis Berthelot
         <xsl:param name="caller" />
         <xsl:param name="totalRecursions" />
         <xsl:param name="layoutIndex" />
+        <xsl:param name="selectedNodeIds" />
         <xsl:param name="thisNodeIndex" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="objectsAsString" />
@@ -162,6 +163,16 @@ Created By: Travis Berthelot
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                 <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
                 <xsl:variable name="param" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
+            <xsl:variable name="selectedNodeId" select="number(substring(generate-id(), 2) - 65536)" />
+            <xsl:variable name="selectedNodeIdWithSep" >,<xsl:value-of select="$selectedNodeId" />,</xsl:variable>
+            
+            <xsl:if test="contains($selectedNodeIds, ',8715,') or contains($selectedNodeId, '8715')" >
+            //selectedNodeIds=<xsl:value-of select="$selectedNodeIds" />
+            //selectedNodeIdWithSep=<xsl:value-of select="$selectedNodeIdWithSep" />
+            </xsl:if>
+            
+            <xsl:if test="contains($selectedNodeIds, $selectedNodeIdWithSep)" >
 
                 //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                 <xsl:text>&#10;</xsl:text>
@@ -1528,6 +1539,9 @@ Created By: Travis Berthelot
                     };
                     
                     public final GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode gd<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode = new GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode();
+                    
+            </xsl:if>
+            
             </xsl:for-each>
             <!-- actions - END -->
 
@@ -1537,6 +1551,9 @@ Created By: Travis Berthelot
                 </xsl:with-param>
                 <xsl:with-param name="layoutIndex" >
                     <xsl:value-of select="$layoutIndex" />
+                </xsl:with-param>
+                <xsl:with-param name="selectedNodeIds" >
+                    <xsl:value-of select="$selectedNodeIds" />
                 </xsl:with-param>
                 <xsl:with-param name="thisNodeIndex" >
                     <xsl:value-of select="$thisNodeIndex" />

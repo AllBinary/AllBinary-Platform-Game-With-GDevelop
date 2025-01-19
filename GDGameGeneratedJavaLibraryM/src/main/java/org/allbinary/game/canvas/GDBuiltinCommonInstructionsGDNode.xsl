@@ -37,10 +37,6 @@ Created By: Travis Berthelot
             <xsl:variable name="selectedNodeId" select="number(substring(generate-id(), 2) - 65536)" />
             <xsl:variable name="selectedNodeIdWithSep" >,<xsl:value-of select="$selectedNodeId" />,</xsl:variable>
             
-            <xsl:if test="contains($selectedNodeIds, ',4715')" >
-            //selectedNodeIds=<xsl:value-of select="$selectedNodeIds" />
-            //selectedNodeIdWithSep=<xsl:value-of select="$selectedNodeIdWithSep" />
-            </xsl:if>
             <xsl:if test="contains($selectedNodeIds, $selectedNodeIdWithSep)" >
 
         //nodeId=<xsl:value-of select="$selectedNodeId" />

@@ -15,6 +15,7 @@
         <xsl:param name="layoutName" />
         <xsl:param name="totalRecursions" />
         <xsl:param name="layoutIndex" />
+        <xsl:param name="selectedNodeIds" />
         <xsl:param name="thisNodeIndex" />
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
@@ -32,6 +33,9 @@
                     <xsl:with-param name="layoutIndex" >
                         <xsl:value-of select="$layoutIndex" />
                     </xsl:with-param>
+                    <xsl:with-param name="selectedNodeIds" >
+                        <xsl:value-of select="$selectedNodeIds" />
+                    </xsl:with-param>                        
                     <xsl:with-param name="thisNodeIndex" >
                         <xsl:value-of select="$thisNodeIndex" />
                     </xsl:with-param>

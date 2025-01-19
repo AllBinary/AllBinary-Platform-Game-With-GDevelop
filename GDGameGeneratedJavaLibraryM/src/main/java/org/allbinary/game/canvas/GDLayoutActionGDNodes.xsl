@@ -156,7 +156,7 @@ Created By: Travis Berthelot
 
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
 
-                        private final GD<xsl:value-of select="$layoutIndex" />ActionGDNodes gd<xsl:value-of select="$layoutIndex" />ActionGDNodes = GD<xsl:value-of select="$layoutIndex" />ActionGDNodes.getInstance();
+                        //private final GD<xsl:value-of select="$layoutIndex" />ActionGDNodes gd<xsl:value-of select="$layoutIndex" />ActionGDNodes = GD<xsl:value-of select="$layoutIndex" />ActionGDNodes.getInstance();
                         
                         private final AbeClientInformationInterface abeClientInformation = GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION;
 

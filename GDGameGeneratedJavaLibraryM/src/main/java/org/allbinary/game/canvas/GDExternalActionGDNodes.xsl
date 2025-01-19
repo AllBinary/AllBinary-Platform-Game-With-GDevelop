@@ -46,6 +46,8 @@ Created By: Travis Berthelot
 
     <xsl:template match="/game">
 
+        <xsl:variable name="selectedNodeIds" ><GD_NODE_IDS></xsl:variable>
+        
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
 
@@ -65,7 +67,7 @@ Created By: Travis Berthelot
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
 
-                package org.allbinary.game.canvas;
+                package org.allbinary.game.canvas.node.action;
 
                 import javax.microedition.lcdui.Graphics;
                 
@@ -74,6 +76,17 @@ Created By: Travis Berthelot
 
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
+                
+                import org.allbinary.game.canvas.ABToGBUtil;
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory;
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources;
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals;
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources;
+                import org.allbinary.game.canvas.GDGameGlobals;
+                import org.allbinary.game.canvas.GDGameSoftwareInfo;
+                import org.allbinary.game.canvas.GDGlobalsGDObjectsFactory;
+                import org.allbinary.game.canvas.GDGlobalsGDResources;
+                
                 import org.allbinary.game.configuration.persistance.JSONPersistance;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDNode;
@@ -100,13 +113,15 @@ Created By: Travis Berthelot
                 import org.allbinary.thread.PathFindingThreadPool;
                 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 
+                <xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />
+                //selectedNodeIdSet=<xsl:value-of select="$selectedNodeIdSet" />                    
                 //LayoutExternalAction name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />ExternalActionGDNodes
+                public class GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$selectedNodeIdSet" />GDNodes
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />ExternalActionGDNodes instance = new GD<xsl:value-of select="$layoutIndex" />ExternalActionGDNodes();
+                    private static final GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$selectedNodeIdSet" />GDNodes instance = new GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$selectedNodeIdSet" />GDNodes();
 
-                        public static GD<xsl:value-of select="$layoutIndex" />ExternalActionGDNodes getInstance()
+                        public static GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$selectedNodeIdSet" />GDNodes getInstance()
                         {
                             return instance;
                         }
@@ -145,6 +160,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="selectedNodeIds" >
+                            <xsl:value-of select="$selectedNodeIds" />
                         </xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />

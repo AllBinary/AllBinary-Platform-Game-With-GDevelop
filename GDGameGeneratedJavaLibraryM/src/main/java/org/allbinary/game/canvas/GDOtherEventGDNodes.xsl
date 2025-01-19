@@ -51,7 +51,7 @@ Created By: Travis Berthelot
         <xsl:variable name="selectedLayoutIndex" ><GD_CURRENT_INDEX></xsl:variable>
         <xsl:variable name="selectedNodeIds" ><GD_NODE_IDS></xsl:variable>
 
-package org.allbinary.game.canvas.node;
+package org.allbinary.game.canvas.node.builtin;
 
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
@@ -105,7 +105,7 @@ import org.allbinary.util.ArrayUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;-->
 
 <xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />
-//nodeIdRange=<xsl:value-of select="$selectedNodeIdSet" />
+//selectedNodeIdSet=<xsl:value-of select="$selectedNodeIdSet" />
 public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$selectedNodeIdSet" />GDNodes
 {
 

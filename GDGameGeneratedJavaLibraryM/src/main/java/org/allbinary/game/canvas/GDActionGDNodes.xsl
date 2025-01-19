@@ -45,6 +45,8 @@ Created By: Travis Berthelot
 
     <xsl:template match="/game">
 
+        <xsl:variable name="selectedNodeIds" ><GD_NODE_IDS></xsl:variable>
+
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
 
@@ -64,7 +66,7 @@ Created By: Travis Berthelot
                 //objectsAsString=<xsl:value-of select="$objectsAsString" />
                 //externalEventActionModVarSceneAsString=<xsl:value-of select="$externalEventActionModVarSceneAsString" />
                 
-                package org.allbinary.game.canvas;
+                package org.allbinary.game.canvas.node.action;
                 
                 import javax.microedition.lcdui.Canvas;
                 import javax.microedition.lcdui.Graphics;
@@ -76,6 +78,17 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.AnimationBehavior;                
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.canvas.GameGlobalsFactory;
+                
+                import org.allbinary.game.canvas.ABToGBUtil;
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory;
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGDResources;
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals;
+                import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources;
+                import org.allbinary.game.canvas.GDGameGlobals;
+                import org.allbinary.game.canvas.GDGameSoftwareInfo;
+                import org.allbinary.game.canvas.GDGlobalsGDObjectsFactory;
+                import org.allbinary.game.canvas.GDGlobalsGDResources;
+                
                 import org.allbinary.game.commands.GameCommandsFactory;
                 import org.allbinary.game.GDGameCommandFactory;
                 import org.allbinary.game.GameInfo;
@@ -84,7 +97,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.input.GameInputProcessor;
                 import org.allbinary.game.input.InputFactory;
                 import org.allbinary.game.input.event.GameKeyEvent;
-                import org.allbinary.game.layer.GDGameLayer;
+                import org.allbinary.game.layer.GDGameLayer;                
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.layout.GDObject;
@@ -140,14 +153,16 @@ Created By: Travis Berthelot
                 import org.allbinary.thread.PathFindingThreadPool;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
                 
+                <xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />
+                //selectedNodeIdSet=<xsl:value-of select="$selectedNodeIdSet" />                
                 //LayoutAction name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />ActionGDNodes
+                public class GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$selectedNodeIdSet" />GDNodes
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />ActionGDNodes instance = 
-                        new GD<xsl:value-of select="$layoutIndex" />ActionGDNodes();
+                    private static final GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$selectedNodeIdSet" />GDNodes instance = 
+                        new GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$selectedNodeIdSet" />GDNodes();
 
-                        public static GD<xsl:value-of select="$layoutIndex" />ActionGDNodes getInstance()
+                        public static GD<xsl:value-of select="$layoutIndex" />Action<xsl:value-of select="$selectedNodeIdSet" />GDNodes getInstance()
                         {
                             return instance;
                         }
@@ -194,6 +209,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="selectedNodeIds" >
+                            <xsl:value-of select="$selectedNodeIds" />
                         </xsl:with-param>
                         <xsl:with-param name="thisNodeIndex" >
                             <xsl:value-of select="-1" />

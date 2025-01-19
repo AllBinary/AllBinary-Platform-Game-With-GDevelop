@@ -171,7 +171,8 @@ Created By: Travis Berthelot
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
 
-                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = gd<xsl:value-of select="$layoutIndex" /><xsl:if test="$caller = 'externalEventsCreateAssignGDObject'" >External</xsl:if>ActionGDNodes.gd<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode;
+                    <xsl:variable name="selectedNodeId" select="number(substring(generate-id(), 2) - 65536)" />
+                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = org.allbinary.game.canvas.node.action.GD<xsl:value-of select="$layoutIndex" /><xsl:if test="$caller = 'externalEventsCreateAssignGDObject'" >External</xsl:if>Action<xsl:value-of select="substring($selectedNodeId, string-length($selectedNodeId))" />GDNodes.getInstance().gd<xsl:value-of select="$selectedNodeId" />GDNode;
 
             </xsl:for-each>
             <!-- actions - END -->
