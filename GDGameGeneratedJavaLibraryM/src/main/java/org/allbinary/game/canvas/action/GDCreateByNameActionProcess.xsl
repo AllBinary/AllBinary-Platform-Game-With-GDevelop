@@ -264,10 +264,10 @@ Created By: Travis Berthelot
                             //CreateByName - <xsl:value-of select="$text" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
                             //LogUtil.put(LogFactory.getInstance(<xsl:value-of select="$actionAsString" /> + gameGlobals.tempGameLayerArray[0], this, commonStrings.PROCESS));
                             //name=<xsl:value-of select="$name" />
-                            <xsl:if test="not($name = 'Items' or $name = 'Icons')" >
+                            <xsl:if test="not($name = 'Items' or $name = 'InventoryIcons')" >
                             gameGlobals.tempGameLayerArray[0] = <xsl:value-of select="text()" />GDGameLayer;
                             </xsl:if>
-                            <xsl:if test="$name = 'Items' or $name = 'Icons'" >
+                            <xsl:if test="$name = 'Items' or $name = 'InventoryIcons'" >
                             //TWB - Temp hack for 3 or more params
                             //CreateByName - //Using param that is not from the first 2 GameLayers - set
                             gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />] = <xsl:value-of select="text()" />GDGameLayer;
