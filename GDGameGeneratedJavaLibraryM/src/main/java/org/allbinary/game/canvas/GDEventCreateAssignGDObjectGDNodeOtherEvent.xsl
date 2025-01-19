@@ -76,6 +76,9 @@ Created By: Travis Berthelot
             //foundLinkEvent=<xsl:value-of select="$foundLinkEvent" />
 
             <xsl:variable name="selectedNodeId" select="number(substring(generate-id(), 2) - 65536)" />
+            <xsl:variable name="lastDigit" ><xsl:value-of select="substring($selectedNodeId, string-length($selectedNodeId))" /></xsl:variable>
+            <xsl:variable name="lastDigit2" ><xsl:if test="4 >= $lastDigit" >0</xsl:if><xsl:if test="$lastDigit > 4" >1</xsl:if></xsl:variable>
+
             <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
 
                 <xsl:variable name="object" ><xsl:value-of select="object" /></xsl:variable>
@@ -84,7 +87,8 @@ Created By: Travis Berthelot
             if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                 throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
             }
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = org.allbinary.game.canvas.node.builtin.GD<xsl:value-of select="$layoutIndex" />BuiltIn<xsl:value-of select="substring($selectedNodeId, string-length($selectedNodeId))" />GDNodes.getInstance().gd<xsl:value-of select="$selectedNodeId" />GDNode;
+
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = org.allbinary.game.canvas.node.builtin.GD<xsl:value-of select="$layoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes.getInstance().gd<xsl:value-of select="$selectedNodeId" />GDNode;
 
             </xsl:if>
             <xsl:if test="type = 'BuiltinCommonInstructions::Standard' or 
@@ -92,11 +96,12 @@ Created By: Travis Berthelot
                           type = 'BuiltinCommonInstructions::While' or 
                           type = 'BuiltinCommonInstructions::Group' or 
                           type = 'BuiltinCommonInstructions::Repeat'" >
+
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
             if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                 throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
             }
-            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = org.allbinary.game.canvas.node.builtin.GD<xsl:value-of select="$layoutIndex" />BuiltIn<xsl:value-of select="substring($selectedNodeId, string-length($selectedNodeId))" />GDNodes.getInstance().gd<xsl:value-of select="$selectedNodeId" />GDNode;
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = org.allbinary.game.canvas.node.builtin.GD<xsl:value-of select="$layoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes.getInstance().gd<xsl:value-of select="$selectedNodeId" />GDNode;
 
             </xsl:if>
             <!-- other events - END -->

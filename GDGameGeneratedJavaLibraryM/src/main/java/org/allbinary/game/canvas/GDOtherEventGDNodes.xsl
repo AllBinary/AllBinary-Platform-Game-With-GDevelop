@@ -105,13 +105,14 @@ import org.allbinary.util.ArrayUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;-->
 
 <xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />
+<xsl:variable name="lastDigit2" ><xsl:if test="4 >= $selectedNodeIdSet" >0</xsl:if><xsl:if test="$selectedNodeIdSet > 4" >1</xsl:if></xsl:variable>
 //selectedNodeIdSet=<xsl:value-of select="$selectedNodeIdSet" />
-public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$selectedNodeIdSet" />GDNodes
+public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes
 {
 
-    private static final GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$selectedNodeIdSet" />GDNodes instance = new GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$selectedNodeIdSet" />GDNodes();
+    private static final GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes instance = new GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes();
 
-    public static final GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$selectedNodeIdSet" />GDNodes getInstance() {
+    public static final GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes getInstance() {
         return instance;
     }
 
@@ -127,7 +128,7 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
     private final GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals.getInstance();
     
-    public GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$selectedNodeIdSet" />GDNodes() {
+    public GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes() {
 
     }    
 

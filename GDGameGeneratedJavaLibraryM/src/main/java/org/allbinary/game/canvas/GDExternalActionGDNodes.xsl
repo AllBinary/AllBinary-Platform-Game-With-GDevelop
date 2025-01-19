@@ -114,14 +114,15 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 
                 <xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />
+                <xsl:variable name="lastDigit2" ><xsl:if test="4 >= $selectedNodeIdSet" >0</xsl:if><xsl:if test="$selectedNodeIdSet > 4" >1</xsl:if></xsl:variable>
                 //selectedNodeIdSet=<xsl:value-of select="$selectedNodeIdSet" />                    
                 //LayoutExternalAction name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$selectedNodeIdSet" />GDNodes
+                public class GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$lastDigit2" />GDNodes
                 {
 
-                    private static final GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$selectedNodeIdSet" />GDNodes instance = new GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$selectedNodeIdSet" />GDNodes();
+                    private static final GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$lastDigit2" />GDNodes instance = new GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$lastDigit2" />GDNodes();
 
-                        public static GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$selectedNodeIdSet" />GDNodes getInstance()
+                        public static GD<xsl:value-of select="$layoutIndex" />ExternalAction<xsl:value-of select="$lastDigit2" />GDNodes getInstance()
                         {
                             return instance;
                         }

@@ -276,6 +276,46 @@ public class GDLayoutsToAllBinaryLayoutGenerator
         
     }
 
+    private String getIndexAsString(BasicArrayList list, int fileIndex) {
+
+        final PrimitiveLongSingleton primitiveLongSingleton = PrimitiveLongSingleton.getInstance();
+        
+        int charIndex = 0;
+        final int size = list.size();
+        final StringMaker stringMaker = new StringMaker();
+        String indexAsString;
+
+        //Not very efficient, but better than creating a file for each and every GDNode.
+        for (int index3 = 0; index3 < size; index3++) {
+            indexAsString = (String) list.get(index3);
+            if (fileIndex == 0) {
+                charIndex = 0;
+                while (charIndex <= 4) {
+                    if (indexAsString.charAt(indexAsString.length() - 1) == primitiveLongSingleton.NUMBER_CHAR_ARRAY[charIndex]) {
+                        stringMaker.append(commonSeps.COMMA).append(indexAsString).append(commonSeps.COMMA);
+                        break;
+                    }
+                    charIndex++;
+                }
+            } else {
+                charIndex = 5;
+                while (charIndex < primitiveLongSingleton.NUMBER_CHAR_ARRAY.length) {
+                    if (indexAsString.charAt(indexAsString.length() - 1) == primitiveLongSingleton.NUMBER_CHAR_ARRAY[charIndex]) {
+                        stringMaker.append(commonSeps.COMMA).append(indexAsString).append(commonSeps.COMMA);
+                        break;
+                    }
+                    charIndex++;
+                }
+            }
+//                    if (indexAsString.charAt(indexAsString.length() - 1) == primitiveLongSingleton.NUMBER_CHAR_ARRAY[charIndex]) {
+//                        nodeIdStringMaker.append(commonSeps.COMMA).append(indexAsString).append(commonSeps.COMMA);
+//                    }
+        }
+        //charIndex++;
+
+        return stringMaker.toString();
+    }
+    
     private String getBuiltInGDNodeListAsString(final String gameXmlAsString, final int layoutIndex) 
     throws Exception {
         
@@ -351,25 +391,11 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 BUILT_IN,
             };
 
-            final PrimitiveLongSingleton primitiveLongSingleton = PrimitiveLongSingleton.getInstance();
-
-            int charIndex = 0;
-            final int size = list.size();
             String indexAsString;
-            while (charIndex < primitiveLongSingleton.NUMBER_CHAR_ARRAY.length) {
+            //while (charIndex < primitiveLongSingleton.NUMBER_CHAR_ARRAY.length) {
+            for(int fileIndex = 0; fileIndex < 2; fileIndex++) {
 
-                final StringMaker nodeIdStringMaker = new StringMaker();
-
-                //Not very efficient, but better than creating a file for each and every GDNode.
-                for (int index3 = 0; index3 < size; index3++) {
-                    indexAsString = (String) list.get(index3);
-                    if (indexAsString.charAt(indexAsString.length() - 1) == primitiveLongSingleton.NUMBER_CHAR_ARRAY[charIndex]) {
-                        nodeIdStringMaker.append(commonSeps.COMMA).append(indexAsString).append(commonSeps.COMMA);
-                    }
-                }
-                charIndex++;
-
-                indexAsString = nodeIdStringMaker.toString();
+                indexAsString = this.getIndexAsString(list, fileIndex);
                                 
                 if(indexAsString.isEmpty()) {
                     stringMaker.delete(0, stringMaker.length());
@@ -398,7 +424,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                         new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
 
                     stringMaker.delete(0, stringMaker.length());
-                    String fileName = stringMaker.append(START[index2]).append(layoutIndex).append(MIDDLE[index2]).append(indexAsString.substring(indexAsString.length() - 2, indexAsString.length() - 1)).append(END[index2]).toString();
+                    //String fileName = stringMaker.append(START[index2]).append(layoutIndex).append(MIDDLE[index2]).append(indexAsString.substring(indexAsString.length() - 2, indexAsString.length() - 1)).append(END[index2]).toString();
+                    String fileName = stringMaker.append(START[index2]).append(layoutIndex).append(MIDDLE[index2]).append(fileIndex).append(END[index2]).toString();
 
                     if (result.indexOf(PACKAGE) < 0) {
                         stringMaker.delete(0, stringMaker.length());
@@ -416,7 +443,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                     this.bufferedWriterUtil.overwrite(fileName, result);
 
                     stringMaker.delete(0, stringMaker.length());
-                    LogUtil.put(LogFactory.getInstance(stringMaker.append(charIndex).append(this.commonSeps.COMMA).append(index2).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+                    LogUtil.put(LogFactory.getInstance(stringMaker.append(fileIndex).append(this.commonSeps.COMMA).append(index2).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
                 }
 
             }
@@ -511,25 +538,11 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 "Action",
             };
 
-            final PrimitiveLongSingleton primitiveLongSingleton = PrimitiveLongSingleton.getInstance();
-
-            int charIndex = 0;
-            final int size = list.size();
             String indexAsString;
-            while (charIndex < primitiveLongSingleton.NUMBER_CHAR_ARRAY.length) {
+            //while (charIndex < primitiveLongSingleton.NUMBER_CHAR_ARRAY.length) {
+            for(int fileIndex = 0; fileIndex < 2; fileIndex++) {
 
-                final StringMaker nodeIdStringMaker = new StringMaker();
-
-                //Not very efficient, but better than creating a file for each and every GDNode.
-                for (int index3 = 0; index3 < size; index3++) {
-                    indexAsString = (String) list.get(index3);
-                    if (indexAsString.charAt(indexAsString.length() - 1) == primitiveLongSingleton.NUMBER_CHAR_ARRAY[charIndex]) {
-                        nodeIdStringMaker.append(commonSeps.COMMA).append(indexAsString).append(commonSeps.COMMA);
-                    }
-                }
-                charIndex++;
-
-                indexAsString = nodeIdStringMaker.toString();
+                indexAsString = this.getIndexAsString(list, fileIndex);
                                 
                 if(indexAsString.isEmpty()) {
                     stringMaker.delete(0, stringMaker.length());
@@ -558,7 +571,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                         new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
 
                     stringMaker.delete(0, stringMaker.length());
-                    String fileName = stringMaker.append(START[index2]).append(layoutIndex).append(MIDDLE[index2]).append(indexAsString.substring(indexAsString.length() - 2, indexAsString.length() - 1)).append(END[index2]).toString();
+                    String fileName = stringMaker.append(START[index2]).append(layoutIndex).append(MIDDLE[index2]).append(fileIndex).append(END[index2]).toString();
 
                     if (result.indexOf(PACKAGE) < 0) {
                         stringMaker.delete(0, stringMaker.length());
@@ -576,7 +589,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                     this.bufferedWriterUtil.overwrite(fileName, result);
 
                     stringMaker.delete(0, stringMaker.length());
-                    LogUtil.put(LogFactory.getInstance(stringMaker.append(charIndex).append(this.commonSeps.COMMA).append(index2).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+                    LogUtil.put(LogFactory.getInstance(stringMaker.append(fileIndex).append(this.commonSeps.COMMA).append(index2).append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
                 }
 
             }
