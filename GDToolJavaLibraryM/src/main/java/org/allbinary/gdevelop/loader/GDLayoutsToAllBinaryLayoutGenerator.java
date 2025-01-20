@@ -356,7 +356,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
 
     }
 
-    private void generateBuiltInGDNodes(final String gameXmlAsString, final int layoutTotal, final StringMaker stringMaker) 
+    private void generateBuiltInGDNodes(final String gameXmlAsString, final String layoutGameXmlAsString2, final int layoutTotal, final StringMaker stringMaker) 
     throws Exception {
 
         for(int layoutIndex = 0; layoutIndex < layoutTotal; layoutIndex++) {
@@ -364,7 +364,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             final BasicArrayList list = this.getBuiltInGDNodeList(gameXmlAsString, layoutIndex);
 
             final String[] xmlStringArray = {
-                gameXmlAsString,
+                layoutGameXmlAsString2,
             };
 
             final String[] gdNodeXSLPathInputArray = {
@@ -843,7 +843,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             generateXMLAndGlobals(gameXmlAsString2, new StringMaker());
             generateLayouts(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, new StringMaker());
             generateActionGDNodes(gameXmlAsString2, layoutGameXmlAsString2, layoutTotal, new StringMaker());
-            generateBuiltInGDNodes(gameXmlAsString2, layoutTotal, new StringMaker());
+            generateBuiltInGDNodes(gameXmlAsString2, layoutGameXmlAsString2, layoutTotal, new StringMaker());
             generateResourcesLoadersSetup(startIndex, layoutTotal, gameXmlAsString2, new StringMaker());
             
 //            final Runnable runnable = new Runnable() {

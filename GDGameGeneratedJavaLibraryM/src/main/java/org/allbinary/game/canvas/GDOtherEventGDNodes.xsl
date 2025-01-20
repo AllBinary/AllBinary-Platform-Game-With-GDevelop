@@ -240,9 +240,34 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
 
         </xsl:for-each>
 
+    public int Variable(final int value) {
+        return value;
+    }
+
+    public double Variable(final double value) {
+        return value;
+    }
+
+    public String VariableString(final String string) {
+        return string;
+    }
+
+    public String VariableString(final Object object) {
+        return object.toString();
+    }
+
+    public int VariableChildCount(final String[] array) {
+        return array.length;
+    }
+
+    public int VariableChildCount(final int[] array) {
+        return array.length;
+    }
+
     public int Random(final int range) {
         return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
     }
+
 }
 
     </xsl:template>
