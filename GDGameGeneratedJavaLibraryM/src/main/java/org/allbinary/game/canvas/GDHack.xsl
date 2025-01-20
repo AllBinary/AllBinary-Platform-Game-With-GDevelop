@@ -261,15 +261,18 @@ Created By: Travis Berthelot
             <xsl:text>&#10;</xsl:text>
             //Action - //<xsl:value-of select="type/value" /> - call h1
 
-            <xsl:if test="type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue'" >
+            <xsl:if test="type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue' or type/value = 'SetNumberVariable'" >
             <xsl:if test="contains($alreadyUsedCondition, 'found')" >
             //Skipping Action since a alreadyUsedCondition is used
             </xsl:if>
             <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
+<!--                <xsl:if test="type/value = 'SetNumberVariable'" >
+                    //TWB - was not called beforeXYZ
+                </xsl:if>-->
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
             </xsl:if>
             </xsl:if>
-            <xsl:if test="not(type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue')" >
+            <xsl:if test="not(type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue'or type/value = 'SetNumberVariable')" >
             <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
             //Could I call this - //<xsl:value-of select="type/value" />
             </xsl:if>
