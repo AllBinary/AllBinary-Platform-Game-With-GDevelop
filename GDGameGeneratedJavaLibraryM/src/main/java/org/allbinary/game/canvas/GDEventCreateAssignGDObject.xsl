@@ -254,6 +254,7 @@ Created By: Travis Berthelot
                     //zOrder - <xsl:value-of select="zOrder" />
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = last()" >
+                            //zOrder - <xsl:value-of select="zOrder" />
                             //last=<xsl:value-of select="text()" /> (Base Layer is emtpy)
                             <xsl:if test="contains(text(), 'Below')" >
                     5,
@@ -408,7 +409,7 @@ Created By: Travis Berthelot
                             //zOrder is not available for create by name - <xsl:value-of select="zOrder" />
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = last()" >
-                            //last=<xsl:value-of select="text()" />
+                            //zOrder - <xsl:value-of select="zOrder" />
                             //last=<xsl:value-of select="text()" /> (Base Layer is emtpy)
                             <xsl:if test="contains(text(), 'Below')" >
                     5,
@@ -575,7 +576,7 @@ Created By: Travis Berthelot
                             //zOrder is not available for create by name - <xsl:value-of select="zOrder" />
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = last()" >
-                            //last=<xsl:value-of select="text()" />
+                            //zOrder - <xsl:value-of select="zOrder" />
                             //last=<xsl:value-of select="text()" /> (Base Layer is emtpy)
                             <xsl:if test="contains(text(), 'Below')" >
                     5,
