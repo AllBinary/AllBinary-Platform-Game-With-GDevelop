@@ -27,45 +27,45 @@ Created By: Travis Berthelot
             //totalRecursions=<xsl:value-of select="number($totalRecursions)" /> eventPosition=<xsl:value-of select="$eventPosition" /> conditionEventPosition=<xsl:value-of select="$conditionEventPosition" />
             
             <xsl:if test="type = 'BuiltinCommonInstructions::JsCode'" >
-                //Event - //BuiltinCommonInstructions::JsCode - call
+                //Event - //BuiltinCommonInstructions::JsCode - call - //eventsProcess
                 //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
 
             <xsl:if test="type = 'BuiltinCommonInstructions::While'" >
-                //Event - //BuiltinCommonInstructions::While - call
+                //Event - //BuiltinCommonInstructions::While - call - //eventsProcess
                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
 
             <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
-                //Event - //BuiltinCommonInstructions::Standard - call
+                //Event - //BuiltinCommonInstructions::Standard - call - //eventsProcess
                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
 
             <xsl:if test="type = 'BuiltinCommonInstructions::ForEachChildVariable'" >
-                //Event - //BuiltinCommonInstructions::ForEachChildVariable - call
+                //Event - //BuiltinCommonInstructions::ForEachChildVariable - call - //eventsProcess
                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
 
             <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
-                //Event - //BuiltinCommonInstructions::ForEach - call
+                //Event - //BuiltinCommonInstructions::ForEach - call - //eventsProcess
                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
                         
             <xsl:if test="type = 'BuiltinCommonInstructions::Group'" >
                 //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> name=<xsl:value-of select="name" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                //Event - //BuiltinCommonInstructions::Group - call
+                //Event - //BuiltinCommonInstructions::Group - call - //eventsProcess
                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
 
             <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
-                //Event - //BuiltinCommonInstructions::ForEach - call
+                //Event - //BuiltinCommonInstructions::ForEach - call - //eventsProcess
                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
             </xsl:if>
             
             <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                 //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> 
                 <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                //Event - //BuiltinCommonInstructions::Link - call
+                //Event - //BuiltinCommonInstructions::Link - call - //eventsProcess
                 <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
             </xsl:if>
 
@@ -87,27 +87,27 @@ Created By: Travis Berthelot
                     //
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosX'" >
-                    //Condition - //PosX - call
+                    //Condition - //PosX - call - //eventsProcess
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PosY'" >
-                    //Condition - //PosY - call
+                    //Condition - //PosY - call - //eventsProcess
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'NbObjet'" >
-                    //Condition - //NbObjet - call
+                    //Condition - //NbObjet - call - //eventsProcess
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'NumberObjectVariable'" >
-                    //Condition - //NumberObjectVariable - call
+                    //Condition - //NumberObjectVariable - call - //eventsProcess
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'VarScene'" >
-                    //Condition - //VarScene - call
+                    //Condition - //VarScene - call - //eventsProcess
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
                 <xsl:if test="$typeValue = 'CollisionNP'" >
-                    //Condition - //CollisionNP - call
+                    //Condition - //CollisionNP - call - //eventsProcess
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
             </xsl:for-each>

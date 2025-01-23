@@ -200,7 +200,7 @@ Created By: Travis Berthelot
                                 </xsl:if>
                                 <xsl:if test="contains($parameters, 'Player')" >
                             final GDGameLayer PlayerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
-                            final GDObject Player = PlayerGDGameLayer.gdObject;
+                            final GDGlobalsGDObjectsFactory.Player Player = (GDGlobalsGDObjectsFactory.Player) PlayerGDGameLayer.gdObject;
                                 </xsl:if>
                                 <xsl:if test="contains($parameters, 'PlatformerMap')" >
                             final GDGameLayer PlatformerMapGDGameLayer = (GDGameLayer) globals.PlatformerMapGDGameLayerList.get(0);

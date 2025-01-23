@@ -88,7 +88,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                     <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                                 //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> parameters=<xsl:value-of select="$parametersAsString" />
-                                //Event - //BuiltinCommonInstructions::Link - call
+                                //Event - //BuiltinCommonInstructions::Link - call - //ObjectVariableChildCount
                                 <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
                                     </xsl:if>
                                 </xsl:for-each>

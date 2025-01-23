@@ -276,7 +276,7 @@ Created By: Travis Berthelot
                             //LinkedObjects::PickObjectsLinkedTo for //MettreY - needs more logic for handling Object variables that are not params
                             final GDObject Enemies = gdObject2;
                             final GDGameLayer PlayerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
-                            final GDObject Player = PlayerGDGameLayer.gdObject;
+                            final GDGlobalsGDObjectsFactory.Player Player = (GDGlobalsGDObjectsFactory.Player) PlayerGDGameLayer.gdObject;
                                  </xsl:if>
                             </xsl:if>
                             <xsl:if test="contains($hasForEachProcessGD, 'found')" >

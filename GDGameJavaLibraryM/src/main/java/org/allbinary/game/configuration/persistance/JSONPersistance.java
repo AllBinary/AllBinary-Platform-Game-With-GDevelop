@@ -28,7 +28,9 @@ import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 
 public class JSONPersistance extends BasicPersitance
-{    
+{
+    private static final String JSON_ = "JSON ";
+
     public JSONPersistance(final String recordId)
     {
         super(recordId);
@@ -47,23 +49,21 @@ public class JSONPersistance extends BasicPersitance
         final RecordEnumeration recordEnum = 
             recordStore.enumerateRecords(null, null,true);
         
-        final String LOADING_ID = "Loading id: ";
-        final String METHOD_NAME = "loadAll";
+        LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.persistanceStrings.NUMBER_OF_RECORDS).append(recordEnum.numRecords()).toString(), this, this.persistanceStrings.LOAD_ALL));
         
-        LogUtil.put(LogFactory.getInstance(new StringMaker().append("Number of records: ").append(recordEnum.numRecords()).toString(), this, METHOD_NAME));
+        final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+        final StringMaker stringBuffer = new StringMaker();
         
         ByteArrayInputStream byteArrayInputStream;
-        DataInputStream inputStream;
-        
+        DataInputStream inputStream;        
         String value;
-
-        final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
-        
+        int id;
         while (recordEnum.hasNextElement())
         {
-            final int id = recordEnum.nextRecordId();
+            id = recordEnum.nextRecordId();
 
-            LogUtil.put(LogFactory.getInstance(new StringMaker().append(LOADING_ID).append(id).toString(), this, METHOD_NAME));
+            stringBuffer.delete(0, stringBuffer.length());
+            LogUtil.put(LogFactory.getInstance(stringBuffer.append(JSON_).append(this.persistanceStrings.LOADING_ID).append(id).toString(), this, this.persistanceStrings.LOAD_ALL));
             
             byteArrayInputStream = 
                 new ByteArrayInputStream(recordStore.getRecord(id));
@@ -72,11 +72,11 @@ public class JSONPersistance extends BasicPersitance
             for (int index = 0; index < size; index++)
             {
                 value = inputStream.readUTF();
-                LogUtil.put(LogFactory.getInstance(value, this, METHOD_NAME));
-                this.getList().add(value);
+                LogUtil.put(LogFactory.getInstance(value, this, this.persistanceStrings.LOAD_ALL));
+                valueList.add(value);
             }
 
-            this.getIds().add(smallIntegerSingletonFactory.getInstance(id));
+            valueList.add(smallIntegerSingletonFactory.getInstance(id));
         }
 
         recordStore.closeRecordStore();
@@ -84,7 +84,7 @@ public class JSONPersistance extends BasicPersitance
     
     public void save(final AbeClientInformationInterface abeClientInformation, final String stringAsJSON) throws Exception
     {
-        LogUtil.put(LogFactory.getInstance(new StringMaker().append("Saving: ").append(stringAsJSON).toString(), this, "save"));
+        LogUtil.put(LogFactory.getInstance(new StringMaker().append(JSON_).append(this.persistanceStrings.SAVING).append(stringAsJSON).toString(), this, this.persistanceStrings.SAVE));
         
         final RecordStore recordStore = RecordStore.openRecordStore(
                 this.getRecordId(abeClientInformation), true);
@@ -104,8 +104,8 @@ public class JSONPersistance extends BasicPersitance
     }
 
     public String getJSONAsString() {
-        if(this.getList().size() > 0) {
-            return (String) this.getList().get(0);
+        if(this.valueList.size() > 0) {
+            return (String) valueList.get(0);
         }
         return null;
     }

@@ -76,6 +76,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.canvas.GameGlobalsFactory;
                 
                 import org.allbinary.game.canvas.ABToGBUtil;
                 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory;
@@ -93,7 +94,9 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
+                import org.allbinary.game.layer.GDGameLayerFactory;
                 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
+                import org.allbinary.game.layout.GDObjectFactory;
                 import org.allbinary.game.layer.behavior.PathFindingBehavior;
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
@@ -112,6 +115,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
                 import org.allbinary.thread.PathFindingThreadPool;
                 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
+                import org.allbinary.time.TimeDelayHelper;
 
                 <xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />
                 <xsl:variable name="lastDigit2" ><xsl:if test="4 >= $selectedNodeIdSet" >0</xsl:if><xsl:if test="$selectedNodeIdSet > 4" >1</xsl:if></xsl:variable>
@@ -133,6 +137,7 @@ Created By: Travis Berthelot
                         private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
                         private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+                        private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
                         
                         private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
@@ -174,6 +179,10 @@ Created By: Travis Berthelot
                         
                     </xsl:call-template>
                     
+                    public double TimeDelta() {
+                        return globals.globalsGameTickTimeDelayHelper.timeDelta * .001;
+                    }
+
                     public int SceneWindowWidth() {
                         return gameTickDisplayInfoSingleton.getLastWidth();
                     }
@@ -182,16 +191,38 @@ Created By: Travis Berthelot
                         return gameTickDisplayInfoSingleton.getLastHeight();
                     }
 
-                    public double log2(final int value) {
-                        return Math.log(value);
-                    }
-
                     public int Random(final int range) {
                         return MyRandomFactory.getInstance().getAbsoluteNextInt(range + 1);
                     }
 
-                    public String VariableString(final String string) {
-                        return string;
+                    public float RandomFloatInRange(final double min, final double max) {
+                        final double next = (max - min);
+                        //LogUtil.put(LogFactory.getInstance("NEXT: " + next, this, commonStrings.PROCESS));
+                        final float nextF = (float) next * 1000;
+                        //LogUtil.put(LogFactory.getInstance("NEXTF: " + nextF, this, commonStrings.PROCESS));
+                        final int nextI = Math.round(nextF);
+                        //LogUtil.put(LogFactory.getInstance("NEXTI: " + nextI, this, commonStrings.PROCESS));
+                        final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
+                        //LogUtil.put(LogFactory.getInstance("RANDOM: " + random, this, commonStrings.PROCESS));
+                        final float randomF = (float) random;
+                        //LogUtil.put(LogFactory.getInstance("RANDOMF: " + randomF, this, commonStrings.PROCESS));
+                        final float result = (float) min + (randomF / 1000);
+                        //LogUtil.put(LogFactory.getInstance("RESULT: " + result, this, commonStrings.PROCESS));
+                        return result;
+                    }
+                    
+                    public float RandomFloatInRange(final float min, final float max) {
+                        final float nextF = (float) (max - min) * 1000;
+                        //LogUtil.put(LogFactory.getInstance("NEXTF: " + nextF, this, commonStrings.PROCESS));
+                        final int nextI = Math.round(nextF);
+                        //LogUtil.put(LogFactory.getInstance("NEXTI: " + nextI, this, commonStrings.PROCESS));
+                        final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
+                        //LogUtil.put(LogFactory.getInstance("RANDOM: " + random, this, commonStrings.PROCESS));
+                        final float randomF = (float) random;
+                        //LogUtil.put(LogFactory.getInstance("RANDOMF: " + randomF, this, commonStrings.PROCESS));
+                        final float result = (float) min + (randomF / 1000);
+                        //LogUtil.put(LogFactory.getInstance("RESULT: " + result, this, commonStrings.PROCESS));
+                        return result;
                     }
 
                     public int Variable(final int value) {
@@ -202,10 +233,26 @@ Created By: Travis Berthelot
                         return value;
                     }
 
+                    public String VariableString(final String string) {
+                        return string;
+                    }
+
+                    public String VariableString(final Object object) {
+                        return object.toString();
+                    }
+
+                    public int VariableChildCount(final String[] array) {
+                        return array.length;
+                    }
+
+                    public int VariableChildCount(final int[] array) {
+                        return array.length;
+                    }
+
                     public String GlobalVariable(final String value) {
                         return value;
                     }
-                                        
+
                     public long GlobalVariable(final long value) {
                         return value;
                     }
@@ -237,10 +284,104 @@ Created By: Travis Berthelot
                     public String GlobalVarToJSON(final int value) {
                         return Integer.toString(value);
                     }
+                    
+                    public int SceneInstancesCount(final int size) {
+                        return size;
+                    }
+
+                    public int MouseX() {
+                        
+                        return gameGlobalsFactory.point.getX();
+                    }
+
+                    public int MouseY() {
+                        
+                        return gameGlobalsFactory.point.getY();
+                    }
+
+                    public int MouseX(final String string, int value) {
+                        
+                        return gameGlobalsFactory.point.getX();
+                    }
+
+                    public int MouseY(final String string, int value) {
+                        
+                        return gameGlobalsFactory.point.getY();
+                    }
+                    
+                    public long TimerElapsedTime(final TimeDelayHelper timeDelayHelper) {
+                        return timeDelayHelper.getElapsed(globals.globalsGameTickTimeDelayHelper.lastStartTime) / 1000;
+                    }
+
+                    public int floor(final int value) {
+                        return value;
+                    }
+                                        
+                    public long round(final long value) {
+                        return value;
+                    }
+                    
+                    public long abs(final long value) {
+                        return Math.abs(value);
+                    }
+
+                    public double log2(final int value) {
+                        return Math.log(value);
+                    }
+
+                    public double sin(final double angle) {
+                        return Math.sin(angle);
+                    }
+
+                    public double cos(final double angle) {
+                        return Math.cos(angle);
+                    }
+                    
+                    public double ToRad(final double angdeg) {
+                        //return Math.toRadians(angdeg);
+                        return angdeg;
+                    }
+                    
+                    public long TimeFromStart() {
+                        return globals.globalsGameTickTimeDelayHelper.getTimeFromStart() / 100;
+                    }
+
+                    public String NewLine() {
+                        return CommonSeps.getInstance().NEW_LINE;
+                    }
+
+                    public int LastTouchId() {
+                        return 0;
+                    }
+
+                    public int LastEndedTouchId() {
+                        return 0;
+                    }
+
+                    public int TouchX(final int touchId, final String name, final int unknown) {
+                        return 0;
+                    }
+
+                    public int TouchY(final int touchId, final String name, final int unknown) {
+                        return 0;
+                    }
+
+                    public String ToString(final String value) {
+                        return value;
+                    }
 
                     public String ToString(final int value) {
                         //return Integer.toString(value);
                         return smallIntegerSingletonFactory.getString(value);
+                    }
+
+                    public String ToString(final long value) {
+                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
+                        return Long.toString(value);
+                    }
+
+                    public int ToNotString(final int value) {
+                        return value;
                     }
 
                 }
