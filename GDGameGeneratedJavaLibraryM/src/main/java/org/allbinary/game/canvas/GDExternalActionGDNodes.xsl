@@ -56,7 +56,9 @@ Created By: Travis Berthelot
                 <!-- Android images assets need to be enlarged if they are not setup to be inside the cirle area needed -->
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
                 <xsl:variable name="layoutName" select="name" />
-                <xsl:variable name="objectsGroupsAsString" >,<xsl:for-each select="objectsGroups" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
+                <xsl:for-each select="../externalEvents" ><xsl:if test="$layoutName = associatedLayout" ></xsl:if></xsl:for-each>
+
+                <xsl:variable name="objectsGroupsAsString" >,<xsl:for-each select="/game/objectsGroups" ><xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="objectsGroups" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="objectsAsString" >,<xsl:for-each select="/game/objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
@@ -70,6 +72,7 @@ Created By: Travis Berthelot
                 package org.allbinary.game.canvas.node.action;
 
                 import javax.microedition.lcdui.Graphics;
+                import javax.microedition.lcdui.Image;
                 
                 import org.json.me.JSONObject;
                 import org.json.me.JSONTokener;
@@ -175,6 +178,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                         <xsl:with-param name="objectsAsString" >
                             <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
                         </xsl:with-param>
                         
                     </xsl:call-template>

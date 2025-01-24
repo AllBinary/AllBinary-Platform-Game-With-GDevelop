@@ -273,7 +273,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
-                    //Objects have name - <xsl:value-of select="$name" />
+                    //Objects have name - <xsl:value-of select="$name" />/<xsl:value-of select="$spriteName" />
                             <xsl:if test="contains($objectsAsString, $spriteName)" >
                                 //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f),
                                 //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f),
@@ -428,7 +428,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
-                    //Objects have name - <xsl:value-of select="$name" />
+                    //Objects have name - <xsl:value-of select="$name" />/<xsl:value-of select="$spriteName" />
                             <xsl:if test="contains($objectsAsString, $spriteName)" >
                                 //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f),
                                 //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f),
@@ -595,7 +595,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
-                    //Objects have name - <xsl:value-of select="$name" />
+                    //Objects have name - <xsl:value-of select="$name" />/<xsl:value-of select="$spriteName" />
                             <xsl:if test="contains($objectsAsString, $spriteName)" >
                                 //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getWidth() / 1.44f),
                                 //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArray[0].getHeight() / 1.44f),
