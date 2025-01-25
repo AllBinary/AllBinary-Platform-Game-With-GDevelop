@@ -254,6 +254,25 @@ Created By: Travis Berthelot
             </xsl:if>
 
             //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Actions - //hasUsedOnceCondition and not hasUsedOnceCondition
+            
+            <xsl:variable name="hasSubCondition" >
+            <xsl:for-each select="conditions" >
+                <xsl:if test="type/value = 'BuiltinCommonInstructions::Or' or type/value = 'BuiltinCommonInstructions::And'" >found</xsl:if>
+            </xsl:for-each>
+            </xsl:variable>
+            <!-- This variable is the same as in part of the actions below -->
+            <xsl:variable name="notAlreadyUsedConditionButWithSpecificAction" >
+                <xsl:if test="not(contains($hasSubCondition, 'found'))" >
+            <xsl:for-each select="actions" >
+            <xsl:if test="not(type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue'or type/value = 'SetNumberVariable')" >                
+            <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
+                <xsl:if test="type/value = 'ModVarScene' or type/value = 'PlaySound'" >found</xsl:if>
+            </xsl:if>
+            </xsl:if>
+            </xsl:for-each>
+                </xsl:if>
+            </xsl:variable>
+            
             <xsl:for-each select="actions" >
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
@@ -272,9 +291,16 @@ Created By: Travis Berthelot
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
             </xsl:if>
             </xsl:if>
-            <xsl:if test="not(type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue'or type/value = 'SetNumberVariable')" >
+                        
+            <xsl:if test="not(type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue'or type/value = 'SetNumberVariable')" >                
             <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
+                <xsl:if test="not(type/value = 'ModVarScene' or type/value = 'PlaySound')" >
             //Could I call this - //<xsl:value-of select="type/value" />
+                </xsl:if>
+                <xsl:if test="type/value = 'ModVarScene' or type/value = 'PlaySound'" >
+            //I am now calling this - //<xsl:value-of select="type/value" />
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
+                </xsl:if>
             </xsl:if>
             </xsl:if>
             
@@ -1098,8 +1124,14 @@ Created By: Travis Berthelot
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
                             </xsl:if>
                             <xsl:if test="not(contains($foundLinkExternalEvent, 'found') and contains($allowedCondition, 'found'))" >
+                                <xsl:if test="not(contains($notAlreadyUsedConditionButWithSpecificAction, 'found') and type = 'BuiltinCommonInstructions::Standard')" >
                             //Was calling these, but maybe should not have been
                             //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
+                                </xsl:if>
+                                <xsl:if test="contains($notAlreadyUsedConditionButWithSpecificAction, 'found') and type = 'BuiltinCommonInstructions::Standard'" >
+                            //I am now calling this2 - //<xsl:value-of select="type" />
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
+                                </xsl:if>
                             </xsl:if>
                             
                             </xsl:if>
