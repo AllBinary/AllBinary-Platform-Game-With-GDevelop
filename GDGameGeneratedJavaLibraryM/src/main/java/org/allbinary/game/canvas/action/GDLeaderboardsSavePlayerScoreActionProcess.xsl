@@ -176,6 +176,15 @@ Created By: Travis Berthelot
                             return true;
                         }
 
+                        @Override
+                        public boolean process(final int index) throws Exception {
+                            super.processStats(index);
+
+                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS));
+                        
+                            return this.process();
+                        }
+                                
                         <xsl:if test="contains($hasObject, 'found') or contains($hasObjectGroup, 'found')" >
                         //beforeSecondParam=<xsl:value-of select="$beforeSecondParam" />
                         </xsl:if>

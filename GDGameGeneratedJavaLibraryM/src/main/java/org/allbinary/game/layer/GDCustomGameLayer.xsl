@@ -587,7 +587,7 @@ Created By: Travis Berthelot
                     }
                 }
             } else {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
+                //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
                 GeographicMapEventHandler.getInstance().addListener(this);
             }
 
@@ -655,7 +655,7 @@ Created By: Travis Berthelot
                     }
                 }
             } else {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move2"));
+                //LogUtil.put(LogFactory.getInstance(new StringMaker().append("Map was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move2"));
                 GeographicMapEventHandler.getInstance().addListener(this);
             }
 
