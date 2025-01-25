@@ -1538,7 +1538,7 @@ Created By: Travis Berthelot
 
                     };
                     
-                    public final GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode gd<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode = new GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode();
+                    public final GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GD<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />GDNode();
                     
             </xsl:if>
             

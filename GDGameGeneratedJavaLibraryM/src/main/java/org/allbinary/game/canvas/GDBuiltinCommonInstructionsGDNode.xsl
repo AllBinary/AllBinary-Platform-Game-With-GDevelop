@@ -966,7 +966,7 @@ Created By: Travis Berthelot
 
         }
         
-        public GD<xsl:value-of select="$selectedNodeId" />GDNode gd<xsl:value-of select="$selectedNodeId" />GDNode = new GD<xsl:value-of select="$selectedNodeId" />GDNode();
+        public GD<xsl:value-of select="$selectedNodeId" />GDNode NODE_<xsl:value-of select="$selectedNodeId" /> = new GD<xsl:value-of select="$selectedNodeId" />GDNode();
 
             </xsl:if>
 
