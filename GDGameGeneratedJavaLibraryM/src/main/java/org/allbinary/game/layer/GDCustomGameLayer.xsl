@@ -134,6 +134,7 @@ Created By: Travis Berthelot
         import org.allbinary.layer.LayerInterfaceFactoryInterface;
         import org.allbinary.logic.string.StringUtil;
         import org.allbinary.math.AngleFactory;
+        import org.allbinary.math.NamedAngle;
         import org.allbinary.math.AngleInfo;
         import org.allbinary.math.FrameUtil;
         //import org.allbinary.math.LayerDistanceUtil;
@@ -187,7 +188,7 @@ Created By: Travis Berthelot
                     private Animation pathAnimation = NullAnimationFactory.getFactoryInstance().getInstance(0);
             
                     public final GeographicMapCellPositionArea geographicMapCellPositionArea;
-                    private int movementAngle = -1;
+                    private NamedAngle movementAngle = angleFactory.NOT_ANGLE;
                     private GeographicMapCellPosition steeringInsideGeographicMapCellPosition;
         </xsl:if>
 
@@ -1437,16 +1438,16 @@ Created By: Travis Berthelot
     private void handleDeltalX(final int dx, final int dy) {
         final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition = this.waypointBehaviorBase.getNextUnvisitedPathGeographicMapCellPosition();
         if (dx <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-            this.movementAngle = this.angleFactory.LEFT.getValue();
+            this.movementAngle = this.angleFactory.LEFT;
             this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
             
-            this.rtsLogHelper.handleLeft(this, this.movementAngle);
+            this.rtsLogHelper.handleLeft(this, this.movementAngle.getValue());
             
         } else {
-            this.movementAngle = this.angleFactory.RIGHT.getValue();
+            this.movementAngle = this.angleFactory.RIGHT;
             this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
             
-            this.rtsLogHelper.handleRight(this, this.movementAngle);
+            this.rtsLogHelper.handleRight(this, this.movementAngle.getValue());
             
         }
     }
@@ -1454,16 +1455,16 @@ Created By: Travis Berthelot
     private void handleDeltalY(final int dx, final int dy) {
         final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition = this.waypointBehaviorBase.getNextUnvisitedPathGeographicMapCellPosition();
         if (dy <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-            this.movementAngle = this.angleFactory.UP.getValue();
+            this.movementAngle = this.angleFactory.UP;
             this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
             
-            this.rtsLogHelper.handleUp(this, this.movementAngle);
+            this.rtsLogHelper.handleUp(this, this.movementAngle.getValue());
             
         } else {
-            this.movementAngle = this.angleFactory.DOWN.getValue();
+            this.movementAngle = this.angleFactory.DOWN;
             this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
             
-            this.rtsLogHelper.handleDown(this, this.movementAngle);
+            this.rtsLogHelper.handleDown(this, this.movementAngle.getValue());
             
         }
     }
@@ -1508,7 +1509,7 @@ Created By: Travis Berthelot
 
         //if (this.getUnitWaypointBehavior().isWaypointListEmptyOrOnlyTargets())
         
-        this.rtsLogHelper.turnTo(this, dx, dy, null, angle, movementAngle, evading, targetAngle);
+        this.rtsLogHelper.turnTo(this, dx, dy, null, angle, this.movementAngle.getValue(), evading, targetAngle);
 
         final GeographicMapCellHistory geographicMapCellHistory = this.waypointBehaviorBase.getCurrentGeographicMapCellHistory();
 
@@ -1536,7 +1537,7 @@ Created By: Travis Berthelot
             }
 
             return true;
-        } else if(this.movementAngle == angle) {
+        } else if(this.movementAngle.getValue() == angle) {
 
             //final BasicArrayList occupyingList = this.getEndGeographicMapCellPositionList();
             final BasicArrayList pathList = geographicMapCellHistory.getTracked();
@@ -1545,19 +1546,19 @@ Created By: Travis Berthelot
 //                geographicMapCellHistory.getTotalVisited() == 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> GeographicMapDirectionUtil.getInstance().getEightDirectionFromCellPositionToAdjacentCellPosition(currentGeographicMapCellPosition, (GeographicMapCellPosition) pathList.get(0)) != DirectionFactory.getInstance().NOT_BORDERED_WITH
                 ) {
             
-            if(dx <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.LEFT.getValue()) {
+            if(dx <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.LEFT) {
                 this.rtsLogHelper.movingLeft(this);
                 return false;
             }
-            if(dx <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.RIGHT.getValue()) {
+            if(dx <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.RIGHT) {
                 this.rtsLogHelper.movingRight(this);
                 return false;
             }
-            if(dy <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.UP.getValue()) {
+            if(dy <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.UP) {
                 this.rtsLogHelper.movingUp(this);
                 return false;
             }
-            if(dy <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.DOWN.getValue()) {
+            if(dy <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.movementAngle == this.angleFactory.DOWN) {
                 this.rtsLogHelper.movingDown(this);
                 return false;
             }
@@ -1573,11 +1574,11 @@ Created By: Travis Berthelot
 
             this.rtsLogHelper.currentMoveEnded(this);
             
-            if(this.movementAngle == this.angleFactory.LEFT.getValue() || 
-                this.movementAngle == this.angleFactory.RIGHT.getValue()) {
+            if(this.movementAngle == this.angleFactory.LEFT || 
+                this.movementAngle == this.angleFactory.RIGHT) {
                 this.handleDeltalY(dx, dy);
-            } else if(this.movementAngle == this.angleFactory.UP.getValue() || 
-                this.movementAngle == this.angleFactory.DOWN.getValue()) {
+            } else if(this.movementAngle == this.angleFactory.UP || 
+                this.movementAngle == this.angleFactory.DOWN) {
                 this.handleDeltalX(dx, dy);
             }
             
@@ -1603,7 +1604,7 @@ Created By: Travis Berthelot
                     
                 }
 
-                int deltaAngle2 = this.movementAngle - angle;
+                int deltaAngle2 = this.movementAngle.getValue() - angle;
                 if (deltaAngle2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                     this.rtsLogHelper.rotateRight(this);
                     //this.getGameKeyEventList().add(gameKeyEventFactory.getInstance(this, Canvas.RIGHT));
@@ -1679,6 +1680,8 @@ Created By: Travis Berthelot
     public void forward()
     throws Exception
     {
+        //LogUtil.put(LogFactory.getInstance(this.getName(), this, "forward"));
+
         //TWB - temp hack for path finding to work
         final org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies Enemies = (org.allbinary.game.canvas.GD1GDObjectsFactory.Enemies) gdObject;
         if (this.direction == 0) {
@@ -1697,6 +1700,8 @@ Created By: Travis Berthelot
     public void right()
     throws Exception
     {
+        //LogUtil.put(LogFactory.getInstance(this.getName(), this, "right"));
+
         if(this.direction == 0) {
             this.direction = 2;
         } else if(this.direction == 1) {
@@ -1719,6 +1724,8 @@ Created By: Travis Berthelot
     public void left()
     throws Exception
     {
+        //LogUtil.put(LogFactory.getInstance(this.getName(), this, "left"));
+
         if(this.direction == 0) {
             this.direction = 3;
         } else if(this.direction == 1) {
