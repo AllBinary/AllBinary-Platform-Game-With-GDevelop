@@ -18,7 +18,15 @@ Created By: Travis Berthelot
 
     <xsl:template name="lireFichierTxtLoadJSONActionProcess" >
         <xsl:param name="layoutIndex" />
-        
+
+                            <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                            <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+<!--                            <xsl:variable name="param3" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>-->
+                            <xsl:variable name="param4" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                
+                        private final String RECORD_ID = <xsl:value-of select="$param1" />;
+                        private final String SECOND_PARAM = <xsl:value-of select="$param2" />;
+
                         //LireFichierTxt - action - START
                         @Override
                         public boolean process() throws Exception {
@@ -26,12 +34,7 @@ Created By: Travis Berthelot
                         
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
-                            <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                            <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-<!--                            <xsl:variable name="param3" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>-->
-                            <xsl:variable name="param4" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-
-                            final JSONPersistance jsonPersistance = new JSONPersistance(<xsl:value-of select="$param1" />);
+                            final JSONPersistance jsonPersistance = new JSONPersistance(RECORD_ID);
                             jsonPersistance.loadAll(abeClientInformation);
                             
                             final String jsonAsString = jsonPersistance.getJSONAsString();
@@ -41,11 +44,12 @@ Created By: Travis Berthelot
                                 final JSONTokener jsonTokener = new JSONTokener(jsonAsString);
                                 final JSONObject jsonObject = (JSONObject) jsonTokener.nextValue();
                             
-                                if(jsonObject.has(<xsl:value-of select="$param2" />)) {
-                                    globals.<xsl:value-of select="$param4" /> = jsonObject.getString(<xsl:value-of select="$param2" />);
+                                if(jsonObject.has(SECOND_PARAM)) {
+                                    globals.<xsl:value-of select="$param4" /> = jsonObject.getString(SECOND_PARAM);
                                     LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + globals.<xsl:value-of select="$param4" />, this, commonStrings.PROCESS));
                                 } else {
                                     LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "missing", this, commonStrings.PROCESS));
+                                    globals.<xsl:value-of select="$param4" /> = CommonPhoneStrings.getInstance().ZERO;
                                 }
 
                             } else {

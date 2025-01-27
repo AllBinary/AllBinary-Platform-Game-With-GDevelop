@@ -19,6 +19,13 @@ Created By: Travis Berthelot
     <xsl:template name="ecrireFichierTxtSaveJSONActionProcess" >
         <xsl:param name="layoutIndex" />
 
+                            <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                            <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                            <xsl:variable name="param3" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+
+                        private final String RECORD_ID = <xsl:value-of select="$param1" />;
+                        private final String SECOND_PARAM = <xsl:value-of select="$param2" />;
+                        
                         //EcrireFichierTxt - action - START
                         @Override
                         public boolean process() throws Exception {
@@ -26,11 +33,6 @@ Created By: Travis Berthelot
                         
                             //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                             
-                            <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                            <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                            <xsl:variable name="param3" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-
-                            final String RECORD_ID = <xsl:value-of select="$param1" />;
                             final JSONPersistance jsonPersistance = new JSONPersistance(RECORD_ID);
                             jsonPersistance.loadAll(abeClientInformation);
                             
@@ -43,7 +45,7 @@ Created By: Travis Berthelot
                                 jsonObject = new JSONObject();
                             }
                             
-                            jsonObject.put(<xsl:value-of select="$param2" />, <xsl:value-of select="$param3" />);
+                            jsonObject.put(SECOND_PARAM, <xsl:value-of select="$param3" />);
                             final String jsonAsString2 = jsonObject.toString(4);
                             jsonPersistance.deleteAll(abeClientInformation);
                             jsonPersistance.save(abeClientInformation, jsonAsString2);
