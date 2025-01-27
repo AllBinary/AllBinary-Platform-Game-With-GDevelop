@@ -1162,7 +1162,7 @@ Created By: Travis Berthelot
         final boolean isHTML = features.isDefault(HTMLFeatureFactory.getInstance().HTML);
             
         final WaypointBase waypoint = 
-            isHTML ? new MultipassNoCacheWaypoint(this, AttackSound.getInstance()) : 
+            //isHTML ? new MultipassNoCacheWaypoint(this, AttackSound.getInstance()) : 
             new NoCacheWaypoint(this, AttackSound.getInstance());
 
         waypoint.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
@@ -1440,16 +1440,15 @@ Created By: Travis Berthelot
         if (dx <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
             this.movementAngle = this.angleFactory.LEFT;
             this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
-            
-            this.rtsLogHelper.handleLeft(this, this.movementAngle.getValue());
-            
+
         } else {
             this.movementAngle = this.angleFactory.RIGHT;
             this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
             
-            this.rtsLogHelper.handleRight(this, this.movementAngle.getValue());
-            
         }
+        
+        this.rtsLogHelper.handle(this, this.movementAngle);
+        
     }
     
     private void handleDeltalY(final int dx, final int dy) {
@@ -1458,15 +1457,14 @@ Created By: Travis Berthelot
             this.movementAngle = this.angleFactory.UP;
             this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
             
-            this.rtsLogHelper.handleUp(this, this.movementAngle.getValue());
-            
         } else {
             this.movementAngle = this.angleFactory.DOWN;
             this.steeringInsideGeographicMapCellPosition = nextUnvisitedPathGeographicMapCellPosition;
             
-            this.rtsLogHelper.handleDown(this, this.movementAngle.getValue());
-            
         }
+        
+        this.rtsLogHelper.handle(this, this.movementAngle);
+        
     }
 
     private boolean turnTo(final int dx, final int dy, int targetAngle)
@@ -1509,7 +1507,7 @@ Created By: Travis Berthelot
 
         //if (this.getUnitWaypointBehavior().isWaypointListEmptyOrOnlyTargets())
         
-        this.rtsLogHelper.turnTo(this, dx, dy, null, angle, this.movementAngle.getValue(), evading, targetAngle);
+        this.rtsLogHelper.turnTo(this, dx, dy, null, angle, this.movementAngle, evading, targetAngle);
 
         final GeographicMapCellHistory geographicMapCellHistory = this.waypointBehaviorBase.getCurrentGeographicMapCellHistory();
 
@@ -1537,6 +1535,26 @@ Created By: Travis Berthelot
             }
 
             return true;
+            
+        } else if(Math.abs(dx) <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> Math.abs(dy) <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5) {
+
+            this.rtsLogHelper.closeEnough(this);
+                            
+            //TWB - This is probably covering up and issue with the existing visit logic.
+            if(geographicMapCellHistory.visit(nextUnvisitedPathGeographicMapCellPosition)) {
+                this.waypoint2LogHelper.processWaypointTracked(this, nextUnvisitedPathGeographicMapCellPosition);
+            } else {
+                final String reason = 
+                    stringUtil.EMPTY_STRING;
+                    //new StringMaker().append(" - finished moving without progress: ").append(geographicMapCellHistory.getVisited()).toString();
+                this.waypoint2LogHelper.processWaypointTrackedWithoutProgress(this, reason);
+                this.getWaypointBehavior().updatePathOnTargetMove(reason);
+            }
+
+            this.setPosition(this.x + dx, this.y + dy, z);
+
+            return true;
+            
         } else if(this.movementAngle.getValue() == angle) {
 
             //final BasicArrayList occupyingList = this.getEndGeographicMapCellPositionList();

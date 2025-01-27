@@ -65,10 +65,10 @@ extends GDWaypointBehavior
     private static final String WAYPOINT_DESTROYED = "Waypoint Destroyed";
     private static final String ALL_VISITED_SHORT = "Arrived";
     private static final String _ALL_VISITED_SHORT = " Arrived";
-    private static final String ALL_VISITED = "All Visited";
+    //private static final String ALL_VISITED = "All Visited";
     private static final String ALREADY_THERE_SHORT = "Again?";
     private static final String _ALREADY_THERE_SHORT = " Again?";
-    private static final String ALREADY_THERE = "Already There";
+    //private static final String ALREADY_THERE = "Already There";
     private static final String NEXT_PATH_NODE = "Next Path Node";
 
     private static final String VISITED_MOST_OF_THE_PATH = " visited most of the path";
@@ -89,7 +89,7 @@ extends GDWaypointBehavior
         final boolean isHTML = features.isDefault(HTMLFeatureFactory.getInstance().HTML);
 
         this.waypointPathRunnable = 
-            isHTML ? new MultipassWaypointPathRunnable() : 
+            //isHTML ? new MultipassWaypointPathRunnable() : 
             new WaypointPathRunnable();
         
     }
