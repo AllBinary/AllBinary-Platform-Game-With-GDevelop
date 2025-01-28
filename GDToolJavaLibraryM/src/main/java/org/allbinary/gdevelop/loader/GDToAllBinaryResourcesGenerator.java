@@ -170,6 +170,7 @@ public class GDToAllBinaryResourcesGenerator
         String name;
         GDResource gdResource;
         
+        int arrayIndex = 1;
         for(int index = 0; index < size; index++) {
             name = (String) usedList.get(index);
                         
@@ -179,6 +180,11 @@ public class GDToAllBinaryResourcesGenerator
                 resourceStringMaker.append(INDENT);
                 resourceStringMaker.append(gdResource.height);
                 resourceStringMaker.append(',');
+                resourceStringMaker.append(commonSeps.SPACE);
+                resourceStringMaker.append(this.commonSeps.COMMENT);
+                resourceStringMaker.append(name);                
+                resourceStringMaker.append(commonSeps.SPACE);
+                resourceStringMaker.append(arrayIndex);
                 resourceStringMaker.append(this.commonSeps.NEW_LINE);
             } else {
                 resourceStringMaker.append(-1);
@@ -188,6 +194,7 @@ public class GDToAllBinaryResourcesGenerator
                 resourceStringMaker.append(this.commonSeps.NEW_LINE);
             }
             
+            arrayIndex++;
         }
         
         resourceStringMaker.append(SPACING);
