@@ -49,7 +49,8 @@ Created By: Travis Berthelot
                                     LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + globals.<xsl:value-of select="$param4" />, this, commonStrings.PROCESS));
                                 } else {
                                     LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "missing", this, commonStrings.PROCESS));
-                                    globals.<xsl:value-of select="$param4" /> = CommonPhoneStrings.getInstance().ZERO;
+                                    //globals.<xsl:value-of select="$param4" /> = CommonPhoneStrings.getInstance().ZERO;
+                                    throw new RuntimeException();
                                 }
 
                             } else {
