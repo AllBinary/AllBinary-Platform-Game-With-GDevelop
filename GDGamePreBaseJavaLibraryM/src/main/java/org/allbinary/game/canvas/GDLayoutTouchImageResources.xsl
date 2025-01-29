@@ -158,8 +158,8 @@ Created By: Travis Berthelot
 
                     <xsl:text>&#10;</xsl:text>                    
 
-                    //objectsGroups - START
-                    <xsl:for-each select="//objectsGroups" >
+                    //layout - objectsGroups - START
+                    <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="objectGroupName" >
                             <xsl:value-of select="name" />
                         </xsl:variable>
@@ -169,7 +169,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:for-each>
-                    //objectsGroups - END
+                    //layout - objectsGroups - END
                 
                         //} catch(Exception e) {
                             //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));

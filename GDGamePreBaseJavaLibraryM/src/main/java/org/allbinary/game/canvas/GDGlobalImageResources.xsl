@@ -147,18 +147,22 @@ Created By: Travis Berthelot
 
                     <xsl:text>&#10;</xsl:text>                    
 
-                    //objectsGroups - START
-                    <xsl:for-each select="//objectsGroups" >
+                    <xsl:for-each select="/game/objectsGroups" >
+                        ...
+                    </xsl:for-each>
+
+                    //layout - objectsGroups - START
+                    <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="objectGroupName" >
                             <xsl:value-of select="name" />
                         </xsl:variable>
                         <xsl:for-each select="objects" >
-                            <xsl:if test="not(contains($name, 'btn_'))" >
+                            <xsl:if test="not(contains(name, 'btn_'))" >
                                 <xsl:value-of select="$objectGroupName" />ImageArrayList.add(<xsl:value-of select="name" />ImageArray);
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:for-each>
-                    //objectsGroups - END
+                    //layout - objectsGroups - END
 
                         //} catch(Exception e) {
                             //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
