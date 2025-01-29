@@ -272,8 +272,6 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                 </xsl:for-each>
 
-                <xsl:variable name="objectGroupForObject" ><xsl:for-each select="//objectsGroups" ><xsl:variable name="objectGroupName" ><xsl:value-of select="name" /></xsl:variable><xsl:for-each select="objects" ><xsl:if test="name = $name" ><xsl:value-of select="$objectGroupName" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
-
                 <xsl:value-of select="$name" />ImageArray = new Image[] {
                 <xsl:for-each select="animations" >
                     //<xsl:value-of select="$typeValue" /> - animations
@@ -316,11 +314,6 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                 </xsl:for-each>
                 };
-
-                <xsl:if test="string-length($objectGroupForObject) > 0" >
-                    //Add ImageArray in objectsGroups
-                    <xsl:value-of select="$objectGroupForObject" />ImageArrayList.add(<xsl:value-of select="$name" />ImageArray);
-                </xsl:if>
 
                 <xsl:if test="type != 'PanelSpriteSlider::PanelSpriteSlider'" >
                 <xsl:if test="content" >
