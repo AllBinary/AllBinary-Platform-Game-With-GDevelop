@@ -84,10 +84,11 @@ public class GDObject
         this.x = x;
         this.y = y;
         this.zOrder = zOrder;
-        this.updateSize(width, height);
         
         this.name = name;
         this.type = type;
+        
+        this.updateSize(width, height);
         
         //TWB - validate name only occurs 1 time here
 //            final org.allbinary.game.canvas.GD1SpecialAnimationGlobals globals1 = 
