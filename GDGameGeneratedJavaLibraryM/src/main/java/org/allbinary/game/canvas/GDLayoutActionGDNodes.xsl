@@ -322,6 +322,10 @@ Created By: Travis Berthelot
                         return Integer.toString(value);
                     }
                     
+                    public String GlobalVarToJSON(final long value) {
+                        return Long.toString(value);
+                    }
+                    
                     public int SceneInstancesCount(final int size) {
                         return size;
                     }

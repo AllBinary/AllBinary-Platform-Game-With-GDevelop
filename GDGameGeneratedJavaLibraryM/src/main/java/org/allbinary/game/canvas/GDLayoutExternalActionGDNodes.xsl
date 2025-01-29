@@ -227,6 +227,10 @@ Created By: Travis Berthelot
                         return Integer.toString(value);
                     }
 
+                    public String GlobalVarToJSON(final long value) {
+                        return Long.toString(value);
+                    }
+
                     public String ToString(final int value) {
                         //return Integer.toString(value);
                         return smallIntegerSingletonFactory.getString(value);
