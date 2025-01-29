@@ -30,7 +30,7 @@ public class GDIde
     public JSONObject platformSpecificAssets;
     public JSONObject loadingScreen;
 
-    public boolean useExternalSourceFiles;
+    //public boolean useExternalSourceFiles;
     
     public JSONArray extensionProperties;
     
@@ -41,7 +41,7 @@ public class GDIde
     public JSONArray objectsGroups;
     public JSONArray externalEvents;
     public JSONArray eventsFunctionsExtensions;
-    public JSONArray externalSourceFiles;
+    //public JSONArray externalSourceFiles;
     
     public void load(JSONObject gameAsConfiguration) throws JSONException {
         
@@ -66,7 +66,7 @@ public class GDIde
         
         this.loadingScreen = propertiesJSONObject.getJSONObject(gdProjectStrings.LOADING_SCREEN);
         
-        this.useExternalSourceFiles = propertiesJSONObject.getBoolean(gdProjectStrings.USE_EXTERNAL_SOURCE_FILES);
+        //this.useExternalSourceFiles = propertiesJSONObject.getBoolean(gdProjectStrings.USE_EXTERNAL_SOURCE_FILES);
 
         this.extensionProperties = propertiesJSONObject.getJSONArray(gdProjectStrings.EXTENSION_PROPERTIES);
 
@@ -85,7 +85,7 @@ public class GDIde
 
         this.eventsFunctionsExtensions = gameAsConfiguration.getJSONArray(gdProjectStrings.EVENTS_FUNCTIONS_EXTENSIONS);
         
-        this.externalSourceFiles = gameAsConfiguration.getJSONArray(gdProjectStrings.EXTERNAL_SOURCE_FILES);
+        //this.externalSourceFiles = gameAsConfiguration.getJSONArray(gdProjectStrings.EXTERNAL_SOURCE_FILES);
     }
     
 }

@@ -65,8 +65,6 @@ GDGame*CanvasRunnable.java
 GD*GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
 GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
 
-/platform/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/**/*.xml
-/platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/**/*.xml
 /platform/avian/GDGameAvianApplicationM/src/main/java/**
 /platform/avian/GDGameAvianApplicationM/src/**/*.svg
 /platform/avian/GDGameAvianApplicationM/src/**/*.png
@@ -201,6 +199,7 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/android/GDGameAndroidApplicationM/src/main/java/**/*.ogg
 /platform/android/GDGameAndroidApplicationM/src/main/res/drawable/
 /platform/android/GDGameAndroidApplicationM/src/main/res/raw/
+/platform/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/**/*.xml
 /platform/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.java
 /platform/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.xsl
 /platform/android/GDGameAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.xml
@@ -225,6 +224,7 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/android/GDGameThreedAndroidApplicationM/src/main/java/**/*.ogg
 /platform/android/GDGameThreedAndroidApplicationM/src/main/res/drawable/
 /platform/android/GDGameThreedAndroidApplicationM/src/main/res/raw/
+/platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/**/*.xml
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.java
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.xsl
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/src/main/java/**/*.xml
