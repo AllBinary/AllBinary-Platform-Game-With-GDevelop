@@ -192,6 +192,12 @@ Created By: Travis Berthelot
                 <xsl:for-each select="animations" >
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
+                    
+                    <xsl:variable name="imageWithExtension" select="directions/sprites/image" />
+                    <xsl:variable name="image2" select="substring-before($imageWithExtension, '.')" />
+                    <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:variable name="uppercaseImage" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template></xsl:variable>
+                    
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
                     <!--
                     <xsl:for-each select="directions/sprites/image" >
@@ -216,7 +222,20 @@ Created By: Travis Berthelot
 //                        throw new RuntimeException();
 //                    }
                     -->
-                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+                    final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = 
+                        <xsl:if test="position() = 1" >
+                        imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+                        </xsl:if>
+                        <xsl:if test="position() > 1" >
+                           <xsl:if test="not(contains($uppercaseImage, '_HOVER') or contains($uppercaseImage, '_CLICKED') or contains($uppercaseImage, '_HIGHLIGHTED') or contains($uppercaseImage, '_SELECTED'))" >
+<!--                            <xsl:if test="$layoutIndex != 1" >-->
+                        imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+                            </xsl:if>
+                            <xsl:if test="contains($uppercaseImage, '_HOVER') or contains($uppercaseImage, '_CLICKED') or contains($uppercaseImage, '_HIGHLIGHTED') or contains($uppercaseImage, '_SELECTED')" >
+<!--                            <xsl:if test="$layoutIndex = 1" >-->
+                        AndroidUtil.isMemoryRestrictive() ? <xsl:value-of select="$name" />Image0 : imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
+                            </xsl:if>
+                        </xsl:if>
 //                    if(<xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> == null) {
 //                        throw new RuntimeException();
 //                    }
