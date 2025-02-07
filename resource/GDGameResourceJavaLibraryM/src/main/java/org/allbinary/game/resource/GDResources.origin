@@ -28,7 +28,9 @@ public class GDResources
     {
         return instance;
     }
-    
+
+    public int currentLayoutRequiredTotal;
+
     public final String BLANK = "blank.png";
 
             //<xsl:for-each select="resources" >

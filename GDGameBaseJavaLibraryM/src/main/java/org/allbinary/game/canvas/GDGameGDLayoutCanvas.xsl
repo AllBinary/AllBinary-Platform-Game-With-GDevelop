@@ -71,6 +71,8 @@ import org.allbinary.game.layer.identification.GroupLayerManagerListener;
 import org.allbinary.game.layout.BaseGDNodeStats;
 import org.allbinary.game.layout.GDNodeStatsFactory;
 import org.allbinary.game.map.GDGeographicMap;
+import org.allbinary.game.resource.GDResources;
+import org.allbinary.game.resource.GDLazyResources;
 import org.allbinary.game.score.BasicHighScoresFactory;
 import org.allbinary.game.score.NoHighScoresFactory;
 import org.allbinary.game.state.GameState;
@@ -132,6 +134,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
     private final int portion = 4;
     
+    private final GDResources gdResources = GDResources.getInstance();
     private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
     private final StringMaker stringBuilder = new StringMaker();
 
@@ -161,6 +164,10 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         <xsl:if test="number($layoutIndex) = 1" >
         this.imageCache.initProgress();
+        this.gdResources.currentLayoutRequiredTotal = this.gdResources.resourceStringArray.length;
+        </xsl:if>
+        <xsl:if test="number($layoutIndex) != 1" >
+        this.gdResources.currentLayoutRequiredTotal = 0;
         </xsl:if>
         
         this.abeClientInformation = abeClientInformation;

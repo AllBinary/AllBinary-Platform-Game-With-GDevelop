@@ -32,7 +32,8 @@
 -->
         <inputPath5>${project.build.directory}/resources</inputPath5>
         <inputPath6>..\..\..\..\working_thirdparty\media\speech\resource\</inputPath6>
-        <outputPath2>..\GDGameAvianJOGLApplicationM\src\main\resources\</outputPath2>
+        <outputPath2>..\..\..\..\..\..\..\avian\gd_gl\org.allbinary\resources</outputPath2>
+<!--        <outputPath2>..\GDGameAvianJOGLApplicationM\src\main\resources\</outputPath2>-->
         
     </properties>
 

@@ -70,6 +70,7 @@
     -->
 
     <!-- android:resizable="true" -->
+    <!-- android:screenOrientation="landscape" -->
 
     <application android:label="@string/gd_app_name" android:icon="@drawable/gd_icon" >
         <activity android:label="@string/gd_app_name" android:icon="@drawable/gd_icon"

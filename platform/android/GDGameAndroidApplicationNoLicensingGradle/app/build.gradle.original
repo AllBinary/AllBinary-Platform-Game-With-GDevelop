@@ -18,6 +18,14 @@ android {
     }
 
     buildTypes {
+        debug {
+            //debuggable false //APKs seems to not run correctly without debug info
+            //buildConfigField "boolean", "DEBUG_MODE", "false"
+            //shrinkResources true
+            //minifyEnabled true
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro', 'G:/mnt/bc/mydev/work/j2me/games/All_Android.pro'
+        }
         release {
             //shrinkResources true
             minifyEnabled true
