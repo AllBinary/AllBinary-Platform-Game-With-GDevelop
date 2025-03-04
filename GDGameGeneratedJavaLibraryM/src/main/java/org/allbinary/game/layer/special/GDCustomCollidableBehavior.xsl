@@ -52,6 +52,7 @@ import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellType;
@@ -113,7 +114,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
         try {
             
             if(collisionMaskCustomGameLayer.allBinaryGameLayerManager == null) {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append("LayerManager was null: ").append(collisionMaskCustomGameLayer.allBinaryGameLayerManager).toString(), this, "move"));
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("LayerManager was null: ").append(StringUtil.getInstance().toString(collisionMaskCustomGameLayer.allBinaryGameLayerManager)).toString(), this, "move"));
                 return false;
             }
             
@@ -257,14 +258,17 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
     }
     
     public String toString(final CollidableCompositeLayer collisionLayer, final StringMaker stringBuilder) {
+    
+        final StringUtil stringUtil = StringUtil.getInstance();
+
         int size = this.ownerLayer.getGroupInterface().length;
         for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-            stringBuilder.append(this.ownerLayer.getGroupInterface()[index]);
+            stringBuilder.append(stringUtil.toString(this.ownerLayer.getGroupInterface()[index]));
         }
         stringBuilder.append(" != ");
         size = collisionLayer.getGroupInterface().length;
         for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-            stringBuilder.append(collisionLayer.getGroupInterface()[index]);
+            stringBuilder.append(stringUtil.toString(collisionLayer.getGroupInterface()[index]));
         }
         return stringBuilder.toString();
     }

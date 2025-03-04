@@ -16,6 +16,7 @@ import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.CommonSeps;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -77,16 +78,19 @@ public class GDToThreedAllBinaryEarlyResourceInitializationGenerator
     }
     
     public void appendSounds(final GDToAllBinarySoundsGenerator soundsGenerator, final StringMaker stringMaker) {
+        
+        final StringUtil stringUtil = StringUtil.getInstance();
+        
         final BasicArrayList playSoundResourceClassNameList = soundsGenerator.playSoundResourceClassNameList;
         final BasicArrayList playSoundAndroidResourceNameList = this.gdResources.playSoundAndroidResourceNameList;
         
         int size = playSoundResourceClassNameList.size();
         for(int index = 0; index < size; index++) {
             stringMaker.append(RESOURCE_0);
-            stringMaker.append(playSoundResourceClassNameList.get(index));
+            stringMaker.append(stringUtil.toString(playSoundResourceClassNameList.get(index)));
             stringMaker.append(SOUND_RESOURCE);
             stringMaker.append(RESOURCE_1);
-            stringMaker.append(playSoundAndroidResourceNameList.get(index));
+            stringMaker.append(stringUtil.toString(playSoundAndroidResourceNameList.get(index)));
             stringMaker.append(RESOURCE_2);
             stringMaker.append(this.commonSeps.NEW_LINE);
         }        

@@ -15,6 +15,7 @@ import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.CommonSeps;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -69,6 +70,9 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
     }
     
     public void appendMedia(final StringMaker stringMaker) {
+        
+        final StringUtil stringUtil = StringUtil.getInstance();
+        
         final BasicArrayList resourceList = this.gdResources.resourceNameList;
         final BasicArrayList androidResourceList = this.gdResources.androidResourceList;
         
@@ -98,7 +102,7 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
             stringMaker.append(resource);
             stringMaker.append(gdToolStrings._RESOURCE);
             stringMaker.append(gdToolStrings.RESOURCE_1);
-            stringMaker.append(androidResourceList.get(index));
+            stringMaker.append(stringUtil.toString(androidResourceList.get(index)));
             if(((String) androidResourceList.get(index)).indexOf(TOUCH) < 0 && 
                     ((String) androidResourceList.get(index)).indexOf(BLANK) < 0) {
                 stringMaker.append(_OBJ);

@@ -20,6 +20,7 @@ import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layout.GDNode;
 import org.allbinary.logic.communication.log.ForcedLogUtil;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.string.StringUtil;
 
 /**
  *
@@ -138,14 +139,15 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
     }
     
     public String toString(final CollidableCompositeLayer collisionLayer, final StringMaker stringBuilder) {
+        final StringUtil stringUtil = StringUtil.getInstance();
         int size = this.ownerLayer.getGroupInterface().length;
         for (int index = 0; index < size; index++) {
-            stringBuilder.append(this.ownerLayer.getGroupInterface()[index]);
+            stringBuilder.append(stringUtil.toString(this.ownerLayer.getGroupInterface()[index]));
         }
         stringBuilder.append(" != ");
         size = collisionLayer.getGroupInterface().length;
         for (int index = 0; index < size; index++) {
-            stringBuilder.append(collisionLayer.getGroupInterface()[index]);
+            stringBuilder.append(stringUtil.toString(collisionLayer.getGroupInterface()[index]));
         }
         return stringBuilder.toString();
     }

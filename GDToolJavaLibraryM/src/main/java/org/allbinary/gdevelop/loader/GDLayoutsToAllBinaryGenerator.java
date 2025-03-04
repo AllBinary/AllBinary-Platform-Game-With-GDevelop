@@ -22,6 +22,7 @@ import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.CommonLabels;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.util.BasicArrayList;
 
@@ -73,6 +74,7 @@ public class GDLayoutsToAllBinaryGenerator
 
             final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
             final StringMaker stringMaker = new StringMaker();
+            final StringUtil stringUtil = StringUtil.getInstance();
             
             final StreamUtil streamUtil = StreamUtil.getInstance();
             final SharedBytes sharedBytes = SharedBytes.getInstance();
@@ -110,7 +112,7 @@ public class GDLayoutsToAllBinaryGenerator
                         new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
 
                 stringMaker.delete(0, stringMaker.length());
-                final String fileName = stringMaker.append(START).append(this.nameList.get(index)).append(END).toString();
+                final String fileName = stringMaker.append(START).append(stringUtil.toString(this.nameList.get(index))).append(END).toString();
 
                 LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS));
 

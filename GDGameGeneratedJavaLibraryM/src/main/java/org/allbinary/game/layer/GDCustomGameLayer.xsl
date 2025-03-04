@@ -83,6 +83,7 @@ Created By: Travis Berthelot
         import org.allbinary.logic.string.CommonSeps;
         import org.allbinary.logic.string.CommonStrings;
         import org.allbinary.logic.string.StringMaker;
+        import org.allbinary.logic.string.StringUtil;
         import org.allbinary.logic.communication.log.LogFactory;
         import org.allbinary.logic.communication.log.LogUtil;
         import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
@@ -544,7 +545,7 @@ Created By: Travis Berthelot
             if(this.allBinaryGameLayerManager == null) {
                 if(total <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5) {
                     total++;
-                    LogUtil.put(LogFactory.getInstance(new StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
+                    LogUtil.put(LogFactory.getInstance(new StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(StringUtil.getInstance().toString(this.allBinaryGameLayerManager)).toString(), this, "move"));
                 }
                 return;
             }
@@ -613,7 +614,7 @@ Created By: Travis Berthelot
             if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
 
             if(this.allBinaryGameLayerManager == null) {
-                LogUtil.put(LogFactory.getInstance(new StringMaker().append("1LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move"));
+                LogUtil.put(LogFactory.getInstance(new StringMaker().append("1LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(StringUtil.getInstance().toString(this.allBinaryGameLayerManager)).toString(), this, "move"));
                 return;
             }
 

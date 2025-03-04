@@ -482,7 +482,7 @@
 
         <dependency>
             <groupId>org.platform</groupId>
-            <artifactId>Null3dForAndroidJavaLibrary</artifactId>
+            <artifactId>Min3dForNullJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->

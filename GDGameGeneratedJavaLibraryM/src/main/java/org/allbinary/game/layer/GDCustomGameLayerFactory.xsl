@@ -86,7 +86,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
     public GDGameLayer create(final int layoutIndex, final String name, final GDObject gdObject, final float scaleX, final float scaleY, final GDConditionWithGroupActions collidableBehavior) throws Exception {
         
         if(!name.startsWith(gdObject.name)) {
-            LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" 0GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").append(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(this.animationInterfaceFactoryInterfaceArray[0]).toString(), this, "create", new Exception()));
+            LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" 0GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").append(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(StringUtil.getInstance().toString(this.animationInterfaceFactoryInterfaceArray[0])).toString(), this, "create", new Exception()));
         }
 
         final int gdObjectWidth = gdObject.Width(null);
