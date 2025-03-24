@@ -101,7 +101,7 @@ Created By: Travis Berthelot
                 import org.allbinary.layer.event.LayerManagerEventHandler;
                 import org.allbinary.layer.event.LayerManagerEventListener;
                 import org.allbinary.logic.string.StringUtil;
-                import org.allbinary.logic.string.CommonStrings;
+                import org.allbinary.string.CommonStrings;
                 import org.allbinary.logic.string.StringMaker;
                 import org.allbinary.logic.util.event.EventListenerInterface;
                 import org.allbinary.logic.communication.log.LogFactory;

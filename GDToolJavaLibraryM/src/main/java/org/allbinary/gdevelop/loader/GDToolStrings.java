@@ -4,7 +4,7 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import org.allbinary.logic.string.CommonSeps;
+import org.allbinary.string.CommonSeps;
 
 /**
  *

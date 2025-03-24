@@ -15,7 +15,7 @@ import org.allbinary.logic.io.file.AbFile;
 import org.allbinary.logic.io.file.FileWrapperUtil;
 import org.allbinary.logic.io.file.directory.DirectoryOrIncludeFileExtensionBooleanFileVisitor;
 import org.allbinary.logic.io.file.filter.VisitorFileFilter;
-import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;

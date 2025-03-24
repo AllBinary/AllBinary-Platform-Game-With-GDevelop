@@ -68,7 +68,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
                 
-                import org.allbinary.logic.string.CommonStrings;
+                import org.allbinary.string.CommonStrings;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
 

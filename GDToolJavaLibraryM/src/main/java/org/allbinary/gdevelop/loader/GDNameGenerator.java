@@ -14,7 +14,7 @@
 package org.allbinary.gdevelop.loader;
 
 import org.allbinary.gdevelop.json.GDProject;
-import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.string.CommonStrings;
 
 /**
  *

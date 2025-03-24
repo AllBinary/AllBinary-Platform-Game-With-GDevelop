@@ -23,7 +23,7 @@ import org.allbinary.game.canvas.ABToGBUtil;
 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.media.ScaleProperties;
 

@@ -8,7 +8,7 @@ import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
 
 import org.allbinary.graphics.opengles.OpenGLThreadUtil;
-import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.communication.log.PreLogUtil;
 import org.allbinary.view.AllBinaryMidletMin3dSurfaceView;
 

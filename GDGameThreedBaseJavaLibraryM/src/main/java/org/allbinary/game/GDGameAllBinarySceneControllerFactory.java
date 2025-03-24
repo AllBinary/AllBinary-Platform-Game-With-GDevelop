@@ -2,7 +2,7 @@ package org.allbinary.game;
 
 import org.allbinary.graphics.threed.min3d.AllBinarySceneController;
 import org.allbinary.graphics.threed.min3d.GDGameSceneController;
-import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.communication.log.PreLogUtil;
 
 public class GDGameAllBinarySceneControllerFactory

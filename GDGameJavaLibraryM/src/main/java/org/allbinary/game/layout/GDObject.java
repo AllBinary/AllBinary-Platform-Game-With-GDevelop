@@ -19,14 +19,14 @@ import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layer.behavior.GDBehavior;
 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
 import org.allbinary.graphics.GPoint;
-import org.allbinary.graphics.SpacialStrings;
 import org.allbinary.graphics.color.BasicColor;
-import org.allbinary.logic.string.CommonSeps;
+import org.allbinary.string.CommonSeps;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.math.NoDecimalTrigTable;
 import org.allbinary.math.PositionStrings;
+import org.allbinary.string.CommonLabels;
 
 /**
  *
@@ -319,7 +319,7 @@ public class GDObject
         final CommonSeps commonSeps = CommonSeps.getInstance();
         final GDObjectStrings gdObjectStrings = GDObjectStrings.getInstance();
         final PositionStrings positionStrings = PositionStrings.getInstance();
-        final SpacialStrings spacialStrings = SpacialStrings.getInstance();
+        final CommonLabels commonLabels = CommonLabels.getInstance();
 
         final StringMaker stringBuilder = new StringMaker();
         return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON)
@@ -327,8 +327,8 @@ public class GDObject
                 .append(commonSeps.SPACE)
                 .append(positionStrings.X_LABEL).append(this.x)
                 .append(positionStrings.Y_LABEL).append(this.y)
-                .append(spacialStrings.WIDTH_LABEL).append(this.width)
-                .append(spacialStrings.HEIGHT_LABEL).append(this.height)
+                .append(commonLabels.WIDTH_LABEL).append(this.width)
+                .append(commonLabels.HEIGHT_LABEL).append(this.height)
                 .toString();
     }
 
@@ -336,7 +336,7 @@ public class GDObject
         final CommonSeps commonSeps = CommonSeps.getInstance();
         final GDObjectStrings gdObjectStrings = GDObjectStrings.getInstance();
         final PositionStrings positionStrings = PositionStrings.getInstance();
-        final SpacialStrings spacialStrings = SpacialStrings.getInstance();
+        final CommonLabels commonLabels = CommonLabels.getInstance();
 
         final StringMaker stringBuilder = new StringMaker();
         return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON)
@@ -347,17 +347,17 @@ public class GDObject
                 .append(commonSeps.SPACE)
                 .append(positionStrings.Z_LABEL).append(this.zOrder)
 //                .append(commonSeps.SPACE)
-//                .append(spacialStrings.WIDTH_LABEL).append(this.canvasWidth)
+//                .append(commonLabels.WIDTH_LABEL).append(this.canvasWidth)
 //                .append(commonSeps.SPACE)
-//                .append(spacialStrings.HEIGHT_LABEL).append(this.canvasHeight)
+//                .append(commonLabels.HEIGHT_LABEL).append(this.canvasHeight)
                 .append(commonSeps.SPACE)
-                .append(spacialStrings.WIDTH_LABEL).append(this.width)
+                .append(commonLabels.WIDTH_LABEL).append(this.width)
                 .append(commonSeps.SPACE)
-                .append(spacialStrings.HEIGHT_LABEL).append(this.height)
+                .append(commonLabels.HEIGHT_LABEL).append(this.height)
                 .append(commonSeps.SPACE)
-                .append(spacialStrings.WIDTH_LABEL).append(this.halfWidth)
+                .append(commonLabels.WIDTH_LABEL).append(this.halfWidth)
                 .append(commonSeps.SPACE)
-                .append(spacialStrings.HEIGHT_LABEL).append(this.halfHeight)
+                .append(commonLabels.HEIGHT_LABEL).append(this.halfHeight)
                 .append(commonSeps.SPACE)
                 .append(gdObjectStrings.ANIMATION).append(this.animation)
                 .append(commonSeps.SPACE)

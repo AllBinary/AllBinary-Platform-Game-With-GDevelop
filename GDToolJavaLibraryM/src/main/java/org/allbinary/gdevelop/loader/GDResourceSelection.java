@@ -14,7 +14,7 @@
 package org.allbinary.gdevelop.loader;
 
 import org.allbinary.logic.io.file.FileUtil;
-import org.allbinary.logic.string.CommonSeps;
+import org.allbinary.string.CommonSeps;
 import org.allbinary.logic.string.StringMaker;
 
 /**

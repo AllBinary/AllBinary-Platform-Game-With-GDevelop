@@ -14,6 +14,7 @@
 package org.allbinary.game.gd;
 
 import org.allbinary.media.audio.music.MusicManager;
+import org.allbinary.media.audio.music.MusicService;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -26,6 +27,6 @@ public class MusicManagerFactory {
      * @return the instance
      */
     public static MusicManager create(final BasicArrayList list) {
-        return new MusicManager(list);
+        return new MusicManager(MusicService.class, list);
     }
 }

@@ -5,7 +5,7 @@
  */
 package org.allbinary.gdevelop.extensions.builtin.metadata;
 
-import org.allbinary.logic.string.CommonSeps;
+import org.allbinary.string.CommonSeps;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.BasicArrayList;
 

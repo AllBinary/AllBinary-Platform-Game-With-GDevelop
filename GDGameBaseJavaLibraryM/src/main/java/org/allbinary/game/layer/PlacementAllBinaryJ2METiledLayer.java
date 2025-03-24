@@ -39,7 +39,7 @@ public class PlacementAllBinaryJ2METiledLayer extends AllBinaryJ2METiledLayer {
                        
         //this.paintDebug(graphics);
 
-        this.paintPlacementDebug(graphics);
+        //this.paintPlacementDebug(graphics);
          
     }
 

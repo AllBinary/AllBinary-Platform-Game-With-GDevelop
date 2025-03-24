@@ -1,7 +1,7 @@
 package playn.core;
 
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
-import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.game.configuration.GameConfigurationCentral;
@@ -20,7 +20,7 @@ import org.allbinary.media.audio.EarlySoundsFactory;
 import org.allbinary.media.audio.Sounds;
 import org.allbinary.game.init.DefaultGameInitializationListener;
 import org.allbinary.game.input.event.RawKeyEventHandler;
-import org.allbinary.logic.string.CommonLabels;
+import org.allbinary.string.CommonLabels;
 import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
 import org.allbinary.media.audio.GDGameSoundsFactory;
 import org.allbinary.playn.input.PlayNToAllBinaryKeyInputUtil;

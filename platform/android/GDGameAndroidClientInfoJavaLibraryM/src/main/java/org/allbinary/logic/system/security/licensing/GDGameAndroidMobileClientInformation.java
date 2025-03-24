@@ -2,7 +2,7 @@ package org.allbinary.logic.system.security.licensing;
 
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
 
-import org.allbinary.logic.string.CommonSeps;
+import org.allbinary.string.CommonSeps;
 
 public class GDGameAndroidMobileClientInformation 
 extends MobileClientInformation

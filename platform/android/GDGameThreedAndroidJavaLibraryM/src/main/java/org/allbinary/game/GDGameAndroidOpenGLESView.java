@@ -3,7 +3,7 @@ package org.allbinary.game;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.communication.log.PreLogUtil;
 import org.allbinary.view.AllBinaryMidletOpenGLSurfaceView;
 

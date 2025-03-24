@@ -14,7 +14,7 @@
 package org.allbinary.game.canvas;
 
 import org.allbinary.game.identification.GroupFactory;
-import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.string.CommonStrings;
 import org.allbinary.util.ArrayUtil;
 
 /**

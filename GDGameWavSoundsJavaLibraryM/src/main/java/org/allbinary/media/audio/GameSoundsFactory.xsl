@@ -57,8 +57,8 @@ Created By: Travis Berthelot
                 
                 package org.allbinary.media.audio;
 
-                import org.allbinary.logic.string.CommonStrings;
-                import org.allbinary.logic.string.CommonSeps;
+                import org.allbinary.string.CommonStrings;
+                import org.allbinary.string.CommonSeps;
                 import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;

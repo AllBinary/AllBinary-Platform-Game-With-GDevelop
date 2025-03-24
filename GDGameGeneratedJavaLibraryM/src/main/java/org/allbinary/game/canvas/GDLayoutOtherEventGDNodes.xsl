@@ -88,8 +88,8 @@ Created By: Travis Berthelot
                 import org.allbinary.game.rand.MyRandomFactory;
                 import org.allbinary.input.motion.gesture.MotionGestureInput;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
-                import org.allbinary.logic.string.CommonStrings;
-                import org.allbinary.logic.string.CommonSeps;
+                import org.allbinary.string.CommonStrings;
+                import org.allbinary.string.CommonSeps;
                 import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.logic.string.StringMaker;
                 import org.allbinary.logic.communication.log.LogFactory;

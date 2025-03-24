@@ -17,12 +17,12 @@ import org.allbinary.game.midlet.DemoGameMidlet;
 import org.allbinary.game.midlet.DemoGameMidletEvent;
 import org.allbinary.game.midlet.DemoGameMidletEventHandler;
 import org.allbinary.game.midlet.DemoGameMidletStateFactory;
-import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
-import org.allbinary.logic.string.CommonLabels;
+import org.allbinary.string.CommonLabels;
 
 //Similar to DemoRunnable
 public class StartRunnable implements Runnable

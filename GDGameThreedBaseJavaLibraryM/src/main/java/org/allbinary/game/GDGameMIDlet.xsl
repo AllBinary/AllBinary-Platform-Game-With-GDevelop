@@ -47,7 +47,7 @@ import org.allbinary.game.commands.GameCommandsFactory;
 import org.allbinary.game.layer.GDGameLayerManager;
 import org.allbinary.media.audio.GDGameSoundsFactory;
 
-import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.communication.log.PreLogUtil;

@@ -12,12 +12,12 @@ import android.view.View;
 
 import org.allbinary.AllBinaryAndroidGameInitializationUtil;
 import org.allbinary.AndroidResources;
-import org.allbinary.android.AndroidStrings;
+import org.allbinary.string.CommonStateStrings;
 import org.allbinary.android.activity.game.GameMidletActivity;
 import org.allbinary.business.advertisement.GameAdStateFactory;
 import org.allbinary.configuration.ApplicationConfiguration;
 
-import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.game.configuration.GameConfigurationCentral;
@@ -136,7 +136,7 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
     {
         try
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, AndroidStrings.getInstance().CREATE));
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, CommonStateStrings.getInstance().CREATE));
 
             //final String UNLOCKED = "unlock_gd_levels";
             //InApplicationPurchaseFactory.getInstance().init(this, bundle);
@@ -149,10 +149,10 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
                 this.setBackgrounds();
             }
 
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().END, this, AndroidStrings.getInstance().CREATE));
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().END, this, CommonStateStrings.getInstance().CREATE));
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, AndroidStrings.getInstance().CREATE, e));
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStateStrings.getInstance().CREATE, e));
         }
     }
 
@@ -160,16 +160,16 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
     {
         try
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, AndroidStrings.getInstance().START));
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, CommonStateStrings.getInstance().START));
 
             super.onStart();
 
             super.onStart(new GDGameMIDletFactory());
 
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().END, this, AndroidStrings.getInstance().START));
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().END, this, CommonStateStrings.getInstance().START));
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, AndroidStrings.getInstance().START, e));
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStateStrings.getInstance().START, e));
         }
     }
 

@@ -33,7 +33,7 @@ import org.allbinary.input.gyro.AllBinaryOrientationSensor;
 import org.allbinary.input.gyro.GyroSensorFactory;
 import org.allbinary.media.audio.GDGameSoundsFactory;
 import org.allbinary.util.BasicArrayList;
-import org.allbinary.logic.string.CommonStrings;
+import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -618,7 +618,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         gameSpecificPaintable.paint(graphics);
 
-    	//gamePerformanceInitUpdatePaintable.paint(graphics);
+    	////gamePerformanceInitUpdatePaintable.paint(graphics);
         //paintable.paint(graphics);
 
         touchPaintable.paint(graphics);
