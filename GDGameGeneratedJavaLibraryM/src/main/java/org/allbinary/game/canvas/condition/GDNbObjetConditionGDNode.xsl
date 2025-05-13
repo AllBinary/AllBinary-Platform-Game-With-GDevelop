@@ -58,9 +58,9 @@ Created By: Travis Berthelot
                         
                             final boolean result = this.processA();                        
                             
-                            super.processReleasedStatsE();
+                            //super.processReleasedStatsE();
                             
-                            return result;
+                            //return result;
                         }
 
                         public boolean processA() {
