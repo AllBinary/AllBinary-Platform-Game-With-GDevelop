@@ -136,7 +136,7 @@ Created By: Travis Berthelot
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
                         private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
-                        //private final PointFactory pointFactory = PointFactory.getInstance();
+                        private final PointFactory pointFactory = PointFactory.getInstance();
                         
                         //private final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
                         

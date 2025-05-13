@@ -234,7 +234,7 @@ Created By: Travis Berthelot
 
                 </xsl:if>
                 
-                <xsl:if test="$typeValue = 'SetNumberObjectVariable'" >
+                <xsl:if test="$typeValue = 'SetNumberObjectVariable' or $typeValue = 'ModVarObjet'" >
                     
                     <xsl:call-template name="setNumberObjectVariableActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -796,7 +796,7 @@ Created By: Travis Berthelot
 
                 </xsl:if>
                 
-                <xsl:if test="$typeValue = 'SetNumberVariable'" >
+                <xsl:if test="$typeValue = 'SetNumberVariable' or $typeValue = 'ModVarGlobal'" >
 
                     <xsl:call-template name="modVarGlobalActionProcess" >
                         <xsl:with-param name="layoutIndex" >
