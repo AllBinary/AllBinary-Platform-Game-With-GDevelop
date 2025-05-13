@@ -241,3 +241,6 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/.gradle
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/build
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/release
+
+/platform/html/GDGamePlayNWarM/war/gd/**/*.png
+/platform/html/GDGamePlayNWarM/war/gd/**/*.wav
