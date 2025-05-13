@@ -108,6 +108,8 @@ public class GDToAllBinarySoundsGenerator
         for(int index = 0; index < size; index++) {
             resource = (String) this.gdResources.playSoundAndroidResourceNameList.get(index);
             
+            LogUtil.put(LogFactory.getInstance(resource, this, commonStrings.PROCESS));
+            
             //final Player player = AllBinaryMediaManager.createPlayer(resource);
             final PCClipWavPlayer player = (PCClipWavPlayer) AllBinaryMediaManager.createPlayer(resource);
             final long duration = player.getDuration();

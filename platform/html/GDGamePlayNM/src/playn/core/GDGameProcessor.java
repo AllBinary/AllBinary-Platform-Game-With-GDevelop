@@ -8,8 +8,9 @@ import org.allbinary.canvas.Processor;
 import org.allbinary.game.resource.GDLazyResources;
 import org.allbinary.game.resource.GDResources;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
+import org.allbinary.image.ImageCache;
+import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.input.motion.button.TouchScreenFactory;
-import org.allbinary.media.image.ImageCompleteUtil;
 import org.allbinary.playn.processors.GameHtmlHasLoadedResourcesProcessor;
 import org.allbinary.playn.processors.GameHtmlLoadResourcesProcessor;
 import org.allbinary.playn.processors.MidletStartupProcessor;
@@ -50,12 +51,12 @@ public class GDGameProcessor
 //            };
 //
 
-            final ImageCompleteUtil imageCompleteUtil = ImageCompleteUtil.getInstance();
+            final ImageCache imageCache = ImageCacheFactory.getInstance();
 
             final GDResources gdResources = GDResources.getInstance();
             final GDLazyResources gdLazyResources = GDLazyResources.getInstance();
             String[] resourceStringArray = gdLazyResources.requiredResourcesBeforeLoadingArray;
-            if(imageCompleteUtil.isLazy()) {
+            if(imageCache.isLazy()) {
             } else {
                 resourceStringArray = gdResources.resourceStringArray;
             }

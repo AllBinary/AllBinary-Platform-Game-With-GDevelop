@@ -90,7 +90,7 @@ Created By: Travis Berthelot
         
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 3" >
-                                    <xsl:if test="contains($thirdParam, '&quot;') and $thirdParam != '&quot;&quot;'" >
+                                    <xsl:if test="not(contains($thirdParam, '+')) and contains($thirdParam, '&quot;') and $thirdParam != '&quot;&quot;'" >
                                         //GDStringLiteral
                                         private final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate($thirdParam, '?', '_'), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template> = <xsl:value-of select="$thirdParam" />;
                                     </xsl:if>

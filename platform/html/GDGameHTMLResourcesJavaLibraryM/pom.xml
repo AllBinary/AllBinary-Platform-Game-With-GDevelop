@@ -21,12 +21,17 @@
 
     <properties>
 
+        <!--
+        Currently individual games copy the resources.
+        -->
+        <!--
         <outputPath>../GDGamePlayNWarM/war/gd/</outputPath>
         <inputPath>..\..\..\Resources\images\release\</inputPath>
         <inputPath2>..\..\..\Resources\images\wait\</inputPath2>
         <inputPath5>..\..\..\Resources\images\gd\</inputPath5>
         <inputPath3>..\..\..\Resources\sounds\release\</inputPath3>
-        
+        -->
+
     </properties>
 
     <dependencies>         
@@ -58,6 +63,7 @@
         <plugins>
 
             <!-- Delete output directory -->
+<!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
@@ -125,7 +131,8 @@
                     </execution>
                 </executions>
             </plugin>
-                        
+-->
+                  
         </plugins>
 
     </build>

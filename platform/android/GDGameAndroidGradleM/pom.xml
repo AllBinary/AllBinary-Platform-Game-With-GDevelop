@@ -85,6 +85,21 @@
                 
         <dependency>
             <groupId>org.allbinary</groupId>
+            <artifactId>AppNoneOpenGLESJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>                
+        <dependency>
+            <groupId>min3d</groupId>
+            <artifactId>Min3dForNullPlatformJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>                
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
             <artifactId>AdvertisementClientNoneJavaLibrary</artifactId>
             <!--
             <artifactId>AndroidAdvertisementJavaLibrary</artifactId>            
@@ -186,7 +201,7 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDYourFormJavaLibrary</artifactId>
+            <artifactId>GDFormJavaLibrary</artifactId>
             <!--
             <artifactId>GDYourFormJavaLibrary</artifactId>
             <artifactId>GDFormJavaLibrary</artifactId>

@@ -28,7 +28,12 @@
 -->
         <inputPath5>${project.build.directory}/resources</inputPath5>
         <inputPath6>..\..\..\..\working_thirdparty\media\speech\resource\</inputPath6>
-        <outputPath2>..\GDGameAvianApplicationM\src\main\resources\</outputPath2>
+        <outputPath2>..\..\..\..\..\..\..\avian\gd\org.allbinary\resources</outputPath2>
+        <outputPath4>..\..\..\..\..\..\..\..\..\..\avian\gd\org.allbinary\src\</outputPath4>
+<!--        <outputPath2>..\GDGameAvianApplicationM\src\main\resources\</outputPath2>-->
+        
+        <inputAvianPath>..\..\..\..\..\..\..\..\..\..\avian\gd</inputAvianPath>
+        <inputFile>game.properties</inputFile>
         
     </properties>
 
@@ -319,7 +324,7 @@
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>XmlRpcJavaLibrary</artifactId>
+            <artifactId>YourXmlRpcJavaLibrary</artifactId>
 <!--
             <artifactId>XmlRpcJavaLibrary</artifactId>
             <artifactId>YourXmlRpcJavaLibrary</artifactId>
@@ -590,10 +595,38 @@
                         <fileset>
                             <directory>${outputPath2}</directory>
                         </fileset>
+                        <fileset>
+                            <directory>${outputPath4}</directory>
+                        </fileset>
                     </filesets>
                 </configuration>
             </plugin>
             
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-game.properties</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath4}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputAvianPath}</directory>
+                                    <includes>
+                                        <include>${inputFile}</include>
+                                    </includes>
+                                </resource>
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                </executions>
+            </plugin>
+                        
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.4.3</version>
@@ -667,6 +700,33 @@
                         </goals>
                         <configuration>
                             <outputDirectory>${outputPath}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath2}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-avian-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath4}</outputDirectory>
                             <resources>          
                                 <resource>
                                     <directory>${inputPath}</directory>
