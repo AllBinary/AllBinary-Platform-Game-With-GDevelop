@@ -87,7 +87,7 @@ Created By: Travis Berthelot
 
                                 <xsl:if test="contains($hasOtherConditions, 'found')" >
                                 <xsl:for-each select="../actions" >
-                                    //TWBTWB
+                                    //TWBTWB - //nbObjetConditionGDNode - //Condition - //NbObjet - GDNode
                                 </xsl:for-each>
                                 </xsl:if>
                                                                 

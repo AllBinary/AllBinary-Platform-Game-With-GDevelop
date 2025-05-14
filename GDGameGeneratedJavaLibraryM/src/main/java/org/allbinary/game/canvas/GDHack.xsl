@@ -872,7 +872,7 @@ Created By: Travis Berthelot
             //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
             //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Action - //<xsl:value-of select="$typeValue" /> - //lastCondition2 - call
             <xsl:if test="type/value = 'Scene'" >
-            //TWBTWB
+            //TWBTWB - hack
             </xsl:if>
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
             </xsl:for-each>
@@ -892,7 +892,7 @@ Created By: Travis Berthelot
                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
                 </xsl:if>
                 <xsl:if test="not(contains($caller, 'conditionLayout') or contains($caller, 'otherEventLayout'))" >
-                //TWBTWB
+                //TWBTWB - hack - remarked
                 //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
                 </xsl:if>
                 </xsl:if>

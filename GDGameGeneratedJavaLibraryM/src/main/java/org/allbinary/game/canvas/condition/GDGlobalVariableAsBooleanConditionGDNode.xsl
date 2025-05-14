@@ -70,7 +70,7 @@ Created By: Travis Berthelot
 
                                 <xsl:if test="contains($hasOtherConditions, 'found')" >
                                 <xsl:for-each select="../actions" >
-                                    //TWBTWB
+                                    //TWBTWB - //globalVariableAsBooleanConditionGDNode - //Condition - //VarGlobal - GDNode
                                 </xsl:for-each>
                                 </xsl:if>
 
