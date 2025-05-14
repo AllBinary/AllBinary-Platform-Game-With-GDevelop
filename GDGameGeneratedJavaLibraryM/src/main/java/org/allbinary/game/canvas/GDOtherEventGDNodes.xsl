@@ -60,11 +60,13 @@ import javax.microedition.lcdui.Image;
 import org.allbinary.animation.special.SpecialAnimation;-->
 import org.allbinary.game.canvas.GDGameGlobals;
 
+import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />GDObjectsFactory;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals;
 
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layout.GDNode;
+import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.layout.GDObjectStrings;
 import org.allbinary.game.rand.MyRandomFactory;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
@@ -81,9 +83,7 @@ import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.ArrayUtil;
 
 <!--import org.allbinary.game.configuration.persistance.JSONPersistance;
-import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layer.GDGameLayerFactory;
-import org.allbinary.game.layout.GDNode;
 import org.allbinary.game.layer.special.TempGameLayerUtil;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.game.layout.GDObject;
@@ -91,18 +91,7 @@ import org.allbinary.game.layout.GDObjectStrings;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
-import org.allbinary.game.rand.MyRandomFactory;
-import org.allbinary.input.motion.gesture.MotionGestureInput;
-import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
-import org.allbinary.string.CommonStrings;
-import org.allbinary.string.CommonSeps;
-import org.allbinary.logic.string.StringUtil;
-import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.communication.log.LogFactory;
-import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.util.BasicArrayList;
-import org.allbinary.util.ArrayUtil;
-import org.allbinary.logic.math.SmallIntegerSingletonFactory;-->
+-->
 
 <xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />
 <xsl:variable name="lastDigit2" ><xsl:if test="4 >= $selectedNodeIdSet" >0</xsl:if><xsl:if test="$selectedNodeIdSet > 4" >1</xsl:if></xsl:variable>
@@ -117,16 +106,19 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
     }
 
     private final CommonStrings commonStrings = CommonStrings.getInstance();
-<!--
-    private final StringUtil stringUtil = StringUtil.getInstance();
     private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
     private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
+    
+<!--
+    private final StringUtil stringUtil = StringUtil.getInstance();
     private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
 
     private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
 -->
+    
     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
     private final GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals.getInstance();
+    private final GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationImageResources imageResources = this.createSpecialAnimationImageResources();
     
     public GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes() {
 
@@ -239,6 +231,14 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
             </xsl:if>
 
         </xsl:for-each>
+
+    public int SceneWindowWidth() {
+        return gameTickDisplayInfoSingleton.getLastWidth();
+    }
+
+    public int SceneWindowHeight() {
+        return gameTickDisplayInfoSingleton.getLastHeight();
+    }
 
     public int Variable(final int value) {
         return value;

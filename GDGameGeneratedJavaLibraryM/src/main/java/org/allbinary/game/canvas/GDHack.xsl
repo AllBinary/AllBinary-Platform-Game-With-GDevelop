@@ -1022,7 +1022,7 @@ Created By: Travis Berthelot
                             //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Event - //<xsl:value-of select="type" /> - call
                             //Was not called before 2a
                             //index=<xsl:value-of select="$index" />
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(index);
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
                             </xsl:if>
                             </xsl:if>
 

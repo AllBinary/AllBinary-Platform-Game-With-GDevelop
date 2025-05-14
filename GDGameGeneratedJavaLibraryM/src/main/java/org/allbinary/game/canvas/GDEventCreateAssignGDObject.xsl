@@ -92,7 +92,7 @@ Created By: Travis Berthelot
                                             
             if(<xsl:value-of select="$name2" /> == null) {
                 //caller=<xsl:value-of select="$caller" />
-                return <xsl:if test="contains($caller, 'createActionProcess') or (contains($caller, 'hackProcessing2') or contains($caller, 'externalEventsCreateAssignGDObject - //sceneVariableAsBooleanConditionGDNode') and not(contains($caller, 'conditionLayout - //eventsCreateAssignGDObject - //hackProcessing2')))" > true</xsl:if>;
+                return <xsl:if test="contains($caller, 'createActionProcess') or (contains($caller, 'hackProcessing2') or contains($caller, 'externalEventsCreateAssignGDObject - //sceneVariableAsBooleanConditionGDNode'))" ><xsl:if test="not(contains($caller, 'conditionLayout - //eventsCreateAssignGDObject - //hackProcessing2'))" >true</xsl:if></xsl:if>;
             }
         </xsl:if>                                    
 

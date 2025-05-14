@@ -363,6 +363,10 @@ Created By: Travis Berthelot
                     //Below - zOrder
                     <xsl:value-of select="zOrder" />,
                             </xsl:if>
+                            <xsl:if test="contains(layer, 'touch')" >
+                    //touch - zOrder
+                    <xsl:value-of select="zOrder" />,
+                            </xsl:if>
                             <xsl:if test="not(layer) or string-length(layer) = 0 or contains(layer, 'Base Layer')" >
                     //Base Layer - zOrder + 200
                     <xsl:value-of select="zOrder + 200" />,
