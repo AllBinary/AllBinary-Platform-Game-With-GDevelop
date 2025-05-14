@@ -62,6 +62,7 @@ import org.allbinary.game.canvas.GDGameGlobals;
 
 import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />GDObjectsFactory;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals;
+import org.allbinary.game.canvas.GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationImageResources;
 
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layer.CollidableCompositeLayer;
@@ -117,8 +118,10 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
 -->
     
     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+    
+    private final GD<xsl:value-of select="$selectedLayoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$selectedLayoutIndex" />GDObjectsFactory.getInstance();
     private final GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationGlobals.getInstance();
-    private final GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationImageResources imageResources = this.createSpecialAnimationImageResources();
+    private final GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationImageResources imageResources = GD<xsl:value-of select="$selectedLayoutIndex" />SpecialAnimationImageResources.getInstance();
     
     public GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes() {
 
@@ -262,6 +265,18 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
 
     public int VariableChildCount(final int[] array) {
         return array.length;
+    }
+
+    public String GlobalVariable(final String value) {
+        return value;
+    }
+
+    public long GlobalVariable(final long value) {
+        return value;
+    }
+
+    public int GlobalVariable(final int value) {
+        return value;
     }
 
     public int Random(final int range) {
