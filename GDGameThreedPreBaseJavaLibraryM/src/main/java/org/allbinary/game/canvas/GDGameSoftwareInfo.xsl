@@ -17,7 +17,7 @@ public class GDGameSoftwareInfo
     public static AbeClientInformationInterface TEMP_HACK_CLIENT_INFORMATION;
 
     <!--    <xsl:value-of select="properties/shortName" />-->
-    <xsl:variable name="shortName" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" ><xsl:value-of select="properties/packageName" /></xsl:with-param><xsl:with-param name="char" select="'.'" /></xsl:call-template></xsl:variable>
+    <xsl:variable name="shortName" ><xsl:value-of select="properties/shortName" /><xsl:if test="not(properties/shortName)" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" ><xsl:value-of select="properties/packageName" /></xsl:with-param><xsl:with-param name="char" select="'.'" /></xsl:call-template></xsl:if></xsl:variable>
     private static final SoftwareInformation SINGLETON = 
         new SoftwareInformation("<xsl:value-of select="properties/packageName" />.GDGameThreed", "1.2.0", <xsl:if test="string-length($shortName) > 8" >Short Name is to long</xsl:if><xsl:if test="string-length($shortName) = 0" >Short Name is to short</xsl:if> "<xsl:value-of select="$shortName" />");
 
