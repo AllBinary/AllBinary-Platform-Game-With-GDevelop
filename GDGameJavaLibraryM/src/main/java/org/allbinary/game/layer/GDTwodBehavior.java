@@ -15,7 +15,6 @@ package org.allbinary.game.layer;
 
 import org.allbinary.animation.RotationAnimation;
 import org.allbinary.game.layout.GDObject;
-import org.allbinary.logic.string.StringMaker;
 
 /**
  *
@@ -42,7 +41,9 @@ public class GDTwodBehavior {
 
     public void updateRotation(final GDGameLayer gameLayer, final long timeDelta) {
         final GDObject gdObject = gameLayer.gdObject;
-        final StringMaker stringBuilder = new StringMaker();
+        //final StringMaker stringBuilder = new StringMaker();
+        //LogUtil.put(LogFactory.getInstance(stringBuilder.append("rotation: ").append(gdObject.rotation).toString(), this, "updateRotation"));
+        //stringBuilder.delete(0, stringBuilder.length());
         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("timeDelta: ").append(timeDelta).toString(), this, "updateRotation"));
         //stringBuilder.delete(0, stringBuilder.length());
         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("prior rotationRemainder: ").append(rotationRemainder).toString(), this, "updateRotation"));
@@ -54,7 +55,7 @@ public class GDTwodBehavior {
         //LogUtil.put(LogFactory.getInstance(stringBuilder.append("rotationRemainder: ").append(rotationRemainder).toString(), this, "updateRotation"));
         final short angleAdjustment = (short) (rotationRemainder);
         if(angleAdjustment != 0) {
-            stringBuilder.delete(0, stringBuilder.length());
+            //stringBuilder.delete(0, stringBuilder.length());
             //LogUtil.put(LogFactory.getInstance(stringBuilder.append("angleAdjustment: ").append(angleAdjustment).toString(), this, "updateRotation"));
             
             int adjustedAngle2 = gdObject.angle + angleAdjustment;
@@ -65,9 +66,11 @@ public class GDTwodBehavior {
                 adjustedAngle2 += 360;
             }
             
+            //stringBuilder.delete(0, stringBuilder.length());
+            //LogUtil.put(LogFactory.getInstance(stringBuilder.append("adjustedAngle2: ").append(adjustedAngle2).toString(), this, "updateRotation"));
             gdObject.angle = (short) adjustedAngle2;
             //gdObject.angle += angleAdjustment;
-            this.animationBehavior.setRotation(gameLayer, angleAdjustment);
+            this.getAnimationBehavior().setRotation(gameLayer, angleAdjustment);
             rotationRemainder -= angleAdjustment;
             //LogUtil.put(LogFactory.getInstance("reset", this, "updateRotation"));
         } else {

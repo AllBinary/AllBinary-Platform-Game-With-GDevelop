@@ -1090,7 +1090,7 @@ Created By: Travis Berthelot
                 </xsl:if>                                                                                             
 
                 //Was VarObjet
-                <xsl:if test="$typeValue = 'NumberObjectVariable'" >
+                <xsl:if test="$typeValue = 'NumberObjectVariable' or $typeValue = 'VarObjet'" >
 
                     //NumberObjectVariable - some are processed from eventsProcess
                     <xsl:call-template name="numberObjectVariableConditionGDNode" >
