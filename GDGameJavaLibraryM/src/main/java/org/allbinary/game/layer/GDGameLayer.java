@@ -204,7 +204,11 @@ public class GDGameLayer
         if(this.initIndexedAnimationInterfaceArray.length > 0 && this.initIndexedAnimationInterfaceArray[0].isThreed()) { 
             this.dimensionalBehavior = new GDThreedBehavior(animationBehavior, (RotationAnimation[]) this.initIndexedAnimationInterfaceArray);
         } else {
-            this.dimensionalBehavior = new GDTwodBehavior(animationBehavior);
+//            if(this.gdObject.name.indexOf("player") >=0) {
+//                this.dimensionalBehavior = new GDTwodBehavior2(animationBehavior);
+//            } else {
+                this.dimensionalBehavior = new GDTwodBehavior(animationBehavior);
+//            }
         }
         
         this.combatBaseBehavior = new CombatBaseBehavior(
