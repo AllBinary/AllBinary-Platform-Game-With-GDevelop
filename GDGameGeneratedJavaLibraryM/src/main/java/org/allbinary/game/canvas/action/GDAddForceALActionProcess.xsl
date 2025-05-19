@@ -19,7 +19,8 @@ Created By: Travis Berthelot
     <xsl:template name="addForceALActionProcess" >
 
                                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                    //AddForceAL - action
+                                    <xsl:variable name="forceType" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    //AddForceAL - action forceType=<xsl:value-of select="$forceType" /> (0=instant,1=permanent)
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();
