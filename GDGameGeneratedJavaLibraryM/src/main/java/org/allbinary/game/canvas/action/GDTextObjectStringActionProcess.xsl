@@ -129,6 +129,16 @@ Created By: Travis Berthelot
                             
                             return true;
                         }
+                        
+                        @Override
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                            super.processGDStats(gameLayer);
+                        
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >globals.<xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>, this, commonStrings.PROCESS));
+                                
+                            return this.process();
+                        }
+                        
                         //TextObject::String - action - END
 
     </xsl:template>

@@ -244,3 +244,5 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 
 /platform/html/GDGamePlayNWarM/war/gd/**/*.png
 /platform/html/GDGamePlayNWarM/war/gd/**/*.wav
+
+GDGameGeneratedJavaLibraryKtM/src/main/java/**/*.xml
