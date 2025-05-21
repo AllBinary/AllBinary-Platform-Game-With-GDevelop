@@ -101,7 +101,7 @@ Created By: Travis Berthelot
                         gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="$nodeList" />] = new GDNode(<xsl:value-of select="$nodeList" />) {
 
                             <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
-                            //private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
+                            private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
                                   
                             //CollisionNP - condition              
                             @Override
@@ -168,7 +168,12 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                         if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameLayer2.getCollidableInferface().isCollision(gameLayer)) {
-                    
+
+                            if(gameLayer2.isDestroyed()) {
+                               LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " Collision not allowed is already destroyed", this, commonStrings.PROCESS));
+                               return result;
+                            }
+                        
                             //CollisionNP - <xsl:value-of select="$text" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
                             gameGlobals.tempGameLayerArray[0] = gameLayer;
                             //if(gameGlobals.tempGameLayerArray[0] != null) LogUtil.put(LogFactory.getInstance(gameGlobals.tempGameLayerArray[0].toString(), this, commonStrings.PROCESS));
@@ -281,7 +286,12 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                         if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameLayer2.getCollidableInferface().isCollision(gameLayer)) {
-                    
+
+                            if(gameLayer2.isDestroyed()) {
+                               LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " GD Collision not allowed is already destroyed", this, commonStrings.PROCESS));
+                               return result;
+                            }
+                                        
                             //CollisionNP - <xsl:value-of select="$text" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
                             gameGlobals.tempGameLayerArray[0] = gameLayer;
                             //if(gameGlobals.tempGameLayerArray[0] != null) LogUtil.put(LogFactory.getInstance(gameGlobals.tempGameLayerArray[0].toString(), this, commonStrings.PROCESS));
