@@ -247,3 +247,7 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 
 GDGameGeneratedJavaLibraryKtM/src/main/java/**/*.xml
 GDGameGeneratedJavaLibraryKtM/src/main/java/**/*.txt
+
+/platform/html/GDGameHTMLPlaynJavaLibraryM/src/main/java/**/*.png
+/platform/html/GDGameHTMLPlaynJavaLibraryM/src/main/java/**/*.ico
+/platform/html/GDGameHTMLPlaynJavaLibraryM/src/main/java/**/*.html
