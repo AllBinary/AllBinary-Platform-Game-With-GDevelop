@@ -346,10 +346,15 @@ Created By: Travis Berthelot
                         }
 
                     }
-                                
+
+                    <xsl:if test="string-length($hasObjectGroup2) > 0" >
+                    }
+                    </xsl:if>
+
                                 super.processStatsE();
                         
                                 return result;
+
                             }
                             
                         };
