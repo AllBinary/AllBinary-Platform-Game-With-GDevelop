@@ -117,7 +117,7 @@ Created By: Travis Berthelot
                     //paramOneNameObjectsGroups=<xsl:value-of select="$paramOneNameObjectsGroups" />
                     //paramTwoName=<xsl:value-of select="$paramTwoName" />
                     //paramTwoNameObjectsGroups=<xsl:value-of select="$paramTwoNameObjectsGroups" />
-                    //SetNumberObjectVariable - was //ModVarObjet
+                    //SetNumberObjectVariable - action - was //ModVarObjet
                     //SetNumberObjectVariable - //<xsl:value-of select="$secondParam" />
                     @Override
                     public boolean process() throws Exception {
