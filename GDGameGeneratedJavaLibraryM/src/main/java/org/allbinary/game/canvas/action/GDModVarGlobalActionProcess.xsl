@@ -18,6 +18,7 @@ Created By: Travis Berthelot
 
     <xsl:template name="modVarGlobalActionProcess" >
         <xsl:param name="layoutIndex" />
+        <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
         
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>

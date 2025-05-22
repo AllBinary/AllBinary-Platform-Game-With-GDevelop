@@ -20,6 +20,8 @@ Created By: Travis Berthelot
     
     <xsl:template name="rotateTowardPositionActionProcess" >
         <xsl:param name="layoutIndex" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="createdObjectsAsString" />
         
         private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
         

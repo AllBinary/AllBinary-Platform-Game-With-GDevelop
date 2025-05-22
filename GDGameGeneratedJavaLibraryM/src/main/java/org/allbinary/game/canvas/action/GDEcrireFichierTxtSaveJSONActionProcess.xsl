@@ -18,6 +18,8 @@ Created By: Travis Berthelot
 
     <xsl:template name="ecrireFichierTxtSaveJSONActionProcess" >
         <xsl:param name="layoutIndex" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="createdObjectsAsString" />
 
                             <xsl:variable name="param1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                             <xsl:variable name="param2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>

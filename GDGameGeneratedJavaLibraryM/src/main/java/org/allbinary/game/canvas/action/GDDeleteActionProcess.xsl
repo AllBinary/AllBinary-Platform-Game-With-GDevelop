@@ -23,11 +23,13 @@ Created By: Travis Berthelot
 
                                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
+<!--
                         <xsl:variable name="paramOneNameObjectsGroups" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="paramIndexedArray2" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$objectsGroupsAsString" /></xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
                         <xsl:variable name="paramTwoNameObjectsGroups" ></xsl:variable>
                         //objectsGroupsAsString=<xsl:value-of select="$objectsGroupsAsString" />
                         //paramOneNameObjectsGroups=<xsl:value-of select="$paramOneNameObjectsGroups" />
                         //paramTwoNameObjectsGroups=<xsl:value-of select="$paramTwoNameObjectsGroups" />
+-->
 
         <xsl:variable name="hasObjectGroup2" >
             <xsl:for-each select="/game">

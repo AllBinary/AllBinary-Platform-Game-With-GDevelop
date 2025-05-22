@@ -17,6 +17,8 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="setAngleActionProcess" >
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
         
         <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>

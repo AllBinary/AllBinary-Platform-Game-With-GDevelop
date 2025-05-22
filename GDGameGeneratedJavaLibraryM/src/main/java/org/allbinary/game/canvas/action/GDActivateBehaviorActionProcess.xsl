@@ -17,6 +17,9 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="activateBehaviorActionProcess" >
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="createdObjectsAsString" />
         
         <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
         

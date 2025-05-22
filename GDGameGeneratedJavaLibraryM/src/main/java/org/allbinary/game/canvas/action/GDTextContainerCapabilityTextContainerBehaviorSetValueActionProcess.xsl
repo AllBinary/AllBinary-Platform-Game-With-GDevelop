@@ -18,6 +18,8 @@ Created By: Travis Berthelot
 
     <xsl:template name="textContainerCapabilityTextContainerBehaviorSetValueActionProcess" >
         <xsl:param name="layoutIndex" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="createdObjectsAsString" />
 
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 4" >

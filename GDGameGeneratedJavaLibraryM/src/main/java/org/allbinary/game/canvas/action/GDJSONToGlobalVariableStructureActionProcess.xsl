@@ -18,6 +18,8 @@ Created By: Travis Berthelot
 
     <xsl:template name="jsonToGlobalVariableStructureActionProcess" >
         <xsl:param name="layoutIndex" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="createdObjectsAsString" />
         
                         //JSONToGlobalVariableStructure - action - START
                         @Override

@@ -18,6 +18,8 @@ Created By: Travis Berthelot
 
     <xsl:template name="panelSpriteSliderPanelSpriteSliderSetValueActionProcess" >
         <xsl:param name="layoutIndex" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="createdObjectsAsString" />
         
                         //PanelSpriteSlider::PanelSpriteSlider::SetValue - action - START
                         @Override

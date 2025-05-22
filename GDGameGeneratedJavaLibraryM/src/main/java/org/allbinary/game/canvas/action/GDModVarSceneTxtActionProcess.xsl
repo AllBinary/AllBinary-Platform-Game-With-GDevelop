@@ -18,7 +18,9 @@ Created By: Travis Berthelot
 
     <xsl:template name="modVarSceneTxtActionProcess" >
         <xsl:param name="layoutIndex" />
+        <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
+        
                     <xsl:variable name="secondParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //ModVarSceneTxt - //<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each>
                     @Override

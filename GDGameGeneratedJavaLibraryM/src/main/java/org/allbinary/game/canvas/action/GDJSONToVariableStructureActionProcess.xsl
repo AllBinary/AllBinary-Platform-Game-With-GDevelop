@@ -17,7 +17,10 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="jsonToVariableStructureActionProcess" >
-        
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="createdObjectsAsString" />
+
                     //JSONToVariableStructure
                     @Override
                     public boolean process() throws Exception {

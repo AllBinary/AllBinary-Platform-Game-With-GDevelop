@@ -202,7 +202,15 @@ Created By: Travis Berthelot
                     <xsl:if test="$typeValue = 'TextObject::String'" >
                         
                         <xsl:call-template name="textObjectStringActionProcess" >
-                            <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="objectsGroupsAsString" >
+                                <xsl:value-of select="$objectsGroupsAsString" />
+                            </xsl:with-param>
+                            <xsl:with-param name="createdObjectsAsString" >
+                                <xsl:value-of select="$createdObjectsAsString" />
+                            </xsl:with-param>
                         </xsl:call-template>
 
                     </xsl:if>                    
@@ -210,7 +218,15 @@ Created By: Travis Berthelot
                     <xsl:if test="$typeValue = 'TextContainerCapability::TextContainerBehavior::SetValue'" >
                         
                         <xsl:call-template name="textContainerCapabilityTextContainerBehaviorSetValueActionProcess" >
-                            <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="objectsGroupsAsString" >
+                                <xsl:value-of select="$objectsGroupsAsString" />
+                            </xsl:with-param>
+                            <xsl:with-param name="createdObjectsAsString" >
+                                <xsl:value-of select="$createdObjectsAsString" />
+                            </xsl:with-param>
                         </xsl:call-template>
 
                     </xsl:if>                    
@@ -218,19 +234,47 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'TextObject::ChangeColor'" >
 
                     <xsl:call-template name="textObjectChangeColorActionProcess" >
-                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
                     </xsl:call-template>                        
                     
                 </xsl:if>
                 
                 <xsl:if test="$typeValue = 'SceneBackground'" >
 
-                    <xsl:call-template name="sceneBackgroundActionProcess" />
+                    <xsl:call-template name="sceneBackgroundActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ChangeAnimation'" >
                     
-                    <xsl:call-template name="changeAnimationActionProcess" />
+                    <xsl:call-template name="changeAnimationActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
                 
@@ -251,12 +295,32 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ModVarSceneTxt'" >
 
-                    <xsl:call-template name="modVarSceneTxtActionProcess" />
+                    <xsl:call-template name="modVarSceneTxtActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ModVarObjetTxt'" >
 
-                    <xsl:call-template name="modVarObjetTxtActionProcess" />
+                    <xsl:call-template name="modVarObjetTxtActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 
@@ -389,7 +453,17 @@ Created By: Travis Berthelot
         
                 <xsl:if test="$typeValue = 'PrimitiveDrawing::FillColor'" >
                     
-                    <xsl:call-template name="primitiveDrawingFillColorActionProcess" />
+                    <xsl:call-template name="primitiveDrawingFillColorActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
                     
                 </xsl:if>
         
@@ -459,6 +533,12 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
                     </xsl:call-template>
                     
                 </xsl:if>
@@ -472,11 +552,19 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'SetBooleanObjectVariable'" >
+                    
                     <xsl:call-template name="setObjectVariableAsBooleanActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
                     </xsl:call-template>
+
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'ToggleObjectVariableAsBoolean'" >
@@ -497,6 +585,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
@@ -514,12 +605,32 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'HideLayer'" >
 
-                    <xsl:call-template name="hideLayerActionProcess" />
+                    <xsl:call-template name="hideLayerActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
                 <xsl:if test="$typeValue = 'Cache'" >
 
-                    <xsl:call-template name="cacheAsHideActionProcess" />
+                    <xsl:call-template name="cacheAsHideActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
                 <xsl:if test="$typeValue = 'TextEntryObject::String'" >
@@ -528,71 +639,193 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
                     </xsl:call-template>
 
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PlaySound'" >
                     
-                    <xsl:call-template name="playSoundActionProcess" />
+                    <xsl:call-template name="playSoundActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PlayMusic'" >
                     
-                    <xsl:call-template name="playMusicActionProcess" />
+                    <xsl:call-template name="playMusicActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PlayMusicCanal'" >
                     
-                    <xsl:call-template name="playMusicCanalActionProcess" />
+                    <xsl:call-template name="playMusicCanalActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
                 <xsl:if test="$typeValue = 'StopMusicCanal'" >
                     
-                    <xsl:call-template name="stopMusicCanalActionProcess" />
+                    <xsl:call-template name="stopMusicCanalActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
                     
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PlaySoundCanal'" >
                     
-                    <xsl:call-template name="playSoundCanalActionProcess" />
+                    <xsl:call-template name="playSoundCanalActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
                     
                 </xsl:if>
                 <xsl:if test="$typeValue = 'StopSoundCanal'" >
                     
-                    <xsl:call-template name="stopSoundCanalActionProcess" />
+                    <xsl:call-template name="stopSoundCanalActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
                     
                 </xsl:if>
                 
                 <xsl:if test="$typeValue = 'ResetTimer'" >
                     
-                    <xsl:call-template name="resetTimerActionProcess" />
+                    <xsl:call-template name="resetTimerActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PauseTimer'" >
                     
-                    <xsl:call-template name="pauseTimerActionProcess" />
+                    <xsl:call-template name="pauseTimerActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>                        
 
                 </xsl:if>
                 <xsl:if test="$typeValue = 'UnPauseTimer'" >
 
-                    <xsl:call-template name="unPauseTimerActionProcess" />
+                    <xsl:call-template name="unPauseTimerActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>                        
 
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'ChangeScale'" >
                     
-                    <xsl:call-template name="changeScaleActionProcess" />
+                    <xsl:call-template name="changeScaleActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'ResetObjectTimer'" >
                     
-                    <xsl:call-template name="resetObjectTimerActionProcess" />
+                    <xsl:call-template name="resetObjectTimerActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>                        
 
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'Opacity'" >
                     
                     <xsl:call-template name="opacityActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
@@ -652,6 +885,12 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'SetAngle'" >
                     
                     <xsl:call-template name="setAngleActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
@@ -661,13 +900,33 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'ChangePlan'" >
                     
-                    <xsl:call-template name="changePlanActionProcess" />
+                    <xsl:call-template name="changePlanActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'ChangeColor'" >
                     
-                    <xsl:call-template name="changeColorActionProcess" />
+                    <xsl:call-template name="changeColorActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 
@@ -676,6 +935,12 @@ Created By: Travis Berthelot
                         <xsl:call-template name="createEndActionProcess" >
                             <xsl:with-param name="layoutIndex" >
                                 <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="objectsGroupsAsString" >
+                                <xsl:value-of select="$objectsGroupsAsString" />
+                            </xsl:with-param>
+                            <xsl:with-param name="createdObjectsAsString" >
+                                <xsl:value-of select="$createdObjectsAsString" />
                             </xsl:with-param>
                             <xsl:with-param name="nodeIdAsString" >
                                 <xsl:value-of select="$nodeIdAsString" />
@@ -690,6 +955,12 @@ Created By: Travis Berthelot
                             <xsl:with-param name="layoutIndex" >
                                 <xsl:value-of select="$layoutIndex" />
                             </xsl:with-param>
+                            <xsl:with-param name="objectsGroupsAsString" >
+                                <xsl:value-of select="$objectsGroupsAsString" />
+                            </xsl:with-param>
+                            <xsl:with-param name="createdObjectsAsString" >
+                                <xsl:value-of select="$createdObjectsAsString" />
+                            </xsl:with-param>
                             <xsl:with-param name="nodeIdAsString" >
                                 <xsl:value-of select="$nodeIdAsString" />
                             </xsl:with-param>
@@ -699,19 +970,49 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'Scene'" >
 
-                    <xsl:call-template name="sceneActionProcess" />
+                    <xsl:call-template name="sceneActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'SetFullScreen'" >
 
-                    <xsl:call-template name="setFullScreenActionProcess" />
+                    <xsl:call-template name="setFullScreenActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'LaunchFile'" >
 
-                    <xsl:call-template name="launchFileActionProcess" />
+                    <xsl:call-template name="launchFileActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 
@@ -780,6 +1081,12 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
@@ -789,6 +1096,15 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'ModVarScene'" >
 
                     <xsl:call-template name="modVarSceneActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
                         <xsl:with-param name="objectsAsString" >
                             <xsl:value-of select="$objectsAsString" />
                         </xsl:with-param>
@@ -801,6 +1117,9 @@ Created By: Travis Berthelot
                     <xsl:call-template name="modVarGlobalActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
                         </xsl:with-param>
                         <xsl:with-param name="createdObjectsAsString" >
                             <xsl:value-of select="$createdObjectsAsString" />
@@ -816,8 +1135,14 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'Delete'" >
                     
                     <xsl:call-template name="deleteActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
                         <xsl:with-param name="objectsGroupsAsString" >
                             <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
 
@@ -825,25 +1150,65 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'Quit'" >
 
-                    <xsl:call-template name="quitActionProcess" />
+                    <xsl:call-template name="quitActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'SetGlobalVariableAsBoolean'" >
 
-                    <xsl:call-template name="setGlobalVariableAsBooleanActionProcess" />
+                    <xsl:call-template name="setGlobalVariableAsBooleanActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'SetBooleanVariable'" >
 
-                    <xsl:call-template name="setSceneVariableAsBooleanActionProcess" />
+                    <xsl:call-template name="setSceneVariableAsBooleanActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'JSONToVariableStructure'" >
 
-                    <xsl:call-template name="jsonToVariableStructureActionProcess" />
+                    <xsl:call-template name="jsonToVariableStructureActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 
@@ -853,20 +1218,44 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
                     </xsl:call-template>
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'RotateTowardPosition'" >
 
                     <xsl:call-template name="rotateTowardPositionActionProcess" >
-                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
                     </xsl:call-template>
 
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'Rotate'" >
 
-                    <xsl:call-template name="rotateActionProcess" />
+                    <xsl:call-template name="rotateActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>              
 
@@ -887,7 +1276,17 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'Montre'" >
 
-                    <xsl:call-template name="montreAsShowActionProcess" />
+                    <xsl:call-template name="montreAsShowActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MettreAutour'" >
@@ -896,13 +1295,33 @@ Created By: Travis Berthelot
 
                 <xsl:if test="$typeValue = 'AddForceAL'" >
 
-                    <xsl:call-template name="addForceALActionProcess" />
+                    <xsl:call-template name="addForceALActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'AddForceXY'" >
                     
-                    <xsl:call-template name="addForceXYActionProcess" />
+                    <xsl:call-template name="addForceXYActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:if>
 
@@ -931,6 +1350,12 @@ Created By: Travis Berthelot
                     <xsl:call-template name="activateBehaviorActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
 
@@ -970,19 +1395,43 @@ Created By: Travis Berthelot
                 
                 <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetIndex'" >
                     <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetIndexActionProcess" >
-                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
                     </xsl:call-template>
                 </xsl:if>
   
                 <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetName'" >
                     <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetNameActionProcess" >
-                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
                     </xsl:call-template>
                 </xsl:if>
   
                 <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetSpeedScale'" >
                     <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetSpeedScaleActionProcess" >
-                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
                     </xsl:call-template>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::PauseAnimation'" >
@@ -1117,15 +1566,45 @@ Created By: Travis Berthelot
                 
                 <xsl:if test="$typeValue = 'ScalableCapability::ScalableBehavior::SetValue'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                    <xsl:call-template name="scalableBehaviorSetValueActionProcess" />
+                    <xsl:call-template name="scalableBehaviorSetValueActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ScalableCapability::ScalableBehavior::SetX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                    <xsl:call-template name="scalableBehaviorSetXActionProcess" />
+                    <xsl:call-template name="scalableBehaviorSetXActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ScalableCapability::ScalableBehavior::SetY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                    <xsl:call-template name="scalableBehaviorSetYActionProcess" />
+                    <xsl:call-template name="scalableBehaviorSetYActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
                 </xsl:if>
                 
                 <xsl:if test="$typeValue = 'ResizableCapability::ResizableBehavior::SetWidth'" >
@@ -1159,6 +1638,12 @@ Created By: Travis Berthelot
                     <xsl:call-template name="changeSpriteActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
 
@@ -1337,6 +1822,12 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
                     </xsl:call-template>
 
                 </xsl:if>
@@ -1438,6 +1929,12 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
                     </xsl:call-template>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'LireFichierTxt'" >
@@ -1445,6 +1942,12 @@ Created By: Travis Berthelot
                     <xsl:call-template name="lireFichierTxtLoadJSONActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
                 </xsl:if>
@@ -1469,6 +1972,12 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
                     </xsl:call-template>
 
                 </xsl:if>
@@ -1479,6 +1988,12 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
                     </xsl:call-template>
 
                 </xsl:if>
@@ -1487,6 +2002,12 @@ Created By: Travis Berthelot
                     <xsl:call-template name="textInputVirtualKeyboardTextInputVirtualKeyboardOpenKeyboardActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
 

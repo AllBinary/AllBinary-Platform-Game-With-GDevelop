@@ -18,6 +18,8 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.io.file.directory.Directory;
+import org.allbinary.logic.io.path.AbFilePath;
 import org.allbinary.logic.math.PrimitiveLongSingleton;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.string.CommonLabels;
@@ -34,6 +36,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
 {
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final CommonSeps commonSeps = CommonSeps.getInstance();
+    private final Directory directory = Directory.getInstance();
     
     private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
     private final StreamUtil streamUtil = StreamUtil.getInstance();
@@ -249,7 +252,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                     new StreamSource(new StringBufferInputStream(xmlStringArray[index2])));
 
                 stringMaker.delete(0, stringMaker.length());
-                String fileName = stringMaker.append(START[index2]).append(indexAsString).append(END[index2]).toString();
+                final String fileName = stringMaker.append(START[index2]).append(indexAsString).append(END[index2]).toString();
+                directory.create(new AbFilePath(fileName));
 
                 //LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.PROCESS));
                 stringMaker.delete(0, stringMaker.length());

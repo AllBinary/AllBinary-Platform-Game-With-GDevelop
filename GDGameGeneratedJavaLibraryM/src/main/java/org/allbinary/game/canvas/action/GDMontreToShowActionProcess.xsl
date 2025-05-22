@@ -17,6 +17,10 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="montreAsShowActionProcess" >
+        <xsl:param name="layoutIndex" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="createdObjectsAsString" />
+
                     //Montre - action - Release to cache to hide
                     @Override
                     public boolean process() throws Exception {

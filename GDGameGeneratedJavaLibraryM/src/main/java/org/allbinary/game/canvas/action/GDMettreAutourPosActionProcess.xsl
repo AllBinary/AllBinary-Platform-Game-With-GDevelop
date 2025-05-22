@@ -18,6 +18,8 @@ Created By: Travis Berthelot
 
     <xsl:template name="mettreAutourPosActionProcess" >
         <xsl:param name="layoutIndex" />
+        <xsl:param name="objectsGroupsAsString" />
+        <xsl:param name="createdObjectsAsString" />
         <xsl:param name="instancesAsString" />
 
                         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
