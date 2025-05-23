@@ -28,16 +28,8 @@ Created By: Travis Berthelot
 
                     //param1=<xsl:value-of select="$param" />
 
-                        <!-- Temp solution until I can remove duplicates -->
-                        <xsl:variable name="hasObjectInParams" >
-                        <xsl:for-each select="parameters" >
-                            <xsl:variable name="name" ><xsl:value-of select="substring-before(text(), '.')" /></xsl:variable>
-                            <xsl:variable name="name2" ><xsl:value-of select="$name" />,</xsl:variable>
-                            <xsl:if test="string-length($name) > 0 and contains($createdObjectsAsString, $name2)" >found</xsl:if>
-                        </xsl:for-each>
-                        </xsl:variable>
-
-                        <xsl:if test="not(contains($hasObjectInParams, 'found'))" >
+                    <!-- Temp solution until I can remove duplicates -->
+                    //This should replace the hack cases with - //TWB is this still needed
                     //createActionProcess - //Create - GDObject - START
                     @Override
                     public boolean process() throws Exception {
@@ -72,8 +64,6 @@ Created By: Travis Berthelot
                         
                     }
 
-                    //Create - GDObject - END
-                        </xsl:if>
                     //Create
                     @Override
                     public boolean processCreate(final GDObject gdObject) throws Exception {

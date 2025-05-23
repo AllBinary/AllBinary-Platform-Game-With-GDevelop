@@ -584,6 +584,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Action - //Create - call
+                    //TWB is this still needed3
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processCreate(<xsl:value-of select="$name" />GDobject2);
                     <xsl:if test="$caller = 'externalEventsCreateAssignGDObject - //eventsCreateAssignXGDObjectGDNodesOtherEvent - //hackProcessing2'" >
                     final int size2 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />OnceGDNodeList.size();
@@ -1017,7 +1018,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
                             <xsl:if test="contains($alreadyUsedParentConditionAndHasConditions, 'found')" >
-                            <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                            <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link' and not(contains($caller, 'conditionLayout - //eventsCreateAssignGDObject'))" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Event - //<xsl:value-of select="type" /> - call
                             //Was not called before 2a
@@ -1127,9 +1128,9 @@ Created By: Travis Berthelot
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
                             </xsl:if>
                             <xsl:if test="not(contains($foundLinkExternalEvent, 'found') and contains($allowedCondition, 'found'))" >
-                                <xsl:if test="not(contains($notAlreadyUsedConditionButWithSpecificAction, 'found') and type = 'BuiltinCommonInstructions::Standard')" >
-                            //Was calling these, but maybe should not have been
-                            //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
+                                <xsl:if test="not(contains($notAlreadyUsedConditionButWithSpecificAction, 'found') and type = 'BuiltinCommonInstructions::Standard') and contains($caller, 'conditionLayout - //eventsCreateAssignGDObject')" >
+                            //Should we call these - //caller=<xsl:value-of select="$caller" /> - //hackProcessing2
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
                                 </xsl:if>
                                 <xsl:if test="contains($notAlreadyUsedConditionButWithSpecificAction, 'found') and type = 'BuiltinCommonInstructions::Standard'" >
                             //I am now calling this2 - //<xsl:value-of select="type" />
