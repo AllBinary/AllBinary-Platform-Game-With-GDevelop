@@ -45,25 +45,74 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
 
-                            final boolean result = this.processA();                        
+                            final boolean result = this.processC();
                             
                             super.processStatsE();
                             
                             return result;
                         }
 
+                     <xsl:variable name="hasOtherConditions" ><xsl:for-each select="preceding-sibling::conditions" >found</xsl:for-each></xsl:variable>
+                     <xsl:variable name="position" ><xsl:value-of select="position()" /></xsl:variable>
+                     
                         @Override
                         public void processReleased() throws Exception {
                             super.processReleasedStats();
-                        
-                            final boolean result = this.processA();                        
+
+                                <xsl:if test="not(contains($hasOtherConditions, 'found'))" >
+
+                                <xsl:for-each select="../actions" >
+                                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                                //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
+                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                                </xsl:for-each>
+                                
+                                </xsl:if>
+
+                                <xsl:if test="contains($hasOtherConditions, 'found')" >
+                                <xsl:for-each select="../actions" >
+                                    //TWBTWB - //nbObjetConditionGDNode - //Condition - //NbObjet - GDNode
+                                </xsl:for-each>
+                                </xsl:if>
+                                                                
+                                <xsl:for-each select="../events" >
+                                    <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
+                                //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> parameters=<xsl:value-of select="$parametersAsString" />
+                                //Condition - //NbObjet - //Event - //<xsl:value-of select="type" /> - call
+                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                                    </xsl:if>
+                                    <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
+                                //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                                //Event - //BuiltinCommonInstructions::Link - call - //NbObjet
+                                <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.processReleased();
+                                    </xsl:if>
+                                </xsl:for-each>
                             
-                            //super.processReleasedStatsE();
-                            
-                            //return result;
+                                <!--
+                                //Condition - //NbObjet - //Action - 
+                                <xsl:for-each select=".." >
+                                    <xsl:call-template name="actionIds" >
+                                        <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                                        <xsl:with-param name="caller" >NbObjet</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                                
+                                -->
+
+                                <xsl:for-each select="../conditions" >
+                                    <xsl:if test="position() = $position + 1" >
+                                <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
+                                <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
+                                //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
+                                //Condition - //NbObjet - //Condition - //<xsl:value-of select="type/value" /> - call - <xsl:value-of select="$conditionNodeIndex" />
+                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
+                                    </xsl:if>
+                                </xsl:for-each>
+
                         }
 
-                        public boolean processA() throws Exception {
+                        public boolean processC() throws Exception {
                             //final StringMaker stringBuilder = new StringMaker();
                             //LogUtil.put(LogFactory.getInstance(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>: ").append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>).toString(), this, commonStrings.PROCESS));
 
@@ -71,8 +120,6 @@ Created By: Travis Berthelot
 
                                 //stringBuilder.delete(0, stringBuilder.length());
                                 //LogUtil.put(LogFactory.getInstance(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>").toString(), this, commonStrings.PROCESS));
-                                
-                                <xsl:variable name="hasOtherConditions" ><xsl:for-each select="preceding-sibling::conditions" >found</xsl:for-each></xsl:variable>
 
                                 <xsl:if test="not(contains($hasOtherConditions, 'found'))" >
 
@@ -114,7 +161,6 @@ Created By: Travis Berthelot
                                 </xsl:for-each>
                                 
                                 -->
-                                <xsl:variable name="position" ><xsl:value-of select="position()" /></xsl:variable>
 
                                 <xsl:for-each select="../conditions" >
                                     <xsl:if test="position() = $position + 1" >
@@ -132,6 +178,7 @@ Created By: Travis Berthelot
                                 return false;
                             }
                         }
+                        
                     };
 
     </xsl:template>
