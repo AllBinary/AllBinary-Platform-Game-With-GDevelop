@@ -67,6 +67,38 @@ Created By: Travis Berthelot
                             return true;
                         }
 
+                        @Override
+                        public boolean process(final int index) throws Exception {
+                            super.processStats(index);
+                
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >final GDGameLayer gdGameLayer = (((GDGameLayer) globals.<xsl:value-of select="text()" disable-output-escaping="yes" />GDGameLayerList.get(index)));</xsl:if></xsl:for-each>
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >gdGameLayer.gdObject.opacity</xsl:if><xsl:if test="position() != 1" ><xsl:text> </xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>) {
+                                return true;
+                            }
+
+                            return false;
+                        }
+
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+
+                            super.processGDStats(gameLayer);
+
+                            try {
+
+                                //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                
+                                if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >gameLayer.gdObject.opacity</xsl:if><xsl:if test="position() != 1" ><xsl:text> </xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>) {
+                                   return true;
+                                }
+
+                            } catch(Exception e) {
+                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                            }
+
+                            return false;
+                        }
+
                     };
 
     </xsl:template>
