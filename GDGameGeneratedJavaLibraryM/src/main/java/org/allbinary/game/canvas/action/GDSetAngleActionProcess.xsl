@@ -116,6 +116,7 @@ Created By: Travis Berthelot
                 
         <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
+                        //paramOneNameObjectsGroups=<xsl:value-of select="$paramOneNameObjectsGroups" />
                         //SetAngle - action - Change the angle of
                         @Override
                         public boolean process() throws Exception {

@@ -114,6 +114,7 @@ Created By: Travis Berthelot
                         </xsl:call-template>
                     </xsl:variable>
         
+                    //paramOneNameObjectsGroups=<xsl:value-of select="$paramOneNameObjectsGroups" />
                     //ChangeColor - action - index - Change tint of
                     @Override
                     public boolean process() throws Exception {
