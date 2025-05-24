@@ -18,6 +18,7 @@ import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.RotationAnimation;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.layout.GDObjectStrings;
+import org.allbinary.graphics.GraphicsStrings;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -118,7 +119,7 @@ public class GDRotationBehavior extends GDAnimationBehaviorBase {
 
     public void toString(final GDObject gdObject, final StringMaker stringBuffer) {
         final RotationAnimation rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
-        stringBuffer.append(GDObjectStrings.getInstance().ANGLE).append(rotationAnimation.getAngleInfo().getAngle());
+        stringBuffer.append(GraphicsStrings.getInstance().ANGLE).append(rotationAnimation.getAngleInfo().getAngle());
     }
     
 }

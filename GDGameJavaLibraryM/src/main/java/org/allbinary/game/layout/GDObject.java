@@ -19,6 +19,7 @@ import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layer.behavior.GDBehavior;
 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
 import org.allbinary.graphics.GPoint;
+import org.allbinary.graphics.GraphicsStrings;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -267,8 +268,9 @@ public class GDObject
         if (gameLayer != null) {
             gameLayer.setRotation(adjustedAngle);
         } else {
+            final GraphicsStrings graphicsStrings = GraphicsStrings.getInstance();
             final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-            LogUtil.put(LogFactory.getInstance(objectStrings.GD_GAME_LAYER_WAS_NULL, this, objectStrings.ANGLE));
+            LogUtil.put(LogFactory.getInstance(objectStrings.GD_GAME_LAYER_WAS_NULL, this, graphicsStrings.ANGLE));
         }
     }
          
@@ -334,9 +336,10 @@ public class GDObject
 
     public String toString() {
         final CommonSeps commonSeps = CommonSeps.getInstance();
-        final GDObjectStrings gdObjectStrings = GDObjectStrings.getInstance();
+        final GraphicsStrings graphicsStrings = GraphicsStrings.getInstance();
         final PositionStrings positionStrings = PositionStrings.getInstance();
         final CommonLabels commonLabels = CommonLabels.getInstance();
+        final GDObjectStrings gdObjectStrings = GDObjectStrings.getInstance();
 
         final StringMaker stringBuilder = new StringMaker();
         return stringBuilder.append(gdObjectStrings.GDOBJECT).append(CommonSeps.getInstance().COLON)
@@ -359,15 +362,15 @@ public class GDObject
                 .append(commonSeps.SPACE)
                 .append(commonLabels.HEIGHT_LABEL).append(this.halfHeight)
                 .append(commonSeps.SPACE)
-                .append(gdObjectStrings.ANIMATION).append(this.animation)
+                .append(graphicsStrings.ANIMATION).append(this.animation)
                 .append(commonSeps.SPACE)
-                .append(gdObjectStrings.ANGLE).append(commonSeps.COLON).append(this.angle)
+                .append(graphicsStrings.ANGLE).append(commonSeps.COLON).append(this.angle)
                 .append(commonSeps.SPACE)
-                .append(gdObjectStrings.MOVEMENT_ANGLE).append(commonSeps.COLON).append(this.movement_angle)
+                .append(graphicsStrings.MOVEMENT_ANGLE).append(commonSeps.COLON).append(this.movement_angle)
                 .append(commonSeps.SPACE)
-                .append(gdObjectStrings.ROTATION).append(commonSeps.COLON).append(this.rotation)
+                .append(graphicsStrings.ROTATION).append(commonSeps.COLON).append(this.rotation)
                 .append(commonSeps.SPACE)
-                .append(gdObjectStrings.OPACITY).append(commonSeps.COLON).append(this.opacity)
+                .append(graphicsStrings.OPACITY).append(commonSeps.COLON).append(this.opacity)
                 .toString();
     }
 }
