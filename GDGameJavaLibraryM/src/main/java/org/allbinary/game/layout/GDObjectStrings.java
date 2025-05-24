@@ -35,6 +35,7 @@ public class GDObjectStrings
     public final String ANGLE = "angle";
     public final String MOVEMENT_ANGLE = "movement_angle";
     public final String ROTATION = "rotation";
+    public final String OPACITY = "opacity";
     public final String GD_GAME_LAYER_WAS_NULL = "GDGameLayer was null";
     
     public final String CALLING_GDNODE = " calling GDNode: ";

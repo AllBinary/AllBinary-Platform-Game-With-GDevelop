@@ -366,6 +366,8 @@ public class GDObject
                 .append(gdObjectStrings.MOVEMENT_ANGLE).append(commonSeps.COLON).append(this.movement_angle)
                 .append(commonSeps.SPACE)
                 .append(gdObjectStrings.ROTATION).append(commonSeps.COLON).append(this.rotation)
+                .append(commonSeps.SPACE)
+                .append(gdObjectStrings.OPACITY).append(commonSeps.COLON).append(this.opacity)
                 .toString();
     }
 }
