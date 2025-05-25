@@ -18,6 +18,7 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
     <xsl:template name="alwaysConditionGDNode" >
         <xsl:param name="parametersAsString" />
+        <xsl:param name="parentEventType" />
 
         <xsl:variable name="quote" >"</xsl:variable>
         <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
@@ -99,6 +100,8 @@ Created By: Travis Berthelot
                             </xsl:if>
 
                             <xsl:if test="$inverted != 'true'" >
+
+
                             <xsl:for-each select="preceding-sibling::conditions" >
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
@@ -110,8 +113,11 @@ Created By: Travis Berthelot
                             </xsl:for-each>
 
                             <xsl:if test="not(contains($hasOtherConditions, 'found'))" >
+                            
+                                //parentEventType=<xsl:value-of select="$parentEventType" />
+                                <xsl:if test="$parentEventType != 'BuiltinCommonInstructions::Standard' and $parentEventType != 'BuiltinCommonInstructions::Repeat'" >
+                                    
                                 <xsl:for-each select=".." >
-
                                 <xsl:for-each select="actions" >
                                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
@@ -135,8 +141,10 @@ Created By: Travis Berthelot
                                 </xsl:for-each>
 
                                 </xsl:for-each>
+                                
                             </xsl:if>
-                                                        
+                            </xsl:if>
+
                             return true;
                             </xsl:if>
                         }

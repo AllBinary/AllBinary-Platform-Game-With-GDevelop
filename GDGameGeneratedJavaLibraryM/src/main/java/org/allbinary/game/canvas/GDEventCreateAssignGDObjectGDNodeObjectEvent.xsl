@@ -32,7 +32,6 @@ Created By: Travis Berthelot
             <xsl:variable name="eventPosition" select="position()" />
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
 
-            <xsl:variable name="parentEventType" ><xsl:for-each select="../../events" ><xsl:value-of select="type" /></xsl:for-each></xsl:variable>
             <xsl:variable name="actionTypesAsString" ><xsl:for-each select="actions" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="type/value" />,</xsl:for-each></xsl:variable>
             <xsl:variable name="parametersAsString0" ><xsl:for-each select="actions" ><xsl:for-each select="parameters" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="text()" />,</xsl:for-each></xsl:for-each></xsl:variable>
             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
@@ -50,9 +49,6 @@ Created By: Travis Berthelot
                 </xsl:with-param>
                 <xsl:with-param name="actionTypesAsString" >
                     <xsl:value-of select="$actionTypesAsString" />
-                </xsl:with-param>
-                <xsl:with-param name="parentEventType" >
-                    <xsl:value-of select="$parentEventType" />
                 </xsl:with-param>
             </xsl:call-template>
 -->

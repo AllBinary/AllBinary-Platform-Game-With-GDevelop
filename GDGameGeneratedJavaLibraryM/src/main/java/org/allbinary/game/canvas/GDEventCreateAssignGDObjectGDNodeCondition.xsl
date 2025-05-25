@@ -84,6 +84,7 @@ Created By: Travis Berthelot
         <xsl:param name="actionAsStringsStrings" />
         <xsl:param name="logString" />
         <xsl:param name="eventsCreateProcessUsed" />
+        <xsl:param name="parentEventType" />
 
                 <xsl:variable name="nodeList" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
@@ -512,9 +513,16 @@ Created By: Travis Berthelot
                     <xsl:if test="$typeValue = 'Toujours'" >
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                     </xsl:if>
-                        
+
                     <xsl:if test="$typeValue = 'BuiltinCommonInstructions::Always'" >
-                        <xsl:call-template name="alwaysConditionGDNode" />
+                        <xsl:call-template name="alwaysConditionGDNode" >
+                            <xsl:with-param name="parametersAsString" >
+                                <xsl:value-of select="$parametersAsString" />
+                            </xsl:with-param>
+                            <xsl:with-param name="parentEventType" >
+                                <xsl:value-of select="$parentEventType" />
+                            </xsl:with-param>
+                        </xsl:call-template>
                     </xsl:if>
 
                     //xsl:if test="$typeValue = 'Egal'"
@@ -1219,6 +1227,7 @@ Created By: Travis Berthelot
         <xsl:variable name="quote" >"</xsl:variable>
         
         <xsl:for-each select="events" >
+            <xsl:variable name="type" select="type" />
             <xsl:variable name="eventPosition" select="position()" />
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
 
@@ -1231,7 +1240,6 @@ Created By: Travis Berthelot
             <xsl:variable name="logString" >EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
             <xsl:variable name="hasAssociatedSiblingCondition" select="conditions/type/value = 'MouseButtonReleased' or conditions/type/value = 'SourisBouton' or conditions/type/value = 'MouseButtonPressed' or conditions/type/value = 'VarScene' or conditions/type/value = 'Timer'" />
-            <xsl:variable name="parentEventType" ><xsl:for-each select="../../events" ><xsl:value-of select="type" /></xsl:for-each></xsl:variable>
             <xsl:variable name="actionTypesAsString" ><xsl:for-each select="actions" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="type/value" />,</xsl:for-each></xsl:variable>
             <xsl:variable name="parametersAsString0" ><xsl:for-each select="actions" ><xsl:for-each select="parameters" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="text()" />,</xsl:for-each></xsl:for-each></xsl:variable>
             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
@@ -1337,6 +1345,9 @@ Created By: Travis Berthelot
                 <xsl:with-param name="eventsCreateProcessUsed" >
                     <xsl:value-of select="$eventsCreateProcessUsed" />
                 </xsl:with-param>
+                <xsl:with-param name="parentEventType" >
+                    <xsl:value-of select="$type" />
+                </xsl:with-param>
 
             </xsl:call-template>
                 
@@ -1407,6 +1418,9 @@ Created By: Travis Berthelot
                 <xsl:with-param name="eventsCreateProcessUsed" >
                     <xsl:value-of select="$eventsCreateProcessUsed" />
                 </xsl:with-param>
+                <xsl:with-param name="parentEventType" >
+                    <xsl:value-of select="$type" />
+                </xsl:with-param>
 
             </xsl:call-template>
 
@@ -1468,6 +1482,9 @@ Created By: Travis Berthelot
                 <xsl:with-param name="eventsCreateProcessUsed" >
                     <xsl:value-of select="$eventsCreateProcessUsed" />
                 </xsl:with-param>
+                <xsl:with-param name="parentEventType" >
+                    <xsl:value-of select="$type" />
+                </xsl:with-param>
 
             </xsl:call-template>
 
@@ -1527,6 +1544,9 @@ Created By: Travis Berthelot
                 </xsl:with-param>
                 <xsl:with-param name="eventsCreateProcessUsed" >
                     <xsl:value-of select="$eventsCreateProcessUsed" />
+                </xsl:with-param>
+                <xsl:with-param name="parentEventType" >
+                    <xsl:value-of select="$type" />
                 </xsl:with-param>
 
             </xsl:call-template>
