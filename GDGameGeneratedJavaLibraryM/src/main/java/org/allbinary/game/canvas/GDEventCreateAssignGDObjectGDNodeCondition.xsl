@@ -532,6 +532,9 @@ Created By: Travis Berthelot
                             <xsl:with-param name="objectsGroupsAsString" >
                                 <xsl:value-of select="$objectsGroupsAsString" />
                             </xsl:with-param>
+                            <xsl:with-param name="createdObjectsAsString" >
+                                <xsl:value-of select="$createdObjectsAsString" />
+                            </xsl:with-param>
                         </xsl:call-template>
 
                     </xsl:if>
@@ -1098,6 +1101,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
                         <xsl:with-param name="objectsGroupsAsString" >
                             <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
 

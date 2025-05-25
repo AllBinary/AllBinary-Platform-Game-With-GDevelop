@@ -25,7 +25,30 @@ Created By: Travis Berthelot
         
         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
         
+        <!-- was using param 4 and not param 1 -->
                         <xsl:variable name="param" >
+                            <xsl:for-each select="parameters" >
+                                <xsl:if test="position() = 1" >
+                                    <xsl:if test="not(contains(text(), 'SceneInstancesCount('))" >
+                                        <xsl:value-of select="text()" />
+                                    </xsl:if>
+                                    <xsl:if test="contains(text(), 'SceneInstancesCount(')" >
+                                        <xsl:variable name="objectName" >
+                                            <xsl:value-of select="substring-before(substring-after(text(), 'SceneInstancesCount('), ')')" />
+                                        </xsl:variable>
+                                        <xsl:call-template name="string-replace-all" >
+                                            <xsl:with-param name="text" >
+                                                <xsl:value-of select="text()" />
+                                            </xsl:with-param>
+                                            <xsl:with-param name="find" >SceneInstancesCount(<xsl:value-of select="$objectName" /></xsl:with-param>
+                                            <xsl:with-param name="replacementText" >SceneInstancesCount(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectName" />GDGameLayerList.size()</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:if>
+                                </xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+
+                        <xsl:variable name="param4" >
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 4" >
                                     <xsl:if test="not(contains(text(), 'SceneInstancesCount('))" >
@@ -46,7 +69,7 @@ Created By: Travis Berthelot
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:variable>
-                                                
+
                         <xsl:variable name="beforeSecondParam0" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
                         <xsl:variable name="beforeSecondParam" ><xsl:if test="contains($beforeSecondParam0, '-')" ><xsl:value-of select="substring-after($beforeSecondParam0, '-')" /></xsl:if><xsl:if test="not(contains($beforeSecondParam0, '-'))" ><xsl:value-of select="$beforeSecondParam0" /></xsl:if></xsl:variable>
                         <xsl:variable name="beforeSecondParam2" ><xsl:if test="contains($beforeSecondParam0, '-')" >-</xsl:if></xsl:variable>
@@ -82,7 +105,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:variable>
                 
-                    <xsl:variable name="paramOneNameObjectsGroups" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="paramIndexedArray2" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$objectsGroupsAsString" /></xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
+                    <xsl:variable name="paramOneNameObjectsGroups" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="paramIndexedArray2" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$objectsGroupsAsString" /></xsl:with-param></xsl:call-template><xsl:call-template name="paramIndexedArray2" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="secondParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="paramTwoName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template></xsl:if></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="paramTwoNameObjectsGroups" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$objectsGroupsAsString" /></xsl:with-param></xsl:call-template></xsl:if></xsl:if></xsl:for-each></xsl:variable>
@@ -114,6 +137,10 @@ Created By: Travis Berthelot
                         </xsl:call-template>
                     </xsl:variable>
 
+                    
+                    //param=<xsl:value-of select="$param" />
+                    //param4=<xsl:value-of select="$param4" />
+<!--                    //objectsGroupsAsString=<xsl:value-of select="$objectsGroupsAsString" />-->
                     //paramOneNameObjectsGroups=<xsl:value-of select="$paramOneNameObjectsGroups" />
                     //paramTwoName=<xsl:value-of select="$paramTwoName" />
                     //paramTwoNameObjectsGroups=<xsl:value-of select="$paramTwoNameObjectsGroups" />
@@ -123,6 +150,8 @@ Created By: Travis Berthelot
                     public boolean process() throws Exception {
                         super.processStats();
 
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+
                     <xsl:variable name="firstParamFound" ><xsl:call-template name="firstParamFound" ><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
                     
                         <xsl:if test="$paramOneNameObjectsGroups != ''" >
@@ -130,7 +159,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="text" ><xsl:value-of select="$paramOneNameObjectsGroups" /></xsl:variable>
                         <xsl:variable name="id" ><xsl:for-each select="//objectsGroups" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each><xsl:for-each select="//objects" ><xsl:if test="name = $text" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:if></xsl:for-each></xsl:variable>
                         //SetNumberObjectVariable - <xsl:value-of select="$text" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
-                        final GDGameLayer <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer = gameGlobals.tempGameLayerArray[0];
+                        final GDGameLayer <xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer = gameGlobals.tempGameLayerArray[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />];
                         if(<xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer != null) {
 
 <xsl:text>                        </xsl:text>
@@ -185,7 +214,7 @@ Created By: Travis Berthelot
                             <xsl:text>&#10;</xsl:text>
                             <xsl:if test="$paramTwoName != ''" >
                                 <xsl:if test="substring-before($param, '.') = ''" >
-                                    <xsl:value-of select="$param" />
+                                    <xsl:value-of select="$param4" />
                                 </xsl:if>
                                 <xsl:if test="substring-before($param, '.') != ''" ><xsl:value-of select="$beforeSecondParam2" />((<xsl:value-of select="$gdObjectFactory2" />) paramTwoGameLayer.gdObject).<xsl:value-of select="substring-after($param, '.')" /></xsl:if>
                             </xsl:if>
@@ -199,7 +228,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="not(contains($hasObject, 'found'))" >
-                                <xsl:value-of select="$param" />
+                                <xsl:value-of select="$param4" />
                                 </xsl:if>
                             </xsl:if>
                         </xsl:if>
@@ -428,7 +457,7 @@ Created By: Travis Berthelot
                             <xsl:text>&#10;</xsl:text>
                             <xsl:if test="$paramTwoName != ''" >
                                 <xsl:if test="substring-before($param, '.') = ''" >
-                                    <xsl:value-of select="$param" />
+                                    <xsl:value-of select="$param4" />
                                 </xsl:if>
                                 <xsl:if test="substring-before($param, '.') != ''" ><xsl:value-of select="$beforeSecondParam2" />((<xsl:value-of select="$gdObjectFactory2" />) paramTwoGameLayer.gdObject).<xsl:value-of select="substring-after($param, '.')" /></xsl:if>
                             </xsl:if>
@@ -446,7 +475,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="not(contains($hasObject, 'found'))" >
-                                <xsl:value-of select="$param" />
+                                <xsl:value-of select="$param4" />
                                 </xsl:if>
                             </xsl:if>
                         </xsl:if>
@@ -716,7 +745,7 @@ Created By: Travis Berthelot
                             <xsl:text>&#10;</xsl:text>
                             <xsl:if test="$paramTwoName != ''" >
                                 <xsl:if test="substring-before($param, '.') = ''" >
-                                    <xsl:value-of select="$param" />
+                                    <xsl:value-of select="$param4" />
                                 </xsl:if>
                                 <xsl:if test="substring-before($param, '.') != ''" ><xsl:value-of select="$beforeSecondParam2" />((<xsl:value-of select="$gdObjectFactory2" />) paramTwoGameLayer.gdObject).<xsl:value-of select="substring-after($param, '.')" /></xsl:if>
                             </xsl:if>
@@ -731,7 +760,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 </xsl:if>
                                 <xsl:if test="not(contains($hasObject, 'found'))" >
-                                <xsl:value-of select="$param" />
+                                <xsl:value-of select="$param4" />
                                 </xsl:if>
                             </xsl:if>
                         </xsl:if>
