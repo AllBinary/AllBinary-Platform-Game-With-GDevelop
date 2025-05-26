@@ -65,7 +65,8 @@ Created By: Travis Berthelot
                     public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                         super.processStats(motionGestureEvent);
                         
-                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS));
+                            
                             <xsl:for-each select=".." >
                             <xsl:for-each select="events" >
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >

@@ -207,6 +207,8 @@ Created By: Travis Berthelot
                         
                             super.processGDStats(gameLayer);
 
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS));
+
                         <xsl:if test="contains($param3, '.') and not(contains($gdObjectName, 'Variable('))" >
                             GDObject <xsl:value-of select="$gdObjectName" /> = gameLayer.gdObject;
                         </xsl:if>
