@@ -234,14 +234,12 @@ Created By: Travis Berthelot
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                     <xsl:variable name="actionAsString" >Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         <xsl:if test="$typeValue != 'PauseTimer' and $typeValue != 'PlaySoundCanal'" >
+                //GDNode - Strings
                 private final String ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "C: <xsl:value-of select="translate($actionAsString, $quote, ' ')" />";
-                        </xsl:if>
-<!--                        <xsl:if test="$typeValue != 'ModVarScene' and $typeValue != 'AddForceAL' and $typeValue != 'PlayMusicCanal' and $typeValue != 'StopMusicCanal' and $typeValue != 'StopSoundCanal'" >
                 //private final String ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "C: <xsl:value-of select="translate($actionAsString, $quote, ' ')" /> at: ";
-                        </xsl:if>
-                //private final String ACTION_AS_STRING_G_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "G: " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
                 //private final String ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "processGD - " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
-                    <xsl:text>&#10;</xsl:text>-->
+                        </xsl:if>
+                    <xsl:text>&#10;</xsl:text>
                 </xsl:for-each>
                 </xsl:if>
                 </xsl:if>
@@ -629,7 +627,7 @@ Created By: Travis Berthelot
                 public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                     super.processStats(motionGestureEvent);
 
-                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS));
                     <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
                     final int eSize = <xsl:value-of select="repeatExpression" />;
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> eSize; index++) {
@@ -775,7 +773,7 @@ Created By: Travis Berthelot
                 public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                     super.processGDStats(gameLayer);
 
-                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                     <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
                     final int eSize = <xsl:value-of select="repeatExpression" />;
@@ -897,7 +895,7 @@ Created By: Travis Berthelot
                 public void processReleased() throws Exception { 
                     super.processReleasedStats();
 
-                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
+                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "release, this, globals.PROCESS_RELEASE));
 
                     <xsl:if test="type = 'BuiltinCommonInstructions::Repeat'" >
                     final int eSize = <xsl:value-of select="repeatExpression" />;

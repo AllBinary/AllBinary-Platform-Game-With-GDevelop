@@ -207,6 +207,8 @@ Created By: Travis Berthelot
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
                         
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                        
                         <xsl:if test="$name != $firstOrBeforeFourthParam" >
                         //From objectsGroup to object
                         GDGameLayer <xsl:value-of select="$name" />GDGameLayer = <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer;
@@ -217,7 +219,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                         
                         //if(<xsl:if test="$param3 = 'yes'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 1" >gdGameLayer.gdObject.isBehaviorEnabledArray[</xsl:if><xsl:if test="position() = 2" >gdBehaviorUtil.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template></xsl:if></xsl:for-each>_BEHAVIOR_INDEX])
-                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD true", this, commonStrings.PROCESS));
                         
                         <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />GDGameLayer.gdObject.isBehaviorEnabledArray[</xsl:if><xsl:if test="position() = 2" >gdBehaviorUtil.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if></xsl:for-each>_BEHAVIOR_INDEX] = <xsl:if test="$param3 = 'yes'" >true</xsl:if><xsl:if test="$param3 != 'yes'" >false</xsl:if>;
                             

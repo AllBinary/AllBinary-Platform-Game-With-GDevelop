@@ -89,7 +89,7 @@ Created By: Travis Berthelot
 
                             try {
 
-                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                 
                                 <xsl:if test="contains($hasBuiltinCommonInstructionsForEachToProcessGD, 'found')" >
                                     <xsl:variable name="objectInForEach" >

@@ -103,7 +103,7 @@ Created By: Travis Berthelot
                     
                         super.processGDStats(gdGameLayer);
                     
-                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                         
                         gdGameLayer.setVisible(false);
                         
