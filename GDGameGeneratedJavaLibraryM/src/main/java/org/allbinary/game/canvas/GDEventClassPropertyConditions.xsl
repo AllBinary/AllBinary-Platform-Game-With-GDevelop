@@ -155,17 +155,17 @@ Created By: Travis Berthelot
                     }
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonReleased'" >
-                    //MouseButtonReleased - eventListener
+                    //GDNode - //MouseButtonReleased - eventListener
                     //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
                     public GDNode mouseButtonReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
                 </xsl:if>
                 <xsl:if test="$typeValue = 'MouseButtonPressed'" >
-                    //MouseButtonPressed - eventListener
+                    //GDNode - //MouseButtonPressed - eventListener
                     //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
                     public GDNode mouseButtonPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
                 </xsl:if>
                 <xsl:if test="$typeValue = 'SourisBouton'" >
-                    //SourisBouton - eventListener
+                    //GDNode - //MouseButton - //SourisBouton - eventListener
                     //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
                     public GDNode mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
                 </xsl:if>

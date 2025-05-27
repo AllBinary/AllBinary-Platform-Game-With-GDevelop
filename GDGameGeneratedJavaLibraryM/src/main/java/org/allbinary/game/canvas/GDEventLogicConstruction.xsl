@@ -982,15 +982,15 @@ Created By: Travis Berthelot
             <xsl:for-each select="conditions" >
                 
                 <xsl:if test="type/value = 'MouseButtonReleased'" >
-                    //MouseButtonReleased - eventListener
+                    ////MouseButtonReleased - eventListener
                     //globals.mouseButtonReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonPressed'" >
-                    //MouseButtonPressed - eventListener
+                    ////MouseButtonPressed - eventListener
                     //globals.mouseButtonPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
                 <xsl:if test="type/value = 'SourisBouton'" >
-                    //SourisBouton - eventListener
+                    ////SourisBouton - eventListener
                     //globals.mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
                 
@@ -1102,15 +1102,15 @@ Created By: Travis Berthelot
                     };
 -->
                 <xsl:if test="type/value = 'MouseButtonReleased'" >
-                    //MouseButtonReleased - eventListener
+                    //GDNode - //MouseButtonReleased - eventListener
                     globals.mouseButtonReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonPressed'" >
-                    //MouseButtonPressed - eventListener
+                    //GDNode - //MouseButtonPressed - eventListener
                     globals.mouseButtonPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
                 <xsl:if test="type/value = 'SourisBouton'" >
-                    //SourisBouton - eventListener
+                    //GDNode - //MouseButton - //SourisBouton - eventListener
                     globals.mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
 

@@ -227,28 +227,11 @@ Created By: Travis Berthelot
                             //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
                             globals.lastPointGDNode.process(motionGestureEvent, globals.lastMotionGestureInput);
                 
-        <xsl:for-each select="events" >
-
-            <xsl:for-each select="conditions" >
+                //MouseButton
+                <xsl:call-template name="actionIdsMouseButtonMotionGestureEvent" >
+                    <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                </xsl:call-template>
                 
-                <xsl:if test="type/value = 'MouseButtonReleased'" >
-                            //MouseButtonReleased - eventListener
-                            if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
-                                globals.mouseButtonReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
-                            }
-                </xsl:if>
-                <xsl:if test="type/value = 'MouseButtonPressed'" >
-                            //MouseButtonPressed - eventListener
-                            globals.mouseButtonPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
-                </xsl:if>
-                <xsl:if test="type/value = 'SourisBouton'" >
-                            //SourisBouton - eventListener
-                            globals.mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
-                </xsl:if>
-                
-            </xsl:for-each>
-
-        </xsl:for-each>
                     }
                     
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size10; index++) {

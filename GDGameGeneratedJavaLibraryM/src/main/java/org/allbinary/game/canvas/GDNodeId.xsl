@@ -574,6 +574,42 @@
 
     </xsl:template>
 
+    <xsl:template name="actionIdsMouseButtonMotionGestureEvent" >
+        <xsl:param name="totalRecursions" />
+
+        <xsl:for-each select="events" >
+<!--            //Events - <xsl:value-of select="$totalRecursions" />-->
+
+            <xsl:for-each select="conditions" >
+                
+<!--                //Conditions - <xsl:value-of select="$totalRecursions" />-->
+                <xsl:if test="type/value = 'MouseButtonReleased'" >
+                            //MouseButtonReleased - eventListener
+                            if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
+                                globals.mouseButtonReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
+                            }
+                </xsl:if>
+                <xsl:if test="type/value = 'MouseButtonPressed'" >
+                            //MouseButtonPressed - eventListener
+                            globals.mouseButtonPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
+                </xsl:if>
+                <xsl:if test="type/value = 'SourisBouton'" >
+                            //MouseButton - //SourisBouton - eventListener
+                            globals.mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
+                </xsl:if>
+                
+            </xsl:for-each>
+
+            <xsl:call-template name="actionIdsMouseButtonMotionGestureEvent" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="number($totalRecursions) + 1" />
+                </xsl:with-param>
+            </xsl:call-template>
+
+        </xsl:for-each>
+        
+    </xsl:template>
+
     <!-- Events - <xsl:value-of select="$totalRecursions" /> -->
 <!--
         //<xsl:value-of select="$totalRecursions" />:events:<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="type" />
