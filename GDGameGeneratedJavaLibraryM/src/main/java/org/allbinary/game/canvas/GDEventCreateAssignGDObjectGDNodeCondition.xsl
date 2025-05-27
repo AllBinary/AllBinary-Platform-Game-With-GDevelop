@@ -654,7 +654,7 @@ Created By: Travis Berthelot
                     </xsl:if>
 
                     <xsl:if test="$typeValue = 'SourisBouton'" >
-                        //SourisBouton - Some Handled by AllBinary Event Listeners? This is currently for single button press without continued processing until release
+                        //MouseButton - //SourisBouton - Some Handled by AllBinary Event Listeners? This is currently for single button press without continued processing until release
                         <xsl:call-template name="sourisBoutonConditionGDNode" >
                             <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
                             <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>

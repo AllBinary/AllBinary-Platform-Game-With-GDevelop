@@ -990,7 +990,7 @@ Created By: Travis Berthelot
                     //globals.mouseButtonPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
                 <xsl:if test="type/value = 'SourisBouton'" >
-                    ////SourisBouton - eventListener
+                    ////MouseButton - //SourisBouton - eventListener
                     //globals.mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
                 
@@ -1056,7 +1056,7 @@ Created By: Travis Berthelot
                                         
                     <!-- //MouseButtonReleased - create Listener -->
                     <!-- //SourisBouton - create Listener -->
-                    //<xsl:value-of select="type/value" /> - create Listener
+<!--                    //<xsl:value-of select="type/value" /> - create Listener-->
                     
 <!--
                     globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new BaseMotionGestureEventListener() {

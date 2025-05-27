@@ -32,7 +32,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
 
-                        //SourisBouton - condition
+                        //MouseButton - //SourisBouton - condition
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
@@ -48,7 +48,7 @@ Created By: Travis Berthelot
                                 
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                                 //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                                //Event - //BuiltinCommonInstructions::Link - call - //SourisBouton
+                                //Event - //BuiltinCommonInstructions::Link - call - //MouseButton - //SourisBouton
                                 <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
                                 </xsl:if>
                                 
@@ -78,7 +78,7 @@ Created By: Travis Berthelot
                                 
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                                 //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                                //Event - //BuiltinCommonInstructions::Link - call - //SourisBouton
+                                //Event - //BuiltinCommonInstructions::Link - call - //MouseButton - //SourisBouton
                                 <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
                                 </xsl:if>
                                 
