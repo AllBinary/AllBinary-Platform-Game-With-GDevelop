@@ -228,11 +228,9 @@ Created By: Travis Berthelot
                         </xsl:if>
                         <xsl:if test="position() > 1" >
                            <xsl:if test="not(contains($uppercaseImage, '_HOVER') or contains($uppercaseImage, '_CLICKED') or contains($uppercaseImage, '_HIGHLIGHTED') or contains($uppercaseImage, '_SELECTED'))" >
-<!--                            <xsl:if test="$layoutIndex != 1" >-->
                         imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
                             </xsl:if>
                             <xsl:if test="contains($uppercaseImage, '_HOVER') or contains($uppercaseImage, '_CLICKED') or contains($uppercaseImage, '_HIGHLIGHTED') or contains($uppercaseImage, '_SELECTED')" >
-<!--                            <xsl:if test="$layoutIndex = 1" >-->
                         AndroidUtil.isMemoryRestrictive() ? <xsl:value-of select="$name" />Image0 : imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:value-of select="position() - 1" />]);
                             </xsl:if>
                         </xsl:if>

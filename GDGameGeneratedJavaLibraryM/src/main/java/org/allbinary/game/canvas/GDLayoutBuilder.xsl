@@ -412,7 +412,7 @@ Created By: Travis Berthelot
                         //btn_ - //Rectangle
                         final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
                             pointFactory.getInstance(<xsl:value-of select="name" />GDobject2.x, <xsl:value-of select="name" />GDobject2.y),
-                            <xsl:value-of select="name" />GDobject2.Width(globals.graphics) * scaleTouchButtons, <xsl:value-of select="name" />GDobject2.Height(globals.graphics) * scaleTouchButtons);
+                            (int) (<xsl:value-of select="name" />GDobject2.Width(globals.graphics) * scaleTouchButtons), (int) (<xsl:value-of select="name" />GDobject2.Height(globals.graphics) * scaleTouchButtons));
                         <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         </xsl:if>
                                                 
