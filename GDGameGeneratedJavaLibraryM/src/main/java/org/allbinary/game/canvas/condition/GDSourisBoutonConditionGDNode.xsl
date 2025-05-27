@@ -64,6 +64,36 @@ Created By: Travis Berthelot
                             return true;
                         }
 
+                        public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
+                            super.processStats(motionGestureEvent);
+
+                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            <xsl:for-each select=".." >
+                            <xsl:for-each select="events" >
+                                <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
+                                //caller=<xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodes - //Event - //<xsl:value-of select="type" /> - call
+                                //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                                gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                                </xsl:if>
+                                
+                                <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
+                                //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
+                                //Event - //BuiltinCommonInstructions::Link - call - //SourisBouton
+                                <xsl:if test="contains(disabled, 'true')" >//disabled - </xsl:if>globals.<xsl:value-of select="target" />GDNode.process();
+                                </xsl:if>
+                                
+                            </xsl:for-each>
+                            </xsl:for-each>
+                            
+                            <xsl:call-template name="actionsProcess" >
+                                <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
+                                <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
+                                <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                            </xsl:call-template>
+                            
+                            return true;
+                        }
+
                     };
 
     </xsl:template>
