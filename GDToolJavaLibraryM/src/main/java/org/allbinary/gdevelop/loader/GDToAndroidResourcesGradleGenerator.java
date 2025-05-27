@@ -63,6 +63,7 @@ public class GDToAndroidResourcesGradleGenerator
         final String resource = resourceString.substring(0, resourceString.length() - 4).toLowerCase();
         
         final boolean hasRotationImages = this.gdResourceSelection.hasRotationImages();
+        
         this.gdResourceSelection.appendCommentIfNeeded2(resource.toUpperCase(), resource, resourceStringMaker, hasRotationImages);
         
         resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
@@ -106,7 +107,8 @@ public class GDToAndroidResourcesGradleGenerator
         final Replace replace = new Replace(GD_KEY, this.resourceStringMaker.toString());
         final String newFileAsString = replace.all(newFileAsString2);
 
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE, this, commonStrings.PROCESS));
+        stringMaker.delete(0, stringMaker.length());
+        LogUtil.put(LogFactory.getInstance(stringMaker.append(this.gdToolStrings.FILENAME).append(RESOURCE).toString(), this, commonStrings.PROCESS));
         
         this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
     }

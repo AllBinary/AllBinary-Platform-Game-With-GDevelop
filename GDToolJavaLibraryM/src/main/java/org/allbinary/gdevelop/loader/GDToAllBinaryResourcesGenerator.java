@@ -294,6 +294,8 @@ public class GDToAllBinaryResourcesGenerator
     
     public BasicArrayList process1() throws Exception {
     
+        final StringMaker stringMaker = new StringMaker();
+        
         final boolean hasRotationImages = this.gdResourceSelection.hasRotationImages();
         this.appendResources(hasRotationImages);
         
@@ -302,7 +304,6 @@ public class GDToAllBinaryResourcesGenerator
         final String RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.origin";
         final String RESOURCE = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.java";
         
-        final StringMaker stringMaker = new StringMaker();
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         sharedBytes.outputStream.reset();
@@ -317,7 +318,7 @@ public class GDToAllBinaryResourcesGenerator
         final String newFileAsString = replace.all(androidRFileAsString);
 
         stringMaker.delete(0, stringMaker.length());
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE, this, commonStrings.PROCESS));
+        LogUtil.put(LogFactory.getInstance(stringMaker.append(this.gdToolStrings.FILENAME).append(RESOURCE).toString(), this, commonStrings.PROCESS));
         
         this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
         

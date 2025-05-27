@@ -13,9 +13,12 @@
  */
 package org.allbinary.gdevelop.loader;
 
+import org.allbinary.logic.communication.log.LogFactory;
+import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.io.file.FileUtil;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.string.CommonStrings;
 
 /**
  *
@@ -43,7 +46,7 @@ public class GDResourceSelection {
     public boolean appendCommentIfNeeded0(final String name, final String resource, final StringMaker resourceStringMaker, final boolean hasRotationImages) {
                 
         boolean used = true;
-
+        
         if (resource.toUpperCase().indexOf(gdToolStrings._BLANK_) >= 0) {
             used = false;
             resourceStringMaker.append(this.commonSeps.COMMENT);
@@ -120,14 +123,28 @@ public class GDResourceSelection {
         
         return used;
     }
-    
+
+    private boolean hasRead;
+    private boolean hasRotationImages;
     public boolean hasRotationImages() {
-        final FileUtil fileUtil = FileUtil.getInstance();
-        final String fileAsString = fileUtil.readAsString(gdToolStrings.ROTATION_ANIMATION_FILE_PATH);
-        if(fileAsString.indexOf(FOUND) >= 0) {
-            return true;
+        
+        if(!hasRead) {
+            hasRead = true;
+            final FileUtil fileUtil = FileUtil.getInstance();
+            final String fileAsString = fileUtil.readAsString(gdToolStrings.ROTATION_ANIMATION_FILE_PATH);
+            if (fileAsString.indexOf(FOUND) >= 0) {
+
+                hasRotationImages = true;
+            } else {
+                hasRotationImages = false;
+            }
+
+            final StringMaker stringMaker = new StringMaker();
+            final CommonStrings commonStrings = CommonStrings.getInstance();
+            LogUtil.put(LogFactory.getInstance(stringMaker.append("hasRotationImages: ").append(hasRotationImages).toString(), this, commonStrings.PROCESS));
         }
-        return false;
+
+        return hasRotationImages;
     }
     
 }

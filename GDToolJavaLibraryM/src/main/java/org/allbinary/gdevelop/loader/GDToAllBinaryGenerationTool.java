@@ -75,6 +75,7 @@ public class GDToAllBinaryGenerationTool
     private final GDToAllBinaryEarlyResourceInitializationGenerator earlyResourceInitializationGenerator = new GDToAllBinaryEarlyResourceInitializationGenerator();
     private final GDToThreedAllBinaryEarlyResourceInitializationGenerator threedEarlyResourceInitializationGenerator = new GDToThreedAllBinaryEarlyResourceInitializationGenerator();
     private final GDToThreedAllBinarySceneAndroidResourcesGradleGenerator threedSceneEarlyResourceInitializationGenerator = new GDToThreedAllBinarySceneAndroidResourcesGradleGenerator();
+    private final GDToAllBinaryRotationGenerator allBinaryRotationGenerator = new GDToAllBinaryRotationGenerator();
 
     private final GDToAllBinaryGlobalGenerator midletGenerator = new GDToAllBinaryGlobalGenerator();
     private final GDLayoutsToAllBinaryGenerator levelBuilderGenerator = new GDLayoutsToAllBinaryGenerator(
@@ -153,6 +154,8 @@ public class GDToAllBinaryGenerationTool
 
         this.bufferedWriterUtil.overwrite(fileName, fixQuotes);
         //this.bufferedWriterUtil.overwrite(fileName, xml);
+        
+        allBinaryRotationGenerator.process();
 
         this.load(gdProject);
 

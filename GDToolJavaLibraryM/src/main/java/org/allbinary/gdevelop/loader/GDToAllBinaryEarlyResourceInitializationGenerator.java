@@ -30,7 +30,9 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
-    
+
+    private final GDResourceSelection gdResourceSelection = GDResourceSelection.getInstance();
+
     private final String SOUND_RESOURCE = ".getInstance().getResource(), ";
 
     public GDToAllBinaryEarlyResourceInitializationGenerator()
@@ -89,9 +91,11 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
         final CommonSeps commonSeps = CommonSeps.getInstance();
         final StringUtil stringUtil = StringUtil.getInstance();
 
+        final boolean hasRotationImages = this.gdResourceSelection.hasRotationImages();
+        
         final BasicArrayList resourceList = this.gdResources.resourceNameList;
         final BasicArrayList androidResourceList = this.gdResources.androidResourceList;
-        
+
         final int size = resourceList.size();
         final int size2 = 100;
         String resource;
@@ -105,11 +109,14 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
                 stringMaker.append(this.commonSeps.COMMENT);
             }
             
-            for(int index2 = 2; index2 < size2; index2++) {
-                if(resource.endsWith(commonSeps.UNDERSCORE + index2) && resource.indexOf(gdToolStrings._TOUCH_) < 0) {
-                    stringMaker.append(this.commonSeps.COMMENT);
+            //hasRotationImages?
+            if (!hasRotationImages) {
+                for (int index2 = 2; index2 < size2; index2++) {
+                    if (resource.endsWith(commonSeps.UNDERSCORE + index2) && resource.indexOf(gdToolStrings._TOUCH_) < 0) {
+                        stringMaker.append(this.commonSeps.COMMENT);
+                    }
                 }
-            }            
+            }
                         
             stringMaker.append(gdToolStrings.RESOURCE_0);
             
