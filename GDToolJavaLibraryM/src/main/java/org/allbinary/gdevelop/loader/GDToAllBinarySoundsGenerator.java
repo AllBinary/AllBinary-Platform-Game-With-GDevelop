@@ -49,7 +49,7 @@ public class GDToAllBinarySoundsGenerator
     private final String _JAVA = ".java";
     
     private final String SKIPPING_SOUND = "Skpping Sound: ";
-    //private final String SELECT = "select";
+    private final String SELECT = "select";
     private final String ERROR = "error";
     
     public void processExpressionParam(final String param, final String resourceString) {
@@ -69,10 +69,10 @@ public class GDToAllBinarySoundsGenerator
         //int endIndex = param.lastIndexOf('.');
         final String fileAsString = param.substring(startIndex);
         
-//        if(fileAsString.compareTo(SELECT) == 0) {
-//            LogUtil.put(LogFactory.getInstance(SKIPPING_SOUND + fileAsString, this, commonStrings.PROCESS));
-//            return;
-//        }
+        if(fileAsString.compareTo(SELECT) == 0) {
+            LogUtil.put(LogFactory.getInstance(SKIPPING_SOUND + fileAsString, this, commonStrings.PROCESS));
+            return;
+        }
 
         if(fileAsString.compareTo(ERROR) == 0) {
             LogUtil.put(LogFactory.getInstance(SKIPPING_SOUND + fileAsString, this, commonStrings.PROCESS));
