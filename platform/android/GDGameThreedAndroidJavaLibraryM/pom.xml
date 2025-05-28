@@ -66,6 +66,19 @@
         </dependency>
         
         <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>MusicAndroidJavaLibrary</artifactId>
+            <!-- 
+            <artifactId>MusicJ2MEJavaLibrary</artifactId>
+            <artifactId>MusicAndroidJavaLibrary</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+                
+        <dependency>
             <groupId>org.allbinary.input</groupId>
             <artifactId>TouchButtonResourceOpenGLESAnimationJavaLibrary</artifactId>
             <version>${allbinary.platform.version}</version>

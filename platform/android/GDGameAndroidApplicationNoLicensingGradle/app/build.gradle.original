@@ -3,14 +3,14 @@ plugins {
 }
 
 android {
-    compileSdk 35
-    buildToolsVersion = "35.0.1"
+    compileSdk 36
+    buildToolsVersion = "36.0.0"
 
     defaultConfig {
         //needs template
         applicationId "org.allbinary.game.gd.<name>"
         minSdkVersion 21
-        targetSdkVersion 35
+        targetSdkVersion 36
         versionCode 1
         versionName "0.0.2100"
 

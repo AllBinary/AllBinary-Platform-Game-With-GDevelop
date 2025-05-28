@@ -49,8 +49,8 @@ extends ResourceInitialization
         resourceUtil.addResource(MidletIcon.RESOURCE, Integer
                 .valueOf(androidResources.drawable.gd_icon));
 
-        //resourceUtil.addResource(SelectSound.getInstance().getResource(), Integer
-                //.valueOf(androidResources.raw.select));
+        resourceUtil.addResource(SelectSound.getInstance().getResource(), Integer
+                .valueOf(androidResources.raw.select));
 
         resourceUtil.addResource(ErrorSound.getInstance().getResource(), Integer
                 .valueOf(androidResources.raw.error));
