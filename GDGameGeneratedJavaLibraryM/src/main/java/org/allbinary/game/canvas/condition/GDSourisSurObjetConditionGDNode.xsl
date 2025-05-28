@@ -276,8 +276,9 @@ Created By: Travis Berthelot
                             //}
                                     </xsl:if>
                                 </xsl:for-each>
-                                
-                            return true;
+                            
+                            //Always false as the runnable does the real processing
+                            return false;
                         }
                                                 
                     };
