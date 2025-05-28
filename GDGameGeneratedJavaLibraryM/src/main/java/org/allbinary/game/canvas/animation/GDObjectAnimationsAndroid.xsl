@@ -214,7 +214,7 @@ Created By: Travis Berthelot
                                         <xsl:if test="name = $name" >
                                             <xsl:if test="contains(name, 'btn_')" >
                                                 //btn_ - found
-                                                <xsl:value-of select="$name" />ImageArray[0].getWidth(), <xsl:value-of select="$name" />ImageArray[0].getHeight()
+                                                (int) (<xsl:value-of select="$name" />ImageArray[0].getWidth() * scaleTouchButtons), (int) (<xsl:value-of select="$name" />ImageArray[0].getHeight() * scaleTouchButtons)
                                             </xsl:if>
                                             <xsl:if test="not(contains(name, 'btn_'))" >
                                                 //btn_ - not 2

@@ -199,8 +199,10 @@ Created By: Travis Berthelot
                         //public final BasicArrayList <xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
                         public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
                         public final BasicArrayList <xsl:value-of select="name" />RemoveList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
+                        <xsl:if test="type = 'TextObject::Text'" >
                         public final BasicArrayList <xsl:value-of select="name" />RectangleList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
-
+                        </xsl:if>
+                        
                         <xsl:for-each select="animations" >
                             <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
                             <xsl:if test="string-length($animationName)" >
@@ -388,7 +390,9 @@ Created By: Travis Berthelot
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
                         //<xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" />.clear();
                         <xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" />.clear();
+                        <xsl:if test="type = 'TextObject::Text'" >
                         <xsl:value-of select="name" />RectangleList<xsl:value-of select="$initialVariablesValue" />.clear();
+                        </xsl:if>
 
                         <xsl:value-of select="name" />CacheGDGameLayerList.clear();
                         <xsl:value-of select="name" />GDGameLayerDestroyedList.clear();
