@@ -61,7 +61,9 @@ public class GDToThreedAndroidResourcesGradleGenerator
     }
     
     public void processResource(final String fileAsString, final String resourceString) {
-        final String resource = resourceString.substring(1, resourceString.length() - 4).toLowerCase();
+        final int beginIndex = Character.isAlphabetic(resourceString.charAt(0)) ? 0 : 1;
+        //LogUtil.put(LogFactory.getInstance("resourceString: " + resourceString, this, commonStrings.PROCESS));
+        final String resource = resourceString.substring(beginIndex, resourceString.length() - 4).toLowerCase();
 
         //Hack - the generation needs to break 3d objects from images.
         boolean isThreed = true;        
