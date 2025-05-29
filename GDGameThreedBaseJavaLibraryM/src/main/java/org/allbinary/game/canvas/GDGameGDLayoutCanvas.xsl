@@ -23,6 +23,7 @@
 package org.allbinary.game.canvas;
 
 import javax.microedition.lcdui.CommandListener;
+import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
 
 import org.allbinary.game.init.GDGameStaticInitializerFactory;
@@ -88,14 +89,19 @@ import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
 import org.allbinary.game.gd.MusicManagerFactory;
+import org.allbinary.game.layer.hud.event.GameNotificationEventHandler;
+import org.allbinary.game.resource.GDResources;
 import org.allbinary.graphics.opengles.CurrentDisplayableFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.graphics.paint.NullPaintable;
 import org.allbinary.graphics.paint.InitUpdatePaintable;
 import org.allbinary.graphics.paint.NullPaintable;
+import org.allbinary.graphics.paint.NullInitUpdatePaintable;
 import org.allbinary.graphics.paint.Paintable;
 import org.allbinary.graphics.paint.PaintableInterface;
 import org.allbinary.graphics.threed.min3d.AllBinarySceneController;
+import org.allbinary.image.ImageCache;
+import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.layer.event.LayerManagerEventHandler;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.AllBinaryVibration;
@@ -125,6 +131,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 {
     private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
     private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
+    private final ImageCache imageCache = ImageCacheFactory.getInstance();
         
     private final String GD_LAYOUT_COLOR = "GDLayout<xsl:value-of select="position()" />Color";
 
@@ -133,6 +140,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     private final int portion = 4;
     private final short SIZE = 50;
 
+    private final GDResources gdResources = GDResources.getInstance();
     private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
     private final StringMaker stringBuilder = new StringMaker();
 
@@ -160,6 +168,14 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
            //new BasicBuildGameInitializerFactory(),
            false);
 
+        <xsl:if test="number($layoutIndex) = 1" >
+        this.imageCache.initProgress();
+        this.gdResources.currentLayoutRequiredTotal = this.gdResources.resourceStringArray.length;
+        </xsl:if>
+        <xsl:if test="number($layoutIndex) != 1" >
+        this.gdResources.currentLayoutRequiredTotal = 0;
+        </xsl:if>
+        
         this.abeClientInformation = abeClientInformation;
         
         musicManager = MusicManagerFactory.create(GD<xsl:value-of select="$layoutIndex" />GameMusicFactory.getInstance().soundList);
@@ -300,8 +316,21 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     {
         super.initSpecialPaint();
 
-        this.setStartIntermissionPaintable(new StartIntermissionPaintable(
-                this, new String[] {StringUtil.getInstance().EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED));
+        <xsl:if test="number($layoutIndex) = 0 or position() = last() or contains($name2, 'game_options') or contains($name2, 'score') or contains($name2, 'over')" >
+        GameNotificationEventHandler.getInstance().enabled = false;
+        this.setStartIntermissionPaintable(NullInitUpdatePaintable.getInstance());
+        </xsl:if>
+            
+        <xsl:if test="not(number($layoutIndex) = 0 or position() = last() or contains($name2, 'game_options') or contains($name2, 'score') or contains($name2, 'over'))" >
+        GameNotificationEventHandler.getInstance().enabled = true;
+        final int fontSize = 24;
+        final Font font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, fontSize);        
+        final StringUtil stringUtil = StringUtil.getInstance();
+        this.setStartIntermissionPaintable(
+            new StartIntermissionPaintable(this, new String[] {stringUtil.EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED, font)
+            //new StartIntermissionPaintable(this, new String[] {stringUtil.EMPTY_STRING}, new int[] {0}, BasicColorFactory.getInstance().RED)
+            );
+        </xsl:if>
     }
 
     public void mediaInit() throws Exception
@@ -418,10 +447,10 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
                     //list.add(new OptimizedGameInputLayerProcessorForCollidableLayer());
                 }
 
-                if (features.isFeature(gameFeatureFactory.COLLIDABLE_INTERFACE_LAYER_PROCESSOR))
-                {
-                    list.add(new OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer());
-                }
+                //if (features.isFeature(gameFeatureFactory.COLLIDABLE_INTERFACE_LAYER_PROCESSOR))
+                //{
+                //    list.add(new OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer());
+                //}
 
                 if (features.isFeature(gameFeatureFactory.TICKABLE_LAYER_PROCESSOR))
                 {
@@ -767,7 +796,6 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             </xsl:if>
         </xsl:for-each>
            
-
         //boolean isOverScan = OperatingSystemFactory.getInstance().getOperatingSystemInstance().isOverScan();
         
         //final Features features = Features.getInstance();
@@ -799,6 +827,12 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         this.upKeyEventHandler.getInstanceForPlayer(playerGameInput.getPlayerInputId()).addListenerSingleThreaded(playerGameInput);
     }
             
+    <xsl:if test="number($layoutIndex) != 1" >
+    //Do not remove on build for this layout
+    protected void removeAllGameKeyInputListenersOnBuild() {
+    }
+    </xsl:if>
+
     public void removeKeyInputListener(final PlayerGameInput playerGameInput) {
         super.removeKeyInputListener(playerGameInput);
 
