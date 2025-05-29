@@ -78,7 +78,8 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($lazy, 'true')" >
                     new LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
                         </xsl:if>
-                    new OneRow<xsl:value-of select="$platform" />SpriteIndexedAnimationFactory(
+                    //<xsl:value-of select="$platform" />
+                    new OneRowSpriteIndexedAnimationFactory(
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
                     //,
                     //-<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth() / 2,

@@ -99,7 +99,7 @@ import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInte
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.animation.image.AllBinaryHTMLImageRotationAnimationFactory;
 import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
-import org.allbinary.animation.image.sprite.OneRowHTMLSpriteIndexedAnimationFactory;
+import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
 import org.allbinary.animation.text.CustomTextAnimationFactory;
 import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory;
 import org.allbinary.game.canvas.GDGlobalSpecialAnimationResources;
