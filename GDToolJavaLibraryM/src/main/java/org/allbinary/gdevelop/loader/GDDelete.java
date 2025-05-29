@@ -252,6 +252,7 @@ public class GDDelete {
         //exclusionList11.add("GDGameAndroidMin3dView.java");
         //exclusionList11.add("GDGameAndroidOpenGLESView.java");
         //exclusionList11.add("GDGameAndroidView.java");
+        exclusionList11.add("GDGameAndroidResourceInitialization.java");
         
         final BasicArrayList files11 = fileListFetcher.getFiles(
               gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\", this.gdToolStrings.JAVA);
