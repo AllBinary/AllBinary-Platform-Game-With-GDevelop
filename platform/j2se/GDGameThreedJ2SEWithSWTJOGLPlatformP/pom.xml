@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.allbinary.game.gd</groupId>
+  <artifactId>GDGameThreedJ2SEWithSWTJOGLPlatformP</artifactId>
+  <packaging>pom</packaging>
+  <!-- AllBinary Platform Version Start -->
+  <version>1.0.0-SNAPSHOT</version>
+  <!-- AllBinary Platform Version End -->
+
+  <name>GDGameThreedJ2SEWithSWTJOGLPlatformP</name>
+  <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+    <modules>
+
+        <module>../GDGameThreedJ2SEWithSWTJOGLResourceJavaLibraryM</module>
+        
+        <module>../../../resource/GDGameOpenGLThreedAnimationResourceJavaLibraryM</module>
+
+        <module>../GDGameThreedBaseJ2SEWithSWTJOGLJavaLibraryM</module>
+
+        <module>../GDGameThreedJ2SEWithSWTJOGLM</module>
+        <module>../GDGameThreedJ2SEWithSWTJOGLApplicationM</module>
+
+    </modules>
+
+</project>

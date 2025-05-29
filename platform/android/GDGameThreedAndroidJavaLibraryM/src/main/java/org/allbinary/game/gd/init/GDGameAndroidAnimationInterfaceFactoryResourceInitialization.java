@@ -1,4 +1,4 @@
-package org.allbinary.game.init;
+package org.allbinary.game.gd.init;
 
 import org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.animation.image.GDGameGameResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory;

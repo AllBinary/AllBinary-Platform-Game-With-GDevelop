@@ -1,9 +1,10 @@
-package org.allbinary.game.init;
+package org.allbinary.game.gd.init;
 
 import javax.microedition.lcdui.CommandListener;
 
 import org.allbinary.game.resource.ResourceInitialization;
-import org.allbinary.game.configuration.GDGameGameFeatures;
+import org.allbinary.game.gd.configuration.GDGameGameFeatures;
+import org.allbinary.game.init.GDGameStaticInitializer;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 

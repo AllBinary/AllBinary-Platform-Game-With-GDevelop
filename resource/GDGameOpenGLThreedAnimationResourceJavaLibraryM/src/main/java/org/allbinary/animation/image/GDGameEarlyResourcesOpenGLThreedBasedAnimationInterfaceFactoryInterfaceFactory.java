@@ -20,7 +20,7 @@ import org.allbinary.logic.communication.log.LogUtil;
 
 public class GDGameEarlyResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory
 extends 
-//ZeptoRacerEarlyResourcesImageArrayBasedAnimationInterfaceFactoryInterfaceFactory
+//GDGameEarlyResourcesImageArrayBasedAnimationInterfaceFactoryInterfaceFactory
 BaseResourceAnimationInterfaceFactoryInterfaceFactory
 {
     public GDGameEarlyResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory()

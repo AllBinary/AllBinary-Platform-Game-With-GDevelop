@@ -14,7 +14,7 @@ public class GDGameAdConfiguration extends AdConfiguration
     {
         super(new Object[]
                 {
-                "AllBinary_GDGame_Threed_Android",
+                "AllBinary_GDGame_Threed_J2SEWithSWTJOGL",
                 "",
                 StringUtil.getInstance().EMPTY_STRING
                 }

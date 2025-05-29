@@ -111,9 +111,6 @@ public class GDDelete {
         final BasicArrayList exclusionList3 = new BasicArrayList();
         
         exclusionList3.add("GDGameAllBinarySceneControllerFactory.java");
-        exclusionList3.add("GDGameAndroidMin3dView.java");
-        exclusionList3.add("GDGameAndroidOpenGLESView.java");
-        exclusionList3.add("GDGameAndroidView.java");
         exclusionList3.add("GDGameSoftwareInfo.java");
         exclusionList3.add("GDGameTitleAnimationFactory.java");
         exclusionList3.add("GDGameResourceInitialization.java");
@@ -249,6 +246,18 @@ public class GDDelete {
               gdToolStrings.ROOT_PATH + "resource\\GDGameOpenGLThreedAnimationResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
         
         this.process(files10, exclusionList10);
+        
+        final BasicArrayList exclusionList11 = new BasicArrayList();
+
+        //exclusionList11.add("GDGameAndroidMin3dView.java");
+        //exclusionList11.add("GDGameAndroidOpenGLESView.java");
+        //exclusionList11.add("GDGameAndroidView.java");
+        
+        final BasicArrayList files11 = fileListFetcher.getFiles(
+              gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\", this.gdToolStrings.JAVA);
+        
+        this.process(files11, exclusionList11);
+        
     }
 
     /**

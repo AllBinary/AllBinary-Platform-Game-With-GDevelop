@@ -242,6 +242,29 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/build
 /platform/android/GDGameThreedAndroidApplicationNoLicensingGradle/app/release
 
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.java
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.xsl
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.xml
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.MF
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.origin
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.original
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.properties
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.svg
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.png
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.ogg
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.txt
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.tmp
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.glsl
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.fp
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.vp
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.ttf
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.g
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.bak
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.bat
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/Makefile
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/res/drawable/
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/res/raw/
+
 /platform/html/GDGamePlayNWarM/war/gd/**/*.png
 /platform/html/GDGamePlayNWarM/war/gd/**/*.wav
 

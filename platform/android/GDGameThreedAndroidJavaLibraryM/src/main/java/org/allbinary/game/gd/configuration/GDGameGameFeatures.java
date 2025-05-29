@@ -1,4 +1,4 @@
-package org.allbinary.game.configuration;
+package org.allbinary.game.gd.configuration;
 
 import org.allbinary.input.gyro.OrientationData;
 import org.allbinary.util.BasicArrayList;
