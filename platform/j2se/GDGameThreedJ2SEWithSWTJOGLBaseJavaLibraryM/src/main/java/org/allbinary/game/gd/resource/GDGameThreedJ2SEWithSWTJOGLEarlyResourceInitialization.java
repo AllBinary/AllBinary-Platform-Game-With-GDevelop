@@ -1,0 +1,39 @@
+package org.allbinary.game.gd.resource;
+
+/*
+ *  Note that errors may occur even though your importing R correctly
+ *  This usually is caused by Duplicate R classes
+ *  Solution is usually to move the R class from the org.allbinary.game.game_name 
+ *  package into the independent src directory not part of the multi process apk
+ *  Remark out for independent Activities
+ */
+
+import java.io.InputStream;
+
+import org.allbinary.data.resource.ResourceUtil;
+import org.allbinary.game.resource.ResourceInitialization;
+import org.allbinary.game.resource.ResourceInitialization;
+import org.allbinary.logic.io.StreamUtil;
+import org.allbinary.media.audio.ErrorSound;
+import org.allbinary.media.audio.SelectSound;
+import org.allbinary.midlet.MidletIcon;
+import org.allbinary.util.BasicArrayList;
+
+public class GDGameThreedJ2SEWithSWTJOGLEarlyResourceInitialization 
+extends ResourceInitialization
+{
+    public void init() 
+    throws Exception
+    {
+        super.init();
+
+        final ResourceUtil resourceUtil = ResourceUtil.getInstance();
+
+        final GDResources gdResources = GDResources.getInstance();
+
+        //resourceUtil.addResource(gdResources.BLANK, Integer.valueOf(androidResources.raw.blank));
+                        
+    }
+    
+}
+

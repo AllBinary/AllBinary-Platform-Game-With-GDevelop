@@ -11,7 +11,7 @@
 * Created By: Travis Berthelot
 * 
 */
-package org.allbinary.game.resource;
+package org.allbinary.game.gd.resource;
 
 import org.allbinary.media.audio.Sound;
 import org.allbinary.media.audio.CompositeSound;

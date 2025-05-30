@@ -8,11 +8,11 @@ import org.allbinary.game.init.GDGameStaticInitializer;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 
-public class GDGameBaseAndroidStaticInitializer extends GDGameStaticInitializer
+public class GDGameThreedBaseJ2SEWithSWTJOGLStaticInitializer extends GDGameStaticInitializer
 {
     private boolean androidGameInitialized;
     
-    public GDGameBaseAndroidStaticInitializer(
+    public GDGameThreedBaseJ2SEWithSWTJOGLStaticInitializer(
             ResourceInitialization[] resourceInitializationArray, int portion)
     {
         super(resourceInitializationArray, portion);

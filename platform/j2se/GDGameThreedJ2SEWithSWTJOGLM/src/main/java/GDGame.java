@@ -1,6 +1,8 @@
 
+import org.allbinary.business.advertisement.GameAdStateFactory;
 import org.allbinary.data.resource.ResourceUtil;
 import org.allbinary.emulator.InitEmulatorFactory;
+import org.allbinary.game.canvas.GDGameSoftwareInfo;
 import org.allbinary.game.configuration.GameConfigurationCentral;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GameFeatureFactory;
@@ -21,6 +23,7 @@ import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
 import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackGameFeature;
+import org.allbinary.string.CommonStrings;
 import org.allbinary.view.EmulatorViewInterface;
 import org.allbinary.view.OptimizedGLSurfaceView;
 import org.microemu.app.MidletJOGLInterface;
@@ -37,6 +40,16 @@ public class GDGame
     public GDGame()
     {
         super(GDGameClientInformationInterfaceFactory.getFactoryInstance());
+        
+        try
+        {
+            GameAdStateFactory.getInstance().getInstance(
+                    GDGameSoftwareInfo.getInstance());
+        }
+        catch (Exception e)
+        {
+            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+        }
         
         BasicMotionGesturesHandler motionGesturesHandler =
             motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();

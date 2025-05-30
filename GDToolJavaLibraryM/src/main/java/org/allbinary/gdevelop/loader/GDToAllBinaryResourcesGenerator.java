@@ -301,8 +301,8 @@ public class GDToAllBinaryResourcesGenerator
         
         timeDelayHelper.setStartTime();
         
-        final String RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.origin";
-        final String RESOURCE = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDResources.java";
+        final String RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.origin";
+        final String RESOURCE = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDResources.java";
         
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final SharedBytes sharedBytes = SharedBytes.getInstance();
@@ -342,8 +342,8 @@ public class GDToAllBinaryResourcesGenerator
         
         timeDelayHelper.setStartTime();
         
-        final String LAZY_RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDLazyResources.origin";
-        final String LAZY_RESOURCE = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource\\GDLazyResources.java";
+        final String LAZY_RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.origin";
+        final String LAZY_RESOURCE = gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\GDLazyResources.java";
         
         final StringMaker stringMaker = new StringMaker();
         final StreamUtil streamUtil = StreamUtil.getInstance();

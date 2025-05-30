@@ -162,10 +162,10 @@ public class GDDelete {
 
         final BasicArrayList exclusionList20 = new BasicArrayList();
         
-        exclusionList20.add("GDResources.java");
+        //exclusionList20.add("GDResources.java");
         
         final BasicArrayList files20 = fileListFetcher.getFiles(
-              gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\resource", this.gdToolStrings.JAVA);
+              gdToolStrings.ROOT_PATH + "resource\\GDGameResourceJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource", this.gdToolStrings.JAVA);
         
         this.process(files20, exclusionList20);
 

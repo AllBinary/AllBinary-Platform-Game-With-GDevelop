@@ -61,7 +61,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.canvas.GDGlobalSpecialAnimationResources;
-                import org.allbinary.game.resource.GDResources;
+                import org.allbinary.game.gd.resource.GDResources;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
                 import org.allbinary.image.ImageCache;

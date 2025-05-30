@@ -10,12 +10,12 @@ public class GDGameStaticInitializerFactory
    extends BasicBuildGameInitializerFactory
 {
     private static GameInitializationInterface STATIC = 
-        new GDGameBaseAndroidStaticInitializer(
+        new GDGameThreedBaseAndroidStaticInitializer(
                 new ResourceInitialization[]{
                         new GDGameAndroidEarlyResourceInitialization(),
                         new GDGameAndroidResourceInitialization(),
-                        new GDGameAndroidAnimationInterfaceFactoryEarlyResourceInitialization(),
-                        new GDGameAndroidAnimationInterfaceFactoryResourceInitialization(),
+                        new GDGameThreedAndroidAnimationInterfaceFactoryEarlyResourceInitialization(),
+                        new GDGameThreedAndroidAnimationInterfaceFactoryResourceInitialization(),
                 },                
                 15);
 

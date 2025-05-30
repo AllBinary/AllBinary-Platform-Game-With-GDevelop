@@ -1,4 +1,5 @@
 
+import org.allbinary.business.advertisement.GameAdStateFactory;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.data.resource.ResourceUtil;
@@ -23,6 +24,7 @@ import org.allbinary.graphics.opengles.OpenGLConfiguration;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
 import org.allbinary.media.audio.GDGameSoundsFactory;
+import org.allbinary.string.CommonStrings;
 import org.allbinary.view.EmulatorViewInterface;
 import org.allbinary.view.OptimizedGLSurfaceView;
 import org.microemu.app.MidletJOGLInterface;
@@ -40,7 +42,7 @@ public class GDGameMIDlet
     {
         super(GDGameClientInformationInterfaceFactory.getFactoryInstance());
         GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance();
-        
+                
         final BasicMotionGesturesHandler motionGesturesHandler =
             motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
 

@@ -9,10 +9,10 @@ import org.allbinary.game.resource.ResourceInitialization;
 //import org.allbinary.input.motion.button.TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory;
 //import org.allbinary.input.motion.button.TouchButtonResourceOpenGLESAnimationInterfaceFactoryInterfaceFactory;
 
-public class GDGameAndroidAnimationInterfaceFactoryResourceInitialization
+public class GDGameThreedAndroidAnimationInterfaceFactoryResourceInitialization
 extends ResourceInitialization
 {
-    public GDGameAndroidAnimationInterfaceFactoryResourceInitialization()
+    public GDGameThreedAndroidAnimationInterfaceFactoryResourceInitialization()
     {
     }
 

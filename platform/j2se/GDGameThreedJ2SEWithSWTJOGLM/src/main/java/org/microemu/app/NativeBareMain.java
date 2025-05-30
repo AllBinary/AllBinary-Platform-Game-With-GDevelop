@@ -14,12 +14,16 @@
 package org.microemu.app;
 
 import java.nio.ByteOrder;
+
 import org.allbinary.device.OpenGLESGraphicsCompositeFactory;
 import org.allbinary.game.configuration.feature.Features;
+import org.allbinary.game.gd.resource.GDGameThreedJ2SEWithSWTJOGLEarlyResourceInitialization;
+import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonStrings;
+
 import org.microemu.opengles.device.PlatformOpenGLESGraphicsFactory;
 
 /**
@@ -50,6 +54,8 @@ public class NativeBareMain {
 
             OpenGLESGraphicsCompositeFactory.getInstance().set(new PlatformOpenGLESGraphicsFactory());
             //OpenGLESGraphicsFactory.getInstance().set(new PlatformDisplayMin3dGraphicsFactory());
+
+            GDThreedEarlyResourceInitializationFactory.getInstance().list.add(new GDGameThreedJ2SEWithSWTJOGLEarlyResourceInitialization());
             
         } catch(Exception e) {
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, features, CommonStrings.getInstance().PROCESS, e));

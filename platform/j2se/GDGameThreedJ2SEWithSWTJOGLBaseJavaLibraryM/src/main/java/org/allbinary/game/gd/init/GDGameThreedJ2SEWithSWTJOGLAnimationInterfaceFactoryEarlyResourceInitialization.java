@@ -5,10 +5,10 @@ import org.allbinary.animation.image.GDGameEarlyResourcesOpenGLThreedBasedAnimat
 //import org.allbinary.game.image.GDGameEarlyResourcesImageArrayBasedAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.resource.ResourceInitialization;
 
-public class GDGameAndroidAnimationInterfaceFactoryEarlyResourceInitialization 
+public class GDGameThreedJ2SEWithSWTJOGLAnimationInterfaceFactoryEarlyResourceInitialization 
 extends ResourceInitialization
 {
-    public GDGameAndroidAnimationInterfaceFactoryEarlyResourceInitialization()
+    public GDGameThreedJ2SEWithSWTJOGLAnimationInterfaceFactoryEarlyResourceInitialization()
     {
     }
 

@@ -78,7 +78,7 @@
             -->
             <optional>true</optional>
         </dependency>
-        
+
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
@@ -90,19 +90,20 @@
             <!-- AllBinary Platform Version Start -->
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
-            
+            <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
             <artifactId>GDGameWavSoundsJavaLibrary</artifactId>
         </dependency>
-                
+
     </dependencies>
 
     <build>

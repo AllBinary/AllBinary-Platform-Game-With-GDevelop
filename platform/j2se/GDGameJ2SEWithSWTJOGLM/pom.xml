@@ -310,7 +310,7 @@
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>YourXmlRpcJavaLibrary</artifactId>
+            <artifactId>XmlRpcJavaLibrary</artifactId>
 <!--
             <artifactId>XmlRpcJavaLibrary</artifactId>
             <artifactId>YourXmlRpcJavaLibrary</artifactId>
@@ -396,6 +396,26 @@
             <!-- Game Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- Game Version End -->
+        </dependency>
+
+        
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
+            
+            <!--
+            <artifactId>GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
+            <artifactId>GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
+            -->
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
+            
         </dependency>
 
 <!--

@@ -10,10 +10,8 @@ package org.allbinary.game.gd.resource;
 
 import java.io.InputStream;
 
-import org.allbinary.AndroidResources;
-
-import org.allbinary.game.resource.GDResources;
 import org.allbinary.data.resource.ResourceUtil;
+import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.media.audio.ErrorSound;
@@ -21,7 +19,7 @@ import org.allbinary.media.audio.SelectSound;
 import org.allbinary.midlet.MidletIcon;
 import org.allbinary.util.BasicArrayList;
 
-public class GDGameAndroidEarlyResourceInitialization 
+public class GDGameJ2SEWithSWTJOGLEarlyResourceInitialization 
 extends ResourceInitialization
 {
     public void init() 
@@ -31,7 +29,7 @@ extends ResourceInitialization
 
         final ResourceUtil resourceUtil = ResourceUtil.getInstance();
 
-        final AndroidResources androidResources = AndroidResources.getInstance();
+        //final AndroidResources androidResources = AndroidResources.getInstance();
 
         //final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
         
@@ -48,17 +46,6 @@ extends ResourceInitialization
         
         //gdProject.load(gdGameConfiguration);
         
-        resourceUtil.addResource(MidletIcon.RESOURCE, Integer
-                .valueOf(androidResources.drawable.gd_icon));
-
-        resourceUtil.addResource(SelectSound.getInstance().getResource(), Integer
-                .valueOf(androidResources.raw.select));
-
-        resourceUtil.addResource(ErrorSound.getInstance().getResource(), Integer
-                .valueOf(androidResources.raw.error));
-        
-        //GD
-        
         //resourceUtil.addResource(TestSound.getInstance().getResource(), Integer
                 //.valueOf(androidResources.raw.test));
 
@@ -67,3 +54,4 @@ extends ResourceInitialization
     }
     
 }
+

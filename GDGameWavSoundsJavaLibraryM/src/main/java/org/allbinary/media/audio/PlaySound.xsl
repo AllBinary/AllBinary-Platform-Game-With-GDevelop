@@ -245,7 +245,7 @@ Created By: Travis Berthelot
                     <xsl:if test="$musicOrSound = 'music'" >
                     if(!soundList.contains(org.allbinary.game.resource.GD<xsl:value-of select="$fileName4" />Sound.getInstance())) {
                     </xsl:if>
-                        soundList.add(org.allbinary.game.resource.GD<xsl:value-of select="$fileName4" />Sound.getInstance());
+                        soundList.add(org.allbinary.game.gd.resource.GD<xsl:value-of select="$fileName4" />Sound.getInstance());
                     <xsl:if test="$musicOrSound = 'music'" >
                     }
                     </xsl:if>
