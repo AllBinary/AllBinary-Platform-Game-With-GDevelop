@@ -262,8 +262,7 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.bak
 /platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.bat
 /platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/Makefile
-/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/res/drawable/
-/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/res/raw/
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/resources/**
 
 /platform/html/GDGamePlayNWarM/war/gd/**/*.png
 /platform/html/GDGamePlayNWarM/war/gd/**/*.wav

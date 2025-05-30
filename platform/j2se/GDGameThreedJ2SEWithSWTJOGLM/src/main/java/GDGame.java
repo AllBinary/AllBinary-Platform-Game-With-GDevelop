@@ -8,6 +8,7 @@ import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GameFeatureFactory;
 import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
 import org.allbinary.game.configuration.feature.InputFeatureFactory;
+import org.allbinary.game.configuration.feature.SensorFeatureFactory;
 import org.allbinary.game.configuration.feature.TouchFeatureFactory;
 import org.allbinary.game.init.DefaultGameInitializationListener;
 import org.allbinary.game.gd.GDGameJOGLMin3dView;
@@ -22,6 +23,9 @@ import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
+import org.allbinary.media.audio.EarlySoundsFactory;
+import org.allbinary.media.audio.GDGameSoundsFactory;
+import org.allbinary.media.audio.Sounds;
 import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackGameFeature;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.view.EmulatorViewInterface;
@@ -40,6 +44,7 @@ public class GDGame
     public GDGame()
     {
         super(GDGameClientInformationInterfaceFactory.getFactoryInstance());
+        GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance();
         
         try
         {
@@ -51,7 +56,7 @@ public class GDGame
             LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
         }
         
-        BasicMotionGesturesHandler motionGesturesHandler =
+        final BasicMotionGesturesHandler motionGesturesHandler =
             motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
 
         motionGesturesHandler.addListener(
@@ -72,20 +77,28 @@ public class GDGame
 
             final Features features = Features.getInstance();
 
-            final GraphicsFeatureFactory graphicsFeatureFactory =
-                GraphicsFeatureFactory.getInstance();
-
             final GameFeatureFactory gameFeatureFactory =
                 GameFeatureFactory.getInstance();
 
-            features.addDefault(graphicsFeatureFactory.TRANSPARENT_IMAGE_CREATION);
+            final InputFeatureFactory inputFeatureFactory =
+                InputFeatureFactory.getInstance();
 
-            features.addDefault(graphicsFeatureFactory.IMAGE_TO_ARRAY_GRAPHICS);            
+            final GraphicsFeatureFactory graphicsFeatureFactory =
+                GraphicsFeatureFactory.getInstance();
+
+            final SensorFeatureFactory sensorFeatureFactory =
+                    SensorFeatureFactory.getInstance();
+
+            features.removeDefault(sensorFeatureFactory.ORIENTATION_SENSORS);
+            features.addDefault(sensorFeatureFactory.NO_ORIENTATION);
+            
+            //features.addDefault(graphicsFeatureFactory.TRANSPARENT_IMAGE_CREATION);
+
+            //features.addDefault(graphicsFeatureFactory.IMAGE_TO_ARRAY_GRAPHICS);            
 
             features.addDefault(graphicsFeatureFactory.IMAGE_GRAPHICS);
 
-            features.addDefault(
-                graphicsFeatureFactory.SPRITE_FULL_GRAPHICS);
+            features.addDefault(graphicsFeatureFactory.SPRITE_FULL_GRAPHICS);
             //features.addDefault(graphicsFeatureFactory.SPRITE_QUARTER_ROTATION_GRAPHICS);
 
             features.addDefault(gameFeatureFactory.HEALTH_BARS);
@@ -95,12 +108,10 @@ public class GDGame
 
             features.addDefault(gameFeatureFactory.SOUND);
 
-            features.addDefault(
-                InputFeatureFactory.getInstance().MULTI_KEY_PRESS);
+            features.addDefault(inputFeatureFactory.MULTI_KEY_PRESS);
             //GameFeature.removeDefault(GameFeature.MULTI_KEY_PRESS);
             //features.addDefault(GameFeature.SINGLE_KEY_PRESS);
-            features.addDefault(
-                InputFeatureFactory.getInstance().REMOVE_DUPLICATE_KEY_PRESSES);
+            features.addDefault(inputFeatureFactory.REMOVE_DUPLICATE_KEY_PRESSES);
 
             features.addDefault(RaceTrackGameFeature.AUTO_FINISH_AI);
 
@@ -108,10 +119,8 @@ public class GDGame
 
             final TouchFeatureFactory touchFeatureFactory =
                 TouchFeatureFactory.getInstance();
-            features.removeDefault(
-                    touchFeatureFactory.AUTO_HIDE_SHOW_SCREEN_BUTTONS);
-            features.addDefault(
-                    touchFeatureFactory.HIDE_SCREEN_BUTTONS);
+            features.removeDefault(touchFeatureFactory.AUTO_HIDE_SHOW_SCREEN_BUTTONS);
+            features.addDefault(touchFeatureFactory.HIDE_SCREEN_BUTTONS);
 
             final GameConfigurationCentral gameConfigurationCentral =
                 GameConfigurationCentral.getInstance();
@@ -119,20 +128,19 @@ public class GDGame
             final SmallIntegerSingletonFactory smallIntegerSingletonFactory = 
                     SmallIntegerSingletonFactory.getInstance();
 
-            gameConfigurationCentral.VIBRATION.setDefaultValue(
-                smallIntegerSingletonFactory.getInstance(0));
+            gameConfigurationCentral.VIBRATION.setDefaultValue(smallIntegerSingletonFactory.getInstance(0));
             gameConfigurationCentral.VIBRATION.setDefault();
 
-            gameConfigurationCentral.PLAYER_INPUT_WAIT.setDefaultValue(
-                smallIntegerSingletonFactory.getInstance(0));
-            gameConfigurationCentral.PLAYER_INPUT_WAIT.setDefault();
+            gameConfigurationCentral.SPEED_CHALLENGE_LEVEL.setDefaultValue(smallIntegerSingletonFactory.getInstance(4));
+            gameConfigurationCentral.SPEED_CHALLENGE_LEVEL.setDefault();
 
-            gameConfigurationCentral.SPEED.setDefaultValue(
-                smallIntegerSingletonFactory.getInstance(9));
+            gameConfigurationCentral.SPEED.setDefaultValue(smallIntegerSingletonFactory.getInstance(9));
             gameConfigurationCentral.SPEED.setDefault();
 
-            gameConfigurationCentral.SCALE.setDefaultValue(
-                smallIntegerSingletonFactory.getInstance(3));
+            gameConfigurationCentral.PLAYER_INPUT_WAIT.setDefaultValue(smallIntegerSingletonFactory.getInstance(0));
+            gameConfigurationCentral.PLAYER_INPUT_WAIT.setDefault();
+            
+            gameConfigurationCentral.SCALE.setDefaultValue(smallIntegerSingletonFactory.getInstance(3));
             gameConfigurationCentral.SCALE.setDefault();
 
             this.initOpenGL();
@@ -174,6 +182,19 @@ public class GDGame
         this.glSurfaceView.onDetachedFromWindow();
         super.exit(isProgress);
     }
+    
+    public void stopAll()
+    {
+        try
+        {
+            new Sounds(EarlySoundsFactory.getInstance()).stopAll();
+            new Sounds(GDGameSoundsFactory.getInstance()).stopAll();
+        }
+        catch (Exception e)
+        {
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "stopAll", e));
+        }
+    }    
     
     //public void mouseClicked(MouseEvent mouseEvent)
     public void mouseClicked(final int x, final int y, final int button)
