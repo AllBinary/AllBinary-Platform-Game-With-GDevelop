@@ -35,7 +35,7 @@ import org.allbinary.emulator.InitEmulatorFactory;
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
 import org.allbinary.graphics.opengles.OpenGLConfiguration;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
-import org.allbinary.game.resource.GDGameThreedAndroidEarlyResourceInitialization;
+import org.allbinary.game.gd.resource.GDGameThreedAndroidEarlyResourceInitialization;
 import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
 import org.microemu.opengles.device.PlatformOpenGLESGraphicsFactory;
 
