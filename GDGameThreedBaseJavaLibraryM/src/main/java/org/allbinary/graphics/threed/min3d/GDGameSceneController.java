@@ -35,7 +35,7 @@ extends AllBinaryGameSceneController
     {
         super(new AllBinaryToMin3dRendererFactory(), new CameraFactory(), new AllBinarySceneFactory(), true, true);
         
-        PreLogUtil.put(CommonStrings.getInstance().START, TAG, CommonStrings.getInstance().CONSTRUCTOR);
+        PreLogUtil.put(commonStrings.START, TAG, commonStrings.CONSTRUCTOR);
     }
 
     private boolean initialized;
@@ -54,7 +54,7 @@ extends AllBinaryGameSceneController
 
         try
         {
-            PreLogUtil.put(CommonStrings.getInstance().START, this, METHOD_NAME);
+            PreLogUtil.put(commonStrings.START, this, METHOD_NAME);
 
             index = 1;
 
@@ -105,22 +105,22 @@ extends AllBinaryGameSceneController
 
             progressCanvas.addEarlyPortion(portion, loadingString, index++);
 
-            PreLogUtil.put(CommonStrings.getInstance().END, this, METHOD_NAME);                
+            PreLogUtil.put(commonStrings.END, this, METHOD_NAME);                
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, METHOD_NAME, e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, METHOD_NAME, e));
         }
     }
 
     //private CameraLayer cameraLayer;
-    
+    private final String BUILD_SCENE = "buildScene";
     public void buildScene(final AllBinaryGameLayerManager layerManager) throws Exception
     {
         try
         {
             final GDGameLayerManager gdLayerManager = (GDGameLayerManager) layerManager;
-            PreLogUtil.put(CommonStrings.getInstance().START, this, "buildScene");
+            PreLogUtil.put(commonStrings.START, this, BUILD_SCENE);
 
             //Reset the scene
             //scene.reset();
@@ -176,7 +176,7 @@ extends AllBinaryGameSceneController
             camera.position.append(stringMaker);
             stringMaker.append('-').append('>');
             camera.target.getPosition().append(stringMaker);
-            PreLogUtil.put(stringMaker.toString(), this, "onMotionGestureEvent");
+            PreLogUtil.put(stringMaker.toString(), this, BUILD_SCENE);
             
             //CameraMotionGestureInputProcessor.getInstance().add(scene);
 
@@ -194,7 +194,7 @@ extends AllBinaryGameSceneController
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "buildScene", e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, BUILD_SCENE, e));
         }
     }
 
