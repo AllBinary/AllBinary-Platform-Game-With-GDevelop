@@ -68,7 +68,7 @@
                         </goals>
                         <configuration>
                             <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
-                            <outputDirectory>../GDGameJ2SEWithSWTJOGLApplicationM/src/main/resources/</outputDirectory>
+                            <outputDirectory>../j2se/GDGameJ2SEWithSWTJOGLApplicationM/src/main/resources/</outputDirectory>
                             <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
                         </configuration>
                     </execution>
@@ -86,7 +86,7 @@
                         </goals>
                         <configuration>
                             <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
-                            <outputDirectory>../GDGameJ2SEWithSWTJOGLFastBuildApplicationM/src/main/resources/</outputDirectory>
+                            <outputDirectory>../j2se/GDGameJ2SEWithSWTJOGLFastBuildApplicationM/src/main/resources/</outputDirectory>
                             <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
                         </configuration>
                     </execution>
@@ -104,7 +104,7 @@
                         </goals>
                         <configuration>
                             <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
-                            <outputDirectory>../GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/resources/</outputDirectory>
+                            <outputDirectory>../j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/resources/</outputDirectory>
                             <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
                         </configuration>
                     </execution>
@@ -122,13 +122,50 @@
                         </goals>
                         <configuration>
                             <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
-                            <outputDirectory>../GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/main/resources/</outputDirectory>
+                            <outputDirectory>../j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/main/resources/</outputDirectory>
                             <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-                        
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
+                            <outputDirectory>../avian/GDGameAvianJOGLApplicationM/src/main/resources/</outputDirectory>
+                            <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
+                            <outputDirectory>../j2se/GDGameThreedAvianJOGLApplicationM/src/main/resources/</outputDirectory>
+                            <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
 
     </build>
