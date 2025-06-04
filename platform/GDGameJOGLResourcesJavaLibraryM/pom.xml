@@ -61,7 +61,7 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>sources</id>
+                        <id>resources-1</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>unpack-dependencies</goal>
@@ -70,16 +70,12 @@
                             <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
                             <outputDirectory>../j2se/GDGameJ2SEWithSWTJOGLApplicationM/src/main/resources/</outputDirectory>
                             <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <overWriteReleases>true</overWriteReleases>
                         </configuration>
                     </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
                     <execution>
-                        <id>sources</id>
+                        <id>resources-2</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>unpack-dependencies</goal>
@@ -88,16 +84,12 @@
                             <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
                             <outputDirectory>../j2se/GDGameJ2SEWithSWTJOGLFastBuildApplicationM/src/main/resources/</outputDirectory>
                             <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <overWriteReleases>true</overWriteReleases>
                         </configuration>
                     </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
                     <execution>
-                        <id>sources</id>
+                        <id>resources-3</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>unpack-dependencies</goal>
@@ -106,16 +98,12 @@
                             <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
                             <outputDirectory>../j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/resources/</outputDirectory>
                             <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <overWriteReleases>true</overWriteReleases>
                         </configuration>
                     </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
                     <execution>
-                        <id>sources</id>
+                        <id>resources-4</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>unpack-dependencies</goal>
@@ -124,17 +112,12 @@
                             <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
                             <outputDirectory>../j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/main/resources/</outputDirectory>
                             <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <overWriteReleases>true</overWriteReleases>
                         </configuration>
                     </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
                     <execution>
-                        <id>sources</id>
+                        <id>resources-5</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>unpack-dependencies</goal>
@@ -143,24 +126,22 @@
                             <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
                             <outputDirectory>../avian/GDGameAvianJOGLApplicationM/src/main/resources/</outputDirectory>
                             <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <overWriteReleases>true</overWriteReleases>
                         </configuration>
                     </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
                     <execution>
-                        <id>sources</id>
+                        <id>resources-6</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>unpack-dependencies</goal>
                         </goals>
                         <configuration>
                             <includes>**\/*.wav, **\/*.png, **\/*.html</includes>
-                            <outputDirectory>../j2se/GDGameThreedAvianJOGLApplicationM/src/main/resources/</outputDirectory>
+                            <outputDirectory>../avian/GDGameThreedAvianJOGLApplicationM/src/main/resources/</outputDirectory>
                             <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <overWriteReleases>true</overWriteReleases>
                         </configuration>
                     </execution>
                 </executions>
