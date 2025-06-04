@@ -60,7 +60,7 @@ Created By: Travis Berthelot
                                     <xsl:if test="contains($hadConditionOtherThanThis, 'found')" >
                                         <xsl:variable name="otherConditions" ><xsl:for-each select="conditions" ><xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >found</xsl:if></xsl:for-each></xsl:variable>
                                         <xsl:if test="contains($otherConditions, 'foundfound')" >
-                                            This only works for 2 conditions - Fix Me
+                                            //This only works for 2 conditions - Fix Me
                                         </xsl:if>
                                         <xsl:for-each select="conditions" >
                                             <xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >
@@ -124,7 +124,7 @@ Created By: Travis Berthelot
                                     <xsl:if test="contains($hadConditionOtherThanThis, 'found')" >
                                         <xsl:variable name="otherConditions" ><xsl:for-each select="conditions" ><xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >found</xsl:if></xsl:for-each></xsl:variable>
                                         <xsl:if test="contains($otherConditions, 'foundfound')" >
-                                            This only works for 2 conditions - Fix Me
+                                            //This only works for 2 conditions - Fix Me
                                         </xsl:if>
                                         <xsl:for-each select="conditions" >
                                             <xsl:if test="number($thisNodeIndex) != number(substring(generate-id(), 2) - 65536)" >
