@@ -570,8 +570,8 @@ Created By: Travis Berthelot
 
                         //allBinaryGameLayerManager.log();
                         //groupLayerManagerListener.log();
-                        
-                        LogUtil.put(LogFactory.getInstance("DepartScene - completed", this, commonStrings.PROCESS));
+
+                        LogUtil.put(LogFactory.getInstance("DepartScene - completed newCanvas is now false", this, commonStrings.PROCESS));
                         gameGlobalsFactory.newCanvas = false;
                         initialized = true;
 
