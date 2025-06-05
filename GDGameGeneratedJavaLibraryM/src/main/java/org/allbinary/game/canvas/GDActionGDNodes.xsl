@@ -153,6 +153,7 @@ Created By: Travis Berthelot
                 import org.allbinary.game.layer.behavior.PathFindingBehavior;
                 import org.allbinary.thread.PathFindingThreadPool;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+                import org.allbinary.game.layout.GDStrings;
                 
                 <xsl:variable name="selectedNodeIdSet" select="substring(substring($selectedNodeIds, string-length($selectedNodeIds) - 1), 1, 1)" />
                 <xsl:variable name="lastDigit2" ><xsl:if test="4 >= $selectedNodeIdSet" >0</xsl:if><xsl:if test="$selectedNodeIdSet > 4" >1</xsl:if></xsl:variable>
@@ -180,6 +181,7 @@ Created By: Travis Berthelot
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
                         private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
                         private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
+                        private final GDStrings gdStrings = GDStrings.getInstance();
                         
                         private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();

@@ -52,7 +52,7 @@ Created By: Travis Berthelot
                                 <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;' or text() = '&lt;='" >.x</xsl:if><xsl:if test="text() = '&gt;' or text() = '&gt;='" >.X2()</xsl:if></xsl:if></xsl:for-each></xsl:variable>
                                 
                                 //stringBuilder.delete(0, stringBuilder.length());
-                                //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> ").append(INDEX).append(index)
+                                //LogUtil.put(LogFactory.getInstance(stringBuilder.append("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> ").append(commonLabels.INDEX_LABEL).append(index)
                                     //.append("<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>: ")
                                     //.append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>)
                                     //.append(<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if></xsl:for-each>GDGameLayer.getVelocityProperties().getVelocityXBasicDecimal())

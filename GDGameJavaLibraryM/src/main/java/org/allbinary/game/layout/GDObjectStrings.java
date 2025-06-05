@@ -34,4 +34,5 @@ public class GDObjectStrings
     public final String GD_GAME_LAYER_WAS_NULL = "GDGameLayer was null";
     
     public final String CALLING_GDNODE = " calling GDNode: ";
+        
 }

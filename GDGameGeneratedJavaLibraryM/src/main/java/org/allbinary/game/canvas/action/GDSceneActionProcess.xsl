@@ -20,7 +20,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
-        
+
                         //Scene
                         @Override
                         public boolean process() throws Exception {
@@ -44,9 +44,16 @@ Created By: Travis Berthelot
 
                             try {
 
-                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
-
-                                if(!gameGlobalsFactory.newCanvas) {
+                                //TWB - maybe exclude logic when not from parent input
+                                final boolean inputOnNewScene = gameGlobalsFactory.newDisplaybleTime <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gameTickTimeDelayHelper.startTime - 250;
+                                //LogUtil.put(LogFactory.getInstance("gameGlobalsFactory.newDisplaybleTime > gameTickTimeDelayHelper.startTime - 250: " + gameGlobalsFactory.newDisplaybleTime + " > " + (gameTickTimeDelayHelper.startTime - 250), this, commonStrings.PROCESS));
+                                
+                                if(gameGlobalsFactory.newCanvas) {
+                                    LogUtil.put(LogFactory.getInstance(gdStrings.CANVAS_NEW + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                } else if(inputOnNewScene) {
+                                    LogUtil.put(LogFactory.getInstance(gdStrings.SCENE_NEW + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                } else {
+                                    LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
                                     PathFindingThreadPool.getInstance().clear();
                                     final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                     final MyCanvas abCanvas = abToGBUtil.abCanvas;
@@ -93,17 +100,27 @@ Created By: Travis Berthelot
                                 final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                 final MyCanvas abCanvas = abToGBUtil.abCanvas;
 
-                                //<xsl:value-of select="$command" />
-                                <xsl:if test="contains($command, 'https://localhost/about.html')" >
-                                abCanvas.getCustomCommandListener().commandAction(org.allbinary.game.commands.GameCommandsFactory.getInstance().DISPLAY_ABOUT, ProgressCanvasFactory.getInstance());
-                                </xsl:if>
-                                <xsl:if test="not(contains($command, 'https://localhost/about.html')) and contains($command, 'http')" >
-                                org.allbinary.graphics.displayable.screen.WebCommandProcessor.getInstance().list.add("<xsl:value-of select="$command" />");
-                                abCanvas.getCustomCommandListener().commandAction(org.allbinary.game.commands.GameCommandsFactory.getInstance().OPEN_WEB_URL, ProgressCanvasFactory.getInstance());
-                                </xsl:if>
-                                <xsl:if test="not(contains($command, 'http'))" >
-                                    throw new RuntimeException("Not Implemented");
-                                </xsl:if>
+                                //TWB - maybe exclude logic when not from parent input
+                                final boolean inputOnNewScene = gameGlobalsFactory.newDisplaybleTime <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gameTickTimeDelayHelper.startTime - 250;
+                                //LogUtil.put(LogFactory.getInstance("gameGlobalsFactory.newDisplaybleTime > gameTickTimeDelayHelper.startTime - 250: " + gameGlobalsFactory.newDisplaybleTime + " > " + (gameTickTimeDelayHelper.startTime - 250), this, commonStrings.PROCESS));
+
+                                if(gameGlobalsFactory.newCanvas) {
+                                    LogUtil.put(LogFactory.getInstance(gdStrings.CANVAS_NEW + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                } else if(inputOnNewScene) {
+                                    LogUtil.put(LogFactory.getInstance(gdStrings.SCENE_NEW + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                } else {
+                                    //<xsl:value-of select="$command" />
+                                    <xsl:if test="contains($command, 'https://localhost/about.html')" >
+                                    abCanvas.getCustomCommandListener().commandAction(org.allbinary.game.commands.GameCommandsFactory.getInstance().DISPLAY_ABOUT, ProgressCanvasFactory.getInstance());
+                                    </xsl:if>
+                                    <xsl:if test="not(contains($command, 'https://localhost/about.html')) and contains($command, 'http')" >
+                                    org.allbinary.graphics.displayable.screen.WebCommandProcessor.getInstance().list.add("<xsl:value-of select="$command" />");
+                                    abCanvas.getCustomCommandListener().commandAction(org.allbinary.game.commands.GameCommandsFactory.getInstance().OPEN_WEB_URL, ProgressCanvasFactory.getInstance());
+                                    </xsl:if>
+                                    <xsl:if test="not(contains($command, 'http'))" >
+                                        throw new RuntimeException("Not Implemented");
+                                    </xsl:if>
+                                }
 
                             } catch(Exception e) {
                                 LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));

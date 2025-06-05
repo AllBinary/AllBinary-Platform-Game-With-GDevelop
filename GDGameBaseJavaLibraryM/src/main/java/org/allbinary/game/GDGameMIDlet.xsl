@@ -80,6 +80,8 @@ import org.allbinary.media.audio.AllBinaryMediaManagerShutdown;
 import org.allbinary.media.audio.EarlySoundsFactory;
 import org.allbinary.midlet.MidletStrings;
 import org.allbinary.thread.PrimaryThreadPool;
+import org.allbinary.time.GameTickTimeDelayHelper;
+import org.allbinary.time.GameTickTimeDelayHelperFactory;
 
 /**
  * @author user
@@ -88,6 +90,7 @@ public class GDGameMIDlet extends
    SpecialDemoGameMidlet
    //DemoGameMidlet
 {
+   private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
    private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
 
    public GDGameMIDlet(final ClientInformationFactory clientInformationFactory)
@@ -277,9 +280,17 @@ public class GDGameMIDlet extends
         -->
 //    }
 
+    protected void setDisplay(final Displayable newDisplay)
+    {
+        gameGlobalsFactory.newDisplaybleTime = System.currentTimeMillis();
+        //LogUtil.put(LogFactory.getInstance("newDisplaybleTime: " + gameGlobalsFactory.newDisplaybleTime, this, "setDisplay"));
+        super.setDisplay(newDisplay);
+    }
+
+    //private final String NEW_CANVAS = commonStrings.START + "newCanvas";
     public void startGameCanvasRunnableInterface() throws Exception {
     
-       //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "startGameCanvasRunnableInterface"));
+        //LogUtil.put(LogFactory.getInstance(NEW_CANVAS, this, "startGameCanvasRunnableInterface"));
 
         gameGlobalsFactory.newCanvas = true;
         super.startGameCanvasRunnableInterface();

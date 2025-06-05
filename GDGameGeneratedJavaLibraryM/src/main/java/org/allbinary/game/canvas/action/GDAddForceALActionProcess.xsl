@@ -39,7 +39,7 @@ Created By: Travis Berthelot
 
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 
-                                //LogUtil.put(LogFactory.getInstance(CommonLabels.getInstance().INDEX_LABEL + index, this, commonStrings.PROCESS));
+                                //LogUtil.put(LogFactory.getInstance(commonLabels.INDEX_LABEL + index, this, commonStrings.PROCESS));
             </xsl:if>
                 <xsl:call-template name="gameLayerList" >
                     <xsl:with-param name="name" >
@@ -74,7 +74,7 @@ Created By: Travis Berthelot
                         if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.objectArray != arrayUtil.ZERO_OBJECT_ARRAY) {
                             if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() != 0) {
 
-                            //LogUtil.put(LogFactory.getInstance(CommonLabels.getInstance().INDEX_LABEL + index, this, commonStrings.PROCESS));
+                            //LogUtil.put(LogFactory.getInstance(commonLabels.INDEX_LABEL + index, this, commonStrings.PROCESS));
             </xsl:if>
                 <xsl:call-template name="gameLayerList" >
                     <xsl:with-param name="name" >
