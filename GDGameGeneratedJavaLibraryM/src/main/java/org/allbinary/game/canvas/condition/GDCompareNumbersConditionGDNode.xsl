@@ -202,12 +202,18 @@ Created By: Travis Berthelot
                             final GDObject Enemies = EnemiesGDGameLayer.gdObject;
                                 </xsl:if>
                                 <xsl:if test="contains($parameters, 'Player')" >
-                            final GDGameLayer PlayerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
-                            final GDGlobalsGDObjectsFactory.Player Player = (GDGlobalsGDObjectsFactory.Player) PlayerGDGameLayer.gdObject;
+                                    <xsl:variable name="name" >Player</xsl:variable>
+                            final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) 
+                                <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(0);
+                            final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = 
+                                (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) <xsl:value-of select="$name" />GDGameLayer.gdObject;
                                 </xsl:if>
                                 <xsl:if test="contains($parameters, 'PlatformerMap')" >
-                            final GDGameLayer PlatformerMapGDGameLayer = (GDGameLayer) globals.PlatformerMapGDGameLayerList.get(0);
-                            final GD1GDObjectsFactory.PlatformerMap PlatformerMap = (GD1GDObjectsFactory.PlatformerMap) PlatformerMapGDGameLayer.gdObject;
+                                    <xsl:variable name="name" >PlatformerMap</xsl:variable>
+                            final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) 
+                                <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(0);
+                            final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = 
+                                (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) <xsl:value-of select="$name" />GDGameLayer.gdObject;
                                 </xsl:if>
                             </xsl:if>
                             

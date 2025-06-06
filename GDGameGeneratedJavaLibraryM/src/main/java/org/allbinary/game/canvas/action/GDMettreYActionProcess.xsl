@@ -280,17 +280,23 @@ Created By: Travis Berthelot
 
                             <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
                                 <xsl:if test="contains($thirdParam, 'Player')" >
+                                    <xsl:variable name="name" >Player</xsl:variable>
                             //LinkedObjects::PickObjectsLinkedTo for //MettreY - needs more logic for handling Object variables that are not params
                             final GDObject Enemies = gdObject2;
-                            final GDGameLayer PlayerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
-                            final GDGlobalsGDObjectsFactory.Player Player = (GDGlobalsGDObjectsFactory.Player) PlayerGDGameLayer.gdObject;
+                            final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) 
+                                <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(0);
+                            final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = 
+                                (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) <xsl:value-of select="$name" />GDGameLayer.gdObject;
                                  </xsl:if>
                             </xsl:if>
                             <xsl:if test="contains($hasForEachProcessGD, 'found')" >
                                 <xsl:if test="contains($thirdParam, 'PlatformerMap')" >
+                                    <xsl:variable name="name" >PlatformerMap</xsl:variable>
                             //BuiltinCommonInstructions::ForEach for //MettreX - needs more logic for handling Object variables that are not params
-                            final GDGameLayer PlatformerMapGDGameLayer = (GDGameLayer) globals.PlatformerMapGDGameLayerList.get(0);
-                            final GD1GDObjectsFactory.PlatformerMap PlatformerMap = (GD1GDObjectsFactory.PlatformerMap) PlatformerMapGDGameLayer.gdObject;
+                            final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) 
+                                <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(0);
+                            final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = 
+                                (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) <xsl:value-of select="$name" />GDGameLayer.gdObject;
                                 </xsl:if>
                             </xsl:if>
                                 

@@ -109,7 +109,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="secondParam" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="paramTwoName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template></xsl:if></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="paramTwoNameObjectsGroups" ><xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$objectsGroupsAsString" /></xsl:with-param></xsl:call-template></xsl:if></xsl:if></xsl:for-each></xsl:variable>
-                    
+
                     <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$paramTwoNameObjectsGroups" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$paramTwoNameObjectsGroups" /></xsl:variable>
 
                     <xsl:variable name="hasForEachProcessGD" >
@@ -154,7 +154,9 @@ Created By: Travis Berthelot
                         //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
 
                     <xsl:variable name="firstParamFound" ><xsl:call-template name="firstParamFound" ><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
-                    
+                    <xsl:variable name="gameLayerName" ><xsl:value-of select="$firstParamFound" /></xsl:variable>                    
+                    <xsl:variable name="gameLayerName4" ><xsl:value-of select="substring-before($param4, '.')" /></xsl:variable>
+
                         <xsl:if test="$paramOneNameObjectsGroups != ''" >
 
                         <xsl:variable name="text" ><xsl:value-of select="$paramOneNameObjectsGroups" /></xsl:variable>
@@ -198,7 +200,51 @@ Created By: Travis Berthelot
                         </xsl:if>
                         </xsl:for-each>
                         <xsl:text>&#10;</xsl:text>
-                                                  
+
+                                //gameLayerName=<xsl:value-of select="$gameLayerName" /><xsl:text>&#10;</xsl:text>
+                                //gameLayerName4=<xsl:value-of select="$gameLayerName4" /><xsl:text>&#10;</xsl:text>
+<!--                                <xsl:if test="not(contains($hasDistanceProcessGD, 'found'))" >
+                                <xsl:if test="$paramTwoName = ''" >-->
+<!--                                <xsl:if test="$gameLayerName4 != $paramOneNameObjectsGroups" >-->                                
+                                <xsl:if test="$gameLayerName4 != $gameLayerName" >
+
+                    <xsl:variable name="hasObjectGroup4" >
+                        <xsl:for-each select="//objectsGroups" >
+                            <xsl:if test="name = $gameLayerName4" >found</xsl:if>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <xsl:variable name="hasObjectInParams" >
+                        <xsl:if test="string-length($gameLayerName4) > 0 and contains($createdObjectsAsString, $gameLayerName4)" >found</xsl:if>
+                    </xsl:variable>
+                    
+
+                                <xsl:if test="contains($hasObjectGroup4, 'found')" >
+                                    <xsl:with-param name="name" ><xsl:value-of select="$gameLayerName4" /></xsl:with-param>
+                                    //TWB0hasObjectGroupA
+                                    final BasicArrayList gdGameLayerList = (BasicArrayList) <xsl:call-template name="globals" >
+                                    </xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(0);
+                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) gdGameLayerList.get(0);
+                                    
+                                    final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = 
+                                        (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) <xsl:value-of select="$name" />GDGameLayer.gdObject;
+                            <xsl:text>&#10;</xsl:text>
+                                                                
+                                    final GDObject <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject;
+                                </xsl:if>
+                                       
+                                <xsl:if test="not(contains($hasObjectGroup4, 'found')) and contains($hasObjectInParams, 'found')" >
+                                    //TWB0hasObjectGroupNotA
+                                    final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" >
+                                        <xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param>
+                                    </xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(0);
+                                    final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = 
+                                        (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) <xsl:value-of select="$name" />GDGameLayer.gdObject;
+                                </xsl:if>
+
+<!--                                </xsl:if>
+                                </xsl:if>-->
+                                </xsl:if>
+
 <xsl:text>                        </xsl:text><xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             <xsl:if test="text() != $firstParamFound" >//orignalFirstParam=<xsl:value-of select="text()" />
@@ -702,7 +748,6 @@ Created By: Travis Berthelot
 
                             <xsl:if test="contains($hasForEachProcessGD, 'found')" >
 
-                                <xsl:variable name="gameLayerName" ><xsl:value-of select="$firstParamFound" /></xsl:variable>
                                 <xsl:variable name="forEachGDParamOne" ><xsl:call-template name="forEachGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
                                 <xsl:variable name="forEachGDParamTwo" ><xsl:call-template name="forEachGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param><xsl:with-param name="secondGameLayer" ><xsl:value-of select="$firstOrBeforeFourthParam" /></xsl:with-param></xsl:call-template></xsl:variable>
 
@@ -714,7 +759,7 @@ Created By: Travis Berthelot
                                         <xsl:if test="name = $gameLayerName" >found</xsl:if>
                                     </xsl:for-each>
                                 </xsl:variable>
-                                                
+
                                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" >
                                         <xsl:with-param name="name" >
                                             <xsl:value-of select="$gameLayerName" />
