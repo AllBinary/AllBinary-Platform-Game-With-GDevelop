@@ -207,6 +207,7 @@ Created By: Travis Berthelot
                                     <xsl:variable name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" ><xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
                                     //linkedObjectsPickObjectsLinkedToProcessGDParamOne=<xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamOne" />
                                     //linkedObjectsPickObjectsLinkedToProcessGDParamTwo=<xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamTwo" />
+                                    <xsl:text>&#10;</xsl:text>
 
                                         <xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamOne" />GDGameLayer.gdObject, <xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamTwo" />GDGameLayer.gdObject, graphics);
                                         
