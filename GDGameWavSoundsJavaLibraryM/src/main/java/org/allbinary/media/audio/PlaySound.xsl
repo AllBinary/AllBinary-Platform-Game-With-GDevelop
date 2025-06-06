@@ -243,9 +243,9 @@ Created By: Travis Berthelot
                     //Audio File with Action - <xsl:value-of select="file" />
                     <xsl:if test="$fileName4 != 'Select' and $fileName4 != 'Error'" >
                     <xsl:if test="$musicOrSound = 'music'" >
-                    if(!soundList.contains(org.allbinary.game.resource.GD<xsl:value-of select="$fileName4" />Sound.getInstance())) {
+                    if(!soundList.contains(org.allbinary.game.gd.resource.GD<xsl:value-of select="$fileName4" />Sound.getInstance())) {
                     </xsl:if>
-                        soundList.add(org.allbinary.game.gd.resource.GD<xsl:value-of select="$fileName4" />Sound.getInstance());
+                        soundList.add(org.allbinary.game.gd.gd.resource.GD<xsl:value-of select="$fileName4" />Sound.getInstance());
                     <xsl:if test="$musicOrSound = 'music'" >
                     }
                     </xsl:if>
