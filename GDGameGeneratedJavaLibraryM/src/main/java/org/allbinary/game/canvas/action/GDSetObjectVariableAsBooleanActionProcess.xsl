@@ -46,13 +46,18 @@ Created By: Travis Berthelot
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:variable>
+                        //param=<xsl:value-of select="$param" />
 
                         <xsl:variable name="beforeSecondParam0" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
-                        <xsl:variable name="beforeSecondParam" ><xsl:if test="contains($beforeSecondParam0, '-')" ><xsl:value-of select="substring-after($beforeSecondParam0, '-')" /></xsl:if><xsl:if test="not(contains($beforeSecondParam0, '-'))" ><xsl:value-of select="$beforeSecondParam0" /></xsl:if></xsl:variable>
+                        //beforeSecondParam0=<xsl:value-of select="$beforeSecondParam0" />
+                        <xsl:variable name="beforeSecondParam" ><xsl:if test="contains($beforeSecondParam0, '-')" ><xsl:value-of select="substring-after($beforeSecondParam0, '-')" /></xsl:if><xsl:if test="not(contains($beforeSecondParam0, '-'))" ><xsl:value-of select="$beforeSecondParam0" /></xsl:if><xsl:if test="not(string-length($beforeSecondParam0))" ><xsl:value-of select="$param" /></xsl:if></xsl:variable>
                         <xsl:variable name="beforeSecondParam2" ><xsl:if test="contains($beforeSecondParam0, '-')" >-</xsl:if></xsl:variable>
                         
                         <xsl:variable name="gdObjectFactory2" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$beforeSecondParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$beforeSecondParam" /></xsl:variable>
-                    
+
+                        //beforeSecondParam=<xsl:value-of select="$beforeSecondParam" />
+                        //beforeSecondParam2=<xsl:value-of select="$beforeSecondParam2" />
+
                         <xsl:variable name="hasObject" >
                             <xsl:for-each select="//objects" >
                                 <xsl:if test="name = $beforeSecondParam" >found</xsl:if>
@@ -63,11 +68,6 @@ Created By: Travis Berthelot
                                 <xsl:if test="name = $beforeSecondParam" >found</xsl:if>
                             </xsl:for-each>
                         </xsl:variable>
-
-                        <xsl:if test="contains($hasObject, 'found') or contains($hasObjectGroup, 'found')" >
-                        <xsl:if test="string-length($beforeSecondParam2)" >//beforeSecondParam2=<xsl:value-of select="$beforeSecondParam2" /></xsl:if>
-                        //beforeSecondParam=<xsl:value-of select="$beforeSecondParam" />
-                        </xsl:if>
 
                         <xsl:variable name="firstOrBeforeFourthParam" >
                             <xsl:if test="contains($hasObject, 'found') or contains($hasObjectGroup, 'found')" >
