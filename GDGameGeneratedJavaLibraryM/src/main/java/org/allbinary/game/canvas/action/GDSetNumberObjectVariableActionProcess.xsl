@@ -137,7 +137,8 @@ Created By: Travis Berthelot
                         </xsl:call-template>
                     </xsl:variable>
 
-                    
+                    //hasForEachProcessGD=<xsl:value-of select="$hasForEachProcessGD" /> hasCollisionProcessGD=<xsl:value-of select="$hasCollisionProcessGD" /> hasDistanceProcessGD=<xsl:value-of select="$hasDistanceProcessGD" /> hasLinkedObjectsPickObjectsLinkedToProcessGD=<xsl:value-of select="$hasLinkedObjectsPickObjectsLinkedToProcessGD" />                    
+
                     //param=<xsl:value-of select="$param" />
                     //param4=<xsl:value-of select="$param4" />
 <!--                    //objectsGroupsAsString=<xsl:value-of select="$objectsGroupsAsString" />-->
