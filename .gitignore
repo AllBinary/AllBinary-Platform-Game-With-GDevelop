@@ -177,13 +177,7 @@ GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.jav
 /platform/android/GDGameAndroidApplicationM/src/main/java/**/*.svg
 /platform/android/GDGameAndroidApplicationM/src/main/java/**/*.png
 /platform/android/GDGameAndroidApplicationM/src/main/java/**/*.ogg
-/platform/html/GDGameHTMLTempM/src/**/*.java
-/platform/html/GDGameHTMLTempM/src/**/*.xsl
-/platform/html/GDGameHTMLTempM/src/**/*.xml
-/platform/html/GDGameHTMLTempM/src/**/*.MF
-/platform/html/GDGameHTMLTempM/src/**/*.properties
-/platform/html/GDGameHTMLTempM/src/**/*.origin
-/platform/html/GDGameHTMLTempM/src/**/*.ogg
+/platform/html/GDGameHTMLTempM/src/**
 ./platform/html/GDGamePlayNM/src/playn/core/GraphicsTestGame.java
 ./platform/html/GDGamePlayNM/src/playn/core/SoundTestGame.java
 /platform/html/GDGamePlayNWarM/war/gd/res
