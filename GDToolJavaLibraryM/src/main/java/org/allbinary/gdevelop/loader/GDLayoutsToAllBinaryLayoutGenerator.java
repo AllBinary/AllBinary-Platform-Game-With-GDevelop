@@ -514,8 +514,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             };
 
             final String[] gdNodeXSLPathInputArray = {
-                    gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDExternalActionGDNodes.xsl",
-                    gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDActionGDNodes.xsl",
+                    gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutNExternalActionGDNodes.xsl",
+                    gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutNActionGDNodes.xsl",
             };
             
             final String END2 = "GDNodes.java";
