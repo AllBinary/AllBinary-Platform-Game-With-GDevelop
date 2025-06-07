@@ -87,6 +87,12 @@ Created By: Travis Berthelot
                             if(instance == null) {
                                 instance = new GDGlobalSpecialAnimationImageResources();
                             }
+
+                            return instance;
+                        }
+
+                        public static GDGlobalSpecialAnimationImageResources getInstance()
+                        {
                             return instance;
                         }
 
@@ -152,7 +158,7 @@ Created By: Travis Berthelot
                         ...
                     </xsl:for-each>
 
-                    //layout - objectsGroups - START
+                    //layout - objectsGroups - GlobalImageResources - START
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="objectGroupName" >
                             <xsl:value-of select="name" />
@@ -163,7 +169,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:for-each>
-                    //layout - objectsGroups - END
+                    //layout - objectsGroups - GlobalImageResources - END
 
                         //} catch(Exception e) {
                             //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));

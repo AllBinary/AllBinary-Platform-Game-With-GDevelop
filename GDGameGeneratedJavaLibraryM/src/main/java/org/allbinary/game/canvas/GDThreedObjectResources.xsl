@@ -22,9 +22,18 @@ Created By: Travis Berthelot
         <xsl:param name="touch" />
 
         //objectsGroups - START
+        <xsl:choose>
+            <xsl:when test="$touch = 'true'" >
+            //Touch does not use groups currently
+            </xsl:when>
+
+            <xsl:otherwise>
         <xsl:for-each select="objectsGroups" >
             //<xsl:value-of select="name" />
+            public BasicArrayList <xsl:value-of select="name" />ImageArrayList = new BasicArrayList();
         </xsl:for-each>
+            </xsl:otherwise>
+        </xsl:choose>
         //objectsGroups - START
         
         //objects - all - touch - START

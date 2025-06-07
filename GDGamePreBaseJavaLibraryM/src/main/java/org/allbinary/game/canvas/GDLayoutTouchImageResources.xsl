@@ -159,7 +159,7 @@ Created By: Travis Berthelot
 
                     <xsl:text>&#10;</xsl:text>                    
 
-                    //layout - objectsGroups - START
+                    //layout - objectsGroups - LayoutTouchImageResources - START
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="objectGroupName" >
                             <xsl:value-of select="name" />
@@ -170,7 +170,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:for-each>
-                    //layout - objectsGroups - END
+                    //layout - objectsGroups - LayoutTouchImageResources - END
                 
                         //} catch(Exception e) {
                             //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));

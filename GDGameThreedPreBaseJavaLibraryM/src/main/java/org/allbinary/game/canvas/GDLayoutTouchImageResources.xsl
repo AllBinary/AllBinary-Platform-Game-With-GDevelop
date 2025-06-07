@@ -146,6 +146,9 @@ Created By: Travis Berthelot
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
+                        <xsl:with-param name="layoutName" >
+                            <xsl:value-of select="$layoutName" />
+                        </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
@@ -156,6 +159,19 @@ Created By: Travis Berthelot
 
                     <xsl:text>&#10;</xsl:text>                    
 
+                    //layout - objectsGroups - LayoutTouchImageResources - START
+                    <xsl:for-each select="objectsGroups" >
+                        <xsl:variable name="objectGroupName" >
+                            <xsl:value-of select="name" />
+                        </xsl:variable>
+                        <xsl:for-each select="objects" >
+                            <xsl:if test="contains(name, 'btn_')" >
+                                <xsl:value-of select="$objectGroupName" />ImageArrayList.add(<xsl:value-of select="name" />ImageArray);
+                            </xsl:if>
+                        </xsl:for-each>
+                    </xsl:for-each>
+                    //layout - objectsGroups - LayoutTouchImageResources - END
+                
                         //} catch(Exception e) {
                             //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
                         //}
