@@ -43,11 +43,6 @@ Created By: Travis Berthelot
 
     <xsl:template match="/game">
 
-        <xsl:for-each select="layouts" >
-            <xsl:variable name="layoutIndex" select="position() - 1" />
-
-            <xsl:if test="number($layoutIndex) =
-                <GD_CURRENT_INDEX>" >
                 <!-- Android images assets need to be enlarged if they are not setup to be inside the cirle area needed -->
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
                 <xsl:variable name="layoutName" select="name" />
@@ -69,7 +64,7 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Image;
                 import javax.microedition.khronos.opengles.GL10;
 
-                import org.allbinary.animation.image.GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
+                import org.allbinary.animation.image.GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.gd.resource.GDResources;
                 import org.allbinary.graphics.threed.min3d.ThreedLoaderFactory;
@@ -88,12 +83,12 @@ Created By: Travis Berthelot
                 import org.allbinary.media.image.ImageCopyUtil;
                 
                 //Layout name=<xsl:value-of select="$layoutName" />
-                public class GD<xsl:value-of select="$layoutIndex" />GameThreedLevelBuilder extends GDGameThreedLevelBuilder
+                public class GDGlobalGameThreedLevelBuilder extends GDGameThreedLevelBuilder
                 {
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final GDResources gdResources = GDResources.getInstance();
                 
-                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources animationInterfaceFactoryInterfaceFactory = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
+                        private final GDGlobalSpecialAnimationResources animationInterfaceFactoryInterfaceFactory = GDGlobalSpecialAnimationResources.getInstance();
 
                         private final Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
                             Min3dSceneResourcesFactory.getInstance();
@@ -113,7 +108,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
+                            Global
                         </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
@@ -136,7 +131,7 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
                         </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
+                            Global
                         </xsl:with-param>
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
@@ -149,8 +144,6 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>                    
 
                 }
-            </xsl:if>
-        </xsl:for-each>
     </xsl:template>
 
 </xsl:stylesheet>
