@@ -83,6 +83,7 @@ import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.IndexedAnimationBehaviorFactory;
 import org.allbinary.animation.NullRotationAnimationFactory;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
+import org.allbinary.animation.text.CustomTextAnimationFactory;
 import org.allbinary.animation.threed.ThreedAnimationFactory;
 import org.allbinary.animation.image.ImageArrayRotationAnimationFactory;
 import org.allbinary.animation.compound.SliderAnimationInterfaceFactory;

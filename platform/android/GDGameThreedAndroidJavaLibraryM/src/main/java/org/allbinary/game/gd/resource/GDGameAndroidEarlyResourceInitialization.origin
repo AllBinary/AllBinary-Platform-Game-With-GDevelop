@@ -12,7 +12,7 @@ import java.io.InputStream;
 
 import org.allbinary.AndroidResources;
 
-import org.allbinary.game.resource.GDResources;
+import org.allbinary.game.gd.resource.GDResources;
 import org.allbinary.data.resource.ResourceUtil;
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.logic.io.StreamUtil;

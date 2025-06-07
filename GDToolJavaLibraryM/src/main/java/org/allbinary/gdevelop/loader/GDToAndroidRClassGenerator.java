@@ -6,7 +6,6 @@
 
 package org.allbinary.gdevelop.loader;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.logic.io.StreamUtil;

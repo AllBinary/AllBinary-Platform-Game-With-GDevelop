@@ -409,6 +409,22 @@
             <!-- Game Version End -->
         </dependency>
 
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
+            <!-- Game Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- Game Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
+            <!-- Game Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- Game Version End -->
+        </dependency>
+
 <!--
         <dependency>
             <groupId>org.allbinary</groupId>

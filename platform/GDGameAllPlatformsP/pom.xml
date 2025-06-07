@@ -34,6 +34,9 @@
         <module>../html/GDGameHTMLPlatformP</module>
         <module>../android/GDGameAndroidPlatformP</module>
         <module>../avian/GDGameAvianPlatformP</module>
+
+        <module>../j2se/GDGameThreedJ2SEWithSWTJOGLPlatformP</module>
+        <module>../android/GDGameThreedAndroidPlatformP</module>
         
     </modules>
 
