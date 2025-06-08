@@ -39,6 +39,11 @@ Created By: Travis Berthelot
         //objects - threed loading - cache - END
     </xsl:template>
     
+    <xsl:template name="rootImageName" >
+        <xsl:param name="image" />
+        <xsl:if test="contains($image, 'left')" ><xsl:value-of select="substring-before($image, 'left')" /></xsl:if><xsl:if test="contains($image, 'right')" ><xsl:value-of select="substring-before($image, 'right')" /></xsl:if><xsl:if test="contains($image, 'up')" ><xsl:value-of select="substring-before($image, 'up')" /></xsl:if><xsl:if test="contains($image, 'down')" ><xsl:value-of select="substring-before($image, 'down')" /></xsl:if><xsl:if test="not(contains($image, 'left') or contains($image, 'right') or contains($image, 'up') or contains($image, 'down'))" ><xsl:value-of select="$image" /></xsl:if>
+    </xsl:template>
+
     <xsl:template name="threedResourceLoading" >
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
@@ -60,18 +65,60 @@ Created By: Travis Berthelot
             //Animation Total: <xsl:value-of select="count(animations)" />
             private void add<xsl:value-of select="name" />SpriteAnimations(final GL10 gl, final String glInstanceVersion) throws Exception {
 
+                <xsl:variable name="rootAnimationNames" >
+                    <xsl:for-each select="animations" >
+                    <xsl:variable name="resourceWithExtension" select="directions/sprites/image" />
+                    <xsl:variable name="image2" select="substring-before($resourceWithExtension, '.')" />
+                    <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:if test="string-length($image) > 0" ><xsl:call-template name="rootImageName" ><xsl:with-param name="image" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>:</xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                
                 <xsl:for-each select="animations" >
                     <xsl:variable name="resourceWithExtension" select="directions/sprites/image" />
                     <xsl:variable name="image2" select="substring-before($resourceWithExtension, '.')" />
-                    <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>                    
+                    <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>
                     <xsl:if test="string-length($image) > 0" >
-                        
+                        <xsl:variable name="rootImageName" ><xsl:call-template name="rootImageName" ><xsl:with-param name="image" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template></xsl:variable>
+                        <xsl:variable name="imageWithSepX4" ><xsl:value-of select="$rootImageName" />:<xsl:value-of select="$rootImageName" />:<xsl:value-of select="$rootImageName" />:<xsl:value-of select="$rootImageName" />:</xsl:variable>
+
+                //imageWithSepX4=<xsl:value-of select="$imageWithSepX4" />
+                //rootAnimationNames=<xsl:value-of select="$rootAnimationNames" />
+
+                            <xsl:choose>
+                                <xsl:when test="contains($rootAnimationNames, $imageWithSepX4)" >
+
+                                <xsl:choose>
+                                    <!-- left is always first -->
+                                    <xsl:when test="contains($image, 'left')">
+
+                    Object3d <xsl:value-of select="$image" />Object3dContainer;
+                    final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = <xsl:value-of select="$image" />Object3dContainer = threedLoaderFactory.getObject3dInstance(
+                        gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, OBJ, FALSE<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
+                      
+                    <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().x = 
+                        <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().y = 
+                        <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().z = <xsl:if test="/game/properties/scale3d" ><xsl:value-of select="/game/properties/scale3d" /></xsl:if><xsl:if test="not(/game/properties/scale3d)" >0</xsl:if>f;
+                                                                        
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                    final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = 
+                        <xsl:value-of select="$rootImageName" />left<xsl:if test="contains($image, '_1')" >_1</xsl:if>Object3dContainer;
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                                                                        
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    
                 final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = threedLoaderFactory.getObject3dInstance(
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, OBJ, FALSE<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
                       
                 <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().x = 
                     <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().y = 
                     <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().z = <xsl:if test="/game/properties/scale3d" ><xsl:value-of select="/game/properties/scale3d" /></xsl:if><xsl:if test="not(/game/properties/scale3d)" >0</xsl:if>f;
+
+                                </xsl:otherwise>
+                            </xsl:choose>
                     
                     </xsl:if>
 

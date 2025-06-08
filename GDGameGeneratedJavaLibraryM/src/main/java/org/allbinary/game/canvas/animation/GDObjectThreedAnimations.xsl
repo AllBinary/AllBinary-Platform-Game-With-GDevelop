@@ -95,7 +95,7 @@ Created By: Travis Berthelot
                 final Object3d[] <xsl:value-of select="name" />Object3dArray = min3dSceneResourcesFactory.get(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME);
                 final int <xsl:value-of select="name" />Size = <xsl:value-of select="name" />Object3dArray.length;
                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="name" />Size; index++) {
-                    <xsl:value-of select="name" />List.add(new ThreedAnimationFactory(<xsl:value-of select="name" />Object3dArray[index], 1<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>));
+                    <xsl:value-of select="name" />List.add(new ThreedAnimationFactory(<xsl:value-of select="name" />Object3dArray[index], 1<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name or name = 'all'" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>));
                 }
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = (AnimationInterfaceFactoryInterface[]) <xsl:value-of select="name" />List.toArray(new AnimationInterfaceFactoryInterface[<xsl:value-of select="name" />Size]);
@@ -378,7 +378,7 @@ Created By: Travis Berthelot
                 final Object3d[] <xsl:value-of select="name" />Object3dArray = min3dSceneResourcesFactory.get(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME);
                 final int <xsl:value-of select="name" />Size = <xsl:value-of select="name" />Object3dArray.length;
                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="name" />Size; index++) {
-                    <xsl:value-of select="name" />List.add(new ThreedAnimationFactory(<xsl:value-of select="name" />Object3dArray[index], 1<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>));
+                    <xsl:value-of select="name" />List.add(new ThreedAnimationFactory(<xsl:value-of select="name" />Object3dArray[index], 1<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name or name = 'all'" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>));
                 }
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = (AnimationInterfaceFactoryInterface[]) <xsl:value-of select="name" />List.toArray(new AnimationInterfaceFactoryInterface[<xsl:value-of select="name" />Size]);
