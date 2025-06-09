@@ -61,6 +61,7 @@ import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.map.GDGeographicMap;
 import org.allbinary.game.rand.MyRandomFactory;
 import org.allbinary.game.gd.resource.GDResources;
+import org.allbinary.game.map.GDTiledLayerFactory;
 import org.allbinary.game.view.StaticTileLayerIntoPositionViewPosition;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
@@ -124,6 +125,8 @@ import org.allbinary.media.graphics.geography.map.GeographicMapCellTypeFactory;
 import org.allbinary.game.behavior.topview.placement.TileMapPlacementVisitor;
 import org.mapgenerator.TileMapGenerator;
 import org.allbinary.media.graphics.geography.map.racetrack.CustomMapGeneratorBaseFactory;
+import org.allbinary.media.graphics.geography.map.racetrack.AllBinaryTiledLayerFactoryInterface;
+import org.allbinary.game.map.GDTiledLayerFactory;
                 </xsl:if>
                 <xsl:if test="contains($tileMapGenerator, 'DungeonGenerator')" >
 import org.allbinary.media.graphics.geography.map.GeographicMapCellTypeFactory;
@@ -131,6 +134,8 @@ import org.allbinary.game.behavior.topview.placement.TileMapPlacementVisitor;
 import org.mapgenerator.dungeon.DungeonGenerator;
 import org.mapgenerator.dungeon.Tunneller;
 import org.allbinary.media.graphics.geography.map.racetrack.CustomMapGeneratorBaseFactory;
+import org.allbinary.media.graphics.geography.map.racetrack.AllBinaryTiledLayerFactoryInterface;
+import org.allbinary.game.map.GDTiledLayerFactory;
                 </xsl:if>
 
     <xsl:variable name="foundPathFindingBehavior" >
@@ -141,6 +146,15 @@ import org.allbinary.media.graphics.geography.map.racetrack.CustomMapGeneratorBa
         </xsl:for-each>
     </xsl:variable>
 
+    <xsl:variable name="hasPathFindingBehaviorInOtherLayouts" >
+        <xsl:for-each select="//behaviorsSharedData" >
+            <xsl:if test="type = 'PathfindingBehavior::PathfindingBehavior'" >found</xsl:if>
+        </xsl:for-each>
+    </xsl:variable>
+
+    <xsl:if test="contains($hasPathFindingBehaviorInOtherLayouts, 'found')" >
+import org.allbinary.thread.PathFindingThreadPool;
+    </xsl:if>
 
     <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPositionFactoryInitVisitorInterface;
@@ -148,6 +162,8 @@ import org.allbinary.media.graphics.geography.map.NoGeographicMapCellPositionFac
 import org.allbinary.media.graphics.geography.pathfinding.PathGenerator;
 //import org.allbinary.game.layer.geological.resources.GeologicalGeographicMapCellPositionFactoryInitVisitor;
 import org.allbinary.media.graphics.geography.map.racetrack.CustomMapGeneratorFactory;
+import org.allbinary.media.graphics.geography.map.racetrack.AllBinaryTiledLayerFactoryInterface;
+import org.allbinary.game.map.GDTiledLayerFactory;
 import org.allbinary.game.media.graphics.geography.map.racetrack.PathFindingInfoFactory;
     </xsl:if>
 
@@ -182,6 +198,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         // GPoint point = PointFactory.ZERO_ZERO;
         // this.layerPlacer = new ObamaStimulusLayerPlacer(this, point);
+        
     }
 
         <xsl:variable name="isPlatformer" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
@@ -314,6 +331,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         }
         //LogUtil.put(LogFactory.getInstance("Processing Tiled Map", this, commonStrings.PROCESS));
         final TiledMap map = TiledMapLoaderFromJSONFactory.getInstance().process(new GDJSONMapReader(), tileMapInputStream, tileSetInputStreamArray, size, sizeArray2, new Image[] {tileSetImage});
+        if(map == null) {
+            throw new Exception();
+        }
         map.setTileWidth(map.getTileWidth()* scale);
         map.setTileHeight(map.getTileHeight() * scale);
         map.getLayers().size();
@@ -432,7 +452,10 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
             final TileLayer tileLayer = ((TileLayer) map.getLayer(layerIndex));
             final BasicColor color = COLORS[geographicMapList.size()];
-            geographicMapList.add(new GDGeographicMap(tileLayer, cellTypeMapping, map, tileSetImage, geographicMapCellTypeFactory, BLACK, BLACK, color,
+            
+            final AllBinaryTiledLayerFactoryInterface allBinaryTwodThreedTiledLayerFactory = new GDTiledLayerFactory(tileLayer, cellTypeMapping, map, tileSetImage, color);
+
+            geographicMapList.add(new GDGeographicMap(allBinaryTwodThreedTiledLayerFactory, tileLayer, cellTypeMapping, map, tileSetImage, geographicMapCellTypeFactory, BLACK, BLACK, color,
                 <xsl:if test="contains($foundPathFindingBehavior, 'found')" >new CustomMapGeneratorFactory()</xsl:if><xsl:if test="not(contains($foundPathFindingBehavior, 'found'))" >new CustomMapGeneratorBaseFactory()</xsl:if>));
         }
 
@@ -487,6 +510,10 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         PathFindingInfoFactory.init(32768); //This should be the max map height x width for all maps in a game and/or max vertices in a path
         </xsl:if>
         
+        <xsl:if test="contains($hasPathFindingBehaviorInOtherLayouts, 'found')" >
+        PathFindingThreadPool.getInstance().clear();
+        </xsl:if>
+
 
     }
 
@@ -625,15 +652,24 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             final int[][] placementCellYIntArray = new int[MAX_HISTORY_Y][size2];
             final int[] placementCellTotal = new int[MAX_HISTORY_Y];
 
+            int type;
             for (int indexY = 0; indexY <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size4; indexY++) {
                 placementCellTotal[currentY] = 0;
                 for (int indexX = 0; indexX <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; indexX++) {
                 
+                    type = mapArray[indexY][indexX];
+
+//                    if (basicTopViewGeographicMapCellTypeFactory.BLOCK_CELL_TYPE.isType(type) || basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(type)) {
+//                    } else {
+//                        stringMaker.delete(0, stringMaker.length());
+//                        LogUtil.put(LogFactory.getInstance(stringMaker.append("type: ").append(type).toString(), this, commonStrings.PROCESS));
+//                    }
+
                     //stringMaker.delete(0, stringMaker.length());
                     //LogUtil.put(LogFactory.getInstance(stringMaker.append(F).append(indexY).append(CommonSeps.getInstance().SPACE).append(indexX).toString(), this, commonStrings.PROCESS));
                     //LogUtil.put(LogFactory.getInstance(basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.toString(), this, commonStrings.PROCESS));
 
-                    if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY][indexX])) {
+                    if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(type)) {
                         //Exclude placement next to something that is not a floor tile
                         placed = false;
                         
@@ -686,10 +722,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
                         }-->
                         }
 
-                    }
+                    } else if (basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.isType(type)) {
 
-                    if (basicTopViewGeographicMapCellTypeFactory.STAIRS_UP_CELL_TYPE.isType(mapArray[indexY][indexX])) {
-                    
 <!--
                         if(indexY > 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX > 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexY < mapArray.length <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> indexX < mapArray[0].length) {
                             if (basicTopViewGeographicMapCellTypeFactory.FLOOR_CELL_TYPE.isType(mapArray[indexY + 1][indexX])) {
@@ -752,7 +786,16 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 //                            LogUtil.put(LogFactory.getInstance("Display not ready to set start position", this, commonStrings.PROCESS));
 //                        }
 
+                    } else if (basicTopViewGeographicMapCellTypeFactory.STAIRS_DOWN_CELL_TYPE.isType(type)) {
+                    
+                        stringMaker.delete(0, stringMaker.length());
+                        LogUtil.put(LogFactory.getInstance(stringMaker.append("Planned End Position c: ").append(allBinaryTiledLayer.getColumns()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexX * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexX).append(" r: ").append(allBinaryTiledLayer.getRows()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexY * allBinaryTiledLayer.getCellWidth()).append(CommonSeps.getInstance().FORWARD_SLASH).append(indexY).toString(), this, commonStrings.PROCESS));
+                                                
+                        geographicMapCellPosition = geographicMapCellPositionFactory.getInstance(indexX, indexY);
+                        this.setEndPosition(geographicMapInterfaceArray, geographicMapCellPosition, layerIndex, stringMaker);
+
                     }
+
                 }
                 currentY++;
                 if(currentY <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> MAX_HISTORY_Y - 1) currentY = 0;
@@ -777,6 +820,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         LogUtil.put(LogFactory.getInstance("placementTotal2: " + placementTotal2, this, commonStrings.PROCESS));
         LogUtil.put(LogFactory.getInstance("placementTotal1: " + placementTotal1, this, commonStrings.PROCESS));
         LogUtil.put(LogFactory.getInstance("placementTotal: " + placementTotal, this, commonStrings.PROCESS));
+        globals.placementMax = placementTotal - 2;
     }
 
 //    private int lastWidthUsed = 0;
@@ -847,6 +891,27 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         platformerMap.startX = platformerMap.startX - (allBinaryTiledLayer.getCellWidth() / 2);
         platformerMap.startY = platformerMap.startY - (allBinaryTiledLayer.getCellHeight() / 2);
 
+        platformerMap.mapWidth = allBinaryTiledLayer.getColumns() * allBinaryTiledLayer.getCellWidth();
+        platformerMap.mapHeight = allBinaryTiledLayer.getRows() * allBinaryTiledLayer.getCellHeight();
+        //LogUtil.put(LogFactory.getInstance("TWBw: " + platformerMap.mapWidth, this, commonStrings.PROCESS));
+        //LogUtil.put(LogFactory.getInstance("TWBh: " + platformerMap.mapHeight, this, commonStrings.PROCESS));
+        
+<!--
+
+        //.append(OffScreenLocationIndicator.getClass().getName())
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("TWBpx: ").append((SceneWindowWidth() / 2) + ((Enemies.X() - Player.X()) * SceneWindowWidth() / PlatformerMap.mapWidth)).append(CommonSeps.getInstance().SPACE).append(Enemies.X() - Player.X()).append(CommonSeps.getInstance().SPACE).append(SceneWindowWidth()).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.mapWidth).toString(), this, commonStrings.PROCESS));
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("TWBpy: ").append((SceneWindowHeight() / 2) + ((Enemies.Y() - Player.Y()) * SceneWindowHeight() / PlatformerMap.mapHeight)).append(CommonSeps.getInstance().SPACE).append(Enemies.Y() - Player.Y()).append(CommonSeps.getInstance().SPACE).append(SceneWindowHeight()).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.mapHeight).toString(), this, commonStrings.PROCESS));
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append(" TWBpx: ").append((((double) SceneWindowHeight() / 2) / (Enemies.Y() - Player.Y())) * (Enemies.X() - Player.X())).append(CommonSeps.getInstance().SPACE).append(((double) SceneWindowHeight() / 2) / (Enemies.Y() - Player.Y())).append(CommonSeps.getInstance().SPACE).append(Enemies.X()).toString(), this, commonStrings.PROCESS));
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append(" TWBpy: ").append((((double) SceneWindowWidth() / 2) / (Enemies.X() - Player.X())) * (Enemies.Y() - Player.Y())).append(CommonSeps.getInstance().SPACE).append(((double) SceneWindowWidth() / 2) / (Enemies.X() - Player.X())).append(CommonSeps.getInstance().SPACE).append(Enemies.Y()).toString(), this, commonStrings.PROCESS));
+        //((100 *SceneWindowWidth() / 2) / (Enemies.X() - Player.X())) * (Enemies.Y() - Player.Y()) / 100
+        final GDGameLayer PlayerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
+        final GDObject Player = PlayerGDGameLayer.gdObject;                                
+        final GDGameLayer PlatformerMapGDGameLayer = (GDGameLayer) globals.PlatformerMapGDGameLayerList.get(0);
+        final GD1GDObjectsFactory.PlatformerMap PlatformerMap = (GD1GDObjectsFactory.PlatformerMap) PlatformerMapGDGameLayer.gdObject;
+        LogUtil.put(LogFactory.getInstance(new StringMaker().append("TWBpx: ").append(PlatformerMap.X() - PlatformerMap.endX - Player.X()).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.endX).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.X()).append(CommonSeps.getInstance().SPACE).append(Player.X()).toString(), this, commonStrings.PROCESS));
+        LogUtil.put(LogFactory.getInstance(new StringMaker().append("TWBpy: ").append(PlatformerMap.Y() - PlatformerMap.endY - Player.Y()).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.endY).append(CommonSeps.getInstance().SPACE).append(PlatformerMap.Y()).append(CommonSeps.getInstance().SPACE).append(Player.Y()).toString(), this, commonStrings.PROCESS));
+-->
+        
         //Temp hack for RPG game.
         final GDGeographicMap gdGeographicMap = (GDGeographicMap) geographicMapInterfaceArray[layerIndex];
         final org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory = 
@@ -871,6 +936,33 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         <xsl:value-of select="name" />GDGameLayer.updatePosition2();
     }
         
+    public void setEndPosition(final GeographicMapInterface[] geographicMapInterfaceArray, final GeographicMapCellPosition geographicMapCellPosition, final int layerIndex, final StringMaker stringMaker) {
+
+        final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
+
+        final GDCustomGameLayer <xsl:value-of select="name" />GDGameLayer = (GDCustomGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0);
+        final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) <xsl:value-of select="name" />GDGameLayer.gdObject;
+        //final GDObject Wall = (GDObject) ((GDGameLayer) globals.WallGDGameLayerList.get(0)).gdObject;
+        //final GDGameLayer wallGDGameLayer = (GDGameLayer) globals.WallGDGameLayerList.get(0);
+
+        final AllBinaryTiledLayer allBinaryTiledLayer = geographicMapInterfaceArray[layerIndex].getAllBinaryTiledLayer();
+
+        //final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+        //final GDGameLayer PlayerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
+
+        platformerMap.endX = -( ((geographicMapCellPosition.getColumn()) * allBinaryTiledLayer.getCellWidth()) );
+        platformerMap.endY = -( ((geographicMapCellPosition.getRow()) * allBinaryTiledLayer.getCellHeight()) );
+        //platformerMap.endX = platformerMap.endX + (displayInfoSingleton / 2);
+        //platformerMap.endY = platformerMap.endY + (displayInfoSingleton / 2);
+        platformerMap.endX = platformerMap.endX - (allBinaryTiledLayer.getCellWidth() / 2);
+        platformerMap.endY = platformerMap.endY - (allBinaryTiledLayer.getCellHeight() / 2);
+        platformerMap.cellWidth = allBinaryTiledLayer.getCellWidth();
+        platformerMap.cellHeight = allBinaryTiledLayer.getCellHeight();
+        
+        stringMaker.delete(0, stringMaker.length());
+        LogUtil.put(LogFactory.getInstance(stringMaker.append("PlatformerMap end: ").append(platformerMap.endX).append(CommonSeps.getInstance().SPACE).append(platformerMap.endY).toString(), this, commonStrings.PROCESS));
+    }
+                
     public void setPosition(final GeographicMapCompositeInterface geographicMapCompositeInterface)
     {
         final AllBinaryLayer layer = StaticTileLayerIntoPositionViewPosition.layer;

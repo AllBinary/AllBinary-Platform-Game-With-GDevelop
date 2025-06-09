@@ -97,9 +97,9 @@ public class GDDelete {
         final BasicArrayList exclusionList2 = new BasicArrayList();
         
         exclusionList2.add("GDGameGameCanvas.java");
-        exclusionList2.add("GDGameStartCanvas.java");        
+        exclusionList2.add("GDGameStartCanvas.java");
         exclusionList2.add("GDGameSoftwareInfo.java");
-        exclusionList2.add("GDGeographicMap.java");
+        exclusionList2.add("GDTiledLayerFactory.java");
         exclusionList2.add("PlacementAllBinaryJ2METiledLayer.java");
         exclusionList2.add("GDTiledMapProperties");
         
@@ -123,7 +123,7 @@ public class GDDelete {
         exclusionList3.add("GDGameThreedLevelBuilderFactory.java");
         exclusionList3.add("GDGameCameraSetup.java");
         exclusionList3.add("GDGameLevelBuilder.java");
-        exclusionList3.add("GDGeographicMap.java");
+        exclusionList3.add("GDTiledLayerFactory.java");
         exclusionList3.add("PlacementAllBinaryJ2METiledLayer.java");
         exclusionList3.add("GDTiledMapProperties");
         exclusionList3.add("TitleVectorData.java");

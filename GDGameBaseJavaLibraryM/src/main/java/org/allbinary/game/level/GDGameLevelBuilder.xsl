@@ -124,6 +124,9 @@ import org.allbinary.media.graphics.geography.map.GeographicMapCellTypeFactory;
 import org.allbinary.game.behavior.topview.placement.TileMapPlacementVisitor;
 import org.mapgenerator.TileMapGenerator;
 import org.allbinary.media.graphics.geography.map.racetrack.CustomMapGeneratorBaseFactory;
+import org.allbinary.media.graphics.geography.map.racetrack.AllBinaryTiledLayerFactoryInterface;
+import org.allbinary.game.map.GDTiledLayerFactory;
+                    
                 </xsl:if>
                 <xsl:if test="contains($tileMapGenerator, 'DungeonGenerator')" >
 import org.allbinary.media.graphics.geography.map.GeographicMapCellTypeFactory;
@@ -131,6 +134,9 @@ import org.allbinary.game.behavior.topview.placement.TileMapPlacementVisitor;
 import org.mapgenerator.dungeon.DungeonGenerator;
 import org.mapgenerator.dungeon.Tunneller;
 import org.allbinary.media.graphics.geography.map.racetrack.CustomMapGeneratorBaseFactory;
+import org.allbinary.media.graphics.geography.map.racetrack.AllBinaryTiledLayerFactoryInterface;
+import org.allbinary.game.map.GDTiledLayerFactory;
+
                 </xsl:if>
 
     <xsl:variable name="foundPathFindingBehavior" >
@@ -157,6 +163,8 @@ import org.allbinary.media.graphics.geography.map.NoGeographicMapCellPositionFac
 import org.allbinary.media.graphics.geography.pathfinding.PathGenerator;
 //import org.allbinary.game.layer.geological.resources.GeologicalGeographicMapCellPositionFactoryInitVisitor;
 import org.allbinary.media.graphics.geography.map.racetrack.CustomMapGeneratorFactory;
+import org.allbinary.media.graphics.geography.map.racetrack.AllBinaryTiledLayerFactoryInterface;
+import org.allbinary.game.map.GDTiledLayerFactory;
 import org.allbinary.game.media.graphics.geography.map.racetrack.PathFindingInfoFactory;
     </xsl:if>
 
@@ -191,6 +199,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         // GPoint point = PointFactory.ZERO_ZERO;
         // this.layerPlacer = new ObamaStimulusLayerPlacer(this, point);
+        
     }
 
         <xsl:variable name="isPlatformer" ><xsl:for-each select="objects" ><xsl:for-each select="behaviors" ><xsl:if test="type = 'PlatformBehavior::PlatformerObjectBehavior'" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
@@ -444,7 +453,10 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
             final TileLayer tileLayer = ((TileLayer) map.getLayer(layerIndex));
             final BasicColor color = COLORS[geographicMapList.size()];
-            geographicMapList.add(new GDGeographicMap(tileLayer, cellTypeMapping, map, tileSetImage, geographicMapCellTypeFactory, BLACK, BLACK, color,
+            
+            final AllBinaryTiledLayerFactoryInterface allBinaryTwodThreedTiledLayerFactory = new GDTiledLayerFactory(tileLayer, cellTypeMapping, map, tileSetImage, color);
+
+            geographicMapList.add(new GDGeographicMap(allBinaryTwodThreedTiledLayerFactory, tileLayer, cellTypeMapping, map, tileSetImage, geographicMapCellTypeFactory, BLACK, BLACK, color,
                 <xsl:if test="contains($foundPathFindingBehavior, 'found')" >new CustomMapGeneratorFactory()</xsl:if><xsl:if test="not(contains($foundPathFindingBehavior, 'found'))" >new CustomMapGeneratorBaseFactory()</xsl:if>));
         }
 

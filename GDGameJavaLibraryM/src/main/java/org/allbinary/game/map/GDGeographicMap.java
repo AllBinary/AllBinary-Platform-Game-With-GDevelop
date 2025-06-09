@@ -21,7 +21,6 @@ import javax.microedition.lcdui.game.TiledLayer;
 
 import org.allbinary.game.layer.AllBinaryJ2METiledLayer;
 import org.allbinary.game.layer.AllBinaryTiledLayer;
-import org.allbinary.game.layer.PlacementAllBinaryJ2METiledLayer;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.string.CommonStrings;
@@ -40,6 +39,7 @@ import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackGeographicM
 import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackInfo;
 import org.allbinary.time.GameTickTimeDelayHelperFactory;
 import org.allbinary.util.BasicArrayList;
+
 import org.mapeditor.core.Animation;
 import org.mapeditor.core.Frame;
 import org.mapeditor.core.Tile;
@@ -58,7 +58,7 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
     private final int[] currentFrameArray;
     private final Animation[] animationArray;
     
-    public GDGeographicMap(final TileLayer tileLayer, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final GeographicMapCellTypeFactory geographicMapCellTypeFactory, final BasicColor foregroundColor, final BasicColor backgroundColor, final BasicColor debugColor, final CustomMapGeneratorBaseFactory customMapGeneratorBaseFactory) throws Exception {
+    public GDGeographicMap(final AllBinaryTiledLayerFactoryInterface tiledLayerFactoryInterface, final TileLayer tileLayer, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final GeographicMapCellTypeFactory geographicMapCellTypeFactory, final BasicColor foregroundColor, final BasicColor backgroundColor, final BasicColor debugColor, final CustomMapGeneratorBaseFactory customMapGeneratorBaseFactory) throws Exception {
         super(
             new RaceTrackInfo(
                 SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()),
@@ -67,32 +67,7 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
                 new RaceTrackData(SmallIntegerSingletonFactory.getInstance().getInstance(0), map.getTileWidth(), map.getTileHeight(), map.getTileWidth() / 4, map.getTileHeight() / 4, cellTypeIdToGeographicMapCellType, tileLayer.getMapArray()),
                 //cellTypeIdToGeographicMapCellType,
                 //AllBinaryTiledLayerFactory
-                new AllBinaryTiledLayerFactoryInterface() {
-                    
-                    private AllBinaryTiledLayer useAsMiniAllBinaryTiledLayer;
-                    public AllBinaryTiledLayer getInstance(final RaceTrackInfo raceTrackInfo, final RaceTrackData raceTrackData) 
-                        throws Exception {
-                        
-                        useAsMiniAllBinaryTiledLayer =  new PlacementAllBinaryJ2METiledLayer(
-                            SmallIntegerSingletonFactory.getInstance().getInstance(-1),
-                            new TiledLayer(
-                                map.getWidth(),
-                                map.getHeight(),
-                                tileSetImage,
-                                (int) (map.getTileWidth()),
-                                (int) (map.getTileHeight())),
-                            tileLayer.getMapArray(),
-                            debugColor.intValue());
-                        
-                        return useAsMiniAllBinaryTiledLayer;
-                    }
-                    
-                    public AllBinaryTiledLayer getMiniInstance(final RaceTrackData raceTrackData) throws Exception
-                    {
-                        return useAsMiniAllBinaryTiledLayer;
-                    }
-                                
-                },
+                tiledLayerFactoryInterface,
                 new SimpleGeographicMapCellPositionFactory(),
                 new GeographicMapCellPositionBaseFactory(),
                 geographicMapCellTypeFactory,
@@ -196,7 +171,7 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
         //ForcedLogUtil.log(new StringMaker().append("getCellPositionAt").append(x + allBinaryTiledLayer.getX()).append(',').append(y + allBinaryTiledLayer.getY()).toString(), this);
         return super.getCellPositionAt(x + allBinaryTiledLayer.getX(), y + allBinaryTiledLayer.getY());
         //return super.getCellPositionAt(x, y);
-    }
+}
 
     @Override
     public GeographicMapCellPosition getCellPositionAtNoThrow(final int x, final int y) throws Exception

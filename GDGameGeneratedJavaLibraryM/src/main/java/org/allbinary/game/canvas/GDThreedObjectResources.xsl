@@ -95,6 +95,7 @@ Created By: Travis Berthelot
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             <xsl:variable name="name" select="name" />
+            //Resource Type=<xsl:value-of select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
             <xsl:text>&#10;</xsl:text>
 
@@ -195,10 +196,12 @@ Created By: Travis Berthelot
                 //animationInterfaceFactoryInterfaceFactory.addRectangle(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME, <xsl:value-of select="name" />ImageArray[0]);
                 //hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
                 </xsl:if>
+                
+                this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />ImageArray[0].getWidth(), <xsl:value-of select="name" />ImageArray[0].getHeight());
 
             </xsl:if>
             
-           <xsl:if test="type = 'TextObject::Text'" >
+            <xsl:if test="type = 'TextObject::Text'" >
                 this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);
             </xsl:if>
 
@@ -208,6 +211,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="type = 'TileMap::CollisionMask'" >
+                //TileMap::CollisionMask
                 <xsl:value-of select="$name" />ImageArray = new Rectangle[] {
                 };
                 //hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
