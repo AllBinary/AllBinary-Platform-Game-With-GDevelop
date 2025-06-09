@@ -31,7 +31,6 @@
         <!--
         <module>../GDGameTouchJ2M=SE</module>
         -->
-        <module>../../GDGameJOGLResourcesJavaLibraryM</module>
         <module>../GDGameJ2SEJavaLibraryM</module>
         <module>../GDGameJ2SEWithSWTJOGLJavaLibraryM</module>
         
@@ -45,6 +44,7 @@
         <module>../GDGameJ2SEWithSWTJOGLM</module>
         <module>../GDGameJ2SEWithSWTJOGLApplicationM</module>
 
+        <module>../../GDGameJOGLResourcesJavaLibraryM</module>
     </modules>
 
 </project>

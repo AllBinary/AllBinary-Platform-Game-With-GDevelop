@@ -34,6 +34,8 @@
         <module>../GDGameThreedJ2SEWithSWTJOGLM</module>
         <module>../GDGameThreedJ2SEWithSWTJOGLApplicationM</module>
 
+        <module>../../GDGameJOGLResourcesJavaLibraryM</module>
+
     </modules>
 
 </project>
