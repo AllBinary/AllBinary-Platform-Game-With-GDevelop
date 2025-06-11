@@ -27,6 +27,9 @@ Created By: Travis Berthelot
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             <xsl:variable name="name" select="name" />
+            
+            <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:if test="contains($threedExclusionsFound, 'found')" >
 
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
@@ -59,6 +62,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
             </xsl:if>
 -->
+            </xsl:if>
 
         </xsl:for-each>
         //objectsAssign - androidThreedAnimationFactoryCalls - END
@@ -82,7 +86,10 @@ Created By: Travis Berthelot
             <xsl:variable name="typeValue" select="type" />
             <xsl:variable name="name" select="name" />
             <xsl:variable name="nameInUpperCase" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
-            
+
+            <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:if test="contains($threedExclusionsFound, 'found')" >
+
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="$typeValue = 'Sprite'" >
@@ -587,6 +594,8 @@ Created By: Travis Berthelot
             }
             </xsl:if>
 
+            </xsl:if>
+
         </xsl:for-each>
         //objectsAssign - threedAnimationFactory - END
     </xsl:template>
@@ -603,6 +612,9 @@ Created By: Travis Berthelot
             <xsl:variable name="name" select="name" />
             <xsl:variable name="nameInUpperCase" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+
+            <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
 
             <xsl:if test="$typeValue = 'Sprite'" >
             private void add<xsl:value-of select="name" />SpriteAnimations(final ImageCache imageCache) throws Exception {
@@ -887,6 +899,8 @@ Created By: Travis Berthelot
                 */
 
             }
+            </xsl:if>
+
             </xsl:if>
 
         </xsl:for-each>

@@ -27,9 +27,12 @@
 
         <module>../GDGameThreedJ2SEWithSWTJOGLResourceJavaLibraryM</module>
         
+        <module>../../../resource/GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
         <module>../../../resource/GDGameOpenGLThreedAnimationResourceJavaLibraryM</module>
 
         <module>../GDGameThreedBaseJ2SEWithSWTJOGLJavaLibraryM</module>
+        <module>../GDGameThreedJ2SEWithSWTJOGLJavaLibraryM</module>
+        <module>../GDGameThreedJ2SEWithSWTJOGLBaseJavaLibraryM</module>
 
         <module>../GDGameThreedJ2SEWithSWTJOGLM</module>
         <module>../GDGameThreedJ2SEWithSWTJOGLApplicationM</module>

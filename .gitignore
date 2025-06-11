@@ -64,6 +64,9 @@ GDGameCommandFactory.java
 GDGame*CanvasRunnable.java
 GD*GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
 GD*GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
+GD*GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
+GD*GameTwoDTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
+GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
 
 /platform/avian/GDGameAvianApplicationM/src/main/java/**
 /platform/avian/GDGameAvianApplicationM/src/**/*.svg

@@ -185,10 +185,15 @@ public class GDDelete {
         exclusionList6.add("GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
         
         final BasicArrayList files6 = fileListFetcher.getFiles(
-              gdToolStrings.ROOT_PATH + "resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
+              gdToolStrings.ROOT_PATH + "resource\\GDGameOpenGLTwoDAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
         
         this.process(files6, exclusionList6);
 
+        final BasicArrayList files6b = fileListFetcher.getFiles(
+              gdToolStrings.ROOT_PATH + "resource\\GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
+        
+        this.process(files6b, exclusionList6);
+        
         final BasicArrayList exclusionList7 = new BasicArrayList();
         
         exclusionList7.add("GDGameEarlyResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java");
@@ -226,8 +231,13 @@ public class GDDelete {
         
         final BasicArrayList files19 = fileListFetcher.getFiles(
               gdToolStrings.ROOT_PATH + "resource\\GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
-        
+
         this.process(files19, exclusionList9);
+
+        final BasicArrayList files19b = fileListFetcher.getFiles(
+              gdToolStrings.ROOT_PATH + "resource\\GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);
+
+        this.process(files19b, exclusionList9);
 
         final BasicArrayList files29 = fileListFetcher.getFiles(
               gdToolStrings.ROOT_PATH + "resource\\GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryM\\src\\main\\java\\org\\allbinary\\animation\\image", this.gdToolStrings.JAVA);

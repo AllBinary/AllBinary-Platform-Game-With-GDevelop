@@ -19,6 +19,7 @@ Created By: Travis Berthelot
         <xsl:param name="enlargeTheImageBackgroundForRotation" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="layoutName" />
+        <xsl:param name="useExclusionList" />
 
 //               LogUtil.put(LogFactory.getInstance("scale: " + scale, this, commonStrings.PROCESS));
 //               LogUtil.put(LogFactory.getInstance("hackScale: " + hackScale, this, commonStrings.PROCESS));
@@ -27,6 +28,10 @@ Created By: Travis Berthelot
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             <xsl:variable name="name" select="name" />
+            
+            <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:if test="contains($threedExclusionsFound, 'found') or $useExclusionList = true" >
+
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="$typeValue = 'Sprite'" >
@@ -54,6 +59,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
             </xsl:if>
 -->
+            </xsl:if>
 
         </xsl:for-each>
         //objectsAssign - htmlAnimationFactoryCalls - END
@@ -64,6 +70,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="layoutName" />
         <xsl:param name="lazy" />
+        <xsl:param name="useExclusionList" />
 
         <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
         
@@ -79,6 +86,10 @@ Created By: Travis Berthelot
             <xsl:variable name="typeValue" select="type" />
             <xsl:variable name="name" select="name" />
             <xsl:variable name="nameInUpperCase" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
+            
+            <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:if test="contains($threedExclusionsFound, 'found') or $useExclusionList = true" >
+
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="$typeValue = 'Sprite'" >
@@ -773,6 +784,8 @@ Created By: Travis Berthelot
                 //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
 
             </xsl:if>
+            
+            </xsl:if>            
 
         </xsl:for-each>
         //objectsAssign - htmlAnimationFactory - END

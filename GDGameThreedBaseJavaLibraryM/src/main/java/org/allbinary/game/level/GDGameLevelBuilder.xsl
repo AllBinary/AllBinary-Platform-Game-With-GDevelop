@@ -453,7 +453,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             final TileLayer tileLayer = ((TileLayer) map.getLayer(layerIndex));
             final BasicColor color = COLORS[geographicMapList.size()];
             
-            final AllBinaryTiledLayerFactoryInterface allBinaryTwodThreedTiledLayerFactory = new GDTiledLayerFactory(tileLayer, cellTypeMapping, map, tileSetImage, color);
+            final AllBinaryTiledLayerFactoryInterface allBinaryTwodThreedTiledLayerFactory = new GDTiledLayerFactory();
 
             geographicMapList.add(new GDGeographicMap(allBinaryTwodThreedTiledLayerFactory, tileLayer, cellTypeMapping, map, tileSetImage, geographicMapCellTypeFactory, BLACK, BLACK, color,
                 <xsl:if test="contains($foundPathFindingBehavior, 'found')" >new CustomMapGeneratorFactory()</xsl:if><xsl:if test="not(contains($foundPathFindingBehavior, 'found'))" >new CustomMapGeneratorBaseFactory()</xsl:if>));

@@ -201,6 +201,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                     </xsl:call-template>
 
                     <xsl:text>&#10;</xsl:text>
+                    new GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable(), this.getRectangleArrayOfArraysHashtable()).init(-1);
                     new GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(this.getHashtable(), this.getRectangleHashtable(), this.getRectangleArrayOfArraysHashtable()).init(-1);
                     //GameAreaBoxUtil.getInstance().addAnimations(this);
 
@@ -226,7 +227,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
                         </xsl:with-param>
                     </xsl:call-template>
     
-    public boolean isLoadingLevel(int level)
+    public boolean isLoadingLevel(final int level)
     {
         if(level == ResourceLoadingLevelFactory.getInstance().LOAD_GAME.getLevel())
         {

@@ -10,26 +10,15 @@
         <!-- Game Version Start -->
     </parent>
 
-    <artifactId>GDGameThreedJ2SEWithSWTJOGLBaseJavaLibrary</artifactId>
+    <artifactId>GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
     <packaging>jar</packaging>
 
-    <name>GDGameThreedJ2SEWithSWTJOGLBaseJavaLibrary</name>
+    <name>GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibrary</name>
     <url>http://www.allbinary.com/</url>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>nexus-snapshots</id>
-            <name>AllBinary Snapshots Nexus</name>
-            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>nexus-releases</id>
-            <name>AllBinary Releases Nexus</name>
-            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
-        </repository>
-    </distributionManagement>
 
     <properties>
-        <buildLabel>${project.version}</buildLabel>
+        <buildLabel>${version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
     </properties>
 
     <dependencies>
@@ -42,7 +31,35 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>LoggingJ2MEAll</artifactId>
+            <artifactId>AllBinaryOptionalBasePlatformJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>J2SEForJ2MEJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>ImageCacheLazyJ2MEJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLNoneOtherJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
             <!-- AllBinary Platform Version End -->
@@ -52,71 +69,54 @@
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameThreedJ2SEWithSWTJOGLResourceJavaLibrary</artifactId>        
-            <!-- AllBinary Platform Version Start -->
+            <artifactId>GDGamePreBaseJavaLibrary</artifactId>
             <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
-        </dependency>
-
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGamePCClientInfoJavaLibrary</artifactId>        
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameTouchJavaLibrary</artifactId>
-            <!--
-            <artifactId>GDGameTouchJavaLibrary</artifactId>
-            <artifactId>GDGameNoTouchJavaLibrary</artifactId>
-            -->        
+            <artifactId>GDGameJavaLibrary</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.animation</groupId>
+            <artifactId>AllBinaryJ2SEImageAnimationRotationJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.animation</groupId>
+            <artifactId>AllBinarySpriteAnimationJavaLibrary</artifactId>      
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLNoneJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
             <optional>true</optional>
         </dependency>
-
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameJavaLibrary</artifactId>        
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
-        </dependency>
-
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameThreedJ2SEWithSWTJOGLJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameOpenGLThreedAnimationResourceJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
-        </dependency>
-  
-        <dependency>
-            <groupId>org.allbinary.game.gd</groupId>
-            <artifactId>GDGameOpenGLTwoDLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
-        </dependency>
-  
+        
+        <!--
+            <groupId>org.allbinary.animation</groupId>
+            <artifactId>AllBinaryImageAnimationRotationJavaLibrary</artifactId>
+                <dependency>
+                    <groupId>org.allbinary.animation</groupId>
+                    <artifactId>AllBinarySpriteAnimationJavaLibrary</artifactId>
+                </dependency>
+        -->
+        
         <dependency>
             <groupId>org.microemu</groupId>
             <artifactId>microemu-midp</artifactId>
-            <version>3.0.0-SNAPSHOT</version>
+            <version>2.0.4</version>
             <optional>true</optional>
         </dependency>
         
@@ -124,6 +124,7 @@
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -140,8 +141,7 @@
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
-
-
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -160,3 +160,4 @@
     </build>
 
 </project>
+
