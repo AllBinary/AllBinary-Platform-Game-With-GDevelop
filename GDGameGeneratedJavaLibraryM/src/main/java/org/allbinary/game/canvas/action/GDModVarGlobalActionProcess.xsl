@@ -82,6 +82,10 @@ Created By: Travis Berthelot
                         <xsl:if test="contains($hasObjectGroup, 'found')" >
                             //This code should probably never be used - it is here to compile with at least some possible logic 2
                             final BasicArrayList gdGameLayerList = (BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(0);
+                            
+                            if(gdGameLayerList.size() == 0) {
+                                return false;
+                            }
                             final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) gdGameLayerList.get(0);
                         </xsl:if>
                                        
