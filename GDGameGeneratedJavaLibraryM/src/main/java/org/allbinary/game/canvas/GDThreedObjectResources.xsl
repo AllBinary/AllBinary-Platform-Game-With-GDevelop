@@ -45,10 +45,12 @@ Created By: Travis Berthelot
             <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
             //Animation Total: <xsl:value-of select="count(animations)" />
             public Rectangle <xsl:value-of select="name" />Rectangle;
+            <xsl:if test="type != 'TextObject::Text'" >
             public Rectangle[] <xsl:value-of select="name" />ImageArray;
+            </xsl:if>
             
             <xsl:if test="type = 'Sprite'" >
-                public final String[] <xsl:value-of select="$name" />ResourceArray;
+            public final String[] <xsl:value-of select="$name" />ResourceArray;
             </xsl:if>
             
                 <xsl:if test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >
@@ -195,9 +197,8 @@ Created By: Travis Berthelot
 
                 //animationInterfaceFactoryInterfaceFactory.addRectangle(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME, <xsl:value-of select="name" />ImageArray[0]);
                 //hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
-                </xsl:if>
-                
                 this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />ImageArray[0].getWidth(), <xsl:value-of select="name" />ImageArray[0].getHeight());
+                </xsl:if>
 
             </xsl:if>
             

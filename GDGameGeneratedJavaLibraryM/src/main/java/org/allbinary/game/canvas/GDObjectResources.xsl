@@ -46,7 +46,9 @@ Created By: Travis Berthelot
 
                 //Animation Total: <xsl:value-of select="count(animations)" /><xsl:text>&#10;</xsl:text>
                 public Rectangle <xsl:value-of select="name" />Rectangle;
+                <xsl:if test="type != 'TextObject::Text'" >
                 public Image[] <xsl:value-of select="name" />ImageArray;
+                </xsl:if>
                 
                     <!--
                 <xsl:for-each select="animations" >
