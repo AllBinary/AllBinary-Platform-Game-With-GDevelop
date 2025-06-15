@@ -20,7 +20,9 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
+        <xsl:param name="useExclusionList" />
 
+        <xsl:if test="$useExclusionList != 'true'" >
         //objectsGroups - START
         <xsl:choose>
             <xsl:when test="$touch = 'true'" >
@@ -35,6 +37,7 @@ Created By: Travis Berthelot
             </xsl:otherwise>
         </xsl:choose>
         //objectsGroups - START
+        </xsl:if>
         
         //objects - all - touch - START
         <xsl:for-each select="objects" >
@@ -43,6 +46,10 @@ Created By: Travis Berthelot
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
+
+            <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
+            
             //Animation Total: <xsl:value-of select="count(animations)" />
             public Rectangle <xsl:value-of select="name" />Rectangle;
             <xsl:if test="type != 'TextObject::Text'" >
@@ -63,6 +70,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             </xsl:if>
+            </xsl:if>
 
         </xsl:for-each>
         //objects - all - //touch - END
@@ -75,7 +83,9 @@ Created By: Travis Berthelot
         <xsl:param name="layoutName" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
+        <xsl:param name="useExclusionList" />
 
+        <xsl:if test="$useExclusionList != 'true'" >
         <xsl:call-template name="scale" >
             <xsl:with-param name="layoutIndex" >
                 <xsl:value-of select="$layoutIndex" />
@@ -84,6 +94,7 @@ Created By: Travis Berthelot
                 <xsl:value-of select="$layoutName" />
             </xsl:with-param>
         </xsl:call-template>
+        </xsl:if>
         
 <!--
         <xsl:call-template name="globalZoomCameraActions" >
@@ -93,7 +104,9 @@ Created By: Travis Berthelot
 -->
 
         //objects - threed object - cache - START
+        <xsl:if test="$useExclusionList != 'true'" >
         int size;
+        </xsl:if>
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             <xsl:variable name="name" select="name" />
@@ -102,7 +115,10 @@ Created By: Travis Berthelot
             <xsl:text>&#10;</xsl:text>
 
             <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
-    
+
+            <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
+                    
                 <xsl:variable name="hasMirrorFillBarBehavior" >
                 <xsl:for-each select="behaviors" ><xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >found</xsl:if></xsl:for-each>
                 </xsl:variable>
@@ -249,6 +265,7 @@ Created By: Travis Berthelot
                 }                
 
             </xsl:if>
+            </xsl:if>
 
         </xsl:for-each>
         //objects - threed object - cache - END
@@ -269,7 +286,10 @@ Created By: Travis Berthelot
             <xsl:text>&#10;</xsl:text>
 
             <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
-    
+
+            <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
+
                 <xsl:variable name="hasMirrorFillBarBehavior" >
                 <xsl:for-each select="behaviors" ><xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >found</xsl:if></xsl:for-each>
                 </xsl:variable>
@@ -310,7 +330,8 @@ Created By: Travis Berthelot
                 };
 
                 }
-                </xsl:if>
+            </xsl:if>
+            </xsl:if>
             
         </xsl:for-each>
         //objects - threed object - cache - END

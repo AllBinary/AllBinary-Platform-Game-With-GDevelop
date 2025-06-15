@@ -20,6 +20,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
+        <xsl:param name="useExclusionList" />
 
         //objectsGroups - START
         <xsl:choose>
@@ -44,6 +45,9 @@ Created By: Travis Berthelot
 
             <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
 
+            <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:if test="contains($threedExclusionsFound, 'found') or $useExclusionList != 'true'" >
+                
                 //Animation Total: <xsl:value-of select="count(animations)" /><xsl:text>&#10;</xsl:text>
                 public Rectangle <xsl:value-of select="name" />Rectangle;
                 <xsl:if test="type != 'TextObject::Text'" >
@@ -71,6 +75,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
             </xsl:if>
+            </xsl:if>
 
         </xsl:for-each>
         //objects - all - touch - END
@@ -83,6 +88,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutName" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
+        <xsl:param name="useExclusionList" />
         
         <xsl:call-template name="scale" >
             <xsl:with-param name="layoutIndex" >
@@ -110,7 +116,10 @@ Created By: Travis Berthelot
             <xsl:text>&#10;</xsl:text>
 
             <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
-    
+
+            <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:if test="contains($threedExclusionsFound, 'found') or $useExclusionList != 'true'" >
+                    
                 <xsl:variable name="hasMirrorFillBarBehavior" >
                 <xsl:for-each select="behaviors" ><xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >found</xsl:if></xsl:for-each>
                 </xsl:variable>
@@ -413,7 +422,8 @@ Created By: Travis Berthelot
                 }                
                 
             </xsl:if>
-
+            
+            </xsl:if>
             </xsl:if>
 
         </xsl:for-each>

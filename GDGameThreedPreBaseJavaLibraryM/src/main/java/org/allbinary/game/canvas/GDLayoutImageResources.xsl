@@ -82,10 +82,10 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.logic.string.StringMaker;
+                import org.allbinary.logic.system.PlatformAssetManager;
                 import org.allbinary.media.image.ImageCopyUtil;
                 import org.allbinary.media.image.ImageScaleUtil;
-                import org.allbinary.logic.system.PlatformAssetManager;
-                import org.allbinary.logic.string.StringMaker;
                 import org.allbinary.util.BasicArrayList;
 
                 //Layout name=<xsl:value-of select="$layoutName" />
@@ -110,14 +110,30 @@ Created By: Travis Berthelot
 
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final PointFactory pointFactory = PointFactory.getInstance();
-                        //private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
-                        //private final ImageScaleUtil imageScaleUtil = ImageScaleUtil.getInstance();
-                        //private final ImageCache imageCache = OpenGLImageCacheFactory.getInstance(); //ImageCacheFactory.getInstance();
-                        private final PlatformAssetManager platformAssetManager = PlatformAssetManager.getInstance();
-                        
+                        private final ImageCopyUtil imageCopyUtil = ImageCopyUtil.getInstance();
+                        private final ImageScaleUtil imageScaleUtil = ImageScaleUtil.getInstance();
+                        private final ImageCache imageCache = OpenGLImageCacheFactory.getInstance(); //ImageCacheFactory.getInstance();
                         private final GDResources gdResources = GDResources.getInstance();
+                        private final PlatformAssetManager platformAssetManager = PlatformAssetManager.getInstance();
 
-                        private final GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
+                        private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources animationInterfaceFactoryInterfaceFactory = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
+                        //private final GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory animationInterfaceFactoryInterfaceFactory = new GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory();
+
+                    <xsl:call-template name="imageProperties" >
+                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
+                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="touch" >
+                            <xsl:value-of select="'false'" />
+                        </xsl:with-param>
+                        <xsl:with-param name="useExclusionList" >true</xsl:with-param>
+                    </xsl:call-template>
 
                     <xsl:call-template name="rectangleProperties" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
@@ -132,6 +148,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="touch" >
                             <xsl:value-of select="'false'" />
                         </xsl:with-param>
+                        <xsl:with-param name="useExclusionList" >true</xsl:with-param>
                     </xsl:call-template>
 
                     public GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources() throws Exception {
@@ -142,7 +159,28 @@ Created By: Travis Berthelot
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
                     
-                            //final Hashtable hashTable = imageCache.getHashtable();
+                            final PointFactory pointFactory = PointFactory.getInstance();
+
+                            final Hashtable hashTable = imageCache.getHashtable();
+
+                    <xsl:call-template name="imageCache" >
+                        <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
+                            <xsl:value-of select="$enlargeTheImageBackgroundForRotation" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutName" >
+                            <xsl:value-of select="$layoutName" />
+                        </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="touch" >
+                            <xsl:value-of select="'false'" />
+                        </xsl:with-param>
+                        <xsl:with-param name="useExclusionList" >true</xsl:with-param>
+                    </xsl:call-template>
 
                     <xsl:call-template name="rectangleCache" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
@@ -160,6 +198,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="touch" >
                             <xsl:value-of select="'false'" />
                         </xsl:with-param>
+                        <xsl:with-param name="useExclusionList" >true</xsl:with-param>
                     </xsl:call-template>
 
                     <xsl:text>&#10;</xsl:text>                    
@@ -200,6 +239,19 @@ Created By: Travis Berthelot
                             <xsl:value-of select="'false'" />
                         </xsl:with-param>
                     </xsl:call-template>
+
+
+                    public void validateSprites(final String name, final String[] resourceArray, final Image[] imageArray) {
+                        final CommonSeps commonSeps = CommonSeps.getInstance();
+                        final int size = imageArray.length;
+                        Image image;
+                        for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            image = imageArray[index];
+                            if (image.getWidth() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> image.getHeight() <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> image.getWidth() % image.getHeight() != 0) {
+                                LogUtil.put(LogFactory.getInstance(new StringMaker().append(index).append(name).append(image.getWidth()).append(commonSeps.COLON).append(image.getHeight()).toString(), this, commonStrings.PROCESS, new Exception()));
+                            }
+                        }
+                    }
 
                 }
             </xsl:if>
