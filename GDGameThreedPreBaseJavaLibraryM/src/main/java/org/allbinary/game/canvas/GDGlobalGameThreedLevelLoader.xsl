@@ -116,6 +116,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="touch" >
                             <xsl:value-of select="'false'" />
                         </xsl:with-param>
+                        <xsl:with-param name="useExclusionList" >true</xsl:with-param>
                     </xsl:call-template>
 
                     <xsl:text>&#10;</xsl:text>                    
@@ -139,6 +140,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="touch" >
                             <xsl:value-of select="'false'" />
                         </xsl:with-param>
+                        <xsl:with-param name="useExclusionList" >true</xsl:with-param>
                     </xsl:call-template>
 
                     <xsl:text>&#10;</xsl:text>                    

@@ -209,7 +209,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 //Duplicate logic of the AnimationFactory
-                <xsl:value-of select="name" />ImageArray = this.get<xsl:value-of select="name" />RectangleArray();
+                <xsl:value-of select="name" />ImageArray = this.get<xsl:value-of select="name" />RectangleArray(scale);
 
                 //animationInterfaceFactoryInterfaceFactory.addRectangle(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME, <xsl:value-of select="name" />ImageArray[0]);
                 //hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
@@ -295,8 +295,15 @@ Created By: Travis Berthelot
                 </xsl:variable>
                 
                 //Duplicate logic of the AnimationFactory
-                public Rectangle[] get<xsl:value-of select="name" />RectangleArray() {
+                public Rectangle[] get<xsl:value-of select="name" />RectangleArray(final int scale) {
                     return new Rectangle[] {
+                <xsl:if test="contains(type, 'TileMap::')" >
+                    //TWB - temp solution for <xsl:value-of select="type" />
+                    new Rectangle(pointFactory.ZERO_ZERO, 
+                                384 * scale,
+                                384 * scale 
+                                ),
+                </xsl:if>
                 <xsl:for-each select="animations" >
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>

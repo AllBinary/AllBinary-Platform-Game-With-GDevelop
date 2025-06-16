@@ -20,6 +20,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
+        <xsl:param name="useExclusionList" />
 
         //objects - threed loading - cache - START
         <xsl:for-each select="objects" >
@@ -29,8 +30,12 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
+                    
+                <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+                <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
             //Animation Total: <xsl:value-of select="count(animations)" />
             this.add<xsl:value-of select="name" />SpriteAnimations(gl, glInstanceVersion);
+                </xsl:if>
                 </xsl:if>
 
             </xsl:if>
@@ -49,6 +54,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
+        <xsl:param name="useExclusionList" />
 
         //objects - threed loading - cache - START
 
@@ -62,6 +68,10 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 <xsl:if test="(contains($name, 'btn_') and $touch = 'true') or (not(contains($name, 'btn_')) and $touch = 'false')" >
+
+                <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+                <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
+
             //Animation Total: <xsl:value-of select="count(animations)" />
             private void add<xsl:value-of select="name" />SpriteAnimations(final GL10 gl, final String glInstanceVersion) throws Exception {
 
@@ -139,6 +149,7 @@ Created By: Travis Berthelot
                 min3dSceneResourcesFactory.add(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME, <xsl:value-of select="$name" />Object3dContainerArray);
 
             }
+                </xsl:if>
                 </xsl:if>
 
             </xsl:if>
