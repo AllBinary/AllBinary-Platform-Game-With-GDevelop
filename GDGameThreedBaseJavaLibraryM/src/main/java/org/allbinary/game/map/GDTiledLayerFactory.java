@@ -13,18 +13,14 @@
  */
 package org.allbinary.game.map;
 
-import javax.microedition.lcdui.Image;
-import javax.microedition.lcdui.game.TiledLayer;
-
+import org.allbinary.animation.Animation;
+import org.allbinary.game.layer.AllBinaryThreedVisibleTiledLayer;
 import org.allbinary.game.layer.AllBinaryTiledLayer;
-import org.allbinary.game.layer.PlacementAllBinaryJ2METiledLayer;
-import org.allbinary.graphics.color.BasicColor;
-import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.graphics.geography.map.racetrack.AllBinaryTiledLayerFactoryInterface;
 import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackData;
 import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackInfo;
-import org.mapeditor.core.TileLayer;
-import org.mapeditor.core.TiledMap;
+import org.allbinary.media.graphics.geography.map.racetrack.threed.RaceTrackThreedData;
+import org.allbinary.media.graphics.geography.map.racetrack.threed.ThreedTiledLayerResourcesFactory;
 
 /**
  *
@@ -32,37 +28,35 @@ import org.mapeditor.core.TiledMap;
  */
 public class GDTiledLayerFactory implements AllBinaryTiledLayerFactoryInterface {
 
-    private final TileLayer tileLayer;
-    private final TiledMap map;
-    private final Image tileSetImage;
-    private final BasicColor debugColor;
-
     private AllBinaryTiledLayer useAsMiniAllBinaryTiledLayer;
-    
-    public GDTiledLayerFactory(final TileLayer tileLayer, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final BasicColor debugColor) {
-        this.tileLayer = tileLayer;
-        this.map = map;
-        this.tileSetImage = tileSetImage;
-        this.debugColor = debugColor;
+
+    public GDTiledLayerFactory() {
     }
-    
+
     public AllBinaryTiledLayer getInstance(final RaceTrackInfo raceTrackInfo, final RaceTrackData raceTrackData)
         throws Exception {
 
-        useAsMiniAllBinaryTiledLayer = new PlacementAllBinaryJ2METiledLayer(
-            SmallIntegerSingletonFactory.getInstance().getInstance(-1),
-            new TiledLayer(
-                map.getWidth(),
-                map.getHeight(),
-                tileSetImage,
-                (int) (map.getTileWidth()),
-                (int) (map.getTileHeight())),
-            tileLayer.getMapArray(),
-            debugColor.intValue());
+        final RaceTrackThreedData raceTrackThreedData =
+            ThreedTiledLayerResourcesFactory.getInstance().getInstance(raceTrackInfo.getId());
+
+        final Animation[] animationInterfaceArray = raceTrackThreedData.getAnimationArray();
+
+        final int columns = raceTrackData.getMapArray()[0].length;
+        final int rows = raceTrackData.getMapArray().length;
+
+        final int width = columns * raceTrackData.getCellWidth();
+        final int height = rows * raceTrackData.getCellHeight();
+
+        useAsMiniAllBinaryTiledLayer = new AllBinaryThreedVisibleTiledLayer(
+            raceTrackData.getId(), raceTrackData.getMapArray(),
+            animationInterfaceArray, columns, rows, width, height,
+            raceTrackData.getCellWidth(), raceTrackData.getCellHeight(),
+            9);
 
         return useAsMiniAllBinaryTiledLayer;
     }
 
+    //Needs a mini3d tile layer
     public AllBinaryTiledLayer getMiniInstance(final RaceTrackData raceTrackData) throws Exception {
         return useAsMiniAllBinaryTiledLayer;
     }

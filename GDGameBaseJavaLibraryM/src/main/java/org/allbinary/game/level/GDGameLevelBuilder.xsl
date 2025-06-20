@@ -61,6 +61,7 @@ import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.map.GDGeographicMap;
 import org.allbinary.game.rand.MyRandomFactory;
 import org.allbinary.game.gd.resource.GDResources;
+import org.allbinary.game.gd.resource.GDLazyResources;
 import org.allbinary.game.view.StaticTileLayerIntoPositionViewPosition;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
@@ -178,6 +179,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         BasicColorFactory.getInstance().GREEN,
     };
 
+    private final GDResources gdResources = GDResources.getInstance();
     //private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
         
     private final AllBinaryGameLayerManager layerManager;
@@ -209,7 +211,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
             <xsl:if test="type = 'TileMap::TileMap'" >
         
-    public TiledMap create<xsl:value-of select="name" />TiledMap(final TiledMap lastMap, final Image tileSetImage) {
+    public TiledMap create<xsl:value-of select="name" />TiledMap(final TiledMap lastMap, final int[] tileSetImageHeightArray) {
 
     <xsl:call-template name="scale" >
         <xsl:with-param name="layoutIndex" >
@@ -224,7 +226,6 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         try {
         
-        final GDResources gdResources = GDResources.getInstance();
         final PlatformAssetManager platformAssetManager = PlatformAssetManager.getInstance();
         final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
 
@@ -331,7 +332,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             }
         }
         //LogUtil.put(LogFactory.getInstance("Processing Tiled Map", this, commonStrings.PROCESS));
-        final TiledMap map = TiledMapLoaderFromJSONFactory.getInstance().process(new GDJSONMapReader(), tileMapInputStream, tileSetInputStreamArray, size, sizeArray2, new Image[] {tileSetImage});
+        final TiledMap map = TiledMapLoaderFromJSONFactory.getInstance().process(new GDJSONMapReader(), tileMapInputStream, tileSetInputStreamArray, size, sizeArray2, tileSetImageHeightArray);
         if(map == null) {
             throw new Exception();
         }
@@ -342,7 +343,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         } catch(Exception e) {
         LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
         gameGlobals.RandomDungeon = false;
-        return this.create<xsl:value-of select="name" />TiledMap(lastMap, tileSetImage);
+        return this.create<xsl:value-of select="name" />TiledMap(lastMap, tileSetImageHeightArray);
         }
     }
             </xsl:if>
@@ -402,9 +403,18 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         //LogUtil.put(LogFactory.getInstance("Loading Tiled Map Asset: <xsl:value-of select="name" />", this, commonStrings.PROCESS));
                 
         final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtable().get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
-        final Image tileSetImage = <xsl:value-of select="name" />ImageArray[0];
         
-        map = this.create<xsl:value-of select="name" />TiledMap(map, tileSetImage);
+        <xsl:variable name="imageWithExtension" select="content/tilemapAtlasImage" />
+        <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
+        final int resourceIndex = imageCache.getIndex(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>);
+        final int[] tileSetImageHeightArray = new int[] { GDLazyResources.getInstance().imageResourceHeightArray[resourceIndex] };
+
+        Image tileSetImage = null;
+        if(<xsl:value-of select="name" />ImageArray != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> <xsl:value-of select="name" />ImageArray.length <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+            tileSetImage = <xsl:value-of select="name" />ImageArray[0];
+        }
+
+        map = this.create<xsl:value-of select="name" />TiledMap(map, tileSetImageHeightArray);
         
         //LogUtil.put(LogFactory.getInstance("Loaded Tiled Map", this, commonStrings.PROCESS));
         
@@ -971,13 +981,13 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         if(layer != null) {
         
         final BasicGeographicMap[] geographicMapInterfaceArray = geographicMapCompositeInterface.getGeographicMapInterface();
-        TiledLayer tiledLayer;
+        AllBinaryTiledLayer tiledLayer;
         
         GDGeographicMap geographicMapInterface;
         final int size = geographicMapInterfaceArray.length;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
             geographicMapInterface = (GDGeographicMap) geographicMapInterfaceArray[index];
-            tiledLayer = ((AllBinaryJ2METiledLayer) geographicMapInterface.getAllBinaryTiledLayer()).getTiledLayer();
+            tiledLayer = geographicMapInterface.getAllBinaryTiledLayer();
  
             //final int centerCameraX = (int) (SceneWindowWidth() / 2);
             //final int centerCameraY = (int) (SceneWindowHeight() / 2);

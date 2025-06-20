@@ -39,6 +39,11 @@ Created By: Travis Berthelot
                 </xsl:if>
 
             </xsl:if>
+            <!--3d TiledLayer-->
+            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+            //Animation Total: <xsl:value-of select="count(animations)" />
+            this.add<xsl:value-of select="name" />TileMapAnimations(gl, glInstanceVersion);
+            </xsl:if>            
 
         </xsl:for-each>
         //objects - threed loading - cache - END
@@ -62,7 +67,6 @@ Created By: Travis Berthelot
             <xsl:variable name="typeValue" select="type" />
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            //3d TiledLayer?  or $typeValue = 'TileMap::TileMap'
             <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
 
                 <xsl:variable name="stringValue" select="string" />
@@ -152,6 +156,22 @@ Created By: Travis Berthelot
                 </xsl:if>
                 </xsl:if>
 
+            </xsl:if>
+
+            <!--3d TiledLayer-->
+            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+            //Animation Total: <xsl:value-of select="count(animations)" />
+            private void add<xsl:value-of select="name" />TileMapAnimations(final GL10 gl, final String glInstanceVersion) throws Exception {
+            
+                final Object3d mapCellModelObject3dContainer = 
+                        threedLoaderFactory.getObject3dInstance(
+                                this.animationInterfaceFactoryInterfaceFactory.MAP_CELL_MODEL, gl, glInstanceVersion, OBJ, FALSE);
+
+                min3dSceneResourcesFactory.add(this.animationInterfaceFactoryInterfaceFactory.MAP_CELL_MODEL, new Object3d[] {mapCellModelObject3dContainer});
+            
+                this.addMapCell(gl, mapCellModelObject3dContainer.cloneImmutable(), this.animationInterfaceFactoryInterfaceFactory.MAP_CELL_MODEL_IMAGE);
+            
+            }
             </xsl:if>
 
         </xsl:for-each>

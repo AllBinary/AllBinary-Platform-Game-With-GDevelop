@@ -294,8 +294,11 @@ Created By: Travis Berthelot
                             </xsl:if>
                             <xsl:variable name="name2" >:<xsl:value-of select="$name" />,</xsl:variable>
                             <xsl:if test="contains($objectsGroupsAsString, $name2)" >
-                                (int) (((Image[]) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArrayList.get(createIndex))[0].getWidth()),
-                                (int) (((Image[]) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArrayList.get(createIndex))[0].getHeight()),
+                                
+                                <xsl:text>&#10;</xsl:text>
+                                <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.get<xsl:value-of select="$name" />Width(createIndex),
+                                <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.get<xsl:value-of select="$name" />Height(createIndex),
+
                             </xsl:if>
                             <xsl:if test="not(contains($objectsAsString, $spriteName) or contains($objectsGroupsAsString, $name2))" >
                                 0, 0,
@@ -444,8 +447,11 @@ Created By: Travis Berthelot
                                 ,
                             </xsl:if>
                             <xsl:if test="contains($objectsGroupsAsString, $name)" >
-                                (int) (((Image[]) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArrayList.get(createIndex))[0].getHeight()),
-                                (int) (((Image[]) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArrayList.get(createIndex))[0].getHeight()),
+                                
+                                <xsl:text>&#10;</xsl:text>
+                                <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.get<xsl:value-of select="$name" />Height(createIndex),
+                                <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.get<xsl:value-of select="$name" />Height(createIndex),
+
                             </xsl:if>
                     
                             <xsl:if test="not(contains($objectsAsString, $spriteName) or contains($objectsGroupsAsString, $name))" >
@@ -611,8 +617,11 @@ Created By: Travis Berthelot
                                 ,
                             </xsl:if>
                             <xsl:if test="contains($objectsGroupsAsString, $name)" >
-                                (int) (((Image[]) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArrayList.get(createIndex))[0].getHeight()),
-                                (int) (((Image[]) <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />ImageArrayList.get(createIndex))[0].getHeight()),
+                                
+                                <xsl:text>&#10;</xsl:text>
+                                <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.get<xsl:value-of select="$name" />Height(createIndex),
+                                <xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.get<xsl:value-of select="$name" />Height(createIndex),
+
                             </xsl:if>
                     
                             <xsl:if test="not(contains($objectsAsString, $spriteName) or contains($objectsGroupsAsString, $name))" >

@@ -91,7 +91,64 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                        
+
+                    <xsl:variable name="foundTileMap" >
+                    <xsl:for-each select="objects" >
+                        <xsl:variable name="typeValue" select="type" />
+                        <xsl:variable name="name" select="name" />
+                        <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
+                            <xsl:if test="$typeValue = 'TileMap::TileMap'" >found</xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
+                    </xsl:variable>
+
+                    <xsl:if test="contains($foundTileMap, 'found')" >
+                    public final String MAP_CELL_MODEL = "/map_cell_model_obj";
+                    </xsl:if>
+
+                    public final String MAP_CELL_MODEL_IMAGE = "/dungeon_b_0_0.png";
+                    <xsl:for-each select="objects" >
+                        <xsl:variable name="typeValue" select="type" />
+                        <xsl:variable name="name" select="name" />
+            
+                        <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
+
+                            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+                    //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
+                <xsl:if test="content" >
+                    //TileMap::TileMap:content
+                    <xsl:variable name="imageWithExtension" select="content/tilemapAtlasImage" />
+                    <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
+                    public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="$image" />";
+                </xsl:if>
+                            </xsl:if>
+
+                        </xsl:if>
+                    </xsl:for-each>                        
+
+                    public final String[] MAP_CELL_MODEL_ARRAY = {
+                    <xsl:for-each select="objects" >
+                        <xsl:variable name="typeValue" select="type" />
+                        <xsl:variable name="name" select="name" />
+            
+                        <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
+
+                            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+                <xsl:if test="content" >
+                    <xsl:variable name="imageWithExtension" select="content/tilemapAtlasImage" />
+                    <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
+                    <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                </xsl:if>
+                            </xsl:if>
+
+                        </xsl:if>
+
+                    </xsl:for-each>
+                    };
+                
                 }
             </xsl:if>
         </xsl:for-each>

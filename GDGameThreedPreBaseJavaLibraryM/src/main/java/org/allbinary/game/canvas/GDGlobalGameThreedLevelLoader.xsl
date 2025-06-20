@@ -58,6 +58,7 @@ Created By: Travis Berthelot
                 package org.allbinary.game.canvas;
 
                 import min3d.core.Object3d;
+                import min3d.core.TextureManager;
                 import min3d.parser.ModelType;
                 import min3d.parser.ModelTypeFactory;
 
@@ -66,6 +67,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.animation.image.GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory;
                 import org.allbinary.animation.special.SpecialAnimation;
+                import org.allbinary.animation.threed.TextureListFactory;
                 import org.allbinary.game.gd.resource.GDResources;
                 import org.allbinary.graphics.threed.min3d.ThreedLoaderFactory;
                 import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory;
@@ -81,22 +83,30 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.java.bool.BooleanFactory;
                 import org.allbinary.logic.math.PrimitiveIntUtil;
                 import org.allbinary.media.image.ImageCopyUtil;
-                
+
+                import org.allbinary.graphics.opengles.OpenGLCapabilities;
+                import org.allbinary.graphics.threed.min3d.renderer.Object3dContainerUtil;
+                import org.platform.ThreedObjResources;
+                                
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GDGlobalGameThreedLevelBuilder extends GDGameThreedLevelBuilder
                 {
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
-                        private final GDResources gdResources = GDResources.getInstance();
                 
+                        private final GDResources gdResources = GDResources.getInstance();
                         private final GDGlobalSpecialAnimationResources animationInterfaceFactoryInterfaceFactory = GDGlobalSpecialAnimationResources.getInstance();
 
+                        private final TextureListFactory textureListFactory = TextureListFactory.getInstance();
+                        private final OpenGLCapabilities openGLCapabilities = OpenGLCapabilities.getInstance();
+                        private final ThreedObjResources threedObjResources = ThreedObjResources.getInstance();
+                        private final Object3dContainerUtil object3dContainerUtil = Object3dContainerUtil.getInstance();
                         private final Min3dSceneResourcesFactory min3dSceneResourcesFactory = 
                             Min3dSceneResourcesFactory.getInstance();
                         private final ThreedLoaderFactory threedLoaderFactory = ThreedLoaderFactory.getInstance();
                         private final ModelTypeFactory modelTypeFactory = ModelTypeFactory.getInstance();
                         private final ModelType OBJ = modelTypeFactory.OBJ;
                         private final Boolean FALSE = BooleanFactory.getInstance().FALSE;
-                        
+                                
                     public void build(final GL10 gl, final String glInstanceVersion) throws Exception {
 
                         //try {
@@ -145,7 +155,27 @@ Created By: Travis Berthelot
 
                     <xsl:text>&#10;</xsl:text>                    
 
+                    protected void addMapCell(final GL10 gl, final Object3d trackObject3dContainer, final String textureName)
+                    throws Exception
+                    {
+                        //final ProgressCanvas progressCanvas = ProgressCanvasFactory.getInstance();
+
+                        //progressCanvas.addEarlyPortion(portion, loadingString, index++);
+
+                        final String glInstanceVersion = openGLCapabilities.glInstanceVersion;
+
+                        final String mappedTexture = threedObjResources.get(textureName);
+                        if(TextureManager.getInstance().contains(mappedTexture)) {
+                            return;
+                        }
+                        textureListFactory.loadTexture(gl, glInstanceVersion, mappedTexture);
+
+                        object3dContainerUtil.replaceTextures(trackObject3dContainer, mappedTexture);
+                        min3dSceneResourcesFactory.add(mappedTexture, new Object3d[] {trackObject3dContainer});
+                    }
+
                 }
+
     </xsl:template>
 
 </xsl:stylesheet>

@@ -24,6 +24,21 @@ Created By: Travis Berthelot
 //               LogUtil.put(LogFactory.getInstance("hackScale: " + hackScale, this, commonStrings.PROCESS));
                 
         //objectsAssign - threedAnimationFactoryCalls - START
+ 
+        <xsl:variable name="foundTileMap" >
+            <xsl:for-each select="objects" >
+                <xsl:variable name="typeValue" select="type" />
+                <xsl:if test="$typeValue = 'TileMap::TileMap'" >found</xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
+
+        <xsl:if test="contains($foundTileMap, 'found')" >
+                this.add(this.specialAnimationResources.MAP_CELL_MODEL_IMAGE, 
+                    new ThreedAnimationFactory(min3dSceneResourcesFactory.get(
+                        this.specialAnimationResources.MAP_CELL_MODEL_IMAGE)[0])
+                );
+        </xsl:if>
+
         <xsl:for-each select="objects" >
             <xsl:variable name="typeValue" select="type" />
             <xsl:variable name="name" select="name" />
@@ -34,27 +49,31 @@ Created By: Travis Berthelot
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="$typeValue = 'Sprite'" >
-                this.add<xsl:value-of select="name" />SpriteAnimations(imageCache);
+                this.add<xsl:value-of select="name" />SpriteAnimations(imageCache, level);
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap'" >
-                this.add<xsl:value-of select="name" />TileMapAnimations(imageCache);
+            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+                this.add<xsl:value-of select="name" />TileMapAnimations(imageCache, level);
+            </xsl:if>
+
+            <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
+                this.add<xsl:value-of select="name" />TileMapCollisionMaskAnimations(imageCache, level);
             </xsl:if>
 
             <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
-                this.add<xsl:value-of select="name" />ParticleSystemAnimations(imageCache);
+                this.add<xsl:value-of select="name" />ParticleSystemAnimations(imageCache, level);
             </xsl:if>
 
             <xsl:if test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider'" >
-                this.add<xsl:value-of select="name" />PanelSpriteSliderAnimations(imageCache);
+                this.add<xsl:value-of select="name" />PanelSpriteSliderAnimations(imageCache, level);
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TextObject::Text'" >
-                this.add<xsl:value-of select="name" />TextObjectAnimations(imageCache);
+                this.add<xsl:value-of select="name" />TextObjectAnimations(imageCache, level);
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
-                this.add<xsl:value-of select="name" />TextInputObjectAnimations(imageCache);
+                this.add<xsl:value-of select="name" />TextInputObjectAnimations(imageCache, level);
             </xsl:if>
 
 <!-- 
@@ -94,7 +113,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
-            private void add<xsl:value-of select="name" />SpriteAnimations(final ImageCache imageCache) throws Exception {
+            private void add<xsl:value-of select="name" />SpriteAnimations(final ImageCache imageCache, final int level) throws Exception {
                 <xsl:if test="not(contains($name, 'btn_'))" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
                 
@@ -370,8 +389,118 @@ Created By: Travis Berthelot
             }
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap'" >
-            private void add<xsl:value-of select="name" />TileMapAnimations(final ImageCache imageCache) throws Exception {
+            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+            private void add<xsl:value-of select="name" />TileMapAnimations(final ImageCache imageCache, final int level) throws Exception {
+
+                //Animation Total: <xsl:value-of select="count(animations)" />
+
+<!--
+                final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtable().get(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_IMAGE_ARRAY_NAME);
+
+                if(<xsl:value-of select="name" />ImageArray == null) {
+                    throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
+                } else {
+                    LogUtil.put(LogFactory.getInstance("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT));
+                }
+-->
+
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    NullRotationAnimationFactory.getFactoryInstance()
+                };
+
+                final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
+                
+                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+                
+                final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
+                                pointFactory.getInstance(0, 0),
+                                0, 0
+                                );
+
+                                <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
+
+                                <xsl:variable name="parentGroupIfAny" >
+                                <xsl:for-each select="/game">
+                                    <xsl:for-each select="layouts" >
+                                        <xsl:variable name="layoutIndex2" select="position() - 1" />
+                                        <xsl:if test="number($layoutIndex2) = $layoutIndex" >
+                                            <xsl:for-each select="objectsGroups" >
+                                                <xsl:variable name="groupName">
+                                                    <xsl:value-of select="name" />
+                                                </xsl:variable>
+                                                <xsl:for-each select="objects" >
+                                                    <xsl:if test="name = $layerName" >
+                                                        <xsl:value-of select="$groupName" />
+                                                    </xsl:if>
+                                                </xsl:for-each>
+                                            </xsl:for-each>
+                                        </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                                </xsl:variable>
+                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
+
+                <xsl:variable name="groupInterfaceArray" >
+                    <xsl:if test="string-length($parentGroupIfAny) > 0" >new Group[] {globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface}</xsl:if>
+                    <xsl:if test="string-length($parentGroupIfAny) = 0" >new Group[] {<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface}</xsl:if>
+                </xsl:variable>
+                
+                //objectsGroupsGDGameLayer - START
+                <xsl:for-each select="/game">
+                    <xsl:for-each select="layouts" >
+                        <xsl:variable name="layoutIndex2" select="position() - 1" />
+                        <xsl:if test="number($layoutIndex2) = $layoutIndex" >
+                            
+                            <xsl:for-each select="objectsGroups" >
+                                <xsl:variable name="groupName">
+                                    <xsl:value-of select="name" />
+                                </xsl:variable>
+                                <xsl:for-each select="objects" >
+                                    <xsl:if test="name = $layerName" >
+                //globals.<xsl:value-of select="$layerName" />GroupInterface = <xsl:value-of select="$layerName" />GroupInterface;
+                                    </xsl:if>
+                                </xsl:for-each>
+                            </xsl:for-each>
+
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:for-each>
+                //objectsGroupsGDGameLayer - END
+                                
+                final ThreedTiledLayerResourcesFactory threedTiledLayerResourcesFactory = ThreedTiledLayerResourcesFactory.getInstance();
+
+                final int columns = <xsl:value-of select="/game/properties/tileMap/columns" />;
+                final int rows = <xsl:value-of select="/game/properties/tileMap/rows" />;
+                final int total = columns * rows;
+
+                final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray = new AnimationInterfaceFactoryInterface[total];
+
+                final Animation[] animationArray = new Animation[total];
+
+                //final FeaturedAnimationInterfaceFactoryInterfaceFactory featuredAnimationInterfaceFactoryInterfaceFactory =
+                    //FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance();
+                
+                for(int index = 0; index <xsl:text disable-output-escaping="yes" > &lt; </xsl:text> total; index++) {
+
+                    //animationInterfaceFactoryInterfaceArray[index] = featuredAnimationInterfaceFactoryInterfaceFactory.get(this.specialAnimationResources.MAP_CELL_MODEL_IMAGE);
+                    animationInterfaceFactoryInterfaceArray[index] = (AnimationInterfaceFactoryInterface) this.getHashtable().get(this.specialAnimationResources.MAP_CELL_MODEL_IMAGE);
+                    animationArray[index] = animationInterfaceFactoryInterfaceArray[index].getInstance(0);
+
+                }
+
+                final RaceTrackThreedData raceTrackThreedDataOne = new RaceTrackThreedData();
+                
+                raceTrackThreedDataOne.setAnimationInterfaceFactoryInterfaceArray(animationInterfaceFactoryInterfaceArray);
+                raceTrackThreedDataOne.setAnimationArray(animationArray);
+
+                threedTiledLayerResourcesFactory.add(level, raceTrackThreedDataOne);
+                
+            }
+            </xsl:if>
+            
+            <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
+            private void add<xsl:value-of select="name" />TileMapCollisionMaskAnimations(final ImageCache imageCache, final int level) throws Exception {
 
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
@@ -452,7 +581,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
-            private void add<xsl:value-of select="name" />ParticleSystemAnimations(final ImageCache imageCache) throws Exception {
+            private void add<xsl:value-of select="name" />ParticleSystemAnimations(final ImageCache imageCache, final int level) throws Exception {
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:if test="not(contains($name, 'btn_'))" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
@@ -529,7 +658,7 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider'" >
-                private void add<xsl:value-of select="name" />PanelSpriteSliderAnimations(final ImageCache imageCache) throws Exception {
+                private void add<xsl:value-of select="name" />PanelSpriteSliderAnimations(final ImageCache imageCache, final int level) throws Exception {
                 }
             </xsl:if>
 
@@ -538,7 +667,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&quot;'" /></xsl:with-param><xsl:with-param name="replacementText" >\"</xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:variable name="multilineString" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue2" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&#10;'" /></xsl:with-param><xsl:with-param name="replacementText" >\n").append("</xsl:with-param></xsl:call-template></xsl:variable>
 
-            private void add<xsl:value-of select="name" />TextObjectAnimations(final ImageCache imageCache) throws Exception {
+            private void add<xsl:value-of select="name" />TextObjectAnimations(final ImageCache imageCache, final int level) throws Exception {
 
                 final int <xsl:value-of select="name" />TextAnimationSize = (<xsl:value-of select="characterSize" />);
 
@@ -590,7 +719,49 @@ Created By: Travis Berthelot
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
-            private void add<xsl:value-of select="name" />TextInputObjectAnimations(final ImageCache imageCache) throws Exception {
+            private void add<xsl:value-of select="name" />TextInputObjectAnimations(final ImageCache imageCache, final int level) throws Exception {
+            
+                final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> / 2;
+
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    new CustomTextBoxIndexedAnimationFactory(<xsl:value-of select="name" />TextInputAnimationSize)
+                };
+
+                final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
+                
+                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+
+                final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
+                                pointFactory.getInstance(0, 0),
+                                <xsl:value-of select="name" />TextInputAnimationSize * (12 - 1), <xsl:value-of select="name" />TextInputAnimationSize
+                                );
+
+                                <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
+
+                                <xsl:variable name="parentGroupIfAny" >
+                                <xsl:for-each select="/game">
+                                    <xsl:for-each select="layouts" >
+                                        <xsl:variable name="layoutIndex2" select="position() - 1" />
+                                        <xsl:if test="number($layoutIndex2) = $layoutIndex" >
+                                            <xsl:for-each select="objectsGroups" >
+                                                <xsl:variable name="groupName">
+                                                    <xsl:value-of select="name" />
+                                                </xsl:variable>
+                                                <xsl:for-each select="objects" >
+                                                    <xsl:if test="name = $layerName" >
+                                                        <xsl:value-of select="$groupName" />
+                                                    </xsl:if>
+                                                </xsl:for-each>
+                                            </xsl:for-each>
+                                        </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                                </xsl:variable>
+                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
+
+                //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
+            
             }
             </xsl:if>
 
@@ -722,9 +893,9 @@ Created By: Travis Berthelot
             }                
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap'" >
+            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
-            private void add<xsl:value-of select="name" />TileMapAnimations(final ImageCache imageCache) throws Exception {
+            private void add<xsl:value-of select="name" />TileMapAnimations(final ImageCache imageCache, final int level) throws Exception {
 
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
@@ -800,11 +971,100 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                 </xsl:for-each>
                 //objectsGroupsGDGameLayer - END
-            }          
+                
+                final ThreedTiledLayerResourcesFactory threedTiledLayerResourcesFactory = ThreedTiledLayerResourcesFactory.getInstance();
+ 
+                final RaceTrackThreedData raceTrackThreedDataOne = new RaceTrackThreedData() {
+                };
+
+                threedTiledLayerResourcesFactory.add(level, raceTrackThreedDataOne);
+                
+            }
+            </xsl:if>
+
+            <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
+                <xsl:variable name="stringValue" select="string" />
+            private void add<xsl:value-of select="name" />TileMapCollisionMaskAnimations(final ImageCache imageCache, final int level) throws Exception {
+
+                //Animation Total: <xsl:value-of select="count(animations)" />
+
+<!--
+                final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtable().get(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_IMAGE_ARRAY_NAME);
+
+                if(<xsl:value-of select="name" />ImageArray == null) {
+                    throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
+                } else {
+                    LogUtil.put(LogFactory.getInstance("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT));
+                }
+-->
+                final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
+                    NullRotationAnimationFactory.getFactoryInstance()
+                };
+
+                final ProceduralAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new ProceduralAnimationInterfaceFactoryInterface[0];
+                
+                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+                
+                final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
+                                pointFactory.getInstance(0, 0),
+                                0, 0
+                                );
+
+                                <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
+
+                                <xsl:variable name="parentGroupIfAny" >
+                                <xsl:for-each select="/game">
+                                    <xsl:for-each select="layouts" >
+                                        <xsl:variable name="layoutIndex2" select="position() - 1" />
+                                        <xsl:if test="number($layoutIndex2) = $layoutIndex" >
+                                            <xsl:for-each select="objectsGroups" >
+                                                <xsl:variable name="groupName">
+                                                    <xsl:value-of select="name" />
+                                                </xsl:variable>
+                                                <xsl:for-each select="objects" >
+                                                    <xsl:if test="name = $layerName" >
+                                                        <xsl:value-of select="$groupName" />
+                                                    </xsl:if>
+                                                </xsl:for-each>
+                                            </xsl:for-each>
+                                        </xsl:if>
+                                    </xsl:for-each>
+                                </xsl:for-each>
+                                </xsl:variable>
+                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
+
+                <xsl:variable name="groupInterfaceArray" >
+                    <xsl:if test="string-length($parentGroupIfAny) > 0" >new Group[] {globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface}</xsl:if>
+                    <xsl:if test="string-length($parentGroupIfAny) = 0" >new Group[] {<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface}</xsl:if>
+                </xsl:variable>
+                
+                //objectsGroupsGDGameLayer - START
+                <xsl:for-each select="/game">
+                    <xsl:for-each select="layouts" >
+                        <xsl:variable name="layoutIndex2" select="position() - 1" />
+                        <xsl:if test="number($layoutIndex2) = $layoutIndex" >
+                            
+                            <xsl:for-each select="objectsGroups" >
+                                <xsl:variable name="groupName">
+                                    <xsl:value-of select="name" />
+                                </xsl:variable>
+                                <xsl:for-each select="objects" >
+                                    <xsl:if test="name = $layerName" >
+                //globals.<xsl:value-of select="$layerName" />GroupInterface = <xsl:value-of select="$layerName" />GroupInterface;
+                                    </xsl:if>
+                                </xsl:for-each>
+                            </xsl:for-each>
+
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:for-each>
+                //objectsGroupsGDGameLayer - END
+            }
             </xsl:if>
 
             <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
-            private void add<xsl:value-of select="name" />ParticleSystemAnimations(final ImageCache imageCache) throws Exception {
+            private void add<xsl:value-of select="name" />ParticleSystemAnimations(final ImageCache imageCache, final int level) throws Exception {
                 <xsl:variable name="stringValue" select="string" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
 

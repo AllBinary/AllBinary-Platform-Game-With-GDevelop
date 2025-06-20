@@ -18,11 +18,13 @@ package org.allbinary.game.map;
 
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.TiledLayer;
+import org.allbinary.game.configuration.feature.Features;
 
 import org.allbinary.game.layer.AllBinaryJ2METiledLayer;
 import org.allbinary.game.layer.AllBinaryTiledLayer;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
+import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -114,23 +116,40 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
     }
     
     public void setAnimations(final BasicArrayList tileList) {
+        
+        final Features features = Features.getInstance();
+        final OpenGLFeatureFactory openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
+
+        if(features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D)) {
+            return;
+        }
+        
         final int size = tileList.size();
         int animationTileIndex;
         final String CREATING_ANIMATION_TILE = "Creating AnimationTile: ";
         Tile tile;
         Animation animation;
-        final TiledLayer tiledLayer = ((AllBinaryJ2METiledLayer) this.getAllBinaryTiledLayer()).getTiledLayer();
+        final AllBinaryJ2METiledLayer allBinaryJ2METiledLayer = (AllBinaryJ2METiledLayer) this.getAllBinaryTiledLayer();
+        final TiledLayer tiledLayer = allBinaryJ2METiledLayer.getTiledLayer();
         for(int index = 0; index < size; index++) {
             tile = (Tile) tileList.get(index);
             animationTileIndex =  tiledLayer.createAnimatedTile(tile.getId());
             LogUtil.put(LogFactory.getInstance(CREATING_ANIMATION_TILE + animationTileIndex, this, commonStrings.PROCESS));
             this.animationArray[index] = animation = tile.getAnimation();
             this.animationTileIndexArray[index] = animationTileIndex;
-            this.getAllBinaryTiledLayer().updateCells(((TileLayer) map.getLayer(0)).getMapArray(), ((Frame) animation.getFrame().get(0)).getTileid(), animationTileIndex);
+            allBinaryJ2METiledLayer.updateCells(((TileLayer) map.getLayer(0)).getMapArray(), ((Frame) animation.getFrame().get(0)).getTileid(), animationTileIndex);
         }
     }
     
     public void update() {
+        
+        final Features features = Features.getInstance();
+        final OpenGLFeatureFactory openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
+
+        if(features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D)) {
+            return;
+        }
+         
         final long startTime = GameTickTimeDelayHelperFactory.getInstance().startTime;
         final int size = this.animationArray.length;;
         Animation animation;

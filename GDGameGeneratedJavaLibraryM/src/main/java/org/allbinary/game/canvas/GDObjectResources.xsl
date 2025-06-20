@@ -32,6 +32,28 @@ Created By: Travis Berthelot
         <xsl:for-each select="objectsGroups" >
             //<xsl:value-of select="name" />
             public BasicArrayList <xsl:value-of select="name" />ImageArrayList = new BasicArrayList();
+
+            <!-- Groups are not allowed in exclusion list currently -->
+            <xsl:if test="$useExclusionList != 'true'" >
+            public int get<xsl:value-of select="name" />Width(final int createIndex) {
+                return (int) (((Image[]) this.<xsl:value-of select="name" />ImageArrayList.get(createIndex))[0].getWidth());
+            }
+                        
+            public int get<xsl:value-of select="name" />Height(final int createIndex) {
+                return (int) (((Image[]) this.<xsl:value-of select="name" />ImageArrayList.get(createIndex))[0].getHeight());
+            }
+            </xsl:if>
+            
+            <xsl:if test="$useExclusionList = 'true'" >
+            public int get<xsl:value-of select="name" />Width(final int createIndex) {
+                return (int) (((Rectangle[]) this.<xsl:value-of select="name" />ImageArrayList.get(createIndex))[0].getWidth());
+            }
+                        
+            public int get<xsl:value-of select="name" />Height(final int createIndex) {
+                return (int) (((Rectangle[]) this.<xsl:value-of select="name" />ImageArrayList.get(createIndex))[0].getHeight());
+            }
+            </xsl:if>
+            
         </xsl:for-each>
             </xsl:otherwise>
         </xsl:choose>
@@ -333,7 +355,7 @@ Created By: Travis Berthelot
                 };
                     -->
                 </xsl:for-each>
-                
+                                
                 <xsl:for-each select="childrenContent" >
                     //<xsl:value-of select="$typeValue" /> - childrenContent
                     <xsl:for-each select="Background" >

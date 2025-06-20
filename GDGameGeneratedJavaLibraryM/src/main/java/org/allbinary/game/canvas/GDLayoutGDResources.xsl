@@ -168,7 +168,7 @@ Created By: Travis Berthelot
                         
                             LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.CONSTRUCTOR));
 
-                    animationInterfaceFactoryInterfaceFactory.init(-1);
+                    animationInterfaceFactoryInterfaceFactory.init(<xsl:value-of select="$layoutIndex" />);
                                         
                     <xsl:call-template name="objectsAssign" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >

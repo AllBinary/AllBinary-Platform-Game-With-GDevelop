@@ -146,7 +146,8 @@ Created By: Travis Berthelot
             </xsl:for-each>
 
             <xsl:if test="content" >
-                //TileMap::TileMap:content
+                <xsl:variable name="imageWithExtension" select="content/tilemapAtlasImage" />
+                //TileMap::TileMap:content <xsl:value-of select="$imageWithExtension" />
             </xsl:if>
 
             public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
