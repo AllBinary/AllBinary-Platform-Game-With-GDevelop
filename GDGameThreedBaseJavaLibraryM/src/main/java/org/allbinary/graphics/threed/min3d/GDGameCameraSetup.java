@@ -1,0 +1,47 @@
+
+
+/*
+* AllBinary Open License Version 1
+* Copyright (c) 2011 AllBinary
+*
+* By agreeing to this license you and any business entity you represent are
+* legally bound to the AllBinary Open License Version 1 legal agreement.
+*
+* You may obtain the AllBinary Open License Version 1 legal agreement from
+* AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+*
+* Created By: Travis Berthelot
+*
+*/
+
+package org.allbinary.graphics.threed.min3d;
+
+import min3d.vos.Camera;
+
+import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
+import org.allbinary.logic.string.StringMaker;
+
+public class GDGameCameraSetup
+{
+    public static String SIMPLE = "simple";
+    public static String FOLLOW = "follow";
+    
+    protected GDGameCameraSetup()
+    {
+    }
+
+        
+    public void process(final Camera camera, final StringMaker stringMaker) {
+    }
+        
+
+    public int SceneWindowWidth() {
+        return GameTickDisplayInfoSingleton.getInstance().getLastWidth();
+    }
+
+    public int SceneWindowHeight() {
+        return GameTickDisplayInfoSingleton.getInstance().getLastHeight();
+    }
+               
+}
+    

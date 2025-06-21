@@ -31,7 +31,7 @@ GD*GDNodes.java
 PlatformAssetManager.java
 GDGameSoftwareInfo.java
 GD*GamePlaynResources.java
-*GameCameraSetup.java
+GD*GameCameraSetup.java
 *ThreedLevelBuilder.java
 AndroidResources.java
 AndroidManifest.xml

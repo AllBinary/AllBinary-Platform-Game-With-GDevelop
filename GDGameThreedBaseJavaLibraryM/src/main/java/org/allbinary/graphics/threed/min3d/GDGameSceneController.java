@@ -1,5 +1,13 @@
 package org.allbinary.graphics.threed.min3d;
 
+import javax.microedition.khronos.opengles.GL10;
+
+import min3d.core.Object3d;
+import min3d.core.TextureManager;
+import min3d.vos.Camera;
+import min3d.vos.CameraFactory;
+import min3d.vos.light.Light;
+
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -7,12 +15,6 @@ import org.allbinary.logic.communication.log.PreLogUtil;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
-import javax.microedition.khronos.opengles.GL10;
-import min3d.core.Object3d;
-import min3d.core.TextureManager;
-import min3d.vos.Camera;
-import min3d.vos.CameraFactory;
-import min3d.vos.light.Light;
 import org.allbinary.game.canvas.GDGameThreedLevelBuilder;
 import org.allbinary.game.layer.GDGameLayerManager;
 import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
