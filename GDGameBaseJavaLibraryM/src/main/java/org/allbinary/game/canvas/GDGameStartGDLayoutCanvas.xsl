@@ -93,8 +93,8 @@ public class <GDLayout> extends StartCanvas
                 );
 
         this.setDefaultPaintableInterface(
-                //ColorFillPaintableFactory.getInstance(BasicColorFactory.getInstance().RED)
-                ColorFillPaintableFactory.getInstance(smallBasicColorCacheFactory.getInstance(
+                //ColorFillPaintableFactory.getInstance().getInstance(BasicColorFactory.getInstance().RED)
+                ColorFillPaintableFactory.getInstance().getInstance(smallBasicColorCacheFactory.getInstance(
                                 basicColorUtil.get(255,
                     <xsl:variable name="color" >
                         <xsl:for-each select="events" >

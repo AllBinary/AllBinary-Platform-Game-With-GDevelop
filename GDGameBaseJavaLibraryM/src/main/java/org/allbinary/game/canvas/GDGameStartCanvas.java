@@ -64,7 +64,7 @@ public class GDGameStartCanvas extends DemoCanvas
                 GD0SpecialAnimation.getInstance());
 
         this.setDefaultPaintableInterface(
-                ColorFillPaintableFactory.getInstance(BasicColorFactory.getInstance().RED, false));
+                ColorFillPaintableFactory.getInstance().getInstance(BasicColorFactory.getInstance().RED, false));
     }
 
     protected int getNextRandom()

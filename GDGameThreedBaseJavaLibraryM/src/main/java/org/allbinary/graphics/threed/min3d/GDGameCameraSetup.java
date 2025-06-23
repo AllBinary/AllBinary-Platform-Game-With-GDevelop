@@ -26,8 +26,11 @@ public class GDGameCameraSetup
     public static String SIMPLE = "simple";
     public static String FOLLOW = "follow";
     
-    protected GDGameCameraSetup()
+    public final String type;
+    
+    protected GDGameCameraSetup(final String type)
     {
+        this.type = type;
     }
 
         

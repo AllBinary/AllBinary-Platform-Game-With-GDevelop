@@ -1,6 +1,9 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-    <xsl:output method="html" indent="yes" />
+    
+    <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/case.xsl" />
 
+    <xsl:output method="html" indent="yes" />
+    
     <xsl:template match="/game">
 
 /*
@@ -37,6 +40,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
 
     private GD<GD_CURRENT_INDEX>GameCameraSetup()
     {
+        super(GDGameCameraSetup.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:for-each select="properties" ><xsl:for-each select="camera" ><xsl:value-of select="type" /></xsl:for-each></xsl:for-each></xsl:with-param></xsl:call-template>);
     }
 
         <xsl:for-each select="properties" >
