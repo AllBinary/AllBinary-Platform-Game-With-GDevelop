@@ -83,7 +83,8 @@ Created By: Travis Berthelot
                     <xsl:for-each select="animations" >
                     <xsl:variable name="resourceWithExtension" select="directions/sprites/image" />
                     <xsl:variable name="image2" select="substring-before($resourceWithExtension, '.')" />
-                    <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:variable name="image3" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image3" /></xsl:with-param><xsl:with-param name="find" >_1</xsl:with-param><xsl:with-param name="replacementText" >_</xsl:with-param></xsl:call-template></xsl:variable>
                     <xsl:if test="string-length($image) > 0" ><xsl:call-template name="rootImageName" ><xsl:with-param name="image" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>:</xsl:if>
                     </xsl:for-each>
                 </xsl:variable>
@@ -92,9 +93,12 @@ Created By: Travis Berthelot
                     <xsl:variable name="resourceWithExtension" select="directions/sprites/image" />
                     <xsl:variable name="image2" select="substring-before($resourceWithExtension, '.')" />
                     <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:variable name="image3" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param><xsl:with-param name="find" >_1</xsl:with-param><xsl:with-param name="replacementText" >_</xsl:with-param></xsl:call-template></xsl:variable>
+
                     <xsl:if test="string-length($image) > 0" >
                         <xsl:variable name="rootImageName" ><xsl:call-template name="rootImageName" ><xsl:with-param name="image" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template></xsl:variable>
-                        <xsl:variable name="imageWithSepX4" ><xsl:value-of select="$rootImageName" />:<xsl:value-of select="$rootImageName" />:<xsl:value-of select="$rootImageName" />:<xsl:value-of select="$rootImageName" />:</xsl:variable>
+                        <xsl:variable name="rootImageName2" ><xsl:call-template name="rootImageName" ><xsl:with-param name="image" ><xsl:value-of select="$image3" /></xsl:with-param></xsl:call-template></xsl:variable>
+                        <xsl:variable name="imageWithSepX4" ><xsl:value-of select="$rootImageName2" />:<xsl:value-of select="$rootImageName2" />:<xsl:value-of select="$rootImageName2" />:<xsl:value-of select="$rootImageName2" />:</xsl:variable>
 
                 //imageWithSepX4=<xsl:value-of select="$imageWithSepX4" />
                 //rootAnimationNames=<xsl:value-of select="$rootAnimationNames" />
@@ -108,7 +112,7 @@ Created By: Travis Berthelot
 
                     Object3d <xsl:value-of select="$image" />Object3dContainer;
                     final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = <xsl:value-of select="$image" />Object3dContainer = threedLoaderFactory.getObject3dInstance(
-                        gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, OBJ, FALSE<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
+                        gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, modelTypeFactory.MD2, FALSE<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
                       
                     <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().x = 
                         <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().y = 
@@ -117,7 +121,7 @@ Created By: Travis Berthelot
                                     </xsl:when>
                                     <xsl:otherwise>
                     final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = 
-                        <xsl:value-of select="$rootImageName" />left<xsl:if test="contains($image, '_1')" >_1</xsl:if>Object3dContainer;
+                        <xsl:value-of select="$rootImageName2" />left<xsl:if test="contains($image, '_1')" >_1</xsl:if>Object3dContainer;
                                     </xsl:otherwise>
                                 </xsl:choose>
                                                                         
@@ -125,7 +129,7 @@ Created By: Travis Berthelot
                                 <xsl:otherwise>
                                     
                 final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = threedLoaderFactory.getObject3dInstance(
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, OBJ, FALSE<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
+                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, modelTypeFactory.OBJ, FALSE<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
                       
                 <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().x = 
                     <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().y = 
@@ -165,7 +169,7 @@ Created By: Travis Berthelot
             
                 final Object3d mapCellModelObject3dContainer = 
                         threedLoaderFactory.getObject3dInstance(
-                                this.animationInterfaceFactoryInterfaceFactory.MAP_CELL_MODEL, gl, glInstanceVersion, OBJ, FALSE);
+                                this.animationInterfaceFactoryInterfaceFactory.MAP_CELL_MODEL, gl, glInstanceVersion, modelTypeFactory.OBJ, FALSE);
 
                 min3dSceneResourcesFactory.add(this.animationInterfaceFactoryInterfaceFactory.MAP_CELL_MODEL, new Object3d[] {mapCellModelObject3dContainer});
             
