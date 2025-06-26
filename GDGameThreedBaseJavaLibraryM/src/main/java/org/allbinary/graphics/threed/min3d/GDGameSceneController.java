@@ -8,9 +8,9 @@ import min3d.vos.Camera;
 import min3d.vos.OffsetTargetXCamera;
 import min3d.vos.OffsetTargetXCameraFactory;
 import min3d.vos.light.Light;
+
 import org.allbinary.AndroidUtil;
 import org.allbinary.animation.threed.ThreedAnimation;
-
 import org.allbinary.game.GameTypeFactory;
 import org.allbinary.game.canvas.GDGameGlobals;
 import org.allbinary.logic.communication.log.LogFactory;
@@ -31,7 +31,6 @@ import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.graphics.RectangleFactory;
 import org.allbinary.graphics.opengles.OpenGLCapabilities;
-
 import org.allbinary.graphics.threed.min3d.renderer.AllBinaryToMin3dRendererFactory;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.system.os.OperatingSystemFactory;
