@@ -109,7 +109,6 @@ Created By: Travis Berthelot
                             Min3dSceneResourcesFactory.getInstance();
                         private final ThreedLoaderFactory threedLoaderFactory = ThreedLoaderFactory.getInstance();
                         private final ModelTypeFactory modelTypeFactory = ModelTypeFactory.getInstance();
-                        private final ModelType OBJ = modelTypeFactory.OBJ;
                         private final Boolean FALSE = BooleanFactory.getInstance().FALSE;
                         
                     public void build(final GL10 gl, final String glInstanceVersion) throws Exception {

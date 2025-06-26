@@ -71,7 +71,7 @@ public class GDGame
         try
         {
 
-            LogUtil.put(LogFactory.getInstance("Start", this, "init"));
+            LogUtil.put(LogFactory.getInstance(this.commonStrings.START, this, this.commonStrings.INIT));
 
             ResourceUtil.getInstance().setClassLoader(this.getClass().getClassLoader());
 
