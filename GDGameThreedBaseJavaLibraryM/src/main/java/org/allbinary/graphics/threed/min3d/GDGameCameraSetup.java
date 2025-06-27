@@ -36,8 +36,10 @@ public class GDGameCameraSetup
         
     public void process(final Camera camera, final StringMaker stringMaker) {
     }
-        
 
+    public void processTarget(final Camera camera) {        
+    }
+    
     public int SceneWindowWidth() {
         return GameTickDisplayInfoSingleton.getInstance().getLastWidth();
     }

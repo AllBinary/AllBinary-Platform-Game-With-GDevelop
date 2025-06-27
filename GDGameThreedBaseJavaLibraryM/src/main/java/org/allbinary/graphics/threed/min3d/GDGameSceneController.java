@@ -68,11 +68,9 @@ extends AllBinaryGameSceneController
     @Override
     public void initScene(final GL10 gl)
     {
-        final String METHOD_NAME = "initScene";
-
         try
         {
-            PreLogUtil.put(commonStrings.START, this, METHOD_NAME);
+            PreLogUtil.put(commonStrings.START, this, this.sceneStrings.INIT_SCENE);
 
             index = 1;
 
@@ -123,21 +121,20 @@ extends AllBinaryGameSceneController
 
             progressCanvas.addEarlyPortion(portion, loadingString, index++);
 
-            PreLogUtil.put(commonStrings.END, this, METHOD_NAME);                
+            PreLogUtil.put(commonStrings.END, this, this.sceneStrings.INIT_SCENE);                
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, METHOD_NAME, e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, this.sceneStrings.INIT_SCENE, e));
         }
     }
 
     private CameraLayer cameraLayer;
-    private final String BUILD_SCENE = "buildScene";
     public void buildScene(final AllBinaryGameLayerManager layerManager) throws Exception
     {
         try
         {
-            PreLogUtil.put(commonStrings.START, this, BUILD_SCENE);
+            PreLogUtil.put(commonStrings.START, this, this.sceneStrings.BUILD_SCENE);
 
             final GDGameLayerManager gdLayerManager = (GDGameLayerManager) layerManager;
             final GDGameCameraSetup gdGameCameraSetup = ((GDGameCameraSetup) gameThreedLevelBuilderFactory.cameraList.get(gdLayerManager.layout));
@@ -216,35 +213,7 @@ extends AllBinaryGameSceneController
 
             final StringMaker stringMaker = new StringMaker();
 
-            if (gdGameCameraSetup.type == GDGameCameraSetup.FOLLOW) {
-                cameraLayer.updateCamera();
-                
-                final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-                
-                if(gameGlobals.PlayerGDGameLayerList.size() > 0) {
-                    final GDGameLayer playerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
-
-                    final ThreedAnimation threedAnimation = (ThreedAnimation) playerGDGameLayer.getIndexedAnimationInterface();
-
-                    final Object3d object3d = threedAnimation.getObject3d();
-
-                    camera.target = object3d;
-                    
-                    PreLogUtil.put("Player set as Follow Camera Target", this, BUILD_SCENE);
-
-                } else {
-                    
-                    camera.target = new Object3d(0, 0);
-                    
-                    PreLogUtil.put("Default Object set as Follow Camera Target", this, BUILD_SCENE);
-                }
-
-            } else {
-
-                camera.target = new Object3d(0, 0);
-                
-                PreLogUtil.put("Default Object set as Simple Camera Target", this, BUILD_SCENE);
-            }
+            gdGameCameraSetup.processTarget(camera);
             
             gdGameCameraSetup.process(camera, stringMaker);
 
@@ -258,7 +227,7 @@ extends AllBinaryGameSceneController
             camera.position.append(stringMaker);
             stringMaker.append('-').append('>');
             camera.target.getPosition().append(stringMaker);
-            PreLogUtil.put(stringMaker.toString(), this, BUILD_SCENE);
+            PreLogUtil.put(stringMaker.toString(), this, this.sceneStrings.BUILD_SCENE);
             
             //CameraMotionGestureInputProcessor.getInstance().add(scene);
 
@@ -276,7 +245,7 @@ extends AllBinaryGameSceneController
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, BUILD_SCENE, e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, this.sceneStrings.BUILD_SCENE, e));
         }
     }
 

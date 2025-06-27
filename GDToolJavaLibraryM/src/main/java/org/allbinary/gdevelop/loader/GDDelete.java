@@ -120,7 +120,6 @@ public class GDDelete {
         exclusionList3.add("RendererActivity.java");
         exclusionList3.add("TitleThreedResources.java");
         exclusionList3.add("TitleBasicArrayListData.java");
-        exclusionList3.add("GDGameThreedLevelBuilderFactory.java");
         exclusionList3.add("GDGameCameraSetup.java");
         exclusionList3.add("GDGameLevelBuilder.java");
         exclusionList3.add("GDTiledLayerFactory.java");
