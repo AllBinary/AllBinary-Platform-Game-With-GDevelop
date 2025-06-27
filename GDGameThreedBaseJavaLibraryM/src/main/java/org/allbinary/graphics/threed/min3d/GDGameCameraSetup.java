@@ -17,6 +17,7 @@
 package org.allbinary.graphics.threed.min3d;
 
 import min3d.vos.Camera;
+import org.allbinary.game.layer.CameraLayer;
 
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.logic.string.StringMaker;
@@ -37,7 +38,7 @@ public class GDGameCameraSetup
     public void process(final Camera camera, final StringMaker stringMaker) {
     }
 
-    public void processTarget(final Camera camera) {        
+    public void processTarget(final CameraLayer cameraLayer, final Camera camera) {
     }
     
     public int SceneWindowWidth() {

@@ -25,6 +25,10 @@ package org.allbinary.graphics.threed.min3d;
 import min3d.core.Object3d;
 import min3d.vos.Camera;
 
+import org.allbinary.animation.threed.ThreedAnimation;
+import org.allbinary.game.canvas.GDGameGlobals;
+import org.allbinary.game.layer.CameraLayer;
+import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.logic.communication.log.PreLogUtil;
 import org.allbinary.logic.string.StringMaker;
@@ -123,7 +127,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
     }
         </xsl:for-each>
         
-    public void processTarget(final Camera camera) {
+    public void processTarget(final CameraLayer cameraLayer, final Camera camera) {
 
         <xsl:for-each select="properties" >
             <xsl:for-each select="camera" >
@@ -136,7 +140,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
                 
                 final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                 
-                if(gameGlobals.PlayerGDGameLayerList.size() > 0) {
+                if(gameGlobals.PlayerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                     final GDGameLayer playerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
 
                     final ThreedAnimation threedAnimation = (ThreedAnimation) playerGDGameLayer.getIndexedAnimationInterface();
@@ -145,13 +149,13 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
 
                     camera.target = object3d;
                     
-                    PreLogUtil.put("Player set as Follow Camera Target", this, BUILD_SCENE);
+                    PreLogUtil.put("Player set as Follow Camera Target", this, this.sceneStrings.BUILD_SCENE);
 
                 } else {
                     
                     camera.target = new Object3d(0, 0);
                     
-                    PreLogUtil.put("Default Object set as Follow Camera Target", this, BUILD_SCENE);
+                    PreLogUtil.put("Default Object set as Follow Camera Target", this, this.sceneStrings.BUILD_SCENE);
                 }
                 
             </xsl:when>

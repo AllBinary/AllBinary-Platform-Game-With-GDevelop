@@ -213,7 +213,7 @@ extends AllBinaryGameSceneController
 
             final StringMaker stringMaker = new StringMaker();
 
-            gdGameCameraSetup.processTarget(camera);
+            gdGameCameraSetup.processTarget(cameraLayer, camera);
             
             gdGameCameraSetup.process(camera, stringMaker);
 
