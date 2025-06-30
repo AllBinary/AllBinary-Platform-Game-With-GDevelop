@@ -2,7 +2,6 @@ package org.allbinary.graphics.threed.min3d;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import min3d.core.Object3d;
 import min3d.core.TextureManager;
 import min3d.vos.Camera;
 import min3d.vos.OffsetTargetXCamera;
@@ -10,9 +9,7 @@ import min3d.vos.OffsetTargetXCameraFactory;
 import min3d.vos.light.Light;
 
 import org.allbinary.AndroidUtil;
-import org.allbinary.animation.threed.ThreedAnimation;
 import org.allbinary.game.GameTypeFactory;
-import org.allbinary.game.canvas.GDGameGlobals;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.communication.log.PreLogUtil;
@@ -23,10 +20,11 @@ import org.allbinary.game.canvas.GDGameThreedLevelBuilder;
 import org.allbinary.game.displayable.canvas.CheatGameInputProcessor;
 import org.allbinary.game.gd.level.GDPlatformUtil;
 import org.allbinary.game.input.threed.CameraCompositeInputProcessor;
+import org.allbinary.game.input.threed.CameraLayerCompositeInputProcessor;
 import org.allbinary.game.layer.CameraLayer;
-import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layer.GDGameLayerManager;
-import org.allbinary.game.layer.SimpleVehicleFollowCameraLayer;
+import org.allbinary.game.layer.SimpleUserFollowCameraLayer;
+import org.allbinary.game.layer.special.SpecialGameInputFactory;
 import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.graphics.RectangleFactory;
@@ -46,6 +44,19 @@ extends AllBinaryGameSceneController
 
     private final GDGameThreedLevelBuilderFactory gameThreedLevelBuilderFactory = GDGameThreedLevelBuilderFactory.getInstance();
 
+    private final GDCameraInputProcessor cameraInputProcessor = new GDCameraInputProcessor() 
+    {
+        public void process(GDGameCameraSetup gdGameCameraSetup) {
+//            if (gdGameCameraSetup.type == GDGameCameraSetup.FOLLOW) {
+//                CheatGameInputProcessor.inputProcessor = new CameraLayerCompositeInputProcessor(cameraLayer);
+//            } else if (gdGameCameraSetup.type == GDGameCameraSetup.SIMPLE) {
+//                CheatGameInputProcessor.inputProcessor = new CameraCompositeInputProcessor();
+//            } else {
+//                CheatGameInputProcessor.inputProcessor = SpecialGameInputFactory.NO_SPECIAL_GAME_INPUT;
+//            }
+        }
+    };
+    
     public GDGameSceneController()
     {
         super(new AllBinaryToMin3dRendererFactory(), 
@@ -159,11 +170,13 @@ extends AllBinaryGameSceneController
                 final int distance = operatingSystem.isOverScan() ? (AndroidUtil.isAndroid() ? 550 : 650) : (AndroidUtil.isAndroid() ? 200 : 300);
 
                 cameraLayer =
+                    //new CameraLayer(
                     //new CompleteViewOfTargetCameraLayer(scene.getCamera(), rectangle, viewPosition, distanceX, distanceY, distanceZ);
-                    new SimpleVehicleFollowCameraLayer(
-                        ////new SimpleFollowCameraLayer(
-                ////new ExampleRotateAroundTargetCameraLayer(
-                ////new ExampleLockedCameraLayer(
+                    new SimpleUserFollowCameraLayer(
+                    //new SimpleVehicleFollowCameraLayer(
+                    ////new SimpleFollowCameraLayer(
+                    ////new ExampleRotateAroundTargetCameraLayer(
+                    ////new ExampleLockedCameraLayer(
                     vehicleCamera, RectangleFactory.SINGLETON, new ViewPosition(),
                         distance, distance, distance);
 
@@ -214,15 +227,15 @@ extends AllBinaryGameSceneController
             final StringMaker stringMaker = new StringMaker();
 
             gdGameCameraSetup.processTarget(cameraLayer, camera);
-            
+
             gdGameCameraSetup.process(camera, stringMaker);
 
             if (gdGameCameraSetup.type == GDGameCameraSetup.FOLLOW) {
                 cameraLayer.processTick(layerManager);
                 layerManager.append(cameraLayer);
             }
-
-            //CheatGameInputProcessor.inputProcessor = new CameraCompositeInputProcessor(cameraLayer);
+            
+            cameraInputProcessor.process(gdGameCameraSetup);
             
             camera.position.append(stringMaker);
             stringMaker.append('-').append('>');

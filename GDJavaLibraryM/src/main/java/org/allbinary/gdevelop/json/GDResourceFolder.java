@@ -38,6 +38,7 @@ public class GDResourceFolder
             this.resourceList.add(nextJSONObject.getString(gdProjectStrings.NAME));
         }
         
-        LogUtil.put(LogFactory.getInstance(RESOURCES + this.resourceList.size(), this, CommonStrings.getInstance().CONSTRUCTOR));
+        final CommonStrings commonStrings = CommonStrings.getInstance();
+        LogUtil.put(LogFactory.getInstance(RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR));
     }
 }

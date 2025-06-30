@@ -117,6 +117,7 @@ public class GDDelete {
         exclusionList3.add("GDThreedEarlyResourceInitializationFactory.java");
         exclusionList3.add("GDGameAllBinarySceneControllerFactory.java");
         exclusionList3.add("GDGameSceneController.java");
+        exclusionList3.add("GDCameraInputProcessor.java");
         exclusionList3.add("RendererActivity.java");
         exclusionList3.add("TitleThreedResources.java");
         exclusionList3.add("TitleBasicArrayListData.java");

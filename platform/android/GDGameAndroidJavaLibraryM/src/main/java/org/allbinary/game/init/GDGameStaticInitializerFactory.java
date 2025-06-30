@@ -5,8 +5,8 @@
 
 package org.allbinary.game.init;
 
-import org.allbinary.game.resource.GDGameAndroidEarlyResourceInitialization;
-import org.allbinary.game.resource.GDGameAndroidResourceInitialization;
+import org.allbinary.game.gd.resource.GDGameAndroidEarlyResourceInitialization;
+import org.allbinary.game.gd.resource.GDGameAndroidResourceInitialization;
 
 import org.allbinary.game.init.BasicBuildGameInitializerFactory;
 import org.allbinary.game.init.GameInitializationInterface;

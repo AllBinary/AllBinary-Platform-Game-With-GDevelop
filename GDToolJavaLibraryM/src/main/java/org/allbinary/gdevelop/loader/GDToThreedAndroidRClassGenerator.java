@@ -64,11 +64,15 @@ public class GDToThreedAndroidRClassGenerator
         androidRFileStringMaker.append(VALUE);
     }
     
+    private final String SELECT = "select";
+    
     public void processExpressionParam(final String param) {
+        if(param.compareTo(SELECT) != 0) {
         androidRFileStringMaker.append(EXPRESSION_PARAM);
         androidRFileStringMaker.append(PUBLIC_STATIC_FINAL_INT);
         androidRFileStringMaker.append(param);
         androidRFileStringMaker.append(VALUE);
+        }
     }
 
     public void process() throws Exception {

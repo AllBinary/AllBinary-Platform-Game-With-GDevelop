@@ -48,7 +48,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
         
     private GD<GD_CURRENT_INDEX>GameCameraSetup()
     {
-        super(GDGameCameraSetup.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:for-each select="properties" ><xsl:for-each select="camera" ><xsl:value-of select="type" /></xsl:for-each></xsl:for-each></xsl:with-param></xsl:call-template>);
+        super(GDGameCameraSetup.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:for-each select="properties" ><xsl:for-each select="cameras" ><xsl:if test="position() = <GD_CURRENT_INDEX> + 1" ><xsl:value-of select="type" /></xsl:if></xsl:for-each></xsl:for-each></xsl:with-param></xsl:call-template>);
     }
 
         <xsl:for-each select="properties" >
@@ -56,7 +56,8 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
             
             final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
             
-            <xsl:for-each select="camera" >
+            <xsl:for-each select="cameras" >
+                <xsl:if test="position() = <GD_CURRENT_INDEX> + 1" >
             //x is height, y is distance from game area, z is width            
             //if(CameraMotionGestureInputProcessor.getInstance().restore(scene, stringMaker)) {
 
@@ -84,6 +85,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
                 camera.target.getPosition().y = <xsl:value-of select="y" />;
                 camera.target.getPosition().z = <xsl:value-of select="z" />;
                 </xsl:for-each>
+
             </xsl:for-each>
 
                 //camera.position.x = displayInfoSingleton.getLastHalfHeight() - 125;
@@ -112,6 +114,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
                 camera.target.getPosition().y = <xsl:value-of select="y" />;
                 camera.target.getPosition().z = <xsl:value-of select="z" />;
                 </xsl:for-each>
+                
             </xsl:for-each>
                 
                 //camera.position.x = -84; //displayInfoSingleton.getLastHalfHeight();
@@ -123,6 +126,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
                 //camera.target.getPosition().z = 70;
 
             }
+            </xsl:if>
             </xsl:for-each>
     }
         </xsl:for-each>
@@ -136,7 +140,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
             <xsl:when test="type='follow'" >
                 
                 //camera/type - follow
-                cameraLayer.updateCamera();
+                //cameraLayer.updateCamera();
                 
                 final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                 

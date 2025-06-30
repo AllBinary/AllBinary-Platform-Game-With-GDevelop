@@ -17,13 +17,14 @@
 package org.allbinary.graphics.threed.min3d;
 
 import min3d.vos.Camera;
-import org.allbinary.game.layer.CameraLayer;
 
+import org.allbinary.game.layer.CameraLayer;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.logic.string.StringMaker;
 
 public class GDGameCameraSetup
 {
+    public static String NONE = "none";
     public static String SIMPLE = "simple";
     public static String FOLLOW = "follow";
     

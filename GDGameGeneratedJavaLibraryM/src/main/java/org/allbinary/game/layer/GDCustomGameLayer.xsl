@@ -1265,7 +1265,7 @@ Created By: Travis Berthelot
         final BasicTopViewGeographicMapCellTypeFactory basicTopViewGeographicMapCellTypeFactory = (BasicTopViewGeographicMapCellTypeFactory) geographicMapInterface.getGeographicMapCellTypeFactory();
         if(geographicMapCellType.getTravelCost() == basicTopViewGeographicMapCellTypeFactory.BLOCK_CELL_TYPE.cost) {
             geographicMapCellPositionBasicArrayList.remove(geographicMapCellPosition);
-            //LogUtil.put(LogFactory.getInstance(REMOVING_LAST_CELLPOSITION + geographicMapCellPosition, this, CommonStrings.getInstance().INIT));
+            //LogUtil.put(LogFactory.getInstance(REMOVING_LAST_CELLPOSITION + geographicMapCellPosition, this, commonStrings.INIT));
         }
         
         geographicMapCellHistory.track(geographicMapCellPositionBasicArrayList);

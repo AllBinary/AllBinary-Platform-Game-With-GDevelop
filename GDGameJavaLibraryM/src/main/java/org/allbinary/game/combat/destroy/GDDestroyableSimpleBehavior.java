@@ -31,7 +31,7 @@ public class GDDestroyableSimpleBehavior extends DestroyableSimpleBehavior {
     
     public void setDestroyed(boolean destroyed)
     {
-        //LogUtil.put(LogFactory.getInstance("Adding: " + this.ownerLayer.getName(), this, CommonStrings.getInstance().ADD));
+        //LogUtil.put(LogFactory.getInstance("Adding: " + this.ownerLayer.getName(), this, commonStrings.ADD));
         super.setDestroyed(destroyed);
     }
     

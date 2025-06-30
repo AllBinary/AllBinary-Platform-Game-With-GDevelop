@@ -54,7 +54,7 @@ Created By: Travis Berthelot
                         <xsl:text>&#10;</xsl:text>
                         <xsl:variable name="paramTwoName" ><xsl:if test="substring-before($fourthParam, '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$createdObjectsAsString" /></xsl:with-param></xsl:call-template></xsl:if></xsl:variable>
 <xsl:text>                        </xsl:text>
-                        <xsl:if test="$paramTwoName != ''" >final GDGameLayer paramTwoGameLayer = ((GDGameLayer) globals.<xsl:value-of select="$paramTwoName" />GDGameLayerList.get(index));</xsl:if>
+                        //<xsl:if test="$paramTwoName != ''" >final GDGameLayer paramTwoGameLayer = ((GDGameLayer) globals.<xsl:value-of select="$paramTwoName" />GDGameLayerList.get(index));</xsl:if>
                         <xsl:text>&#10;</xsl:text>
 <xsl:text>                        </xsl:text>final int oldSize = ((<xsl:value-of select="$gdObjectFactory" />) paramOneGameLayer.gdObject).<xsl:value-of select="$secondParam" />.length;
                         <xsl:text>&#10;</xsl:text>         

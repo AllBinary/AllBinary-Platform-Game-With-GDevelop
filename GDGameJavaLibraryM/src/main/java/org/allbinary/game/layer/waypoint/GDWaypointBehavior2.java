@@ -695,7 +695,7 @@ extends GDWaypointBehavior
             /*
             if(this.getOwnerAdvancedRTSGameLayer().isSelected())
             {
-                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "selected: processTargeting"));
+                LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "selected: processTargeting"));
             }
             */
             
@@ -977,7 +977,8 @@ extends GDWaypointBehavior
             }
             catch(Exception e)
             {
-                LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "visit", e));
+                final CommonStrings commonStrings = CommonStrings.getInstance();
+                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "visit", e));
                 return null;
             }
         }

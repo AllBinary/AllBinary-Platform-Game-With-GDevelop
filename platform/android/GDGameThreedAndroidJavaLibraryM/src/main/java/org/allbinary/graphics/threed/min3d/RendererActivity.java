@@ -85,7 +85,7 @@ public class RendererActivity extends Activity //implements ISceneController
 
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStateStrings.getInstance().CREATE, e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, CommonStateStrings.getInstance().CREATE, e));
         }
     }
 	

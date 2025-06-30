@@ -51,7 +51,7 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
 //            final String string = this.toString(collisionLayer, stringBuilder);
 //            LogUtil.put(LogFactory.getInstance(string, this, "isCollision"));
 //        } else {
-//            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().PROCESS, this, "isCollision - with self"));
+//            LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, "isCollision - with self"));
 //        }
 
         //if(this.collidableBehavior.groupCollisionList.size() > 0) {

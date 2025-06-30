@@ -52,7 +52,7 @@ public class GDPrimitiveDrawing extends Animation {
         
         this.animationList = this.animationListArray[this.circularIndexUtil.getIndex()];
         this.circularIndexUtil.next();
-        //LogUtil.put(LogFactory.getInstance("nextFrame: " + this.animationListArray[this.circularIndexUtil.getIndex()].size(), this, CommonStrings.getInstance().PROCESS));
+        //LogUtil.put(LogFactory.getInstance("nextFrame: " + this.animationListArray[this.circularIndexUtil.getIndex()].size(), this, commonStrings.PROCESS));
         this.animationListArray[this.circularIndexUtil.getIndex()].clear();
         
         this.colorAnimationCacheList.addAll(this.colorAnimationInUseList);
@@ -98,8 +98,8 @@ public class GDPrimitiveDrawing extends Animation {
             this.aRetangleFilledAnimationInUseList.add(rectangleFilledAnimation);
         }
         
-        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("addFillRectangle: ").append(x).append(CommonSeps.getInstance().COMMA).append(y).append(CommonSeps.getInstance().COMMA).append(x2).append(CommonSeps.getInstance().COMMA).append(y2).toString(), this, CommonStrings.getInstance().PROCESS));
-        //LogUtil.put(LogFactory.getInstance("addFillRectangle: " + this.animationListArray[this.circularIndexUtil.getIndex()].size(), this, CommonStrings.getInstance().PROCESS));
+        //LogUtil.put(LogFactory.getInstance(new StringMaker().append("addFillRectangle: ").append(x).append(CommonSeps.getInstance().COMMA).append(y).append(CommonSeps.getInstance().COMMA).append(x2).append(CommonSeps.getInstance().COMMA).append(y2).toString(), this, commonStrings.PROCESS));
+        //LogUtil.put(LogFactory.getInstance("addFillRectangle: " + this.animationListArray[this.circularIndexUtil.getIndex()].size(), this, commonStrings.PROCESS));
     }
 
 //    private int lastSize;
@@ -111,7 +111,7 @@ public class GDPrimitiveDrawing extends Animation {
         
 //        if(lastSize != size) {
 //            lastSize = size;
-//            LogUtil.put(LogFactory.getInstance("TWBpaint " + size, this, CommonStrings.getInstance().PROCESS));
+//            LogUtil.put(LogFactory.getInstance("TWBpaint " + size, this, commonStrings.PROCESS));
 //        }
 
         for (int index = 0; index < size; index++) {

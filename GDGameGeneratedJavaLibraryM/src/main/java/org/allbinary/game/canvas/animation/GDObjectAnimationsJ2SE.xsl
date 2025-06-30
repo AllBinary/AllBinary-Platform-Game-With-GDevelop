@@ -599,12 +599,12 @@ Created By: Travis Berthelot
                         public void setInitialScale(final ScaleProperties scaleProperties) {
                             //super.setInitialScale(scaleProperties);
                             this.scaleProperties = scaleProperties;
-                            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("setInitialScale - font: ").append(scaleProperties.scaleHeight).toString(), this, CommonStrings.getInstance().PROCESS));
+                            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("setInitialScale - font: ").append(scaleProperties.scaleHeight).toString(), this, commonStrings.PROCESS));
                             //this.scaleWidth = scaleProperties.scalwWidth;
                             final int fontSize = scaleProperties.scaleHeight;
                             scaleProperties.scaleHeight = (int) fontSize - (fontSize / 2);
                             this.font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, scaleProperties.scaleHeight);
-                            LogUtil.put(LogFactory.getInstance(new StringMaker().append("setInitialScale - font: ").append(font.getSize()).toString(), this, CommonStrings.getInstance().PROCESS));
+                            LogUtil.put(LogFactory.getInstance(new StringMaker().append("setInitialScale - font: ").append(font.getSize()).toString(), this, commonStrings.PROCESS));
                         }
                     },
                     </xsl:for-each>

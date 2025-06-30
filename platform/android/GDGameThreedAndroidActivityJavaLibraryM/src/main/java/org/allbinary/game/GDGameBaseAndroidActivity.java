@@ -60,7 +60,7 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
         }
     }
 
@@ -136,7 +136,7 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
     {
         try
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, CommonStateStrings.getInstance().CREATE));
+            LogUtil.put(LogFactory.getInstance(commonStrings.START, this, CommonStateStrings.getInstance().CREATE));
 
             //final String UNLOCKED = "unlock_gd_levels";
             //InApplicationPurchaseFactory.getInstance().init(this, bundle);
@@ -149,10 +149,10 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
                 this.setBackgrounds();
             }
 
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().END, this, CommonStateStrings.getInstance().CREATE));
+            LogUtil.put(LogFactory.getInstance(commonStrings.END, this, CommonStateStrings.getInstance().CREATE));
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStateStrings.getInstance().CREATE, e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, CommonStateStrings.getInstance().CREATE, e));
         }
     }
 
@@ -160,16 +160,16 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
     {
         try
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, CommonStateStrings.getInstance().START));
+            LogUtil.put(LogFactory.getInstance(commonStrings.START, this, CommonStateStrings.getInstance().START));
 
             super.onStart();
 
             super.onStart(new GDGameMIDletFactory());
 
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().END, this, CommonStateStrings.getInstance().START));
+            LogUtil.put(LogFactory.getInstance(commonStrings.END, this, CommonStateStrings.getInstance().START));
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStateStrings.getInstance().START, e));
+            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, CommonStateStrings.getInstance().START, e));
         }
     }
 
@@ -182,17 +182,17 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
             {
                 try
                 {
-                    LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, CommonStrings.getInstance().RUN));
+                    LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.RUN));
 
                     AllBinaryMidletOpenGLESView view = (AllBinaryMidletOpenGLESView)
                     GDGameAndroidActivity.this.getView();
                     view.onEvent(eventObject);
                     
-                    LogUtil.put(LogFactory.getInstance("End Runnable", this, CommonStrings.getInstance().RUN));
+                    LogUtil.put(LogFactory.getInstance("End Runnable", this, commonStrings.RUN));
                 }
                 catch (Exception e)
                 {
-                    LogUtil.put(LogFactory.getInstance("Execption", this, CommonStrings.getInstance().RUN, e));
+                    LogUtil.put(LogFactory.getInstance("Execption", this, commonStrings.RUN, e));
                 }
 
             }
@@ -275,7 +275,7 @@ public class GDGameBaseAndroidActivity extends GameMidletActivity
 
     public void setBackgrounds() throws Exception
     {
-        LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "setBackground"));
+        LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "setBackground"));
 
         final AndroidResources androidResources = AndroidResources.getInstance();
         
