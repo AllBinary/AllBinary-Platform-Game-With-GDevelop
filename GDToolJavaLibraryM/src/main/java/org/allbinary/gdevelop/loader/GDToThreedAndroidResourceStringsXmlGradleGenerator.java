@@ -7,6 +7,7 @@
 package org.allbinary.gdevelop.loader;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import org.allbinary.gdevelop.json.GDProject;
 import org.allbinary.logic.io.StreamUtil;
@@ -23,9 +24,11 @@ public class GDToThreedAndroidResourceStringsXmlGradleGenerator extends GDNameFi
 {
     private String name;
     
+    private static final String OUTPUT_PATH = GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\src\\main\\res\\values\\";
+
     public GDToThreedAndroidResourceStringsXmlGradleGenerator() {
         super(GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\strings.xml.original",
-                GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\src\\main\\res\\values\\strings.xml");
+                OUTPUT_PATH + "strings.xml");
     }
 
     public void process(final GDProject gdProject) {
@@ -45,6 +48,9 @@ public class GDToThreedAndroidResourceStringsXmlGradleGenerator extends GDNameFi
         final String newFileAsString = replace.all(androidRFileAsString);
 
         LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + this.newFilePath, this, commonStrings.PROCESS));
+
+        final File directoryFile = new File(OUTPUT_PATH);
+        directoryFile.mkdirs();
         
         this.bufferedWriterUtil.overwrite(this.newFilePath, newFileAsString);
     }
