@@ -6,6 +6,7 @@
 
 package org.allbinary.gdevelop.loader;
 
+import java.io.File;
 import java.io.FileInputStream;
 
 import org.allbinary.data.CamelCaseUtil;
@@ -87,7 +88,11 @@ public class GDToAllBinarySoundsGenerator
 
     public void process() throws Exception {
 
-        ResourceUtil.getInstance().setLoadingPaths("G:\\mnt\\bc\\mydev\\GDGamesP\\Resources\\sounds\\release\\wav\\", ".wav");
+        File file = new File("../");
+        ResourceUtil.getInstance().setLoadingPaths(
+            file.getAbsolutePath() + "\\Resources\\sounds\\release\\wav\\",
+            //"G:\\mnt\\bc\\mydev\\GDGamesP\\Resources\\sounds\\release\\wav\\", 
+            ".wav");
         Features.getInstance().add(GameFeatureFactory.getInstance().SOUND);
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
