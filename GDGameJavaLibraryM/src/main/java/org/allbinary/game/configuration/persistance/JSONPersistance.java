@@ -84,7 +84,7 @@ public class JSONPersistance extends BasicPersitance
     
     public void save(final AbeClientInformationInterface abeClientInformation, final String stringAsJSON) throws Exception
     {
-        LogUtil.put(LogFactory.getInstance(new StringMaker().append(JSON_).append(this.persistanceStrings.SAVING).append(stringAsJSON).toString(), this, this.persistanceStrings.SAVE));
+        LogUtil.put(LogFactory.getInstance(new StringMaker().append(JSON_).append(this.persistanceStrings.SAVING).append(stringAsJSON).toString(), this, this.commonStrings.SAVE));
         
         final RecordStore recordStore = RecordStore.openRecordStore(
                 this.getRecordId(abeClientInformation), true);
