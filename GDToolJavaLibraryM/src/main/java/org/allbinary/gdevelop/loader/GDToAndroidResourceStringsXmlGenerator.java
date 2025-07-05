@@ -7,6 +7,7 @@
 package org.allbinary.gdevelop.loader;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import org.allbinary.gdevelop.json.GDProject;
 import org.allbinary.logic.io.StreamUtil;
@@ -23,9 +24,11 @@ public class GDToAndroidResourceStringsXmlGenerator extends GDNameFileGenerator
 {
     private String name;
     
+    private static final String OUTPUT_PATH = GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameAndroidApplicationM\\src\\main\\res\\values\\";
+
     public GDToAndroidResourceStringsXmlGenerator() {
         super(GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameAndroidApplicationM\\strings.xml.original",
-                GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameAndroidApplicationM\\src\\main\\res\\values\\strings.xml");
+                OUTPUT_PATH + "strings.xml");
     }
 
     public void process(final GDProject gdProject) {
@@ -43,8 +46,11 @@ public class GDToAndroidResourceStringsXmlGenerator extends GDNameFileGenerator
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
         final Replace replace = new Replace(GD_KEY, this.name);
         final String newFileAsString = replace.all(androidRFileAsString);
-
+        
         LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + this.newFilePath, this, commonStrings.PROCESS));
+
+        final File directoryFile = new File(OUTPUT_PATH);
+        directoryFile.mkdirs();
         
         this.bufferedWriterUtil.overwrite(this.newFilePath, newFileAsString);
     }
