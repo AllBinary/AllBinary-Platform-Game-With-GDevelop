@@ -319,7 +319,7 @@
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>YourXmlRpcJavaLibrary</artifactId>
+            <artifactId>XmlRpcJavaLibrary</artifactId>
 <!--
             <artifactId>XmlRpcJavaLibrary</artifactId>
             <artifactId>YourXmlRpcJavaLibrary</artifactId>

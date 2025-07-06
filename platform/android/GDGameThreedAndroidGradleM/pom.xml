@@ -303,14 +303,12 @@
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>XmlRpcJavaLibrary</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>SimpleCryptLibrary</artifactId>
-                    <groupId>org.allbinary</groupId>
-                </exclusion>
-            </exclusions>
+<!--
+            <artifactId>XmlRpcJavaLibrary</artifactId>
+            <artifactId>YourXmlRpcJavaLibrary</artifactId>
+-->
             <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
         
