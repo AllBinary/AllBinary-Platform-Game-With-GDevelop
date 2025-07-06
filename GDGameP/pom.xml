@@ -59,9 +59,7 @@
         <module>../GDGameWavSoundsJavaLibraryM</module>
         
         <module>../replace_these_stub_projects/GDFormJavaLibraryM</module>
-        
-<!--        <module>../GDThreedGameP</module>-->
-
+<!--        <module>../GDGameThreedP</module>-->
     </modules>
 
     <dependencies>

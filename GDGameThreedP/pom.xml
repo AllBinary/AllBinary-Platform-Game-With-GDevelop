@@ -10,9 +10,9 @@
         <!-- Game Version End -->
     </parent>
 
-    <artifactId>GDThreedGameP</artifactId>
+    <artifactId>GDGameThreedP</artifactId>
     <packaging>pom</packaging>
-    <name>GDThreedGameP</name>
+    <name>GDGameThreedP</name>
     <url>http://maven.apache.org</url>
 
     <properties>
