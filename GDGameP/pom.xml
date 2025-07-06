@@ -58,9 +58,6 @@
         <module>../GDGameTouchJavaLibraryM</module>
         <module>../GDGameWavSoundsJavaLibraryM</module>
         
-        <!--
-        -->
-        <module>../../work/gd/GDFormJavaLibraryM</module>
         <module>../replace_these_stub_projects/GDFormJavaLibraryM</module>
         
 <!--        <module>../GDThreedGameP</module>-->
