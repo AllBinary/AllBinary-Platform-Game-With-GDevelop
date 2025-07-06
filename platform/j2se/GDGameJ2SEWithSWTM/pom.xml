@@ -199,7 +199,7 @@
         </dependency>
         <dependency>
             <groupId>org.allbinary</groupId>
-            <artifactId>NotDeviceSpecificNoMediaMIDP1Library</artifactId>
+            <artifactId>J2SEMediaMIDPMinimalJavaLibrary</artifactId>
 <!--
             <artifactId>J2SEMediaMIDPJorbisJavaLibrary</artifactId>
             <artifactId>J2SEMediaMIDPMinimalJavaLibrary</artifactId>
