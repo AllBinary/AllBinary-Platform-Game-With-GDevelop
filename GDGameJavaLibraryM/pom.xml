@@ -89,6 +89,7 @@
             <artifactId>GameLicensingBaseJavaLibrary</artifactId>
             <version>${allbinary.platform.version}</version>
         </dependency>
+<!-- AdvancedRTSGameJavaLibrary and PathFinding should not be included by default and should be tied in with GD Extensions -->
         <dependency>
             <groupId>org.allbinary.game.strategy.realtime</groupId>
             <artifactId>AdvancedRTSGameJavaLibrary</artifactId>
