@@ -36,7 +36,7 @@
         -->
         <module>../resource/GDGameImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
         <module>../resource/GDGameLazyImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
-        <module>../resource/GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
+<!--        <module>../resource/GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM</module>-->
         <module>../resource/GDGameJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
         <module>../resource/GDGameLazyJ2SEImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
         <module>../resource/GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM</module>

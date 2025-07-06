@@ -20,6 +20,8 @@
         
         <!--
         -->
+        <module>../../../resource/GDGameAndroidImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
+
         <module>../GDGameAndroidM</module>
         <module>../GDGameAndroidActivityJavaLibraryM</module>
         <module>../GDGameAndroidBaseJavaLibraryM</module>
