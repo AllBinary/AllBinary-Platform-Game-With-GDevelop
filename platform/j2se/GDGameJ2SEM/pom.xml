@@ -269,6 +269,7 @@
 <!--            <version>${allbinary.platform.version}</version>
         </dependency>
 -->
+<!-- 
         <dependency>
             <groupId>sax</groupId>
             <artifactId>sax</artifactId>
@@ -280,6 +281,7 @@
             <version>2.0.1</version>
             <classifier>sources</classifier>
         </dependency>        
+-->
         
         <dependency>
             <groupId>org.allbinary.game.gd</groupId>
