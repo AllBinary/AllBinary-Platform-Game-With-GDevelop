@@ -42,15 +42,11 @@
 <!--        <module>../resource/GDGameHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
         <module>../resource/GDGameLazyHTMLImageAnimationInterfaceResourceFactoryJavaLibraryM</module>-->
         <module>../resource/GDGameOpenGLESImageAnimationInterfaceResourceFactoryJavaLibraryM</module>
-        <!--
-        <module>../resource/GDGameOpenGLThreedAnimationResourceJavaLibraryM</module>
-        -->
         
         <module>../platform/j2se/GDGamePCClientInfoJavaLibraryM</module>
         <module>../platform/j2me/GDGameJ2MEJavaLibraryM</module>
         <module>../GDGameGeneratedJavaLibraryM</module>
         <module>../GDGameBaseJavaLibraryM</module>
-        <module>../GDGameThreedBaseJavaLibraryM</module>
         <module>../GDGameAIJavaLibraryM</module>
         <module>../GDGameJavaLibraryM</module>
         <module>../GDGameNoTouchJavaLibraryM</module>
@@ -58,17 +54,17 @@
         
         -->
         <module>../GDGamePreBaseJavaLibraryM</module>
-        <module>../GDGameThreedPreBaseJavaLibraryM</module>        
         
         <module>../GDGameTouchJavaLibraryM</module>
         <module>../GDGameWavSoundsJavaLibraryM</module>
-        
-        <module>../platform/android/GDGameThreedAndroidResourcesTempJavaLibraryM</module>
         
         <!--
         -->
         <module>../../work/gd/GDFormJavaLibraryM</module>
         <module>../replace_these_stub_projects/GDFormJavaLibraryM</module>
+        
+<!--        <module>../GDThreedGameP</module>-->
+
     </modules>
 
     <dependencies>
