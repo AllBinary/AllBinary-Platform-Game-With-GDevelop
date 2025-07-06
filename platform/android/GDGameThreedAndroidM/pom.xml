@@ -118,24 +118,28 @@
         </dependency>
 <!--
 -->
+<!--
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>BasicSecurityJavaLibrary</artifactId>
             <version>${allbinary.platform.version}</version>
         </dependency>
-<!--
 -->
+
+<!--
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>BouncyCastleDESJavaLibrary</artifactId>
+-->
 <!--
             <artifactId>BouncyCastleDESJavaLibrary</artifactId>
             <artifactId>YourSecurityJavaLibrary</artifactId>
 -->
-            <!-- AllBinary Platform Version Start -->
-            <version>${allbinary.platform.version}</version>
-            <!-- AllBinary Platform Version End -->
+<!--            <version>${allbinary.platform.version}</version>-->
+<!--            <scope>provided</scope>-->
+<!--
         </dependency>
+-->
         
 <!--
         <dependency>

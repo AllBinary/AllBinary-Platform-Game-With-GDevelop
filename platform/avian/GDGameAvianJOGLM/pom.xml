@@ -344,9 +344,12 @@
             <artifactId>BouncyCastleDESJavaLibrary</artifactId>
             <artifactId>YourSecurityJavaLibrary</artifactId>
 -->
-<!--            <version>${allbinary.platform.version}</version>
+<!--            <version>${allbinary.platform.version}</version>-->
+<!--            <scope>provided</scope>-->
+<!--
         </dependency>
 -->
+
         <dependency>
             <groupId>sax</groupId>
             <artifactId>sax</artifactId>

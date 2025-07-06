@@ -344,15 +344,22 @@
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
         </dependency>
-        
+
+<!--
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>BouncyCastleDESJavaLibrary</artifactId>
-            <!-- AllBinary Platform Version Start -->
-            <version>1.0.0-SNAPSHOT</version>
-            <!-- AllBinary Platform Version End -->
+-->
+<!--
+            <artifactId>BouncyCastleDESJavaLibrary</artifactId>
+            <artifactId>YourSecurityJavaLibrary</artifactId>
+-->
+<!--            <version>${allbinary.platform.version}</version>-->
+<!--            <scope>provided</scope>-->
+<!--
         </dependency>
-        
+-->
+
         <dependency>
             <groupId>org.microemu</groupId>
             <artifactId>microemu-javase</artifactId>
