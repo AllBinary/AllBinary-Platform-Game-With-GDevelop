@@ -59,7 +59,10 @@
         <module>../GDGameWavSoundsJavaLibraryM</module>
         
         <module>../replace_these_stub_projects/GDFormJavaLibraryM</module>
+        <module>../../AllBinary-Platform-Integration/embedded/j2me/microemulator/custom/GDFormJavaLibraryM</module>
+
 <!--        <module>../GDGameThreedP</module>-->
+
     </modules>
 
     <dependencies>
