@@ -34,6 +34,8 @@ import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 
 public class GDGameAndroidActivity extends GameMidletActivity
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
 //    @Override
 //    public AbeClientInformationInterface getClientInformation() {
 //        return GDGameClientInformationInterfaceFactory.getInstance();

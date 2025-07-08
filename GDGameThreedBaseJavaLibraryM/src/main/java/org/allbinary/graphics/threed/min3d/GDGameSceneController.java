@@ -38,6 +38,8 @@ import org.allbinary.view.ViewPosition;
 public class GDGameSceneController 
 extends AllBinaryGameSceneController
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final String TAG = "GDGameSceneController";
 
     private final OpenGLCapabilities openGLCapabilities = OpenGLCapabilities.getInstance();

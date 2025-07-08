@@ -23,6 +23,8 @@ import org.allbinary.logic.communication.log.LogUtil;
  */
 public class GDNameFileGenerator extends GDNameGenerator
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     protected final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     protected final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     

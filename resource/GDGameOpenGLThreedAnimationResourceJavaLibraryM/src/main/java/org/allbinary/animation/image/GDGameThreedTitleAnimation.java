@@ -36,6 +36,8 @@ public class GDGameThreedTitleAnimation
 extends TitleAnimation 
 implements ColorChangeListener
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private int color = ColorFromEventUtil.getInstance().COLOR_INT;
     
     //private final CameraLayer cameraLayer;

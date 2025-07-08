@@ -25,6 +25,8 @@ import org.allbinary.string.CommonSeps;
  */
 public class GDToThreedAndroidResourcesGradleGenerator
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final CommonSeps commonSeps = CommonSeps.getInstance();
     

@@ -30,6 +30,8 @@ import org.allbinary.util.BasicArrayList;
 public class PlayerInput extends PlayerGameInput 
         implements DownKeyEventListenerInterface, 
         UpKeyEventListenerInterface {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
 
     private final BasicArrayList keyEventList;
     private final BasicArrayList removalKeyEventList;

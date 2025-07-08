@@ -29,6 +29,8 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDNode
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final BaseGDNodeStats nodeStatsFactory = GDNodeStatsFactory.getInstance();
     
     protected Runnable currentRunnable = NullRunnable.getInstance();

@@ -27,6 +27,8 @@ import org.allbinary.string.CommonLabels;
 //Similar to DemoRunnable
 public class StartRunnable implements Runnable
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     
     private final DemoGameMidlet demoGameMidlet;

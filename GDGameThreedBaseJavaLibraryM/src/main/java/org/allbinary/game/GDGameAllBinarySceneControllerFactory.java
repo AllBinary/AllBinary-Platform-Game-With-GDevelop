@@ -7,6 +7,8 @@ import org.allbinary.logic.communication.log.PreLogUtil;
 
 public class GDGameAllBinarySceneControllerFactory
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private static final AllBinarySceneController instance = 
             new GDGameSceneController();
 

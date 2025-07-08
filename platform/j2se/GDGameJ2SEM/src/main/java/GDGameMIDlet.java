@@ -23,6 +23,8 @@ import org.allbinary.media.audio.GDGameSoundsFactory;
 public class GDGameMIDlet
         extends org.allbinary.game.GDGameMIDlet
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final int DEVICE_ID = 0;
     private AllMotionRecognizer motionRecognizer = new AllMotionRecognizer();
 

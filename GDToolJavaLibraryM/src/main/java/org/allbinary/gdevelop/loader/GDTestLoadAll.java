@@ -32,6 +32,8 @@ import org.json.XML;
  */
 public class GDTestLoadAll
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
 
     public GDTestLoadAll()

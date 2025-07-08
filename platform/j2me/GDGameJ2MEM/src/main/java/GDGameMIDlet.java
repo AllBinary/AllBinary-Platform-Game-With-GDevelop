@@ -14,6 +14,8 @@ import org.allbinary.game.init.DefaultGameInitializationListener;
 public class GDGameMIDlet
         extends org.allbinary.game.GDGameMIDlet
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     public GDGameMIDlet()
     {
         super(GDGameClientInformationInterfaceFactory.getInstance());

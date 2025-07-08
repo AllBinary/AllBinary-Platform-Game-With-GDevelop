@@ -29,6 +29,8 @@ import org.allbinary.logic.communication.log.LogUtil;
  * @author User
  */
 public class GDRotationBehavior extends GDAnimationBehaviorBase {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     
     public RotationAnimation[] rotationAnimationInterfaceArray;
     

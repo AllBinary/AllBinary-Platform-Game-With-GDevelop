@@ -31,6 +31,8 @@ import org.microemu.opengles.device.PlatformOpenGLESGraphicsFactory;
  * @author User
  */
 public class NativeBareMain {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
 
     public static void main(final String args[]) {
         

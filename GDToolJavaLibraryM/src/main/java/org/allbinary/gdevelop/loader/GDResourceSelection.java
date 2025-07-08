@@ -25,6 +25,8 @@ import org.allbinary.string.CommonStrings;
  * @author User
  */
 public class GDResourceSelection {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     
     protected static final GDResourceSelection instance = new GDResourceSelection();
 

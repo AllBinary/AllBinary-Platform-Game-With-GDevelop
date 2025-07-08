@@ -23,6 +23,8 @@ import org.allbinary.logic.string.StringMaker;
  */
 public class GDGetTotalLayouts
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final XslHelper xslHelper = XslHelper.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();

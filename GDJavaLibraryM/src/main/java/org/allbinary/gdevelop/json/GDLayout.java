@@ -24,6 +24,8 @@ import org.json.JSONObject;
  */
 public class GDLayout
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     public final String name;
     public final BasicColor basicColor;
     public final String title;

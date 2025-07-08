@@ -29,6 +29,8 @@ import org.json.JSONTokener;
  */
 public class GDToAllBinaryResourcesGenerator
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final CommonSeps commonSeps = CommonSeps.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();

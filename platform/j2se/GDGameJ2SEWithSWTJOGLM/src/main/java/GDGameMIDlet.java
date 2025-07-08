@@ -33,6 +33,8 @@ public class GDGameMIDlet
     extends org.allbinary.game.GDGameMIDlet
     implements MidletJOGLInterface
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final int DEVICE_ID = 0;
     private AllMotionRecognizer motionRecognizer = new AllMotionRecognizer();
 

@@ -34,6 +34,8 @@ public class SliderAnimation
     extends IndexedAnimation
     //implements IndexedAnimationInterface
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private IndexedAnimation[] animationInterfaceArray;
 
     private final int width;

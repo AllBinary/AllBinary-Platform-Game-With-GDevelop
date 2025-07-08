@@ -29,6 +29,8 @@ import org.allbinary.string.CommonLabels;
  */
 public class GDToAllBinaryCanvasGenerator extends Processor
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final XslHelper xslHelper = XslHelper.getInstance();

@@ -26,6 +26,8 @@ import org.allbinary.logic.communication.log.LogUtil;
  * @author User
  */
 public class GDAnimationBehaviorBase {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
 
     private static final GDAnimationBehaviorBase instance = new GDAnimationBehaviorBase();
 

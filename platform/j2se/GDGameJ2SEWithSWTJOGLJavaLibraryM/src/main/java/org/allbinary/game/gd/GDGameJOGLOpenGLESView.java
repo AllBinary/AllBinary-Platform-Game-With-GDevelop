@@ -7,7 +7,9 @@ import org.allbinary.view.OptimizedGLSurfaceView;
 
 public class GDGameJOGLOpenGLESView 
 extends AllBinaryMidletOpenGLSurfaceView
-{	
+{
+    protected final LogUtil logUtil = LogUtil.getInstance();
+	
     private final String TAG = "MiniSpaceWarJOGLOpenGLESView";
     
 	public GDGameJOGLOpenGLESView() {

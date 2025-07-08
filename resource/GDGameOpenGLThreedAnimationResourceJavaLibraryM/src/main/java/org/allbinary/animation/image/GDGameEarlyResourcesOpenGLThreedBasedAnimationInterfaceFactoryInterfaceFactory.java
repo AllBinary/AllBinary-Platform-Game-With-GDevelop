@@ -23,6 +23,8 @@ extends
 //GDGameEarlyResourcesImageArrayBasedAnimationInterfaceFactoryInterfaceFactory
 BaseResourceAnimationInterfaceFactoryInterfaceFactory
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     public GDGameEarlyResourcesOpenGLThreedBasedAnimationInterfaceFactoryInterfaceFactory()
     {
         super("Early OpenGL Animations");

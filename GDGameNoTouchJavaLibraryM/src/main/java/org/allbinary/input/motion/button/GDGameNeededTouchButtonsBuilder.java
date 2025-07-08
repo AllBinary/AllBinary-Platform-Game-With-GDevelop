@@ -22,6 +22,8 @@ import org.allbinary.input.gyro.SensorGameUpdateProcessor;
 public class GDGameNeededTouchButtonsBuilder
 extends BaseTouchInput
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private static final GDGameNeededTouchButtonsBuilder instance = 
             new GDGameNeededTouchButtonsBuilder();
     

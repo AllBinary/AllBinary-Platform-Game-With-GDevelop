@@ -34,6 +34,8 @@ import org.allbinary.graphics.CellPositionFactory;
 public class GDGameNeededWithSensorTouchButtonsBuilder 
 extends BaseTouchInput
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     public BasicArrayList getList()
     {
         try

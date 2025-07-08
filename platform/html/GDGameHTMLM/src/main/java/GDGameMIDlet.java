@@ -16,6 +16,8 @@ import org.allbinary.logic.system.security.licensing.GDGameClientInformationInte
 public class GDGameMIDlet
         extends org.allbinary.game.GDGameMIDlet
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     public GDGameMIDlet()
     {
         super(GDGameClientInformationInterfaceFactory.getFactoryInstance());

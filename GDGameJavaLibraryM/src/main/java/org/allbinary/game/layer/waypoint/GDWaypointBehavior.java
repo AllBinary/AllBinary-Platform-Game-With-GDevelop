@@ -26,7 +26,9 @@ import org.allbinary.util.BasicArrayListUtil;
 public class GDWaypointBehavior 
     extends WaypointBehaviorBase
     implements WaypointEventListenerInterface
-{    
+{
+    protected final LogUtil logUtil = LogUtil.getInstance();
+    
     private int longWeaponRange = 0;
     
     private SensorAction sensorAction = SensorActionFactory.getInstance().ATTACK;

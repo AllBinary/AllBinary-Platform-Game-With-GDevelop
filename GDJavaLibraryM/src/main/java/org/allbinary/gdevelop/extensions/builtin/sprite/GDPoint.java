@@ -16,6 +16,8 @@ import org.json.JSONObject;
  */
 public class GDPoint
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     public final String name;
     
     public final boolean automatic;

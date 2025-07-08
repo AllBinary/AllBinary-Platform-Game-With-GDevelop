@@ -23,6 +23,8 @@ import org.allbinary.logic.string.StringMaker;
  * @author User
  */
 public class CallStackGDNodeStats {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     
     private final int SIZE = 16;
     private final int[][] callStack = new int[SIZE][6000];

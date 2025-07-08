@@ -22,6 +22,8 @@ import org.allbinary.logic.communication.log.LogUtil;
  */
 public class GDToThreedAndroidResourceStringsXmlGradleGenerator extends GDNameFileGenerator
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private String name;
     
     private static final String OUTPUT_PATH = GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameThreedAndroidApplicationNoLicensingGradle\\app\\src\\main\\res\\values\\";

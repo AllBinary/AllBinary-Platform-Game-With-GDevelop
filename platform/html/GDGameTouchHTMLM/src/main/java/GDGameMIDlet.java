@@ -13,6 +13,8 @@ import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 public class GDGameMIDlet
         extends org.allbinary.game.gd.GDGameMIDlet
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     public GDGameMIDlet()
     {
         super(GDGameClientInformationInterfaceFactory.getInstance());

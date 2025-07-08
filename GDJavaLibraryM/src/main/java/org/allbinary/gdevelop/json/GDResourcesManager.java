@@ -20,6 +20,8 @@ import org.json.JSONObject;
  */
 public class GDResourcesManager
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final String RESOURCES = "GDResources: ";
     private final String RESOURCE_FOLDERS = "GDResourceFolders: ";
     

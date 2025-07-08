@@ -56,6 +56,8 @@ public class GDGameLayer
         //ArtificialIntelligenceCompositeInterface, GameInputInterface,
         //VelocityInterfaceCompositeInterface 
         {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
 
     //protected final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
     private final ScaleFactorFactory scaleFactorFactory = ScaleFactorFactory.getInstance();

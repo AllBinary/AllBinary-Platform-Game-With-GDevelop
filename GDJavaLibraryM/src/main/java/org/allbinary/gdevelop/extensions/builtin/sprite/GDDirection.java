@@ -18,6 +18,8 @@ import org.json.JSONObject;
  */
 public class GDDirection
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     public final boolean looping;
     public final int timeBetweenFrames;
     

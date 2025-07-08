@@ -23,6 +23,8 @@ import org.allbinary.logic.communication.log.LogUtil;
  */
 public class GDToThreedAndroidGameActivityGenerator extends GDNameGenerator
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     

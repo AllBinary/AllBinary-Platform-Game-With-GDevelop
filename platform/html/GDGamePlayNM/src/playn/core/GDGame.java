@@ -31,6 +31,8 @@ implements Keyboard.Listener,
 Mouse.Listener, 
 Pointer.Listener
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final int DEVICE_ID = 0;
     private final PlayNToAllBinaryKeyInputUtil playNToAllBinaryKeyInputUtil = PlayNToAllBinaryKeyInputUtil.getInstance();
     private final RawKeyEventHandler rawKeyEventHandler = RawKeyEventHandler.getInstance();

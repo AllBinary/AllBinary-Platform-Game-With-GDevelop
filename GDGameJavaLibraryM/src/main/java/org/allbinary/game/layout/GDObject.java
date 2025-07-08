@@ -35,6 +35,8 @@ import org.allbinary.string.CommonLabels;
  */
 public class GDObject
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
 
     private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
     

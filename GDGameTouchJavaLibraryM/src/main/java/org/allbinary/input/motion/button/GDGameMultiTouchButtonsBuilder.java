@@ -38,6 +38,8 @@ import org.allbinary.graphics.CellPositionFactory;
 public class GDGameMultiTouchButtonsBuilder 
 extends BaseTouchInput
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     public BasicArrayList getList()
     {
         try

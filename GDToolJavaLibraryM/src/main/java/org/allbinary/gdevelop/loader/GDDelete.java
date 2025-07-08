@@ -26,6 +26,8 @@ import org.allbinary.util.BasicArrayList;
  * @author User
  */
 public class GDDelete {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
 
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();

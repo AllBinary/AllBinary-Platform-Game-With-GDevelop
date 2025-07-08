@@ -23,6 +23,8 @@ import org.allbinary.logic.string.StringMaker;
  * @author User
  */
 public class CallCountGDNodeStats {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
 
     private final String TOTAL_CALLS = "total calls: ";
 

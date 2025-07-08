@@ -32,6 +32,8 @@ import org.allbinary.util.BasicArrayListUtil;
 public class GDWaypointBehavior2 
 extends GDWaypointBehavior
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final LayerDistanceUtil layerDistanceUtil = LayerDistanceUtil.getInstance();
     private final ThreadPool pathFindingThreadPool = PathFindingThreadPool.getInstance();
 

@@ -27,6 +27,8 @@ import org.allbinary.media.graphics.geography.map.GeographicMapEventHandler;
 public class GDGameLayerManager extends AllBinaryGameLayerManager
         implements GeographicMapCompositeInterface
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private BasicGeographicMap[] geographicMapInterfaceArray;
     private GeographicMapCellType[] geographicMapCellTypeArray;
    //private PlayerLayer playerLayer;

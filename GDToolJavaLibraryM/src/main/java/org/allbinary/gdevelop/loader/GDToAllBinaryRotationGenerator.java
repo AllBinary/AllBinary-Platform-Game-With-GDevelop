@@ -31,6 +31,8 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDToAllBinaryRotationGenerator
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final XslHelper xslHelper = XslHelper.getInstance();
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();

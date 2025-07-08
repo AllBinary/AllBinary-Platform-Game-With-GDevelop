@@ -26,6 +26,8 @@ import org.allbinary.image.ImageCacheFactory;
 public class GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory
         extends BaseResourceAnimationInterfaceFactoryInterfaceFactory
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     public GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
         super("Image Animations");

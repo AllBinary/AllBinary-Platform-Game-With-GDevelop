@@ -24,7 +24,9 @@ import org.json.XML;
  * @author User
  */
 public class GDProject
-{   
+{
+    protected final LogUtil logUtil = LogUtil.getInstance();
+   
     private final String LOAD = "load";
     private final String OBJECTS = "GDObjects: ";
     private final String VARIABLES = "GDVariables: ";

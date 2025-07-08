@@ -30,6 +30,8 @@ import org.allbinary.util.CircularIndexUtil;
  * @author User
  */
 public class GDPrimitiveDrawing extends Animation {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     
     public final BasicArrayList[] animationListArray = {
         new BasicArrayList(), new BasicArrayList(), new BasicArrayList(), 

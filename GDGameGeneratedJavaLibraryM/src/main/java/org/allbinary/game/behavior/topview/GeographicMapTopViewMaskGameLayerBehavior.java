@@ -36,6 +36,8 @@ import org.allbinary.view.ViewPosition;
  * @author User
  */
 public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopViewLayerBehavior {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
 
     private final GravityUtil gravityUtil = GravityUtil.getInstance();
     

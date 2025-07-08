@@ -19,6 +19,8 @@ import org.json.JSONObject;
  */
 public class GDResourceFolder
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private static final String RESOURCES = "Resources: ";
     
     public final String name;

@@ -21,6 +21,8 @@ import org.allbinary.game.layout.GDObject;
  * @author User
  */
 public class GDTwodBehavior {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     
     private final GDAnimationBehaviorBase animationBehavior;
     

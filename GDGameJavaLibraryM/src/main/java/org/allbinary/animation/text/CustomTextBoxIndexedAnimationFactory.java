@@ -33,6 +33,8 @@ import org.allbinary.media.ScaleProperties;
  */
 public class CustomTextBoxIndexedAnimationFactory
     implements AnimationInterfaceFactoryInterface {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
 
     //private final CommonStrings commonStrings = CommonStrings.getInstance();
 

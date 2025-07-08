@@ -26,6 +26,8 @@ import org.allbinary.logic.string.StringMaker;
  * @author User
  */
 public class GDIndividualAnimationBehavior extends GDAnimationBehaviorBase {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     
     private static final GDIndividualAnimationBehavior instance = new GDIndividualAnimationBehavior();
 

@@ -23,6 +23,8 @@ import org.allbinary.logic.communication.log.LogUtil;
  * @author User
  */
 public class GDDestroyableSimpleBehavior extends DestroyableSimpleBehavior {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     
     public GDDestroyableSimpleBehavior(CollidableCompositeLayer ownerLayer)
     {

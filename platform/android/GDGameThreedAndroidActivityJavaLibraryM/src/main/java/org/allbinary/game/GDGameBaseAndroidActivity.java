@@ -41,6 +41,8 @@ import org.microemu.opengles.device.PlatformOpenGLESGraphicsFactory;
 
 public class GDGameBaseAndroidActivity extends GameMidletActivity
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
 //    @Override
 //    public AbeClientInformationInterface getClientInformation() {
 //        return GDGameClientInformationInterfaceFactory.getInstance();

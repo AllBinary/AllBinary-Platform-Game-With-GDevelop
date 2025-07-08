@@ -34,6 +34,8 @@ import org.allbinary.util.BasicArrayList;
  */
 public class GDLayoutsToAllBinaryLayoutGenerator
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final CommonSeps commonSeps = CommonSeps.getInstance();
     private final Directory directory = Directory.getInstance();

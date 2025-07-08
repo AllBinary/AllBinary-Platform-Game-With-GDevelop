@@ -18,6 +18,8 @@ import org.json.JSONObject;
  */
 public class GDResourceFactory
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
 
     private static final GDResourceFactory instance = new GDResourceFactory();
 

@@ -37,6 +37,8 @@ import org.allbinary.view.ViewPosition;
  */
 public class GDGameLayerFactory
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     protected final BasicArrayList behaviorList;
     protected final Group[] groupInterface;
     protected final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray;

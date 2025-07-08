@@ -30,6 +30,8 @@ import org.allbinary.util.CircularIndexUtil;
  * @author User
  */
 public class GDRectOnlyPrimitiveDrawing extends Animation {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     
     private final Animation colorAnimation = new Animation() {};
     private final ARectangleFilledAnimation rectangleFilledAnimation = new ARectangleFilledAnimation();

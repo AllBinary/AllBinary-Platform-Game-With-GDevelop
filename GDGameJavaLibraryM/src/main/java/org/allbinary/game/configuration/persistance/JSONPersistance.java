@@ -29,6 +29,8 @@ import org.allbinary.logic.system.security.licensing.AbeClientInformationInterfa
 
 public class JSONPersistance extends BasicPersitance
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private static final String JSON_ = "JSON ";
 
     public JSONPersistance(final String recordId)

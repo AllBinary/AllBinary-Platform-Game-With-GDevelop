@@ -30,6 +30,8 @@ import org.allbinary.util.BasicArrayList;
  * @author User
  */
 public class GDGameInputProcessor {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
 
     private final GameInputStrings gameInputStrings = GameInputStrings.getInstance();
     

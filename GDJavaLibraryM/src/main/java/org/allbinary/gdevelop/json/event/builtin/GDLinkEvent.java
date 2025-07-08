@@ -19,6 +19,8 @@ import org.json.JSONObject;
  */
 public class GDLinkEvent extends GDEvent
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     public final String target;
 
     public final int includeConfig;

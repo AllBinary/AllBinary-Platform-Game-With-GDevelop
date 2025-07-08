@@ -24,6 +24,8 @@ import org.allbinary.logic.communication.log.LogUtil;
 
 public class BasicUriResolver implements URIResolver
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
 
     //private TransformInfoInterface parentTransformInfoInterface;
     //TransformInfoInterface parentTransformInfoInterface,
