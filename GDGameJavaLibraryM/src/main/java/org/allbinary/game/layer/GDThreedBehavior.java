@@ -22,8 +22,6 @@ import org.allbinary.logic.string.StringMaker;
  * @author User
  */
 public class GDThreedBehavior extends GDTwodBehavior {
-    protected final LogUtil logUtil = LogUtil.getInstance();
-
     
     private final RotationAnimation[] rotationAnimationInterfaceArray;
     

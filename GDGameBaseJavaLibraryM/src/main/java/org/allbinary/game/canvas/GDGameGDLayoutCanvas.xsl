@@ -124,7 +124,7 @@ import org.allbinary.logic.system.security.licensing.AbeClientInformationInterfa
             <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
 public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCanvas //AllBinaryGameCanvas
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
+
     private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
     private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
     private final ImageCache imageCache = ImageCacheFactory.getInstance();

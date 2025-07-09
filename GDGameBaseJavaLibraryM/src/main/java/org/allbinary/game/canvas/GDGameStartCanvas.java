@@ -39,7 +39,6 @@ import org.allbinary.logic.system.security.licensing.AbeClientInformationInterfa
 
 public class GDGameStartCanvas extends DemoCanvas
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
 
     private final int WAIT = ((GameSpeed.getInstance().getDelay() * 3) >> 1);
 

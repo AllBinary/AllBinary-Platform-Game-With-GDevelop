@@ -83,6 +83,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.logic.communication.log.LogFactory;
                 import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;
 
                 //LayoutExternalEvent name=<xsl:value-of select="$layoutName" />
@@ -100,6 +101,7 @@ Created By: Travis Berthelot
                     protected final LogUtil logUtil = LogUtil.getInstance();
                     private final CommonStrings commonStrings = CommonStrings.getInstance();
                     private final StringUtil stringUtil = StringUtil.getInstance();
+                    private final NullUtil nullUtil = NullUtil.getInstance();
                     private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                     
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();

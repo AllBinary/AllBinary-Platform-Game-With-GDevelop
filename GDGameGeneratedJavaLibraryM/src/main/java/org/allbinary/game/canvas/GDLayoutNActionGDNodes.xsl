@@ -145,6 +145,7 @@ Created By: Travis Berthelot
                 import org.allbinary.time.GameTickTimeDelayHelper;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.time.TimeDelayHelper;
+                import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.media.audio.PlayerComposite;
@@ -171,7 +172,8 @@ Created By: Travis Berthelot
                         }
 
                         protected final LogUtil logUtil = LogUtil.getInstance();
-                        private final CommonStrings commonStrings = CommonStrings.getInstance();                        
+                        private final CommonStrings commonStrings = CommonStrings.getInstance();
+                        private final NullUtil nullUtil = NullUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final PointFactory pointFactory = PointFactory.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();

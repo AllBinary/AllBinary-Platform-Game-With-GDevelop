@@ -66,7 +66,6 @@ import org.allbinary.time.TimeDelayHelper;
 
 public class GDGameGameCanvas extends AllBinaryGameCanvas
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
 
     private final int WAIT = GameSpeed.getInstance().getDelay();
 

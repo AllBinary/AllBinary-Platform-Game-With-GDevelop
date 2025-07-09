@@ -13,20 +13,20 @@
  */
 package org.allbinary.game.canvas;
 
-import org.allbinary.game.identification.GroupFactory;
-import org.allbinary.logic.NullUtil;
-import org.allbinary.string.CommonStrings;
-import org.allbinary.util.ArrayUtil;
+import javax.microedition.khronos.opengles.GL10;
+
+import org.allbinary.logic.communication.log.LogUtil;
 
 /**
  *
  * @author User
  */
-public class GDGlobals {
+public class GDGameThreedLevelBuilder {
     
-    protected final NullUtil nullUtil = NullUtil.getInstance();
-    protected final ArrayUtil arrayUtil = ArrayUtil.getInstance();
-    protected final GroupFactory groupFactory = GroupFactory.getInstance();
-    protected final CommonStrings commonStrings = CommonStrings.getInstance();
+    private final LogUtil logUtil = LogUtil.getInstance();
+    
+    public void build(final GL10 gl, final String glInstanceVersion) throws Exception {
+        
+    }
 
 }

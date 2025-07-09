@@ -64,6 +64,7 @@ import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterfac
  */
 public class GDCustomCollidableBehavior extends CollidableBaseBehavior 
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     
     public final GDConditionWithGroupActions conditionWIthGroupActions;

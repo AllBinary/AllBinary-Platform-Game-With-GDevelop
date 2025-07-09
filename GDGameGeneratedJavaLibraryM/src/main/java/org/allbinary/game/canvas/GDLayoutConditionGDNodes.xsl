@@ -120,6 +120,7 @@ Created By: Travis Berthelot
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
                 import org.allbinary.time.TimeDelayHelper;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
@@ -137,6 +138,7 @@ Created By: Travis Berthelot
 
                         protected final LogUtil logUtil = LogUtil.getInstance();
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
+                        private final NullUtil nullUtil = NullUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
                         private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();

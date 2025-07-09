@@ -28,7 +28,7 @@ import org.allbinary.logic.string.StringUtil;
  */
 public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior 
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
+    //protected final LogUtil logUtil = LogUtil.getInstance();
 
     
     public final GDConditionWithGroupActions conditionWIthGroupActions;

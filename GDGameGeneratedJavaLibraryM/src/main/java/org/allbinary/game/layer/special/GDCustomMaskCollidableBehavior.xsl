@@ -72,6 +72,7 @@ import org.allbinary.view.ViewPosition;
  */
 public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior 
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     
     private final RectangleCollisionUtil rectangleCollisionUtil = RectangleCollisionUtil.getInstance();

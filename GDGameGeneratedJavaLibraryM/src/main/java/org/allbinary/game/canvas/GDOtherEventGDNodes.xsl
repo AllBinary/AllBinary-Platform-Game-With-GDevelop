@@ -81,6 +81,7 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
+import org.allbinary.logic.NullUtil;
 import org.allbinary.util.ArrayUtil;
 
 <!--import org.allbinary.game.configuration.persistance.JSONPersistance;
@@ -108,6 +109,7 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
 
     protected final LogUtil logUtil = LogUtil.getInstance();
     private final CommonStrings commonStrings = CommonStrings.getInstance();
+    private final NullUtil nullUtil = NullUtil.getInstance();
     private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
     private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
     

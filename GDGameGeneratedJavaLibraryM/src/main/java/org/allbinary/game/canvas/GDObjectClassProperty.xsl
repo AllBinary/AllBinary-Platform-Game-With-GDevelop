@@ -88,7 +88,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="hasPriorInstanceWithSameName" ><xsl:if test="../instances[name = $name and number(substring(generate-id(), 2) - 65536) &lt; $id]" >found</xsl:if></xsl:variable>
                             <xsl:if test="not(contains($hasPriorInstanceWithSameName, 'found'))" >
             //Global specific objects
-            public final BasicArrayList <xsl:value-of select="name" />GDInstanceGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+            public final BasicArrayList <xsl:value-of select="name" />GDInstanceGDGameLayerList = new BasicArrayList(this.nullUtil.NULL_OBJECT_ARRAY);
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
@@ -101,7 +101,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="../instances" >
                 <xsl:if test="name = $name" >
             //Layout specific objects
-            public final BasicArrayList <xsl:value-of select="name" />GDInstanceGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+            public final BasicArrayList <xsl:value-of select="name" />GDInstanceGDGameLayerList = new BasicArrayList(this.nullUtil.NULL_OBJECT_ARRAY);
                 </xsl:if>
             </xsl:for-each>
         </xsl:for-each>
@@ -150,12 +150,12 @@ Created By: Travis Berthelot
                 //TileMap::TileMap:content <xsl:value-of select="$imageWithExtension" />
             </xsl:if>
 
-            public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+            public final BasicArrayList <xsl:value-of select="name" />CacheGDGameLayerList = new BasicArrayList(this.nullUtil.NULL_OBJECT_ARRAY);
 
             <xsl:if test="type = 'PrimitiveDrawing::Drawer'" >
                 //PrimitiveDrawing::Drawer
                 public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="name" />";
-                //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+                //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.nullUtil.NULL_OBJECT_ARRAY);
             </xsl:if>
             <xsl:if test="type = 'Sprite' or type = 'TileMap::CollisionMask' or type = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
@@ -165,7 +165,7 @@ Created By: Travis Berthelot
                 //<xsl:value-of select="type" />
                 //private BasicArrayList <xsl:value-of select="name" />List = ZERO_GD_OBJECT;
                 //private BasicArrayList <xsl:value-of select="name" />GDGameLayerList;
-                //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.arrayUtil.ZERO_OBJECT_ARRAY);
+                //public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList = new BasicArrayList(this.nullUtil.NULL_OBJECT_ARRAY);
                 //public final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
             </xsl:if>
 
@@ -203,7 +203,7 @@ Created By: Travis Berthelot
         //objects - all - //layerManagerEventListenerList - START
         <xsl:for-each select="objects" >
             
-            public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(arrayUtil.ZERO_OBJECT_ARRAY);
+            public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(nullUtil.NULL_OBJECT_ARRAY);
 
         </xsl:for-each>
         //objects - all - //layerManagerEventListenerList - END
