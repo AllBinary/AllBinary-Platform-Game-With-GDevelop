@@ -23,7 +23,7 @@ import org.allbinary.logic.communication.log.LogUtil;
  */
 public class GDGameThreedLevelBuilder {
     
-    private final LogUtil logUtil = LogUtil.getInstance();
+    protected final LogUtil logUtil = LogUtil.getInstance();
     
     public void build(final GL10 gl, final String glInstanceVersion) throws Exception {
         
