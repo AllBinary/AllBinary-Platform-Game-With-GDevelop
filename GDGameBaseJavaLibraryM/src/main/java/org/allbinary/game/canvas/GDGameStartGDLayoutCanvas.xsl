@@ -52,7 +52,8 @@ public class <GDLayout> extends StartCanvas
     private final String GD_LAYOUT_COLOR = "GDLayout<xsl:value-of select="position()" />Color";
 
     private final int WAIT = ((GameSpeed.getInstance().getDelay() * 3) <xsl:text disable-output-escaping="yes" >&gt;&gt;</xsl:text> 1);
-
+    
+    //protected final LogUtil logUtil = LogUtil.getInstance();
     private final GDGameInputProcessor gameInputProcessor = new GDGameInputProcessor();
 
     private final DownKeyEventHandler downKeyEventHandler = DownKeyEventHandler.getInstance();
@@ -82,7 +83,7 @@ public class <GDLayout> extends StartCanvas
 
     public void initPostPaint() throws Exception
     {
-        //LogUtil.put(LogFactory.getInstance("initPostPaint", this, "initPostPaint"));
+        //logUtil.put("initPostPaint", this, "initPostPaint");
 
         //this.setBasicGameDemoPaintable(
                 //new GDGameMenuPaintable(new FormPaintable(this.getMenuForm()))

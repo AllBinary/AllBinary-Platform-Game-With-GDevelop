@@ -20,6 +20,7 @@ import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.input.motion.gesture.MotionGestureInput;
 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
+import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.thread.NullRunnable;
 import org.allbinary.util.BasicArrayList;
 
@@ -39,7 +40,7 @@ public class GDNode
         
     public GDNode(final int name) {
         
-        //LogUtil.put(LogFactory.getInstance(commonStrings.START + name, this, commonStrings.CONSTRUCTOR));
+        //logUtil.put(commonStrings.START + name, this, commonStrings.CONSTRUCTOR);
         
         this.name = name;
         

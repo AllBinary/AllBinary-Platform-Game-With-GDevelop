@@ -43,7 +43,7 @@ Created By: Travis Berthelot
                         
                             public void run() {
                                 try {
-                                    //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                    //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                                     gdNodeStatsFactory.push(0, <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
 
@@ -100,7 +100,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                 
                                 } catch(Exception e) {
-                                    LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable", this, commonStrings.RUN, e));
+                                    logUtil.put(commonStrings.EXCEPTION_LABEL + "Runnable", this, commonStrings.RUN, e);
                                 }
                             }
                         };
@@ -115,7 +115,7 @@ Created By: Travis Berthelot
                                 this.currentRunnable = this.runnable;
                             //} else {
                                 //Best to not remark out when parent conditions include: SourisBouton, SourisSurObjet, or KeyFromTextPressed
-                                //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable already set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception()));
+                                //logUtil.put(commonStrings.EXCEPTION_LABEL + "Runnable already set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, new Exception());
                             //}
                         </xsl:if>
 
@@ -166,7 +166,7 @@ Created By: Travis Berthelot
                                         </xsl:for-each>
                                                                     
                             } else {
-                                //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + "Runnable was not set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE));
+                                //logUtil.put(commonStrings.EXCEPTION_LABEL + "Runnable was not set: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE);
                             }
                         </xsl:if>
                         
@@ -177,7 +177,7 @@ Created By: Travis Berthelot
                         public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                             super.processStats(motionGestureEvent);
 
-                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS));
+                            //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "motion", this, commonStrings.PROCESS);
                                 <xsl:for-each select="parameters" >
                                     <xsl:if test="position() = 1" >
                             //final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RectangleList.size();
@@ -188,22 +188,22 @@ Created By: Travis Berthelot
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             
                                 //<xsl:value-of select="text()" />Rectangle = (Rectangle) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RectangleList.get(index);
-                                //LogUtil.put(LogFactory.getInstance("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle - Not Null", this, commonStrings.PROCESS));
+                                //logUtil.put("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle - Not Null", this, commonStrings.PROCESS);
                                 //final GPoint point = displayPointScalar.process(motionGestureEvent.getCurrentPoint());
                                 //final GPoint rectangePoint = <xsl:value-of select="text()" />Rectangle.getPoint();
                                 
                                 gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index);
-                                //LogUtil.put(LogFactory.getInstance("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayer - Not Null", this, commonStrings.PROCESS));
+                                //logUtil.put("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayer - Not Null", this, commonStrings.PROCESS);
                                 final GPoint point = motionGestureEvent.getCurrentPoint();
-                                //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="text()" />Rectangle - motionGestureEvent: " + motionGestureEvent.toString(), this, commonStrings.PROCESS));
-                                //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="text()" /> - point: " + point.toString(), this, commonStrings.PROCESS));
-                                //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="text()" />GDGameLayer: " + gameLayer.toString(), this, commonStrings.PROCESS));
+                                //logUtil.put("<xsl:value-of select="text()" />Rectangle - motionGestureEvent: " + motionGestureEvent.toString(), this, commonStrings.PROCESS);
+                                //logUtil.put("<xsl:value-of select="text()" /> - point: " + point.toString(), this, commonStrings.PROCESS);
+                                //logUtil.put("<xsl:value-of select="text()" />GDGameLayer: " + gameLayer.toString(), this, commonStrings.PROCESS);
                                 
-                                //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="text()" />Rectangle: " + <xsl:value-of select="text()" />Rectangle.toString(), this, commonStrings.PROCESS));
+                                //logUtil.put("<xsl:value-of select="text()" />Rectangle: " + <xsl:value-of select="text()" />Rectangle.toString(), this, commonStrings.PROCESS);
                                 //if (rectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY() - 2, <xsl:value-of select="text()" />Rectangle.getMaxX(), <xsl:value-of select="text()" />Rectangle.getMaxY() + 2, point.getX(), point.getY()))
                                 if (rectangleCollisionUtil.isInside(gameLayer.getX(), gameLayer.getY() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY()))
                                 {
-                                    //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "Inside: " + lastMotionGestureInput, this, commonStrings.PROCESS));
+                                    //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "Inside: " + lastMotionGestureInput, this, commonStrings.PROCESS);
                                     <xsl:if test="$inverted != 'true'" >
                                     <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
                                         runnable.run();
@@ -222,7 +222,7 @@ Created By: Travis Berthelot
                                         //}
                                         //globals.currentButtonGDNodePressed = this;
 
-                                        //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "press", this, commonStrings.PROCESS));
+                                        //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "press", this, commonStrings.PROCESS);
                                         
                                         this.process();
                                         
@@ -256,7 +256,7 @@ Created By: Travis Berthelot
                                         
                                     } else if(lastMotionGestureInput == touchMotionGestureFactory.RELEASED) {
                                     
-                                        //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "release", this, commonStrings.PROCESS));
+                                        //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "release", this, commonStrings.PROCESS);
 
                                         this.processReleased();
                                     <!--
@@ -313,7 +313,7 @@ Created By: Travis Berthelot
                                 }
                             } 
                             //if(size == 0) {
-                                //LogUtil.put(LogFactory.getInstance("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle - Null", this, commonStrings.PROCESS));
+                                //logUtil.put("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle - Null", this, commonStrings.PROCESS);
                             //}
                                     </xsl:if>
                                 </xsl:for-each>

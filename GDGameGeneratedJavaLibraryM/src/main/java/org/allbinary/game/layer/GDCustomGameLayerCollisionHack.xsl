@@ -746,7 +746,7 @@ Created By: Travis Berthelot
     public void <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />ProcessGDCollision() throws Exception {
         final int size = this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.size();
 //        if(this.gdObject.name.compareTo(B) == 0) {
-//            LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P));
+//            logUtil.put(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P);
 //        }
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -766,7 +766,7 @@ Created By: Travis Berthelot
     public void <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />ProcessGDCollision() throws Exception {
         final int size = this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.size();
 //        if(this.gdObject.name.compareTo(B) == 0) {
-//            LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P));
+//            logUtil.put(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P);
 //        }
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -831,7 +831,7 @@ Created By: Travis Berthelot
     public void <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />ProcessGDCollision() throws Exception {
         final int size = this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.size();
 //        if(this.gdObject.name.compareTo(B) == 0) {
-//            LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P));
+//            logUtil.put(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P);
 //        }
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -851,7 +851,7 @@ Created By: Travis Berthelot
     public void <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />ProcessGDCollision() throws Exception {
         final int size = this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.size();
 //        if(this.gdObject.name.compareTo(B) == 0) {
-//            LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P));
+//            logUtil.put(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P);
 //        }
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -919,7 +919,7 @@ Created By: Travis Berthelot
     public void <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />ProcessGDCollision() throws Exception {
         final int size = this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.size();
 //        if(this.gdObject.name.compareTo(B) == 0) {
-//            LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P));
+//            logUtil.put(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P);
 //        }
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -939,7 +939,7 @@ Created By: Travis Berthelot
     public void <xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />ProcessGDCollision() throws Exception {
         final int size = this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.size();
 //        if(this.gdObject.name.compareTo(B) == 0) {
-//            LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P));
+//            logUtil.put(new StringMaker().append(this.toString()).append(CommonSeps.getInstance().COLON).append(size).toString(), this, P);
 //        }
         GDNode node;
         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {

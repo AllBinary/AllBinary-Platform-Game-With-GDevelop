@@ -50,7 +50,7 @@ public class GDToAllBinaryRotationGenerator
     public void loadLayout(final GDLayout layout, final int index, final int size) throws Exception {
         final String name = this.camelCaseUtil.getAsCamelCase(layout.name, stringMaker);
         
-        //LogUtil.put(LogFactory.getInstance(name, this, "loadLayout"));
+        //logUtil.put(name, this, "loadLayout");
         
         stringMaker.delete(0, stringMaker.length());
         
@@ -61,7 +61,7 @@ public class GDToAllBinaryRotationGenerator
 //            className = stringMaker.append("GDGameStart").append(name).append("Canvas").toString();
 //        }
         
-        LogUtil.put(LogFactory.getInstance(className, this, "loadLayout"));
+        logUtil.put(className, this, "loadLayout");
         
         this.layoutNameList.add(layout.name.toUpperCase());
         this.nameList.add(name);
@@ -93,7 +93,7 @@ public class GDToAllBinaryRotationGenerator
         final int size2 = xslPathInputArray.length;
         for (int index2 = 0; index2 < size2; index2++)
         {
-            LogUtil.put(LogFactory.getInstance(xslPathInputArray[index2], this, commonStrings.PROCESS));
+            logUtil.put(xslPathInputArray[index2], this, commonStrings.PROCESS);
             final InputStream fileInputStream = new FileInputStream(xslPathInputArray[index2]);
             sharedBytes.outputStream.reset();
             final String xslFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
@@ -101,24 +101,24 @@ public class GDToAllBinaryRotationGenerator
             final String newFileAsString = xslFileAsString;
             final String updatedXslDocumentStr = newFileAsString;
 
-            LogUtil.put(LogFactory.getInstance(updatedXslDocumentStr, this, commonStrings.PROCESS));
+            logUtil.put(updatedXslDocumentStr, this, commonStrings.PROCESS);
             //this.bufferedWriterUtil.overwrite(MIDLET_REPLACED, updatedXslDocumentStr);
 
-            //LogUtil.put(LogFactory.getInstance(xmlDocumentStr, this, commonStrings.PROCESS));
+            //logUtil.put(xmlDocumentStr, this, commonStrings.PROCESS);
             //this.bufferedWriterUtil.overwrite(MIDLET_XML, xmlDocumentStr);
             final String result = this.xslHelper.translate(new BasicUriResolver(),
                     new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
                     new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
 
             stringMaker.delete(0, stringMaker.length());
-            LogUtil.put(LogFactory.getInstance(stringMaker.append(this.gdToolStrings.FILENAME).append(outputArray[index2]).toString(), this, this.commonStrings.PROCESS));
+            logUtil.put(stringMaker.append(this.gdToolStrings.FILENAME).append(outputArray[index2]).toString(), this, this.commonStrings.PROCESS);
             this.bufferedWriterUtil.overwrite(outputArray[index2], result);
         }
         
         stringMaker.delete(0, stringMaker.length());
-        LogUtil.put(LogFactory.getInstance(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+        logUtil.put(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS);
         
-        LogUtil.put(LogFactory.getInstance("Generated hasRotationImages", this, commonStrings.PROCESS));
+        logUtil.put("Generated hasRotationImages", this, commonStrings.PROCESS);
     }
     
 }

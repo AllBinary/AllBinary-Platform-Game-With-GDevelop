@@ -120,7 +120,7 @@ Created By: Travis Berthelot
                     public boolean process() throws Exception {
                         super.processStats();
 
-                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                        //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                     <xsl:variable name="firstParamFound" ><xsl:call-template name="firstParamFound" ><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
                     
@@ -202,13 +202,13 @@ Created By: Travis Berthelot
                     public boolean process(final int index) throws Exception {
                         super.processStats(index);
 
-                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                        //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                         
                         final int animationIndex<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
 
                         final GDGameLayer gdGameLayer = <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index)))</xsl:if></xsl:for-each>;
 //                        if(animationIndex <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> gdGameLayer.getIndexedAnimationInterfaceArray().length) {
-//                            LogUtil.put(LogFactory.getInstance(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(gdGameLayer.toString()).append(" invalid animation index: ").append(animationIndex).toString(), this, commonStrings.PROCESS, new Exception()));
+//                            logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(gdGameLayer.toString()).append(" invalid animation index: ").append(animationIndex).toString(), this, commonStrings.PROCESS, new Exception());
 //                        }
                         
                         gdGameLayer.gdObject.animation = animationIndex;
@@ -223,12 +223,12 @@ Created By: Travis Berthelot
                     @Override
                     public boolean processGD(final GDGameLayer gdGameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                     
-                        //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                        //logUtil.put(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                         
                         final int animationIndex<xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
 
 //                        if(animationIndex <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> gdGameLayer.getIndexedAnimationInterfaceArray().length) {
-//                            LogUtil.put(LogFactory.getInstance(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(gdGameLayer.toString()).append(" invalid animation index: ").append(animationIndex).toString(), this, commonStrings.PROCESS, new Exception()));
+//                            logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(gdGameLayer.toString()).append(" invalid animation index: ").append(animationIndex).toString(), this, commonStrings.PROCESS, new Exception());
 //                        }
                         
                         gdGameLayer.gdObject.animation = animationIndex;

@@ -152,6 +152,7 @@ Created By: Travis Berthelot
                             return instance;
                         }
 
+                        protected final LogUtil logUtil = LogUtil.getInstance();
                         private final CommonStrings commonStrings = CommonStrings.getInstance();                        
 
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
@@ -166,7 +167,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.CONSTRUCTOR));
+                            logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
                     
                                     <xsl:call-template name="scale" >
                                         <xsl:with-param name="layoutIndex" >
@@ -207,10 +208,10 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     //actionLayout - //eventsCreateAssignGDObjectGDNodesAction - END                    
                     
-                            LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
+                            logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 
                         } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
+                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
                         }
 
                     }
@@ -234,31 +235,31 @@ Created By: Travis Berthelot
 
                     public float RandomFloatInRange(final double min, final double max) {
                         final double next = (max - min);
-                        //LogUtil.put(LogFactory.getInstance("NEXT: " + next, this, commonStrings.PROCESS));
+                        //logUtil.put("NEXT: " + next, this, commonStrings.PROCESS);
                         final float nextF = (float) next * 1000;
-                        //LogUtil.put(LogFactory.getInstance("NEXTF: " + nextF, this, commonStrings.PROCESS));
+                        //logUtil.put("NEXTF: " + nextF, this, commonStrings.PROCESS);
                         final int nextI = Math.round(nextF);
-                        //LogUtil.put(LogFactory.getInstance("NEXTI: " + nextI, this, commonStrings.PROCESS));
+                        //logUtil.put("NEXTI: " + nextI, this, commonStrings.PROCESS);
                         final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
-                        //LogUtil.put(LogFactory.getInstance("RANDOM: " + random, this, commonStrings.PROCESS));
+                        //logUtil.put("RANDOM: " + random, this, commonStrings.PROCESS);
                         final float randomF = (float) random;
-                        //LogUtil.put(LogFactory.getInstance("RANDOMF: " + randomF, this, commonStrings.PROCESS));
+                        //logUtil.put("RANDOMF: " + randomF, this, commonStrings.PROCESS);
                         final float result = (float) min + (randomF / 1000);
-                        //LogUtil.put(LogFactory.getInstance("RESULT: " + result, this, commonStrings.PROCESS));
+                        //logUtil.put("RESULT: " + result, this, commonStrings.PROCESS);
                         return result;
                     }
                     
                     public float RandomFloatInRange(final float min, final float max) {
                         final float nextF = (float) (max - min) * 1000;
-                        //LogUtil.put(LogFactory.getInstance("NEXTF: " + nextF, this, commonStrings.PROCESS));
+                        //logUtil.put("NEXTF: " + nextF, this, commonStrings.PROCESS);
                         final int nextI = Math.round(nextF);
-                        //LogUtil.put(LogFactory.getInstance("NEXTI: " + nextI, this, commonStrings.PROCESS));
+                        //logUtil.put("NEXTI: " + nextI, this, commonStrings.PROCESS);
                         final int random = MyRandomFactory.getInstance().getAbsoluteNextInt(nextI);
-                        //LogUtil.put(LogFactory.getInstance("RANDOM: " + random, this, commonStrings.PROCESS));
+                        //logUtil.put("RANDOM: " + random, this, commonStrings.PROCESS);
                         final float randomF = (float) random;
-                        //LogUtil.put(LogFactory.getInstance("RANDOMF: " + randomF, this, commonStrings.PROCESS));
+                        //logUtil.put("RANDOMF: " + randomF, this, commonStrings.PROCESS);
                         final float result = (float) min + (randomF / 1000);
-                        //LogUtil.put(LogFactory.getInstance("RESULT: " + result, this, commonStrings.PROCESS));
+                        //logUtil.put("RESULT: " + result, this, commonStrings.PROCESS);
                         return result;
                     }
 

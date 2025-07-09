@@ -51,7 +51,7 @@ public class GDToAndroidRClassGenerator
     public void processResource(final String fileAsString) {
         
         if(fileAsString.compareTo(BLANK) == 0) {
-            LogUtil.put(LogFactory.getInstance(SKIPPING + fileAsString, this, commonStrings.PROCESS));
+            logUtil.put(SKIPPING + fileAsString, this, commonStrings.PROCESS);
             return;
         }
         
@@ -92,7 +92,7 @@ public class GDToAndroidRClassGenerator
         final Replace replace = new Replace(GD_KEY, androidRFileStringMaker.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + R, this, commonStrings.PROCESS));
+        logUtil.put(this.gdToolStrings.FILENAME + R, this, commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(R, newFileAsString);        
     }

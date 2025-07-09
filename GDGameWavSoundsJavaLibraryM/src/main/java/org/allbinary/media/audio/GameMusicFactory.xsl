@@ -76,6 +76,7 @@ Created By: Travis Berthelot
                         return instance;
                     }
 
+                    private final LogUtil logUtil = LogUtil.getInstance();
                     private final CommonStrings commonStrings = CommonStrings.getInstance();
 
                     public final BasicArrayList soundList = new BasicArrayList();
@@ -84,7 +85,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
+                            logUtil.put(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
 
 <!--
                     <xsl:call-template name="playsound" >
@@ -113,7 +114,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                         } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
+                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
                         }
 
                     }

@@ -41,6 +41,6 @@ public class GDResourceFolder
         }
         
         final CommonStrings commonStrings = CommonStrings.getInstance();
-        LogUtil.put(LogFactory.getInstance(RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR));
+        logUtil.put(RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR);
     }
 }

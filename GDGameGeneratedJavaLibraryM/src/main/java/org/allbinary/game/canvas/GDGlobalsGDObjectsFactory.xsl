@@ -88,6 +88,7 @@ Created By: Travis Berthelot
                         return instance;
                     }
 
+                    protected final LogUtil logUtil = LogUtil.getInstance();
                     private final StringUtil stringUtil = StringUtil.getInstance();
                     
                     private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();

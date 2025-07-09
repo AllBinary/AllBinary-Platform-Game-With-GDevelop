@@ -30,7 +30,7 @@ public class GDPoint
         
         this.name = jsonObject.getString(projectStrings.NAME);
         
-        //LogUtil.put(LogFactory.getInstance(jsonObject.toString(3), this, "GDPoint"));
+        //logUtil.put(jsonObject.toString(3), this, "GDPoint");
         
         if(jsonObject.has(projectStrings.AUTOMATIC)) {
             this.automatic = jsonObject.getBoolean(projectStrings.AUTOMATIC);

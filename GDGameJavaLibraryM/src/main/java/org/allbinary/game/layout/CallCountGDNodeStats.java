@@ -68,7 +68,7 @@ public class CallCountGDNodeStats {
         stringBuilder.append('\n');
         
         if(stringBuilder.length() > TOTAL_CALLS.length() + 1) {
-            LogUtil.put(LogFactory.getInstance(stringBuilder.toString(), this, commonStrings.PROCESS));
+            logUtil.put(stringBuilder.toString(), this, commonStrings.PROCESS);
         }
         
     }

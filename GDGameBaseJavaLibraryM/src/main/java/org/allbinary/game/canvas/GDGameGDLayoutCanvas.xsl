@@ -124,6 +124,7 @@ import org.allbinary.logic.system.security.licensing.AbeClientInformationInterfa
             <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
 public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCanvas //AllBinaryGameCanvas
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
     private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
     private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
     private final ImageCache imageCache = ImageCacheFactory.getInstance();
@@ -310,7 +311,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
     public void mediaInit() throws Exception
     {
-        LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "mediaInit"));
+        logUtil.put(commonStrings.START, this, "mediaInit");
         AllBinaryMediaManager.init(GDGameSoundsFactory.getInstance());
     }
 
@@ -371,7 +372,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "initConfigurable", e));
+            logUtil.put(commonStrings.EXCEPTION, this, "initConfigurable", e);
         }
     }
 
@@ -379,7 +380,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     {
         try
         {
-            //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "threadInit"));
+            //logUtil.put(commonStrings.START, this, "threadInit");
 
             final int portion = 60;
             super.init(this.abeClientInformation);
@@ -448,13 +449,13 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "_init", e));
+            logUtil.put(commonStrings.EXCEPTION, this, "_init", e);
         }
     }
 
     public void buildGame(boolean isProgress) throws Exception
     {
-        //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "buildGame"));
+        //logUtil.put(commonStrings.START, this, "buildGame");
     
         this.specialAnimation = GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance(this, gameLayerManager);
         this.setPlayingGameState();
@@ -599,7 +600,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         //if (this.isFirst)
         //{
             //this.isFirst = false;
-            //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, DRAW));
+            //logUtil.put(commonStrings.START, this, DRAW);
         //}
 
         this.clear(graphics);
@@ -814,20 +815,20 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             }
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, SET_RUNNING, e));
+            logUtil.put(commonStrings.EXCEPTION, this, SET_RUNNING, e);
         }        
     }
 
     //Special end2 case for GDevelop
     public void end2() {
 //        try {
-//            LogUtil.put(LogFactory.getInstance(this.commonStrings.END, this, this.commonStrings.END));
+//            logUtil.put(this.commonStrings.END, this, this.commonStrings.END);
 //            this.cleanupGame();
 //            this.specialAnimation = SpecialAnimation.getInstance();
 //            this.setGameSpecificPaintable(NullPaintable.getInstance());
 //        } catch (Exception e)
 //        {
-//            LogUtil.put(LogFactory.getInstance(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e));
+//            logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e);
 //        }
     }
 
@@ -840,10 +841,10 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             this.specialAnimation.reset();
             //GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance().clear();
             GDGameGlobals.getInstance().reset();
-            LogUtil.put(LogFactory.getInstance(this.commonStrings.END, this, this.commonStrings.END));
+            logUtil.put(this.commonStrings.END, this, this.commonStrings.END);
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e));
+            logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e);
         }
     }
 

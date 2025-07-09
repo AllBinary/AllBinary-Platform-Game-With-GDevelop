@@ -90,6 +90,8 @@ public class GDGameMIDlet extends
    SpecialDemoGameMidlet
    //DemoGameMidlet
 {
+
+   protected final LogUtil logUtil = LogUtil.getInstance();
    private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
    private final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
 
@@ -154,7 +156,7 @@ public class GDGameMIDlet extends
 
     public synchronized void set<xsl:value-of select="$name" />RunnableInterface() throws Exception
     {
-        LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "set<xsl:value-of select="$name" />"));
+        logUtil.put(commonStrings.START, this, "set<xsl:value-of select="$name" />");
 
         ////TWB - Loading Feature Change - Can remove remark after testing
         ProgressCanvasFactory.getInstance().start();
@@ -193,7 +195,7 @@ public class GDGameMIDlet extends
 
     public synchronized void set<xsl:value-of select="$name" />RunnableInterface() throws Exception
     {
-        LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "set<xsl:value-of select="$name" />"));
+        logUtil.put(commonStrings.START, this, "set<xsl:value-of select="$name" />");
 
         ////TWB - Loading Feature Change - Can remove remark after testing
         ProgressCanvasFactory.getInstance().start();
@@ -247,21 +249,21 @@ public class GDGameMIDlet extends
    {
         //PreLogUtil.put(commonStrings.START, this, "mediaShutdown - postStopGameCanvasRunnableInterface");
 
-        LogUtil.put(LogFactory.getInstance(commonStrings.START, this,
-                "mediaShutdown - postStopGameCanvasRunnableInterface"));
+        logUtil.put(commonStrings.START, this,
+                "mediaShutdown - postStopGameCanvasRunnableInterface");
 
         AllBinaryMediaManagerShutdown.shutdown(EarlySoundsFactory.getInstance());
         AllBinaryMediaManagerShutdown.shutdown(GDGameSoundsFactory.getInstance());
 
-        LogUtil.put(LogFactory.getInstance(commonStrings.END, this,
-                "mediaShutdown - postStopGameCanvasRunnableInterface"));
+        logUtil.put(commonStrings.END, this,
+                "mediaShutdown - postStopGameCanvasRunnableInterface");
    }
 
 //    public synchronized void setDemo() throws Exception
 //    {
         <!--
         <xsl:if test="$totalLayouts > 1" >
-        LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "setDemo"));
+        logUtil.put(commonStrings.START, this, "setDemo");
 
         ProgressCanvasFactory.getInstance().start();
 
@@ -283,14 +285,14 @@ public class GDGameMIDlet extends
     protected void setDisplay(final Displayable newDisplay)
     {
         gameGlobalsFactory.newDisplaybleTime = System.currentTimeMillis();
-        //LogUtil.put(LogFactory.getInstance("newDisplaybleTime: " + gameGlobalsFactory.newDisplaybleTime, this, "setDisplay"));
+        //logUtil.put("newDisplaybleTime: " + gameGlobalsFactory.newDisplaybleTime, this, "setDisplay");
         super.setDisplay(newDisplay);
     }
 
     //private final String NEW_CANVAS = commonStrings.START + "newCanvas";
     public void startGameCanvasRunnableInterface() throws Exception {
     
-        //LogUtil.put(LogFactory.getInstance(NEW_CANVAS, this, "startGameCanvasRunnableInterface"));
+        //logUtil.put(NEW_CANVAS, this, "startGameCanvasRunnableInterface");
 
         gameGlobalsFactory.newCanvas = true;
         super.startGameCanvasRunnableInterface();
@@ -330,7 +332,7 @@ public class GDGameMIDlet extends
                 }
                 else
                 {
-                    LogUtil.put(LogFactory.getInstance("Starting Game Too Often", this, MidletStrings.getInstance().COMMAND_ACTION));
+                    logUtil.put("Starting Game Too Often", this, MidletStrings.getInstance().COMMAND_ACTION);
                 }
            
        </xsl:for-each>                
@@ -341,7 +343,7 @@ public class GDGameMIDlet extends
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, MidletStrings.getInstance().COMMAND_ACTION, e));
+            logUtil.put(commonStrings.EXCEPTION, this, MidletStrings.getInstance().COMMAND_ACTION, e);
             if (command != GameCommandsFactory.getInstance().EXIT_COMMAND)
             {
                 this.exit(false);

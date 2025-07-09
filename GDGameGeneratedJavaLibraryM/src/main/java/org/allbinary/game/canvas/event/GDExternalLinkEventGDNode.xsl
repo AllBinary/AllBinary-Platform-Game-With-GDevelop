@@ -32,7 +32,7 @@ Created By: Travis Berthelot
                                 @Override
                                 public boolean process() throws Exception {
                             
-                                    //LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                    //logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                                     <xsl:for-each select="events" >
                                         

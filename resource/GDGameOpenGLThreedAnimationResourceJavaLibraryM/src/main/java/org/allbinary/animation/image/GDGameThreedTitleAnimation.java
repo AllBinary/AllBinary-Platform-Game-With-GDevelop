@@ -51,7 +51,7 @@ implements ColorChangeListener
     {
         super(animationInterfaceArray, basicColorArray, dxArray, dyArray, y, width);
         
-        LogUtil.put(LogFactory.getInstance("Constructor", this, this.getClass().getName()));
+        logUtil.put("Constructor", this, this.getClass().getName());
         
         //testGameDemoSceneController = (GDGameSceneController) 
             //GDGameAllBinarySceneControllerFactory.getInstance();
@@ -60,7 +60,7 @@ implements ColorChangeListener
     public void onEvent(AllBinaryEventObject eventObject)
     {
         BasicColor basicColor = ((ColorChangeEvent) eventObject).getBasicColor(); 
-        //LogUtil.put(LogFactory.getInstance("Color Change Event: " + basicColor.getName(), this, "onEvent"));
+        //logUtil.put("Color Change Event: " + basicColor.getName(), this, "onEvent");
         this.color = basicColor.intValue();
     }
     
@@ -87,7 +87,7 @@ implements ColorChangeListener
             {
                 this.basicSetColorUtil.setBasicColor(graphics, this.basicColorArray[index]);
             }
-            //LogUtil.put(LogFactory.getInstance("deltaX: " + deltaX + " " + x, this, "paint"));
+            //logUtil.put("deltaX: " + deltaX + " " + x, this, "paint");
             this.animationInterfaceArray[index].paint(graphics, deltaX, deltaY);
         }
     }
@@ -125,7 +125,7 @@ implements ColorChangeListener
             //{
               //  this.basicColorUtil.setBasicColor(graphics, this.basicColorArray[index]);
             //}
-            //LogUtil.put(LogFactory.getInstance("deltaX: " + deltaX + " " + x, this, "paint"));
+            //logUtil.put("deltaX: " + deltaX + " " + x, this, "paint");
 
             //this.animationInterfaceArray[index].paintThreed(graphics, deltaX, deltaY, 30);
 

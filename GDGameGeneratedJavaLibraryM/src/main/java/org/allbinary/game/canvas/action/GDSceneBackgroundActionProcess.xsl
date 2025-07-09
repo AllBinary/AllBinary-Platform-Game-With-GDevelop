@@ -32,7 +32,7 @@ Created By: Travis Berthelot
                         @Override
                         public boolean process() throws Exception {
 
-                            LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                             final BasicColor backgroundBasicColor = smallBasicColorCacheFactory.getInstance(
                                 basicColorUtil.get(255,

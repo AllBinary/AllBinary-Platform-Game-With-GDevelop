@@ -47,59 +47,59 @@ public class GDGameInputProcessor {
     public void process(final AllBinaryLayerManager allbinaryLayerManager, final Animation specialAnimation) throws Exception {
 
         if(specialAnimation == SpecialAnimation.getInstance()) {
-            //LogUtil.put(LogFactory.getInstance("Animation is SpecialAnimation", this, gameInputStrings.PROCESS_INPUT));
+            //logUtil.put("Animation is SpecialAnimation", this, gameInputStrings.PROCESS_INPUT);
             return;
         }
         
 //        if(allbinaryLayerManager == null) {
-//            LogUtil.put(LogFactory.getInstance("TWB allbinaryLayerManager is null", this, gameInputStrings.PROCESS_INPUT));
+//            logUtil.put("TWB allbinaryLayerManager is null", this, gameInputStrings.PROCESS_INPUT);
 //            return;
 //        }
 //
 //        if(specialAnimation == null) {
-//            LogUtil.put(LogFactory.getInstance("TWB specialAnimation is null", this, gameInputStrings.PROCESS_INPUT));
+//            logUtil.put("TWB specialAnimation is null", this, gameInputStrings.PROCESS_INPUT);
 //            return;
 //        }
         
         final GDSceneGlobals globals = ((GDSpecialAnimation) specialAnimation).getGlobals();
 
 //        if(globals == null) {
-//            LogUtil.put(LogFactory.getInstance("TWB globals is null", this, gameInputStrings.PROCESS_INPUT));
+//            logUtil.put("TWB globals is null", this, gameInputStrings.PROCESS_INPUT);
 //            return;
 //        }
         
         GameKeyEvent gameKeyEvent;
         
         final int size = gameKeyEventList.size();
-        //LogUtil.put(LogFactory.getInstance("size: " + size, this, gameInputStrings.PROCESS_INPUT));
+        //logUtil.put("size: " + size, this, gameInputStrings.PROCESS_INPUT);
         for(int index = 0; index < size; index++) {
             gameKeyEvent = (GameKeyEvent) gameKeyEventList.get(index);
-            //LogUtil.put(LogFactory.getInstance("press key: " + gameKeyEvent.getKey(), this, gameInputStrings.PROCESS_INPUT));
+            //logUtil.put("press key: " + gameKeyEvent.getKey(), this, gameInputStrings.PROCESS_INPUT);
             globals.inputProcessorArray[gameKeyEvent.getKey()].process(allbinaryLayerManager, gameKeyEvent);
         }
 
         final int size2 = removalGameKeyEventList.size();
-        //LogUtil.put(LogFactory.getInstance("size: " + size, this, gameInputStrings.PROCESS_INPUT));
+        //logUtil.put("size: " + size, this, gameInputStrings.PROCESS_INPUT);
         for(int index = 0; index < size2; index++) {
             gameKeyEvent = (GameKeyEvent) removalGameKeyEventList.get(index);
-            //LogUtil.put(LogFactory.getInstance("release key: " + gameKeyEvent.getKey(), this, gameInputStrings.PROCESS_INPUT));
+            //logUtil.put("release key: " + gameKeyEvent.getKey(), this, gameInputStrings.PROCESS_INPUT);
             globals.inputProcessorArray[gameKeyEvent.getKey()].processReleased(allbinaryLayerManager, gameKeyEvent);
         }
 
         Integer keyAsInteger;
         final int size3 = keyEventList.size();
-        //LogUtil.put(LogFactory.getInstance("size: " + size, this, gameInputStrings.PROCESS_INPUT));
+        //logUtil.put("size: " + size, this, gameInputStrings.PROCESS_INPUT);
         for(int index = 0; index < size3; index++) {
             keyAsInteger = (Integer) keyEventList.get(index);
-            //LogUtil.put(LogFactory.getInstance("press key: " + gameKeyEvent.getKey(), this, gameInputStrings.PROCESS_INPUT));
+            //logUtil.put("press key: " + gameKeyEvent.getKey(), this, gameInputStrings.PROCESS_INPUT);
             globals.unmappedInputProcessorArray[keyAsInteger.intValue()].process(allbinaryLayerManager, keyAsInteger);
         }
 
         final int size4 = removalKeyEventList.size();
-        //LogUtil.put(LogFactory.getInstance("size: " + size, this, gameInputStrings.PROCESS_INPUT));
+        //logUtil.put("size: " + size, this, gameInputStrings.PROCESS_INPUT);
         for(int index = 0; index < size4; index++) {
             keyAsInteger = (Integer) removalKeyEventList.get(index);
-            //LogUtil.put(LogFactory.getInstance("release key: " + gameKeyEvent.getKey(), this, gameInputStrings.PROCESS_INPUT));
+            //logUtil.put("release key: " + gameKeyEvent.getKey(), this, gameInputStrings.PROCESS_INPUT);
             globals.unmappedInputProcessorArray[keyAsInteger.intValue()].processReleased(allbinaryLayerManager, keyAsInteger);
         }
         
@@ -114,7 +114,7 @@ public class GDGameInputProcessor {
             this.playerGameInput.update();
             //this.playerGameInput.clear();
             //final int size = gameKeyEventList.size();
-            //LogUtil.put(LogFactory.getInstance("size: " + size, this, gameInputStrings.PROCESS_INPUT));
+            //logUtil.put("size: " + size, this, gameInputStrings.PROCESS_INPUT);
 
 //            if (isSingleKeyProcessing)
 //            {
@@ -129,7 +129,7 @@ public class GDGameInputProcessor {
         catch (Exception e)
         {
             final CommonStrings commonStrings = CommonStrings.getInstance();
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, gameInputStrings.PROCESS_INPUT));
+            logUtil.put(commonStrings.EXCEPTION, this, gameInputStrings.PROCESS_INPUT);
         }
     }
 

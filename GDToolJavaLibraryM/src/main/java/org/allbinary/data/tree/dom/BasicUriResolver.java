@@ -59,7 +59,7 @@ public class BasicUriResolver implements URIResolver
                 stringBuffer.append(abPath.toString());
                 stringBuffer.append(" is a urlglobal");
 
-                LogUtil.put(LogFactory.getInstance(stringBuffer.toString(), this, "resolve"));
+                logUtil.put(stringBuffer.toString(), this, "resolve");
             //}
 
             return null;

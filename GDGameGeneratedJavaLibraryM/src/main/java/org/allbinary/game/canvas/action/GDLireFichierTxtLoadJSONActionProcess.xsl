@@ -34,13 +34,13 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
                         
-                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                             final JSONPersistance jsonPersistance = new JSONPersistance(RECORD_ID);
                             jsonPersistance.loadAll(abeClientInformation);
                             
                             final String jsonAsString = jsonPersistance.getJSONAsString();
-                            //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + jsonAsString, this, commonStrings.PROCESS));
+                            //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + jsonAsString, this, commonStrings.PROCESS);
                             if(jsonAsString != null) {
                             
                                 final JSONTokener jsonTokener = new JSONTokener(jsonAsString);
@@ -48,15 +48,15 @@ Created By: Travis Berthelot
                             
                                 if(jsonObject.has(SECOND_PARAM)) {
                                     globals.<xsl:value-of select="$param4" /> = jsonObject.getString(SECOND_PARAM);
-                                    LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + globals.<xsl:value-of select="$param4" />, this, commonStrings.PROCESS));
+                                    logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + globals.<xsl:value-of select="$param4" />, this, commonStrings.PROCESS);
                                 } else {
-                                    LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "missing", this, commonStrings.PROCESS));
+                                    logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "missing", this, commonStrings.PROCESS);
                                     //globals.<xsl:value-of select="$param4" /> = CommonPhoneStrings.getInstance().ZERO;
                                     throw new RuntimeException();
                                 }
 
                             } else {
-                                LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + stringUtil.NULL_STRING, this, commonStrings.PROCESS));
+                                logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + stringUtil.NULL_STRING, this, commonStrings.PROCESS);
                             }
 
                             return true;

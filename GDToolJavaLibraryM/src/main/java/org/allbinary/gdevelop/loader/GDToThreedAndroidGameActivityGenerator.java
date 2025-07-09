@@ -54,7 +54,7 @@ public class GDToThreedAndroidGameActivityGenerator extends GDNameGenerator
         final Replace replace = new Replace(GD_KEY, name);
         final String newFileAsString = replace.all(androidRFileAsString);
 
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + R, this, commonStrings.PROCESS));
+        logUtil.put(this.gdToolStrings.FILENAME + R, this, commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(R, newFileAsString);        
     }

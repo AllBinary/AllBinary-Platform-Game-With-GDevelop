@@ -51,7 +51,7 @@ public class GDFlagLayerInterfaceFactory
     public AllBinaryLayer getInstance(final Hashtable hashtable, final int x, final int y, final int z)
         throws Exception
     {
-        //LogUtil.put(LogFactory.getInstance(LayerUtil.toString(hashtable, x, y, z), this, commonStrings.GET_INSTANCE));
+        //logUtil.put(LayerUtil.toString(hashtable, x, y, z), this, commonStrings.GET_INSTANCE);
 
         //final FeaturedAnimationInterfaceFactoryInterfaceFactory 
         //featuredAnimationInterfaceFactoryInterfaceFactory = 

@@ -131,6 +131,7 @@ Created By: Travis Berthelot
                             return instance;
                         }
 
+                        protected final LogUtil logUtil = LogUtil.getInstance();
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final PointFactory pointFactory = PointFactory.getInstance();
@@ -159,7 +160,7 @@ Created By: Travis Berthelot
 
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimation() {
 
-                        LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.CONSTRUCTOR));
+                        logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
                     
                         <xsl:call-template name="scale" >
                             <xsl:with-param name="layoutIndex" >
@@ -179,7 +180,7 @@ Created By: Travis Berthelot
 <!--                        try {
 
                         } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
+                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
                         }-->
 
                         //allBinaryGameLayerManager.log();
@@ -187,7 +188,7 @@ Created By: Travis Berthelot
                         
                         gdNodeStatsFactory.log(stringBuilder, this);
                         
-                        LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
+                        logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
                     }
 
                     public void process() {
@@ -278,9 +279,9 @@ Created By: Travis Berthelot
                            <xsl:for-each select="behaviors" >
                                //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
                                <xsl:if test="type = 'DestroyOutsideBehavior::DestroyOutside'" >
-                               //LogUtil.put(LogFactory.getInstance("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: check", this, commonStrings.PROCESS));
+                               //logUtil.put("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: check", this, commonStrings.PROCESS);
                                if(globals.destroyOutsideBehavior.process(globals.<xsl:value-of select="$objectName" />GDGameLayerList, index, globals.graphics)) {
-                                   //LogUtil.put(LogFactory.getInstance("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: remove", this, commonStrings.PROCESS));
+                                   //logUtil.put("Behavior objectName=<xsl:value-of select="$objectName" /> name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />: remove", this, commonStrings.PROCESS);
                                    removeList.add(globals.<xsl:value-of select="$objectName" />GDGameLayerList.get(index));
                                }
                                </xsl:if>
@@ -292,7 +293,7 @@ Created By: Travis Berthelot
                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                                gdGameLayer = (GDGameLayer) removeList.get(index);
                                gdGameLayer.setDestroyed(true);
-                               //LogUtil.put(LogFactory.getInstance("Behavior objectName=<xsl:value-of select="name" /> size=<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList size: " + <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size(), this, commonStrings.PROCESS));
+                               //logUtil.put("Behavior objectName=<xsl:value-of select="name" /> size=<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList size: " + <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size(), this, commonStrings.PROCESS);
                            }
 
                         </xsl:if>
@@ -314,7 +315,7 @@ Created By: Travis Berthelot
                         globals.globalsGameTickTimeDelayHelper.lastStartTime = gameTickTimeDelayHelper.startTime;
                     
                         } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
+                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e);
                         }
                         
                     }
@@ -380,7 +381,7 @@ Created By: Travis Berthelot
 
                     public void open() {
                     
-                        //LogUtil.put(LogFactory.getInstance("scene - open", this, commonStrings.PROCESS));
+                        //logUtil.put("scene - open", this, commonStrings.PROCESS);
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                     <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
@@ -401,7 +402,7 @@ Created By: Travis Berthelot
 
                     public void close() {
                     
-                        //LogUtil.put(LogFactory.getInstance("scene - close", this, commonStrings.PROCESS));
+                        //logUtil.put("scene - close", this, commonStrings.PROCESS);
 
                         GDFormInputProcessor.getInstance().close();
 
@@ -430,12 +431,12 @@ Created By: Travis Berthelot
                     public void reinitInstances() throws Exception {
                     
                         if(!clear) {
-                            //LogUtil.put(LogFactory.getInstance("scene - reinitInstances - duplicate", this, commonStrings.PROCESS));
+                            //logUtil.put("scene - reinitInstances - duplicate", this, commonStrings.PROCESS);
                             //throw new RuntimeException();
                             return;
                         }
                     
-                        //LogUtil.put(LogFactory.getInstance("scene - reinitInstances", this, commonStrings.PROCESS));
+                        //logUtil.put("scene - reinitInstances", this, commonStrings.PROCESS);
 
                     this.globals.reset();
 
@@ -455,7 +456,7 @@ Created By: Travis Berthelot
                         
                         <xsl:if test="not(contains($hasHighscoreSubmissionComplete, 'found'))" >
                         //This layout should not be the highscore layout
-                        LogUtil.put(LogFactory.getInstance("This layout should not be the highscore layout", this, commonStrings.PROCESS));
+                        logUtil.put("This layout should not be the highscore layout", this, commonStrings.PROCESS);
                         globals.highscoreSubmissionComplete = false;
                         </xsl:if>
 
@@ -464,7 +465,7 @@ Created By: Travis Berthelot
                     
                     public void reset() {
 
-                        //LogUtil.put(LogFactory.getInstance("scene - clear", this, commonStrings.PROCESS));
+                        //logUtil.put("scene - clear", this, commonStrings.PROCESS);
 
                         clear = true;
 

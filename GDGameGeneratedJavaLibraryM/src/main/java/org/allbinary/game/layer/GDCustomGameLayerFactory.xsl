@@ -86,20 +86,20 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
     public GDGameLayer create(final int layoutIndex, final String name, final GDObject gdObject, final float scaleX, final float scaleY, final GDConditionWithGroupActions collidableBehavior) throws Exception {
         
         if(!name.startsWith(gdObject.name)) {
-            LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" 0GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").append(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(StringUtil.getInstance().toString(this.animationInterfaceFactoryInterfaceArray[0])).toString(), this, "create", new Exception()));
+            logUtil.put(new StringMaker().append(name).append(" 0GDObject name: ").append(gdObject.name).append(" animationInterfaceFactoryInterfaceArray size: ").append(this.animationInterfaceFactoryInterfaceArray.length).append(" animationInterfaceFactoryInterfaceArray[0]: ").append(StringUtil.getInstance().toString(this.animationInterfaceFactoryInterfaceArray[0])).toString(), this, "create", new Exception());
         }
 
         final int gdObjectWidth = gdObject.Width(null);
         final int gdObjectHeight = gdObject.Height(null);
-        ////LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" 1GDObject name: ").append(gdObject.name).append(" gdObjectWidth: ").append(gdObjectWidth).append("gdObjectHeight: ").append(gdObjectHeight).append(" this.width: ").append(this.width).append(" this.height: ").append(this.height).toString(), this, "create"));
+        ////logUtil.put(new StringMaker().append(name).append(" 1GDObject name: ").append(gdObject.name).append(" gdObjectWidth: ").append(gdObjectWidth).append("gdObjectHeight: ").append(gdObjectHeight).append(" this.width: ").append(this.width).append(" this.height: ").append(this.height).toString(), this, "create");
         if(gdObjectWidth != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> gdObjectHeight != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> (this.width != gdObjectWidth || this.height != gdObjectHeight)) {
             this.layerInfo.setWidth(gdObjectWidth);
             this.layerInfo.setHeight(gdObjectHeight);
-            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" 2GDObject name: ").append(gdObject.name).append(' ').append(this.layerInfo).toString(), this, "create"));
+            //logUtil.put(new StringMaker().append(name).append(" 2GDObject name: ").append(gdObject.name).append(' ').append(this.layerInfo).toString(), this, "create");
         } else {
             this.layerInfo.setWidth(this.width);
             this.layerInfo.setHeight(this.height);
-            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" 3GDObject name: ").append(gdObject.name).append(' ').append(this.layerInfo).toString(), this, "create"));
+            //logUtil.put(new StringMaker().append(name).append(" 3GDObject name: ").append(gdObject.name).append(' ').append(this.layerInfo).toString(), this, "create");
         }
 
         final Rectangle rectangle = this.init(gdObject, scaleX, scaleY);
@@ -126,7 +126,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             gameLayer.setCollidableInferface(new GDCustomCollidableBehavior(gameLayer, collidableBehavior, true));
         }
 
-        //LogUtil.put(LogFactory.getInstance(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" w/h/d: ").append(gameLayer.getWidth()).append('/').append(gameLayer.getHeight()).append('/').append(gameLayer.getDepth()).toString(), this, "create"));
+        //logUtil.put(new StringMaker().append(name).append(" GDObject name: ").append(gdObject.name).append(" w/h/d: ").append(gameLayer.getWidth()).append('/').append(gameLayer.getHeight()).append('/').append(gameLayer.getDepth()).toString(), this, "create");
         
         return gameLayer;
     }

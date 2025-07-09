@@ -136,7 +136,7 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
         for(int index = 0; index < size; index++) {
             tile = (Tile) tileList.get(index);
             animationTileIndex =  tiledLayer.createAnimatedTile(tile.getId());
-            LogUtil.put(LogFactory.getInstance(CREATING_ANIMATION_TILE + animationTileIndex, this, commonStrings.PROCESS));
+            logUtil.put(CREATING_ANIMATION_TILE + animationTileIndex, this, commonStrings.PROCESS);
             this.animationArray[index] = animation = tile.getAnimation();
             this.animationTileIndexArray[index] = animationTileIndex;
             allBinaryJ2METiledLayer.updateCells(((TileLayer) map.getLayer(0)).getMapArray(), ((Frame) animation.getFrame().get(0)).getTileid(), animationTileIndex);
@@ -162,7 +162,7 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
             frame = (Frame) animation.getFrame().get(this.currentFrameArray[index]);
 
             if (startTime - this.startTimeFrameArray[index] > frame.getDuration()) {
-                //LogUtil.put(LogFactory.getInstance(new StringMaker().append("AnimationTile: ").append(this.animationTileIndexArray[index]).append(":").append(frame.getTileid()).toString(), this, commonStrings.PROCESS));
+                //logUtil.put(new StringMaker().append("AnimationTile: ").append(this.animationTileIndexArray[index]).append(":").append(frame.getTileid()).toString(), this, commonStrings.PROCESS);
                 this.startTimeFrameArray[index] = startTime;
                 tiledLayer.setAnimatedTile(this.animationTileIndexArray[index], frame.getTileid());
 
@@ -179,7 +179,7 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
     public void reset() {
         final AllBinaryTiledLayer allBinaryTiledLayer = this.getAllBinaryTiledLayer();
         final int lastHeight = GameTickDisplayInfoSingleton.getInstance().getLastHeight();
-        //LogUtil.put(LogFactory.getInstance("GameTickDisplayInfoSingleton lastHeight: " + lastHeight, this, "reset"));
+        //logUtil.put("GameTickDisplayInfoSingleton lastHeight: " + lastHeight, this, "reset");
         final int y = -lastHeight + allBinaryTiledLayer.getHeight();
         allBinaryTiledLayer.setPosition(0, -y, allBinaryTiledLayer.getZ());
     }

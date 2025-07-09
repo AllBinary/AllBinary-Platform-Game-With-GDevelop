@@ -32,7 +32,7 @@ public class GDDirection
         this.looping = jsonObject.getBoolean(projectStrings.LOOPING);
         this.timeBetweenFrames = jsonObject.getInt(projectStrings.TIME_BETWEEN_FRAMES);
         
-        //LogUtil.put(LogFactory.getInstance(jsonObject.toString(3), this, "GDirection"));
+        //logUtil.put(jsonObject.toString(3), this, "GDirection");
         
         final JSONArray jsonArray = jsonObject.getJSONArray(projectStrings.SPRITES);
         final int size = jsonArray.length();

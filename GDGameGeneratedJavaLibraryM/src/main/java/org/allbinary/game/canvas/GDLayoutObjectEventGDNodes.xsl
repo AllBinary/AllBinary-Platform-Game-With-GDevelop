@@ -99,6 +99,7 @@ Created By: Travis Berthelot
                             return instance;
                         }
 
+                        protected final LogUtil logUtil = LogUtil.getInstance();
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
@@ -115,7 +116,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.CONSTRUCTOR));
+                            logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
                     //objectEventLayout - //eventsCreateAssignGDObjectGDNodesObjectEvent - START
                     <xsl:call-template name="eventsCreateAssignGDObjectGDNodesObjectEvent" >
@@ -142,10 +143,10 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     //objectEventLayout - //eventsCreateAssignGDObjectGDNodesObjectEvent - END
 
-                            LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
+                            logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 
                         } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
+                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
                         }
 
                     }

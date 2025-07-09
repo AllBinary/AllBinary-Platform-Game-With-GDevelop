@@ -60,10 +60,10 @@ Created By: Travis Berthelot
                         </xsl:if>
 
                             if(gdGameLayerList.contains(gdGameLayer)) {
-                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + gdGameLayer, this, commonStrings.PROCESS));
+                                //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + gdGameLayer, this, commonStrings.PROCESS);
                                 gdGameLayerRemoveList.add(gdGameLayer);
                             } //else {
-                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " Already added for deletion from LayerManager: " + gdGameLayer, this, commonStrings.PROCESS));
+                                //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " Already added for deletion from LayerManager: " + gdGameLayer, this, commonStrings.PROCESS);
                             //}
                                 
                         <xsl:if test="contains($hasObjectGroup2, 'found')" >
@@ -93,7 +93,7 @@ Created By: Travis Berthelot
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                         
                                 gdGameLayer = (GDGameLayer) gdGameLayerList.get(index);
-                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + gdGameLayer, this, commonStrings.PROCESS));
+                                //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + gdGameLayer, this, commonStrings.PROCESS);
                                 gdGameLayer.setDestroyed(true);
                                 //gdGameLayerRemoveList.add(gdGameLayer);
                             
@@ -103,7 +103,7 @@ Created By: Travis Berthelot
                             }
                         </xsl:if>
                             } catch(Exception e) {
-                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                                logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                             }
                         }
 
@@ -235,7 +235,7 @@ Created By: Travis Berthelot
 
                             try {
 
-                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if></xsl:for-each>, this, commonStrings.PROCESS));
+                                //logUtil.put(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if></xsl:for-each>, this, commonStrings.PROCESS);
 
                                     //Parameters - 5
                                     <xsl:for-each select="parameters" >
@@ -254,10 +254,10 @@ Created By: Travis Berthelot
                                             //final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
                                             //if(allBinaryGameLayerManager.getLayerManager().contains(<xsl:value-of select="text()" />GDGameLayer)) {
                                                 //allBinaryGameLayerManager.remove(<xsl:value-of select="text()" />GDGameLayer);-->
-                                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + <xsl:value-of select="text()" />GDGameLayer, this, commonStrings.PROCESS));
+                                                //logUtil.put(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + <xsl:value-of select="text()" />GDGameLayer, this, commonStrings.PROCESS);
                                                 <xsl:value-of select="text()" />GDGameLayer.setDestroyed(true);
 <!--                                            //} else {
-                                                //LogUtil.put(LogFactory.getInstance(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + " LayerManager does not have (probably already removed/destroyed): " + <xsl:value-of select="text()" />GDGameLayer, this, commonStrings.PROCESS));
+                                                //logUtil.put(ACTION_AS_STRING_GD_<xsl:value-of select="$nodeId" /> + " LayerManager does not have (probably already removed/destroyed): " + <xsl:value-of select="text()" />GDGameLayer, this, commonStrings.PROCESS);
                                             //}-->
                                                         
                                         </xsl:if>
@@ -265,7 +265,7 @@ Created By: Travis Berthelot
                                     <xsl:text>&#10;</xsl:text>
 
                             } catch(Exception e) {
-                                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                                logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                             }
 
                             return true;

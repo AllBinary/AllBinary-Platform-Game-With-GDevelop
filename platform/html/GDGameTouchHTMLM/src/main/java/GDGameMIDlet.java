@@ -26,7 +26,7 @@ public class GDGameMIDlet
     {
         try
         {
-            LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.INIT));
+            logUtil.put(commonStrings.START, this, commonStrings.INIT);
 
             //ResourceUtil.setClassLoader(this.getClass().getClassLoader());
 
@@ -88,7 +88,7 @@ public class GDGameMIDlet
 
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
+            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
         }
     }
 }

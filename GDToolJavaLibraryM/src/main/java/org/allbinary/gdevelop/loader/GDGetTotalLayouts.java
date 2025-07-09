@@ -47,7 +47,7 @@ public class GDGetTotalLayouts
             final String gameXmlAsString = new String(streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
             final String xslPath = gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutCount.xsl";
-            LogUtil.put(LogFactory.getInstance(xslPath, this, commonStrings.PROCESS));
+            logUtil.put(xslPath, this, commonStrings.PROCESS);
             final FileInputStream fileInputStream = new FileInputStream(xslPath);
             sharedBytes.outputStream.reset();
             final String xslAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
@@ -58,13 +58,13 @@ public class GDGetTotalLayouts
 
             
             stringMaker.delete(0, stringMaker.length());
-            LogUtil.put(LogFactory.getInstance(stringMaker.append("result: ").append(result).toString(), this, commonStrings.PROCESS));
+            logUtil.put(stringMaker.append("result: ").append(result).toString(), this, commonStrings.PROCESS);
             
             return Integer.parseInt(result);
 
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance("Is the game xml formatted when it is not we get an error from: gglobals.dVersion", this, commonStrings.PROCESS, e));
+            logUtil.put("Is the game xml formatted when it is not we get an error from: gglobals.dVersion", this, commonStrings.PROCESS, e);
         }
 
         throw new RuntimeException();

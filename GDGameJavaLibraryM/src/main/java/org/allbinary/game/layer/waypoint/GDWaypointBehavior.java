@@ -221,13 +221,13 @@ public class GDWaypointBehavior
     {
         if (this.targetList.size() > 4)
         {
-            //LogUtil.put(LogFactory.getInstance(
+            //logUtil.put(
             //  this.getName() + " has Too Many Waypoints of: " +
-            //rtsLayer.getName(), this, "insertWaypoint"));
+            //rtsLayer.getName(), this, "insertWaypoint");
         }
         else if (this.targetList.contains(rtsLayer))
         {
-            //LogUtil.put(LogFactory.getInstance(this.getName() + " Already Contains Same Waypoint: " + rtsLayer.getName(), this, "insertWaypoint"));
+            //logUtil.put(this.getName() + " Already Contains Same Waypoint: " + rtsLayer.getName(), this, "insertWaypoint");
         }
         else
         {
@@ -416,7 +416,7 @@ public class GDWaypointBehavior
         this.currentTargetLayerInterface = currentTargetLayerInterface;
         if(this.currentTargetLayerInterface != null) {
             this.currentTargetGeographicMapCellPosition = ((PathFindingLayerInterface) this.currentTargetLayerInterface).getCurrentGeographicMapCellPosition();
-            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target? ").append(this.currentTargetGeographicMapCellPosition).append(' ').append(this.currentTargetLayerInterface).toString(), this, "updatePathOnTargetMove"));            
+            //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target? ").append(this.currentTargetGeographicMapCellPosition).append(' ').append(this.currentTargetLayerInterface).toString(), this, "updatePathOnTargetMove");            
         } else {
             this.currentTargetGeographicMapCellPosition = null;
         }

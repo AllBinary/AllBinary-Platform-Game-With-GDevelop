@@ -36,7 +36,7 @@ Created By: Travis Berthelot
                             super.processStats();
                             
                             if(true) {
-                                //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                 
 <!--                    
                                 <xsl:for-each select=".." >

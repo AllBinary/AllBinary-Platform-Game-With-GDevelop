@@ -42,7 +42,7 @@ public class CustomTextBoxIndexedAnimationFactory
 
     public CustomTextBoxIndexedAnimationFactory(final int fontSize) {
         
-        //LogUtil.put(LogFactory.getInstance(commonStrings.START + font.getSize(), this, commonStrings.CONSTRUCTOR));
+        //logUtil.put(commonStrings.START + font.getSize(), this, commonStrings.CONSTRUCTOR);
         
         this.scaleProperties = new ScaleProperties();
         this.scaleProperties.scaleHeight = fontSize;
@@ -51,7 +51,7 @@ public class CustomTextBoxIndexedAnimationFactory
     @Override
     public Animation getInstance(final int instanceId) throws Exception {
 
-        //LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.PROCESS));
+        //logUtil.put(commonStrings.START, this, commonStrings.PROCESS);
         
         final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
         final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;

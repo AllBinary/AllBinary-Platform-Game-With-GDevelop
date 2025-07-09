@@ -28,7 +28,7 @@ Created By: Travis Berthelot
                                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt; </xsl:text> <xsl:value-of select="$name" />Size2; index++) {
                                         <xsl:value-of select="$name" />GDGameLayer2 = ((GDGameLayer) gameLayerArray[index]);
                                         if(<xsl:value-of select="$name" />GDGameLayer2 != null) {
-                                            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(" GDGameLayer2 name: ").append(<xsl:value-of select="$name" />GDGameLayer2.getName()).append(" GD name: ").append(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>).toString(), this, "param"));
+                                            //logUtil.put(new StringMaker().append(" GDGameLayer2 name: ").append(<xsl:value-of select="$name" />GDGameLayer2.getName()).append(" GD name: ").append(globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>).toString(), this, "param");
                                             <xsl:variable name="hasObject" >
                                                 <xsl:for-each select="//objects" >
                                                     <xsl:if test="$name = name" >found</xsl:if>
@@ -53,12 +53,12 @@ Created By: Travis Berthelot
                                         <xsl:value-of select="$name" /> = <xsl:value-of select="$name" />GDGameLayer.gdObject;
                                         
                                         //if(!<xsl:value-of select="$name" />GDGameLayer2.getName().startsWith("<xsl:value-of select="$name" />")) {
-                                            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(<xsl:value-of select="$name" />GDGameLayer.getName()).append(" GD name: ").append("<xsl:value-of select="$name" />").toString(), this, "create", new Exception()));
+                                            //logUtil.put(new StringMaker().append(<xsl:value-of select="$name" />GDGameLayer.getName()).append(" GD name: ").append("<xsl:value-of select="$name" />").toString(), this, "create", new Exception());
                                         //}
                                         
                                     } else {
                                         //final String message = "eventsCreateProcessUsed - iteration=<xsl:value-of select="$iteration" /> - <xsl:value-of select="$name" /> warning: not initialized";
-                                        //LogUtil.put(LogFactory.getInstance(message, this, message));
+                                        //logUtil.put(message, this, message);
                                     }
 
     </xsl:template>

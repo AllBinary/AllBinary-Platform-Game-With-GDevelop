@@ -96,7 +96,7 @@ public class GDToAllBinaryCanvasGenerator extends Processor
                 new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
                 new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
 
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + CANVAS, this, commonStrings.PROCESS));
+        logUtil.put(this.gdToolStrings.FILENAME + CANVAS, this, commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(CANVAS, result);
         

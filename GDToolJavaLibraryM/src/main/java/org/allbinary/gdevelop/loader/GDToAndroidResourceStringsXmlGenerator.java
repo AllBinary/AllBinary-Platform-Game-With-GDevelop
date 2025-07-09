@@ -49,7 +49,7 @@ public class GDToAndroidResourceStringsXmlGenerator extends GDNameFileGenerator
         final Replace replace = new Replace(GD_KEY, this.name);
         final String newFileAsString = replace.all(androidRFileAsString);
         
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + this.newFilePath, this, commonStrings.PROCESS));
+        logUtil.put(this.gdToolStrings.FILENAME + this.newFilePath, this, commonStrings.PROCESS);
 
         final File directoryFile = new File(OUTPUT_PATH);
         directoryFile.mkdirs();

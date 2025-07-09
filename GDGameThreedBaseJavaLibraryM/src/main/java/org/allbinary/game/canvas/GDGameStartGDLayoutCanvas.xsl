@@ -88,7 +88,7 @@ public class <GDLayout> extends StartCanvas
 
     public void initPostPaint() throws Exception
     {
-        //LogUtil.put(LogFactory.getInstance("initPostPaint", this, "initPostPaint"));
+        //logUtil.put("initPostPaint", this, "initPostPaint");
 
         //this.setBasicGameDemoPaintable(
                 //new GDGameMenuPaintable(new FormPaintable(this.getMenuForm()))

@@ -127,8 +127,9 @@ Created By: Travis Berthelot
                         return instance;
                     }
 
-                        private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
-                        private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
+                    protected final LogUtil logUtil = LogUtil.getInstance();
+                    private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
+                    private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
                                           
                     private final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
                            
@@ -298,7 +299,7 @@ Created By: Travis Berthelot
                                      
                     private GDGameGlobals() {
                     
-                        LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.CONSTRUCTOR));
+                        logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
                         final int size = channelSoundArray.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -321,7 +322,7 @@ Created By: Travis Berthelot
 
         final CommonStrings commonStrings = CommonStrings.getInstance();
         final StringMaker stringMaker = new StringMaker();
-        LogUtil.put(LogFactory.getInstance(stringMaker.append("PlatformerMap: RandomDungeon: ").append(this.RandomDungeon).toString(), this, commonStrings.PROCESS));
+        logUtil.put(stringMaker.append("PlatformerMap: RandomDungeon: ").append(this.RandomDungeon).toString(), this, commonStrings.PROCESS);
 
                                 </xsl:if>
                             </xsl:if>
@@ -377,7 +378,7 @@ Created By: Travis Berthelot
 
                         layerManagerEventHandler.addListener(layerManagerEventListener);
                         
-                        LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
+                        logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
                     }
                     
                     public void reset() {

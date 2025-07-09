@@ -71,10 +71,10 @@ public class GDGameStart<GDLayout>CanvasRunnable implements Runnable
     {
         try
         {
-            LogUtil.put(LogFactory.getInstance(
+            logUtil.put(
                     CommonLabels.getInstance().START_LABEL +
                     "GDGameStart<GDLayout>CanvasRunnableInterface",
-                    this, commonStrings.RUN));
+                    this, commonStrings.RUN);
 
             this.demoGameMidlet.commandAction(
                     MyCommandsFactory.getInstance().SET_DISPLAYABLE,
@@ -99,11 +99,11 @@ public class GDGameStart<GDLayout>CanvasRunnable implements Runnable
 
             this.demoGameMidlet.postDemoSetup();
 
-            LogUtil.put(LogFactory.getInstance(commonStrings.END_RUNNABLE, this, commonStrings.RUN));
+            logUtil.put(commonStrings.END_RUNNABLE, this, commonStrings.RUN);
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.RUN, e));
+            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e);
         }
 
     }

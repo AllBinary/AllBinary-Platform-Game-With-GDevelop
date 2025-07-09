@@ -63,7 +63,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    LogUtil.put(LogFactory.getInstance("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT));
+                    logUtil.put("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
                 }    
                 
 <!--                <xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each>-->
@@ -239,7 +239,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    LogUtil.put(LogFactory.getInstance("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT));
+                    logUtil.put("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
                 }    
                     
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {

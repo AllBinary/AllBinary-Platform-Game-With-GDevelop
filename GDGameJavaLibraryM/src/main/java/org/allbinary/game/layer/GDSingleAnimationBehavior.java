@@ -50,8 +50,8 @@ public class GDSingleAnimationBehavior extends GDAnimationBehaviorBase {
             }
         } catch (Exception e) {
             final CommonStrings commonStrings = CommonStrings.getInstance();
-            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(" GDObject name: ").append(this.gdObject.name).toString(), this, "animate"));
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "animate", e));
+            //logUtil.put(new StringMaker().append(this.getName()).append(" GDObject name: ").append(this.gdObject.name).toString(), this, "animate");
+            logUtil.put(commonStrings.EXCEPTION, this, "animate", e);
         }
     }
 }

@@ -69,14 +69,14 @@ public class PlayerInput extends PlayerGameInput
 
         //TODO TWB - fix all null and duplicate issue for better performance
         if (this.isRemoveDuplicateKeyPresses && this.keyEventList.contains(keyInteger)) {
-            //LogUtil.put(LogFactory.getInstance("Danger Danger Danger: Duplicate GameKeyEvent", this, commonStrings.ADD));
+            //logUtil.put("Danger Danger Danger: Duplicate GameKeyEvent", this, commonStrings.ADD);
             return;
         }
 
         if (keyInteger != null) {
             this.keyEventList.add(keyInteger);
         } else {
-            LogUtil.put(LogFactory.getInstance("Danger Passed Null KeyEvent", this, commonStrings.ADD));
+            logUtil.put("Danger Passed Null KeyEvent", this, commonStrings.ADD);
         }
     }
 
@@ -118,7 +118,7 @@ public class PlayerInput extends PlayerGameInput
             Object object = removeList.objectArray[index];
             for (int index2 = list.size(); --index2 >= 0;) {
                 if (list.objectArray[index2] == object) {
-                    //LogUtil.put(LogFactory.getInstance("TWB keyup2: " + object, this, commonStrings.PROCESS));
+                    //logUtil.put("TWB keyup2: " + object, this, commonStrings.PROCESS);
                     list.remove(index2);
                 }
             }

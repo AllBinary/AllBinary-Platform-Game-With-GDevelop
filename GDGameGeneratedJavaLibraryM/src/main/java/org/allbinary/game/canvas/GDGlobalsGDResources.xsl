@@ -104,6 +104,7 @@ Created By: Travis Berthelot
                             return instance;
                         }
 
+                        protected final LogUtil logUtil = LogUtil.getInstance();
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
                         private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
@@ -145,7 +146,7 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.CONSTRUCTOR));
+                            logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
                     animationInterfaceFactoryInterfaceFactory.init(-1);
                                         
@@ -171,10 +172,10 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //objectsGroups - END
 
-                    LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
+                    logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 
                         //} catch(Exception e) {
-                            //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
+                            //logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
                         //}
 
                     }

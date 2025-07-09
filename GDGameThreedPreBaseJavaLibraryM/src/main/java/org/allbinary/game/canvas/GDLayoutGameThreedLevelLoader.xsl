@@ -115,7 +115,7 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
+                            logUtil.put(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
 
                         <xsl:if test="$layoutIndex = 0" >
                             new GDGlobalGameThreedLevelBuilder().build(gl, glInstanceVersion);
@@ -140,7 +140,7 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>                    
 
                         //} catch(Exception e) {
-                            //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
+                            //logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
                         //}
 
                     }

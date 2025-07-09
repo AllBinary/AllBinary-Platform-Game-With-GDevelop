@@ -17,11 +17,11 @@ import javax.microedition.lcdui.Graphics;
 
 import org.allbinary.animation.AnimationBehavior;
 import org.allbinary.animation.IndexedAnimation;
-import org.allbinary.animation.image.ImageBaseRotationAnimation;
 import org.allbinary.animation.text.CustomTextAnimation;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
 import org.allbinary.game.layer.SWTUtil;
+import org.allbinary.logic.communication.log.LogUtil;
 
 import org.allbinary.logic.math.PrimitiveIntUtil;
 
@@ -165,7 +165,7 @@ public class SliderAnimation
     public void setValue(final int value) {
         if(value >= 0 && value < 101) {
             this.value = value;
-            //LogUtil.put(LogFactory.getInstance("new value: " + this.value, this, "onMotionGestureEvent"));
+            //logUtil.put("new value: " + this.value, this, "onMotionGestureEvent");
             final int newDx = dx + (value * width / 100);
             this.animationInterfaceArray[3].setDx(newDx);
             
@@ -176,19 +176,19 @@ public class SliderAnimation
     }
 
     public void setValue2(final int thumbX) {
-        //LogUtil.put(LogFactory.getInstance("old thumbX: " + this.animationInterfaceArray[3].getDx(), this, "onMotionGestureEvent"));
-        //LogUtil.put(LogFactory.getInstance("thumbX: " + thumbX, this, "onMotionGestureEvent"));
+        //logUtil.put("old thumbX: " + this.animationInterfaceArray[3].getDx(), this, "onMotionGestureEvent");
+        //logUtil.put("thumbX: " + thumbX, this, "onMotionGestureEvent");
         int usedThumbX = thumbX;
         final int maxX = width;
         if(thumbX >= dx && thumbX < dx + width) {
         } else if(thumbX < 0) {
             usedThumbX = 0;
-            //LogUtil.put(LogFactory.getInstance("min thumbX: " + usedThumbX, this, "onMotionGestureEvent"));
+            //logUtil.put("min thumbX: " + usedThumbX, this, "onMotionGestureEvent");
         } else if(thumbX > maxX) {
             usedThumbX = maxX;
-            //LogUtil.put(LogFactory.getInstance("max thumbX: " + usedThumbX, this, "onMotionGestureEvent"));
+            //logUtil.put("max thumbX: " + usedThumbX, this, "onMotionGestureEvent");
         }
-        //LogUtil.put(LogFactory.getInstance("old value: " + this.value, this, "onMotionGestureEvent"));
+        //logUtil.put("old value: " + this.value, this, "onMotionGestureEvent");
         int value = (100 * usedThumbX / width);
         if(value > 100) {
             value = 100;

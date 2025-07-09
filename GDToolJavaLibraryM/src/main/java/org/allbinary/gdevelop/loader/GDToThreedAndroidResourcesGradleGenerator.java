@@ -64,7 +64,7 @@ public class GDToThreedAndroidResourcesGradleGenerator
     
     public void processResource(final String fileAsString, final String resourceString) {
         final int beginIndex = Character.isAlphabetic(resourceString.charAt(0)) ? 0 : 1;
-        //LogUtil.put(LogFactory.getInstance("resourceString: " + resourceString, this, commonStrings.PROCESS));
+        //logUtil.put("resourceString: " + resourceString, this, commonStrings.PROCESS);
         final String resource = resourceString.substring(beginIndex, resourceString.length() - 4).toLowerCase();
 
         //Hack - the generation needs to break 3d objects from images.
@@ -124,7 +124,7 @@ public class GDToThreedAndroidResourcesGradleGenerator
         final Replace replace = new Replace(GD_KEY, this.resourceStringMaker.toString());
         final String newFileAsString = replace.all(newFileAsString2);
 
-        LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + RESOURCE, this, commonStrings.PROCESS));
+        logUtil.put(this.gdToolStrings.FILENAME + RESOURCE, this, commonStrings.PROCESS);
         
         this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
     }

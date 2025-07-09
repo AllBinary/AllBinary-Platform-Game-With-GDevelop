@@ -227,7 +227,7 @@ Created By: Travis Berthelot
                     if(!<xsl:value-of select="name" />CacheGDGameLayerList.contains(layerInterface)) {
                         <xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);
                     } else {
-                        //LogUtil.put(LogFactory.getInstance(gameLayerStrings.MULTIPLE_TIMES + layerInterface, this, commonStrings.PROCESS));
+                        //logUtil.put(gameLayerStrings.MULTIPLE_TIMES + layerInterface, this, commonStrings.PROCESS);
                     }
                 }
             </xsl:if>
@@ -241,7 +241,7 @@ Created By: Travis Berthelot
                     if(!<xsl:value-of select="name" />CacheGDGameLayerList.contains(layerInterface)) {
                         <xsl:value-of select="name" />CacheGDGameLayerList.add(layerInterface);
                     } else {
-                        //LogUtil.put(LogFactory.getInstance(gameLayerStrings.MULTIPLE_TIMES + layerInterface, this, commonStrings.PROCESS));
+                        //logUtil.put(gameLayerStrings.MULTIPLE_TIMES + layerInterface, this, commonStrings.PROCESS);
                     }
                 }
            </xsl:if>

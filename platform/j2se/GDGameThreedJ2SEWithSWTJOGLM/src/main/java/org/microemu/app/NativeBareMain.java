@@ -60,7 +60,7 @@ public class NativeBareMain {
             GDThreedEarlyResourceInitializationFactory.getInstance().list.add(new GDGameThreedJ2SEWithSWTJOGLEarlyResourceInitialization());
             
         } catch(Exception e) {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, features, CommonStrings.getInstance().PROCESS, e));
+            logUtil.put(CommonStrings.getInstance().EXCEPTION, features, CommonStrings.getInstance().PROCESS, e);
         }
         
         BareMain.main2(args, "GDGame", "/gd_icon.ico");

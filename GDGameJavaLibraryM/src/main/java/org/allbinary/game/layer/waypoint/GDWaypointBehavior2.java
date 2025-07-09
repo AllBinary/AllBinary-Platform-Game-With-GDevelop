@@ -152,7 +152,7 @@ extends GDWaypointBehavior
             }
             else
             {
-                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(reason).toString(), this, GameStrings.getInstance().PROCESS_TICK));
+                //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(reason).toString(), this, GameStrings.getInstance().PROCESS_TICK);
                 this.updatePathOnTargetMove(RETURNING_AS_WAYPOINT_PATH_LIST);
                 return;
             }
@@ -166,7 +166,7 @@ extends GDWaypointBehavior
         }
         else
         {
-            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" returning without waypoint processing").toString(), this, GameStrings.getInstance().PROCESS_TICK));
+            //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" returning without waypoint processing").toString(), this, GameStrings.getInstance().PROCESS_TICK);
             return;
         }
 
@@ -176,7 +176,7 @@ extends GDWaypointBehavior
         }
         else
         {
-            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" returning without targeting processing").toString(), this, GameStrings.getInstance().PROCESS_TICK));
+            //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" returning without targeting processing").toString(), this, GameStrings.getInstance().PROCESS_TICK);
             return;
         }
 
@@ -186,7 +186,7 @@ extends GDWaypointBehavior
         }
         else
         {
-            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" returning without teleport processing").toString(), this, GameStrings.getInstance().PROCESS_TICK));
+            //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" returning without teleport processing").toString(), this, GameStrings.getInstance().PROCESS_TICK);
             return;
         }
     }
@@ -197,9 +197,9 @@ extends GDWaypointBehavior
         /*
         if(this.getOwnerAdvancedRTSGameLayer().isSelected())
         {
-            LogUtil.put(LogFactory.getInstance(
+            logUtil.put(
                     "Enemy Possible Target: " + layerInterface.getName(), this, 
-                    "selected: onEnemyMovement"));                    
+                    "selected: onEnemyMovement");                    
         }
         */
 
@@ -214,11 +214,11 @@ extends GDWaypointBehavior
         // Boolean.toString(this.currentTargetLayerInterface.isDestroyed());
         // }
 
-        // LogUtil.put(LogFactory.getInstance(
+        // logUtil.put(
         // "Weapons Range: " + this.hackRange +
         // " anotherTargetDistance: " + anotherTargetDistance +
         // getCurrentTargetingStateString(),
-        // this, "onMovementFound"));
+        // this, "onMovementFound");
 
         // Update Distance Of Current Target
         if (layerInterface == this.currentTargetLayerInterface)
@@ -312,15 +312,15 @@ extends GDWaypointBehavior
                 return;
             }
 
-            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - retarget? ").append(this.currentTargetGeographicMapCellPosition).append(' ').append(geographicMapCellPosition).toString(), this, UPDATE_PATH_ON_TARGET_MOVE));
+            //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - retarget? ").append(this.currentTargetGeographicMapCellPosition).append(' ').append(geographicMapCellPosition).toString(), this, UPDATE_PATH_ON_TARGET_MOVE);
             if (this.currentTargetGeographicMapCellPosition != geographicMapCellPosition) {
-                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(reason).toString(), this, UPDATE_PATH_ON_TARGET_MOVE));
+                //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(reason).toString(), this, UPDATE_PATH_ON_TARGET_MOVE);
 
                 this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().targetMovedSoRetarget(this.associatedAdvancedRTSGameLayer);
                 this.setWaypointPathsList(BasicArrayListUtil.getInstance().getImmutableInstance());
                 this.setTarget((PathFindingLayerInterface) currentTargetLayerInterface);
             } else {
-                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target has not moved").toString(), this, UPDATE_PATH_ON_TARGET_MOVE));
+                //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target has not moved").toString(), this, UPDATE_PATH_ON_TARGET_MOVE);
             }
         } else {
             throw new RuntimeException();
@@ -384,10 +384,10 @@ extends GDWaypointBehavior
                 this.setTargetPath();
             }
         }
-        // LogUtil.put(LogFactory.getInstance("Weapons Range: " +
+        // logUtil.put("Weapons Range: " +
         // this.longWeaponRange + 
         //getCurrentTargetingStateString(), 
-        //this, "onMovementFound"));
+        //this, "onMovementFound");
     }
 
     private void setTargetPath()
@@ -528,8 +528,8 @@ extends GDWaypointBehavior
                 if (this.currentTargetLayerInterface == null &&
                 this.getWaypointList().size() == 0)
                 {
-                LogUtil.put(LogFactory.getInstance(
-                "No Waypoints or Target", this, "processWaypoint"));
+                logUtil.put(
+                "No Waypoints or Target", this, "processWaypoint");
                 }
                  */
             }
@@ -626,8 +626,8 @@ extends GDWaypointBehavior
      * (GeographicMapCellPosition)
      * surroundingGeographicMapCellPositionList.get(0);
      * 
-     * LogUtil.put(LogFactory.getInstance( "Inserting Waypoint: " +
-     * emptyGeographicMapCellPosition, this, "processMidWaypoint"));
+     * logUtil.put( "Inserting Waypoint: " +
+     * emptyGeographicMapCellPosition, this, "processMidWaypoint");
      * 
      * GPoint point = emptyGeographicMapCellPosition.getPoint();
      * 
@@ -697,7 +697,7 @@ extends GDWaypointBehavior
             /*
             if(this.getOwnerAdvancedRTSGameLayer().isSelected())
             {
-                LogUtil.put(LogFactory.getInstance(commonStrings.START, this, "selected: processTargeting"));
+                logUtil.put(commonStrings.START, this, "selected: processTargeting");
             }
             */
             
@@ -878,7 +878,7 @@ extends GDWaypointBehavior
         final BasicArrayList list = this.targetList;
         if (list.size() == 0)
         {
-            //LogUtil.put(LogFactory.getInstance("No Waypoints", this, "isWaypointListEmptyOrOnlyTargets"));
+            //logUtil.put("No Waypoints", this, "isWaypointListEmptyOrOnlyTargets");
 
             return true;
         }
@@ -893,7 +893,7 @@ extends GDWaypointBehavior
                 return false;
             }
         }
-        //LogUtil.put(LogFactory.getInstance("All Waypoints Targets/Units", this, "isWaypointListEmptyOrOnlyTargets"));
+        //logUtil.put("All Waypoints Targets/Units", this, "isWaypointListEmptyOrOnlyTargets");
         return true;
     }
         
@@ -958,7 +958,7 @@ extends GDWaypointBehavior
             try
             {
                 if (this.getList().size() > 0) {
-                    //LogUtil.put(LogFactory.getInstance("steering", this, "visit"));
+                    //logUtil.put("steering", this, "visit");
 
                     final AllBinaryLayer allbinaryLayer = (AllBinaryLayer) this.getList().get(0);
 
@@ -980,7 +980,7 @@ extends GDWaypointBehavior
             catch(Exception e)
             {
                 final CommonStrings commonStrings = CommonStrings.getInstance();
-                LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "visit", e));
+                logUtil.put(commonStrings.EXCEPTION, this, "visit", e);
                 return null;
             }
         }

@@ -83,7 +83,7 @@ public class GDLayoutsToAllBinaryGenerator
             sharedBytes.outputStream.reset();
 
             final String xslPath = gdToolStrings.ROOT_PATH + this.xslPath;
-            LogUtil.put(LogFactory.getInstance(xslPath, this, commonStrings.PROCESS));
+            logUtil.put(xslPath, this, commonStrings.PROCESS);
             
             final InputStream inputStream = new FileInputStream(xslPath);
             final String xslDocumentStr = new String(streamUtil.getByteArray(inputStream, sharedBytes.outputStream, sharedBytes.byteArray));
@@ -116,21 +116,21 @@ public class GDLayoutsToAllBinaryGenerator
                 stringMaker.delete(0, stringMaker.length());
                 final String fileName = stringMaker.append(START).append(stringUtil.toString(this.nameList.get(index))).append(END).toString();
 
-                LogUtil.put(LogFactory.getInstance(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS));
+                logUtil.put(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS);
 
                 this.bufferedWriterUtil.overwrite(fileName, result);
 
-                LogUtil.put(LogFactory.getInstance(RESULT + result, this, commonStrings.PROCESS));
+                logUtil.put(RESULT + result, this, commonStrings.PROCESS);
             }
 
         } catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e));
+            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.PROCESS, e);
             throw e;
         }
 
         stringMaker.delete(0, stringMaker.length());
-        LogUtil.put(LogFactory.getInstance(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS));
+        logUtil.put(stringMaker.append(CommonLabels.getInstance().ELAPSED).append(this.timeDelayHelper.getElapsed()).toString(), this, commonStrings.PROCESS);
     }
 
 //    public static void main(String[] args) throws Exception

@@ -98,6 +98,7 @@ Created By: Travis Berthelot
                         return instance;
                     }
 
+                    protected final LogUtil logUtil = LogUtil.getInstance();
                     private final CommonStrings commonStrings = CommonStrings.getInstance();
                     private final StringUtil stringUtil = StringUtil.getInstance();
                     private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
@@ -117,7 +118,7 @@ Created By: Travis Berthelot
                     
                     private GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory() {
                     
-                        LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.CONSTRUCTOR));
+                        logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
                     
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >
@@ -128,7 +129,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     //objectsGroups - END
 
-                        LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
+                        logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
                     }
                     
                     //objectsGroups - START

@@ -40,7 +40,7 @@ Created By: Travis Berthelot
         <xsl:if test="string-length($baseLayerScale) > 0 or string-length($tileMapScale) > 0" >
                     final int centerCameraX = (int) (SceneWindowWidth() / 2);
                     final int centerCameraY = (int) (SceneWindowHeight() / 2);
-                    //LogUtil.put(LogFactory.getInstance("centerCameraX: " + centerCameraX + " centerCameraY: " + centerCameraY, this, commonStrings.PROCESS));
+                    //logUtil.put("centerCameraX: " + centerCameraX + " centerCameraY: " + centerCameraY, this, commonStrings.PROCESS);
         </xsl:if>
         <xsl:if test="string-length($baseLayerScale) > 0 and string-length($tileMapScale) > 0" >
                     final int centerCameraX = -1;
@@ -85,10 +85,10 @@ Created By: Travis Berthelot
                                     //TWB - currently would write over the map positioning in the builder.
                                     //final int centerCameraX = (int) (SceneWindowWidth() / 2);
                                     //final int centerCameraY = (int) (SceneWindowHeight() / 2);
-                                    //LogUtil.put(LogFactory.getInstance("centerCameraX: " + centerCameraX + " centerCameraY: " + centerCameraY, this, commonStrings.PROCESS));                                    
+                                    //logUtil.put("centerCameraX: " + centerCameraX + " centerCameraY: " + centerCameraY, this, commonStrings.PROCESS);                                    
                                     //<xsl:value-of select="$baseLayerName" />GDobject2.x = centerCameraX - (<xsl:value-of select="$baseLayerName" />GDobject2.width / 2);
                                     //<xsl:value-of select="$baseLayerName" />GDobject2.y = centerCameraY - (<xsl:value-of select="$baseLayerName" />GDobject2.height / 2);
-                                    //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$baseLayerName" />X: " + <xsl:value-of select="$baseLayerName" />GDobject2.x + " <xsl:value-of select="$baseLayerName" />Y: " + <xsl:value-of select="$baseLayerName" />GDobject2.y, this, commonStrings.PROCESS));
+                                    //logUtil.put("<xsl:value-of select="$baseLayerName" />X: " + <xsl:value-of select="$baseLayerName" />GDobject2.x + " <xsl:value-of select="$baseLayerName" />Y: " + <xsl:value-of select="$baseLayerName" />GDobject2.y, this, commonStrings.PROCESS);
                                     //<xsl:value-of select="$baseLayerName" />GDGameLayer.updatePosition();
                                 }
                             });

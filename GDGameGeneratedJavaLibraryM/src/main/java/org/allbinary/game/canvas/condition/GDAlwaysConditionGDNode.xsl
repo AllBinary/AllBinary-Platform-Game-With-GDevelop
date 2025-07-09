@@ -39,7 +39,7 @@ Created By: Travis Berthelot
 
                             super.processStats();
 
-                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                            //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                             <xsl:if test="$inverted = 'true'" >
                                 //Inverted Always does not call anything.
@@ -93,7 +93,7 @@ Created By: Travis Berthelot
                         
                             this.processGDStats(gameLayer);
 
-                            //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS));
+                            //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
                             <xsl:if test="$inverted = 'true'" >
                                 //Inverted Always does not call anything.
                                 return false;

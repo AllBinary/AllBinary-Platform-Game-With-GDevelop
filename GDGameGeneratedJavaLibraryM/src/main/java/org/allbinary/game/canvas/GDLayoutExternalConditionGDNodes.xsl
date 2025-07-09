@@ -109,6 +109,7 @@ Created By: Travis Berthelot
                             return instance;
                         }
 
+                        protected final LogUtil logUtil = LogUtil.getInstance();
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
@@ -128,7 +129,7 @@ Created By: Travis Berthelot
 
                         try {
                         
-                            LogUtil.put(LogFactory.getInstance(commonStrings.START, this, commonStrings.CONSTRUCTOR));
+                            logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
                     
                                     <xsl:call-template name="scale" >
                                         <xsl:with-param name="layoutIndex" >
@@ -158,10 +159,10 @@ Created By: Travis Berthelot
                         
                     </xsl:call-template>
 
-                    LogUtil.put(LogFactory.getInstance(commonStrings.END, this, commonStrings.CONSTRUCTOR));
+                    logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
 
                         } catch(Exception e) {
-                            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
+                            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
                         }
 
                     }

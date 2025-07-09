@@ -72,7 +72,7 @@ public class GDGameImageBasedAnimationInterfaceFactoryInterfaceFactory
         //int scaleDenominator = 2;
         //int explosionFrameSize = (60 * GameConfigurationCentral.getInstance().SCALE.getValue().intValue()) / scaleDenominator;
 
-        //LogUtil.put(LogFactory.getInstance("Explosiont: " + explosionFrameSize + " " + explosionFrameSize/2 + " " + explosionFrameSize/4, this, CommonStrings.getInstance().INIT));
+        //logUtil.put("Explosiont: " + explosionFrameSize + " " + explosionFrameSize/2 + " " + explosionFrameSize/4, this, CommonStrings.getInstance().INIT);
         //90 x 360
 
         //this.add(ExplosionResources.getInstance().EXPLOSION_60_RESOURCE, 

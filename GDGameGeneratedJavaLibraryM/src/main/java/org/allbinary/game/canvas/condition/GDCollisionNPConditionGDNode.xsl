@@ -38,9 +38,9 @@ Created By: Travis Berthelot
                                 GDNode node;
                                 final int size2 = gameLayerArray.length;
                                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                    //LogUtil.put(LogFactory.getInstance(NODE_AT + index, this, commonStrings.PROCESS));
+                                    //logUtil.put(NODE_AT + index, this, commonStrings.PROCESS);
                                     node = ((GDNode) nodeList<xsl:value-of select="$nodeList" />.get(index));
-                                    //LogUtil.put(LogFactory.getInstance(objectStrings.CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS));
+                                    //logUtil.put(objectStrings.CALLING_GDNODE + node.getName(), this, commonStrings.PROCESS);
                                     node.clear();
                                     for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size2; index2++) {
                                         node.gameLayerArray[index2] = gameLayerArray[index2];
@@ -109,7 +109,7 @@ Created By: Travis Berthelot
                                 super.processStats();
                             
                                 boolean result = false;
-                                //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                                //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                 
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
 
@@ -170,13 +170,13 @@ Created By: Travis Berthelot
                         if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameLayer2.getCollidableInferface().isCollision(gameLayer)) {
 
                             if(gameLayer2.isDestroyed()) {
-                               LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " Collision not allowed is already destroyed", this, commonStrings.PROCESS));
+                               logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " Collision not allowed is already destroyed", this, commonStrings.PROCESS);
                                return result;
                             }
                         
                             //CollisionNP - <xsl:value-of select="$text" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
                             gameGlobals.tempGameLayerArray[0] = gameLayer;
-                            //if(gameGlobals.tempGameLayerArray[0] != null) LogUtil.put(LogFactory.getInstance(gameGlobals.tempGameLayerArray[0].toString(), this, commonStrings.PROCESS));
+                            //if(gameGlobals.tempGameLayerArray[0] != null) logUtil.put(gameGlobals.tempGameLayerArray[0].toString(), this, commonStrings.PROCESS);
 
                             ((GDCustomGameLayer) gameLayer2).<xsl:value-of select="parameters[1]/text()" /><xsl:value-of select="parameters[2]/text()" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />ProcessGDCollision();
                             //name=<xsl:value-of select="name()" />
@@ -253,7 +253,7 @@ Created By: Travis Berthelot
                                 super.processGDStats(gameLayer);
 
                                 boolean result = false;
-                                //LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS));
+                                //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
                                 
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
 
@@ -288,13 +288,13 @@ Created By: Travis Berthelot
                         if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameLayer2.getCollidableInferface().isCollision(gameLayer)) {
 
                             if(gameLayer2.isDestroyed()) {
-                               LogUtil.put(LogFactory.getInstance(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " GD Collision not allowed is already destroyed", this, commonStrings.PROCESS));
+                               logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " GD Collision not allowed is already destroyed", this, commonStrings.PROCESS);
                                return result;
                             }
                                         
                             //CollisionNP - <xsl:value-of select="$text" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
                             gameGlobals.tempGameLayerArray[0] = gameLayer;
-                            //if(gameGlobals.tempGameLayerArray[0] != null) LogUtil.put(LogFactory.getInstance(gameGlobals.tempGameLayerArray[0].toString(), this, commonStrings.PROCESS));
+                            //if(gameGlobals.tempGameLayerArray[0] != null) logUtil.put(gameGlobals.tempGameLayerArray[0].toString(), this, commonStrings.PROCESS);
 
                             ((GDCustomGameLayer) gameLayer2).<xsl:value-of select="parameters[1]/text()" /><xsl:value-of select="parameters[2]/text()" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />ProcessGDCollision();
                             //name=<xsl:value-of select="name()" />

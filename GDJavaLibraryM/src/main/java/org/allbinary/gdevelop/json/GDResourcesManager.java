@@ -43,7 +43,7 @@ public class GDResourcesManager
             this.resourceList.add(resourceFactory.create(nextJSONObject));
         }
 
-        LogUtil.put(LogFactory.getInstance(RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR));
+        logUtil.put(RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR);
 
         final JSONArray resourceFoldersJSONArray = jsonObject.getJSONArray(gdProjectStrings.RESOURCE_FOLDERS);
         size = resourceFoldersJSONArray.length();
@@ -52,6 +52,6 @@ public class GDResourcesManager
             this.resourceFolderList.add(new GDResourceFolder(nextJSONObject));
         }
     
-        LogUtil.put(LogFactory.getInstance(RESOURCE_FOLDERS + this.resourceFolderList.size(), this, commonStrings.CONSTRUCTOR));
+        logUtil.put(RESOURCE_FOLDERS + this.resourceFolderList.size(), this, commonStrings.CONSTRUCTOR);
     }
 }

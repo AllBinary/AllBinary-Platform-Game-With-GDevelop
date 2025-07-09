@@ -64,7 +64,7 @@ public class CallStackGDNodeStats {
                     stringBuilder.append(';');
                     if(stringBuilder.length() > 256) {
                         
-                        LogUtil.put(LogFactory.getInstance(stringBuilder.toString(), object, commonStrings.PROCESS));
+                        logUtil.put(stringBuilder.toString(), object, commonStrings.PROCESS);
                         stringBuilder.delete(0, stringBuilder.length());
                     }
                 }
@@ -72,7 +72,7 @@ public class CallStackGDNodeStats {
         }
 
         if(stringBuilder.length() > 0) {
-            LogUtil.put(LogFactory.getInstance(stringBuilder.toString(), object, commonStrings.PROCESS));
+            logUtil.put(stringBuilder.toString(), object, commonStrings.PROCESS);
         }
         
     }

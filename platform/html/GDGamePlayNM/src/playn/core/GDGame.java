@@ -63,7 +63,7 @@ Pointer.Listener
     {
         try
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, CommonStrings.getInstance().INIT));
+            logUtil.put(CommonStrings.getInstance().START, this, CommonStrings.getInstance().INIT);
 
             final Features features = Features.getInstance();
 
@@ -121,7 +121,7 @@ Pointer.Listener
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e));
+            logUtil.put(CommonStrings.getInstance().EXCEPTION, this, CommonStrings.getInstance().CONSTRUCTOR, e);
         }
     }
 
@@ -134,7 +134,7 @@ Pointer.Listener
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "stopAll", e));
+            logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "stopAll", e);
         }
     }
     
@@ -142,7 +142,7 @@ Pointer.Listener
     @Override
     public void onKeyTyped(final Keyboard.TypedEvent event) {
         
-        //LogUtil.put(LogFactory.getInstance(CommonLabels.getInstance().START_LABEL + event.typedChar(), this, "onKeyTyped"));
+        //logUtil.put(CommonLabels.getInstance().START_LABEL + event.typedChar(), this, "onKeyTyped");
         
         //this.getCurrentDisplayable().keyRepeated(event.keyCode());
     }
@@ -150,12 +150,12 @@ Pointer.Listener
     @Override
     public void onKeyDown(final Keyboard.Event event)
     {
-        //LogUtil.put(LogFactory.getInstance(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyDown"));
+        //logUtil.put(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyDown");
     
         try {
             rawKeyEventHandler.fireEvent(event.keyCode(), DEVICE_ID, true);
         } catch(Exception e) {
-            LogUtil.put(LogFactory.getInstance(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyDown", e));
+            logUtil.put(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyDown", e);
         }
         
         final Key key = event.key();        
@@ -168,7 +168,7 @@ Pointer.Listener
     @Override
     public void onKeyUp(final Keyboard.Event event)
     {
-        //LogUtil.put(LogFactory.getInstance(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyUp"));
+        //logUtil.put(CommonLabels.getInstance().START_LABEL + event.key(), this, "onKeyUp");
         
         final Key key = event.key();
 
@@ -182,14 +182,14 @@ Pointer.Listener
     {
         try
         {
-            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onPointerStart"));
+            //logUtil.put(CommonStrings.getInstance().START, this, "onPointerStart");
             this.motionRecognizer.processStartMotionEvent(
                 (int) mouseEvent.x(), (int) mouseEvent.y(), this.DEVICE_ID, 
                 0);
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "onPointerStart", e));
+            logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "onPointerStart", e);
         }
     }
 
@@ -197,14 +197,14 @@ Pointer.Listener
     {
         try
         {
-            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onPointerEnd"));
+            //logUtil.put(CommonStrings.getInstance().START, this, "onPointerEnd");
             this.motionRecognizer.processEndMotionEvent(
                 (int) mouseEvent.x(), (int) mouseEvent.y(), this.DEVICE_ID, 
                 0);
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "onPointerEnd", e));
+            logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "onPointerEnd", e);
         }
     }
 
@@ -212,14 +212,14 @@ Pointer.Listener
     {
         try
         {
-            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onPointerDrag"));
+            //logUtil.put(CommonStrings.getInstance().START, this, "onPointerDrag");
             this.motionRecognizer.processDraggedMotionEvent(
                 (int) mouseEvent.x(), (int) mouseEvent.y(), this.DEVICE_ID, 
                 0);
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "onPointerDrag", e));
+            logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "onPointerDrag", e);
         }
     }
 
@@ -227,14 +227,14 @@ Pointer.Listener
     {
 //        try
 //        {
-//            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onMouseDown"));
+//            logUtil.put(CommonStrings.getInstance().START, this, "onMouseDown");
 //            this.motionRecognizer.processStartMotionEvent(
 //                (int) mouseEvent.x(), (int) mouseEvent.y(),
 //                mouseEvent.button());
 //        }
 //        catch (Exception e)
 //        {
-//            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "onMouseDown", e));
+//            logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "onMouseDown", e);
 //        }
     }
 
@@ -242,14 +242,14 @@ Pointer.Listener
     {
 //        try
 //        {
-//            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onMouseUp"));
+//            logUtil.put(CommonStrings.getInstance().START, this, "onMouseUp");
 //            this.motionRecognizer.processEndMotionEvent(
 //                (int) mouseEvent.x(), (int) mouseEvent.y(),
 //                mouseEvent.button());
 //        }
 //        catch (Exception e)
 //        {
-//            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "onMouseUp", e));
+//            logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "onMouseUp", e);
 //        }
     }
 
@@ -257,12 +257,12 @@ Pointer.Listener
     {
         try
         {
-            //LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().START, this, "onMouseMove"));
+            //logUtil.put(CommonStrings.getInstance().START, this, "onMouseMove");
             this.motionRecognizer.processMovedMotionEvent((int) mouseEvent.x(), (int) mouseEvent.y(), this.DEVICE_ID, 0);
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, this, "onMouseMove", e));
+            logUtil.put(CommonStrings.getInstance().EXCEPTION, this, "onMouseMove", e);
         }
     }
 

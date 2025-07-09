@@ -47,8 +47,8 @@ public class GDRotationBehavior extends GDAnimationBehaviorBase {
             //super.toString(stringMaker);
             //stringMaker.toString()
             final CommonStrings commonStrings = CommonStrings.getInstance();
-            LogUtil.put(LogFactory.getInstance(new StringMaker().append(animationInterfaceFactoryInterfaceArray[index].toString()).append(" index: ").append(index).toString(), this, commonStrings.CONSTRUCTOR, e));
-            LogUtil.put(LogFactory.getInstance(gdObject.toString(), this, commonStrings.CONSTRUCTOR, e));
+            logUtil.put(new StringMaker().append(animationInterfaceFactoryInterfaceArray[index].toString()).append(" index: ").append(index).toString(), this, commonStrings.CONSTRUCTOR, e);
+            logUtil.put(gdObject.toString(), this, commonStrings.CONSTRUCTOR, e);
         }
             }
         
@@ -82,7 +82,7 @@ public class GDRotationBehavior extends GDAnimationBehaviorBase {
         //short nextAngle;
         //for (int index = 0; index < SIZE; index++)
         //{
-            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(gameLayer.getName()).append(" GDObject name: ").append(gdObject.name).toString(), this, "setRotation"));
+            //logUtil.put(new StringMaker().append(gameLayer.getName()).append(" GDObject name: ").append(gdObject.name).toString(), this, "setRotation");
             rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
             
             if(angleAdjustment > 0) {
@@ -114,7 +114,7 @@ public class GDRotationBehavior extends GDAnimationBehaviorBase {
             
             //if(this.getName().equals(PLAYER)) {
             //if(this.getName().startsWith(PLAYER)) {
-                //LogUtil.put(LogFactory.getInstance(rotationAnimation.toString(), this, "setRotation"));
+                //logUtil.put(rotationAnimation.toString(), this, "setRotation");
             //}
             
         //}

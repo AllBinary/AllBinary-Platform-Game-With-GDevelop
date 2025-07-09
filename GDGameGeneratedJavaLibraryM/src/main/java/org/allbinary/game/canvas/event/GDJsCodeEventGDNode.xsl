@@ -49,7 +49,7 @@ Created By: Travis Berthelot
                                     
                                     //final String voiceName = ;
                                     final String speech = globals.<xsl:value-of select="$speechVariable" />;
-                                    LogUtil.put(LogFactory.getInstance("Speaking: " + speech, this, commonStrings.PROCESS));
+                                    logUtil.put("Speaking: " + speech, this, commonStrings.PROCESS);
                                     
                                     if(speech != null) {
                                         //textToSpeech.process(voiceName, speech);
@@ -59,7 +59,7 @@ Created By: Travis Berthelot
                                                 try {
                                                     textToSpeech.process(speech);
                                                 } catch(Exception e) {
-                                                    LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e));
+                                                    logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                                                 }
                                             }
                                         };
@@ -76,7 +76,7 @@ Created By: Travis Berthelot
                                 public boolean process() throws Exception {
 
                                     //I don't have plans to implement this event type anytime soon for especially non HTML5 builds.
-                                    LogUtil.put(LogFactory.getInstance(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + commonStrings.NOT_IMPLEMENTED, this, commonStrings.PROCESS, new Exception()));
+                                    logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + commonStrings.NOT_IMPLEMENTED, this, commonStrings.PROCESS, new Exception());
                                 </xsl:if>
 
                                     /*<xsl:value-of select="inlineCode" />*/

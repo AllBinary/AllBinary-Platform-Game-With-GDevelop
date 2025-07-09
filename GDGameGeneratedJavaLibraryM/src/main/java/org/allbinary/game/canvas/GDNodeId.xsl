@@ -364,7 +364,7 @@
             </xsl:if>
             <!-- 
             } else {
-                //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdGameLayer" /> at index: " + index, this, commonStrings.PROCESS));
+                //logUtil.put("<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdGameLayer" /> at index: " + index, this, commonStrings.PROCESS);
             }
             -->
             
@@ -419,7 +419,7 @@
             //if(globals.<xsl:value-of select="$gdGameLayer" />.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> index) {
                 <xsl:value-of select="$gdGameLayer" />.updatePosition();
             //} else {
-                //LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdGameLayer" /> at index: " + index, this, commonStrings.PROCESS));
+                //logUtil.put("<xsl:value-of select="$gdGameLayer" /> was smaller than <xsl:value-of select="$gdGameLayer" /> at index: " + index, this, commonStrings.PROCESS);
             //}
             </xsl:if>
             <xsl:if test="not(contains($parametersAsString0, $gdObjectName))" >
@@ -469,7 +469,7 @@
                     <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                     <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                     //final String EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Events nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type" /> parameters=<xsl:value-of select="$parametersAsString" />";
-                    //LogUtil.put(LogFactory.getInstance(EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS));
+                    //logUtil.put(EVENTS_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                     //actionIdsMotionGestureEvent - //Event - //<xsl:value-of select="type" /> - call
                     //gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
                         </xsl:for-each>

@@ -53,7 +53,7 @@ public class NativeBareMain {
             //OpenGLESGraphicsFactory.getInstance().set(new PlatformDisplayMin3dGraphicsFactory());
             
         } catch(Exception e) {
-            LogUtil.put(LogFactory.getInstance(CommonStrings.getInstance().EXCEPTION, features, CommonStrings.getInstance().PROCESS, e));
+            logUtil.put(CommonStrings.getInstance().EXCEPTION, features, CommonStrings.getInstance().PROCESS, e);
         }
         
         //BareMain.main2(args, "GDGameMIDlet", "/gd_icon.ico", 1366, 768, false, false);

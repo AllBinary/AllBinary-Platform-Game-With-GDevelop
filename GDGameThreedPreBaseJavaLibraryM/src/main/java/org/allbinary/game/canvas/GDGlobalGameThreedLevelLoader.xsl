@@ -110,7 +110,7 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            LogUtil.put(LogFactory.getInstance(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR));
+                            logUtil.put(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
 
                     <xsl:call-template name="threedResourceLoadingCalls" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
@@ -131,7 +131,7 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>                    
 
                         //} catch(Exception e) {
-                            //LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e));
+                            //logUtil.put(commonStrings.EXCEPTION, this, commonStrings.CONSTRUCTOR, e);
                         //}
 
                     }

@@ -45,25 +45,25 @@ public class GDThreedBehavior extends GDTwodBehavior {
 
         final GDObject gdObject = gameLayer.gdObject;
         final StringMaker stringBuilder = new StringMaker();
-        //LogUtil.put(LogFactory.getInstance(stringBuilder.append("timeDelta: ").append(timeDelta).toString(), this, "updateRotation"));
+        //logUtil.put(stringBuilder.append("timeDelta: ").append(timeDelta).toString(), this, "updateRotation");
         //stringBuilder.delete(0, stringBuilder.length());
-        //LogUtil.put(LogFactory.getInstance(stringBuilder.append("prior rotationRemainder: ").append(rotationRemainder).toString(), this, "updateRotation"));
+        //logUtil.put(stringBuilder.append("prior rotationRemainder: ").append(rotationRemainder).toString(), this, "updateRotation");
         final float newPortion = (gdObject.rotationZ * timeDelta / 1000f);
         //stringBuilder.delete(0, stringBuilder.length());
-        //LogUtil.put(LogFactory.getInstance(stringBuilder.append("newPortion : ").append(newPortion).toString(), this, "updateRotation"));
+        //logUtil.put(stringBuilder.append("newPortion : ").append(newPortion).toString(), this, "updateRotation");
         rotationRemainderZ = rotationRemainderZ + newPortion;
         //stringBuilder.delete(0, stringBuilder.length());
-        //LogUtil.put(LogFactory.getInstance(stringBuilder.append("rotationRemainder: ").append(rotationRemainder).toString(), this, "updateRotation"));
+        //logUtil.put(stringBuilder.append("rotationRemainder: ").append(rotationRemainder).toString(), this, "updateRotation");
         final short angleAdjustment = (short) (rotationRemainderZ);
         if(angleAdjustment != 0) {
             stringBuilder.delete(0, stringBuilder.length());
-            //LogUtil.put(LogFactory.getInstance(stringBuilder.append("angleAdjustment: ").append(angleAdjustment).toString(), this, "updateRotation"));
+            //logUtil.put(stringBuilder.append("angleAdjustment: ").append(angleAdjustment).toString(), this, "updateRotation");
             gdObject.angle += angleAdjustment;
             this.setRotationZ(gdObject, angleAdjustment);
             rotationRemainderZ -= angleAdjustment;
-            //LogUtil.put(LogFactory.getInstance("reset", this, "updateRotation"));
+            //logUtil.put("reset", this, "updateRotation");
         } else {
-            //LogUtil.put(LogFactory.getInstance("skip", this, "updateRotation"));
+            //logUtil.put("skip", this, "updateRotation");
         }
     }
     

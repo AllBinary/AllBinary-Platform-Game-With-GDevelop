@@ -21,8 +21,8 @@ Created By: Travis Berthelot
         <xsl:param name="layoutName" />
         <xsl:param name="useExclusionList" />
 
-//               LogUtil.put(LogFactory.getInstance("scale: " + scale, this, commonStrings.PROCESS));
-//               LogUtil.put(LogFactory.getInstance("hackScale: " + hackScale, this, commonStrings.PROCESS));
+//               logUtil.put("scale: " + scale, this, commonStrings.PROCESS);
+//               logUtil.put("hackScale: " + hackScale, this, commonStrings.PROCESS);
                 
         //objectsAssign - animationFactoryCalls - START
         <xsl:for-each select="objects" >
@@ -104,7 +104,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    LogUtil.put(LogFactory.getInstance("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT));
+                    logUtil.put("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
                 }    
 
                 <xsl:variable name="hasMoreThanOneImage" ><xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
@@ -297,7 +297,7 @@ Created By: Travis Berthelot
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * scale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * scale)
                                 );
 
-//                LogUtil.put(LogFactory.getInstance("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS));
+//                logUtil.put("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
 
                                     </xsl:if>
                                 </xsl:if>
@@ -309,7 +309,7 @@ Created By: Travis Berthelot
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale)
                                 );
 
-//                LogUtil.put(LogFactory.getInstance("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS));
+//                logUtil.put("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
 
                                     </xsl:if>
                                 </xsl:if>
@@ -379,7 +379,7 @@ Created By: Travis Berthelot
                                     (int) ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * scale), (int) ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * scale)
                                 );
 
-//              LogUtil.put(LogFactory.getInstance("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS));
+//              logUtil.put("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
 
                 rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][<xsl:value-of select="$position - 1" />] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
                             </xsl:for-each>
@@ -440,7 +440,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    LogUtil.put(LogFactory.getInstance("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT));
+                    logUtil.put("<xsl:value-of select="name" />ImageArray found", this, commonStrings.INIT);
                 }    
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
@@ -518,7 +518,7 @@ Created By: Travis Berthelot
                 if(<xsl:value-of select="$name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="$name" />ImageArray was null (This happens 1 time during the initial loading)");
                 } else {
-                    LogUtil.put(LogFactory.getInstance("<xsl:value-of select="$name" />ImageArray found", this, commonStrings.INIT));
+                    logUtil.put("<xsl:value-of select="$name" />ImageArray found", this, commonStrings.INIT);
                 }
                 
                 <xsl:for-each select="childrenContent" >
@@ -589,12 +589,12 @@ Created By: Travis Berthelot
                         public void setInitialScale(final ScaleProperties scaleProperties) {
                             //super.setInitialScale(scaleProperties);
                             this.scaleProperties = scaleProperties;
-                            //LogUtil.put(LogFactory.getInstance(new StringMaker().append("setInitialScale - font: ").append(scaleProperties.scaleHeight).toString(), this, commonStrings.PROCESS));
+                            //logUtil.put(new StringMaker().append("setInitialScale - font: ").append(scaleProperties.scaleHeight).toString(), this, commonStrings.PROCESS);
                             //this.scaleWidth = scaleProperties.scalwWidth;
                             final int fontSize = scaleProperties.scaleHeight;
                             scaleProperties.scaleHeight = (int) fontSize - (fontSize / 4);
                             this.font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, scaleProperties.scaleHeight);
-                            LogUtil.put(LogFactory.getInstance(new StringMaker().append("setInitialScale - font: ").append(font.getSize()).toString(), this, commonStrings.PROCESS));
+                            logUtil.put(new StringMaker().append("setInitialScale - font: ").append(font.getSize()).toString(), this, commonStrings.PROCESS);
                         }
                     },
                     </xsl:for-each>

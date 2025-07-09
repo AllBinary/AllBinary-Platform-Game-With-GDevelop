@@ -47,7 +47,7 @@ public class GDGameLayerManager extends AllBinaryGameLayerManager
         throws Exception
     {
         if(layerInterface == null) {
-            LogUtil.put(LogFactory.getInstance("Remove: null", this, "remove"));
+            logUtil.put("Remove: null", this, "remove");
             return;
         }
         
@@ -62,7 +62,7 @@ public class GDGameLayerManager extends AllBinaryGameLayerManager
    public void setGeographicMapInterface(final BasicGeographicMap[] geographicMapInterfaceArray)
    {
        final CommonStrings commonStrings = CommonStrings.getInstance();
-       LogUtil.put(LogFactory.getInstance(commonStrings.START + this, this, commonStrings.PROCESS));
+       logUtil.put(commonStrings.START + this, this, commonStrings.PROCESS);
        
       this.geographicMapInterfaceArray = geographicMapInterfaceArray;
       this.geographicMapCellTypeArray = new GeographicMapCellType[this.geographicMapInterfaceArray.length];

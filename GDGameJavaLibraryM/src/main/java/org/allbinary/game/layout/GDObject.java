@@ -37,7 +37,6 @@ public class GDObject
 {
     protected final LogUtil logUtil = LogUtil.getInstance();
 
-
     private final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
     
     public GDInitialVariables initialVariables = GDInitialVariables.getInstance();
@@ -148,14 +147,14 @@ public class GDObject
     public void setX(final int x) {
         //final int lastWidth = GameTickDisplayInfoSingleton.getInstance().getLastWidth();
 //        if(x > lastWidth) {
-//            LogUtil.put(LogFactory.getInstance("GameTickDisplayInfoSingleton lastWidth: " + lastWidth, this, "setX", new Exception()));
+//            logUtil.put("GameTickDisplayInfoSingleton lastWidth: " + lastWidth, this, "setX", new Exception());
 //            this.x = lastWidth;
 //        } else {
            this.x = x;
 //        }
 
 //        if(this.name.indexOf(MAP) >= 0) {
-//            LogUtil.put(LogFactory.getInstance("GDGameLevelLevelBuilder x: " + this.x, this, "setX"));
+//            logUtil.put("GDGameLevelLevelBuilder x: " + this.x, this, "setX");
 //        }
     }
 
@@ -166,14 +165,14 @@ public class GDObject
     public void setY(final int y) {
         //final int lastHeight = GameTickDisplayInfoSingleton.getInstance().getLastHeight();
 //        if(y > lastHeight) {
-//            LogUtil.put(LogFactory.getInstance("GameTickDisplayInfoSingleton lastHeight: " + lastHeight, this, "setX", new Exception()));
+//            logUtil.put("GameTickDisplayInfoSingleton lastHeight: " + lastHeight, this, "setX", new Exception());
 //            this.y = lastHeight;
 //        } else {
            this.y = y;
 //        }
 
 //        if(this.name.indexOf(MAP) >= 0) {
-//            LogUtil.put(LogFactory.getInstance("GDGameLevelLevelBuilder y: " + this.y, this, "setY"));
+//            logUtil.put("GDGameLevelLevelBuilder y: " + this.y, this, "setY");
 //        }
     }
     
@@ -217,7 +216,7 @@ public class GDObject
 
         //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
         //stringBuilder.delete(0, stringBuilder.length());
-        //LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append('g').append(objectStrings.ANGLE).append(adjustedAngle).append(':').append(this.x).append(':').append(x).append(':').append(halfWidth).toString()));
+        //logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append('g').append(objectStrings.ANGLE).append(adjustedAngle).append(':').append(this.x).append(':').append(x).append(':').append(halfWidth).toString());
         
         return this.x + x + this.halfWidth;
         //return this.x;
@@ -260,10 +259,10 @@ public class GDObject
         }
         
 //        final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-//        LogUtil.put(LogFactory.getInstance(new StringMaker()
+//        logUtil.put(new StringMaker()
 //            .append(gameLayer.getName())
 //            .append(objectStrings.ANGLE).append(angle)
-//            .append(objectStrings.ANGLE).append(adjustedAngle).toString(), this, objectStrings.ANGLE));
+//            .append(objectStrings.ANGLE).append(adjustedAngle).toString(), this, objectStrings.ANGLE);
 
         this.angle = adjustedAngle;
 
@@ -272,7 +271,7 @@ public class GDObject
         } else {
             final GraphicsStrings graphicsStrings = GraphicsStrings.getInstance();
             final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-            LogUtil.put(LogFactory.getInstance(objectStrings.GD_GAME_LAYER_WAS_NULL, this, graphicsStrings.ANGLE));
+            logUtil.put(objectStrings.GD_GAME_LAYER_WAS_NULL, this, graphicsStrings.ANGLE);
         }
     }
          
@@ -283,8 +282,8 @@ public class GDObject
     public short Angle() {
         
         //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-        //LogUtil.put(LogFactory.getInstance(new StringMaker()
-                //.append(objectStrings.ANGLE).append(angle).toString(), this, objectStrings.ANGLE));
+        //logUtil.put(new StringMaker()
+                //.append(objectStrings.ANGLE).append(angle).toString(), this, objectStrings.ANGLE);
         
         return this.angle;
     }

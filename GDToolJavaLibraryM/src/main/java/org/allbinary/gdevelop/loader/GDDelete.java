@@ -53,7 +53,7 @@ public class GDDelete {
                 }
                 if (!exclude) {
                     stringMaker.delete(0, stringMaker.length());
-                    LogUtil.put(LogFactory.getInstance(stringMaker.append("Deleting: ").append(abFile.getAbsolutePath()).toString(), this, commonStrings.PROCESS));
+                    logUtil.put(stringMaker.append("Deleting: ").append(abFile.getAbsolutePath()).toString(), this, commonStrings.PROCESS);
                     abFile.delete();
                 }
             }

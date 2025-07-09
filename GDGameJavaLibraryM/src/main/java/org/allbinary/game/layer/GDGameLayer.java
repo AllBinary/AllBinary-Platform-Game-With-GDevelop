@@ -182,7 +182,7 @@ public class GDGameLayer
         this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
         this.initPosition();
 
-        //LogUtil.put(LogFactory.getInstance(this.gdObject.toShortString(), this, commonStrings.CONSTRUCTOR));
+        //logUtil.put(this.gdObject.toShortString(), this, commonStrings.CONSTRUCTOR);
         final int size = animationInterfaceFactoryInterfaceArray.length;
         for(int index = 0; index < size; index++) {
             final String animationName = this.gdObject.getAnimationFromIndex(index);
@@ -193,7 +193,7 @@ public class GDGameLayer
             scaleProperties.scaleHeight = this.gdObject.Height(null);
             if(animationName != null && animationName.indexOf(HACK_ANIMATION_NAME) >= 0) {
                 scaleProperties.shouldScale = true;
-                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.gdObject.toShortString()).append(scaleProperties.toString()).toString(), this, commonStrings.CONSTRUCTOR));
+                //logUtil.put(new StringMaker().append(this.gdObject.toShortString()).append(scaleProperties.toString()).toString(), this, commonStrings.CONSTRUCTOR);
             }
             animationInterfaceFactoryInterfaceArray[index].setInitialScale(scaleProperties);
         }
@@ -216,7 +216,7 @@ public class GDGameLayer
         this.combatBaseBehavior = new CombatBaseBehavior(
                 DamageableBaseBehavior.getInstance(), new GDDestroyableSimpleBehavior(this));
         
-        //LogUtil.put(LogFactory.getInstance(this.toString(), this, commonStrings.CONSTRUCTOR));
+        //logUtil.put(this.toString(), this, commonStrings.CONSTRUCTOR);
         
         this.dimensionalBehavior.reset(gdObject);
         
@@ -363,7 +363,7 @@ public class GDGameLayer
 //        if(this.getName().indexOf(BULLET) > 0) {
 //            final PositionStrings positionStrings = PositionStrings.getInstance();
 //            final StringMaker stringMaker = new StringMaker();
-//            LogUtil.put(LogFactory.getInstance(stringMaker
+//            logUtil.put(stringMaker
 //                .append(this.getName())
 //                .append(positionStrings.X_LABEL).append(velocityX)
 //                .append(positionStrings.Y_LABEL).append(velocityY)
@@ -374,7 +374,7 @@ public class GDGameLayer
 //                .append(positionStrings.X_LABEL).append(x)
 //                .append(positionStrings.Y_LABEL).append(y)
 //                //.append(positionStrings.DZ_LABEL).append(dz)
-//                .toString(), this, MOVE));            
+//                .toString(), this, MOVE);            
 //        }
         
         super.setPosition(x, y, this.z);
@@ -423,7 +423,7 @@ public class GDGameLayer
 //        if(this.getName().startsWith(MEDIUM_ASTEROID)) {
 //            final GDGameLayerStrings gameLayerStrings = GDGameLayerStrings.getInstance();
 //            final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-//            LogUtil.put(LogFactory.getInstance(new StringMaker()
+//            logUtil.put(new StringMaker()
 //                .append(this.getName())
 //                .append(CommonSeps.getInstance().COLON)
 //                .append(this.velocityInterface.toString())
@@ -432,7 +432,7 @@ public class GDGameLayer
 //                ////.append(objectStrings.ANGLE).append(this.gdObject.angle)
 //                .append(objectStrings.ANGLE).append(angle)
 //                .append(objectStrings.ANGLE).append(adjustedAngle)
-//                .append(gameLayerStrings.LENGTH).append(length).toString(), this, gameLayerStrings.ADD_FORCE_AL));
+//                .append(gameLayerStrings.LENGTH).append(length).toString(), this, gameLayerStrings.ADD_FORCE_AL);
 //        }
         
         //TWB - The ChangePlan might cause this logic instead.
@@ -460,11 +460,11 @@ public class GDGameLayer
 
         ////final PositionStrings positionStrings = PositionStrings.getInstance();
         ////final StringMaker stringMaker = new StringMaker();
-        ////LogUtil.put(LogFactory.getInstance(stringMaker
+        ////logUtil.put(stringMaker
                 ////.append(positionStrings.DX_LABEL).append(x_)
                 ////.append(positionStrings.DY_LABEL).append(y_)
                 //////.append(positionStrings.DZ_LABEL).append(dz)
-                ////.toString(), this, FORCE));
+                ////.toString(), this, FORCE);
 
         //this.move(x_, y_);
 
@@ -473,7 +473,7 @@ public class GDGameLayer
         
         ////stringMaker.delete(0, stringMaker.length());
         ////this.toString(stringMaker);
-        ////LogUtil.put(LogFactory.getInstance(stringMaker.toString(), this, FORCE));
+        ////logUtil.put(stringMaker.toString(), this, FORCE);
     //}
     
     public void updatePosition() {
@@ -487,7 +487,7 @@ public class GDGameLayer
     public void updateGDObject(final long timeDelta)
     {
 //        if(this.scalableProcessor == ScalableProcessor.getInstance()) {
-//            LogUtil.put(LogFactory.getInstance(this.getName(), this, "updateGDObject"));
+//            logUtil.put(this.getName(), this, "updateGDObject");
 //        }
         
         //this.move();
@@ -506,17 +506,17 @@ public class GDGameLayer
         
         final int size = this.initIndexedAnimationInterfaceArray.length;
         for(int index = 0; index < size; index++) {
-            //LogUtil.put(LogFactory.getInstance(this.getName(), this, "updateGDObject2"));
+            //logUtil.put(this.getName(), this, "updateGDObject2");
             this.initIndexedAnimationInterfaceArray[index].setAlpha(opacity);
             this.scalableProcessor.process(this, this.initIndexedAnimationInterfaceArray[index]);
             if(this.gdObject.basicColor != null) {
-                //LogUtil.put(LogFactory.getInstance("setBasicColor: " + this.gdObject.basicColor, this, "updateGDObject"));
+                //logUtil.put("setBasicColor: " + this.gdObject.basicColor, this, "updateGDObject");
                 this.initIndexedAnimationInterfaceArray[index].changeBasicColor(this.gdObject.basicColor);
             }
         }
 
         //if(this.getName().startsWith(PLAYER)) {
-            //LogUtil.put(LogFactory.getInstance(commonStrings.UPDATE, this, this.toString()));
+            //logUtil.put(commonStrings.UPDATE, this, this.toString());
         //}
     }
 
@@ -540,14 +540,14 @@ public class GDGameLayer
 //    private float lastScaleY = Float.MIN_VALUE;
     public void setScalable() {
 //        if(this.gdObject.scaleX != lastScaleX) {
-//            LogUtil.put(LogFactory.getInstance("scaleX: " + this.gdObject.scaleX, this, commonStrings.PROCESS));
+//            logUtil.put("scaleX: " + this.gdObject.scaleX, this, commonStrings.PROCESS);
 //        }
 //        if(this.gdObject.scaleY != lastScaleY) {
-//            LogUtil.put(LogFactory.getInstance("scaleY: " + this.gdObject.scaleY, this, commonStrings.PROCESS));
+//            logUtil.put("scaleY: " + this.gdObject.scaleY, this, commonStrings.PROCESS);
 //        }
         
         if(this.scalableProcessor == ScalableBaseProcessor.getInstance()) {
-            //LogUtil.put(LogFactory.getInstance("set maxscaleallowed 5", this, commonStrings.PROCESS));
+            //logUtil.put("set maxscaleallowed 5", this, commonStrings.PROCESS);
             final int size = this.initIndexedAnimationInterfaceArray.length;
             for (int index = 0; index < size; index++) {
                 this.initIndexedAnimationInterfaceArray[index].setMaxScale(5, 5);
@@ -580,10 +580,10 @@ public class GDGameLayer
             
             //if(animationBehaviorBase.getInstance() == this.animationBehavior) {
             //if(this.indexedAnimationInterfaceArray[this.gdObject.animation] instanceof CustomTextAnimation) {
-                //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.gdObject.name).append(viewPosition.getX()).append(' ').append(viewPosition.getY()).append(this.getWidth()).toString(), this, PAINT));
+                //logUtil.put(new StringMaker().append(this.gdObject.name).append(viewPosition.getX()).append(' ').append(viewPosition.getY()).append(this.getWidth()).toString(), this, PAINT);
 //            if(this.isFirst) {
 //                this.isFirst = false;
-                //LogUtil.put(LogFactory.getInstance(this.gdObject.name + indexedAnimationInterfaceArray[this.gdObject.animation], this, PAINT));
+                //logUtil.put(this.gdObject.name + indexedAnimationInterfaceArray[this.gdObject.animation], this, PAINT);
                 //graphics.drawString(new StringMaker().append(this.gdObject.name).append(viewPosition.getX()).append(' ').append(viewPosition.getY()).append(this.getWidth()).toString(), x, y, 0);
                 //graphics.drawImage(img, this.x, this.y, Graphics.TOP | Graphics.LEFT);
             //}
@@ -601,8 +601,8 @@ public class GDGameLayer
         }
         catch (Exception e)
         {
-            //LogUtil.put(LogFactory.getInstance(new StringMaker().append(this.getName()).append(" GDObject name: ").append(this.gdObject.name).toString(), this, "paint"));
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "paint", e));
+            //logUtil.put(new StringMaker().append(this.getName()).append(" GDObject name: ").append(this.gdObject.name).toString(), this, "paint");
+            logUtil.put(commonStrings.EXCEPTION, this, "paint", e);
         }
         
     }
@@ -623,7 +623,7 @@ public class GDGameLayer
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, "paintThreed", e));
+            logUtil.put(commonStrings.EXCEPTION, this, "paintThreed", e);
         }
     }
     
@@ -655,7 +655,7 @@ public class GDGameLayer
 //        graphics.drawLine(this.x + x + halfWidth, this.y + startY + halfHeight, this.x + x + halfWidth, this.y + endY + halfHeight);
 //
 //        stringBuilder.delete(0, stringBuilder.length());
-//        LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(objectStrings.ANGLE).append(index).append(':').append(this.x).append(':').append(x).append(':').append(halfWidth).toString()));
+//        logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(objectStrings.ANGLE).append(index).append(':').append(this.x).append(':').append(x).append(':').append(halfWidth).toString());
 //        
 //        }
         
@@ -672,10 +672,10 @@ public class GDGameLayer
 //
 //            if (angle != this.gdObject.angle) {
 //                stringBuilder.delete(0, stringBuilder.length());
-//                LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(angle).append(':').append(this.gdObject.angle).toString()));
+//                logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(angle).append(':').append(this.gdObject.angle).toString());
 //            } else {
 //                stringBuilder.delete(0, stringBuilder.length());
-//                LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(angle).toString()));
+//                logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(angle).toString());
 //            }
 //
 //            final int x = (int) (noDecimalTrigTable.cos((short) adjustedAngle) * 16) / noDecimalTrigTable.SCALE;
@@ -727,10 +727,10 @@ public class GDGameLayer
 
 //            if (angle != this.gdObject.angle) {
 //                stringBuilder.delete(0, stringBuilder.length());
-//                LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(angle).append(':').append(this.gdObject.angle).toString()));
+//                logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(angle).append(':').append(this.gdObject.angle).toString());
 //            } else {
 //                stringBuilder.delete(0, stringBuilder.length());
-//                LogUtil.put(LogFactory.getInstance(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(angle).toString()));
+//                logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append(angle).toString());
 //            }
 
 //            final int x = (int) (noDecimalTrigTable.cos((short) adjustedAngle) * 48) / noDecimalTrigTable.SCALE;
@@ -762,7 +762,7 @@ public class GDGameLayer
 //        final ViewPosition viewPosition = this.getViewPosition();
 //        final int viewX = viewPosition.getX();
 //        final int viewY = viewPosition.getY();
-        //LogUtil.put(LogFactory.getInstance("viewX: " + viewX + " viewY: " + viewY, this, "paint"));
+        //logUtil.put("viewX: " + viewX + " viewY: " + viewY, this, "paint");
 //        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().PINK);
 //        graphics.drawRect(viewX - this.getHalfWidth(), viewY - this.getHalfHeight(), this.getWidth() * 2, this.getHeight() * 2);
 
@@ -777,7 +777,7 @@ public class GDGameLayer
 //        EnemiesGDGameLayer.c = PlatformerMap.placementXIntArray[PlatformerMap.placementIntArray[PlatformerMap.placementIndex]] / 24;
 //        EnemiesGDGameLayer.r = PlatformerMap.placementYIntArray[PlatformerMap.placementIntArray[PlatformerMap.placementIndex]] / 24;
 //        stringBuilder.delete(0, stringBuilder.length());
-//        LogUtil.put(LogFactory.getInstance(stringBuilder.append("TWB c: ").append(EnemiesGDGameLayer.c).append(" r: ").append(EnemiesGDGameLayer.r).toString(), this, commonStrings.PROCESS));
+//        logUtil.put(stringBuilder.append("TWB c: ").append(EnemiesGDGameLayer.c).append(" r: ").append(EnemiesGDGameLayer.r).toString(), this, commonStrings.PROCESS);
 
         this.getCollidableInferface().paint(graphics);
     }

@@ -138,7 +138,7 @@ extends AllBinaryGameSceneController
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, this.sceneStrings.INIT_SCENE, e));
+            logUtil.put(commonStrings.EXCEPTION, this, this.sceneStrings.INIT_SCENE, e);
         }
     }
 
@@ -260,7 +260,7 @@ extends AllBinaryGameSceneController
         }
         catch (Exception e)
         {
-            LogUtil.put(LogFactory.getInstance(commonStrings.EXCEPTION, this, this.sceneStrings.BUILD_SCENE, e));
+            logUtil.put(commonStrings.EXCEPTION, this, this.sceneStrings.BUILD_SCENE, e);
         }
     }
 
