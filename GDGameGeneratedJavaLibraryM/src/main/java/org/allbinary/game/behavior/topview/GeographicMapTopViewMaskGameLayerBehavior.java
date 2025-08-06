@@ -336,7 +336,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
                 if (this.autoStepBlocks) {
                     ((TopViewCharacterInterface) layer).leftp();
                 } else {
-                    velocityProperties.getVelocityXBasicDecimal().set(0);
+                    velocityProperties.getVelocityXBasicDecimalP().set(0);
                 }
             } else {
                 ((TopViewCharacterInterface) layer).leftp();
@@ -364,7 +364,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
                 if (this.autoStepBlocks) {
                     ((TopViewCharacterInterface) layer).rightp();
                 } else {
-                    velocityProperties.getVelocityXBasicDecimal().set(0);
+                    velocityProperties.getVelocityXBasicDecimalP().set(0);
                 }
             } else {
                 ((TopViewCharacterInterface) layer).rightp();

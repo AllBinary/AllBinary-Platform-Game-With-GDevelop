@@ -571,11 +571,11 @@ extends GDWaypointBehavior
             if(geographicMapCellPosition.getColumn() == this.afterNextUnvisitedPathGeographicMapCellPosition.getColumn()) {
                 
             } else if(point.getX() < afterNextPoint.getX()) {
-                if (unitLayer.getX() + unitLayer.getHalfWidth() < point.getX()) {
+                if (unitLayer.getXP() + unitLayer.getHalfWidth() < point.getX()) {
                     beyondMidPoint = false;
                 }
             } else {
-                if (unitLayer.getX() + unitLayer.getHalfWidth() > point.getX()) {
+                if (unitLayer.getXP() + unitLayer.getHalfWidth() > point.getX()) {
                     beyondMidPoint = false;
                 }
             }
@@ -583,11 +583,11 @@ extends GDWaypointBehavior
             if(geographicMapCellPosition.getRow() == this.afterNextUnvisitedPathGeographicMapCellPosition.getRow()) {
                 
             } else if(point.getY() < afterNextPoint.getY()) {
-                if (unitLayer.getY() + unitLayer.getHalfHeight() < point.getY()) {
+                if (unitLayer.getYP() + unitLayer.getHalfHeight() < point.getY()) {
                     beyondMidPoint = false;
                 }
             } else {
-                if (unitLayer.getY() + unitLayer.getHalfHeight() > point.getY()) {
+                if (unitLayer.getYP() + unitLayer.getHalfHeight() > point.getY()) {
                     beyondMidPoint = false;
                 }
             }
@@ -729,12 +729,12 @@ extends GDWaypointBehavior
                 final GPoint point = this.nextUnvisitedPathGeographicMapCellPosition.getMidPoint();
                 
                 final GeographicMapCompositeInterface geographicMapCompositeInterface
-                    = (GeographicMapCompositeInterface) associatedAdvancedRTSGameLayer2.allBinaryGameLayerManager;
+                    = (GeographicMapCompositeInterface) associatedAdvancedRTSGameLayer2.allBinaryGameLayerManagerP;
                 final BasicGeographicMap geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
                 final AllBinaryTiledLayer tiledLayer = geographicMapInterface.getAllBinaryTiledLayer();
                         
-                dx = associatedAdvancedRTSGameLayer2.getX() + associatedAdvancedRTSGameLayer2.getHalfWidth() - point.getX() + tiledLayer.getX();
-                dy = associatedAdvancedRTSGameLayer2.getY() + associatedAdvancedRTSGameLayer2.getHalfHeight() - point.getY() + tiledLayer.getY();
+                dx = associatedAdvancedRTSGameLayer2.getXP() + associatedAdvancedRTSGameLayer2.getHalfWidth() - point.getX() + tiledLayer.getXP();
+                dy = associatedAdvancedRTSGameLayer2.getYP() + associatedAdvancedRTSGameLayer2.getHalfHeight() - point.getY() + tiledLayer.getYP();
                 
                 //
                 this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processTargeting(this.associatedAdvancedRTSGameLayer, dx, dy);
@@ -743,13 +743,13 @@ extends GDWaypointBehavior
             {
                 this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processTargetingNonWayPoint(this.associatedAdvancedRTSGameLayer, dx, dy);
 
-                dx = (associatedAdvancedRTSGameLayer2.getX() +
+                dx = (associatedAdvancedRTSGameLayer2.getXP() +
                         associatedAdvancedRTSGameLayer2.getHalfWidth()) -
-                    (this.currentTargetLayerInterface.getX() +
+                    (this.currentTargetLayerInterface.getXP() +
                             this.currentTargetLayerInterface.getHalfWidth());
-                dy = (associatedAdvancedRTSGameLayer2.getY() + 
+                dy = (associatedAdvancedRTSGameLayer2.getYP() + 
                         associatedAdvancedRTSGameLayer2.getHalfHeight())-
-                    (this.currentTargetLayerInterface.getY() +
+                    (this.currentTargetLayerInterface.getYP() +
                     this.currentTargetLayerInterface.getHalfHeight());
             }
 

@@ -181,7 +181,7 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
         final int lastHeight = GameTickDisplayInfoSingleton.getInstance().getLastHeight();
         //logUtil.put("GameTickDisplayInfoSingleton lastHeight: " + lastHeight, this, "reset");
         final int y = -lastHeight + allBinaryTiledLayer.getHeight();
-        allBinaryTiledLayer.setPosition(0, -y, allBinaryTiledLayer.getZ());
+        allBinaryTiledLayer.setPosition(0, -y, allBinaryTiledLayer.getZP());
     }
 
     //TWB temp hack for the strange positioning I use for GD builds.
@@ -190,7 +190,7 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
     {
         final AllBinaryTiledLayer allBinaryTiledLayer = this.getAllBinaryTiledLayer();
         //ForcedLogUtil.log(new StringMaker().append("getCellPositionAt").append(x + allBinaryTiledLayer.getX()).append(',').append(y + allBinaryTiledLayer.getY()).toString(), this);
-        return super.getCellPositionAt(x + allBinaryTiledLayer.getX(), y + allBinaryTiledLayer.getY());
+        return super.getCellPositionAt(x + allBinaryTiledLayer.getXP(), y + allBinaryTiledLayer.getYP());
         //return super.getCellPositionAt(x, y);
 }
 
@@ -199,7 +199,7 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
     {
         final AllBinaryTiledLayer allBinaryTiledLayer = this.getAllBinaryTiledLayer();
         //ForcedLogUtil.log(new StringMaker().append("getCellPositionAt").append(x + allBinaryTiledLayer.getX()).append(',').append(y + allBinaryTiledLayer.getY()).toString(), this);
-        return super.getCellPositionAtNoThrow(x + allBinaryTiledLayer.getX(), y + allBinaryTiledLayer.getY());
+        return super.getCellPositionAtNoThrow(x + allBinaryTiledLayer.getXP(), y + allBinaryTiledLayer.getYP());
         //return super.getCellPositionAtNoThrow(x, y);
     }
     

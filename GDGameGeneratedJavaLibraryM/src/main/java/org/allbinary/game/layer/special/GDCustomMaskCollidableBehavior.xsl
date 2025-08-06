@@ -359,7 +359,7 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
             final int viewY = viewPosition.getY();
 
             //logUtil.put("viewX: ").append(viewX).append(" viewY: ").append(viewY, this, "paint");
-            this.basicColorUtil.setBasicColor(graphics, COLLISION_MASK_COLOR);
+            this.basicColorUtil.setBasicColorP(graphics, COLLISION_MASK_COLOR);
 
             graphics.drawRect(viewX + ownerMaskPoint.getX(), viewY + ownerMaskPoint.getY(), ownerMaskRectangle.getWidth(), ownerMaskRectangle.getHeight());
             //this.getViewPosition().getX2() - viewX,

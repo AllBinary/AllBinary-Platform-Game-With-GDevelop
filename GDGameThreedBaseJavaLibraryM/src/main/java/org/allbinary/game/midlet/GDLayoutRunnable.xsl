@@ -51,6 +51,8 @@ import org.allbinary.graphics.displayable.command.MyCommandsFactory;
 
 public class GDGame<GDLayout>CanvasRunnable implements Runnable
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+    
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     
     private final GDGameMIDlet demoGameMidlet;

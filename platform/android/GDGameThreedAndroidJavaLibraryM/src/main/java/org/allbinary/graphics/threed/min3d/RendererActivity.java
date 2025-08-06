@@ -33,6 +33,7 @@ import org.microemu.opengles.device.PlatformOpenGLESGraphicsFactory;
 public class RendererActivity extends Activity //implements ISceneController
 {
     protected final LogUtil logUtil = LogUtil.getInstance();
+    protected final CommonStrings commonStrings = CommonStrings.getInstance();
 
     private final AndroidResources androidResources = AndroidResources.getInstance();
 

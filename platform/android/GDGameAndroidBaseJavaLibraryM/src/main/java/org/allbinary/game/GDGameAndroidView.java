@@ -8,7 +8,7 @@ import org.allbinary.logic.communication.log.PreLogUtil;
 
 public class GDGameAndroidView extends AllBinaryMidletView
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
+    //protected final LogUtil logUtil = LogUtil.getInstance();
 	
     private final String TAG = "GDGameAndroidView";
     

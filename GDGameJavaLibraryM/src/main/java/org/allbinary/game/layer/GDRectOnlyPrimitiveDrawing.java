@@ -43,7 +43,7 @@ public class GDRectOnlyPrimitiveDrawing extends Animation {
 
     public void addFillColor(final BasicColor basicColor) {
                 
-        colorAnimation.setBasicColor(basicColor);
+        colorAnimation.setBasicColorP(basicColor);
     }
 
     public void addFillRectangle(final int x, final int y, final int x2, final int y2) {

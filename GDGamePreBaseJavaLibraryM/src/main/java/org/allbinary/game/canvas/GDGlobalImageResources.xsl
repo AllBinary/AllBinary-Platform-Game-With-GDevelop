@@ -133,7 +133,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="windowWidth" select="/game/properties/windowWidth" />
                             <xsl:variable name="windowHeight" select="/game/properties/windowHeight" />
 
-                            final Hashtable hashTable = imageCache.getHashtable();
+                            final Hashtable hashTable = imageCache.getHashtableP();
 
                     <xsl:call-template name="imageCache" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >

@@ -44,7 +44,7 @@ public class PathFindingBehavior extends GDBehavior {
         //Maybe update target when target moves or target is reached?
 
         //TWB - remove me at some point
-        targetGameLayer.setAllBinaryGameLayerManager(sourceGameLayer.allBinaryGameLayerManager);
+        targetGameLayer.setAllBinaryGameLayerManager(sourceGameLayer.allBinaryGameLayerManagerP);
 
         ((PathFindingLayerInterface) sourceGameLayer).setTarget((PathFindingLayerInterface) targetGameLayer);
         

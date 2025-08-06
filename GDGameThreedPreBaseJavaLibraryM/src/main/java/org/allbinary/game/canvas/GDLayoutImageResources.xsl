@@ -162,7 +162,7 @@ Created By: Travis Berthelot
                     
                             final PointFactory pointFactory = PointFactory.getInstance();
 
-                            final Hashtable hashTable = imageCache.getHashtable();
+                            final Hashtable hashTable = imageCache.getHashtableP();
 
                     <xsl:call-template name="imageCache" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >

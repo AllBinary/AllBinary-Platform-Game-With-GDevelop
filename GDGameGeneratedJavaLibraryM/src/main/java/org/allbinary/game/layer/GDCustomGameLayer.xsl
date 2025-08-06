@@ -862,10 +862,10 @@ Created By: Travis Berthelot
     
    public void rightp()
    {
-      this.velocityInterface.getVelocityXBasicDecimal().add(-this.acceleration.getReverse());
+      this.velocityInterface.getVelocityXBasicDecimalP().add(-this.acceleration.getReverse());
       this.velocityInterface.limitXYToForwardAndReverseMaxVelocity();
 
-      //logUtil.put("Right: dx: " + this.velocityInterface.getVelocityXBasicDecimal().getUnscaled(), this, "processInput");
+      //logUtil.put("Right: dx: " + this.velocityInterface.getVelocityXBasicDecimalP().getUnscaled(), this, "processInput");
       
       //this.getVelocityProperties().addVelocity(this.acceleration.getReverse(), 180);
 
@@ -876,10 +876,10 @@ Created By: Travis Berthelot
 
    public void leftp()
    {
-       this.velocityInterface.getVelocityXBasicDecimal().add(this.acceleration.getReverse());
+       this.velocityInterface.getVelocityXBasicDecimalP().add(this.acceleration.getReverse());
        this.velocityInterface.limitXYToForwardAndReverseMaxVelocity();
 
-       //logUtil.put("Left: dx: " + this.velocityInterface.getVelocityXBasicDecimal().getUnscaled(), this, "processInput");
+       //logUtil.put("Left: dx: " + this.velocityInterface.getVelocityXBasicDecimalP().getUnscaled(), this, "processInput");
 
        //this.getVelocityProperties().addVelocity(this.acceleration.getReverse(), 0);
        //this.specialAnimationArray[this.specialIndex++] = LEFT;
@@ -931,7 +931,7 @@ Created By: Travis Berthelot
       /*
        * int hatFrame = (int) this.absoluteXVelocity / hatReverseDenominator;
        * int yHatFrame = (int)
-       * Math.abs(this.velocityInterface.getVelocityYBasicDecimal().getUnscaled()) /
+       * Math.abs(this.velocityInterface.getVelocityYBasicDecimalP().getUnscaled()) /
        * hatReverseDenominator; hatFrame += yHatFrame;
        * 
        * if (hatFrame > TOTAL_HAT_FRAMES - 1) { hatFrame = TOTAL_HAT_FRAMES -

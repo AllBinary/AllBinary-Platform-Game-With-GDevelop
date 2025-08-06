@@ -52,7 +52,9 @@ public class PlatformAssetManager {
     public static PlatformAssetManager getInstance() {
         return instance;
     }
-    
+
+    protected final LogUtil logUtil = LogUtil.getInstance();
+
     public InputStream getResourceAsStream(final String resource) throws Exception {
         final ResourceUtil resourceUtil = ResourceUtil.getInstance();
         final InputStream inputStream = resourceUtil.getResourceAsStream(resource);

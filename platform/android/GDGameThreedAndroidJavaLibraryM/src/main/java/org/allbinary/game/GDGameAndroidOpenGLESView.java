@@ -10,7 +10,6 @@ import org.allbinary.view.AllBinaryMidletOpenGLSurfaceView;
 public class GDGameAndroidOpenGLESView 
 extends AllBinaryMidletOpenGLSurfaceView
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
 	
     private final String TAG = "GDGameAndroidOpenGLESView";
     

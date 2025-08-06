@@ -267,7 +267,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         //super.setPlayingGameState();
 
-        this.setGameSpecificPaintable(
+        this.setGameSpecificPaintableP(
                 new Paintable()
         {
             final SpecialAnimation specialAnimation = GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance();
@@ -632,7 +632,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         this.clear(graphics);
 
-        this.basicSetColorUtil.setBasicColor(graphics, gameLayerManager.getForegroundBasicColor());
+        this.basicSetColorUtil.setBasicColorP(graphics, gameLayerManager.getForegroundBasicColor());
 
         //final int halfHeight = GameTickDisplayInfoSingleton.getInstance().getLastHalfHeight();
         //graphics.drawString(TEXT, 0, halfHeight, 0);
@@ -654,7 +654,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         screenCapture.saveFrame();
 
-        this.getTouchPaintable().paint(graphics);
+        this.getTouchPaintableP().paint(graphics);
     }
 
     public void paintThreed(Graphics graphics)
@@ -858,7 +858,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 //            logUtil.put(this.commonStrings.END, this, this.commonStrings.END);
 //            this.cleanupGame();
 //            this.specialAnimation = SpecialAnimation.getInstance();
-//            this.setGameSpecificPaintable(NullPaintable.getInstance());
+//            this.setGameSpecificPaintableP(NullPaintable.getInstance());
 //        } catch (Exception e)
 //        {
 //            logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.END, e);

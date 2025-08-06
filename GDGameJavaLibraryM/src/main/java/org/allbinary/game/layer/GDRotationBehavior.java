@@ -122,7 +122,7 @@ public class GDRotationBehavior extends GDAnimationBehaviorBase {
 
     public void toString(final GDObject gdObject, final StringMaker stringBuffer) {
         final RotationAnimation rotationAnimation = this.rotationAnimationInterfaceArray[gdObject.animation];
-        stringBuffer.append(GraphicsStrings.getInstance().ANGLE).append(rotationAnimation.getAngleInfo().getAngle());
+        stringBuffer.append(GraphicsStrings.getInstance().ANGLE).append(rotationAnimation.getAngleInfoP().getAngle());
     }
     
 }

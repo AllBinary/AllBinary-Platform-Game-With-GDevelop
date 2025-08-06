@@ -170,6 +170,8 @@ import org.allbinary.game.media.graphics.geography.map.racetrack.PathFindingInfo
 
 public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 {
+    protected final LogUtil logUtil = LogUtil.getInstance();
+    
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     private final CommonSeps commonSeps = CommonSeps.getInstance();
 

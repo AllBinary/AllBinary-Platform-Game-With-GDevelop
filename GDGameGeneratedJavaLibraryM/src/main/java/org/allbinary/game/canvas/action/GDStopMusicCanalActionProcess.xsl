@@ -33,7 +33,7 @@ Created By: Travis Berthelot
                             final int size = list.size();
 
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                                ((Sound) list.get(index)).getPlayer().stop();
+                                ((Sound) list.get(index)).getPlayerP().stop();
                             }
 
                         } catch(Exception e) {

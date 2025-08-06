@@ -342,12 +342,12 @@ public class GDGameLayer
     
     public void move()
     {
-        //final int dx = velocityInterface.getVelocityXBasicDecimal().getScaled();
-        //final int dy = velocityInterface.getVelocityYBasicDecimal().getScaled();
+        //final int dx = velocityInterface.getVelocityXBasicDecimalP().getScaled();
+        //final int dy = velocityInterface.getVelocityYBasicDecimalP().getScaled();
         //super.move(dx, dy);
 
-        final long velocityX = velocityInterface.getVelocityXBasicDecimal().getUnscaled();
-        final long velocityY = velocityInterface.getVelocityYBasicDecimal().getUnscaled();
+        final long velocityX = velocityInterface.getVelocityXBasicDecimalP().getUnscaled();
+        final long velocityY = velocityInterface.getVelocityYBasicDecimalP().getUnscaled();
 
         //final long priorRealX = this.realX;
         //final long priorRealY = this.realY;
@@ -381,11 +381,11 @@ public class GDGameLayer
     }
     
     public int isMovingX() {
-        return (int) (this.velocityInterface.getVelocityXBasicDecimal().getScaled() / this.SCALE_FACTOR);
+        return (int) (this.velocityInterface.getVelocityXBasicDecimalP().getScaled() / this.SCALE_FACTOR);
     }
 
     public int isMovingY() {
-        return (int) (this.velocityInterface.getVelocityYBasicDecimal().getScaled() / this.SCALE_FACTOR);
+        return (int) (this.velocityInterface.getVelocityYBasicDecimalP().getScaled() / this.SCALE_FACTOR);
     }
     
     public void setPosition(final int x, final int y, final int z)
@@ -450,8 +450,8 @@ public class GDGameLayer
 
     public void AddForce(final int x, final int y) {
         
-        this.velocityInterface.getVelocityXBasicDecimal().set(x * SCALE_FACTOR2);
-        this.velocityInterface.getVelocityYBasicDecimal().set(y * SCALE_FACTOR2);
+        this.velocityInterface.getVelocityXBasicDecimalP().set(x * SCALE_FACTOR2);
+        this.velocityInterface.getVelocityYBasicDecimalP().set(y * SCALE_FACTOR2);
     }
     
     //private static final String FORCE = "force";
@@ -747,8 +747,8 @@ public class GDGameLayer
         
         //graphics.drawString(this.getName(), x, y, 0);
 
-//        final int endX = (int) (this.x + (this.velocityInterface.getVelocityXBasicDecimal().getUnscaled() / 10));
-//        final int endY = (int) (this.y + (this.velocityInterface.getVelocityYBasicDecimal().getUnscaled() / 10));
+//        final int endX = (int) (this.x + (this.velocityInterface.getVelocityXBasicDecimalP().getUnscaled() / 10));
+//        final int endY = (int) (this.y + (this.velocityInterface.getVelocityYBasicDecimalP().getUnscaled() / 10));
 //        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().AQUA);
 //        graphics.drawLine(this.x + this.getHalfWidth(), this.y + this.getHalfHeight(), endX + this.getHalfWidth(), endY + this.getHalfHeight());
 //
@@ -786,7 +786,7 @@ public class GDGameLayer
 //    public int r;
 
     public void setBasicColor(final BasicColor basicColor) {
-        ((CustomTextAnimation) this.initIndexedAnimationInterfaceArray[0]).setBasicColor(basicColor);
+        ((CustomTextAnimation) this.initIndexedAnimationInterfaceArray[0]).setBasicColorP(basicColor);
     }
 
     public void setText(final String text) {

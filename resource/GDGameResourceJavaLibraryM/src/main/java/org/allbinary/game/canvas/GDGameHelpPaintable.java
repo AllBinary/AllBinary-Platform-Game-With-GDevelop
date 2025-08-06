@@ -38,7 +38,6 @@ Reverse= Down, 8, or M
         
     	super(BasicColorFactory.getInstance().RED);
         
-        this.setInputInfo(new String[]
-                         {"Line 1", "Line 2"});
+        this.setInputInfoP(new String[]{"Line 1", "Line 2"});
     }
 }

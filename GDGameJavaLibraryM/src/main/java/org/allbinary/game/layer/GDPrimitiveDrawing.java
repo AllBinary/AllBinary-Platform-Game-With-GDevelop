@@ -68,12 +68,12 @@ public class GDPrimitiveDrawing extends Animation {
         
         if(this.colorAnimationCacheList.size() == 0) {
             final Animation colorAnimation = new Animation() {};
-            colorAnimation.setBasicColor(basicColor);
+            colorAnimation.setBasicColorP(basicColor);
             this.animationListArray[this.circularIndexUtil.getIndex()].add(colorAnimation);
             this.colorAnimationInUseList.add(colorAnimation);
         } else {
             final Animation colorAnimation = (Animation) colorAnimationCacheList.remove(colorAnimationCacheList.size() - 1);
-            colorAnimation.setBasicColor(basicColor);
+            colorAnimation.setBasicColorP(basicColor);
             this.animationListArray[this.circularIndexUtil.getIndex()].add(colorAnimation);
             this.colorAnimationInUseList.add(colorAnimation);
         }

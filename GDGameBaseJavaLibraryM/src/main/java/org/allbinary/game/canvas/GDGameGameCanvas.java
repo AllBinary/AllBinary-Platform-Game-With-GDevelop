@@ -344,7 +344,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         
         this.clear(graphics);
 
-        this.basicSetColorUtil.setBasicColor(graphics, gameLayerManager.getForegroundBasicColor());
+        this.basicSetColorUtil.setBasicColorP(graphics, gameLayerManager.getForegroundBasicColor());
 
         //graphics.drawString(TEXT, 0, halfHeight, 0);
 
@@ -368,7 +368,7 @@ public class GDGameGameCanvas extends AllBinaryGameCanvas
         graphics.drawString(this.gyroOrientationSensor.toString(), 0, halfHeight + 30 + 60, 0);
         graphics.drawString(this.accelerometerOrientationSensor.toString(), 0, halfHeight + 30 + 75, 0);
 
-        this.getTouchPaintable().paint(graphics);
+        this.getTouchPaintableP().paint(graphics);
     }
 
     private TimeDelayHelper playerTimeDelayHelper = new TimeDelayHelper(2000);

@@ -59,7 +59,7 @@ implements ColorChangeListener
     
     public void onEvent(AllBinaryEventObject eventObject)
     {
-        BasicColor basicColor = ((ColorChangeEvent) eventObject).getBasicColor(); 
+        BasicColor basicColor = ((ColorChangeEvent) eventObject).getBasicColorP(); 
         //logUtil.put("Color Change Event: " + basicColor.getName(), this, "onEvent");
         this.color = basicColor.intValue();
     }
@@ -70,22 +70,22 @@ implements ColorChangeListener
         
         int x = 0;
         
-        if(this.width != Integer.MIN_VALUE)
+        if(this.widthP != Integer.MIN_VALUE)
         {
-            x = ((graphics.getClipWidth() - this.width) / 2);
+            x = ((graphics.getClipWidth() - this.widthP) / 2);
         }
         
         int deltaX;
         int deltaY;
 
-        for (int index = 0; index < size - 1; index++)
+        for (int index = 0; index < sizeP - 1; index++)
         {
             deltaX = this.dxArray[index] + x;
             deltaY = this.dyArray[index] + y;
             
             if (this.basicColorArray[index] != CLEAR_COLOR)
             {
-                this.basicSetColorUtil.setBasicColor(graphics, this.basicColorArray[index]);
+                this.basicSetColorUtil.setBasicColorP(graphics, this.basicColorArray[index]);
             }
             //logUtil.put("deltaX: " + deltaX + " " + x, this, "paint");
             this.animationInterfaceArray[index].paint(graphics, deltaX, deltaY);
@@ -108,7 +108,7 @@ implements ColorChangeListener
         //int deltaX;
         int deltaY;
 
-        int index = size - 1;
+        int index = sizeP - 1;
 
         //CameraLayer cameraLayer = testGameDemoSceneController.getCameraLayer();
         

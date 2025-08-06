@@ -72,6 +72,7 @@ public class GDGame
     {
         try
         {
+            final LogUtil logUtil = LogUtil.getInstance();
 
             logUtil.put(this.commonStrings.START, this, this.commonStrings.INIT);
 
