@@ -38,6 +38,7 @@
 -->
 
         <!--
+        -->
         <dependency>
             <groupId>org.mapgenerator</groupId>
             <artifactId>TileMapGeneratorJavaLibraryM</artifactId>
@@ -48,7 +49,6 @@
             <artifactId>DungeonGeneratorJavaLibrary</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
-        -->
         <!--
         -->
 

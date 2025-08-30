@@ -50,7 +50,7 @@ Created By: Travis Berthelot
                             
                             //player.start();
                             final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
-                            final MyCanvas abCanvas = abToGBUtil.abCanvas;
+                            final MyCanvas abCanvas = (MyCanvas) abToGBUtil.abCanvas;
                             abCanvas.nextSong(sound, leftVolume, rightVolume);
 
                         } catch(Exception e) {

@@ -10,24 +10,21 @@
         <!-- Game Version Start -->
     </parent>
 
-    <artifactId>GDGameAndroidRawResourcesJavaLibrary</artifactId>
+    <artifactId>GDGameThreedAndroidRawResourcesJavaLibrary</artifactId>
     <packaging>jar</packaging>
 
-    <name>GDGameAndroidRawResourcesJavaLibrary</name>
+    <name>GDGameThreedAndroidRawResourcesJavaLibrary</name>
     <url>http://www.allbinary.com/</url>
 
     <properties>
 
-        <outputPath>../GDGameAndroidApplicationM\src\main\res\raw</outputPath>
-        <outputPath2>../GDGameAndroidApplicationM\src\main\res\drawable</outputPath2>
-        <outputPath3>../GDGameAndroidApplicationNoLicensingGradle\app\src\main\res\raw</outputPath3>
-        <outputPath4>../GDGameAndroidApplicationNoLicensingGradle\app\src\main\res\drawable</outputPath4>
-        
-        <inputPath>..\..\..\Resources\2d\images\release\</inputPath>
-        <inputPath2>..\..\..\Resources\2d\images\wait\</inputPath2>
-        <inputPath5>..\..\..\Resources\2d\images\gd\</inputPath5>
-        <inputPath3>..\..\..\Resources\2d\sounds\ogg\</inputPath3>
-        <inputPath4>..\..\..\Resources\2d\partner\</inputPath4>
+        <outputPath3>../GDGameThreedAndroidApplicationNoLicensingGradle\app\src\main\res\raw</outputPath3>
+        <outputPath4>../GDGameThreedAndroidApplicationNoLicensingGradle\app\src\main\res\drawable</outputPath4>
+        <inputPath>..\..\..\Resources\3d\images\release\</inputPath>
+        <inputPath2>..\..\..\Resources\3d\images\wait\</inputPath2>
+        <inputPath5>..\..\..\Resources\3d\images\gd\</inputPath5>
+        <inputPath3>..\..\..\Resources\3d\sounds\ogg\</inputPath3>
+        <inputPath4>..\..\..\Resources\3d\partner\</inputPath4>
         
     </properties>
 
@@ -76,61 +73,6 @@
             </plugin>
             -->
       
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.4.3</version>
-                <executions>
-                    <execution>
-                        <id>copy-resources-raw-mvn</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${outputPath}</outputDirectory>
-                            <resources>          
-                                <resource>
-                                    <directory>${inputPath2}</directory>
-                                    <filtering>false</filtering>
-                                </resource>
-                                <resource>
-                                    <directory>${inputPath3}</directory>
-                                    <filtering>false</filtering>
-                                </resource>
-                                <resource>
-                                    <directory>${inputPath4}</directory>
-                                    <filtering>false</filtering>
-                                </resource>
-                                <resource>
-                                    <directory>${inputPath5}</directory>
-                                    <filtering>false</filtering>
-                                </resource>
-                            </resources>              
-                        </configuration>     
-                    </execution>
-                    <execution>
-                        <id>copy-resources-drawable-mvn</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${outputPath2}</outputDirectory>
-                            <resources>          
-                                <resource>
-                                    <directory>${inputPath}</directory>
-                                    <filtering>false</filtering>
-                                </resource>
-                                <resource>
-                                    <directory>${inputPath2}</directory>
-                                    <filtering>false</filtering>
-                                </resource>
-                            </resources>              
-                        </configuration>     
-                    </execution>                    
-                </executions>
-            </plugin>            
-
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.4.3</version>
@@ -185,7 +127,7 @@
                     </execution>                    
                 </executions>
             </plugin>            
-                        
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>

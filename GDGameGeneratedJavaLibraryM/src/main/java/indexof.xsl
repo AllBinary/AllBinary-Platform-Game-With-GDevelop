@@ -20,4 +20,10 @@
         </xsl:choose>
     </xsl:template>
 
+    <xsl:template name="ends-with">
+        <xsl:param name="string" />
+        <xsl:param name="token" />
+        <xsl:value-of select="$token = substring($string, string-length($string) - string-length($token) + 1)"/>
+    </xsl:template>
+
 </xsl:stylesheet>
