@@ -131,6 +131,11 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
             </xsl:with-param>
         </xsl:call-template>
 
+        <xsl:variable name="hasSprite" ><xsl:for-each select="objects" ><xsl:if test="type = 'Sprite'" >found</xsl:if></xsl:for-each></xsl:variable>
+        <xsl:if test="contains($hasSprite, 'found')" >
+    private final int animationScale = 1;
+        </xsl:if>
+
     public GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
         super("Game Image Animations");

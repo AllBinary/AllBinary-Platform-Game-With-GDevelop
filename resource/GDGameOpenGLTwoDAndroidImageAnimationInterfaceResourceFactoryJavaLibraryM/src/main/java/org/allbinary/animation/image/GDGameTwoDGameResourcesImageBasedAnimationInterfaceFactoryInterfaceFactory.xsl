@@ -148,6 +148,11 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageB
             </xsl:with-param>
         </xsl:call-template>
 
+        <xsl:variable name="hasSprite" ><xsl:for-each select="objects" ><xsl:if test="type = 'Sprite'" >found</xsl:if></xsl:for-each></xsl:variable>
+        <xsl:if test="contains($hasSprite, 'found')" >
+    private final int animationScale = 1;
+        </xsl:if>
+
     public GD<xsl:value-of select="$layoutIndex" />GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(final Hashtable hashtable, final Hashtable rectangleHashtable, final Hashtable rectangleArrayHashtable)
     {
         super("Game Image Animations", hashtable, rectangleHashtable, rectangleArrayHashtable);
