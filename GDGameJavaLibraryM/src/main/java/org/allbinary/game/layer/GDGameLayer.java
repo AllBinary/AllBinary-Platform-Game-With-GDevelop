@@ -244,8 +244,8 @@ public class GDGameLayer
         //logUtil.put(playerGDGameLayer.getName() + " old angle: " + playerGDGameLayer.gdObject.angle, this, "setGDObject");
         //playerGDGameLayer.setGDObject(gdObject);
 
-        //gdObject.setAngle((short) this.gdObject.angle);
-        gdObject.angle = (short) this.gdObject.angle;
+        //gdObject.setAngle(this.gdObject.angle);
+        gdObject.angle = this.gdObject.angle;
 
         this.dimensionalBehavior.getAnimationBehavior().setAnimationArray(this.initIndexedAnimationInterfaceArray);
         this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
@@ -645,7 +645,7 @@ public class GDGameLayer
 
             //final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
             
-            //this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().AQUA);
+            //this.basicSetColorUtil.setBasicColorP(graphics, BasicColorFactory.getInstance().AQUA);
         
 //        for(int index = 0; index < 360; index+=30) {
 //
@@ -705,11 +705,12 @@ public class GDGameLayer
 //        graphics.drawString(location, viewX - this.getHalfWidth() + this.getWidth() * 2, viewY - this.getHalfHeight(), 0);
 //        graphics.drawString(location, viewX - this.getHalfWidth() + this.getWidth() * 2, viewY - this.getHalfHeight() + this.getHeight() * 2, 0);
 
-//            this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().GREEN);
+//            this.basicSetColorUtil.setBasicColorP(graphics, BasicColorFactory.getInstance().GREEN);
 //
-//            final int x = this.gdObject.PointX(null);
-//            final int y = this.gdObject.PointY(null);
-//            //final int x = 0;
+//        if(this.getName().startsWith(PLAYER)) {
+//            final GD1SpecialAnimationGlobals globals = GD1SpecialAnimationGlobals.getInstance();
+//            final int x = this.gdObject.PointX(globals.firespot);
+//            final int y = this.gdObject.PointY(globals.firespot);
 //            //final int y = 0;
 //            final int startX = x - 5;
 //            final int startY = y - 5;
@@ -720,9 +721,12 @@ public class GDGameLayer
 //            //final int halfHeight = this.getHalfHeight();
 //            graphics.drawLine(startX, y, endX, y);
 //            graphics.drawLine(x, startY, x, endY);
-        
+//
+//        }
         //}
     }
+
+//    private final String PLAYER = "player";
     
     public void paintAngle(final short angle, final Graphics graphics) {
 
@@ -758,28 +762,28 @@ public class GDGameLayer
 
 //        final int endX = (int) (this.x + (this.velocityInterface.getVelocityXBasicDecimalP().getUnscaled() / 10));
 //        final int endY = (int) (this.y + (this.velocityInterface.getVelocityYBasicDecimalP().getUnscaled() / 10));
-//        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().AQUA);
+//        this.basicSetColorUtil.setBasicColorP(graphics, BasicColorFactory.getInstance().AQUA);
 //        graphics.drawLine(this.x + this.getHalfWidth(), this.y + this.getHalfHeight(), endX + this.getHalfWidth(), endY + this.getHalfHeight());
 //
 //        //graphics.drawString(Integer.toString(this.getRotationAnimationInterface().getAngleInfo().getAngle()), this.x, this.y, 0);
 //        
-//        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().LIGHT_GREEN);
+//        this.basicSetColorUtil.setBasicColorP(graphics, BasicColorFactory.getInstance().LIGHT_GREEN);
 //        this.paintAngle(this.getRotationAnimationInterface().getAngleInfo().getAngle(), graphics);
-//        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().LIGHT_RED);
+//        this.basicSetColorUtil.setBasicColorP(graphics, BasicColorFactory.getInstance().LIGHT_RED);
 //        this.paintAngle((short) this.getRotationAnimationInterface().getFrame(), graphics);
         
 //        final ViewPosition viewPosition = this.getViewPosition();
 //        final int viewX = viewPosition.getX();
 //        final int viewY = viewPosition.getY();
         //logUtil.put("viewX: " + viewX + " viewY: " + viewY, this, "paint");
-//        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().PINK);
+//        this.basicSetColorUtil.setBasicColorP(graphics, BasicColorFactory.getInstance().PINK);
 //        graphics.drawRect(viewX - this.getHalfWidth(), viewY - this.getHalfHeight(), this.getWidth() * 2, this.getHeight() * 2);
 
         super.paintDebug(graphics);
 
 //        final StringMaker stringMaker = new StringMaker();
 //        final CommonSeps commonSeps = CommonSeps.getInstance();
-//        this.basicColorUtil.setBasicColor(graphics, BasicColorFactory.getInstance().WHITE);
+//        this.basicSetColorUtil.setBasicColorP(graphics, BasicColorFactory.getInstance().WHITE);
 //        graphics.drawString(stringMaker.append(c).append(commonSeps.COMMA).append(r).append(commonSeps.COLON).toString(), x + 5, y + 10, 0);        
 //        final GDGameLayer PlatformerMapGDGameLayer = (GDGameLayer) globals.PlatformerMapGDGameLayerList.get(0);
 //        final GD0GDObjectsFactory.PlatformerMap PlatformerMap = (GD0GDObjectsFactory.PlatformerMap) PlatformerMapGDGameLayer.gdObject;                                

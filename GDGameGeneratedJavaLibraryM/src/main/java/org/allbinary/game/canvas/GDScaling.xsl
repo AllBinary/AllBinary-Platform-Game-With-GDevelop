@@ -48,6 +48,7 @@
         <xsl:param name="layoutName" />
         <xsl:param name="type" />
                             //scaleProperty
+<!--                       
                             <xsl:if test="$layoutIndex = 1 and $type != 'touch'" >
                             private final int scale = org.allbinary.AndroidUtil.isAndroid() ? 2 : 2;
                             </xsl:if>
@@ -55,6 +56,10 @@
                             private final int scale = org.allbinary.AndroidUtil.isAndroid() ? 1 : 2;
                             </xsl:if>
                             private final float scaleTouchButtons = <xsl:if test="not(number($layoutIndex) = 1)" >1</xsl:if><xsl:if test="number($layoutIndex) = 1" >org.allbinary.AndroidUtil.isAndroid() ? 0.5f : scale + 1</xsl:if>;
+-->
+                            private final int scale = org.allbinary.AndroidUtil.isAndroid() ? 1 : 2;
+                            private final float scaleTouchButtons = <xsl:if test="not(number($layoutIndex) = 1)" >1</xsl:if><xsl:if test="number($layoutIndex) = 1" >org.allbinary.AndroidUtil.isAndroid() ? scale : scale + 1</xsl:if>;
+                            
     </xsl:template>
 
 </xsl:stylesheet>
