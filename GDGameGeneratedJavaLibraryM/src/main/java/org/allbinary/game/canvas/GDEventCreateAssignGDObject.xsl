@@ -301,6 +301,8 @@ Created By: Travis Berthelot
 
                             </xsl:if>
                             <xsl:if test="not(contains($objectsAsString, $spriteName) or contains($objectsGroupsAsString, $name2))" >
+                                //<xsl:value-of select="$caller" /> - //createGDObject - Object was not a Sprite or params where null
+<!--                                //- <xsl:value-of select="$objectsAsString" /> - <xsl:value-of select="$objectsGroupsAsString" />-->
                                 0, 0,
                             </xsl:if>
                     //parameters2
@@ -455,6 +457,8 @@ Created By: Travis Berthelot
                             </xsl:if>
                     
                             <xsl:if test="not(contains($objectsAsString, $spriteName) or contains($objectsGroupsAsString, $name))" >
+                                //createByNameGDObject - Object was not a Sprite or params where null 
+<!--                                //- <xsl:value-of select="$objectsAsString" /> - <xsl:value-of select="$objectsGroupsAsString" />-->
                                 0, 0,
                             </xsl:if>
                             createString
@@ -625,6 +629,8 @@ Created By: Travis Berthelot
                             </xsl:if>
                     
                             <xsl:if test="not(contains($objectsAsString, $spriteName) or contains($objectsGroupsAsString, $name))" >
+                                //createByNameGDObject3 - Object was not a Sprite or params where null
+<!--                                //- <xsl:value-of select="$objectsAsString" /> - <xsl:value-of select="$objectsGroupsAsString" />-->
                                 0, 0,
                             </xsl:if>
                             createString
