@@ -36,9 +36,9 @@ public class GDTwodBehavior {
         
     }
     
-    public void reset(final GDObject gdObject) throws Exception {
+    public void reset(final GDGameLayer gameLayer, final GDObject gdObject) throws Exception {
         this.rotationRemainder = 0;
-        this.animationBehavior.set(gdObject);
+        this.animationBehavior.set(gameLayer, gdObject);
     }
 
     public void updateRotation(final GDGameLayer gameLayer, final long timeDelta) {
@@ -70,6 +70,7 @@ public class GDTwodBehavior {
             
             //stringBuilder.delete(0, stringBuilder.length());
             //logUtil.put(stringBuilder.append("adjustedAngle2: ").append(adjustedAngle2).toString(), this, "updateRotation");
+            //gdObject.setAngle((short) adjustedAngle2);
             gdObject.angle = (short) adjustedAngle2;
             //gdObject.angle += angleAdjustment;
             this.getAnimationBehavior().setRotation(gameLayer, angleAdjustment);

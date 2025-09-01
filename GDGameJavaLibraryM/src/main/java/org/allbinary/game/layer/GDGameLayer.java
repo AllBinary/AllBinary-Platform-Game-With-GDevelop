@@ -41,6 +41,7 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.ScaleFactorFactory;
+import org.allbinary.math.FrameUtil;
 import org.allbinary.media.ScaleProperties;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.view.ViewPosition;
@@ -218,7 +219,7 @@ public class GDGameLayer
         
         //logUtil.put(this.toString(), this, commonStrings.CONSTRUCTOR);
         
-        this.dimensionalBehavior.reset(gdObject);
+        this.dimensionalBehavior.reset(this, gdObject);
         
         this.rectangleArrayOfArrays = rectangleArrayOfArrays;
     }
@@ -230,17 +231,24 @@ public class GDGameLayer
             return false;
         }
     }
-    
+
     public void setGDObject(final GDObject gdObject) throws Exception {
-        
+
         final int size = this.initIndexedAnimationInterfaceArray.length;
-        for(int index = 0; index < size; index++) {
-            this.initIndexedAnimationInterfaceArray[index].setFrame(0);
+        for (int index = 0; index < size; index++) {
+            this.initIndexedAnimationInterfaceArray[index].setFrame(FrameUtil.getInstance().getFrameForAngle((short) 0, 1));
         }
-        
+
+        //logUtil.put(playerGDGameLayer.getName(), this, "new");
+        //logUtil.put(playerGDGameLayer.getName() + " old angle: " + playerGDGameLayer.gdObject.angle, this, "setGDObject");
+        //playerGDGameLayer.setGDObject(gdObject);
+
+        //gdObject.setAngle((short) this.gdObject.angle);
+        gdObject.angle = (short) this.gdObject.angle;
+
         this.dimensionalBehavior.getAnimationBehavior().setAnimationArray(this.initIndexedAnimationInterfaceArray);
         this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
-        this.dimensionalBehavior.reset(gdObject);
+        this.dimensionalBehavior.reset(this, gdObject);
         
         this.gdObject = gdObject;
         this.initPosition(this.gdObject.x, this.gdObject.y, this.gdObject.zOrder);
@@ -521,7 +529,7 @@ public class GDGameLayer
     }
 
     public void resetAnimation() {
-        this.initIndexedAnimationInterfaceArray[this.gdObject.animation].setFrame(0);
+        this.initIndexedAnimationInterfaceArray[this.gdObject.animation].setFrame(FrameUtil.getInstance().getFrameForAngle((short) 90, 1));
     }
     
     public void animate(final long timeDelta) throws Exception {

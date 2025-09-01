@@ -33,8 +33,8 @@ public class GDThreedBehavior extends GDTwodBehavior {
         this.rotationAnimationInterfaceArray = rotationAnimationInterfaceArray;
     }
 
-    public void reset(final GDObject gdObject) throws Exception {
-        super.reset(gdObject);
+    public void reset(final GDGameLayer gameLayer, final GDObject gdObject) throws Exception {
+        super.reset(gameLayer, gdObject);
         this.rotationRemainderZ = 0;
     }
     
@@ -42,7 +42,7 @@ public class GDThreedBehavior extends GDTwodBehavior {
         super.updateRotation(gameLayer, timeDelta);
 
         final GDObject gdObject = gameLayer.gdObject;
-        final StringMaker stringBuilder = new StringMaker();
+        //final StringMaker stringBuilder = new StringMaker();
         //logUtil.put(stringBuilder.append("timeDelta: ").append(timeDelta).toString(), this, "updateRotation");
         //stringBuilder.delete(0, stringBuilder.length());
         //logUtil.put(stringBuilder.append("prior rotationRemainder: ").append(rotationRemainder).toString(), this, "updateRotation");
@@ -54,7 +54,7 @@ public class GDThreedBehavior extends GDTwodBehavior {
         //logUtil.put(stringBuilder.append("rotationRemainder: ").append(rotationRemainder).toString(), this, "updateRotation");
         final short angleAdjustment = (short) (rotationRemainderZ);
         if(angleAdjustment != 0) {
-            stringBuilder.delete(0, stringBuilder.length());
+            //stringBuilder.delete(0, stringBuilder.length());
             //logUtil.put(stringBuilder.append("angleAdjustment: ").append(angleAdjustment).toString(), this, "updateRotation");
             gdObject.angle += angleAdjustment;
             this.setRotationZ(gdObject, angleAdjustment);

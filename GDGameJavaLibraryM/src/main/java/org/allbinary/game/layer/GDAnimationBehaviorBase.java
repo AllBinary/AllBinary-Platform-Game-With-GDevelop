@@ -68,7 +68,7 @@ public class GDAnimationBehaviorBase {
 
     }
 
-    public void set(final GDObject gdObject) throws Exception {
+    public void set(final GDGameLayer gameLayer, final GDObject gdObject) throws Exception {
         
     }
     

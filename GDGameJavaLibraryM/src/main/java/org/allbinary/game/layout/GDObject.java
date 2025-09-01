@@ -41,6 +41,8 @@ public class GDObject
     
     public GDInitialVariables initialVariables = GDInitialVariables.getInstance();
 
+    //public boolean debug = false;
+    
     public final String name;
     public final String type;
     
@@ -245,6 +247,13 @@ public class GDObject
         //return this.y;
     }
 
+    public void setAngle(final short angle) {
+//        if(debug) {
+//            logUtil.put("setAngle: " + angle, this, "setAngle");
+//        }
+        this.angle = angle;
+    }
+    
     public void setAngle(final short angle, final GDGameLayer gameLayer) {
 
         this.updateSinceSetAngle = false;
@@ -264,6 +273,7 @@ public class GDObject
 //            .append(objectStrings.ANGLE).append(angle)
 //            .append(objectStrings.ANGLE).append(adjustedAngle).toString(), this, objectStrings.ANGLE);
 
+        //this.setAngle(adjustedAngle);
         this.angle = adjustedAngle;
 
         if (gameLayer != null) {
