@@ -59,6 +59,7 @@ public class GDGameLayer
         {
     protected final LogUtil logUtil = LogUtil.getInstance();
 
+    protected final FrameUtil frameUtil = FrameUtil.getInstance();
 
     //protected final NoDecimalTrigTable noDecimalTrigTable = NoDecimalTrigTable.getInstance();
     private final ScaleFactorFactory scaleFactorFactory = ScaleFactorFactory.getInstance();
@@ -236,7 +237,7 @@ public class GDGameLayer
 
         final int size = this.initIndexedAnimationInterfaceArray.length;
         for (int index = 0; index < size; index++) {
-            this.initIndexedAnimationInterfaceArray[index].setFrame(FrameUtil.getInstance().getFrameForAngle((short) 0, 1));
+            this.initIndexedAnimationInterfaceArray[index].setFrame(frameUtil.getFrameForAngle((short) 0, 1));
         }
 
         //logUtil.put(playerGDGameLayer.getName(), this, "new");
@@ -529,7 +530,7 @@ public class GDGameLayer
     }
 
     public void resetAnimation() {
-        this.initIndexedAnimationInterfaceArray[this.gdObject.animation].setFrame(FrameUtil.getInstance().getFrameForAngle((short) 90, 1));
+        this.initIndexedAnimationInterfaceArray[this.gdObject.animation].setFrame(frameUtil.getFrameForAngle((short) 90, 1));
     }
     
     public void animate(final long timeDelta) throws Exception {

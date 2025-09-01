@@ -30,6 +30,7 @@ import org.allbinary.math.FrameUtil;
 public class GDRotationBehavior extends GDAnimationBehaviorBase {
     protected final LogUtil logUtil = LogUtil.getInstance();
 
+    protected final FrameUtil frameUtil = FrameUtil.getInstance();
     
     public RotationAnimation[] rotationAnimationInterfaceArray;
     
@@ -68,7 +69,7 @@ public class GDRotationBehavior extends GDAnimationBehaviorBase {
     public void set(final GDGameLayer gameLayer, final GDObject gdObject) throws Exception {
         final int size = this.rotationAnimationInterfaceArray.length;
         for(int index = 0; index < size; index++) {
-            this.rotationAnimationInterfaceArray[index].setFrame(FrameUtil.getInstance().getFrameForAngle((short) 0, 1));
+            this.rotationAnimationInterfaceArray[index].setFrame(frameUtil.getFrameForAngle((short) 0, 1));
         }
     }
     
