@@ -65,15 +65,15 @@ Created By: Travis Berthelot
                                 angle += 360;
                             }
                             
-                            <xsl:value-of select="$name" />.rotation = angle;
-                            if(<xsl:value-of select="$name" />.rotation != 0) {
+                            <xsl:value-of select="$name" />.rotationP = angle;
+                            if(<xsl:value-of select="$name" />.rotationP != 0) {
                                 logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$name" />.rotation).append("<xsl:text>&lt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS);
                             }
                             gameLayer.updateRotation(1000);
-                            if(<xsl:value-of select="$name" />.rotation != 0) {
+                            if(<xsl:value-of select="$name" />.rotationP != 0) {
                                 logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$name" />.rotation).append("<xsl:text>&gt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS);
                             }
-                            <xsl:value-of select="$name" />.rotation = 0;
+                            <xsl:value-of select="$name" />.rotationP = 0;
 
                         <xsl:text>&#10;</xsl:text>
                         //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.y</xsl:if></xsl:for-each>, this, commonStrings.PROCESS);
@@ -111,15 +111,15 @@ Created By: Travis Berthelot
                                 angle += 360;
                             }
 
-                            <xsl:value-of select="$name" />.rotation = angle;
-                            if(<xsl:value-of select="$name" />.rotation != 0) {
+                            <xsl:value-of select="$name" />.rotationP = angle;
+                            if(<xsl:value-of select="$name" />.rotationP != 0) {
                                 logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$name" />.rotation).append("<xsl:text>&lt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS);
                             }
                             gameLayer.updateRotation(1000);
-                            if(<xsl:value-of select="$name" />.rotation != 0) {
+                            if(<xsl:value-of select="$name" />.rotationP != 0) {
                                 logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$name" />.rotation).append("<xsl:text>&gt;</xsl:text>").append(<xsl:value-of select="$name" />.angle).toString(), this, commonStrings.PROCESS);
                             }
-                            <xsl:value-of select="$name" />.rotation = 0;
+                            <xsl:value-of select="$name" />.rotationP = 0;
 
                         } catch(Exception e) {
                             logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);

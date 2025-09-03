@@ -19,7 +19,8 @@ package org.allbinary.game.layout;
  */
 public class GDObjectFactory {
     
-    public GDObject get(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
+    public GDObject get(final int width, final int height, final String name) {
         return null;
     }
+    
 }

@@ -86,9 +86,9 @@ Created By: Travis Berthelot
                                     //final int centerCameraX = (int) (SceneWindowWidth() / 2);
                                     //final int centerCameraY = (int) (SceneWindowHeight() / 2);
                                     //logUtil.put("centerCameraX: " + centerCameraX + " centerCameraY: " + centerCameraY, this, commonStrings.PROCESS);                                    
-                                    //<xsl:value-of select="$baseLayerName" />GDobject2.x = centerCameraX - (<xsl:value-of select="$baseLayerName" />GDobject2.width / 2);
-                                    //<xsl:value-of select="$baseLayerName" />GDobject2.y = centerCameraY - (<xsl:value-of select="$baseLayerName" />GDobject2.height / 2);
-                                    //logUtil.put("<xsl:value-of select="$baseLayerName" />X: " + <xsl:value-of select="$baseLayerName" />GDobject2.x + " <xsl:value-of select="$baseLayerName" />Y: " + <xsl:value-of select="$baseLayerName" />GDobject2.y, this, commonStrings.PROCESS);
+                                    //<xsl:value-of select="$baseLayerName" />.x = centerCameraX - (<xsl:value-of select="$baseLayerName" />.width / 2);
+                                    //<xsl:value-of select="$baseLayerName" />.y = centerCameraY - (<xsl:value-of select="$baseLayerName" />.height / 2);
+                                    //logUtil.put("<xsl:value-of select="$baseLayerName" />X: " + <xsl:value-of select="$baseLayerName" />.x + " <xsl:value-of select="$baseLayerName" />Y: " + <xsl:value-of select="$baseLayerName" />.y, this, commonStrings.PROCESS);
                                     //<xsl:value-of select="$baseLayerName" />GDGameLayer.updatePosition();
                                 }
                             });

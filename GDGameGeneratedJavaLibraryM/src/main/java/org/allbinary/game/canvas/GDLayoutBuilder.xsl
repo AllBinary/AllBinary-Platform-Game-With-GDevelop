@@ -357,66 +357,67 @@ Created By: Travis Berthelot
 
                         //LayoutBuilder
                         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
-                        final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="name" />GDobject2 = (<xsl:value-of select="$gdObjectFactory" />) <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectFactory.get(
-                        null, <xsl:value-of select="name" />X, 
+                        final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectFactory.get(
+                        width, height,
+                        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME);
+
+                        <xsl:value-of select="name" />.set(null, <xsl:value-of select="name" />X, 
                         <xsl:value-of select="name" />Y, 
                     //zOrder - <xsl:value-of select="zOrder" />
                     //layer=<xsl:value-of select="layer" /> (Base Layer is emtpy)
                             <xsl:if test="contains(layer, 'Below')" >
                     //Below - zOrder
-                    <xsl:value-of select="zOrder" />,
+                    <xsl:value-of select="zOrder" />
                             </xsl:if>
                             <xsl:if test="contains(layer, 'touch')" >
                     //touch - zOrder
-                    <xsl:value-of select="zOrder" />,
+                    <xsl:value-of select="zOrder" />
                             </xsl:if>
                             <xsl:if test="not(layer) or string-length(layer) = 0 or contains(layer, 'Base Layer')" >
                     //Base Layer - zOrder + 200
-                    <xsl:value-of select="zOrder + 200" />,
+                    <xsl:value-of select="zOrder + 200" />
                             </xsl:if>
                             <xsl:if test="contains(layer, 'Above')" >
                     //Above - zOrder + 400
-                    <xsl:value-of select="zOrder + 400" />,
+                    <xsl:value-of select="zOrder + 400" />
                             </xsl:if>
                             <xsl:if test="contains(layer, 'Overlay') or contains(text(), 'gui')" >
                     //Overlay - zOrder + 600
-                    <xsl:value-of select="zOrder + 600" />,
+                    <xsl:value-of select="zOrder + 600" />
                             </xsl:if>
                             <xsl:if test="contains(layer, 'Top')" >
                     //Top - zOrder + 800
-                    <xsl:value-of select="zOrder + 800" />,
-                            </xsl:if>
-                        width, height,
-                        <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME);
-                        
-                        <xsl:value-of select="name" />GDobject2.customScale = customScale;
+                    <xsl:value-of select="zOrder + 800" />
+                            </xsl:if>);
+                                                
+                        <xsl:value-of select="name" />.customScale = customScale;
 
                         final int index = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size();
 
                         final StringMaker stringBuilder = new StringMaker();
                         //stringBuilder.delete(0, stringBuilder.length());
                                                 
-                        //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDObjectList.add(<xsl:value-of select="name" />GDobject2);
+                        //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDObjectList.add(<xsl:value-of select="name" />);
 
                             <xsl:if test="initialVariables" >
-                            <xsl:value-of select="$name" />GDobject2.initialVariables = new GDInitialVariables() {
+                            <xsl:value-of select="$name" />.initialVariables = new GDInitialVariables() {
                                 public void reset() {
                             <xsl:for-each select="initialVariables" >//initialVariables - //<xsl:value-of select="type" /> - //<xsl:value-of select="name" /> - //<xsl:value-of select="value" />
                             <xsl:text>&#10;</xsl:text>
-<xsl:text>                  </xsl:text><xsl:value-of select="$name" />GDobject2.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+<xsl:text>                  </xsl:text><xsl:value-of select="$name" />.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                             <xsl:text>&#10;</xsl:text>
                             </xsl:for-each>
                                 }
                             };
-                            <xsl:value-of select="$name" />GDobject2.initialVariables.reset();
+                            <xsl:value-of select="$name" />.initialVariables.reset();
                             </xsl:if>
 
                         <xsl:if test="contains(name, 'btn_')" >
                         //btn_ - //Rectangle
                         //Touch Rectangle
                         //final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
-                        //    pointFactory.getInstance(<xsl:value-of select="name" />GDobject2.x, <xsl:value-of select="name" />GDobject2.y),
-                        //    (int) (<xsl:value-of select="name" />GDobject2.Width(globals.graphics) * scaleTouchButtons), (int) (<xsl:value-of select="name" />GDobject2.Height(globals.graphics) * scaleTouchButtons));
+                        //    pointFactory.getInstance(<xsl:value-of select="name" />.x, <xsl:value-of select="name" />.y),
+                        //    (int) (<xsl:value-of select="name" />.Width(globals.graphics) * scaleTouchButtons), (int) (<xsl:value-of select="name" />.Height(globals.graphics) * scaleTouchButtons));
                         //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         </xsl:if>
                                                 
@@ -424,7 +425,7 @@ Created By: Travis Berthelot
                         final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                         final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
                         
-                        final GDGameLayer <xsl:value-of select="name" />GDGameLayer = <xsl:call-template name="globalResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:value-of select="$layoutIndex" />, stringBuilder.append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME).append(CommonSeps.getInstance().UNDERSCORE).append(index).toString(), <xsl:value-of select="name" />GDobject2, 
+                        final GDGameLayer <xsl:value-of select="name" />GDGameLayer = <xsl:call-template name="globalResource" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerFactory.create(<xsl:value-of select="$layoutIndex" />, stringBuilder.append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME).append(CommonSeps.getInstance().UNDERSCORE).append(index).toString(), <xsl:value-of select="name" />, 
                         scale, scale,     
                         null); //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDConditionWithGroupActions);
                         <xsl:value-of select="name" />GDGameLayer.setAllBinaryGameLayerManager(allBinaryGameLayerManager);

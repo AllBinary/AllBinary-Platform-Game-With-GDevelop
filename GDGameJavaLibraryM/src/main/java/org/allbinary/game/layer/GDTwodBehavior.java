@@ -49,7 +49,7 @@ public class GDTwodBehavior {
         //logUtil.put(stringBuilder.append("timeDelta: ").append(timeDelta).toString(), this, "updateRotation");
         //stringBuilder.delete(0, stringBuilder.length());
         //logUtil.put(stringBuilder.append("prior rotationRemainder: ").append(rotationRemainder).toString(), this, "updateRotation");
-        final float newPortion = (gdObject.rotation * timeDelta / 1000f);
+        final float newPortion = (gdObject.rotationP * timeDelta / 1000f);
         //stringBuilder.delete(0, stringBuilder.length());
         //logUtil.put(stringBuilder.append("newPortion : ").append(newPortion).toString(), this, "updateRotation");
         rotationRemainder = rotationRemainder + newPortion;

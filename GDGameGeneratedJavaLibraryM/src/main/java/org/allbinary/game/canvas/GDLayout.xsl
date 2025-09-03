@@ -364,14 +364,14 @@ Created By: Travis Berthelot
                         final int <xsl:value-of select="name" />Size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.size();
                         if(<xsl:value-of select="name" />Size != 0) {
 
-                            final GDObject <xsl:value-of select="name" />GDobject2 = (GDObject) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject;
-                            final int <xsl:value-of select="name" />X = x + <xsl:value-of select="name" />GDobject2.x;
-                            final int <xsl:value-of select="name" />Y = y + <xsl:value-of select="name" />GDobject2.y;
+                            final GDObject <xsl:value-of select="name" />GDobject = (GDObject) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject;
+                            final int <xsl:value-of select="name" />X = x + <xsl:value-of select="name" />GDobject.x;
+                            final int <xsl:value-of select="name" />Y = y + <xsl:value-of select="name" />GDobject.y;
 
                             //Rectangle 2
                             final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
                                 pointFactory.getInstance(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
-                                <xsl:value-of select="name" />GDobject2.Width(globals.graphics), <xsl:value-of select="name" />GDobject2.Height(globals.graphics));
+                                <xsl:value-of select="name" />GDobject.Width(globals.graphics), <xsl:value-of select="name" />GDobject.Height(globals.graphics));
                             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                         }
                         </xsl:if>

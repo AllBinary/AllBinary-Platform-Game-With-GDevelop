@@ -8,11 +8,7 @@ package org.allbinary.game.layer;
 import java.util.Hashtable;
 
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
-import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory;
-import org.allbinary.animation.NullAnimationFactory;
 import org.allbinary.animation.NullRotationAnimationFactory;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.game.identification.Group;
@@ -92,7 +88,8 @@ public class GDFlagLayerInterfaceFactory
             layerInfo,
             rectangleArrayOfArrays);
         
-        final GDObject gdObject = new GDObject(null, x, y, z, 0, 0, NAME, null);
+        final GDObject gdObject = new GDObject(0, 0, NAME, null);
+        gdObject.set(null, x, y, z);
         
         final GDGameLayer layer = gameLayerFactory.create(-1, NAME, gdObject, 0, 0, new GDConditionWithGroupActions());
         

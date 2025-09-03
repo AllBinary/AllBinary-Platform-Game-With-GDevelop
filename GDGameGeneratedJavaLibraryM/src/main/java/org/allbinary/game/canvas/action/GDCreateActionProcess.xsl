@@ -56,7 +56,7 @@ Created By: Travis Berthelot
 
                         //createGDObject - process - END
                         //createGDObject - //Create
-                        this.processCreate(<xsl:value-of select="$name" />GDobject2);
+                        this.processCreate(<xsl:value-of select="$name" />);
                         
                         this.processEnd(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1);
 
@@ -254,7 +254,7 @@ Created By: Travis Berthelot
 
                         //createGDObject - process - END
                         //createGDObject - //Create
-                        this.processCreate(<xsl:value-of select="$name" />GDobject2);
+                        this.processCreate(<xsl:value-of select="$name" />);
                         
                         this.processEnd(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() - 1);
 

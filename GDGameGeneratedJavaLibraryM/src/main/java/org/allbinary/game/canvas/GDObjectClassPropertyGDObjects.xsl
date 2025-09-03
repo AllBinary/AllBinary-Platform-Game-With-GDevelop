@@ -176,8 +176,8 @@ Created By: Travis Berthelot
         <xsl:for-each select="/game/layouts/objectsGroups" >
         public class <xsl:value-of select="name" /> extends GDObject {
         
-            public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name, final String type) {
-                super(unknown, x, y, z, width, height, name, type);
+            public <xsl:value-of select="name" />(final int width, final int height, final String name, final String type) {
+                super(width, height, name, type);
             }
 
             <xsl:for-each select="objects" >
@@ -273,8 +273,8 @@ Created By: Travis Berthelot
                     };                
                 </xsl:if>
 
-                    public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
-                        super(unknown, x, y, z, width, height, name, <xsl:if test="string-length(type) = 0 or type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >null</xsl:if><xsl:if test="not(string-length(type) = 0 or type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider')" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(type, ':', '_')" /></xsl:with-param></xsl:call-template></xsl:if>);
+                    public <xsl:value-of select="name" />(final int width, final int height, final String name) {
+                        super(width, height, name, <xsl:if test="string-length(type) = 0 or type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >null</xsl:if><xsl:if test="not(string-length(type) = 0 or type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider')" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(type, ':', '_')" /></xsl:with-param></xsl:call-template></xsl:if>);
 
                     <xsl:for-each select="behaviors" >
                         //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />
@@ -425,34 +425,13 @@ Created By: Travis Berthelot
                     }
 -->
                     </xsl:if>
-                    
-                    <!--
-                        <xsl:if test="name = 'player'" >
-                        //Hackish FIX ME for GDevelop player1
-
-                    public short Angle(final GDGameLayer gameLayer) {
-
-                        //logUtil.put(new StringMaker().append(globals.name).append(objectStrings.ANGLE).append(angle).toString(), this, "before");
-                        
-                        int adjustedAngle = gameLayer.getRotationAnimationInterface().getAngleInfo().getAngle() - 270;
-                        //int adjustedAngle = angle;
-                        while(adjustedAngle <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 359) { adjustedAngle -= 360; }
-                        while(adjustedAngle <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 0) { adjustedAngle += 360; }
-                        this.angle = (short) adjustedAngle;
-
-                        //logUtil.put(new StringMaker().append(globals.name).append(objectStrings.ANGLE).append(angle).toString(), this, "after");
-
-                        return this.angle;
-                    }
-                        </xsl:if>
-                    -->
-                    
+                                        
                 };
 
                 public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new GDObjectFactory() {
 
-                    public GDObject get(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
-                        return new <xsl:value-of select="name" />(unknown, x, y, z, width, height, name);
+                    public GDObject get(final int width, final int height, final String name) {
+                        return new <xsl:value-of select="name" />(width, height, name);
                     }
 
                 };    
@@ -466,8 +445,8 @@ Created By: Travis Berthelot
                     
                     //public final StringMaker stringMaker = new StringMaker();
 
-                    public <xsl:value-of select="name" />(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
-                        super(unknown, x, y, z, width, height, name, null);
+                    public <xsl:value-of select="name" />(final int width, final int height, final String name) {
+                        super(width, height, name, null);
                     }
 
                     public int Width(final Graphics graphics) {
@@ -486,8 +465,8 @@ Created By: Travis Berthelot
 
                 public final GDObjectFactory <xsl:value-of select="name" />GDObjectFactory = new GDObjectFactory() {
 
-                    public GDObject get(final String unknown, final int x, final int y, final int z, final int width, final int height, final String name) {
-                        return new <xsl:value-of select="name" />(unknown, x, y, z, width, height, name);
+                    public GDObject get(final int width, final int height, final String name) {
+                        return new <xsl:value-of select="name" />(width, height, name);
                     }
 
                 };    

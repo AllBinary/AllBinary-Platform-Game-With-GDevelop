@@ -55,8 +55,8 @@ public class GDObject
 
     public int zOrder;
     
-    public int rotation;
-    public int rotationZ;
+    public int rotationP;
+    public int rotationZP;
 
     public short angle;
     public int movement_angle;
@@ -84,10 +84,7 @@ public class GDObject
         
     public boolean updateSinceSetAngle;
     
-    public GDObject(final String unknown, final int x, final int y, final int zOrder, final int width, final int height, final String name, final String type) {
-        this.x = x;
-        this.y = y;
-        this.zOrder = zOrder;
+    public GDObject(final int width, final int height, final String name, final String type) {
         
         this.name = name;
         this.type = type;
@@ -105,6 +102,12 @@ public class GDObject
 
     }
 
+    public void set(final String unknown, final int x, final int y, final int zOrder) {
+        this.x = x;
+        this.y = y;
+        this.zOrder = zOrder;
+    }
+    
     public void updateScale(final float scaleX, final float scaleY) {
         this.initScaleX = scaleX;
         this.initScaleY = scaleY;
@@ -376,7 +379,7 @@ public class GDObject
                 .append(commonSeps.SPACE)
                 .append(graphicsStrings.MOVEMENT_ANGLE).append(commonSeps.COLON).append(this.movement_angle)
                 .append(commonSeps.SPACE)
-                .append(graphicsStrings.ROTATION).append(commonSeps.COLON).append(this.rotation)
+                .append(graphicsStrings.ROTATION).append(commonSeps.COLON).append(this.rotationP)
                 .append(commonSeps.SPACE)
                 .append(graphicsStrings.OPACITY).append(commonSeps.COLON).append(this.opacity)
                 .toString();

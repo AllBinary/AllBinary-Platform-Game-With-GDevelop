@@ -319,7 +319,7 @@ Created By: Travis Berthelot
                                 //Touch Rectangle
                                 //name2=<xsl:value-of select="$name2" /><xsl:text>&#10;</xsl:text>
                                 //final Rectangle <xsl:value-of select="$name" />Rectangle = new Rectangle(
-                                //    pointFactory.getInstance(<xsl:value-of select="$name" />GDobject2.x, <xsl:value-of select="$name" />GDobject2.y),
+                                //    pointFactory.getInstance(<xsl:value-of select="$name" />.x, <xsl:value-of select="$name" />.y),
                                 //    (int) (<xsl:value-of select="$name" />.Width(globals.graphics) * scaleTouchButtons), (int) (<xsl:value-of select="$name" />.Height(globals.graphics) * scaleTouchButtons));
                                 //<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />RectangleList.add(<xsl:value-of select="$name" />Rectangle);
                                 </xsl:if>

@@ -232,18 +232,15 @@ Created By: Travis Berthelot
                         public boolean processGPaint(final GDObject <xsl:value-of select="$name" />, final GDObject gdObject2, final Graphics graphics) {
                         
                             try {
-                            <xsl:if test="$name = 'player'" >
-                                //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                            </xsl:if>
                                 //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                 //Parameters - 3
-                                <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotation = <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > / 6;</xsl:if></xsl:for-each>
+                                <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotationP = <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > / 6;</xsl:if></xsl:for-each>
                                 //<xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.angle += <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
                                 <xsl:text>&#10;</xsl:text>
 
                                 //Haskish - it is hard to tell if this is a feature or a hack.
                                 <xsl:if test="/game/properties/force2dCollision/text() = 'true'" >
-                                <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotationZ = <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > / 6;</xsl:if></xsl:for-each>
+                                <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotationZP = <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > / 6;</xsl:if></xsl:for-each>
                                 <!-- new line -->
                                 <xsl:text>&#10;</xsl:text>
                                 </xsl:if>
@@ -257,11 +254,16 @@ Created By: Travis Berthelot
 
                         @Override
                         public boolean processReleased(final GDObject <xsl:value-of select="$name" />) {
-                        <xsl:if test="$name = 'player'" >
-                            //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, globals.PROCESS_RELEASE);
-                        </xsl:if>
                             //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                            <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.rotation = 0;</xsl:if></xsl:for-each>
+
+                            <xsl:variable name="isAllowedToRelease" >
+                                <xsl:for-each select="../conditions" >
+                                    <xsl:variable name="typeValue" select="type/value" />
+                                    <xsl:if test="$typeValue = 'SourisSurObjet' or $typeValue = 'KeyFromTextPressed'" >true</xsl:if>
+                                </xsl:for-each>
+                            </xsl:variable>
+
+                            <xsl:if test="not(contains($isAllowedToRelease, 'true'))" >//</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />.rotationP = 0;</xsl:if></xsl:for-each>
                             return true;
                         }
 
