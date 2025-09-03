@@ -31,8 +31,7 @@ import org.microemu.opengles.device.PlatformOpenGLESGraphicsFactory;
  * @author User
  */
 public class NativeBareMain {
-    protected final LogUtil logUtil = LogUtil.getInstance();
-
+    //protected final LogUtil logUtil = LogUtil.getInstance();
 
     public static void main(final String args[]) {
         
@@ -60,7 +59,9 @@ public class NativeBareMain {
             GDThreedEarlyResourceInitializationFactory.getInstance().list.add(new GDGameThreedJ2SEWithSWTJOGLEarlyResourceInitialization());
             
         } catch(Exception e) {
-            logUtil.put(CommonStrings.getInstance().EXCEPTION, features, CommonStrings.getInstance().PROCESS, e);
+            final LogUtil logUtil = LogUtil.getInstance();
+            final CommonStrings commonStrings = CommonStrings.getInstance();
+            logUtil.put(commonStrings.EXCEPTION, features, commonStrings.PROCESS, e);
         }
         
         BareMain.main2(args, "GDGame", "/gd_icon.ico");

@@ -54,7 +54,8 @@ public class NativeBareMain {
             
         } catch(Exception e) {
             final LogUtil logUtil = LogUtil.getInstance();
-            logUtil.put(CommonStrings.getInstance().EXCEPTION, features, CommonStrings.getInstance().PROCESS, e);
+            final CommonStrings commonStrings = CommonStrings.getInstance();
+            logUtil.put(commonStrings.EXCEPTION, features, commonStrings.PROCESS, e);
         }
         
         BareMain.main2(args, "GDGameMIDlet", "/gd_icon.ico", 1366, 768, false, false);
