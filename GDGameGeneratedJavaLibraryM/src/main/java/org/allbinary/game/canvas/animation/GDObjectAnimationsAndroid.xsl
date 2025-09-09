@@ -166,7 +166,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="directions" >,
                     new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
                     </xsl:for-each>
-                    ) 
+                    , true) 
                     <xsl:if test="$name = 'DialogBox'" >{
                         public void setInitialScale(final ScaleProperties scaleProperties) {
                             scaleProperties.scaleX = scaleProperties.scaleX * 75 / 100;
@@ -275,9 +275,8 @@ Created By: Travis Berthelot
                 <xsl:variable name="animationName1" ><xsl:for-each select="animations" ><xsl:if test="position() = 1" ><xsl:value-of select="$name" /><xsl:value-of select="name" />1</xsl:if></xsl:for-each></xsl:variable>
 
                 <xsl:for-each select="animations" >
-                    <xsl:if test="string-length(name) > 0" >
 <!--                         or contains($name, 'MaskEnemy')-->
-                    <xsl:if test="not(contains($name, 'Attack') or contains($name, 'Projectile'))" >
+                    <xsl:if test="not(contains($name, 'Attack') or contains($name, 'Projectile')) or string-length(name) = 0" >
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:variable name="animationPosition" ><xsl:value-of select="position()" /></xsl:variable>
                     <xsl:variable name="animationTotal" ><xsl:value-of select="last()" /></xsl:variable>
@@ -292,8 +291,25 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:variable>
 
-                    <xsl:if test="$animationPosition = 1 and contains($hasCustomCollisionMask, 'found')" >
+                    <xsl:if test="$animationPosition = 1" >
+                        <xsl:if test="contains($hasCustomCollisionMask, 'found')" >
                 final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][0];
+                        </xsl:if>
+                        <xsl:if test="not(contains($hasMoreThanOneImage, 'found') and contains($hasCustomCollisionMask, 'found'))" >
+                //Auto generated CollisionMask for RotationAnimations
+                final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][360];
+                final float newX = (<xsl:value-of select="$name" />LayerInfo.getWidth() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getWidth()) / 2;
+                final float newY = (<xsl:value-of select="$name" />LayerInfo.getHeight() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getHeight()) / 2;
+                final Rectangle <xsl:value-of select="$name" />RotationCollisionMask = new Rectangle(
+                                pointFactory.getInstance((int) (newX * 3 * halfScale), (int) (newY * 3 * halfScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * halfScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * halfScale)
+                                );
+                        </xsl:if>
+                    </xsl:if>
+
+                    <xsl:if test="not(contains($hasMoreThanOneImage, 'found') and contains($hasCustomCollisionMask, 'found'))" >
+                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
+                rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][index] = <xsl:value-of select="$name" />RotationCollisionMask;
+                }
                     </xsl:if>
                     
                     <xsl:if test="position() = 1" >
@@ -344,11 +360,10 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:for-each>
 
-                    <xsl:if test="$animationPosition = last() and contains($hasCustomCollisionMask, 'found')" >
+                    <xsl:if test="$animationPosition = last() and (contains($hasCustomCollisionMask, 'found') or not(contains($hasMoreThanOneImage, 'found') and contains($hasCustomCollisionMask, 'found')))" >
                 this.addRectangleArrayOfArrays(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
                     </xsl:if>
 
-                    </xsl:if>           
                     </xsl:if>
                 </xsl:for-each>
 
@@ -545,7 +560,7 @@ Created By: Travis Berthelot
                         angleIncrement,
                         AnimationBehaviorFactory.getInstance()
                         //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
-                    )
+                    , true)
                     ,
                     </xsl:for-each>
                     <xsl:for-each select="FillBar" >
@@ -583,7 +598,7 @@ Created By: Travis Berthelot
                         angleIncrement,
                         AnimationBehaviorFactory.getInstance()
                         //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
-                    )
+                    , true)
                     ,
                     </xsl:for-each>
                     <xsl:for-each select="Label" >

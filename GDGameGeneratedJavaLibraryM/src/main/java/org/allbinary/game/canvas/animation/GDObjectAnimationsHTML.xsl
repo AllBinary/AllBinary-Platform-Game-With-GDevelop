@@ -91,7 +91,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
-                private void add<xsl:value-of select="name" />SpriteAnimations(final ImageCache imageCache) throws Exception {
+            private void add<xsl:value-of select="name" />SpriteAnimations(final ImageCache imageCache) throws Exception {
                 <xsl:if test="not(contains($name, 'btn_'))" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
@@ -416,7 +416,7 @@ Created By: Travis Berthelot
                 </xsl:for-each>
                 //objectsGroupsGDGameLayer - END
                 </xsl:if>
-                }
+            }
             </xsl:if>
 
             <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
