@@ -236,8 +236,8 @@ Created By: Travis Berthelot
                     <xsl:if test="contains($hasMoreThanOneImage, 'found')" >, GDIndividualAnimationBehavior.getInstance()</xsl:if>
                     <xsl:if test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >, new GDSliderAnimationBehavior()</xsl:if>
                     <xsl:if test="type = 'TextInput::TextInputObject'" >, new GDTextInputAnimationBehavior()</xsl:if>
-                    <xsl:if test="type = 'TextObject::Text'" >, GDAnimationBehaviorBase.getInstance()</xsl:if>
-                    <xsl:if test="contains(name, 'btn_')" >, GDAnimationBehaviorBase.getInstance()</xsl:if>
+                    <xsl:if test="type = 'TextObject::Text'" >, GDAnimationBehaviorBaseFactory.getInstance()</xsl:if>
+                    <xsl:if test="contains(name, 'btn_')" >, GDAnimationBehaviorBaseFactory.getInstance()</xsl:if>
                     ) 
                     <xsl:if test="type = 'TextObject::Text'" >
                     {

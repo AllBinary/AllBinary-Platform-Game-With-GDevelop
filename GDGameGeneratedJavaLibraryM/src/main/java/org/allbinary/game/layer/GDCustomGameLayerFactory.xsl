@@ -54,7 +54,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo,
             final Rectangle[][] rectangleArrayOfArrays) {
-        this(primitiveDrawingAnimationFactory, gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, new GDRotationBehavior());
+        this(primitiveDrawingAnimationFactory, gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance());
     }
     
     public GDCustomGameLayerFactory(
@@ -66,7 +66,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo, 
             final Rectangle[][] rectangleArrayOfArrays,
-            final GDAnimationBehaviorBase animationBehavior) {
+            final GDAnimationBehaviorBaseFactory animationBehaviorFactory) {
         
         super(gameLayerList, gameLayerDestroyedList, 
             groupInterface,
@@ -75,7 +75,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             proceduralAnimationInterfaceFactoryInterfaceArray,
             layerInfo, 
             rectangleArrayOfArrays, 
-            animationBehavior);
+            animationBehaviorFactory);
     
         this.primitiveDrawingAnimationFactory = primitiveDrawingAnimationFactory;    
         this.width = this.layerInfo.getWidth();
@@ -116,7 +116,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
                 this.proceduralAnimationInterfaceFactoryInterfaceArray,
                 rectangle, 
                 this.rectangleArrayOfArrays,
-                gdObject, this.animationBehavior);
+                gdObject, this.animationBehaviorFactory.create());
 
         //gameLayer.setInitialScale(scaleX, scaleY);
 

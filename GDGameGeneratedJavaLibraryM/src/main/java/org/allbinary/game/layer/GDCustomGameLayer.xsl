@@ -298,7 +298,8 @@ Created By: Travis Berthelot
                         final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
                         final Rectangle layerInfo, 
                         final Rectangle[][] rectangleArrayOfArrays,
-                        final GDObject gdObject, final GDAnimationBehaviorBase animationBehavior) throws Exception {
+                        final GDObject gdObject, 
+                        final GDAnimationBehaviorBase animationBehavior) throws Exception {
 
                         super(primitiveDrawing, gameLayerList, gameLayerDestroyedList, 
                             behaviorList, 

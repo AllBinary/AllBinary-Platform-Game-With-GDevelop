@@ -45,11 +45,11 @@ public class GDGameLayerFactory
     protected final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray;
     protected final Rectangle layerInfo;
     protected final Rectangle[][] rectangleArrayOfArrays;
-    protected final GDAnimationBehaviorBase animationBehavior;
+    protected final GDAnimationBehaviorBaseFactory animationBehaviorFactory;
     
     protected final BasicArrayList gameLayerList;
     protected final BasicArrayList gameLayerDestroyedList;
-            
+
     public GDGameLayerFactory(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
             final Group[] groupInterface,
             final BasicArrayList behaviorList,
@@ -57,7 +57,7 @@ public class GDGameLayerFactory
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo,
             final Rectangle[][] rectangleArrayOfArrays) {
-        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, new GDRotationBehavior());
+        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance());
     }
     
     public GDGameLayerFactory(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
@@ -67,7 +67,7 @@ public class GDGameLayerFactory
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo, 
             final Rectangle[][] rectangleArrayOfArrays,
-            final GDAnimationBehaviorBase animationBehavior) {
+            final GDAnimationBehaviorBaseFactory animationBehaviorFactory) {
         
         this.groupInterface = groupInterface;
         this.behaviorList = behaviorList;
@@ -75,7 +75,7 @@ public class GDGameLayerFactory
         this.proceduralAnimationInterfaceFactoryInterfaceArray = proceduralAnimationInterfaceFactoryInterfaceArray;
         this.layerInfo = layerInfo;
         this.rectangleArrayOfArrays = rectangleArrayOfArrays;
-        this.animationBehavior = animationBehavior;
+        this.animationBehaviorFactory = animationBehaviorFactory;
         
         this.gameLayerList = gameLayerList;
         this.gameLayerDestroyedList = gameLayerDestroyedList;
@@ -108,7 +108,7 @@ public class GDGameLayerFactory
                 rectangle, 
                 this.rectangleArrayOfArrays,
                 new ViewPosition(), 
-                gdObject, this.animationBehavior);
+                gdObject, this.animationBehaviorFactory.create());
         
         //gameLayer.setInitialScale(scaleX, scaleY);
 
