@@ -19,7 +19,6 @@ import org.allbinary.configuration.ApplicationConfiguration;
 import org.allbinary.emulator.InitEmulatorFactory;
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
 
-import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.game.configuration.GameConfigurationCentral;
@@ -32,7 +31,7 @@ import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 
-public class GDGameAndroidActivity extends GameMidletActivity
+public class GDGameAndroidActivityBase extends GameMidletActivity
 {
     protected final LogUtil logUtil = LogUtil.getInstance();
 
@@ -41,7 +40,7 @@ public class GDGameAndroidActivity extends GameMidletActivity
 //        return GDGameClientInformationInterfaceFactory.getInstance();
 //    }
     
-    public GDGameAndroidActivity()
+    public GDGameAndroidActivityBase()
     {
         //super(new ProgressHelper(AndroidResources.id.progressbar));
         

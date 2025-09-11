@@ -268,9 +268,19 @@ public class GDDelete {
         
         final BasicArrayList files11 = fileListFetcher.getFiles(
               gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\resource\\", this.gdToolStrings.JAVA);
-        
+
         this.process(files11, exclusionList11);
         
+        final BasicArrayList exclusionList12 = new BasicArrayList();
+
+        exclusionList12.add("GDGameMIDletFactory.java");
+        exclusionList12.add("GDGameAndroidActivityBase.java");
+        
+        final BasicArrayList files12 = fileListFetcher.getFiles(
+              gdToolStrings.ROOT_PATH + "platform\\android\\GDGameAndroidActivityJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\", this.gdToolStrings.JAVA);
+
+        this.process(files12, exclusionList12);
+
     }
 
     /**
