@@ -239,10 +239,14 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
             private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-            public final String PRIMITIVEDRAWING__DRAWER = gameGlobals.PRIMITIVEDRAWING__DRAWER;
-            public final String SPRITE = gameGlobals.SPRITE;
-            public final String TILEMAP__TILEMAP = gameGlobals.TILEMAP__TILEMAP;
-            public final String TILEMAP__COLLISIONMASK = gameGlobals.TILEMAP__COLLISIONMASK;
+            
+            //uniqueValues - START 
+            <xsl:key name="uniqueValues" match="type" use="." />
+            <xsl:for-each select="objects/type[count(. | key('uniqueValues', .)[1]) = 1]" >
+                public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template> = gameGlobals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template>;
+            </xsl:for-each>
+            //uniqueValues - END
+
                     <xsl:text>&#10;</xsl:text>
                     //more objects class properties - END
                     <xsl:text>&#10;</xsl:text>

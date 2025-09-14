@@ -61,6 +61,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDObjectVariableAsBooleanConditionGDNode.xsl" />
     <xsl:import href="./condition/GDDistanceConditionGDNode.xsl" />
     <xsl:import href="./condition/GDCompareNumbersConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDSpriteMultitouchJoystickIsPressedConditionProcess.xsl" />
     <xsl:import href="./condition/GDPanelSpriteSliderPanelSpriteSliderValueConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSystemInfoIsNativeDesktopAppConditionGDNode.xsl" />
 
@@ -1181,6 +1182,17 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'YVelocity'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+
+                <!-- Extension Actions below here -->
+                <xsl:if test="$typeValue = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
+                    
+                    <xsl:call-template name="spriteMultitouchJoystickIsPressedActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider::Value'" >

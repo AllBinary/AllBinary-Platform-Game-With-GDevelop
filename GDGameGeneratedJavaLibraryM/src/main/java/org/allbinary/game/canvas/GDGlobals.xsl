@@ -40,7 +40,7 @@ Created By: Travis Berthelot
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/GDEventProcess.xsl" />
 
     <xsl:output method="html" indent="yes" />
-
+    
     <xsl:template match="/game">
         //game
 
@@ -224,10 +224,14 @@ Created By: Travis Berthelot
                     <xsl:call-template name="objectsClassProperty" >
                     </xsl:call-template>
                     <xsl:text>&#10;</xsl:text>
-            public final String PRIMITIVEDRAWING__DRAWER = "PrimitiveDrawing::Drawer";
-            public final String SPRITE = "Sprite";
-            public final String TILEMAP__TILEMAP = "TileMap::TileMap";
-            public final String TILEMAP__COLLISIONMASK = "TileMap::CollisionMask";
+                    
+                    //uniqueValues - START 
+                    <xsl:key name="uniqueValues" match="type" use="." />
+                    <xsl:for-each select="//objects/type[count(. | key('uniqueValues', .)[1]) = 1]" >
+                        public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="text()" />";
+                    </xsl:for-each>
+                    //uniqueValues - END
+                    
                     <xsl:text>&#10;</xsl:text>
                     //more objects class properties - END
                     <xsl:text>&#10;</xsl:text>
