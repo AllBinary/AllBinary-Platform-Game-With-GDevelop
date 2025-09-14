@@ -145,11 +145,13 @@ public class GDToAllBinaryGenerationTool
         final String TAG_END = ">";
         final Replace replace4 = new Replace(">assets\\", TAG_END);
         final Replace replace5 = new Replace(">assets/", TAG_END);
+        final Replace replace6 = new Replace("°", "deg");
         String fixQuotes = replace.all(formattedXml);
         fixQuotes = replace2.all(fixQuotes);
         fixQuotes = replace3.all(fixQuotes);
         fixQuotes = replace4.all(fixQuotes);
         fixQuotes = replace5.all(fixQuotes);
+        fixQuotes = replace6.all(fixQuotes);
 
         final String fileName = gdToolStrings.GAME_XML_PATH;
         logUtil.put(this.gdToolStrings.FILENAME + fileName, this, commonStrings.PROCESS);

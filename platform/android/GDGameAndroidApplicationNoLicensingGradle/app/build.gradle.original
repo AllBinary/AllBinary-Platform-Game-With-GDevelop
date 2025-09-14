@@ -9,7 +9,7 @@ android {
     defaultConfig {
         //needs template
         applicationId "org.allbinary.game.gd.<name>"
-        minSdkVersion 21
+        minSdkVersion 4
         targetSdkVersion 36
         versionCode 1
         versionName "0.0.2100"
@@ -41,6 +41,6 @@ android {
 }
 
 dependencies {
-    implementation "androidx.core:core:1.17.0"
+    //implementation "androidx.core:core:1.17.0"
 
 }

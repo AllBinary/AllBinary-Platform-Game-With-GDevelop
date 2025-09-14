@@ -10,6 +10,7 @@ public class GDGameMIDletFactory extends MidletFactoryInterface {
 
     private static MIDlet SINGLETON = null;
 
+    @Override
     public MIDlet getInstance() {
         if (SINGLETON == null) {
             SINGLETON = new GDGameMIDlet(GDGameClientInformationInterfaceFactory.getFactoryInstance());

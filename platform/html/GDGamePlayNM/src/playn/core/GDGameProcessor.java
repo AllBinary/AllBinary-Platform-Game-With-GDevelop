@@ -5,8 +5,8 @@
 package playn.core;
 
 import org.allbinary.canvas.Processor;
-import org.allbinary.game.resource.GDLazyResources;
-import org.allbinary.game.resource.GDResources;
+import org.allbinary.game.gd.resource.GDLazyResources;
+import org.allbinary.game.gd.resource.GDResources;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.image.ImageCache;
 import org.allbinary.image.ImageCacheFactory;

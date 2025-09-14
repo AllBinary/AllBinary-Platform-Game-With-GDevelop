@@ -14,6 +14,7 @@
 package org.allbinary.game.gd.level;
 
 import javax.microedition.lcdui.Image;
+
 import org.allbinary.android.AndroidInfoFactory;
 import org.allbinary.data.resource.ResourceUtil;
 import org.allbinary.game.configuration.feature.Features;
@@ -113,7 +114,7 @@ public class GDPlatformUtil {
 
     public void updateResource(final ImageCache imageCache, final Image image, final String resource) {
             final Integer resourceId = ResourceUtil.getInstance().getResourceId(resource);
-            imageCache.getHashtable().put(resourceId, image);        
+            imageCache.getHashtableP().put(resourceId, image);        
     }
     
 }
