@@ -35,6 +35,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDAnyKeyReleasedConditionGDNodeConditionGDNode.xsl" />
     <xsl:import href="./condition/GDKeyPressedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDKeyReleasedConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDIsMultitouchConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSystemInfoIsMobileConditionGDNode.xsl" />
     <xsl:import href="./condition/GDTimerConditionGDNode.xsl" />
     <xsl:import href="./condition/GDObjectTimerConditionGDNode.xsl" />
@@ -118,6 +119,12 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'Inventory::IsEquipped'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'Multitouch::Function'" >
+                    
+                    <xsl:call-template name="multitouchConditionGDNode" />
+
                 </xsl:if>
 
                 <xsl:if test="$typeValue = 'SystemInfo::IsMobile'" >

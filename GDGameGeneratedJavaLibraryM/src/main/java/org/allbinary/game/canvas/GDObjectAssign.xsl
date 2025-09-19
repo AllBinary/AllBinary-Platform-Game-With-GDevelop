@@ -237,7 +237,7 @@ Created By: Travis Berthelot
                     <xsl:if test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >, new GDSliderAnimationBehavior()</xsl:if>
                     <xsl:if test="type = 'TextInput::TextInputObject'" >, new GDTextInputAnimationBehavior()</xsl:if>
                     <xsl:if test="type = 'TextObject::Text'" >, GDAnimationBehaviorBaseFactory.getInstance()</xsl:if>
-                    <xsl:if test="contains(name, 'btn_')" >, GDAnimationBehaviorBaseFactory.getInstance()</xsl:if>
+                    <xsl:if test="contains(name, 'btn_')" ><xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >, GDSoftJoystickAnimationBehaviorBaseFactory.getInstance()</xsl:if><xsl:if test="not(type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick')" >, GDAnimationBehaviorBaseFactory.getInstance()</xsl:if></xsl:if>
                     ) 
                     <xsl:if test="type = 'TextObject::Text'" >
                     {

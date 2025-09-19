@@ -243,7 +243,8 @@ Created By: Travis Berthelot
                 <xsl:variable name="name" select="name" />
                 <xsl:variable name="NAME" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template></xsl:variable>
 
-                public final class <xsl:value-of select="name" /> extends <xsl:call-template name="gdObject" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template> {
+                public final class <xsl:value-of select="name" /> extends <xsl:call-template name="gdObject" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template> 
+                <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" > implements SoftJoystickInterface </xsl:if>{
 
                     <xsl:variable name="hasObjectInObjectsGroups" ><xsl:for-each select="/game/layouts/objectsGroups" ><xsl:variable name="objectsGroupsName" select="name" /><xsl:for-each select="objects" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
@@ -424,6 +425,45 @@ Created By: Travis Berthelot
                         return canvasHeight;
                     }
 -->
+                    </xsl:if>
+            
+                    <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
+                    private int id;
+                    private GPoint point = PointFactory.getInstance().ZERO_ZERO;
+                    private float stickForceX = 0.0f;
+                    private float stickForceY = 0.0f;
+
+                    public void setId(final int id) {
+                        this.id = id;
+                    }
+                        
+                    public int getId() {
+                        return this.id;
+                    }
+
+                    public void setPoint(final GPoint point) {
+                        this.point = point;
+                    }
+                        
+                    public GPoint getPoint() {
+                        return this.point;
+                    }
+                        
+                    public void setStickForceX(final float stickForceX) {
+                        this.stickForceX = stickForceX;
+                    }
+
+                    public void setStickForceY(final float stickForceY) {
+                        this.stickForceY = stickForceY;
+                    }
+
+                    public float StickForceX() {
+                        return stickForceX;
+                    }
+
+                    public float StickForceY() {
+                        return stickForceY;
+                    }
                     </xsl:if>
                                         
                 };

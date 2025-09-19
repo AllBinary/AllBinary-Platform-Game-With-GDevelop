@@ -294,12 +294,16 @@ Created By: Travis Berthelot
                         
             <xsl:if test="not(type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue'or type/value = 'SetNumberVariable')" >                
             <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
-                <xsl:if test="not(type/value = 'ModVarScene' or type/value = 'PlaySound')" >
+                <xsl:if test="not(type/value = 'ModVarScene' or type/value = 'PlaySound' or type/value = 'Delete')" >
             //Could I call this - //<xsl:value-of select="type/value" />
                 </xsl:if>
                 <xsl:if test="type/value = 'ModVarScene' or type/value = 'PlaySound'" >
-            //I am now calling this - //<xsl:value-of select="type/value" />
+            //<xsl:value-of select="type/value" />
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
+                </xsl:if>
+                <xsl:if test="type/value = 'Delete'" >
+            //<xsl:value-of select="type/value" />
+            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].delete();
                 </xsl:if>
             </xsl:if>
             </xsl:if>

@@ -303,8 +303,9 @@ Created By: Travis Berthelot
                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
                         //final int width = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
                         //final int height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
-                        final int width = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() * scaleTouchButtons);
-                        final int height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() * scaleTouchButtons);
+                        <xsl:if test="contains(name, 'joystick_')" >final float joystickScale = (org.allbinary.AndroidUtil.isAndroid() ? 0.75f : 1.0f);</xsl:if>
+                        final int width = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>);
+                        final int height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>);
                                 </xsl:if>
                                 <xsl:if test="height != 0 and width != 0" >
                         //final int width = (int) (<xsl:value-of select="width" /> * 1.44f);

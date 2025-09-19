@@ -87,6 +87,10 @@ Created By: Travis Berthelot
                 public final String[] <xsl:value-of select="$name" />ResourceArray;
                 </xsl:if>
 
+                <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
+                public final String[] <xsl:value-of select="$name" />ResourceArray;
+                </xsl:if>
+
                 <xsl:if test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >
                 public final String[] <xsl:value-of select="$name" />ResourceArray;
                 </xsl:if>
@@ -146,13 +150,13 @@ Created By: Travis Berthelot
                 <xsl:for-each select="behaviors" ><xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >found</xsl:if></xsl:for-each>
                 </xsl:variable>
                 
-            <xsl:if test="type = 'Sprite' or type = 'ParticleSystem::ParticleEmitter' or type = 'TileMap::TileMap' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >
+            <xsl:if test="type = 'Sprite' or type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick' or type = 'ParticleSystem::ParticleEmitter' or type = 'TileMap::TileMap' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >
                 //type found
                 <xsl:variable name="stringValue" select="string" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
                 <xsl:text>&#10;</xsl:text>
 
-                <xsl:if test="type = 'Sprite' or type = 'ParticleSystem::ParticleEmitter' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >
+                <xsl:if test="type = 'Sprite' or type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick' or type = 'ParticleSystem::ParticleEmitter' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >
                 this.<xsl:value-of select="$name" />ResourceArray = new String[] {
                 <xsl:for-each select="animations" >
                     <!--
@@ -207,14 +211,24 @@ Created By: Travis Berthelot
                     </xsl:if>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="Thumb" >
-                    <xsl:variable name="imageWithExtension" select="texture" />
+                    <xsl:for-each select="Border" >
+                    <xsl:variable name="imageWithExtension" ><xsl:value-of select="texture" /><xsl:value-of select="animations/directions/sprites/image" /></xsl:variable>
                     <xsl:variable name="image2" select="substring-before($imageWithExtension, '.')" />
                     <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>
                     <xsl:if test="string-length($image) > 0" >
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>
                     </xsl:for-each>
+                    
+                    <xsl:for-each select="Thumb" >
+                    <xsl:variable name="imageWithExtension" ><xsl:value-of select="texture" /><xsl:value-of select="animations/directions/sprites/image" /></xsl:variable>
+                    <xsl:variable name="image2" select="substring-before($imageWithExtension, '.')" />
+                    <xsl:variable name="image" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:variable>
+                    <xsl:if test="string-length($image) > 0" >
+                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    </xsl:if>
+                    </xsl:for-each>
+                                        
                 </xsl:for-each>
                 
                 };
@@ -285,9 +299,9 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
 
-                <xsl:if test="type != 'PanelSpriteSlider::PanelSpriteSlider'" >
+                <xsl:if test="not(type = 'PanelSpriteSlider::PanelSpriteSlider' or type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick')" >
                 <xsl:if test="content" >
-                    //TileMap::TileMap:content
+                    //<xsl:value-of select="type" />:content
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
                     final Image <xsl:value-of select="$name" />Image<xsl:value-of select="position() - 1" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[0]);
@@ -326,8 +340,11 @@ Created By: Travis Berthelot
                     final Image <xsl:value-of select="$mirrorFillBarBehaviorImage" /> = imageCache.get(<xsl:value-of select="$name" />ResourceArray[2]);
                     </xsl:if>
                     </xsl:for-each>
+                    <xsl:for-each select="Border" >
+                    final Image <xsl:value-of select="$name" />BorderImage = imageCache.get(<xsl:value-of select="$name" />ResourceArray[0]);
+                    </xsl:for-each>
                     <xsl:for-each select="Thumb" >
-                    final Image <xsl:value-of select="$name" />ThumbImage = imageCache.get(<xsl:value-of select="$name" />ResourceArray[3]);
+                    final Image <xsl:value-of select="$name" />ThumbImage = imageCache.get(<xsl:value-of select="$name" />ResourceArray[<xsl:if test="../Border" >1</xsl:if><xsl:if test="not(../Border)" >3</xsl:if>]);
                     </xsl:for-each>
                 </xsl:for-each>
 
@@ -368,15 +385,18 @@ Created By: Travis Berthelot
                     <xsl:for-each select="Label" >
                     null,
                     </xsl:for-each>
+                    <xsl:for-each select="Border" >
+                    <xsl:value-of select="$name" />BorderImage,
+                    </xsl:for-each>
                     <xsl:for-each select="Thumb" >
                     <xsl:value-of select="$name" />ThumbImage,
                     </xsl:for-each>
                 </xsl:for-each>
                 };
 
-                <xsl:if test="type != 'PanelSpriteSlider::PanelSpriteSlider'" >
+                <xsl:if test="not(type = 'PanelSpriteSlider::PanelSpriteSlider' or type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick')" >
                 <xsl:if test="content" >
-                    //TileMap::TileMap:content
+                    //<xsl:value-of select="type" />:content
                 <xsl:value-of select="$name" />ImageArray = new Image[] {
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >

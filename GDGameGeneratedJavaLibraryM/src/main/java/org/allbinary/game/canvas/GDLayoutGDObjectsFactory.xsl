@@ -66,6 +66,7 @@ Created By: Travis Berthelot
                 import javax.microedition.lcdui.Graphics;
 
                 import org.allbinary.AndroidUtil;
+                import org.allbinary.game.layer.SoftJoystickInterface;
                 import org.allbinary.game.layer.SWTUtil;
                 import org.allbinary.game.layer.GDGameLayer;
                 import org.allbinary.game.layout.GDObject;
@@ -80,6 +81,8 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.string.StringUtil;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
+                import org.allbinary.graphics.GPoint;
+                import org.allbinary.graphics.PointFactory;
                 
                 //LayoutGDObjects name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory

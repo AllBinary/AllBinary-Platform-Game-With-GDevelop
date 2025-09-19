@@ -104,7 +104,7 @@ import org.allbinary.animation.NullRotationAnimationFactory;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.compound.SliderAnimationInterfaceFactory;
 import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInterfaceFactory;
-import org.allbinary.animation.image.ImageArrayRotationAnimationFactory;
+import org.allbinary.animation.image.AllBinaryArrayImageRotationAnimationFactory;
 import org.allbinary.animation.image.LazyImageRotationAnimationFactory;
 import org.allbinary.animation.image.sprite.OneRowSpriteIndexedAnimationFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
