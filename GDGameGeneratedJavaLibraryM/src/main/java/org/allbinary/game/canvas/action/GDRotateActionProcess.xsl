@@ -239,7 +239,7 @@ Created By: Travis Berthelot
                                     <xsl:variable name="joystickName" ><xsl:for-each select="../conditions" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
                                 //TWB - remove this hardcoded logic for soft joystick at some point
                                 final GDGameLayer <xsl:value-of select="$joystickName" />GDGameLayer = (GDGameLayer) globals.<xsl:value-of select="$joystickName" />GDGameLayerList.get(0);
-                                final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$joystickName" /><xsl:text> </xsl:text><xsl:value-of select="$joystickName" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$joystickName" />) gdObject2;
+                                final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$joystickName" /><xsl:text> </xsl:text><xsl:value-of select="$joystickName" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$joystickName" />) <xsl:value-of select="$joystickName" />GDGameLayer.gdObject;
                                 </xsl:if>
                                 
                                 <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotationP = <xsl:text> (int) (</xsl:text></xsl:if><xsl:if test="position() = last()" > / 6);</xsl:if></xsl:for-each>
