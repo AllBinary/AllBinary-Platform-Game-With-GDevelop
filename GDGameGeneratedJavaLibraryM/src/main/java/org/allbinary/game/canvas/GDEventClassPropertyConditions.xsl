@@ -169,6 +169,11 @@ Created By: Travis Berthelot
                     //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
                     public GDNode mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
                 </xsl:if>
+                <xsl:if test="type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
+                    //GDNode - //SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed - eventListener
+                    //public EventListenerInterface eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                    public GDNode spriteMultitouchJoystickGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = null;
+                </xsl:if>
             </xsl:for-each>
 
         </xsl:for-each>

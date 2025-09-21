@@ -574,7 +574,7 @@
 
     </xsl:template>
 
-    <xsl:template name="actionIdsMouseButtonMotionGestureEvent" >
+    <xsl:template name="processNodesForMotionGestureEvent" >
         <xsl:param name="totalRecursions" />
 
         <xsl:for-each select="events" >
@@ -597,10 +597,15 @@
                             //MouseButton - //SourisBouton - eventListener
                             globals.mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
                 </xsl:if>
-                
+
+                <xsl:if test="type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
+                            //SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed - eventListener
+                            globals.spriteMultitouchJoystickGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, globals.lastMotionGestureInput);
+                </xsl:if>
+                                
             </xsl:for-each>
 
-            <xsl:call-template name="actionIdsMouseButtonMotionGestureEvent" >
+            <xsl:call-template name="processNodesForMotionGestureEvent" >
                 <xsl:with-param name="totalRecursions" >
                     <xsl:value-of select="number($totalRecursions) + 1" />
                 </xsl:with-param>

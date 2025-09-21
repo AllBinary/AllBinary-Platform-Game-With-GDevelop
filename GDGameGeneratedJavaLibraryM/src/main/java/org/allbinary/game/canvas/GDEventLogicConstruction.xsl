@@ -1051,7 +1051,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
 
                 //eventsLogicConstructionMotionGestureEvent - Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
-                <xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'MouseButtonPressed'" >
+                <xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                                         
                     <!-- //MouseButtonReleased - create Listener -->
@@ -1112,6 +1112,10 @@ Created By: Travis Berthelot
                 <xsl:if test="type/value = 'SourisBouton'" >
                     //GDNode - //MouseButton - //SourisBouton - eventListener
                     globals.mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                </xsl:if>
+                <xsl:if test="type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
+                    //SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed - eventListener
+                    globals.spriteMultitouchJoystickGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
 
                     public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
