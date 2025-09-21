@@ -265,8 +265,8 @@ Created By: Travis Berthelot
 
                                 <xsl:value-of select="name" />.setId(motionGestureEvent.getId());
                                 <xsl:value-of select="name" />.setPoint(point);
-                                final float portionOfX = -((float) point.getX() - gameLayer.getXP() - gameLayer.getHalfWidth()) / (float) gameLayer.getWidth() * 2;
-                                final float portionOfY = ((float) point.getY() - gameLayer.getYP() - gameLayer.getHalfHeight()) / (float) gameLayer.getHeight() * 2;
+                                final float portionOfX = ((float) point.getX() - gameLayer.getXP() - gameLayer.getHalfWidth()) / (float) gameLayer.getWidth() * 2;
+                                final float portionOfY = -((float) point.getY() - gameLayer.getYP() - gameLayer.getHalfHeight()) / (float) gameLayer.getHeight() * 2;
                                 //logUtil.put(new StringMaker().append(portionOfX).append("portionOfX: ").append(point.getX()).append(" - ").append(gameLayer.getXP()).append(" / ").append(gameLayer.getWidth()).toString(), this, commonStrings.CONSTRUCTOR);
                                 //logUtil.put(new StringMaker().append(portionOfY).append("portionOfY: ").append(point.getY()).append(" - ").append(gameLayer.getYP()).append(" / ").append(gameLayer.getHeight()).toString(), this, commonStrings.CONSTRUCTOR);
                                 <xsl:value-of select="name" />.setStickForceX(portionOfX);
