@@ -229,7 +229,7 @@ Created By: Travis Berthelot
                         }
 
                         @Override
-                        public boolean processGPaint(final GDObject <xsl:value-of select="$name" />, final GDObject gdObject2, final Graphics graphics) {
+                        public boolean processGPaint(final GDObject <xsl:value-of select="$name" />, final GDObject gdObject2IsNull, final Graphics graphics) {
                         
                             try {
                                 //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
@@ -237,6 +237,8 @@ Created By: Travis Berthelot
 
                                 <xsl:if test="../conditions/type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
                                     <xsl:variable name="joystickName" ><xsl:for-each select="../conditions" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+                                //TWB - remove this hardcoded logic for soft joystick at some point
+                                final GDGameLayer <xsl:value-of select="$joystickName" />GDGameLayer = (GDGameLayer) globals.<xsl:value-of select="$joystickName" />GDGameLayerList.get(0);
                                 final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$joystickName" /><xsl:text> </xsl:text><xsl:value-of select="$joystickName" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$joystickName" />) gdObject2;
                                 </xsl:if>
                                 

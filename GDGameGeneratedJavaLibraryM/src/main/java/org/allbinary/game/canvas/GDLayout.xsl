@@ -267,6 +267,8 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="name" />.setPoint(point);
                                 final float portionOfX = ((float) point.getX() - gameLayer.getXP()) / (float) gameLayer.getWidth();
                                 final float portionOfY = ((float) point.getY() - gameLayer.getYP()) / (float) gameLayer.getHeight();
+                                //logUtil.put(new StringMaker().append(portionOfX).append("portionOfX: ").append(point.getX()).append(" - ").append(gameLayer.getXP()).append(" / ").append(gameLayer.getWidth()).toString(), this, commonStrings.CONSTRUCTOR);
+                                //logUtil.put(new StringMaker().append(portionOfY).append("portionOfY: ").append(point.getY()).append(" - ").append(gameLayer.getYP()).append(" / ").append(gameLayer.getHeight()).toString(), this, commonStrings.CONSTRUCTOR);
                                 <xsl:value-of select="name" />.setStickForceX(portionOfX);
                                 <xsl:value-of select="name" />.setStickForceY(portionOfY);
                                 gameLayer.getDimensionalBehavior().getAnimationBehavior().set(gameLayer, <xsl:value-of select="name" />);
