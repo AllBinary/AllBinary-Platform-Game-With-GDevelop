@@ -250,6 +250,10 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
         return value;
     }
 
+    public float Variable(final float value) {
+        return value;
+    }
+
     public double Variable(final double value) {
         return value;
     }

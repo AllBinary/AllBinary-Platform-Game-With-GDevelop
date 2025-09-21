@@ -242,13 +242,13 @@ Created By: Travis Berthelot
                                 final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$joystickName" /><xsl:text> </xsl:text><xsl:value-of select="$joystickName" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$joystickName" />) <xsl:value-of select="$joystickName" />GDGameLayer.gdObject;
                                 </xsl:if>
                                 
-                                <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotationP = <xsl:text> (int) (</xsl:text></xsl:if><xsl:if test="position() = last()" > / 6);</xsl:if></xsl:for-each>
+                                <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotationP = <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > / 6;</xsl:if></xsl:for-each>
                                 //<xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.angle += <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
                                 <xsl:text>&#10;</xsl:text>
 
                                 //Haskish - it is hard to tell if this is a feature or a hack.
                                 <xsl:if test="/game/properties/force2dCollision/text() = 'true'" >
-                                <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotationZP = <xsl:text> (int) (</xsl:text></xsl:if><xsl:if test="position() = last()" > / 6);</xsl:if></xsl:for-each>
+                                <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() = 1" >.rotationZP = <xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > / 6;</xsl:if></xsl:for-each>
                                 <!-- new line -->
                                 <xsl:text>&#10;</xsl:text>
                                 </xsl:if>

@@ -55,8 +55,8 @@ public class GDObject
 
     public int zOrder;
     
-    public int rotationP;
-    public int rotationZP;
+    public float rotationP;
+    public float rotationZP;
 
     public short angle;
     public int movement_angle;

@@ -117,7 +117,7 @@
                             <xsl:if test="type = 'number'" >
                                 <xsl:if test="contains($name, 'speed')" >
                         //TWB - speed hack
-                        public int <xsl:value-of select="name" /> = <xsl:value-of select="value" /> * ((SWTUtil.isSWT || AndroidUtil.isAndroid()) ? 2 : 3);
+                        public float <xsl:value-of select="name" /> = <xsl:value-of select="value" /> * ((SWTUtil.isSWT || AndroidUtil.isAndroid()) ? 2 : 3);
                                 </xsl:if>
                                 <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains($name, 'speed') or contains(name, 'Long'))" >
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;

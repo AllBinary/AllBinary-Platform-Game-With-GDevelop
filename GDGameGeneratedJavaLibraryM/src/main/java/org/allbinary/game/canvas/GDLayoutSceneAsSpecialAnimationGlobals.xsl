@@ -74,9 +74,11 @@ Created By: Travis Berthelot
                 import org.json.me.JSONObject;
                 import org.json.me.JSONTokener;
 
+                import org.allbinary.AndroidUtil;
                 import org.allbinary.animation.text.CustomTextAnimation;
                 import org.allbinary.game.identification.Group;
                 import org.allbinary.game.identification.GroupFactory;
+                import org.allbinary.game.layer.SWTUtil;
                 import org.allbinary.game.input.GameInputProcessor;
                 import org.allbinary.game.input.InputFactory;
                 import org.allbinary.game.layer.GDGameLayerStrings;
@@ -432,6 +434,10 @@ Created By: Travis Berthelot
                     }
                     
                     public int Variable(final int value) {
+                        return value;
+                    }
+
+                    public float Variable(final float value) {
                         return value;
                     }
 

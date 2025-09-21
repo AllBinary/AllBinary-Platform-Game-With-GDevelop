@@ -173,6 +173,10 @@ Created By: Travis Berthelot
                         return value;
                     }
 
+                    public float Variable(final float value) {
+                        return value;
+                    }
+
                     public double Variable(final double value) {
                         return value;
                     }
