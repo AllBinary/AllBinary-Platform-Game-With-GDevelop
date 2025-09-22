@@ -137,7 +137,7 @@ Created By: Travis Berthelot
                         
                         private final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
 
-                        private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();                        
+                        private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GDGlobalsGDObjectsFactory gdGlobalsObjectsFactory = GDGlobalsGDObjectsFactory.getInstance();

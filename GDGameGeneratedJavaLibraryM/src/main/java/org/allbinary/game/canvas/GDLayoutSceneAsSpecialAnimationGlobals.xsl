@@ -295,6 +295,24 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     //eventsClassProperty - END
 
+                    //eventsClassProperty - //externalEvents - START
+                    <xsl:for-each select="../externalEvents" >
+                        <xsl:if test="$layoutName = associatedLayout" >
+                    <xsl:call-template name="eventsClassPropertyConditions" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="externalEventActionModVarSceneAsString" >
+                            <xsl:value-of select="$externalEventActionModVarSceneAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                        </xsl:if>
+                    </xsl:for-each>
+                    //eventsClassProperty - //externalEvents - END
+
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                         <xsl:if test="contains($foundMousePositionNeeded, 'found')" >
                     public BaseMotionGestureEventListener eventListenerInterfaceLastPoint;

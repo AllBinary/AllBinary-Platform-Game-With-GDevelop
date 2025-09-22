@@ -75,13 +75,18 @@ Created By: Travis Berthelot
                 import org.allbinary.game.input.GDRGameInputProcessor;
                 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
                 import org.allbinary.game.layer.AllBinaryGameLayerManager;
+                import org.allbinary.game.layer.identification.GroupLayerManagerListener;
                 import org.allbinary.game.layer.GDGameLayer;
+                import org.allbinary.game.layout.BaseGDNodeStats;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layout.GDNodes;
-                import org.allbinary.game.layout.GDNodeUtil;
+                import org.allbinary.game.layout.GDNodeStatsFactory;
+                import org.allbinary.game.layout.GDNodeUtil;                
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
                 import org.allbinary.game.layout.GDObject;
                 import org.allbinary.game.rand.MyRandomFactory;
+                import org.allbinary.graphics.color.SmallBasicColorCacheFactory;
+                import org.allbinary.graphics.color.BasicColorUtil;
                 import org.allbinary.input.motion.gesture.MotionGestureInput;
                 import org.allbinary.string.CommonStrings;
                 import org.allbinary.string.CommonSeps;
@@ -97,6 +102,8 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+                import org.allbinary.thread.NullRunnable;
+                import org.allbinary.time.GameTickTimeDelayHelperFactory;                
 
                 //LayoutExternalCondition name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes extends SpecialAnimation
@@ -115,11 +122,16 @@ Created By: Travis Berthelot
                         private final StringUtil stringUtil = StringUtil.getInstance();
                         private final NullUtil nullUtil = NullUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
+                        private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
+                        private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
                         private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
                         private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();
                         private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
+                        private final GroupLayerManagerListener groupLayerManagerListener = GroupLayerManagerListener.getInstance();
 
+                        private final GDNodes gdNodes = GDNodeUtil.getInstance().getInstance(<xsl:value-of select="$layoutIndex" />);
+                        private final BaseGDNodeStats gdNodeStatsFactory = GDNodeStatsFactory.getInstance();
                         private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory gdObjectsFactory = GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstance();

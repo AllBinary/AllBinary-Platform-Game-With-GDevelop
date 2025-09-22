@@ -420,7 +420,7 @@ Created By: Travis Berthelot
                     </xsl:variable>
 
                     <xsl:if test="$animationPosition = 1" >
-                        <xsl:if test="contains($hasCustomCollisionMask, 'found')" >
+                        <xsl:if test="contains($hasMoreThanOneImage, 'found') and contains($hasCustomCollisionMask, 'found')" >
                 final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][0];
                         </xsl:if>
                         <xsl:if test="not(contains($hasMoreThanOneImage, 'found') and contains($hasCustomCollisionMask, 'found'))" >

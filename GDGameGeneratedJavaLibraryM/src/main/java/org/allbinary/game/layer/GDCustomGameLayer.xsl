@@ -543,7 +543,7 @@ Created By: Travis Berthelot
 
             if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
 
-            if(this.allBinaryGameLayerManager == null) {
+            if(this.allBinaryGameLayerManagerP == null) {
                 if(total <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5) {
                     total++;
                     logUtil.put(new StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(StringUtil.getInstance().toString(this.allBinaryGameLayerManager)).toString(), this, "move");
@@ -552,7 +552,7 @@ Created By: Travis Berthelot
             }
             
             final GeographicMapCompositeInterface geographicMapCompositeInterface
-                    = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+                    = (GeographicMapCompositeInterface) this.allBinaryGameLayerManagerP;
             
             final BasicGeographicMap[] geographicMapInterfaceArray
                     = geographicMapCompositeInterface.getGeographicMapInterface();
@@ -614,13 +614,13 @@ Created By: Travis Berthelot
 
             if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
 
-            if(this.allBinaryGameLayerManager == null) {
+            if(this.allBinaryGameLayerManagerP == null) {
                 logUtil.put(new StringMaker().append("1LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(StringUtil.getInstance().toString(this.allBinaryGameLayerManager)).toString(), this, "move");
                 return;
             }
 
             final GeographicMapCompositeInterface geographicMapCompositeInterface
-                    = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+                    = (GeographicMapCompositeInterface) this.allBinaryGameLayerManagerP;
 
             final BasicGeographicMap[] geographicMapInterfaceArray
                     = geographicMapCompositeInterface.getGeographicMapInterface();
@@ -805,13 +805,13 @@ Created By: Travis Berthelot
 
     public void move() {
         try {
-            if(this.allBinaryGameLayerManager == null) {
+            if(this.allBinaryGameLayerManagerP == null) {
                 logUtil.put(new StringMaker().append("2LayerManager was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move");
                 return;
             }
         
             final GeographicMapCompositeInterface geographicMapCompositeInterface
-                    = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+                    = (GeographicMapCompositeInterface) this.allBinaryGameLayerManagerP;
 
             final BasicGeographicMap[] geographicMapInterfaceArray
                     = geographicMapCompositeInterface.getGeographicMapInterface();
@@ -842,13 +842,13 @@ Created By: Travis Berthelot
     public void right()
     {
         try {
-            if(this.allBinaryGameLayerManager == null) {
+            if(this.allBinaryGameLayerManagerP == null) {
                 logUtil.put(new StringMaker().append("3LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move");
                 return;
             }
         
             final GeographicMapCompositeInterface geographicMapCompositeInterface
-                    = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+                    = (GeographicMapCompositeInterface) this.allBinaryGameLayerManagerP;
 
             final BasicGeographicMap[] geographicMapInterfaceArray
                     = geographicMapCompositeInterface.getGeographicMapInterface();
@@ -893,13 +893,13 @@ Created By: Travis Berthelot
     public void left()
     {
         try {
-            if(this.allBinaryGameLayerManager == null) {
+            if(this.allBinaryGameLayerManagerP == null) {
                 logUtil.put(new StringMaker().append("4LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move");
                 return;
             }
 
             final GeographicMapCompositeInterface geographicMapCompositeInterface
-                    = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+                    = (GeographicMapCompositeInterface) this.allBinaryGameLayerManagerP;
 
             final BasicGeographicMap[] geographicMapInterfaceArray
                     = geographicMapCompositeInterface.getGeographicMapInterface();
@@ -1113,7 +1113,7 @@ Created By: Travis Berthelot
         if(this.gdObject.hasBehaviorArray[gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX]) {
             
             final GeographicMapCompositeInterface geographicMapCompositeInterface
-                = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+                = (GeographicMapCompositeInterface) this.allBinaryGameLayerManagerP;
             final BasicGeographicMap[] basicGeographicMapArray = geographicMapCompositeInterface.getGeographicMapInterface();
 
             if (basicGeographicMapArray != null) {
@@ -1148,7 +1148,7 @@ Created By: Travis Berthelot
         final Hashtable hashtable = new Hashtable();
         hashtable.put(Group.ID, this.getGroupInterface());
         hashtable.put(Layer.ID, this);
-        hashtable.put(AllBinaryGameLayerManager.ID, allBinaryGameLayerManager);
+        hashtable.put(AllBinaryGameLayerManager.ID, allBinaryGameLayerManagerP);
         
         this.setWaypointBehavior(
                 new GDWaypointBehavior2(
@@ -1257,7 +1257,7 @@ Created By: Travis Berthelot
         
         //System.out.println("geographicMapCellPositionBasicArrayList: " + geographicMapCellPositionBasicArrayList.size());
         final GeographicMapCompositeInterface geographicMapCompositeInterface
-            = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+            = (GeographicMapCompositeInterface) this.allBinaryGameLayerManagerP;
         final BasicGeographicMap geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
         
         final GeographicMapCellPosition geographicMapCellPosition = (GeographicMapCellPosition) 
@@ -1277,7 +1277,7 @@ Created By: Travis Berthelot
     throws Exception
     {
         final GeographicMapCompositeInterface geographicMapCompositeInterface
-            = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+            = (GeographicMapCompositeInterface) this.allBinaryGameLayerManagerP;
         final BasicGeographicMap geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
         
         final GeographicMapCellPosition geographicMapCellPosition =
@@ -1301,7 +1301,7 @@ Created By: Travis Berthelot
     throws Exception
     {
         final GeographicMapCompositeInterface geographicMapCompositeInterface
-            = (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+            = (GeographicMapCompositeInterface) this.allBinaryGameLayerManagerP;
         final BasicGeographicMap geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
         
         final GeographicMapCellPosition geographicMapCellPosition =

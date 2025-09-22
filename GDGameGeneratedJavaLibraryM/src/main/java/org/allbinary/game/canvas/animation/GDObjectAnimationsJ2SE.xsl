@@ -167,7 +167,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="directions" >,
                     new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
                     </xsl:for-each>
-                    , true)
+                    <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >, true</xsl:if>)
                         <xsl:if test="contains($lazy, 'true')" >
                     )
                         </xsl:if>
@@ -284,7 +284,8 @@ Created By: Travis Berthelot
                     </xsl:variable>
 
                     <xsl:if test="$animationPosition = 1" >
-                        <xsl:if test="contains($hasCustomCollisionMask, 'found')" >
+                        <xsl:if test="contains($hasMoreThanOneImage, 'found') and contains($hasCustomCollisionMask, 'found')" >
+                //0
                 final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][0];
                         </xsl:if>
                         <xsl:if test="not(contains($hasMoreThanOneImage, 'found') and contains($hasCustomCollisionMask, 'found'))" >
@@ -370,6 +371,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="animationTotal" ><xsl:value-of select="last()" /></xsl:variable>
 
                     <xsl:if test="$animationPosition = 1" >
+                //1
                 final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][0];
                     </xsl:if>
 
@@ -626,7 +628,7 @@ Created By: Travis Berthelot
                             scaleProperties1.scaleHeight = scaleProperties.scaleHeight;
                             super.setInitialScale(scaleProperties1);
 
-                            this.basicAnimationInterfaceFactoryInterfaceArray[0].setInitialScale(scaleProperties);
+                            this.basicAnimationInterfaceFactoryInterfaceArrayP[0].setInitialScale(scaleProperties);
                         
                             final ScaleProperties scaleProperties2 = new ScaleProperties();
                             scaleProperties2.shouldScale = scaleProperties.shouldScale;
@@ -635,8 +637,8 @@ Created By: Travis Berthelot
                             scaleProperties2.scaleWidth = scaleProperties.scaleWidth * 253 / 265;
                             scaleProperties2.scaleHeight = scaleProperties.scaleHeight * 16 / 34;
                         
-                            this.basicAnimationInterfaceFactoryInterfaceArray[1].setInitialScale(scaleProperties2);
-                            this.basicAnimationInterfaceFactoryInterfaceArray[2].setInitialScale(scaleProperties2);
+                            this.basicAnimationInterfaceFactoryInterfaceArrayP[1].setInitialScale(scaleProperties2);
+                            this.basicAnimationInterfaceFactoryInterfaceArrayP[2].setInitialScale(scaleProperties2);
 
                             final ScaleProperties scaleProperties3 = new ScaleProperties();
                             scaleProperties3.shouldScale = scaleProperties.shouldScale;
@@ -645,7 +647,7 @@ Created By: Travis Berthelot
                             scaleProperties3.scaleWidth = scaleProperties.scaleWidth * 22 / 265;
                             scaleProperties3.scaleHeight = scaleProperties.scaleHeight * 22 / 34;
                                                 
-                            this.basicAnimationInterfaceFactoryInterfaceArray[3].setInitialScale(scaleProperties3);
+                            this.basicAnimationInterfaceFactoryInterfaceArrayP[3].setInitialScale(scaleProperties3);
 
                             final ScaleProperties scaleProperties4 = new ScaleProperties();
                             scaleProperties4.shouldScale = scaleProperties.shouldScale;
@@ -654,7 +656,7 @@ Created By: Travis Berthelot
                             scaleProperties4.scaleWidth = scaleProperties.scaleWidth;
                             scaleProperties4.scaleHeight = scaleProperties.scaleHeight;
                         
-                            this.basicAnimationInterfaceFactoryInterfaceArray[4].setInitialScale(scaleProperties4);
+                            this.basicAnimationInterfaceFactoryInterfaceArrayP[4].setInitialScale(scaleProperties4);
                         }                        
                     }
                 };

@@ -35,7 +35,9 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDAnyKeyReleasedConditionGDNodeConditionGDNode.xsl" />
     <xsl:import href="./condition/GDKeyPressedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDKeyReleasedConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDIsTouchConditionGDNode.xsl" />
     <xsl:import href="./condition/GDIsMultitouchConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDCanAutoHideConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSystemInfoIsMobileConditionGDNode.xsl" />
     <xsl:import href="./condition/GDTimerConditionGDNode.xsl" />
     <xsl:import href="./condition/GDObjectTimerConditionGDNode.xsl" />
@@ -121,9 +123,19 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'Multitouch::Function'" >
+                <xsl:if test="$typeValue = 'TouchScreen::canAutoHide'" >
+                    
+                    <xsl:call-template name="canAutoHideConditionGDNode" />
+
+                </xsl:if>
+                <xsl:if test="$typeValue = 'TouchScreen::isMultitouchSupported'" >
                     
                     <xsl:call-template name="multitouchConditionGDNode" />
+
+                </xsl:if>
+                <xsl:if test="$typeValue = 'TouchScreen::isTouchSupported'" >
+                    
+                    <xsl:call-template name="touchConditionGDNode" />
 
                 </xsl:if>
 
