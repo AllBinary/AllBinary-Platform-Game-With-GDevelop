@@ -160,13 +160,13 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
         
         try {
             
-            if(collisionMaskCustomGameLayer.allBinaryGameLayerManager == null) {
-                logUtil.put(new StringMaker().append("LayerManager was null: ").append(StringUtil.getInstance().toString(collisionMaskCustomGameLayer.allBinaryGameLayerManager)).toString(), this, "move");
+            if(collisionMaskCustomGameLayer.allBinaryGameLayerManagerP == null) {
+                logUtil.put(new StringMaker().append("LayerManager was null: ").append(StringUtil.getInstance().toString(collisionMaskCustomGameLayer.allBinaryGameLayerManagerP)).toString(), this, "move");
                 return false;
             }
             
             final GeographicMapCompositeInterface geographicMapCompositeInterface
-                    = (GeographicMapCompositeInterface) collisionMaskCustomGameLayer.allBinaryGameLayerManager;
+                    = (GeographicMapCompositeInterface) collisionMaskCustomGameLayer.allBinaryGameLayerManagerP;
 
             final BasicGeographicMap[] geographicMapInterfaceArray
                     = geographicMapCompositeInterface.getGeographicMapInterface();

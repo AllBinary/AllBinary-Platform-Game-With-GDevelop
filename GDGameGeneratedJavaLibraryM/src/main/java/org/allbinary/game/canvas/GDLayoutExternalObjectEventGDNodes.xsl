@@ -178,7 +178,11 @@ Created By: Travis Berthelot
                     public String GlobalVariable(final String value) {
                         return value;
                     }
-                                        
+
+                    public float GlobalVariable(final float value) {
+                        return value;
+                    }
+
                     public long GlobalVariable(final long value) {
                         return value;
                     }

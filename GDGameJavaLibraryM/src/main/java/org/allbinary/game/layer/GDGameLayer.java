@@ -75,6 +75,7 @@ public class GDGameLayer
 
     protected final IndexedAnimation[] initIndexedAnimationInterfaceArray;
     protected IndexedAnimation[] indexedAnimationInterfaceArray;
+    private final ResetAnimationBehavior resetAnimationBehavior;
 
     protected final VelocityProperties velocityInterface;
     // protected AccelerationInterface accelerationInterface;
@@ -203,6 +204,12 @@ public class GDGameLayer
         this.initIndexedAnimationInterfaceArray = animationBehavior.init(this.gdObject, animationInterfaceFactoryInterfaceArray);
         this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
 
+        if(this.initIndexedAnimationInterfaceArray[0].getSize() >= 90) {
+            this.resetAnimationBehavior = ResetRotationAnimationBehavior.getInstance();
+        } else {
+            this.resetAnimationBehavior = ResetAnimationBehavior.getInstance();
+        }
+        
         animationBehavior.add(this);
 
         if(this.initIndexedAnimationInterfaceArray.length > 0 && this.initIndexedAnimationInterfaceArray[0].isThreed()) { 
@@ -530,7 +537,7 @@ public class GDGameLayer
     }
 
     public void resetAnimation() {
-        this.initIndexedAnimationInterfaceArray[this.gdObject.animation].setFrame(frameUtil.getFrameForAngle((short) 90, 1));
+        this.resetAnimationBehavior.resetAnimation(this.indexedAnimationInterfaceArray, this.gdObject.animation);
     }
     
     public void animate(final long timeDelta) throws Exception {

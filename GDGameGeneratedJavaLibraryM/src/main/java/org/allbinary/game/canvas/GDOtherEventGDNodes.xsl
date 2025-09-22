@@ -278,6 +278,10 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
         return value;
     }
 
+    public float GlobalVariable(final float value) {
+        return value;
+    }
+
     public long GlobalVariable(final long value) {
         return value;
     }

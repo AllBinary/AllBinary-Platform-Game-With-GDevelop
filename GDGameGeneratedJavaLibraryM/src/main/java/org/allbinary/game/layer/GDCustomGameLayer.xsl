@@ -530,13 +530,13 @@ Created By: Travis Berthelot
 //            if(gameGlobals.PlayerGDGameLayerList.size() >= 0) {
 //                final GDGameLayer player = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
 //                if(this == player) {
-//                    String layerManagerAsString = this.allBinaryGameLayerManager.toString();
+//                    String layerManagerAsString = this.allBinaryGameLayerManagerP.toString();
 //                    if(lastString.compareTo(layerManagerAsString) != 0)
 //                    lastString = layerManagerAsString;
 //                    if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
-//                        logUtil.put("1this.allBinaryGameLayerManager: " + this.allBinaryGameLayerManager, this, "move");
+//                        logUtil.put("1this.allBinaryGameLayerManager: " + this.allBinaryGameLayerManagerP, this, "move");
 //                    } else {
-//                        logUtil.put("0this.allBinaryGameLayerManager: " + this.allBinaryGameLayerManager, this, "move");
+//                        logUtil.put("0this.allBinaryGameLayerManager: " + this.allBinaryGameLayerManagerP, this, "move");
 //                    }
 //                }
 //            }
@@ -546,7 +546,7 @@ Created By: Travis Berthelot
             if(this.allBinaryGameLayerManagerP == null) {
                 if(total <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5) {
                     total++;
-                    logUtil.put(new StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(StringUtil.getInstance().toString(this.allBinaryGameLayerManager)).toString(), this, "move");
+                    logUtil.put(new StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(StringUtil.getInstance().toString(this.allBinaryGameLayerManagerP)).toString(), this, "move");
                 }
                 return;
             }
@@ -590,7 +590,7 @@ Created By: Travis Berthelot
                     }
                 }
             } else {
-                //logUtil.put(new StringMaker().append("Map was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move");
+                //logUtil.put(new StringMaker().append("Map was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move");
                 GeographicMapEventHandler.getInstance().addListener(this);
             }
 
@@ -615,7 +615,7 @@ Created By: Travis Berthelot
             if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
 
             if(this.allBinaryGameLayerManagerP == null) {
-                logUtil.put(new StringMaker().append("1LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(StringUtil.getInstance().toString(this.allBinaryGameLayerManager)).toString(), this, "move");
+                logUtil.put(new StringMaker().append("1LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(StringUtil.getInstance().toString(this.allBinaryGameLayerManagerP)).toString(), this, "move");
                 return;
             }
 
@@ -658,7 +658,7 @@ Created By: Travis Berthelot
                     }
                 }
             } else {
-                //logUtil.put(new StringMaker().append("Map was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move2");
+                //logUtil.put(new StringMaker().append("Map was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move2");
                 GeographicMapEventHandler.getInstance().addListener(this);
             }
 
@@ -806,7 +806,7 @@ Created By: Travis Berthelot
     public void move() {
         try {
             if(this.allBinaryGameLayerManagerP == null) {
-                logUtil.put(new StringMaker().append("2LayerManager was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move");
+                logUtil.put(new StringMaker().append("2LayerManager was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move");
                 return;
             }
         
@@ -843,7 +843,7 @@ Created By: Travis Berthelot
     {
         try {
             if(this.allBinaryGameLayerManagerP == null) {
-                logUtil.put(new StringMaker().append("3LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move");
+                logUtil.put(new StringMaker().append("3LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move");
                 return;
             }
         
@@ -894,7 +894,7 @@ Created By: Travis Berthelot
     {
         try {
             if(this.allBinaryGameLayerManagerP == null) {
-                logUtil.put(new StringMaker().append("4LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManager).toString(), this, "move");
+                logUtil.put(new StringMaker().append("4LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move");
                 return;
             }
 
@@ -1167,7 +1167,7 @@ Created By: Travis Berthelot
             //isHTML ? new MultipassNoCacheWaypoint(this, AttackSound.getInstance()) : 
             new NoCacheWaypoint(this, AttackSound.getInstance());
 
-        waypoint.setAllBinaryGameLayerManager(allBinaryGameLayerManager);
+        waypoint.setAllBinaryGameLayerManager(this.allBinaryGameLayerManagerP);
         this.waypointBehaviorBase.setWaypoint(waypoint);
         
         //this.initRangeHack();
@@ -1190,7 +1190,7 @@ Created By: Travis Berthelot
     public BasicArrayList getEndGeographicMapCellPositionList() throws Exception {
         
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
-            (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+            (GeographicMapCompositeInterface) this.allBinaryGameLayerManagerP;
         final BasicGeographicMap geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
 
         geographicMapCellPositionArea.update(geographicMapInterface);
@@ -1333,7 +1333,7 @@ Created By: Travis Berthelot
     public BasicArrayList getSurroundingGeographicMapCellPositionList() 
         throws Exception {
         final GeographicMapCompositeInterface geographicMapCompositeInterface = 
-            (GeographicMapCompositeInterface) this.allBinaryGameLayerManager;
+            (GeographicMapCompositeInterface) this.allBinaryGameLayerManagerP;
         final BasicGeographicMap geographicMapInterface = geographicMapCompositeInterface.getGeographicMapInterface()[0];
 
         geographicMapCellPositionArea.update(geographicMapInterface);
@@ -1347,8 +1347,8 @@ Created By: Travis Berthelot
         final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition = this.waypointBehaviorBase.getNextUnvisitedPathGeographicMapCellPosition();
         final GPoint point = nextUnvisitedPathGeographicMapCellPosition.getMidPoint();
         
-        final int dx = (this.getX() + this.getHalfWidth()) + point.getX();
-        final int dy = (this.getY() + this.getHalfHeight()) + point.getY();
+        final int dx = (this.getXP() + this.getHalfWidth()) + point.getX();
+        final int dy = (this.getYP() + this.getHalfHeight()) + point.getY();
 
         this.rtsLogHelper.trackTo(this, nextUnvisitedPathGeographicMapCellPosition, dx, dy, reason);
         

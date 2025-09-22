@@ -403,7 +403,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         //logUtil.put("Loading Tiled Map Asset: <xsl:value-of select="name" />", this, commonStrings.PROCESS);
                 
-        final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtable().get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
+        final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtableP().get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
         
         <xsl:variable name="imageWithExtension" select="content/tilemapAtlasImage" />
         <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
@@ -1010,7 +1010,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 //        logUtil.put(new StringMaker().append("tile x: ").append(tiledLayer.getX()).append("y: ").append(tiledLayer.getY()).toString(), this, commonStrings.PROCESS);
 //        logUtil.put(new StringMaker().append("map x: ").append(mapX).append("y: ").append(mapY).toString(), this, commonStrings.PROCESS);
 //        logUtil.put(new StringMaker().append("2 x: ").append(x2).append("y: ").append(y2).toString(), this, commonStrings.PROCESS);
-            layer.setPosition(x2, y2, layer.getZ());
+            layer.setPosition(x2, y2, layer.getZP());
         }
 
         }

@@ -233,7 +233,7 @@ Created By: Travis Berthelot
                     this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />LayerInfo,
                     <xsl:value-of select="name" />RectangleArrayOfArrays
-                    <xsl:if test="contains($hasMoreThanOneImage, 'found')" >, GDIndividualAnimationBehavior.getInstance()</xsl:if>
+                    <xsl:if test="contains($hasMoreThanOneImage, 'found')" >, GDIndividualAnimationBehaviorFactory.getInstance()</xsl:if>
                     <xsl:if test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >, GDSliderAnimationBehaviorFactory.getInstance()</xsl:if>
                     <xsl:if test="type = 'TextInput::TextInputObject'" >, GDTextInputAnimationBehaviorFactory.getInstance()</xsl:if>
                     <xsl:if test="type = 'TextObject::Text'" >, GDAnimationBehaviorBaseFactory.getInstance()</xsl:if>

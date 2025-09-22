@@ -31,7 +31,12 @@ Created By: Travis Berthelot
                         <xsl:if test="type = 'number'" >
                             <xsl:if test="contains($name, 'speed')" >
                     //TWB - speed hack
+                                <xsl:if test="contains($name, '_speed')" >
                     public float <xsl:value-of select="name" /> = <xsl:value-of select="value" /> * ((SWTUtil.isSWT || AndroidUtil.isAndroid()) ? 2 : 3);
+                                </xsl:if>
+                                <xsl:if test="contains($name, 'speed') and not(contains($name, '_speed'))" >
+                    public int <xsl:value-of select="name" /> = <xsl:value-of select="value" /> * ((SWTUtil.isSWT || AndroidUtil.isAndroid()) ? 2 : 3);
+                                </xsl:if>
                             </xsl:if>
                             <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains($name, 'speed') or contains(name, 'score'))" >
                     public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
