@@ -58,6 +58,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
             </xsl:if>
 -->
+
             </xsl:if>
 
         </xsl:for-each>
@@ -275,8 +276,10 @@ Created By: Travis Berthelot
                 <xsl:variable name="animationName1" ><xsl:for-each select="animations" ><xsl:if test="position() = 1" ><xsl:value-of select="$name" /><xsl:value-of select="name" />1</xsl:if></xsl:for-each></xsl:variable>
 
                 <xsl:for-each select="animations" >
+<!--                 //Animation name = <xsl:value-of select="name" />-->
 <!--                         or contains($name, 'MaskEnemy')-->
-                    <xsl:if test="not(contains($name, 'Attack') or contains($name, 'Projectile')) or string-length(name) = 0" >
+                    <xsl:if test="not(name or contains($name, 'Attack') or contains($name, 'Projectile')) or string-length(name) = 0" >
+                    //Not (Attack or Projectile or Name Empty)
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:variable name="animationPosition" ><xsl:value-of select="position()" /></xsl:variable>
                     <xsl:variable name="animationTotal" ><xsl:value-of select="last()" /></xsl:variable>
@@ -292,25 +295,25 @@ Created By: Travis Berthelot
                     </xsl:variable>
 
                     <xsl:if test="$animationPosition = 1" >
-                        <xsl:if test="contains($hasMoreThanOneImage, 'found') and contains($hasCustomCollisionMask, 'found')" >
-                //0
+                        <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                 final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][0];
                         </xsl:if>
-                        <xsl:if test="not(contains($hasMoreThanOneImage, 'found') and contains($hasCustomCollisionMask, 'found'))" >
-                //Auto generated CollisionMask for RotationAnimations
+                        <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
                 final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][360];
+                        </xsl:if>
+
+<!--                //<xsl:value-of select="contains($hasMoreThanOneImage, 'found')" /> and <xsl:value-of select="contains($hasCustomCollisionMask, 'found')" />-->
+                        <xsl:if test="not(contains($hasMoreThanOneImage, 'found')) and not(contains($hasCustomCollisionMask, 'found'))" >
+                //Auto generated CollisionMask for RotationAnimations
                 final float newX = (<xsl:value-of select="$name" />LayerInfo.getWidth() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getWidth()) / 2;
                 final float newY = (<xsl:value-of select="$name" />LayerInfo.getHeight() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getHeight()) / 2;
                 final Rectangle <xsl:value-of select="$name" />RotationCollisionMask = new Rectangle(
                                 pointFactory.getInstance((int) (newX * 3 * halfScale), (int) (newY * 3 * halfScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * halfScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * halfScale)
                                 );
-                        </xsl:if>
-                    </xsl:if>
-
-                    <xsl:if test="not(contains($hasMoreThanOneImage, 'found') and contains($hasCustomCollisionMask, 'found'))" >
                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
-                rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][index] = <xsl:value-of select="$name" />RotationCollisionMask;
+                    rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][index] = <xsl:value-of select="$name" />RotationCollisionMask;
                 }
+                        </xsl:if>
                     </xsl:if>
                     
                     <xsl:if test="position() = 1" >
@@ -351,11 +354,20 @@ Created By: Travis Berthelot
                             <xsl:if test="hasCustomCollisionMask = 'true'" >
                                 
                             <xsl:if test="position() = 1" >
+                                <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                 rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />] = new Rectangle[<xsl:value-of select="last()" />];
+                                </xsl:if>
                             </xsl:if>
 
                             <xsl:for-each select="customCollisionMask" >
+                                <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                 rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][<xsl:value-of select="$position - 1" />] = <xsl:value-of select="$animationName1" />CollisionMask;
+                                </xsl:if>
+                                <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
+                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
+                    rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][index] = <xsl:value-of select="$animationName1" />CollisionMask;
+                }
+                                </xsl:if>
                             </xsl:for-each>
                             </xsl:if>
                         </xsl:for-each>
@@ -374,13 +386,40 @@ Created By: Travis Berthelot
 <!--                         or contains($name, 'MaskEnemy')-->
                     <xsl:if test="contains($name, 'Attack') or contains($name, 'Projectile')" >
                                                 
+                    //Has Name and not Player and (Attack or Projectile)
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:variable name="animationPosition" ><xsl:value-of select="position()" /></xsl:variable>
                     <xsl:variable name="animationTotal" ><xsl:value-of select="last()" /></xsl:variable>
 
+                    <xsl:variable name="hasCustomCollisionMask" >
+                        <xsl:for-each select="directions" >
+                            <xsl:for-each select="sprites" >                                                        
+                                <xsl:if test="hasCustomCollisionMask = 'true'" >
+                                    <xsl:if test="position() = 1" >found</xsl:if>
+                                </xsl:if>
+                            </xsl:for-each>
+                        </xsl:for-each>
+                    </xsl:variable>
+
                     <xsl:if test="$animationPosition = 1" >
-                //1
+                        <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                 final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][0];
+                    </xsl:if>
+                        <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
+                final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][360];
+                        </xsl:if>
+
+                        <xsl:if test="not(contains($hasMoreThanOneImage, 'found')) and not(contains($hasCustomCollisionMask, 'found'))" >
+                //Auto generated CollisionMask for RotationAnimations
+                final float newX = (<xsl:value-of select="$name" />LayerInfo.getWidth() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getWidth()) / 2;
+                final float newY = (<xsl:value-of select="$name" />LayerInfo.getHeight() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getHeight()) / 2;
+                final Rectangle <xsl:value-of select="$name" />RotationCollisionMask = new Rectangle(
+                                pointFactory.getInstance((int) (newX * 3 * halfScale), (int) (newY * 3 * halfScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * halfScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * halfScale)
+                                );
+                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
+                    rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][index] = <xsl:value-of select="$name" />RotationCollisionMask;
+                }
+                        </xsl:if>
                     </xsl:if>
 
                     <xsl:for-each select="directions" >
@@ -392,7 +431,9 @@ Created By: Travis Berthelot
                             //customCollisionMask - <xsl:value-of select="image" /> - Attack
 
                             <xsl:if test="position() = 1" >
+                                <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                 rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />] = new Rectangle[<xsl:value-of select="last()" />];
+                                </xsl:if>
                             </xsl:if>
                             
                             <xsl:for-each select="customCollisionMask" >
@@ -403,7 +444,15 @@ Created By: Travis Berthelot
 
 //              logUtil.put("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
 
+                                <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                 rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][<xsl:value-of select="$position - 1" />] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
+                                </xsl:if>
+                                <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
+                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
+                    rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][index] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
+                }
+                                </xsl:if>
+
                             </xsl:for-each>
                             
                             </xsl:if>

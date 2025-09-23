@@ -58,6 +58,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
             </xsl:if>
 -->
+
             </xsl:if>
 
         </xsl:for-each>
@@ -91,7 +92,6 @@ Created By: Travis Berthelot
 
             <xsl:if test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
-
             private void add<xsl:value-of select="name" />SpriteAnimations(final ImageCache imageCache) throws Exception {
                 <xsl:if test="not(contains($name, 'btn_'))" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
@@ -255,8 +255,10 @@ Created By: Travis Berthelot
                 <xsl:variable name="animationName1" ><xsl:for-each select="animations" ><xsl:if test="position() = 1" ><xsl:value-of select="$name" /><xsl:value-of select="name" />1</xsl:if></xsl:for-each></xsl:variable>
                 
                 <xsl:for-each select="animations" >
-                    <xsl:if test="string-length(name) > 0" >
-                    <xsl:if test="not(contains($name, 'Attack') or contains($name, 'Projectile'))" >
+<!--                 //Animation name = <xsl:value-of select="name" />-->
+<!--                         or contains($name, 'MaskEnemy')-->
+                    <xsl:if test="not(name or contains($name, 'Attack') or contains($name, 'Projectile')) or string-length(name) = 0" >
+                    //Not (Attack or Projectile or Name Empty)
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:variable name="animationPosition" ><xsl:value-of select="position()" /></xsl:variable>
                     <xsl:variable name="animationTotal" ><xsl:value-of select="last()" /></xsl:variable>
@@ -271,8 +273,13 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:variable>
 
-                    <xsl:if test="$animationPosition = 1 and contains($hasCustomCollisionMask, 'found')" >
+                    <xsl:if test="$animationPosition = 1" >
+                        <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                 final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][0];
+                        </xsl:if>
+                        <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
+                final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][360];
+                        </xsl:if>
                     </xsl:if>
                     
                     <xsl:if test="position() = 1" >
@@ -313,11 +320,22 @@ Created By: Travis Berthelot
                             <xsl:if test="hasCustomCollisionMask = 'true'" >
                                 
                             <xsl:if test="position() = 1" >
+                                <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                 rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />] = new Rectangle[<xsl:value-of select="last()" />];
+                                </xsl:if>
                             </xsl:if>
 
                             <xsl:for-each select="customCollisionMask" >
+
+                                <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                 rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][<xsl:value-of select="$position - 1" />] = <xsl:value-of select="$animationName1" />CollisionMask;
+                                </xsl:if>
+                                <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
+                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
+                    rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][index] = <xsl:value-of select="$animationName1" />CollisionMask;
+                }
+                                </xsl:if>
+
                             </xsl:for-each>
                             </xsl:if>
                         </xsl:for-each>
@@ -328,20 +346,36 @@ Created By: Travis Berthelot
                     </xsl:if>
 
                     </xsl:if>           
-                    </xsl:if>
                 </xsl:for-each>
 
                 <xsl:for-each select="animations" >
                     <xsl:if test="string-length(name) > 0" >
                     <xsl:if test="$name != 'Player'" >
+<!--                         or contains($name, 'MaskEnemy')-->
                     <xsl:if test="contains($name, 'Attack') or contains($name, 'Projectile')" >
                                                 
+                    //Has Name and not Player and (Attack or Projectile)
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:variable name="animationPosition" ><xsl:value-of select="position()" /></xsl:variable>
                     <xsl:variable name="animationTotal" ><xsl:value-of select="last()" /></xsl:variable>
 
+                    <xsl:variable name="hasCustomCollisionMask" >
+                        <xsl:for-each select="directions" >
+                            <xsl:for-each select="sprites" >                                                        
+                                <xsl:if test="hasCustomCollisionMask = 'true'" >
+                                    <xsl:if test="position() = 1" >found</xsl:if>
+                                </xsl:if>
+                            </xsl:for-each>
+                        </xsl:for-each>
+                    </xsl:variable>
+
                     <xsl:if test="$animationPosition = 1" >
+                        <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                 final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][0];
+                    </xsl:if>
+                        <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
+                final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][360];
+                        </xsl:if>
                     </xsl:if>
 
                     <xsl:for-each select="directions" >
@@ -353,7 +387,9 @@ Created By: Travis Berthelot
                             //customCollisionMask - <xsl:value-of select="image" /> - Attack
 
                             <xsl:if test="position() = 1" >
+                                <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                 rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />] = new Rectangle[<xsl:value-of select="last()" />];
+                                </xsl:if>
                             </xsl:if>
                             
                             <xsl:for-each select="customCollisionMask" >
@@ -364,7 +400,15 @@ Created By: Travis Berthelot
 
 //              logUtil.put("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
 
+                                <xsl:if test="contains($hasMoreThanOneImage, 'found')" >
                 rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][<xsl:value-of select="$position - 1" />] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
+                                </xsl:if>
+                                <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >
+                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
+                    rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][index] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
+                }
+                                </xsl:if>
+
                             </xsl:for-each>
                             
                             </xsl:if>
@@ -375,7 +419,7 @@ Created By: Travis Berthelot
                 this.addRectangleArrayOfArrays(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
                     </xsl:if>
                                                                                         
-                    </xsl:if>                    
+                    </xsl:if>
                     </xsl:if>
                     </xsl:if>
                 </xsl:for-each>
@@ -412,9 +456,7 @@ Created By: Travis Berthelot
 
             <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
                 <xsl:variable name="stringValue" select="string" />
-
             private void add<xsl:value-of select="name" />TileMapAndParticleSystemAnimations(final ImageCache imageCache) throws Exception {
-            
                 <xsl:if test="not(contains($name, 'btn_'))" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
@@ -712,7 +754,6 @@ Created By: Travis Berthelot
 
             <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
                 <xsl:variable name="stringValue" select="string" />
-
             private void add<xsl:value-of select="name" />TextInputObjectAnimations(final ImageCache imageCache) throws Exception {
 
                 final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> / 2;
