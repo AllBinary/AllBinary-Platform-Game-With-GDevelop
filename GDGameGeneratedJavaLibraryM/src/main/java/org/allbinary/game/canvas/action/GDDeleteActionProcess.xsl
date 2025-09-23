@@ -88,12 +88,12 @@ Created By: Travis Berthelot
                                 final BasicArrayList gdGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList;
                         </xsl:if>
 
-                            final int size = gdGameLayerList.size();
                             GDGameLayer gdGameLayer;
-                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> gdGameLayerList.size(); index++) {
                         
                                 gdGameLayer = (GDGameLayer) gdGameLayerList.get(index);
                                 //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + gdGameLayer, this, commonStrings.PROCESS);
+                                //This removes itself from the list
                                 gdGameLayer.setDestroyed(true);
                                 //gdGameLayerRemoveList.add(gdGameLayer);
                             

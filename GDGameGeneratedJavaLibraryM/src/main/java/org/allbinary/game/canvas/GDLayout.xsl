@@ -342,9 +342,9 @@ Created By: Travis Berthelot
                            }
                            
                            GDGameLayer gdGameLayer;
-                           size = removeList.size();
-                           for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+                           for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> removeList.size(); index++) {
                                gdGameLayer = (GDGameLayer) removeList.get(index);
+                               //This removes itself from the list
                                gdGameLayer.setDestroyed(true);
                                //logUtil.put("Behavior objectName=<xsl:value-of select="name" /> size=<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList size: " + <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.size(), this, commonStrings.PROCESS);
                            }
