@@ -116,7 +116,17 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
                 this.proceduralAnimationInterfaceFactoryInterfaceArray,
                 rectangle, 
                 this.rectangleArrayOfArrays,
-                gdObject, this.animationBehaviorFactory.create());
+                gdObject, this.animationBehaviorFactory.create()) {
+                    /*public void updatePosition() {
+                        boolean change = false;
+                        if(this.gdObject.x != this.getXP() || this.gdObject.y != this.getYP()) {
+                            change = true;
+                        }
+                        if(change) logUtil.put(this.getXP() + " TWBB " + this.getYP(), this, commonStrings.PROCESS);
+                        super.updatePosition();
+                        if(change) logUtil.put(this.getXP() + " TWBA " + this.getYP(), this, commonStrings.PROCESS);
+                    }*/
+                };
 
         //gameLayer.setInitialScale(scaleX, scaleY);
 

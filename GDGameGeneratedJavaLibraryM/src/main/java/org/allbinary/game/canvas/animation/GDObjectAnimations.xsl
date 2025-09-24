@@ -456,7 +456,7 @@ Created By: Travis Berthelot
                             <xsl:if test="hasCustomCollisionMask = 'true'" >
 
                             <xsl:for-each select="customCollisionMask" >
-                //customCollisionMask - <xsl:value-of select="$image" /> - non Player
+                //customCollisionMask - <xsl:value-of select="$image" />
                                     <xsl:if test="$position = 1" >
                 final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
                                 pointFactory.getInstance((int) (<xsl:value-of select="array[1]/x" /> * scale), (int) (<xsl:value-of select="array[1]/y" /> * scale)),
