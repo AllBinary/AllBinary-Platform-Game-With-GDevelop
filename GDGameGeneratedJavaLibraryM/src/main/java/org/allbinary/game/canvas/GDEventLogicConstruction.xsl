@@ -896,6 +896,33 @@ Created By: Travis Berthelot
                 
     </xsl:template>
 
+    <xsl:template name="hasBuiltinCommonInstructionsRepeatProcessGD" >
+        <xsl:param name="totalRecursions" />
+        <xsl:param name="nodeId" />
+        
+        <xsl:for-each select=".." >
+            <xsl:if test="events[type = 'BuiltinCommonInstructions::Repeat']" >
+            <xsl:variable name="hasChildNode" >
+                <xsl:call-template name="hasChildNode" >
+                    <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:variable>
+                <xsl:if test="contains($hasChildNode, 'found')" >
+                    found
+                </xsl:if>
+            </xsl:if>
+            
+            <xsl:call-template name="hasBuiltinCommonInstructionsRepeatProcessGD" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="$totalRecursions + 1" />
+                </xsl:with-param>
+                <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
+            </xsl:call-template>
+
+        </xsl:for-each>
+                
+    </xsl:template>
+
     <xsl:template name="hasLinkedObjectsPickObjectsLinkedToProcessGD" >
         <xsl:param name="totalRecursions" />
         <xsl:param name="nodeId" />
