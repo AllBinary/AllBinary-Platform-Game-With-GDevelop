@@ -124,10 +124,10 @@
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" /> * ((SWTUtil.isSWT || AndroidUtil.isAndroid()) ? 2 : 3);
                                     </xsl:if>
                                 </xsl:if>
-                                <xsl:if test="not(contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains($name, 'speed') or contains(name, 'Long'))" >
+                                <xsl:if test="not(contains(name, 'time') or contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains($name, 'speed') or contains(name, 'Long'))" >
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                                 </xsl:if>
-                                <xsl:if test="contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'Long')" >
+                                <xsl:if test="contains(name, 'time') or contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'Long')" >
                                     <xsl:if test="value != '9223372036854776000'" >
                         public long <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                                     </xsl:if>

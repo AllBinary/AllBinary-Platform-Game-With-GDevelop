@@ -287,8 +287,10 @@ Created By: Travis Berthelot
                             </xsl:if>
 
                             <xsl:for-each select="customCollisionMask" >
-                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
-                    rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][index] = <xsl:value-of select="$animationName1" />CollisionMask;
+               for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$animationTotal" />; index2++) {
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
+                        rectangleArrayOfArrays[index2][index] = <xsl:value-of select="$animationName1" />CollisionMask;
+                    }
                 }
                             </xsl:for-each>
                             </xsl:if>
@@ -347,8 +349,10 @@ Created By: Travis Berthelot
 
 //              logUtil.put("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, commonStrings.PROCESS);
 
-                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
-                    rectangleArrayOfArrays[<xsl:value-of select="$animationPosition - 1" />][index] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
+               for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$animationTotal" />; index2++) {
+                    for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
+                        rectangleArrayOfArrays[index2][index] = <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask;
+                    }
                 }
 
                             </xsl:for-each>

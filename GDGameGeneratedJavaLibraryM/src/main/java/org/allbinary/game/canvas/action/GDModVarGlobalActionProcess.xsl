@@ -78,7 +78,9 @@ Created By: Travis Berthelot
                                 <xsl:if test="name = $name" >found</xsl:if>
                             </xsl:for-each>
                         </xsl:variable>                        
-
+                                       
+                        <xsl:if test="$name != 'gameTickTimeDelayHelper'" >
+                            
                         <xsl:if test="contains($hasObjectGroup, 'found')" >
                             //This code should probably never be used - it is here to compile with at least some possible logic 2
                             final BasicArrayList gdGameLayerList = (BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(0);
@@ -88,7 +90,7 @@ Created By: Travis Berthelot
                             }
                             final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) gdGameLayerList.get(0);
                         </xsl:if>
-                                       
+                            
                         <xsl:if test="not(contains($hasObjectGroup, 'found'))" >
                             final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(0);
                         </xsl:if>
@@ -98,6 +100,9 @@ Created By: Travis Berthelot
                                 (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$objectInParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) 
                                 <xsl:value-of select="$name" />GDGameLayer.gdObject;
                             <xsl:text>&#10;</xsl:text>
+                         
+                        </xsl:if>
+                         
                         </xsl:if>
                         
                             <xsl:for-each select="parameters" >
@@ -190,9 +195,11 @@ Created By: Travis Berthelot
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
                         
+                        <xsl:if test="$name != 'gameTickTimeDelayHelper'" >
                         <xsl:if test="$name != $firstOrBeforeFourthParam" >
                         //From objectsGroup to object
                         GDGameLayer <xsl:value-of select="$name" />GDGameLayer = <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer;
+                        </xsl:if>
                         </xsl:if>
 
                         </xsl:if>
@@ -201,7 +208,8 @@ Created By: Travis Berthelot
 
                         //objectInParam=<xsl:value-of select="$objectInParam" />
                         <xsl:text>&#10;</xsl:text>
-                        
+
+                        <xsl:if test="$name != 'gameTickTimeDelayHelper'" >
                         <xsl:if test="string-length($objectInParam) > 0" >
                             //Found object in param 3
                             <xsl:variable name="name" ><xsl:value-of select="$objectInParam" /></xsl:variable>
@@ -212,6 +220,7 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$name" />GDGameLayer.gdObject;
                             <xsl:text>&#10;</xsl:text>
                         </xsl:if>
+                        </xsl:if>                        
                                                 
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /></xsl:if>

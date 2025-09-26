@@ -50,6 +50,61 @@ Created By: Travis Berthelot
                             //final StringMaker stringBuilder = new StringMaker();
                             //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
+                        <xsl:variable name="param" >
+                            <xsl:for-each select="parameters" >
+                                <xsl:if test="position() = 3" >
+                                    <xsl:if test="not(contains(text(), 'SceneInstancesCount('))" >
+                                        <xsl:value-of select="text()" />
+                                    </xsl:if>
+                                    <xsl:if test="contains(text(), 'SceneInstancesCount(')" >
+                                        <xsl:variable name="objectName" >
+                                            <xsl:value-of select="substring-before(substring-after(text(), 'SceneInstancesCount('), ')')" />
+                                        </xsl:variable>
+                                        <xsl:call-template name="string-replace-all" >
+                                            <xsl:with-param name="text" >
+                                                <xsl:value-of select="text()" />
+                                            </xsl:with-param>
+                                            <xsl:with-param name="find" >SceneInstancesCount(<xsl:value-of select="$objectName" /></xsl:with-param>
+                                            <xsl:with-param name="replacementText" >SceneInstancesCount(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$objectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$objectName" />GDGameLayerList.size()</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:if>
+                                </xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+                                                
+                        <xsl:variable name="objectInParam0" ><xsl:value-of select="substring-before($param, '.')" /></xsl:variable>
+                        <xsl:variable name="objectInParam" ><xsl:if test="not(contains($objectInParam0, '(globals') or contains($objectInParam0, '(gameGlobals'))" ><xsl:value-of select="$objectInParam0" /></xsl:if></xsl:variable>
+                        <xsl:variable name="name" ><xsl:value-of select="$objectInParam" /></xsl:variable>
+                            
+                        <xsl:variable name="hasObjectGroup" >
+                            <xsl:for-each select="//objectsGroups" >
+                                <xsl:if test="name = $name" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+
+                        <xsl:if test="$name != 'gameTickTimeDelayHelper'" >
+                            
+                        <xsl:if test="contains($hasObjectGroup, 'found')" >
+                            //This code should probably never be used - it is here to compile with at least some possible logic 2
+                            final BasicArrayList gdGameLayerList = (BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(0);
+                            
+                            if(gdGameLayerList.size() == 0) {
+                                return false;
+                            }
+                            final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) gdGameLayerList.get(0);
+                        </xsl:if>
+
+                        <xsl:if test="not(contains($hasObjectGroup, 'found'))" >
+                            final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(0);
+                        </xsl:if>
+                            
+                            <xsl:text>&#10;</xsl:text>
+                            final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$objectInParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = 
+                                (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$objectInParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) 
+                                <xsl:value-of select="$name" />GDGameLayer.gdObject;
+                            <xsl:text>&#10;</xsl:text>
+                        </xsl:if>
+
                             if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:value-of select="text() " disable-output-escaping="yes" /></xsl:for-each>) {
 
                                 //stringBuilder.delete(0, stringBuilder.length());
