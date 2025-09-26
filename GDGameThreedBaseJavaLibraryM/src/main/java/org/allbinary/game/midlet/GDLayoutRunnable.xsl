@@ -44,7 +44,7 @@ import java.util.Hashtable;
 import org.allbinary.game.GDGameMIDlet;
 
 import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.communication.log.LogFactory;
+
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;

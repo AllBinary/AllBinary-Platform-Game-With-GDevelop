@@ -80,7 +80,7 @@ import org.allbinary.string.CommonSeps;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.util.event.AllBinaryEventObject;
-import org.allbinary.logic.communication.log.LogFactory;
+
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.system.PlatformAssetManager;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;

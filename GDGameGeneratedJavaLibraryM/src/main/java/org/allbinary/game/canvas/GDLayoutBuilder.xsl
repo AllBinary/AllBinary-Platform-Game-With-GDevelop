@@ -109,7 +109,7 @@ Created By: Travis Berthelot
                 import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
                 import org.allbinary.input.motion.gesture.observer.BaseMotionGestureEventListener;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
-                import org.allbinary.logic.communication.log.LogFactory;
+                
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.string.CommonStrings;
                 import org.allbinary.string.CommonSeps;

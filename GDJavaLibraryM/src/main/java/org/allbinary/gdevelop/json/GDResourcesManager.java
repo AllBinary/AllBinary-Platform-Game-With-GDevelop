@@ -8,7 +8,7 @@ package org.allbinary.gdevelop.json;
 
 import org.allbinary.gdevelop.json.resource.GDResourceFactory;
 import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.communication.log.LogFactory;
+
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
 import org.json.JSONArray;

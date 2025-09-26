@@ -38,7 +38,7 @@ import org.allbinary.graphics.Rectangle;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.image.opengles.OpenGLSurfaceChangedInterface;
 import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.communication.log.LogFactory;
+
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.ScaleFactorFactory;
 import org.allbinary.math.FrameUtil;
@@ -125,7 +125,8 @@ public class GDGameLayer
             final Rectangle layerInfo, 
             final Rectangle[][] rectangleArrayOfArrays,
             final ViewPosition viewPosition,
-            final GDObject gdObject, final GDAnimationBehaviorBase animationBehavior) throws Exception {
+            final GDObject gdObject, final GDAnimationBehaviorBase animationBehavior,
+            final boolean rotationAdjustment) throws Exception {
         super(remoteInfo, groupInterface, gdName, layerInfo, viewPosition);
 //        super(remoteInfo, 
 //            null,
@@ -203,13 +204,13 @@ public class GDGameLayer
 
         this.initIndexedAnimationInterfaceArray = animationBehavior.init(this.gdObject, animationInterfaceFactoryInterfaceArray);
         this.setIndexedAnimationInterfaceArray(this.initIndexedAnimationInterfaceArray);
-
-        if(this.initIndexedAnimationInterfaceArray[0].getSize() >= 90) {
+        
+        if(this.initIndexedAnimationInterfaceArray[0].getSize() >= 90 && rotationAdjustment) {
             this.resetAnimationBehavior = ResetRotationAnimationBehavior.getInstance();
         } else {
             this.resetAnimationBehavior = ResetAnimationBehavior.getInstance();
         }
-        
+
         animationBehavior.add(this);
 
         if(this.initIndexedAnimationInterfaceArray.length > 0 && this.initIndexedAnimationInterfaceArray[0].isThreed()) { 

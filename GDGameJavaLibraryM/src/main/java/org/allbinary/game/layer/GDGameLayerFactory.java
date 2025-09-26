@@ -24,10 +24,8 @@ import org.allbinary.game.multiplayer.layer.RemoteInfo;
 import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
-import org.allbinary.logic.string.StringUtil;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.view.ViewPosition;
 
@@ -49,6 +47,7 @@ public class GDGameLayerFactory
     
     protected final BasicArrayList gameLayerList;
     protected final BasicArrayList gameLayerDestroyedList;
+    protected final boolean rotationAjustment;
 
     public GDGameLayerFactory(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
             final Group[] groupInterface,
@@ -56,8 +55,9 @@ public class GDGameLayerFactory
             final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray,
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo,
-            final Rectangle[][] rectangleArrayOfArrays) {
-        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance());
+            final Rectangle[][] rectangleArrayOfArrays,
+            final boolean rotationAjustment) {
+        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance(), rotationAjustment);
     }
     
     public GDGameLayerFactory(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
@@ -67,7 +67,8 @@ public class GDGameLayerFactory
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo, 
             final Rectangle[][] rectangleArrayOfArrays,
-            final GDAnimationBehaviorBaseFactory animationBehaviorFactory) {
+            final GDAnimationBehaviorBaseFactory animationBehaviorFactory,
+            final boolean rotationAjustment) {
         
         this.groupInterface = groupInterface;
         this.behaviorList = behaviorList;
@@ -79,6 +80,7 @@ public class GDGameLayerFactory
         
         this.gameLayerList = gameLayerList;
         this.gameLayerDestroyedList = gameLayerDestroyedList;
+        this.rotationAjustment = rotationAjustment;
     }
     
     public GDGameLayer create(final int layoutIndex, final String name, final GDObject gdObject, final float scaleX, final float scaleY, final GDConditionWithGroupActions collidableBehavior) throws Exception {
@@ -108,7 +110,8 @@ public class GDGameLayerFactory
                 rectangle, 
                 this.rectangleArrayOfArrays,
                 new ViewPosition(), 
-                gdObject, this.animationBehaviorFactory.create());
+                gdObject, this.animationBehaviorFactory.create(),
+                this.rotationAjustment);
         
         //gameLayer.setInitialScale(scaleX, scaleY);
 

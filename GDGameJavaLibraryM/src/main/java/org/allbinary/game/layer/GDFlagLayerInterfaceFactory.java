@@ -86,7 +86,7 @@ public class GDFlagLayerInterfaceFactory
             animationInterfaceFactoryInterfaceArray,
             proceduralAnimationInterfaceFactoryInterfaceArray,
             layerInfo,
-            rectangleArrayOfArrays);
+            rectangleArrayOfArrays, false);
         
         final GDObject gdObject = new GDObject(0, 0, NAME, null);
         gdObject.set(null, x, y, z);

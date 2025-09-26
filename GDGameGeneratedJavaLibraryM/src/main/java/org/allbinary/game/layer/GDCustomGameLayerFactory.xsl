@@ -32,7 +32,7 @@ import org.allbinary.game.layout.GDObject;
 import org.allbinary.game.multiplayer.layer.RemoteInfo;
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
-import org.allbinary.logic.communication.log.LogFactory;
+
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.StringUtil;
@@ -75,7 +75,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             proceduralAnimationInterfaceFactoryInterfaceArray,
             layerInfo, 
             rectangleArrayOfArrays, 
-            animationBehaviorFactory);
+        animationBehaviorFactory, <xsl:for-each select="properties" ><xsl:for-each select="rotationAjustment" ><xsl:value-of select="text()" /></xsl:for-each></xsl:for-each>); //final boolean rotationAjustment
     
         this.primitiveDrawingAnimationFactory = primitiveDrawingAnimationFactory;    
         this.width = this.layerInfo.getWidth();
@@ -116,7 +116,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
                 this.proceduralAnimationInterfaceFactoryInterfaceArray,
                 rectangle, 
                 this.rectangleArrayOfArrays,
-                gdObject, this.animationBehaviorFactory.create()) {
+                gdObject, this.animationBehaviorFactory.create(), this.rotationAjustment) {
                     /*public void updatePosition() {
                         boolean change = false;
                         if(this.gdObject.x != this.getXP() || this.gdObject.y != this.getYP()) {

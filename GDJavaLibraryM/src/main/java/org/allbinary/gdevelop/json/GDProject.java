@@ -9,7 +9,7 @@ package org.allbinary.gdevelop.json;
 import org.allbinary.graphics.PointFactory;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.communication.log.LogFactory;
+
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
 import org.json.JSONArray;

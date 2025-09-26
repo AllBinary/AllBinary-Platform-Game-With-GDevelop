@@ -6,7 +6,7 @@
 package org.allbinary.gdevelop.extensions.builtin.sprite;
 
 import org.allbinary.gdevelop.json.GDProjectStrings;
-import org.allbinary.logic.communication.log.LogFactory;
+
 import org.allbinary.logic.communication.log.LogUtil;
 import org.json.JSONObject;
 

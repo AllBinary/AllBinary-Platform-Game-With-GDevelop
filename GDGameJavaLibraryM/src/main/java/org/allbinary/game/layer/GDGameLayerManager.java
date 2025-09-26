@@ -16,7 +16,7 @@ package org.allbinary.game.layer;
 import org.allbinary.game.GameInfo;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.layer.AllBinaryLayer;
-import org.allbinary.logic.communication.log.LogFactory;
+
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;

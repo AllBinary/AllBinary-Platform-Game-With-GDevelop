@@ -26,7 +26,7 @@ import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.communication.log.LogFactory;
+
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;

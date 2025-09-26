@@ -10,7 +10,7 @@ import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.game.layer.waypoint.event.WaypointEventListenerInterface;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.layer.AllBinaryLayer;
-import org.allbinary.logic.communication.log.LogFactory;
+
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.communication.log.ForcedLogUtil;
 import org.allbinary.logic.string.StringMaker;

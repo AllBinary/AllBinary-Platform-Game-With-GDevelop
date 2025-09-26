@@ -17,7 +17,7 @@ import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.IndexedAnimationBehavior;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.communication.log.LogFactory;
+
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
 

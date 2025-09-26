@@ -65,7 +65,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.color.BasicColorFactory;
                 import org.allbinary.graphics.color.BasicColorSetUtil;
-                import org.allbinary.logic.communication.log.LogFactory;
+                
                 import org.allbinary.logic.communication.log.LogUtil;
                 
                 import org.allbinary.string.CommonStrings;

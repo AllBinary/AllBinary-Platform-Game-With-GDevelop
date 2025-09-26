@@ -84,7 +84,7 @@ Created By: Travis Berthelot
         import org.allbinary.string.CommonStrings;
         import org.allbinary.logic.string.StringMaker;
         import org.allbinary.logic.string.StringUtil;
-        import org.allbinary.logic.communication.log.LogFactory;
+        
         import org.allbinary.logic.communication.log.LogUtil;
         import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
         import org.allbinary.media.graphics.geography.map.BasicGeographicMapUtil;
@@ -299,7 +299,8 @@ Created By: Travis Berthelot
                         final Rectangle layerInfo, 
                         final Rectangle[][] rectangleArrayOfArrays,
                         final GDObject gdObject, 
-                        final GDAnimationBehaviorBase animationBehavior) throws Exception {
+                        final GDAnimationBehaviorBase animationBehavior,
+                        final boolean rotationAjustment) throws Exception {
 
                         super(primitiveDrawing, gameLayerList, gameLayerDestroyedList, 
                             behaviorList, 
@@ -350,7 +351,7 @@ Created By: Travis Berthelot
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
                             new ViewPosition(),
         </xsl:if>
-                            gdObject, animationBehavior);
+                            gdObject, animationBehavior, rotationAjustment);
 
                 <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
                     org.allbinary.game.behavior.topview.GeographicMapTopViewLayerBehavior topViewGameBehavior;

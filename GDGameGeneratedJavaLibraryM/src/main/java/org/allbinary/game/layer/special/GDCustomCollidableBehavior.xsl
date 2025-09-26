@@ -48,7 +48,7 @@ import org.allbinary.game.layer.GDCustomGameLayer;
 import org.allbinary.game.layout.GDNode;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.logic.communication.log.ForcedLogUtil;
-import org.allbinary.logic.communication.log.LogFactory;
+
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;

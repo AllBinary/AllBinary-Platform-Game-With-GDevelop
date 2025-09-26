@@ -21,7 +21,7 @@ import org.allbinary.animation.Animation;
 import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.game.canvas.ABToGBUtil;
 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
-import org.allbinary.logic.communication.log.LogFactory;
+
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringUtil;

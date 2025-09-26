@@ -15,7 +15,7 @@ package org.allbinary.game.combat.destroy;
 
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.communication.log.LogFactory;
+
 import org.allbinary.logic.communication.log.LogUtil;
 
 /**

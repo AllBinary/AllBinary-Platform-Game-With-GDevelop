@@ -38,7 +38,7 @@ import org.allbinary.media.audio.GDGameSoundsFactory;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringUtil;
-import org.allbinary.logic.communication.log.LogFactory;
+
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.ai.OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer;
 import org.allbinary.animation.special.SpecialAnimation;

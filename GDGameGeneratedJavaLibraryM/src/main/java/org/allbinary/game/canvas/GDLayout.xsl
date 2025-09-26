@@ -95,7 +95,7 @@ Created By: Travis Berthelot
                 import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.input.motion.gesture.observer.MovedMotionGesturesHandler;
-                import org.allbinary.logic.communication.log.LogFactory;
+                
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.math.RectangleCollisionUtil;
                 import org.allbinary.string.CommonStrings;
