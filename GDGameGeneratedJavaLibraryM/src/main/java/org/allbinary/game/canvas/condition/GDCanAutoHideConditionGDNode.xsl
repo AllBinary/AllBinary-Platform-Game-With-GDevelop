@@ -23,7 +23,7 @@ Created By: Travis Berthelot
         <xsl:variable name="inverted" ><xsl:value-of select="type/inverted" /></xsl:variable>
         
         <xsl:variable name="quote" >"</xsl:variable>
-                    //canAutoHideConditionGDNode - //Condition - //TouchScreen::canAutoHide - GDNode
+                    //canAutoHideConditionGDNode - //Condition - //TouchScreen::isAutoHide - GDNode
                     if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }
@@ -31,14 +31,16 @@ Created By: Travis Berthelot
                     
                     <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
-                                        
-                        //TouchScreen::canAutoHide - condition
+
+                        private final GenericOperatingSystem operatingSystem = OperatingSystemFactory.getInstance().getOperatingSystemInstance();
+
+                        //TouchScreen::isAutoHide - condition
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
-                            logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + commonStrings.NOT_IMPLEMENTED, this, commonStrings.PROCESS);
-                            
-                            return <xsl:if test="$inverted = 'true'" >false</xsl:if><xsl:if test="not($inverted = 'true')" >true</xsl:if>;
+                            //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+
+                            return operatingSystem.isAutoHide();
                         }
                     };
         

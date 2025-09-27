@@ -36,9 +36,9 @@ Created By: Travis Berthelot
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
-                            logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + commonStrings.NOT_IMPLEMENTED, this, commonStrings.PROCESS);
+                            logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                             
-                            return <xsl:if test="$inverted = 'true'" >false</xsl:if><xsl:if test="not($inverted = 'true')" >true</xsl:if>;
+                            return <xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:if test="not($inverted = 'true')" ></xsl:if>touchScreenFactory.isMultiTouch();
                         }
                     };
         

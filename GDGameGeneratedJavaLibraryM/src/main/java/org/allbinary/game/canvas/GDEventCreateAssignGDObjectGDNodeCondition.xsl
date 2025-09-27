@@ -123,7 +123,7 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'TouchScreen::canAutoHide'" >
+                <xsl:if test="$typeValue = 'TouchScreen::isAutoHide'" >
                     
                     <xsl:call-template name="canAutoHideConditionGDNode" />
 

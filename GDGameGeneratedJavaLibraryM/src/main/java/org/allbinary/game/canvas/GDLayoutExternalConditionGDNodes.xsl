@@ -92,8 +92,8 @@ Created By: Travis Berthelot
                 import org.allbinary.string.CommonSeps;
                 import org.allbinary.logic.string.StringMaker;
                 import org.allbinary.logic.string.StringUtil;
-                
                 import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.input.motion.button.TouchScreenFactory;
                 import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
                 import org.allbinary.input.motion.gesture.observer.MotionGestureEvent;
                 import org.allbinary.time.GameTickTimeDelayHelperFactory;
@@ -103,7 +103,9 @@ Created By: Travis Berthelot
                 import org.allbinary.util.BasicArrayList;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
                 import org.allbinary.thread.NullRunnable;
-                import org.allbinary.time.GameTickTimeDelayHelperFactory;                
+                import org.allbinary.time.GameTickTimeDelayHelperFactory;
+                import org.allbinary.logic.system.os.GenericOperatingSystem;
+                import org.allbinary.logic.system.os.OperatingSystemFactory;
 
                 //LayoutExternalCondition name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes extends SpecialAnimation
@@ -124,6 +126,7 @@ Created By: Travis Berthelot
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
                         private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
+                        private final TouchScreenFactory touchScreenFactory = TouchScreenFactory.getInstance();
                         private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
                         private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
                         private final GameTickTimeDelayHelper gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance();

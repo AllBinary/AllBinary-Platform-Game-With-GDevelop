@@ -110,8 +110,8 @@ Created By: Travis Berthelot
                 import org.allbinary.string.CommonSeps;
                 import org.allbinary.logic.string.StringMaker;
                 import org.allbinary.logic.string.StringUtil;
-                
                 import org.allbinary.logic.communication.log.LogUtil;
+                import org.allbinary.input.motion.button.TouchScreenFactory;
                 import org.allbinary.input.motion.gesture.TouchMotionGestureFactory;
                 import org.allbinary.math.LayerDistanceUtil;
                 import org.allbinary.math.RectangleCollisionUtil;
@@ -124,6 +124,8 @@ Created By: Travis Berthelot
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+                import org.allbinary.logic.system.os.GenericOperatingSystem;
+                import org.allbinary.logic.system.os.OperatingSystemFactory;
 
                 //LayoutCondition name=<xsl:value-of select="$layoutName" /> - GDNode processM calls in this class can load resources
                 public class GD<xsl:value-of select="$layoutIndex" />SpecialAnimationConditionGDNodes extends SpecialAnimation
@@ -141,6 +143,7 @@ Created By: Travis Berthelot
                         private final NullUtil nullUtil = NullUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
+                        private final TouchScreenFactory touchScreenFactory = TouchScreenFactory.getInstance();
                         private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
                         private final RectangleCollisionUtil rectangleCollisionUtil = RectangleCollisionUtil.getInstance();
                         private final SmallIntegerSingletonFactory smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance();
