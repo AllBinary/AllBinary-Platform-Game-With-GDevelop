@@ -102,6 +102,9 @@ Created By: Travis Berthelot
 
                         <xsl:if test="contains($hasObjectGroup, 'found') or contains($hasObject, 'found')" >
                         <xsl:if test="not(contains($hasObjectGroup, 'found'))" >
+                            if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.size() == 0) {
+                                return false;
+                            }
                             final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(0);
                         </xsl:if>
 
