@@ -294,10 +294,10 @@ Created By: Travis Berthelot
                         
             <xsl:if test="not(type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue'or type/value = 'SetNumberVariable')" >                
             <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
-                <xsl:if test="not(type/value = 'ModVarScene' or type/value = 'PlaySound' or type/value = 'Delete')" >
+                <xsl:if test="not(type/value = 'ModVarScene' or type/value = 'PlaySound' or type/value = 'Montre' or type/value = 'Delete')" >
             //Could I call this - //<xsl:value-of select="type/value" />
                 </xsl:if>
-                <xsl:if test="type/value = 'ModVarScene' or type/value = 'PlaySound'" >
+                <xsl:if test="type/value = 'ModVarScene' or type/value = 'PlaySound' or type/value = 'Montre'" >
             //<xsl:value-of select="type/value" />
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
                 </xsl:if>
@@ -1109,6 +1109,7 @@ Created By: Travis Berthelot
                 //maybe - not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' - START2
                             <xsl:variable name="foundLinkExternalEvent" ><xsl:for-each select="../../../externalEvents" >found</xsl:for-each></xsl:variable>
                             <xsl:variable name="allowedCondition" ><xsl:for-each select="../conditions" ><xsl:variable name="typeValue" select="type/value" /><xsl:if test="$typeValue = 'NumberVariable'" >found</xsl:if></xsl:for-each></xsl:variable>
+                            <xsl:variable name="allowedCondition2" ><xsl:for-each select="../conditions" ><xsl:variable name="typeValue" select="type/value" /><xsl:if test="$typeValue = 'TouchScreen::isAutoHide'" >found</xsl:if></xsl:for-each></xsl:variable>
                     
                             <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
@@ -1127,6 +1128,10 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:if>
 
+                            <xsl:if test="contains($allowedCondition2, 'found')" >
+                            //Only for TouchScreen::isAutoHide
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
+                            </xsl:if>
                             <xsl:if test="contains($foundLinkExternalEvent, 'found') and contains($allowedCondition, 'found')" >
                             //External events call process() and not processGD
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
@@ -1143,6 +1148,7 @@ Created By: Travis Berthelot
                             </xsl:if>
                             
                             </xsl:if>
+
                             <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
                             //Event - //BuiltinCommonInstructions::Link - call - //hack2

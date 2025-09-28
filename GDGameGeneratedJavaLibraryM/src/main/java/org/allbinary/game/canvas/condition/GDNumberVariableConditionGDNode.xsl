@@ -82,8 +82,14 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                         </xsl:variable>
 
+                        <xsl:variable name="hasObject" >
+                            <xsl:for-each select="//objects" >
+                                <xsl:if test="name = $name" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+
                         <xsl:if test="$name != 'gameTickTimeDelayHelper'" >
-                            
+
                         <xsl:if test="contains($hasObjectGroup, 'found')" >
                             //This code should probably never be used - it is here to compile with at least some possible logic 2
                             final BasicArrayList gdGameLayerList = (BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(0);
@@ -94,15 +100,18 @@ Created By: Travis Berthelot
                             final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) gdGameLayerList.get(0);
                         </xsl:if>
 
+                        <xsl:if test="contains($hasObjectGroup, 'found') or contains($hasObject, 'found')" >
                         <xsl:if test="not(contains($hasObjectGroup, 'found'))" >
                             final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(0);
                         </xsl:if>
-                            
+
                             <xsl:text>&#10;</xsl:text>
                             final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$objectInParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = 
                                 (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$objectInParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) 
                                 <xsl:value-of select="$name" />GDGameLayer.gdObject;
                             <xsl:text>&#10;</xsl:text>
+                        </xsl:if>
+
                         </xsl:if>
 
                             if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:value-of select="text() " disable-output-escaping="yes" /></xsl:for-each>) {

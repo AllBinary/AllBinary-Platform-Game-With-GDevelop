@@ -40,6 +40,25 @@ Created By: Travis Berthelot
                             
                             return <xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:if test="not($inverted = 'true')" ></xsl:if>touchScreenFactory.isMultiTouch();
                         }
+                        
+                        @Override
+                        public boolean process(final int index) throws Exception {
+                            super.processStats(index);
+
+                            ////logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "index", this, commonStrings.PROCESS);
+
+                            return this.process();
+                        }
+
+                        @Override
+                        public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                            super.processGDStats(gameLayer);
+
+                            ////logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
+
+                            return this.process();
+                        }
+
                     };
         
     </xsl:template>
