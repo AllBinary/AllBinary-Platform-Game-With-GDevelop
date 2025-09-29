@@ -13,6 +13,7 @@
  */
 package org.allbinary.gdevelop.loader;
 
+import org.allbinary.canvas.Processor;
 import org.allbinary.gdevelop.json.GDProject;
 import org.allbinary.string.CommonStrings;
 
@@ -20,7 +21,7 @@ import org.allbinary.string.CommonStrings;
  *
  * @author User
  */
-public class GDNameGenerator {
+public class GDNameGenerator extends Processor {
 
     protected final CommonStrings commonStrings = CommonStrings.getInstance();
 

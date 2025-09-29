@@ -6,36 +6,19 @@
 package org.allbinary.gdevelop.loader;
 
 import org.allbinary.data.CamelCaseUtil;
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.io.StringBufferInputStream;
-import javax.xml.transform.stream.StreamSource;
-import org.allbinary.canvas.Processor;
-import org.allbinary.data.tree.dom.BasicUriResolver;
-import org.allbinary.data.tree.dom.XslHelper;
 import org.allbinary.gdevelop.json.GDLayout;
-import org.allbinary.logic.io.BufferedWriterUtil;
-import org.allbinary.logic.io.StreamUtil;
-import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
-import org.allbinary.logic.communication.log.LogFactory;
-import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.string.CommonLabels;
 
 /**
  *
  * @author User
  */
-public class GDToAllBinaryCanvasGenerator extends Processor
+public class GDToAllBinaryCanvasGenerator extends GDTransformGenerator
 {
-    protected final LogUtil logUtil = LogUtil.getInstance();
 
-    private final CommonStrings commonStrings = CommonStrings.getInstance();
-    private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
-    private final XslHelper xslHelper = XslHelper.getInstance();
     private final CamelCaseUtil camelCaseUtil = CamelCaseUtil.getInstance();
-    private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     
     private final StringMaker stringMaker = new StringMaker();
 
@@ -73,9 +56,8 @@ public class GDToAllBinaryCanvasGenerator extends Processor
     {
         
         stringMaker.delete(0, stringMaker.length());
-        final String CANVAS = stringMaker.append(gdToolStrings.ROOT_PATH + this.path).append(this.className).append(".java").toString();
+        final String canvasJavaFile = stringMaker.append(gdToolStrings.ROOT_PATH + this.path).append(this.className).append(".java").toString();
 
-        final StreamUtil streamUtil = StreamUtil.getInstance();
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         sharedBytes.outputStream.reset();
         
@@ -88,17 +70,7 @@ public class GDToAllBinaryCanvasGenerator extends Processor
         String updatedXslDocumentStr = replace.all(androidRFileAsString);
         updatedXslDocumentStr = replace2.all(updatedXslDocumentStr);
 
-        final FileInputStream gameInputStream = new FileInputStream(gdToolStrings.GAME_XML_PATH);
-        sharedBytes.outputStream.reset();
-        final String xmlDocumentStr = new String(streamUtil.getByteArray(gameInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
-
-        final String result = this.xslHelper.translate(new BasicUriResolver(),
-                new StreamSource(new StringBufferInputStream(updatedXslDocumentStr)),
-                new StreamSource(new StringBufferInputStream(xmlDocumentStr)));
-
-        logUtil.put(this.gdToolStrings.FILENAME + CANVAS, this, commonStrings.PROCESS);
-        
-        this.bufferedWriterUtil.overwrite(CANVAS, result);
+        this.process(updatedXslDocumentStr, canvasJavaFile, sharedBytes);
         
     }
 

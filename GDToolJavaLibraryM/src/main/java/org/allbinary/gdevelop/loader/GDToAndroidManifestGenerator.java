@@ -10,11 +10,11 @@ package org.allbinary.gdevelop.loader;
  *
  * @author User
  */
-public class GDToAndroidManifestGenerator extends GDNameFileGenerator
+public class GDToAndroidManifestGenerator extends GDSimpleTransformGenerator
 {       
     public GDToAndroidManifestGenerator() {
         
-        super(GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameAndroidApplicationM\\src\\main\\AndroidManifest.original",
+        super(GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameAndroidApplicationM\\src\\main\\AndroidManifest.xsl",
                 GDToolStrings.getInstance().ROOT_PATH + "platform\\android\\GDGameAndroidApplicationM\\src\\main\\AndroidManifest.xml");
 
     }
