@@ -292,12 +292,20 @@ Created By: Travis Berthelot
             </xsl:if>
             </xsl:if>
                         
-            <xsl:if test="not(type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue'or type/value = 'SetNumberVariable')" >                
+            <xsl:if test="not(type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue'or type/value = 'SetNumberVariable')" >
             <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
-                <xsl:if test="not(type/value = 'ModVarScene' or type/value = 'PlaySound' or type/value = 'Montre' or type/value = 'Delete')" >
+                <xsl:variable name="isMultitouchSupported" >
+                    <xsl:for-each select="../conditions" >
+                        <xsl:if test="type/value = 'TouchScreen::isMultitouchSupported'" >
+                            found
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:if test="not(type/value = 'ModVarScene' or type/value = 'PlaySound' or type/value = 'Montre' or type/value = 'Delete' or (type/value = 'MettreXY' and contains($isMultitouchSupported, 'found')))" >
             //Could I call this - //<xsl:value-of select="type/value" />
                 </xsl:if>
-                <xsl:if test="type/value = 'ModVarScene' or type/value = 'PlaySound' or type/value = 'Montre'" >
+                <xsl:if test="type/value = 'ModVarScene' or type/value = 'PlaySound' or type/value = 'Montre' or (type/value = 'MettreXY' and contains($isMultitouchSupported, 'found'))" >
+                    <xsl:if test="type/value = 'MettreXY'" >//TWB - was not calling this before</xsl:if>
             //<xsl:value-of select="type/value" />
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
                 </xsl:if>
