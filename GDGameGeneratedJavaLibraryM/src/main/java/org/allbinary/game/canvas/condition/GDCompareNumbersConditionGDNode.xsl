@@ -74,10 +74,26 @@ Created By: Travis Berthelot
                             <xsl:if test="not(contains($hasObject, 'found') or contains($hasObjectGroup, 'found'))" >
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 1" >
-                                    <xsl:value-of select="text()" />
+                                    <xsl:if test="not(contains(text(), 'abs('))" >
+                                        <xsl:value-of select="text()" />
+                                    </xsl:if>
+                                    <xsl:if test="contains(text(), 'abs(')" >
+                                        <xsl:value-of select="substring-before(substring-after(text(), 'abs('), '.')" />
+                                    </xsl:if>
                                 </xsl:if>
                             </xsl:for-each>
                             </xsl:if>
+                        </xsl:variable>
+
+                        <xsl:variable name="hasObject2" >
+                            <xsl:for-each select="//objects" >
+                                <xsl:if test="name = $firstOrBeforeFourthParam" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+                        <xsl:variable name="hasObjectGroup2" >
+                            <xsl:for-each select="//objectsGroups" >
+                                <xsl:if test="name = $firstOrBeforeFourthParam" >found</xsl:if>
+                            </xsl:for-each>
                         </xsl:variable>
 
                     <xsl:variable name="hasForEachProcessGD" >
@@ -121,6 +137,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="paramTwoNameObjectsGroups" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:if test="substring-before(text(), '.') != ''" ><xsl:call-template name="paramIndexedArray" ><xsl:with-param name="createdObjectsAsString" ><xsl:value-of select="$objectsGroupsAsString" /></xsl:with-param></xsl:call-template></xsl:if></xsl:if></xsl:for-each></xsl:variable>
                         //objectsGroupsAsString=<xsl:value-of select="$objectsGroupsAsString" />
                         //gdObjectName=<xsl:value-of select="$gdObjectName" />
+                        //firstOrBeforeFourthParam=<xsl:value-of select="$firstOrBeforeFourthParam" /> <xsl:if test="contains($hasObject2, 'found')" > found as Object</xsl:if><xsl:if test="contains($hasObjectGroup2, 'found')" > found as ObjectGroup</xsl:if>
                         //paramOneNameObjectsGroups=<xsl:value-of select="$paramOneNameObjectsGroups" />
                         //paramTwoNameObjectsGroups=<xsl:value-of select="$paramTwoNameObjectsGroups" />
                         //BuiltinCommonInstructions::CompareNumbers - //CompareNumbers - condition
@@ -140,8 +157,15 @@ Created By: Travis Berthelot
                                 final GDObject <xsl:value-of select="$distanceProcessGDParamOne" /> = <xsl:value-of select="$distanceProcessGDParamOne" />GDGameLayer.gdObject;
                                 final GDObject <xsl:value-of select="$distanceProcessGDParamTwo" /> = <xsl:value-of select="$distanceProcessGDParamTwo" />GDGameLayer.gdObject;
                             </xsl:if>
-                            
-                            
+                                                    
+                            <xsl:if test="contains($hasObject2, 'found') or contains($hasObjectGroup2, 'found')" >
+                                if(globals.<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayerList.size() == 0) {
+                                    return false;
+                                }
+                                final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer = (GDGameLayer) globals.<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayerList.get(0);
+                                final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$firstOrBeforeFourthParam" /><xsl:text> </xsl:text><xsl:value-of select="$firstOrBeforeFourthParam" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$firstOrBeforeFourthParam" />) <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject;
+                            </xsl:if>
+
                             if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:call-template name="replace-escaped-conditionals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if><xsl:text> </xsl:text></xsl:for-each>)) {
                                 //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:call-template name="replace-escaped-conditionals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if><xsl:text> </xsl:text></xsl:for-each>", this, commonStrings.PROCESS);
                                 return true;
@@ -216,8 +240,17 @@ Created By: Travis Berthelot
                                 (GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" />) <xsl:value-of select="$name" />GDGameLayer.gdObject;
                                 </xsl:if>
                             </xsl:if>
-                            
-                            
+
+                            <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
+                            <xsl:if test="contains($hasObject2, 'found') or contains($hasObjectGroup2, 'found')" >
+                                if(globals.<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayerList.size() == 0) {
+                                    return false;
+                                }
+                                final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer = (GDGameLayer) globals.<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayerList.get(0);
+                                final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$firstOrBeforeFourthParam" /><xsl:text> </xsl:text><xsl:value-of select="$firstOrBeforeFourthParam" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="$firstOrBeforeFourthParam" />) <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer.gdObject;
+                            </xsl:if>
+                            </xsl:if>
+
                             if(<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:call-template name="replace-escaped-conditionals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if><xsl:text> </xsl:text></xsl:for-each>)) {
                                 //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:if test="$inverted = 'true'" >!</xsl:if>(<xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" ><xsl:call-template name="replace-escaped-conditionals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template></xsl:if><xsl:text> </xsl:text></xsl:for-each>", this, commonStrings.PROCESS);
                                 return true;

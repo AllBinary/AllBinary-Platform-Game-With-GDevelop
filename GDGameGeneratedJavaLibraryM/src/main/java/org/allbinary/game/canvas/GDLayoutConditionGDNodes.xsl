@@ -292,6 +292,14 @@ Created By: Travis Berthelot
                         return Math.abs(value);
                     }
                     
+                    public int abs(final float value) {
+                        return Math.abs(value);
+                    }
+                    
+                    public float abs(final float value) {
+                        return Math.abs(value);
+                    }
+                    
                     public int MouseX() {
                         
                         return gameGlobalsFactory.point.getX();
