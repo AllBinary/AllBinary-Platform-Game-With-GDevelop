@@ -178,7 +178,7 @@ public class ReduceObjectsForTesting extends GDJSONGeneratorBase {
         final GDJSONPersistence gdJSONPersistence = GDJSONPersistence.getInstance();
         final JSONObject gameAsConfigurationJSONObject = gdJSONPersistence.load();
         
-        //enemyExclusionRatio = 1
+        new UpdateEnemyExclusionRatio().process(gameAsConfigurationJSONObject);
         new ReduceObjectsForTesting().process(gameAsConfigurationJSONObject);
         gdJSONPersistence.save(gameAsConfigurationJSONObject);
     }
