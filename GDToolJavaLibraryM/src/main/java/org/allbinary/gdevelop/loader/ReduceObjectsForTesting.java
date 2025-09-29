@@ -173,4 +173,14 @@ public class ReduceObjectsForTesting extends GDJSONGeneratorBase {
         this.reduceVariables(jsonObject);
     }
 
+    public static void main(String[] args) throws Exception
+    {
+        final GDJSONPersistence gdJSONPersistence = GDJSONPersistence.getInstance();
+        final JSONObject gameAsConfigurationJSONObject = gdJSONPersistence.load();
+        
+        //enemyExclusionRatio = 1
+        new ReduceObjectsForTesting().process(gameAsConfigurationJSONObject);
+        gdJSONPersistence.save(gameAsConfigurationJSONObject);
+    }
+    
 }

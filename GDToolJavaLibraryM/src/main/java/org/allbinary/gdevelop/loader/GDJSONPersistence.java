@@ -53,7 +53,7 @@ public class GDJSONPersistence {
     
     public void save(final JSONObject gameAsConfigurationJSONObject) throws Exception {
         
-        final byte[] byteArray = gameAsConfigurationJSONObject.toString().getBytes();
+        final byte[] byteArray = gameAsConfigurationJSONObject.toString(2).getBytes();
         System.out.println("Saving bytes: " + byteArray.length);
         
         final FileOutputStream outputStream = new FileOutputStream(gdToolStrings.ROOT_PATH + "game_updated.json");

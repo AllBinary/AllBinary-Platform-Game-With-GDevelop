@@ -126,11 +126,12 @@ public class GDToAllBinaryGenerationTool
         
         final StringMaker stringMaker = new StringMaker();
 
-        final JSONObject gameAsConfigurationJSONObject = GDJSONPersistence.getInstance().load();
+        final GDJSONPersistence gdJSONPersistence = GDJSONPersistence.getInstance();
+        final JSONObject gameAsConfigurationJSONObject = gdJSONPersistence.load();
         
         //enemyExclusionRatio = 1
         //new ReduceObjectsForTesting().process(gameAsConfigurationJSONObject);
-
+    
         final GDProject gdProject = new GDProject();
         gdProject.load(gameAsConfigurationJSONObject);
         this.xmlConversionHack(gameAsConfigurationJSONObject);
