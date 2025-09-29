@@ -123,15 +123,21 @@ public class GDToAllBinaryGenerationTool
     public void process() throws Exception
     {
         timeDelayHelper.setStartTime();
-        
-        final StringMaker stringMaker = new StringMaker();
 
         final GDJSONPersistence gdJSONPersistence = GDJSONPersistence.getInstance();
         final JSONObject gameAsConfigurationJSONObject = gdJSONPersistence.load();
         
         //enemyExclusionRatio = 1
         //new ReduceObjectsForTesting().process(gameAsConfigurationJSONObject);
+        //gdJSONPersistence.save(gameAsConfigurationJSONObject);
+        
+        this.process(gameAsConfigurationJSONObject);
+    }
+
+    public void process(final JSONObject gameAsConfigurationJSONObject) throws Exception 
+    {
     
+        final StringMaker stringMaker = new StringMaker();
         final GDProject gdProject = new GDProject();
         gdProject.load(gameAsConfigurationJSONObject);
         this.xmlConversionHack(gameAsConfigurationJSONObject);
