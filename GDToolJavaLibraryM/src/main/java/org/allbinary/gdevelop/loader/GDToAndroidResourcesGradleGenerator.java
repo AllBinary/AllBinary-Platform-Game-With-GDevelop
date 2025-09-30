@@ -43,11 +43,14 @@ public class GDToAndroidResourcesGradleGenerator
     private final String PUBLIC_FINAL_STRING = "    public final int ";
     private final String VALUE_RESOURCE_START = " = R.raw.";
     private final String VALUE_RESOURCE_END = ";\n";
-    
+    private final String BLANK_LINE = "public final int blank = R.raw.blank;\n";
+    private final String BLANK = "blank";
+
     private final String GD_KEY_NAME = "<name>";
     
     private String packageName;
-    
+    private boolean isBlank;
+
     public GDToAndroidResourcesGradleGenerator() {
         resourceStringMaker.append(GD_KEY);
         resourceStringMaker.append(this.commonSeps.NEW_LINE);
@@ -63,6 +66,10 @@ public class GDToAndroidResourcesGradleGenerator
     
     public void processResource(final String fileAsString, final String resourceString) {
         final String resource = resourceString.substring(0, resourceString.length() - 4).toLowerCase();
+        
+        if(resource.indexOf(BLANK) >= 0) {
+            isBlank = true;
+        }
         
         final boolean hasRotationImages = this.gdResourceSelection.hasRotationImages();
         
@@ -106,6 +113,11 @@ public class GDToAndroidResourcesGradleGenerator
             resourceStringMaker.append(this.VALUE_RESOURCE_END);
         }
 
+        if(!isBlank) {
+            this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
+            this.resourceStringMaker.append(BLANK_LINE);
+        }
+        
         final Replace replace = new Replace(GD_KEY, this.resourceStringMaker.toString());
         final String newFileAsString = replace.all(newFileAsString2);
 

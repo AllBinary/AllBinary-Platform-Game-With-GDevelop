@@ -6,7 +6,6 @@
 
 package org.allbinary.gdevelop.loader;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import org.allbinary.data.CamelCaseUtil;
 import org.allbinary.gdevelop.json.GDProject;
@@ -15,7 +14,6 @@ import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonSeps;
 
@@ -46,8 +44,11 @@ public class GDToThreedAndroidResourcesGradleGenerator
     
     private final String _OBJ = "_obj";
     private final String BUTTON = "button";
-    
+    private final String BLANK_LINE = "public final int blank = R.raw.blank;\n";
+    private final String BLANK = "blank";
+
     private String packageName;
+    private boolean isBlank;
     
     public GDToThreedAndroidResourcesGradleGenerator() {
         resourceStringMaker.append(GD_KEY);
@@ -71,6 +72,10 @@ public class GDToThreedAndroidResourcesGradleGenerator
         boolean isThreed = true;        
         if(resource.indexOf(BUTTON) >= 0) {
             isThreed = false;
+        }
+
+        if(resource.indexOf(BLANK) >= 0) {
+            isBlank = true;
         }
         
         resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
@@ -121,6 +126,11 @@ public class GDToThreedAndroidResourcesGradleGenerator
             resourceStringMaker.append(this.VALUE_RESOURCE_END);
         }
 
+        if(!isBlank) {
+            this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
+            this.resourceStringMaker.append(BLANK_LINE);
+        }
+
         final Replace replace = new Replace(GD_KEY, this.resourceStringMaker.toString());
         final String newFileAsString = replace.all(newFileAsString2);
 
@@ -128,5 +138,5 @@ public class GDToThreedAndroidResourcesGradleGenerator
         
         this.bufferedWriterUtil.overwrite(RESOURCE, newFileAsString);        
     }
-    
+
 }

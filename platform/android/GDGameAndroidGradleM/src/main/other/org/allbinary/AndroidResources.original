@@ -55,8 +55,6 @@ public class AndroidResources
         public final int select = R.raw.select;
         public final int error = R.raw.error;
 
-        public final int blank = R.raw.blank;
-
         //GD
     }
 
