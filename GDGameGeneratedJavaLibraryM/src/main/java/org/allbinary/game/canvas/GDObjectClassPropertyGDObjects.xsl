@@ -433,6 +433,38 @@ Created By: Travis Berthelot
                     </xsl:if>
             
                     <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
+
+                        <xsl:for-each select="//eventsFunctionsExtensions" >
+                        
+                            <xsl:if test="name = 'SpriteMultitouchJoystick'" >
+                                
+                                <xsl:for-each select="eventsBasedObjects" >
+                        
+                                    <xsl:for-each select="objects" >
+<!--
+                    <name>Border</name>
+                    <type>Sprite</type>
+-->
+                    //type=<xsl:value-of select="type" />
+                        <xsl:for-each select="behaviors" >
+                    //private String name = "<xsl:value-of select="name" />";
+                    //private String joystickIdentifier = "<xsl:value-of select="JoystickIdentifier" />";
+                    //private boolean floatingEnabled = <xsl:value-of select="FloatingEnabled" />;
+                    //private int touchIndex = <xsl:value-of select="TouchIndex" />;
+                    //private int touchId = <xsl:value-of select="TouchId" />;
+                    //private int controllerIdentifier = <xsl:value-of select="ControllerIdentifier" />;
+                    //private float joystickAngle = <xsl:value-of select="JoystickAngle" />;
+                    //private float joystickForce = <xsl:value-of select="JoystickForce" />;
+                    private float deadZoneRadius = <xsl:value-of select="DeadZoneRadius" />f / 2;
+                        </xsl:for-each>
+                                   </xsl:for-each>
+
+                                </xsl:for-each>
+
+                            </xsl:if>
+                        
+                        </xsl:for-each>
+
                     private int id;
                     private GPoint point = PointFactory.getInstance().ZERO_ZERO;
                     private float stickForceX = 0.0f;
@@ -468,6 +500,10 @@ Created By: Travis Berthelot
 
                     public float StickForceY() {
                         return stickForceY;
+                    }
+                        
+                    public float DeadZoneRadius() {
+                        return deadZoneRadius;
                     }
                     </xsl:if>
                                         

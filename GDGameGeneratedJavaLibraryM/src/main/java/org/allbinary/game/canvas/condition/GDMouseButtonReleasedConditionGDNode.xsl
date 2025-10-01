@@ -23,7 +23,7 @@ Created By: Travis Berthelot
         
         <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
         
-                    //mouseButtonReleasedConditionGDNode - //Condition - //MouseButtonReleased - GDNode
+                    //mouseButtonReleasedConditionGDNode - //Condition - //MouseButtonReleased or //MouseButtonFromTextReleased - GDNode
                     if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
                     }

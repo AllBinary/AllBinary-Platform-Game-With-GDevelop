@@ -683,7 +683,7 @@ Created By: Travis Berthelot
                     
                     </xsl:if>
                 
-                    <xsl:if test="$typeValue = 'MouseButtonReleased'" >
+                    <xsl:if test="$typeValue = 'MouseButtonReleased' or $typeValue = 'MouseButtonFromTextReleased'" >
                         //MouseButtonReleased - Some Handled by AllBinary Event Listeners?
                         <xsl:call-template name="mouseButtonReleasedConditionGDNode" />
                     
