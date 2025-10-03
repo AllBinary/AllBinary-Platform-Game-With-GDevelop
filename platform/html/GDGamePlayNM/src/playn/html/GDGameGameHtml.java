@@ -27,7 +27,9 @@ public class GDGameGameHtml extends HtmlGame {
   @Override
   public void start() {
     HtmlPlatform platform = HtmlPlatform.register();
-    platform.assetManager().setPathPrefix("gd/res/");
+    //For more than 1000 files per directory
+    //platform.assetManager().setPathPrefix("gd/res/", true);
+    platform.assetManager().setPathPrefix("gd/res/", false);
     
     
     final BasicArrayList list = new BasicArrayList();

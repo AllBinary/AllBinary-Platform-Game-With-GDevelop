@@ -127,9 +127,9 @@ public class GDToAllBinaryGenerationTool
         final GDJSONPersistence gdJSONPersistence = GDJSONPersistence.getInstance();
         final JSONObject gameAsConfigurationJSONObject = gdJSONPersistence.load();
         
-        new UpdateEnemyExclusionRatio().process(gameAsConfigurationJSONObject);
-        new ReduceObjectsForTesting().process(gameAsConfigurationJSONObject);
-        gdJSONPersistence.save(gameAsConfigurationJSONObject);
+        //new UpdateEnemyExclusionRatio().process(gameAsConfigurationJSONObject);
+        //new ReduceObjectsForTesting().process(gameAsConfigurationJSONObject);
+        //gdJSONPersistence.save(gameAsConfigurationJSONObject);
         
         this.process(gameAsConfigurationJSONObject);
     }
