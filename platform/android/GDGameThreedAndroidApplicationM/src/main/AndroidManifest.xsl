@@ -104,7 +104,7 @@
 
         <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>service android:enabled="true"
             android:process=":MusicService"
-            android:name="org.allbinary.game.gd.MusicService" /<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
+            android:name="org.allbinary.media.audio.music.MusicService" /<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
 
     <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>/application<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
     

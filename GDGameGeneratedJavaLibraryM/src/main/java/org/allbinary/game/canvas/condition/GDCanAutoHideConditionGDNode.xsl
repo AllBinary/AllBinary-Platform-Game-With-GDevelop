@@ -33,6 +33,7 @@ Created By: Travis Berthelot
                         private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
 
                         private final GenericOperatingSystem operatingSystem = OperatingSystemFactory.getInstance().getOperatingSystemInstance();
+                        private final boolean isHTML = Features.getInstance().isDefault(HTMLFeatureFactory.getInstance().HTML);
 
                         //TouchScreen::isAutoHide - condition
                         @Override
@@ -40,7 +41,7 @@ Created By: Travis Berthelot
                             super.processStats();
                             //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
-                            return operatingSystem.isAutoHide();
+                            return operatingSystem.isAutoHide() || isHTML;
                         }
                             
                         @Override
