@@ -70,10 +70,11 @@ public class GDGame
 
     protected void init()
     {
+        final LogUtil logUtil = LogUtil.getInstance();
         try
         {
 
-            logUtil.put("Start", this, "init");
+            logUtil.put(commonStrings.START, this, commonStrings.INIT);
 
             ResourceUtil.getInstance().setClassLoader(this.getClass().getClassLoader());
 

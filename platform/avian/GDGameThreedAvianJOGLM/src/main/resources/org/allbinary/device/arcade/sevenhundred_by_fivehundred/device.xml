@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<device>
+   <img name="normal" src="/org/allbinary/device/arcade/minimal.png"/>
+   <img name="over" src="/org/allbinary/device/arcade/minimal.png"/>
+   <img name="pressed" src="/org/allbinary/device/arcade/minimal.png"/>
+   <display resizable="true" >
+      <numcolors>65536</numcolors>
+      <iscolor>true</iscolor>
+      <foreground>142924</foreground>
+      <background>d0d0d7</background>
+      <rectangle>
+         <x>0</x>
+         <y>0</y>
+         <width>700</width>
+         <height>500</height>
+      </rectangle>
+      <paintable>
+         <x>0</x>
+         <y>0</y>
+         <width>700</width>
+         <height>500</height>
+      </paintable>
+   </display>
+   
+   <keyboard>
+      <button name="" key="VK_F1" alignment="LEFT">
+      </button>
+      <button name="" key="VK_F2" alignment="RIGHT">
+      </button>
+      <button name="LEFT" key="VK_LEFT">
+      </button>      
+      <button name="RIGHT" >
+      </button>      
+      <button name="UP" >
+      </button>      
+      <button name="Down" >
+      </button>      
+      <button name="sel" key="VK_ENTER">
+      </button>
+      
+      <button name="" key="VK_A">
+      </button>
+      <button name="" key="VK_B">
+      </button>
+      <button name="" key="VK_C">
+      </button>
+      <button name="" key="VK_D">
+      </button>
+      <button name="" key="VK_E">
+      </button>
+      <button name="" key="VK_F">
+      </button>
+      <button name="" key="VK_G">
+      </button>
+      <button name="" key="VK_H">
+      </button>
+      <button name="" key="VK_I">
+      </button>
+      <button name="" key="VK_J">
+      </button>
+      <button name="" key="VK_K">
+      </button>
+      <button name="" key="VK_L">
+      </button>
+      <button name="" key="VK_M">
+      </button>
+      <button name="" key="VK_N">
+      </button>
+      <button name="" key="VK_O">
+      </button>
+      <button name="" key="VK_P">
+      </button>
+      <button name="" key="VK_Q">
+      </button>
+      <button name="" key="VK_R">
+      </button>
+      <button name="" key="VK_S">
+      </button>
+      <button name="" key="VK_T">
+      </button>
+      <button name="" key="VK_U">
+      </button>
+      <button name="" key="VK_V">
+      </button>
+      <button name="" key="VK_W">
+      </button>
+      <button name="" key="VK_X">
+      </button>
+      <button name="" key="VK_Y">
+      </button>
+      <button name="" key="VK_Z">
+      </button>
+
+      <button name="" key="VK_0">
+      </button>
+      <button name="" key="VK_1">
+      </button>
+      <button name="" key="VK_2">
+      </button>
+      <button name="" key="VK_3">
+      </button>
+      <button name="" key="VK_4">
+      </button>
+      <button name="" key="VK_5">
+      </button>
+      <button name="" key="VK_6">
+      </button>
+      <button name="" key="VK_7">
+      </button>
+      <button name="" key="VK_8">
+      </button>
+      <button name="" key="VK_9">
+      </button>
+
+      <button name="" key="VK_NUMPAD0">
+      </button>
+      <button name="" key="VK_NUMPAD1">
+      </button>
+      <button name="" key="VK_NUMPAD2">
+      </button>
+      <button name="" key="VK_NUMPAD3">
+      </button>
+      <button name="" key="VK_NUMPAD4">
+      </button>
+      <button name="" key="VK_NUMPAD5">
+      </button>
+      <button name="" key="VK_NUMPAD6">
+      </button>
+      <button name="" key="VK_NUMPAD7">
+      </button>
+      <button name="" key="VK_NUMPAD8">
+      </button>
+      <button name="" key="VK_NUMPAD9">
+      </button>
+
+   </keyboard>
+
+</device>
