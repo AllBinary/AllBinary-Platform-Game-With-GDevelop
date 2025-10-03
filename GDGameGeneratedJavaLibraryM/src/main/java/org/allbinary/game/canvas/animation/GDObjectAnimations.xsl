@@ -148,7 +148,7 @@ Created By: Travis Berthelot
                                                     </xsl:if>
                                                 </xsl:if>
                                                 <xsl:if test="height != 0 and width != 0" >
-                                                    <xsl:value-of select="width" />, <xsl:value-of select="height" />
+                                                    (int) (<xsl:value-of select="width" /> * scaleTouchButtons), (int) (<xsl:value-of select="height" /> * scaleTouchButtons)
                                                 </xsl:if>
                                             </xsl:if>
                                             <xsl:if test="not(contains(name, 'btn_'))" >
@@ -253,6 +253,9 @@ Created By: Travis Berthelot
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = {
                 <xsl:for-each select="childrenContent" >
                     <xsl:for-each select="Border" >
+                        <xsl:if test="contains($lazy, 'true')" >
+                    new LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
+                        </xsl:if>
                     new AllBinary<xsl:value-of select="$platform" />ImageRotationAnimationFactory(
                         <xsl:value-of select="$name" />ImageArray[0],
                         <xsl:value-of select="$name" />ImageArray[0].getWidth(),
@@ -261,9 +264,16 @@ Created By: Travis Berthelot
                         AnimationBehaviorFactory.getInstance()
                         //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
                         //<xsl:if test="not($platform = 'Array' or $platform = 'HTML')" >, true</xsl:if>
-                        ),
+                        )
+                        <xsl:if test="contains($lazy, 'true')" >
+                    )
+                        </xsl:if>
+                        ,
                     </xsl:for-each>
                     <xsl:for-each select="Thumb" >
+                        <xsl:if test="contains($lazy, 'true')" >
+                    new LazyImageRotationAnimationFactory(<xsl:value-of select="$layoutIndex + 1" />, <xsl:value-of select="$objectIndex" />,
+                        </xsl:if>
                     new AllBinary<xsl:value-of select="$platform" />ImageRotationAnimationFactory(
                         <xsl:value-of select="$name" />ImageArray[1],
                         <xsl:value-of select="$name" />ImageArray[1].getWidth() / denominator,
@@ -292,7 +302,11 @@ Created By: Travis Berthelot
 
                         }
 
-                    }<xsl:if test="position() != last()" >,</xsl:if>
+                    }
+                        <xsl:if test="contains($lazy, 'true')" >
+                    )
+                        </xsl:if>
+                        <xsl:if test="position() != last()" >,</xsl:if>
                     </xsl:for-each>
                 </xsl:for-each>
                 };
@@ -357,7 +371,7 @@ Created By: Travis Berthelot
                                                     </xsl:if>
                                                 </xsl:if>
                                                 <xsl:if test="height != 0 and width != 0" >
-                                                    <xsl:value-of select="width" />, <xsl:value-of select="height" />
+                                                    (int) (<xsl:value-of select="width" /> * scaleTouchButtons), (int) (<xsl:value-of select="height" /> * scaleTouchButtons)
                                                 </xsl:if>
                                             </xsl:if>
                                         </xsl:if>
