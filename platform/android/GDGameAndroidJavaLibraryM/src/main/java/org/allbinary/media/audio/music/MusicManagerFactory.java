@@ -11,14 +11,19 @@
  * Created By: Travis Berthelot
  * 
  */
-package org.allbinary.game.gd;
+package org.allbinary.media.audio.music;
 
-import org.allbinary.media.audio.music.BaseMusicService;
+import org.allbinary.media.audio.music.MusicManager;
+import org.allbinary.util.BasicArrayList;
 
 /**
  *
  * @author User
  */
-public class MusicService extends BaseMusicService
-{
+public class MusicManagerFactory {
+    
+    public static MusicManager create(final BasicArrayList soundList) {
+        return new MusicManager(MusicService.class, soundList);
+        //return new MusicManager(soundList);
+    }
 }

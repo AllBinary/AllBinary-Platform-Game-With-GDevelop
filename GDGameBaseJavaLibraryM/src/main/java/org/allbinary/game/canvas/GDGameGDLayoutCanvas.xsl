@@ -85,7 +85,7 @@ import org.allbinary.graphics.color.BasicColorUtil;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.graphics.displayable.command.MyCommandsFactory;
-import org.allbinary.game.gd.MusicManagerFactory;
+import org.allbinary.media.audio.music.MusicManagerFactory;
 import org.allbinary.game.layer.hud.event.GameNotificationEventHandler;
 import org.allbinary.graphics.opengles.CurrentDisplayableFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
