@@ -294,10 +294,12 @@ Created By: Travis Berthelot
 <!--                //<xsl:value-of select="contains($hasMoreThanOneImage, 'found')" /> and <xsl:value-of select="contains($hasCustomCollisionMask, 'found')" />-->
                         <xsl:if test="not(contains($hasMoreThanOneImage, 'found')) and not(contains($hasCustomCollisionMask, 'found'))" >
                 //Auto generated CollisionMask for RotationAnimations
+                final float autoScale = 1.0f;
+                //logUtil.put("<xsl:value-of select="$name" /> autoScale: " + autoScale, this, commonStrings.INIT);
                 final float newX = (<xsl:value-of select="$name" />LayerInfo.getWidth() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getWidth()) / 2;
                 final float newY = (<xsl:value-of select="$name" />LayerInfo.getHeight() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getHeight()) / 2;
                 final Rectangle <xsl:value-of select="$name" />RotationCollisionMask = new Rectangle(
-                                pointFactory.getInstance((int) (newX * 3 * halfScale), (int) (newY * 3 * halfScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * halfScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * halfScale)
+                                pointFactory.getInstance((int) (newX * 3 * autoScale), (int) (newY * 3 * autoScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * autoScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * autoScale)
                                 );
                 for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$animationTotal" />; index2++) {
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
@@ -412,10 +414,12 @@ Created By: Travis Berthelot
                         
                         <xsl:if test="not(contains($hasMoreThanOneImage, 'found')) and not(contains($hasCustomCollisionMask, 'found'))" >
                 //Auto generated CollisionMask for RotationAnimations
+                final float autoScale = 1.0f;
+                //logUtil.put("<xsl:value-of select="$name" /> autoScale: " + autoScale, this, commonStrings.INIT);
                 final float newX = (<xsl:value-of select="$name" />LayerInfo.getWidth() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getWidth()) / 2;
                 final float newY = (<xsl:value-of select="$name" />LayerInfo.getHeight() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getHeight()) / 2;
                 final Rectangle <xsl:value-of select="$name" />RotationCollisionMask = new Rectangle(
-                                pointFactory.getInstance((int) (newX * 3 * halfScale), (int) (newY * 3 * halfScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * halfScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * halfScale)
+                                pointFactory.getInstance((int) (newX * 3 * autoScale), (int) (newY * 3 * autoScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * autoScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * autoScale)
                                 );
                 for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$animationTotal" />; index2++) {
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
