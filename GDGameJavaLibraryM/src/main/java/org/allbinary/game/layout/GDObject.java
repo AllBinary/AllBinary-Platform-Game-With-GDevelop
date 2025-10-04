@@ -15,14 +15,15 @@ package org.allbinary.game.layout;
 
 import javax.microedition.lcdui.Graphics;
 
+import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layer.behavior.GDBehavior;
 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
 import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.GraphicsStrings;
 import org.allbinary.graphics.color.BasicColor;
+import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.string.CommonSeps;
-
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.math.NoDecimalTrigTable;
@@ -49,6 +50,7 @@ public class GDObject
     public final GDBehavior[] behaviorArray = new GDBehavior[GDBehaviorUtil.getInstance().MAX];
     public final boolean[] isBehaviorEnabledArray = new boolean[10]; //BEHAVIOR_MAX
     public final boolean[] hasBehaviorArray = new boolean[10]; //BEHAVIOR_MAX
+    private final BaseOffsetBehavior offsetBehavior;
     
     public int x;
     public int y;
@@ -90,7 +92,15 @@ public class GDObject
         this.type = type;
         
         this.updateSize(width, height);
-        
+
+        final Features features = Features.getInstance();
+        final OpenGLFeatureFactory openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
+        if(features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D)) {
+            this.offsetBehavior = OffsetBehavior.getInstance();
+        } else {
+            this.offsetBehavior = BaseOffsetBehavior.getInstance();
+        }
+
         //TWB - validate name only occurs 1 time here
 //            final org.allbinary.game.canvas.GD1SpecialAnimationGlobals globals1 = 
 //                org.allbinary.game.canvas.GD1SpecialAnimationGlobals.getInstance();
@@ -222,7 +232,7 @@ public class GDObject
         //logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append('g').append(objectStrings.ANGLE).append(adjustedAngle).append(':').append(this.x).append(':').append(x).append(':').append(halfWidth).toString());
 
         // + this.width
-        return (int) (this.x + (x * 0.75f) + this.halfWidth);
+        return (int) (this.x + (x * 0.75f) + this.offsetBehavior.PointX(this.halfWidth));
         //return this.x;
     }
 
@@ -238,10 +248,10 @@ public class GDObject
 
         if(point.getX() > this.halfWidth) {
             final int y = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * (point.getY() - (this.halfHeight / 2))) / noDecimalTrigTable.SCALE;
-            return this.y + y + this.halfHeight;
+            return this.y + y + this.offsetBehavior.PointY(this.halfHeight);
         } else {
             final int y = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * -(point.getY() - (this.halfHeight / 2))) / noDecimalTrigTable.SCALE;
-            return this.y + y + this.halfHeight;
+            return this.y + y + this.offsetBehavior.PointY(this.halfHeight);
         }
 
         //return this.y;

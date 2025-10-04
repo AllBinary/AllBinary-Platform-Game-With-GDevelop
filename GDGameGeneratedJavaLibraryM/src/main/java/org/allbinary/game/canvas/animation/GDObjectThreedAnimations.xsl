@@ -400,7 +400,7 @@ Created By: Travis Berthelot
             }
             </xsl:if>
 
-            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
             private void add<xsl:value-of select="name" />TileMapAnimations(final ImageCache imageCache, final int level) throws Exception {
 
                 //Animation Total: <xsl:value-of select="count(animations)" />
