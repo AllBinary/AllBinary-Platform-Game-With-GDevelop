@@ -94,7 +94,8 @@ public class GameAreaBoxUtil {
                 boxAnimationInterfaceFactoryInterfaceArray,
                 boxProceduralAnimationInterfaceFactoryInterfaceArray,
                 boxLayerInfo1,
-                null
+                null,
+                false
         );
         final Rectangle boxLayerInfo2 = animationInterfaceFactoryInterfaceFactory.getRectangle(this.BOX_RECTANGLE_NAME_1);
 
@@ -105,7 +106,8 @@ public class GameAreaBoxUtil {
                 boxAnimationInterfaceFactoryInterfaceArray,
                 boxProceduralAnimationInterfaceFactoryInterfaceArray,
                 boxLayerInfo2,
-                null
+                null,
+                false
         );
         final Rectangle boxLayerInfo3 = animationInterfaceFactoryInterfaceFactory.getRectangle(this.BOX_RECTANGLE_NAME_1);
 
@@ -116,7 +118,8 @@ public class GameAreaBoxUtil {
                 boxAnimationInterfaceFactoryInterfaceArray,
                 boxProceduralAnimationInterfaceFactoryInterfaceArray,
                 boxLayerInfo3,
-                null
+                null,
+                false
         );
         final Rectangle boxLayerInfo4 = animationInterfaceFactoryInterfaceFactory.getRectangle(this.BOX_RECTANGLE_NAME_1);
 
@@ -127,7 +130,8 @@ public class GameAreaBoxUtil {
                 boxAnimationInterfaceFactoryInterfaceArray,
                 boxProceduralAnimationInterfaceFactoryInterfaceArray,
                 boxLayerInfo4,
-                null
+                null,
+                false
         );
     }
 
