@@ -96,9 +96,10 @@ public class GDObject
         final Features features = Features.getInstance();
         final OpenGLFeatureFactory openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
         if(features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D)) {
-            this.offsetBehavior = OffsetBehavior.getInstance();
-        } else {
             this.offsetBehavior = BaseOffsetBehavior.getInstance();
+        } else {
+            this.offsetBehavior = OffsetBehavior.getInstance();
+            
         }
 
         //TWB - validate name only occurs 1 time here
