@@ -74,16 +74,17 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.animation.threed.TextureListFactory;
                 import org.allbinary.game.gd.resource.GDResources;
+                import org.allbinary.graphics.color.BasicColorUtil;
                 import org.allbinary.graphics.threed.min3d.ThreedLoaderFactory;
                 import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory;
                 import org.allbinary.graphics.PointFactory;
                 import org.allbinary.graphics.Rectangle;
+                import org.allbinary.graphics.color.BasicColor;
                 import org.allbinary.image.ImageCache;
                 import org.allbinary.image.ImageCacheFactory;
                 import org.allbinary.string.CommonStrings;
                 import org.allbinary.string.CommonSeps;
                 import org.allbinary.logic.string.StringUtil;
-                
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.logic.java.bool.BooleanFactory;
                 import org.allbinary.logic.math.PrimitiveIntUtil;
@@ -97,6 +98,7 @@ Created By: Travis Berthelot
                 public class GD<xsl:value-of select="$layoutIndex" />GameThreedLevelBuilder extends GDGameThreedLevelBuilder
                 {
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
+                        private final StringUtil stringUtil = StringUtil.getInstance();
                 
                         private final GDResources gdResources = GDResources.getInstance();
                         private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources animationInterfaceFactoryInterfaceFactory = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();

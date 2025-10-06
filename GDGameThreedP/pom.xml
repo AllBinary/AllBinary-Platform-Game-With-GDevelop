@@ -23,8 +23,9 @@
     <modules>
 
         <!--
-        <module>../resource/GDGameOpenGLThreedAnimationResourceJavaLibraryM</module>
+        
         -->
+        <module>../resource/GDGameOpenGLThreedAnimationResourceJavaLibraryM</module>
         <module>../platform/j2se/GDGameThreedBaseJ2SEWithSWTJOGLJavaLibraryM</module>
         <module>../GDGameThreedBaseJavaLibraryM</module>
         <module>../GDGameThreedPreBaseJavaLibraryM</module>
