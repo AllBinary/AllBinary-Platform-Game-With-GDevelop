@@ -73,14 +73,22 @@ Created By: Travis Berthelot
                 //Animation Total: <xsl:value-of select="count(animations)" /><xsl:text>&#10;</xsl:text>
                 public Rectangle <xsl:value-of select="name" />Rectangle;
                 <xsl:if test="type != 'TextObject::Text'" >
-                public Image[] <xsl:value-of select="name" />ImageArray;
+                private Image[] <xsl:value-of select="name" />ImageArray;
+                public int <xsl:value-of select="name" />Width(int index) {
+                    return <xsl:value-of select="name" />ImageArray[index].getWidth();
+                }
+
+                public int <xsl:value-of select="name" />Height(int index) {
+                    return <xsl:value-of select="name" />ImageArray[index].getHeight();
+                }
+
                 </xsl:if>
                 
                     <!--
                 <xsl:for-each select="animations" >
                 public final String[] <xsl:value-of select="$name" /><xsl:value-of select="name" />ResourceArray;
 
-                public Image[] <xsl:value-of select="$name" /><xsl:value-of select="name" />ImageArray;
+                private Image[] <xsl:value-of select="$name" /><xsl:value-of select="name" />ImageArray;
                 </xsl:for-each>
                     -->
                 <xsl:if test="type = 'Sprite'" >

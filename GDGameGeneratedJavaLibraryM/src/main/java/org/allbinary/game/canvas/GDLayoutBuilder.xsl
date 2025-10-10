@@ -301,11 +301,11 @@ Created By: Travis Berthelot
                             <xsl:if test="contains(name, 'btn_')" >
                         //btn_ - found
                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
-                        //final int width = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() / 1.44f);
-                        //final int height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 1.44f);
+                        //final int width = (int) (touchImageResources.<xsl:value-of select="name" />Width(0) / 1.44f);
+                        //final int height = (int) (touchImageResources.<xsl:value-of select="name" />Height(0) / 1.44f);
                         <xsl:if test="contains(name, 'joystick_')" >final float joystickScale = (org.allbinary.AndroidUtil.isAndroid() ? 0.75f : 1.0f);</xsl:if>
-                        final int width = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getWidth() * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>);
-                        final int height = (int) (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>);
+                        final int width = (int) (touchImageResources.<xsl:value-of select="name" />Width(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>);
+                        final int height = (int) (touchImageResources.<xsl:value-of select="name" />Height(0) * scaleTouchButtons<xsl:if test="contains(name, 'joystick_')" > * joystickScale</xsl:if>);
                                 </xsl:if>
                                 <xsl:if test="height != 0 and width != 0" >
                         //final int width = (int) (<xsl:value-of select="width" /> * 1.44f);
@@ -338,8 +338,8 @@ Created By: Travis Berthelot
                         final int <xsl:value-of select="name" />Y =
                             <xsl:if test="contains(name, 'btn_')" >
                                 //btn_ - Hack - for android orientation change.
-                                 (int) <xsl:if test="y = 506" >gameTickDisplayInfoSingleton.getLastHeight() - (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100));</xsl:if>
-                                <xsl:if test="y = 415" >gameTickDisplayInfoSingleton.getLastHeight() - (2 * (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() + (touchImageResources.<xsl:value-of select="name" />ImageArray[0].getHeight() / 100)));</xsl:if>
+                                 (int) <xsl:if test="y = 506" >gameTickDisplayInfoSingleton.getLastHeight() - (touchImageResources.<xsl:value-of select="name" />Height(0) + (touchImageResources.<xsl:value-of select="name" />Height(0) / 100));</xsl:if>
+                                <xsl:if test="y = 415" >gameTickDisplayInfoSingleton.getLastHeight() - (2 * (touchImageResources.<xsl:value-of select="name" />Height(0) + (touchImageResources.<xsl:value-of select="name" />Height(0) / 100)));</xsl:if>
                             </xsl:if>
                             <xsl:if test="not(contains(name, 'btn_'))" >
                                 //btn_ - not 2

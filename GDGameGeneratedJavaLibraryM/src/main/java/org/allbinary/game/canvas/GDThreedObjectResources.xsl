@@ -53,7 +53,14 @@ Created By: Travis Berthelot
             //Animation Total: <xsl:value-of select="count(animations)" />
             public Rectangle <xsl:value-of select="name" />Rectangle;
             <xsl:if test="type != 'TextObject::Text'" >
-            public Rectangle[] <xsl:value-of select="name" />ImageArray;
+            private Rectangle[] <xsl:value-of select="name" />ImageArray;
+            public int <xsl:value-of select="name" />Width(int index) {
+                return <xsl:value-of select="name" />ImageArray[index].getWidth();
+            }
+
+            public int <xsl:value-of select="name" />Height(int index) {
+                return <xsl:value-of select="name" />ImageArray[index].getHeight();
+            }
             </xsl:if>
             
             <xsl:if test="type = 'Sprite'" >
