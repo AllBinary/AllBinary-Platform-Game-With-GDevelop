@@ -1,6 +1,9 @@
 package org.allbinary.graphics.threed.min3d;
 
+//import org.allbinary.opengles.JOGL11;
+//import javax.microedition.khronos.opengles.GL;
 import javax.microedition.khronos.opengles.GL10;
+//import javax.microedition.lcdui.Graphics;
 
 import min3d.core.TextureManager;
 import min3d.vos.Camera;
@@ -9,6 +12,7 @@ import min3d.vos.OffsetTargetXCameraFactory;
 import min3d.vos.light.Light;
 
 import org.allbinary.AndroidUtil;
+//import org.allbinary.device.OpenGLESGraphics;
 import org.allbinary.game.GameTypeFactory;
 
 import org.allbinary.logic.communication.log.LogUtil;
@@ -17,14 +21,14 @@ import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.game.canvas.GDGameThreedLevelBuilder;
-import org.allbinary.game.displayable.canvas.CheatGameInputProcessor;
 import org.allbinary.game.gd.level.GDPlatformUtil;
-import org.allbinary.game.input.threed.CameraCompositeInputProcessor;
-import org.allbinary.game.input.threed.CameraLayerCompositeInputProcessor;
+//import org.allbinary.game.input.threed.CameraCompositeInputProcessor;
+//import org.allbinary.game.input.threed.CameraLayerCompositeInputProcessor;
+import org.allbinary.game.layer.AllBinaryGameLayer;
 import org.allbinary.game.layer.CameraLayer;
 import org.allbinary.game.layer.GDGameLayerManager;
 import org.allbinary.game.layer.SimpleUserFollowCameraLayer;
-import org.allbinary.game.layer.special.SpecialGameInputFactory;
+//import org.allbinary.game.layer.special.SpecialGameInputFactory;
 import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.graphics.RectangleFactory;
@@ -34,7 +38,7 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.system.os.OperatingSystemFactory;
 import org.allbinary.logic.system.os.OperatingSystemInterface;
 import org.allbinary.view.ViewPosition;
-
+ 
 public class GDGameSceneController 
 extends AllBinaryGameSceneController
 {
@@ -236,6 +240,43 @@ extends AllBinaryGameSceneController
                 cameraLayer.processTick(layerManager);
                 layerManager.append(cameraLayer);
             }
+            
+            //Test grid for JOGL to help with camera
+//            layerManager.append(new AllBinaryGameLayer(RectangleFactory.SINGLETON, ViewPosition.NULL_VIEW_POSITION) {
+//                
+//                @Override
+//                public void set(final GL gl) throws Exception {
+//                }
+//
+//                @Override
+//                public void paint(final Graphics graphics) {
+//                }
+//
+//                @Override
+//                public void paintThreed(final Graphics graphics) {
+//                    try {
+//                        //System.out.println("lollers");
+//                        final JOGL11 gl = (JOGL11) ((OpenGLESGraphics) graphics).getGl10();
+//
+//                        gl.glPushMatrix();
+//                        gl.glColor4f(0.5f, 0.5f, 0.5f, 1.0f);
+//
+//                        gl.glBegin(GL10.GL_LINES);
+//                        for (int i = -10; i <= 10; i++) {
+//                            gl.glVertex3f(i * 100, 0, -1000);
+//                            gl.glVertex3f(i * 100, 0, 1000);
+//                            gl.glVertex3f(-1000, 0, i * 100);
+//                            gl.glVertex3f(1000, 0, i * 100);
+//                        }
+//                        gl.glEnd();
+//                        gl.glPopMatrix();
+//
+//                    } catch (Exception e) {
+//                        logUtil.put(commonStrings.EXCEPTION, this, "paintThreed", e);
+//                    }
+//                }
+//                
+//            });
             
             cameraInputProcessor.process(gdGameCameraSetup);
             
