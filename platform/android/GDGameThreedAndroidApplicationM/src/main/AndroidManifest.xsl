@@ -87,7 +87,7 @@
         <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>activity android:label="@string/gd_app_name" android:icon="@drawable/gd_icon"
         <xsl:text disable-output-escaping="yes" >&#10;</xsl:text>
                   android:name="org.allbinary.game.gd.<xsl:for-each select="properties" ><xsl:value-of select="packageName" /><xsl:if test="string-length(packageName) = 0" ><xsl:value-of select="name" /></xsl:if></xsl:for-each>.threed.GDGameAndroidActivity"
-                  <xsl:for-each select="properties" ><xsl:if test="androidScreenOrientation = 'landscape'" >android:screenOrientation="landscape"</xsl:if></xsl:for-each>
+                  <xsl:for-each select="properties" ><xsl:if test="androidScreenOrientation = 'portrait'" >android:screenOrientation="portrait"</xsl:if><xsl:if test="androidScreenOrientation = 'landscape'" >android:screenOrientation="landscape"</xsl:if></xsl:for-each>
                   android:configChanges="keyboardHidden|orientation" 
                   android:exported="true" <xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
             <xsl:text disable-output-escaping="yes" >&lt;</xsl:text>intent-filter<xsl:text disable-output-escaping="yes" >&gt;</xsl:text>
