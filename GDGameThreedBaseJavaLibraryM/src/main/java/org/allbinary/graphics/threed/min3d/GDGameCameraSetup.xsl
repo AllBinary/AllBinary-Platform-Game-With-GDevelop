@@ -25,6 +25,7 @@ package org.allbinary.graphics.threed.min3d;
 import min3d.core.Object3d;
 import min3d.vos.Camera;
 
+import org.allbinary.AndroidUtil;
 import org.allbinary.animation.threed.ThreedAnimation;
 import org.allbinary.game.canvas.GDGameGlobals;
 import org.allbinary.game.layer.CameraLayer;
@@ -155,9 +156,19 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
         //If ratio is more than 0.36 it is fine
         
             final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
-            
+
             <xsl:for-each select="cameras" >
                 <xsl:if test="position() = <GD_CURRENT_INDEX> + 1" >
+            float horizontalOffset = 0.0f;
+            float verticalOffset = 0.0f;
+            float nearOffset = 0.0f;
+
+            if(AndroidUtil.isAndroid()) {
+                horizontalOffset = -0.08f;
+                verticalOffset = 0.07f;
+                nearOffset = 0.35f;
+            }
+                        
             //x is height, y is distance from game area, z is width            
             //if(CameraMotionGestureInputProcessor.getInstance().restore(scene, stringMaker)) {            
 
@@ -175,9 +186,9 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
 
             <xsl:for-each select="portrait" >
                 <xsl:for-each select="frustrum" >
-                camera.frustum.horizontalCenter(<xsl:value-of select="horizontalCenter" />);
-                camera.frustum.verticalCenter(<xsl:value-of select="verticalCenter" />);
-                camera.frustum.zNear(<xsl:value-of select="zNear" />);
+                camera.frustum.horizontalCenter(<xsl:value-of select="horizontalCenter" /> + horizontalOffset);
+                camera.frustum.verticalCenter(<xsl:value-of select="verticalCenter" /> + verticalOffset);
+                camera.frustum.zNear(<xsl:value-of select="zNear" /> + nearOffset);
                 </xsl:for-each>
 
             </xsl:for-each>
@@ -198,9 +209,9 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
                 
             <xsl:for-each select="landscape" >
                 <xsl:for-each select="frustrum" >
-                camera.frustum.horizontalCenter(<xsl:value-of select="horizontalCenter" />);
-                camera.frustum.verticalCenter(<xsl:value-of select="verticalCenter" />);
-                camera.frustum.zNear(<xsl:value-of select="zNear" />);
+                camera.frustum.horizontalCenter(<xsl:value-of select="horizontalCenter" /> + horizontalOffset);
+                camera.frustum.verticalCenter(<xsl:value-of select="verticalCenter" /> + verticalOffset);
+                camera.frustum.zNear(<xsl:value-of select="zNear" /> + nearOffset);
                 </xsl:for-each>
                 
             </xsl:for-each>

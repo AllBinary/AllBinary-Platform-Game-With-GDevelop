@@ -261,6 +261,20 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/*.bat
 /platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/Makefile
 /platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/resources/**
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*_obj
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*_mtl
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.png
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.jpg
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.xsl
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.xml
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.dat
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.properties
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.MF
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.origin
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.html
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.txt
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.ogg
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.wav
 
 /platform/avian/GDGameThreedAvianJOGLApplicationM/src/main/resources/**
 

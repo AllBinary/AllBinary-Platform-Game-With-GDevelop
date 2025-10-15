@@ -64,6 +64,8 @@ extends AllBinaryGameSceneController
 //                CheatGameInputProcessor.inputProcessor = new CameraPositionCompositeInputProcessor(scene.getCamera());
 //                CheatGameInputProcessor.inputProcessor = new CameraTargetCompositeInputProcessor(scene.getCamera());
 //                CheatGameInputProcessor.inputProcessor = new CameraControlCompositeInputProcessor(scene.getCamera());
+//                CheatGameInputProcessor.inputProcessor = new CameraFrustrumCenterCompositeInputProcessor(scene.getCamera());
+//                CheatGameInputProcessor.inputProcessor = new CameraFrustrumNearFarCompositeInputProcessor(scene.getCamera());
 
         }
     };
