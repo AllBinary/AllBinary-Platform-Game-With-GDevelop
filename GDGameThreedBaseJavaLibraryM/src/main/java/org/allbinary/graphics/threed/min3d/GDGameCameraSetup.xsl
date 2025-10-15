@@ -74,7 +74,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
             final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
             
             <xsl:for-each select="cameras" >
-                <xsl:if test="position() = <GD_CURRENT_INDEX> + 1" >
+                <xsl:if test="position() = <GD_CURRENT_INDEX> + 1 and type != 'none'" >
             //x is height, y is distance from game area, z is width            
             //if(CameraMotionGestureInputProcessor.getInstance().restore(scene, stringMaker)) {
 
@@ -105,14 +105,6 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
 
             </xsl:for-each>
 
-                //camera.position.x = displayInfoSingleton.getLastHalfHeight() - 125;
-                //camera.position.y = (displayInfoSingleton.getLastHeight() + 100);
-                //camera.position.z = -(displayInfoSingleton.getLastHeight()) - 200;
-
-                //camera.target.getPosition().x = displayInfoSingleton.getLastHalfHeight() - 125;
-                //camera.target.getPosition().y = -(displayInfoSingleton.getLastHeight() + 100);
-                //camera.target.getPosition().z = -(displayInfoSingleton.getLastHeight()) - 100;
-
             } else {
                 stringMaker.append("landscape: ");
                 
@@ -133,14 +125,6 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
                 </xsl:for-each>
                 
             </xsl:for-each>
-                
-                //camera.position.x = -84; //displayInfoSingleton.getLastHalfHeight();
-                //camera.position.y = displayInfoSingleton.getLastWidth();
-                //camera.position.z = -((displayInfoSingleton.getLastWidth()) + 10);
-
-                //camera.target.getPosition().x = -54; //displayInfoSingleton.getLastHalfHeight();
-                //camera.target.getPosition().y = -(displayInfoSingleton.getLastWidth() + 1360);
-                //camera.target.getPosition().z = 70;
 
             }
             </xsl:if>
@@ -149,16 +133,16 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
     
     @Override
     public void updateFrustrum(final Camera camera, final float ratio) {
-
-        logUtil.put("ratio: " + ratio, this, "updateFrustrum");
         
+            <xsl:for-each select="cameras" >
+                <xsl:if test="position() = <GD_CURRENT_INDEX> + 1 and type != 'none'" >
+        //logUtil.put("ratio: " + ratio, this, "updateFrustrum");
+
         //Wider screen means horizontal center is larger.        
         //If ratio is more than 0.36 it is fine
-        
+
             final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
 
-            <xsl:for-each select="cameras" >
-                <xsl:if test="position() = <GD_CURRENT_INDEX> + 1" >
             float horizontalOffset = 0.0f;
             float verticalOffset = 0.0f;
             float nearOffset = 0.0f;
@@ -192,14 +176,6 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
                 </xsl:for-each>
 
             </xsl:for-each>
-
-                //camera.position.x = displayInfoSingleton.getLastHalfHeight() - 125;
-                //camera.position.y = (displayInfoSingleton.getLastHeight() + 100);
-                //camera.position.z = -(displayInfoSingleton.getLastHeight()) - 200;
-
-                //camera.target.getPosition().x = displayInfoSingleton.getLastHalfHeight() - 125;
-                //camera.target.getPosition().y = -(displayInfoSingleton.getLastHeight() + 100);
-                //camera.target.getPosition().z = -(displayInfoSingleton.getLastHeight()) - 100;
 
             } else {
                 //stringMaker.append("landscape: ");
