@@ -30,6 +30,8 @@ import org.allbinary.game.canvas.GDGameGlobals;
 import org.allbinary.game.layer.CameraLayer;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
+import org.allbinary.graphics.threed.SWTJOGLProcessor;
+import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.communication.log.PreLogUtil;
 import org.allbinary.logic.string.StringMaker;
 
@@ -44,11 +46,25 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
         return instance;
     }
 
+    protected final LogUtil logUtil = LogUtil.getInstance();
+        
     private final SceneStrings sceneStrings = SceneStrings.getInstance();
         
     private GD<GD_CURRENT_INDEX>GameCameraSetup()
     {
         super(GDGameCameraSetup.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:for-each select="properties" ><xsl:for-each select="cameras" ><xsl:if test="position() = <GD_CURRENT_INDEX> + 1" ><xsl:value-of select="type" /></xsl:if></xsl:for-each></xsl:for-each></xsl:with-param></xsl:call-template>);
+        
+        <xsl:for-each select="properties" >
+            <xsl:for-each select="cameras" >
+                    <xsl:if test="ratioProcessor = 'both'" >
+            SWTJOGLProcessor.getInstance().setRatioProcessor();
+                    </xsl:if>
+                    <xsl:if test="ratioProcessor != 'both'" >
+            //Using default ratio processor
+                    </xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>    
+        
     }
 
         <xsl:for-each select="properties" >
@@ -129,8 +145,74 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
             </xsl:if>
             </xsl:for-each>
     }
-        </xsl:for-each>
+    
+    @Override
+    public void updateFrustrum(final Camera camera, final float ratio) {
+
+        logUtil.put("ratio: " + ratio, this, "updateFrustrum");
         
+        //Wider screen means horizontal center is larger.        
+        //If ratio is more than 0.36 it is fine
+        
+            final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
+            
+            <xsl:for-each select="cameras" >
+                <xsl:if test="position() = <GD_CURRENT_INDEX> + 1" >
+            //x is height, y is distance from game area, z is width            
+            //if(CameraMotionGestureInputProcessor.getInstance().restore(scene, stringMaker)) {            
+
+            //} else 
+            if(displayInfoSingleton.isPortrait()) {
+            
+                //stringMaker.append("portrait: ");
+
+                //MyCanvas aLastWidth: 385 aLastHeight: 639 Display Info: fullWidth: 1440 fullHeight: 2392 lastWidth: 385 lastHeight: 639 lastHalfWidth: 192 lastHalfHeight: 319
+                //319.0, 900.0, -639.0->319.0, 0.0, -629.0
+                //319.0, 815.0, -779.0->319.0, -625.0, -629.0
+                
+                //MyCanvas aLastWidth: 470 aLastHeight: 640 Display Info: fullWidth: 1800 fullHeight: 2448 lastWidth: 470 lastHeight: 640 lastHalfWidth: 235 lastHalfHeight: 320
+                //195.0, 740.0, -835.0->205.0, -785.0, -765.0
+
+            <xsl:for-each select="portrait" >
+                <xsl:for-each select="frustrum" >
+                camera.frustum.horizontalCenter(<xsl:value-of select="horizontalCenter" />);
+                camera.frustum.verticalCenter(<xsl:value-of select="verticalCenter" />);
+                camera.frustum.zNear(<xsl:value-of select="zNear" />);
+                </xsl:for-each>
+
+            </xsl:for-each>
+
+                //camera.position.x = displayInfoSingleton.getLastHalfHeight() - 125;
+                //camera.position.y = (displayInfoSingleton.getLastHeight() + 100);
+                //camera.position.z = -(displayInfoSingleton.getLastHeight()) - 200;
+
+                //camera.target.getPosition().x = displayInfoSingleton.getLastHalfHeight() - 125;
+                //camera.target.getPosition().y = -(displayInfoSingleton.getLastHeight() + 100);
+                //camera.target.getPosition().z = -(displayInfoSingleton.getLastHeight()) - 100;
+
+            } else {
+                //stringMaker.append("landscape: ");
+                
+                //MyCanvas aLastWidth: 640 aLastHeight: 422 Display Info: fullWidth: 2560 fullHeight: 1688 lastWidth: 640 lastHeight: 422 lastHalfWidth: 320 lastHalfHeight: 211
+                //-84.0, 640.0, -650.0->-54.0, -1980.0, 70.0
+                
+            <xsl:for-each select="landscape" >
+                <xsl:for-each select="frustrum" >
+                camera.frustum.horizontalCenter(<xsl:value-of select="horizontalCenter" />);
+                camera.frustum.verticalCenter(<xsl:value-of select="verticalCenter" />);
+                camera.frustum.zNear(<xsl:value-of select="zNear" />);
+                </xsl:for-each>
+                
+            </xsl:for-each>
+
+            }
+            </xsl:if>
+            </xsl:for-each>
+                
+    }
+    
+        </xsl:for-each>
+                
     public void processTarget(final CameraLayer cameraLayer, final Camera camera) {
 
         <xsl:for-each select="properties" >
