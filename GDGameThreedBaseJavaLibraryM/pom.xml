@@ -249,20 +249,20 @@
             <optional>true</optional>
         </dependency>
         
+<!--
         <dependency>
             <groupId>org.allbinary</groupId>
             <artifactId>OpenGLJOGLJavaLibrary</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <optional>true</optional>
         </dependency>        
-<!--
+-->
         <dependency>
             <groupId>org.khronos</groupId>
             <artifactId>opengl-api</artifactId>
             <version>gl1.1-android-2.1_r1</version>
             <optional>true</optional>
         </dependency>
--->
 
     </dependencies>
 
