@@ -63,8 +63,7 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
     private final Animation[] animationArray;
     
     public GDGeographicMap(final AllBinaryTiledLayerFactoryInterface tiledLayerFactoryInterface, final TileLayer tileLayer, final int[] cellTypeIdToGeographicMapCellType, final TiledMap map, final Image tileSetImage, final GeographicMapCellTypeFactory geographicMapCellTypeFactory, final BasicColor foregroundColor, final BasicColor backgroundColor, final BasicColor debugColor, final CustomMapGeneratorBaseFactory customMapGeneratorBaseFactory) throws Exception {
-        super(
-            new RaceTrackInfo(
+        super(new RaceTrackInfo(
                 SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()),
                 SmallIntegerSingletonFactory.getInstance().getInstance(tileLayer.getId()).toString(), 
                 new RaceTrackFrictionProperties(0, 0), foregroundColor, backgroundColor, 0, 0, 0),
