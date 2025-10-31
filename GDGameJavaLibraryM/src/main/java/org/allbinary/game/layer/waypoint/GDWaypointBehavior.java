@@ -23,11 +23,14 @@ import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositio
 import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListUtil;
+import org.allbinary.util.ImmutableBasicArrayList;
 
 public class GDWaypointBehavior 
     extends WaypointBehaviorBase
     implements WaypointEventListenerInterface
 {
+    protected static final BasicArrayList DEFAULT = new ImmutableBasicArrayList("DefaultAndImmutable", 0);
+
     protected final LogUtil logUtil = LogUtil.getInstance();
     
     private int longWeaponRange = 0;
@@ -38,7 +41,7 @@ public class GDWaypointBehavior
     
     protected GeographicMapCellHistory currentGeographicMapCellHistory;
     
-    private GeographicMapCellPosition lastPathGeographicMapCellPosition;
+    private GeographicMapCellPosition lastPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
     private GeographicMapCellPosition currentPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
 
     private final CollidableDestroyableDamageableLayer FAKE_WAYPOINT_LAYER;
@@ -47,13 +50,13 @@ public class GDWaypointBehavior
 
     private boolean moving = false;
     private boolean movingFromStopped = false;
-    protected BasicArrayList waypointPathsList;
+    protected BasicArrayList waypointPathsList = BasicArrayListUtil.getInstance().getImmutableInstance();
     
     private final BasicArrayList possibleTargetList;
     
     private int currentTargetDistance = Integer.MAX_VALUE;
     protected CollidableDestroyableDamageableLayer currentTargetLayerInterface = CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER;
-    protected GeographicMapCellPosition currentTargetGeographicMapCellPosition;
+    protected GeographicMapCellPosition currentTargetGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
     
     private boolean trackingWaypoint;
     
@@ -66,6 +69,7 @@ public class GDWaypointBehavior
             final CollidableDestroyableDamageableLayer fakeWaypoint) 
     throws Exception
     {
+        
         this.associatedAdvancedRTSGameLayer = associatedAdvancedRTSGameLayer;
                 
         this.completeTimeDelayHelper = new TimeDelayHelper(30000);
@@ -74,7 +78,7 @@ public class GDWaypointBehavior
 
         this.possibleTargetList = new BasicArrayList();
 
-        this.setWaypointPathsList(BasicArrayListUtil.getInstance().getImmutableInstance());
+        this.setWaypointPathsList(GDWaypointBehavior.DEFAULT);
 
         this.currentGeographicMapCellHistory = new GeographicMapCellHistory();
 
@@ -95,6 +99,8 @@ public class GDWaypointBehavior
     @Override
     public void onWaypointEvent(final RTSLayerEvent event) throws Exception
     {
+        //logUtil.put("", this, "onWaypointEvent");
+        
         final PathFindingLayerInterface advancedRTSGameLayer =
             (PathFindingLayerInterface) event.getRtsLayer();
 
@@ -181,7 +187,7 @@ public class GDWaypointBehavior
     
     protected void setRandomGeographicMapCellHistory(final BasicArrayList pathsList) throws Exception
     {
-        if(pathsList == null) {
+        if(pathsList == BasicArrayListUtil.getInstance().getImmutableInstance()) {
             this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().setRandomGeographicMapCellHistory(this.associatedAdvancedRTSGameLayer);
             return;
         }
@@ -203,7 +209,7 @@ public class GDWaypointBehavior
             final BasicArrayList geographicMapCellPositionBasicArrayList)
             throws Exception
     {
-        this.lastPathGeographicMapCellPosition = null;
+        this.lastPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
         
         if(this.associatedAdvancedRTSGameLayer.isShowMoreCaptionStates())
         {
@@ -251,7 +257,7 @@ public class GDWaypointBehavior
         final GeographicMapCellPosition geographicMapCellPosition = 
             this.associatedAdvancedRTSGameLayer.getCurrentGeographicMapCellPosition();
 
-        if(geographicMapCellPosition == null) {
+        if(geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
             return;
         }
         
@@ -428,7 +434,7 @@ public class GDWaypointBehavior
             this.currentTargetGeographicMapCellPosition = ((PathFindingLayerInterface) this.currentTargetLayerInterface).getCurrentGeographicMapCellPosition();
             //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target? ").append(this.currentTargetGeographicMapCellPosition).append(' ').append(this.currentTargetLayerInterface).toString(), this, "updatePathOnTargetMove");            
         } else {
-            this.currentTargetGeographicMapCellPosition = null;
+            this.currentTargetGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
         }
     }
 

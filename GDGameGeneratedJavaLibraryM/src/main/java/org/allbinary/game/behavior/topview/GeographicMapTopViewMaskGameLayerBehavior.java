@@ -159,11 +159,11 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
 
         final GeographicMapCellPosition geographicMapCellPosition = this.getGeographicMapCellPositionIfNotSolidBlockOrOffMap(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPositionList, velocityProperties, layer);
 
-        if (geographicMapCellPosition == null) {
+        if (geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
 //            if(layer.getName().startsWith("BatEnemy")) {
 //                logUtil.put("Found impassable block: top left", this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap");
 //            }
-            return null;
+            return SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
         } else {
 //            if(layer.getName().startsWith("BatEnemy")) {
 //                logUtil.put("Did not find impassable block ", this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap");
@@ -178,7 +178,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
         
         //logUtil.put(geographicMapCellPosition.toString(), this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap");
 
-        //GeographicMapCellPosition previousGeographicMapCellPosition = null;        
+        //GeographicMapCellPosition previousGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;        
         unsafePossibleGeographicMapCellPositionList.clear();
 
         // If walking into a solid block
@@ -231,8 +231,8 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
                         //logUtil.put("do not move", this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap");
                         //this.blockGeographicMapCellPosition = possibleStepGeographicMapCellPosition;
                         //velocityProperties.getVelocityXBasicDecimal().set(0);
-                        //previousGeographicMapCellPosition = null;
-                        return null;
+                        //previousGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
+                        return SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
 //                    }
                 } else {
                     //logUtil.put("cellType: " + cellType, this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap");
@@ -254,8 +254,8 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
         }
         
         //logUtil.put("not moving", this, "getGeographicMapCellPositionIfNotSolidBlockOrOffMap");
-        //previousGeographicMapCellPosition = null;
-        return null;
+        //previousGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
+        return SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
         //this.previousGeographicMapCellPosition = geographicMapCellPosition;
         //return geographicMapCellPosition;
     }
@@ -309,7 +309,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
 
         this.moveAndLand(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition, velocityProperties, layer, x, y);
         
-        if(geographicMapCellPosition == null) {
+        if(geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
             return false;
         } else {
             return true;

@@ -57,7 +57,7 @@ public class GDSoftJoystickAnimationBehavior extends GDAnimationBehaviorBase {
         final SoftJoystickInterface softJoystickInterface = (SoftJoystickInterface) gdObject;
 
         //final LogUtil logUtil = LogUtil.getInstance();
-        //logUtil.put("TWB", this, "set");
+        //logUtil.put("", this, "set");
         
         final GPoint point = softJoystickInterface.getPoint();
         if(point == PointFactory.getInstance().ZERO_ZERO) {

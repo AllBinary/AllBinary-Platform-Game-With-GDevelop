@@ -810,7 +810,7 @@ public class GDGameLayer
 //        EnemiesGDGameLayer.c = PlatformerMap.placementXIntArray[PlatformerMap.placementIntArray[PlatformerMap.placementIndex]] / 24;
 //        EnemiesGDGameLayer.r = PlatformerMap.placementYIntArray[PlatformerMap.placementIntArray[PlatformerMap.placementIndex]] / 24;
 //        stringBuilder.delete(0, stringBuilder.length());
-//        logUtil.put(stringBuilder.append("TWB c: ").append(EnemiesGDGameLayer.c).append(" r: ").append(EnemiesGDGameLayer.r).toString(), this, commonStrings.PROCESS);
+//        logUtil.put(stringBuilder.append(" c: ").append(EnemiesGDGameLayer.c).append(" r: ").append(EnemiesGDGameLayer.r).toString(), this, commonStrings.PROCESS);
 
         this.getCollidableInferface().paint(graphics);
     }

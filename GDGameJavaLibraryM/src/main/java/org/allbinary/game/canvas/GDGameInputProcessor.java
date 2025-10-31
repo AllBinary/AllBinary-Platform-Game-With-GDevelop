@@ -51,19 +51,19 @@ public class GDGameInputProcessor {
         }
         
 //        if(allbinaryLayerManager == null) {
-//            logUtil.put("TWB allbinaryLayerManager is null", this, gameInputStrings.PROCESS_INPUT);
+//            logUtil.put("allbinaryLayerManager is null", this, gameInputStrings.PROCESS_INPUT);
 //            return;
 //        }
 //
 //        if(specialAnimation == null) {
-//            logUtil.put("TWB specialAnimation is null", this, gameInputStrings.PROCESS_INPUT);
+//            logUtil.put("specialAnimation is null", this, gameInputStrings.PROCESS_INPUT);
 //            return;
 //        }
         
         final GDSceneGlobals globals = ((GDSpecialAnimation) specialAnimation).getGlobals();
 
 //        if(globals == null) {
-//            logUtil.put("TWB globals is null", this, gameInputStrings.PROCESS_INPUT);
+//            logUtil.put("globals is null", this, gameInputStrings.PROCESS_INPUT);
 //            return;
 //        }
         

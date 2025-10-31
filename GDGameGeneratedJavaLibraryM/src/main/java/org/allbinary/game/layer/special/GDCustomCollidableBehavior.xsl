@@ -43,12 +43,12 @@ import org.allbinary.game.canvas.GD0SpecialAnimationGlobals;
 import org.allbinary.game.collision.CollidableBaseBehavior;
 import org.allbinary.game.collision.CollidableInterfaceCompositeInterface;
 import org.allbinary.game.identification.GroupInterface;
+import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.game.layer.CollidableCompositeLayer;
 import org.allbinary.game.layer.GDCustomGameLayer;
 import org.allbinary.game.layout.GDNode;
 import org.allbinary.game.layout.GDObject;
 import org.allbinary.logic.communication.log.ForcedLogUtil;
-
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
@@ -57,6 +57,7 @@ import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellType;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
+import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositionFactory;
 
 /**
  *
@@ -114,7 +115,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
         
         try {
             
-            if(collisionMaskCustomGameLayer.allBinaryGameLayerManagerP == null) {
+            if(collisionMaskCustomGameLayer.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
                 logUtil.put(new StringMaker().append("LayerManager was null: ").append(StringUtil.getInstance().toString(collisionMaskCustomGameLayer.allBinaryGameLayerManagerP)).toString(), this, "move");
                 return false;
             }
@@ -140,7 +141,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
 //                    }
 //                }
 
-                if(geographicMapCellPosition == null) {
+                if(geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
                     //final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                     //logUtil.put(gameGlobals.TILEMAP__COLLISIONMASK, this, commonStrings.PROCESS);
                     //logUtil.put(gdObject.toShortString(), this, commonStrings.PROCESS);

@@ -116,7 +116,7 @@ public class PlayerInput extends PlayerGameInput
             Object object = removeList.objectArray[index];
             for (int index2 = list.size(); --index2 >= 0;) {
                 if (list.objectArray[index2] == object) {
-                    //logUtil.put("TWB keyup2: " + object, this, commonStrings.PROCESS);
+                    //logUtil.put("keyup2: " + object, this, commonStrings.PROCESS);
                     list.remove(index2);
                 }
             }

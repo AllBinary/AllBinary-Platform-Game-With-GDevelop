@@ -13,7 +13,7 @@ import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.color.BasicColorFactory;
 import org.allbinary.layer.AllBinaryLayer;
 import org.allbinary.layer.AllBinaryLayerManager;
-
+import org.allbinary.logic.NullUtil;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.string.CommonStrings;
@@ -124,10 +124,12 @@ extends GDWaypointBehavior
     public void processTick(final AllBinaryLayerManager allBinaryLayerManager)
     throws Exception
     {
-        if(this.waypointPathsList == BasicArrayListUtil.getInstance().getImmutableInstance()) {
+        if(this.waypointPathsList == GDWaypointBehavior.DEFAULT) {
             return;
         }
 
+        //logUtil.put("", this, "processTick");
+        
         if(this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER && this.getCurrentGeographicMapCellHistory().getTotalVisited() > this.getCurrentGeographicMapCellHistory().getTotalNotVisited()) {
             this.updatePathOnTargetMove(VISITED_MOST_OF_THE_PATH);
         }
@@ -313,7 +315,7 @@ extends GDWaypointBehavior
         if (currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER) {
             final GeographicMapCellPosition geographicMapCellPosition = ((PathFindingLayerInterface) currentTargetLayerInterface).getCurrentGeographicMapCellPosition();
 
-            if (geographicMapCellPosition == null) {
+            if (geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
                 return;
             }
 
@@ -322,7 +324,7 @@ extends GDWaypointBehavior
                 //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(reason).toString(), this, UPDATE_PATH_ON_TARGET_MOVE);
 
                 this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().targetMovedSoRetarget(this.associatedAdvancedRTSGameLayer);
-                this.setWaypointPathsList(BasicArrayListUtil.getInstance().getImmutableInstance());
+                this.setWaypointPathsList(GDWaypointBehavior.DEFAULT);
                 this.setTarget((PathFindingLayerInterface) currentTargetLayerInterface);
             } else {
                 //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target has not moved").toString(), this, UPDATE_PATH_ON_TARGET_MOVE);
@@ -365,10 +367,11 @@ extends GDWaypointBehavior
         if (!this.isCloseRange((CollidableDestroyableDamageableLayer) layerInterface, anotherTargetDistance) &&
             this.canInsertWaypoint(0, this.currentTargetLayerInterface))
         {
+            
             final GeographicMapCellPosition geographicMapCellPosition =
                 associatedAdvancedRTSGameLayer.getCurrentGeographicMapCellPosition();
 
-            if (geographicMapCellPosition == null) {
+            if (geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
                 return;
             }
             
@@ -377,14 +380,16 @@ extends GDWaypointBehavior
             
             final BasicArrayList list = 
                 waypoint.getPathsListFromCacheOnly(geographicMapCellPosition);
-                
+             
+            //logUtil.put(list.toString(), this, "setTarget");
             //"waypointPathsList: " + list, this);
             this.setWaypointPathsList(list);
 
-            if (this.waypointPathsList == null)
+            if (this.waypointPathsList == BasicArrayListUtil.getInstance().getImmutableInstance())
             {
                 this.targetWithoutCachedPathLayerInterface =
                     this.currentTargetLayerInterface;
+                //logUtil.put("" + this.targetWithoutCachedPathLayerInterface, this, "setTarget");
             }
             else if (this.waypointPathsList.size() != 0)
             {
@@ -431,8 +436,8 @@ extends GDWaypointBehavior
             final BasicArrayList geographicMapCellPositionBasicArrayList)
             throws Exception
     {
-        this.setCurrentPathGeographicMapCellPosition(null);
-        this.setNextUnvisitedPathGeographicMapCellPosition(null);
+        this.setCurrentPathGeographicMapCellPosition(SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION);
+        this.setNextUnvisitedPathGeographicMapCellPosition(SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION);
         
         super.setGeographicMapCellHistoryPath(geographicMapCellPositionBasicArrayList);
     }
@@ -443,6 +448,8 @@ extends GDWaypointBehavior
 
         if (size > 0)
         {
+            //logUtil.put("", this, "processWaypoint");
+            
             final PathFindingLayerInterface targetLayer =
                 (PathFindingLayerInterface) this.targetList.get(0);
 
@@ -467,7 +474,7 @@ extends GDWaypointBehavior
                 final GeographicMapCellPosition geographicMapCellPosition =
                     this.associatedAdvancedRTSGameLayer.getCurrentGeographicMapCellPosition();
 
-                if (geographicMapCellPosition == null) {
+                if (geographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
                     return;
                 }
                 
@@ -505,14 +512,15 @@ extends GDWaypointBehavior
                 // this.removeWaypoint(waypointLayer);
                 // Otherwise Move towards waypoint
                 // If currentlyTargeting enemy then check priority
-                if (this.currentTargetLayerInterface == null ||
+                if (this.currentTargetLayerInterface == CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER ||
                     this.waypointOverridesAttacking)
                 {
+                    //logUtil.put("", this, "processWaypoint");
                     final BasicArrayList list = targetLayer.getWaypointBehavior().getWaypoint().getPathsListFromCacheOnly(geographicMapCellPosition);
                     //"waypointPathsList2: " + list, this);
                     this.setWaypointPathsList(list);
                     
-                    if (this.waypointPathsList == null)
+                    if (this.waypointPathsList == BasicArrayListUtil.getInstance().getImmutableInstance())
                     {
                         this.waitingOnWaypointPath = true;
 
@@ -533,7 +541,7 @@ extends GDWaypointBehavior
 
                 // If out of waypoints and without target then check sensors
                 /*
-                if (this.currentTargetLayerInterface == null &&
+                if (this.currentTargetLayerInterface == CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER &&
                 this.getWaypointList().size() == 0)
                 {
                 logUtil.put(
@@ -657,7 +665,7 @@ extends GDWaypointBehavior
     private void processTargetList()
         throws Exception
     {
-        //this.targetWithoutCachedPathLayerInterface = null;
+        //this.targetWithoutCachedPathLayerInterface = CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER;
 
         for (int index = this.getPossibleTargetList().size() - 1; index >= 0; index--)
         {
@@ -679,6 +687,8 @@ extends GDWaypointBehavior
         //TWB - I don't think this is called currently
         if (this.targetWithoutCachedPathLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER)
         {
+            //logUtil.put("" + this.targetWithoutCachedPathLayerInterface, this, "processTargetList");
+            
             this.waitingOnTargetPath = true;
 
             this.associatedAdvancedRTSGameLayer.getCaptionAnimationHelper().update(
@@ -688,7 +698,7 @@ extends GDWaypointBehavior
             this.runWaypointPathTask(
                 (PathFindingLayerInterface) this.currentTargetLayerInterface);
             
-            this.targetWithoutCachedPathLayerInterface = null;
+            this.targetWithoutCachedPathLayerInterface = CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER;
         }
 
         this.getPossibleTargetList().clear();
@@ -830,6 +840,7 @@ extends GDWaypointBehavior
         final PathFindingLayerInterface waypointLayer)
         throws Exception
     {
+        //logUtil.put("", this, "runWaypointPathTask");
         setWaypointPathsList(runningWaypointPathList);
 
         if (this.waypointPathRunnable.isRunning())
@@ -868,12 +879,12 @@ extends GDWaypointBehavior
         this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().clearTarget(this.associatedAdvancedRTSGameLayer);
 
 //        this.currentGeographicMapCellHistory.init();
-//        this.setCurrentPathGeographicMapCellPosition(null);
-//        this.setNextUnvisitedPathGeographicMapCellPosition(null);
+//        this.setCurrentPathGeographicMapCellPosition(SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION);
+//        this.setNextUnvisitedPathGeographicMapCellPosition(SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION);
 //        this.waitingOnWaypointPath = false;
         
         //this.waypointPathsList = BasicArrayListUtil.getImmutableInstance();
-        this.setCurrentTargetLayerInterface(null);
+        this.setCurrentTargetLayerInterface(CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER);
         this.setTrackingWaypoint(false);
         this.setCurrentTargetDistance(Integer.MAX_VALUE);
         TrackingEventHandler.getInstance().fireEvent(
@@ -985,17 +996,17 @@ extends GDWaypointBehavior
                     if (clear) {
                         this.getList().clear();
                         this.positionList.clear();
-                        return null;
+                        return NullUtil.getInstance().NULL_OBJECT;
                     }
                     return Boolean.FALSE;
                 }
-                return null;
+                return NullUtil.getInstance().NULL_OBJECT;
             }
             catch(Exception e)
             {
                 final CommonStrings commonStrings = CommonStrings.getInstance();
                 logUtil.put(commonStrings.EXCEPTION, this, "visit", e);
-                return null;
+                return NullUtil.getInstance().NULL_OBJECT;
             }
         }
 

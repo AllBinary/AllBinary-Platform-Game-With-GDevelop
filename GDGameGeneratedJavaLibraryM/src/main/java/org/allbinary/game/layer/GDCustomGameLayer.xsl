@@ -144,6 +144,7 @@ Created By: Travis Berthelot
         import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackGeographicMapCellType;
         import org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory;
         import org.allbinary.thread.PathFindingThreadPool;
+        import org.allbinary.util.BasicArrayListUtil;
             
         </xsl:if>
 
@@ -545,7 +546,7 @@ Created By: Travis Berthelot
 
             if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
 
-            if(this.allBinaryGameLayerManagerP == null) {
+            if(this.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
                 if(total <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5) {
                     total++;
                     logUtil.put(new StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(StringUtil.getInstance().toString(this.allBinaryGameLayerManagerP)).toString(), this, "move");
@@ -616,7 +617,7 @@ Created By: Travis Berthelot
 
             if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
 
-            if(this.allBinaryGameLayerManagerP == null) {
+            if(this.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
                 logUtil.put(new StringMaker().append("1LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(StringUtil.getInstance().toString(this.allBinaryGameLayerManagerP)).toString(), this, "move");
                 return;
             }
@@ -807,7 +808,7 @@ Created By: Travis Berthelot
 
     public void move() {
         try {
-            if(this.allBinaryGameLayerManagerP == null) {
+            if(this.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
                 logUtil.put(new StringMaker().append("2LayerManager was null: ").append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move");
                 return;
             }
@@ -844,7 +845,7 @@ Created By: Travis Berthelot
     public void right()
     {
         try {
-            if(this.allBinaryGameLayerManagerP == null) {
+            if(this.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
                 logUtil.put(new StringMaker().append("3LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move");
                 return;
             }
@@ -895,7 +896,7 @@ Created By: Travis Berthelot
     public void left()
     {
         try {
-            if(this.allBinaryGameLayerManagerP == null) {
+            if(this.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
                 logUtil.put(new StringMaker().append("4LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move");
                 return;
             }
@@ -1222,7 +1223,7 @@ Created By: Travis Berthelot
     }
 
     public PathFindingLayerInterface getParentLayer() {
-        return null;
+        return NullPathFindingLayer.NULL_PATH_FINDING_LAYER;
     }
 
     public RTSLayer2LogHelper getRTSLayer2LogHelper() {
@@ -1316,7 +1317,7 @@ Created By: Travis Berthelot
 
     public BasicArrayList getMoveOutOfBuildAreaPath(
         final GeographicMapCellPosition geographicMapCellPosition) {
-        return null;
+        return BasicArrayListUtil.getInstance().getImmutableInstance();
     }   
 
     public void setClosestGeographicMapCellHistory(final BasicArrayList pathsList)
@@ -1478,7 +1479,7 @@ Created By: Travis Berthelot
 
         final GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition = this.waypointBehaviorBase.getNextUnvisitedPathGeographicMapCellPosition();
 
-        if(nextUnvisitedPathGeographicMapCellPosition == null) {
+        if(nextUnvisitedPathGeographicMapCellPosition == SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
             //logUtil.put(new StringMaker().append(this.getName()).append(" - do not turn or move until we have the first unvisited cell position").toString(), this, "turnTo");
             return true;
         }
@@ -1611,7 +1612,7 @@ Created By: Travis Berthelot
         } else {
             //this.slightAngle = angleOfTarget - angle;
      
-            if(nextUnvisitedPathGeographicMapCellPosition != null) {
+            if(nextUnvisitedPathGeographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
                 
                 if(this.steeringInsideGeographicMapCellPosition != nextUnvisitedPathGeographicMapCellPosition) {
                     

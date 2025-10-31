@@ -114,7 +114,7 @@ public class GDPrimitiveDrawing extends Animation {
         
 //        if(lastSize != size) {
 //            lastSize = size;
-//            logUtil.put("TWBpaint " + size, this, commonStrings.PROCESS);
+//            logUtil.put("paint " + size, this, commonStrings.PROCESS);
 //        }
 
         for (int index = 0; index < size; index++) {
