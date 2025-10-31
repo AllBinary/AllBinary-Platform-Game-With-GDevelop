@@ -20,7 +20,7 @@ package org.allbinary.game.layout;
 public class GDObjectFactory {
     
     public GDObject get(final int width, final int height, final String name) {
-        return null;
+        throw new RuntimeException();
     }
     
 }

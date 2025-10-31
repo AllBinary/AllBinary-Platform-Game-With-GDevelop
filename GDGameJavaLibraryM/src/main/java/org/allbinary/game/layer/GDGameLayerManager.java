@@ -10,7 +10,7 @@
 * 
 * Created By: Travis Berthelot
 * 
-*/
+ */
 package org.allbinary.game.layer;
 
 import org.allbinary.game.GameInfo;
@@ -24,67 +24,66 @@ import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterfac
 import org.allbinary.media.graphics.geography.map.GeographicMapEventHandler;
 
 public class GDGameLayerManager extends AllBinaryGameLayerManager
-        implements GeographicMapCompositeInterface
-{
+    implements GeographicMapCompositeInterface {
+
     protected final LogUtil logUtil = LogUtil.getInstance();
 
     private BasicGeographicMap[] geographicMapInterfaceArray = BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY;
     private GeographicMapCellType[] geographicMapCellTypeArray = GeographicMapCellType.NULL_GEOGRAPHIC_MAP_CELL_TYPE_ARRAY;
-   //private PlayerLayer playerLayer;
-   
-   public static int MAX_LEVEL = 7; //Integer.MAX_VALUE;
-   
-   public int layout = 0;
-   
-   public GDGameLayerManager(final BasicColor backgroundBasicColor,
-            final BasicColor foregroundBasicColor, final GameInfo gameInfo)
-   {
-      super(backgroundBasicColor, foregroundBasicColor, gameInfo);
-   }
+    //private PlayerLayer playerLayer;
 
+    public static int MAX_LEVEL = 7; //Integer.MAX_VALUE;
+
+    public int layout = 0;
+
+    public GDGameLayerManager(final BasicColor backgroundBasicColor,
+        final BasicColor foregroundBasicColor, final GameInfo gameInfo) {
+        super(backgroundBasicColor, foregroundBasicColor, gameInfo);
+    }
+
+    @Override
     public void remove(final AllBinaryLayer layerInterface)
-        throws Exception
-    {
-        if(layerInterface == null) {
+        throws Exception {
+        if (layerInterface == null) {
             logUtil.put("Remove: null", this, "remove");
             return;
         }
-        
+
         super.remove(layerInterface);
     }
 
-   public BasicGeographicMap[] getGeographicMapInterface()
-   {
-      return geographicMapInterfaceArray;
-   }
+    @Override
+    public BasicGeographicMap[] getGeographicMapInterface() {
+        return geographicMapInterfaceArray;
+    }
 
-   public void setGeographicMapInterface(final BasicGeographicMap[] geographicMapInterfaceArray)
-   {
-       final CommonStrings commonStrings = CommonStrings.getInstance();
-       logUtil.put(commonStrings.START + this, this, commonStrings.PROCESS);
-       
-      this.geographicMapInterfaceArray = geographicMapInterfaceArray;
-      this.geographicMapCellTypeArray = new GeographicMapCellType[this.geographicMapInterfaceArray.length];
-      
-      final GeographicMapEventHandler geographicMapEventHandler = GeographicMapEventHandler.getInstance();
-      geographicMapEventHandler.fireEvent();
-      geographicMapEventHandler.removeAllListeners();
-   }
+    @Override
+    public void setGeographicMapInterface(final BasicGeographicMap[] geographicMapInterfaceArray) {
+        final CommonStrings commonStrings = CommonStrings.getInstance();
+        logUtil.put(commonStrings.START + this, this, commonStrings.PROCESS);
 
-   public GeographicMapCellType[] geographicMapCellTypeArray() {
-       return this.geographicMapCellTypeArray;
-   }
+        this.geographicMapInterfaceArray = geographicMapInterfaceArray;
+        this.geographicMapCellTypeArray = new GeographicMapCellType[this.geographicMapInterfaceArray.length];
 
-   /*
+        final GeographicMapEventHandler geographicMapEventHandler = GeographicMapEventHandler.getInstance();
+        geographicMapEventHandler.fireEvent();
+        geographicMapEventHandler.removeAllListeners();
+    }
+
+    @Override
+    public GeographicMapCellType[] geographicMapCellTypeArray() {
+        return this.geographicMapCellTypeArray;
+    }
+
+    /*
    public PlayerLayer getPlayerLayer() {
       return playerLayer;
    }
-    */
+     */
 
-   /*
+ /*
    public void setPlayerLayer(PlayerLayer playerLayer) {
       this.playerLayer = playerLayer;
    }
-   */
-    
+     */
 }

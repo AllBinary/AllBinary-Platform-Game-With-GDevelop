@@ -22,22 +22,23 @@ import org.allbinary.media.ScaleProperties;
  *
  * @author User
  */
-public class GDRectOnlyPrimitiveDrawingAnimationFactory  implements 
+public class GDRectOnlyPrimitiveDrawingAnimationFactory implements
     AnimationInterfaceFactoryInterface, ProceduralAnimationInterfaceFactoryInterface {
-    
-   public Animation getInstance(final int instanceId) throws Exception
-   {
-       return new GDRectOnlyPrimitiveDrawing();
-   }
-   
-   public Animation getInstance(Animation animationInterface)
-       throws Exception
-   {
-       return new GDRectOnlyPrimitiveDrawing();
-   }
-   
-   public void setInitialScale(final ScaleProperties scaleProperties) {
-       
-   }
-    
+
+    @Override
+    public Animation getInstance(final int instanceId) throws Exception {
+        return new GDRectOnlyPrimitiveDrawing();
+    }
+
+    @Override
+    public Animation getInstance(Animation animationInterface)
+        throws Exception {
+        return new GDRectOnlyPrimitiveDrawing();
+    }
+
+    @Override
+    public void setInitialScale(final ScaleProperties scaleProperties) {
+
+    }
+
 }

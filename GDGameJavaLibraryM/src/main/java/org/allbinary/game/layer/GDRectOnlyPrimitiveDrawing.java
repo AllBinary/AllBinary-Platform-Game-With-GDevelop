@@ -57,12 +57,14 @@ public class GDRectOnlyPrimitiveDrawing extends Animation {
         //logUtil.put("addFillRectangle: " + this.animationListArray[this.circularIndexUtil.getIndex()].size(), this, commonStrings.PROCESS);
     }
 
+    @Override
     public void paint(final Graphics graphics, final int x, final int y)
     {
         colorAnimation.paint(graphics, x, y);
         rectangleFilledAnimation.paint(graphics, x, y);
     }
 
+    @Override
     public void paintThreed(final Graphics graphics, final int x, final int y, final int z)
     {
     }

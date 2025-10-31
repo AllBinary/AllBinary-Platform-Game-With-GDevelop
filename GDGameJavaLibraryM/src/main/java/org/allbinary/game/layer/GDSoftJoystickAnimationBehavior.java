@@ -35,6 +35,7 @@ public class GDSoftJoystickAnimationBehavior extends GDAnimationBehaviorBase {
     private int initialX;
     private int initialY;
     
+    @Override
     public IndexedAnimation[] init(final GDObject gdObject, final AnimationInterfaceFactoryInterface[] animationInterfaceFactoryInterfaceArray) {
 
         final IndexedAnimation[] indexedAnimationArray = super.init(gdObject, animationInterfaceFactoryInterfaceArray);
@@ -47,6 +48,7 @@ public class GDSoftJoystickAnimationBehavior extends GDAnimationBehaviorBase {
 
     }
 
+    @Override
     public void set(final GDGameLayer gameLayer, final GDObject gdObject) throws Exception {
         
         final SimultaneousCompoundIndexedAnimation simultaneousCompoundIndexedAnimation = (SimultaneousCompoundIndexedAnimation) gameLayer.getIndexedAnimationInterfaceArray()[0];

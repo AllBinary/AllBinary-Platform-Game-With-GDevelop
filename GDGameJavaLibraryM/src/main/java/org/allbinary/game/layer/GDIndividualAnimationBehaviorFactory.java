@@ -28,6 +28,7 @@ public class GDIndividualAnimationBehaviorFactory extends GDAnimationBehaviorBas
         return instance;
     }
 
+    @Override
     public GDAnimationBehaviorBase create() {
         return new GDIndividualAnimationBehavior();
     }

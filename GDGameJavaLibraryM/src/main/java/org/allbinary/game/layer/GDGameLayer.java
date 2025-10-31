@@ -101,6 +101,8 @@ public class GDGameLayer
 
     protected ScalableBaseProcessor scalableProcessor = ScalableBaseProcessor.getInstance();
     protected Processor moveProcessor = new Processor() {
+        
+        @Override
         public void process(final long timeDelta) throws Exception {
             move();
         }
@@ -279,6 +281,7 @@ public class GDGameLayer
 //        }
 //    }
 
+    @Override
     public void set(final GL gl) throws Exception
     {
         final int size = this.initIndexedAnimationInterfaceArray.length;
@@ -328,18 +331,21 @@ public class GDGameLayer
         return combatBaseBehavior;
     }
 
+    @Override
     public void damage(final int damage, final int damageType)
     throws Exception
     {
         this.combatBaseBehavior.getDamageableBaseBehavior().damage(damage, damageType);
     }
-
+    
+    @Override
     public int getDamage(final int damageType)
     throws Exception
     {
         return this.combatBaseBehavior.getDamageableBaseBehavior().getDamage(damageType);
     }
 
+    @Override
     public boolean isDestroyed() 
     throws Exception
     {
@@ -358,6 +364,7 @@ public class GDGameLayer
 //    private final String PLAYER = "player";
 //    private final String MOVE = "move";
     
+    @Override
     public void move()
     {
         //final int dx = velocityInterface.getVelocityXBasicDecimalP().getScaled();
@@ -406,6 +413,7 @@ public class GDGameLayer
         return (int) (this.velocityInterface.getVelocityYBasicDecimalP().getScaled() / this.SCALE_FACTOR);
     }
     
+    @Override
     public void setPosition(final int x, final int y, final int z)
     {
         super.setPosition(x, y, z);
@@ -584,6 +592,7 @@ public class GDGameLayer
 
     //private boolean isFirst = true;
     //private final String PAINT = "paint";
+    @Override
     public void paint(final Graphics graphics)
     {
         try
@@ -625,6 +634,7 @@ public class GDGameLayer
         
     }
 
+    @Override
     public void paintThreed(final Graphics graphics)
     {
         try
@@ -765,6 +775,7 @@ public class GDGameLayer
 //            graphics.drawLine(this.x + this.getHalfWidth(), this.y + this.getHalfHeight(), this.x + this.getHalfWidth() + x2, this.y + this.getHalfHeight() + y2);
     }
 
+    @Override
     public void paintDebug(final Graphics graphics) {
         
         //graphics.drawString(this.getName(), x, y, 0);

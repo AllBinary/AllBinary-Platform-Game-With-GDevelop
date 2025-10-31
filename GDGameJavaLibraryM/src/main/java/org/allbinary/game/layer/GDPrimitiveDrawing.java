@@ -106,6 +106,7 @@ public class GDPrimitiveDrawing extends Animation {
 
 //    private int lastSize;
 
+    @Override
     public void paint(final Graphics graphics, final int x, final int y)
     {
         final BasicArrayList animationList = this.animationList;
@@ -121,12 +122,15 @@ public class GDPrimitiveDrawing extends Animation {
         }
     }
 
+    @Override
     public void paintThreed(final Graphics graphics, final int x, final int y, final int z)
     {
         final BasicArrayList animationList = this.animationList;
         final int size = animationList.size();
+        Animation animation;
         for (int index = 0; index < size; index++) {
-            ((Animation) animationList.get(index)).paintThreed(graphics, x, y, z);
+            animation = (Animation) animationList.get(index);
+            animation.paintThreed(graphics, x, y, z);
         }
     }
         

@@ -36,16 +36,19 @@ public class GDNodeStatsFactory extends BaseGDNodeStats {
     private final CallCountGDNodeStats callCountGDNodeStats = new CallCountGDNodeStats();
     private final CallStackGDNodeStats callStackGDNodeStats = new CallStackGDNodeStats();
     
+    @Override
     public void reset() {
         this.callCountGDNodeStats.reset();
         this.callStackGDNodeStats.reset();
     }
 
+    @Override
     public void push(int index, int name) {
         this.callCountGDNodeStats.push(index, name);
         this.callStackGDNodeStats.push(index, name);
     }
 
+    @Override
     public void log(final StringMaker stringBuilder, final Object object) {
         this.callCountGDNodeStats.log(stringBuilder);
         this.callStackGDNodeStats.log(stringBuilder, object);

@@ -86,11 +86,13 @@ public class GDWaypointBehavior
         this.longWeaponRange = weaponRange / 2;
     }
 
+    @Override
     public void onEvent(final AllBinaryEventObject eventObject)
     {
         ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, this);
     }
     
+    @Override
     public void onWaypointEvent(final RTSLayerEvent event) throws Exception
     {
         final PathFindingLayerInterface advancedRTSGameLayer =
@@ -138,6 +140,7 @@ public class GDWaypointBehavior
         }
     }
 
+    @Override
     public boolean isWaypointListEmptyOrOnlyTargets()
     {
         return false;
@@ -276,6 +279,7 @@ public class GDWaypointBehavior
 
     private final TimeDelayHelper repeatedToLong = new TimeDelayHelper(22000);
     
+    @Override
     public boolean needToMove()
     {
         this.associatedAdvancedRTSGameLayer.getWaypointLogHelper().needToMove(this.associatedAdvancedRTSGameLayer, this);
@@ -298,7 +302,8 @@ public class GDWaypointBehavior
         
         return false;
     }
-        
+    
+    @Override
     public String getMovementLogicAsString() {
 
         final StringMaker stringBuffer = new StringMaker();
@@ -333,11 +338,13 @@ public class GDWaypointBehavior
         this.movingFromStopped = movingFromStopped;
     }
 
+    @Override
     public void setWaypointPathsList(BasicArrayList waypointPathsList)
     {
         this.waypointPathsList = waypointPathsList;
     }
 
+    @Override
     public BasicArrayList getWaypointPathsList()
     {
         return waypointPathsList;
@@ -362,6 +369,7 @@ public class GDWaypointBehavior
     /**
      * @return the trackingWaypoint
      */
+    @Override
     public boolean isTrackingWaypoint()
     {
         return trackingWaypoint;
@@ -389,6 +397,7 @@ public class GDWaypointBehavior
         this.currentPathGeographicMapCellPosition = currentPathGeographicMapCellPosition;
     }
 
+    @Override
     public GeographicMapCellPosition getCurrentPathGeographicMapCellPosition()
     {
         return currentPathGeographicMapCellPosition;
@@ -423,6 +432,7 @@ public class GDWaypointBehavior
         }
     }
 
+    @Override
     public CollidableDestroyableDamageableLayer getCurrentTargetLayerInterface()
     {
         return currentTargetLayerInterface;
@@ -443,6 +453,7 @@ public class GDWaypointBehavior
         return completeTimeDelayHelper;
     }
 
+    @Override
     public GeographicMapCellHistory getCurrentGeographicMapCellHistory()
     {
         return currentGeographicMapCellHistory;

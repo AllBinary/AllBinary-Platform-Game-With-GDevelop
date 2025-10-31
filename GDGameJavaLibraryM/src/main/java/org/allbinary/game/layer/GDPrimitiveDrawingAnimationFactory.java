@@ -22,22 +22,23 @@ import org.allbinary.media.ScaleProperties;
  *
  * @author User
  */
-public class GDPrimitiveDrawingAnimationFactory  implements 
+public class GDPrimitiveDrawingAnimationFactory implements
     AnimationInterfaceFactoryInterface, ProceduralAnimationInterfaceFactoryInterface {
-    
-   public Animation getInstance(final int instanceId) throws Exception
-   {
-       return new GDPrimitiveDrawing();
-   }
-   
-   public Animation getInstance(Animation animationInterface)
-       throws Exception
-   {
-       return new GDPrimitiveDrawing();
-   }
-   
-   public void setInitialScale(final ScaleProperties scaleProperties) {
-       
-   }
-    
+
+    @Override
+    public Animation getInstance(final int instanceId) throws Exception {
+        return new GDPrimitiveDrawing();
+    }
+
+    @Override
+    public Animation getInstance(Animation animationInterface)
+        throws Exception {
+        return new GDPrimitiveDrawing();
+    }
+
+    @Override
+    public void setInitialScale(final ScaleProperties scaleProperties) {
+
+    }
+
 }

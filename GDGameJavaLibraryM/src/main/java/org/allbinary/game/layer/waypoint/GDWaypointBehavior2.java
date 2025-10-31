@@ -93,9 +93,10 @@ extends GDWaypointBehavior
         this.waypointPathRunnable = 
             //isHTML ? new MultipassWaypointPathRunnable() : 
             new WaypointPathRunnable();
-        
+
     }
-    
+
+    @Override    
     protected void initRange(int weaponRange)
     {
         super.initRange(weaponRange);
@@ -108,6 +109,7 @@ extends GDWaypointBehavior
         this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().initRange(this.associatedAdvancedRTSGameLayer,  this.closeRange, this.sensorRange);
     }
     
+    @Override
     public boolean isRunning() {
         if (this.waypointPathRunnable.isRunning()) {
             return true;
@@ -118,6 +120,7 @@ extends GDWaypointBehavior
     
     //this could become somewhat event driven with a seperate waypoint processor
     //making it more performant and less polling like
+    @Override
     public void processTick(final AllBinaryLayerManager allBinaryLayerManager)
     throws Exception
     {
@@ -302,6 +305,8 @@ extends GDWaypointBehavior
     }
 
     //private static final String UPDATE_PATH_ON_TARGET_MOVE = "updatePathOnTargetMove";
+
+    @Override
     public void updatePathOnTargetMove(final String reason) throws Exception {
         
         final CollidableDestroyableDamageableLayer currentTargetLayerInterface = this.currentTargetLayerInterface;
@@ -327,7 +332,8 @@ extends GDWaypointBehavior
         }
         
     }
-    
+
+    @Override    
     public void setTarget(final PathFindingLayerInterface layerInterface)
         throws Exception
     {
@@ -337,6 +343,7 @@ extends GDWaypointBehavior
         this.setTarget(layerInterface, anotherTargetDistance);
     }
     
+    @Override
     public void setTarget(final PathFindingLayerInterface layerInterface, final int anotherTargetDistance)
         throws Exception
     {
@@ -418,7 +425,8 @@ extends GDWaypointBehavior
         }
 
     }
-     
+
+    @Override
     protected void setGeographicMapCellHistoryPath(
             final BasicArrayList geographicMapCellPositionBasicArrayList)
             throws Exception
@@ -853,7 +861,8 @@ extends GDWaypointBehavior
             this.clearTarget();
         }
     }
-    
+
+    @Override    
     public void clearTarget() throws Exception
     {
         this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().clearTarget(this.associatedAdvancedRTSGameLayer);
@@ -873,6 +882,7 @@ extends GDWaypointBehavior
 
     //Returns true if no waypoints or only targets in list
     //Only public for logging
+    @Override
     public boolean isWaypointListEmptyOrOnlyTargets()
     {
         final BasicArrayList list = this.targetList;
@@ -902,6 +912,7 @@ extends GDWaypointBehavior
         return targetDistance < this.closeRange + layerInterface.getHalfHeight();
     }
 
+    @Override
     public boolean isInSensorRange(final CollidableDestroyableDamageableLayer layerInterface, final int targetDistance)
     {
         return targetDistance < this.sensorRange + layerInterface.getHalfHeight();
@@ -910,6 +921,7 @@ extends GDWaypointBehavior
     private static final String TARGET_DISTANCE = "Target Distance";
     private static final String TARGET_LAYER = "Target Layer";
 
+    @Override
     public String getCurrentTargetingStateString()
     {
         final StringMaker stringBuffer = new StringMaker();
@@ -931,6 +943,7 @@ extends GDWaypointBehavior
         return stringBuffer.toString();
     }
     
+    @Override
     protected void addWaypointFromUser(final PathFindingLayerInterface advancedRTSGameLayer)
     throws Exception
     {
@@ -953,6 +966,7 @@ extends GDWaypointBehavior
     {
         private final BasicArrayList positionList = new BasicArrayList();
         
+        @Override
         public Object visit(Object object)
         {
             try
@@ -994,6 +1008,7 @@ extends GDWaypointBehavior
     private final BuildingSteeringVisitor buildingSteeringVisitor = 
         new BuildingSteeringVisitor();
 
+    @Override
     public void addBuildingChase(
             final AllBinaryLayer allbinaryLayer, final GeographicMapCellPosition cellPosition)
     throws Exception
@@ -1019,6 +1034,7 @@ extends GDWaypointBehavior
         return this.associatedAdvancedRTSGameLayer.buildingChase(allbinaryLayer, cellPosition);
     }
 
+    @Override
     public GeographicMapCellPosition getNextUnvisitedPathGeographicMapCellPosition() {
         return nextUnvisitedPathGeographicMapCellPosition;
     }

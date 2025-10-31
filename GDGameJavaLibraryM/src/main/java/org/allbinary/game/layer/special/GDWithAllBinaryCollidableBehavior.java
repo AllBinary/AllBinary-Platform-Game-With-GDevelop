@@ -43,6 +43,7 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
     private final String IS_COLLISION = "isCollision";
 
     // TODO TWB Special Super Efficient Collision Processing
+    @Override
     public boolean isCollision(final CollidableCompositeLayer collisionLayer)
     {
         //final StringMaker stringBuilder = new StringMaker();
@@ -79,6 +80,7 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
     
     // TODO TWB Special Super Efficient Collision Processing
     //public void collide(CollidableDestroyableDamageableTeamLayer collisionLayer)
+    @Override
     public void collide(final CollidableCompositeLayer collisionLayer)
             throws Exception
     {
@@ -128,12 +130,14 @@ public class GDWithAllBinaryCollidableBehavior extends CollidableBaseBehavior
                 //((CollidableDestroyableDamageableLayer) collidableInterfaceCompositeInterface).getDamage(0), 0);
     }
 
+    @Override
     public boolean isCollision(final CollidableInterfaceCompositeInterface collidableInterfaceCompositeInterface)
     {
         ForcedLogUtil.log("No Longer Used", this);
         return false;
     }
     
+    @Override
     public void collide(final CollidableInterfaceCompositeInterface collidableInterfaceCompositeInterface)
             throws Exception
     {

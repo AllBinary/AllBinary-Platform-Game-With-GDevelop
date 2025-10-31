@@ -33,6 +33,7 @@ public class ResetRotationAnimationBehavior extends ResetAnimationBehavior {
     
     private final FrameUtil frameUtil = FrameUtil.getInstance();
 
+    @Override
     public void resetAnimation(final IndexedAnimation[] indexedAnimationInterfaceArray, final int animationIndex) {
         indexedAnimationInterfaceArray[animationIndex].setFrame(frameUtil.getFrameForAngle((short) 90, 1));
     }

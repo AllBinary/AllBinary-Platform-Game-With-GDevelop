@@ -18,15 +18,14 @@ package org.allbinary.game.map;
 
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.TiledLayer;
-import org.allbinary.game.configuration.feature.Features;
 
+import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.layer.AllBinaryJ2METiledLayer;
 import org.allbinary.game.layer.AllBinaryTiledLayer;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.string.CommonStrings;
-
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
@@ -175,6 +174,7 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
         }
     }
 
+    @Override
     public void reset() {
         final AllBinaryTiledLayer allBinaryTiledLayer = this.getAllBinaryTiledLayer();
         final int lastHeight = GameTickDisplayInfoSingleton.getInstance().getLastHeight();

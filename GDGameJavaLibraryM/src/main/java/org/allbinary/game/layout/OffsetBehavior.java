@@ -28,10 +28,12 @@ public class OffsetBehavior extends BaseOffsetBehavior {
     
     private static final OffsetBehavior instance = new OffsetBehavior();
     
+    @Override
     public int PointX(final int value) {
         return value;
     }
 
+    @Override
     public int PointY(final int value) {
         return value;
     }

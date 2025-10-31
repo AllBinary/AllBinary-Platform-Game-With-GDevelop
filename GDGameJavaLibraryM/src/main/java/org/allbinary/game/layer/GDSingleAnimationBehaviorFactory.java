@@ -28,6 +28,7 @@ public class GDSingleAnimationBehaviorFactory extends GDAnimationBehaviorBaseFac
         return instance;
     }
 
+    @Override
     public GDAnimationBehaviorBase create() {
         return new GDSingleAnimationBehavior();
     }

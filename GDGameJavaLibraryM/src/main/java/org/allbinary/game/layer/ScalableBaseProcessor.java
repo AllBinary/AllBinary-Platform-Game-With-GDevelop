@@ -14,7 +14,6 @@
 package org.allbinary.game.layer;
 
 import org.allbinary.animation.IndexedAnimation;
-import org.allbinary.game.layout.GDObject;
 
 /**
  *

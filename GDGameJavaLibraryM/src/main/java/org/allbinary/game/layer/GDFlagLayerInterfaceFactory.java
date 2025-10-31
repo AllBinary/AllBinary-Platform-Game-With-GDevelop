@@ -44,6 +44,8 @@ public class GDFlagLayerInterfaceFactory
     }
 
     private static final String NAME = "GDFlagLayerInterfaceFactory";
+    
+    @Override
     public AllBinaryLayer getInstance(final Hashtable hashtable, final int x, final int y, final int z)
         throws Exception
     {

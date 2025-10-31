@@ -28,6 +28,7 @@ public class GDSoftJoystickAnimationBehaviorBaseFactory extends GDAnimationBehav
         return instance;
     }
 
+    @Override
     public GDAnimationBehaviorBase create() {
         return new GDSoftJoystickAnimationBehavior();
     }

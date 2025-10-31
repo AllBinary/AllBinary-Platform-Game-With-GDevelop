@@ -14,13 +14,12 @@
 package org.allbinary.game.layout;
 
 import javax.microedition.lcdui.Graphics;
-import org.allbinary.AndroidUtil;
 
+import org.allbinary.AndroidUtil;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layer.behavior.GDBehavior;
 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
-import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.GraphicsStrings;
 import org.allbinary.graphics.color.BasicColor;
