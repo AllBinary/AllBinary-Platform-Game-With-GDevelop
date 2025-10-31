@@ -255,7 +255,7 @@ extends AllBinaryGameSceneController
                 layerManager.append(cameraLayer);
             }
             
-            //Test grid for JOGL to help with camera
+            //Test grid for OpenGL to help with camera setting
 //            layerManager.append(new AllBinaryGameLayer(RectangleFactory.SINGLETON, ViewPosition.NULL_VIEW_POSITION) {
 //
 //                private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
