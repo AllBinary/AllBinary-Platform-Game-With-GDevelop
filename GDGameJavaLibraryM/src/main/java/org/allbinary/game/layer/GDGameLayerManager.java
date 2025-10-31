@@ -16,7 +16,6 @@ package org.allbinary.game.layer;
 import org.allbinary.game.GameInfo;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.layer.AllBinaryLayer;
-
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
@@ -29,8 +28,8 @@ public class GDGameLayerManager extends AllBinaryGameLayerManager
 {
     protected final LogUtil logUtil = LogUtil.getInstance();
 
-    private BasicGeographicMap[] geographicMapInterfaceArray;
-    private GeographicMapCellType[] geographicMapCellTypeArray;
+    private BasicGeographicMap[] geographicMapInterfaceArray = BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY;
+    private GeographicMapCellType[] geographicMapCellTypeArray = GeographicMapCellType.NULL_GEOGRAPHIC_MAP_CELL_TYPE_ARRAY;
    //private PlayerLayer playerLayer;
    
    public static int MAX_LEVEL = 7; //Integer.MAX_VALUE;
