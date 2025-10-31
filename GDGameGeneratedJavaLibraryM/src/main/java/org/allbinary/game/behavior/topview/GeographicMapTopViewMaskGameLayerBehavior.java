@@ -21,13 +21,12 @@ import org.allbinary.game.physics.velocity.VelocityProperties;
 import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.Rectangle;
 import org.allbinary.layer.AllBinaryLayer;
-import org.allbinary.string.CommonSeps;
-import org.allbinary.logic.string.StringMaker;
 
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellType;
+import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositionFactory;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.view.ViewPosition;
 
@@ -72,7 +71,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
             final GeographicMapCellType[] geographicMapCellTypeArray, 
             final GeographicMapCellPosition geographicMapCellPosition)
             throws Exception {
-        if (geographicMapCellPosition != null) {
+        if (geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
             geographicMapBehavior.getCellTypeAt(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition);
             final boolean hasSolidBlock = this.hasSolidBlock(geographicMapInterfaceArray, geographicMapCellTypeArray);
 
@@ -269,13 +268,13 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
 
         //logUtil.put(new StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand");
         
-        if (geographicMapCellPosition != null) {
+        if (geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
 
             ((TopViewCharacterInterface) layer).terrainMove(geographicMapInterfaceArray, geographicMapCellTypeArray, x, y);
 
             //final String MOVE_AND_LAND = "moveAndLand";
             //logUtil.put(new StringMaker().append("Should Land at: ").append(this.gravityActionIndex).append(" y: ").append(y).toString(), this, MOVE_AND_LAND);
-//            if (this.gravityActionIndex != 0 && y > 0 && geographicMapCellPosition != null) {
+//            if (this.gravityActionIndex != 0 && y > 0 && geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
 //
 //                final GeographicMapCellType cellType = geographicMapBehavior.getCellTypeAt(geographicMapInterfaceArray, geographicMapCellPosition);
 //
@@ -322,7 +321,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
 
         final GeographicMapCellPosition geographicMapCellPosition = this.getLeftPosition(geographicMapInterfaceArray, layer);
 
-        if (geographicMapCellPosition != null) {
+        if (geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
 
             final GeographicMapCellPosition possibleStepGeographicMapCellPosition
                     = geographicMapInterfaceArray[0].getGeographicMapCellPositionFactory().getInstance(
@@ -350,7 +349,7 @@ public class GeographicMapTopViewMaskGameLayerBehavior extends GeographicMapTopV
 
         final GeographicMapCellPosition geographicMapCellPosition = this.getRightPosition(geographicMapInterfaceArray, layer);
 
-        if (geographicMapCellPosition != null) {
+        if (geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
 
             final GeographicMapCellPosition possibleStepGeographicMapCellPosition
                     = geographicMapInterfaceArray[0].getGeographicMapCellPositionFactory().getInstance(

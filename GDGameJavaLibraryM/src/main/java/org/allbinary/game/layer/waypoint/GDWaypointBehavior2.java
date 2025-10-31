@@ -3,7 +3,6 @@ package org.allbinary.game.layer.waypoint;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
 import org.allbinary.game.layer.AllBinaryTiledLayer;
-import org.allbinary.game.layer.MultipassWaypointPathRunnable;
 import org.allbinary.game.layer.PathFindingLayerInterface;
 import org.allbinary.game.layer.SteeringVisitor;
 import org.allbinary.game.layer.WaypointPathRunnable;
@@ -23,6 +22,7 @@ import org.allbinary.math.LayerDistanceUtil;
 import org.allbinary.media.graphics.geography.map.BasicGeographicMap;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
 import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
+import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositionFactory;
 import org.allbinary.thread.PathFindingThreadPool;
 import org.allbinary.thread.ThreadPool;
 import org.allbinary.time.TimeDelayHelper;
@@ -44,7 +44,7 @@ extends GDWaypointBehavior
     
     private final TimeDelayHelper progressTimeDelayHelper;
     
-    protected GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition;
+    protected GeographicMapCellPosition nextUnvisitedPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
     private GeographicMapCellPosition afterNextUnvisitedPathGeographicMapCellPosition;
     
     private final BasicArrayList wanderPathsList;
@@ -54,7 +54,7 @@ extends GDWaypointBehavior
     private boolean waitingOnTargetPath;
     private boolean waitingOnWaypointPath;
     
-    private CollidableDestroyableDamageableLayer targetWithoutCachedPathLayerInterface;
+    private CollidableDestroyableDamageableLayer targetWithoutCachedPathLayerInterface = CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER;
 
     private static final String WANDERING = "Order?"; //"Lalala" //"What Now? //"Wander";
     private static final String THINKING = "Thinking";
@@ -125,7 +125,7 @@ extends GDWaypointBehavior
             return;
         }
 
-        if(this.currentTargetLayerInterface != null && this.getCurrentGeographicMapCellHistory().getTotalVisited() > this.getCurrentGeographicMapCellHistory().getTotalNotVisited()) {
+        if(this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER && this.getCurrentGeographicMapCellHistory().getTotalVisited() > this.getCurrentGeographicMapCellHistory().getTotalNotVisited()) {
             this.updatePathOnTargetMove(VISITED_MOST_OF_THE_PATH);
         }
         
@@ -208,7 +208,7 @@ extends GDWaypointBehavior
                 (CollidableDestroyableDamageableLayer) layerInterface);
 
         // String destroyedTarget = NULL;
-        // if (this.currentTargetLayerInterface != null)
+        // if (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER)
         // {
         // destroyedTarget =
         // Boolean.toString(this.currentTargetLayerInterface.isDestroyed());
@@ -238,7 +238,7 @@ extends GDWaypointBehavior
             this.getCurrentTargetDistance() > anotherTargetDistance;
             
         boolean isCurrentTargetDestroyed = 
-            this.currentTargetLayerInterface != null && this.currentTargetLayerInterface.isDestroyed();
+            this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER && this.currentTargetLayerInterface.isDestroyed();
 
         this.associatedAdvancedRTSGameLayer.getWaypoint2LogHelper().processPossibleTarget(this.associatedAdvancedRTSGameLayer, this, layerInterface, anotherTargetDistance, isShorterThanCurrentTargetDistance, isCurrentTargetDestroyed);
 
@@ -283,7 +283,7 @@ extends GDWaypointBehavior
         {
             //If not progressing move to next position
             if (this.progressTimeDelayHelper.isTime() && 
-                    this.nextUnvisitedPathGeographicMapCellPosition != null)
+                    this.nextUnvisitedPathGeographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION)
             {
                 this.associatedAdvancedRTSGameLayer.teleportTo(
                         this.nextUnvisitedPathGeographicMapCellPosition);
@@ -305,7 +305,7 @@ extends GDWaypointBehavior
     public void updatePathOnTargetMove(final String reason) throws Exception {
         
         final CollidableDestroyableDamageableLayer currentTargetLayerInterface = this.currentTargetLayerInterface;
-        if (currentTargetLayerInterface != null) {
+        if (currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER) {
             final GeographicMapCellPosition geographicMapCellPosition = ((PathFindingLayerInterface) currentTargetLayerInterface).getCurrentGeographicMapCellPosition();
 
             if (geographicMapCellPosition == null) {
@@ -393,7 +393,7 @@ extends GDWaypointBehavior
     private void setTargetPath()
         throws Exception
     {
-        if(this.currentTargetLayerInterface != null)
+        if(this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER)
         {
             if(this.currentTargetLayerInterface.isDestroyed())
             {
@@ -474,7 +474,7 @@ extends GDWaypointBehavior
                     }
 
                     if (this.currentGeographicMapCellHistory.isAllVisited2() &&
-                        this.currentTargetLayerInterface != null)
+                        this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER)
                     {
                         final PathFindingLayerInterface oldWaypointLayer = (PathFindingLayerInterface)
                             this.currentTargetLayerInterface;
@@ -563,7 +563,7 @@ extends GDWaypointBehavior
 
         final CollidableDestroyableDamageableLayer unitLayer = (CollidableDestroyableDamageableLayer) this.associatedAdvancedRTSGameLayer;
         
-        if(geographicMapCellPosition != null && this.nextUnvisitedPathGeographicMapCellPosition == geographicMapCellPosition) {
+        if(geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION && this.nextUnvisitedPathGeographicMapCellPosition == geographicMapCellPosition) {
             final GPoint point = geographicMapCellPosition.getMidPoint();
             final GPoint afterNextPoint = this.afterNextUnvisitedPathGeographicMapCellPosition.getMidPoint();
 
@@ -669,7 +669,7 @@ extends GDWaypointBehavior
         }
 
         //TWB - I don't think this is called currently
-        if (this.targetWithoutCachedPathLayerInterface != null)
+        if (this.targetWithoutCachedPathLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER)
         {
             this.waitingOnTargetPath = true;
 
@@ -689,7 +689,7 @@ extends GDWaypointBehavior
     private void processTargeting() throws Exception
     {
         
-        if (this.currentTargetLayerInterface != null &&
+        if (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER &&
             (this.isInSensorRange(this.currentTargetLayerInterface, this.getCurrentTargetDistance()) ||
             this.isTrackingWaypoint() || targetWithoutSensors))
         {
@@ -914,7 +914,7 @@ extends GDWaypointBehavior
     {
         final StringMaker stringBuffer = new StringMaker();
 
-        if (this.currentTargetLayerInterface != null)
+        if (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER)
         {
             stringBuffer.append(TARGET_LAYER);
             stringBuffer.append(CommonSeps.getInstance().SPACE);

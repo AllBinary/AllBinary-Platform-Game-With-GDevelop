@@ -263,7 +263,7 @@ Created By: Travis Berthelot
                         angleIncrement,
                         AnimationBehaviorFactory.getInstance()
                         //new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
-                        //<xsl:if test="not($platform = 'Array' or $platform = 'HTML')" >, true</xsl:if>
+                        <xsl:if test="not($platform = 'Array' or $platform = 'HTML')" >, true</xsl:if>
                         )
                         <xsl:if test="contains($lazy, 'true')" >
                     )

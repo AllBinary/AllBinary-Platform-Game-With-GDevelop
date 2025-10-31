@@ -24,6 +24,7 @@ public class GDRGameInputProcessor extends GameInputProcessor {
     
     public GameInputProcessor releasedGameInputProcessor = GameInputProcessor.getInstance();
     
+    @Override
     public void processReleased(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) 
     throws Exception
     {

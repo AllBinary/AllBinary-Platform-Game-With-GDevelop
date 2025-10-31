@@ -20,6 +20,7 @@ import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layer.behavior.GDBehavior;
 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
+import org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer;
 import org.allbinary.graphics.GPoint;
 import org.allbinary.graphics.GraphicsStrings;
 import org.allbinary.graphics.color.BasicColor;
@@ -27,6 +28,7 @@ import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.string.StringMaker;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.math.NoDecimalTrigTable;
 import org.allbinary.math.PositionStrings;
 import org.allbinary.string.CommonLabels;
@@ -134,7 +136,7 @@ public class GDObject
     }
 
     public String getAnimationFromIndex(final int index) {
-        return null;
+        return StringUtil.getInstance().EMPTY_STRING;
     }
 
     public String getAnimation(final String animationName) {
@@ -291,13 +293,13 @@ public class GDObject
         //this.setAngle(adjustedAngle);
         this.angle = adjustedAngle;
 
-        if (gameLayer != null) {
+//        if (gameLayer != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER) {
             gameLayer.setRotation(adjustedAngle);
-        } else {
-            final GraphicsStrings graphicsStrings = GraphicsStrings.getInstance();
-            final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
-            logUtil.put(objectStrings.GD_GAME_LAYER_WAS_NULL, this, graphicsStrings.ANGLE);
-        }
+//        } else {
+//            final GraphicsStrings graphicsStrings = GraphicsStrings.getInstance();
+//            final GDObjectStrings objectStrings = GDObjectStrings.getInstance();
+//            logUtil.put(objectStrings.GD_GAME_LAYER_WAS_NULL, this, graphicsStrings.ANGLE);
+//        }
     }
          
     public short Angle(final GDGameLayer gameLayer) {

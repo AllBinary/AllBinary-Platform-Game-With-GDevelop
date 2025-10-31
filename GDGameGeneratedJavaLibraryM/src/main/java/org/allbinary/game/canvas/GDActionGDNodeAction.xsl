@@ -1557,6 +1557,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 
                 <xsl:if test="$typeValue = 'ScalableCapability::ScalableBehavior::SetValue'" >
+                    //TWB - does this work?
                     <xsl:call-template name="scalableBehaviorSetValueActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
@@ -1570,6 +1571,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ScalableCapability::ScalableBehavior::SetX'" >
+                    //TWB - does this work?
                     <xsl:call-template name="scalableBehaviorSetXActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
@@ -1583,6 +1585,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                 </xsl:if>
                 <xsl:if test="$typeValue = 'ScalableCapability::ScalableBehavior::SetY'" >
+                    //TWB - does this work?
                     <xsl:call-template name="scalableBehaviorSetYActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />

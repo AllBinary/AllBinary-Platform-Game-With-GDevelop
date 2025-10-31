@@ -14,8 +14,6 @@
 package org.allbinary.game.combat.destroy;
 
 import org.allbinary.game.layer.CollidableCompositeLayer;
-import org.allbinary.string.CommonStrings;
-
 import org.allbinary.logic.communication.log.LogUtil;
 
 /**
@@ -30,7 +28,8 @@ public class GDDestroyableSimpleBehavior extends DestroyableSimpleBehavior {
     {
         super(ownerLayer);
     }
-    
+
+    @Override    
     public void setDestroyed(boolean destroyed)
     {
         //logUtil.put("Adding: " + this.ownerLayer.getName(), this, commonStrings.ADD);

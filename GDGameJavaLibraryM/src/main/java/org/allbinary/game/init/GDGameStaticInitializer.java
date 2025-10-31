@@ -13,7 +13,6 @@
 */
 package org.allbinary.game.init;
 
-import org.allbinary.game.init.CommonGameInitialization;
 import org.allbinary.game.resource.ResourceInitialization;
 
 public class GDGameStaticInitializer
@@ -25,6 +24,7 @@ extends CommonGameInitialization
         super(resourceInitializationArray, portion);
     }    
 
+    @Override
     public void initGame()
     throws Exception
     {

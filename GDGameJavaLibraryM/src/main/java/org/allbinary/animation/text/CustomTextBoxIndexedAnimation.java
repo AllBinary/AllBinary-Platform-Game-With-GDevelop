@@ -36,12 +36,14 @@ public class CustomTextBoxIndexedAnimation extends IndexedAnimation
         
         this.customTextBox = customTextBox;
     }
-    
+
+    @Override    
     public void paint(Graphics graphics, int x, int y)
     {        
         this.customTextBox.paint(graphics, x, y);
     }
 
+    @Override
     public void paintThreed(Graphics graphics, int x, int y, int z)
     {
 

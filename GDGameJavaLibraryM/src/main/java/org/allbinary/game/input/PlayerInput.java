@@ -15,12 +15,7 @@ package org.allbinary.game.input;
 
 import org.allbinary.game.input.event.DownKeyEventListenerInterface;
 import org.allbinary.game.input.event.UpKeyEventListenerInterface;
-import org.allbinary.string.CommonLabels;
-import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.string.StringMaker;
-
 import org.allbinary.logic.communication.log.LogUtil;
-import org.allbinary.logic.communication.log.PreLogUtil;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -88,12 +83,14 @@ public class PlayerInput extends PlayerGameInput
         return this.removalKeyEventList.contains(keyInteger);
     }
 
+    @Override
     public synchronized void clear() {
         super.clear();
         
         this.keyEventList.clear();
     }
 
+    @Override
     public synchronized void removeNonAIInputGameKeyEvents() {
         super.removeNonAIInputGameKeyEvents();
 
@@ -108,6 +105,7 @@ public class PlayerInput extends PlayerGameInput
         //System.out.println("List Size After: " + list.size());
     }
 
+    @Override
     public synchronized void update() {
         super.update();
 

@@ -126,7 +126,7 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
                     = geographicMapCompositeInterface.getGeographicMapInterface();
             final GeographicMapCellType[] geographicMapCellTypeArray = geographicMapCompositeInterface.geographicMapCellTypeArray();
 
-            if(geographicMapInterfaceArray != null) {
+            if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
 
                 final GDCustomGameLayer customGameLayer = ((GDCustomGameLayer) this.ownerLayer);
                 final GDObject gdObject = collisionMaskCustomGameLayer.gdObject;

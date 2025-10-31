@@ -21,7 +21,6 @@ import org.allbinary.game.input.PlayerInput;
 import org.allbinary.game.input.event.GameKeyEvent;
 import org.allbinary.layer.AllBinaryLayerManager;
 import org.allbinary.string.CommonStrings;
-
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.util.BasicArrayList;
 

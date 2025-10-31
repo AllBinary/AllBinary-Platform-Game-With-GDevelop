@@ -44,16 +44,17 @@ public class SliderAnimationInterfaceFactory
         this.height = height;
     }
 
-    //@Override
+    @Override
     protected Animation[] createArray(final int size) {
         return new IndexedAnimation[size];
     }
     
-    //@Override
+    @Override
     protected Animation getInstance(final Animation[] animationInterfaceArray) {
         return new SliderAnimation((IndexedAnimation[]) animationInterfaceArray, this.scaleProperties.scaleWidth, this.scaleProperties.scaleHeight, this.animationBehaviorFactory.getOrCreateInstance());
     }
  
+    @Override
     public void setInitialScale(final ScaleProperties scaleProperties) {
         this.scaleProperties = scaleProperties;
         //this.scaleProperties.scaleWidth = (int) (this.width * this.scaleProperties.scaleX);

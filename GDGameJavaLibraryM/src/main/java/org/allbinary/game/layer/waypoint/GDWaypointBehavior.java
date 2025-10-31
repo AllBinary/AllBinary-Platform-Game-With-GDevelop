@@ -19,6 +19,7 @@ import org.allbinary.logic.util.event.AllBinaryEventObject;
 import org.allbinary.logic.util.event.EventStrings;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellHistory;
 import org.allbinary.media.graphics.geography.map.GeographicMapCellPosition;
+import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositionFactory;
 import org.allbinary.time.TimeDelayHelper;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.util.BasicArrayListUtil;
@@ -38,7 +39,7 @@ public class GDWaypointBehavior
     protected GeographicMapCellHistory currentGeographicMapCellHistory;
     
     private GeographicMapCellPosition lastPathGeographicMapCellPosition;
-    private GeographicMapCellPosition currentPathGeographicMapCellPosition;
+    private GeographicMapCellPosition currentPathGeographicMapCellPosition = SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION;
 
     private final CollidableDestroyableDamageableLayer FAKE_WAYPOINT_LAYER;
     
@@ -51,7 +52,7 @@ public class GDWaypointBehavior
     private final BasicArrayList possibleTargetList;
     
     private int currentTargetDistance = Integer.MAX_VALUE;
-    protected CollidableDestroyableDamageableLayer currentTargetLayerInterface;
+    protected CollidableDestroyableDamageableLayer currentTargetLayerInterface = CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER;
     protected GeographicMapCellPosition currentTargetGeographicMapCellPosition;
     
     private boolean trackingWaypoint;
@@ -281,7 +282,7 @@ public class GDWaypointBehavior
         
         if(this.isTrackingWaypoint() ||
                 this.sensorAction == SensorActionFactory.getInstance().EVADE ||
-                (this.currentTargetLayerInterface != null &&
+                (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER &&
                 this.getCurrentTargetDistance() >= this.longWeaponRange +
                 this.currentTargetLayerInterface.getHalfHeight()))
         {
@@ -309,7 +310,7 @@ public class GDWaypointBehavior
         stringBuffer.append(" getCurrentTargetLayerInterface: ");
         stringBuffer.append(StringUtil.getInstance().toString(this.currentTargetLayerInterface));
 
-        if (this.currentTargetLayerInterface != null) {
+        if (this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER) {
             stringBuffer.append(" Target Range: ");
             stringBuffer.append(this.getCurrentTargetDistance());
             stringBuffer.append(" >= ");
@@ -414,7 +415,7 @@ public class GDWaypointBehavior
     protected void setCurrentTargetLayerInterface(CollidableDestroyableDamageableLayer currentTargetLayerInterface) throws Exception
     {
         this.currentTargetLayerInterface = currentTargetLayerInterface;
-        if(this.currentTargetLayerInterface != null) {
+        if(this.currentTargetLayerInterface != CollidableDestroyableDamageableLayer.NULL_COLLIDABLE_DESTROYABLE_DAMAGE_LAYER) {
             this.currentTargetGeographicMapCellPosition = ((PathFindingLayerInterface) this.currentTargetLayerInterface).getCurrentGeographicMapCellPosition();
             //logUtil.put(new StringMaker().append(this.associatedAdvancedRTSGameLayer.getName()).append(" - target? ").append(this.currentTargetGeographicMapCellPosition).append(' ').append(this.currentTargetLayerInterface).toString(), this, "updatePathOnTargetMove");            
         } else {

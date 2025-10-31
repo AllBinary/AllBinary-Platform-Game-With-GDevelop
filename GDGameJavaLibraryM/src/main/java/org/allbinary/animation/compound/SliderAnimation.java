@@ -79,7 +79,8 @@ public class SliderAnimation
             return this.height;
         }
     }
-    
+
+    @Override    
     public void setFrame(final int frameIndex)
     {
         for(int index = this.animationInterfaceArray.length; --index >= 0;)
@@ -88,16 +89,19 @@ public class SliderAnimation
         }
     }
 
+    @Override
     public int getFrame()
     {
         return this.animationInterfaceArray[0].getFrame();
     }
 
+    @Override
     public int getSize()
     {
         return this.animationInterfaceArray[0].getSize();
     }
 
+    @Override
     public void previousFrame()
     {
         for(int index = this.animationInterfaceArray.length; --index >= 0;)
@@ -106,15 +110,18 @@ public class SliderAnimation
         }
     }
 
+    @Override
     public void setSequence(final int[] sequence)
     {
     }
 
+    @Override
     public int[] getSequence()
     {
         return PrimitiveIntUtil.getArrayInstance();
     }
 
+    @Override
     public void nextFrame() throws Exception
     {
         for(int index = this.animationInterfaceArray.length; --index >= 0;)
@@ -123,6 +130,7 @@ public class SliderAnimation
         }
     }
 
+    @Override
     public void paint(final Graphics graphics, final int x, final int y)
     {
         int size = this.animationInterfaceArray.length;
@@ -137,6 +145,7 @@ public class SliderAnimation
 //        }
     }
 
+    @Override
     public void paintThreed(final Graphics graphics, final int x, final int y, final int z)
     {
         int size = this.animationInterfaceArray.length;

@@ -377,7 +377,7 @@ Created By: Travis Berthelot
                         return this.ANIMATION_NAMES[index];
                         </xsl:if>
                         <xsl:if test="not(contains($hasAnimationWithName, 'found'))" >
-                        return null;
+                        return StringUtil.getInstance().EMPTY_STRING;
                         </xsl:if>
                     }
 

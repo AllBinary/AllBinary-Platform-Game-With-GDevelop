@@ -92,6 +92,7 @@ Created By: Travis Berthelot
         import org.allbinary.media.graphics.geography.map.GeographicMapCellType;
         import org.allbinary.media.graphics.geography.map.GeographicMapCompositeInterface;
         import org.allbinary.media.graphics.geography.map.GeographicMapEventHandler;
+        import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositionFactory;
         import org.allbinary.util.BasicArrayList;
         import org.allbinary.view.ViewPosition;
 
@@ -364,7 +365,7 @@ Created By: Travis Berthelot
         
         //logUtil.put(new StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand");
         
-        if (geographicMapCellPosition != null) {
+        if (geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
 
             super.moveAndLand(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition, velocityProperties, layer, x, y);
 
@@ -392,7 +393,7 @@ Created By: Travis Berthelot
         
         //logUtil.put(new StringMaker().append("x: ").append(x).append(" y: ").append(y).append(CommonSeps.getInstance().SPACE).append(layer.getViewPosition().getX()).toString(), this, "moveAndLand");
         
-        if (geographicMapCellPosition != null) {
+        if (geographicMapCellPosition != SimpleGeographicMapCellPositionFactory.NULL_GEOGRAPHIC_MAP_CELL_POSITION) {
 
             super.moveAndLand(geographicMapInterfaceArray, geographicMapCellTypeArray, geographicMapCellPosition, velocityProperties, layer, x, y);
 
@@ -558,7 +559,7 @@ Created By: Travis Berthelot
             final BasicGeographicMap[] geographicMapInterfaceArray
                     = geographicMapCompositeInterface.getGeographicMapInterface();
 
-            if(geographicMapInterfaceArray != null) {
+            if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                 if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
 
@@ -626,7 +627,7 @@ Created By: Travis Berthelot
             final BasicGeographicMap[] geographicMapInterfaceArray
                     = geographicMapCompositeInterface.getGeographicMapInterface();
 
-            if(geographicMapInterfaceArray != null) {
+            if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                 if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
 
@@ -817,7 +818,7 @@ Created By: Travis Berthelot
             final BasicGeographicMap[] geographicMapInterfaceArray
                     = geographicMapCompositeInterface.getGeographicMapInterface();
 
-            if(geographicMapInterfaceArray != null) {
+            if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 this.platformGameBehavior.move(geographicMapInterfaceArray, this.velocityInterface, this);
             } else {
                 //logUtil.put("Map was null, this, "move");
@@ -854,7 +855,7 @@ Created By: Travis Berthelot
             final BasicGeographicMap[] geographicMapInterfaceArray
                     = geographicMapCompositeInterface.getGeographicMapInterface();
 
-            if(geographicMapInterfaceArray != null) {
+            if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 this.platformGameBehavior.right(geographicMapInterfaceArray, this.velocityInterface, this);
             }
         } catch (Exception e) {
@@ -905,7 +906,7 @@ Created By: Travis Berthelot
             final BasicGeographicMap[] geographicMapInterfaceArray
                     = geographicMapCompositeInterface.getGeographicMapInterface();
 
-            if(geographicMapInterfaceArray != null) {
+            if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 this.platformGameBehavior.left(geographicMapInterfaceArray, this.velocityInterface, this);
             }
 
@@ -1117,7 +1118,7 @@ Created By: Travis Berthelot
                 = (GeographicMapCompositeInterface) this.allBinaryGameLayerManagerP;
             final BasicGeographicMap[] basicGeographicMapArray = geographicMapCompositeInterface.getGeographicMapInterface();
 
-            if (basicGeographicMapArray != null) {
+            if (basicGeographicMapArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 final BasicGeographicMap geographicMapInterface = basicGeographicMapArray[0];
 
 //            final AllBinaryTiledLayer tiledLayer = geographicMapInterface.getAllBinaryTiledLayer();

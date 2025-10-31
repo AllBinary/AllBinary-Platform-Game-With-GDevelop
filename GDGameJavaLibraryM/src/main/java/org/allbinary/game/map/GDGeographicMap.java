@@ -108,7 +108,7 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
                 for (int index2 = 0; index2 < tileCount; index2++) {
                     tile = tileSet.getTile(index2);
                     animation = tile.getAnimation();
-                    if (animation != null) {
+                    if (animation != Animation.NULL_ANIMATION) {
                         tileList.add(tile);
                     }
                 }

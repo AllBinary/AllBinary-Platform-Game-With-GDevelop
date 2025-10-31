@@ -46,7 +46,8 @@ public class PathFindingBehavior extends GDBehavior {
         //TWB - remove me at some point
         targetGameLayer.setAllBinaryGameLayerManager(sourceGameLayer.allBinaryGameLayerManagerP);
 
-        ((PathFindingLayerInterface) sourceGameLayer).setTarget((PathFindingLayerInterface) targetGameLayer);
+        final PathFindingLayerInterface pathFindingLayerInterface = ((PathFindingLayerInterface) sourceGameLayer);
+        pathFindingLayerInterface.setTarget((PathFindingLayerInterface) targetGameLayer);
         
     }
     

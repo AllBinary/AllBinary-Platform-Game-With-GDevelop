@@ -25,6 +25,7 @@ import org.allbinary.logic.string.StringMaker;
 
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.system.security.licensing.AbeClientInformationInterface;
 
 public class JSONPersistance extends BasicPersitance
@@ -109,6 +110,6 @@ public class JSONPersistance extends BasicPersitance
         if(this.valueList.size() > 0) {
             return (String) valueList.get(0);
         }
-        return null;
+        return StringUtil.getInstance().EMPTY_STRING;
     }
 }

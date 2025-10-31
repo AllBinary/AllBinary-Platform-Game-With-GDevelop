@@ -300,9 +300,19 @@ Created By: Travis Berthelot
                 <xsl:variable name="hasMirrorFillBarBehavior" >
                 <xsl:for-each select="behaviors" ><xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >found</xsl:if></xsl:for-each>
                 </xsl:variable>
-                
+                                
                 //Duplicate logic of the AnimationFactory
                 public Rectangle[] get<xsl:value-of select="name" />RectangleArray(final int scale) {
+                
+                <xsl:if test="$name != 'Player'" >
+                    //non Player
+                    final float hackScale = 2.0f;
+                </xsl:if>
+                <xsl:if test="$name = 'Player'" >
+                    //Player
+                    final float hackScale = 1.0f;
+                </xsl:if>
+                
                     return new Rectangle[] {
                 <xsl:if test="contains(type, 'TileMap::')" >
                     //TWB - temp solution for <xsl:value-of select="type" />
@@ -314,15 +324,16 @@ Created By: Travis Berthelot
                 <xsl:for-each select="animations" >
                     <xsl:variable name="animationName" ><xsl:value-of select="name" /></xsl:variable>
                     <xsl:variable name="name2" >touch:<xsl:value-of select="$name" />,</xsl:variable>
+
                     <xsl:if test="contains($instancesAsString, $name2) or $enlargeTheImageBackgroundForRotation = 'false'" >
                         //TWB - int the future add image dimensions to the game.xml.
                         <xsl:for-each select="directions" >
                             <xsl:for-each select="sprites" >
                     new Rectangle(pointFactory.ZERO_ZERO, 
                                 <xsl:if test="originPoint/x = 0" >0</xsl:if>
-                                <xsl:if test="originPoint/x != 0" ><xsl:value-of select="originPoint/x" /> * 2</xsl:if>, // * scale
+                                <xsl:if test="originPoint/x != 0" >(int) (<xsl:value-of select="originPoint/x" /> * hackScale)</xsl:if>, // * scale
                                 <xsl:if test="originPoint/y = 0" >0</xsl:if>
-                                <xsl:if test="originPoint/y != 0" ><xsl:value-of select="originPoint/y" /> * 2</xsl:if>  * scale
+                                <xsl:if test="originPoint/y != 0" >(int) (<xsl:value-of select="originPoint/y" /> * hackScale)</xsl:if>  * scale
                                 ),
                             </xsl:for-each>
                         </xsl:for-each>
@@ -333,9 +344,9 @@ Created By: Travis Berthelot
                     //new Rectangle(pointFactory.ZERO_ZERO, (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f), (int) (<xsl:value-of select="originPoint/x" /> * 2 * 1.44f)),
                     new Rectangle(pointFactory.ZERO_ZERO, 
                                 <xsl:if test="originPoint/x = 0" >0</xsl:if>
-                                <xsl:if test="originPoint/x != 0" ><xsl:value-of select="originPoint/x" /> * 2</xsl:if>,
+                                <xsl:if test="originPoint/x != 0" >(int) (<xsl:value-of select="originPoint/x" /> * hackScale)</xsl:if>,
                                 <xsl:if test="originPoint/y = 0" >0</xsl:if>
-                                <xsl:if test="originPoint/y != 0" ><xsl:value-of select="originPoint/y" /> * 2</xsl:if>
+                                <xsl:if test="originPoint/y != 0" >(int) (<xsl:value-of select="originPoint/y" /> * hackScale)</xsl:if>
                                ),
                             </xsl:for-each>
                         </xsl:for-each>

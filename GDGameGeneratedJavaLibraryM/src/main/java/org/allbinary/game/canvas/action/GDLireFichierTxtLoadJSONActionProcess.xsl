@@ -41,7 +41,7 @@ Created By: Travis Berthelot
                             
                             final String jsonAsString = jsonPersistance.getJSONAsString();
                             //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + jsonAsString, this, commonStrings.PROCESS);
-                            if(jsonAsString != null) {
+                            if(jsonAsString != StringUtil.getInstance().EMPTY_STRING) {
                             
                                 final JSONTokener jsonTokener = new JSONTokener(jsonAsString);
                                 final JSONObject jsonObject = (JSONObject) jsonTokener.nextValue();

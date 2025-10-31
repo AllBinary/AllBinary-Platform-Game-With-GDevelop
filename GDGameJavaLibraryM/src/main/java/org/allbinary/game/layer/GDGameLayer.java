@@ -41,6 +41,7 @@ import org.allbinary.logic.string.StringMaker;
 
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.math.ScaleFactorFactory;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.math.FrameUtil;
 import org.allbinary.media.ScaleProperties;
 import org.allbinary.util.BasicArrayList;
@@ -195,7 +196,7 @@ public class GDGameLayer
             scaleProperties.scaleY = this.gdObject.initScaleY * this.gdObject.customScale;
             scaleProperties.scaleWidth = this.gdObject.Width(null);
             scaleProperties.scaleHeight = this.gdObject.Height(null);
-            if(animationName != null && animationName.indexOf(HACK_ANIMATION_NAME) >= 0) {
+            if(animationName != StringUtil.getInstance().EMPTY_STRING && animationName.indexOf(HACK_ANIMATION_NAME) >= 0) {
                 scaleProperties.shouldScale = true;
                 //logUtil.put(new StringMaker().append(this.gdObject.toShortString()).append(scaleProperties.toString()).toString(), this, commonStrings.CONSTRUCTOR);
             }
