@@ -233,7 +233,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:variable>
 
-                    <xsl:if test="$animationPosition = 1" >
+                    <xsl:if test="$animationPosition = 1 and contains($hasCustomCollisionMask, 'found')" >
                 final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][360];
                     </xsl:if>
 
@@ -325,7 +325,7 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                     </xsl:variable>
 
-                    <xsl:if test="$animationPosition = 1" >
+                    <xsl:if test="$animationPosition = 1 and contains($hasCustomCollisionMask, 'found')" >
                 final Rectangle[][] rectangleArrayOfArrays = new Rectangle[<xsl:value-of select="$animationTotal" />][360];
                     </xsl:if>
 
