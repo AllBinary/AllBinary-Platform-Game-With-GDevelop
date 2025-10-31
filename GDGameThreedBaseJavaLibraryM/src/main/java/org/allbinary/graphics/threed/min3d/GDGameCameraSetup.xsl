@@ -77,6 +77,8 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
             
             final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
             
+            //camera.frustum.frustrumWidthOffset(NoFrustrumWidthOffset.getInstance());
+            
             <xsl:for-each select="cameras" >
                 <xsl:if test="position() = <GD_CURRENT_INDEX> + 1 and type != 'none'" >
             //x is height, y is distance from game area, z is width            
@@ -164,7 +166,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
                 verticalOffset = 0.07f;
                 nearOffset = 0.35f;
             }
-                        
+                    
             //x is height, y is distance from game area, z is width            
             //if(CameraMotionGestureInputProcessor.getInstance().restore(scene, stringMaker)) {            
 

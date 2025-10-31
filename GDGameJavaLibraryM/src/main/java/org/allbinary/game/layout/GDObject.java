@@ -14,6 +14,7 @@
 package org.allbinary.game.layout;
 
 import javax.microedition.lcdui.Graphics;
+import org.allbinary.AndroidUtil;
 
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.layer.GDGameLayer;
@@ -208,6 +209,9 @@ public class GDObject
         return this.y + this.height;
     }
     
+    private final float offsetX = AndroidUtil.isAndroid() ? 1.00f : 0.75f;
+    private final float offsetY = 1.00f;
+    
     //private final StringMaker stringBuilder = new StringMaker();
     public int PointX(final GPoint point) {
         
@@ -233,7 +237,7 @@ public class GDObject
         //logUtil.put(commonStrings.PROCESS, this, stringBuilder.append(commonStrings.EXCEPTION_LABEL).append('g').append(objectStrings.ANGLE).append(adjustedAngle).append(':').append(this.x).append(':').append(x).append(':').append(halfWidth).toString());
 
         // + this.width
-        return (int) (this.x + (x * 0.75f) + this.offsetBehavior.PointX(this.halfWidth));
+        return (int) (this.x + (x * offsetX) + this.offsetBehavior.PointX(this.halfWidth));
         //return this.x;
     }
 
@@ -249,10 +253,10 @@ public class GDObject
 
         if(point.getX() > this.halfWidth) {
             final int y = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * (point.getY() - (this.halfHeight / 2))) / noDecimalTrigTable.SCALE;
-            return this.y + y + this.offsetBehavior.PointY(this.halfHeight);
+            return (int) (this.y + (y * offsetY) + this.offsetBehavior.PointY(this.halfHeight));
         } else {
             final int y = (int) (noDecimalTrigTable.sin((short) adjustedAngle) * -(point.getY() - (this.halfHeight / 2))) / noDecimalTrigTable.SCALE;
-            return this.y + y + this.offsetBehavior.PointY(this.halfHeight);
+            return (int) (this.y + (y * offsetY) + this.offsetBehavior.PointY(this.halfHeight));
         }
 
         //return this.y;
