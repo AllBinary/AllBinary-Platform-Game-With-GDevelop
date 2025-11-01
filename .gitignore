@@ -262,6 +262,7 @@ GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
 /platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/java/**/Makefile
 /platform/j2se/GDGameThreedJ2SEWithSWTJOGLApplicationM/src/main/resources/**
 /platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*_obj
+/platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*_md2
 /platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*_mtl
 /platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.png
 /platform/j2se/GDGameThreedJ2SEWithSWTJOGLFastBuildApplicationM/src/**/*.jpg
