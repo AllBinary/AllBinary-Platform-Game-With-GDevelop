@@ -184,6 +184,7 @@ public class GD<xsl:value-of select="$layoutIndex" />GameTouchGameResourcesImage
                         <xsl:with-param name="instancesAsString" >
                             <xsl:value-of select="$instancesAsString" />
                         </xsl:with-param>
+                        <xsl:with-param name="lazy" >false</xsl:with-param>
                     </xsl:call-template>
 
                         } catch(Exception e) {
