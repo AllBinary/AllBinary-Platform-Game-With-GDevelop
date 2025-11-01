@@ -61,6 +61,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
         
         <xsl:for-each select="properties" >
             <xsl:for-each select="cameras" >
+            
                     <xsl:if test="ratioProcessor = 'both'" >
             SWTJOGLProcessor.getInstance().setRatioProcessor();
                     </xsl:if>
@@ -81,6 +82,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
             
             <xsl:for-each select="cameras" >
                 <xsl:if test="position() = <GD_CURRENT_INDEX> + 1 and type != 'none'" >
+                //camera position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" />
             //x is height, y is distance from game area, z is width            
             //if(CameraMotionGestureInputProcessor.getInstance().restore(scene, stringMaker)) {
 
@@ -150,6 +152,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
         
             <xsl:for-each select="cameras" >
                 <xsl:if test="position() = <GD_CURRENT_INDEX> + 1 and type != 'none'" >
+                //camera position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" />
         //logUtil.put("ratio: " + ratio, this, "updateFrustrum");
 
         //Wider screen means horizontal center is larger.        
