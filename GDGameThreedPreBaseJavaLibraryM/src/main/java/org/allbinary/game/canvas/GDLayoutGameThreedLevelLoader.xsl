@@ -93,6 +93,7 @@ Created By: Travis Berthelot
                 import org.allbinary.graphics.opengles.OpenGLCapabilities;
                 import org.allbinary.graphics.threed.min3d.renderer.Object3dContainerUtil;
                 import org.platform.ThreedObjResources;
+                import org.allbinary.game.canvas.GDGameThreedAnimationResources;
                 
                 //Layout name=<xsl:value-of select="$layoutName" />
                 public class GD<xsl:value-of select="$layoutIndex" />GameThreedLevelBuilder extends GDGameThreedLevelBuilder
@@ -113,13 +114,24 @@ Created By: Travis Berthelot
                         private final ModelTypeFactory modelTypeFactory = ModelTypeFactory.getInstance();
                         private final Boolean FALSE = BooleanFactory.getInstance().FALSE;
                         
+                        private final GDGameThreedAnimationResources threedAnimationResources = GDGameThreedAnimationResources.getInstance();
+
                     public void build(final GL10 gl, final String glInstanceVersion) throws Exception {
 
                         //try {
                         
                             logUtil.put(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
-
-                        <xsl:if test="$layoutIndex = 0" >
+                        
+                        <xsl:if test="string-length($layoutName) > 0" >
+                        <xsl:for-each select="/game/properties/md2TextureMapping" >
+                            if (!TextureManager.getInstance().contains(threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>)) {
+                            final TextureListFactory textureListFactory = TextureListFactory.getInstance();
+                            textureListFactory.loadTexture(gl, glInstanceVersion, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                            }
+                        </xsl:for-each>
+                        </xsl:if>
+                        
+                        <xsl:if test="$layoutIndex = 0" >                            
                             new GDGlobalGameThreedLevelBuilder().build(gl, glInstanceVersion);
                         </xsl:if>
                         

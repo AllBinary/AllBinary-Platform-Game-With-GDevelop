@@ -114,12 +114,38 @@ Created By: Travis Berthelot
             private void add<xsl:value-of select="name" />SpriteAnimations(final ImageCache imageCache, final int level) throws Exception {
                 <xsl:if test="not(contains($name, 'btn_'))" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
-                
+
+        <xsl:for-each select="/game/properties/md2TextureMapping" >
+            <xsl:if test="$name = name" >
+                //name=<xsl:value-of select="name" />
+                //TWB - replace this logic with a animation to texture mapping for each md2
+                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
+            </xsl:if>
+        </xsl:for-each>
+
                 final BasicArrayList <xsl:value-of select="name" />List = new BasicArrayList();
                 final Object3d[] <xsl:value-of select="name" />Object3dArray = min3dSceneResourcesFactory.get(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME);
                 final int <xsl:value-of select="name" />Size = <xsl:value-of select="name" />Object3dArray.length;
+                Object3d object3d;
                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="name" />Size; index++) {
-                    <xsl:value-of select="name" />List.add(new ThreedAnimationFactory(<xsl:value-of select="name" />Object3dArray[index], 1<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name or name = 'all'" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>));
+                    object3d = <xsl:value-of select="name" />Object3dArray[index];
+                    if(object3d.getType() == 1) {
+                    
+                        <xsl:value-of select="name" />List.add(new ThreedMorphingAnimationSingletonFactory(object3d, 
+        		        new String[] {
+                                    specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME,
+                                    //TWB - Use this as a second animation for now
+                                    specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME
+        			},
+        			new MorphingProcessor[] {
+        			    FirstFrameMorphingProcessor.getInstance(),
+        			    PlayMorphingProcessor.getInstance()
+        		        }
+                        ));
+                    } else {
+                        <xsl:value-of select="name" />List.add(new ThreedAnimationFactory(object3d, 1<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name or name = 'all'" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>));
+                    }
                 }
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = (AnimationInterfaceFactoryInterface[]) <xsl:value-of select="name" />List.toArray(new AnimationInterfaceFactoryInterface[<xsl:value-of select="name" />Size]);
@@ -610,11 +636,37 @@ Created By: Travis Berthelot
                 <xsl:if test="not(contains($name, 'btn_'))" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
                 
+        <xsl:for-each select="/game/properties/md2TextureMapping" >
+            <xsl:if test="$name = name" >
+                //name=<xsl:value-of select="name" />
+                //TWB - replace this logic with a animation to texture mapping for each md2
+                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
+            </xsl:if>
+        </xsl:for-each>
+
                 final BasicArrayList <xsl:value-of select="name" />List = new BasicArrayList();
                 final Object3d[] <xsl:value-of select="name" />Object3dArray = min3dSceneResourcesFactory.get(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME);
                 final int <xsl:value-of select="name" />Size = <xsl:value-of select="name" />Object3dArray.length;
+                Object3d object3d;
                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="name" />Size; index++) {
-                    <xsl:value-of select="name" />List.add(new ThreedAnimationFactory(<xsl:value-of select="name" />Object3dArray[index], 1<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name or name = 'all'" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>));
+                    object3d = <xsl:value-of select="name" />Object3dArray[index];
+                    if(object3d.getType() == 1) {
+                                        
+                        <xsl:value-of select="name" />List.add(new ThreedMorphingAnimationSingletonFactory(object3d, 
+        		        new String[] {
+                                    specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME,
+                                    //TWB - Use this as a second animation for now
+                                    specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME
+        			},
+        			new MorphingProcessor[] {
+        			    FirstFrameMorphingProcessor.getInstance(),
+        			    PlayMorphingProcessor.getInstance()
+        		        }
+                        ));
+                    } else {
+                        <xsl:value-of select="name" />List.add(new ThreedAnimationFactory(object3d, 1<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name or name = 'all'" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>));
+                    }
                 }
 
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = (AnimationInterfaceFactoryInterface[]) <xsl:value-of select="name" />List.toArray(new AnimationInterfaceFactoryInterface[<xsl:value-of select="name" />Size]);

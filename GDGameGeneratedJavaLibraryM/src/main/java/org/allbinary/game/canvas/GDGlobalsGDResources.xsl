@@ -87,6 +87,9 @@ Created By: Travis Berthelot
                 
                 import org.allbinary.logic.communication.log.LogUtil;
                 import org.allbinary.util.BasicArrayList;
+                import org.allbinary.game.layer.GDRotationBehaviorFactory;
+                import org.allbinary.game.configuration.feature.Features;
+                import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 
                 public class GDGlobalsGDResources extends SpecialAnimation
                 {
@@ -148,6 +151,14 @@ Created By: Travis Berthelot
                         //try {
                         
                             logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+
+                    final Features features = Features.getInstance();
+                    final OpenGLFeatureFactory openGLFeatureFactory = OpenGLFeatureFactory.getInstance();
+            
+                    boolean isThreed = false;
+                    if(features.isFeature(openGLFeatureFactory.OPENGL_2D_AND_3D) || features.isFeature(openGLFeatureFactory.OPENGL_3D)) {
+                        isThreed = true;
+                    }
 
                     animationInterfaceFactoryInterfaceFactory.init(-1);
                                         

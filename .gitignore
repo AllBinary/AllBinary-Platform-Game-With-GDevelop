@@ -46,6 +46,7 @@ GDGameThreedAndroidEarlyResourceInitialization.java
 GDGameThreedLevelBuilderFactory.java
 GDCustomCollidableBehavior.java
 GDCustomMaskCollidableBehavior.java
+GDGameThreedAnimationResources.java
 GD*GameMusicFactory.java
 GD*GameSoundsFactory.java
 GDGame*LevelBuilder.java

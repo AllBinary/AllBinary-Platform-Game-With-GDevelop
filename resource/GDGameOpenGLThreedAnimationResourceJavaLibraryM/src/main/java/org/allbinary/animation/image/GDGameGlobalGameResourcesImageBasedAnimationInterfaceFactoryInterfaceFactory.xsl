@@ -89,12 +89,16 @@ import org.allbinary.animation.image.AllBinaryArrayImageRotationAnimationFactory
 import org.allbinary.animation.compound.SliderAnimationInterfaceFactory;
 import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInterfaceFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
+import org.allbinary.animation.threed.AnimationToTextureFactory;
+import org.allbinary.animation.threed.morphing.ThreedMorphingAnimationSingletonFactory;
+import org.allbinary.animation.threed.morphing.processing.FirstFrameMorphingProcessor;
+import org.allbinary.animation.threed.morphing.processing.MorphingProcessor;
+import org.allbinary.animation.threed.morphing.processing.PlayMorphingProcessor;
 import org.allbinary.game.canvas.GDGlobalSpecialAnimationResources;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory;
 import org.allbinary.image.opengles.OpenGLImageCacheFactory;
-
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
@@ -105,13 +109,13 @@ import org.allbinary.image.ImageCacheFactory;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
-
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.logic.math.PrimitiveIntUtil;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.logic.string.StringUtil;
+import org.allbinary.game.canvas.GDGameThreedAnimationResources;
 
 public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory
     extends BaseResourceAnimationInterfaceFactoryInterfaceFactory {
@@ -120,8 +124,11 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
     private final PointFactory pointFactory = PointFactory.getInstance();
                 
     private final Min3dSceneResourcesFactory min3dSceneResourcesFactory = Min3dSceneResourcesFactory.getInstance();
+    private final AnimationToTextureFactory animationToTextureFactory = AnimationToTextureFactory.getInstance();
 
     private final GDGlobalSpecialAnimationResources specialAnimationResources = GDGlobalSpecialAnimationResources.getInstance();
+
+    private final GDGameThreedAnimationResources threedAnimationResources = GDGameThreedAnimationResources.getInstance();
 
         <xsl:call-template name="scaleProperty" >
             <xsl:with-param name="layoutIndex" >

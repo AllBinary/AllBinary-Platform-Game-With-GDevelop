@@ -222,6 +222,7 @@ Created By: Travis Berthelot
                 <xsl:value-of select="name" />CustomTextAnimationFactory.basicColor = basicColor;
                 </xsl:if>
 
+                <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
 
                 this.<xsl:value-of select="name" />GDGameLayerFactory = new GDCustomGameLayerFactory(
                     NullAnimationFactory.getFactoryInstance(),
@@ -233,7 +234,7 @@ Created By: Travis Berthelot
                     this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />LayerInfo,
                     <xsl:value-of select="name" />RectangleArrayOfArrays
-                    <xsl:if test="contains($hasMoreThanOneImage, 'found')" >, GDIndividualAnimationBehaviorFactory.getInstance()</xsl:if>
+                    <xsl:if test="contains($hasMoreThanOneImage, 'found')" >, <xsl:if test="contains($threedExclusionsFound, 'found')" >GDIndividualAnimationBehaviorFactory.getInstance()</xsl:if><xsl:if test="not(contains($threedExclusionsFound, 'found'))" >isThreed ? GDRotationBehaviorFactory.getInstance() : GDIndividualAnimationBehaviorFactory.getInstance()</xsl:if></xsl:if>
                     <xsl:if test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >, GDSliderAnimationBehaviorFactory.getInstance()</xsl:if>
                     <xsl:if test="type = 'TextInput::TextInputObject'" >, GDTextInputAnimationBehaviorFactory.getInstance()</xsl:if>
                     <xsl:if test="type = 'TextObject::Text'" >, GDAnimationBehaviorBaseFactory.getInstance()</xsl:if>

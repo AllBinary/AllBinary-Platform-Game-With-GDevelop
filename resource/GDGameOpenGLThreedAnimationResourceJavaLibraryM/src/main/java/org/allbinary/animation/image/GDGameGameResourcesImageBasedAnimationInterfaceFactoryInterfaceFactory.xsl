@@ -100,12 +100,16 @@ import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInte
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.animation.text.CustomTextAnimationFactory;
 import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory;
+import org.allbinary.animation.threed.AnimationToTextureFactory;
+import org.allbinary.animation.threed.morphing.ThreedMorphingAnimationSingletonFactory;
+import org.allbinary.animation.threed.morphing.processing.FirstFrameMorphingProcessor;
+import org.allbinary.animation.threed.morphing.processing.MorphingProcessor;
+import org.allbinary.animation.threed.morphing.processing.PlayMorphingProcessor;
 import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources;
 import org.allbinary.game.resource.ResourceLoadingLevelFactory;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.graphics.threed.min3d.Min3dSceneResourcesFactory;
 import org.allbinary.image.opengles.OpenGLImageCacheFactory;
-
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
 import org.allbinary.game.layer.special.GDConditionWithGroupActions;
@@ -124,6 +128,7 @@ import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorUtil;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.logic.string.StringUtil;
+import org.allbinary.game.canvas.GDGameThreedAnimationResources;
 import org.allbinary.media.graphics.geography.map.racetrack.threed.RaceTrackThreedData;
 import org.allbinary.media.graphics.geography.map.racetrack.threed.ThreedTiledLayerResourcesFactory;
 
@@ -135,8 +140,11 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
     private final PointFactory pointFactory = PointFactory.getInstance();
 
     private final Min3dSceneResourcesFactory min3dSceneResourcesFactory = Min3dSceneResourcesFactory.getInstance();
+    private final AnimationToTextureFactory animationToTextureFactory = AnimationToTextureFactory.getInstance();
 
     private final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources specialAnimationResources = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationResources.getInstance();
+
+    private final GDGameThreedAnimationResources threedAnimationResources = GDGameThreedAnimationResources.getInstance();
 
         <xsl:call-template name="scaleProperty" >
             <xsl:with-param name="layoutIndex" >
