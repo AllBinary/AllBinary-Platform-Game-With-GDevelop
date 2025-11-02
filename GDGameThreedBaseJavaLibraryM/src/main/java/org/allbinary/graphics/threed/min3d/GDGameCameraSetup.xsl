@@ -110,10 +110,12 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
                 camera.target.getPosition().y = <xsl:value-of select="y" />;
                 camera.target.getPosition().z = <xsl:value-of select="z" />;
                 </xsl:for-each>
-                
-                initVerticalOffset = 0.0f;
-                initHorizontalOffset = 0.0f;
-                initNearOffset = 0.0f;
+
+                <xsl:for-each select="init" >
+                initVerticalOffset = <xsl:value-of select="verticalOffset" />;
+                initHorizontalOffset = <xsl:value-of select="horizontalOffset" />;
+                initNearOffset = <xsl:value-of select="nearOffset" />;
+                </xsl:for-each>
 
             </xsl:for-each>
 
@@ -136,9 +138,11 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
                 camera.target.getPosition().z = <xsl:value-of select="z" />;
                 </xsl:for-each>
                 
-                initVerticalOffset = -0.45f;
-                initHorizontalOffset = -0.215f;
-                initNearOffset = -0.44f;
+                <xsl:for-each select="init" >
+                initVerticalOffset = <xsl:value-of select="verticalOffset" />;
+                initHorizontalOffset = <xsl:value-of select="horizontalOffset" />;
+                initNearOffset = <xsl:value-of select="nearOffset" />;
+                </xsl:for-each>
                 
             </xsl:for-each>
 
@@ -189,7 +193,9 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
                 <xsl:for-each select="frustrum" >
                 camera.frustum.horizontalCenter(<xsl:value-of select="horizontalCenter" /> + horizontalOffset + (initHorizontalOffset * ratio));
                 camera.frustum.verticalCenter(<xsl:value-of select="verticalCenter" /> + verticalOffset + (initVerticalOffset * ratio));
+                <xsl:if test="zNear" >
                 camera.frustum.zNear(<xsl:value-of select="zNear" /> + nearOffset + initNearOffset);
+                </xsl:if>
                 </xsl:for-each>
 
             </xsl:for-each>
@@ -204,7 +210,9 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
                 <xsl:for-each select="frustrum" >
                 camera.frustum.horizontalCenter(<xsl:value-of select="horizontalCenter" /> + horizontalOffset + (initHorizontalOffset * ratio));
                 camera.frustum.verticalCenter(<xsl:value-of select="verticalCenter" /> + verticalOffset + (initVerticalOffset * ratio));
+                <xsl:if test="zNear" >
                 camera.frustum.zNear(<xsl:value-of select="zNear" /> + nearOffset + initNearOffset);
+                </xsl:if>
                 </xsl:for-each>
                 
             </xsl:for-each>

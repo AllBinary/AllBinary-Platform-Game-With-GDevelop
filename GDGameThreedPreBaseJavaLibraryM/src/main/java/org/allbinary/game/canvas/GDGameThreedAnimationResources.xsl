@@ -57,7 +57,7 @@ public class GDGameThreedAnimationResources {
 
         <xsl:for-each select="properties/md2TextureMapping" >
     //name=<xsl:value-of select="name" />
-    public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="texture" />";
+    public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '.', '_')" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="texture" />";
         </xsl:for-each>
 
 

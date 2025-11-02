@@ -116,11 +116,11 @@ Created By: Travis Berthelot
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
         <xsl:for-each select="/game/properties/md2TextureMapping" >
-            <xsl:if test="$name = name" >
+            <xsl:if test="name = $name or name = 'all'" >
                 //name=<xsl:value-of select="name" />
                 //TWB - replace this logic with a animation to texture mapping for each md2
-                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
-                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '.', '_')" /></xsl:with-param></xsl:call-template>);
             </xsl:if>
         </xsl:for-each>
 
@@ -637,11 +637,11 @@ Created By: Travis Berthelot
                 //Animation Total: <xsl:value-of select="count(animations)" />
                 
         <xsl:for-each select="/game/properties/md2TextureMapping" >
-            <xsl:if test="$name = name" >
+            <xsl:if test="name = $name or name = 'all'" >
                 //name=<xsl:value-of select="name" />
                 //TWB - replace this logic with a animation to texture mapping for each md2
-                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
-                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '.', '_')" /></xsl:with-param></xsl:call-template>);
             </xsl:if>
         </xsl:for-each>
 
