@@ -91,6 +91,8 @@ import org.allbinary.animation.compound.SliderAnimationInterfaceFactory;
 import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInterfaceFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.animation.threed.AnimationToTextureFactory;
+import org.allbinary.animation.threed.AdjustableThreedAnimationFactory;
+import org.allbinary.animation.threed.morphing.AdjustableThreedMorphingAnimationSingletonFactory;
 import org.allbinary.animation.threed.morphing.ThreedMorphingAnimationSingletonFactory;
 import org.allbinary.animation.threed.morphing.processing.FirstFrameMorphingProcessor;
 import org.allbinary.animation.threed.morphing.processing.MorphingProcessor;
@@ -140,6 +142,11 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
             </xsl:with-param>
         </xsl:call-template>
 
+        <xsl:if test="/game/properties/threedAnimationAdjustment" >
+    private final Number3d positionNumber3d = new Number3d();
+    private final Number3d rotationNumber3d = new Number3d();
+        </xsl:if>
+
         <xsl:variable name="hasSprite" ><xsl:for-each select="objects" ><xsl:if test="type = 'Sprite'" >found</xsl:if></xsl:for-each></xsl:variable>
         <xsl:if test="contains($hasSprite, 'found')" >
     private final int animationScale = 1;
@@ -150,6 +157,20 @@ public class GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfa
     public GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
         super("GDGame OpenGL ImageArray Animations");
+        
+        <xsl:for-each select="/game/properties/threedAnimationAdjustment" >
+            <xsl:if test="position" >
+        this.positionNumber3d.x = <xsl:value-of select="position/x" />;
+        this.positionNumber3d.y = <xsl:value-of select="position/y" />;
+        this.positionNumber3d.z = <xsl:value-of select="position/z" />;
+            </xsl:if>
+            <xsl:if test="rotation" >
+        this.rotationNumber3d.x = <xsl:value-of select="rotation/x" />f;
+        this.rotationNumber3d.y = <xsl:value-of select="rotation/y" />f;
+        this.rotationNumber3d.z = <xsl:value-of select="rotation/z" />f;
+            </xsl:if>
+        </xsl:for-each>
+
     }
 
     public GDGameGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)

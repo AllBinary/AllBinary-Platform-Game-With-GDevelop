@@ -131,12 +131,19 @@ Created By: Travis Berthelot
                 for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="name" />Size; index++) {
                     object3d = <xsl:value-of select="name" />Object3dArray[index];
                     if(object3d.getType() == 1) {
-                    
-                        object3d.getScale().x = 100.0f;
-                        object3d.getScale().y = object3d.getScale().x;
-                        object3d.getScale().z = object3d.getScale().x;
-                    
-                        <xsl:value-of select="name" />List.add(new ThreedMorphingAnimationSingletonFactory(object3d, 
+
+                    <xsl:for-each select="/game/properties/threedAnimationAdjustment" >
+                        <xsl:if test="scale" >
+                        final Number3d scaleNumber3d = object3d.getScale();
+                        scaleNumber3d.x = <xsl:value-of select="scale/x" />f;
+                        scaleNumber3d.y = <xsl:value-of select="scale/y" />f;
+                        scaleNumber3d.z = <xsl:value-of select="scale/z" />f;
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:text>&#10;</xsl:text>
+
+                        <xsl:value-of select="name" />List.add(new <xsl:if test="/game/properties/threedAnimationAdjustment" >Adjustable</xsl:if>ThreedMorphingAnimationFactory(
+                                object3d, 
         		        new String[] {
                                     specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME,
                                     //TWB - Use this as a second animation for now
@@ -145,10 +152,13 @@ Created By: Travis Berthelot
         			new MorphingProcessor[] {
         			    FirstFrameMorphingProcessor.getInstance(),
         			    PlayMorphingProcessor.getInstance()
-        		        }
+        		        }<xsl:if test="/game/properties/threedAnimationAdjustment" >, 
+                                positionNumber3d, rotationNumber3d</xsl:if>
                         ));
                     } else {
-                        <xsl:value-of select="name" />List.add(new ThreedAnimationFactory(object3d, 1<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name or name = 'all'" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>));
+                        <xsl:value-of select="name" />List.add(new <xsl:if test="/game/properties/threedAnimationAdjustment" >Adjustable</xsl:if>ThreedAnimationFactory(
+                                object3d, 1<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name or name = 'all'" ><xsl:value-of select="param" /></xsl:if></xsl:for-each><xsl:if test="/game/properties/threedAnimationAdjustment" >, positionNumber3d, rotationNumber3d</xsl:if>
+                        ));
                     }
                 }
 

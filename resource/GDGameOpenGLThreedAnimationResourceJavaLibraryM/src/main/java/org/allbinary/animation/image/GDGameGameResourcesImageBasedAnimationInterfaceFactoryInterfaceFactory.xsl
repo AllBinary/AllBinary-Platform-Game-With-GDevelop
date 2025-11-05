@@ -102,6 +102,8 @@ import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInt
 import org.allbinary.animation.text.CustomTextAnimationFactory;
 import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory;
 import org.allbinary.animation.threed.AnimationToTextureFactory;
+import org.allbinary.animation.threed.AdjustableThreedAnimationFactory;
+import org.allbinary.animation.threed.morphing.AdjustableThreedMorphingAnimationSingletonFactory;
 import org.allbinary.animation.threed.morphing.ThreedMorphingAnimationSingletonFactory;
 import org.allbinary.animation.threed.morphing.processing.FirstFrameMorphingProcessor;
 import org.allbinary.animation.threed.morphing.processing.MorphingProcessor;
@@ -161,11 +163,30 @@ public class GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBased
     private final int animationScale = 1;
         </xsl:if>
     
+        <xsl:if test="/game/properties/threedAnimationAdjustment" >
+    private final Number3d positionNumber3d = new Number3d();
+    private final Number3d rotationNumber3d = new Number3d();
+        </xsl:if>
+    
     private final int portion = 120;
 
     public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory()
     {
         super("GDGame OpenGL ImageArray Animations");
+    
+        <xsl:for-each select="/game/properties/threedAnimationAdjustment" >
+            <xsl:if test="position" >
+        this.positionNumber3d.x = <xsl:value-of select="position/x" />;
+        this.positionNumber3d.y = <xsl:value-of select="position/y" />;
+        this.positionNumber3d.z = <xsl:value-of select="position/z" />;
+            </xsl:if>
+            <xsl:if test="rotation" >
+        this.rotationNumber3d.x = <xsl:value-of select="rotation/x" />f;
+        this.rotationNumber3d.y = <xsl:value-of select="rotation/y" />f;
+        this.rotationNumber3d.z = <xsl:value-of select="rotation/z" />f;
+            </xsl:if>
+        </xsl:for-each>
+    
     }
 
     public GD<xsl:value-of select="$layoutIndex" />GameGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory(String name)
