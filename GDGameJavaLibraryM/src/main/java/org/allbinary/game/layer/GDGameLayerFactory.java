@@ -47,7 +47,7 @@ public class GDGameLayerFactory
     
     protected final BasicArrayList gameLayerList;
     protected final BasicArrayList gameLayerDestroyedList;
-    protected final boolean rotationAjustment;
+    protected final boolean resetAnimationBehavior;
 
     public GDGameLayerFactory(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
             final Group[] groupInterface,
@@ -56,8 +56,8 @@ public class GDGameLayerFactory
             final ProceduralAnimationInterfaceFactoryInterface[] proceduralAnimationInterfaceFactoryInterfaceArray,
             final Rectangle layerInfo,
             final Rectangle[][] rectangleArrayOfArrays,
-            final boolean rotationAjustment) {
-        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance(), rotationAjustment);
+            final boolean resetAnimationBehavior) {
+        this(gameLayerList, gameLayerDestroyedList, groupInterface, behaviorList, animationInterfaceFactoryInterfaceArray, proceduralAnimationInterfaceFactoryInterfaceArray, layerInfo, rectangleArrayOfArrays, GDRotationBehaviorFactory.getInstance(), resetAnimationBehavior);
     }
     
     public GDGameLayerFactory(final BasicArrayList gameLayerList, final BasicArrayList gameLayerDestroyedList, 
@@ -68,7 +68,7 @@ public class GDGameLayerFactory
             final Rectangle layerInfo, 
             final Rectangle[][] rectangleArrayOfArrays,
             final GDAnimationBehaviorBaseFactory animationBehaviorFactory,
-            final boolean rotationAjustment) {
+            final boolean resetAnimationBehavior) {
         
         this.groupInterface = groupInterface;
         this.behaviorList = behaviorList;
@@ -80,7 +80,7 @@ public class GDGameLayerFactory
         
         this.gameLayerList = gameLayerList;
         this.gameLayerDestroyedList = gameLayerDestroyedList;
-        this.rotationAjustment = rotationAjustment;
+        this.resetAnimationBehavior = resetAnimationBehavior;
     }
     
     public GDGameLayer create(final int layoutIndex, final String name, final GDObject gdObject, final float scaleX, final float scaleY, final GDConditionWithGroupActions collidableBehavior) throws Exception {
@@ -111,7 +111,7 @@ public class GDGameLayerFactory
                 this.rectangleArrayOfArrays,
                 new ViewPosition(), 
                 gdObject, this.animationBehaviorFactory.create(),
-                this.rotationAjustment);
+                this.resetAnimationBehavior);
         
         //gameLayer.setInitialScale(scaleX, scaleY);
 

@@ -123,10 +123,10 @@ Created By: Travis Berthelot
                             logUtil.put(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
                         
                         <xsl:if test="string-length($layoutName) > 0" >
-                        <xsl:for-each select="/game/properties/md2TextureMapping" >
-                            if (!TextureManager.getInstance().contains(threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '.', '_')" /></xsl:with-param></xsl:call-template>)) {
+                        <xsl:for-each select="/game/properties/customTextures" >
+                            if (!TextureManager.getInstance().contains(threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>)) {
                             final TextureListFactory textureListFactory = TextureListFactory.getInstance();
-                            textureListFactory.loadTexture(gl, glInstanceVersion, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                            textureListFactory.loadTexture(gl, glInstanceVersion, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
                             }
                         </xsl:for-each>
                         </xsl:if>

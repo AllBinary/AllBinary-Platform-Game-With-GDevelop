@@ -75,7 +75,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             proceduralAnimationInterfaceFactoryInterfaceArray,
             layerInfo, 
             rectangleArrayOfArrays, 
-        animationBehaviorFactory, <xsl:for-each select="properties" ><xsl:for-each select="rotationAjustment" ><xsl:value-of select="text()" /></xsl:for-each></xsl:for-each>); //final boolean rotationAjustment
+        animationBehaviorFactory, <xsl:for-each select="properties" ><xsl:for-each select="resetAnimationBehavior" ><xsl:value-of select="text()" /></xsl:for-each></xsl:for-each>); //final boolean resetAnimationBehavior
     
         this.primitiveDrawingAnimationFactory = primitiveDrawingAnimationFactory;    
         this.width = this.layerInfo.getWidth();
@@ -116,7 +116,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
                 this.proceduralAnimationInterfaceFactoryInterfaceArray,
                 rectangle, 
                 this.rectangleArrayOfArrays,
-                gdObject, this.animationBehaviorFactory.create(), this.rotationAjustment) {
+                gdObject, this.animationBehaviorFactory.create(), this.resetAnimationBehavior) {
                     /*public void updatePosition() {
                         boolean change = false;
                         if(this.gdObject.x != this.getXP() || this.gdObject.y != this.getYP()) {

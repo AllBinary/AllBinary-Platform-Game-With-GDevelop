@@ -302,7 +302,7 @@ Created By: Travis Berthelot
                         final Rectangle[][] rectangleArrayOfArrays,
                         final GDObject gdObject, 
                         final GDAnimationBehaviorBase animationBehavior,
-                        final boolean rotationAjustment) throws Exception {
+                        final boolean resetAnimationBehavior) throws Exception {
 
                         super(primitiveDrawing, gameLayerList, gameLayerDestroyedList, 
                             behaviorList, 
@@ -353,7 +353,7 @@ Created By: Travis Berthelot
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
                             new ViewPosition(),
         </xsl:if>
-                            gdObject, animationBehavior, rotationAjustment);
+                            gdObject, animationBehavior, resetAnimationBehavior);
 
                 <xsl:if test="contains($hasLayoutWithTileMapAndIsTopView, 'found')" >
                     org.allbinary.game.behavior.topview.GeographicMapTopViewLayerBehavior topViewGameBehavior;
