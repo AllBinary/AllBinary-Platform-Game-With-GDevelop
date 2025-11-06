@@ -141,6 +141,8 @@ Created By: Travis Berthelot
 
                 final BasicArrayList <xsl:value-of select="name" />List = new BasicArrayList();
                 final Object3d[] <xsl:value-of select="name" />Object3dArray = min3dSceneResourcesFactory.get(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME);
+                final int[] loopTotalArray = {<xsl:for-each select="animations" ><xsl:for-each select="directions" ><xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>,</xsl:for-each></xsl:for-each>};
+                final long[] frameDelayTime = {<xsl:for-each select="animations" ><xsl:for-each select="directions" ><xsl:value-of select="timeBetweenFrames * 1000" />,</xsl:for-each></xsl:for-each>};
                 final int <xsl:value-of select="name" />Size = <xsl:value-of select="name" />Object3dArray.length;
                 Object3d object3d;
                 //AnimationObject3d animationObject3d;
@@ -161,7 +163,7 @@ Created By: Travis Berthelot
                     <xsl:text>&#10;</xsl:text>
 
                         <xsl:value-of select="name" />List.add(new <xsl:if test="/game/properties/threedAnimationAdjustment" >Adjustable</xsl:if>ThreedMorphingAnimationSingletonFactory(
-                                object3d, 
+                                object3d, loopTotalArray[index], frameDelayTime[index],
         		        new String[] {
                                     specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME,
                                     //TWB - Use this as a second animation for now
@@ -694,6 +696,8 @@ Created By: Travis Berthelot
 
                 final BasicArrayList <xsl:value-of select="name" />List = new BasicArrayList();
                 final Object3d[] <xsl:value-of select="name" />Object3dArray = min3dSceneResourcesFactory.get(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME);
+                final int[] loopTotalArray = {<xsl:for-each select="animations" ><xsl:for-each select="directions" ><xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>,</xsl:for-each></xsl:for-each>};
+                final long[] frameDelayTime = {<xsl:for-each select="animations" ><xsl:for-each select="directions" ><xsl:value-of select="timeBetweenFrames * 1000" />,</xsl:for-each></xsl:for-each>};
                 final int <xsl:value-of select="name" />Size = <xsl:value-of select="name" />Object3dArray.length;
                 Object3d object3d;
                 //AnimationObject3d animationObject3d;
@@ -707,7 +711,8 @@ Created By: Travis Berthelot
                         object3d.getScale().y = object3d.getScale().x;
                         object3d.getScale().z = object3d.getScale().x;
 
-                        <xsl:value-of select="name" />List.add(new <xsl:if test="/game/properties/threedAnimationAdjustment" >Adjustable</xsl:if>ThreedMorphingAnimationSingletonFactory(object3d, 
+                        <xsl:value-of select="name" />List.add(new <xsl:if test="/game/properties/threedAnimationAdjustment" >Adjustable</xsl:if>ThreedMorphingAnimationSingletonFactory(
+                                object3d, loopTotalArray[index], frameDelayTime[index],
         		        new String[] {
                                     specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME,
                                     //TWB - Use this as a second animation for now
