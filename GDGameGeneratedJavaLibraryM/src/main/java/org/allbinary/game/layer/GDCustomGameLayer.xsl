@@ -1089,6 +1089,17 @@ Created By: Travis Berthelot
     public void processTick(final AllBinaryLayerManager allBinaryLayerManager)
         throws Exception
     {
+//    private final String PLAYER = "Player";        
+//        if(this.getName().indexOf(PLAYER) <xsl:text disable-output-escaping="yes" >&gt;</xsl:text>= 0) {
+//            final int size = this.initIndexedAnimationInterfaceArray.length;
+//            RotationAnimation rotationAnimation;
+//            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+//                rotationAnimation = ((RotationAnimation) this.initIndexedAnimationInterfaceArray[index]);
+//                //rotationAnimation.nextRotationX();
+//                //rotationAnimation.nextRotationZ();
+//            }
+//        }
+
         final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
         if(this.gdObject.isBehaviorEnabledArray[gdBehaviorUtil.PATHFINDING_BEHAVIOR_INDEX]) {
             

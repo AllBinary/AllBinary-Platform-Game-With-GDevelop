@@ -120,7 +120,7 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            logUtil.put(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
+                            logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
                         
                         <xsl:if test="string-length($layoutName) > 0" >
                         <xsl:for-each select="/game/properties/customTextures" >
@@ -131,6 +131,8 @@ Created By: Travis Berthelot
                         </xsl:for-each>
                         </xsl:if>
                         
+                            //logUtil.put(commonStrings.END, this, commonStrings.CONSTRUCTOR);
+
                         <xsl:if test="$layoutIndex = 0" >                            
                             new GDGlobalGameThreedLevelBuilder().build(gl, glInstanceVersion);
                         </xsl:if>
