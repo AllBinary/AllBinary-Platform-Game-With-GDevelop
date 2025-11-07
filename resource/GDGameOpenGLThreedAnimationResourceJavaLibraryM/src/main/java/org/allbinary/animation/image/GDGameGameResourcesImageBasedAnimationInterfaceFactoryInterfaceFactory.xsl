@@ -82,6 +82,7 @@ package org.allbinary.animation.image;
 
 import javax.microedition.lcdui.Image;
 
+import min3d.animation.AnimationObject3d;
 import min3d.core.Object3d;
 import min3d.vos.Number3d;
 
@@ -94,7 +95,7 @@ import org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory
 import org.allbinary.animation.IndexedAnimationBehaviorFactory;
 import org.allbinary.animation.NullRotationAnimationFactory;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
-import org.allbinary.animation.threed.ThreedAnimationFactory;
+import org.allbinary.animation.threed.ThreedAnimationSingletonFactory;
 import org.allbinary.animation.image.AllBinaryArrayImageRotationAnimationFactory;
 import org.allbinary.animation.compound.SliderAnimationInterfaceFactory;
 import org.allbinary.animation.compound.SimultaneousCompoundIndexedAnimationInterfaceFactory;
@@ -102,7 +103,7 @@ import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInt
 import org.allbinary.animation.text.CustomTextAnimationFactory;
 import org.allbinary.animation.text.CustomTextBoxIndexedAnimationFactory;
 import org.allbinary.animation.threed.AnimationToTextureFactory;
-import org.allbinary.animation.threed.AdjustableThreedAnimationFactory;
+import org.allbinary.animation.threed.AdjustableThreedAnimationSingletonFactory;
 import org.allbinary.animation.threed.morphing.AdjustableThreedMorphingAnimationSingletonFactory;
 import org.allbinary.animation.threed.morphing.ThreedMorphingAnimationSingletonFactory;
 import org.allbinary.animation.threed.morphing.processing.FirstFrameMorphingProcessor;

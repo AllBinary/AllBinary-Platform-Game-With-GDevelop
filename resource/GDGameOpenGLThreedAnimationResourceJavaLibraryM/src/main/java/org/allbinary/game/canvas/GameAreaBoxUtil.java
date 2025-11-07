@@ -18,7 +18,7 @@ import org.allbinary.animation.AnimationInterfaceFactoryInterface;
 import org.allbinary.animation.AnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.BaseAnimationInterfaceFactoryInterfaceComposite;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
-import org.allbinary.animation.threed.ThreedAnimationFactory;
+import org.allbinary.animation.threed.ThreedAnimationSingletonFactory;
 import org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory;
 import org.allbinary.game.identification.Group;
 import org.allbinary.game.identification.GroupFactory;
@@ -141,7 +141,7 @@ public class GameAreaBoxUtil {
         final Object3d[] boxObject3dArray = min3dSceneResourcesFactory.get(this.BOX_ANIMATION_NAME);
         final int boxSize = boxObject3dArray.length;
         for (int index = 0; index < boxSize; index++) {
-            boxList.add(new ThreedAnimationFactory(boxObject3dArray[index]));
+            boxList.add(new ThreedAnimationSingletonFactory(boxObject3dArray[index]));
         }
 
         final AnimationInterfaceFactoryInterface[] boxAnimationInterfaceFactoryInterfaceArray = (AnimationInterfaceFactoryInterface[]) boxList.toArray(new AnimationInterfaceFactoryInterface[boxSize]);
