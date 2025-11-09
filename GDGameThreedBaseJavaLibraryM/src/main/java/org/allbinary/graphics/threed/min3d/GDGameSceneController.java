@@ -23,7 +23,6 @@ import org.allbinary.game.layer.SimpleUserFollowCameraLayer;
 import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.graphics.RectangleFactory;
-import org.allbinary.graphics.displayable.DisplayInfoSingleton;
 import org.allbinary.graphics.opengles.OpenGLCapabilities;
 import org.allbinary.graphics.threed.min3d.renderer.AllBinaryToMin3dRendererFactory;
 import org.allbinary.logic.string.StringMaker;
@@ -240,7 +239,6 @@ extends AllBinaryGameSceneController
             
             camera.cameraSetup = gdGameCameraSetup;
             
-            final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
             camera.updateFrustrum();
 
             if (gdGameCameraSetup.type == GDGameCameraSetup.FOLLOW) {
@@ -249,110 +247,7 @@ extends AllBinaryGameSceneController
             }
             
             //Test grid for OpenGL to help with camera setting
-//            layerManager.append(new AllBinaryGameLayer(RectangleFactory.SINGLETON, ViewPosition.NULL_VIEW_POSITION) {
-//
-//                private final GameTickDisplayInfoSingleton gameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton.getInstance();
-//
-//                private FloatBuffer mVertexBuffer;
-//                private int mNumVertices;
-//
-//                @Override
-//                public void set(final GL gl) throws Exception {
-//
-//                    final int WIDTH_DIV_10 = displayInfoSingleton.getLastWidth() / 10;
-//                    final int HEIGHT_DIV_10 = displayInfoSingleton.getLastHeight() / 10;
-//                    final int divisions = 10;
-//                        mNumVertices = (divisions + 1) * 4;
-//                        float[] vertices = new float[mNumVertices * 3];
-//                        int vertexIndex = 0;
-//                        int step = 1;
-//
-//                        for (int i = -10; i <= 0; i++) {
-//                            vertices[vertexIndex++] = i * WIDTH_DIV_10;
-//                            vertices[vertexIndex++] = 0.0f;
-//                            vertices[vertexIndex++] = -displayInfoSingleton.getLastHeight();
-//
-//                            vertices[vertexIndex++] = i * WIDTH_DIV_10;
-//                            vertices[vertexIndex++] = 0.0f;
-//                            vertices[vertexIndex++] = 0.0f;
-//                        }
-//
-//                        for (int i = -10; i <= 0; i++) {
-//                            float y = -WIDTH_DIV_10 / 2.0f + i * step;
-//                            vertices[vertexIndex++] = -displayInfoSingleton.getLastWidth();
-//                            vertices[vertexIndex++] = 0.0f;
-//                            vertices[vertexIndex++] = i * HEIGHT_DIV_10;
-//
-//                            vertices[vertexIndex++] = 0.0f;
-//                            vertices[vertexIndex++] = 0.0f;
-//                            vertices[vertexIndex++] = i * HEIGHT_DIV_10;
-//                        }
-//
-//                        ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length * 4);
-//                        vbb.order(ByteOrder.nativeOrder());
-//                        mVertexBuffer = vbb.asFloatBuffer();
-//                        mVertexBuffer.put(vertices);
-//                        mVertexBuffer.position(0);
-//                }
-//
-//                @Override
-//                public void paint(final Graphics graphics) {
-//                }
-//
-//                @Override
-//                public void paintThreed(final Graphics graphics) {
-//                    try {
-//                        //System.out.println("lollers");
-//                        //final JOGL11 gl = (JOGL11) ((OpenGLESGraphics) graphics).getGl10();
-//                        final GL10 gl = (GL10) ((OpenGLESGraphics) graphics).getGl10();
-//
-//                        gl.glPushMatrix();
-//
-//                        gl.glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
-//
-//                        //gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-//                        gl.glVertexPointer(3, GL10.GL_FLOAT, 0, this.mVertexBuffer);
-//                        gl.glDrawArrays(GL10.GL_LINES, 0, this.mNumVertices);
-//                        //gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
-//
-////                        gl.glBegin(GL10.GL_LINES);
-////                        for (int i = -10; i <= 10; i++) {
-////                            gl.glVertex3f(i * 100, 0, -1000);
-////                            gl.glVertex3f(i * 100, 0, 1000);
-////                            gl.glVertex3f(-1000, 0, i * 100);
-////                            gl.glVertex3f(1000, 0, i * 100);
-////                        }
-////                        gl.glEnd();
-//
-////                        gl.glBegin(GL10.GL_LINES);
-//
-////                        final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
-////                        final int WIDTH_DIV_10 = displayInfoSingleton.getLastWidth() / 10;
-////                        final int HEIGHT_DIV_10 = displayInfoSingleton.getLastHeight() / 10;
-////                        for (int i = -10; i <= 0; i++) {
-////                            gl.glVertex3f(i * WIDTH_DIV_10, 0, -displayInfoSingleton.getLastHeight());
-////                            gl.glVertex3f(i * WIDTH_DIV_10, 0, 0);
-////                            gl.glVertex3f(-displayInfoSingleton.getLastWidth(), 0, i * HEIGHT_DIV_10);
-////                            gl.glVertex3f(0, 0, i * HEIGHT_DIV_10);
-////                        }
-////                        gl.glEnd();
-//
-//                        gl.glPopMatrix();
-//
-//                    } catch (Exception e) {
-//                        logUtil.put(commonStrings.EXCEPTION, this, "paintThreed", e);
-//                    }
-//                }
-//
-//                public int SceneWindowWidth() {
-//                    return gameTickDisplayInfoSingleton.getLastWidth();
-//                }
-//
-//                public int SceneWindowHeight() {
-//                    return gameTickDisplayInfoSingleton.getLastHeight();
-//                }
-//
-//            });
+//            layerManager.append(GLSampleGrid.create());
             
             cameraInputProcessor.process(gdGameCameraSetup);
             
