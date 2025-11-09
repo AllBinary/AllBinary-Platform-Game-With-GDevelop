@@ -1663,12 +1663,6 @@ Created By: Travis Berthelot
 
     }
 
-    @Override
-    public GeographicMapCellPosition getCurrentGeographicMapCellPosition() {
-    {
-        return ;
-    }
-
     public boolean isWaypointListEmptyOrOnlyTargets() {
         return false;
     }
