@@ -583,7 +583,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
                 final Layer[] layerThreedArray = new Layer[geographicMapInterfaceArray.length];
                 
                 final int size = geographicMapInterfaceArray.length;
-                for(int index = 0; index < size; index++) {
+                for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                     layerThreedArray[index] = allbinaryTiledLayer;
                 }
                 

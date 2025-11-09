@@ -194,7 +194,7 @@ public class GDGeographicMap extends RaceTrackGeographicMap {
 }
 
     @Override
-    public GeographicMapCellPosition getCellPositionAtNoThrow(final int x, final int y) throws Exception
+    public GeographicMapCellPosition getCellPositionAtNoThrow(final int x, final int y)
     {
         final AllBinaryTiledLayer allBinaryTiledLayer = this.getAllBinaryTiledLayer();
         //ForcedLogUtil.log(new StringMaker().append("getCellPositionAt").append(x + allBinaryTiledLayer.getX()).append(',').append(y + allBinaryTiledLayer.getY()).toString(), this);
