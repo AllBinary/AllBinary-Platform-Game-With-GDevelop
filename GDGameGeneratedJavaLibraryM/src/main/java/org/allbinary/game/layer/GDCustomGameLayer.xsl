@@ -141,6 +141,7 @@ Created By: Travis Berthelot
         import org.allbinary.math.FrameUtil;
         //import org.allbinary.math.LayerDistanceUtil;
         import org.allbinary.string.CommonPhoneStrings;
+        import org.allbinary.media.graphics.geography.map.CurrentGeographicMapCellPositionInterface;
         import org.allbinary.media.graphics.geography.map.racetrack.RaceTrackGeographicMapCellType;
         import org.allbinary.media.graphics.geography.map.topview.BasicTopViewGeographicMapCellTypeFactory;
         import org.allbinary.thread.PathFindingThreadPool;
@@ -149,8 +150,9 @@ Created By: Travis Berthelot
         </xsl:if>
 
                 public class GDCustomGameLayer extends GDGameLayer 
-        <xsl:if test="contains($foundOtherViewPosition, 'found')" >implements GameKeyEventSourceInterface, org.allbinary.game.behavior.platformer.PlatformCharacterInterface </xsl:if>
-        <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >implements org.allbinary.game.behavior.topview.TopViewCharacterInterface </xsl:if>        
+                    implements CurrentGeographicMapCellPositionInterface
+        <xsl:if test="contains($foundOtherViewPosition, 'found')" >, GameKeyEventSourceInterface, org.allbinary.game.behavior.platformer.PlatformCharacterInterface </xsl:if>
+        <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >, org.allbinary.game.behavior.topview.TopViewCharacterInterface </xsl:if>        
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >, org.allbinary.game.layer.PathFindingLayerInterface </xsl:if>
                 {
                     private final StringUtil stringUtil = StringUtil.getInstance();
@@ -1288,7 +1290,6 @@ Created By: Travis Berthelot
     }
     
     public GeographicMapCellPosition getCurrentGeographicMapCellPosition()
-    throws Exception
     {
         final GeographicMapCompositeInterface geographicMapCompositeInterface
             = (GeographicMapCompositeInterface) this.allBinaryGameLayerManagerP;
@@ -1661,7 +1662,13 @@ Created By: Travis Berthelot
         }
 
     }
-            
+
+    @Override
+    public GeographicMapCellPosition getCurrentGeographicMapCellPosition() {
+    {
+        return ;
+    }
+
     public boolean isWaypointListEmptyOrOnlyTargets() {
         return false;
     }

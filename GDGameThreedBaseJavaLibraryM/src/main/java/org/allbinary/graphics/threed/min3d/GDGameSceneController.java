@@ -1,12 +1,6 @@
 package org.allbinary.graphics.threed.min3d;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-
-import javax.microedition.khronos.opengles.GL;
 import javax.microedition.khronos.opengles.GL10;
-import javax.microedition.lcdui.Graphics;
 
 import min3d.core.TextureManager;
 import min3d.vos.Camera;
@@ -15,7 +9,6 @@ import min3d.vos.OffsetTargetXCameraFactory;
 import min3d.vos.light.Light;
 
 import org.allbinary.AndroidUtil;
-import org.allbinary.device.OpenGLESGraphics;
 import org.allbinary.game.GameTypeFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.communication.log.PreLogUtil;
@@ -24,7 +17,6 @@ import org.allbinary.graphics.canvas.transition.progress.ProgressCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.game.canvas.GDGameThreedLevelBuilder;
 import org.allbinary.game.gd.level.GDPlatformUtil;
-import org.allbinary.game.layer.AllBinaryGameLayer;
 import org.allbinary.game.layer.CameraLayer;
 import org.allbinary.game.layer.GDGameLayerManager;
 import org.allbinary.game.layer.SimpleUserFollowCameraLayer;
@@ -32,7 +24,6 @@ import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.graphics.RectangleFactory;
 import org.allbinary.graphics.displayable.DisplayInfoSingleton;
-import org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton;
 import org.allbinary.graphics.opengles.OpenGLCapabilities;
 import org.allbinary.graphics.threed.min3d.renderer.AllBinaryToMin3dRendererFactory;
 import org.allbinary.logic.string.StringMaker;
@@ -95,7 +86,7 @@ extends AllBinaryGameSceneController
         try
         {
             PreLogUtil.put(commonStrings.START, this, this.sceneStrings.INIT_SCENE);
-
+            
             index = 1;
 
             final String glInstanceVersion = openGLCapabilities.glInstanceVersion;
@@ -108,7 +99,8 @@ extends AllBinaryGameSceneController
             //Lights and resources don't need to be added again
             if(!this.initialized)
             {
-                ((ResourceInitialization) GDThreedEarlyResourceInitializationFactory.getInstance().list.get(0)).init();
+                final ResourceInitialization resourceInitialization = ((ResourceInitialization) GDThreedEarlyResourceInitializationFactory.getInstance().list.get(0));
+                resourceInitialization.init();
                               
                 progressCanvas.addEarlyPortion(portion, loadingString, index++);
 
@@ -139,9 +131,11 @@ extends AllBinaryGameSceneController
 
             progressCanvas.addEarlyPortion(portion, loadingString, index++);
             
+            GDGameThreedLevelBuilder gdGameThreedLevelBuilder;
             final int size = gameThreedLevelBuilderFactory.list.size();
             for(int index = 0; index < size; index++) {
-                ((GDGameThreedLevelBuilder) gameThreedLevelBuilderFactory.list.get(index)).build(gl, glInstanceVersion);
+                gdGameThreedLevelBuilder = ((GDGameThreedLevelBuilder) gameThreedLevelBuilderFactory.list.get(index));
+                gdGameThreedLevelBuilder.build(gl, glInstanceVersion);
             }
 
             progressCanvas.addEarlyPortion(portion, loadingString, index++);
@@ -247,8 +241,7 @@ extends AllBinaryGameSceneController
             camera.cameraSetup = gdGameCameraSetup;
             
             final DisplayInfoSingleton displayInfoSingleton = DisplayInfoSingleton.getInstance();
-            final float ratio = (float) displayInfoSingleton.getLastWidth() / (float) displayInfoSingleton.getLastHeight();
-            camera.updateFrustrum(ratio);
+            camera.updateFrustrum();
 
             if (gdGameCameraSetup.type == GDGameCameraSetup.FOLLOW) {
                 cameraLayer.processTick(layerManager);

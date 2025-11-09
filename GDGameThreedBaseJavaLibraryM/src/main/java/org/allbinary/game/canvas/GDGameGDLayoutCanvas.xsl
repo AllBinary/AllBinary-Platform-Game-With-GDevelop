@@ -73,6 +73,9 @@ import org.allbinary.game.layer.GDGameLayerManager;
 import org.allbinary.game.layer.PaintableLayerComposite;
 import org.allbinary.game.layer.PlayerGameInputGameLayer;
 import org.allbinary.game.layer.identification.GroupLayerManagerListener;
+import org.allbinary.game.layer.AllBinaryThreedVisibleTiledLayer;
+import org.allbinary.game.layer.AllBinaryTiledLayer;
+import org.allbinary.game.layer.GDGameLayer;
 import org.allbinary.game.layout.BaseGDNodeStats;
 import org.allbinary.game.layout.GDNodeStatsFactory;
 import org.allbinary.game.map.GDGeographicMap;
@@ -102,6 +105,7 @@ import org.allbinary.graphics.paint.PaintableInterface;
 import org.allbinary.graphics.threed.min3d.AllBinarySceneController;
 import org.allbinary.image.ImageCache;
 import org.allbinary.image.ImageCacheFactory;
+import org.allbinary.layer.Layer;
 import org.allbinary.layer.event.LayerManagerEventHandler;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.AllBinaryVibration;
@@ -145,7 +149,8 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
     private final StringMaker stringBuilder = new StringMaker();
 
     private SpecialAnimation specialAnimation = SpecialAnimation.getInstance();
-    private PaintableInterface tileLayerPaintable = NullPaintable.getInstance();
+    private Paintable tileLayerThreedPaintable = NullPaintable.getInstance();
+    private Paintable tileLayerPaintable = NullPaintable.getInstance();
 
     private final GDGameInputProcessor gameInputProcessor = new GDGameInputProcessor();
     
@@ -512,8 +517,8 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             
         new GDGame<GDLayout>LevelBuilder(layerManager).build();
 
-        if (openGLFeatureUtil.isAnyThreed())
-        {
+        <!--if (openGLFeatureUtil.isAnyThreed())
+        {-->
             progressCanvas.addPortion(portion, "Building 3D Game Level");
 
             AllBinarySceneController sceneController = GDGameAllBinarySceneControllerFactory.getInstance();
@@ -523,7 +528,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             sceneController.buildScene(layerManager);
 
             progressCanvas.addPortion(portion, "Finalizing 3D Game Level");
-        }
+        <!--}-->
         
         progressCanvas.addPortion(portion, "Set Background");
 
@@ -543,7 +548,55 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         //layerManager.setForegroundBasicColor(
                 //geographicMapInterface.getForegroundBasicColor());
 
-        this.tileLayerPaintable = new PaintableLayerComposite(BasicGeographicMapUtil.getInstance().createAllBinaryTiledLayerArray(geographicMapInterfaceArray));
+            /*
+            final Layer[] layerArray = new Layer[geographicMapInterfaceArray.length + 1];
+
+            if (features.isFeature(RaceTrackGameFeature.MINI_MAP))
+            {
+                //if (openGLFeatureUtil.isAnyThreed())
+                //{
+                    //this.layerArray[0] = new ImageMiniMapLayer(miniMap, new StaticViewPosition(0, 20, 0));
+                //}
+                //else
+                //{
+                layerArray[0] = new MiniMapLayer(miniMap, new StaticViewPosition(0, 20, 0));
+                //}
+            }
+            else
+            {
+                layerArray[0] = NullLayer.getInstance();
+            }
+            */
+            
+
+            <!--if (openGLFeatureUtil.isAnyThreed())
+            {-->
+                //layerArray[1] = NullLayer.getInstance();
+
+                final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                final GDGameLayer player = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
+                BasicGeographicMap geographicMapInterface = geographicMapInterfaceArray[0];
+                final AllBinaryTiledLayer allbinaryTiledLayer = geographicMapInterface.getAllBinaryTiledLayer();
+                final AllBinaryThreedVisibleTiledLayer threedVisibleTiledLayer = ((AllBinaryThreedVisibleTiledLayer) allbinaryTiledLayer);
+                threedVisibleTiledLayer.setTarget(player);
+
+                final Layer[] layerThreedArray = new Layer[geographicMapInterfaceArray.length];
+                
+                final int size = geographicMapInterfaceArray.length;
+                for(int index = 0; index < size; index++) {
+                    layerThreedArray[index] = allbinaryTiledLayer;
+                }
+                
+                this.tileLayerThreedPaintable = new PaintableLayerComposite(layerThreedArray);
+                //this.tileLayerPaintable = new PaintableLayerComposite(layerArray);
+            <!--}
+            else
+            {
+                this.tileLayerPaintable = new PaintableLayerComposite(BasicGeographicMapUtil.getInstance().createAllBinaryTiledLayerArray(geographicMapInterfaceArray, layerArray, 1));
+                this.tileLayerPaintable = new PaintableLayerComposite(BasicGeographicMapUtil.getInstance().createAllBinaryTiledLayerArray(geographicMapInterfaceArray));
+            }-->
+
+        
         </xsl:if>
 
         //this.playerLayer = ((GDGameLayerManager) this.getLayerManager()).getPlayerLayer();
@@ -659,7 +712,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
     public void paintThreed(Graphics graphics)
     {
-        
+        this.tileLayerThreedPaintable.paint(graphics);
     }
     
     private TimeDelayHelper playerTimeDelayHelper = new TimeDelayHelper(2000);

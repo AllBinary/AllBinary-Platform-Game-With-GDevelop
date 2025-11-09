@@ -515,7 +515,29 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         //layerManager.setForegroundBasicColor(
                 //geographicMapInterface.getForegroundBasicColor());
+        
+            /*
+            final Layer[] layerArray = new Layer[geographicMapInterfaceArray.length + 1];
+            
+            if (features.isFeature(RaceTrackGameFeature.MINI_MAP))
+            {
+                //if (openGLFeatureUtil.isAnyThreed())
+                //{
+                    //this.layerArray[0] = new ImageMiniMapLayer(miniMap, new StaticViewPosition(0, 20, 0));
+                //}
+                //else
+                //{
+                layerArray[0] = new MiniMapLayer(miniMap, new StaticViewPosition(0, 20, 0));
+                //}
+            }
+            else
+            {
+                layerArray[0] = NullLayer.getInstance();
+            }
+            */
 
+        //this.tileLayerPaintable = new PaintableLayerComposite(BasicGeographicMapUtil.getInstance().createAllBinaryTiledLayerArray(geographicMapInterfaceArray, layerArray, 1));
+            
         this.tileLayerPaintable = new PaintableLayerComposite(BasicGeographicMapUtil.getInstance().createAllBinaryTiledLayerArray(geographicMapInterfaceArray));
         </xsl:if>
             

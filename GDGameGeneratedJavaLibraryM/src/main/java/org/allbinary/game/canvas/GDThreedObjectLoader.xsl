@@ -100,6 +100,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="rootImageName2" ><xsl:call-template name="rootImageName" ><xsl:with-param name="image" ><xsl:value-of select="$image3" /></xsl:with-param></xsl:call-template></xsl:variable>
                         <xsl:variable name="imageWithSepX4" ><xsl:value-of select="$rootImageName2" />:<xsl:value-of select="$rootImageName2" />:<xsl:value-of select="$rootImageName2" />:<xsl:value-of select="$rootImageName2" />:</xsl:variable>
 
+                //image=<xsl:value-of select="$image" />
                 //imageWithSepX4=<xsl:value-of select="$imageWithSepX4" />
                 //rootAnimationNames=<xsl:value-of select="$rootAnimationNames" />
 
@@ -124,6 +125,17 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$rootImageName2" />left<xsl:if test="contains($image, '_1')" >_1</xsl:if>Object3dContainer;
                                     </xsl:otherwise>
                                 </xsl:choose>
+                                                                        
+                                </xsl:when>
+                                <xsl:when test="contains($image, 'attack')" >
+
+                    Object3d <xsl:value-of select="$image" />Object3dContainer;
+                    final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = <xsl:value-of select="$image" />Object3dContainer = threedLoaderFactory.getObject3dInstance(
+                        gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, modelTypeFactory.MD2, FALSE<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
+                      
+                    //<xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().x = 
+                        //<xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().y = 
+                        //<xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().z = <xsl:if test="/game/properties/scale3d" ><xsl:value-of select="/game/properties/scale3d" /></xsl:if><xsl:if test="not(/game/properties/scale3d)" >0</xsl:if>f;
                                                                         
                                 </xsl:when>
                                 <xsl:otherwise>
