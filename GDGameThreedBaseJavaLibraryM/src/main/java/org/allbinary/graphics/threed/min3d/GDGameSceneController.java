@@ -24,6 +24,7 @@ import org.allbinary.game.resource.GDThreedEarlyResourceInitializationFactory;
 import org.allbinary.game.resource.ResourceInitialization;
 import org.allbinary.graphics.RectangleFactory;
 import org.allbinary.graphics.opengles.OpenGLCapabilities;
+import org.allbinary.graphics.opengles.OpenGLVersionValidator;
 import org.allbinary.graphics.threed.min3d.renderer.AllBinaryToMin3dRendererFactory;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.system.os.OperatingSystemFactory;
@@ -102,17 +103,8 @@ extends AllBinaryGameSceneController
                 resourceInitialization.init();
                               
                 progressCanvas.addEarlyPortion(portion, loadingString, index++);
-
-                final Light light = new Light();
-
-                light.ambient.setAll(128, 128, 128, 128);
-                light.ambient.commitToFloatBuffer();
-
-                if (scene.getLights().size() > 0) {
-                    scene.getLights().reset();
-                }
-
-                scene.getLights().add(light);
+                
+                this.processLighting();
 
             final Camera camera = scene.getCamera();
             //Default values if not set by configuration
@@ -196,7 +188,7 @@ extends AllBinaryGameSceneController
                 //rear angle - may need to change as incline grade changes
                 //cameraLayer.setRotationY((short) 5);
                 //cameraLayer.setRotationY((short) 15);
-                GDPlatformUtil.getInstance().updateCamera(cameraLayer);
+                //GDPlatformUtil.getInstance().updateCamera(cameraLayer);
 
                 //cameraLayer.setRotationY((short) 90);
                 cameraLayer.updateCamera();
@@ -273,6 +265,25 @@ extends AllBinaryGameSceneController
         catch (Exception e)
         {
             logUtil.put(commonStrings.EXCEPTION, this, this.sceneStrings.BUILD_SCENE, e);
+        }
+    }
+
+    private void processLighting() {
+        final OpenGLVersionValidator openGLVersionValidator = OpenGLVersionValidator.getInstance();
+
+        if (openGLVersionValidator.isGL31OrHigher()) {
+            //Use shaders to handle lighting
+        } else {
+            final Light light = new Light();
+
+            light.ambient.setAll(128, 128, 128, 128);
+            light.ambient.commitToFloatBuffer();
+
+            if (scene.getLights().size() > 0) {
+                scene.getLights().reset();
+            }
+
+            scene.getLights().add(light);
         }
     }
 
