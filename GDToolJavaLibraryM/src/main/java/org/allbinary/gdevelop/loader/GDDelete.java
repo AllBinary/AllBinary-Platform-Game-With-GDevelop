@@ -129,6 +129,7 @@ public class GDDelete {
         exclusionList3.add("PlacementAllBinaryJ2METiledLayer.java");
         exclusionList3.add("GDTiledMapProperties");
         exclusionList3.add("TitleVectorData.java");
+        exclusionList3.add("AppRendererShaderUpdaterFactory.java");
         
         final BasicArrayList files3 = fileListFetcher.getFiles(
               gdToolStrings.ROOT_PATH + "GDGameThreedBaseJavaLibraryM\\src\\main\\java", this.gdToolStrings.JAVA);
