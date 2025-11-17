@@ -34,14 +34,18 @@ public class GDImageSizeGenerator {
 
     private final CommonSeps commonSeps = CommonSeps.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
-    
+
     public BasicArrayList process() throws IOException {
+        final FileListFetcher fileListFetcher = FileListFetcher.getInstance();
+        final BasicArrayList files = fileListFetcher.getFiles(this.gdToolStrings.RESOURCES_PATH);
+        return this.process(files);
+    }
+
+    public BasicArrayList process(final BasicArrayList files) throws IOException {
         
         final BasicArrayList list = new BasicArrayList();
         
         final StringMaker stringMaker = new StringMaker();
-        final FileListFetcher fileListFetcher = FileListFetcher.getInstance();
-        final BasicArrayList files = fileListFetcher.getFiles(this.gdToolStrings.RESOURCES_PATH, this.gdToolStrings.PNG);
         AbFile abFile;
         BufferedImage bufferedImage;
         final int size = files.size();
@@ -51,13 +55,15 @@ public class GDImageSizeGenerator {
             if(abFile.isDirectory()) {
                 
             } else {
-                bufferedImage = ImageIO.read(AbFileNativeUtil.get(abFile));
-                final String name = abFile.getName().substring(0, abFile.getName().length() - 4).toUpperCase();
-                stringMaker.append(arrayIndex).append(name).append(this.commonSeps.SPACE).append(bufferedImage.getWidth())
-                    .append(this.commonSeps.COMMA).append(this.commonSeps.SPACE).append(bufferedImage.getHeight()).append(this.commonSeps.NEW_LINE);
-                final GDResource gdResource = new GDResource(name, bufferedImage.getWidth(), bufferedImage.getHeight());
-                list.add(gdResource);
-                arrayIndex++;
+                if(abFile.getAbsolutePath().endsWith(this.gdToolStrings.PNG)) {
+                    bufferedImage = ImageIO.read(AbFileNativeUtil.get(abFile));
+                    final String name = abFile.getName().substring(0, abFile.getName().length() - 4).toUpperCase();
+                    stringMaker.append(arrayIndex).append(name).append(this.commonSeps.SPACE).append(bufferedImage.getWidth())
+                        .append(this.commonSeps.COMMA).append(this.commonSeps.SPACE).append(bufferedImage.getHeight()).append(this.commonSeps.NEW_LINE);
+                    final GDResource gdResource = new GDResource(name, bufferedImage.getWidth(), bufferedImage.getHeight());
+                    list.add(gdResource);
+                    arrayIndex++;
+                }
             }
         }
         

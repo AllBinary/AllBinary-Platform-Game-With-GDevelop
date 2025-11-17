@@ -38,7 +38,6 @@ public class GDToAndroidRClassGenerator
     
     private final String RESOURCE = "        //Resource\n";
     private final String EXPRESSION_PARAM = "        //Expression Param\n";
-    private final String _OBJ = "_obj";
     
     private final String BLANK = "blank";
     private final String SKIPPING = "Skipping: ";
@@ -60,16 +59,11 @@ public class GDToAndroidRClassGenerator
         androidRFileStringMaker.append(fileAsString);
         androidRFileStringMaker.append(VALUE);
         androidRFileStringMaker.append(this.commonSeps.NEW_LINE);
-        androidRFileStringMaker.append(PUBLIC_STATIC_FINAL_INT);
-        androidRFileStringMaker.append(fileAsString);
-        androidRFileStringMaker.append(_OBJ);
-        androidRFileStringMaker.append(VALUE);
     }
     
     private final String SELECT = "select";
     
     public void processExpressionParam(final String param) {
-        
         if(param.compareTo(SELECT) != 0) {
         androidRFileStringMaker.append(EXPRESSION_PARAM);
         androidRFileStringMaker.append(PUBLIC_STATIC_FINAL_INT);

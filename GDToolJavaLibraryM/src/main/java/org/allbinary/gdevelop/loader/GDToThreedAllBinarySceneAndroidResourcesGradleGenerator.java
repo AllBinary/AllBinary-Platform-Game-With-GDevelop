@@ -45,7 +45,7 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
 
     }
 
-    public void process() throws Exception
+    public void process(final BasicArrayList files) throws Exception
     {
         final String GD_KEY = "//GD";
         

@@ -24,6 +24,7 @@ import org.allbinary.logic.string.StringUtil;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.io.file.FileListFetcher;
 import org.allbinary.string.CommonLabels;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.time.TimeDelayHelper;
@@ -175,16 +176,19 @@ public class GDToAllBinaryGenerationTool
             gdNameFileGeneratorArray[index].process();
         }
 
+        final FileListFetcher fileListFetcher = FileListFetcher.getInstance();
+        final BasicArrayList files = fileListFetcher.getFiles(this.gdToolStrings.RESOURCES_PATH);        
+        
         this.androidRClassGenerator.process();
         this.threedAndroidRClassGenerator.process();
         this.allBinaryAndroidResourcesGenerator.process();
-        this.allBinaryThreedAndroidResourcesGenerator.process();
+        this.allBinaryThreedAndroidResourcesGenerator.process(files);
         this.soundsGenerator.process();
         this.earlyResourceInitializationGenerator.process(soundsGenerator);
         this.threedEarlyResourceInitializationGenerator.process(soundsGenerator);
-        this.threedSceneEarlyResourceInitializationGenerator.process();
+        this.threedSceneEarlyResourceInitializationGenerator.process(files);
         this.midletGenerator.process();
-        this.allBinaryResourcesGenerator.process();
+        this.allBinaryResourcesGenerator.process(files);
         this.levelBuilderGenerator.process();
         this.runnableGenerator.process();
         this.levelBuilderThreedGenerator.process();

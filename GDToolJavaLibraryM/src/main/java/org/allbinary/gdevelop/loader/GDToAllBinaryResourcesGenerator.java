@@ -13,7 +13,6 @@ import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonLabels;
 import org.allbinary.string.CommonSeps;
@@ -333,7 +332,7 @@ public class GDToAllBinaryResourcesGenerator
         return usedList;
     }
 
-    public void process2(final BasicArrayList usedList) throws Exception {
+    public void process2(final BasicArrayList files, final BasicArrayList usedList) throws Exception {
     
         this.resourceStringMaker.delete(0, this.resourceStringMaker.length());
         resourceStringMaker.append(GD_KEY);
@@ -343,7 +342,7 @@ public class GDToAllBinaryResourcesGenerator
         resourceStringMaker.append(this.commonSeps.NEW_LINE);
         
         final GDImageSizeGenerator gdImageSizeGenerator = new GDImageSizeGenerator();
-        final BasicArrayList gdResourceList = gdImageSizeGenerator.process();
+        final BasicArrayList gdResourceList = gdImageSizeGenerator.process(files);
         
         timeDelayHelper.setStartTime();
         
@@ -375,8 +374,8 @@ public class GDToAllBinaryResourcesGenerator
         
     }
     
-    public void process() throws Exception {
+    public void process(final BasicArrayList files) throws Exception {
         final BasicArrayList usedList = this.process1();
-        this.process2(usedList);
+        this.process2(files, usedList);
     }
 }

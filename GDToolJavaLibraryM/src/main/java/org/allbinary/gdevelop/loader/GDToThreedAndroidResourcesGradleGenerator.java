@@ -16,6 +16,7 @@ import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonSeps;
+import org.allbinary.util.BasicArrayList;
 
 /**
  *
@@ -95,7 +96,7 @@ public class GDToThreedAndroidResourcesGradleGenerator
         resourceStringMaker.append(this.VALUE_RESOURCE_END);
     }
     
-    public void process() throws Exception {
+    public void process(final BasicArrayList files) throws Exception {
 
         final String RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.original";
         final String RESOURCE = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java";

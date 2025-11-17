@@ -33,6 +33,10 @@ public final class R {
     public static final class raw {
         public static final int blank=0x7f040099;
     	public static final int error=0x7f040000;
+        public static final int simple_vertex_shader_gsn_glsl=0x7f030099;
+        public static final int simple_texture_fragment_shader_gsn_glsl=0x7f030098;
+        public static final int like2_fixed_pipeline_lighting_vertex_shader_glsl=0x7f030099;
+        public static final int like2_fixed_pipeline_lighting_fragment_shader_glsl=0x7f030098;
         public static final int licenseinitdata=0x7f040001;
         public static final int partner=0x7f040002;
         public static final int select=0x7f040003;
