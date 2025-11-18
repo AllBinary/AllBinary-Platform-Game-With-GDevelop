@@ -55,7 +55,7 @@ Created By: Travis Berthelot
     </xsl:template>
 
     <xsl:template name="threedResourceLoading" >
-        <xsl:param name="enlargeTheImageBackgroundForRotation" />
+        <xsl:param name="enlargeTheImageBthreedResourceLoadingackgroundForRotation" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="instancesAsString" />
         <xsl:param name="touch" />
@@ -79,6 +79,8 @@ Created By: Travis Berthelot
             //Animation Total: <xsl:value-of select="count(animations)" />
             private void add<xsl:value-of select="name" />SpriteAnimations(final GL10 gl, final String glInstanceVersion) throws Exception {
 
+                final AppRendererShaderUpdaterFactory appRendererShaderUpdaterFactory = AppRendererShaderUpdaterFactory.getInstance();
+            
                 <xsl:variable name="rootAnimationNames" >
                     <xsl:for-each select="animations" >
                     <xsl:variable name="resourceWithExtension" select="directions/sprites/image" />
@@ -115,6 +117,8 @@ Created By: Travis Berthelot
                     final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = <xsl:value-of select="$image" />Object3dContainer = threedLoaderFactory.getObject3dInstance(
                         gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, modelTypeFactory.MD2, FALSE<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
                       
+                    appRendererShaderUpdaterFactory.setShaderComposite(<xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer);
+                    
                     //<xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().x = 
                         //<xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().y = 
                         //<xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().z = <xsl:if test="/game/properties/scale3d" ><xsl:value-of select="/game/properties/scale3d" /></xsl:if><xsl:if test="not(/game/properties/scale3d)" >0</xsl:if>f;
@@ -132,17 +136,21 @@ Created By: Travis Berthelot
                     Object3d <xsl:value-of select="$image" />Object3dContainer;
                     final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = <xsl:value-of select="$image" />Object3dContainer = threedLoaderFactory.getObject3dInstance(
                         gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, modelTypeFactory.MD2, FALSE<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
-                      
+
+                    appRendererShaderUpdaterFactory.setShaderComposite(<xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer);
+
                     //<xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().x = 
                         //<xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().y = 
                         //<xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().z = <xsl:if test="/game/properties/scale3d" ><xsl:value-of select="/game/properties/scale3d" /></xsl:if><xsl:if test="not(/game/properties/scale3d)" >0</xsl:if>f;
-                                                                        
+                         
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    
+
                 final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = threedLoaderFactory.getObject3dInstance(
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, modelTypeFactory.OBJ, FALSE<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
-                      
+
+                appRendererShaderUpdaterFactory.setShaderComposite(<xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer);
+
                 <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().x = 
                     <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().y = 
                     <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer.getScale().z = <xsl:if test="/game/properties/scale3d" ><xsl:value-of select="/game/properties/scale3d" /></xsl:if><xsl:if test="not(/game/properties/scale3d)" >0</xsl:if>f;
@@ -178,13 +186,17 @@ Created By: Travis Berthelot
             <xsl:if test="$typeValue = 'TileMap::TileMap'" >
             //Animation Total: <xsl:value-of select="count(animations)" />
             private void add<xsl:value-of select="name" />TileMapAnimations(final GL10 gl, final String glInstanceVersion) throws Exception {
-            
+
+                final AppRendererShaderUpdaterFactory appRendererShaderUpdaterFactory = AppRendererShaderUpdaterFactory.getInstance();
+
                 final Object3d mapCellModelObject3dContainer = 
                         threedLoaderFactory.getObject3dInstance(
                                 this.animationInterfaceFactoryInterfaceFactory.MAP_CELL_MODEL, gl, glInstanceVersion, modelTypeFactory.OBJ, FALSE);
 
+                appRendererShaderUpdaterFactory.setShaderComposite(mapCellModelObject3dContainer);
+
                 min3dSceneResourcesFactory.add(this.animationInterfaceFactoryInterfaceFactory.MAP_CELL_MODEL, new Object3d[] {mapCellModelObject3dContainer});
-            
+
                 this.addMapCell(gl, mapCellModelObject3dContainer.cloneImmutable(), this.animationInterfaceFactoryInterfaceFactory.MAP_CELL_MODEL_IMAGE);
             
             }

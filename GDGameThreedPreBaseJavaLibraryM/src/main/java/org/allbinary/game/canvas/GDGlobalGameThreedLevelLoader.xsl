@@ -86,6 +86,7 @@ Created By: Travis Berthelot
 
                 import org.allbinary.graphics.opengles.OpenGLCapabilities;
                 import org.allbinary.graphics.threed.min3d.renderer.Object3dContainerUtil;
+                import org.allbinary.graphics.opengles.shader.AppRendererShaderUpdaterFactory;
                 import org.platform.ThreedObjResources;
                                 
                 //Layout name=<xsl:value-of select="$layoutName" />

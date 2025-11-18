@@ -73,7 +73,16 @@
 
             <optional>true</optional>
         </dependency>
-
+ 
+        <dependency>
+            <groupId>min3d</groupId>
+            <artifactId>Min3dForAndroidPlatformJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+            <optional>true</optional>
+        </dependency>
+        
         <dependency>
             <groupId>org.platform</groupId>
             <artifactId>Min3dForJOGLJavaLibrary</artifactId>
@@ -81,6 +90,35 @@
             <version>${allbinary.platform.version}</version>
             <!-- AllBinary Platform Version End -->
 
+            <optional>true</optional>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>AppNoneOpenGLESJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLNoneOtherJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>${allbinary.platform.version}</version>
+            <!-- AllBinary Platform Version End -->
+
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary.game.gd</groupId>
+            <artifactId>GDGameThreedJ2SEWithSWTJOGLResourceJavaLibrary</artifactId>
+            
+<!--            <groupId>org.allbinary</groupId>
+            <artifactId>AppNoneOpenGLESJavaLibrary</artifactId>-->
+            <version>${allbinary.platform.version}</version>
             <optional>true</optional>
         </dependency>
 
