@@ -16,6 +16,7 @@ package org.allbinary.graphics.opengles.shader;
 import java.io.InputStream;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
+import min3d.core.Object3d;
 import opengles.SemanticStrings;
 
 import org.allbinary.data.resource.ResourceUtil;
@@ -255,6 +256,11 @@ public class AppRendererShaderUpdaterFactory extends ShaderUpdater {
         };
         
         return shaderOpenGLProcessorArray;
+    }
+
+    public void setShaderComposite(final Object object) {
+        final Object3d object3d = (Object3d) object;
+        OpenGLVersionValidator.getInstance().setShaderComposite(this.shaderCompositeArray[0], object3d);
     }
     
 }

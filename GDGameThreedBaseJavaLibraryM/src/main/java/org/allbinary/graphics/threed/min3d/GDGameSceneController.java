@@ -269,22 +269,22 @@ extends AllBinaryGameSceneController
     }
 
     private void processLighting() {
-        final OpenGLVersionValidator openGLVersionValidator = OpenGLVersionValidator.getInstance();
 
-        if (openGLVersionValidator.isGL31OrHigher()) {
-            //Use shaders to handle lighting
-        } else {
-            final Light light = new Light();
+        final Light light = new Light();
 
-            light.ambient.setAll(128, 128, 128, 128);
-            light.ambient.commitToFloatBuffer();
-
-            if (scene.getLights().size() > 0) {
-                scene.getLights().reset();
-            }
-
-            scene.getLights().add(light);
+        //light.ambient.setAll(128, 128, 128, 128);
+        //light.ambient.commitToFloatBuffer();
+        if (scene.getLights().size() > 0) {
+            scene.getLights().reset();
         }
+
+        scene.getLights().add(light);
+        
+//        final OpenGLVersionValidator openGLVersionValidator = OpenGLVersionValidator.getInstance();
+//        if (openGLVersionValidator.isGL31OrHigher()) {
+//            //Use shaders to handle lighting
+//        } else {
+//        }
     }
 
     public void processEarlyGameAction()
