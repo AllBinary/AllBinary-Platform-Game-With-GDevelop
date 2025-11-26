@@ -35,8 +35,6 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
 
     private final GDResourceSelection gdResourceSelection = GDResourceSelection.getInstance();
 
-    private final String SOUND_RESOURCE = ".getInstance().getResource(), ";
-
     public GDToAllBinaryEarlyResourceInitializationGenerator()
     {
 
@@ -81,7 +79,7 @@ public class GDToAllBinaryEarlyResourceInitializationGenerator
         for(int index = 0; index < size; index++) {
             stringMaker.append(gdToolStrings.RESOURCE_0);
             stringMaker.append(stringUtil.toString(playSoundResourceClassNameList.get(index)));
-            stringMaker.append(SOUND_RESOURCE);
+            stringMaker.append(gdToolStrings.SOUND_RESOURCE);
             stringMaker.append(gdToolStrings.RESOURCE_1);
             stringMaker.append(stringUtil.toString(playSoundAndroidResourceNameList.get(index)));
             stringMaker.append(gdToolStrings.RESOURCE_2);

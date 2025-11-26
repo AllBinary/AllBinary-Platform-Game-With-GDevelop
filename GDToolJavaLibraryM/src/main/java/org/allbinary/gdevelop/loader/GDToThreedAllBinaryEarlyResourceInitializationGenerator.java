@@ -6,7 +6,6 @@
 
 package org.allbinary.gdevelop.loader;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.logic.io.StreamUtil;
@@ -33,14 +32,7 @@ public class GDToThreedAllBinaryEarlyResourceInitializationGenerator
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
-    
-    private final String RESOURCE_0 = "\n        resourceUtil.addResource(";
-    
-    private final String SOUND_RESOURCE = ".getInstance().getResource(), ";
-    
-    private final String RESOURCE_1 = "Integer.valueOf(androidResources.raw.";
-    private final String RESOURCE_2 = "));";
-    
+        
     public GDToThreedAllBinaryEarlyResourceInitializationGenerator()
     {
 
@@ -83,12 +75,13 @@ public class GDToThreedAllBinaryEarlyResourceInitializationGenerator
         
         int size = playSoundResourceClassNameList.size();
         for(int index = 0; index < size; index++) {
-            stringMaker.append(RESOURCE_0);
+            stringMaker.append(this.commonSeps.NEW_LINE);
+            stringMaker.append(gdToolStrings.RESOURCE_0);
             stringMaker.append(stringUtil.toString(playSoundResourceClassNameList.get(index)));
-            stringMaker.append(SOUND_RESOURCE);
-            stringMaker.append(RESOURCE_1);
+            stringMaker.append(gdToolStrings.SOUND_RESOURCE);
+            stringMaker.append(gdToolStrings.RESOURCE_1);
             stringMaker.append(stringUtil.toString(playSoundAndroidResourceNameList.get(index)));
-            stringMaker.append(RESOURCE_2);
+            stringMaker.append(gdToolStrings.RESOURCE_2);
             stringMaker.append(this.commonSeps.NEW_LINE);
         }        
     }

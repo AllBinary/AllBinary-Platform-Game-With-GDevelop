@@ -56,6 +56,8 @@ public class GDToolStrings {
     public final String RESOURCE_1 = "Integer.valueOf(androidResources.raw.";
     public final String RESOURCE_2 = "));";
 
+    public final String SOUND_RESOURCE = ".getInstance().getResource(), ";
+    
     public final String GD_LAYOUT = "<GDLayout>";
     public final String GD_CURRENT_LAYOUT_INDEX = "<GD_CURRENT_INDEX>";
     public final String GD_NODE_IDS = "<GD_NODE_IDS>";
