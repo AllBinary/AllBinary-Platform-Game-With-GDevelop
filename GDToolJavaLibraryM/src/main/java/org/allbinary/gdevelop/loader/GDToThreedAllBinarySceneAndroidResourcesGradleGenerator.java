@@ -35,10 +35,7 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
 
     private final GDResourceSelection gdResourceSelection = GDResourceSelection.getInstance();
     
-    private final String _OBJ = "_obj";
-    
     private final String TOUCH = "touch";
-    private final String BLANK = "blank";
     
     public GDToThreedAllBinarySceneAndroidResourcesGradleGenerator()
     {
@@ -111,10 +108,10 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
             stringMaker.append(resource);
             stringMaker.append(gdToolStrings._RESOURCE);
             stringMaker.append(gdToolStrings.RESOURCE_1);
-            stringMaker.append(stringUtil.toString(androidResourceList.get(index)));
-            if(((String) androidResourceList.get(index)).indexOf(TOUCH) < 0 && 
-                    ((String) androidResourceList.get(index)).indexOf(BLANK) < 0) {
-                stringMaker.append(_OBJ);
+            final String androidResource = ((String) androidResourceList.get(index));
+            stringMaker.append(androidResource);
+            if(androidResource.indexOf(TOUCH) < 0 && androidResource.indexOf(this.gdToolStrings.BLANK) < 0) {
+                stringMaker.append(this.gdToolStrings._OBJ);
             }
             stringMaker.append(gdToolStrings.RESOURCE_2);
         }        

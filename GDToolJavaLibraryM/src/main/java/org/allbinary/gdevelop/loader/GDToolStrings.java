@@ -46,6 +46,9 @@ public class GDToolStrings {
     public final String _BLANK_ = "BLANK";
     public final String _TOUCH_ = "TOUCH";
 
+    public final String _OBJ = "_obj";
+    public final String BLANK = "blank";
+    
     public final String UNDERSCORE_0 = CommonSeps.getInstance().UNDERSCORE + "0";
     
     public final String RESOURCE_0 = "        resourceUtil.addResource(";

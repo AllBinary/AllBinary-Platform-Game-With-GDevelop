@@ -38,9 +38,7 @@ public class GDToThreedAndroidRClassGenerator
     
     private final String RESOURCE = "        //Resource\n";
     private final String EXPRESSION_PARAM = "        //Expression Param\n";
-    private final String _OBJ = "_obj";
     
-    private final String BLANK = "blank";
     private final String SKIPPING = "Skipping: ";
     
     public GDToThreedAndroidRClassGenerator() {
@@ -50,7 +48,7 @@ public class GDToThreedAndroidRClassGenerator
     
     public void processResource(final String fileAsString) {
         
-        if(fileAsString.compareTo(BLANK) == 0) {
+        if(fileAsString.compareTo(this.gdToolStrings.BLANK) == 0) {
             logUtil.put(SKIPPING + fileAsString, this, commonStrings.PROCESS);
             return;
         }
@@ -62,7 +60,7 @@ public class GDToThreedAndroidRClassGenerator
         androidRFileStringMaker.append(this.commonSeps.NEW_LINE);
         androidRFileStringMaker.append(PUBLIC_STATIC_FINAL_INT);
         androidRFileStringMaker.append(fileAsString);
-        androidRFileStringMaker.append(_OBJ);
+        androidRFileStringMaker.append(this.gdToolStrings._OBJ);
         androidRFileStringMaker.append(VALUE);
     }
     

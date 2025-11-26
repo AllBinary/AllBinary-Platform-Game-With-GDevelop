@@ -43,10 +43,8 @@ public class GDToThreedAndroidResourcesGradleGenerator
     
     private final String GD_KEY_NAME = "<name>";
     
-    private final String _OBJ = "_obj";
     private final String BUTTON = "button";
     private final String BLANK_LINE = "public final int blank = R.raw.blank;\n";
-    private final String BLANK = "blank";
 
     private String packageName;
     private boolean isBlank;
@@ -75,7 +73,7 @@ public class GDToThreedAndroidResourcesGradleGenerator
             isThreed = false;
         }
 
-        if(resource.indexOf(BLANK) >= 0) {
+        if(resource.indexOf(this.gdToolStrings.BLANK) >= 0) {
             isBlank = true;
         }
         
@@ -83,14 +81,14 @@ public class GDToThreedAndroidResourcesGradleGenerator
         resourceStringMaker.append(resource);
         
         if(isThreed) {
-            resourceStringMaker.append(this._OBJ);
+            resourceStringMaker.append(this.gdToolStrings._OBJ);
         }
         
         resourceStringMaker.append(this.VALUE_RESOURCE_START);
         resourceStringMaker.append(resource);
         
         if(isThreed) {
-            resourceStringMaker.append(this._OBJ);
+            resourceStringMaker.append(this.gdToolStrings._OBJ);
         }
         
         resourceStringMaker.append(this.VALUE_RESOURCE_END);
