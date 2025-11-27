@@ -39,12 +39,18 @@ public class PlatformAppShaderResources {
         final AppShaderResources appShaderResources = AppShaderResources.getInstance();        
 
         resourceUtil.addResource(
+            //appShaderResources.SIMPLE_VERTEX_SHADER_GSN,
+            //Integer.valueOf(androidResources.raw.simple_vertex_shader_gsn_glsl)
             appShaderResources.LIKE2_FIXED_PIPLINE_LIGHTING_VERTEX_SHADER,
-            Integer.valueOf(androidResources.raw.simple_vertex_shader_gsn_glsl));
+            Integer.valueOf(androidResources.raw.like2_fixed_pipeline_lighting_vertex_shader_glsl)
+        );
 
         resourceUtil.addResource(
+            //appShaderResources.SIMPLE_TEXTURE_FRAGMENT_SHADER_GSN,
+            //Integer.valueOf(androidResources.raw.simple_texture_fragment_shader_gsn_glsl)
             appShaderResources.LIKE2_FIXED_PIPLINE_LIGHTING_FRAGMENT_SHADER,
-            Integer.valueOf(androidResources.raw.simple_texture_fragment_shader_gsn_glsl));
+            Integer.valueOf(androidResources.raw.like2_fixed_pipeline_lighting_fragment_shader_glsl)
+        );
         
     }
         

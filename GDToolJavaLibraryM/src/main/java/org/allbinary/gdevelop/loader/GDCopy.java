@@ -26,7 +26,6 @@ import org.allbinary.util.BasicArrayList;
 public class GDCopy {
     protected final LogUtil logUtil = LogUtil.getInstance();
 
-
     private final CommonStrings commonStrings = CommonStrings.getInstance();
 
     public void copy() throws Exception {

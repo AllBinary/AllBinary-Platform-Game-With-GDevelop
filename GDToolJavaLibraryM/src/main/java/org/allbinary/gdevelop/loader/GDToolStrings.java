@@ -4,9 +4,11 @@
  */
 package org.allbinary.gdevelop.loader;
 
+import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.io.file.AbFile;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.string.CommonSeps;
+import org.allbinary.string.CommonStrings;
 import org.allbinary.util.BasicArrayList;
 
 /**
@@ -23,6 +25,10 @@ public class GDToolStrings {
     public static GDToolStrings getInstance() {
         return instance;
     }
+
+    //protected final LogUtil logUtil = LogUtil.getInstance();
+
+    private final CommonStrings commonStrings = CommonStrings.getInstance();
     
     public final String FILENAME = "fileName: ";
     
@@ -47,6 +53,7 @@ public class GDToolStrings {
     public final String OGG = "ogg";
     public final String TXT = "txt";
     public final String HTML = "html";
+    public final String GLSL = "glsl";
     
     public final String XML = "xml";
     public final String _JSON = ".json";
@@ -91,7 +98,7 @@ public class GDToolStrings {
             path = file.getPath();
             startIndex = path.indexOf(resource);
             if(startIndex >= 0) {
-                System.out.println(path);
+                //logUtil.put(path, this, commonStrings.PROCESS);
                 if(path.indexOf(this._OBJ) >= 0) {
                     return this._OBJ;
                 } else if(path.indexOf(this._MD2) >= 0) {
@@ -107,6 +114,8 @@ public class GDToolStrings {
                 } else if(path.endsWith(this.TXT)) {
                     return this.stringUtil.EMPTY_STRING;
                 } else if(path.endsWith(this.HTML)) {
+                    return this.stringUtil.EMPTY_STRING;
+                } else if(path.endsWith(this.GLSL)) {
                     return this.stringUtil.EMPTY_STRING;
                 }
             }
