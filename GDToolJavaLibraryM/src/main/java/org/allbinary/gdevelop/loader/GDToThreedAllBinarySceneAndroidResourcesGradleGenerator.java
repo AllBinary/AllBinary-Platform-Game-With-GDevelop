@@ -7,12 +7,12 @@
 package org.allbinary.gdevelop.loader;
 
 import java.io.FileInputStream;
+
 import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.logic.string.StringUtil;
@@ -35,14 +35,14 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
 
     private final GDResourceSelection gdResourceSelection = GDResourceSelection.getInstance();
     
-    private final String TOUCH = "touch";
+    //private final String TOUCH = "touch";
     
     public GDToThreedAllBinarySceneAndroidResourcesGradleGenerator()
     {
 
     }
 
-    public void process(final BasicArrayList files) throws Exception
+    public void process(final BasicArrayList threedFileList) throws Exception
     {
         final String GD_KEY = "//GD";
         
@@ -51,7 +51,7 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
         
         final StringMaker stringMaker = new StringMaker();
 
-        this.appendMedia(stringMaker);
+        this.appendMedia(threedFileList, stringMaker);
 
         final StreamUtil streamUtil = StreamUtil.getInstance();
         final SharedBytes sharedBytes = SharedBytes.getInstance();
@@ -70,7 +70,7 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
 
     }
     
-    public void appendMedia(final StringMaker stringMaker) {
+    public void appendMedia(final BasicArrayList threedFileList, final StringMaker stringMaker) {
         
         final StringUtil stringUtil = StringUtil.getInstance();
         
@@ -86,8 +86,15 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
 
             resource = (String) resourceList.get(index);
 
+            final String extension = this.gdToolStrings.getExtension(threedFileList, resource);
+            
             stringMaker.append(this.commonSeps.NEW_LINE);
             
+            if(extension == stringUtil.NULL_STRING) {
+                stringMaker.append(this.commonSeps.COMMENT);
+                stringMaker.append(this.gdToolStrings.NOT_USED_FOR_THREED_GAMES);
+            }
+
             if (resource.endsWith(gdToolStrings.UNDERSCORE_0) && 
                     (resource.indexOf(gdToolStrings._TOUCH_) < 0 || resource.indexOf(gdToolStrings._BLANK_) < 0)) {
                 stringMaker.append(this.commonSeps.COMMENT);
@@ -110,9 +117,7 @@ public class GDToThreedAllBinarySceneAndroidResourcesGradleGenerator
             stringMaker.append(gdToolStrings.RESOURCE_1);
             final String androidResource = ((String) androidResourceList.get(index));
             stringMaker.append(androidResource);
-            if(androidResource.indexOf(TOUCH) < 0 && androidResource.indexOf(this.gdToolStrings.BLANK) < 0) {
-                stringMaker.append(this.gdToolStrings._OBJ);
-            }
+            stringMaker.append(extension);
             stringMaker.append(gdToolStrings.RESOURCE_2);
         }        
     }

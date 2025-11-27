@@ -258,7 +258,7 @@ public class GDToAllBinaryResourcesGenerator
         final SharedBytes sharedBytes = SharedBytes.getInstance();
         sharedBytes.outputStream.reset();
         
-        final FileInputStream inputStream = new FileInputStream(this.gdToolStrings.RESOURCES_PATH + path);
+        final FileInputStream inputStream = new FileInputStream(this.gdToolStrings.TWOD_RESOURCES_PATH + path);
         sharedBytes.outputStream.reset();
         final String gameAsConfiguration = new String(streamUtil.getByteArray(inputStream, sharedBytes.outputStream, sharedBytes.byteArray));
 
@@ -374,8 +374,8 @@ public class GDToAllBinaryResourcesGenerator
         
     }
     
-    public void process(final BasicArrayList files) throws Exception {
+    public void process(final BasicArrayList twoDFileList) throws Exception {
         final BasicArrayList usedList = this.process1();
-        this.process2(files, usedList);
+        this.process2(twoDFileList, usedList);
     }
 }

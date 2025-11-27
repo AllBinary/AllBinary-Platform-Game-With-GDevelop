@@ -37,7 +37,7 @@ public class GDImageSizeGenerator {
 
     public BasicArrayList process() throws IOException {
         final FileListFetcher fileListFetcher = FileListFetcher.getInstance();
-        final BasicArrayList files = fileListFetcher.getFiles(this.gdToolStrings.RESOURCES_PATH);
+        final BasicArrayList files = fileListFetcher.getFiles(this.gdToolStrings.TWOD_RESOURCES_PATH);
         return this.process(files);
     }
 

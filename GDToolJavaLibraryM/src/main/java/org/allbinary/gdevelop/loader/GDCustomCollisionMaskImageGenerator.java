@@ -131,7 +131,7 @@ public class GDCustomCollisionMaskImageGenerator extends GDCustomCollisionMaskRe
             if (underScoreIndex >= 0) {
                 final int periodIndex = imagePath.lastIndexOf('.');
                 imagePath2 = new StringMaker().append(imagePath.substring(0, underScoreIndex + 1)).append(ONE).append(imagePath.substring(periodIndex)).toString();
-                final AbFile abFile2 = new AbFile(this.gdToolStrings.RESOURCES_PATH + imagePath2);
+                final AbFile abFile2 = new AbFile(this.gdToolStrings.TWOD_RESOURCES_PATH + imagePath2);
                 if (abFile2.isFile()) {
                     //System.out.println(LOAD_SPRITE + imagePath2);
                     final BufferedImage bufferedImage2 = ImageIO.read(AbFileNativeUtil.get(abFile2));

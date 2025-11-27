@@ -7,14 +7,16 @@
 package org.allbinary.gdevelop.loader;
 
 import java.io.FileInputStream;
+
 import org.allbinary.logic.io.BufferedWriterUtil;
 import org.allbinary.logic.io.StreamUtil;
 import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.string.CommonSeps;
+import org.allbinary.util.BasicArrayList;
 
 /**
  *
@@ -28,10 +30,8 @@ public class GDToThreedAndroidRClassGenerator
     private final CommonSeps commonSeps = CommonSeps.getInstance();
     private final BufferedWriterUtil bufferedWriterUtil = BufferedWriterUtil.getInstance();
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
-    
-    private final StringMaker androidRFileStringMaker = new StringMaker();
 
-    final String GD_KEY = "//GD";
+    private final String GD_KEY = "//GD";
     
     private final String PUBLIC_STATIC_FINAL_INT = "        public static final int ";
     private final String VALUE = " = 0x7f060007;\n";
@@ -41,11 +41,14 @@ public class GDToThreedAndroidRClassGenerator
     
     private final String SKIPPING = "Skipping: ";
     
-    public GDToThreedAndroidRClassGenerator() {
-        androidRFileStringMaker.append(GD_KEY);
-        androidRFileStringMaker.append(this.commonSeps.NEW_LINE);
-    }
+    private final String SELECT = "select";
     
+    private final BasicArrayList fileAsStringList = new BasicArrayList();
+    private final BasicArrayList paramList = new BasicArrayList();
+    
+    public GDToThreedAndroidRClassGenerator() {
+    }
+
     public void processResource(final String fileAsString) {
         
         if(fileAsString.compareTo(this.gdToolStrings.BLANK) == 0) {
@@ -53,30 +56,64 @@ public class GDToThreedAndroidRClassGenerator
             return;
         }
         
-        androidRFileStringMaker.append(RESOURCE);
-        androidRFileStringMaker.append(PUBLIC_STATIC_FINAL_INT);
-        androidRFileStringMaker.append(fileAsString);
-        androidRFileStringMaker.append(VALUE);
-        androidRFileStringMaker.append(this.commonSeps.NEW_LINE);
-        androidRFileStringMaker.append(PUBLIC_STATIC_FINAL_INT);
-        androidRFileStringMaker.append(fileAsString);
-        androidRFileStringMaker.append(this.gdToolStrings._OBJ);
-        androidRFileStringMaker.append(VALUE);
+        this.fileAsStringList.add(fileAsString);
     }
-    
-    private final String SELECT = "select";
-    
+
     public void processExpressionParam(final String param) {
         if(param.compareTo(SELECT) != 0) {
-        androidRFileStringMaker.append(EXPRESSION_PARAM);
-        androidRFileStringMaker.append(PUBLIC_STATIC_FINAL_INT);
-        androidRFileStringMaker.append(param);
-        androidRFileStringMaker.append(VALUE);
+            this.paramList.add(param);
+        }
+    }
+    
+    public void processResource(final BasicArrayList threedFileList, final StringMaker stringMaker) {
+        
+        final int size = this.fileAsStringList.size();
+        String fileAsString;
+        for(int index = 0; index < size; index++) {
+
+            fileAsString = (String ) fileAsStringList.get(index);
+            
+            final String extension = this.gdToolStrings.getExtension(threedFileList, fileAsString);
+            if(extension == StringUtil.getInstance().NULL_STRING) {
+                stringMaker.append(this.commonSeps.COMMENT);
+            }
+            
+            stringMaker.append(RESOURCE);
+            stringMaker.append(PUBLIC_STATIC_FINAL_INT);
+            stringMaker.append(fileAsString);
+            stringMaker.append(VALUE);
+            stringMaker.append(this.commonSeps.NEW_LINE);
+            stringMaker.append(PUBLIC_STATIC_FINAL_INT);
+            stringMaker.append(fileAsString);
+            stringMaker.append(extension);
+            stringMaker.append(VALUE);
+
+        }
+    }
+    
+    public void processExpressionParam(final BasicArrayList threedFileList, final StringMaker stringMaker) {
+        final int size = this.paramList.size();
+        String param;
+        for(int index = 0; index < size; index++) {
+            param = (String) this.paramList.get(index);
+            stringMaker.append(EXPRESSION_PARAM);
+            stringMaker.append(PUBLIC_STATIC_FINAL_INT);
+            stringMaker.append(param);
+            stringMaker.append(VALUE);
         }
     }
 
-    public void process() throws Exception {
+    public void process(final BasicArrayList threedFileList) throws Exception {
         
+        final StringMaker stringMaker = new StringMaker();
+
+        stringMaker.append(GD_KEY);
+        stringMaker.append(this.commonSeps.NEW_LINE);
+
+        this.processResource(threedFileList, stringMaker);
+        
+        this.processExpressionParam(threedFileList, stringMaker);
+
         final String R_ORIGINAL = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.original";
         final String R = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidResourcesTempJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\gd\\R.java";
         
@@ -86,7 +123,7 @@ public class GDToThreedAndroidRClassGenerator
 
         final FileInputStream fileInputStream = new FileInputStream(R_ORIGINAL);        
         final String androidRFileAsString = new String(streamUtil.getByteArray(fileInputStream, sharedBytes.outputStream, sharedBytes.byteArray));
-        final Replace replace = new Replace(GD_KEY, androidRFileStringMaker.toString());
+        final Replace replace = new Replace(GD_KEY, stringMaker.toString());
         final String newFileAsString = replace.all(androidRFileAsString);
 
         logUtil.put(this.gdToolStrings.FILENAME + R, this, commonStrings.PROCESS);

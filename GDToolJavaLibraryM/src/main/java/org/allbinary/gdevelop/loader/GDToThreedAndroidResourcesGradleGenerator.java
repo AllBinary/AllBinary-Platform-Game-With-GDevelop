@@ -7,6 +7,7 @@
 package org.allbinary.gdevelop.loader;
 
 import java.io.FileInputStream;
+
 import org.allbinary.data.CamelCaseUtil;
 import org.allbinary.gdevelop.json.GDProject;
 import org.allbinary.logic.io.BufferedWriterUtil;
@@ -15,6 +16,7 @@ import org.allbinary.string.CommonStrings;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.string.regex.replace.Replace;
 import org.allbinary.logic.communication.log.LogUtil;
+import org.allbinary.logic.string.StringUtil;
 import org.allbinary.string.CommonSeps;
 import org.allbinary.util.BasicArrayList;
 
@@ -33,8 +35,6 @@ public class GDToThreedAndroidResourcesGradleGenerator
     private final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
     private final GDResources gdResources = GDResources.getInstance();
     
-    private final StringMaker resourceStringMaker = new StringMaker();
-    
     private final String GD_KEY = "//GD";
             
     private final String PUBLIC_FINAL_STRING = "    public final int ";
@@ -43,15 +43,14 @@ public class GDToThreedAndroidResourcesGradleGenerator
     
     private final String GD_KEY_NAME = "<name>";
     
-    private final String BUTTON = "button";
     private final String BLANK_LINE = "public final int blank = R.raw.blank;\n";
 
+    private final BasicArrayList resourceList = new BasicArrayList();
+    
     private String packageName;
     private boolean isBlank;
     
     public GDToThreedAndroidResourcesGradleGenerator() {
-        resourceStringMaker.append(GD_KEY);
-        resourceStringMaker.append(this.commonSeps.NEW_LINE);
     }
     
     public void process(final GDProject gdProject) {
@@ -63,38 +62,61 @@ public class GDToThreedAndroidResourcesGradleGenerator
     }
     
     public void processResource(final String fileAsString, final String resourceString) {
-        final int beginIndex = Character.isAlphabetic(resourceString.charAt(0)) ? 0 : 1;
-        //logUtil.put("resourceString: " + resourceString, this, commonStrings.PROCESS);
-        final String resource = resourceString.substring(beginIndex, resourceString.length() - 4).toLowerCase();
+        resourceList.add(resourceString);
+    }
 
-        //Hack - the generation needs to break 3d objects from images.
-        boolean isThreed = true;        
-        if(resource.indexOf(BUTTON) >= 0) {
-            isThreed = false;
-        }
+    public void processResource(final BasicArrayList threedFileList, final StringMaker stringMaker) {
+        
+        final StringUtil stringUtil = StringUtil.getInstance();
+        
+        final int size = resourceList.size();
+        String resourceString;
+        for(int index = 0; index < size; index++) {
+            resourceString = (String) resourceList.get(index);
+            final int beginIndex = Character.isAlphabetic(resourceString.charAt(0)) ? 0 : 1;
+            //logUtil.put("resourceString: " + resourceString, this, commonStrings.PROCESS);
+            final String resource = resourceString.substring(beginIndex, resourceString.length() - 4).toLowerCase();
 
-        if(resource.indexOf(this.gdToolStrings.BLANK) >= 0) {
-            isBlank = true;
+            //Hack - the generation needs to break 3d objects from images.
+            final String extension = this.gdToolStrings.getExtension(threedFileList, resource);
+            if(extension == stringUtil.NULL_STRING) {
+                stringMaker.append(this.commonSeps.COMMENT);
+                stringMaker.append(this.gdToolStrings.NOT_USED_FOR_THREED_GAMES);
+            }
+            
+//            if (resource.indexOf(this.gdToolStrings.BUTTON) >= 0 || resource.indexOf(this.gdToolStrings.BLANK) >= 0) {
+//                extension = this.stringUtil.EMPTY_STRING;
+//            }
+//            if(androidResource.indexOf(TOUCH) < 0 && androidResource.indexOf(this.gdToolStrings.BLANK) < 0 && androidResource.indexOf(this.gdToolStrings.BUTTON) < 0) {
+//                
+//            }
+
+            if (resource.indexOf(this.gdToolStrings.BLANK) >= 0) {
+                isBlank = true;
+            }
+
+            stringMaker.append(this.PUBLIC_FINAL_STRING);
+            stringMaker.append(resource);
+
+            stringMaker.append(extension);
+
+            stringMaker.append(this.VALUE_RESOURCE_START);
+            stringMaker.append(resource);
+
+            stringMaker.append(extension);
+
+            stringMaker.append(this.VALUE_RESOURCE_END);
         }
-        
-        resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
-        resourceStringMaker.append(resource);
-        
-        if(isThreed) {
-            resourceStringMaker.append(this.gdToolStrings._OBJ);
-        }
-        
-        resourceStringMaker.append(this.VALUE_RESOURCE_START);
-        resourceStringMaker.append(resource);
-        
-        if(isThreed) {
-            resourceStringMaker.append(this.gdToolStrings._OBJ);
-        }
-        
-        resourceStringMaker.append(this.VALUE_RESOURCE_END);
     }
     
-    public void process(final BasicArrayList files) throws Exception {
+    public void process(final BasicArrayList threedFileList) throws Exception {
+
+        final StringMaker resourceStringMaker = new StringMaker();
+
+        resourceStringMaker.append(GD_KEY);
+        resourceStringMaker.append(this.commonSeps.NEW_LINE);
+        
+        this.processResource(threedFileList, resourceStringMaker);
 
         final String RESOURCE_ORIGINAL = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.original";
         final String RESOURCE = gdToolStrings.ROOT_PATH + "platform\\android\\GDGameThreedAndroidGradleM\\src\\main\\other\\org\\allbinary\\AndroidResources.java";
@@ -126,11 +148,11 @@ public class GDToThreedAndroidResourcesGradleGenerator
         }
 
         if(!isBlank) {
-            this.resourceStringMaker.append(this.commonSeps.NEW_LINE);
-            this.resourceStringMaker.append(BLANK_LINE);
+            resourceStringMaker.append(this.commonSeps.NEW_LINE);
+            resourceStringMaker.append(BLANK_LINE);
         }
 
-        final Replace replace = new Replace(GD_KEY, this.resourceStringMaker.toString());
+        final Replace replace = new Replace(GD_KEY, resourceStringMaker.toString());
         final String newFileAsString = replace.all(newFileAsString2);
 
         logUtil.put(this.gdToolStrings.FILENAME + RESOURCE, this, commonStrings.PROCESS);

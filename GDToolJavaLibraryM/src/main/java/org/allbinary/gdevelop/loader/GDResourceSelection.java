@@ -13,7 +13,6 @@
  */
 package org.allbinary.gdevelop.loader;
 
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.logic.io.file.FileUtil;
 import org.allbinary.string.CommonSeps;
