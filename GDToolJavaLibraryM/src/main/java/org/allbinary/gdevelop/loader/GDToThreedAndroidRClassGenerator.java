@@ -74,19 +74,24 @@ public class GDToThreedAndroidRClassGenerator
             fileAsString = (String ) fileAsStringList.get(index);
             
             final String extension = this.gdToolStrings.getExtension(threedFileList, fileAsString);
-            if(extension == StringUtil.getInstance().NULL_STRING) {
-                stringMaker.append(this.commonSeps.COMMENT);
-            }
             
             stringMaker.append(RESOURCE);
+            
+            if(extension == StringUtil.getInstance().NULL_STRING) {
+                stringMaker.append(this.commonSeps.COMMENT);
+            }            
+            
             stringMaker.append(PUBLIC_STATIC_FINAL_INT);
             stringMaker.append(fileAsString);
             stringMaker.append(VALUE);
             stringMaker.append(this.commonSeps.NEW_LINE);
-            stringMaker.append(PUBLIC_STATIC_FINAL_INT);
-            stringMaker.append(fileAsString);
-            stringMaker.append(extension);
-            stringMaker.append(VALUE);
+            
+            if(!(extension == StringUtil.getInstance().EMPTY_STRING || extension == StringUtil.getInstance().NULL_STRING)) {
+                stringMaker.append(PUBLIC_STATIC_FINAL_INT);
+                stringMaker.append(fileAsString);
+                stringMaker.append(extension);
+                stringMaker.append(VALUE);
+            }
 
         }
     }
