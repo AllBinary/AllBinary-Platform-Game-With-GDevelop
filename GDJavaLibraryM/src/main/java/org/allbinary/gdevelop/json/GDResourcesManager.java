@@ -23,10 +23,10 @@ public class GDResourcesManager
     protected final LogUtil logUtil = LogUtil.getInstance();
 
     private final String RESOURCES = "GDResources: ";
-    private final String RESOURCE_FOLDERS = "GDResourceFolders: ";
+//    private final String RESOURCE_FOLDERS = "GDResourceFolders: ";
     
     public final BasicArrayList resourceList = new BasicArrayList();
-    public final BasicArrayList resourceFolderList = new BasicArrayList();
+//    public final BasicArrayList resourceFolderList = new BasicArrayList();
     
     public GDResourcesManager(final JSONObject jsonObject) {
         
@@ -45,13 +45,13 @@ public class GDResourcesManager
 
         logUtil.put(RESOURCES + this.resourceList.size(), this, commonStrings.CONSTRUCTOR);
 
-        final JSONArray resourceFoldersJSONArray = jsonObject.getJSONArray(gdProjectStrings.RESOURCE_FOLDERS);
-        size = resourceFoldersJSONArray.length();
-        for(int index = 0; index < size; index++) {
-            nextJSONObject = resourceFoldersJSONArray.getJSONObject(index);
-            this.resourceFolderList.add(new GDResourceFolder(nextJSONObject));
-        }
+//        final JSONArray resourceFoldersJSONArray = jsonObject.getJSONArray(gdProjectStrings.RESOURCE_FOLDERS);
+//        size = resourceFoldersJSONArray.length();
+//        for(int index = 0; index < size; index++) {
+//            nextJSONObject = resourceFoldersJSONArray.getJSONObject(index);
+//            this.resourceFolderList.add(new GDResourceFolder(nextJSONObject));
+//        }
     
-        logUtil.put(RESOURCE_FOLDERS + this.resourceFolderList.size(), this, commonStrings.CONSTRUCTOR);
+//        logUtil.put(RESOURCE_FOLDERS + this.resourceFolderList.size(), this, commonStrings.CONSTRUCTOR);
     }
 }
