@@ -382,7 +382,7 @@ Created By: Travis Berthelot
                     //Above - zOrder + 400
                     <xsl:value-of select="zOrder + 400" />
                             </xsl:if>
-                            <xsl:if test="contains(layer, 'Overlay') or contains(text(), 'gui')" >
+                            <xsl:if test="contains(layer, 'Overlay') or contains(text(), 'gui') or contains(text(), 'UI')" >
                     //Overlay - zOrder + 600
                     <xsl:value-of select="zOrder + 600" />
                             </xsl:if>

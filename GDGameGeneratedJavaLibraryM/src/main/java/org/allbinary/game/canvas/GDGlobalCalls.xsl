@@ -183,7 +183,9 @@
                                 </xsl:if>
                                 <xsl:if test="not(contains(name, 'Size2') or contains(name, 'Size3'))" >
                                 <xsl:for-each select="children" >
+                                    <xsl:if test="not(preceding::variables/children/value = value)" >
                         public final String <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="value" /></xsl:with-param></xsl:call-template> = "<xsl:value-of select="value" />";
+                                    </xsl:if>
                                 </xsl:for-each>
                                 </xsl:if>
                         
