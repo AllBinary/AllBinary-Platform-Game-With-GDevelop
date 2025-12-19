@@ -127,7 +127,7 @@ Created By: Travis Berthelot
                                             <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate(text(), '?', '_'), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template>
                                         </xsl:if>
                                         <xsl:if test="not(contains(text(), '&quot;') and not(contains(text(), '+')))" >
-                                            <xsl:value-of select="text()" />
+                                            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:call-template name="isGlobalsSep" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />
                                         </xsl:if>
                                     </xsl:if>
                                 </xsl:if>
@@ -179,7 +179,7 @@ Created By: Travis Berthelot
                                             <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate(text(), '?', '_'), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template>
                                         </xsl:if>
                                         <xsl:if test="not(contains(text(), '&quot;') and not(contains(text(), '+')))" >
-                                            <xsl:value-of select="text()" />
+                                            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:call-template name="isGlobalsSep" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />
                                         </xsl:if>
                                     </xsl:if>
                                 </xsl:if>

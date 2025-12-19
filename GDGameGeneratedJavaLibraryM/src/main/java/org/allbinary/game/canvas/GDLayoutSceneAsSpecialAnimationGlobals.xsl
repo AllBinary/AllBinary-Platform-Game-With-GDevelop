@@ -204,13 +204,13 @@ Created By: Travis Berthelot
 
                     //objects class properties - START
                     <xsl:for-each select="objects" >
-                        //name=<xsl:value-of select="name" /> layout=<xsl:value-of select="layer" /><xsl:text>&#10;</xsl:text>
+                        //name=<xsl:value-of select="name" /> type=<xsl:value-of select="type" /><xsl:text>&#10;</xsl:text>
                         <xsl:variable name="initialVariablesValue" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="initialVariables/value" /></xsl:with-param><xsl:with-param name="find" >-</xsl:with-param><xsl:with-param name="replacementText" >Neg</xsl:with-param></xsl:call-template></xsl:variable>
 
                         //public final BasicArrayList <xsl:value-of select="name" />GDObjectList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
                         public final BasicArrayList <xsl:value-of select="name" />GDGameLayerList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
                         public final BasicArrayList <xsl:value-of select="name" />RemoveList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
-                        <xsl:if test="type = 'TextObject::Text'" >
+                        <xsl:if test="type = 'TextObject::Text' or type = 'Sprite'" >
                         public final BasicArrayList <xsl:value-of select="name" />RectangleList<xsl:value-of select="$initialVariablesValue" /> = new BasicArrayList();
                         </xsl:if>
 

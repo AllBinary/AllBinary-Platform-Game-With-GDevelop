@@ -108,7 +108,8 @@ Created By: Travis Berthelot
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /></xsl:if>
                                 <xsl:if test="position() = 2" ><xsl:value-of select="text()" /><xsl:if test="text() = '-'" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if></xsl:if>
-                                <xsl:if test="position() = 3" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$param" /></xsl:with-param><xsl:with-param name="find" >Slider.Value()</xsl:with-param><xsl:with-param name="replacementText" >SliderGDGameLayer.Value()</xsl:with-param></xsl:call-template></xsl:if>
+<!--                                string(number($param)) = 'NaN'-->
+                                <xsl:if test="position() = 3" ><xsl:variable name="updatedParam" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$param" /></xsl:with-param><xsl:with-param name="find" >Slider.Value()</xsl:with-param><xsl:with-param name="replacementText" >SliderGDGameLayer.Value()</xsl:with-param></xsl:call-template></xsl:variable><xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$updatedParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template></xsl:if>
                                 <xsl:if test="position() = last()" >;</xsl:if>
                             </xsl:for-each>
 
@@ -225,7 +226,7 @@ Created By: Travis Berthelot
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" /></xsl:if>
                                 <xsl:if test="position() = 2" ><xsl:value-of select="text()" /><xsl:if test="text() = '-'" >=</xsl:if><xsl:if test="text() = '+'" >=</xsl:if></xsl:if>
-                                <xsl:if test="position() = 3" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$param" /></xsl:with-param><xsl:with-param name="find" >Slider.Value()</xsl:with-param><xsl:with-param name="replacementText" >SliderGDGameLayer.Value()</xsl:with-param></xsl:call-template></xsl:if>
+                                <xsl:if test="position() = 3" ><xsl:variable name="updatedParam" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$param" /></xsl:with-param><xsl:with-param name="find" >Slider.Value()</xsl:with-param><xsl:with-param name="replacementText" >SliderGDGameLayer.Value()</xsl:with-param></xsl:call-template></xsl:variable><xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="$updatedParam" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template></xsl:if>
                                 <xsl:if test="position() = last()" >;</xsl:if>
                             </xsl:for-each>
                             

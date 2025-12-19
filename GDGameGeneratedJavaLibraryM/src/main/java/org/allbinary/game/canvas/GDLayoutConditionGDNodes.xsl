@@ -328,6 +328,10 @@ Created By: Travis Berthelot
                         return 0;
                     }
 
+                    public int StrLength(final String string) {
+                        return string.length();
+                    }
+                    
                     public String ToString(final int value) {
                         //return Integer.toString(value);
                         return smallIntegerSingletonFactory.getString(value);

@@ -150,10 +150,9 @@ Created By: Travis Berthelot
         </xsl:if>
 
                 public class GDCustomGameLayer extends GDGameLayer 
-                    implements CurrentGeographicMapCellPositionInterface
-        <xsl:if test="contains($foundOtherViewPosition, 'found')" >, GameKeyEventSourceInterface, org.allbinary.game.behavior.platformer.PlatformCharacterInterface </xsl:if>
-        <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >, org.allbinary.game.behavior.topview.TopViewCharacterInterface </xsl:if>        
-        <xsl:if test="contains($foundPathFindingBehavior, 'found')" >, org.allbinary.game.layer.PathFindingLayerInterface </xsl:if>
+        implements <xsl:if test="contains($foundOtherViewPosition, 'found')" >GameKeyEventSourceInterface, org.allbinary.game.behavior.platformer.PlatformCharacterInterface </xsl:if>
+        <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >org.allbinary.game.behavior.topview.TopViewCharacterInterface </xsl:if>        
+        <xsl:if test="contains($foundPathFindingBehavior, 'found')" >, CurrentGeographicMapCellPositionInterface, org.allbinary.game.layer.PathFindingLayerInterface </xsl:if>
                 {
                     private final StringUtil stringUtil = StringUtil.getInstance();
                     private final BasicGeographicMapUtil basicGeographicMapUtil = BasicGeographicMapUtil.getInstance();

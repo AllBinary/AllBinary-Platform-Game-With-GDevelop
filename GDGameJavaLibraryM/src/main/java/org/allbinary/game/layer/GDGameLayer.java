@@ -822,6 +822,10 @@ public class GDGameLayer
         ((CustomTextAnimation) this.initIndexedAnimationInterfaceArray[0]).setBasicColorP(basicColor);
     }
 
+    public void setText(final int value) {
+        this.setText(Integer.toString(value));
+    }
+    
     public void setText(final String text) {
         final CustomTextAnimation customTextAnimation = ((CustomTextAnimation) this.initIndexedAnimationInterfaceArray[0]);
         customTextAnimation.setText(text);
