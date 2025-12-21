@@ -247,7 +247,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 </xsl:if>
 
-            <!-- <xsl:if test="type/value != 'Timer' and type/value != '(Used when using the AllBinary Collision Processing) CollisionNP' and type/value != 'NumberObjectVariable' and type/value = 'NbObjet' and type/value = 'DepartScene' and type/value = 'SourisSurObjet' and type/value = 'MouseButtonReleased' and type/value = 'SourisBouton' and type/value = 'MouseButtonPressed'" >found</xsl:if> -->
+            <!-- <xsl:if test="type/value != 'Timer' and type/value != '(Used when using the AllBinary Collision Processing) CollisionNP' and type/value != 'NumberObjectVariable' and type/value = 'NbObjet' and type/value = 'DepartScene' and type/value = 'SourisSurObjet' and type/value = 'MouseButtonReleased' and type/value = 'SourisBouton' and type/value = 'MouseButtonPressed' and type/value = 'MouseButtonFromTextPressed'" >found</xsl:if> -->
             
             <!-- //foundOtherCondition=<xsl:value-of select="$foundOtherCondition" /> -->
 

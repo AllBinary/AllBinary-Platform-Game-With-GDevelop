@@ -58,6 +58,11 @@ Created By: Travis Berthelot
                     //MouseButtonPressed - removeListener
                     //BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
                 </xsl:if>
+                <xsl:if test="$typeValue = 'MouseButtonFromTextPressed'" >
+                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
+                    //MouseButtonFromTextPressed - //MouseButtonPressed - removeListener
+                    //BasicMotionGesturesHandler.getInstance().removeListener(globals.eventListenerInterface_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />);
+                </xsl:if>
                 <xsl:if test="$typeValue = 'SourisBouton'" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //MouseButton - //SourisBouton - removeListener

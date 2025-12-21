@@ -1016,6 +1016,10 @@ Created By: Travis Berthelot
                     ////MouseButtonPressed - eventListener
                     //globals.mouseButtonPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
+                <xsl:if test="type/value = 'MouseButtonFromTextPressed'" >
+                    ////MouseButtonFromTextPressed - //MouseButtonPressed - eventListener
+                    //globals.mouseButtonFromTextPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
+                </xsl:if>
                 <xsl:if test="type/value = 'SourisBouton'" >
                     ////MouseButton - //SourisBouton - eventListener
                     //globals.mouseButtonGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
@@ -1078,7 +1082,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
 
                 //eventsLogicConstructionMotionGestureEvent - Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
-                <xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
+                <xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                                         
                     <!-- //MouseButtonReleased - create Listener -->
@@ -1135,6 +1139,10 @@ Created By: Travis Berthelot
                 <xsl:if test="type/value = 'MouseButtonPressed'" >
                     //GDNode - //MouseButtonPressed - eventListener
                     globals.mouseButtonPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                </xsl:if>
+                <xsl:if test="type/value = 'MouseButtonFromTextPressed'" >
+                    //GDNode - //MouseButtonFromTextPressed - //MouseButtonPressed - eventListener
+                    globals.mouseButtonFromTextPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
                 <xsl:if test="type/value = 'SourisBouton'" >
                     //GDNode - //MouseButton - //SourisBouton - eventListener
