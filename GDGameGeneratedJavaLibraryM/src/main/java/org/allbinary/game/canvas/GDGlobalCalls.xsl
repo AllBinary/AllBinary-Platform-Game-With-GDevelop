@@ -34,9 +34,9 @@
         <xsl:variable name="idsFound" >
         <xsl:for-each select="/game/layouts" >
             <xsl:if test="$layoutIndex = position() - 1" >
-            <xsl:for-each select="objects" >
+<!--            <xsl:for-each select="objects" >
                 <xsl:if test="contains($text, name)"><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />found</xsl:if>
-            </xsl:for-each>
+            </xsl:for-each>-->
             <xsl:for-each select="variables" >
                 <xsl:if test="contains($text, name)"><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />found</xsl:if>
             </xsl:for-each>
@@ -99,7 +99,7 @@ idsFound=<xsl:value-of select="$idsFound" />-->
 
         <xsl:for-each select="/game/layouts" >
             <xsl:if test="$layoutIndex = position() - 1" >
-            <xsl:for-each select="objects" >
+<!--            <xsl:for-each select="objects" >
 
         <xsl:choose>
             <xsl:when test="contains($text, name)">
@@ -118,7 +118,7 @@ idsFound=<xsl:value-of select="$idsFound" />-->
             </xsl:otherwise>
         </xsl:choose>
                 
-            </xsl:for-each>
+            </xsl:for-each>-->
             <xsl:for-each select="variables" >
                 
         <xsl:choose>

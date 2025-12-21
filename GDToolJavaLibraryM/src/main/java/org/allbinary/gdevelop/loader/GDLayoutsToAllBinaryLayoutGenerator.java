@@ -825,6 +825,8 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             gameXmlAsString = replace9.all(gameXmlAsString);
             final Replace replace10 = new Replace("GlobalVarToJSON(", "GlobalVarToJSON(gameGlobals.");
             gameXmlAsString = replace10.all(gameXmlAsString);
+            final Replace replace11 = new Replace("Text::Value()", "Text()");
+            gameXmlAsString = replace11.all(gameXmlAsString);
             
             
             String layoutGameXmlAsString = new String(gameXmlAsString);

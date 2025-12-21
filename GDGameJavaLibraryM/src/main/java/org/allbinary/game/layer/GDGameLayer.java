@@ -22,7 +22,7 @@ import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface;
 import org.allbinary.animation.RotationAnimation;
 import org.allbinary.animation.text.CustomTextAnimation;
-import org.allbinary.animation.text.CustomTextBoxIndexedAnimation;
+import org.allbinary.animation.text.GetTextInterface;
 import org.allbinary.canvas.Processor;
 import org.allbinary.game.combat.CombatBaseBehavior;
 import org.allbinary.game.combat.damage.DamageableBaseBehavior;
@@ -836,7 +836,7 @@ public class GDGameLayer
     }
     
     public String Text() {
-        return ((CustomTextBoxIndexedAnimation) this.initIndexedAnimationInterfaceArray[0]).Text();
+        return ((GetTextInterface) this.initIndexedAnimationInterfaceArray[0]).getText();
     }
 
     public GDTwodBehavior getDimensionalBehavior() {

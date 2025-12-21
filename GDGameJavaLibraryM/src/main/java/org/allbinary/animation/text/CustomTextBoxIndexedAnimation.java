@@ -25,7 +25,7 @@ import org.allbinary.graphics.form.item.CustomTextBox;
  * @author User
  */
 public class CustomTextBoxIndexedAnimation extends IndexedAnimation 
-    implements RawKeyEventListener
+    implements RawKeyEventListener, GetTextInterface
                //GameKeyEventListenerInterface 
 {
     
@@ -49,7 +49,8 @@ public class CustomTextBoxIndexedAnimation extends IndexedAnimation
 
     }    
     
-    public String Text() {
+    @Override
+    public String getText() {
         return this.customTextBox.getTextFieldItem().getString();
     }
 

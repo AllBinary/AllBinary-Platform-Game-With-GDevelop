@@ -67,6 +67,8 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDSpriteMultitouchJoystickIsPressedConditionProcess.xsl" />
     <xsl:import href="./condition/GDPanelSpriteSliderPanelSpriteSliderValueConditionGDNode.xsl" />
     <xsl:import href="./condition/GDSystemInfoIsNativeDesktopAppConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDStringVariableConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDCompareStringsConditionGDNode.xsl" />
 
     <xsl:import href="./condition/GDAnimationHasAnimationEndedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAnimationElapsedTimeConditionGDNode.xsl" />
@@ -568,7 +570,25 @@ Created By: Travis Berthelot
                     </xsl:if>
   
                     <xsl:if test="$typeValue = 'BuiltinCommonInstructions::CompareStrings'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        <xsl:call-template name="compareStringsConditionGDNode" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="parametersAsString" >
+                                <xsl:value-of select="$parametersAsString" />
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:if>
+
+                    <xsl:if test="$typeValue = 'StringVariable'" >
+                        <xsl:call-template name="stringVariableConditionGDNode" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="parametersAsString" >
+                                <xsl:value-of select="$parametersAsString" />
+                            </xsl:with-param>
+                        </xsl:call-template>
                     </xsl:if>
       
                     <xsl:if test="$typeValue = 'BuiltinCommonInstructions::Or'" >
@@ -664,8 +684,8 @@ Created By: Travis Berthelot
                         //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                     </xsl:if>
 
-                    <xsl:if test="$typeValue = 'MouseButtonPressed'" >
-                        //MouseButtonPressed - Some Handled by AllBinary Event Listeners? should have as a sub condition //SourisSurObjet
+                    <xsl:if test="$typeValue = 'MouseButtonPressed' or $typeValue = 'MouseButtonFromTextPressed'" >
+                        //<xsl:value-of select="$typeValue" /> - //MouseButtonPressed - Some Handled by AllBinary Event Listeners? should have as a sub condition //SourisSurObjet
                         <xsl:call-template name="mouseButtonPressedConditionGDNode" >
                             <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignGDObjectGDNodesCondition</xsl:with-param>
                             <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
@@ -684,17 +704,11 @@ Created By: Travis Berthelot
                     </xsl:if>
                 
                     <xsl:if test="$typeValue = 'MouseButtonReleased' or $typeValue = 'MouseButtonFromTextReleased'" >
-                        //MouseButtonReleased - Some Handled by AllBinary Event Listeners?
+                        //<xsl:value-of select="$typeValue" /> - //MouseButtonReleased - Some Handled by AllBinary Event Listeners?
                         <xsl:call-template name="mouseButtonReleasedConditionGDNode" />
                     
                     </xsl:if>
                 
-                <xsl:if test="$typeValue = 'MouseButtonFromTextPressed'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'MouseButtonFromTextReleased'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
                 <xsl:if test="$typeValue = 'IsMouseWheelScrollingUp'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>

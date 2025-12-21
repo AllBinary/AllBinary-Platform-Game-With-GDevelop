@@ -230,6 +230,18 @@ Created By: Travis Berthelot
                         return value;
                     }
                     
+                    public int StrLength(final String string) {
+                        return string.length();
+                    }
+                    
+                    public int StrFind(String string, String key) {
+                        return string.indexOf(key);
+                    }
+                    
+                    public String ToString(final String string) {
+                        return string;
+                    }
+
                     public String ToString(final int value) {
                         //return Integer.toString(value);
                         return smallIntegerSingletonFactory.getString(value);
