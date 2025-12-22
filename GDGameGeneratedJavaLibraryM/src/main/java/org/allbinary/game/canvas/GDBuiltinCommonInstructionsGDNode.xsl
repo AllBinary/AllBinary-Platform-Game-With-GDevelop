@@ -78,7 +78,10 @@ Created By: Travis Berthelot
             
             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
-            <xsl:variable name="foundOtherCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Always' or type/value = 'DepartScene' or type/value = 'ObjectVariableChildCount' or type/value = 'NumberObjectVariable' or type/value = 'VarScene' or type/value = 'NbObjet' or type/value = 'BooleanObjectVariable' or type/value = 'SourisSurObjet' or type/value = 'BooleanVariable'" >found</xsl:if></xsl:for-each></xsl:variable>
+<!-- 
+            <xsl:variable name="foundOtherCondition" ><xsl:for-each select="conditions" >found</xsl:for-each></xsl:variable>
+-->
+            <xsl:variable name="foundOtherCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Always' or type/value = 'DepartScene' or type/value = 'ObjectVariableChildCount' or type/value = 'NumberObjectVariable' or type/value = 'VarScene' or type/value = 'NbObjet' or type/value = 'BooleanObjectVariable' or type/value = 'SourisSurObjet' or type/value = 'BooleanVariable' or type/value = 'BuiltinCommonInstructions::And'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="foundVarSceneCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'VarScene'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="foundLinkEvent" ><xsl:for-each select="events" ><xsl:if test="type = 'BuiltinCommonInstructions::Link'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="foundTimerCondition" >
@@ -635,12 +638,18 @@ Created By: Travis Berthelot
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> eSize; index++) {
                     </xsl:if>
 
+                    <xsl:for-each select="conditions" >
+                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
+                    </xsl:for-each>
+                    <xsl:for-each select="whileConditions" >
+                    //whileConditions - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
+                    </xsl:for-each>
+
                 <xsl:if test="contains($foundOtherCondition, 'found') or contains($foundTimerCondition, 'found') or (contains($foundVarSceneCondition, 'found') and contains($foundLinkEvent, 'found'))" >
                     <xsl:if test="not(whileConditions)" >
                 //Found conditions that need processing.
 
                     <xsl:for-each select="conditions" >
-                    //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                         <xsl:if test="position() = 1" >
                     //eventsCreateAssignGDObjectGDNodes - //Condition - //<xsl:value-of select="type/value" /> - call
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
@@ -741,6 +750,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
 
+<!--
                 <xsl:for-each select="conditions" >
                     <xsl:variable name="typeValue" select="type/value" />
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:value-of select="$parametersAsString" />
@@ -760,6 +770,7 @@ Created By: Travis Berthelot
                 </xsl:call-template>
 
                 </xsl:if>
+-->
 
                 </xsl:if>
                 </xsl:if>

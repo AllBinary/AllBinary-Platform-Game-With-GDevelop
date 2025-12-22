@@ -38,15 +38,18 @@
                 <xsl:if test="contains($text, name)"><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />found</xsl:if>
             </xsl:for-each>-->
             <xsl:for-each select="variables" >
-                <xsl:if test="contains($text, name)"><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />found</xsl:if>
+                <!-- remove globals. and gameGlobals. check when globals are not added by default -->
+                <xsl:variable name="gameGlobalsName" >gameGlobals.<xsl:value-of select="name" /></xsl:variable>
+                <xsl:variable name="globalsName" >globals.<xsl:value-of select="name" /></xsl:variable>
+                <xsl:if test="contains($text, name) and not(contains($text, $gameGlobalsName) or contains($text, $globalsName))"><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />found</xsl:if>
             </xsl:for-each>
             </xsl:if>
         </xsl:for-each>
         </xsl:variable>
         
 <!--idsFound2=<xsl:value-of select="$idsFound2" />-->
-<!--text=<xsl:value-of select="$text" />
-idsFound=<xsl:value-of select="$idsFound" />-->
+<!--text=<xsl:value-of select="$text" />-->
+<!--idsFound=<xsl:value-of select="$idsFound" />-->
 
 <!--        <xsl:if test="contains($idsFound2, 'found')" >
 
@@ -186,7 +189,7 @@ idsFound=<xsl:value-of select="$idsFound" />-->
         <!--
         (not($layoutIndex) and not(contains($isGlobal, 'found'))) and ($layoutIndex and contains($isLayoutGlobal, 'found'))
         -->
-        <xsl:if test="contains($isGlobal, 'found')" >gameGlobals</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >globals</xsl:if>
+        <xsl:if test="contains($isGlobal, 'found')" >gameGlobals</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >globals<xsl:value-of select="$layoutIndex" /></xsl:if>
     </xsl:template>
 
     <xsl:template name="isGlobalsSep" >
@@ -282,10 +285,10 @@ idsFound=<xsl:value-of select="$idsFound" />-->
                         public final GDStructure<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = new GDStructure<xsl:value-of select="name" />();
                             </xsl:if>
                             <xsl:if test="type = 'string'" >
-                                <xsl:if test="number(value) != value" >
+                                <xsl:if test="value = '' or number(value) != value or contains(name, 'String')" >
                         public String <xsl:value-of select="name" /> = <xsl:if test="value = ''" >stringUtil.EMPTY_STRING</xsl:if><xsl:if test="value != ''" >"<xsl:value-of select="value" />"</xsl:if>;
                                 </xsl:if>
-                                <xsl:if test="number(value) = value" >
+                                <xsl:if test="not(value = '' or number(value) != value or contains(name, 'String'))" >
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                                 </xsl:if>
                             </xsl:if>
@@ -293,6 +296,9 @@ idsFound=<xsl:value-of select="$idsFound" />-->
                         public boolean <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                             </xsl:if>
                             <xsl:if test="type = 'number'" >
+                                <xsl:if test="contains(name, 'Float')" >
+                        public float <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
+                                </xsl:if>
                                 <xsl:if test="contains($name, 'speed')" >
                         //TWB - speed hack
                                     <xsl:if test="contains($name, '_speed')" >
@@ -302,7 +308,7 @@ idsFound=<xsl:value-of select="$idsFound" />-->
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" /> * ((SWTUtil.isSWT || AndroidUtil.isAndroid()) ? 2 : 3);
                                     </xsl:if>
                                 </xsl:if>
-                                <xsl:if test="not(contains(name, 'time') or contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains($name, 'speed') or contains(name, 'Long'))" >
+                                <xsl:if test="not(contains(name, 'time') or contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains($name, 'speed') or contains(name, 'Long') or contains(name, 'Float'))" >
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                                 </xsl:if>
                                 <xsl:if test="contains(name, 'time') or contains(name, 'Time') or contains(name, 'Delay') or contains(name, 'MAX_VALUE') or contains(name, 'Long')" >
@@ -398,10 +404,10 @@ idsFound=<xsl:value-of select="$idsFound" />-->
                         //this.<xsl:value-of select="name" /> = new GDStructure<xsl:value-of select="name" />();
                             </xsl:if>
                             <xsl:if test="type = 'string'" >
-                                <xsl:if test="number(value) != value" >
+                                <xsl:if test="value = '' or number(value) != value or contains(name, 'String')" >
                         this.<xsl:value-of select="name" /> = <xsl:if test="value = ''" >stringUtil.EMPTY_STRING</xsl:if><xsl:if test="value != ''" >"<xsl:value-of select="value" />"</xsl:if>;
                                 </xsl:if>
-                                <xsl:if test="number(value) = value" >
+                                <xsl:if test="not(value = '' or number(value) != value or contains(name, 'String'))" >
                         this.<xsl:value-of select="name" /> = <xsl:value-of select="value" />;
                                 </xsl:if>
                             </xsl:if>

@@ -35,7 +35,8 @@ Created By: Travis Berthelot
                         public boolean process() throws Exception {
                             super.processStats();
                         
-                            //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                            <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                            //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="$nodeId" />, this, commonStrings.PROCESS);
 
                         <xsl:variable name="param4" >
                             <xsl:for-each select="parameters" >
@@ -117,7 +118,8 @@ Created By: Travis Berthelot
                                 gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index);
 
                                 </xsl:if>
-                                <xsl:if test="position() = 3" >                                    
+                                <xsl:if test="position() = 3" >
+                                    //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="$nodeId" />, this, commonStrings.PROCESS);
                                     <xsl:if test="text() = '='" >gameLayer.setText(</xsl:if>
                                 </xsl:if>
                                 <xsl:if test="position() = 4" >
@@ -127,7 +129,8 @@ Created By: Travis Berthelot
                                             <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate(text(), '?', '_'), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template>
                                         </xsl:if>
                                         <xsl:if test="not(contains(text(), '&quot;') and not(contains(text(), '+')))" >
-                                            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:call-template name="isGlobalsSep" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />
+<!--                                            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:call-template name="isGlobalsSep" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />-->
+                                            <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>
                                         </xsl:if>
                                     </xsl:if>
                                 </xsl:if>
@@ -179,7 +182,8 @@ Created By: Travis Berthelot
                                             <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(translate(translate(text(), '?', '_'), '&quot;', ' '), ' ', '_')" /></xsl:with-param></xsl:call-template>
                                         </xsl:if>
                                         <xsl:if test="not(contains(text(), '&quot;') and not(contains(text(), '+')))" >
-                                            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:call-template name="isGlobalsSep" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />
+<!--                                            <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:call-template name="isGlobalsSep" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template><xsl:value-of select="text()" />-->
+                                            <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>
                                         </xsl:if>
                                     </xsl:if>
                                 </xsl:if>

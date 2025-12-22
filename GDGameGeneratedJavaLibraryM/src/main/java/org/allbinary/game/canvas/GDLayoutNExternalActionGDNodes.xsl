@@ -392,6 +392,18 @@ Created By: Travis Berthelot
                         return 0;
                     }
 
+                    public float ToNumber(final String string) {
+                        return Float.parseFloat(string);
+                    }
+
+                    public int StrLength(final String string) {
+                        return string.length();
+                    }
+
+                    public String SubStr(final String string, final int startIndex, final int endIndex) {
+                        return string.substring(startIndex, endIndex);
+                    }
+
                     public String ToString(final String value) {
                         return value;
                     }
@@ -404,6 +416,10 @@ Created By: Travis Berthelot
                     public String ToString(final long value) {
                         //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
                         return Long.toString(value);
+                    }
+
+                    public String ToString(final float value) {
+                        return Float.toString(value);
                     }
 
                     public int ToNotString(final int value) {

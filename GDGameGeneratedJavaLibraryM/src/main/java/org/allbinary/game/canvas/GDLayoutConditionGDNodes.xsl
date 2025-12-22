@@ -328,6 +328,10 @@ Created By: Travis Berthelot
                         return 0;
                     }
 
+                    public float ToNumber(final String string) {
+                        return Float.parseFloat(string);
+                    }
+
                     public int StrLength(final String string) {
                         return string.length();
                     }

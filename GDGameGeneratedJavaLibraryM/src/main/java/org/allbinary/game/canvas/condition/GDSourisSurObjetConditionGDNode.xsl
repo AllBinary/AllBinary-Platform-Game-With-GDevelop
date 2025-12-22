@@ -207,6 +207,7 @@ Created By: Travis Berthelot
                                     <xsl:if test="$inverted != 'true'" >
                                     <xsl:if test="not(contains($press, 'found') or contains($release, 'found'))" >
                                         runnable.run();
+                                        return true;
                                     </xsl:if>
                                     </xsl:if>
                                     <xsl:if test="contains($press, 'found')" >
@@ -253,7 +254,7 @@ Created By: Travis Berthelot
                                         </xsl:if>
                                         </xsl:for-each>
                                     -->
-                                        
+
                                     } else if(lastMotionGestureInput == touchMotionGestureFactory.RELEASED) {
                                     
                                         //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "release", this, commonStrings.PROCESS);
@@ -300,14 +301,15 @@ Created By: Travis Berthelot
                                 } else {
                                 
                                     <xsl:if test="contains($press, 'found')" >
-                                        //Release button when not in button area
-                                        this.processReleased();
+                                    //Release button when not in button area
+                                    this.processReleased();
                                     </xsl:if>
                                     
                                     <xsl:if test="$inverted = 'true'" >
                                     //Inverted
                                     <xsl:if test="not(contains($press, 'found')) or contains($release, 'found')" >
-                                        runnable.run();
+                                    runnable.run();
+                                    return true;
                                     </xsl:if>
                                     </xsl:if>
                                 }

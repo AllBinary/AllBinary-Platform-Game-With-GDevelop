@@ -76,6 +76,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/SetFullScreenActionProcess.xsl" />
     <xsl:import href="./action/GDSetObjectVariableAsBooleanActionProcess.xsl" />
     <xsl:import href="./action/GDSetSceneVariableAsBooleanActionProcess.xsl" />
+    <xsl:import href="./action/GDSetStringVariableActionProcess.xsl" />
     <xsl:import href="./action/GDJSONToVariableStructureActionProcess.xsl" />
     <xsl:import href="./action/GDRotateActionProcess.xsl" />
     <xsl:import href="./action/GDRotateTowardPositionActionProcess.xsl" />
@@ -1175,6 +1176,22 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'SetBooleanVariable'" >
 
                     <xsl:call-template name="setSceneVariableAsBooleanActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'SetStringVariable'" >
+
+                    <xsl:call-template name="setStringVariableActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
