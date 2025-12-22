@@ -81,7 +81,7 @@ Created By: Travis Berthelot
 <!-- 
             <xsl:variable name="foundOtherCondition" ><xsl:for-each select="conditions" >found</xsl:for-each></xsl:variable>
 -->
-            <xsl:variable name="foundOtherCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Always' or type/value = 'DepartScene' or type/value = 'ObjectVariableChildCount' or type/value = 'NumberObjectVariable' or type/value = 'VarScene' or type/value = 'NbObjet' or type/value = 'BooleanObjectVariable' or type/value = 'SourisSurObjet' or type/value = 'BooleanVariable' or type/value = 'BuiltinCommonInstructions::And'" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="foundOtherCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Always' or type/value = 'DepartScene' or type/value = 'ObjectVariableChildCount' or type/value = 'NumberObjectVariable' or type/value = 'VarScene' or type/value = 'NbObjet' or type/value = 'BooleanObjectVariable' or type/value = 'SourisSurObjet' or type/value = 'BooleanVariable' or type/value = 'BuiltinCommonInstructions::And' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="foundVarSceneCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'VarScene'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="foundLinkEvent" ><xsl:for-each select="events" ><xsl:if test="type = 'BuiltinCommonInstructions::Link'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:variable name="foundTimerCondition" >
@@ -250,7 +250,7 @@ Created By: Travis Berthelot
                 </xsl:if>
                 </xsl:if>
 
-            <!-- <xsl:if test="type/value != 'Timer' and type/value != '(Used when using the AllBinary Collision Processing) CollisionNP' and type/value != 'NumberObjectVariable' and type/value = 'NbObjet' and type/value = 'DepartScene' and type/value = 'SourisSurObjet' and type/value = 'MouseButtonReleased' and type/value = 'SourisBouton' and type/value = 'MouseButtonPressed' and type/value = 'MouseButtonFromTextPressed'" >found</xsl:if> -->
+            <!-- <xsl:if test="type/value != 'Timer' and type/value != '(Used when using the AllBinary Collision Processing) CollisionNP' and type/value != 'NumberObjectVariable' and type/value = 'NbObjet' and type/value = 'DepartScene' and type/value = 'SourisSurObjet' and type/value = 'MouseButtonReleased'  and type/value = 'MouseButtonFromTextReleased' and type/value = 'SourisBouton' and type/value = 'MouseButtonPressed' and type/value = 'MouseButtonFromTextPressed'" >found</xsl:if> -->
             
             <!-- //foundOtherCondition=<xsl:value-of select="$foundOtherCondition" /> -->
 

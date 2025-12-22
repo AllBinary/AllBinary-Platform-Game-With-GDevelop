@@ -1012,6 +1012,10 @@ Created By: Travis Berthelot
                     ////MouseButtonReleased - eventListener
                     //globals.mouseButtonReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
                 </xsl:if>
+                <xsl:if test="type/value = 'MouseButtonFromTextReleased'" >
+                    ////MouseButtonFromTextReleased - //MouseButtonReleased - eventListener
+                    //globals.mouseButtonFromTextReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
+                </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonPressed'" >
                     ////MouseButtonPressed - eventListener
                     //globals.mouseButtonPressedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(motionGestureEvent, lastMotionGestureInput);
@@ -1071,7 +1075,7 @@ Created By: Travis Berthelot
                 </xsl:with-param>
             </xsl:call-template>
 
-            <xsl:variable name="hasMouseButtonReleasedCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'MouseButtonReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="hasMouseButtonReleasedCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
 
             <xsl:if test="contains($hasMouseButtonReleasedCondition, 'found')" >
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> <xsl:if test="repeatExpression" >repeatExpression <xsl:value-of select="repeatExpression" /></xsl:if>
@@ -1082,7 +1086,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
 
                 //eventsLogicConstructionMotionGestureEvent - Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
-                <xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
+                <xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased' or type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed' or type/value = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick::IsPressed'" >
                     //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                                         
                     <!-- //MouseButtonReleased - create Listener -->
@@ -1110,7 +1114,7 @@ Created By: Travis Berthelot
                             //Event for Condition
                             //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                             //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
-                            <xsl:if test="type/value = 'MouseButtonReleased'" >
+                            <xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(motionGestureEvent, lastMotionGestureInput);
                             </xsl:if>
                             <xsl:if test="type/value = 'SourisBouton'" >
@@ -1135,6 +1139,10 @@ Created By: Travis Berthelot
                 <xsl:if test="type/value = 'MouseButtonReleased'" >
                     //GDNode - //MouseButtonReleased - eventListener
                     globals.mouseButtonReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
+                </xsl:if>
+                <xsl:if test="type/value = 'MouseButtonFromTextReleased'" >
+                    //GDNode - //MouseButtonFromTextReleased - //MouseButtonReleased - eventListener
+                    globals.mouseButtonFromTextReleasedGDnode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = new GDNode(-<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonPressed'" >
                     //GDNode - //MouseButtonPressed - eventListener
@@ -1190,7 +1198,7 @@ Created By: Travis Berthelot
                 </xsl:with-param>
             </xsl:call-template>
 
-            <xsl:variable name="hasCollisionCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'MouseButtonReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="hasCollisionCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:if test="contains($hasCollisionCondition, 'found')" >
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> <xsl:if test="repeatExpression" >repeatExpression <xsl:value-of select="repeatExpression" /></xsl:if>
             </xsl:if>

@@ -40,18 +40,37 @@ Created By: Travis Berthelot
 
                             //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
+                            boolean result = false;
                             <xsl:for-each select="subInstructions" >
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                             //subInstructions - //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
                             //subInstructions - //Condition - //<xsl:value-of select="type/value" /> - call
-                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
-                                this.processSub();
-                                return true;
+                            if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process()) {
+                                result = true;
                             }
+                            
+                            <xsl:if test="not($inverted = 'true')" >
+                            if(result) {
+                                this.processSub();
+                                return result;
+                            }
+                            </xsl:if>
+                            
                             </xsl:for-each>
 
-                            return false;
+                            <xsl:if test="$inverted = 'true'" >
+                            //Inverted
+                            result = !result;
+                            if(result) {
+                                this.processSub();
+                            }
+                            return result;
+                            </xsl:if>
+                            <xsl:if test="not($inverted = 'true')" >
+                            return result;
+                            </xsl:if>
+
                         }
 
                         @Override

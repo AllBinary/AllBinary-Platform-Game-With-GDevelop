@@ -12,7 +12,7 @@
     <xsl:output method="html"/>
 
     <xsl:template name="alreadyUsedCondition" >
-        <xsl:for-each select="conditions" ><xsl:if test="(type/value = 'SourisSurObjet' or type/value = '(Used when using the AllBinary Collision Processing) CollisionNP' or type/value = 'MouseButtonReleased' or type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed' or type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased')" >found</xsl:if></xsl:for-each>
+        <xsl:for-each select="conditions" ><xsl:if test="(type/value = 'SourisSurObjet' or type/value = '(Used when using the AllBinary Collision Processing) CollisionNP' or type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased' or type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed' or type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased')" >found</xsl:if></xsl:for-each>
     </xsl:template>
     
     <xsl:template name="generateCanvasKeyFromGDNameHack" >
