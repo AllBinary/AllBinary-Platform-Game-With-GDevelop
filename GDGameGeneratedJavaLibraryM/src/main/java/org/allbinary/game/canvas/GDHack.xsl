@@ -301,10 +301,10 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:variable>
-                <xsl:if test="not(type/value = 'ModVarScene' or type/value = 'PlaySound' or type/value = 'Montre' or type/value = 'Delete' or (type/value = 'MettreXY' and contains($isMultitouchSupported, 'found')))" >
+                <xsl:if test="not(type/value = 'ModVarScene' or type/value = 'SetStringVariable' or type/value = 'PlaySound' or type/value = 'Montre' or type/value = 'Delete' or (type/value = 'MettreXY' and contains($isMultitouchSupported, 'found')))" >
             //Could I call this - //<xsl:value-of select="type/value" />
                 </xsl:if>
-                <xsl:if test="type/value = 'ModVarScene' or type/value = 'PlaySound' or type/value = 'Montre' or (type/value = 'MettreXY' and contains($isMultitouchSupported, 'found'))" >
+                <xsl:if test="type/value = 'ModVarScene' or type/value = 'SetStringVariable' or type/value = 'PlaySound' or type/value = 'Montre' or (type/value = 'MettreXY' and contains($isMultitouchSupported, 'found'))" >
                     <xsl:if test="type/value = 'MettreXY'" >//TWB - was not calling this before</xsl:if>
             //<xsl:value-of select="type/value" />
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
