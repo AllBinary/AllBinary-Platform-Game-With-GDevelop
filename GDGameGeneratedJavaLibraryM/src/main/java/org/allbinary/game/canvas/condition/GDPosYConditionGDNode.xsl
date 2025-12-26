@@ -99,7 +99,7 @@ Created By: Travis Berthelot
 
                             <xsl:if test="$paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != ''" >
                                 //Needs Impl
-                                if(true) throw new RuntimeException();
+                                //if(true) throw new RuntimeException();
                             </xsl:if>
 
                             super.processStatsE();

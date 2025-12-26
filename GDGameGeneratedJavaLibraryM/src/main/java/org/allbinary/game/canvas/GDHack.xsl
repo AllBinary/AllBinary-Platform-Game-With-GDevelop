@@ -1131,25 +1131,12 @@ Created By: Travis Berthelot
                             //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Event - //<xsl:value-of select="type" /> - call
                             
                 <xsl:if test="contains($hasExcludedEventBefore, 'found')" >
-                    //has excluded event before
-                    <xsl:if test="contains($isInsideCondiion, 'found')" >
-                        //is inside condition
-                        <xsl:if test="contains($hasCondition, 'found')" >
-                            <xsl:if test="contains($hadConditionOtherThanThis, 'found')" >
-                            //Was not called before 2b
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
-                            </xsl:if>
-                        </xsl:if>
-                    </xsl:if>
-                </xsl:if>
-
+                    //has excluded event before - hasSubCondition=<xsl:value-of select="$hasSubCondition" /> processSubParentCondition=<xsl:value-of select="$processSubParentCondition" />
                             <xsl:if test="contains($allowedCondition2, 'found')" >
                             //Only for TouchScreen::isAutoHide
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
                             </xsl:if>
                             <xsl:if test="contains($foundLinkExternalEvent, 'found') and contains($allowedCondition, 'found')" >
                             //External events call process() and not processGD
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
                             </xsl:if>
                             <xsl:if test="not(contains($foundLinkExternalEvent, 'found') and contains($allowedCondition, 'found'))" >
                                 <xsl:if test="not(contains($notAlreadyUsedConditionButWithSpecificAction, 'found') and type = 'BuiltinCommonInstructions::Standard') and contains($caller, 'conditionLayout - //eventsCreateAssignGDObject')" >
@@ -1158,9 +1145,22 @@ Created By: Travis Berthelot
                                 </xsl:if>
                                 <xsl:if test="contains($notAlreadyUsedConditionButWithSpecificAction, 'found') and type = 'BuiltinCommonInstructions::Standard'" >
                             //I am now calling this2 - //<xsl:value-of select="type" />
-                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
                                 </xsl:if>
                             </xsl:if>
+                            <xsl:if test="not(contains($hasSubCondition, 'found')) and $caller = 'otherEventLayout - //eventsCreateAssignXGDObjectGDNodesOtherEvent'" >
+                            //Was not called before 2b - //NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
+                            </xsl:if>
+                    <xsl:if test="contains($isInsideCondiion, 'found')" >
+                        //is inside condition
+                        <xsl:if test="contains($hasCondition, 'found')" >
+                            <xsl:if test="contains($hadConditionOtherThanThis, 'found')" >
+                            //Was not called before 2c
+                            gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:if>
+                </xsl:if>
                             
                             </xsl:if>
 
