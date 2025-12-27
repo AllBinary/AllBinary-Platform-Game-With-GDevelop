@@ -25,7 +25,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="conditions" ><xsl:for-each select="../../conditions" >found</xsl:for-each></xsl:variable>
                     <xsl:variable name="release" ><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each><xsl:for-each select="../conditions" ><xsl:if test="type/value = 'MouseButtonReleased' or type/value = 'MouseButtonFromTextReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="press" ><xsl:for-each select="../../conditions" ><xsl:if test="type/value = 'SourisBouton' or type/value = 'MouseButtonPressed' or type/value = 'MouseButtonFromTextPressed'" >found</xsl:if></xsl:for-each></xsl:variable>
-        
+                
                     //sourisSurObjetConditionGDNode - //Condition - //SourisSurObjet - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
                     if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
                         throw new RuntimeException("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />");
@@ -182,7 +182,21 @@ Created By: Travis Berthelot
                                     <xsl:if test="position() = 1" >
                             //final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RectangleList.size();
                             //Rectangle <xsl:value-of select="text()" />Rectangle = null;                                        
-                            final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size();
+
+                        <xsl:variable name="object" ><xsl:value-of select="text()" /></xsl:variable>
+                        <xsl:variable name="hasObjectGroup" >
+                            <xsl:for-each select="//objectsGroups" >
+                                <xsl:if test="name = $object" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:variable>
+                                                        
+                    <xsl:if test="contains($hasObjectGroup, 'found')" >
+                        final int size3 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$object" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$object" />GDGameLayerListOfList.size();
+                        for(int index3 = 0; index3 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; index3++) {
+                            final BasicArrayList <xsl:value-of select="text()" />GDGameLayerList = (BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$object" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$object" />GDGameLayerListOfList.get(index3);
+                    </xsl:if>
+                    
+                            final int size = <xsl:if test="not(contains($hasObjectGroup, 'found'))" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:value-of select="text()" />GDGameLayerList.size();
                             //final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />RectangleList.size();
                             GDGameLayer gameLayer;
                             for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -192,7 +206,7 @@ Created By: Travis Berthelot
                                 //final GPoint point = displayPointScalar.process(motionGestureEvent.getCurrentPoint());
                                 //final GPoint rectangePoint = <xsl:value-of select="text()" />Rectangle.getPoint();
                                 
-                                gameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index);
+                                gameLayer = (GDGameLayer) <xsl:if test="not(contains($hasObjectGroup, 'found'))" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.</xsl:if><xsl:value-of select="text()" />GDGameLayerList.get(index);
                                 //logUtil.put("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayer - Not Null", this, commonStrings.PROCESS);
                                 final GPoint point = motionGestureEvent.getCurrentPoint();
                                 //logUtil.put("<xsl:value-of select="text()" />Rectangle - motionGestureEvent: " + motionGestureEvent.toString(), this, commonStrings.PROCESS);
@@ -317,6 +331,10 @@ Created By: Travis Berthelot
                             //if(size == 0) {
                                 //logUtil.put("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />Rectangle - Null", this, commonStrings.PROCESS);
                             //}
+
+                        <xsl:if test="contains($hasObjectGroup, 'found')" >
+                        }</xsl:if>
+
                                     </xsl:if>
                                 </xsl:for-each>
                             

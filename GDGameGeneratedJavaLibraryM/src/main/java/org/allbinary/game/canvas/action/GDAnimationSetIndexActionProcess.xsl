@@ -74,7 +74,7 @@ Created By: Travis Berthelot
                             <xsl:if test="position() = 1" >
                                 if(gameLayer.gdObject.setAnimation(gameLayer.gdObject.getAnimationFromIndex(</xsl:if>
                                 <xsl:if test="position() = last()" >
-                                    <xsl:value-of select="$fourthParam2" />))) gameLayer.resetAnimation();
+                                    <xsl:if test="not(contains($fourthParam, '.'))" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="contains($fourthParam, '.')" ><xsl:value-of select="$fourthParam2" /></xsl:if>))) gameLayer.resetAnimation();
                                 </xsl:if>
                         </xsl:for-each>
                         
@@ -384,7 +384,7 @@ Created By: Travis Berthelot
                             <xsl:if test="position() = 1" >
                                 if(gameLayer.gdObject.setAnimation(gameLayer.gdObject.getAnimationFromIndex(</xsl:if>
                                 <xsl:if test="position() = last()" >
-                                    <xsl:value-of select="$fourthParam2" />))) gameLayer.resetAnimation();
+                                    <xsl:if test="not(contains($fourthParam, '.'))" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="contains($fourthParam, '.')" ><xsl:value-of select="$fourthParam2" /></xsl:if>))) gameLayer.resetAnimation();
                                 </xsl:if>
                         </xsl:for-each>
                         }
