@@ -1,7 +1,6 @@
 package org.allbinary.game.layer.waypoint;
 
-import org.allbinary.game.configuration.feature.Features;
-import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
+
 import org.allbinary.game.layer.AllBinaryTiledLayer;
 import org.allbinary.game.layer.PathFindingLayerInterface;
 import org.allbinary.game.layer.SteeringVisitor;
@@ -86,12 +85,9 @@ extends GDWaypointBehavior
         this.progressTimeDelayHelper = new TimeDelayHelper(5000);
         
         this.wanderPathsList = new BasicArrayList();
-        
-        final Features features = Features.getInstance();
-        final boolean isHTML = features.isDefault(HTMLFeatureFactory.getInstance().HTML);
 
         this.waypointPathRunnable = 
-            //isHTML ? new MultipassWaypointPathRunnable() : 
+            //J2MEUtil.isHTML() ? new MultipassWaypointPathRunnable() : 
             new WaypointPathRunnable();
 
     }

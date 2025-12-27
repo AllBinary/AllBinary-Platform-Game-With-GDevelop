@@ -26,6 +26,7 @@ import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
 
+import org.allbinary.J2MEUtil;
 import org.allbinary.game.init.GDGameStaticInitializerFactory;
 import org.allbinary.game.level.GDGame<GDLayout>LevelBuilder;
 import org.allbinary.input.accelerometer.AccelerometerSensorFactory;
@@ -52,7 +53,6 @@ import org.allbinary.game.configuration.event.ChangedGameFeatureListener;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GameFeature;
 import org.allbinary.game.configuration.feature.GameFeatureFactory;
-import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
 import org.allbinary.game.combat.canvas.CombatGameCanvas;
 import org.allbinary.game.commands.GameCommandsFactory;
@@ -752,7 +752,6 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         final GDGameCommandFactory gdGameCommandFactory = GDGameCommandFactory.getInstance();
         final GameCommandsFactory gameCommandsFactory = GameCommandsFactory.getInstance();
         final MyCommandsFactory myCommandsFactory = MyCommandsFactory.getInstance();
-        //final HTMLFeatureFactory htmlFeatureFactory = HTMLFeatureFactory.getInstance();
 
         if (DebugFactory.getInstance() != NoDebug.getInstance())
         {
@@ -778,7 +777,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         
         //final Features features = Features.getInstance();
 
-        //if(!features.isDefault(htmlFeatureFactory.HTML) and !isOverScan)
+        //if(!J2MEUtil.isHTML() and !isOverScan)
         //{
             //if (TouchScreenFactory.getInstance().isTouch() and new InGameFeatures().isAny())
             //{
@@ -827,8 +826,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             final Features features = Features.getInstance();
             
             //If game thread is not actually running
-            if ((features.isDefault(OpenGLFeatureFactory.getInstance().OPENGL) ||
-                    features.isDefault(HTMLFeatureFactory.getInstance().HTML))
+            if ((features.isDefault(OpenGLFeatureFactory.getInstance().OPENGL) || J2MEUtil.isHTML())
                     <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> !running)
             {
                 final CurrentDisplayableFactory currentDisplayableFactory = CurrentDisplayableFactory.getInstance();

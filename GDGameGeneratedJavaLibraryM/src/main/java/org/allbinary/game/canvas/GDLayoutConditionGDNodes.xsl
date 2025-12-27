@@ -75,7 +75,6 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.AnimationBehavior;
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.game.configuration.feature.Features;
-                import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
                 import org.allbinary.game.configuration.persistance.JSONPersistance;
                 import org.allbinary.game.input.GDRGameInputProcessor;
                 import org.allbinary.game.score.HighScore;

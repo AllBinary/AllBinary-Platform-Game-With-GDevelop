@@ -302,7 +302,7 @@ Created By: Travis Berthelot
                 </xsl:variable>
                                 
                 //Duplicate logic of the AnimationFactory
-                public Rectangle[] get<xsl:value-of select="name" />RectangleArray(final int scale) {
+                public Rectangle[] get<xsl:value-of select="name" />RectangleArray(final float scale) {
                 
                 <xsl:if test="$name != 'Player'" >
                     //non Player

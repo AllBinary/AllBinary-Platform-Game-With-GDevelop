@@ -35,6 +35,7 @@ import java.util.Hashtable;
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.TiledLayer;
 
+import org.allbinary.J2MEUtil;
 import org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterfaceFactory;
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -46,9 +47,7 @@ import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />Special
         </xsl:for-each>
 
 import org.allbinary.game.canvas.GDGameGlobals;
-
 import org.allbinary.game.configuration.feature.Features;
-import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
 import org.allbinary.game.layer.AllBinaryGameLayerManager;
 import org.allbinary.game.layer.AllBinaryJ2METiledLayer;
 import org.allbinary.game.layer.AllBinaryTiledLayer;
@@ -316,10 +315,9 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         //logUtil.put("Loading Tiled Map" + map, this, commonStrings.PROCESS);
         
         final Features features = Features.getInstance();
-        final boolean isHTML = features.isDefault(HTMLFeatureFactory.getInstance().HTML);
         int size = 0;
         final int[] sizeArray2 = new int[tileSetInputStreamArray.length];
-        if(isHTML) {
+        if(J2MEUtil.isHTML()) {
             //logUtil.put("tileMapInputStream.available()", this, commonStrings.PROCESS);
             size = tileMapInputStream.available();
             InputStream tileSetInputStream;

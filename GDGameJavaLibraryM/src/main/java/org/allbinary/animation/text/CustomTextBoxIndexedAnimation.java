@@ -31,6 +31,9 @@ public class CustomTextBoxIndexedAnimation extends IndexedAnimation
     
     private final CustomTextBox customTextBox;
 
+    //private final int WIDTH = 13;
+    //private final int HEIGHT = 8;
+    
     public CustomTextBoxIndexedAnimation(final CustomTextBox customTextBox) {
         super(AnimationBehavior.getInstance());
         
@@ -39,8 +42,9 @@ public class CustomTextBoxIndexedAnimation extends IndexedAnimation
 
     @Override    
     public void paint(Graphics graphics, int x, int y)
-    {        
+    {
         this.customTextBox.paint(graphics, x, y);
+        //this.customTextBox.paint(graphics, x + WIDTH, y + HEIGHT);
     }
 
     @Override

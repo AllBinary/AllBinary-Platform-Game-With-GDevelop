@@ -26,10 +26,10 @@
                             //if(scale2 <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 2) scale2 = 2;
                             //final int scale = scale2;
                             <xsl:if test="$layoutIndex = 1" >
-                            final int scale = org.allbinary.AndroidUtil.isAndroid() ? 2 : 2;
+                            final float scale = org.allbinary.AndroidUtil.isAndroid() ? <xsl:value-of select="/game/properties/scale1/android" /> : org.allbinary.J2MEUtil.isHTML() ? <xsl:value-of select="/game/properties/scale1/html" /> : <xsl:value-of select="/game/properties/scale1/j2se" />;
                             </xsl:if>
                             <xsl:if test="$layoutIndex != 1" >
-                            final int scale = org.allbinary.AndroidUtil.isAndroid() ? 1 : 2;
+                            final float scale = org.allbinary.AndroidUtil.isAndroid() ? <xsl:value-of select="/game/properties/scale/android" /> : org.allbinary.J2MEUtil.isHTML() ? <xsl:value-of select="/game/properties/scale/html" /> : <xsl:value-of select="/game/properties/scale/j2se" />;
                             </xsl:if>
                             //final int scaleNominator = scale;
                             //final int scaleDenominator = 2;
@@ -38,7 +38,7 @@
                             final int scaleLayout = <xsl:if test="not(contains($layoutName, 'Scaled')) or contains($layoutIndex, 'Global')" >1</xsl:if><xsl:if test="contains($layoutName, 'Scaled')" >2</xsl:if>;
                             <xsl:variable name="name2" ><xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template></xsl:variable>
 <!--                            number($layoutIndex) = 0 or contains($name2, 'options')  or contains($name2, 'about') or contains($name2, 'score') or contains($name2, 'over')-->
-                            final float scaleTouchButtons = <xsl:if test="not(number($layoutIndex) = 1)" >1</xsl:if><xsl:if test="number($layoutIndex) = 1" >org.allbinary.AndroidUtil.isAndroid() ? 0.5f : scale / 4.0f</xsl:if>;
+                            final float scaleTouchButtons = <xsl:if test="not(number($layoutIndex) = 1)" >1.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >org.allbinary.AndroidUtil.isAndroid() ? <xsl:value-of select="/game/properties/scaletouch/android" /> : org.allbinary.J2MEUtil.isHTML() ? <xsl:value-of select="/game/properties/scaletouch/html" /> : <xsl:value-of select="/game/properties/scaletouch/j2se" />;</xsl:if>;
 <!--                            final int scaleTouch = (scaleWidth <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> scaleHeight) ? scaleWidth * scaleTouchButtons : scaleHeight * scaleTouchButtons;-->
                             logUtil.put(new StringMaker().append("scaleTouchButtons - scale: ").append(scaleTouchButtons).toString(), this, commonStrings.CONSTRUCTOR);
     </xsl:template>
@@ -58,14 +58,14 @@
                             private final float scaleTouchButtons = <xsl:if test="not(number($layoutIndex) = 1)" >1</xsl:if><xsl:if test="number($layoutIndex) = 1" >org.allbinary.AndroidUtil.isAndroid() ? 0.5f : scale / 2</xsl:if>;
 -->
                             <xsl:if test="$layoutIndex = 1" >
-                            private final int scale = org.allbinary.AndroidUtil.isAndroid() ? 2 : 2;
+                            private final float scale = org.allbinary.AndroidUtil.isAndroid() ? <xsl:value-of select="/game/properties/scale1/android" /> : org.allbinary.J2MEUtil.isHTML() ? <xsl:value-of select="/game/properties/scale1/html" /> : <xsl:value-of select="/game/properties/scale1/j2se" />;
                             </xsl:if>
                             <xsl:if test="$layoutIndex != 1" >
-                            private final int scale = org.allbinary.AndroidUtil.isAndroid() ? 1 : 2;
+                            private final float scale = org.allbinary.AndroidUtil.isAndroid() ? <xsl:value-of select="/game/properties/scale/android" /> : org.allbinary.J2MEUtil.isHTML() ? <xsl:value-of select="/game/properties/scale/html" /> : <xsl:value-of select="/game/properties/scale/j2se" />;
                             </xsl:if>
                             
-                            private final float halfScale = org.allbinary.AndroidUtil.isAndroid() ? 0.5f : 1.0f;
-                            private final float scaleTouchButtons = <xsl:if test="not(number($layoutIndex) = 1)" >1; //same as org.allbinary.AndroidUtil.isAndroid() ? scale : scale / 2.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >org.allbinary.AndroidUtil.isAndroid() ? 0.5f : scale / 4.0f;</xsl:if>
+                            private final float halfScale = ((float) scale) / 2;
+                            private final float scaleTouchButtons = <xsl:if test="not(number($layoutIndex) = 1)" >1; //same as org.allbinary.AndroidUtil.isAndroid() ? scale : scale / 2.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >org.allbinary.AndroidUtil.isAndroid() ? <xsl:value-of select="/game/properties/scaletouch/android" /> : org.allbinary.J2MEUtil.isHTML() ? <xsl:value-of select="/game/properties/scaletouch/html" /> : <xsl:value-of select="/game/properties/scaletouch/j2se" />;</xsl:if>
                             
     </xsl:template>
 

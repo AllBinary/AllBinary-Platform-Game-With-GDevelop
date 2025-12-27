@@ -15,14 +15,12 @@ package org.allbinary.animation.compound;
 
 import javax.microedition.lcdui.Graphics;
 
+import org.allbinary.J2MEUtil;
 import org.allbinary.animation.AnimationBehavior;
 import org.allbinary.animation.IndexedAnimation;
 import org.allbinary.animation.text.CustomTextAnimation;
-import org.allbinary.game.configuration.feature.Features;
-import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
 import org.allbinary.game.layer.SWTUtil;
 import org.allbinary.logic.communication.log.LogUtil;
-
 import org.allbinary.logic.math.PrimitiveIntUtil;
 
 /**
@@ -71,9 +69,7 @@ public class SliderAnimation
     
     private int dxhack() {
         //TWB - Hack for HTML5 build
-        final Features features = Features.getInstance();
-        final boolean isHTML = features.isDefault(HTMLFeatureFactory.getInstance().HTML);
-        if(isHTML) {
+        if(J2MEUtil.isHTML()) {
             return this.height * 2 / 3;
         } else {
             return this.height;

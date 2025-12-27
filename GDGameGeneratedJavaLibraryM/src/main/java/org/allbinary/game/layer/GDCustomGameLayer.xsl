@@ -108,7 +108,6 @@ Created By: Travis Berthelot
         import org.allbinary.animation.RotationAnimation;
         import org.allbinary.animation.caption.CaptionAnimationHelper;
         import org.allbinary.animation.caption.CaptionAnimationHelperBase;
-        import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
         import org.allbinary.game.input.event.GameKeyEventFactory;
         import org.allbinary.game.layer.SteeringVisitor;
         import org.allbinary.game.layer.behavior.GDBehaviorUtil;
