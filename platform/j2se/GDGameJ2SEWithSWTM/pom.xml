@@ -23,7 +23,8 @@
         <outputPath>..\GDGameJ2SEWithSWTApplicationM\src\main\java\</outputPath>
         
         <inputPath3>..\..\..\Resources\2d\images\raw\</inputPath3>
-        <inputPath4>..\..\..\Resources\sounds\ogg_stereo\</inputPath4>
+<!--        <inputPath4>..\..\..\Resources\sounds\ogg_stereo\</inputPath4>-->
+        <inputPath4>..\..\..\Resources\sounds\release\</inputPath4>
         <inputPath5>${project.build.directory}/resources</inputPath5>
         <inputPath6>..\..\..\..\working_thirdparty\media\speech\resource\</inputPath6>
         <outputPath2>..\GDGameJ2SEWithSWTApplicationM\src\main\resources\</outputPath2>

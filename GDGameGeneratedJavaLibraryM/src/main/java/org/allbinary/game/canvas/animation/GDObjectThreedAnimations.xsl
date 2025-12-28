@@ -116,8 +116,8 @@ Created By: Travis Berthelot
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
         <xsl:choose>
-            <xsl:when test="/game/properties/customThreed[name = $name]" >
-                <xsl:for-each select="/game/properties/customThreed" >
+            <xsl:when test="/game/properties/custom[name = $name and texture]" >
+                <xsl:for-each select="/game/properties/custom" >
                     <xsl:if test="name = $name" >
                 //name=<xsl:value-of select="name" /> texture=<xsl:value-of select="texture" />
                 animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
@@ -125,8 +125,8 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
             </xsl:when>
-            <xsl:when test="/game/properties/customThreed[name = 'all']" >
-                <xsl:for-each select="/game/properties/customThreed" >
+            <xsl:when test="/game/properties/custom[name = 'all' and texture]" >
+                <xsl:for-each select="/game/properties/custom" >
                     <xsl:if test="name = 'all'" >
                 //name=<xsl:value-of select="name" /> texture=<xsl:value-of select="texture" />
                 //TWB - replace this logic with a animation to texture mapping for each md2
@@ -177,7 +177,7 @@ Created By: Travis Berthelot
                         ));
                     } else {
                         <xsl:value-of select="name" />List.add(new <xsl:if test="/game/properties/threedAnimationAdjustment" >Adjustable</xsl:if>ThreedAnimationSingletonFactory(
-                                object3d, 1<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name or name = 'all'" ><xsl:value-of select="param" /></xsl:if></xsl:for-each><xsl:if test="/game/properties/threedAnimationAdjustment" >, positionNumber3d, rotationNumber3d</xsl:if>
+                                object3d, 1<xsl:for-each select="/game/properties/custom" ><xsl:if test="(name = $name or name = 'all') and param" ><xsl:value-of select="param" /></xsl:if></xsl:for-each><xsl:if test="/game/properties/threedAnimationAdjustment" >, positionNumber3d, rotationNumber3d</xsl:if>
                         ));
                     }
                 }
@@ -671,8 +671,8 @@ Created By: Travis Berthelot
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
         <xsl:choose>
-            <xsl:when test="/game/properties/customThreed[name = $name]" >
-                <xsl:for-each select="/game/properties/customThreed" >
+            <xsl:when test="/game/properties/custom[name = $name and texture]" >
+                <xsl:for-each select="/game/properties/custom" >
                     <xsl:if test="name = $name" >
                 //name=<xsl:value-of select="name" /> texture=<xsl:value-of select="texture" />
                 animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
@@ -680,8 +680,8 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:for-each>
             </xsl:when>
-            <xsl:when test="/game/properties/customThreed[name = 'all']" >
-                <xsl:for-each select="/game/properties/customThreed" >
+            <xsl:when test="/game/properties/custom[name = 'all' and texture]" >
+                <xsl:for-each select="/game/properties/custom" >
                     <xsl:if test="name = 'all'" >
                 //name=<xsl:value-of select="name" /> texture=<xsl:value-of select="texture" />
                 //TWB - replace this logic with a animation to texture mapping for each md2
@@ -726,7 +726,7 @@ Created By: Travis Berthelot
                         ));
                     } else {
                         <xsl:value-of select="name" />List.add(new <xsl:if test="/game/properties/threedAnimationAdjustment" >Adjustable</xsl:if>ThreedAnimationSingletonFactory(
-                            object3d, 1<xsl:for-each select="/game/properties/threedAnimationOptions" ><xsl:if test="name = $name or name = 'all'" ><xsl:value-of select="param" /></xsl:if></xsl:for-each><xsl:if test="/game/properties/threedAnimationAdjustment" >, positionNumber3d, rotationNumber3d</xsl:if>
+                            object3d, 1<xsl:for-each select="/game/properties/custom" ><xsl:if test="(name = $name or name = 'all') and param" ><xsl:value-of select="param" /></xsl:if></xsl:for-each><xsl:if test="/game/properties/threedAnimationAdjustment" >, positionNumber3d, rotationNumber3d</xsl:if>
                         ));
                     }
                 }

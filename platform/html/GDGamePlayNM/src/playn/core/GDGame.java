@@ -2,13 +2,11 @@ package playn.core;
 
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
 import org.allbinary.string.CommonStrings;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.game.configuration.GameConfigurationCentral;
 import org.allbinary.game.configuration.feature.Features;
 import org.allbinary.game.configuration.feature.GameFeatureFactory;
 import org.allbinary.game.configuration.feature.GraphicsFeatureFactory;
-import org.allbinary.game.configuration.feature.HTMLFeatureFactory;
 import org.allbinary.game.configuration.feature.InputFeatureFactory;
 import org.allbinary.game.configuration.feature.SensorFeatureFactory;
 import org.allbinary.input.motion.AllMotionRecognizer;
@@ -117,7 +115,6 @@ Pointer.Listener
 
             features.removeDefault(sensorFeatureFactory.ORIENTATION_SENSORS);
             features.addDefault(sensorFeatureFactory.NO_ORIENTATION);
-            features.addDefault(HTMLFeatureFactory.getInstance().HTML);
         }
         catch (Exception e)
         {

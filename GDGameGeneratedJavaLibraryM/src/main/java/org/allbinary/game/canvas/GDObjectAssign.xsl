@@ -234,11 +234,19 @@ Created By: Travis Berthelot
                     this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray,
                     <xsl:value-of select="name" />LayerInfo,
                     <xsl:value-of select="name" />RectangleArrayOfArrays
-                    <xsl:if test="contains($hasMoreThanOneImage, 'found')" >, <xsl:if test="contains($threedExclusionsFound, 'found')" >GDIndividualAnimationBehaviorFactory.getInstance()</xsl:if><xsl:if test="not(contains($threedExclusionsFound, 'found'))" >isThreed ? GDRotationBehaviorFactory.getInstance() : GDIndividualAnimationBehaviorFactory.getInstance()</xsl:if></xsl:if>
-                    <xsl:if test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >, GDSliderAnimationBehaviorFactory.getInstance()</xsl:if>
-                    <xsl:if test="type = 'TextInput::TextInputObject'" >, GDTextInputAnimationBehaviorFactory.getInstance()</xsl:if>
-                    <xsl:if test="type = 'TextObject::Text'" >, GDAnimationBehaviorBaseFactory.getInstance()</xsl:if>
-                    <xsl:if test="contains(name, 'btn_')" ><xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >, GDSoftJoystickAnimationBehaviorBaseFactory.getInstance()</xsl:if><xsl:if test="not(type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick')" >, GDAnimationBehaviorBaseFactory.getInstance()</xsl:if></xsl:if>
+                    <xsl:variable name="hasMoreThanOneImageOrRotationDisabled" ><xsl:if test="contains($hasMoreThanOneImage, 'found')" >found</xsl:if><xsl:if test="/game/properties/custom[name = name and rotation]" >found</xsl:if></xsl:variable>
+                    <xsl:choose>
+                        <xsl:when test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >, GDSliderAnimationBehaviorFactory.getInstance()</xsl:when>
+                        <xsl:when test="type = 'TextInput::TextInputObject'" >, GDTextInputAnimationBehaviorFactory.getInstance()</xsl:when>
+                        <xsl:when test="type = 'TextObject::Text'" >, GDAnimationBehaviorBaseFactory.getInstance()</xsl:when>
+                        <xsl:when test="contains(name, 'btn_')" ><xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >, GDSoftJoystickAnimationBehaviorBaseFactory.getInstance()</xsl:if><xsl:if test="not(type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick')" >, GDAnimationBehaviorBaseFactory.getInstance()</xsl:if></xsl:when>
+                        <xsl:when test="contains($hasMoreThanOneImageOrRotationDisabled, 'found')" >, <xsl:if test="contains($threedExclusionsFound, 'found')" >GDIndividualAnimationBehaviorFactory.getInstance()</xsl:if><xsl:if test="not(contains($threedExclusionsFound, 'found'))" >isThreed ? GDRotationBehaviorFactory.getInstance() : GDIndividualAnimationBehaviorFactory.getInstance()</xsl:if></xsl:when>
+                        <xsl:otherwise>
+                            //Otherwise
+                        </xsl:otherwise>
+                    </xsl:choose>
+            
+
                     ) 
                     <xsl:if test="type = 'TextObject::Text'" >
                     {

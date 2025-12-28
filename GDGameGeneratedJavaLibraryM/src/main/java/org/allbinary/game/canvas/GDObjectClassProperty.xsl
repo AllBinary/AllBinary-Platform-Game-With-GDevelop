@@ -127,6 +127,7 @@ Created By: Travis Berthelot
             </xsl:for-each>
 
             <xsl:variable name="hasMoreThanOneImage" ><xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
+            <xsl:variable name="hasMoreThanOneImageOrRotationDisabled" ><xsl:if test="contains($hasMoreThanOneImage, 'found')" >found</xsl:if><xsl:if test="/game/properties/custom[name = name and rotation]" >found</xsl:if></xsl:variable>
 
             <xsl:for-each select="animations" >
                 <xsl:for-each select="directions" >
@@ -141,7 +142,7 @@ Created By: Travis Berthelot
                         <xsl:for-each select="points" >
                 //Point name=<xsl:value-of select="name" /> x=<xsl:value-of select="x" /> y=<xsl:value-of select="y" />
                 //public final GPoint <xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_POINT = pointFactory.getInstance(<xsl:value-of select="x" />, <xsl:value-of select="y" />, 0);
-                public final GPoint <xsl:value-of select="name" /> = pointFactory.getInstance((int) (<xsl:value-of select="x" /> * 36 / 25 <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >* 1.44f</xsl:if>), (int) (<xsl:value-of select="y" /> * 36 / 25 <xsl:if test="not(contains($hasMoreThanOneImage, 'found'))" >* 1.44f</xsl:if>), 0);
+                public final GPoint <xsl:value-of select="name" /> = pointFactory.getInstance((int) (<xsl:value-of select="x" /> * 36 / 25 <xsl:if test="not(contains($hasMoreThanOneImageOrRotationDisabled, 'found'))" >* 1.44f</xsl:if>), (int) (<xsl:value-of select="y" /> * 36 / 25 <xsl:if test="not(contains($hasMoreThanOneImageOrRotationDisabled, 'found'))" >* 1.44f</xsl:if>), 0);
                         </xsl:for-each>
                     </xsl:for-each>
                 </xsl:for-each>
