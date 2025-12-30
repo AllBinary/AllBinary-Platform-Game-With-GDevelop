@@ -29,6 +29,7 @@ public class GDGameGameHtml extends HtmlGame {
     HtmlPlatform platform = HtmlPlatform.register();
     //For more than 1000 files per directory
     //platform.assetManager().setPathPrefix("gd/res/", true);
+    //platform.assetManager().setPathPrefix("<app_name>/res/", false);
     platform.assetManager().setPathPrefix("gd/res/", false);
     
     
