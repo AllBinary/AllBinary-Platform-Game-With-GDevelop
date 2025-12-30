@@ -664,6 +664,9 @@
                             <directory>${outputPath2}</directory>
                         </fileset>
                         <fileset>
+                            <directory>${outputPath3}</directory>
+                        </fileset>
+                        <fileset>
                             <directory>${outputPath4}</directory>
                         </fileset>
                     </filesets>

@@ -67,8 +67,17 @@
                     <groupId>org.allbinary</groupId>
                     <artifactId>MusicAndroidJavaLibrary</artifactId>
                 </exclusion>-->
+<!--                <exclusion>
+                    <groupId>org.allbinary</groupId>
+                    <artifactId>FileLicenseInitInfoJavaLibrary</artifactId>
+                </exclusion>-->
             </exclusions>
         </dependency>
+<!--        <dependency>
+            <groupId>org.allbinary</groupId>
+            <artifactId>HardCodedLicenseInitInfoJavaLibrary</artifactId>
+            <version>${allbinary.platform.version}</version>
+        </dependency>                -->
         
 <!--        <dependency>
             <groupId>org.allbinary</groupId>
@@ -336,6 +345,21 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
+            <artifactId>NullMusicAndroidJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary.game</groupId>
+            <artifactId>LazyGameResourceNoneJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.allbinary</groupId>
             <artifactId>XmlRpcJavaLibrary</artifactId>
 <!--
             <artifactId>XmlRpcJavaLibrary</artifactId>
@@ -382,6 +406,11 @@
             <artifactId>microemu-javase-null</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.microemu</groupId>
+            <artifactId>microemu-android-ab</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
         </dependency>
         
 <!--

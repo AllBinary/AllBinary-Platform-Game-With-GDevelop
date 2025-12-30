@@ -28,6 +28,7 @@
         <inputPath5>${project.build.directory}/resources</inputPath5>
         <inputPath6>..\..\..\..\working_thirdparty\media\speech\resource\</inputPath6>
         <outputPath2>..\GDGameJ2SEWithSWTJOGLApplicationM\src\main\resources\</outputPath2>
+        <outputPath3>..\GDGameJ2SEWithSWTJOGLFastBuildApplicationM\src\main\resources\</outputPath3>
         
     </properties>
 
@@ -672,7 +673,53 @@
                     -->
                 </executions>
             </plugin>
-            
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources-fast</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath3}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath3}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${inputPath4}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                    <!--
+                    <execution>
+                        <id>copy-speech-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${outputPath}</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${inputPath4}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                    -->
+                </executions>
+            </plugin>
+                        
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.4.3</version>
