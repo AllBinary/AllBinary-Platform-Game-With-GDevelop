@@ -74,6 +74,7 @@ import org.allbinary.game.score.displayable.HighScoresCanvas;
 import org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory;
 import org.allbinary.graphics.color.BasicColor;
 import org.allbinary.graphics.color.BasicColorFactory;
+import org.allbinary.image.opengles.OpenGLESImageExclusionUtil;
 import org.allbinary.logic.string.StringMaker;
 import org.allbinary.logic.system.security.licensing.ClientInformationFactory;
 import org.allbinary.media.audio.AllBinaryMediaManagerShutdown;
@@ -114,6 +115,12 @@ public class GDGameMIDlet extends
        GroupFactory.getInstance().init(SIZE, groupNames);
        GroupLayerManagerListener.getInstance().init(SIZE);
 
+       final OpenGLESImageExclusionUtil openGLESImageExclusionUtil = OpenGLESImageExclusionUtil.getInstance();
+       <xsl:for-each select="/game/properties/custom" >
+           <xsl:if test="custom_scale" >
+       openGLESImageExclusionUtil.list.add("<xsl:value-of select="name" />");
+           </xsl:if>
+       </xsl:for-each>
    }
 
    protected HelpPaintable getHelpPaintable()

@@ -31,6 +31,15 @@
 
         <dependency>
             <groupId>org.allbinary</groupId>
+            <artifactId>OpenGLESNullImageJ2MEJavaLibrary</artifactId>
+            <!-- AllBinary Platform Version Start -->
+            <version>1.0.0-SNAPSHOT</version>
+            <!-- AllBinary Platform Version End -->
+
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.allbinary</groupId>
             <artifactId>ImageCacheLazyJ2MEJavaLibrary</artifactId>
             <!-- AllBinary Platform Version Start -->
             <version>1.0.0-SNAPSHOT</version>
@@ -76,6 +85,7 @@
 -->
 
         <!--
+        -->
         <dependency>
             <groupId>org.mapgenerator</groupId>
             <artifactId>TileMapGeneratorJavaLibraryM</artifactId>
@@ -86,7 +96,6 @@
             <artifactId>DungeonGeneratorJavaLibrary</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
-        -->
         <!--
         -->
 
