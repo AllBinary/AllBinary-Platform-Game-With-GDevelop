@@ -74,7 +74,7 @@ public class <GDLayout> extends StartCanvas
             <xsl:variable name="layoutTotal" ><xsl:for-each select="../layouts" ><xsl:if test="position() = last()" ><xsl:value-of select="position()" /></xsl:if></xsl:for-each></xsl:variable>
             //layoutTotal=<xsl:value-of select="$layoutTotal" />
             <xsl:if test="number($layoutTotal) = 1" >
-        GroupFactory.getInstance().init((short) 10, new String[0]);
+        GroupFactory.getInstance().init((short) 10, StringUtil.getInstance().getArrayInstance());
             </xsl:if>
         -->
         

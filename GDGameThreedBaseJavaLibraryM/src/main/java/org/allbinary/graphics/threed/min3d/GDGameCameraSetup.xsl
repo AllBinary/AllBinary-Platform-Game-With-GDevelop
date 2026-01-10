@@ -57,7 +57,7 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
 
     private GD<GD_CURRENT_INDEX>GameCameraSetup()
     {
-        super(GDGameCameraSetup.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:for-each select="properties" ><xsl:for-each select="cameras" ><xsl:if test="position() = <GD_CURRENT_INDEX> + 1" ><xsl:value-of select="type" /></xsl:if></xsl:for-each></xsl:for-each></xsl:with-param></xsl:call-template>);
+        super(GDGameCameraSetup.<xsl:for-each select="properties" ><xsl:if test="not(cameras)" >NONE</xsl:if></xsl:for-each><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:for-each select="properties" ><xsl:for-each select="cameras" ><xsl:if test="position() = <GD_CURRENT_INDEX> + 1" ><xsl:value-of select="type" /></xsl:if></xsl:for-each></xsl:for-each></xsl:with-param></xsl:call-template>);
         
         <xsl:for-each select="properties" >
             <xsl:for-each select="cameras" >

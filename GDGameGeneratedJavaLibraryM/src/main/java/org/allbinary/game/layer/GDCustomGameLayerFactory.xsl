@@ -75,7 +75,7 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
             proceduralAnimationInterfaceFactoryInterfaceArray,
             layerInfo, 
             rectangleArrayOfArrays, 
-        animationBehaviorFactory<xsl:for-each select="properties" ><xsl:for-each select="resetAnimationBehavior" >, <xsl:value-of select="text()" /></xsl:for-each></xsl:for-each>); //abjson final boolean resetAnimationBehavior
+        animationBehaviorFactory<xsl:for-each select="properties" ><xsl:if test="not(resetAnimationBehavior)" >, true</xsl:if><xsl:for-each select="resetAnimationBehavior" >, <xsl:value-of select="text()" /></xsl:for-each></xsl:for-each>); <xsl:for-each select="properties" ><xsl:if test="not(resetAnimationBehavior)" >//Using default true value when not in json</xsl:if></xsl:for-each> //abjson final boolean resetAnimationBehavior
     
         this.primitiveDrawingAnimationFactory = primitiveDrawingAnimationFactory;    
         this.width = this.layerInfo.getWidth();

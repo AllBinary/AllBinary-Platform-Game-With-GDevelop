@@ -116,6 +116,14 @@ public class GDToAllBinaryGenerationTool
     private final String PLAY_SOUND = "PlaySound";
     private final String PLAY_MUSIC = "PlayMusic";
 
+    private final String SCALE = "scale";
+    private final String SCALE1 = "scale1";
+    private final String ANDROID = "android";
+    private final String HTML = "html";
+    private final String J2SE = "j2se";
+    private final String ONEX = "1.0f";
+    private final String TWOX = "2.0f";
+        
     public GDToAllBinaryGenerationTool()
     {
     }
@@ -207,6 +215,24 @@ public class GDToAllBinaryGenerationTool
     }
 
     public void xmlConversionHack(JSONObject gameAsConfigurationJSONObject) {
+        
+        final JSONObject properties = gameAsConfigurationJSONObject.getJSONObject(gdProjectStrings.PROPERTIES);
+        if(!properties.has(SCALE)) {
+            final JSONObject scaleJSONObject = new JSONObject();
+            scaleJSONObject.put(ANDROID, TWOX);
+            scaleJSONObject.put(HTML, TWOX);
+            scaleJSONObject.put(J2SE, TWOX);
+            properties.put(SCALE, scaleJSONObject);
+        }
+        if(!properties.has(SCALE1)) {
+            final JSONObject scaleJSONObject = new JSONObject();
+            scaleJSONObject.put(ANDROID, ONEX);
+            scaleJSONObject.put(HTML, TWOX);
+            scaleJSONObject.put(J2SE, TWOX);
+            properties.put(SCALE1, scaleJSONObject);
+        }
+        
+
         final JSONArray layoutJSONArray = gameAsConfigurationJSONObject.getJSONArray(gdProjectStrings.LAYOUTS);
         final int size4 = layoutJSONArray.length();
         logUtil.put(LAYOUT_TOTAL + size4, this, commonStrings.PROCESS);

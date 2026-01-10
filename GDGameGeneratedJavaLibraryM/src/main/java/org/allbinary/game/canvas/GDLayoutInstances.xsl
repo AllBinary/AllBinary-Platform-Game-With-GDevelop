@@ -18,13 +18,14 @@
         <xsl:for-each select="/game" >
             <xsl:for-each select="layouts" >
                 <xsl:variable name="layoutIndex" select="position() - 1" />
-                //instances - START
+                //layoutIndex - <xsl:value-of select="$layoutIndex" />
+                //layout - instances - START
                 <xsl:for-each select="instances" >
                     <xsl:if test="not(contains(name, $name))" >
-                        final GDObject <xsl:value-of select="name" /> = (GDObject) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$layoutIndex" /><xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject;
+                        final GDObject <xsl:value-of select="name" /> = (GDObject) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject;
                     </xsl:if>
                 </xsl:for-each>
-                //instances - END
+                //layout - instances - END
             </xsl:for-each>
         </xsl:for-each>
         
