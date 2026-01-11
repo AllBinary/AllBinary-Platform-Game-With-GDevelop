@@ -529,7 +529,9 @@ Created By: Travis Berthelot
                 //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameObjectName" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                     //<xsl:value-of select="$gameObjectName" /> = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameObjectName" />GDGameLayerList.get(0)).gdObject;
                 //}
-                final GDObject <xsl:value-of select="$gameObjectName" /> = ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameObjectName" />GDGameLayerList.get(0)).gdObject;
+                <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameObjectName" /></xsl:variable>
+
+                final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$gameObjectName" /> = (<xsl:value-of select="$gdObjectFactory" />) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameObjectName" />GDGameLayerList.get(0)).gdObject;
                 </xsl:if>
             </xsl:if>
 

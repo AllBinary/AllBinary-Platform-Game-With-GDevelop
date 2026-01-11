@@ -164,11 +164,13 @@ Created By: Travis Berthelot
                         public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                             super.processGDStats(gameLayer);
                             
+                        <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$param" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$param" /></xsl:variable>
+
                         <xsl:if test="contains($hasForEachProcessGD, 'found')" >
                         <xsl:variable name="forEachGDParamOne" ><xsl:call-template name="forEachGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param><xsl:with-param name="secondGameLayer" ><xsl:value-of select="$param" /></xsl:with-param></xsl:call-template></xsl:variable>
                         //forEachGDParamOne=<xsl:value-of select="$forEachGDParamOne" /><xsl:text>&#10;</xsl:text>
                         <xsl:if test='$param = $forEachGDParamOne' >
-                            final GDObject <xsl:value-of select="$param" /><xsl:text> = </xsl:text>gameLayer.gdObject;
+                            final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$param" /><xsl:text> = </xsl:text>(<xsl:value-of select="$gdObjectFactory" />) gameLayer.gdObject;
                             <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" />) <xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" >).<xsl:value-of select="text()" /></xsl:if></xsl:for-each><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:if test="string-length(text()) = 0" > = false;</xsl:if><xsl:if test="string-length(text()) > 0" > = <xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>;</xsl:if></xsl:if></xsl:for-each>
                         </xsl:if>
                         <xsl:if test='$param != $forEachGDParamOne' >
@@ -177,7 +179,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                         
                         <xsl:if test="not(contains($hasForEachProcessGD, 'found'))" >
-                            final GDObject <xsl:value-of select="$param" /><xsl:text> = </xsl:text>gameLayer.gdObject;
+                            final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$param" /><xsl:text> = </xsl:text>(<xsl:value-of select="$gdObjectFactory" />) gameLayer.gdObject;
                             <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" />) <xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" >).<xsl:value-of select="text()" /></xsl:if></xsl:for-each><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:if test="string-length(text()) = 0" > = false;</xsl:if><xsl:if test="string-length(text()) > 0" > = <xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>;</xsl:if></xsl:if></xsl:for-each>
                         </xsl:if>                            
 
@@ -187,7 +189,7 @@ Created By: Travis Berthelot
                         public boolean processGD2(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                             super.processGDStats(gameLayer);
 
-                            final GDObject <xsl:value-of select="$param" /><xsl:text> = </xsl:text>gameLayer.gdObject;
+                            final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$param" /><xsl:text> = </xsl:text>(<xsl:value-of select="$gdObjectFactory" />) gameLayer.gdObject;
                             <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="text()" />) <xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = 2" >).<xsl:value-of select="text()" /></xsl:if></xsl:for-each><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:if test="string-length(text()) = 0" > = false;</xsl:if><xsl:if test="string-length(text()) > 0" > = <xsl:call-template name="lower-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>;</xsl:if></xsl:if></xsl:for-each>
 
                             return true;

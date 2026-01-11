@@ -415,7 +415,9 @@ Created By: Travis Berthelot
                         final int <xsl:value-of select="name" />Size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.size();
                         if(<xsl:value-of select="name" />Size != 0) {
 
-                            final GDObject <xsl:value-of select="name" />GDobject = (GDObject) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject;
+                        <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="name" /></xsl:variable>
+
+                            final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="name" />GDobject = (<xsl:value-of select="$gdObjectFactory" />) ((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject;
                             final int <xsl:value-of select="name" />X = x + <xsl:value-of select="name" />GDobject.x;
                             final int <xsl:value-of select="name" />Y = y + <xsl:value-of select="name" />GDobject.y;
 

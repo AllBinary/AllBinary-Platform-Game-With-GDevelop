@@ -104,7 +104,8 @@ Created By: Travis Berthelot
                             </xsl:if>
                             
                             <xsl:if test="contains($hasObjectGroup, 'found')" >
-                                final GDObject <xsl:value-of select="$name" /> = gdObject;
+                                <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
+                                final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) gdObject;
                             </xsl:if>
 
                                 //logUtil.put(<xsl:value-of select="$name" />.toString(), this, commonStrings.PROCESS);

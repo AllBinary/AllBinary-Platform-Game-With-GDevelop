@@ -154,8 +154,11 @@ Created By: Travis Berthelot
                             <xsl:if test="contains($hasDistanceProcessGD, 'found')" >
                                 <xsl:variable name="distanceProcessGDParamOne" ><xsl:call-template name="distanceProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
                                 <xsl:variable name="distanceProcessGDParamTwo" ><xsl:call-template name="distanceProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
-                                final GDObject <xsl:value-of select="$distanceProcessGDParamOne" /> = <xsl:value-of select="$distanceProcessGDParamOne" />GDGameLayer.gdObject;
-                                final GDObject <xsl:value-of select="$distanceProcessGDParamTwo" /> = <xsl:value-of select="$distanceProcessGDParamTwo" />GDGameLayer.gdObject;
+
+                                <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$distanceProcessGDParamOne" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$distanceProcessGDParamOne" /></xsl:variable>
+                                final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$distanceProcessGDParamOne" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$distanceProcessGDParamOne" />GDGameLayer.gdObject;
+                                <xsl:variable name="gdObjectFactoryTwo" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$distanceProcessGDParamTwo" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$distanceProcessGDParamTwo" /></xsl:variable>
+                                final <xsl:value-of select="$gdObjectFactoryTwo" /><xsl:text> </xsl:text><xsl:value-of select="$distanceProcessGDParamTwo" /> = (<xsl:value-of select="$gdObjectFactoryTwo" />) <xsl:value-of select="$distanceProcessGDParamTwo" />GDGameLayer.gdObject;
                             </xsl:if>
                                                     
                             <xsl:if test="contains($hasObject2, 'found') or contains($hasObjectGroup2, 'found')" >
@@ -210,8 +213,11 @@ Created By: Travis Berthelot
                             <xsl:if test="contains($hasDistanceProcessGD, 'found')" >
                                 <xsl:variable name="distanceProcessGDParamOne" ><xsl:call-template name="distanceProcessGDParamOne" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
                                 <xsl:variable name="distanceProcessGDParamTwo" ><xsl:call-template name="distanceProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
-                                final GDObject <xsl:value-of select="$distanceProcessGDParamOne" /> = <xsl:value-of select="$distanceProcessGDParamOne" />GDGameLayer.gdObject;
-                                final GDObject <xsl:value-of select="$distanceProcessGDParamTwo" /> = <xsl:value-of select="$distanceProcessGDParamTwo" />GDGameLayer.gdObject;
+                                
+                                <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$distanceProcessGDParamOne" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$distanceProcessGDParamOne" /></xsl:variable>
+                                final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$distanceProcessGDParamOne" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$distanceProcessGDParamOne" />GDGameLayer.gdObject;
+                                <xsl:variable name="gdObjectFactoryTwo" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$distanceProcessGDParamTwo" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$distanceProcessGDParamTwo" /></xsl:variable>
+                                final <xsl:value-of select="$gdObjectFactoryTwo" /><xsl:text> </xsl:text><xsl:value-of select="$distanceProcessGDParamTwo" /> = (<xsl:value-of select="$gdObjectFactoryTwo" />) <xsl:value-of select="$distanceProcessGDParamTwo" />GDGameLayer.gdObject;
                             </xsl:if>
                             
                             <xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >

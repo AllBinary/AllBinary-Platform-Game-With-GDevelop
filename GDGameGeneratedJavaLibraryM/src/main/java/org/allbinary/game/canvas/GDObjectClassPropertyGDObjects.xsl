@@ -257,6 +257,12 @@ Created By: Travis Berthelot
 
                         <xsl:call-template name="variablesForGDObject" />
 
+                    private int forceAngle = 0;
+
+                    public int ForceAngle() {
+                        return forceAngle;
+                    }
+
                     //objectsClassPropertyGDObjects2
                     public void reset() {
                         <xsl:call-template name="variablesResetForGDObject" />

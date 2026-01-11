@@ -211,9 +211,11 @@ Created By: Travis Berthelot
                     , this, commonStrings.PROCESS);
                     </xsl:if>
 -->
-                                        
+
+                    <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>     
+
                     //GDEventCreatedAssignGDObject
-                    final GDObject <xsl:value-of select="$name" /> = <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectFactory.get(
+                    final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:call-template name="objectFactoryFromProperty" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDObjectFactory.get(
                     //Objects have name - <xsl:value-of select="$name" />/<xsl:value-of select="$spriteName" />
                             <xsl:if test="contains($objectsAsString, $spriteName)" >
                                 //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0) / 1.44f),
@@ -381,7 +383,9 @@ Created By: Travis Berthelot
                     final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$gameLayerName" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$gameLayerName" />GDGameLayer.gdObject;
                     </xsl:if>
                         
-                        final GDObject <xsl:value-of select="$name" /> = ((GDObjectFactory) gdObjectsFactory.<xsl:value-of select="$name" />GDObjectFactoryList.get(createIndex)).get(
+                        <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
+
+                        final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) ((GDObjectFactory) gdObjectsFactory.<xsl:value-of select="$name" />GDObjectFactoryList.get(createIndex)).get(
                     //Objects have name - <xsl:value-of select="$name" />/<xsl:value-of select="$spriteName" />
                             <xsl:if test="contains($objectsAsString, $spriteName)" >
                                 //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0) / 1.44f),
@@ -555,7 +559,9 @@ Created By: Travis Berthelot
                     <xsl:variable name="gameLayerName" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" ><xsl:value-of select="$gameLayerName5" /></xsl:with-param><xsl:with-param name="char" select="'('" /></xsl:call-template></xsl:variable>
                     //gameLayerName=<xsl:value-of select="$gameLayerName" />
                         
-                        final GDObject <xsl:value-of select="$name" /> = ((GDObjectFactory) gdObjectsFactory.<xsl:value-of select="$name" />GDObjectFactoryList.get(createIndex)).get(
+                        <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
+
+                        final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) ((GDObjectFactory) gdObjectsFactory.<xsl:value-of select="$name" />GDObjectFactoryList.get(createIndex)).get(
                     //Objects have name - <xsl:value-of select="$name" />/<xsl:value-of select="$spriteName" />
                             <xsl:if test="contains($objectsAsString, $spriteName)" >
                                 //(int) (<xsl:call-template name="globalImageResource" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />Width(0) / 1.44f),

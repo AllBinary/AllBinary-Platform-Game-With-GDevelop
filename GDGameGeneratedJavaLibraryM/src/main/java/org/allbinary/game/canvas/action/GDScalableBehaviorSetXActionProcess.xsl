@@ -60,7 +60,8 @@ Created By: Travis Berthelot
                                 //logUtil.put(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, commonStrings.PROCESS);
 
                                 final GDGameLayer <xsl:value-of select="$paramOne" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$paramOne" />GDGameLayerList.get(index);
-                                final GDObject <xsl:value-of select="$paramOne" /> = <xsl:value-of select="$paramOne" />GDGameLayer.gdObject;
+                                <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$paramOne" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$paramOne" /></xsl:variable>
+                                final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$paramOne" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$paramOne" />GDGameLayer.gdObject;
                                 <xsl:value-of select="$paramOne" />.scaleX = <xsl:value-of select="$paramFour" />;
                                 <xsl:value-of select="$paramOne" />GDGameLayer.setScalable();
                                 <xsl:value-of select="$paramOne" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
