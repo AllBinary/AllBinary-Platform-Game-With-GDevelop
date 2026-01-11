@@ -45,13 +45,16 @@ public class GDToAllBinaryResourcesGenerator
     private final String GD_KEY = "//GD";
     private final String INDENT = "        ";
     private final String SPACING = "    ";
-    
+
     private final String PUBLIC_FINAL_STRING = "    public final String ";
     private final String VALUE_RESOURCE_START = " = \"";
     private final String VALUE_RESOURCE_END = "\";\n";
 
     private final String TSJ = ".tsj";
     private final String IMAGE = "image";
+
+    private final String DASH_ICON_DASH = "-icon-";
+    private final String WINDOWS_ICON = "windowsplashscreenanimatedicon";
     
     public GDToAllBinaryResourcesGenerator() {
         resourceStringMaker.append(GD_KEY);
@@ -70,11 +73,15 @@ public class GDToAllBinaryResourcesGenerator
         
         this.gdResourceSelection.appendCommentIfNeeded0(name, resource, resourceStringMaker, hasRotationImages);
         
-        resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
-        resourceStringMaker.append(name);
-        resourceStringMaker.append(this.VALUE_RESOURCE_START);
-        resourceStringMaker.append(resource);
-        resourceStringMaker.append(this.VALUE_RESOURCE_END);
+        if(resource.indexOf(DASH_ICON_DASH) >= 0 || resource.indexOf(WINDOWS_ICON) >= 0) {
+        } else {
+            resourceStringMaker.append(this.PUBLIC_FINAL_STRING);
+            resourceStringMaker.append(name);
+            resourceStringMaker.append(this.VALUE_RESOURCE_START);
+            resourceStringMaker.append(resource);
+            resourceStringMaker.append(this.VALUE_RESOURCE_END);
+        }
+        
     }
     
     public void appendResources(final boolean hasRotationImages) {
@@ -97,22 +104,26 @@ public class GDToAllBinaryResourcesGenerator
         for(int index = 0; index < size; index++) {
             name = (String) this.gdResources.resourceNameList.get(index);
             resource = (String) this.gdResources.resourceList.get(index);
-            resourceStringMaker.append(INDENT);
             
-            used = this.gdResourceSelection.appendCommentIfNeeded(name, resource, resourceStringMaker, hasRotationImages);
-            
-            resourceStringMaker.append(name);
-            resourceStringMaker.append(',');
-            
-            resourceStringMaker.append(commonSeps.SPACE);
-            resourceStringMaker.append(this.commonSeps.COMMENT);
+            if(resource.indexOf(DASH_ICON_DASH) >= 0 || resource.indexOf(WINDOWS_ICON) >= 0) {    
+            } else {
+                resourceStringMaker.append(INDENT);
 
-            resourceStringMaker.append(arrayIndex);
-            
-            resourceStringMaker.append(this.commonSeps.NEW_LINE);
-            if(used) {
-                usedList.add(name);
-                arrayIndex++;
+                used = this.gdResourceSelection.appendCommentIfNeeded(name, resource, resourceStringMaker, hasRotationImages);
+
+                resourceStringMaker.append(name);
+                resourceStringMaker.append(',');
+
+                resourceStringMaker.append(commonSeps.SPACE);
+                resourceStringMaker.append(this.commonSeps.COMMENT);
+
+                resourceStringMaker.append(arrayIndex);
+
+                resourceStringMaker.append(this.commonSeps.NEW_LINE);
+                if (used) {
+                    usedList.add(name);
+                    arrayIndex++;
+                }
             }
         }
         
