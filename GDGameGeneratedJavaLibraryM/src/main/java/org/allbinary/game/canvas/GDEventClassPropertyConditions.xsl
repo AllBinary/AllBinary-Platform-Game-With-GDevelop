@@ -39,11 +39,11 @@ Created By: Travis Berthelot
 
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
             <xsl:for-each select="comment" >
-                //Comment: <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" />`</xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&#10;'" /></xsl:with-param><xsl:with-param name="replacementText" >&#10;                //         </xsl:with-param></xsl:call-template>
+                /*Comment: <xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="text()" />`</xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&#10;'" /></xsl:with-param><xsl:with-param name="replacementText" >&#10;                //         </xsl:with-param></xsl:call-template>*/
             </xsl:for-each>
             <xsl:for-each select="comment2" >
                 <xsl:if test="string-length(text()) > 0" >
-                    //Comment 2: <xsl:value-of select="text()" />
+                    /*Comment 2: <xsl:value-of select="text()" />*/
                 </xsl:if>
             </xsl:for-each>
             <xsl:for-each select="iterableVariableName" >
