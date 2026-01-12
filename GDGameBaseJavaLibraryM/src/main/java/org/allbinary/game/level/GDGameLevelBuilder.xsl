@@ -28,13 +28,13 @@ package org.allbinary.game.level;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-
 import java.util.Arrays;
 import java.util.Hashtable;
 
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.TiledLayer;
 
+import org.allbinary.J2MEUtil;
 import org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterfaceFactory;
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
@@ -335,8 +335,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         if(map == null) {
             throw new Exception();
         }
-        map.setTileWidth(map.getTileWidth()* scale);
-        map.setTileHeight(map.getTileHeight() * scale);
+        map.setTileWidth((int) (map.getTileWidth()* scale));
+        map.setTileHeight((int) (map.getTileHeight() * scale));
         map.getLayers().size();
         return map;
         } catch(Exception e) {

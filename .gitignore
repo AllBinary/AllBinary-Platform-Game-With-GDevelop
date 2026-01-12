@@ -71,6 +71,7 @@ GD*GameTwoDGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
 GD*GameTwoDTouchGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
 GDGameTwoDGlobalGameResourcesImageBasedAnimationInterfaceFactoryInterfaceFactory.java
 
+/platform/html/GDGameHTMLPlaynJavaLibraryM/src/main/java/gd/res/**
 /platform/avian/GDGameAvianApplicationM/src/main/java/**
 /platform/avian/GDGameAvianApplicationM/src/**/*.svg
 /platform/avian/GDGameAvianApplicationM/src/**/*.png

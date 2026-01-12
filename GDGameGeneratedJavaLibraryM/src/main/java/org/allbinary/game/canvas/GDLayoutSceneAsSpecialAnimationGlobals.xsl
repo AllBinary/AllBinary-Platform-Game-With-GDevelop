@@ -217,8 +217,26 @@ Created By: Travis Berthelot
                         <xsl:for-each select="animations" >
                             <xsl:variable name="animationName" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(name, '&quot;', '')" /></xsl:with-param></xsl:call-template></xsl:variable>
                             <xsl:if test="string-length($animationName)" >
+                                <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                                 <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
-                                <xsl:if test="not(preceding::animations/name = $name)" >
+
+                                <xsl:variable name="hasAnimationWithTheSameName" >
+                                    <xsl:for-each select="/game" >
+                                        <xsl:for-each select="layouts" >
+                                            <xsl:variable name="layoutIndex" select="position() - 1" />
+                                            <xsl:if test="number($layoutIndex) = <GD_CURRENT_INDEX>" >
+                                                <xsl:for-each select="objects" >
+                                                    <xsl:for-each select="animations" >
+                                                        <xsl:if test="name = $name and not($nodeId >= number(substring(generate-id(), 2) - 65536))" >found</xsl:if>
+                                                    </xsl:for-each>
+                                                </xsl:for-each>
+                                            </xsl:if>
+                                        </xsl:for-each>
+                                    </xsl:for-each>
+                                </xsl:variable>
+
+<!--                                <xsl:if test="not(preceding::animations[name = $name])" >-->
+                               <xsl:if test="not(contains($hasAnimationWithTheSameName, 'found'))" >
                         public final String <xsl:value-of select="$animationName" /> = "<xsl:value-of select="name" />";
                                </xsl:if>
                             </xsl:if>

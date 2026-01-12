@@ -317,8 +317,8 @@ Created By: Travis Berthelot
                 <xsl:if test="contains(type, 'TileMap::')" >
                     //TWB - temp solution for <xsl:value-of select="type" />
                     new Rectangle(pointFactory.ZERO_ZERO, 
-                                384 * scale,
-                                384 * scale 
+                                (int) (384 * scale),
+                                (int) (384 * scale)
                                 ),
                 </xsl:if>
                 <xsl:for-each select="animations" >

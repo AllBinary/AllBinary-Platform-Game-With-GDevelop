@@ -64,10 +64,27 @@ Created By: Travis Berthelot
                             return true;
                         }
 
+                        private boolean released = true;
+
                         public boolean process(final MotionGestureEvent motionGestureEvent, final MotionGestureInput lastMotionGestureInput) throws Exception {
                             super.processStats(motionGestureEvent);
 
                             //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+
+                            if(lastMotionGestureInput == touchMotionGestureFactory.RELEASED) {
+                                this.released = true;
+                            }
+
+                            if (lastMotionGestureInput != touchMotionGestureFactory.PRESSED) {
+                                return false;
+                            }
+
+                            if(!this.released) {
+                                return false;
+                            }
+
+                            this.released = false;
+                            
                             <xsl:for-each select=".." >
                             <xsl:for-each select="events" >
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >

@@ -335,8 +335,8 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         if(map == null) {
             throw new Exception();
         }
-        map.setTileWidth(map.getTileWidth()* scale);
-        map.setTileHeight(map.getTileHeight() * scale);
+        map.setTileWidth((int) (map.getTileWidth()* scale));
+        map.setTileHeight((int) (map.getTileHeight() * scale));
         map.getLayers().size();
         return map;
         } catch(Exception e) {
