@@ -191,9 +191,10 @@ Created By: Travis Berthelot
                         //private final String ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "processGD - " + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
                         <xsl:text>&#10;</xsl:text>
 
-                <xsl:if test="contains($actionWithTextObjectString, 'found')" >
-                    <xsl:if test="$typeValue = 'TextObject::String'" >
-                        
+                    <xsl:choose>
+                    <xsl:when test="$typeValue = 'TextObject::String'" >
+
+                        <xsl:if test="contains($actionWithTextObjectString, 'found')" >
                         <xsl:call-template name="textObjectStringActionProcess" >
                             <xsl:with-param name="layoutIndex" >
                                 <xsl:value-of select="$layoutIndex" />
@@ -205,10 +206,11 @@ Created By: Travis Berthelot
                                 <xsl:value-of select="$createdObjectsAsString" />
                             </xsl:with-param>
                         </xsl:call-template>
+                        </xsl:if>
 
-                    </xsl:if>                    
-                </xsl:if>
-                    <xsl:if test="$typeValue = 'TextContainerCapability::TextContainerBehavior::SetValue'" >
+                    </xsl:when>
+
+                    <xsl:when test="$typeValue = 'TextContainerCapability::TextContainerBehavior::SetValue'" >
                         
                         <xsl:call-template name="textContainerCapabilityTextContainerBehaviorSetValueActionProcess" >
                             <xsl:with-param name="layoutIndex" >
@@ -222,9 +224,9 @@ Created By: Travis Berthelot
                             </xsl:with-param>
                         </xsl:call-template>
 
-                    </xsl:if>                    
+                    </xsl:when>                    
 
-                <xsl:if test="$typeValue = 'TextObject::ChangeColor'" >
+                <xsl:when test="$typeValue = 'TextObject::ChangeColor'" >
 
                     <xsl:call-template name="textObjectChangeColorActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -238,9 +240,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>                        
                     
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'SceneBackground'" >
+                <xsl:when test="$typeValue = 'SceneBackground'" >
 
                     <xsl:call-template name="sceneBackgroundActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -254,8 +256,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ChangeAnimation'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ChangeAnimation'" >
                     
                     <xsl:call-template name="changeAnimationActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -269,9 +271,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'SetNumberObjectVariable' or $typeValue = 'ModVarObjet'" >
+                <xsl:when test="$typeValue = 'SetNumberObjectVariable' or $typeValue = 'ModVarObjet'" >
                     
                     <xsl:call-template name="setNumberObjectVariableActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -285,8 +287,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ModVarSceneTxt'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ModVarSceneTxt'" >
 
                     <xsl:call-template name="modVarSceneTxtActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -300,8 +302,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ModVarObjetTxt'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ModVarObjetTxt'" >
 
                     <xsl:call-template name="modVarObjetTxtActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -315,13 +317,13 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'SetNumberObjectVariableTxt'" >
+                <xsl:when test="$typeValue = 'SetNumberObjectVariableTxt'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'LinkedObjects::LinkObjects'" >
+                <xsl:when test="$typeValue = 'LinkedObjects::LinkObjects'" >
                     
                     <xsl:call-template name="linkedObjectsLinkObjectsActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -338,113 +340,113 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>                        
                     
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'LinkedObjects::RemoveLinkBetween'" >
+                <xsl:when test="$typeValue = 'LinkedObjects::RemoveLinkBetween'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'LinkedObjects::RemoveAllLinksOf'" >
+                <xsl:when test="$typeValue = 'LinkedObjects::RemoveAllLinksOf'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::Circle'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::Circle'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::Line'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::Line'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::LineV2'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::LineV2'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::Ellipse'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::Ellipse'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::RoundedRectangle'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::RoundedRectangle'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::ChamferRectangle'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::ChamferRectangle'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::RegularPolygon'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::RegularPolygon'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::Torus'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::Torus'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::Star'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::Star'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::Arc'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::Arc'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
             
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::BezierCurve'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::BezierCurve'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::QuadraticCurve'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::QuadraticCurve'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::BeginFillPath'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::BeginFillPath'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::EndFillPath'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::EndFillPath'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::PathMoveTo'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::PathMoveTo'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::PathLineTo'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::PathLineTo'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::PathBezierCurveTo'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::PathBezierCurveTo'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::PathArc'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::PathArc'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::PathQuadraticCurveTo'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::PathQuadraticCurveTo'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::ClosePath'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::ClosePath'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::Arc'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::Arc'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::ArcTo'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::ArcTo'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer::ClearShapes'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::Drawer::ClearShapes'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::ClearBetweenFrames'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::ClearBetweenFrames'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::FillColor'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::FillColor'" >
                     
                     <xsl:call-template name="primitiveDrawingFillColorActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -458,69 +460,69 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::OutlineColor'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::OutlineColor'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::OutlineSize'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::OutlineSize'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::FillOpacity'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::FillOpacity'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::OutlineOpacity'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::OutlineOpacity'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::UseRelativeCoordinates'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::UseRelativeCoordinates'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
             
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::Scale'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::Scale'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer::SetScaleX'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::Drawer::SetScaleX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer::SetScaleX'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::Drawer::SetScaleX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::FlipX'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::FlipX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::FlipY'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::FlipY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::Width'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::Width'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::Height'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::Height'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::SetRotationCenter'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::SetRotationCenter'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
         
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::Drawer'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::Drawer'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::SetAntialiasing'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::SetAntialiasing'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'PrimitiveDrawing::Rectangle'" >
+                <xsl:when test="$typeValue = 'PrimitiveDrawing::Rectangle'" >
                     
                     <xsl:call-template name="primitiveDrawingRectangleActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -534,17 +536,17 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'AjoutObjConcern'" >
+                <xsl:when test="$typeValue = 'AjoutObjConcern'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'AjoutHasard'" >
+                <xsl:when test="$typeValue = 'AjoutHasard'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'SetBooleanObjectVariable'" >
+                <xsl:when test="$typeValue = 'SetBooleanObjectVariable'" >
                     
                     <xsl:call-template name="setObjectVariableAsBooleanActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -558,21 +560,21 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'ToggleObjectVariableAsBoolean'" >
+                <xsl:when test="$typeValue = 'ToggleObjectVariableAsBoolean'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
   
-                <xsl:if test="$typeValue = 'ObjectVariablePush'" >
+                <xsl:when test="$typeValue = 'ObjectVariablePush'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
   
-                <xsl:if test="$typeValue = 'ObjectVariablePushString'" >
+                <xsl:when test="$typeValue = 'ObjectVariablePushString'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
   
-                <xsl:if test="$typeValue = 'ObjectVariablePushNumber'" >
+                <xsl:when test="$typeValue = 'ObjectVariablePushNumber'" >
 
                     <xsl:call-template name="objectVariablePushNumberActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -586,17 +588,17 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                                         
-                </xsl:if>
+                </xsl:when>
   
-                <xsl:if test="$typeValue = 'ObjectVariablePushBool'" >
+                <xsl:when test="$typeValue = 'ObjectVariablePushBool'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
   
-                <xsl:if test="$typeValue = 'ObjectVariableRemoveAt'" >
+                <xsl:when test="$typeValue = 'ObjectVariableRemoveAt'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'HideLayer'" >
+                <xsl:when test="$typeValue = 'HideLayer'" >
 
                     <xsl:call-template name="hideLayerActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -610,8 +612,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'Cache'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'Cache'" >
 
                     <xsl:call-template name="cacheAsHideActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -625,8 +627,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TextEntryObject::String'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TextEntryObject::String'" >
 
                     <xsl:call-template name="textEntryObjectAsStringActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -640,8 +642,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlaySound'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlaySound'" >
                     
                     <xsl:call-template name="playSoundActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -655,8 +657,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlayMusic'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlayMusic'" >
                     
                     <xsl:call-template name="playMusicActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -670,8 +672,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlayMusicCanal'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlayMusicCanal'" >
                     
                     <xsl:call-template name="playMusicCanalActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -685,8 +687,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'StopMusicCanal'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'StopMusicCanal'" >
                     
                     <xsl:call-template name="stopMusicCanalActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -700,8 +702,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlaySoundCanal'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlaySoundCanal'" >
                     
                     <xsl:call-template name="playSoundCanalActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -715,8 +717,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     
-                </xsl:if>
-                <xsl:if test="$typeValue = 'StopSoundCanal'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'StopSoundCanal'" >
                     
                     <xsl:call-template name="stopSoundCanalActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -730,9 +732,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'ResetTimer'" >
+                <xsl:when test="$typeValue = 'ResetTimer'" >
                     
                     <xsl:call-template name="resetTimerActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -746,8 +748,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PauseTimer'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PauseTimer'" >
                     
                     <xsl:call-template name="pauseTimerActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -761,8 +763,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>                        
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'UnPauseTimer'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'UnPauseTimer'" >
 
                     <xsl:call-template name="unPauseTimerActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -776,9 +778,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>                        
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'ChangeScale'" >
+                <xsl:when test="$typeValue = 'ChangeScale'" >
                     
                     <xsl:call-template name="changeScaleActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -792,9 +794,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'ResetObjectTimer'" >
+                <xsl:when test="$typeValue = 'ResetObjectTimer'" >
                     
                     <xsl:call-template name="resetObjectTimerActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -808,9 +810,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>                        
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'Opacity'" >
+                <xsl:when test="$typeValue = 'Opacity'" >
                     
                     <xsl:call-template name="opacityActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -824,8 +826,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     
-                </xsl:if>                
-                <xsl:if test="$typeValue = 'Create'" >
+                </xsl:when>                
+                <xsl:when test="$typeValue = 'Create'" >
 
                     <xsl:call-template name="createActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -848,9 +850,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'CreateByName'" >
+                <xsl:when test="$typeValue = 'CreateByName'" >
 
                     <xsl:call-template name="createByNameActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -873,9 +875,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'SetAngle'" >
+                <xsl:when test="$typeValue = 'SetAngle'" >
                     
                     <xsl:call-template name="setAngleActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -889,9 +891,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'ChangePlan'" >
+                <xsl:when test="$typeValue = 'ChangePlan'" >
                     
                     <xsl:call-template name="changePlanActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -905,9 +907,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'ChangeColor'" >
+                <xsl:when test="$typeValue = 'ChangeColor'" >
                     
                     <xsl:call-template name="changeColorActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -921,9 +923,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'Create'" >
+                <xsl:when test="$typeValue = 'Create'" >
                         
                         <xsl:call-template name="createEndActionProcess" >
                             <xsl:with-param name="layoutIndex" >
@@ -940,9 +942,9 @@ Created By: Travis Berthelot
                             </xsl:with-param>
                         </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'CreateByName'" >
+                <xsl:when test="$typeValue = 'CreateByName'" >
 
                         <xsl:call-template name="createByNameEndActionProcess" >
                             <xsl:with-param name="layoutIndex" >
@@ -959,9 +961,9 @@ Created By: Travis Berthelot
                             </xsl:with-param>
                         </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'Scene'" >
+                <xsl:when test="$typeValue = 'Scene'" >
 
                     <xsl:call-template name="sceneActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -975,9 +977,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'SetFullScreen'" >
+                <xsl:when test="$typeValue = 'SetFullScreen'" >
 
                     <xsl:call-template name="setFullScreenActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -991,9 +993,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'LaunchFile'" >
+                <xsl:when test="$typeValue = 'LaunchFile'" >
 
                     <xsl:call-template name="launchFileActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1007,13 +1009,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue != 'Scene' and $typeValue != 'MettreX' and $typeValue != 'MettreY' and $typeValue != 'SceneBackground' and $typeValue != 'Rotate'" >
-
-                </xsl:if>
-
-                <xsl:if test="$typeValue = 'MettreX'" >
+                <xsl:when test="$typeValue = 'MettreX'" >
 
                     <xsl:call-template name="mettreXActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1030,8 +1028,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'MettreY'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'MettreY'" >
 
                     <xsl:call-template name="mettreYActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1048,8 +1046,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'MettreXY'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'MettreXY'" >
 
                     <xsl:call-template name="mettreXYActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1066,9 +1064,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
                                 
-                <xsl:if test="$typeValue = 'MettreAutourPos'" >
+                <xsl:when test="$typeValue = 'MettreAutourPos'" >
 
                     <xsl:call-template name="mettreAutourPosActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1085,8 +1083,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ModVarScene'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ModVarScene'" >
 
                     <xsl:call-template name="modVarSceneActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1103,9 +1101,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'SetNumberVariable' or $typeValue = 'ModVarGlobal'" >
+                <xsl:when test="$typeValue = 'SetNumberVariable' or $typeValue = 'ModVarGlobal'" >
 
                     <xsl:call-template name="modVarGlobalActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1119,13 +1117,13 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'ModVarGlobalTxt'" >
+                <xsl:when test="$typeValue = 'ModVarGlobalTxt'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'Delete'" >
+                <xsl:when test="$typeValue = 'Delete'" >
                     
                     <xsl:call-template name="deleteActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1139,9 +1137,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'Quit'" >
+                <xsl:when test="$typeValue = 'Quit'" >
 
                     <xsl:call-template name="quitActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1155,9 +1153,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'SetGlobalVariableAsBoolean'" >
+                <xsl:when test="$typeValue = 'SetGlobalVariableAsBoolean'" >
 
                     <xsl:call-template name="setGlobalVariableAsBooleanActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1171,9 +1169,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'SetBooleanVariable'" >
+                <xsl:when test="$typeValue = 'SetBooleanVariable'" >
 
                     <xsl:call-template name="setSceneVariableAsBooleanActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1187,9 +1185,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'SetStringVariable'" >
+                <xsl:when test="$typeValue = 'SetStringVariable'" >
 
                     <xsl:call-template name="setStringVariableActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1203,9 +1201,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'JSONToVariableStructure'" >
+                <xsl:when test="$typeValue = 'JSONToVariableStructure'" >
 
                     <xsl:call-template name="jsonToVariableStructureActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1219,9 +1217,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'JSONToGlobalVariableStructure'" >
+                <xsl:when test="$typeValue = 'JSONToGlobalVariableStructure'" >
                     //JSON to global variable from scene variable - JSONPersistance
                     <xsl:call-template name="jsonToGlobalVariableStructureActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1234,9 +1232,9 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'RotateTowardPosition'" >
+                <xsl:when test="$typeValue = 'RotateTowardPosition'" >
 
                     <xsl:call-template name="rotateTowardPositionActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1250,9 +1248,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'Rotate'" >
+                <xsl:when test="$typeValue = 'Rotate'" >
 
                     <xsl:call-template name="rotateActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1266,24 +1264,24 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>              
+                </xsl:when>              
 
-                <xsl:if test="$typeValue = 'SetCenterX'" >
+                <xsl:when test="$typeValue = 'SetCenterX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'SetCenterY'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'SetCenterY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'RotateTowardAngle'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'RotateTowardAngle'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'RotateTowardPosition'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'RotateTowardPosition'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ChangeLayer'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ChangeLayer'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'Montre'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'Montre'" >
 
                     <xsl:call-template name="montreAsShowActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1297,12 +1295,12 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'MettreAutour'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'MettreAutour'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'AddForceAL'" >
+                <xsl:when test="$typeValue = 'AddForceAL'" >
 
                     <xsl:call-template name="addForceALActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1316,9 +1314,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'AddForceXY'" >
+                <xsl:when test="$typeValue = 'AddForceXY'" >
                     
                     <xsl:call-template name="addForceXYActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1332,29 +1330,29 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'AddForceVersPos'" >
+                <xsl:when test="$typeValue = 'AddForceVersPos'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'AddForceVers'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'AddForceVers'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'Arreter'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'Arreter'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'SeparateFromObjects'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'SeparateFromObjects'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'Ecarter'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'Ecarter'" >
                     //Deprecated
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'Rebondir'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'Rebondir'" >
                     //Deprecated
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ActivateBehavior'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ActivateBehavior'" >
                     
                     <xsl:call-template name="activateBehaviorActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1368,41 +1366,41 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ObjectVariableRemoveChild'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ObjectVariableRemoveChild'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>  
-                <xsl:if test="$typeValue = 'ObjectVariableClearChildren'" >
+                </xsl:when>  
+                <xsl:when test="$typeValue = 'ObjectVariableClearChildren'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                                 
-                <xsl:if test="$typeValue = 'PauseObjectTimer'" >
+                <xsl:when test="$typeValue = 'PauseObjectTimer'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'UnPauseObjectTimer'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'UnPauseObjectTimer'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'RemoveObjectTimer'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'RemoveObjectTimer'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'EnableEffect'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'EnableEffect'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'SetEffectDoubleParameter'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'SetEffectDoubleParameter'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'SetEffectStringParameter'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'SetEffectStringParameter'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                               
-                <xsl:if test="$typeValue = 'SetEffectBooleanParameter'" >
+                <xsl:when test="$typeValue = 'SetEffectBooleanParameter'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'SetIncludedInParentCollisionMask'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'SetIncludedInParentCollisionMask'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetIndex'" >
+                <xsl:when test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetIndex'" >
                     <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetIndexActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
@@ -1414,9 +1412,9 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                </xsl:if>
+                </xsl:when>
   
-                <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetName'" >
+                <xsl:when test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetName'" >
                     <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetNameActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
@@ -1428,9 +1426,9 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                </xsl:if>
+                </xsl:when>
   
-                <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetSpeedScale'" >
+                <xsl:when test="$typeValue = 'AnimatableCapability::AnimatableBehavior::SetSpeedScale'" >
                     <xsl:call-template name="animatableCapabilityAnimatableBehaviorSetSpeedScaleActionProcess" >
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
@@ -1442,138 +1440,138 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                </xsl:if>
-                <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::PauseAnimation'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'AnimatableCapability::AnimatableBehavior::PauseAnimation'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'AnimatableCapability::AnimatableBehavior::PlayAnimation'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'AnimatableCapability::AnimatableBehavior::PlayAnimation'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'ParticleSystem::EmitterForceMin'" >
+                <xsl:when test="$typeValue = 'ParticleSystem::EmitterForceMin'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::EmitterForceMax'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::EmitterForceMax'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::EmitterAngle'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::EmitterAngle'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::EmitterAngleA'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::EmitterAngleA'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::EmitterAngleB'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::EmitterAngleB'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ConeSprayAngle'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ConeSprayAngle'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ZoneRadius'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ZoneRadius'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleLifeTimeMin'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleLifeTimeMin'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleLifeTimeMax'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleLifeTimeMax'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleGravityX'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleGravityX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleGravityY'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleGravityY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleGravityAngle'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleGravityAngle'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleGravityLength'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleGravityLength'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleColor1'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleColor1'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleColor2'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleColor2'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleRed1'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleRed1'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleRed2'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleRed2'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleBlue1'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleBlue1'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleBlue2'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleBlue2'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleGreen1'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleGreen1'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleGreen2'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleGreen2'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleSize1'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleSize1'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleSize2'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleSize2'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleAlpha1'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleAlpha1'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::ParticleAlpha2'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::ParticleAlpha2'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::RecreateParticleSystem'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::RecreateParticleSystem'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::SetTank'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::SetTank'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::Tank'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::Tank'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::StartEmission'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::StartEmission'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::StopEmission'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::StopEmission'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::SetFlow'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::SetFlow'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::Flow'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::Flow'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::SetTextureFromResource'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::SetTextureFromResource'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::Texture'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::Texture'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ParticleSystem::JumpEmitterForwardInTime'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ParticleSystem::JumpEmitterForwardInTime'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'EffectCapability::EffectBehavior::SetEffectDoubleParameter'" >
+                <xsl:when test="$typeValue = 'EffectCapability::EffectBehavior::SetEffectDoubleParameter'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>                       
-                <xsl:if test="$typeValue = 'EffectCapability::EffectBehavior::SetEffectStringParameter'" >
+                </xsl:when>                       
+                <xsl:when test="$typeValue = 'EffectCapability::EffectBehavior::SetEffectStringParameter'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'EffectCapability::EffectBehavior::SetEffectBooleanParameter'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'EffectCapability::EffectBehavior::SetEffectBooleanParameter'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'EffectCapability::EffectBehavior::EnableEffect'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'EffectCapability::EffectBehavior::EnableEffect'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'OpacityCapability::OpacityBehavior::SetValue'" >
+                <xsl:when test="$typeValue = 'OpacityCapability::OpacityBehavior::SetValue'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'ScalableCapability::ScalableBehavior::SetValue'" >
+                <xsl:when test="$typeValue = 'ScalableCapability::ScalableBehavior::SetValue'" >
                     //TWB - does this work?
                     <xsl:call-template name="scalableBehaviorSetValueActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1586,8 +1584,8 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ScalableCapability::ScalableBehavior::SetX'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ScalableCapability::ScalableBehavior::SetX'" >
                     //TWB - does this work?
                     <xsl:call-template name="scalableBehaviorSetXActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1600,8 +1598,8 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ScalableCapability::ScalableBehavior::SetY'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ScalableCapability::ScalableBehavior::SetY'" >
                     //TWB - does this work?
                     <xsl:call-template name="scalableBehaviorSetYActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1614,35 +1612,35 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'ResizableCapability::ResizableBehavior::SetWidth'" >
+                <xsl:when test="$typeValue = 'ResizableCapability::ResizableBehavior::SetWidth'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ResizableCapability::ResizableBehavior::SetHeight'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ResizableCapability::ResizableBehavior::SetHeight'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ResizableCapability::ResizableBehavior::SetSize'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ResizableCapability::ResizableBehavior::SetSize'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED - Started work on but disabled - getSetSizeForObject
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'FlippableCapability::FlippableBehavior::FlipX'" >
+                <xsl:when test="$typeValue = 'FlippableCapability::FlippableBehavior::FlipX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'FlippableCapability::FlippableBehavior::FlipY'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'FlippableCapability::FlippableBehavior::FlipY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'ChangeBlendMode'" >
+                <xsl:when test="$typeValue = 'ChangeBlendMode'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'SetAnimationName'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'SetAnimationName'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ChangeDirection'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ChangeDirection'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ChangeSprite'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ChangeSprite'" >
                     
                     <xsl:call-template name="changeSpriteActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1656,176 +1654,176 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PauseAnimation'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PauseAnimation'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlayAnimation'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlayAnimation'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ChangeAnimationSpeedScale'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ChangeAnimationSpeedScale'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ChangeScaleWidth'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ChangeScaleWidth'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ChangeScaleHeight'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ChangeScaleHeight'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ChangeScale'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ChangeScale'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ChangeWidth'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ChangeWidth'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ChangeHeight'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ChangeHeight'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'SetSize'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'SetSize'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TourneVersPos'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TourneVersPos'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TourneVers'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TourneVers'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'ChangeColor'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'ChangeColor'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'FlipX'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'FlipX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'FlipY'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'FlipY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'PhysicsBehavior::SetStatic'" >
+                <xsl:when test="$typeValue = 'PhysicsBehavior::SetStatic'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::SetDynamic'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::SetDynamic'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::SetFixedRotation'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::SetFixedRotation'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::SetFreeRotation'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::SetFreeRotation'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::AddRevoluteJoint'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::AddRevoluteJoint'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::AddRevoluteJointBetweenObjects'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::AddRevoluteJointBetweenObjects'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::ActAddGearJointBetweenObjects'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::ActAddGearJointBetweenObjects'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::SetAsBullet'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::SetAsBullet'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::DontSetAsBullet'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::DontSetAsBullet'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::ApplyImpulse'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::ApplyImpulse'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::ApplyImpulseUsingPolarCoordinates'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::ApplyImpulseUsingPolarCoordinates'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::ApplyImpulseTowardPosition'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::ApplyImpulseTowardPosition'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::ApplyForce'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::ApplyForce'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::ApplyForceUsingPolarCoordinates'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::ApplyForceUsingPolarCoordinates'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::ApplyForceTowardPosition'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::ApplyForceTowardPosition'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::ApplyTorque'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::ApplyTorque'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::SetLinearVelocity'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::SetLinearVelocity'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::SetAngularVelocity'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::SetAngularVelocity'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::SetLinearDamping'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::SetLinearDamping'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PhysicsBehavior::SetAngularDamping'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PhysicsBehavior::SetAngularDamping'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
                 
-                <xsl:if test="$typeValue = 'PlatformBehavior::Gravity'" >
+                <xsl:when test="$typeValue = 'PlatformBehavior::Gravity'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>                  
-                <xsl:if test="$typeValue = 'PlatformBehavior::MaxFallingSpeed'" >
+                </xsl:when>                  
+                <xsl:when test="$typeValue = 'PlatformBehavior::MaxFallingSpeed'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::LadderClimbingSpeed'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::LadderClimbingSpeed'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::Acceleration'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::Acceleration'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::Deceleration'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::Deceleration'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::MaxSpeed'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::MaxSpeed'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::JumpSpeed'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::JumpSpeed'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::JumpSustainTime'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::JumpSustainTime'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::PlatformerObjectBehavior::SetCurrentFallSpeed'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::PlatformerObjectBehavior::SetCurrentFallSpeed'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::PlatformerObjectBehavior::SetCurrentSpeed'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::PlatformerObjectBehavior::SetCurrentSpeed'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::CanGrabPlatforms'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::CanGrabPlatforms'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::SetCanJump'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::SetCanJump'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::PlatformerObjectBehavior::SetCanNotAirJump'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::PlatformerObjectBehavior::SetCanNotAirJump'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::PlatformerObjectBehavior::AbortJump'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::PlatformerObjectBehavior::AbortJump'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::SimulateLeftKey'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::SimulateLeftKey'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::SimulateRightKey'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::SimulateRightKey'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::SimulateUpKey'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::SimulateUpKey'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::SimulateDownKey'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::SimulateDownKey'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::SimulateLadderKey'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::SimulateLadderKey'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::SimulateReleaseLadderKey'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::SimulateReleaseLadderKey'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PlatformBehavior::SimulateReleasePlatformKey'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PlatformBehavior::SimulateReleasePlatformKey'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'PathfindingBehavior::SetDestination'" >
+                <xsl:when test="$typeValue = 'PathfindingBehavior::SetDestination'" >
 
                     <xsl:call-template name="pathfindingBehaviorSetDestinationActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1839,100 +1837,100 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PathfindingBehavior::CellWidth'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PathfindingBehavior::CellWidth'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PathfindingBehavior::CellHeight'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PathfindingBehavior::CellHeight'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PathfindingBehavior::PathfindingBehavior::SetGridOffsetX'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PathfindingBehavior::PathfindingBehavior::SetGridOffsetX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PathfindingBehavior::PathfindingBehavior::SetGridOffsetY'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PathfindingBehavior::PathfindingBehavior::SetGridOffsetY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PathfindingBehavior::Acceleration'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PathfindingBehavior::Acceleration'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PathfindingBehavior::MaxSpeed'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PathfindingBehavior::MaxSpeed'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PathfindingBehavior::Speed'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PathfindingBehavior::Speed'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PathfindingBehavior::AngularMaxSpeed'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PathfindingBehavior::AngularMaxSpeed'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PathfindingBehavior::AngleOffset'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PathfindingBehavior::AngleOffset'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PathfindingBehavior::ExtraBorder'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PathfindingBehavior::ExtraBorder'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PathfindingBehavior::AllowDiagonals'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PathfindingBehavior::AllowDiagonals'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PathfindingBehavior::RotateObject'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PathfindingBehavior::RotateObject'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PathfindingBehavior::Cost'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PathfindingBehavior::Cost'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'PathfindingBehavior::SetImpassable'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'PathfindingBehavior::SetImpassable'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'TopDownMovementBehavior::Acceleration'" >
+                <xsl:when test="$typeValue = 'TopDownMovementBehavior::Acceleration'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TopDownMovementBehavior::Deceleration'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TopDownMovementBehavior::Deceleration'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TopDownMovementBehavior::MaxSpeed'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TopDownMovementBehavior::MaxSpeed'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TopDownMovementBehavior::AngularMaxSpeed'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TopDownMovementBehavior::AngularMaxSpeed'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TopDownMovementBehavior::AngleOffset'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TopDownMovementBehavior::AngleOffset'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TopDownMovementBehavior::AllowDiagonals'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TopDownMovementBehavior::AllowDiagonals'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TopDownMovementBehavior::RotateObject'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TopDownMovementBehavior::RotateObject'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TopDownMovementBehavior::SimulateLeftKey'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TopDownMovementBehavior::SimulateLeftKey'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TopDownMovementBehavior::SimulateRightKey'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TopDownMovementBehavior::SimulateRightKey'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TopDownMovementBehavior::SimulateUpKey'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TopDownMovementBehavior::SimulateUpKey'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TopDownMovementBehavior::SimulateDownKey'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TopDownMovementBehavior::SimulateDownKey'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TopDownMovementBehavior::SimulateControl'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TopDownMovementBehavior::SimulateControl'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TopDownMovementBehavior::IgnoreDefaultControls'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TopDownMovementBehavior::IgnoreDefaultControls'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TopDownMovementBehavior::SimulateStick'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TopDownMovementBehavior::SimulateStick'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TopDownMovementBehavior::TopDownMovementBehavior::SetVelocityX'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TopDownMovementBehavior::TopDownMovementBehavior::SetVelocityX'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TopDownMovementBehavior::TopDownMovementBehavior::SetVelocityY'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TopDownMovementBehavior::TopDownMovementBehavior::SetVelocityY'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'EcrireFichierTxt'" >
+                <xsl:when test="$typeValue = 'EcrireFichierTxt'" >
                     //Save JSON - JSONPersistance
                     <xsl:call-template name="ecrireFichierTxtSaveJSONActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1945,8 +1943,8 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                </xsl:if>
-                <xsl:if test="$typeValue = 'LireFichierTxt'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'LireFichierTxt'" >
                     //Load JSON - JSONPersistance
                     <xsl:call-template name="lireFichierTxtLoadJSONActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1959,9 +1957,9 @@ Created By: Travis Berthelot
                             <xsl:value-of select="$createdObjectsAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'Leaderboards::SavePlayerScore'" >
+                <xsl:when test="$typeValue = 'Leaderboards::SavePlayerScore'" >
 
                     <xsl:call-template name="leaderboardsSavePlayerScoreActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1969,13 +1967,13 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'Leaderboards::DisplayLeaderboard'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'Leaderboards::DisplayLeaderboard'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
+                </xsl:when>
 
                 <!-- Extension Actions below here -->
-                <xsl:if test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider::SetValue'" >
+                <xsl:when test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider::SetValue'" >
                     
                     <xsl:call-template name="panelSpriteSliderPanelSpriteSliderSetValueActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1989,9 +1987,9 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
+                </xsl:when>
 
-                <xsl:if test="$typeValue = 'TextInputVirtualKeyboard::TextInputVirtualKeyboard::closeKeyboard'" >
+                <xsl:when test="$typeValue = 'TextInputVirtualKeyboard::TextInputVirtualKeyboard::closeKeyboard'" >
                     
                     <xsl:call-template name="textInputVirtualKeyboardTextInputVirtualKeyboardCloseKeyboardActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -2005,8 +2003,8 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                <xsl:if test="$typeValue = 'TextInputVirtualKeyboard::TextInputVirtualKeyboard::openKeyboard'" >
+                </xsl:when>
+                <xsl:when test="$typeValue = 'TextInputVirtualKeyboard::TextInputVirtualKeyboard::openKeyboard'" >
                     
                     <xsl:call-template name="textInputVirtualKeyboardTextInputVirtualKeyboardOpenKeyboardActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -2020,8 +2018,12 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                </xsl:if>
-                
+                </xsl:when>
+                <xsl:otherwise>
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                </xsl:otherwise>
+                </xsl:choose>
+
                             <xsl:for-each select="../conditions" >
                                 <xsl:variable name="typeValue" select="type/value" />
                                 <xsl:if test="$typeValue = 'SourisSurObjet'" >
