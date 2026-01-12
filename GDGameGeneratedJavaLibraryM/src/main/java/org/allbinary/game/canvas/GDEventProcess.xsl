@@ -110,6 +110,10 @@ Created By: Travis Berthelot
                     //Condition - //CollisionNP - call - //eventsProcess
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                 </xsl:if>
+                <xsl:if test="$typeValue = 'Collision'" >
+                    //Condition - //Collision - call - //eventsProcess
+                    gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
+                </xsl:if>
             </xsl:for-each>
             </xsl:if>
 

@@ -21,7 +21,7 @@ Created By: Travis Berthelot
         <xsl:for-each select="events" >
             <xsl:variable name="foundCollisionNP" >
             <xsl:for-each select="conditions" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             <xsl:value-of select="text()" />
@@ -45,7 +45,7 @@ Created By: Travis Berthelot
         <xsl:for-each select="events" >
             <xsl:for-each select="conditions" >
             <xsl:variable name="foundCollisionNP" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             <xsl:value-of select="text()" />
@@ -54,7 +54,7 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             <xsl:value-of select="text()" />
@@ -99,7 +99,7 @@ Created By: Travis Berthelot
         <xsl:for-each select="events" >
             <xsl:for-each select="conditions" >
             <xsl:variable name="foundCollisionNP" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             <xsl:value-of select="text()" />
@@ -108,7 +108,7 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             <xsl:value-of select="text()" />
@@ -253,7 +253,7 @@ Created By: Travis Berthelot
         <xsl:for-each select="events" >
             <xsl:for-each select="whileConditions" >
             <xsl:variable name="foundCollisionNP" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             <xsl:value-of select="text()" />
@@ -262,7 +262,7 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             <xsl:value-of select="text()" />
@@ -299,7 +299,7 @@ Created By: Travis Berthelot
         <xsl:for-each select="events" >
             <xsl:for-each select="whileConditions" >
             <xsl:variable name="foundCollisionNP" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             <xsl:value-of select="text()" />
@@ -308,7 +308,7 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             <xsl:value-of select="text()" />
@@ -389,7 +389,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="subInstructions" >
 
             <xsl:variable name="foundCollisionNP" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             <xsl:value-of select="text()" />
@@ -398,7 +398,7 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             <xsl:value-of select="text()" />
@@ -449,7 +449,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="subInstructions" >
 
             <xsl:variable name="foundCollisionNP" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             <xsl:value-of select="text()" />
@@ -458,7 +458,7 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             <xsl:value-of select="text()" />
@@ -537,7 +537,7 @@ Created By: Travis Berthelot
         <xsl:for-each select="events" >
             <xsl:for-each select="conditions" >
             <xsl:variable name="foundCollisionNP" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             <xsl:value-of select="text()" />
@@ -546,7 +546,7 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             <xsl:value-of select="text()" />
@@ -593,7 +593,7 @@ Created By: Travis Berthelot
         <xsl:for-each select="events" >
             <xsl:for-each select="whileConditions" >
             <xsl:variable name="foundCollisionNP" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             <xsl:value-of select="text()" />
@@ -602,7 +602,7 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             <xsl:value-of select="text()" />
@@ -647,7 +647,7 @@ Created By: Travis Berthelot
             <xsl:for-each select="conditions" >
                 <xsl:for-each select="subInstructions" >
                     <xsl:variable name="foundCollisionNP" >
-                        <xsl:if test="type/value = 'CollisionNP'" >
+                        <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 1" >
                                     <xsl:value-of select="text()" />
@@ -656,7 +656,7 @@ Created By: Travis Berthelot
                         </xsl:if>
                     </xsl:variable>
                     <xsl:variable name="foundCollisionNP2" >
-                        <xsl:if test="type/value = 'CollisionNP'" >
+                        <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 2" >
                                     <xsl:value-of select="text()" />
@@ -711,7 +711,7 @@ Created By: Travis Berthelot
             <xsl:for-each select="conditions" >
                 
             <xsl:variable name="foundCollisionNP" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             <xsl:value-of select="text()" />
@@ -720,7 +720,7 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             <xsl:value-of select="text()" />
@@ -796,7 +796,7 @@ Created By: Travis Berthelot
             <xsl:for-each select="whileConditions" >
 
             <xsl:variable name="foundCollisionNP" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             <xsl:value-of select="text()" />
@@ -805,7 +805,7 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             <xsl:value-of select="text()" />
@@ -882,7 +882,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="subInstructions" >
 
             <xsl:variable name="foundCollisionNP" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
                             <xsl:value-of select="text()" />
@@ -891,7 +891,7 @@ Created By: Travis Berthelot
                 </xsl:if>
             </xsl:variable>
             <xsl:variable name="foundCollisionNP2" >
-                <xsl:if test="type/value = 'CollisionNP'" >
+                <xsl:if test="type/value = 'CollisionNP' or type/value = 'Collision'" >
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             <xsl:value-of select="text()" />

@@ -414,7 +414,13 @@ Created By: Travis Berthelot
                         //CollisionNP - condition is processed by the AllBinary collision processor
                     </xsl:if>                
                     <xsl:if test="$typeValue = 'CollisionNP'" >
-                        //CollisionNP - ?
+                        //CollisionNP - Not Pixel Perfect
+                        <xsl:call-template name="collisionNPConditionGDNode" >
+                            <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:if>                
+                    <xsl:if test="$typeValue = 'Collision'" >
+                        //Collision - Pixel Perfect
                         <xsl:call-template name="collisionNPConditionGDNode" >
                             <xsl:with-param name="nodeList" ><xsl:value-of select="$nodeList" /></xsl:with-param>
                         </xsl:call-template>
@@ -956,10 +962,6 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
                 <xsl:if test="$typeValue = 'DoesSceneExist'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:if>
-
-                <xsl:if test="$typeValue = 'Collision'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:if>
 

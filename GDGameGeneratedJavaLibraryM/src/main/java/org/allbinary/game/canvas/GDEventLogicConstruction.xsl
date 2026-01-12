@@ -256,7 +256,7 @@ Created By: Travis Berthelot
             </xsl:if>
             </xsl:for-each>
                         
-            <xsl:if test="conditions[type/value = 'CollisionNP']" >
+            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
             <xsl:variable name="hasChildNode" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
@@ -264,16 +264,16 @@ Created By: Travis Berthelot
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >
-                //From parent CollisionNP - <xsl:for-each select="conditions[type/value = 'CollisionNP']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
+                //From parent CollisionNP - <xsl:for-each select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
-                <xsl:if test="conditions[type/value = 'CollisionNP']/parameters[1] = conditions[type/value = 'CollisionNP']/parameters[2]" >
-                public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[2]" />2GDGameLayer, final Graphics graphics) throws Exception {
+                <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1] = conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" >
+                public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" />2GDGameLayer, final Graphics graphics) throws Exception {
                 </xsl:if>
-                <xsl:if test="conditions[type/value = 'CollisionNP']/parameters[1] != conditions[type/value = 'CollisionNP']/parameters[2]" >
-                public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[2]" />GDGameLayer, final Graphics graphics) throws Exception {
+                <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1] != conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" >
+                public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" />GDGameLayer, final Graphics graphics) throws Exception {
                 </xsl:if>
-                   super.processGDStats(<xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[1]" />GDGameLayer);
+                   super.processGDStats(<xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" />GDGameLayer);
                 </xsl:if>
             </xsl:if>
 
@@ -329,7 +329,7 @@ Created By: Travis Berthelot
             </xsl:variable>
 
             <xsl:variable name="hasCollisionNPCondition" >
-            <xsl:if test="conditions[type/value = 'CollisionNP']" >
+            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
             <xsl:variable name="hasChildNode" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
@@ -498,7 +498,7 @@ Created By: Travis Berthelot
         <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
-            <xsl:if test="conditions[type/value = 'CollisionNP']" >
+            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
             <xsl:variable name="hasChildNode" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
@@ -506,14 +506,14 @@ Created By: Travis Berthelot
             </xsl:variable>
                 
                 <xsl:if test="contains($hasChildNode, 'found')" >
-                //From parent CollisionNP - <xsl:for-each select="conditions[type/value = 'CollisionNP']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
+                //From parent CollisionNP - <xsl:for-each select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:for-each>
                 //totalRecursions=<xsl:value-of select="$totalRecursions" />
                 @Override
-                <xsl:if test="conditions[type/value = 'CollisionNP']/parameters[1] = conditions[type/value = 'CollisionNP']/parameters[2]" >
-                public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[2]" />2GDGameLayer, final Graphics graphics) throws Exception {
+                <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1] = conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" >
+                public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" />2GDGameLayer, final Graphics graphics) throws Exception {
                 </xsl:if>
-                <xsl:if test="conditions[type/value = 'CollisionNP']/parameters[1] != conditions[type/value = 'CollisionNP']/parameters[2]" >
-                public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[2]" />GDGameLayer, final Graphics graphics) throws Exception {
+                <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1] != conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" >
+                public boolean processGD(final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" />GDGameLayer, final GDGameLayer <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" />GDGameLayer, final Graphics graphics) throws Exception {
                 </xsl:if>
                 </xsl:if>
             </xsl:if>
@@ -721,14 +721,14 @@ Created By: Travis Berthelot
         <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
-            <xsl:if test="conditions[type/value = 'CollisionNP']" >
+            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
             <xsl:variable name="hasChildNode" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" >
-                <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[1]" />
+                <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[1]" />
                 </xsl:if>
             </xsl:if>
             
@@ -748,14 +748,14 @@ Created By: Travis Berthelot
         <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
-            <xsl:if test="conditions[type/value = 'CollisionNP']" >
+            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
             <xsl:variable name="hasChildNode" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
                 </xsl:call-template>
             </xsl:variable>
                 <xsl:if test="contains($hasChildNode, 'found')" >
-                <xsl:value-of select="conditions[type/value = 'CollisionNP']/parameters[2]" />
+                <xsl:value-of select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']/parameters[2]" />
                 </xsl:if>
             </xsl:if>
             
@@ -847,7 +847,7 @@ Created By: Travis Berthelot
             </xsl:if>
             </xsl:for-each>
             
-            <xsl:if test="conditions[type/value = 'CollisionNP'] or conditions[type/value = 'Distance'] or conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
+            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision'] or conditions[type/value = 'Distance'] or conditions[type/value = 'LinkedObjects::PickObjectsLinkedTo']" >
             <xsl:variable name="hasChildNode" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
@@ -955,7 +955,7 @@ Created By: Travis Berthelot
         <xsl:param name="nodeId" />
         
         <xsl:for-each select=".." >
-            <xsl:if test="conditions[type/value = 'CollisionNP']" >
+            <xsl:if test="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
             <xsl:variable name="hasChildNode" >
                 <xsl:call-template name="hasChildNode" >
                     <xsl:with-param name="childNodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
@@ -1210,7 +1210,7 @@ Created By: Travis Berthelot
                 //eventsLogicConstructionCollisionNP - //whileConditions - NOT_IMPLEMENTED
             </xsl:for-each>
 
-            <xsl:for-each select="conditions[type/value = 'CollisionNP']" >
+            <xsl:for-each select="conditions[type/value = 'CollisionNP' or type/value = 'Collision']" >
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
 
