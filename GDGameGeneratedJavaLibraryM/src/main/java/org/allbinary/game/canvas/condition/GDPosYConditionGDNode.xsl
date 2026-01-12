@@ -51,62 +51,6 @@ Created By: Travis Berthelot
                         //paramOneNameObjectsGroups=<xsl:value-of select="$paramOneNameObjectsGroups" />
                         //paramTwoNameObjectsGroups=<xsl:value-of select="$paramTwoNameObjectsGroups" />
 
-                        //PosY - condition
-                        @Override
-                        public boolean process() throws Exception {
-                            super.processStats();
-
-                            <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-<!--                            <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;' or text() = '&lt;='" >.y</xsl:if><xsl:if test="text() = '&gt;' or text() = '&gt;='" >.Y2()</xsl:if></xsl:if></xsl:for-each></xsl:variable>-->
-                            <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;' or text() = '&lt;=' or text() = '&gt;' or text() = '&gt;='" >.y</xsl:if></xsl:if></xsl:for-each></xsl:variable>
-                                                
-                            <xsl:if test="$paramOneNameObjectsGroups = '' and $paramTwoNameObjectsGroups = ''" >
-
-                            final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.size();
-                            GDGameLayer <xsl:value-of select="$gdObjectName" />GDGameLayer;
-                            GDObject <xsl:value-of select="$gdObjectName" />;
-                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-
-                                <xsl:value-of select="$gdObjectName" />GDGameLayer = (GDGameLayer) 
-                                <xsl:text>&#10;</xsl:text>
-                                <xsl:call-template name="globals" >
-                                    <xsl:with-param name="name" >
-                                        <xsl:value-of select="$gdObjectName" />
-                                    </xsl:with-param>
-                                </xsl:call-template>.
-                                <xsl:text>&#10;</xsl:text>
-                                <xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
-                                <xsl:value-of select="$gdObjectName" /><xsl:text> = </xsl:text><xsl:value-of select="$gdObjectName" />GDGameLayer.gdObject;
-
-                                //stringBuilder.delete(0, stringBuilder.length());
-                                //logUtil.put(stringBuilder.append(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" >).append(</xsl:if><xsl:if test="position() != 2" >"<xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if><xsl:if test="position() != 2" >").append(</xsl:if><xsl:if test="position() != 2" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if></xsl:for-each>).toString(), this, commonStrings.PROCESS);
-                                if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
-                                    //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                                    <xsl:for-each select=".." >
-                                        <xsl:call-template name="actionIdsGDObjectPos" >
-                                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
-                                            <xsl:with-param name="gdObjectName" ><xsl:value-of select="$gdObjectName" /></xsl:with-param>
-                                            <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$gdObjectName" />GDGameLayer</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:for-each>
-                                } //else {
-                                    //logUtil.put(ELSE_CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
-                                //}
-                                //logUtil.put(<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index).toString(), this, commonStrings.PROCESS);
-                            }
-                                
-                            </xsl:if>
-
-                            <xsl:if test="$paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != ''" >
-                                //Needs Impl
-                                //if(true) throw new RuntimeException();
-                            </xsl:if>
-
-                            super.processStatsE();
-                                
-                            return true;
-                        }
-
                         <xsl:variable name="param" >
                             <xsl:for-each select="parameters" >
                                 <xsl:if test="position() = 3" >
@@ -186,8 +130,70 @@ Created By: Travis Berthelot
                     </xsl:variable>
                     
                     /*hasForEachProcessGD=<xsl:value-of select="$hasForEachProcessGD" /> hasCollisionProcessGD=<xsl:value-of select="$hasCollisionProcessGD" /> hasDistanceProcessGD=<xsl:value-of select="$hasDistanceProcessGD" /> hasLinkedObjectsPickObjectsLinkedToProcessGD=<xsl:value-of select="$hasLinkedObjectsPickObjectsLinkedToProcessGD" />*/
+
+                        //PosY - condition
+                        @Override
+                        public boolean process() throws Exception {
+                            super.processStats();
+
+                        <xsl:variable name="gdObjectName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                        //gdObjectName=<xsl:value-of select="$gdObjectName" />
+
+<!--                    <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;' or text() = '&lt;='" >.y</xsl:if><xsl:if test="text() = '&gt;' or text() = '&gt;='" >.Y2()</xsl:if></xsl:if></xsl:for-each></xsl:variable>-->
+                        <xsl:variable name="closedValueForGDObject" ><xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '&lt;' or text() = '&lt;=' or text() = '&gt;' or text() = '&gt;='" >.y</xsl:if></xsl:if></xsl:for-each></xsl:variable>
+                            
+                        <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >                            
+                                                
+<!--                            <xsl:if test="$paramOneNameObjectsGroups = '' and $paramTwoNameObjectsGroups = ''" >-->
+
+                            final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gdObjectName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gdObjectName" />GDGameLayerList.size();
+                            GDGameLayer <xsl:value-of select="$gdObjectName" />GDGameLayer;
+                            GDObject <xsl:value-of select="$gdObjectName" />;
+                            for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
+
+                                <xsl:value-of select="$gdObjectName" />GDGameLayer = (GDGameLayer) 
+                                <xsl:text>&#10;</xsl:text>
+                                <xsl:call-template name="globals" >
+                                    <xsl:with-param name="name" >
+                                        <xsl:value-of select="$gdObjectName" />
+                                    </xsl:with-param>
+                                </xsl:call-template>.
+                                <xsl:text>&#10;</xsl:text>
+                                <xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
+                                <xsl:value-of select="$gdObjectName" /><xsl:text> = </xsl:text><xsl:value-of select="$gdObjectName" />GDGameLayer.gdObject;
+
+                                //stringBuilder.delete(0, stringBuilder.length());
+                                //logUtil.put(stringBuilder.append(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" >).append(</xsl:if><xsl:if test="position() != 2" >"<xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if><xsl:if test="position() != 2" >").append(</xsl:if><xsl:if test="position() != 2" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if></xsl:for-each>).toString(), this, commonStrings.PROCESS);
+                                if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:for-each select="parameters" ><xsl:text><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:text><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
+                                    //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    <xsl:for-each select=".." >
+                                        <xsl:call-template name="actionIdsGDObjectPos" >
+                                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                                            <xsl:with-param name="gdObjectName" ><xsl:value-of select="$gdObjectName" /></xsl:with-param>
+                                            <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$gdObjectName" />GDGameLayer</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                } //else {
+                                    //logUtil.put(ELSE_CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                //}
+                                //logUtil.put(<xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index).toString(), this, commonStrings.PROCESS);
+                            }
+                                
+<!--                            </xsl:if>-->
+
+                        </xsl:if>
+
+                        <xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
+                                //Needs Impl
+                                //if(true) throw new RuntimeException();
+                        </xsl:if>
+
+                            super.processStatsE();
+                                
+                            return true;
+                        }
                     
-                    <xsl:if test="$paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != ''" >
+                    <xsl:if test="$paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != '' or contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
                     <xsl:call-template name="parentSelectionNodeProcessGD" >
                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
                         <xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param>
@@ -198,9 +204,6 @@ Created By: Travis Berthelot
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
                     </xsl:if>
-                    </xsl:if>
-
-                    <xsl:if test="$paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != ''" >
 
                             //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "GD", this, commonStrings.PROCESS);
                             <xsl:text>&#10;</xsl:text>
@@ -238,7 +241,7 @@ Created By: Travis Berthelot
                             return false;
                         }
                     </xsl:if>                                        
-                    <xsl:if test="$paramOneNameObjectsGroups = '' and $paramTwoNameObjectsGroups = ''" >
+                    <xsl:if test="not($paramOneNameObjectsGroups != '' or $paramTwoNameObjectsGroups != '' or contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
                         public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
 
                             super.processGDStats(gameLayer);
