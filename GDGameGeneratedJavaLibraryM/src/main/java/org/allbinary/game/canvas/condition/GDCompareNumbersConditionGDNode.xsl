@@ -227,9 +227,12 @@ Created By: Travis Berthelot
                                 //linkedObjectsPickObjectsLinkedToProcessGDParamTwo=<xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamTwo" />-->
                                 
                                 <xsl:variable name="parameters" ><xsl:for-each select="parameters" ><xsl:if test="position() != 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                            //TWB - temp hack for LinkedObjects::PickObjectsLinkedTo for //BuiltinCommonInstructions::CompareNumbers
+                            //LinkedObjects::PickObjectsLinkedTo for //BuiltinCommonInstructions::CompareNumbers
                                 <xsl:if test="contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >
-                            final GDObject Enemies = EnemiesGDGameLayer.gdObject;
+                                    <xsl:variable name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" ><xsl:call-template name="linkedObjectsPickObjectsLinkedToProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
+
+                                    <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamTwo" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamTwo" /></xsl:variable>
+                            final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamTwo" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$linkedObjectsPickObjectsLinkedToProcessGDParamTwo" />GDGameLayer.gdObject;
                                 </xsl:if>
                                 <xsl:if test="contains($parameters, 'Player')" >
                                     <xsl:variable name="name" >Player</xsl:variable>
