@@ -926,44 +926,6 @@ Created By: Travis Berthelot
 
                 </xsl:when>
 
-                <xsl:when test="$typeValue = 'Create'" >
-                        
-                        <xsl:call-template name="createEndActionProcess" >
-                            <xsl:with-param name="layoutIndex" >
-                                <xsl:value-of select="$layoutIndex" />
-                            </xsl:with-param>
-                            <xsl:with-param name="objectsGroupsAsString" >
-                                <xsl:value-of select="$objectsGroupsAsString" />
-                            </xsl:with-param>
-                            <xsl:with-param name="createdObjectsAsString" >
-                                <xsl:value-of select="$createdObjectsAsString" />
-                            </xsl:with-param>
-                            <xsl:with-param name="nodeIdAsString" >
-                                <xsl:value-of select="$nodeIdAsString" />
-                            </xsl:with-param>
-                        </xsl:call-template>
-
-                </xsl:when>
-
-                <xsl:when test="$typeValue = 'CreateByName'" >
-
-                        <xsl:call-template name="createByNameEndActionProcess" >
-                            <xsl:with-param name="layoutIndex" >
-                                <xsl:value-of select="$layoutIndex" />
-                            </xsl:with-param>
-                            <xsl:with-param name="objectsGroupsAsString" >
-                                <xsl:value-of select="$objectsGroupsAsString" />
-                            </xsl:with-param>
-                            <xsl:with-param name="createdObjectsAsString" >
-                                <xsl:value-of select="$createdObjectsAsString" />
-                            </xsl:with-param>
-                            <xsl:with-param name="nodeIdAsString" >
-                                <xsl:value-of select="$nodeIdAsString" />
-                            </xsl:with-param>
-                        </xsl:call-template>
-
-                </xsl:when>
-
                 <xsl:when test="$typeValue = 'Scene'" >
 
                     <xsl:call-template name="sceneActionProcess" >
@@ -2037,6 +1999,44 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:otherwise>
                 </xsl:choose>
+
+                <xsl:if test="$typeValue = 'Create'" >
+                        
+                        <xsl:call-template name="createEndActionProcess" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="objectsGroupsAsString" >
+                                <xsl:value-of select="$objectsGroupsAsString" />
+                            </xsl:with-param>
+                            <xsl:with-param name="createdObjectsAsString" >
+                                <xsl:value-of select="$createdObjectsAsString" />
+                            </xsl:with-param>
+                            <xsl:with-param name="nodeIdAsString" >
+                                <xsl:value-of select="$nodeIdAsString" />
+                            </xsl:with-param>
+                        </xsl:call-template>
+
+                </xsl:if>
+
+                <xsl:if test="$typeValue = 'CreateByName'" >
+
+                        <xsl:call-template name="createByNameEndActionProcess" >
+                            <xsl:with-param name="layoutIndex" >
+                                <xsl:value-of select="$layoutIndex" />
+                            </xsl:with-param>
+                            <xsl:with-param name="objectsGroupsAsString" >
+                                <xsl:value-of select="$objectsGroupsAsString" />
+                            </xsl:with-param>
+                            <xsl:with-param name="createdObjectsAsString" >
+                                <xsl:value-of select="$createdObjectsAsString" />
+                            </xsl:with-param>
+                            <xsl:with-param name="nodeIdAsString" >
+                                <xsl:value-of select="$nodeIdAsString" />
+                            </xsl:with-param>
+                        </xsl:call-template>
+
+                </xsl:if>
 
                             <xsl:for-each select="../conditions" >
                                 <xsl:variable name="typeValue" select="type/value" />
