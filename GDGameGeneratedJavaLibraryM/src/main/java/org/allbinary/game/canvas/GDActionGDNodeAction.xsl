@@ -71,6 +71,7 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDDeleteActionProcess.xsl" />
     <xsl:import href="./action/GDAddForceALActionProcess.xsl" />
     <xsl:import href="./action/GDAddForceXYActionProcess.xsl" />
+    <xsl:import href="./action/GDStopForceActionProcess.xsl" />
     <xsl:import href="./action/GDQuitActionProcess.xsl" />
     <xsl:import href="./action/GDSetGlobalVariableAsBooleanActionProcess.xsl" />
     <xsl:import href="./action/SetFullScreenActionProcess.xsl" />
@@ -1331,7 +1332,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
-
+                
                 <xsl:when test="$typeValue = 'AddForceVersPos'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:when>
@@ -1339,8 +1340,21 @@ Created By: Travis Berthelot
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:when>
                 <xsl:when test="$typeValue = 'Arreter'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+
+                    <xsl:call-template name="stopForceActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
                 </xsl:when>
+
                 <xsl:when test="$typeValue = 'SeparateFromObjects'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:when>

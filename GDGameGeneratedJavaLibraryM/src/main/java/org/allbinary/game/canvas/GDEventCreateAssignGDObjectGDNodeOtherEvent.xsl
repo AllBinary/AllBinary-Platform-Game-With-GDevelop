@@ -40,25 +40,6 @@ Created By: Travis Berthelot
                 <xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:if></xsl:for-each>
             </xsl:variable>
 
-            <!-- other events - START -->
-            <xsl:if test="type = 'BuiltinCommonInstructions::Comment'" >
-            //Do not create GDNode for comment event type
-            </xsl:if>
-            <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
-            //Do not create GDNode for link - The target GDNode is called instead.
-            </xsl:if>
-            <xsl:if test="type = 'BuiltinAsync::Async'" >
-            //<xsl:value-of select="type" /> NOT_IMPLEMENTED
-            </xsl:if>
-            
-            <xsl:if test="type = 'BuiltinCommonInstructions::JsCode'" >
-                
-                <xsl:call-template name="javascriptCodeEventGDNode" >
-                    <xsl:param name="totalRecursions" ><xsl:value-of select="$totalRecursions" /></xsl:param>
-                </xsl:call-template>
-
-            </xsl:if>
-            
             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
             <xsl:variable name="foundOtherCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'BuiltinCommonInstructions::Always' or type/value = 'DepartScene' or type/value = 'ObjectVariableChildCount' or type/value = 'NumberObjectVariable' or type/value = 'VarScene' or type/value = 'NbObjet' or type/value = 'BooleanObjectVariable' or type/value = 'SourisSurObjet' or type/value = 'BooleanVariable'" >found</xsl:if></xsl:for-each></xsl:variable>
@@ -79,7 +60,24 @@ Created By: Travis Berthelot
             <xsl:variable name="lastDigit" ><xsl:value-of select="substring($selectedNodeId, string-length($selectedNodeId))" /></xsl:variable>
             <xsl:variable name="lastDigit2" ><xsl:if test="4 >= $lastDigit" >0</xsl:if><xsl:if test="$lastDigit > 4" >1</xsl:if></xsl:variable>
 
-            <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+            <!-- other events - START -->
+            <xsl:choose>
+            <xsl:when test="type = 'BuiltinCommonInstructions::Comment'" >
+            //Do not create GDNode for comment event type
+            </xsl:when>
+            <xsl:when test="type = 'BuiltinCommonInstructions::Link'" >
+            //Do not create GDNode for link - The target GDNode is called instead.
+            </xsl:when>
+            
+            <xsl:when test="type = 'BuiltinCommonInstructions::JsCode'" >
+                
+                <xsl:call-template name="javascriptCodeEventGDNode" >
+                    <xsl:param name="totalRecursions" ><xsl:value-of select="$totalRecursions" /></xsl:param>
+                </xsl:call-template>
+
+            </xsl:when>
+            
+            <xsl:when test="type = 'BuiltinCommonInstructions::ForEach'" >
 
                 <xsl:variable name="object" ><xsl:value-of select="object" /></xsl:variable>
 
@@ -90,8 +88,8 @@ Created By: Travis Berthelot
 
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = org.allbinary.game.canvas.node.builtin.GD<xsl:value-of select="$layoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes.getInstance().NODE_<xsl:value-of select="$selectedNodeId" />;
 
-            </xsl:if>
-            <xsl:if test="type = 'BuiltinCommonInstructions::Standard' or 
+            </xsl:when>
+            <xsl:when test="type = 'BuiltinCommonInstructions::Standard' or 
                           type = 'BuiltinCommonInstructions::ForEachChildVariable' or 
                           type = 'BuiltinCommonInstructions::While' or 
                           type = 'BuiltinCommonInstructions::Group' or 
@@ -103,7 +101,14 @@ Created By: Travis Berthelot
             }
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = org.allbinary.game.canvas.node.builtin.GD<xsl:value-of select="$layoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes.getInstance().NODE_<xsl:value-of select="$selectedNodeId" />;
 
-            </xsl:if>
+            </xsl:when>
+            <xsl:when test="type = 'BuiltinAsync::Async'" >
+            //<xsl:value-of select="type" /> NOT_IMPLEMENTED
+            </xsl:when>
+            <xsl:otherwise>
+            //<xsl:value-of select="type" /> NOT_IMPLEMENTED
+            </xsl:otherwise>
+            </xsl:choose>
             <!-- other events - END -->
 
             <xsl:call-template name="eventsCreateAssignGDObjectGDNodesOtherEvent" >

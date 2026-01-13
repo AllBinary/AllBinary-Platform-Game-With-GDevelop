@@ -70,6 +70,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDSystemInfoIsNativeDesktopAppConditionGDNode.xsl" />
     <xsl:import href="./condition/GDStringVariableConditionGDNode.xsl" />
     <xsl:import href="./condition/GDCompareStringsConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDIsStoppedVelocityConditionGDNode.xsl" />
 
     <xsl:import href="./condition/GDAnimationHasAnimationEndedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAnimationElapsedTimeConditionGDNode.xsl" />
@@ -363,8 +364,12 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'Invisible'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:when>
+                
                 <xsl:when test="$typeValue = 'Arret'" >
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    <xsl:call-template name="isStoppedVelocityConditionGDNode" >
+                        <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
+                        <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                    </xsl:call-template>
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'Vitesse'" >
@@ -1278,6 +1283,7 @@ Created By: Travis Berthelot
                         <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
+                
                 <xsl:otherwise>
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:otherwise>

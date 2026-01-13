@@ -474,6 +474,12 @@ public class GDGameLayer
         }
     }
 
+    public void StopForce() {
+        
+        this.velocityInterface.setVelocity(0, (short) 0, (short) 0);
+
+    }
+    
     public void AddForce(final int x, final int y) {
         
         this.velocityInterface.getVelocityXBasicDecimalP().set(x * SCALE_FACTOR2);

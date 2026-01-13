@@ -123,6 +123,7 @@ Created By: Travis Berthelot
                 import org.allbinary.logic.NullUtil;
                 import org.allbinary.util.ArrayUtil;
                 import org.allbinary.game.layer.behavior.GDBehaviorUtil;
+                import org.allbinary.game.physics.velocity.VelocityProperties;
                 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
                 import org.allbinary.logic.system.os.GenericOperatingSystem;
                 import org.allbinary.logic.system.os.OperatingSystemFactory;
