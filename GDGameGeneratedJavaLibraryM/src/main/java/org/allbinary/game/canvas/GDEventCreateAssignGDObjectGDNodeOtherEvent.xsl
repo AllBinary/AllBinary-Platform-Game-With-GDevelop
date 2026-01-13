@@ -93,7 +93,8 @@ Created By: Travis Berthelot
                           type = 'BuiltinCommonInstructions::ForEachChildVariable' or 
                           type = 'BuiltinCommonInstructions::While' or 
                           type = 'BuiltinCommonInstructions::Group' or 
-                          type = 'BuiltinCommonInstructions::Repeat'" >
+                          type = 'BuiltinCommonInstructions::Repeat' or 
+                          type = 'BuiltinExternalLayouts::CreateObjectsFromExternalLayout'" >
 
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" />
             if(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] != null) {
@@ -102,11 +103,12 @@ Created By: Travis Berthelot
             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = org.allbinary.game.canvas.node.builtin.GD<xsl:value-of select="$layoutIndex" />BuiltIn<xsl:value-of select="$lastDigit2" />GDNodes.getInstance().NODE_<xsl:value-of select="$selectedNodeId" />;
 
             </xsl:when>
+
             <xsl:when test="type = 'BuiltinAsync::Async'" >
             //<xsl:value-of select="type" /> NOT_IMPLEMENTED
             </xsl:when>
             <xsl:otherwise>
-            //<xsl:value-of select="type" /> NOT_IMPLEMENTED
+            //<xsl:value-of select="type" /> NOT_IMPLEMENTED2
             </xsl:otherwise>
             </xsl:choose>
             <!-- other events - END -->

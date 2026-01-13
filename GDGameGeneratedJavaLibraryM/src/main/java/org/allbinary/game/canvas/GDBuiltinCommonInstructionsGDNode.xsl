@@ -58,23 +58,6 @@ Created By: Travis Berthelot
             </xsl:variable>
 
             <!-- other events - START -->
-            <xsl:if test="type = 'BuiltinCommonInstructions::Comment'" >
-            //Do not create GDNode for comment event type
-            </xsl:if>
-            <xsl:if test="type = 'BuiltinCommonInstructions::Link'" >
-            //Do not create GDNode for link - The target GDNode is called instead.
-            </xsl:if>
-            <xsl:if test="type = 'BuiltinAsync::Async'" >
-            //<xsl:value-of select="type" /> NOT_IMPLEMENTED
-            </xsl:if>
-            
-            <xsl:if test="type = 'BuiltinCommonInstructions::JsCode'" >
-                
-                <xsl:call-template name="javascriptCodeEventGDNode" >
-                    <xsl:param name="totalRecursions" ><xsl:value-of select="$totalRecursions" /></xsl:param>
-                </xsl:call-template>
-
-            </xsl:if>
             
             <xsl:variable name="thisNodeIndex" select="number(substring(generate-id(), 2) - 65536)" />
 
@@ -94,8 +77,23 @@ Created By: Travis Berthelot
             //foundVarSceneCondition=<xsl:value-of select="$foundVarSceneCondition" />
             //foundTimerCondition=<xsl:value-of select="$foundTimerCondition" />
             //foundLinkEvent=<xsl:value-of select="$foundLinkEvent" />
-
-            <xsl:if test="type = 'BuiltinCommonInstructions::ForEach'" >
+            
+            <xsl:choose>
+            <xsl:when test="type = 'BuiltinCommonInstructions::Comment'" >
+            //Do not create GDNode for comment event type
+            </xsl:when>
+            <xsl:when test="type = 'BuiltinCommonInstructions::Link'" >
+            //Do not create GDNode for link - The target GDNode is called instead.
+            </xsl:when>
+            <xsl:when test="type = 'BuiltinAsync::Async'" >
+            //<xsl:value-of select="type" /> NOT_IMPLEMENTED
+            </xsl:when>
+            <xsl:when test="type = 'BuiltinCommonInstructions::JsCode'" >
+                <xsl:call-template name="javascriptCodeEventGDNode" >
+                    <xsl:param name="totalRecursions" ><xsl:value-of select="$totalRecursions" /></xsl:param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="type = 'BuiltinCommonInstructions::ForEach'" >
 
                 <xsl:variable name="object" ><xsl:value-of select="object" /></xsl:variable>
 
@@ -208,8 +206,8 @@ Created By: Travis Berthelot
                 */
                 </xsl:if>
                 
-            </xsl:if>
-            <xsl:if test="type = 'BuiltinCommonInstructions::Standard' or 
+            </xsl:when>
+            <xsl:when test="type = 'BuiltinCommonInstructions::Standard' or 
                           type = 'BuiltinCommonInstructions::ForEachChildVariable' or 
                           type = 'BuiltinCommonInstructions::While' or 
                           type = 'BuiltinCommonInstructions::Group' or 
@@ -972,7 +970,12 @@ Created By: Travis Berthelot
                 */
                 </xsl:if>
 
-            </xsl:if>
+            </xsl:when>
+            <xsl:otherwise>
+            //<xsl:value-of select="type" /> NOT_IMPLEMENTED1
+            </xsl:otherwise>
+            </xsl:choose>
+
             <!-- other events - END -->
 
         }

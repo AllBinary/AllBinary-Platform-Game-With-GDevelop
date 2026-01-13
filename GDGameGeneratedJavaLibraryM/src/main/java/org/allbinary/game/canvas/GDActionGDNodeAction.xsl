@@ -343,6 +343,10 @@ Created By: Travis Berthelot
                     
                 </xsl:when>
 
+                <xsl:when test="$typeValue = 'BuiltinExternalLayouts::CreateObjectsFromExternalLayout'" >
+                    //BuiltinExternalLayouts::CreateObjectsFromExternalLayout NOT_IMPLEMENTEDW
+                </xsl:when>
+
                 <xsl:when test="$typeValue = 'LinkedObjects::RemoveLinkBetween'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
                 </xsl:when>
@@ -827,7 +831,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     
-                </xsl:when>                
+                </xsl:when>
                 <xsl:when test="$typeValue = 'Create'" >
 
                     <xsl:call-template name="createActionProcess" >
@@ -1996,7 +2000,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 <xsl:otherwise>
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:otherwise>
                 </xsl:choose>
 

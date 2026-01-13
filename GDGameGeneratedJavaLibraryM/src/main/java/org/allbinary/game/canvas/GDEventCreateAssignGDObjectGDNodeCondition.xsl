@@ -1285,7 +1285,7 @@ Created By: Travis Berthelot
                 </xsl:when>
                 
                 <xsl:otherwise>
-                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                    //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:otherwise>
                 </xsl:choose>
 
