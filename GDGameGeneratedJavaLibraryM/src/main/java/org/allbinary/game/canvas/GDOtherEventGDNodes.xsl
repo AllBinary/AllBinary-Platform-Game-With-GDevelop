@@ -182,6 +182,58 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
 
         </xsl:for-each>
         
+        <xsl:for-each select="externalLayouts" >
+
+            <xsl:variable name="associatedLayout" select="associatedLayout" />
+            
+            <xsl:variable name="layoutIndex" ><xsl:for-each select="../layouts" ><xsl:variable name="layoutIndex" select="position() - 1" /><xsl:if test="name = $associatedLayout" ><xsl:value-of select="$layoutIndex" /></xsl:if></xsl:for-each></xsl:variable>
+
+            <xsl:if test="$selectedLayoutIndex = $layoutIndex" >
+
+                <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
+                <xsl:variable name="layoutName" select="$associatedLayout" />
+                <xsl:variable name="objectsGroupsAsString" >thiswasnullbefore,<xsl:for-each select="../layouts" ><xsl:if test="name = $layoutName" ><xsl:for-each select="objectsGroups" ><xsl:value-of select="name" />,</xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
+                <xsl:variable name="instancesAsString" >,<xsl:for-each select="../layouts" ><xsl:if test="name = $layoutName" ><xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
+                <xsl:variable name="objectsAsString" >,<xsl:for-each select="/game/objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="../layouts" ><xsl:if test="name = $layoutName" ><xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
+                <xsl:variable name="createdObjectsAsString" >thiswasnullbefore,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
+                <xsl:variable name="externalLayoutActionModVarSceneAsString" >thiswasnullbefore,<xsl:call-template name="externalLayoutActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
+                        
+                    <xsl:call-template name="builtinCommonInstructionsGDNode" >
+                        <xsl:with-param name="caller" >otherEventLayout</xsl:with-param>
+                        <xsl:with-param name="selectedNodeIds" >
+                            <xsl:value-of select="$selectedNodeIds" />
+                        </xsl:with-param>
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutName" >
+                            <xsl:value-of select="$layoutName" />
+                        </xsl:with-param>
+                        <xsl:with-param name="thisNodeIndex" >
+                            <xsl:value-of select="-4" />
+                        </xsl:with-param>
+                        <xsl:with-param name="instancesAsString" >
+                            <xsl:value-of select="$instancesAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsAsString" >
+                            <xsl:value-of select="$objectsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+
+                    </xsl:call-template>
+                    
+            </xsl:if>
+
+        </xsl:for-each>
+
         <xsl:for-each select="layouts" >
             <xsl:variable name="layoutIndex" select="position() - 1" />
             
@@ -194,7 +246,7 @@ public class GD<xsl:value-of select="$selectedLayoutIndex" />BuiltIn<xsl:value-o
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="objectsAsString" >,<xsl:for-each select="/game/objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
-                <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
+<!--                <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>-->
                 //objectsGroupsAsString=<xsl:value-of select="$objectsGroupsAsString" />
                 //instancesAsString=<xsl:value-of select="$instancesAsString" />
                 //createdObjectsAsString=<xsl:value-of select="$createdObjectsAsString" />

@@ -37,6 +37,16 @@ Created By: Travis Berthelot
         </xsl:for-each>
         </externalEvents>
 
+        <externalLayouts>
+        <xsl:for-each select="externalLayouts" >
+            <xsl:call-template name="showAll" >
+                <xsl:with-param name="totalRecursions" >
+                    <xsl:value-of select="0" />
+                </xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+        </externalLayouts>
+
         <resources>
         <xsl:for-each select="resources" >
         <xsl:value-of select="text()" />

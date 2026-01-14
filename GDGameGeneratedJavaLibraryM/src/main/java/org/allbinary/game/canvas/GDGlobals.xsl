@@ -162,6 +162,14 @@ Created By: Travis Berthelot
                         //Count - //ExternalEvents - END
                     </xsl:for-each>
 
+                    <xsl:for-each select="externalLayouts" >
+                        //Count - //ExternalLayouts - START
+                        <xsl:call-template name="generateIndexToNodeIdMapping2" >
+                            <xsl:with-param name="totalRecursion" >0</xsl:with-param>
+                        </xsl:call-template>
+                        //Count - //ExternalLayouts - END
+                    </xsl:for-each>
+
                     <xsl:for-each select="layouts" >
                         //Count - //layouts - <xsl:value-of select="position()" /> - START
                         <xsl:call-template name="generateIndexToNodeIdMapping" >

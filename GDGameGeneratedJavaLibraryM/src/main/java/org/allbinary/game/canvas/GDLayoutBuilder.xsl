@@ -223,6 +223,7 @@ Created By: Travis Berthelot
                             //eventsLogicConstructionMotionGestureEvent - END
 
                             GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes externalEventNodes;
+                            GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes externalLayoutNodes;
                             GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes externalActionNodes;
                             GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes externalConditionNodes;
                             GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes externalOtherEventNodes;
@@ -259,6 +260,7 @@ Created By: Travis Berthelot
 
                     //GDNode - START
                     externalEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalEventGDNodes.getInstance();
+                    externalLayoutNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes.getInstance();
                     externalActionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalActionGDNodes.getInstance();
                     externalConditionNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalConditionGDNodes.getInstance();
                     externalOtherEventNodes = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalOtherEventGDNodes.getInstance(); //GDNode processM calls in this class can load resources
@@ -487,6 +489,17 @@ Created By: Travis Berthelot
                             <xsl:with-param name="caller" >externalEventsProcess</xsl:with-param>
                         </xsl:call-template>
                     //externalEventsProcess - END
+                    </xsl:if>
+                    </xsl:for-each>
+
+                    <xsl:for-each select="../externalLayouts" >
+                    <xsl:if test="$layoutName = associatedLayout" >
+                    //externalLayoutsProcess - START
+                        <xsl:call-template name="eventIdsLessRecursion" >
+                            <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                            <xsl:with-param name="caller" >externalEventsProcess</xsl:with-param>
+                        </xsl:call-template>
+                    //externalLayoutsProcess - END
                     </xsl:if>
                     </xsl:for-each>
 

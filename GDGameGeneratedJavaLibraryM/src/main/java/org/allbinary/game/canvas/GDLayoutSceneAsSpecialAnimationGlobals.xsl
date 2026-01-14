@@ -58,6 +58,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="objectsAsString" >,<xsl:for-each select="/game/objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="createdObjectsAsString" >,<xsl:call-template name="externalEventsCreateActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:variable name="externalEventActionModVarSceneAsString" >,<xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalEventActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
+                <xsl:variable name="externalLayoutActionModVarSceneAsString" >,<xsl:call-template name="externalLayoutActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param><xsl:with-param name="layoutName" ><xsl:value-of select="$layoutName" /></xsl:with-param></xsl:call-template><xsl:call-template name="externalLayoutActionModVarScene" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:variable name="variables" ><xsl:for-each select="variables" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 //objectsGroupsAsString=<xsl:value-of select="$objectsGroupsAsString" />
                 //instancesAsString=<xsl:value-of select="$instancesAsString" />
@@ -173,7 +174,13 @@ Created By: Travis Berthelot
                         public GDNode <xsl:value-of select="name" />GDNode = null;
                             </xsl:if>
                         </xsl:for-each>
-                                                
+
+                        <xsl:for-each select="../externalLayouts" >
+                            <xsl:if test="$layoutName = associatedLayout" >
+                        public GDNode <xsl:value-of select="name" />GDNode = null;
+                            </xsl:if>
+                        </xsl:for-each>
+
                         <xsl:variable name="objectsWithOnceCondition" ><xsl:call-template name="gdNodeToOnceList" ><xsl:with-param name="iteration" >0</xsl:with-param></xsl:call-template></xsl:variable>
                         //objectsWithOnceCondition=<xsl:value-of select="$objectsWithOnceCondition" />
                         <xsl:for-each select="objects" >
@@ -274,7 +281,7 @@ Created By: Travis Berthelot
                     //more objects class properties - END
                     <xsl:text>&#10;</xsl:text>
 
-                    //variables - external - ModVarScene - START
+                    //variables - externalEvents - ModVarScene - START
                     <xsl:for-each select="../externalEvents" >
                     <xsl:call-template name="actionsWithUndefinedVariables" >
                         <xsl:with-param name="totalRecursions" >0</xsl:with-param>
@@ -283,7 +290,19 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
                     </xsl:for-each>
-                    //variables - external - ModVarScene - END
+                    //variables - externalEvents - ModVarScene - END
+                    <xsl:text>&#10;</xsl:text>
+
+                    //variables - externalLayouts - ModVarScene - START
+                    <xsl:for-each select="../externalLayouts" >
+                    <xsl:call-template name="actionsWithUndefinedVariables" >
+                        <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                        <xsl:with-param name="variables" >
+                            <xsl:value-of select="$variables" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    </xsl:for-each>
+                    //variables - externalLayouts - ModVarScene - END
                     <xsl:text>&#10;</xsl:text>
 
                     //variables - ModVarScene - START
@@ -326,13 +345,31 @@ Created By: Travis Berthelot
                         <xsl:with-param name="totalRecursions" >
                             <xsl:value-of select="0" />
                         </xsl:with-param>
-                        <xsl:with-param name="externalEventActionModVarSceneAsString" >
+                        <xsl:with-param name="externalActionModVarSceneAsString" >
                             <xsl:value-of select="$externalEventActionModVarSceneAsString" />
                         </xsl:with-param>
                     </xsl:call-template>
                         </xsl:if>
                     </xsl:for-each>
                     //eventsClassProperty - //externalEvents - END
+
+                    //eventsClassProperty - //externalLayouts - START
+                    <xsl:for-each select="../externalLayouts" >
+                        <xsl:if test="$layoutName = associatedLayout" >
+                    <xsl:call-template name="eventsClassPropertyConditions" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="totalRecursions" >
+                            <xsl:value-of select="0" />
+                        </xsl:with-param>
+                        <xsl:with-param name="externalActionModVarSceneAsString" >
+                            <xsl:value-of select="$externalLayoutActionModVarSceneAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+                        </xsl:if>
+                    </xsl:for-each>
+                    //eventsClassProperty - //externalLayouts - END
 
                     <xsl:variable name="foundMousePositionNeeded" >found</xsl:variable>
                         <xsl:if test="contains($foundMousePositionNeeded, 'found')" >

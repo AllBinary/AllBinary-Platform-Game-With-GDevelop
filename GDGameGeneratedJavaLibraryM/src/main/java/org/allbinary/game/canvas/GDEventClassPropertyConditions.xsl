@@ -20,7 +20,7 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
         <xsl:param name="totalRecursions" />
         <xsl:param name="conditionEventPosition" />
-        <xsl:param name="externalEventActionModVarSceneAsString" />
+        <xsl:param name="externalActionModVarSceneAsString" />
 
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
@@ -32,8 +32,8 @@ Created By: Travis Berthelot
                 <xsl:with-param name="conditionEventPosition" >
                     <xsl:value-of select="$eventPosition" />
                 </xsl:with-param>
-                <xsl:with-param name="externalEventActionModVarSceneAsString" >
-                    <xsl:value-of select="$externalEventActionModVarSceneAsString" />
+                <xsl:with-param name="externalActionModVarSceneAsString" >
+                    <xsl:value-of select="$externalActionModVarSceneAsString" />
                 </xsl:with-param>
             </xsl:call-template>
 
@@ -114,7 +114,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="../actions" >
                         <xsl:variable name="typeValue" select="type/value" />
                         <xsl:variable name="name" >,<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>,</xsl:variable>
-                        <xsl:if test="$typeValue = 'ModVarScene' and not(contains($externalEventActionModVarSceneAsString, $name))" >
+                        <xsl:if test="$typeValue = 'ModVarScene' and not(contains($externalActionModVarSceneAsString, $name))" >
                     //public int <xsl:for-each select="parameters" ><xsl:value-of select="text()" /><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" >;</xsl:if></xsl:for-each>
                     <!-- //public boolean <xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />_updated<xsl:text> </xsl:text></xsl:if><xsl:if test="position() = last()" > = true;</xsl:if></xsl:for-each> -->
                         </xsl:if>

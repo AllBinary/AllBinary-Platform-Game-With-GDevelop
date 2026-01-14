@@ -344,7 +344,44 @@ Created By: Travis Berthelot
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'BuiltinExternalLayouts::CreateObjectsFromExternalLayout'" >
-                    //BuiltinExternalLayouts::CreateObjectsFromExternalLayout NOT_IMPLEMENTEDW
+                //BuiltinExternalLayouts::CreateObjectsFromExternalLayout
+                @Override
+                public boolean process() throws Exception {
+                    super.processStats();
+
+                    final org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes gdLayoutGDNodes = org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationExternalLayoutGDNodes.getInstance();
+                    final String LAYOUT = <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
+                    final int size = gdLayoutGDNodes.layoutNameList.size();
+                    String key;
+                    int index = 0;
+                    while(index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size) {
+                        key = (String) gdLayoutGDNodes.layoutNameList.get(index);
+                        //stringMaker.append(key);
+                        if(key.compareTo(LAYOUT) == 0) {
+                            break;
+                        }
+                        index++;
+                    }
+                    //+ stringMaker.toString()
+                    //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + LAYOUT, this, commonStrings.PROCESS);
+                    final GDNode layoutGDNode = (GDNode) gdLayoutGDNodes.layoutGDNodeList.get(index);
+                    //externalLinkLayoutGDNode - process
+                    layoutGDNode.process();
+                    
+                    return true;
+                }
+
+                @Override
+                public boolean processGD(final GDGameLayer gameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
+                    super.processGDStats(gameLayer);
+
+                    //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+
+                    this.process();
+                    
+                    return true;
+                }
+
                 </xsl:when>
 
                 <xsl:when test="$typeValue = 'LinkedObjects::RemoveLinkBetween'" >

@@ -55,6 +55,39 @@
         </xsl:for-each>
         //externalEventsCreateAssignGDObjectAction - END
 
+        <xsl:for-each select="../externalLayouts" >
+            <xsl:if test="$layoutName = associatedLayout" >
+                //externalLayoutsCreateAssignGDObjectAction - //eventsCreateAssignGDObjectGDNodeAction - START
+                <xsl:call-template name="actionGDNodes" >
+                    <xsl:with-param name="caller" >externalEventsCreateAssignGDObject</xsl:with-param>
+                    <xsl:with-param name="totalRecursions" >
+                        <xsl:value-of select="0" />
+                    </xsl:with-param>
+                    <xsl:with-param name="layoutIndex" >
+                        <xsl:value-of select="$layoutIndex" />
+                    </xsl:with-param>
+                    <xsl:with-param name="selectedNodeIds" >
+                        <xsl:value-of select="$selectedNodeIds" />
+                    </xsl:with-param>                        
+                    <xsl:with-param name="thisNodeIndex" >
+                        <xsl:value-of select="$thisNodeIndex" />
+                    </xsl:with-param>
+                    <xsl:with-param name="objectsGroupsAsString" >
+                        <xsl:value-of select="$objectsGroupsAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="createdObjectsAsString" >
+                        <xsl:value-of select="$createdObjectsAsString" />
+                    </xsl:with-param>
+                    <xsl:with-param name="objectsAsString" >
+                        <xsl:value-of select="$objectsAsString" />
+                    </xsl:with-param>
+
+                </xsl:call-template>
+                //externalLayoutsCreateAssignGDObjectAction - //eventsCreateAssignGDObjectGDNodeAction - END
+            </xsl:if>
+        </xsl:for-each>
+        //externalLayoutsCreateAssignGDObjectAction - END
+
     </xsl:template>
 
 </xsl:stylesheet>

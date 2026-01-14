@@ -165,6 +165,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             layoutGameXmlAsString,
             layoutGameXmlAsString,
             layoutGameXmlAsString,
+            layoutGameXmlAsString,
             gameXmlAsString,
             layoutGameXmlAsString,
             gameXmlAsString,
@@ -175,6 +176,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayout.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutBuilder.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalEventGDNodes.xsl",
+                gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalLayoutGDNodes.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalActionGDNodes.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalConditionGDNodes.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDLayoutExternalObjectEventGDNodes.xsl",
@@ -213,6 +215,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             GENERATED_START_WITH_PATH,
             GENERATED_START_WITH_PATH,
             GENERATED_START_WITH_PATH,
+            GENERATED_START_WITH_PATH,
             gdToolStrings.ROOT_PATH + "platform\\html\\GDGameHTMLPlaynJavaLibraryM\\src\\main\\java\\gd\\res\\GD",
         };
 
@@ -221,6 +224,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             "SpecialAnimation.java",
             "SpecialAnimationBuilder.java",
             "SpecialAnimationExternalEventGDNodes.java",
+            "SpecialAnimationExternalLayoutGDNodes.java",
             "SpecialAnimationExternalActionGDNodes.java",
             "SpecialAnimationExternalConditionGDNodes.java",
             "SpecialAnimationExternalObjectEventGDNodes.java",

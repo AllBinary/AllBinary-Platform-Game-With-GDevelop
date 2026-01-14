@@ -56,7 +56,8 @@ Created By: Travis Berthelot
                 <!-- Android images assets need to be enlarged if they are not setup to be inside the cirle area needed -->
                 <xsl:variable name="enlargeTheImageBackgroundForRotation" >true</xsl:variable>
                 <xsl:variable name="layoutName" select="name" />
-                <xsl:for-each select="../externalEvents" ><xsl:if test="$layoutName = associatedLayout" ></xsl:if></xsl:for-each>
+<!--                <xsl:for-each select="../externalEvents" ><xsl:if test="$layoutName = associatedLayout" ></xsl:if></xsl:for-each>-->
+<!--                <xsl:for-each select="../externalLayouts" ><xsl:if test="$layoutName = associatedLayout" ></xsl:if></xsl:for-each>-->
 
                 <xsl:variable name="objectsGroupsAsString" >,<xsl:for-each select="/game/objectsGroups" ><xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="objectsGroups" ><xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>

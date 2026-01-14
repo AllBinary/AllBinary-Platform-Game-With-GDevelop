@@ -284,7 +284,7 @@ Created By: Travis Berthelot
             <xsl:text>&#10;</xsl:text>
             //Action - //<xsl:value-of select="type/value" /> - call h1
 
-            <xsl:if test="type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue' or type/value = 'SetNumberVariable'" >
+            <xsl:if test="type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue' or type/value = 'SetNumberVariable' or type/value = 'BuiltinExternalLayouts::CreateObjectsFromExternalLayout'" >
             <xsl:if test="contains($alreadyUsedCondition, 'found')" >
             //Skipping Action since a alreadyUsedCondition is used
             </xsl:if>
@@ -740,6 +740,7 @@ Created By: Travis Berthelot
                 <xsl:if test="contains($hasConditionWithoutAlreadyUsedConditionAndWithoutUsedParentConditionAndNotCaller, 'found')" >
                 //maybe - not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found')) and $caller != 'conditionLayout - //VarScene' - START2
                             <xsl:variable name="foundLinkExternalEvent" ><xsl:for-each select="../../../externalEvents" >found</xsl:for-each></xsl:variable>
+                            <xsl:variable name="foundLinkExternalLayout" ><xsl:for-each select="../../../externalLayouts" >found</xsl:for-each></xsl:variable>
                             <xsl:variable name="allowedCondition" ><xsl:for-each select="../conditions" ><xsl:variable name="typeValue" select="type/value" /><xsl:if test="$typeValue = 'NumberVariable'" >found</xsl:if></xsl:for-each></xsl:variable>
                             <xsl:variable name="allowedCondition2" ><xsl:for-each select="../conditions" ><xsl:variable name="typeValue" select="type/value" /><xsl:if test="$typeValue = 'TouchScreen::isAutoHide'" >found</xsl:if></xsl:for-each></xsl:variable>
                     
@@ -752,10 +753,10 @@ Created By: Travis Berthelot
                             <xsl:if test="contains($allowedCondition2, 'found')" >
                             //Only for TouchScreen::isAutoHide
                             </xsl:if>
-                            <xsl:if test="contains($foundLinkExternalEvent, 'found') and contains($allowedCondition, 'found')" >
+                            <xsl:if test="(contains($foundLinkExternalEvent, 'found') or contains($foundLinkExternalLayout, 'found')) and contains($allowedCondition, 'found')" >
                             //External events call process() and not processGD
                             </xsl:if>
-                            <xsl:if test="not(contains($foundLinkExternalEvent, 'found') and contains($allowedCondition, 'found'))" >
+                            <xsl:if test="not((contains($foundLinkExternalEvent, 'found') or contains($foundLinkExternalLayout, 'found')) and contains($allowedCondition, 'found'))" >
                                 <xsl:if test="not(contains($notAlreadyUsedConditionButWithSpecificAction, 'found') and type = 'BuiltinCommonInstructions::Standard') and contains($caller, 'conditionLayout - //eventsCreateAssignGDObject')" >
                             //Should we call these - //caller=<xsl:value-of select="$caller" /> - //hackProcessing2
                             gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process(<xsl:value-of select="$index" />);

@@ -24,6 +24,28 @@
     </xsl:template>
     //externalEventActionModVarSceneAsString - END
 
+    //externalLayoutsCreateActions - START
+    <xsl:template name="externalLayoutsCreateActions" >
+        <xsl:param name="layoutName" />
+        <xsl:for-each select="../externalLayouts" >
+            <xsl:if test="$layoutName = associatedLayout" >
+                <xsl:call-template name="createActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
+    //externalLayoutsCreateActions - END
+
+    //externalLayoutActionModVarSceneAsString - START
+    <xsl:template name="externalLayoutActionModVarScene" >
+        <xsl:param name="layoutName" />
+        <xsl:for-each select="../externalLayouts" >
+            <xsl:if test="$layoutName = associatedLayout" >
+                <xsl:call-template name="modVarSceneActions" ><xsl:with-param name="totalRecursions" ><xsl:value-of select="0" /></xsl:with-param></xsl:call-template>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
+    //externalLayoutActionModVarSceneAsString - END
+
     <xsl:template name="externalEventsClassProperty" >
         <xsl:param name="layoutName" />
 
