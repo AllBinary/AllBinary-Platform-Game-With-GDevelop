@@ -99,17 +99,27 @@ Created By: Travis Berthelot
         <xsl:for-each select="objects" >
             <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
                 <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
-                <xsl:variable name="hasPrecedingInstanceWithTheSameName" >
-                    <xsl:for-each select="//instances" >
-                        <xsl:if test="name = $name and not($nodeId >= number(substring(generate-id(), 2) - 65536))" >found</xsl:if>
+                <xsl:variable name="hasInstance" >
+                    <xsl:for-each select="../instances" >
+                        <xsl:if test="name = $name" >found</xsl:if>
+                    </xsl:for-each>
+                    <xsl:for-each select="//externalLayouts" >
+                        <xsl:if test="$layoutName = associatedLayout" >
+                            <xsl:for-each select="instances" >
+                                <xsl:if test="name = $name" >found</xsl:if>
+                            </xsl:for-each>
+                        </xsl:if>
                     </xsl:for-each>
                 </xsl:variable>
 
-                <xsl:if test="not(contains($hasPrecedingInstanceWithTheSameName, 'found'))" >
-<!--                <xsl:if test="name = $name" >-->
+                <xsl:if test="contains($hasInstance, 'found')" >
             //Layout specific objects
             public final BasicArrayList <xsl:value-of select="name" />GDInstanceGDGameLayerList = new BasicArrayList(this.nullUtil.NULL_OBJECT_ARRAY);
                 </xsl:if>
+                <xsl:if test="not(contains($hasInstance, 'found'))" >
+            //Since zero instances we don't need GDInstanceGDGameLayerList
+                </xsl:if>
+    
         </xsl:for-each>
     
     </xsl:template>
