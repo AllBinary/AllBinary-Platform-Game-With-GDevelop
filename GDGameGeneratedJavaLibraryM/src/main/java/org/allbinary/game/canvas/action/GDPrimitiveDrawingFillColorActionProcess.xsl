@@ -63,7 +63,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 <!--                    
                     <xsl:if test="not(contains($hasCollisionProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
-                    //Not from parent collision - //PrimitiveDrawing::FillColor - 
+                    //Not from parent - //PrimitiveDrawing::FillColor - 
                     public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);

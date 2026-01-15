@@ -218,7 +218,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
 <!--                        <xsl:if test="string-length($firstOrBeforeFourthParam) > 0" >
-                    //Not from parent collision - //Create
+                    //Not from parent - //Create
                     public boolean processGD(final GDGameLayer <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
