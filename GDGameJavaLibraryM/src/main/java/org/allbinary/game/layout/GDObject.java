@@ -88,6 +88,8 @@ public class GDObject
         
     public boolean updateSinceSetAngle;
     
+    public int forceAngle = 0;
+    
     public GDObject(final int width, final int height, final String name, final String type) {
         
         this.name = name;
@@ -132,6 +134,10 @@ public class GDObject
         this.height = height;
         this.halfWidth = width / 2;
         this.halfHeight = height / 2;
+    }
+
+    public int ForceAngle() {
+        return forceAngle;
     }
 
     public String getAnimationFromIndex(final int index) {

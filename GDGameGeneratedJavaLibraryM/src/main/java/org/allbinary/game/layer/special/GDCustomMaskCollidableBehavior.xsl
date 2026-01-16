@@ -75,6 +75,8 @@ import org.allbinary.media.graphics.geography.map.SimpleGeographicMapCellPositio
 public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior 
 {
     protected final LogUtil logUtil = LogUtil.getInstance();
+
+    private final StringUtil stringUtil = StringUtil.getInstance();
     private final CommonStrings commonStrings = CommonStrings.getInstance();
     
     private final RectangleCollisionUtil rectangleCollisionUtil = RectangleCollisionUtil.getInstance();
@@ -163,7 +165,7 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
         try {
             
             if(collisionMaskCustomGameLayer.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
-                logUtil.put(new StringMaker().append("LayerManager was null: ").append(StringUtil.getInstance().toString(collisionMaskCustomGameLayer.allBinaryGameLayerManagerP)).toString(), this, "move");
+                logUtil.put(new StringMaker().append("LayerManager was null: ").append(stringUtil.toString(collisionMaskCustomGameLayer.allBinaryGameLayerManagerP)).toString(), this, "move");
                 return false;
             }
             
@@ -376,8 +378,6 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
     }
     
     public String toString(final CollidableCompositeLayer collisionLayer, final StringMaker stringBuilder) {
-    
-        final StringUtil stringUtil = StringUtil.getInstance();
     
         int size = this.ownerLayer.getGroupInterface().length;
         for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {

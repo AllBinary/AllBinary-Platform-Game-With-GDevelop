@@ -431,7 +431,6 @@ public class GDGameLayer
         //}
         
         //this.gdObject.updateSinceSetAngle = true;
-        
         short adjustedAngle = (short) angle;
         while (adjustedAngle > 359) {
             adjustedAngle -= 360;
@@ -442,6 +441,7 @@ public class GDGameLayer
         
         //angle *= Math.PI / 180.0;
         
+        this.gdObject.forceAngle = (short) adjustedAngle;
         this.velocityInterface.setVelocity((long) length * SCALE_FACTOR2, (short) adjustedAngle, (short) 0);
         //this.Force((int) (noDecimalTrigTable.cos((short) angle) * length) / SCALE, (int) (noDecimalTrigTable.sin((short) angle) * length) / SCALE, clearing);
         

@@ -257,12 +257,6 @@ Created By: Travis Berthelot
 
                         <xsl:call-template name="variablesForGDObject" />
 
-                    private int forceAngle = 0;
-
-                    public int ForceAngle() {
-                        return forceAngle;
-                    }
-
                     //objectsClassPropertyGDObjects2
                     public void reset() {
                         <xsl:call-template name="variablesResetForGDObject" />
@@ -383,7 +377,7 @@ Created By: Travis Berthelot
                         return this.ANIMATION_NAMES[index];
                         </xsl:if>
                         <xsl:if test="not(contains($hasAnimationWithName, 'found'))" >
-                        return StringUtil.getInstance().EMPTY_STRING;
+                        return stringUtil.EMPTY_STRING;
                         </xsl:if>
                     }
 
@@ -546,7 +540,7 @@ Created By: Travis Berthelot
                     
                     public String String() {
                         //return stringMaker.toString();
-                        return StringUtil.getInstance().EMPTY_STRING;
+                        return stringUtil.EMPTY_STRING;
                     }
                 };
 

@@ -549,7 +549,7 @@ Created By: Travis Berthelot
             if(this.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
                 if(total <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 5) {
                     total++;
-                    logUtil.put(new StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(StringUtil.getInstance().toString(this.allBinaryGameLayerManagerP)).toString(), this, "move");
+                    logUtil.put(new StringMaker().append("0LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(stringUtil.toString(this.allBinaryGameLayerManagerP)).toString(), this, "move");
                 }
                 return;
             }
@@ -618,7 +618,7 @@ Created By: Travis Berthelot
             if(TempMovementBehaviorFactory.getInstance().movementBehavior == TempMapMovementBehavior.getInstance()) {
 
             if(this.allBinaryGameLayerManagerP == AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER) {
-                logUtil.put(new StringMaker().append("1LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(StringUtil.getInstance().toString(this.allBinaryGameLayerManagerP)).toString(), this, "move");
+                logUtil.put(new StringMaker().append("1LayerManager was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(stringUtil.toString(this.allBinaryGameLayerManagerP)).toString(), this, "move");
                 return;
             }
 

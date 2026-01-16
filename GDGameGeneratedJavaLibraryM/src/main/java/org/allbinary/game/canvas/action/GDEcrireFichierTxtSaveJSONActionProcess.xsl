@@ -40,7 +40,7 @@ Created By: Travis Berthelot
                             
                             final String jsonAsString = jsonPersistance.getJSONAsString();
                             JSONObject jsonObject;
-                            if(jsonAsString != StringUtil.getInstance().EMPTY_STRING) {
+                            if(jsonAsString != stringUtil.EMPTY_STRING) {
                                 final JSONTokener jsonTokener = new JSONTokener(jsonPersistance.getJSONAsString());
                                 jsonObject = (JSONObject) jsonTokener.nextValue();
                             } else {
