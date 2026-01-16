@@ -121,6 +121,8 @@ Created By: Travis Berthelot
                     public final BasicArrayList layoutNameList = new BasicArrayList();
                     public final BasicArrayList layoutGDNodeList = new BasicArrayList();
                     
+                    private final String CREATE_INSTANCES = "createInstances";
+                    
                     private GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources createSpecialAnimationImageResources() {
                         try {
                             return GD<xsl:value-of select="$layoutIndex" />SpecialAnimationImageResources.getInstanceOrCreate();
