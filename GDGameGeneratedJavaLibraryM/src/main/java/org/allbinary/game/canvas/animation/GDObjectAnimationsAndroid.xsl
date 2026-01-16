@@ -122,13 +122,12 @@ Created By: Travis Berthelot
                     <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />]
                     //)
                     ,<xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getWidth() / <xsl:value-of select="count(directions/sprites)" />, <xsl:value-of select="$name" />ImageArray[<xsl:value-of select="position() - 1" />].getHeight()
-                    ,
                                 <xsl:for-each select=".." >
                                     <xsl:for-each select=".." >
                                     <xsl:variable name="hasInstance" ><xsl:for-each select="instances" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
                                     <xsl:if test="not(contains($hasInstance, 'found'))" >
                                         //No instance available - probably should not set instance values here anyways.
-                                        0, 0
+                                        , 0, 0
                                     </xsl:if>
                                     <xsl:for-each select="instances" >
                                         <xsl:if test="name = $name" >
@@ -141,12 +140,12 @@ Created By: Travis Berthelot
                                                 <xsl:if test="height = 0 or width = 0 or not(height) or not(width)" >
                                                     <xsl:if test="contains($hasOriginPointX, 'found')" >
                                                         //-<xsl:value-of select="$name" />ImageArray[0].getWidth(), -<xsl:value-of select="$name" />ImageArray[0].getHeight()
-                                                        0, 0
+                                                        , 0, 0
                                                     </xsl:if>
                                                 </xsl:if>
                                                 <xsl:if test="height != 0 and width != 0" >
                                                     //-(<xsl:value-of select="width" /> / 2), -(<xsl:value-of select="height" /> / 2)
-                                                    0, 0
+                                                    , 0, 0
                                                 </xsl:if>
                                             </xsl:if>
                                         </xsl:if>
