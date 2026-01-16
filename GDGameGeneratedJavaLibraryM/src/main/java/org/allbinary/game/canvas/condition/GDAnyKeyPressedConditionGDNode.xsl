@@ -40,8 +40,8 @@ Created By: Travis Berthelot
 
                             //<xsl:value-of select="parameters[2]" />
                             globals.anyKeyProcessorArray[0] = new GDRGameInputProcessor() {
-                            
-                                public void process(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
+
+                                public void process(final AllBinaryLayerManager allbinaryLayerManager, final Integer keyAsInteger) throws Exception
                                 {
                                     this.releasedGameInputProcessor.process(allbinaryLayerManager, gameKeyEvent);
 
@@ -84,7 +84,7 @@ Created By: Travis Berthelot
 
                                 }
 
-                                public void processReleased(final AllBinaryLayerManager allbinaryLayerManager, final GameKeyEvent gameKeyEvent) throws Exception
+                                public void processReleased(final AllBinaryLayerManager allbinaryLayerManager, final Integer keyAsInteger) 
                                 {
 
                             <xsl:for-each select="../events" >

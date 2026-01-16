@@ -34,7 +34,7 @@ Created By: Travis Berthelot
                 </xsl:with-param>
             </xsl:call-template>
 
-            <xsl:variable name="hasKeyXXXCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'AnyKeyPressed'or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
+            <xsl:variable name="hasKeyXXXCondition" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'AnyKeyPressed' or type/value = 'KeyPressed' or type/value = 'KeyReleased' or type/value = 'KeyFromTextPressed' or type/value = 'KeyFromTextReleased'" >found</xsl:if></xsl:for-each></xsl:variable>
 
             <xsl:if test="contains($hasKeyXXXCondition, 'found')" >
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> <xsl:if test="repeatExpression" >repeatExpression <xsl:value-of select="repeatExpression" /></xsl:if>

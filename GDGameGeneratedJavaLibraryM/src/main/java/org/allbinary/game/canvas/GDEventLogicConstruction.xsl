@@ -104,7 +104,7 @@ Created By: Travis Berthelot
         <xsl:for-each select=".." >
             <xsl:for-each select="conditions" >
 <!--                 and type/value != 'GlobalVariableAsBoolean'-->
-                <xsl:if test="type/value != 'DepartScene' and type/value != 'KeyPressed' and type/value != 'KeyReleased' and type/value != 'MusicStopped' and type/value != 'BuiltinCommonInstructions::Always'" >
+                <xsl:if test="type/value != 'DepartScene' and type/value != 'AnyKeyPressed' and type/value != 'KeyPressed' and type/value != 'KeyReleased' and type/value != 'MusicStopped' and type/value != 'BuiltinCommonInstructions::Always'" >
                 <xsl:if test="count(parameters) > 0" >
                     <xsl:variable name="hasObjectsGroupsOrObjectInParameters" >
                         <xsl:for-each select="parameters" >
