@@ -145,7 +145,7 @@ Created By: Travis Berthelot
                                 </xsl:for-each>
                             </xsl:variable>
 
-                        //MettreXY
+                        //MettreXY - //SetXY?
                         public boolean process() {
 
                             //boolean result = false;

@@ -26,7 +26,7 @@ Created By: Travis Berthelot
         
                         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
-                        //MettreY
+                        //MettreY - //SetY?
                         public boolean process() {
                         
                             //boolean result = false;
@@ -291,7 +291,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                     <xsl:variable name="hasKnownParams" ><xsl:if test="contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found')" >found</xsl:if></xsl:variable>
                     <xsl:if test="not(contains($hasKnownParams, 'found'))" >
-                        //Not from parent - //MettreX
+                        //Not from parent - //MettreY
                         @Override
                         public boolean processGPaint(final GDObject gdObject, final GDObject gdObject2, final Graphics graphics) {
 
@@ -331,7 +331,7 @@ Created By: Travis Berthelot
                                  </xsl:if>
                             </xsl:if>
                             <xsl:if test="contains($hasCollisionProcessGD, 'found')" >
-                            //CollisionNP for //MettreX
+                            //CollisionNP for //MettreY
                                     <xsl:variable name="collisionProcessGDParamTwo" ><xsl:call-template name="collisionProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
 
                                     <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$collisionProcessGDParamTwo" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$collisionProcessGDParamTwo" /></xsl:variable>
@@ -340,7 +340,7 @@ Created By: Travis Berthelot
                             <xsl:if test="contains($hasForEachProcessGD, 'found')" >
                                 <xsl:if test="contains($thirdParam, 'PlatformerMap')" >
                                     <xsl:variable name="name" >PlatformerMap</xsl:variable>
-                            //BuiltinCommonInstructions::ForEach for //MettreX
+                            //BuiltinCommonInstructions::ForEach for //MettreY
                             final GDGameLayer <xsl:value-of select="$name" />GDGameLayer = (GDGameLayer) 
                                 <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList.get(0);
                             final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = 

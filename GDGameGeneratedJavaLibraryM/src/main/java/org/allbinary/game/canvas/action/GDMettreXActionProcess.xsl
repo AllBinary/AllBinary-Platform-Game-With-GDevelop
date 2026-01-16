@@ -25,7 +25,7 @@ Created By: Travis Berthelot
         
                         <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
 
-                        //MettreX
+                        //MettreX - //SetX?
                         public boolean process() {
                         
                             //boolean result = false;

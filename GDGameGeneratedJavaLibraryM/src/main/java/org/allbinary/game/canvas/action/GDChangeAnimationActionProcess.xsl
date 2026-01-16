@@ -216,7 +216,7 @@ Created By: Travis Berthelot
                         return true;
                     }
 
-<!--
+
                     @Override
                     public boolean processGD(final GDGameLayer gdGameLayer, final GDGameLayer gameLayer2, final Graphics graphics) throws Exception {
                     
@@ -232,7 +232,6 @@ Created By: Travis Berthelot
                                                 
                         return true;                   
                     }
--->
 
     </xsl:template>
 
