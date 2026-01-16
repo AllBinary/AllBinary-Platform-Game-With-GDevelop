@@ -43,7 +43,7 @@ Created By: Travis Berthelot
 
                                 public void process(final AllBinaryLayerManager allbinaryLayerManager, final Integer keyAsInteger) throws Exception
                                 {
-                                    this.releasedGameInputProcessor.process(allbinaryLayerManager, gameKeyEvent);
+                                    this.releasedGameInputProcessor.process(allbinaryLayerManager, keyAsInteger);
 
                             <xsl:for-each select="../events" >
                                 <xsl:if test="type = 'BuiltinCommonInstructions::Standard'" >
@@ -84,7 +84,7 @@ Created By: Travis Berthelot
 
                                 }
 
-                                public void processReleased(final AllBinaryLayerManager allbinaryLayerManager, final Integer keyAsInteger) 
+                                public void processReleased(final AllBinaryLayerManager allbinaryLayerManager, final Integer keyAsInteger) throws Exception
                                 {
 
                             <xsl:for-each select="../events" >
@@ -119,7 +119,7 @@ Created By: Travis Berthelot
                                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                             </xsl:for-each>
 
-                                    this.releasedGameInputProcessor.processReleased(allbinaryLayerManager, gameKeyEvent);
+                                    this.releasedGameInputProcessor.processReleased(allbinaryLayerManager, keyAsInteger);
 
                                 }
 
