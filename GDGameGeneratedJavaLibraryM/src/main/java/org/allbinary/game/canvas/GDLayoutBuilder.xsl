@@ -83,6 +83,7 @@ Created By: Travis Berthelot
                 import org.allbinary.animation.special.SpecialAnimation;
                 import org.allbinary.canvas.GameGlobalsFactory;
                 import org.allbinary.game.input.GameInputProcessorUtil;
+                import org.allbinary.game.input.GameInputProcessor;
                 import org.allbinary.game.displayable.canvas.AllBinaryGameCanvas;
                 import org.allbinary.game.layout.GDNode;
                 import org.allbinary.game.layer.special.TempGameLayerUtil;
