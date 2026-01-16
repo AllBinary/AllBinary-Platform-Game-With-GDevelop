@@ -411,6 +411,7 @@ Created By: Travis Berthelot
                     abCanvas.setInputProcessor(abCanvas.getRawInputProcessor());
                     </xsl:if>
 
+                    globals.anyKeyProcessorArray[0] = GameInputProcessor.getInstance();
                     GameInputProcessorUtil.init(globals.inputProcessorArray);
                     GameInputProcessorUtil.init(globals.unmappedInputProcessorArray);
 

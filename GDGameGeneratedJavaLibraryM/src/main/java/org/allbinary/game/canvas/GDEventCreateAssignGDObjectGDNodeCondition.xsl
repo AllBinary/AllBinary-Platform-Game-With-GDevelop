@@ -30,6 +30,7 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDSoundPausedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDLayerVisibleConditionGDNode.xsl" />
     <xsl:import href="./condition/GDBehaviorActivatedConditionGDNode.xsl" />
+    <xsl:import href="./condition/GDAnyKeyPressedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDKeyFromTextPressedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDKeyFromTextReleasedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAnyKeyReleasedConditionGDNodeConditionGDNode.xsl" />
@@ -663,7 +664,9 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                     <xsl:when test="$typeValue = 'AnyKeyPressed'" >
-                        //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+                        
+                        <xsl:call-template name="anykeyPressedConditionGDNode" />
+
                     </xsl:when>
                     <xsl:when test="$typeValue = 'AnyKeyReleased'" >
 

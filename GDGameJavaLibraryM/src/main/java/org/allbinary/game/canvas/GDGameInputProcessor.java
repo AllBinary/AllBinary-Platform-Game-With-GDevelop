@@ -87,6 +87,12 @@ public class GDGameInputProcessor {
 
         Integer keyAsInteger;
         final int size3 = keyEventList.size();
+        
+        if(size3 > 0) {
+            keyAsInteger = (Integer) keyEventList.get(0);
+            globals.anyKeyProcessorArray[0].process(allbinaryLayerManager, keyAsInteger);
+        }
+
         //logUtil.put("size: " + size, this, gameInputStrings.PROCESS_INPUT);
         for(int index = 0; index < size3; index++) {
             keyAsInteger = (Integer) keyEventList.get(index);
