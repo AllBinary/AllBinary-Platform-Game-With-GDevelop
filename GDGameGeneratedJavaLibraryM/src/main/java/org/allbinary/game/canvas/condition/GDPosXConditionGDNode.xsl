@@ -175,6 +175,7 @@ Created By: Travis Berthelot
                                             <xsl:with-param name="gdGameLayer" ><xsl:value-of select="$gdObjectName" />GDGameLayer</xsl:with-param>
                                         </xsl:call-template>
                                     </xsl:for-each>
+                                    return true;
                                 } //else {
                                     //logUtil.put(ELSE_CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
                                 //}
@@ -192,7 +193,7 @@ Created By: Travis Berthelot
                             
                             super.processStatsE();
 
-                            return true;
+                            return false;
 
                         }
 
