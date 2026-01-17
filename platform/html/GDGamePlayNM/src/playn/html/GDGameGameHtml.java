@@ -29,6 +29,7 @@ public class GDGameGameHtml extends HtmlGame {
     HtmlPlatform platform = HtmlPlatform.register();
     //For more than 1000 files per directory
     //platform.assetManager().setPathPrefix("gd/res/", true);
+    //For renaming res from generic path like gd - also rename the directory and gd.nocache.js file
     //platform.assetManager().setPathPrefix("<app_name>/res/", false);
     platform.assetManager().setPathPrefix("gd/res/", false);
     
