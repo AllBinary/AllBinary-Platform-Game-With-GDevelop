@@ -268,7 +268,7 @@ Created By: Travis Berthelot
             <xsl:variable name="notAlreadyUsedConditionButWithSpecificAction" >
                 <xsl:if test="not(contains($hasSubCondition, 'found'))" >
             <xsl:for-each select="actions" >
-            <xsl:if test="not(type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue'or type/value = 'SetNumberVariable')" >                
+            <xsl:if test="not(type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'PlaySoundOnChannel' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue'or type/value = 'SetNumberVariable')" >                
             <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
                 <xsl:if test="type/value = 'ModVarScene' or type/value = 'PlaySound'" >found</xsl:if>
             </xsl:if>
@@ -288,7 +288,7 @@ Created By: Travis Berthelot
             <xsl:text>&#10;</xsl:text>
             //Action - //<xsl:value-of select="type/value" /> - call h1
 
-            <xsl:if test="type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue' or type/value = 'SetNumberVariable' or type/value = 'BuiltinExternalLayouts::CreateObjectsFromExternalLayout'" >
+            <xsl:if test="type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'PlaySoundOnChannel' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue' or type/value = 'SetNumberVariable' or type/value = 'BuiltinExternalLayouts::CreateObjectsFromExternalLayout'" >
             <xsl:if test="contains($alreadyUsedCondition, 'found')" >
             //Skipping Action since a alreadyUsedCondition is used
             </xsl:if>
@@ -300,7 +300,7 @@ Created By: Travis Berthelot
             </xsl:if>
             </xsl:if>
                         
-            <xsl:if test="not(type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue'or type/value = 'SetNumberVariable')" >
+            <xsl:if test="not(type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'PlaySoundOnChannel' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue'or type/value = 'SetNumberVariable')" >
             <xsl:if test="not(contains($alreadyUsedCondition, 'found'))" >
                 <xsl:variable name="isMultitouchSupported" >
                     <xsl:for-each select="../conditions" >

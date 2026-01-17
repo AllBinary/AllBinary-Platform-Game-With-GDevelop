@@ -50,10 +50,10 @@ Created By: Travis Berthelot
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
                 <xsl:variable name="actionAsString" >Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> parameters=<xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
-                        <xsl:if test="$typeValue != 'PauseTimer' and $typeValue != 'PlaySoundCanal'" >
+                        <xsl:if test="not($typeValue = 'PauseTimer' or $typeValue = 'PlaySoundCanal' or $typeValue = 'PlaySoundOnChannel')" >
                 private final String ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($actionAsString, $quote, ' ')" />";
                         </xsl:if>
-                        <xsl:if test="$typeValue != 'ModVarScene' and $typeValue != 'AddForceAL' and $typeValue != 'PlaySoundCanal' and $typeValue != 'StopSoundCanal'" >
+                        <xsl:if test="not($typeValue = 'ModVarScene' or $typeValue = 'AddForceAL' or $typeValue = 'PlaySoundCanal' or $typeValue = 'PlaySoundOnChannel' or $typeValue = 'StopSoundCanal')" >
                 private final String ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($actionAsString, $quote, ' ')" /> at: ";
                         </xsl:if>
                 <xsl:text>&#10;</xsl:text>
@@ -186,6 +186,9 @@ Created By: Travis Berthelot
                 </xsl:if>
                 <xsl:if test="$typeValue = 'PlaySoundCanal'" >
                     //PlaySoundCanal - <xsl:value-of select="$file" />
+                </xsl:if>
+                <xsl:if test="$typeValue = 'PlaySoundOnChannel'" >
+                    //PlaySoundOnChannel - <xsl:value-of select="$file" />
                 </xsl:if>
                 <xsl:if test="$typeValue = 'StopSoundCanal'" >
                     //StopSoundCanal - <xsl:value-of select="$file" />

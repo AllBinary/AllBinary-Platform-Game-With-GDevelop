@@ -21,7 +21,7 @@ Created By: Travis Berthelot
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
 
-                    //PlaySoundCanal - action
+                    //PlaySoundOnChannel - was //PlaySoundCanal - action
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();
