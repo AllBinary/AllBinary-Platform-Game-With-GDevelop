@@ -645,27 +645,47 @@ Created By: Travis Berthelot
 
                 <xsl:when test="$typeValue = 'KeyPressed'" >
                     
-                    <xsl:call-template name="keyPressedConditionGDNode" />
+                    <xsl:call-template name="keyPressedConditionGDNode" >                            
+                        <xsl:with-param name="parametersAsString" >
+                            <xsl:value-of select="$parametersAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'KeyReleased'" >
                     
-                    <xsl:call-template name="keyFromTextReleasedConditionGDNode" />
+                    <xsl:call-template name="keyFromTextReleasedConditionGDNode" >
+                        <xsl:with-param name="parametersAsString" >
+                            <xsl:value-of select="$parametersAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'KeyFromTextPressed'" >
                     
-                    <xsl:call-template name="keyFromTextPressedConditionGDNode" />
+                    <xsl:call-template name="keyFromTextPressedConditionGDNode" >
+                        <xsl:with-param name="parametersAsString" >
+                            <xsl:value-of select="$parametersAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:when>
                 <xsl:when test="$typeValue = 'KeyFromTextReleased'" >
                     
-                    <xsl:call-template name="keyFromTextReleasedConditionGDNode" />
+                    <xsl:call-template name="keyFromTextReleasedConditionGDNode" >
+                        <xsl:with-param name="parametersAsString" >
+                            <xsl:value-of select="$parametersAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                 </xsl:when>
                     <xsl:when test="$typeValue = 'AnyKeyPressed'" >
                         
-                        <xsl:call-template name="anykeyPressedConditionGDNode" />
+                    <xsl:call-template name="anykeyPressedConditionGDNode" >
+                        <xsl:with-param name="parametersAsString" >
+                            <xsl:value-of select="$parametersAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
 
                     </xsl:when>
                     <xsl:when test="$typeValue = 'AnyKeyReleased'" >
