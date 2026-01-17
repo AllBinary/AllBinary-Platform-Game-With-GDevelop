@@ -311,7 +311,7 @@ public class GDGameLayer
         this.indexedAnimationInterfaceArray = animationInterface;
     }
 
-    protected IndexedAnimation[] getIndexedAnimationInterfaceArray()
+    public IndexedAnimation[] getIndexedAnimationInterfaceArray()
     {
         return indexedAnimationInterfaceArray;
     }
@@ -621,6 +621,10 @@ public class GDGameLayer
                 //graphics.drawImage(img, this.x, this.y, Graphics.TOP | Graphics.LEFT);
             //}
             
+//            if(this.gdObject.animation > this.indexedAnimationInterfaceArray.length - 1) {
+//                logUtil.put(new StringMaker().append(this.gdObject.name).append(':').append(this.gdObject.animation).append('>').append(this.indexedAnimationInterfaceArray.length).toString(), this, PAINT);
+//            }
+
             //for (int index = 0; index < SIZE; index++) {
             this.indexedAnimationInterfaceArray[this.gdObject.animation].paint(graphics, x, y);
             //}

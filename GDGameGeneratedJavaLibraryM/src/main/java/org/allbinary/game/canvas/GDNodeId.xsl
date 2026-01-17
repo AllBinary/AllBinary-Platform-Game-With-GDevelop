@@ -414,7 +414,8 @@
         <xsl:param name="gdObjectName" />
         <xsl:param name="gdGameLayer" />
 
-        //actionIdsGDObject <xsl:value-of select="$gdGameLayer" />
+        <xsl:if test="$totalRecursions != 0" >/* No longer skipping levels to get a desired action</xsl:if>
+        //actionIdsGDObjectPos <xsl:value-of select="$gdGameLayer" />
         //Actions - GDNode - totalRecursions=<xsl:value-of select="$totalRecursions" />
         <xsl:for-each select="actions" >
             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
@@ -437,6 +438,7 @@
             </xsl:if>
             
         </xsl:for-each>
+        <xsl:if test="$totalRecursions != 0" >*/</xsl:if>
 
         <xsl:for-each select="events" >
             <xsl:call-template name="actionIdsGDObjectPos" >
