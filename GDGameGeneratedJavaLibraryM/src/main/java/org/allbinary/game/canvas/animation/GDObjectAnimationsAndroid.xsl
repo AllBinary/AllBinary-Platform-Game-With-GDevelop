@@ -220,6 +220,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                     <xsl:for-each select="instances" >
                                         <xsl:if test="name = $name" >
+                                        <xsl:if test="not(preceding-sibling::instances[name = $name])" >
                                             <xsl:if test="contains(name, 'btn_')" >
                                                 //btn_ - found
                                                 (int) (<xsl:value-of select="$name" />ImageArray[0].getWidth() * scaleTouchButtons), (int) (<xsl:value-of select="$name" />ImageArray[0].getHeight() * scaleTouchButtons)
@@ -235,6 +236,7 @@ Created By: Travis Berthelot
                                                     <xsl:value-of select="width" />, <xsl:value-of select="height" />
                                                 </xsl:if>
                                             </xsl:if>
+                                        </xsl:if>
                                         </xsl:if>
                                     </xsl:for-each>
                                 </xsl:for-each>

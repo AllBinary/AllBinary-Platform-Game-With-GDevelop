@@ -65,7 +65,7 @@
                             </xsl:if>
                             
                             private final float halfScale = ((float) scale) / 2;
-                            private final float scaleTouchButtons = <xsl:if test="not(number($layoutIndex) = 1)" >1 //same as org.allbinary.AndroidUtil.isAndroid() ? scale : scale / 2.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >org.allbinary.AndroidUtil.isAndroid() ? <xsl:value-of select="/game/properties/scaletouch/android" /> : org.allbinary.J2MEUtil.isHTML() ? <xsl:value-of select="/game/properties/scaletouch/html" /> : <xsl:value-of select="/game/properties/scaletouch/j2se" /></xsl:if>;
+                            private final float scaleTouchButtons = <xsl:if test="not(number($layoutIndex) = 1)" >1; //same as org.allbinary.AndroidUtil.isAndroid() ? scale : scale / 2.0f</xsl:if><xsl:if test="number($layoutIndex) = 1" >org.allbinary.AndroidUtil.isAndroid() ? <xsl:value-of select="/game/properties/scaletouch/android" /> : org.allbinary.J2MEUtil.isHTML() ? <xsl:value-of select="/game/properties/scaletouch/html" /> : <xsl:value-of select="/game/properties/scaletouch/j2se" /></xsl:if>;
                             
     </xsl:template>
 
