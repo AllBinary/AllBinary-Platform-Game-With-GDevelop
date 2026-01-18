@@ -79,7 +79,7 @@ Created By: Travis Berthelot
                             </xsl:for-each>
                         </xsl:variable>                        
                                        
-                        <xsl:if test="$name != 'gameTickTimeDelayHelper'" >
+                        <xsl:if test="not($name = 'gameTickTimeDelayHelper' or $name = number($name))" >
                             
                         <xsl:if test="contains($hasObjectGroup, 'found')" >
                             //This code should probably never be used - it is here to compile with at least some possible logic 2
@@ -196,7 +196,7 @@ Created By: Travis Berthelot
                     
                         super.processGDStats(<xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer);
                         
-                        <xsl:if test="$name != 'gameTickTimeDelayHelper'" >
+                        <xsl:if test="not($name = 'gameTickTimeDelayHelper' or $name = number($name))" >
                         <xsl:if test="$name != $firstOrBeforeFourthParam" >
                         //From objectsGroup to object
                         GDGameLayer <xsl:value-of select="$name" />GDGameLayer = <xsl:value-of select="$firstOrBeforeFourthParam" />GDGameLayer;
@@ -210,7 +210,7 @@ Created By: Travis Berthelot
                         //objectInParam=<xsl:value-of select="$objectInParam" />
                         <xsl:text>&#10;</xsl:text>
 
-                        <xsl:if test="$name != 'gameTickTimeDelayHelper'" >
+                        <xsl:if test="not($name = 'gameTickTimeDelayHelper' or $name = number($name))" >
                         <xsl:if test="string-length($objectInParam) > 0" >
                             //Found object in param 3
                             <xsl:variable name="name" ><xsl:value-of select="$objectInParam" /></xsl:variable>

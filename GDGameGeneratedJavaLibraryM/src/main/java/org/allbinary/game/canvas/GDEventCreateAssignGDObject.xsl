@@ -112,7 +112,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="spriteName" >,Sprite:<xsl:value-of select="$name" />,</xsl:variable>
                     <xsl:variable name="textInputName" >,TextInput::TextInputObject:<xsl:value-of select="$name" />,</xsl:variable>
 
-                    //createGDObject - <xsl:value-of select="$name" /> - parameters=<xsl:for-each select="parameters" ><xsl:value-of select="position()" />=<xsl:value-of select="text()" /></xsl:for-each>
+                    //createGDObject - <xsl:value-of select="$name" /> - parameters=<xsl:for-each select="parameters" ><xsl:value-of select="position()" /><xsl:value-of select="translate(text(), '&#10;', '')" />,</xsl:for-each>
 
                     <xsl:variable name="paramTwoAsObject" >
                         <xsl:for-each select="parameters" >
