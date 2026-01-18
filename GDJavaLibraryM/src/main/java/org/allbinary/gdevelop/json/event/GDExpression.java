@@ -17,4 +17,9 @@ public class GDExpression
     public GDExpression(final String plainString) {
         this.plainString = plainString;
     }
+    
+    public String toString() {
+        return this.plainString;
+    }
+
 }

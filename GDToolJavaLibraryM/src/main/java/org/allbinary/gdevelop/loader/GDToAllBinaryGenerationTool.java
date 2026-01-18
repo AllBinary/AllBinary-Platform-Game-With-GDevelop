@@ -111,6 +111,7 @@ public class GDToAllBinaryGenerationTool
     private final String X = "x";
     private final String PARAMETERS_EXPRESSION_LIST = "parametersExpressionList size: ";
     private final String LOAD_EXPRESSION = "loadExpressions";
+    private final String PARAMETERS_EXPRESSION = "loadExpression: ";
     
     private final String PRELOAD_SOUND = "PreloadSound";
     private final String PLAY_SOUND = "PlaySound";
@@ -118,12 +119,14 @@ public class GDToAllBinaryGenerationTool
 
     private final String SCALE = "scale";
     private final String SCALE1 = "scale1";
+    private final String SCALE_TOUCH = "scaletouch";
     private final String ANDROID = "android";
     private final String HTML = "html";
     private final String J2SE = "j2se";
     private final String ONEX = "1.0f";
     private final String TWOX = "2.0f";
-        
+    private final String HALFX = "0.5f";
+    
     public GDToAllBinaryGenerationTool()
     {
     }
@@ -231,6 +234,14 @@ public class GDToAllBinaryGenerationTool
             scaleJSONObject.put(J2SE, TWOX);
             properties.put(SCALE1, scaleJSONObject);
         }
+        if(!properties.has(SCALE_TOUCH)) {
+            final JSONObject scaleJSONObject = new JSONObject();
+            scaleJSONObject.put(ANDROID, HALFX);
+            scaleJSONObject.put(HTML, HALFX);
+            scaleJSONObject.put(J2SE, HALFX);
+            properties.put(SCALE_TOUCH, scaleJSONObject);
+        }
+        
         
 
         final JSONArray layoutJSONArray = gameAsConfigurationJSONObject.getJSONArray(gdProjectStrings.LAYOUTS);
@@ -361,7 +372,7 @@ public class GDToAllBinaryGenerationTool
             {
                 groupEvent = (GDGroupEvent) event;
                 this.loadEvents(groupEvent.eventList);
-            } else if (event.type == eventTypeFactory.STANDARD)
+            } else if (event.type != eventTypeFactory.COMMENT)
             {
                 standardEvent = (GDStandardEvent) event;
                 this.loadStandardEvent(standardEvent);
@@ -407,7 +418,7 @@ public class GDToAllBinaryGenerationTool
     {
         final int size = parametersExpressionList.size();
         
-        logUtil.put(PARAMETERS_EXPRESSION_LIST, this, LOAD_EXPRESSION);
+        logUtil.put(PARAMETERS_EXPRESSION_LIST + size, this, LOAD_EXPRESSION);
         
         GDExpression expression;
         String param;
@@ -416,7 +427,11 @@ public class GDToAllBinaryGenerationTool
         if (size >= 2)
         {
             expression = (GDExpression) parametersExpressionList.get(1);
+
+            logUtil.put(PARAMETERS_EXPRESSION + expression, this, LOAD_EXPRESSION);
+            
             param = expression.plainString;
+            
             int startIndex = param.lastIndexOf('/');
             if (startIndex < 0) {
                 startIndex = param.lastIndexOf('\\');
