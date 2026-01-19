@@ -161,7 +161,23 @@ Created By: Travis Berthelot
                     <xsl:for-each select="directions" >,
                     new IndexedAnimationBehaviorFactory(<xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>, <xsl:value-of select="timeBetweenFrames * 1000" />)
                     </xsl:for-each>
-                    )<xsl:if test="position() != last()" >,</xsl:if>
+                    )
+                        <xsl:if test="$name = 'Background'" >
+                            //Temp Hack for background
+                    {
+                        public void setInitialScale(final ScaleProperties scaleProperties) {
+                            final ScaleProperties scaleProperties1 = new ScaleProperties();
+                            scaleProperties1.shouldScale = scaleProperties.shouldScale;
+                            scaleProperties1.scaleX = scaleProperties.scaleX * 58 / 100;
+                            scaleProperties1.scaleY = scaleProperties.scaleY * 58 / 100;
+                            scaleProperties1.scaleWidth = scaleProperties.scaleWidth * 58 / 100;
+                            scaleProperties1.scaleHeight = scaleProperties.scaleHeight * 58 / 100;
+                            super.setInitialScale(scaleProperties1);
+                        
+                        }
+                    }    
+                        </xsl:if>
+                        <xsl:if test="position() != last()" >,</xsl:if>
                 </xsl:for-each>
                 };
 

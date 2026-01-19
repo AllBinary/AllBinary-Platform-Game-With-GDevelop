@@ -1650,12 +1650,51 @@ Created By: Travis Berthelot
                 
                 <xsl:when test="$typeValue = 'ResizableCapability::ResizableBehavior::SetWidth'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+<!-- 
+                    <xsl:call-template name="resizableCapabilityResizableBehaviorSetWidthActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+-->
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ResizableCapability::ResizableBehavior::SetHeight'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+<!-- 
+                    <xsl:call-template name="resizableCapabilityResizableBehaviorSetHeightActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+-->
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ResizableCapability::ResizableBehavior::SetSize'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED - Started work on but disabled - getSetSizeForObject
+<!-- 
+                    <xsl:call-template name="resizableCapabilityResizableBehaviorSetSizeActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+-->
                 </xsl:when>
                 
                 <xsl:when test="$typeValue = 'FlippableCapability::FlippableBehavior::FlipX'" >
