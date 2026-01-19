@@ -37,7 +37,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
 
-                <xsl:if test="$typeValue = 'MettreX'" >
+                <xsl:if test="$typeValue = 'MettreX' or $typeValue = 'SetX'" >
                     <xsl:variable name="name2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="name" >:<xsl:value-of select="$name2" />,</xsl:variable>
 
@@ -62,7 +62,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                     -->
                 </xsl:if>
-                <xsl:if test="$typeValue = 'MettreY'" >
+                <xsl:if test="$typeValue = 'MettreY' or $typeValue = 'SetY'" >
                     <xsl:variable name="name2" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     <xsl:variable name="name" >:<xsl:value-of select="$name2" />,</xsl:variable>
 

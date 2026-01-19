@@ -672,7 +672,22 @@ Created By: Travis Berthelot
 
                 </xsl:when>
                 
-                <xsl:when test="$typeValue = 'Cache'" >
+                <xsl:when test="$typeValue = 'Montre' or $typeValue = 'Show'" >
+
+                    <xsl:call-template name="montreAsShowActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+                <xsl:when test="$typeValue = 'Cache' or $typeValue = 'Hide'" >
 
                     <xsl:call-template name="cacheAsHideActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1032,7 +1047,7 @@ Created By: Travis Berthelot
 
                 </xsl:when>
 
-                <xsl:when test="$typeValue = 'MettreX'" >
+                <xsl:when test="$typeValue = 'MettreX' or $typeValue = 'SetX'" >
 
                     <xsl:call-template name="mettreXActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1050,7 +1065,7 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
-                <xsl:when test="$typeValue = 'MettreY'" >
+                <xsl:when test="$typeValue = 'MettreY' or $typeValue = 'SetY'" >
 
                     <xsl:call-template name="mettreYActionProcess" >
                         <xsl:with-param name="layoutIndex" >
@@ -1301,21 +1316,6 @@ Created By: Travis Berthelot
                 </xsl:when>
                 <xsl:when test="$typeValue = 'ChangeLayer'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
-                </xsl:when>
-                <xsl:when test="$typeValue = 'Montre'" >
-
-                    <xsl:call-template name="montreAsShowActionProcess" >
-                        <xsl:with-param name="layoutIndex" >
-                            <xsl:value-of select="$layoutIndex" />
-                        </xsl:with-param>
-                        <xsl:with-param name="objectsGroupsAsString" >
-                            <xsl:value-of select="$objectsGroupsAsString" />
-                        </xsl:with-param>
-                        <xsl:with-param name="createdObjectsAsString" >
-                            <xsl:value-of select="$createdObjectsAsString" />
-                        </xsl:with-param>
-                    </xsl:call-template>
-
                 </xsl:when>
                 <xsl:when test="$typeValue = 'MettreAutour'" >
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED

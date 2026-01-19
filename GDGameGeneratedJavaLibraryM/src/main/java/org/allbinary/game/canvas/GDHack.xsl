@@ -902,7 +902,7 @@ Created By: Travis Berthelot
                 <xsl:if test="$typeValue = 'UnPauseTimer'" >found</xsl:if>
                 <xsl:if test="$typeValue = 'Opacity'" >found</xsl:if>
                 <xsl:if test="$caller = 'externalEventsCreateAssignGDObject - //eventsCreateAssignXGDObjectGDNodesOtherEvent - //hackProcessing2'" ><xsl:if test="$typeValue = 'ModVarScene'" >found</xsl:if></xsl:if>
-                <xsl:if test="$typeValue = 'MettreX'" >found</xsl:if><xsl:if test="$typeValue = 'MettreY'" >found</xsl:if><xsl:if test="$typeValue = 'MettreXY'" >found</xsl:if><xsl:if test="$typeValue = 'MettreAutourPos'" >found</xsl:if>
+                <xsl:if test="$typeValue = 'MettreX' or $typeValue = 'SetX'" >found</xsl:if><xsl:if test="$typeValue = 'MettreY' or $typeValue = 'SetY'" >found</xsl:if><xsl:if test="$typeValue = 'MettreXY'" >found</xsl:if><xsl:if test="$typeValue = 'MettreAutourPos'" >found</xsl:if>
                 <xsl:if test="$typeValue = 'SetAngle'" >found</xsl:if>
                 <xsl:if test="$typeValue = 'ChangePlan'" >found</xsl:if>
                 <xsl:if test="$typeValue = 'ChangeColor'" >found</xsl:if>
@@ -912,7 +912,7 @@ Created By: Travis Berthelot
             </xsl:for-each></xsl:variable>
                         
             <xsl:if test="contains($usedCondition, 'found') or contains($usedActions, 'found')" >
-                        <xsl:variable name="listSize" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'MettreY' or type/value = 'MettreXY' or type/value = 'MettreAutourPos'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:variable name="listSize" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'MettreY' or type/value = 'SetY' or type/value = 'MettreXY' or type/value = 'MettreAutourPos'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
                         
                         //GDAction - START - //listSize=<xsl:value-of select="$listSize" />
                         final int size = <xsl:if test="string-length($listSize) = 0 and not(repeatExpression or $eventTypeUp2Branches = 'BuiltinCommonInstructions::ForEach')" >1;</xsl:if>
@@ -1161,7 +1161,7 @@ Created By: Travis Berthelot
                     </xsl:if>
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'MettreX'" >
+                <xsl:if test="$typeValue = 'MettreX' or $typeValue = 'SetX'" >
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Action - //MettreX - call
                     <xsl:for-each select="parameters" >
@@ -1190,7 +1190,7 @@ Created By: Travis Berthelot
                     }
                 </xsl:if>
 
-                <xsl:if test="$typeValue = 'MettreY'" >
+                <xsl:if test="$typeValue = 'MettreY' or $typeValue = 'SetY'" >
                     //Action nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                     //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Action - //MettreY - call
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processGD(((GDGameLayer) globals.<xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />GDGameLayerList.get(index))</xsl:if></xsl:for-each>, null, globals.graphics);
@@ -1338,7 +1338,7 @@ Created By: Travis Berthelot
                                             ((GDGameLayer) gameLayerList.get(index2)).updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
                                         }
                                     } else {
-                                        logUtil.put("updateGDObject failed: <xsl:for-each select="actions" ><xsl:if test="type/value = 'MettreX' or type/value = 'MettreY' or type/value = 'MettreXY' or type/value = 'SetAngle' or type/value = 'ChangePlan' or type/value = 'ChangeAnimation' or type/value = 'SetNumberObjectVariable'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />GDGameLayer </xsl:if></xsl:for-each></xsl:if></xsl:for-each>was null", this, commonStrings.PROCESS, new Exception());
+                                        logUtil.put("updateGDObject failed: <xsl:for-each select="actions" ><xsl:if test="type/value = 'MettreX' or type/value = 'SetX' or type/value = 'MettreY' or type/value = 'SetY' or type/value = 'MettreXY' or type/value = 'SetAngle' or type/value = 'ChangePlan' or type/value = 'ChangeAnimation' or type/value = 'SetNumberObjectVariable'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" />GDGameLayer </xsl:if></xsl:for-each></xsl:if></xsl:for-each>was null", this, commonStrings.PROCESS, new Exception());
                                     }
 
                                 }
