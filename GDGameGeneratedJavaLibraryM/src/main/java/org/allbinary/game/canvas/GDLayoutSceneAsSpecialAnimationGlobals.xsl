@@ -541,6 +541,22 @@ Created By: Travis Berthelot
                         return array.length;
                     }
 
+                    public String GlobalVariable(final String value) {
+                        return value;
+                    }
+                    
+                    public float GlobalVariable(final float value) {
+                        return value;
+                    }
+                    
+                    public long GlobalVariable(final long value) {
+                        return value;
+                    }
+
+                    public int GlobalVariable(final int value) {
+                        return value;
+                    }
+
                     public int MouseX(String string, int value) {
                         return value;
                     }

@@ -76,7 +76,7 @@ Created By: Travis Berthelot
                 //target <xsl:value-of select="text()" />
             </xsl:for-each>
             <xsl:if test="repeatExpression" >
-                //repeatExpression <xsl:value-of select="repeatExpression" />
+                //repeatExpression=<xsl:value-of select="repeatExpression" />
             </xsl:if>
 
             <xsl:variable name="hasQualifyingParentConditions" ><xsl:for-each select="conditions" ><xsl:if test="type/value = 'DepartScene'" >found</xsl:if></xsl:for-each></xsl:variable>

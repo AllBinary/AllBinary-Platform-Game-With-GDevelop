@@ -16,6 +16,7 @@ import org.allbinary.gdevelop.json.event.GDExpression;
 import org.allbinary.gdevelop.json.event.GDInstruction;
 import org.allbinary.gdevelop.json.event.builtin.GDEventTypeFactory;
 import org.allbinary.gdevelop.json.event.builtin.GDGroupEvent;
+import org.allbinary.gdevelop.json.event.builtin.GDLinkEvent;
 import org.allbinary.gdevelop.json.event.builtin.GDStandardEvent;
 import org.allbinary.gdevelop.json.resource.GDResource;
 import org.allbinary.logic.io.BufferedWriterUtil;
@@ -364,6 +365,7 @@ public class GDToAllBinaryGenerationTool
         final int size = eventList.size();
         GDEvent event;
         GDGroupEvent groupEvent;
+        GDLinkEvent linkEvent;
         GDStandardEvent standardEvent;
         for (int index = 0; index < size; index++)
         {
@@ -372,7 +374,7 @@ public class GDToAllBinaryGenerationTool
             {
                 groupEvent = (GDGroupEvent) event;
                 this.loadEvents(groupEvent.eventList);
-            } else if (event.type != eventTypeFactory.COMMENT)
+            } else if (!(event.type == eventTypeFactory.COMMENT || event.type == eventTypeFactory.LINK))
             {
                 standardEvent = (GDStandardEvent) event;
                 this.loadStandardEvent(standardEvent);

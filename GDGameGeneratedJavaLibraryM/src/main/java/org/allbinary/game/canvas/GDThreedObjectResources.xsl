@@ -148,7 +148,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="image2" select="substring-before($imageWithExtension, '.')" />
                     <xsl:variable name="ends-with" ><xsl:call-template name="ends-with" ><xsl:with-param name="string" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="token" >_0</xsl:with-param></xsl:call-template></xsl:variable>
 <!--                    //ends-with=<xsl:value-of select="$ends-with" />-->
-                    <xsl:variable name="image" ><xsl:if test="$ends-with = true" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not($ends-with = false)" ><xsl:value-of select="$image2" /></xsl:if></xsl:variable>
+                    <xsl:variable name="image" ><xsl:if test="contains($ends-with, 'found')" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not(contains($ends-with, 'found'))" ><xsl:value-of select="$image2" /></xsl:if></xsl:variable>
                     <xsl:if test="string-length($image) > 0" >
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>
@@ -169,7 +169,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="image2" select="substring-before($imageWithExtension, '.')" />
                     <xsl:variable name="ends-with" ><xsl:call-template name="ends-with" ><xsl:with-param name="string" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="token" >_0</xsl:with-param></xsl:call-template></xsl:variable>
 <!--                    //ends-with=<xsl:value-of select="$ends-with" />-->
-                    <xsl:variable name="image" ><xsl:if test="$ends-with = true" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not($ends-with = false)" ><xsl:value-of select="$image2" /></xsl:if></xsl:variable>
+                    <xsl:variable name="image" ><xsl:if test="contains($ends-with, 'found')" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not(contains($ends-with, 'found'))" ><xsl:value-of select="$image2" /></xsl:if></xsl:variable>
                     <xsl:if test="string-length($image) > 0" >
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>
@@ -180,7 +180,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="image2" select="substring-before($imageWithExtension, '.')" />
                     <xsl:variable name="ends-with" ><xsl:call-template name="ends-with" ><xsl:with-param name="string" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="token" >_0</xsl:with-param></xsl:call-template></xsl:variable>
 <!--                    //ends-with=<xsl:value-of select="$ends-with" />-->
-                    <xsl:variable name="image" ><xsl:if test="$ends-with = true" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not($ends-with = false)" ><xsl:value-of select="$image2" /></xsl:if></xsl:variable>
+                    <xsl:variable name="image" ><xsl:if test="contains($ends-with, 'found')" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not(contains($ends-with, 'found'))" ><xsl:value-of select="$image2" /></xsl:if></xsl:variable>
                     <xsl:if test="string-length($image) > 0" >
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>
@@ -192,7 +192,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="image2" select="substring-before($imageWithExtension, '.')" />
                     <xsl:variable name="ends-with" ><xsl:call-template name="ends-with" ><xsl:with-param name="string" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="token" >_0</xsl:with-param></xsl:call-template></xsl:variable>
 <!--                    //ends-with=<xsl:value-of select="$ends-with" />-->
-                    <xsl:variable name="image" ><xsl:if test="$ends-with = true" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not($ends-with = false)" ><xsl:value-of select="$image2" /></xsl:if></xsl:variable>
+                    <xsl:variable name="image" ><xsl:if test="contains($ends-with, 'found')" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not(contains($ends-with, 'found'))" ><xsl:value-of select="$image2" /></xsl:if></xsl:variable>
                     <xsl:if test="string-length($image) > 0" >
                     gdResources.MIRROR_<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>
@@ -204,7 +204,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="image2" select="substring-before($imageWithExtension, '.')" />
                     <xsl:variable name="ends-with" ><xsl:call-template name="ends-with" ><xsl:with-param name="string" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="token" >_0</xsl:with-param></xsl:call-template></xsl:variable>
 <!--                    //ends-with=<xsl:value-of select="$ends-with" />-->
-                    <xsl:variable name="image" ><xsl:if test="$ends-with = true" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not($ends-with = false)" ><xsl:value-of select="$image2" /></xsl:if></xsl:variable>
+                    <xsl:variable name="image" ><xsl:if test="contains($ends-with, 'found')" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not(contains($ends-with, 'found'))" ><xsl:value-of select="$image2" /></xsl:if></xsl:variable>
                     <xsl:if test="string-length($image) > 0" >
                     gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>

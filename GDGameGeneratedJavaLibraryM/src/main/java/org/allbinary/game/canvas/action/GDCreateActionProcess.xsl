@@ -230,7 +230,25 @@ Created By: Travis Berthelot
 <!--                        </xsl:if>-->
                     </xsl:if>
 
-                    <xsl:variable name="gameLayer" ><xsl:if test="contains($hasCollisionProcessGD, 'found')" ><xsl:call-template name="collisionProcessGDParamTwo" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not(contains($hasCollisionProcessGD, 'found'))" >gameLayer</xsl:if></xsl:variable>
+                    <xsl:variable name="gameLayer" >
+                        <xsl:if test="contains($hasForEachProcessGD, 'found')" >
+                            <xsl:call-template name="forEachGDParamTwo" >
+                                <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                                <xsl:with-param name="nodeId" >
+                                    <xsl:value-of select="$nodeId" />
+                                </xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:if>
+                        <xsl:if test="contains($hasCollisionProcessGD, 'found')" >
+                            <xsl:call-template name="collisionProcessGDParamTwo" >
+                                <xsl:with-param name="totalRecursions" >0</xsl:with-param>
+                                <xsl:with-param name="nodeId" >
+                                    <xsl:value-of select="$nodeId" />
+                                </xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:if>
+                        <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found'))" >gameLayer</xsl:if>
+                    </xsl:variable>
 
                         //createGDObject - processGD - START
                     <xsl:call-template name="createGDObject" >

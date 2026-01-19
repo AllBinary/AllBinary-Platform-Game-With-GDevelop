@@ -367,7 +367,28 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
 
-                        //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //repeatExpression <xsl:value-of select="repeatExpression" /> //<xsl:value-of select="../../events/type" />
+                        <xsl:variable name="eventTypeUp2Branches" >
+                            <xsl:for-each select="actions" >
+                            <xsl:variable name="nodeId" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+                            <xsl:for-each select="../../../events" >
+                                <xsl:variable name="hasChildNode" >
+                                    <xsl:call-template name="hasChildNode" >
+                                        <xsl:with-param name="childNodeId" >
+                                            <xsl:value-of select="$nodeId" />
+                                        </xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:variable>
+                                
+                                <xsl:if test="contains($hasChildNode, 'found')" >
+                                    <xsl:value-of select="type" />
+                                </xsl:if>
+
+                            </xsl:for-each>
+                            </xsl:for-each>
+
+                        </xsl:variable>
+
+                        //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //repeatExpression=<xsl:value-of select="repeatExpression" /> //../../events/type=<xsl:value-of select="$eventTypeUp2Branches" />
                         <xsl:if test="not(contains($hasCreate, 'found')) or not(contains($hasCollisionCondition, 'found')) or $caller = 'conditionLayout - //VarScene'" >
 
                         <xsl:if test="not(contains(disabled, 'true'))" >
@@ -416,6 +437,9 @@ Created By: Travis Berthelot
                             </xsl:with-param>
                             <xsl:with-param name="alreadyUsedParentCondition" >
                                 <xsl:value-of select="$alreadyUsedParentCondition" />
+                            </xsl:with-param>
+                            <xsl:with-param name="eventTypeUp2Branches" >
+                                <xsl:value-of select="$eventTypeUp2Branches" />
                             </xsl:with-param>
                         </xsl:call-template>
                         </xsl:if>
@@ -868,6 +892,7 @@ Created By: Travis Berthelot
         <xsl:param name="hasCondition" />
         <xsl:param name="alreadyUsedCondition" />
         <xsl:param name="alreadyUsedParentCondition" />
+        <xsl:param name="eventTypeUp2Branches" />
 
             <xsl:variable name="usedCondition" ><xsl:if test="not(contains($hasCondition, 'found'))" ><xsl:if test="not(contains($alreadyUsedCondition, 'found')) and not(contains($alreadyUsedParentCondition, 'found'))" ><xsl:for-each select="conditions" ><xsl:if test="position() = 1" >found</xsl:if></xsl:for-each></xsl:if></xsl:if></xsl:variable>
             <xsl:variable name="usedActions" ><xsl:for-each select="actions" >
@@ -889,10 +914,10 @@ Created By: Travis Berthelot
             <xsl:if test="contains($usedCondition, 'found') or contains($usedActions, 'found')" >
                         <xsl:variable name="listSize" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'MettreY' or type/value = 'MettreXY' or type/value = 'MettreAutourPos'" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size()</xsl:if></xsl:for-each></xsl:if></xsl:for-each></xsl:variable>
                         
-                        //GDAction - START
-                        final int size = <xsl:if test="string-length($listSize) = 0 and not(repeatExpression or ../../events/type = 'BuiltinCommonInstructions::ForEach')" >1;</xsl:if>
-                        <xsl:if test="string-length($listSize) > 0 and not(repeatExpression or ../../events/type = 'BuiltinCommonInstructions::ForEach')" ><xsl:value-of select="$listSize" />; //MettreY //MettreXY</xsl:if>
-                        <xsl:if test="../../events/type = 'BuiltinCommonInstructions::ForEach'" >globals.<xsl:value-of select="substring-before(substring-after($parametersAsString, ':'), ',')" />GDGameLayerList.size();</xsl:if>
+                        //GDAction - START - //listSize=<xsl:value-of select="$listSize" />
+                        final int size = <xsl:if test="string-length($listSize) = 0 and not(repeatExpression or $eventTypeUp2Branches = 'BuiltinCommonInstructions::ForEach')" >1;</xsl:if>
+                        <xsl:if test="string-length($listSize) > 0 and not(repeatExpression or $eventTypeUp2Branches = 'BuiltinCommonInstructions::ForEach')" ><xsl:value-of select="$listSize" />; //MettreY //MettreXY</xsl:if>
+                        <xsl:if test="$eventTypeUp2Branches = 'BuiltinCommonInstructions::ForEach'" >globals.<xsl:value-of select="substring-before(substring-after($parametersAsString, ':'), ',')" />GDGameLayerList.size();</xsl:if>
                         <xsl:if test="repeatExpression" >eSize;</xsl:if>
             
             <xsl:if test="contains($hadConditionOtherThanThis, 'found') and ($caller = 'conditionLayout - //eventsCreateAssignGDObject' and contains($hasCreate, 'found'))" >

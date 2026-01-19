@@ -21,18 +21,8 @@ Created By: Travis Berthelot
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
 
-                            <xsl:variable name="thirdParam0" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
-                           
-                            <xsl:variable name="thirdParam1" >
-                            <xsl:call-template name="string-replace-all" >
-                                <xsl:with-param name="text" >
-                                    <xsl:value-of select="$thirdParam0" />
-                                </xsl:with-param>
-                                <xsl:with-param name="find" >VariableString(</xsl:with-param>
-                                <xsl:with-param name="replacementText" >VariableString(globals.</xsl:with-param>
-                            </xsl:call-template>
-                            </xsl:variable>
-                            
+                            <xsl:variable name="thirdParam1" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                                                       
                             <xsl:variable name="thirdParam2" >
                             <xsl:call-template name="string-replace-all" >
                                 <xsl:with-param name="text" >

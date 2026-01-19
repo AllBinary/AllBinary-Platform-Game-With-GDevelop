@@ -148,7 +148,7 @@ Created By: Travis Berthelot
                     <xsl:if test="//objectsGroups/name/text() = $name" >
                     //Using ObjectsGroups - <xsl:value-of select="$foundCollisionNP" />
                     if(<xsl:for-each select="//objectsGroups" >
-                                <xsl:if test="name = $foundCollisionNP" >
+                                <xsl:if test="name = $name" >
                                 <xsl:for-each select="objects" >this.gdObject.name == <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_OBJECT_NAME<xsl:if test="position() != last()" > || <xsl:text>&#10;</xsl:text>                                </xsl:if>
                             </xsl:for-each></xsl:if></xsl:for-each>) {
                     </xsl:if>

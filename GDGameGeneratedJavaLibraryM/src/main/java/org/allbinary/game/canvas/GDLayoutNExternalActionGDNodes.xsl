@@ -418,7 +418,12 @@ Created By: Travis Berthelot
                         //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
                         return Long.toString(value);
                     }
-
+                    
+                    public String LargeNumberToString(final long value) {
+                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
+                        return Long.toString(value);
+                    }
+                    
                     public String ToString(final float value) {
                         return Float.toString(value);
                     }
