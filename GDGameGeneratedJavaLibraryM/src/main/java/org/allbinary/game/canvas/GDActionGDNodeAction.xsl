@@ -35,6 +35,7 @@ Created By: Travis Berthelot
     
     <xsl:import href="./action/GDObjectVariablePushNumberActionProcess.xsl" />
 
+    <xsl:import href="./action/GDShowLayerActionProcess.xsl" />
     <xsl:import href="./action/GDHideLayerActionProcess.xsl" />
     <xsl:import href="./action/GDMontreToShowActionProcess.xsl" />
     <xsl:import href="./action/GDCacheToHideActionProcess.xsl" />
@@ -655,6 +656,22 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
+                <xsl:when test="$typeValue = 'ShowLayer'" >
+
+                    <xsl:call-template name="showLayerActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                        <xsl:with-param name="objectsGroupsAsString" >
+                            <xsl:value-of select="$objectsGroupsAsString" />
+                        </xsl:with-param>
+                        <xsl:with-param name="createdObjectsAsString" >
+                            <xsl:value-of select="$createdObjectsAsString" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+                
                 <xsl:when test="$typeValue = 'Cache'" >
 
                     <xsl:call-template name="cacheAsHideActionProcess" >

@@ -16,12 +16,12 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
-    <xsl:template name="hideLayerActionProcess" >
+    <xsl:template name="showLayerActionProcess" >
         <xsl:param name="layoutIndex" />
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
         
-                    //HideLayer - action - do not confuse with show/hide gameLayer
+                    //ShowLayer - action - do not confuse with show/hide gameLayer
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();

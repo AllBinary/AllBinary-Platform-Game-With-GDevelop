@@ -21,7 +21,7 @@ Created By: Travis Berthelot
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
 
-                    //Cache - action - Release to cache to hide
+                    //Cache - action - Release to cache to hide - hide gameLayer - not to be confused with a named UI Layer for that you need ShowLayer/HideLayer
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();
