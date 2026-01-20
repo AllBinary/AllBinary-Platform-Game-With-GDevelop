@@ -168,10 +168,14 @@ Created By: Travis Berthelot
                         public void setInitialScale(final ScaleProperties scaleProperties) {
                             final ScaleProperties scaleProperties1 = new ScaleProperties();
                             scaleProperties1.shouldScale = scaleProperties.shouldScale;
-                            scaleProperties1.scaleX = scaleProperties.scaleX * 58 / 100;
-                            scaleProperties1.scaleY = scaleProperties.scaleY * 58 / 100;
-                            scaleProperties1.scaleWidth = scaleProperties.scaleWidth * 58 / 100;
-                            scaleProperties1.scaleHeight = scaleProperties.scaleHeight * 58 / 100;
+                            scaleProperties1.scaleX = scaleProperties.scaleX * 116 / 100;
+                            scaleProperties1.scaleY = scaleProperties.scaleY * 116 / 100;
+                            scaleProperties1.scaleWidth = scaleProperties.scaleWidth * 116 / 100;
+                            scaleProperties1.scaleHeight = scaleProperties.scaleHeight * 116 / 100;
+                            //scaleProperties1.scaleX = scaleProperties.scaleX * 58 / 100;
+                            //scaleProperties1.scaleY = scaleProperties.scaleY * 58 / 100;
+                            //scaleProperties1.scaleWidth = scaleProperties.scaleWidth * 58 / 100;
+                            //scaleProperties1.scaleHeight = scaleProperties.scaleHeight * 58 / 100;
                             super.setInitialScale(scaleProperties1);
                         
                         }

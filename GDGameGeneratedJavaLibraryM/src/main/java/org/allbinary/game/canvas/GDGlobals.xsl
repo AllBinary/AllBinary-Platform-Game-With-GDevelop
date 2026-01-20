@@ -184,7 +184,7 @@ Created By: Travis Berthelot
                         private final int MAX_NODES = <xsl:value-of select="$total" />;
                         public final GDNode[] nodeArray = new GDNode[MAX_NODES];
 
-                        public final BasicArrayList[] channelSoundArray = new BasicArrayList[4];
+                        public final BasicArrayList[] channelSoundArray = new BasicArrayList[5];
 
                     //objectsGroups - START
                     <xsl:for-each select="objectsGroups" >

@@ -223,16 +223,16 @@ public class GDToAllBinaryGenerationTool
         final JSONObject properties = gameAsConfigurationJSONObject.getJSONObject(gdProjectStrings.PROPERTIES);
         if(!properties.has(SCALE)) {
             final JSONObject scaleJSONObject = new JSONObject();
-            scaleJSONObject.put(ANDROID, TWOX);
-            scaleJSONObject.put(HTML, TWOX);
-            scaleJSONObject.put(J2SE, TWOX);
+            scaleJSONObject.put(ANDROID, ONEX);
+            scaleJSONObject.put(HTML, ONEX);
+            scaleJSONObject.put(J2SE, ONEX);
             properties.put(SCALE, scaleJSONObject);
         }
         if(!properties.has(SCALE1)) {
             final JSONObject scaleJSONObject = new JSONObject();
             scaleJSONObject.put(ANDROID, ONEX);
-            scaleJSONObject.put(HTML, TWOX);
-            scaleJSONObject.put(J2SE, TWOX);
+            scaleJSONObject.put(HTML, ONEX);
+            scaleJSONObject.put(J2SE, ONEX);
             properties.put(SCALE1, scaleJSONObject);
         }
         if(!properties.has(SCALE_TOUCH)) {
