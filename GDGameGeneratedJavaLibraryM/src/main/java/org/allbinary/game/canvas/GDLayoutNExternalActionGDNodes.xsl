@@ -343,9 +343,17 @@ Created By: Travis Berthelot
                     public int floor(final int value) {
                         return value;
                     }
-                                        
+
+                    public float floor(final float value) {
+                        return (float) Math.floor((double) value);
+                    }
+
                     public long round(final long value) {
                         return value;
+                    }
+                    
+                    public float round(final float value) {
+                        return Math.round(value);
                     }
                     
                     public long abs(final long value) {
@@ -424,6 +432,11 @@ Created By: Travis Berthelot
                         return Long.toString(value);
                     }
                     
+                    public String LargeNumberToString(final float value) {
+                        //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
+                        return Float.toString(value);
+                    }
+
                     public String ToString(final float value) {
                         return Float.toString(value);
                     }

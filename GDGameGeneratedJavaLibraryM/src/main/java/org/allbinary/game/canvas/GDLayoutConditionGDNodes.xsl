@@ -321,6 +321,18 @@ Created By: Travis Berthelot
                         return value;
                     }
 
+                    public float floor(final float value) {
+                        return (float) Math.floor((double) value);
+                    }
+
+                    public long round(final long value) {
+                        return value;
+                    }
+                    
+                    public float round(final float value) {
+                        return Math.round(value);
+                    }
+
                     public int LastTouchId() {
                         return 0;
                     }
