@@ -480,7 +480,7 @@ Created By: Travis Berthelot
 
                     public String LargeNumberToString(final float value) {
                         //this.primitiveLongUtil = new PrimitiveLongUtil(max + 1);
-                        return Float.toString(value);
+                        return Long.toString((long) value);
                     }
 
                     public String ToString(final float value) {

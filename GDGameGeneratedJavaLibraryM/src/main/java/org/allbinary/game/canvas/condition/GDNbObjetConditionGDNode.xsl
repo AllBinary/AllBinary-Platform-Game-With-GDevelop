@@ -59,6 +59,15 @@ Created By: Travis Berthelot
                         public void processReleased() throws Exception {
                             super.processReleasedStats();
 
+<!--                            //final StringMaker stringBuilder = new StringMaker();
+                            final int size = <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>;
+                            //if(lastTotal != size) {
+                                //lastTotal = size;
+                                //logUtil.put(stringBuilder.append(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GroupInterface)</xsl:if></xsl:for-each>: ").append(size).toString(), this, commonStrings.PROCESS);
+                            //}
+
+                            if(<xsl:if test="$inverted = 'true'" >!</xsl:if>size <xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>) {
+
                                 <xsl:if test="not(contains($hasOtherConditions, 'found'))" >
 
                                 <xsl:for-each select="../actions" >
@@ -89,7 +98,7 @@ Created By: Travis Berthelot
                                     </xsl:if>
                                 </xsl:for-each>
                             
-                                <!--
+                                
                                 //Condition - //NbObjet - //Action - 
                                 <xsl:for-each select=".." >
                                     <xsl:call-template name="actionIds" >
@@ -98,7 +107,7 @@ Created By: Travis Berthelot
                                     </xsl:call-template>
                                 </xsl:for-each>
                                 
-                                -->
+                                
 
                                 <xsl:for-each select="../conditions" >
                                     <xsl:if test="position() = $position + 1" >
@@ -109,6 +118,12 @@ Created By: Travis Berthelot
                                 gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].processReleased();
                                     </xsl:if>
                                 </xsl:for-each>
+
+                                //return true;                       
+                            } else {
+                                //logUtil.put(commonStrings.START, this, "Else: <xsl:for-each select="parameters" ><xsl:if test="position() != 1" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" >groupLayerManagerListener.getGroupSize(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GroupInterface)</xsl:if><xsl:if test="text() = '='" >=</xsl:if><xsl:if test="position() != last()" ><xsl:text> </xsl:text></xsl:if></xsl:for-each>");
+                                //return false;
+                            }-->
 
                         }
 

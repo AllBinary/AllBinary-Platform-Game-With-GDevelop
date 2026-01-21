@@ -288,7 +288,7 @@ Created By: Travis Berthelot
             <xsl:text>&#10;</xsl:text>
             //Action - //<xsl:value-of select="type/value" /> - call h1
 
-            <xsl:if test="type/value = 'Cache' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'PlaySoundOnChannel' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue' or type/value = 'SetNumberVariable' or type/value = 'BuiltinExternalLayouts::CreateObjectsFromExternalLayout'" >
+            <xsl:if test="type/value = 'Cache' or type/value = 'Montre' or type/value = 'Show' or type/value = 'Hide' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'PlaySoundOnChannel' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue' or type/value = 'SetNumberVariable' or type/value = 'BuiltinExternalLayouts::CreateObjectsFromExternalLayout'" >
             <xsl:if test="contains($alreadyUsedCondition, 'found')" >
             //Skipping Action since a alreadyUsedCondition is used
             </xsl:if>

@@ -144,7 +144,8 @@ Created By: Travis Berthelot
                         this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                     }
                     </xsl:if>
-                    <xsl:if test="string-length($name) > 0" >
+<!--                    <xsl:if test="string-length($name) > 0" >-->
+                    <xsl:if test="$typeValue != 'Create'" >
                     <xsl:if test="//objectsGroups/name/text() = $foundCollisionNP" >
                     //Using CollisionNP - ObjectsGroups - <xsl:value-of select="$foundCollisionNP" /> - <xsl:for-each select="//objectsGroups" ><xsl:if test="name = $foundCollisionNP" ><xsl:for-each select="objects" ><xsl:value-of select="name" />, </xsl:for-each></xsl:if></xsl:for-each>
                     if(<xsl:for-each select="//objectsGroups" >
