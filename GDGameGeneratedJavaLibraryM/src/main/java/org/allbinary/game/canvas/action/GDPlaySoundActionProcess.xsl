@@ -40,7 +40,7 @@ Created By: Travis Berthelot
                             final PlayerComposite player = (PlayerComposite) sound.getPlayerP();
                             
                             <xsl:if test="string-length($volume) >= 0" >
-                            final int volume = <xsl:value-of select="$volume" />;
+                            final int volume = <xsl:if test="not($volume)" >100</xsl:if><xsl:value-of select="$volume" />;
                             //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + volume, this, commonStrings.PROCESS);
                             final int leftVolume = volume;
                             final int rightVolume = volume;
