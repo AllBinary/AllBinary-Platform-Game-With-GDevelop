@@ -293,10 +293,9 @@ Created By: Travis Berthelot
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
-                    //zOrder - <xsl:value-of select="zOrder" />
+                    //createGDObject - //zOrder - <xsl:value-of select="zOrder" />
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = last()" >
-                            //zOrder - <xsl:value-of select="zOrder" />
                             //last=<xsl:value-of select="text()" /> (Base Layer is emtpy)
                             <xsl:if test="contains(text(), 'Below')" >
                     5
@@ -449,10 +448,10 @@ Created By: Travis Berthelot
                             </xsl:if>                            
                         </xsl:if>
                     </xsl:for-each>
-                            //zOrder is not available for create by name - <xsl:value-of select="zOrder" />
+                            //createByNameGDObject - //zOrder is not available for create by name - <xsl:value-of select="zOrder" />
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = last()" >
-                            //zOrder - <xsl:value-of select="zOrder" />
+                            //createByNameGDObject - //zOrder - <xsl:value-of select="zOrder" />
                             //last=<xsl:value-of select="text()" /> (Base Layer is emtpy)
                             <xsl:if test="contains(text(), 'Below')" >
                     5
@@ -628,7 +627,7 @@ Created By: Travis Berthelot
                             //zOrder is not available for create by name - <xsl:value-of select="zOrder" />
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = last()" >
-                            //zOrder - <xsl:value-of select="zOrder" />
+                            //createByNameGDObject3 - //zOrder - <xsl:value-of select="zOrder" />
                             //last=<xsl:value-of select="text()" /> (Base Layer is emtpy)
                             <xsl:if test="contains(text(), 'Below')" >
                     5

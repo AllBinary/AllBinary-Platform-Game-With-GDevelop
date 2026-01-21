@@ -118,7 +118,7 @@ Created By: Travis Berthelot
 
                         <xsl:value-of select="name" />.set(null, <xsl:value-of select="name" />X, 
                         <xsl:value-of select="name" />Y, 
-                    //zOrder - <xsl:value-of select="zOrder" />
+                    //Create - Instances - //zOrder - <xsl:value-of select="zOrder" />
                     //layer=<xsl:value-of select="layer" /> (Base Layer is emtpy)
                             <xsl:if test="contains(layer, 'Below')" >
                     //Below - zOrder
