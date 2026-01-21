@@ -41,8 +41,8 @@ Created By: Travis Berthelot
                             
                             int leftVolume = 100;
                             int rightVolume = 100;
-                            <xsl:if test="string-length($volume) > 0" >
-                            final int volume = <xsl:if test="not($volume)" >100</xsl:if><xsl:value-of select="$volume" />;
+                            <xsl:if test="string-length($volume) > 0 and number($volume) = $volume" >
+                            final int volume = <xsl:value-of select="$volume" />;
                             leftVolume = volume;
                             rightVolume = volume;
                             player.setVolume(leftVolume, rightVolume);

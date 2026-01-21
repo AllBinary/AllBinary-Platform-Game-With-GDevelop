@@ -39,11 +39,13 @@ Created By: Travis Berthelot
                             final Sound sound = <xsl:if test="$fileName4 = 'Select' or $fileName4 = 'Error'" >org.allbinary.media.audio.</xsl:if><xsl:if test="not($fileName4 = 'Select' or $fileName4 = 'Error')" >org.allbinary.game.gd.resource.GD</xsl:if><xsl:value-of select="$fileName4" />Sound.getInstance();
                             final PlayerComposite player = (PlayerComposite) sound.getPlayerP();
                             
-                            <xsl:if test="string-length($volume) >= 0" >
-                            final int volume = <xsl:if test="not($volume)" >100</xsl:if><xsl:value-of select="$volume" />;
+                            int leftVolume = 100;
+                            int rightVolume = 100;
+                            <xsl:if test="string-length($volume) > 0 and number($volume) = $volume" >
+                            final int volume = <xsl:value-of select="$volume" />;
                             //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + volume, this, commonStrings.PROCESS);
-                            final int leftVolume = volume;
-                            final int rightVolume = volume;
+                            leftVolume = volume;
+                            rightVolume = volume;
                             player.setVolume(leftVolume, rightVolume);
                             </xsl:if>
                             player.start();
