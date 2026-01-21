@@ -297,10 +297,11 @@ Created By: Travis Berthelot
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = last()" >
                             //last=<xsl:value-of select="text()" /> (Base Layer is emtpy)
+                            <xsl:variable name="doubleQuote" >""</xsl:variable>
                             <xsl:if test="contains(text(), 'Below')" >
                     5
                             </xsl:if>
-                            <xsl:if test="not(text()) or contains(text(), 'Base Layer')" >
+                            <xsl:if test="not(text()) or text() = $doubleQuote or contains(text(), 'Base Layer')" >
                     6
                             </xsl:if>
                             <xsl:if test="contains(text(), 'Above')" >
@@ -453,10 +454,11 @@ Created By: Travis Berthelot
                         <xsl:if test="position() = last()" >
                             //createByNameGDObject - //zOrder - <xsl:value-of select="zOrder" />
                             //last=<xsl:value-of select="text()" /> (Base Layer is emtpy)
+                            <xsl:variable name="doubleQuote" >""</xsl:variable>
                             <xsl:if test="contains(text(), 'Below')" >
                     5
                             </xsl:if>
-                            <xsl:if test="not(text()) or contains(text(), 'Base Layer')" >
+                            <xsl:if test="not(text()) or text() = $doubleQuote or contains(text(), 'Base Layer')" >
                     6
                             </xsl:if>
                             <xsl:if test="contains(text(), 'Above')" >
@@ -629,10 +631,11 @@ Created By: Travis Berthelot
                         <xsl:if test="position() = last()" >
                             //createByNameGDObject3 - //zOrder - <xsl:value-of select="zOrder" />
                             //last=<xsl:value-of select="text()" /> (Base Layer is emtpy)
+                            <xsl:variable name="doubleQuote" >""</xsl:variable>
                             <xsl:if test="contains(text(), 'Below')" >
                     5
                             </xsl:if>
-                            <xsl:if test="not(text()) or contains(text(), 'Base Layer')" >
+                            <xsl:if test="not(text()) or text() = $doubleQuote or contains(text(), 'Base Layer')" >
                     6
                             </xsl:if>
                             <xsl:if test="contains(text(), 'Above')" >
