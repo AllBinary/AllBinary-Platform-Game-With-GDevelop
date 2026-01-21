@@ -25,11 +25,11 @@ public class GDJSONGeneratorBase {
     
     protected final GDProjectStrings gdProjectStrings = GDProjectStrings.getInstance();
     
-    private final String LEVEL = "Level";
+    protected final String LEVEL = "Level";
     
     private final String LAYOUT = "Layout: ";
     
-    private final String PROCESSING_LAYOUT = "Processing Layout: ";
+    protected final String PROCESSING_LAYOUT = "Processing Layout: ";
     
     public void processLayout(final JSONObject jsonObject) throws Exception {
         
@@ -46,10 +46,7 @@ public class GDJSONGeneratorBase {
             jsonObject = jsonArray.getJSONObject(index);
             value = jsonObject.getString(this.gdProjectStrings.NAME);
             System.out.println(LAYOUT + value);
-            if(value.indexOf(LEVEL) >= 0) {
-                System.out.println(PROCESSING_LAYOUT + value);
-                this.processLayout(jsonObject);
-            }
+            this.processLayout(jsonObject);
         }
         
     }

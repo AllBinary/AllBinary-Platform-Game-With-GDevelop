@@ -168,9 +168,13 @@ public class ReduceObjectsForTesting extends GDJSONGeneratorBase {
     }
 
     public void processLayout(final JSONObject jsonObject) {
-        this.reduceObjectGroups(jsonObject);
-        this.reduceObjects(jsonObject);
-        this.reduceVariables(jsonObject);
+        final String value = jsonObject.getString(this.gdProjectStrings.NAME);
+        if(value.indexOf(LEVEL) >= 0) {
+            System.out.println(PROCESSING_LAYOUT + value);
+            this.reduceObjectGroups(jsonObject);
+            this.reduceObjects(jsonObject);
+            this.reduceVariables(jsonObject);
+        }        
     }
 
     public static void main(String[] args) throws Exception
@@ -180,7 +184,8 @@ public class ReduceObjectsForTesting extends GDJSONGeneratorBase {
         
         new UpdateEnemyExclusionRatio().process(gameAsConfigurationJSONObject);
         new ReduceObjectsForTesting().process(gameAsConfigurationJSONObject);
-        gdJSONPersistence.save(gameAsConfigurationJSONObject);
+        final GDToolStrings gdToolStrings = GDToolStrings.getInstance();
+        gdJSONPersistence.save(gdToolStrings.ROOT_PATH + "game_updated.json", gameAsConfigurationJSONObject);
     }
     
 }

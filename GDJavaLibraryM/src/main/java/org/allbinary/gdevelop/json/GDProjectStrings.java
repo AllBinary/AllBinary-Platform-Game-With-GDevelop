@@ -204,6 +204,7 @@ public class GDProjectStrings
     public final String ALWAYS_LOADED = "alwaysLoaded";
     public final String SMOOTHED = "smoothed";
     
+    public final String TEXTURE = "texture";
     public final String ANIMATIONS = "animations";
     public final String USE_MULTIPLE_DIRECTIONS = "useMultipleDirections";
     

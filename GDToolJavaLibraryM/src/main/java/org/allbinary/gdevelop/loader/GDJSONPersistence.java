@@ -51,12 +51,12 @@ public class GDJSONPersistence {
         return gameAsConfigurationJSONObject;
     }
     
-    public void save(final JSONObject gameAsConfigurationJSONObject) throws Exception {
+    public void save(final String saveFilePath, final JSONObject gameAsConfigurationJSONObject) throws Exception {
         
         final byte[] byteArray = gameAsConfigurationJSONObject.toString(2).getBytes();
         System.out.println("Saving bytes: " + byteArray.length);
         
-        final FileOutputStream outputStream = new FileOutputStream(gdToolStrings.ROOT_PATH + "game_updated.json");
+        final FileOutputStream outputStream = new FileOutputStream(saveFilePath);
                 
         outputStream.write(byteArray);
         
