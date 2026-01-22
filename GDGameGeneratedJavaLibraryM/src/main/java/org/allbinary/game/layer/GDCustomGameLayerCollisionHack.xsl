@@ -130,10 +130,6 @@ Created By: Travis Berthelot
                     
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //name=<xsl:value-of select="$name" /> <xsl:if test="string-length($name) = 0" >(Empty Name)</xsl:if>
-                    <xsl:if test="not(string-length($name) > 0 or $typeValue = 'Create' or $typeValue = 'PlaySoundOnChannel')" >
-                        //Currently Skipped
-                        ...
-                    </xsl:if>
                     <xsl:if test="$typeValue = 'Create'" >
                         //Currently not Skipped
                     //Using ObjectsGroups - <xsl:value-of select="$foundCollisionNP" /> - Create
