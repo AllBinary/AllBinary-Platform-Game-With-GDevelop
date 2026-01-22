@@ -454,6 +454,18 @@ Created By: Travis Berthelot
                     <xsl:if test="not(contains($caller, 'external'))" >
                     <xsl:variable name="gameLayerName" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //caller=<xsl:value-of select="$caller" /> - //hackProcessing - //Action - //Delete - call
+                    
+                <xsl:variable name="hasObjectGroup" >
+                    <xsl:for-each select="//objectsGroups" >
+                        <xsl:if test="name = $gameLayerName" >found</xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                    
+                    <xsl:if test="contains($hasObjectGroup, 'found')" >
+                    //TWB - skip processing delete on object group for now
+                    ...
+                    </xsl:if>
+                    <xsl:if test="not(contains($hasObjectGroup, 'found'))" >
                     if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.size() != 0) {
 
                     final GDGameLayer <xsl:value-of select="$gameLayerName" />GDGameLayer = (GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$gameLayerName" />GDGameLayerList.get(0);
@@ -464,6 +476,8 @@ Created By: Travis Berthelot
                     }
 
                     }
+                    </xsl:if>
+
                         </xsl:if>
                 </xsl:if>
 

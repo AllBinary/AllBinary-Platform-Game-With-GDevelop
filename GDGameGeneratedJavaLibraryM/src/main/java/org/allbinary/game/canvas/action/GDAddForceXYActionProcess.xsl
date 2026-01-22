@@ -120,7 +120,7 @@ Created By: Travis Berthelot
                                         <xsl:if test="position() = 1" >
                                             <xsl:value-of select="text()" />GDGameLayer.AddForce(</xsl:if>
                                         <xsl:if test="position() != 1 and position() != last()" >
-                                            <xsl:value-of select="text()" /><xsl:if test="position() = 2" >,</xsl:if>
+                                            <xsl:value-of select="text()" /><xsl:if test="position() = 2" >, (int)</xsl:if>
                                         </xsl:if>
                                         <xsl:if test="position() = last()" >
                                             );

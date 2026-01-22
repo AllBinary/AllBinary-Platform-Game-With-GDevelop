@@ -22,17 +22,39 @@ Created By: Travis Berthelot
         <xsl:param name="createdObjectsAsString" />
     
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
+                    
+                <xsl:variable name="hasObjectGroup" >
+                    <xsl:for-each select="//objectsGroups" >
+                        <xsl:if test="name = $name" >found</xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                    
                     //Opacity - action
                     @Override
                     public boolean process() throws Exception {
                         super.processStats();
                         
-                        <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >final int size = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size();</xsl:if></xsl:for-each>
+                        //name=<xsl:value-of select="$name" />
+
+                    <xsl:if test="contains($hasObjectGroup, 'found')" >
+                    final int size3 = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.size();
+                    for(int index3 = 0; index3 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size3; index3++) {
+                    final BasicArrayList gdGameLayerList = (BasicArrayList) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerListOfList.get(index3);
+                    </xsl:if>
+                    <xsl:if test="not(contains($hasObjectGroup, 'found'))" >
+                    final BasicArrayList gdGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="object" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$name" />GDGameLayerList;
+                    </xsl:if>
+
+                        final int size = gdGameLayerList.size();
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-                            <xsl:for-each select="parameters" ><xsl:if test="position() = 1" >final GDGameLayer gameLayer = (((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index)));</xsl:if></xsl:for-each>
+                            final GDGameLayer gameLayer = (((GDGameLayer) gdGameLayerList.get(index)));
                             this.processGD(gameLayer, null, globals.graphics);
                             gameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
                         }
+
+                    <xsl:if test="contains($hasObjectGroup, 'found')" >
+                        }
+                    </xsl:if>
 
                         return true;
                     }
