@@ -130,7 +130,7 @@ Created By: Travis Berthelot
                     
                     <xsl:variable name="name" ><xsl:for-each select="parameters" ><xsl:if test="position() = 1" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each></xsl:variable>
                     //name=<xsl:value-of select="$name" /> <xsl:if test="string-length($name) = 0" >(Empty Name)</xsl:if>
-                    <xsl:if test="$typeValue = 'Create'" >
+<!--                    <xsl:if test="$typeValue = 'Create'" >
                         //Currently not Skipped
                     //Using ObjectsGroups - <xsl:value-of select="$foundCollisionNP" /> - Create
                     if(<xsl:for-each select="//objectsGroups" >
@@ -140,8 +140,7 @@ Created By: Travis Berthelot
                         this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                     }
                     </xsl:if>
-<!--                    <xsl:if test="string-length($name) > 0" >-->
-                    <xsl:if test="$typeValue != 'Create'" >
+                    <xsl:if test="$typeValue != 'Create'" >-->
                     <xsl:if test="//objectsGroups/name/text() = $foundCollisionNP" >
                     //Using CollisionNP - ObjectsGroups - <xsl:value-of select="$foundCollisionNP" /> - <xsl:for-each select="//objectsGroups" ><xsl:if test="name = $foundCollisionNP" ><xsl:for-each select="objects" ><xsl:value-of select="name" />, </xsl:for-each></xsl:if></xsl:for-each>
                     if(<xsl:for-each select="//objectsGroups" >
@@ -156,7 +155,7 @@ Created By: Travis Berthelot
 
                         this.<xsl:value-of select="$foundCollisionNP" /><xsl:value-of select="$foundCollisionNP2" /><xsl:value-of select="$nodeId" />CollisionList.add(gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                     }
-                    </xsl:if>
+<!--                    </xsl:if>-->
                 </xsl:for-each>
                 <xsl:for-each select="events" >
                     
