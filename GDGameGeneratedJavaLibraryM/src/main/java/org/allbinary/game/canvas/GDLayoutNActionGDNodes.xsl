@@ -177,6 +177,7 @@ Created By: Travis Berthelot
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final PointFactory pointFactory = PointFactory.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
+                        private final String EMPTY_STRING = stringUtil.EMPTY_STRING;
                         private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
                         private final VirtualKeyboardEventHandler virtualKeyboardEventHandler = VirtualKeyboardEventHandler.getInstance();
                         private final SmallBasicColorCacheFactory smallBasicColorCacheFactory = SmallBasicColorCacheFactory.getInstance();
@@ -381,7 +382,22 @@ Created By: Travis Berthelot
                         
                         return gameGlobalsFactory.point.getY();
                     }
-                    
+
+                    public int CameraX(final String string, int value) {
+                        
+                        return 0;
+                    }
+
+                    public int CameraY(final String string, int value) {
+                        
+                        return 0;
+                    }
+
+                    public int CameraWidth(final String string, int value) {
+                        
+                        return 0;
+                    }
+
                     public long TimerElapsedTime(final TimeDelayHelper timeDelayHelper) {
                         return timeDelayHelper.getElapsed(globals.globalsGameTickTimeDelayHelper.lastStartTime) / 1000;
                     }

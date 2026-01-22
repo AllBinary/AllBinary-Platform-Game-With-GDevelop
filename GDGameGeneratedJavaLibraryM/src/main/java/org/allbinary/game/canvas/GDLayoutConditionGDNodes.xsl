@@ -144,6 +144,7 @@ Created By: Travis Berthelot
                         private final NullUtil nullUtil = NullUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
+                        private final String EMPTY_STRING = stringUtil.EMPTY_STRING;
                         private final TouchScreenFactory touchScreenFactory = TouchScreenFactory.getInstance();
                         private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
                         private final RectangleCollisionUtil rectangleCollisionUtil = RectangleCollisionUtil.getInstance();
@@ -315,6 +316,21 @@ Created By: Travis Berthelot
                     public int MouseY(final String string, int value) {
                         
                         return gameGlobalsFactory.point.getY();
+                    }
+
+                    public int CameraX(final String string, int value) {
+                        
+                        return 0;
+                    }
+
+                    public int CameraY(final String string, int value) {
+                        
+                        return 0;
+                    }
+
+                    public int CameraWidth(final String string, int value) {
+                        
+                        return 0;
                     }
 
                     public int floor(final int value) {

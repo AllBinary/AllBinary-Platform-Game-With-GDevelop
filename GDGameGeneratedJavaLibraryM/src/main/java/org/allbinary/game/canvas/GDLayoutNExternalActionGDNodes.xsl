@@ -142,6 +142,7 @@ Created By: Travis Berthelot
                         protected final LogUtil logUtil = LogUtil.getInstance();
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
+                        private final String EMPTY_STRING = stringUtil.EMPTY_STRING;
                         private final NullUtil nullUtil = NullUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
@@ -336,6 +337,21 @@ Created By: Travis Berthelot
                         return gameGlobalsFactory.point.getY();
                     }
                     
+                    public int CameraX(final String string, int value) {
+                        
+                        return 0;
+                    }
+
+                    public int CameraY(final String string, int value) {
+                        
+                        return 0;
+                    }
+
+                    public int CameraWidth(final String string, int value) {
+                        
+                        return 0;
+                    }
+
                     public long TimerElapsedTime(final TimeDelayHelper timeDelayHelper) {
                         return timeDelayHelper.getElapsed(globals.globalsGameTickTimeDelayHelper.lastStartTime) / 1000;
                     }

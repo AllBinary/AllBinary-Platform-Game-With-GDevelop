@@ -47,39 +47,46 @@ Created By: Travis Berthelot
 
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
-            <xsl:if test="$typeValue = 'Sprite'" >
+            <xsl:choose>
+            <xsl:when test="$typeValue = 'Sprite'" >
                 this.add<xsl:value-of select="name" />SpriteAnimations(imageCache, level);
-            </xsl:if>
+            </xsl:when>
 
-            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+            <xsl:when test="$typeValue = 'TileMap::TileMap'" >
                 this.add<xsl:value-of select="name" />TileMapAnimations(imageCache, level);
-            </xsl:if>
+            </xsl:when>
 
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
+            <xsl:when test="$typeValue = 'TileMap::CollisionMask'" >
                 this.add<xsl:value-of select="name" />TileMapCollisionMaskAnimations(imageCache, level);
-            </xsl:if>
+            </xsl:when>
 
-            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:when test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
                 this.add<xsl:value-of select="name" />ParticleSystemAnimations(imageCache, level);
-            </xsl:if>
+            </xsl:when>
 
-            <xsl:if test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider'" >
+            <xsl:when test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider'" >
                 this.add<xsl:value-of select="name" />PanelSpriteSliderAnimations(imageCache, level);
-            </xsl:if>
+            </xsl:when>
 
-            <xsl:if test="$typeValue = 'TextObject::Text'" >
+            <xsl:when test="$typeValue = 'TextObject::Text'" >
                 this.add<xsl:value-of select="name" />TextObjectAnimations(imageCache, level);
-            </xsl:if>
+            </xsl:when>
 
-            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
+            <xsl:when test="$typeValue = 'TextInput::TextInputObject'" >
                 this.add<xsl:value-of select="name" />TextInputObjectAnimations(imageCache, level);
-            </xsl:if>
+            </xsl:when>
 
 <!-- 
-            <xsl:if test="$typeValue = 'TextEntryObject::TextEntry'" >
+            <xsl:when test="$typeValue = 'TextEntryObject::TextEntry'" >
                 <xsl:variable name="stringValue" select="string" />
-            </xsl:if>
+            </xsl:when>
 -->
+            <xsl:otherwise>
+                <xsl:text>&#10;</xsl:text><xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+            </xsl:otherwise>
+
+            </xsl:choose>
+
             </xsl:if>
 
         </xsl:for-each>
@@ -109,7 +116,8 @@ Created By: Travis Berthelot
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="$typeValue" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
             <xsl:variable name="hasMoreThanOneImage" ><xsl:for-each select="animations" ><xsl:for-each select="directions/sprites/image" ><xsl:if test="position() != 1" >found</xsl:if></xsl:for-each></xsl:for-each></xsl:variable>
 
-            <xsl:if test="$typeValue = 'Sprite'" >
+            <xsl:choose>
+            <xsl:when test="$typeValue = 'Sprite'" >
                 <xsl:variable name="stringValue" select="string" />
             private void add<xsl:value-of select="name" />SpriteAnimations(final ImageCache imageCache, final int level) throws Exception {
                 <xsl:if test="not(contains($name, 'btn_'))" >
@@ -473,9 +481,9 @@ Created By: Travis Berthelot
                 //objectsGroupsGDGameLayer - END
                 </xsl:if>
             }
-            </xsl:if>
+            </xsl:when>
 
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:when test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
             private void add<xsl:value-of select="name" />TileMapAnimations(final ImageCache imageCache, final int level) throws Exception {
 
                 //Animation Total: <xsl:value-of select="count(animations)" />
@@ -583,9 +591,9 @@ Created By: Travis Berthelot
                 threedTiledLayerResourcesFactory.add(level, raceTrackThreedDataOne);
                 
             }
-            </xsl:if>
+            </xsl:when>
             
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
+            <xsl:when test="$typeValue = 'TileMap::CollisionMask'" >
             private void add<xsl:value-of select="name" />TileMapCollisionMaskAnimations(final ImageCache imageCache, final int level) throws Exception {
 
                 //Animation Total: <xsl:value-of select="count(animations)" />
@@ -664,9 +672,9 @@ Created By: Travis Berthelot
                 </xsl:for-each>
                 //objectsGroupsGDGameLayer - END
             }
-            </xsl:if>
+            </xsl:when>
 
-            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:when test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
             private void add<xsl:value-of select="name" />ParticleSystemAnimations(final ImageCache imageCache, final int level) throws Exception {
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:if test="not(contains($name, 'btn_'))" >
@@ -795,14 +803,14 @@ Created By: Travis Berthelot
                 //objectsGroupsGDGameLayer - END
                 </xsl:if>
                 }
-            </xsl:if>
+            </xsl:when>
 
-            <xsl:if test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider'" >
+            <xsl:when test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider'" >
                 private void add<xsl:value-of select="name" />PanelSpriteSliderAnimations(final ImageCache imageCache, final int level) throws Exception {
                 }
-            </xsl:if>
+            </xsl:when>
 
-            <xsl:if test="$typeValue = 'TextObject::Text'" >
+            <xsl:when test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="stringValue2" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&quot;'" /></xsl:with-param><xsl:with-param name="replacementText" >\"</xsl:with-param></xsl:call-template></xsl:variable>
                 <xsl:variable name="multilineString" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$stringValue2" /></xsl:with-param><xsl:with-param name="find" ><xsl:value-of select="'&#10;'" /></xsl:with-param><xsl:with-param name="replacementText" >\n").append("</xsl:with-param></xsl:call-template></xsl:variable>
@@ -856,9 +864,9 @@ Created By: Travis Berthelot
 
                 //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
             }
-            </xsl:if>
+            </xsl:when>
 
-            <xsl:if test="$typeValue = 'TextInput::TextInputObject'" >
+            <xsl:when test="$typeValue = 'TextInput::TextInputObject'" >
             private void add<xsl:value-of select="name" />TextInputObjectAnimations(final ImageCache imageCache, final int level) throws Exception {
             
                 final int <xsl:value-of select="name" />TextInputAnimationSize = <xsl:value-of select="content/fontSize" /> / 2;
@@ -903,7 +911,13 @@ Created By: Travis Berthelot
                 //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
             
             }
-            </xsl:if>
+            </xsl:when>
+            
+            <xsl:otherwise>
+                <xsl:text>&#10;</xsl:text><xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+            </xsl:otherwise>
+            
+            </xsl:choose>
 
             </xsl:if>
 
@@ -927,7 +941,8 @@ Created By: Travis Berthelot
             <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
             <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
 
-            <xsl:if test="$typeValue = 'Sprite'" >
+            <xsl:choose>
+            <xsl:when test="$typeValue = 'Sprite'" >
             private void add<xsl:value-of select="name" />SpriteAnimations(final ImageCache imageCache) throws Exception {
 
                 <xsl:variable name="stringValue" select="string" />
@@ -1030,10 +1045,10 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                 </xsl:for-each>
                 //objectsGroupsGDGameLayer - END
-            }                
-            </xsl:if>
+            }
+            </xsl:when>
 
-            <xsl:if test="$typeValue = 'TileMap::TileMap'" >
+            <xsl:when test="$typeValue = 'TileMap::TileMap'" >
                 <xsl:variable name="stringValue" select="string" />
             private void add<xsl:value-of select="name" />TileMapAnimations(final ImageCache imageCache, final int level) throws Exception {
 
@@ -1120,9 +1135,9 @@ Created By: Travis Berthelot
                 threedTiledLayerResourcesFactory.add(level, raceTrackThreedDataOne);
                 
             }
-            </xsl:if>
+            </xsl:when>
 
-            <xsl:if test="$typeValue = 'TileMap::CollisionMask'" >
+            <xsl:when test="$typeValue = 'TileMap::CollisionMask'" >
                 <xsl:variable name="stringValue" select="string" />
             private void add<xsl:value-of select="name" />TileMapCollisionMaskAnimations(final ImageCache imageCache, final int level) throws Exception {
 
@@ -1201,9 +1216,9 @@ Created By: Travis Berthelot
                 </xsl:for-each>
                 //objectsGroupsGDGameLayer - END
             }
-            </xsl:if>
+            </xsl:when>
 
-            <xsl:if test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:when test="$typeValue = 'ParticleSystem::ParticleEmitter'" >
             private void add<xsl:value-of select="name" />ParticleSystemAnimations(final ImageCache imageCache, final int level) throws Exception {
                 <xsl:variable name="stringValue" select="string" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
@@ -1279,10 +1294,10 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                 </xsl:for-each>
                 //objectsGroupsGDGameLayer - END
-            }    
-            </xsl:if>
+            }
+            </xsl:when>
             
-            <xsl:if test="$typeValue = 'TextObject::Text'" >
+            <xsl:when test="$typeValue = 'TextObject::Text'" >
                 <xsl:variable name="stringValue" select="string" />
             private void add<xsl:value-of select="name" />TextObjectAnimations(final ImageCache imageCache) throws Exception {
 
@@ -1299,7 +1314,13 @@ Created By: Travis Berthelot
                 */
 
             }
-            </xsl:if>
+            </xsl:when>
+
+            <xsl:otherwise>
+                <xsl:text>&#10;</xsl:text><xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+            </xsl:otherwise>
+                        
+            </xsl:choose>
 
             </xsl:if>
 

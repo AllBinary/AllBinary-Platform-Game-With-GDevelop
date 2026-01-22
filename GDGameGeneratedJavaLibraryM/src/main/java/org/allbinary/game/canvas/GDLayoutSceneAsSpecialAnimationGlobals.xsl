@@ -137,6 +137,7 @@ Created By: Travis Berthelot
                         protected final LogUtil logUtil = LogUtil.getInstance();
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
+                        private final String EMPTY_STRING = stringUtil.EMPTY_STRING;
                         private final NullUtil nullUtil = NullUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
@@ -565,6 +566,21 @@ Created By: Travis Berthelot
                         return value;
                     }
                     
+                    public int CameraX(final String string, int value) {
+                        
+                        return 0;
+                    }
+
+                    public int CameraY(final String string, int value) {
+                        
+                        return 0;
+                    }
+
+                    public int CameraWidth(final String string, int value) {
+                        
+                        return 0;
+                    }
+
                     public String ToString(final int value) {
                         //return Integer.toString(value);
                         return smallIntegerSingletonFactory.getString(value);
