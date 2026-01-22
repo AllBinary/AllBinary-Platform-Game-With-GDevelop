@@ -15,7 +15,7 @@ Created By: Travis Berthelot
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <xsl:template name="gameLayer" >
+    <xsl:template name="usedBySplitToGetGameLayer" >
         <xsl:param name="name" />
         <xsl:param name="iteration" />
 

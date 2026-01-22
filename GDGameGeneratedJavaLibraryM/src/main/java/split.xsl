@@ -14,7 +14,7 @@
             <xsl:variable name="nextName" select="substring-before(concat($names, ','), ',')" />
 
             <xsl:if test="$templateName = 'gameLayer'" >
-                <xsl:call-template name="gameLayer" >
+                <xsl:call-template name="usedBySplitToGetGameLayer" >
                     <xsl:with-param name="name" >
                         <xsl:value-of select="$nextName"/>
                     </xsl:with-param>
