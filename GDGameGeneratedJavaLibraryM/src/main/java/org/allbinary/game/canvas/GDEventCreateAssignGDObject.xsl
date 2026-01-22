@@ -366,6 +366,7 @@ Created By: Travis Berthelot
                                                 
                         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$gameLayerName" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$gameLayerName" /></xsl:variable>
 
+                //hasObjectGroup=<xsl:value-of select="$hasObjectGroup" />
                 <xsl:if test="contains($hasObjectGroup, 'found')" >
                     //This code should probably never be used - it is here to compile with at least some possible logic 2
                     final BasicArrayList gdGameLayerList = (BasicArrayList) <xsl:call-template name="globals" >
