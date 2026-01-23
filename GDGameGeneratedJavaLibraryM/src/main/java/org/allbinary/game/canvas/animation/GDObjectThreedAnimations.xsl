@@ -81,6 +81,16 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
             </xsl:when>
 -->
+
+            <xsl:when test="$typeValue = 'PrimitiveDrawing::Drawer'" >
+                <xsl:text>&#10;</xsl:text>
+                //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+            </xsl:when>
+            <xsl:when test="$typeValue = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
+                <xsl:text>&#10;</xsl:text>
+                //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+            </xsl:when>
+
             <xsl:otherwise>
                 <xsl:text>&#10;</xsl:text><xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
             </xsl:otherwise>
@@ -483,7 +493,7 @@ Created By: Travis Berthelot
             }
             </xsl:when>
 
-            <xsl:when test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:when test="$typeValue = 'TileMap::TileMap' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
             private void add<xsl:value-of select="name" />TileMapAnimations(final ImageCache imageCache, final int level) throws Exception {
 
                 //Animation Total: <xsl:value-of select="count(animations)" />
@@ -913,6 +923,15 @@ Created By: Travis Berthelot
             }
             </xsl:when>
             
+            <xsl:when test="$typeValue = 'PrimitiveDrawing::Drawer'" >
+                <xsl:text>&#10;</xsl:text>
+                //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+            </xsl:when>
+            <xsl:when test="$typeValue = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
+                <xsl:text>&#10;</xsl:text>
+                //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+            </xsl:when>
+
             <xsl:otherwise>
                 <xsl:text>&#10;</xsl:text><xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
             </xsl:otherwise>
@@ -1314,6 +1333,15 @@ Created By: Travis Berthelot
                 */
 
             }
+            </xsl:when>
+
+            <xsl:when test="$typeValue = 'PrimitiveDrawing::Drawer'" >
+                <xsl:text>&#10;</xsl:text>
+                //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+            </xsl:when>
+            <xsl:when test="$typeValue = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
+                <xsl:text>&#10;</xsl:text>
+                //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
             </xsl:when>
 
             <xsl:otherwise>

@@ -59,6 +59,16 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
             </xsl:when>
 -->
+
+            <xsl:when test="$typeValue = 'PrimitiveDrawing::Drawer'" >
+                <xsl:text>&#10;</xsl:text>
+                //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+            </xsl:when>
+            <xsl:when test="$typeValue = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
+                <xsl:text>&#10;</xsl:text>
+                //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+            </xsl:when>
+
             <xsl:otherwise>
                 <xsl:text>&#10;</xsl:text><xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
             </xsl:otherwise>
@@ -895,6 +905,15 @@ Created By: Travis Berthelot
 
                 //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
 
+            </xsl:when>
+
+            <xsl:when test="$typeValue = 'PrimitiveDrawing::Drawer'" >
+                <xsl:text>&#10;</xsl:text>
+                //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
+            </xsl:when>
+            <xsl:when test="$typeValue = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
+                <xsl:text>&#10;</xsl:text>
+                //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTED
             </xsl:when>
 
             <xsl:otherwise>
