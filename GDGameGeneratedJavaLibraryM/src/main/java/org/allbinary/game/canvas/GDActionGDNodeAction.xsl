@@ -55,6 +55,9 @@ Created By: Travis Berthelot
     
     <xsl:import href="./action/GDResetObjectTimerActionProcess.xsl" />
 
+    <xsl:import href="./action/GDCameraXActionProcess.xsl" />
+    <xsl:import href="./action/GDCameraYActionProcess.xsl" />
+    
     <xsl:import href="./action/GDOpacityActionProcess.xsl" />
     <xsl:import href="./action/GDCreateActionProcess.xsl" />
     <xsl:import href="./action/GDCreateByNameActionProcess.xsl" />
@@ -2092,6 +2095,26 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
+
+                <xsl:when test="$typeValue = 'CameraX'" >
+                    
+                    <xsl:call-template name="cameraXActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+                <xsl:when test="$typeValue = 'CameraY'" >
+                    
+                    <xsl:call-template name="cameraYActionProcess" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+
                 <xsl:otherwise>
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
                 </xsl:otherwise>
