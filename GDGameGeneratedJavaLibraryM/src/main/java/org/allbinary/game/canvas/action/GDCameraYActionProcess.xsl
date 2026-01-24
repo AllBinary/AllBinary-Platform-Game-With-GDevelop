@@ -27,7 +27,7 @@ Created By: Travis Berthelot
                         @Override
                         public boolean process() throws Exception {
 
-                            logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                            //logUtil.put(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
                             final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                             final AllBinaryGameLayerManager allBinaryGameLayerManager = abToGBUtil.allBinaryGameLayerManager;
