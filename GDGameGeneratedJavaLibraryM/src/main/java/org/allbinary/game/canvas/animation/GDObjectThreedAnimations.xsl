@@ -27,7 +27,7 @@ Created By: Travis Berthelot
         <xsl:variable name="foundTileMap" >
             <xsl:for-each select="objects" >
                 <xsl:variable name="typeValue" select="type" />
-                <xsl:if test="$typeValue = 'TileMap::TileMap'" >found</xsl:if>
+                <xsl:if test="$typeValue = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >found</xsl:if>
             </xsl:for-each>
         </xsl:variable>
 
@@ -52,7 +52,7 @@ Created By: Travis Berthelot
                 this.add<xsl:value-of select="name" />SpriteAnimations(imageCache, level);
             </xsl:when>
 
-            <xsl:when test="$typeValue = 'TileMap::TileMap'" >
+            <xsl:when test="$typeValue = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
                 this.add<xsl:value-of select="name" />TileMapAnimations(imageCache, level);
             </xsl:when>
 
@@ -493,7 +493,7 @@ Created By: Travis Berthelot
             }
             </xsl:when>
 
-            <xsl:when test="$typeValue = 'TileMap::TileMap' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
+            <xsl:when test="$typeValue = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" >
             private void add<xsl:value-of select="name" />TileMapAnimations(final ImageCache imageCache, final int level) throws Exception {
 
                 //Animation Total: <xsl:value-of select="count(animations)" />
@@ -571,9 +571,10 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                 </xsl:for-each>
                 //objectsGroupsGDGameLayer - END
-                                
+
                 final ThreedTiledLayerResourcesFactory threedTiledLayerResourcesFactory = ThreedTiledLayerResourcesFactory.getInstance();
 
+                <xsl:if test="not(type = 'TiledSpriteObject::TiledSprite')" >
                 final int columns = <xsl:value-of select="/game/properties/tileMap/columns" />;
                 final int rows = <xsl:value-of select="/game/properties/tileMap/rows" />;
                 final int total = columns * rows;
@@ -599,7 +600,7 @@ Created By: Travis Berthelot
                 raceTrackThreedDataOne.setAnimationArray(animationArray);
 
                 threedTiledLayerResourcesFactory.add(level, raceTrackThreedDataOne);
-                
+                </xsl:if>
             }
             </xsl:when>
             
@@ -1067,7 +1068,7 @@ Created By: Travis Berthelot
             }
             </xsl:when>
 
-            <xsl:when test="$typeValue = 'TileMap::TileMap'" >
+            <xsl:when test="$typeValue = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
                 <xsl:variable name="stringValue" select="string" />
             private void add<xsl:value-of select="name" />TileMapAnimations(final ImageCache imageCache, final int level) throws Exception {
 

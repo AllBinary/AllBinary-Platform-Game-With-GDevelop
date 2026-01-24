@@ -117,7 +117,7 @@ Created By: Travis Berthelot
 
                             </xsl:if>                            
 
-                            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap'" >
+                            <xsl:if test="$typeValue = 'TileMap::CollisionMask' or $typeValue = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
                         //caller=<xsl:value-of select="$caller" /> - //objectGDObjectGDNodes - //Objects - //GDNode - //collide - //TileMap::TileMap - //<xsl:value-of select="$name" />
                         if(gameGlobals.nodeArray[gameGlobals.PARAM_NODE_<xsl:value-of select="$actionNodeId" />] != null) {
                             throw new RuntimeException("<xsl:value-of select="$actionNodeId" />");

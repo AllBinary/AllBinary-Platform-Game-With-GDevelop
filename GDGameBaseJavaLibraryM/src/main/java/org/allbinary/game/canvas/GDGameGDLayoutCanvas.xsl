@@ -500,7 +500,7 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         progressCanvas.addPortion(portion, "Set Background");
 
-        <xsl:variable name="hasOneOrMoreTileMaps" ><xsl:for-each select="objects" ><xsl:if test="type = 'TileMap::TileMap'" >found</xsl:if></xsl:for-each></xsl:variable>
+        <xsl:variable name="hasOneOrMoreTileMaps" ><xsl:for-each select="objects" ><xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >found</xsl:if></xsl:for-each></xsl:variable>
         
         <xsl:if test="contains($hasOneOrMoreTileMaps, 'found')" >
         //Some games update backgrounds here

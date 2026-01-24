@@ -71,7 +71,7 @@ Created By: Travis Berthelot
             public final String[] <xsl:value-of select="$name" />ResourceArray;
                 </xsl:if>
 
-                <xsl:if test="type = 'TileMap::TileMap'" >
+                <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
             public final String[] <xsl:value-of select="$name" />ResourceArray;
             public final String[] <xsl:value-of select="name" />JSONResourceArray;
             </xsl:if>
@@ -130,7 +130,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="behaviors" ><xsl:if test="type = 'MirrorFillBarExtension::MirrorFillBarBehavior'" >found</xsl:if></xsl:for-each>
                 </xsl:variable>
                 
-            <xsl:if test="type = 'Sprite' or type = 'ParticleSystem::ParticleEmitter' or type = 'TileMap::TileMap' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >
+            <xsl:if test="type = 'Sprite' or type = 'ParticleSystem::ParticleEmitter' or type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >
                 //type found
                 <xsl:variable name="stringValue" select="string" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
@@ -214,7 +214,7 @@ Created By: Travis Berthelot
                 };
                 </xsl:if>
 
-                <xsl:if test="type = 'TileMap::TileMap'" >
+                <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
                 this.<xsl:value-of select="name" />ResourceArray = new String[] {
                 <xsl:if test="content" >
                     //TileMap::TileMap:content
@@ -252,7 +252,7 @@ Created By: Travis Berthelot
                 this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);
             </xsl:if>
                         
-            <xsl:if test="type = 'TileMap::TileMap'" >
+            <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 //TileMap::TileMap - JSON

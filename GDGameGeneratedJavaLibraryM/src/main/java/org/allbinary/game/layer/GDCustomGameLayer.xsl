@@ -213,7 +213,7 @@ Created By: Travis Berthelot
             <xsl:variable name="layoutIndex" select="position() - 1" />
             <xsl:for-each select="objects" >                
                 <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
-                <xsl:if test="type = 'TileMap::TileMap'" >found</xsl:if>
+                <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >found</xsl:if>
                 </xsl:if>
             </xsl:for-each>
         </xsl:for-each>
@@ -430,7 +430,7 @@ Created By: Travis Berthelot
             <xsl:variable name="layoutIndex" select="position() - 1" />
             <xsl:for-each select="objects" >            
                 
-                <xsl:if test="type = 'TileMap::TileMap'" >
+                <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
                     
                         //final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                         //if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
@@ -562,6 +562,11 @@ Created By: Travis Berthelot
 
             if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                
+                <xsl:key name="uniqueValues" match="type" use="." />
+                <xsl:variable name="hasValues" ><xsl:for-each select="//objects/type[count(. | key('uniqueValues', .)[1]) = 1]" ><xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(text(), ':', '_')" /></xsl:with-param></xsl:call-template></xsl:for-each></xsl:variable>
+                
+                <xsl:if test="contains($hasValues, 'TILEMAP__TILEMAP')" >
                 if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
 
                 } else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
@@ -592,6 +597,7 @@ Created By: Travis Berthelot
                     }
                     }
                 }
+                </xsl:if>
             } else {
                 //logUtil.put(new StringMaker().append("Map was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move");
                 GeographicMapEventHandler.getInstance().addListener(this);
@@ -630,6 +636,7 @@ Created By: Travis Berthelot
 
             if(geographicMapInterfaceArray != BasicGeographicMap.NULL_BASIC_GEOGRAPHIC_MAP_ARRAY) {
                 final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                <xsl:if test="contains($hasValues, 'TILEMAP__TILEMAP')" >
                 if(this.gdObject.type == gameGlobals.TILEMAP__COLLISIONMASK) {
 
                 } else if(this.gdObject.type == gameGlobals.TILEMAP__TILEMAP) {
@@ -660,6 +667,7 @@ Created By: Travis Berthelot
                     }
                     }
                 }
+                </xsl:if>
             } else {
                 //logUtil.put(new StringMaker().append("Map was null: ").append(this.getName()).append(CommonSeps.getInstance().SPACE).append(this.gdObject.x).append(",").append(this.gdObject.y).append(" LayerManager: ").append(this.allBinaryGameLayerManagerP).toString(), this, "move2");
                 GeographicMapEventHandler.getInstance().addListener(this);

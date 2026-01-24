@@ -62,7 +62,7 @@ Created By: Travis Berthelot
                 <xsl:variable name="instancesAsString" >,<xsl:for-each select="instances" ><xsl:value-of select="layer" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                 <xsl:variable name="objectsAsString" >,<xsl:for-each select="/game/objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each>,<xsl:for-each select="objects" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:for-each></xsl:variable>
                     //$typeValue = 'TileMap::CollisionMask' or 
-                    //$typeValue = 'TileMap::TileMap' or //Not excluded anymore.
+                    //$typeValue = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite' or //Not excluded anymore.
                     //exclusionObjectsAsStringNotInUse=,<xsl:for-each select="objects" ><xsl:if test="contains(type, 'Collision')" ><xsl:value-of select="type" />:<xsl:value-of select="name" />,</xsl:if></xsl:for-each>
                 <xsl:variable name="exclusionObjectsAsString" ></xsl:variable>
                 

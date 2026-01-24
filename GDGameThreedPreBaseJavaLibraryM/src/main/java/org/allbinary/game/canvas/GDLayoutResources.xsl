@@ -94,20 +94,19 @@ Created By: Travis Berthelot
 
                     <xsl:variable name="foundTileMap" >
                     <xsl:for-each select="objects" >
-                        <xsl:variable name="typeValue" select="type" />
                         <xsl:variable name="name" select="name" />
                         <xsl:variable name="threedExclusionsFound" ><xsl:for-each select="/game/properties/threedExclusions" ><xsl:if test="name = $name" >found</xsl:if></xsl:for-each></xsl:variable>
-                        <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
-                            <xsl:if test="$typeValue = 'TileMap::TileMap'" >found</xsl:if>
+                         <xsl:if test="not(contains($threedExclusionsFound, 'found'))" >
+                            <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >found</xsl:if>
                         </xsl:if>
                     </xsl:for-each>
                     </xsl:variable>
-
+                    
                     <xsl:if test="contains($foundTileMap, 'found')" >
                     public final String MAP_CELL_MODEL = "/map_cell_model_obj";
+                    public final String MAP_CELL_MODEL_IMAGE = "<xsl:value-of select="/game/properties/map_cell_model_image" />";
                     </xsl:if>
 
-                    public final String MAP_CELL_MODEL_IMAGE = "/dungeon_b_0_0.png";
                     <xsl:for-each select="objects" >
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:variable name="name" select="name" />

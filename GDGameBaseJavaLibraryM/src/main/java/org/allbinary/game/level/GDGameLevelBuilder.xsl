@@ -104,13 +104,13 @@ import org.mapeditor.io.TiledJSONUtil;
 
                 <xsl:variable name="hasOneOrMoreTileMaps" >
                     <xsl:for-each select="objects" >
-                        <xsl:if test="type = 'TileMap::TileMap'" >found</xsl:if>
+                        <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >found</xsl:if>
                     </xsl:for-each>
                 </xsl:variable>
 
                 <xsl:variable name="tileMapGenerator" >
                     <xsl:for-each select="objects" >
-                        <xsl:if test="type = 'TileMap::TileMap'" >
+                        <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >
                             <xsl:if test="content" >
                                 //TileMap::TileMap:content - <xsl:value-of select="content/generator" />
                             </xsl:if>
@@ -210,7 +210,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="type = 'TileMap::TileMap'" >
-        
+    //TileMap::TileMap - create TileMap
     public TiledMap create<xsl:value-of select="name" />TiledMap(final TiledMap lastMap, final int[] tileSetImageHeightArray) {
 
     <xsl:call-template name="scale" >
@@ -347,6 +347,10 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
     }
             </xsl:if>
 
+            <xsl:if test="type = 'TiledSpriteObject::TiledSprite'" >
+    //TiledSpriteObject::TiledSprite - create TiledMap
+            </xsl:if>
+
         </xsl:for-each>
 
     public void init() throws Exception
@@ -395,6 +399,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="type = 'TileMap::TileMap'" >
+        //TileMap::TileMap - init
                 <xsl:variable name="stringValue" select="string" />
         if(true) {
                 //TileMap::TileMap - <xsl:value-of select="name" />
@@ -404,8 +409,13 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtableP().get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
         
         <xsl:variable name="imageWithExtension" select="content/tilemapAtlasImage" />
+        <xsl:if test="$imageWithExtension" >
         <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
         final int resourceIndex = imageCache.getIndex(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>);
+        </xsl:if>
+        <xsl:if test="not($imageWithExtension)" >
+        final int resourceIndex = imageCache.getIndex(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
+        </xsl:if>
         final int[] tileSetImageHeightArray = new int[] { GDLazyResources.getInstance().imageResourceHeightArray[resourceIndex] };
 
         Image tileSetImage = null;
@@ -471,6 +481,10 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         }
             </xsl:if>
+            
+            <xsl:if test="type = 'TiledSpriteObject::TiledSprite'" >
+            //TiledSpriteObject::TiledSprite - init
+            </xsl:if>
 
         </xsl:for-each>
 
@@ -531,6 +545,7 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
             //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
 
             <xsl:if test="type = 'TileMap::TileMap'" >
+    //TileMap::TileMap - initialization methods for TileMap
                 <xsl:if test="name = 'PlatformerMap'" >
 
     public boolean isAlreadyIncluded(final int[][] placementCellXIntArray, final int[][] placementCellYIntArray, final int[] placementCellTotal, final int indexX, final int indexY) {
@@ -1014,6 +1029,10 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         }
     }
                 </xsl:if>
+            </xsl:if>
+            
+            <xsl:if test="type = 'TiledSpriteObject::TiledSprite'" >
+                //TiledSpriteObject::TiledSprite - initialization methods for TileMap
             </xsl:if>
         </xsl:for-each>
 
