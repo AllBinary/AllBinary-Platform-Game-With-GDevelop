@@ -44,6 +44,7 @@ import org.allbinary.logic.math.ScaleFactorFactory;
 import org.allbinary.logic.string.StringUtil;
 import org.allbinary.math.FrameUtil;
 import org.allbinary.media.ScaleProperties;
+import org.allbinary.string.CommonSeps;
 import org.allbinary.util.BasicArrayList;
 import org.allbinary.view.ViewPosition;
 
@@ -789,6 +790,8 @@ public class GDGameLayer
     public void paintDebug(final Graphics graphics) {
         
         //graphics.drawString(this.getName(), x, y, 0);
+//        final StringMaker stringMaker = new StringMaker();
+//        final CommonSeps commonSeps = CommonSeps.getInstance();
 
 //        final int endX = (int) (this.x + (this.velocityInterface.getVelocityXBasicDecimalP().getUnscaled() / 10));
 //        final int endY = (int) (this.y + (this.velocityInterface.getVelocityYBasicDecimalP().getUnscaled() / 10));
@@ -805,14 +808,13 @@ public class GDGameLayer
 //        final ViewPosition viewPosition = this.getViewPosition();
 //        final int viewX = viewPosition.getX();
 //        final int viewY = viewPosition.getY();
+//        graphics.drawString(stringMaker.append(viewX).append(commonSeps.COMMA).append(viewY).toString(), x, y, 0);
         //logUtil.put("viewX: " + viewX + " viewY: " + viewY, this, "paint");
 //        this.basicSetColorUtil.setBasicColorP(graphics, BasicColorFactory.getInstance().PINK);
 //        graphics.drawRect(viewX - this.getHalfWidth(), viewY - this.getHalfHeight(), this.getWidth() * 2, this.getHeight() * 2);
 
         super.paintDebug(graphics);
 
-//        final StringMaker stringMaker = new StringMaker();
-//        final CommonSeps commonSeps = CommonSeps.getInstance();
 //        this.basicSetColorUtil.setBasicColorP(graphics, BasicColorFactory.getInstance().WHITE);
 //        graphics.drawString(stringMaker.append(c).append(commonSeps.COMMA).append(r).append(commonSeps.COLON).toString(), x + 5, y + 10, 0);        
 //        final GDGameLayer PlatformerMapGDGameLayer = (GDGameLayer) globals.PlatformerMapGDGameLayerList.get(0);

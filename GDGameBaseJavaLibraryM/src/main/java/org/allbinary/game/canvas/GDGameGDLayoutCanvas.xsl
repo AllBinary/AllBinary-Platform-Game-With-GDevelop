@@ -500,7 +500,8 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
 
         progressCanvas.addPortion(portion, "Set Background");
 
-        <xsl:variable name="hasOneOrMoreTileMaps" ><xsl:for-each select="objects" ><xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >found</xsl:if></xsl:for-each></xsl:variable>
+        <xsl:variable name="hasOneOrMoreTileMaps" ><xsl:for-each select="objects" ><xsl:if test="type = 'TileMap::TileMap'" >found</xsl:if></xsl:for-each></xsl:variable>
+        <xsl:variable name="hasOneOrMoreTiledSprites" ><xsl:for-each select="objects" ><xsl:if test="type = 'TiledSpriteObject::TiledSprite'" >found</xsl:if></xsl:for-each></xsl:variable>
         
         <xsl:if test="contains($hasOneOrMoreTileMaps, 'found')" >
         //Some games update backgrounds here
@@ -540,7 +541,11 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
             
         this.tileLayerPaintable = new PaintableLayerComposite(BasicGeographicMapUtil.getInstance().createAllBinaryTiledLayerArray(geographicMapInterfaceArray));
         </xsl:if>
-            
+
+        <xsl:if test="contains($hasOneOrMoreTiledSprites, 'found')" >
+        //this.tileLayerPaintable = new PaintableLayerComposite(BasicGeographicMapUtil.getInstance().createAllBinaryTiledLayerArray(geographicMapInterfaceArray));
+        </xsl:if>
+
         //this.playerLayer = ((GDGameLayerManager) this.getLayerManager()).getPlayerLayer();
 
         //DestroyedEventHandler.getInstance().addListener((EventListenerInterface) playerLayer);

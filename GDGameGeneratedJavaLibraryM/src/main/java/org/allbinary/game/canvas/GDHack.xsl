@@ -288,7 +288,7 @@ Created By: Travis Berthelot
             <xsl:text>&#10;</xsl:text>
             //Action - //<xsl:value-of select="type/value" /> - call h1
 
-            <xsl:if test="type/value = 'CameraX' or type/value = 'CameraY' or type/value = 'Cache' or type/value = 'Montre' or type/value = 'Show' or type/value = 'Hide' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'PlaySoundOnChannel' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue' or type/value = 'SetNumberVariable' or type/value = 'BuiltinExternalLayouts::CreateObjectsFromExternalLayout'" >
+            <xsl:if test="type/value = 'AddForceXY' or type/value = 'CameraX' or type/value = 'CameraY' or type/value = 'Cache' or type/value = 'Montre' or type/value = 'Show' or type/value = 'Hide' or type/value = 'SetGlobalVariableAsBoolean' or type/value = 'SetBooleanVariable' or type/value = 'PlaySoundCanal' or type/value = 'PlaySoundOnChannel' or type/value = 'TextContainerCapability::TextContainerBehavior::SetValue' or type/value = 'SetNumberVariable' or type/value = 'BuiltinExternalLayouts::CreateObjectsFromExternalLayout'" >
             <xsl:if test="contains($alreadyUsedCondition, 'found')" >
             //Skipping Action since a alreadyUsedCondition is used
             </xsl:if>
@@ -944,11 +944,11 @@ Created By: Travis Berthelot
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 2" >
                             //logUtil.put("<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size() " + <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size() +  " size " + size, this, commonStrings.PROCESS);
-                            if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> size) {
-                                //logUtil.put("A: Keep from creating again before last time: <xsl:value-of select="text()" />", this, commonStrings.PROCESS);
+                            //if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> size) {
+                                ////logUtil.put("A: Keep from creating again before last time: <xsl:value-of select="text()" />", this, commonStrings.PROCESS);
                                 //caller=<xsl:value-of select="$caller" />
-                                return <xsl:if test="contains($caller, 'hackProcessing2') or $caller = 'conditionLayout - //VarScene' or $caller = 'otherEventLayout - //eventsCreateAssignXGDObjectGDNodesOtherEvent' or $caller = 'externalEventsCreateAssignGDObject - //eventsCreateAssignXGDObjectGDNodesOtherEvent'" > true</xsl:if>;
-                            }
+                                //return <xsl:if test="contains($caller, 'hackProcessing2') or $caller = 'conditionLayout - //VarScene' or $caller = 'otherEventLayout - //eventsCreateAssignXGDObjectGDNodesOtherEvent' or $caller = 'externalEventsCreateAssignGDObject - //eventsCreateAssignXGDObjectGDNodesOtherEvent'" > true</xsl:if>;
+                            //}
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:if>

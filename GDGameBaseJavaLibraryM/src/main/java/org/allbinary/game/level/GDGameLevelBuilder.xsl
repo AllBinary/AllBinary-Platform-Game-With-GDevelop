@@ -104,9 +104,10 @@ import org.mapeditor.io.TiledJSONUtil;
 
                 <xsl:variable name="hasOneOrMoreTileMaps" >
                     <xsl:for-each select="objects" >
-                        <xsl:if test="type = 'TileMap::TileMap' or type = 'TiledSpriteObject::TiledSprite'" >found</xsl:if>
+                        <xsl:if test="type = 'TileMap::TileMap'" >found</xsl:if>
                     </xsl:for-each>
                 </xsl:variable>
+                <xsl:variable name="hasOneOrMoreTiledSprites" ><xsl:for-each select="objects" ><xsl:if test="type = 'TiledSpriteObject::TiledSprite'" >found</xsl:if></xsl:for-each></xsl:variable>
 
                 <xsl:variable name="tileMapGenerator" >
                     <xsl:for-each select="objects" >
@@ -481,10 +482,6 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
 
         }
             </xsl:if>
-            
-            <xsl:if test="type = 'TiledSpriteObject::TiledSprite'" >
-            //TiledSpriteObject::TiledSprite - init
-            </xsl:if>
 
         </xsl:for-each>
 
@@ -518,6 +515,11 @@ public class GDGame<GDLayout>LevelBuilder implements LayerInterfaceVisitor
         geographicMapCompositeInterface.setGeographicMapInterface(geographicMapInterfaceArray);
         
         </xsl:if>
+        
+        <xsl:if test="contains($hasOneOrMoreTiledSprites, 'found')" >
+        //TiledSpriteObject::TiledSprite - init
+        </xsl:if>
+        
         
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
         //if path findingbehavior

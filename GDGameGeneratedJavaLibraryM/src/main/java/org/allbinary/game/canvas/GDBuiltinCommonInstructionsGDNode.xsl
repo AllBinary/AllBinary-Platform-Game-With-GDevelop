@@ -562,7 +562,7 @@ Created By: Travis Berthelot
                 //Was not being called before - START2
                 </xsl:if>
 
-                //caller=<xsl:value-of select="$caller" /> - //No used conditions so calling actions from event directly.
+                //caller=<xsl:value-of select="$caller" /> - //No used conditions so calling actions from event directly.2
                 <xsl:call-template name="hackProcessing" >
                     <xsl:with-param name="caller" ><xsl:value-of select="$caller" /> - //eventsCreateAssignXGDObjectGDNodesOtherEvent</xsl:with-param>
                     <xsl:with-param name="layoutIndex" >
@@ -695,7 +695,7 @@ Created By: Travis Berthelot
                 <xsl:if test="not(contains($foundTimerCondition, 'found'))" >
 
                 <xsl:if test="actions" >
-                //caller=<xsl:value-of select="$caller" /> //No used conditions so calling actions from event directly.
+                //caller=<xsl:value-of select="$caller" /> - //No used conditions so calling actions from event directly.3
 
                 </xsl:if>
                 

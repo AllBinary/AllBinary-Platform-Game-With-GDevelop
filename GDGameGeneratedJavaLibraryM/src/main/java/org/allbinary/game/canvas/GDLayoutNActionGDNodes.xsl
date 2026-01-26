@@ -395,7 +395,7 @@ Created By: Travis Berthelot
 
                     public int CameraWidth(final String string, int value) {
                         
-                        return 0;
+                        return gameTickDisplayInfoSingleton.getLastWidth();
                     }
 
                     public long TimerElapsedTime(final TimeDelayHelper timeDelayHelper) {

@@ -330,7 +330,7 @@ Created By: Travis Berthelot
 
                     public int CameraWidth(final String string, int value) {
                         
-                        return 0;
+                        return gameTickDisplayInfoSingleton.getLastWidth();
                     }
 
                     public int floor(final int value) {

@@ -101,21 +101,29 @@ Created By: Travis Berthelot
 
                                 //logUtil.put(ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
 
+                                    <xsl:variable name="hasPermanentVelocity" >
+                                        <xsl:for-each select="parameters" >
+                                            <xsl:if test="position() = 4" >
+                                                <xsl:if test="text() = 1" >found</xsl:if>
+                                            </xsl:if>
+                                        </xsl:for-each>
+                                    </xsl:variable>
+
                                 <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
 
                                     //name=<xsl:value-of select="$name" />
-                                    final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$name" />GDGameLayer.gdObject;
+                                    //final <xsl:value-of select="$gdObjectFactory" /><xsl:text> </xsl:text><xsl:value-of select="$name" /> = (<xsl:value-of select="$gdObjectFactory" />) <xsl:value-of select="$name" />GDGameLayer.gdObject;
                                     <xsl:text>&#10;</xsl:text>
 
-                                    <!--
-                                    <xsl:variable name="length" ><xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="substring-before(substring-after(text(), 'Variable('), ')')" /></xsl:if></xsl:for-each></xsl:variable>
-                                    <xsl:if test="string-length($length) > 0" >
-                                    if(<xsl:value-of select="$length" />_updated) {
-                                        <xsl:value-of select="$length" />_updated = false;
-                                    </xsl:if>
-                                    -->
+                                    <xsl:if test="contains($hasPermanentVelocity, 'found')" >
+
                                     //Parameters - 6
                                     
+                                        <xsl:for-each select="parameters" >
+                                            <xsl:if test="position() = 1" >
+                                                <xsl:value-of select="text()" />GDGameLayer.velocityBehavior = NoDragVelocityBehavior.instance;</xsl:if>
+                                        </xsl:for-each>
+
                                     <xsl:for-each select="parameters" >
                                         <xsl:if test="position() = 1" >
                                             <xsl:value-of select="text()" />GDGameLayer.AddForce(</xsl:if>
@@ -125,47 +133,22 @@ Created By: Travis Berthelot
                                         <xsl:if test="position() = last()" >
                                             );
                                         </xsl:if>
-                                    </xsl:for-each>
-                                    <!--
-                                    <xsl:if test="string-length($length) > 0" >
-                                    }
-                                    </xsl:if>
-                                    -->
-                                
-                                    <!--
-                                    <xsl:for-each select="parameters" >
-                                        <xsl:if test="position() = 3" >
-
-                                            <xsl:if test="contains(text(), 'Variable(')" >
-                                                <xsl:variable name="end" >
-                                                    <xsl:call-template name="string-replace-all" >
-                                                        <xsl:with-param name="text" >
-                                                            <xsl:value-of select="text()" />
-                                                        </xsl:with-param>
-                                                        <xsl:with-param name="find" >Variable(</xsl:with-param>
-                                                        <xsl:with-param name="replacementText" >
-                                                        </xsl:with-param>
-                                                    </xsl:call-template>
-                                                </xsl:variable>
-                                            
-                                                <xsl:call-template name="string-replace-all" >
-                                                    <xsl:with-param name="text" >
-                                                        //<xsl:value-of select="$end" /> = 0;
-                                                    </xsl:with-param>
-                                                    <xsl:with-param name="find" >)</xsl:with-param>
-                                                    <xsl:with-param name="replacementText" ></xsl:with-param>
-                                                </xsl:call-template>
-                                            </xsl:if>
-
-                                        </xsl:if>
-                                    </xsl:for-each>
-                                    -->
+                                    </xsl:for-each>                                    
                                     
                                     <xsl:text>&#10;</xsl:text>
                                     //updateGDObject - 4
                                     <xsl:value-of select="$name" />GDGameLayer.updateGDObject(globals.globalsGameTickTimeDelayHelper.timeDelta);
                                     <xsl:text>&#10;</xsl:text>
                                 
+                                    </xsl:if>
+
+                                    <xsl:if test="not(contains($hasPermanentVelocity, 'found'))" >
+                                    <xsl:value-of select="$name" />GDGameLayer.setPosition(<xsl:value-of select="$name" />GDGameLayer.getXP() + (int) (<xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each> * TimeDelta()),
+                                        <xsl:value-of select="$name" />GDGameLayer.getYP() + (int) (<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each> * TimeDelta()), 
+                                        <xsl:value-of select="$name" />GDGameLayer.getZP());
+
+                                    </xsl:if>
+
                             return true;
                         }
         
