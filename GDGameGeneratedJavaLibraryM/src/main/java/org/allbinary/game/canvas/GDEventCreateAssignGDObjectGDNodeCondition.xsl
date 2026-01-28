@@ -73,6 +73,8 @@ Created By: Travis Berthelot
     <xsl:import href="./condition/GDCompareStringsConditionGDNode.xsl" />
     <xsl:import href="./condition/GDIsStoppedVelocityConditionGDNode.xsl" />
 
+    <xsl:import href="./condition/GDDraggableBehaviorDraggedConditionGDNode.xsl" />
+
     <xsl:import href="./condition/GDAnimationHasAnimationEndedConditionGDNode.xsl" />
     <xsl:import href="./condition/GDAnimationElapsedTimeConditionGDNode.xsl" />
     
@@ -1307,6 +1309,16 @@ Created By: Travis Berthelot
                     </xsl:call-template>
                 </xsl:when>
                 
+                <xsl:when test="$typeValue = 'DraggableBehavior::Dragged'" >
+                    
+                    <xsl:call-template name="draggableBehaviorDraggedConditionGDNode" >
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+
                 <xsl:otherwise>
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDC
                 </xsl:otherwise>
