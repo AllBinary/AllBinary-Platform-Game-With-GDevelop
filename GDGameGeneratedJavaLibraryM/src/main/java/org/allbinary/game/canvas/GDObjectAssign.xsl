@@ -242,7 +242,7 @@ Created By: Travis Berthelot
                         <xsl:when test="contains(name, 'btn_')" ><xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >, GDSoftJoystickAnimationBehaviorBaseFactory.getInstance()</xsl:if><xsl:if test="not(type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick')" >, GDAnimationBehaviorBaseFactory.getInstance()</xsl:if></xsl:when>
                         <xsl:when test="contains($hasMoreThanOneImageOrRotationDisabled, 'found')" >, <xsl:if test="contains($threedExclusionsFound, 'found')" >GDIndividualAnimationBehaviorFactory.getInstance()</xsl:if><xsl:if test="not(contains($threedExclusionsFound, 'found'))" >isThreed ? GDRotationBehaviorFactory.getInstance() : GDIndividualAnimationBehaviorFactory.getInstance()</xsl:if></xsl:when>
                         <xsl:otherwise>
-                            //Otherwise
+                            //Otherwise - <xsl:value-of select="type" />
                         </xsl:otherwise>
                     </xsl:choose>
             

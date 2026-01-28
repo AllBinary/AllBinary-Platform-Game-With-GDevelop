@@ -158,11 +158,12 @@ public class GDToAllBinaryResourcesGenerator
                 resourceStringMaker.append(arrayIndex);
                 resourceStringMaker.append(this.commonSeps.NEW_LINE);
             } else {
-                resourceStringMaker.append(-1);
-                resourceStringMaker.append(',');
-                resourceStringMaker.append(this.commonSeps.COMMENT);
-                resourceStringMaker.append(name);
-                resourceStringMaker.append(this.commonSeps.NEW_LINE);
+                throw new RuntimeException(name);
+//                resourceStringMaker.append(-1);
+//                resourceStringMaker.append(',');
+//                resourceStringMaker.append(this.commonSeps.COMMENT);
+//                resourceStringMaker.append(name);
+//                resourceStringMaker.append(this.commonSeps.NEW_LINE);
             }
             
         }
@@ -199,11 +200,12 @@ public class GDToAllBinaryResourcesGenerator
                 resourceStringMaker.append(arrayIndex);
                 resourceStringMaker.append(this.commonSeps.NEW_LINE);
             } else {
-                resourceStringMaker.append(-1);
-                resourceStringMaker.append(',');
-                resourceStringMaker.append(this.commonSeps.COMMENT);
-                resourceStringMaker.append(name);
-                resourceStringMaker.append(this.commonSeps.NEW_LINE);
+                throw new RuntimeException(name);
+//                resourceStringMaker.append(-1);
+//                resourceStringMaker.append(',');
+//                resourceStringMaker.append(this.commonSeps.COMMENT);
+//                resourceStringMaker.append(name);
+//                resourceStringMaker.append(this.commonSeps.NEW_LINE);
             }
             
             arrayIndex++;

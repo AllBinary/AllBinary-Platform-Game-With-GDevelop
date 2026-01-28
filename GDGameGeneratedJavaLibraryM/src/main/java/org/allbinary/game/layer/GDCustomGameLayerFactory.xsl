@@ -96,11 +96,11 @@ public class GDCustomGameLayerFactory extends GDGameLayerFactory
         if(gdObjectWidth != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> gdObjectHeight != 0 <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> (this.width != gdObjectWidth || this.height != gdObjectHeight)) {
             this.layerInfo.setWidth(gdObjectWidth);
             this.layerInfo.setHeight(gdObjectHeight);
-            //logUtil.put(new StringMaker().append(name).append(" 2GDObject name: ").append(gdObject.name).append(' ').append(this.layerInfo).toString(), this, "create");
+            //logUtil.put(new StringMaker().append(name).append(" 2GDObject name: ").append(gdObject.name).append(' ').append(this.layerInfo.toString()).toString(), this, "create");
         } else {
             this.layerInfo.setWidth(this.width);
             this.layerInfo.setHeight(this.height);
-            //logUtil.put(new StringMaker().append(name).append(" 3GDObject name: ").append(gdObject.name).append(' ').append(this.layerInfo).toString(), this, "create");
+            //logUtil.put(new StringMaker().append(name).append(" 3GDObject name: ").append(gdObject.name).append(' ').append(this.layerInfo.toString()).toString(), this, "create");
         }
 
         final Rectangle rectangle = this.init(gdObject, scaleX, scaleY);
