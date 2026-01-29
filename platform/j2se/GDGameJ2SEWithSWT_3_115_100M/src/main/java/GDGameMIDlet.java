@@ -17,6 +17,7 @@ import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.audio.EarlySoundsFactory;
 import org.allbinary.media.audio.Sounds;
 import org.allbinary.game.init.DefaultGameInitializationListener;
+import org.allbinary.input.motion.gesture.observer.GDGameMotionGestureListener;
 import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
 import org.allbinary.media.audio.GDGameSoundsFactory;
 
@@ -40,6 +41,8 @@ public class GDGameMIDlet
             new GameMotionGestureListener(
             MotionGestureReceiveInterfaceFactory.getInstance()));    
 
+        motionGesturesHandler.addListener(new GDGameMotionGestureListener());
+        
         new DefaultGameInitializationListener();
     }
 

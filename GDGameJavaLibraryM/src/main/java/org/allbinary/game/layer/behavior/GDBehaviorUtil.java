@@ -32,13 +32,16 @@ public class GDBehaviorUtil {
     //public final String PATHFINDING_BEHAVIOR = "PathfindingBehavior::PathfindingBehavior";
 
     public final int PATHFINDING_BEHAVIOR_INDEX = 0;
+    public final int DRAGGABLE_BEHAVIOR_INDEX = 1;
 
-    public final int MAX = 1;
+    public final int MAX = DRAGGABLE_BEHAVIOR_INDEX + 1;
 
     public GDBehavior getInstance(final int index) {
         
         if(index == PATHFINDING_BEHAVIOR_INDEX) {
-            return new PathFindingBehavior();
+            return PathFindingBehavior.getInstance();
+        } else if(index == DRAGGABLE_BEHAVIOR_INDEX) {
+            return DraggableBehavior.getInstance();
         } else {
             throw new RuntimeException();
         }

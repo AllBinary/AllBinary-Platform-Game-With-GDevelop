@@ -290,6 +290,12 @@ Created By: Travis Berthelot
                         this.isBehaviorEnabledArray[gdBehaviorUtil.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_BEHAVIOR_INDEX] = true;
                         this.hasBehaviorArray[gdBehaviorUtil.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_BEHAVIOR_INDEX] = true;
                         </xsl:if>
+                        <xsl:if test="type = 'DraggableBehavior::Draggable'" >
+                        this.behaviorArray[gdBehaviorUtil.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_BEHAVIOR_INDEX] = gdBehaviorUtil.getInstance(gdBehaviorUtil.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_BEHAVIOR_INDEX);
+                        //Behaviors are enabled by default.
+                        this.isBehaviorEnabledArray[gdBehaviorUtil.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_BEHAVIOR_INDEX] = true;
+                        this.hasBehaviorArray[gdBehaviorUtil.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_BEHAVIOR_INDEX] = true;
+                        </xsl:if>
                     </xsl:for-each>
 
                     <xsl:if test="contains($hasObjectInObjectsGroups, 'found')" >

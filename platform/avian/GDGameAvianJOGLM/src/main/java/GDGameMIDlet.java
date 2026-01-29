@@ -13,7 +13,7 @@ import org.allbinary.game.configuration.feature.SensorFeatureFactory;
 import org.allbinary.game.gd.GDGameJOGLOpenGLESView;
 import org.allbinary.input.motion.AllMotionRecognizer;
 import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
-import org.allbinary.input.motion.gesture.observer.GameMotionGestureListener;
+import org.allbinary.input.motion.gesture.observer.GDGameMotionGestureListener;
 import org.allbinary.input.motion.gesture.observer.MotionGestureReceiveInterfaceFactory;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.media.audio.EarlySoundsFactory;
@@ -46,10 +46,11 @@ public class GDGameMIDlet
         final BasicMotionGesturesHandler motionGesturesHandler =
             motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
 
-        motionGesturesHandler.addListener(
-            new GameMotionGestureListener(
+        motionGesturesHandler.addListener(new GDGameMotionGestureListener(
             MotionGestureReceiveInterfaceFactory.getInstance()));    
 
+        motionGesturesHandler.addListener(new GDGameMotionGestureListener());
+        
         new DefaultGameInitializationListener();
     }
 

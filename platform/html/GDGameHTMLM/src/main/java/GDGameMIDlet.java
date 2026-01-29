@@ -1,6 +1,5 @@
 
 import org.allbinary.game.canvas.GDGameSoftwareInfo;
-import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
 import org.allbinary.game.configuration.GameConfigurationCentral;
 import org.allbinary.game.configuration.feature.Features;
@@ -10,6 +9,11 @@ import org.allbinary.game.configuration.feature.InputFeatureFactory;
 import org.allbinary.game.configuration.feature.SensorFeatureFactory;
 import org.allbinary.logic.math.SmallIntegerSingletonFactory;
 import org.allbinary.game.init.DefaultGameInitializationListener;
+import org.allbinary.input.motion.AllMotionRecognizer;
+import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
+import org.allbinary.input.motion.gesture.observer.GDGameMotionGestureListener;
+import org.allbinary.input.motion.gesture.observer.GameMotionGestureListener;
+import org.allbinary.input.motion.gesture.observer.MotionGestureReceiveInterfaceFactory;
 import org.allbinary.logic.system.security.licensing.GDGameClientInformationInterfaceFactory;
 
 //Maybe GDGame is used instead of this - Can we delete?
@@ -18,10 +22,21 @@ public class GDGameMIDlet
 {
     protected final LogUtil logUtil = LogUtil.getInstance();
 
+    private AllMotionRecognizer motionRecognizer = new AllMotionRecognizer();
+    
     public GDGameMIDlet()
     {
         super(GDGameClientInformationInterfaceFactory.getFactoryInstance());
         GDGameSoftwareInfo.TEMP_HACK_CLIENT_INFORMATION = GDGameClientInformationInterfaceFactory.getFactoryInstance().getInstance();
+        
+        final BasicMotionGesturesHandler motionGesturesHandler =
+            motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
+
+        motionGesturesHandler.addListener(new GameMotionGestureListener(
+            MotionGestureReceiveInterfaceFactory.getInstance()));    
+
+        motionGesturesHandler.addListener(new GDGameMotionGestureListener());
+        
         new DefaultGameInitializationListener();
     }
 

@@ -53,6 +53,7 @@ Created By: Travis Berthelot
         import org.allbinary.game.identification.Group;
         import org.allbinary.game.layer.form.GDSliderAnimationBehavior;
         import org.allbinary.game.layer.form.GDTextInputAnimationBehavior;
+        import org.allbinary.game.layer.behavior.GDBehaviorUtil;
         import org.allbinary.game.input.GameInputProcessor;
         import org.allbinary.game.input.GameInputProcessorUtil;
         import org.allbinary.game.input.GameKeyEventSourceInterface;
@@ -156,6 +157,7 @@ Created By: Travis Berthelot
                     private final StringUtil stringUtil = StringUtil.getInstance();
                     private final BasicGeographicMapUtil basicGeographicMapUtil = BasicGeographicMapUtil.getInstance();
                     private final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
+                    private final GDBehaviorUtil gdBehaviorUtil = GDBehaviorUtil.getInstance();
 
         <xsl:if test="contains($foundPathFindingBehavior, 'found')" >
                     private final BasicColorFactory basicColorFactory = BasicColorFactory.getInstance();
@@ -466,7 +468,23 @@ Created By: Travis Berthelot
                 </xsl:for-each>
             </xsl:for-each>
         </xsl:for-each>
+
+        <xsl:variable name="hasDraggableBehavior" >
+        <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+            <xsl:for-each select="objects" >            
+                <xsl:for-each select="behaviors" >
+                    <xsl:if test="type = 'DraggableBehavior::Draggable'" >found</xsl:if>
+                </xsl:for-each>
+            </xsl:for-each>
+        </xsl:for-each>
+        </xsl:variable>
         
+        <xsl:if test="contains($hasDraggableBehavior, 'found')" >
+        this.isDraggable = gdObject.isBehaviorEnabledArray[gdBehaviorUtil.DRAGGABLE_BEHAVIOR_INDEX];
+        //logUtil.put("isDraggable: " + isDraggable, this, commonStrings.CONSTRUCTOR);
+        </xsl:if>
+                
         <xsl:if test="not(contains($foundOtherViewPosition, 'found'))" >
 //                        this.acceleration = new BasicAccelerationProperties(
 //                            velocityInterface.getMaxForwardVelocity() / 12, 

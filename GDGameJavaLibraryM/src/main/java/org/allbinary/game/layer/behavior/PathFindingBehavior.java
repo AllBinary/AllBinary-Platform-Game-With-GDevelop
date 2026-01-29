@@ -26,6 +26,19 @@ import org.allbinary.util.BasicArrayList;
  */
 public class PathFindingBehavior extends GDBehavior {
     
+    private static final PathFindingBehavior instance = new PathFindingBehavior();
+
+    /**
+     * @return the instance
+     */
+    public static PathFindingBehavior getInstance() {
+        return instance;
+    }
+    
+    private PathFindingBehavior() {
+        
+    }
+
     public boolean process(final BasicArrayList gameLayerList, final int index, final Graphics graphics) {
 
         final GDGameLayer gameLayer = (GDGameLayer) gameLayerList.get(index);

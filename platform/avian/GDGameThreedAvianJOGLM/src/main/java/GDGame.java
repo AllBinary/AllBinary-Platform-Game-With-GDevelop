@@ -17,7 +17,7 @@ import org.allbinary.graphics.opengles.OpenGLConfiguration;
 import org.allbinary.graphics.opengles.OpenGLFeatureFactory;
 import org.allbinary.input.motion.AllMotionRecognizer;
 import org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler;
-import org.allbinary.input.motion.gesture.observer.GameMotionGestureListener;
+import org.allbinary.input.motion.gesture.observer.GDGameMotionGestureListener;
 import org.allbinary.input.motion.gesture.observer.MotionGestureReceiveInterfaceFactory;
 import org.allbinary.logic.communication.log.LogFactory;
 import org.allbinary.logic.communication.log.LogUtil;
@@ -61,8 +61,7 @@ public class GDGame
         final BasicMotionGesturesHandler motionGesturesHandler =
             motionRecognizer.getMotionGestureRecognizer().getMotionGesturesHandler();
 
-        motionGesturesHandler.addListener(
-            new GameMotionGestureListener(
+        motionGesturesHandler.addListener(new GDGameMotionGestureListener(
             MotionGestureReceiveInterfaceFactory.getInstance()));
 
         new DefaultGameInitializationListener();

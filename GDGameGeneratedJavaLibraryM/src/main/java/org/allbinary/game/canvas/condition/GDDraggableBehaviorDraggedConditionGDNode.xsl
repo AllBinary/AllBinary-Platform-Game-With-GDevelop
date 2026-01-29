@@ -161,13 +161,17 @@ Created By: Travis Berthelot
                                 </xsl:call-template>.
                                 <xsl:text>&#10;</xsl:text>
                                 <xsl:value-of select="$gdObjectName" />GDGameLayerList.get(index);
-
-                                //<xsl:value-of select="$gdObjectName" /><xsl:text> = </xsl:text><xsl:value-of select="$gdObjectName" />GDGameLayer.gdObject;
                                 
                                 //stringBuilder.delete(0, stringBuilder.length());
                                 //logUtil.put(stringBuilder.append("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> ").append(commonLabels.INDEX_LABEL).append(index).append(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" >).append(</xsl:if><xsl:if test="position() != 2" >" <xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if><xsl:if test="position() != 2" >").append(</xsl:if><xsl:if test="position() != 2" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if></xsl:for-each>).toString(), this, commonStrings.PROCESS);
                                 if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:value-of select="$gdObjectName" />GDGameLayer.isDragged) {
                                     //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    <xsl:value-of select="$gdObjectName" /><xsl:text> = </xsl:text><xsl:value-of select="$gdObjectName" />GDGameLayer.gdObject;
+                                    //<xsl:value-of select="$gdObjectName" />.setX(MouseX() - (<xsl:value-of select="$gdObjectName" />.width / 2));
+                                    //<xsl:value-of select="$gdObjectName" />.setY(MouseY() - (<xsl:value-of select="$gdObjectName" />.height / 2));
+                                    <xsl:value-of select="$gdObjectName" />.setX(MouseX());
+                                    <xsl:value-of select="$gdObjectName" />.setY(MouseY());
+                                    
                                     <xsl:for-each select=".." >
                                         <xsl:call-template name="actionIdsGDObjectPos" >
                                             <xsl:with-param name="totalRecursions" >0</xsl:with-param>
@@ -220,10 +224,6 @@ Created By: Travis Berthelot
                             <xsl:text>&#10;</xsl:text>
 
                                 <xsl:variable name="firstParamFound" ><xsl:call-template name="firstParamFound" ><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template></xsl:variable>
-                                <xsl:for-each select="parameters" >
-                                    <xsl:if test="position() = 1" ><xsl:if test="text() != $firstParamFound" >//orignalFirstParam=<xsl:value-of select="text()" /><xsl:text>&#10;</xsl:text></xsl:if></xsl:if>
-                                    //<xsl:if test="position() = 1" >final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$firstParamFound" /><xsl:text> </xsl:text><xsl:value-of select="$firstParamFound" /> = ((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$firstParamFound" />) <xsl:value-of select="$firstParamFound" />GDGameLayer.gdObject);<xsl:text>&#10;</xsl:text></xsl:if>
-                                </xsl:for-each>
                                 <xsl:if test="not(contains($beforeSecondParam, $gdObjectName)) and contains($param, '.')" >
 
                                     <xsl:if test="contains($hasForEachProcessGD, 'found')" >
@@ -244,6 +244,17 @@ Created By: Travis Berthelot
                                 //logUtil.put(stringBuilder.append("<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> ").append(commonLabels.INDEX_LABEL).append(index).append(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" >).append(</xsl:if><xsl:if test="position() != 2" >" <xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if><xsl:if test="position() != 2" >").append(</xsl:if><xsl:if test="position() != 2" ><xsl:value-of select="text()" disable-output-escaping="yes" /></xsl:if><xsl:if test="position() = 1" ><xsl:value-of select="$closedValueForGDObject" /></xsl:if></xsl:for-each>).toString(), this, commonStrings.PROCESS);
                                 if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:value-of select="$gdObjectName" />GDGameLayer.isDragged) {
                                     //logUtil.put(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
+                                    
+                                <xsl:for-each select="parameters" >
+                                    <xsl:if test="position() = 1" ><xsl:if test="text() != $firstParamFound" >//orignalFirstParam=<xsl:value-of select="text()" /><xsl:text>&#10;</xsl:text></xsl:if></xsl:if>
+                                    <xsl:if test="position() = 1" >final GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$firstParamFound" /><xsl:text> </xsl:text><xsl:value-of select="$firstParamFound" /> = ((GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$firstParamFound" />) <xsl:value-of select="$firstParamFound" />GDGameLayer.gdObject);<xsl:text>&#10;</xsl:text></xsl:if>
+                                </xsl:for-each>
+                                    
+                                    //<xsl:value-of select="$gdObjectName" />.setX(MouseX() - (<xsl:value-of select="$gdObjectName" />.width / 2));
+                                    //<xsl:value-of select="$gdObjectName" />.setY(MouseY() - (<xsl:value-of select="$gdObjectName" />.height / 2));
+                                    <xsl:value-of select="$gdObjectName" />.setX(MouseX());
+                                    <xsl:value-of select="$gdObjectName" />.setY(MouseY());
+
                                     return true;
                                 } //else {
                                     //logUtil.put(ELSE_CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS);
