@@ -16,14 +16,15 @@ Created By: Travis Berthelot
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
     
+<!--
     <xsl:template name="objectGDObjectGDNodes" >
         <xsl:param name="caller" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="parametersAsString" />
+        <xsl:param name="actionParametersAsString" />
         <xsl:param name="actionTypesAsString" />
         <xsl:param name="parentEventType" />
 
-        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectGNodes - layoutIndex=<xsl:value-of select="$layoutIndex" /> parametersAsString=<xsl:value-of select="$parametersAsString" />
+        //caller=<xsl:value-of select="$caller" /> - //objectGDObjectGNodes - layoutIndex=<xsl:value-of select="$layoutIndex" /> actionParametersAsString=<xsl:value-of select="$actionParametersAsString" />
         <xsl:for-each select="/game">
             <xsl:for-each select="layouts" >
                 <xsl:variable name="index" select="position() - 1" />
@@ -32,7 +33,7 @@ Created By: Travis Berthelot
                     <xsl:variable name="params" >
                     <xsl:for-each select="objects" >
                         <xsl:variable name="name" ><xsl:value-of select="name" />.</xsl:variable>
-                        <xsl:if test="contains($parametersAsString, $name) = text()" >
+                        <xsl:if test="contains($actionParametersAsString, $name) = text()" >
                         <xsl:value-of select="name" />GDGameLayer<xsl:value-of select="position()" />,
                         </xsl:if>
                     </xsl:for-each>
@@ -42,13 +43,13 @@ Created By: Travis Berthelot
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:variable name="name" ><xsl:value-of select="name" />.</xsl:variable>
                         <xsl:variable name="colonName" >:<xsl:value-of select="name" />,</xsl:variable>
-                        <xsl:variable name="before" select="substring-before(substring-before($parametersAsString, $name), $colonName)" />
+                        <xsl:variable name="before" select="substring-before(substring-before($actionParametersAsString, $name), $colonName)" />
                         <xsl:variable name="actionNodeIdFromRelatedParams" ><xsl:call-template name="after-lastIndexOf" ><xsl:with-param name="string" select="$before" /><xsl:with-param name="char" select="','" /></xsl:call-template></xsl:variable>
-                        <xsl:variable name="beforeColon" select="substring-before($parametersAsString, ':')" />
+                        <xsl:variable name="beforeColon" select="substring-before($actionParametersAsString, ':')" />
                         <xsl:variable name="actionNodeId" ><xsl:if test="$actionNodeIdFromRelatedParams != ''" ><xsl:value-of select="$actionNodeIdFromRelatedParams" /></xsl:if><xsl:if test="$actionNodeIdFromRelatedParams = ''" ><xsl:value-of select="$beforeColon" /></xsl:if></xsl:variable>
-                        <xsl:if test="string-length($parametersAsString) > 0 or $actionNodeId != ''" >//objectGDObjectGDNodes - <xsl:if test="string-length($parametersAsString) > 0" >//name=<xsl:value-of select="name" /> - //typeValue=<xsl:value-of select="$typeValue" /> - //before=<xsl:value-of select="$before" /> - //actionNodeIdFromRelatedParams=<xsl:value-of select="$actionNodeIdFromRelatedParams" /></xsl:if> <xsl:if test="$actionNodeId != ''" >//actionNodeId=<xsl:value-of select="$actionNodeId" /></xsl:if></xsl:if>
+                        <xsl:if test="string-length($actionParametersAsString) > 0 or $actionNodeId != ''" >//objectGDObjectGDNodes - <xsl:if test="string-length($actionParametersAsString) > 0" >//name=<xsl:value-of select="name" /> - //typeValue=<xsl:value-of select="$typeValue" /> - //before=<xsl:value-of select="$before" /> - //actionNodeIdFromRelatedParams=<xsl:value-of select="$actionNodeIdFromRelatedParams" /></xsl:if> <xsl:if test="$actionNodeId != ''" >//actionNodeId=<xsl:value-of select="$actionNodeId" /></xsl:if></xsl:if>
 
-                        <xsl:if test="contains($parametersAsString, $name) = text()" >
+                        <xsl:if test="contains($actionParametersAsString, $name) = text()" >
                             <xsl:if test="$typeValue = 'Sprite'" >
                         //caller=<xsl:value-of select="$caller" /> - //objectGDObjectGDNodes - //Objects - //GDNode - //collide - //Sprite - //<xsl:value-of select="$name" />
                         if(gameGlobals.nodeArray[gameGlobals.PARAM_NODE_<xsl:value-of select="$actionNodeId" />] != null) {
@@ -193,5 +194,6 @@ Created By: Travis Berthelot
         </xsl:for-each>
 
     </xsl:template>
+    -->
 
 </xsl:stylesheet>

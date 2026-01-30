@@ -59,6 +59,11 @@ public class GDNode
         return true;
     }
     
+    //This call is for mapping extension params to normal params - currently for each event/condition/action type
+    public boolean process(final Object[] objecArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
+        return true;
+    }
+
     protected void processStats() {
         this.nodeStatsFactory.push(2, name);
     }

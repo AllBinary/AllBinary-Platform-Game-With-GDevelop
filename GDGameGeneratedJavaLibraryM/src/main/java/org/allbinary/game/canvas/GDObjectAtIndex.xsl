@@ -72,7 +72,7 @@ Created By: Travis Berthelot
 
     <xsl:template name="objectGDObjectAtIndex" >
         <xsl:param name="layoutIndex" />
-        <xsl:param name="parametersAsString" />
+        <xsl:param name="actionParametersAsString" />
         <xsl:param name="caller" />
         
        <xsl:variable name="hasCreate" ><xsl:for-each select="actions" ><xsl:if test="type/value = 'Create'" >found</xsl:if></xsl:for-each></xsl:variable>
@@ -90,7 +90,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="name" ><xsl:value-of select="name" />.</xsl:variable>
                             <xsl:variable name="name_comma" ><xsl:value-of select="name" />,</xsl:variable>
 
-                            <xsl:if test="contains($parametersAsString, $name) = text() or contains($parametersAsString, $name_comma) = text()" >
+                            <xsl:if test="contains($actionParametersAsString, $name) = text() or contains($actionParametersAsString, $name_comma) = text()" >
                                 <xsl:if test="$typeValue = 'Sprite' or $typeValue = 'ParticleSystem::ParticleEmitter'" ><xsl:value-of select="name" />,</xsl:if>
                                 <xsl:if test="$typeValue = 'TextObject::Text'" ><xsl:value-of select="name" />,</xsl:if>
                             </xsl:if>
@@ -99,7 +99,7 @@ Created By: Travis Berthelot
                     </xsl:variable>
 
                     <xsl:if test="$names != ''" >
-                    //objectGDObjectAtIndex - layoutIndex=<xsl:value-of select="$layoutIndex" /> parametersAsString=<xsl:value-of select="$parametersAsString" /> names=<xsl:value-of select="$names" />
+                    //objectGDObjectAtIndex - layoutIndex=<xsl:value-of select="$layoutIndex" /> actionParametersAsString=<xsl:value-of select="$actionParametersAsString" /> names=<xsl:value-of select="$names" />
                     <xsl:text>&#10;</xsl:text>
                     </xsl:if>
                     //<xsl:value-of select="$caller" /> - //split - START

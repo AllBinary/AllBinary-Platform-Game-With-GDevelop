@@ -17,6 +17,7 @@ Created By: Travis Berthelot
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
     <xsl:template name="mettreXYActionProcess" >
+        <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
@@ -145,7 +146,8 @@ Created By: Travis Berthelot
                                 </xsl:for-each>
                             </xsl:variable>
 
-                        //MettreXY - //SetXY?
+                        //MettreXY - //SetXY? - //forExtension=<xsl:value-of select="$forExtension" />
+                        <xsl:if test="not(contains($forExtension, 'found'))" >
                         public boolean process() {
 
                             //boolean result = false;
@@ -173,7 +175,7 @@ Created By: Travis Berthelot
                                 gdGameLayer = (GDGameLayer) gdGameLayerList.get(index2);
                                 gdObject = (GDObject) gdGameLayer.gdObject;
                                 //result = result <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> 
-                                this.processGI(gdObject, gdGameLayerList, index2, globals.graphics);
+                                this.processGPaintI(gdObject, globals.graphics);
                                 gdGameLayer.updatePosition();
                             //}
                             }
@@ -213,7 +215,7 @@ Created By: Travis Berthelot
                                 gdGameLayer = (GDGameLayer) gdGameLayerList.get(index2);
                                 gdObject = (GDObject) gdGameLayer.gdObject;
                                 //result = result <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> 
-                                this.processGI(gdObject, gdGameLayerList, index2, globals.graphics);
+                                this.processGPaintI(gdObject, globals.graphics);
                                 gdGameLayer.updatePosition();
                             //}
 
@@ -222,46 +224,6 @@ Created By: Travis Berthelot
                             </xsl:if>
 
                             //return result;
-                            return true;
-                        }
-
-                        //@Override
-                        public boolean processGI(final GDObject gdObject, final BasicArrayList gdGameLayerList, final int gdObjectIndex, final Graphics graphics) {
-
-                            try {
-                                super.processGStats(gdObject, graphics);
-                        
-                                final boolean result = this.processGPaintI(gdObject, graphics);
-                                
-                                final GDGameLayer gameLayer = (GDGameLayer) gdGameLayerList.get(gdObjectIndex);
-                                //final GDObject gdObject = gameLayer.gdObject;
-                                gameLayer.updatePosition();
-                                
-                                return result;
-
-                            } catch(Exception e) {
-                                logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
-                            }
-
-                            return true;
-                        }
-
-                        //@Override
-                        public boolean processGSI(final GDGameLayer gameLayer, final Graphics graphics) {
-
-                            try {
-                                super.processGStats(gameLayer.gdObject, graphics);
-                        
-                                final boolean result = this.processGPaintI(gameLayer.gdObject, graphics);
-                                
-                                gameLayer.updatePosition();
-                                
-                                return result;
-
-                            } catch(Exception e) {
-                                logUtil.put(commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
-                            }
-
                             return true;
                         }
 
@@ -360,14 +322,10 @@ Created By: Travis Berthelot
                         <xsl:if test="not(contains($hasObjectVariable, 'found'))" >
                                                                         
                             //hasObjectVariable - not
-                                <xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setX(</xsl:if><xsl:if test="position() = 2" ><xsl:if test="text() = '+'" ><xsl:value-of select="$existingValueX" /> + </xsl:if><xsl:if test="text() = '-'" ><xsl:value-of select="$existingValueX" /> - </xsl:if></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="$param" /></xsl:if><xsl:if test="position() = last()" >);
-                                <xsl:text>&#10;</xsl:text>
-                                </xsl:if>
-                                </xsl:for-each>
-                                <xsl:text>                                </xsl:text><xsl:for-each select="parameters" >
-                                <xsl:if test="position() = 1" ><xsl:value-of select="text()" />.setY(</xsl:if><xsl:if test="position() = 4" ><xsl:if test="text() = '+'" ><xsl:value-of select="$existingValueY" /> + </xsl:if><xsl:if test="text() = '-'" ><xsl:value-of select="$existingValueY" /> - </xsl:if></xsl:if><xsl:if test="position() = 5" ><xsl:value-of select="text()" /></xsl:if><xsl:if test="position() = last()" >);</xsl:if>
-                                </xsl:for-each>
+                            this.process(<xsl:value-of select="$name" />, 
+                            <xsl:for-each select="parameters" ><xsl:if test="position() = 2" ><xsl:if test="text() = '+'" ><xsl:value-of select="$existingValueX" /> + </xsl:if><xsl:if test="text() = '-'" ><xsl:value-of select="$existingValueX" /> - </xsl:if></xsl:if><xsl:if test="position() = 3" ><xsl:value-of select="$param" /></xsl:if></xsl:for-each>,
+                            <xsl:for-each select="parameters" ><xsl:if test="position() = 4" ><xsl:if test="text() = '+'" ><xsl:value-of select="$existingValueY" /> + </xsl:if><xsl:if test="text() = '-'" ><xsl:value-of select="$existingValueY" /> - </xsl:if></xsl:if><xsl:if test="position() = 5" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
+
                         </xsl:if>
 
                         <xsl:if test="contains($hasObjectVariable, 'found')" >
@@ -814,6 +772,28 @@ Created By: Travis Berthelot
                             }
 
                             return true;
+                        }
+                        </xsl:if>
+
+                        <xsl:if test="contains($forExtension, 'found')" >
+                        @Override
+                        public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
+                            
+                            //Map from object array with action params
+                            this.process((GDGameLayer) objectArray[1], intArray[2], intArray[3]);
+                            
+                            return true;
+                        }
+                        </xsl:if>
+
+                        public void process(final GDGameLayer gameLayer, final int x, final int y) {
+                            final GDObject gdObject = gameLayer.gdObject;
+                            this.process(gdObject, x, y);
+                        }
+
+                        public void process(final GDObject gdObject, final int x, final int y) {
+                            gdObject.setX(x);
+                            gdObject.setX(y);
                         }
 
     </xsl:template>

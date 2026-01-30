@@ -687,7 +687,7 @@ Created By: Travis Berthelot
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="objectsAsString" />
         <xsl:param name="layoutIndex" />
-        <xsl:param name="parametersAsString" />
+        <xsl:param name="actionParametersAsString" />
         <xsl:param name="createdObjectsAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
@@ -735,8 +735,8 @@ Created By: Travis Berthelot
                     <xsl:with-param name="layoutIndex" >
                         <xsl:value-of select="$layoutIndex" />
                     </xsl:with-param>
-                    <xsl:with-param name="parametersAsString" >
-                        <xsl:value-of select="$parametersAsString" />
+                    <xsl:with-param name="actionParametersAsString" >
+                        <xsl:value-of select="$actionParametersAsString" />
                     </xsl:with-param>
                     <xsl:with-param name="caller" >
                         <xsl:value-of select="$caller" />

@@ -20,7 +20,7 @@ Created By: Travis Berthelot
     <xsl:template name="popEndedTouchConditionGDNode" >
         <xsl:param name="caller" />
         <xsl:param name="objectsAsString" />
-        <xsl:param name="parametersAsString" />
+        <xsl:param name="actionParametersAsString" />
 
         <xsl:variable name="quote" >"</xsl:variable>
                     //popEndedTouchConditionGDNode - //Condition - //PopStartedTouch- GDNode
@@ -29,7 +29,7 @@ Created By: Travis Berthelot
                     }
                     gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />] = new GDNode(<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />) {
                     
-                    <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" /></xsl:variable>
+                    <xsl:variable name="conditionAsString" >Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$actionParametersAsString" /></xsl:variable>
                         //private final String CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "<xsl:value-of select="translate($conditionAsString, $quote, ' ')" />";
                         //private final String ELSE_CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Else: " + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />;
 
@@ -44,7 +44,7 @@ Created By: Travis Berthelot
                             <xsl:call-template name="actionsProcess" >
                                 <xsl:with-param name="caller" ><xsl:value-of select="$caller" /></xsl:with-param>
                                 <xsl:with-param name="objectsAsString" ><xsl:value-of select="$objectsAsString" /></xsl:with-param>
-                                <xsl:with-param name="parametersAsString" ><xsl:value-of select="$parametersAsString" /></xsl:with-param>
+                                <xsl:with-param name="actionParametersAsString" ><xsl:value-of select="$actionParametersAsString" /></xsl:with-param>
                             </xsl:call-template>
                                 
                             super.processStatsE();

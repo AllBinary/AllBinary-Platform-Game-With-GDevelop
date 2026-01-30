@@ -101,9 +101,12 @@ Created By: Travis Berthelot
     <xsl:import href="./action/GDTextInputVirtualKeyboardTextInputVirtualKeyboardOpenKeyboardActionProcess.xsl" />
     <xsl:import href="./action/GDTextInputVirtualKeyboardTextInputVirtualKeyboardCloseKeyboardActionProcess.xsl" />
     
+    <xsl:import href="./action/GDExtensionActionProcess.xsl" />
+    
     <xsl:template name="actionGDNodes" >
         <xsl:param name="caller" />
         <xsl:param name="totalRecursions" />
+        <xsl:param name="forExtension" />
         <xsl:param name="layoutIndex" />
         <xsl:param name="selectedNodeIds" />
         <xsl:param name="thisNodeIndex" />
@@ -112,9 +115,10 @@ Created By: Travis Berthelot
         <xsl:param name="objectsGroupsAsString" />
         <xsl:param name="createdObjectsAsString" />
         <xsl:param name="conditionEventPosition" />
-         
+
         <xsl:variable name="quote" >"</xsl:variable>
         
+<!--        //forExtension=<xsl:value-of select="$forExtension" />-->
         <xsl:for-each select="events" >
             <xsl:variable name="eventPosition" select="position()" />
             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=<xsl:value-of select="$totalRecursions" /> type=<xsl:value-of select="type" /> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
@@ -136,8 +140,9 @@ Created By: Travis Berthelot
             </xsl:variable>
 
             <xsl:variable name="hasAssociatedSiblingCondition" select="conditions/type/value = 'MouseButtonReleased' or conditions/type/value = 'MouseButtonFromTextReleased' or conditions/type/value = 'SourisBouton' or conditions/type/value = 'MouseButtonPressed' or conditions/type/value = 'MouseButtonFromTextPressed' or conditions/type/value = 'VarScene' or conditions/type/value = 'Timer'" />
-            <xsl:variable name="actionTypesAsString" ><xsl:for-each select="actions" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="type/value" />,</xsl:for-each></xsl:variable>
+<!--            <xsl:variable name="actionTypesAsString" ><xsl:for-each select="actions" ><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />:<xsl:value-of select="type/value" />,</xsl:for-each></xsl:variable>-->
 
+<!--  
             <xsl:variable name="actionAsStringsStrings" >
             <xsl:for-each select="actions" >
                 <xsl:variable name="typeValue" select="type/value" />
@@ -153,9 +158,21 @@ Created By: Travis Berthelot
                 <xsl:text>&#10;</xsl:text>
             </xsl:for-each>
             </xsl:variable>
+-->
 
             <xsl:variable name="thisNodeArray" >
                 <xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >gameGlobals.nodeArray[gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:if></xsl:for-each>
+            </xsl:variable>
+
+            <xsl:variable name="extensionNames" >
+                <xsl:for-each select="actions" >
+                    <xsl:variable name="typeValue" select="type/value" />
+                    <xsl:for-each select="//eventsFunctionsExtensions" >
+                        <xsl:if test="contains($typeValue, name)" >
+                            <xsl:value-of select="$typeValue" />,
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:for-each>
             </xsl:variable>
 
             <!-- actions - START -->
@@ -175,7 +192,7 @@ Created By: Travis Berthelot
             //selectedNodeIdWithSep=<xsl:value-of select="$selectedNodeIdWithSep" />
             </xsl:if>
             
-            <xsl:if test="contains($selectedNodeIds, $selectedNodeIdWithSep)" >
+            <xsl:if test="contains($selectedNodeIds, $selectedNodeIdWithSep) or string-length($selectedNodeIds) = 0" >
 
                 //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="$typeValue" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
                 <xsl:text>&#10;</xsl:text>
@@ -1089,6 +1106,9 @@ Created By: Travis Berthelot
                 <xsl:when test="$typeValue = 'MettreXY'" >
 
                     <xsl:call-template name="mettreXYActionProcess" >
+                        <xsl:with-param name="forExtension" >
+                            <xsl:value-of select="$forExtension" />
+                        </xsl:with-param>
                         <xsl:with-param name="layoutIndex" >
                             <xsl:value-of select="$layoutIndex" />
                         </xsl:with-param>
@@ -2114,9 +2134,23 @@ Created By: Travis Berthelot
                     </xsl:call-template>
 
                 </xsl:when>
+                
+                <xsl:when test="contains($extensionNames, $typeValue)" >
 
+                    <xsl:call-template name="extensionActionProcess" >
+                        <xsl:with-param name="extensionNameAndExtensionFunction" >
+                            <xsl:value-of select="$typeValue" />
+                        </xsl:with-param>
+                        <xsl:with-param name="layoutIndex" >
+                            <xsl:value-of select="$layoutIndex" />
+                        </xsl:with-param>
+                    </xsl:call-template>
+
+                </xsl:when>
+                
                 <xsl:otherwise>
                     //<xsl:value-of select="$typeValue" /> NOT_IMPLEMENTEDA
+<!--                    //<xsl:value-of select="$extensionNames" />-->
                 </xsl:otherwise>
                 </xsl:choose>
 
@@ -2215,6 +2249,7 @@ Created By: Travis Berthelot
                 <xsl:with-param name="caller" >
                     <xsl:value-of select="$caller" />
                 </xsl:with-param>
+                <xsl:with-param name="forExtension" ><xsl:value-of select="$forExtension" /></xsl:with-param>
                 <xsl:with-param name="layoutIndex" >
                     <xsl:value-of select="$layoutIndex" />
                 </xsl:with-param>

@@ -77,6 +77,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             gameXmlAsString,
             gameXmlAsString,
             gameXmlAsString,
+            gameXmlAsString,
             gameXmlAsString,};
 
         final String[] xslPathInputArray0
@@ -86,10 +87,12 @@ public class GDLayoutsToAllBinaryLayoutGenerator
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGlobals.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGlobalsGDObjectsFactory.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGlobalsGDResources.xsl",
+                gdToolStrings.ROOT_PATH + "GDGameGeneratedJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDExtensionGDNodes.xsl",
                 gdToolStrings.ROOT_PATH + "GDGameThreedPreBaseJavaLibraryM\\src\\main\\java\\org\\allbinary\\game\\canvas\\GDGlobalGameThreedLevelLoader.xsl",
             };
 
         final String[] START0 = {
+            GENERATED_START_WITH_PATH,
             GENERATED_START_WITH_PATH,
             GENERATED_START_WITH_PATH,
             GENERATED_START_WITH_PATH,
@@ -103,6 +106,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator
             "GameGlobals.java",
             "GlobalsGDObjectsFactory.java",
             "GlobalsGDResources.java",
+            "ExtensionGDNodes.java",
             "GlobalGameThreedLevelBuilder.java",};
 
         final int xslTotal0 = xslPathInputArray0.length;
