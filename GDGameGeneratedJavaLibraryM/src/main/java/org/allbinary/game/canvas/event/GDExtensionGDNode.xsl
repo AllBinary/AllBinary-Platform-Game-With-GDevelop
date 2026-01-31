@@ -18,6 +18,9 @@ Created By: Travis Berthelot
     <xsl:output method="html" indent="yes" />
 
     <xsl:template name="extensionGDNode" >
+        
+        <xsl:variable name="quote" >"</xsl:variable>
+
         <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
                             //extensionGDNode
                             //<xsl:value-of select="name" /> - //version=<xsl:value-of select="version" /> //eventsFunctionsExtensions - extensionGDNode
@@ -51,6 +54,11 @@ Created By: Travis Berthelot
                                 //private final String EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> = "Event - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> totalRecursions=-1 type=<xsl:value-of select="type" /> disable=<xsl:value-of select="disabled" />";
                                 <xsl:text>&#10;</xsl:text>
 
+                                private final Object[] mappedObjectArray = new Object[<xsl:value-of select="count(../parameters) + 1" />];
+                                private final int[] mappedIntArray = new int[<xsl:value-of select="count(../parameters) + 1" />];
+                                private final long[] mappedLongArray = new long[<xsl:value-of select="count(../parameters) + 1" />];
+                                private final float[] mappedFloatArray = new float[<xsl:value-of select="count(../parameters) + 1" />];
+
                                 @Override
                                 public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
                                                         
@@ -66,28 +74,91 @@ Created By: Travis Berthelot
                             //name=<xsl:value-of select="name" /> - //parameters
                             //description=<xsl:value-of select="description" />
                             //type=<xsl:value-of select="type" />
-                            
+                        <xsl:choose>
+                            <xsl:when test="type = 'objectList'" >
+                        final GDGameLayer <xsl:value-of select="name" />GameLayer = (GDGameLayer) objectArray[<xsl:value-of select="position()" />];
+                        final GDObject <xsl:value-of select="name" /> = <xsl:value-of select="name" />GameLayer.gdObject;
+                            </xsl:when>
+                            <xsl:when test="type = 'expression'" >
+                        final int <xsl:value-of select="name" /> = intArray[<xsl:value-of select="position()" />];
+                            </xsl:when>
+                            <xsl:otherwise>
+                        //Otherwise - //type=<xsl:value-of select="type" />
+                            </xsl:otherwise>
+                        </xsl:choose>
                 </xsl:for-each>
 
                     <xsl:for-each select="conditions" >
+                        
+                <xsl:for-each select="parameters" >
+                    <xsl:variable name="param" ><xsl:value-of select="text()" /></xsl:variable>
+                    <xsl:variable name="type" ><xsl:for-each select="../../../parameters" ><xsl:if test="contains($param, name)" ><xsl:value-of select="type" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:choose>
+                            <xsl:when test="$type = 'objectList'" >
+                        mappedObjectArray[<xsl:value-of select="position()" />] = <xsl:value-of select="$param" />GameLayer;
+                            </xsl:when>
+                            <xsl:when test="contains($type, 'expression')" >
+                        mappedIntArray[<xsl:value-of select="position()" />] = <xsl:value-of select="$param" />;
+                            </xsl:when>
+                            <xsl:otherwise>
+                        //Otherwise - //type=<xsl:value-of select="$type" />
+                            </xsl:otherwise>
+                        </xsl:choose>
+                </xsl:for-each>
+                        
                         <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                         <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                         //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> parameters=<xsl:value-of select="$parametersAsString" />
-                        if(NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(objectArray, intArray, longArray, floatArray)) {
+                        if(NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(mappedObjectArray, mappedIntArray, mappedLongArray, mappedFloatArray)) {
                     </xsl:for-each>
 
                         <xsl:for-each select="actions" >
+                            
+                <xsl:for-each select="parameters" >
+                    <xsl:variable name="param" ><xsl:value-of select="translate(text(), $quote, '')" /></xsl:variable>
+                    <xsl:variable name="type" ><xsl:for-each select="../../../parameters" ><xsl:if test="contains($param, name)" ><xsl:value-of select="type" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:choose>
+                            <xsl:when test="$type = 'objectList'" >
+                            mappedObjectArray[<xsl:value-of select="position()" />] = <xsl:value-of select="$param" />GameLayer;
+                            </xsl:when>
+                            <xsl:when test="contains($type, 'expression')" >
+                            mappedIntArray[<xsl:value-of select="position()" />] = <xsl:value-of select="$param" />;
+                            </xsl:when>
+                            <xsl:otherwise>
+                            //Otherwise - //type=<xsl:value-of select="$type" />
+                            </xsl:otherwise>
+                        </xsl:choose>
+                </xsl:for-each>
+                            
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                             //Action - GDNode - nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
-                            NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(objectArray, intArray, longArray, floatArray);
+                            //logUtil.put(new StringMaker().append(mappedIntArray[3]).append(CommonSeps.getInstance().COMMA).append(mappedIntArray[5]).toString(), this, commonStrings.PROCESS);
+                            NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(mappedObjectArray, mappedIntArray, mappedLongArray, mappedFloatArray);
                         </xsl:for-each>
                         <xsl:for-each select="events" >
+                            
+                <xsl:for-each select="parameters" >
+                    <xsl:variable name="param" ><xsl:value-of select="text()" /></xsl:variable>
+                    <xsl:variable name="type" ><xsl:for-each select="../../../parameters" ><xsl:if test="contains($param, name)" ><xsl:value-of select="type" /></xsl:if></xsl:for-each></xsl:variable>
+                        <xsl:choose>
+                            <xsl:when test="$type = 'objectList'" >
+                            mappedObjectArray[<xsl:value-of select="position()" />] = <xsl:value-of select="$param" />GameLayer;
+                            </xsl:when>
+                            <xsl:when test="contains($type, 'expression')" >
+                            mappedIntArray[<xsl:value-of select="position()" />] = <xsl:value-of select="$param" />;
+                            </xsl:when>
+                            <xsl:otherwise>
+                            //Otherwise - //type=<xsl:value-of select="$type" />
+                            </xsl:otherwise>
+                        </xsl:choose>
+                </xsl:for-each>
+
                             <xsl:variable name="parametersAsString0" ><xsl:for-each select="parameters" ><xsl:value-of select="text()" />,</xsl:for-each></xsl:variable>
                             <xsl:variable name="parametersAsString" ><xsl:value-of select="translate(translate($parametersAsString0, '&#10;', ''), '\&#34;', '')" /></xsl:variable>
                             <xsl:if test="type != 'BuiltinCommonInstructions::Comment' and type != 'BuiltinCommonInstructions::Link'" >
                             //Event nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> position=<xsl:value-of select="position()" /> type=<xsl:value-of select="type" /> <xsl:if test="object" > object=<xsl:value-of select="object" /></xsl:if> <xsl:if test="target" > target=<xsl:value-of select="target" /></xsl:if> disable=<xsl:value-of select="disabled" />
-                            NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(objectArray, intArray, longArray, floatArray);
+                            NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.process(mappedObjectArray, mappedIntArray, mappedLongArray, mappedFloatArray);
                             </xsl:if>
                         </xsl:for-each>
                     

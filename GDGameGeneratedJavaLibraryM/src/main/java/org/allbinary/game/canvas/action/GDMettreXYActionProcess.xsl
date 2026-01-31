@@ -780,8 +780,10 @@ Created By: Travis Berthelot
                         public boolean process(final Object[] objectArray, final int[] intArray, final long[] longArray, final float[] floatArray) {
                             
                             //Map from object array with action params
-                            this.process((GDGameLayer) objectArray[1], intArray[2], intArray[3]);
-                            
+                            final GDGameLayer gameLayer = (GDGameLayer) objectArray[1];
+                            this.process(gameLayer, intArray[3], intArray[5]);
+                            gameLayer.updatePosition();
+
                             return true;
                         }
                         </xsl:if>
@@ -793,7 +795,7 @@ Created By: Travis Berthelot
 
                         public void process(final GDObject gdObject, final int x, final int y) {
                             gdObject.setX(x);
-                            gdObject.setX(y);
+                            gdObject.setY(y);
                         }
 
     </xsl:template>

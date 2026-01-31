@@ -654,6 +654,9 @@ public class GDGame<GDLayout>Canvas extends CombatGameCanvas //MultiPlayerGameCa
         screenCapture.saveFrame();
 
         this.getTouchPaintableP().paint(graphics);
+        
+        //final GameGlobalsFactory gameGlobalsFactory = GameGlobalsFactory.getInstance();
+        //graphics.drawString(new StringMaker().append(gameGlobalsFactory.point.getX()).append(CommonSeps.getInstance().COMMA).append(gameGlobalsFactory.point.getY()).toString(), gameGlobalsFactory.point.getX(), gameGlobalsFactory.point.getY(), 0);        
     }
 
     private TimeDelayHelper playerTimeDelayHelper = new TimeDelayHelper(2000);

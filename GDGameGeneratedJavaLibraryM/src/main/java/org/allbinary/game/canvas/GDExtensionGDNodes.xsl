@@ -186,6 +186,22 @@ Created By: Travis Berthelot
             </xsl:for-each>
         </xsl:for-each>
 
+                    public int round(final int value) {
+                        return value;
+                    }
+
+                    public long round(final long value) {
+                        return value;
+                    }
+                    
+                    public float round(final float value) {
+                        return Math.round(value);
+                    }
+                    
+                    public int GetArgumentAsNumber(final int value) {
+                        return value;
+                    }
+
                 }
     </xsl:template>
 

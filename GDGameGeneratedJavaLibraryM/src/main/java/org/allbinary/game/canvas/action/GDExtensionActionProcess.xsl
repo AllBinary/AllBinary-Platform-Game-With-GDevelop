@@ -43,8 +43,8 @@ Created By: Travis Berthelot
         <xsl:variable name="gdObjectFactory" >GD<xsl:call-template name="objectFactory" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>GDObjectsFactory.<xsl:value-of select="$name" /></xsl:variable>
                     //extension=<xsl:value-of select="$extensionNameAndExtensionFunction" />
                     
-                    private final Object[] objectArray = new Object[<xsl:value-of select="count(parameters)" />];
-                    private final int[] intArray = new int[<xsl:value-of select="count(parameters)" />];
+                    private final Object[] objectArray = new Object[<xsl:value-of select="count(parameters) + 1" />];
+                    private final int[] intArray = new int[<xsl:value-of select="count(parameters) + 1" />];
 
                     @Override
                     public boolean process() throws Exception {
