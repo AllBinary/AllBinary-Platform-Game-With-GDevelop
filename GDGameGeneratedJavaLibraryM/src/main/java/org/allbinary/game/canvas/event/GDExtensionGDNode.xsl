@@ -43,6 +43,7 @@ Created By: Travis Berthelot
                                 //eventsBasedBehaviors
                     </xsl:for-each>
                     <xsl:for-each select="eventsBasedObjects" >
+                        <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
                                 //eventsBasedObjects - //name=<xsl:value-of select="name" />
                                 //fullName=<xsl:value-of select="fullName" />
                                 //defaultName=<xsl:value-of select="defaultName" />
@@ -68,7 +69,7 @@ Created By: Travis Berthelot
           "editionSettings": {},-->
 
                         <xsl:call-template name="eventsFunctions" >
-                            <xsl:with-param name="extensionName" ><xsl:value-of select="$extensionName" /></xsl:with-param>
+                            <xsl:with-param name="extensionName" ><xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" /></xsl:with-param>
                         </xsl:call-template>
                         
 <!--          "propertyDescriptors": [],
@@ -82,7 +83,7 @@ Created By: Travis Berthelot
     </xsl:template>
 
     <xsl:template name="eventsFunctions" >
-        <xsl:param name="extensionName" />
+        <xsl:param name="extensionName" />        
 
         <xsl:variable name="quote" >"</xsl:variable>
 
