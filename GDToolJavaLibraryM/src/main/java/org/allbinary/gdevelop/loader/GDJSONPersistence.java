@@ -15,7 +15,15 @@ package org.allbinary.gdevelop.loader;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
+import java.nio.charset.CodingErrorAction;
 import org.allbinary.logic.io.StreamUtil;
+import org.allbinary.logic.java.characters.CharacterSetData;
+import org.allbinary.logic.string.StringUtil;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -52,8 +60,14 @@ public class GDJSONPersistence {
     }
     
     public void save(final String saveFilePath, final JSONObject gameAsConfigurationJSONObject) throws Exception {
+        final String jsonAsString = gameAsConfigurationJSONObject.toString(2);
+        this.save(saveFilePath, jsonAsString);
+    }
+
+    public void save(final String saveFilePath, final String jsonAsString) throws Exception {
         
-        final byte[] byteArray = gameAsConfigurationJSONObject.toString(2).getBytes();
+        final byte[] byteArray = jsonAsString.getBytes();
+        
         System.out.println("Saving bytes: " + byteArray.length);
         
         final FileOutputStream outputStream = new FileOutputStream(saveFilePath);
