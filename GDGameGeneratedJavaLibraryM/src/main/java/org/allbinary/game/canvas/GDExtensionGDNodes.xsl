@@ -96,18 +96,12 @@ Created By: Travis Berthelot
             <xsl:for-each select="eventsFunctions" >
                 <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
                     public final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
-                    <xsl:for-each select="events" >
-                    //public final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />GDNode;
-                    </xsl:for-each>
             </xsl:for-each>
             <xsl:for-each select="eventsBasedObjects" >
                 <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
                 <xsl:for-each select="eventsFunctions" >
                     <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
                     public final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
-                    <xsl:for-each select="events" >
-                    //public final GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />GDNode;
-                    </xsl:for-each>
                 </xsl:for-each>
             </xsl:for-each>
             <xsl:for-each select="globalVariables" >
@@ -127,18 +121,12 @@ Created By: Travis Berthelot
             <xsl:for-each select="eventsFunctions" >
                 <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
                         GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
-                    <xsl:for-each select="events" >
-                        GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />GDNode = null;
-                    </xsl:for-each>
             </xsl:for-each>
             <xsl:for-each select="eventsBasedObjects" >
                 <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
                 <xsl:for-each select="eventsFunctions" >
                     <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
                         GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
-                    <xsl:for-each select="events" >
-                        GDNode <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsBasedObjectsName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />GDNode = null;
-                    </xsl:for-each>
                 </xsl:for-each>
             </xsl:for-each>
             
@@ -149,6 +137,7 @@ Created By: Travis Berthelot
                             logUtil.put(commonStrings.START, this, commonStrings.CONSTRUCTOR);
 
                             <xsl:for-each select="eventsFunctionsExtensions" >
+                                //eventsFunctionsExtensions
                                 <xsl:call-template name="extensionGDNode" />
                             </xsl:for-each>
                             
@@ -162,19 +151,13 @@ Created By: Travis Berthelot
             <xsl:variable name="extensionName" ><xsl:value-of select="name" /></xsl:variable>
             <xsl:for-each select="eventsFunctions" >
                 <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                        this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
-                    <xsl:for-each select="events" >
-                        <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
-                    </xsl:for-each>
+                        this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
             </xsl:for-each>
             <xsl:for-each select="eventsBasedObjects" >
                 <xsl:variable name="eventsBasedObjectsName" ><xsl:value-of select="name" /></xsl:variable>
                 <xsl:for-each select="eventsFunctions" >
                     <xsl:variable name="eventsFunctionsName" ><xsl:value-of select="name" /></xsl:variable>
-                        this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
-                        <xsl:for-each select="events" >
-                        <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />_<xsl:value-of select="position()" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = null;
-                        </xsl:for-each>
+                        this.<xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode = <xsl:value-of select="$extensionName" />__<xsl:value-of select="$eventsFunctionsName" />GDNode;
                 </xsl:for-each>
             </xsl:for-each>
             
