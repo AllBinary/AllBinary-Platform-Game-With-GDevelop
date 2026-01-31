@@ -39,7 +39,10 @@ Created By: Travis Berthelot
 package org.allbinary.game.layer.special;
 
 import org.allbinary.game.canvas.GDGameGlobals;
-import org.allbinary.game.canvas.GD0SpecialAnimationGlobals;
+        <xsl:for-each select="layouts" >
+            <xsl:variable name="layoutIndex" select="position() - 1" />
+import org.allbinary.game.canvas.GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals;
+        </xsl:for-each>
 import org.allbinary.game.collision.CollidableBaseBehavior;
 import org.allbinary.game.collision.CollidableInterfaceCompositeInterface;
 import org.allbinary.game.identification.GroupInterface;
