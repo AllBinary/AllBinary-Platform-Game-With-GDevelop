@@ -279,8 +279,22 @@ Created By: Travis Berthelot
                     };                
                 </xsl:if>
 
+                    //type=<xsl:value-of select="type" />
                     public <xsl:value-of select="name" />(final int width, final int height, final String name) {
-                        super(width, height, name, <xsl:if test="string-length(type) = 0 or type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider'" >null</xsl:if><xsl:if test="not(string-length(type) = 0 or type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider')" ><xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(type, ':', '_')" /></xsl:with-param></xsl:call-template></xsl:if>);
+                        super(width, height, name, 
+                    <xsl:if test="string-length(type) = 0 or type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider' or type = 'SelectBox::SelectBox'" >null</xsl:if>
+                    <xsl:if test="not(string-length(type) = 0 or type = 'TextObject::Text' or type = 'TextInput::TextInputObject' or type = 'PanelSpriteSlider::PanelSpriteSlider' or type = 'SelectBox::SelectBox')" >
+                        <xsl:call-template name="globals" >
+                            <xsl:with-param name="name" >
+                                <xsl:value-of select="$name" />
+                            </xsl:with-param>
+                        </xsl:call-template>.<xsl:call-template name="upper-case" >
+                            <xsl:with-param name="text" >
+                                <xsl:value-of select="translate(type, ':', '_')" />
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:if>
+                    );
 
                     <xsl:for-each select="behaviors" >
                         //Behavior name=<xsl:value-of select="name" /> as <xsl:value-of select="type" /> extraBorder=<xsl:value-of select="extraBorder" />

@@ -170,11 +170,17 @@ Created By: Travis Berthelot
                         </xsl:if>
                         
                     </xsl:if>
+                    <xsl:variable name="gameLayer" >
+                        <xsl:choose>
+                            <xsl:when test="$extensionNameAndExtensionFunction = 'SnapToGrid::SnapObjectToVirtualGrid'" ><xsl:value-of select="$name" />GDGameLayer</xsl:when>
+                            <xsl:otherwise>gameLayer</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
                     <xsl:if test="not(contains($hasForEachProcessGD, 'found') or contains($hasCollisionProcessGD, 'found') or contains($hasDistanceProcessGD, 'found') or contains($hasLinkedObjectsPickObjectsLinkedToProcessGD, 'found'))" >
                     //Not from parent - //extension=<xsl:value-of select="$extensionNameAndExtensionFunction" />
-                    public boolean processGD(final GDGameLayer <xsl:value-of select="$name" />GDGameLayer, final GDGameLayer unusedGameLayer, final Graphics graphics) throws Exception {
+                    public boolean processGD(final GDGameLayer <xsl:value-of select="$gameLayer" />, final GDGameLayer unusedGameLayer, final Graphics graphics) throws Exception {
 
-                        super.processGDStats(gameLayer);
+                        super.processGDStats(<xsl:value-of select="$gameLayer" />);
                         
                     </xsl:if>
 
@@ -185,7 +191,7 @@ Created By: Travis Berthelot
                             //extensionMapping
                         <xsl:call-template name="extensionMapping" >
                             <xsl:with-param name="extensionNameAndExtensionFunction" ><xsl:value-of select="$extensionNameAndExtensionFunction" /></xsl:with-param>
-                            <xsl:with-param name="objectOverride" ><xsl:value-of select="$name" />GDGameLayer</xsl:with-param>
+                            <xsl:with-param name="objectOverride" ><xsl:value-of select="$gameLayer" /></xsl:with-param>
                         </xsl:call-template>
                             
                         gdExtensionGDNodes.<xsl:value-of select="translate(type/value, ':', '_')" />GDNode.process(objectArray, intArray, null, null);
@@ -272,7 +278,7 @@ Created By: Travis Berthelot
                             intArray[5] = <xsl:for-each select="parameters" ><xsl:if test="position() = 6" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
                             </xsl:when>
                             <xsl:otherwise>
-                            //<xsl:value-of select="$extensionNameAndExtensionFunction" /> - NOT_IMPLEMENTED
+                            //extensionMapping - //<xsl:value-of select="$extensionNameAndExtensionFunction" /> - NOT_IMPLEMENTED
                             </xsl:otherwise>
 
         </xsl:choose>
